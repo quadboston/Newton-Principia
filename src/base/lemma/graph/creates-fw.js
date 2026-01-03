@@ -13,7 +13,7 @@
         const gwrap = {};
         gwrap.sets_axes = sets_axes;
         gwrap.setsGraphTpClasses = setsGraphTpClasses;
-        gwrap.doSetpix2color = doSetpix2color;
+        gwrap.makes_pix2color = makes_pix2color;
         gwrap.creates_global_css = creates_global_css;
         gwrap.creates_chain_of_containers_under_parent =
                    creates_chain_of_containers_under_parent;
@@ -21,7 +21,7 @@
         gwrap.doDrawToolline = doDrawToolline;
         gwrap.graphAxisX = graphAxisX;
         gwrap.graphAxisY = graphAxisY;
-        gwrap.creates_mask = creates_mask;
+        gwrap.makes_mask = makes_mask;
         gwrap.auxiliary_arbitrary_colors_generator =
               auxiliary_arbitrary_colors_generator;
         gwrap.wraps_draw_graph = wraps_draw_graph;
@@ -30,6 +30,7 @@
 
         gwrap.creates_chain_of_containers_under_parent( digramParentDom$ );
         nsmethods.createsGraphFW( gwrap );
+        const gcontent = gwrap.fw.content;
         gwrap.creates_global_css(); //todm put in defaults
         return gwrap;
 
@@ -45,21 +46,22 @@
                 'sagitta',
             ];
             sconf.SHOW_FORMULAS.forEach( (f,fix) => {
-                tpnames[tpnames.length + fix] = 'context';
+                tpnames[tpnames.length + fix] =
+                    haz( f, 'tpname' ) || 'context';
             });
             return tpnames;
         }
 
-        function doSetpix2color (){
+        function makes_pix2color (){
             const multi = ssD?.zebraCols?.multicolor;
             if( multi ){
                 var pix2color = multi.map(
                     col => col.rgba_high );
             } else {
                 var pix2color = SETS_PLOTS_TP_NAME().map(
-                    c => sDomF.getFixedColor( c ));
+                    c => sDomF.tpname0arr_2_rgba( c ));
             }
-            gwrap.pix2color = pix2color;
+            gcontent.pix2color = pix2color;
             return pix2color;
         }
 
@@ -73,13 +75,13 @@
             //==================================================
             // //\\ calls api
             //==================================================
-            const mask = gwrap.fw.content.pix2mask;
+            const mask = gcontent.pix2mask;
             //axis x and legend x color:
             //manually picked color, not from plot,
             //y-legend color; taken from first plot color:
-            const yColor = gwrap.pix2color[ 0 ];
+            const yColor = gcontent.pix2color[ 0 ];
 
-            let n2c = sDomF.getFixedColor; //name to color
+            let n2c = sDomF.tpname0arr_2_rgba; //name to color
             const c_orbit = n2c( 'orbit' );
             const c_body = n2c( 'body' );
             const c_force = n2c( 'force' );
@@ -89,12 +91,14 @@
             const axisYLegend = [
                 {
                     //"hover-width" decreases gigantict bold
-                    //together, tobold hover-width and tostroke can be redundant
+                    //together, tobold hover-width and tostroke
+                    //can be redundant
                     text    :
                         '<text>Force: <tspan class=' +
                         '"tp-force tofill tobold hover-width"' +
                         //overrides tp machinery
-                        ' style="fill:' + c_force + '; stroke:'+c_force + ';"' +
+                        ' style="fill:' + c_force + '; stroke:'+
+                        c_force + ';"' +
                         '></tspan></text>',
                     x       : 40,
                     y       : 25,
@@ -127,12 +131,16 @@
                 '</tspan>';
             text += !mask[3] ? '' :
                 ', <tspan class="tp-_p_-sagitta tofill tobold hover-width" ' +
-                'style="fill:' + c_sagitta + '; stroke:' + c_sagitta + ';">' +
+                'style="fill:' + c_sagitta + '; stroke:' +
+                c_sagitta + ';">' +
                 'sagitta' +
                 '</tspan>';
             text += ULTIM_NORM ?
-                        ' normed by own ' + ( sconf.ADDENDUM_NORM_BY_MIN ? 'min' : 'max' )
-                        : 'normed by f<tspan baseline-shift="sub">ultimate max</tspan>';
+                        ' normed by f<tspan baseline-shift="sub">' +
+                        'ultimate max</tspan>'
+                        :
+                        ' normed by own ' +
+                        ( sconf.ADDENDUM_NORM_BY_MIN ? 'min' : 'max' );
             text += '.</text>';
             axisYLegend[1] = {
                 text,
@@ -172,10 +180,10 @@
         ///this thing fails if not to synch it with mask,
         ///the unmasked indices must be the same as here:
         function setsGraphTpClasses (){
-            const pix2tpcls = sn( 'pix2tpcls', gwrap.fw.content, [] );
+            const pix2tpcls = gcontent.pix2tpcls;
             const tpnames = SETS_PLOTS_TP_NAME();
             const tplen = tpnames.length;
-            const conv = sDomF.topicIdUpperCase_2_underscore;
+            const conv = sDomF.tpid2low;
             tpnames.forEach( (nam,ix) => {
                 pix2tpcls[ ix ] = conv( 'tp-' + nam );
             });
@@ -189,7 +197,7 @@
         }
 
 
-        function creates_mask (){
+        function makes_mask (){
             //const subessay = amode.subessay;
             const TIME = sconf.TIME_IS_FREE_VARIABLE;
             const ADDENDUM = amode.aspect === 'addendum';
@@ -198,7 +206,7 @@
             const solvable = sn( 'solvable', ssD, true );
             if( !ssD.solvable ) return;
 
-            const mask = gwrap.fw.content.pix2mask;
+            const mask = gcontent.pix2mask;
             mask[0] = solvable;
             mask[1] = solvable;
                 //&& (
@@ -247,7 +255,9 @@
             `);
         }
 
-        function creates_chain_of_containers_under_parent( digramParentDom$ ){
+        function creates_chain_of_containers_under_parent(
+            digramParentDom$
+        ){
             gwrap.parent = $$.div()
                 .addClass( 'blesson-graph-svg-parent' )
                 .to(
@@ -268,11 +278,12 @@
         // \\// containers
         //=========================================
 
-        function plotLabels_2_plotsPars( //curveLabels
-            pix2color ){
+        function plotLabels_2_plotsPars (){
+            const pix2color = gcontent.pix2color;
             if( !sn( 'solvable', ssD, true ) ) return;
             const addendum = amode.aspect === 'addendum';
-            ///make sure, the number of plot labels is equal to plot functions y(x)
+            ///make sure, the number of plot labels
+            //is equal to plot functions y(x)
             const labels = [
                 {
                     fraqX : 0.2,
@@ -318,14 +329,14 @@
                     },
                 },
             ];
-            var fsignum = Math.sign(
-                stdMod.graphFW_lemma.fw.content.pix2values[0].y[0] );
+            const fsign =
+                sn('forceSign', gcontent.pix2values, 1) < 0 ? '-' : '';
             sconf.SHOW_FORMULAS.forEach( (f,fix) => {
                 const pix = 4+fix; //plot index
                 labels[ pix ] =
                 {
                     fraqX : 0.25 + fix/10, //plot cosmetics
-                    pcaption : ( fsignum < 0 ? '-' : '' ) + f.label,
+                    pcaption : fsign + f.label,
                     fontShiftX : 0,
                     fontShiftY : 20,
                     //t/cssclass : 'tp-formula-' + fix,
@@ -353,7 +364,8 @@
         */
         function auxiliary_arbitrary_colors_generator ( monoColorHue ){
             ssD.zebraCols = {};
-            [ false, ns.rgbaArr2hsla( [0,     0,   255,    1] )[0] ].forEach(
+            [ false, ns.rgbaArr2hsla(
+                [0,     0,   255,    1] )[0] ].forEach(
                 ( monoColorHue ) => {
                     var wwCols = ns.builds_zebraNColors_array({
                         maxColors : 10,
@@ -374,14 +386,16 @@
             });
         }
 
+        ///to modify in blesson, this fun. needs overriding
+        ///in blesson
         function doDrawToolline (){
             return {
                 toollineStyle : {
-                    stroke : gwrap.pix2color[2],
+                    stroke : gcontent.pix2color[2],
                     'stroke-width' : 3,
                 },
                 abscissaIxValue : stdMod.P2gix(),
-                numberMarks : amode.aspect !== 'addendum',
+                numberMarks : amode.aspect === 'addendum',
             };
         }
 
@@ -411,6 +425,7 @@
         }
 
         function wraps_draw_graph({
+            mask, //mask can be sparsed array,
             drawDecimalY,
             drawDecimalX,
             printAxisXDigits,
@@ -426,8 +441,14 @@
             drawDecimalX = typeof drawDecimalX === 'undefined' ?
                             true : drawDecimalX;
             gwrap.setsGraphTpClasses();
-            gwrap.doSetpix2color();
-            hafff( gwrap, 'creates_mask' );
+            gwrap.makes_pix2color();
+            hafff( gwrap, 'makes_mask' );
+            if( mask ){
+                //// mask is directly overriden by painter call,
+                mask.forEach( (m,ix) => {
+                    gwrap.fw.content.pix2mask[ix] = m;
+                });
+            }
             const { yColor, xColor, axisYLegend, axisXLegend, } =
                   gwrap.sets_axes();
             fw.meth.drawGraph({
@@ -446,23 +467,11 @@
                     axisYLegend,
                     axisXLegend,
                     plotsCount_overrider : 1000,
-                    plotsPars : gwrap.plotLabels_2_plotsPars(
-                                gwrap.fw.content.pix2color ),
+                    plotsPars : gwrap.plotLabels_2_plotsPars(),
                     doPaintGridOnlyOnce : false,
                     doDrawToolline : gwrap.doDrawToolline(),
                     brightenGrid : 0.3,
             });
         }
-
-        /// shows/hides graph container
-        /*
-        function showPHGraph( doShow ){
-            if( doShow ) {
-                gwrap.container$.removeClass( 'hidden' );
-            } else {
-                gwrap.container$.addClass( 'hidden' );
-            }
-        }
-        */
     }
 })();

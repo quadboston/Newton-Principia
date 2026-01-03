@@ -1,29 +1,30 @@
-( function() {
-    var {
-        ns, sn, haz, haff, $$, eachprop,
-        sconf, ssF, ssD, sDomN,
-        sDomF, amode, stdMod, toreg, rg,
-        exegs,
+(function(){
+    const {
+        ns, sn, haz, haff, $$, eachprop, 
+        sconf, ssF, ssD, sDomN, sDomF, amode, stdMod, rg, exegs,
     } = window.b$l.apptree({
-        setModule,
-        ssFExportList :
-        {
+        ssFExportList : {
             media_upcreate_generic,
         },
+        setModule,
     });
-    var pointies2line;
+    var pivots_2_svgLineInRg;
     return;
 
 
     function setModule()
     {
-        pointies2line   = ssF.pointies2line;
+        pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
     }
 
     //=========================================================
     // //\\ updater helper
+    //      - runs every time model changes
     //=========================================================
-    ///overrides lemma's stdMod.media_upcreate if missed
+    ///overrides lemma's stdMod.media_upcreate if missed,
+    ///how? media_upcreate prevales when finalizing lemma in
+    ///init_sapp: if lemma does not provide the latter, then
+    ///this function takes over:
     function media_upcreate_generic()
     {
         if( haz( stdMod, 'media_update_is_forbidden' ) ) return;
@@ -123,10 +124,12 @@
         // \\// upcreates lines after points
         //=============================================
 
-
+        /*
         if( !ssF.mediaModelInitialized ) {
+            ccc( 'generic media, preemptive create_digital_legend' );
             haff( stdMod, 'create_digital_legend' );
         }
+        */
         
         //**************************************************
         // //\\ note, former lemmas
@@ -156,5 +159,4 @@
     // \\// updater helper
     //=========================================================
 
-}) ();
-
+})();

@@ -18,7 +18,7 @@
     ///****************************************************
     function model_upcreate()
     {
-        const fun = rg[ 'approximated-curve' ].t2xy;
+        const fun = rg.approxer.t2xy;
         var rr0 = rg.P.pos;
         var rrc = rg.S.pos;
         var parP = stdMod.pos2t( rr0 );
@@ -101,14 +101,7 @@
         // \\// ellipse static params
         //------------------------------------------------
 
-
-        // //\\ graph
-        //------------------------------------------------
-        stdMod.buildsforceGraphArray();
-        stdMod.graphFW_lemma.wraps_draw_graph({});
-        //------------------------------------------------
-        // \\// graph
-        //------------------------------------------------
+        stdMod.makesGraphArray_8_drawsPlots();
     }
 
 }) ();

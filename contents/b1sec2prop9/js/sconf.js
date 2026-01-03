@@ -1,5 +1,5 @@
 ( function() {
-    const { nspaste, fconf, sf, fixedColors, originalPoints } =
+    const { nspaste, fconf, sf, topicColors_repo, originalPoints } =
             window.b$l.apptree({ ssFExportList : { init_conf }
     });
     return;
@@ -140,10 +140,10 @@ function init_conf()
         context,
         //invalid,
         //shadow,
-    } = fixedColors;
+    } = topicColors_repo;
 
     ///does export topic colors
-    sf.predefinedTopics = nspaste( {}, { //need deep copy
+    sf.topicColors_elected = nspaste( {}, { //need deep copy
         force,
         estimatedForce,
         fQR,
@@ -211,10 +211,12 @@ function init_conf()
         R : {
             pcolor : proof,
             letterAngle : 45,
+            cssClass : 'logic_phase--proof',
         },
         T : {
             pcolor : proof,
             letterAngle : 180,
+            cssClass : 'logic_phase--proof',
         },
         Z : {
             pcolor : body,
@@ -240,10 +242,12 @@ function init_conf()
             caption : 'Rc',
             pcolor : curvature,
             letterAngle : -45,
+            cssClass : 'logic_phase--proof',
         },
         Y : {
             pcolor : proof,
             letterAngle : -90,
+            cssClass : 'logic_phase--proof',            
         },
         Or : {
             doPaintPname : false,
@@ -257,26 +261,52 @@ function init_conf()
     //*************************************
     // //\\ original app lines
     //*************************************
-    sf.linesArray = nspaste( {}, 
+    sf.linesArray = nspaste( {},
     [
-        { 'SP' : { pcolor : body }, },
-        { 'PV' : { pcolor : proof }, },
-        { 'PR' : { pcolor : body }, },
-        { 'SY' : { pcolor : proof }, },
+        { 'SP' : { pcolor : orbit }, },
+        { 'SQ' : { pcolor : orbit }, },
+        { 'PV' : { pcolor : orbit,
+                   cssClass : 'logic_phase--proof',
+        }, },
+        { 'PR' : { pcolor : orbit,
+                   cssClass : 'logic_phase--proof',
+        }, },
+        { 'SY' : { pcolor : proof,
+                   cssClass : 'logic_phase--proof',
+        }, },
 
-        { 'QR' : { pcolor : proof }, },
-        { 'QP' : { pcolor : proof }, },
-        { 'SQ' : { pcolor : proof }, },
-        { 'QT' : { pcolor : proof }, },
-        { 'PT' : { pcolor : proof }, },
+        { 'QR' : { pcolor : proof,
+                   cssClass : 'logic_phase--proof',
+        }, },
+        { 'QP' : { pcolor : proof,
+                   cssClass : 'logic_phase--proof',
+        }, },
+        { 'QT' : { pcolor : proof,
+                   cssClass : 'logic_phase--proof',
+        }, },
+        { 'PT' : { pcolor : proof,
+                   cssClass : 'logic_phase--proof',
+        }, },
 
-        { 'PC' : { pcolor : curvature }, },
-        { 'PY' : { pcolor : body }, },
-        { 'P,Zminus' : { pcolor : body }, },
-        { 'PZ' : { pcolor : body }, },
-        { 'ZR' : { pcolor : body }, },
+        { 'PC' : { pcolor : curvature,
+                   cssClass : 'logic_phase--proof',
+        }, },
+        { 'PY' : { pcolor : body,
+                   cssClass : 'logic_phase--proof',
+        }, },
+        { 'P,Zminus' : { pcolor : body,
+                         cssClass : 'logic_phase--proof',
+        }, },
+        { 'PZ' : { pcolor : body,
+                   cssClass : 'logic_phase--proof',
+        }, },
+        { 'ZR' : { pcolor : body,
+                   cssClass : 'logic_phase--proof',
+        }, },
 
-        { 'CV' : { pcolor : curvature }, },
+        { 'CV' : { pcolor : curvature,
+                   cssClass : 'logic_phase--proof',
+        }, },
     ]);
     //*************************************
     // \\// original app lines

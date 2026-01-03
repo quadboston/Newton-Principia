@@ -47,7 +47,7 @@
     ///
     ///===================================================
     function pname__2__rgX8dragwrap_gen_list( pname,)
-    { 
+    {
         return params__2__rgX8dragwrap_gen_list({ pname,});
     }
     function params__2__rgX8dragwrap_gen_list({
@@ -60,7 +60,7 @@
         //premature?: rgX.processDownEvent    = processDownEvent || sDomF.processDownEvent;
         rgX.processDownEvent    = sDomF.processDownEvent;
         rgX.processUpEvent      = sDomF.processUpEvent;
-        rgX.pcolor              = sDomF.getFixedColor( rgX.pname );
+        rgX.pcolor              = sDomF.tpname0arr_2_rgba( rgX.pname );
         orientation = orientation ||
         ( haz( rgX, 'draggableY' ) && haz( rgX, 'draggableX' ) ?
             'rotate' :
@@ -161,8 +161,8 @@
     function processUpEvent( arg )
     {
         if( ns.haz( this, 'mediaMover' ) ) {
-            this.achieved.achieved[ 0 ] = sconf.modorInPicX; 
-            this.achieved.achieved[ 1 ] = sconf.modorInPicY; 
+            this.achieved.achieved[ 0 ] = sconf.modorInPicX;
+            this.achieved.achieved[ 1 ] = sconf.modorInPicY;
 
             //// non-ordinary case:
             this.undisplay = true;

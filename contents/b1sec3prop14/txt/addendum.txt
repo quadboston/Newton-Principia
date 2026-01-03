@@ -104,8 +104,8 @@ In diagram, one can have two kind of handles.
 1) changing the shape, but preserving the L and see S preserves.
 2) changing either the L or S and fixing as much of the other shape parameters which are possible to fix to make the claim clear as possible and see the ratio preserves.
 
-In current implementation, 
-the only 2) is implemented: 
+In current implementation,
+the only 2) is implemented:
 a) slider changes excentricity, e, and fixes fi, r, and |𝘃|.
 b) slider changes fi and preserves e, r, and |v|. (Only L and ^𝘃,𝗿 do change proportionally.)
 c) handle changes v and preserving r (two complex to grasp)

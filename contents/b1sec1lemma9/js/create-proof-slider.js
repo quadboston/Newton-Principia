@@ -34,7 +34,7 @@
         //      At page load time, animates to value sconf.tC.
         //      Based on ns.sliderControl which is based on,
         //      as of version 1072,
-        //      module bsl/slider/d8d-app-template.js 
+        //      module bsl/slider/d8d-app-template.js
         //=====================================================
 
         ///as of version 1072, ssF.animatedSlider is set in full-app/lib/animated-slider/
@@ -69,7 +69,7 @@
                                    //nothing to do with app or parent
         });
         sDomF.proofSlider.doSet_childOpeningAnimation(
-            1,            //initial application data  
+            1,            //initial application data
             sconf.tC,     //final application data
 
             //setting second arg to 20 makes introductory animation instant

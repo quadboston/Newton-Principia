@@ -6,7 +6,7 @@
     } = window.b$l.apptree({
         setModule,
     });
-    var pointies2line;
+    var pivots_2_svgLineInRg;
     return;
 
 
@@ -21,7 +21,7 @@
     function setModule()
     {
         stdMod.media_upcreate___part_of_medupcr_basic =media_upcreate___part_of_medupcr_basic;
-        pointies2line   = ssF.pointies2line;
+        pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
     }
 
     //=========================================================
@@ -57,7 +57,7 @@
         var pointE     = rg.E;
         var pointB     = rg.B;
         var pointC     = rg.C;
-        
+
         rg.B.doWhiteKernel = true;
         rg.C.doWhiteKernel = true;
         rg.E.doWhiteKernel = true;
@@ -97,7 +97,7 @@
             {
                 'stroke-width' : 1 * sconf.thickness
             },
-            //Ensure second paint pivot is hidden.  Otherwise a small dot will be in its location for the claim tab, since the point that would 
+            //Ensure second paint pivot is hidden.  Otherwise a small dot will be in its location for the claim tab, since the point that would
             //cover it for other tabs is hidden.
             paintPivots : {
                 topaint : [ null, null, true ],
@@ -160,7 +160,7 @@
         wCCA( 'area-Ace', medRemoteCurPivots,  tC, pointA.medpos, pointOe.medpos );
         wCCA( 'area-Abd', medRemoteCurPivots,  tB, pointA.medpos, pointOd.medpos );
         paintCurvArea( 'area-Ace', 'logic_phase--proof', '_ace' );
-        //.apparently makes this shape-element exclusively present in 
+        //.apparently makes this shape-element exclusively present in
         //.'logic_phase--proof' mode
         paintCurvArea( 'area-Abd', 'logic_phase--proof', '_abd' );
         //------------------------------------------
@@ -219,14 +219,14 @@
             var area = rg[ areaId ];
 
             var lowCurve = rg[ areaId ].curve;
-            
+
             var dd = '';
             dd += "M" + area.startPoint[0] + ' ' +
                         area.startPoint[1] + ' ';
-            dd += "Q" + 
+            dd += "Q" +
                   lowCurve[1][0].toFixed(2) + ' ' + lowCurve[1][1].toFixed(2) + ' ' +
                   lowCurve[2][0].toFixed(2) + ' ' + lowCurve[2][1].toFixed(2) + ' ';
-            dd += "L" + 
+            dd += "L" +
                         area.endPoint[0] + ' ' +
                         area.endPoint[1] + ' ';
 
@@ -298,9 +298,9 @@
             */
 
             /*
-             
+
             //delete this later, this is a sample
-            
+
             if( skipSVG ) return pt;
             pt.svgel = nssvg.u({
                 svgel   : pt.svgel,
@@ -316,7 +316,7 @@
                 r : ( customSWidth || 0.7 ) * sconf.thickness * 8 //todo
             });
             var cssClass = attrs && attrs['cssClass'] && ( attrs['cssClass'] + ' ' );
-            $$.$(pt.svgel).cls( cssClass + 'tp-' +  sDomF.topicIdUpperCase_2_underscore( pName ) );
+            $$.$(pt.svgel).cls( cssClass + 'tp-' +  sDomF.tpid2low( pName ) );
             return pt;
             */
         }

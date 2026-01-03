@@ -14,7 +14,7 @@
     var clustersToUpdate_claim = [];
     return;
 
-    
+
     ///this function is called from common-application-library,
     ///from full-app/dom/...
     function create_digital_legend()
@@ -79,7 +79,7 @@
         var row = $$.c('tr')
             .addClass('proof row1')
             .addClass('tostroke')
-            .to(tb)();              
+            .to(tb)();
         makeFormatterCell( row, 'semiaxis a xxxxxxxxx', '111', 'xxxxxxxxx' );
         makeFormatterCell( row, 'semiaxis a xxxxxxxxx', '111', 'xxxxxxxxx' );
         makeFormatterCell( row, 'xxx', '11111', 'xxxxxxxxx' );
@@ -149,7 +149,7 @@
     //
     //=========================================
     ///Makes:  magnitude's cluster in table,
-    ///Effect: represents magnitude in html-table-row in 
+    ///Effect: represents magnitude in html-table-row in
     ///        form "mname = mvalue",
     ///Input:  mname = magnitude name
     function makeClBoth( row, mname, mcaption, spanIx, spanVal,
@@ -157,7 +157,7 @@
     {
         //todm: ?no need for extra function argument:
         //      tp-cssName may be taken from "rg.Elem point wrap" ...
-        cssName = sDomF.topicIdUpperCase_2_underscore( cssName || mname );
+        cssName = sDomF.tpid2low( cssName || mname );
 
         if( mcaption !== ']no caption[' ) {
             var c$ = $$.c('td')

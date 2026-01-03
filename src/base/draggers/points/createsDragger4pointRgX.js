@@ -38,7 +38,7 @@
     }) {
         var pointWrap               = rgX;
         pointWrap.spinnerClsId      = 'point-' +
-            sDomF.topicIdUpperCase_2_underscore( rgX.pname ) +
+            sDomF.tpid2low( rgX.pname ) +
             '-slider';
         //**rgX must have dragDecorColor' ) || pcolor:
         pointWrap.dragDecorColor    = haz( rgX, 'dragDecorColor' ) || rgX.pcolor;
@@ -69,7 +69,7 @@
         const svg = document.querySelector('svg.bsl--svgscene');
         const handlers = document.querySelectorAll('circle[fill="white"]');
         handlers.forEach((element) => {
-          svg.appendChild(element); 
+          svg.appendChild(element);
         });
     }
 
@@ -86,7 +86,7 @@
        */
         arg
     ){
-        var pWrap = arg.pointWrap; 
+        var pWrap = arg.pointWrap;
         switch( arg.down_move_up ) {
             case 'down':
                 //**rgX optionally can have processDownEvent method:
@@ -125,7 +125,7 @@
 
                     //"fullMoveInsideMathModel",
                     //is in model units except for media-mover(-as-a-whole)
-                    scaledMove, 
+                    scaledMove,
 
                     mouseOnSurf, //possibly in media units, not im model units,
                 );

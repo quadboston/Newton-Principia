@@ -1,5 +1,5 @@
 ( function() {
-    const { nspaste, fconf, sf, fixedColors, originalPoints } =
+    const { nspaste, fconf, sf, topicColors_repo, originalPoints } =
             window.b$l.apptree({
                 ssFExportList : { init_conf }
     });
@@ -98,14 +98,14 @@ function init_conf()
     //      a commented template,
     //***************************************************************
     sf.SHOW_FORMULAS = [
-        //usually, bP is context of "plane-cureve-derivatives"  
+        //usually, bP is context of "plane-cureve-derivatives"
         { label:'1/r⁵',
             fun:(bP) => { const r2 = bP.r2;  return 1/(r2*r2*bP.r);},
             //t// cssclass : 'tp-context tostroke',
-        }, 
+        },
         { label:'1/r²',
             fun:(bP) => 1/bP.r2,
-        }, 
+        },
     ];
     //***************************************************************
     // \\// model comparison demo
@@ -132,10 +132,10 @@ function init_conf()
         force,
         invalid,
         chord,
-    } = fixedColors;
+    } = topicColors_repo;
 
     ///does export topic colors
-    sf.predefinedTopics = nspaste( {}, { //need deep copy
+    sf.topicColors_elected = nspaste( {}, { //need deep copy
         force,
         curvature,
         curvatureCircle : [...curvature, 1],
@@ -205,7 +205,7 @@ function init_conf()
         },
         QtimeDecor : {
             undisplayAlways : true,
-            //pos: will be as Q, 
+            //pos: will be as Q,
             cssClass : 'tp-dtime',
             pcolor : dtime, //proof,
             fontSize : 30,

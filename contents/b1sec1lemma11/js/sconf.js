@@ -39,7 +39,7 @@
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
         //making size to better fit lemma's diagram
-        fconf.LETTER_FONT_SIZE_PER_1000 = 20;
+        sconf.LETTER_FONT_SIZE_PER_1000 = 20;
         //overrides "global", lemma.conf.js::sconf
 
         //overrides "global", lemma.conf.js::sconf
@@ -59,7 +59,7 @@
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
 
-  
+
         //this makes hanle's border nicely thin
         sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
         //sconf.text_nonhover_width = 1;
@@ -94,7 +94,7 @@
         var result  = [200,   40,  0,      1];
         var hidden  = [0,     0,   0,      0];
 
-        var predefinedTopics =
+        var topicColors_elected =
         {
             given,
             proof,
@@ -117,7 +117,7 @@
 
         var originalPoints =
         {
-            A : { 
+            A : {
                 pos: A,
                 pcolor : given,
                 letterAngle : 90,
@@ -159,7 +159,7 @@
                 pos: [A[0], 584],
                 pcolor : result,
                 letterAngle : 180,
-                letterRotRadius : 20, 
+                letterRotRadius : 20,
             },
             g :
             {
@@ -201,11 +201,11 @@
         ];
 
         //making size to better fit lemma's diagram
-        fconf.LETTER_FONT_SIZE_PER_1000 = 20;
+        sconf.LETTER_FONT_SIZE_PER_1000 = 20;
 
         ns.paste( sconf, {
             mediaBgImage : "l11-diagram-3rded.jpg",
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             originX_onPicture,

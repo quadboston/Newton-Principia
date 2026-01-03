@@ -7,7 +7,7 @@
         setModule
     });
     var pos2pointy;
-    var pointies2line;
+    var pivots_2_svgLineInRg;
     return;
 
 
@@ -21,7 +21,7 @@
     {
         ssF.createSliderPlaceholder_m = createSliderPlaceholder_m;
         pos2pointy      = ssF.pos2pointy;
-        pointies2line   = ssF.pointies2line;
+        pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
     }
 
 
@@ -89,7 +89,7 @@
         var sliderEnd = pos2pointy( 'sliderEnd_' + sliderId,
             { fill : '#9999dd', tpclass:sliderId, cssClass : 'tofill tostroke', } );
         ///draws rails
-        var slider = pointies2line(
+        var slider = pivots_2_svgLineInRg(
              'slider-' + sliderId,
              [sliderStart, sliderEnd],
              {stroke:COLOR, 'stroke-width':3, tpclass:sliderId,

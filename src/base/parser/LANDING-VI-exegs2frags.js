@@ -58,13 +58,14 @@
                 exAspect.subexegs.forEach( ( subexeg, exegId ) => {
                     //dirt: subexeg.domComponents  = [];
                     const subessay = subexeg.essayHeader.subessay;
-                    subexeg.classStr = 'original-text ' + 
+                    subexeg.classStr = 'original-text ' +
                         logic_phase_id + ' ' + aspect_id +
                         ' subessay-' + subessay;
-                    //we do assume that exegId are already 
+                    //c cc( exegId, subexeg.classStr );
+                    //we do assume that exegId are already
                     //converted to subessay "human names" where possible:
                     allSkeys[ subessay ] = true;
-                                             
+
                     //-----------------------------------------------------
                     // //\\ preliminary prepasing to extract active content
                     //-----------------------------------------------------

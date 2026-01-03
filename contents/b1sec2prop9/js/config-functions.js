@@ -13,7 +13,7 @@
         const q0    = sconf.orbit_q_start;
         stdMod.q2xy = q2xy;
         return;
-        
+
         function q2xy( q )
         {
             q += q0;
@@ -24,5 +24,4 @@
             ];
         }
     }
-}) ();
-
+})();

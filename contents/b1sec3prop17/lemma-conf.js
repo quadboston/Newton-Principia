@@ -2,6 +2,16 @@
     const sm = '../js/'; //physical system subapplication path
     return {
         sappCodeReference : 'b1sec3prop12',
+        codesList :
+        [
+            { src: sm + 'sconf.js' },
+            { src: sm + 'init-model-parameters.js' },
+            { src: sm + 'amode8captures-model.js' },
+            { src: sm + 'amode8captures-decorator.js' },
+            { src: sm + 'model-upcreate-addon.js' },
+            { src: sm + 'media-upcreate.js' },
+            { src: sm + 'completes-sliders-creation-addon.js' },
+        ],
         "contents-list" :
         [
             'txt/latin.txt',

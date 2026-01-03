@@ -1,7 +1,7 @@
 ( function() {
     var {
         ns, sn, $$, sv,
-        sconf, ssF, ssD, sDomF, fixedColors,
+        sconf, ssF, ssD, sDomF, topicColors_repo,
         rg, amode, stdMod, toreg,
     } = window.b$l.apptree({
         setModule, //delayed till mods loaded
@@ -9,7 +9,7 @@
         {
         },
     });
-    var pointies2line;
+    var pivots_2_svgLineInRg;
     var pos2pointy;
     var paintTriangle;
     var ellipseColor;
@@ -26,7 +26,7 @@
     function setModule()
     {
         stdMod.media_upcreate   = media_upcreate;
-        pointies2line           = ssF.pointies2line;
+        pivots_2_svgLineInRg           = ssF.pivots_2_svgLineInRg;
         pos2pointy              = ssF.pos2pointy;
         paintTriangle           = ssF.paintTriangle;
     }
@@ -75,7 +75,7 @@
         //-------------------------------------------------
         // //\\ colors
         //-------------------------------------------------
-        var wwfc        = fixedColors;
+        var wwfc        = topicColors_repo;
         var arr2rgba    = ns.arr2rgba;
         var wwex        = wwfc[ "experimental" ];
         var wwap        = wwfc[ "approximator" ];
@@ -194,7 +194,7 @@
             var handleR = 10;
             var m = rg.m.value;
 
-            var line = pointies2line(
+            var line = pivots_2_svgLineInRg(
                 x.pname + '-' + y.pname,
                 [ rg[ x.pname ], rg[ y.pname ]],
                 {

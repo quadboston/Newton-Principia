@@ -1,11 +1,11 @@
 /*  ***************************************************************************
- *  Calculates a set of points along a conic based on the 
+ *  Calculates a set of points along a conic based on the
  *  given orbit parameters and adds them as svgs paths in the model.
- * 
+ *
  *  NOTE: This module is used for Propositions 12-17. There are others
  *  currently used for P6-11, L20-21, and P41. Though this one can be used
  *  to draw any conic (ellipse, parabola, hyperbola w/out asymptotes) as needed.
- *  
+ *
  * ****************************************************************************/
 ( function() {
     var {
@@ -25,7 +25,7 @@
 
 
     //called from page's init-model-parameters.js
-    //analogy of pointsArr_2_singleDividedDifferences() (P41)
+    //analogy of Pivots_2_divdifFW() (P41)
     function creates_orbitRack( vop )
     {
         var op = vop || sconf.orbitParameters;
@@ -43,7 +43,7 @@
 
         //both: css and rg names
         var lowname  = op.curveName ? op.curveName : 'orbit';
-        var rgX = vop ? rg[ 'approximated-curve-sample' ] : rg[ 'approximated-curve' ];
+        var rgX = vop ? rg[ 'approxer-sample' ] : rg.approxer;
         var areaName = vop ? 'orbitarea-sample' : 'orbitarea';
 
         var dqName      = vop ? 'orbitdq-sample' : 'orbitdq';
@@ -84,8 +84,9 @@
 
             /*
             //covered below? do remove?
-            if( fconf.effId === "b1sec3prop14" ) {
-                if( op.conicSignum === -1 && Math.abs( rgP.q ) < op.SINGULARITY_ANGLE ) {
+            if( fconf.effId === "prop_from_14_to_17" ) {
+                if( op.conicSignum === -1 && Math.abs( rgP.q ) <
+                    op.SINGULARITY_ANGLE ) {
                     ////in this proposition, we keep position P = constant, so
                     ////do invert signedRo for opposite branch of hyperbola,
                     ////alternatively: signedRo = Math.abs( signedRo );
@@ -144,7 +145,7 @@
             var points = [];
             var qStep = ( end - start ) / stepsCount;
             for( var qix = 0; qix <= stepsCount; qix++ ) {
-                var q = start + qStep * qix;        
+                var q = start + qStep * qix;
                 points.push( t2xy( q ) );
             }
             return points;
@@ -182,7 +183,7 @@
             doDeltaArc, //do delta arc only, do not try area,
         }){
             const rgXX = doDeltaArc ? rgDq : rgX;
-            //rgX = approximated-curve-[sample]
+            //rgX = approxer-[sample]
             //rgDq = orbitdq-[sample]
 
             // called way too much on page load
@@ -190,7 +191,7 @@
             // then once each from media-upcreate at which point the model becomes visible
             // then 4 more times from media-upcreate for no reason
             // console.log('poly2svg: ' + rgXX.rgId);
-            
+
             // defines conic
             var curvePoints = ownrange2points({
                 stepsCount:800,
@@ -201,23 +202,23 @@
 
             // defines segment of conic
             if(op.highlightSeg) {
-                var segPoints = ownrange2points_byStartEnd({ 
+                var segPoints = ownrange2points_byStartEnd({
                     stepsCount:800,
                     start: op.segStart,
                     end: op.segEnd
-                }); 
+                });
                 segPoints = segPoints.map( sp => ssF.mod2inn( sp, stdMod ) );
             }
 
-            if( -1 === op.conicSignum ) {               
+            if( -1 === op.conicSignum ) {
                 // draw hyperbola as two svg curves so asymptotes don't show
-                const [branchA, branchB] = splitAtAsymptotes(medpoints); 
+                const [branchA, branchB] = splitAtAsymptotes(medpoints);
 
                 var polylineSvgA = rgXX.polylineSvgA = nssvg.polyline({
-                    pivots  : branchA, 
+                    pivots  : branchA,
                     svgel   : rgXX.polylineSvgA,
                     parent  : stdMod.svgScene,
-                });                
+                });
                 if( !has( rgXX, 'polylineSvgA$' ) ) {
                     rgXX.polylineSvgA$ = $$.$( polylineSvgA );
                 }
@@ -225,10 +226,10 @@
                 rgXX.polylineSvgA$.addClass( 'tostroke thickable tp-' + lowname );
 
                 var polylineSvg = rgXX.polylineSvg = nssvg.polyline({
-                    pivots  : branchB, 
+                    pivots  : branchB,
                     svgel   : rgXX.polylineSvg,
                     parent  : stdMod.svgScene,
-                });                
+                });
                 if( !has( rgXX, 'polylineSvg$' ) ) {
                     rgXX.polylineSvg$ = $$.$( polylineSvg );
                 }
@@ -236,7 +237,7 @@
             } else {
                 // draw ellipse/parabola in svg
                 var polylineSvg = rgXX.polylineSvg = nssvg.polyline({
-                    pivots  : medpoints, 
+                    pivots  : medpoints,
                     svgel   : rgXX.polylineSvg,
                     parent  : stdMod.svgScene,
                 });
@@ -301,7 +302,7 @@
         //and any time Pv/pv are dragged (only for appropriate conic)
         //and once more per conic when switching tabs
         //console.log('e: ' + eccentricity);
-        
+
         var op = vop || sconf.orbitParameters;
         var rgP = vop ? rg.p : rg.P;
         var SAFE_VALUE = 1e-8;
@@ -350,7 +351,7 @@
     }
 
     //what this comment is about?
-    //this function does not change eccentricity (except SAFE_VALUE case), 
+    //this function does not change eccentricity (except SAFE_VALUE case),
     //mostly just flips model from ellipse to hyperbola based on e
-    //console.log('newEccentricity: ' + eccentricity.toFixed(3)); 
+    //console.log('newEccentricity: ' + eccentricity.toFixed(3));
 })();

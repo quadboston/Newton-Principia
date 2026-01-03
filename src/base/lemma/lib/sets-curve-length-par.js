@@ -25,7 +25,7 @@
         //=============================================
         // //\\ localizes curve shape
         //=============================================
-        var appCurve = rg[ 'approximated-curve' ];
+        var appCurve = rg.approxer;
         var qmax = appCurve.qmax;
         qix2pstate.length = 0;
         //=============================================

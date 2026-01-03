@@ -106,7 +106,7 @@
         var P = [381, 333];
 
         var p = [381, 80.5];
-        //in Book: 
+        //in Book:
         //var T = [641, 332];
         var T = [641, P[1]];
         var r = [514, 150];
@@ -129,7 +129,7 @@
 
         sconf.INDIVIDUAL_BAR_INDEX_IN_LEMMA = 1;
 
-        var predefinedTopics =
+        var topicColors_elected =
         {
             given,
             proof,
@@ -154,9 +154,9 @@
         //matching bars:
         //patch which manually matches generated random zebra6-color for bar 1
         //when total bars max = 200:
-        predefinedTopics[ 'left-bar-' +
+        topicColors_elected[ 'left-bar-' +
             sconf.INDIVIDUAL_BAR_INDEX_IN_LEMMA ] = [111, 50, 1]; //[254, 254, 1];
-        predefinedTopics[ 'right-bar-' +
+        topicColors_elected[ 'right-bar-' +
             sconf.INDIVIDUAL_BAR_INDEX_IN_LEMMA ] = [111, 50, 1];
         //-----------------------------------
         // \\// topic group colors,
@@ -274,7 +274,7 @@
         //---------------------------------------------------
 
         Object.assign( originalPoints, {
-            A : { 
+            A : {
                 pos: A,
                 pcolor : given,
                 letterAngle : -90,
@@ -320,7 +320,7 @@
             ortJ : {
                 pos: [p[0], p[1] - ( P[1] - p[1] ) * sconf.ORT_J_SHIFT],
                 caption : 'j',
-                fontSize : Math.floor( fconf.LETTER_FONT_SIZE_PER_1000 * 1.3 ),
+                fontSize : Math.floor( sconf.LETTER_FONT_SIZE_PER_1000 * 1.3 ),
                 pcolor : [0,0,0,1],
                 letterAngle : 90,
                 letterRotRadius : 40,
@@ -331,7 +331,7 @@
             ortI : {
                 pos: [ P[0] + ( T[0]-P[0] ) * ( 1 + sconf.ORT_I_SHIFT ), T[1] ],
                 caption : 'i',
-                fontSize : Math.floor( fconf.LETTER_FONT_SIZE_PER_1000 * 1.3 ),
+                fontSize : Math.floor( sconf.LETTER_FONT_SIZE_PER_1000 * 1.3 ),
                 pcolor : [0,0,0,1],
                 letterRotRadius : 20,
                 letterAngle : 0,
@@ -463,7 +463,7 @@
         ];
 
         //making size to better fit lemma's diagram
-        fconf.LETTER_FONT_SIZE_PER_1000 = 20;
+        sconf.LETTER_FONT_SIZE_PER_1000 = 20;
 
         ns.paste( sconf, {
             default_tp_stroke_width,
@@ -471,7 +471,7 @@
             handleRadius,
 
             mediaBgImage : "l4-diagram.png",
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             originX_onPicture,

@@ -31,7 +31,7 @@
     ///===========================================================
     function crePointFW_BSLd8d1CHAMBER({
             //// api
-            findDraggee, //function which finds draggeePoint 
+            findDraggee, //function which finds draggeePoint
             dragSurface,
 
             inn2outparent, //only? for spinner ... optional if nospinner is not set?
@@ -81,9 +81,9 @@
             //       selectedElement_flag.doProcessWrap()
             //          which has interface:
             /*
-                            * *api-doProcessWrap 
+                            * *api-doProcessWrap
                             down_move_up    : down_move_up, //flag, string
-                            //possibly = move from start to current,                                    
+                            //possibly = move from start to current,
                             surfMove        : surfMove,
                             moveIncrement   : moveIncrement,
                             dragWrap        : selectedElement_flag,
@@ -97,11 +97,11 @@
             dontStopEndAfteshocks,
             attachee,
             doGiveClickEvent,
-            
+
             movesAndFindsHandle : doCreateDynamicSpinners && movesAndFindsHandle,
         });
 
-        var createdFramework = 
+        var createdFramework =
         {
             frameworkId,
             dragSurface,
@@ -132,7 +132,7 @@
             //----------------------------------------------------------
 
             var point_on_dragSurf = eventPos_2_surfacePos( rootEvent );
-                
+
             //seems wrong: childEvent.preventDefault(); //trying for mobiles
             //forbidden = do_complete_down( childEvent, ev );
             spinnerCandidate = findDraggee(
@@ -239,7 +239,7 @@
             var nospinner            = api.nospinner;
             var grabffect            = api.spinnerCursorGrab || spinnerCursorGrab;
             var grabbedffect         = api.spinnerCursorGrabbed || spinnerCursorGrabbed;
-            
+
             var orientation          = api.orientation;
             var achieved             = api.achieved; //api sugar
             var dragHandleDOM        = api.dragHandleDOM;
@@ -274,7 +274,7 @@
 
                 if( spinnerClsId ) {
                     //don't do this here: not a d8d concern:
-                    //var cssIdLowCase = sDomF.topicIdUpperCase_2_underscore(
+                    //var cssIdLowCase = sDomF.tpid2low(
                     //spinnerClsId );
                     var cssIdLowCase = spinnerClsId;
 
@@ -342,7 +342,7 @@
             //=====================================================
             // \\// drag8drop main wrapper over item
             //=====================================================
-                
+
             //explicit setting to avoid property in prototype:
             sn( 'dragPriority', pointWrap, 0 );
             return; // dragWrap; //todm consider adding this
@@ -367,7 +367,7 @@
             ){
                 //logical bonus: pointWrap may be missed in
                 //doProcess closure ...
-                arg.pointWrap = pointWrap; 
+                arg.pointWrap = pointWrap;
                 var appFeedback = doProcess(
                     //see: **api-doProcessWrap
                     /*
@@ -409,9 +409,9 @@
             function update_decPoint_default( decPoint, dragSurface, pointWrap, nonenify )
             {
                 var dompos = handle2dragsurf_pos( dragWrap, dragSurface );
-                decPoint.style.left = dompos[0] + 'px';            
+                decPoint.style.left = dompos[0] + 'px';
                 decPoint.style.top = dompos[1] + 'px';
-                
+
                 if( nonenify === 'nonenify' ) {
                     decPoint.style.display = 'none';
                 } else if( nonenify === 'block' ) {
@@ -437,7 +437,7 @@
             {
                 var dompos   = inn2outparent.call( pointWrap );
                 //c cc( pointWrap.rgId, pointWrap.pos, dompos );
-                decPoint.style.left = dompos[0] + 'px';            
+                decPoint.style.left = dompos[0] + 'px';
                 decPoint.style.top  = dompos[1] + 'px';
 
                 if( nonenify === 'nonenify' ) {
@@ -473,7 +473,7 @@
             //ns.d('fram/w: case="' + down_move_up + '"');
             switch( down_move_up )
             {
-                case 'down': 
+                case 'down':
                     //vital-for-mobile
                     //ns.d('down: fw=' + fw.frameworkId );
 
@@ -489,10 +489,10 @@
                             dragSurface
                     );
                     if( !selectedElement_flag ) return true;
-                    
+
                     detected_user_interaction_effect && detected_user_interaction_effect();
                     processMouseDown && processMouseDown( selectedElement_flag.pointWrap );
-                    
+
                     if( ns.haz( selectedElement_flag, 'decPoint' ) ) {
                         //c cc('grabbing ' + selectedElement_flag.decPoint.className);
                         $$.$( selectedElement_flag.decPoint ).addClass( 'grabbing' );
@@ -511,18 +511,18 @@
                     });
                     return appFeedback === 'do disappear d8d';
                 break;
-                case 'move': 
+                case 'move':
                 case 'up':
                     spinnerCandidate = null;
                     //.is throttled: does condence move and up events
-                    
+
                     if( down_move_up !== 'move' &&
                         ns.haz( selectedElement_flag, 'decPoint' ) ) {
                         $$.$( selectedElement_flag.decPoint ).removeClass( 'grabbing' );
                     }
-                    
+
                     selectedElement_flag.doProcessWrap({
-                        //// **api-doProcessWrap 
+                        //// **api-doProcessWrap
                         down_move_up    : down_move_up, //flag, string
                         //possibly = move from start to current,
                         surfMove        : surfMove,
@@ -581,7 +581,7 @@
                     if( !closestDragWrap ||
                         (
                             ( dpp > closestDragPriority ) ||
-                            ( dpp === closestDragPriority && closestTd > td ) 
+                            ( dpp === closestDragPriority && closestTd > td )
                         )
                     ){
                         closestDragWrap = dragWrap;
@@ -620,7 +620,7 @@
     ///Inputs:   WAIT         optional, how much to wait till call
     ///                       the most recent function-curry,
     ///                       Ultimately fires if called at elapsed >= WAIT.
-    ///                       If not called this way, then 
+    ///                       If not called this way, then
     ///                       times out to WAIT, since last call.
     ///          fun          throttlee,
     ///Returns:  throttled fun with signature signature:
@@ -665,7 +665,7 @@
             if( timeout !== null ) {
                 clearTimeout( timeout );
             }
-            timeout = setTimeout( 
+            timeout = setTimeout(
                 function() {
                     clear8run();
                 },

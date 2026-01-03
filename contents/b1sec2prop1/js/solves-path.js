@@ -1,28 +1,14 @@
-( function() {
-    var {
-        mat,
-        sconf, sDomF, ssF, toreg, rg,
-        stdMod, amode,
-    } = window.b$l.apptree({
-        ssFExportList :
-        {
+(function(){
+    const {
+        mat, nspaste,
+        sconf, sDomF, ssF, toreg, rg, stdMod, amode,
+    } = window.b$l.apptree({ ssFExportList : {
             solvesTrajectoryMath__O,
         },
     });
     return;
 
-
-
-
-
-
-
-
-
-
-
-
-
+    
     ///=================================================================
     ///
     /// Calculation of path has two distinct models. There are two paths
@@ -35,7 +21,7 @@
     function solvesTrajectoryMath__O()
     {
         //:study-pars
-        var sSteps          = rg.spatialSteps = Math.floor(sconf.trange
+        var sSteps          = rg.spatialSteps = Math.floor(sconf.timeRange
                               / rg.rgslid_dt.val);
         var S               = rg.S.pos;
         var B               = rg.B.pos;
@@ -206,8 +192,5 @@
         //***********************************************
         // \\// calculates body's trajectory
         //***********************************************
-
     }
-
-}) ();
-
+})();

@@ -186,13 +186,13 @@
     ///when dispatcher is not run
     function schedules_addee8Dispatcher({
             lifeRunFun,
-            lifeMax,        
+            lifeMax,
             lifeFinishFun
     }) {
         if( !managerStart ) aframes.runsMainCycle();
         return schedulesAddee({
             lifeRunFun,
-            lifeMax,        
+            lifeMax,
             lifeFinishFun
         });
     };

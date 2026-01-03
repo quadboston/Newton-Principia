@@ -32,7 +32,7 @@
         // \\// model parameters,
         //=================================================
 
-        toreg( 'approximated-curve' );
+        toreg( 'approxer' );
         stdMod.creates_orbitRack();
         stdMod.completesSlidersCreation();
         toreg( 'tangentCircle' );

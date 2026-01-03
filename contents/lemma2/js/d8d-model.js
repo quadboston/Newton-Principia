@@ -66,10 +66,10 @@
                 if( pwix === 0 ) return; //point A is "unmovable"
                 if( fconf.sappId.indexOf('lemma2') === 0 ) return; //base is "dead" in lemma2
                 pointWrap.spinnerClsId = 'base-'+pwix;
-                pointWrap.dragDecorColor=sDomF.getFixedColor( 'given' );
+                pointWrap.dragDecorColor=sDomF.tpname0arr_2_rgba( 'given' );
             } else {
                 pointWrap.spinnerClsId = 'ctrl-'+pwix;   //optional for css
-                pointWrap.dragDecorColor = sDomF.getFixedColor( 'given' );
+                pointWrap.dragDecorColor = sDomF.tpname0arr_2_rgba( 'given' );
             }
             if( typeof pointWrap.x === 'number' ) {
                 decorator = Update_decPoint( pointWrap )
@@ -158,7 +158,7 @@
                     sconf.DRAGGEE_HALF_SIZE;
             var basesN = dr.basesN;
             var closestPoint = null;
-            
+
             if(
                 //.excludes excess of non-used points
                 pointWrap.type === 'base' && pointWrap.index >= basesN

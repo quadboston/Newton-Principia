@@ -41,21 +41,21 @@
                 return [ pos[0]*scaleX, pos[1]*scale ];
             }); //map
             rg.P.q = sconf.rgPq;
-            
+
             //bezier framework generates Optimized Bezier Framework:
             const bezio = ssD.bezio = bezier.preparesOptimizedBezier( pivotsPos );;
             bezio.pivotsPos = pivotsPos;
             ssD.initialPivots = nspaste( [], pivotsPos );
-            
+
             //reasonable aliasing
             stdMod.q2xy = bezio.fun;
-            
+
             //fixes small pivots and curve displacements,
             //todm why do they exist in the first place?
             stdMod.bp2cp();
         }
         rg.A.pos = rg[ 'curvePivots-0' ].pos;
-        
+
         //-----------------------------------------
         // //\\ partially draggers and decoration
         //      are initiated here
@@ -68,10 +68,10 @@
         //-----------------------------------------
         // \\// partially draggers and decoration
         //-----------------------------------------
-        
-        stdMod.initiates_orbit8graph();
+
+        stdMod.initiates_orbit8graph( stdMod.graph_methods );
         stdMod.creates__curve_pivots_sliders();
-        
+
         //creates placeholder
         toreg( 'curvatureCircle' );
 

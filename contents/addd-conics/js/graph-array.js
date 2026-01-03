@@ -5,7 +5,7 @@
     } = window.b$l.apptree({
         stdModExportList :
         {
-            buildsforceGraphArray,
+            makesGraphArray_8_drawsPlots,
             P2gix,
         },
     });
@@ -13,12 +13,12 @@
     return;
 
 
-    function buildsforceGraphArray()
+    function makesGraphArray_8_drawsPlots()
     {
         var xStart   = 0.;
         var xEnd     = sconf.curveParFiMax;
         var rrc      = rg.S.pos;
-        var fun      = rg[ 'approximated-curve' ].t2xy;
+        var fun      = rg.approxer.t2xy;
         var forceGraphArray = [];
         var Q_STEPS = 400;
         for (var forceArrayIx = 0; forceArrayIx<=Q_STEPS; forceArrayIx++ )
@@ -33,7 +33,7 @@
                 sinOmega, //for Kepler's motion, f = 1/R vₜ² / sin(w)
                 staticSectorialSpeed_rrrOnUU,
             } = mcurve.planeCurveDerivatives({
-                fun : rg[ 'approximated-curve' ].t2xy,
+                fun : rg.approxer.t2xy,
                 q,
                 rrc,
             });
@@ -77,6 +77,7 @@
         {
             graphArray[ fix ] = forceGraphArray[ fix ];
         }
+        stdMod.graphFW_lemma.wraps_draw_graph({});
     }
 
 

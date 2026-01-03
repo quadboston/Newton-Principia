@@ -11,7 +11,7 @@
     });
     return;
 
-    
+
     function init_model_parameters()
     {
         //=================================================
@@ -31,13 +31,13 @@
         // \\// model parameters,
         //=================================================
 
-        var rgCurve = toreg( 'approximated-curve' )();
+        var rgCurve = toreg( 'approxer' )();
         //interval of t to construct an arc for
         //Newton's sagitta
         toreg( 'tForSagitta' )( 'val', sconf.tForSagitta0 );
 
         //sets and paints initial orbit
-        //was:  stdMod.pointsArr_2_singleDividedDifferences();        
+        //was:  stdMod.Pivots_2_divdifFW();
         stdMod.creates_orbitRack();
         rgCurve.q2ix = 1/(rgCurve.tEnd-rgCurve.tStart)*ssD.curveSTEPS;
 
@@ -47,7 +47,7 @@
         //creates placeholder
         toreg( 'curvatureCircle' );
 
-        stdMod.graphFW_lemma = stdMod.wraps_graph_fw({ 
+        stdMod.graphFW_lemma = stdMod.wraps_graph_fw({
             digramParentDom$:stdMod.legendRoot$ });
 
         //too early: overriden later by sconf.rgShapesVisible

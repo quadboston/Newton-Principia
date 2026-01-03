@@ -13,7 +13,7 @@
         sessionStorage.setItem(BONUS, nsconf.extramat);
     }
     /*
-    if( 
+    if(
         //the presence of keyword "addendum" at the ending of
         //landing file path is preferred:
         window.location.pathname.match( /extramat=yes[^\/]+$/ )
@@ -32,12 +32,12 @@
     userOptions.doesStoreOption = doesStoreOption; //only for URL-query for bonusOpt.
     userOptions.showingLatin = showingLatin;
     userOptions.usingBackgroundImage = useBGimage;
-    userOptions.showingBonusFeatures = showingBonusFeatures;
+    userOptions.showingExtraFeatures = showingExtraFeatures;
     userOptions.userOptions_2_updatedGUI = userOptions_2_updatedGUI;
     userOptions.shouldShowSubessayMenu = shouldShowSubessayMenu;
-    return;   
+    return;
 
-    
+
     function showingLatin() {
         return sessionStorage.getItem(LATIN) === 'true';
     }
@@ -46,7 +46,7 @@
         return sessionStorage.getItem(USE_BG_IMAGE) === 'true';
     }
 
-    function showingBonusFeatures() {
+    function showingExtraFeatures() {
         return sessionStorage.getItem(BONUS) === 'true';
     }
 
@@ -67,9 +67,9 @@
 
         let bonusCB = document.getElementById("bonusCheckbox");
         if( bonusCB ){
-            bonusCB.checked = showingBonusFeatures();
+            bonusCB.checked = showingExtraFeatures();
             bonusCB.onclick = () => {
-                var isOn = showingBonusFeatures();
+                var isOn = showingExtraFeatures();
                 doesStoreOption(BONUS, !isOn);
                 var relanded = false;
                 if( has( ns.conf, 'extramat' ) ) {
@@ -104,7 +104,7 @@
     function doesStoreOption(option, newValue) {
         sessionStorage.setItem(option, newValue);
     }
-    
+
     //decides whether an entire subessay-menu should be visible
     function shouldShowSubessayMenu(...args) {
         if (args.length > 1) {
@@ -116,7 +116,7 @@
         let exAspect = args[0];
         if (exAspect.subexegs.length > 1) {
             let someIsBonus = haz( exAspect.subexegs[1].essayHeader, 'isBonus' );
-            return someIsBonus ? showingBonusFeatures() : true;
+            return someIsBonus ? showingExtraFeatures() : true;
         }
         return fconf.SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM;
     }

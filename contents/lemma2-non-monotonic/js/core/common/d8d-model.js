@@ -74,10 +74,10 @@
                 if( pwix === 0 ) return; //point A is "unmovable"
                 if( fconf.sappId.indexOf('lemma2') === 0 ) return; //base is "dead" in lemma2
                 pointWrap.spinnerClsId = 'base-'+pwix;
-                pointWrap.dragDecorColor=sDomF.getFixedColor( 'given' );
+                pointWrap.dragDecorColor=sDomF.tpname0arr_2_rgba( 'given' );
             } else {
                 pointWrap.spinnerClsId = 'ctrl-'+pwix;   //optional for css
-                pointWrap.dragDecorColor = sDomF.getFixedColor( 'given' );
+                pointWrap.dragDecorColor = sDomF.tpname0arr_2_rgba( 'given' );
             }
             if( typeof pointWrap.x === 'number' ) {
                 decorator = Update_decPoint( pointWrap )
@@ -101,7 +101,7 @@
                 achieved        : achieved,
                 nospinner      : nospinner,
                 update_decPoint : decorator,
-                orientation     : pointWrap.type !== 'base' ? 
+                orientation     : pointWrap.type !== 'base' ?
                         ( pwix === 4 ? 'axis-x' : 'rotate' ) : false,
             });
         }
@@ -221,7 +221,7 @@
             var index = item.index;
             if ( "ctrl" === item.type ) {
                 item.x = ach.achieved.x + move[0];
-                
+
                 //makes point E vertically fixed at 0 level
                 //item.y = ach.achieved.y + (index === 4 ? 0 :  move[1]);
 

@@ -60,6 +60,20 @@
                           .e( 'click', () => {
                                 if( ssD.subessayClickDisabled ) return;
                                 virtualSubessayClick( subexeg );
+
+//what is this?
+//                                var url = window.location.href;
+//                                var subessayId = subexeg.essayHeader.subessay;
+//                                const match = url.includes('subessayId=');
+//                                if (match) {
+//                                    url = url.replace(/subessayId=[^,]*/,
+//                                         `subessayId=${subessayId}`);
+//                                } else {
+//                                    url += `,subessayId=${subessayId}`;
+//                                }
+//                                // Update the browser URL without reload
+//                                window.history.replaceState({}, "", url);
+
                           })
                           ;
 

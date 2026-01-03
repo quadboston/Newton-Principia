@@ -42,8 +42,8 @@
                     true : drawDecimalX;
 
                 graph_wrap.setsGraphTpClasses();
-                graph_wrap.doSetpix2color();
-                hafff( graph_wrap, 'creates_mask' );
+                graph_wrap.makes_pix2color();
+                hafff( graph_wrap, 'makes_mask' );
                 var { yColor, xColor, axisYLegend, axisXLegend, } =
                     graph_wrap.sets_axes();
 

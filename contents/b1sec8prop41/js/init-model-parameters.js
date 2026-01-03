@@ -30,12 +30,12 @@
     function init_model_parameters()
     {
         //var op = sconf.orbitParameters;
-        toreg( 'approximated-curve' );
+        toreg( 'approxer' );
         //toreg( 'orbitarea' );
         sconf.originalPoints.curvePivots_initial = nspaste( {}, sconf.originalPoints.curvePivots );
 
         //sets and paints initial orbit
-        stdMod.pointsArr_2_singleDividedDifferences(
+        stdMod.Pivots_2_divdifFW(
             false, 'force', false, false, 'swap' );
 
         //this sub is half-standardized: it is not in src/base, but
@@ -47,8 +47,8 @@
                     op.Kepler_v * Math.cos( op.angleOmega ) ];
 
         //initial speed
-        nspaste( rg.v.pos,         mat.sm( rg.V.pos, vv ) ); 
-        nspaste( rg.Vangle.pos,     mat.sm( 1, rg.V.pos, 2, vv ) ); 
+        nspaste( rg.v.pos,         mat.sm( rg.V.pos, vv ) );
+        nspaste( rg.Vangle.pos,     mat.sm( 1, rg.V.pos, 2, vv ) );
     }
 
 }) ();

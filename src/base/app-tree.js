@@ -22,16 +22,16 @@
     const arios     = sn( 'activityScenarios', ario, [] );
 
     var rgtools     = sn('tools',ssD);
-    var fixedColors = sn('fixed-colors',ssD);
-    var fixedColorsOriginal = sn('fixed-colors-original-id',ssD);
+    var topicColors_repo = sn('fixed-colors',ssD);
+    var topicColors_repo_camel2col = sn('fixed-colors-original-id',ssD);
     var wrkwin      = sn('wrkwin',ssD); //work window
     var exegs       = sn('exegs', ssD);
     var references  = sn('references', ssD);
     var capture     = sn( 'capture', ssD );
     var topics      = sn('topics', ssD);
-    var lowId2topics= sn('lowId2topics', topics);
-    var id2tplink   = sn('id2tplink', topics);
-    var ix2tplink   = sn('ix2tplink', topics, []);
+    var lowtpid_2_glocss8anchorRack= sn('lowtpid_2_glocss8anchorRack', topics);
+    var anid2anrack   = sn('anid2anrack', topics);
+    var anix2anrack   = sn('anix2anrack', topics, []);
 
     //lemma-dependent lemma-subapplication (aka lemma-class-instance functions in Java)
     var sapp        = sn('sapp');
@@ -43,8 +43,6 @@
     
     var sconf       = sn('sconf', fconf);
     var originalPoints = sn( 'originalPoints', sconf );
-    var originalPoints_cssNames = sn( 'originalPoints_cssNames', sconf );
-    
     var dividorFractions = sn('dividorFractions', wrkwin, []);
 
     //non-consistent: srg should be under fapp or sapp, not both:
@@ -148,14 +146,12 @@
             fmethods,
             ss,
             ssF,
-            ssD, fixedColors, fixedColorsOriginal,
+            ssD, topicColors_repo, topicColors_repo_camel2col,
             actionsList_coded,
             actionsList_default,
             //ario,
             arios,
             originalPoints,
-            originalPoints_cssNames,            
-
             rg    : sapp.rg,
             topos : sapp.topos,
             toreg : sapp.toreg,
@@ -164,9 +160,9 @@
 
             capture,
             topics,
-            lowId2topics,
-            id2tplink,
-            ix2tplink,
+            lowtpid_2_glocss8anchorRack,
+            anid2anrack,
+            anix2anrack,
 
             sapp,
             amode,

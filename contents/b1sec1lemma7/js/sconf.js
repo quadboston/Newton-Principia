@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, fconf, sconf, fixedColors, userOptions } =
+    var { ns, fconf, sconf, topicColors_repo, userOptions } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
 
     function init_conf()
@@ -30,7 +30,7 @@
         sconf.TP_OPACITY_LOW_POINT = 1;
         sconf.TP_OPACITY_LOW = 1; // applied to points, lines, and table data
         //making size to better fit lemma's diagram
-        fconf.LETTER_FONT_SIZE_PER_1000 = 20;
+        sconf.LETTER_FONT_SIZE_PER_1000 = 20;
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r= 5;
 
@@ -81,7 +81,7 @@
         //=============================================
         sconf.diagramOrigin = [ 0, 0 ];
 
-       
+
         //todo non-used, why
         //var originX_onPicture = C[0]; //for model's axis x
         //var originY_onPicture = C[1]; //for model's axis y
@@ -118,20 +118,20 @@
         //sets position of axis-y for Calculus-framework, not for model axis-y
         var ytop = [-151, 50];
 
-        
-        
+
+
         //-----------------------------------
         // //\\ topic group colors,
         //      todm: possibly proliferation
         //-----------------------------------
         var context = [0, 0, 0];
-        var given   = fixedColors.given;        
-        var proof   = fixedColors.proof;
-        var result  = fixedColors.result;
-        var hidden  = fixedColors.hidden;
+        var given   = topicColors_repo.given;
+        var proof   = topicColors_repo.proof;
+        var result  = topicColors_repo.result;
+        var hidden  = topicColors_repo.hidden;
 
 
-        var predefinedTopics =
+        var topicColors_elected =
         {
             //:basic topics
             proof,
@@ -232,7 +232,7 @@
                 letterAngle : 135,
                 pcolor      : given,
             },
-            
+
             // //\\ magnified points
             'Y0' : {
                 pos             : A,
@@ -264,7 +264,7 @@
 
 
             //:originals from Book
-            A : { 
+            A : {
                 //assigment by reference to pos is safe: no parasite links, pos is recalculated later
                 pos         : A,
                 letterAngle : 90,
@@ -324,8 +324,8 @@
                 letterRotRadius : 13,
                 pcolor      : proof,
             },
-  
-  
+
+
             d : {
                 pos         : d,
                 letterAngle : 90,
@@ -360,7 +360,7 @@
                 letterAngle : 90,
                 pcolor      : proof,
             },
-            L : { 
+            L : {
                 letterAngle : -45,
                 pcolor      : result,
             },
@@ -369,7 +369,7 @@
         ///alternatively to this, you can set own colors for originalPoints
         ///by your own
         ns.eachprop( originalPoints, (point,pname) => {
-            point.pcolor = ns.haz( point, 'pcolor' ) || predefinedTopics[ pname ];
+            point.pcolor = ns.haz( point, 'pcolor' ) || topicColors_elected[ pname ];
         });
 
         //model's spacial unit in pixels of the picture:
@@ -496,13 +496,13 @@
 
 
         //making size to better fit lemma's diagram
-        fconf.LETTER_FONT_SIZE_PER_1000 = 20;
+        sconf.LETTER_FONT_SIZE_PER_1000 = 20;
 
         ns.paste( sconf, {
             //double back step ../../ is to reuse this path in code for lemma7
             mediaBgImage : "../../b1sec1lemma6/img/b1s1l6-diagram-3rded-b.png",
             givenCurve_pivots_inModel,
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             //lines,

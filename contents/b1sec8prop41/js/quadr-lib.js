@@ -59,7 +59,7 @@
         //time,
         let T = [0];
 
-        let xy = rg[ 'approximated-curve' ].curvePoints;
+        let xy = rg.approxer.curvePoints;
 
         //:prepares 0-elements
         var r0      = rg.V.pos;
@@ -125,11 +125,11 @@
             }
 
             v2graph[iq]    = [ v2, ro ];
-            vgraph[iq]     = [ Math.sqrt(v2), ro ]; 
+            vgraph[iq]     = [ Math.sqrt(v2), ro ];
             Tkernel.push( [T_Kernel, ro] );
             Fkernel.push( [F_Kernel, ro] );
-            Zgraph[iq]     = [Z,ro]; 
-            Z2graph[iq]    = [Z*Z,ro]; 
+            Zgraph[iq]     = [Z,ro];
+            Z2graph[iq]    = [Z*Z,ro];
 
             if( fiStartedIx === iqFull ) {
                 var fi0 = F[iq];
@@ -173,7 +173,7 @@
     ///builds "back speed" === from turn point to started index,
     function findsDropPoint( fiStartedIx )
     {
-        let frArr       = rg[ 'approximated-curve' ].curvePoints;
+        let frArr       = rg.approxer.curvePoints;
 
         //:prepares 0-elements
         let v2          = op.Kepler_v*op.Kepler_v;
@@ -214,7 +214,7 @@
             vback.push( [ src[0], src[1] ] );
         }
 
-        return { 
+        return {
                     vback, //from drop point
                     //golbal array index, index from force top array
                     dropPointIx, roPlusIx

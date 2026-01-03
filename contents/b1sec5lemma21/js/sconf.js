@@ -1,7 +1,7 @@
 ( function() {
     var {
-        eachprop, mat,
-        fapp, fconf, sconf,
+        nspaste, fconf, sf, topicColors_repo, originalPoints,      eachprop, mat,
+        fapp, sconf,
     } = window.b$l.apptree({
         ssFExportList : { init_conf }
     });
@@ -38,7 +38,7 @@
         var controlsScale = realSvgSize / sconf.standardSvgSize
         //sconf.standardSvgSize = 250;
 
-        fconf.LETTER_FONT_SIZE_PER_1000 = 25; //works
+        sconf.LETTER_FONT_SIZE_PER_1000 = 25; //works
 
         //--------------------------------------
         // //\\ does override engine defaults,
@@ -67,10 +67,10 @@
         // \\// decorational parameters
         //***************************************************************
 
-        var predefinedTopics =
+        var topicColors_elected =
         {
             "static"                : [0,     200, 255, 1],
-  
+
             //with half opacity
             "static-half"           : [0,     200, 255, 0.5],
 
@@ -81,7 +81,7 @@
             "constructors"          : [0,     0, 255, 1],
             "ellipse"               : [0,   150, 0, 1],
         };
-        let pt = predefinedTopics;
+        let pt = topicColors_elected;
         pt[ "gamma" ] = pt[ "core" ];
         pt[ "g-parameter" ] = pt[ "core" ];
         pt[ "angle-alpha" ] = pt[ "static-half" ];
@@ -100,18 +100,18 @@
             T : [411-384+originX_onPicture, 219-553+originY_onPicture],
             P : [548-384+originX_onPicture, 77-553+originY_onPicture],
             R : [734-384+originX_onPicture, 346-553+originY_onPicture],
-  
+
             O : [originX_onPicture, originY_onPicture],
             H : [originX_onPicture, originY_onPicture],
             A : [568, 244],
         };
-        
+
         ///bigger diagram
         //eachprop( pointsOnPicture, v => {
         //    v[0] -= 300;
         //    v[1] -= 246;
-        //});        
-        
+        //});
+
         var gamma; // = Math.PI*0.49;
         var a;
         var beta;
@@ -142,7 +142,7 @@
             //possibly initial_g = initial_Munit.abs/mod2inn_scale;
             initial_g = 0.105;
             //is an absolute value of an angle:
-            gamma = Math.acos( initial_Munit.unitVec[0] ); 
+            gamma = Math.acos( initial_Munit.unitVec[0] );
             gamma *= 1.01;
 
             //---sets initial decorational param gN
@@ -150,12 +150,12 @@
             initial_Nunit = mat.unitVector(ON);
 
             //var BAA = mat.p1_to_p2( B, A );
-            //beta = -Math.asin( BAA.unitVec[1] ); 
+            //beta = -Math.asin( BAA.unitVec[1] );
             beta = 0.863;
 
             //c cc( 'beta fraction=' + (beta/Math.PI).toFixed(3) );
             //var CAA = mat.p1_to_p2( C, A );
-            //alpha = -Math.asin( CAA.unitVec[1] ); 
+            //alpha = -Math.asin( CAA.unitVec[1] );
             alpha = 0.528;
 
             to_sconf.a = a;
@@ -169,8 +169,7 @@
 
         let pointRadius = handleRadius;
         let pop = pointsOnPicture;
-        var originalPoints =
-        {
+            Object.assign( originalPoints, {
             C : {
                   pos: [0,0], //fake pos
                   pcolor: pt.static,
@@ -287,7 +286,7 @@
             //============================================
             // \\// sliders
             //============================================
-      };
+      });
 
         var linesArray =
         [
@@ -366,7 +365,7 @@
                     pcolor : pt[ "core" ],
                 },
             },
-  
+
             {
                 nN :
                 {
@@ -381,7 +380,7 @@
                     cssClass: 'subessay--converse-proof',
                 },
             },
-  
+
             {
                 Bn :
                 {
@@ -389,9 +388,9 @@
                     cssClass: 'subessay--converse-proof',
                 },
             },
-  
 
-  
+
+
             {
                 Cp :
                 {
@@ -399,7 +398,7 @@
                     cssClass: 'subessay--converse-proof',
                 },
             },
-  
+
             {
                 Bp :
                 {
@@ -407,7 +406,7 @@
                     cssClass: 'subessay--converse-proof',
                 },
             },
-  
+
             {
                 'BC' :
                 {
@@ -483,7 +482,7 @@
             // \\// base sides
             //-------------------------------------------------
 
-            
+
             //-------------------------------------------------
             // //\\ given static angles alpha, beta
             //-------------------------------------------------
@@ -506,7 +505,7 @@
             //-------------------------------------------------
             // \\// given static angles alpha, beta
             //-------------------------------------------------
-        ]; 
+        ];
 
 
         //----------------------------------------------------
@@ -514,12 +513,11 @@
         //----------------------------------------------------
         fapp.normalizeSliders( pictureHeight / 500 ); //todo not automated, prolifer.
         Object.assign( to_sconf, {
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             mediaBgImage : "diagram.png",
             //mediaBgImage : "diagram3.png", //bigger diagram
-            //dontRun_ExpandConfig : true,
 
             //----------------------------------
             // //\\ model-view parameters
@@ -531,7 +529,7 @@
             innerMediaWidth     : pictureWidth,
             pictureWidth,
             pictureHeight,
-            
+
             thickness           : 1,
             //----------------------------------
             // \\// model-view parameters

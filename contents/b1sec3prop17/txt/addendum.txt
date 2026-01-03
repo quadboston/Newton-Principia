@@ -60,7 +60,7 @@ For ¦p,f¦f¦¦ = 𝛾 /¦SP¦r¦¦²,
 <br><br>
 
 
-𝛾  = ( ¦SP¦r¦¦ ¦P,vb¦v¦¦ )² / L = ( ¦SP¦r¦¦ ¦p,vSample¦v<sub>or</sub>¦¦ )² / (2¦SP¦r¦¦ ) =  
+𝛾  = ( ¦SP¦r¦¦ ¦P,vb¦v¦¦ )² / L = ( ¦SP¦r¦¦ ¦p,vSample¦v<sub>or</sub>¦¦ )² / (2¦SP¦r¦¦ ) =
 ¦SP¦r¦¦ ¦p,vSample¦v²<sub>or</sub>¦¦ / 2.
 <br><br>
 
@@ -293,14 +293,14 @@ L (χ SP + PH ) = 2 PH .( χ KP + SP ) <br>
                                         <tr><td>
                                         </td><td>
 (χr₊ + r₋) / r₋ = (2χ𝗿₊𝗲₋ + 2r₊) / L = <br>
-= 
+=
 <a target="_blank" href="?conf=sappId=addd-conics,logic_phaseId=proof,aspectId=addendum,subessayId=shoulder-lemma#conics">
 4Ω²r₊
 </a>
 
 / L = E⁻², <br>
 where
-[𝗲₊𝘂]𝗸 = Ω = sin(ω) and 
+[𝗲₊𝘂]𝗸 = Ω = sin(ω) and
                                         </td><td>
 (χ SP + PH ) / PH = ( 2 χ KP + 2 SP ) / L =  E⁻² <br>
 
@@ -323,7 +323,7 @@ Notably, in the right part,  <br>
 defines conics shape, χ = signum(1-E),  <br>
 like the commonly used excentricity e.
                                         </td><td>
-<br>  
+<br>
 (1-e²) = L/r₊(1-E²) <br>
                                         </td><td>
                                         </td><td>
@@ -373,6 +373,7 @@ sign φ = -σ sign( cos(ω)/sin(ω) )<br>
 <br><br>
 <div book-reference-id="kvk"></div>
 
+<div class="model-user-feedback"></div>
 
 
 *::*proof|addendum
@@ -384,7 +385,7 @@ sign φ = -σ sign( cos(ω)/sin(ω) )<br>
 *..*
 
 
-<b>Reiteration.</b> A force ¦p,f¦f¦¦ = 𝛾 /r² acts on ¦p¦given body¦¦ in position ¦Sp¦𝗿ₛ¦¦ with speed ¦p,vSample¦𝘃ₛ¦¦ and latus ¦l,ll¦Lₛ¦¦ of its ¦orbit-sample¦orbit¦¦ is known. 
+<b>Reiteration.</b> A force ¦p,f¦f¦¦ = 𝛾 /r² acts on ¦p¦given body¦¦ in position ¦Sp¦𝗿ₛ¦¦ with speed ¦p,vSample¦𝘃ₛ¦¦ and latus ¦l,ll¦Lₛ¦¦ of its ¦orbit-sample¦orbit¦¦ is known.
 Calculate an ¦orbit¦orbit¦¦, if this body would start at position ¦SP¦𝗿¦¦ with speed ¦P,vb¦𝘃¦¦.
 <br><br>
 

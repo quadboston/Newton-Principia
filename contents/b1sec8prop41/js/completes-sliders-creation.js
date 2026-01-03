@@ -82,10 +82,10 @@
                     //calculates new curve
                     pos1[0] = newPos[0];
                     pos1[1] = newPos[1];
-                    stdMod.pointsArr_2_singleDividedDifferences(
+                    stdMod.Pivots_2_divdifFW(
                         false, 'force', false, false, 'swap' );
                     let { solvable, fr } = stdMod.forceIsBounded(
-                        rg[ 'approximated-curve' ].curvePoints );
+                        rg.approxer.curvePoints );
                     if( solvable ) {
                         nsp.undisplay = true;
                     } else {
@@ -101,7 +101,7 @@
                 } else {
                     pos1[0] = stashedPos[0];
                     pos1[1] = stashedPos[1];
-                    stdMod.pointsArr_2_singleDividedDifferences(
+                    stdMod.Pivots_2_divdifFW(
                         false, 'force', false, false, 'swap' );
                 }
                 return returnValue;
@@ -166,7 +166,7 @@
                 if( sl.abs < 0.1 ) return;
                 let angleOmega = mat.angleBetweenLines([
                     [ [0,0], pp ],
-                    [ [0,0], sl.vector ], 
+                    [ [0,0], sl.vector ],
                 ]).angle;
                 if( angleOmega < Math.PI/2+PROTECTS_KERNEL_SINGULARITY ) {
                     ///restricst speed to single quadrant
@@ -209,8 +209,8 @@
     function pointEisIncluded( DposY )
     {
         DposY = DposY || DposY === 0 ? DposY : rg.D.pos[1];
-        let xy = rg[ 'approximated-curve' ].curvePoints;
-        let endIx = sData.quadSolved.roMinusIx===null ? xy.length-1 : 
+        let xy = rg.approxer.curvePoints;
+        let endIx = sData.quadSolved.roMinusIx===null ? xy.length-1 :
                     sData.quadSolved.roMinusIx;
         let roEnd = xy[endIx][1];
         let EposY = DposY - sconf.dRo;

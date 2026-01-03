@@ -22,7 +22,7 @@
     ///=====================================================
     function captureAState(
         //as of March 3, 2021, has only few "insignificant sugar" GUI props for media d8d
-        ast,    
+        ast,
     ){
         var cPivots = sconf.originalPoints.curvePivots;
         var cpPoints = [];
@@ -45,6 +45,8 @@
         });
 
         fapp.captureState(
+            //is this a BUG - captures to wrong direction,
+            //arguments are swapped?
             ns.paste(
                 {
                     curvePivots_points : cpPoints,

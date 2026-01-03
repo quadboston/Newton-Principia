@@ -2,8 +2,8 @@
     var {
         sn, $$, cssp, nsmethods, globalCss, nspaste, haz, has, eachprop,
         fconf, sDomN, ssD, sDomF, ssF, exegs, topics,
-        fixedColors, lowId2topics,
-        id2tplink, ix2tplink,
+        topicColors_repo, lowtpid_2_glocss8anchorRack,
+        anid2anrack, anix2anrack,
         amode, sconf, rg, userOptions
     } = window.b$l.apptree({
         ssFExportList :
@@ -38,7 +38,7 @@
     //2. replaceeKey must not be naked in controls for ordinary tp-clause and in
     //   , until this fixed, controls for batch.
 
-    var TOP_ANCH_REG = 
+    var TOP_ANCH_REG =
         '(¦[^¦]+|)¦' +  //catches tplinkConf
         '([^¦]+)'   +   //catches topic caption
         '¦¦'        +   //catches topic terminator
@@ -76,7 +76,7 @@
     ///      |...|..|| - like preanchor-topics by TOP_ANCH_REG;
     ///Results in:
     ///     tplink.tpid2true                 [ lowId ] = true;
-    ///     lowId2topics[ lowId ]
+    ///     lowtpid_2_glocss8anchorRack[ lowId ]
     ///Returns: collectedTpLinks
     ///*************************************************************
     function fragment__collectsRawTpLinks(
@@ -123,11 +123,11 @@
                 //=========================================
                 //tplinkConf is a set of raw_tpIDs;
                 //This is pre-anchor index and not the "unique key".
-                //But it is an index of id2tplink.
+                //But it is an index of anid2anrack.
                 //(Recall beginning of '¦([^¦]+)¦' ... which catches tplinkConf.)
 
                 //todm: make tplinkConf a leftSideTpCombination_id
-                //      make topics.id2tplink a lstpc_id__2__linkRack
+                //      make topics.anid2anrack a lstpc_id__2__linkRack
 
                 var tplinkConf = parsedLink[1];
                 ///we must do key preporcessing, for time 1 out of 2:
@@ -143,27 +143,27 @@
 
                 //=========================================
                 // collects first link and "loses" others,
-                // collects into id2tplink
+                // collects into anid2anrack
                 //
                 ///this scenario makes tplink missed from tplink_ix index, but
                 ///it does not matter because these links are searched and
                 ///replaced again in aFrags_2_aFragsWithAnchor
-                ///recall: id2tplink lives in lemma-scope.
+                ///recall: anid2anrack lives in lemma-scope.
                 //=========================================
-                if( !id2tplink.hasOwnProperty( tplinkConf ) ) {
+                if( !anid2anrack.hasOwnProperty( tplinkConf ) ) {
                     //.it counts tplinkConf which "duplicates"
                     //.shapes or do not map to any shape
                     var tplink_ix = tplinkCount++;
 
-                    //recall: ix2tplink and id2tplink do live in lemma-scope.
-                    ix2tplink[ tplink_ix ] =
-                    id2tplink[ tplinkConf ] = {
+                    //recall: anix2anrack and anid2anrack do live in lemma-scope.
+                    anix2anrack[ tplink_ix ] =
+                    anid2anrack[ tplinkConf ] = {
                         tplink_ix : tplink_ix,
                         tpid2true : {},
                         //link:parsedLink[2], not-used
                     };
                 }
-                var tplink = id2tplink[ tplinkConf ];
+                var tplink = anid2anrack[ tplinkConf ];
                 collectedTpLinks[ tplinkConf ] = tplink;
                 var tplink_ix = tplink.tplink_ix;
                 //=========================================
@@ -192,7 +192,7 @@
                     } else if( tpid_user.match( ANCH_COLOR_CAT_rg ) ) {
                         var ww = tplink.colorCateg = tpid_user.match( ANCH_COLOR_CAT_rg );
                         //.fixed set to tp-link
-                        tplink[ 'fixed-color' ] = haz( fixedColors, ww[1] );
+                        tplink[ 'tpcolarr' ] = haz( topicColors_repo, ww[1] );
                         return;
                     }
                     //..........................................................
@@ -200,20 +200,20 @@
                     //..........................................................
 
 
-                    var lowId = nsmethods.topicIdUpperCase_2_underscore( tpid_user );
+                    var lowId = nsmethods.tpid2low( tpid_user );
                     //tplink has collection of topics,
                     //here is how this collection is populated:
                     if( lowId  && lowId.replace( / /g, '' ) ) {
                         tplink.tpid2true[ lowId ] = true;
                         //if topicId keyName is missed, then an empty object created
-                        if( !has( lowId2topics, lowId ) ){
+                        if( !has( lowtpid_2_glocss8anchorRack, lowId ) ){
                             ////todm: add this warning to GUI:
                             ccc( 'Topic "'+lowId +'" ' +
                                  'is missed in js-code. ' +
                                  'If not to be automated, check your texts or code.'
                             );
                             //for this keyName, 'fixed-colors' is a flag and is = 'undefined'
-                            sn( lowId, lowId2topics );
+                            sn( lowId, lowtpid_2_glocss8anchorRack );
                         }
                     }
                 });
@@ -262,10 +262,10 @@
                 //ccc( domEl.innerHTML );
                 if( !no_domEl_pretransformation ) {
                     ssF.finalizes_delayed_anchors(domEl);
-                }  
+                }
                 return [domEl];
             })
-            if( no_domEl_pretransformation && cbAfterMathJax ) {                
+            if( no_domEl_pretransformation && cbAfterMathJax ) {
                 ret.then( cbAfterMathJax );
             }
         }
@@ -377,11 +377,11 @@
                 anchorConfig = anchorConfig.substring( 1, anchorConfig.length );
             }
 
-            var rack = topics.id2tplink[ anchorConfig ];
+            var rack = topics.anid2anrack[ anchorConfig ];
             if( !rack ) return;
             var dix = cflag ? ' delayed-anchor' : '';
             dix += farFlag ? ' delayed-far' : '';
-            
+
 
             //***********************************************************
             // This anchor with non-empty dix will be hidden? and

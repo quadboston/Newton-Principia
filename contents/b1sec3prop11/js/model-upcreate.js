@@ -31,7 +31,7 @@
         rg.Q.pos[0] = Qpos[0];
         rg.Q.pos[1] = Qpos[1];
         var side = [ Qpos[0] - rr0[0], Qpos[1] - rr0[1] ];
-        
+
         // **api-input---plane-curve-derivatives
         var {
             RC,

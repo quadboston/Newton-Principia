@@ -45,10 +45,10 @@
         var pointe          = [ 28, 46 ];
 
         var modorInPicX = pointA[0];
-        var modorInPicY = pointA[1]; 
+        var modorInPicY = pointA[1];
         //.set it from graph editor
         var pictureActiveArea = pointA[1] - 46;
- 
+
         var mod2inn_scale = pictureActiveArea / APP_MODEL_Y_RANGE;
         var originX_onPicture = pointA[0];
         var originY_onPicture = pointA[1];
@@ -64,7 +64,7 @@
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
         //making size to better fit lemma's diagram
-        fconf.LETTER_FONT_SIZE_PER_1000 = 20;
+        sconf.LETTER_FONT_SIZE_PER_1000 = 20;
         //overrides "global", lemma.conf.js::sconf
         //sconf.pointDecoration.r= 3;
         sconf.pointDecoration.r= 4;
@@ -109,7 +109,7 @@
         var hidden  = [0,     0,   0,  ];
 
 
-        var predefinedTopics =
+        var topicColors_elected =
         {
             given,
             proof,
@@ -145,65 +145,65 @@
 
         var originalPoints =
         {
-            'A' : { 
+            'A' : {
                 pos         : pointA,
                 pcolor      : given,
                 letterAngle : -90,
             },
-            'e' : { 
+            'e' : {
                 pos         : pointe,
                 pcolor      : proof,
                 letterAngle : 90,
             },
 
-            'B' : { 
+            'B' : {
                 pcolor      : given,
                 letterAngle : 0,
             },
-            'C' : { 
+            'C' : {
                 pcolor      : given,
                 letterAngle : -45,
             },
-            'D' : { 
+            'D' : {
                 pcolor      : given,
                 letterAngle : 215,
                 initialR : 4,
             },
-            'E' : { 
+            'E' : {
                 pcolor      : given,
                 letterAngle : 180,
             },
-            'b' : { 
+            'b' : {
                 pcolor      : proof,
                 letterAngle : 0,
             },
-            'c' : { 
+            'c' : {
                 pcolor      : proof,
                 letterAngle : -90,
             },
-            'd' : { 
+            'd' : {
                 pcolor      : proof,
                 letterAngle : 180,
             },
 
-            'F' : { 
+            'F' : {
                 pcolor      : given,
                 letterAngle : 135,
             },
-            'G' : { 
+            'G' : {
                 pcolor      : given,
                 letterAngle : 45,
             },
-            'f' : { 
+            'f' : {
                 pcolor      : proof,
                 letterAngle : 90,
             },
-            'g' : { 
+            'g' : {
                 pcolor      : proof,
                 letterAngle : 90,
             },
 
-            'pivotPoint1' : { 
+            'pivotPoint1' : {
                 pcolor      : proof,
                 doPaintPname : false,
                 letterAngle : 90,
@@ -231,7 +231,7 @@
             { 'AB' : { pcolor : given } },
             { 'AC' : { pcolor : given } },
             { 'AD' : { pcolor : given } },
-            { 'AE' : { pcolor : given, 
+            { 'AE' : { pcolor : given,
                 'stroke-width' : 1, } },
             { 'AG' : { pcolor : given } },
             { 'EC' : { pcolor : given } },
@@ -313,15 +313,13 @@
 
             modorInPicX,
             modorInPicY,
-            innerMediaHeight    : pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
-            innerMediaWidth     : pictureWidth,
-
             //thickness           : 400,
             //----------------------------------
             // \\// model-view parameters
             //----------------------------------
         };
-        to_sconf.areaScale = 1 / to_sconf.APP_MODEL_Y_RANGE / to_sconf.APP_MODEL_Y_RANGE;
+        to_sconf.areaScale = 1 / to_sconf.APP_MODEL_Y_RANGE
+                               / to_sconf.APP_MODEL_Y_RANGE;
         //----------------------------------
         // \\// prepares sconf data holder
         //----------------------------------------------------
@@ -332,7 +330,7 @@
         // //\\ copy-pastes to sconf
         //----------------------------------------------------
         //making size to better fit lemma's diagram
-        fconf.LETTER_FONT_SIZE_PER_1000 = 30;
+        sconf.LETTER_FONT_SIZE_PER_1000 = 30;
 
         paste( sconf,
             paste( to_sconf,
@@ -341,7 +339,7 @@
                 mediaBgImage : "../../b1sec1lemma9/img/lemma9-original.png",
 
                 linesArray,
-                predefinedTopics,
+                topicColors_elected,
                 originalPoints,
                 originX_onPicture,
                 originY_onPicture,

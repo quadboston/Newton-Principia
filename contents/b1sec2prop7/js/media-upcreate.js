@@ -32,19 +32,19 @@
     function media_upcreate___part_of_medupcr_basic()
     {
         //enables curve move when dragging an entire diagram
-        let rgCurve = rg[ 'approximated-curve' ];
+        let rgCurve = rg.approxer;
         rgCurve.poly2svg({});
 
         //arc updates
         ssF.paintsCurve({
             mmedia  : stdMod.svgScene,
-            fun     : rgCurve.t2xy,        
+            fun     : rgCurve.t2xy,
             rgName  : 'timearc',
             start   : stdMod.pos2t( rg.P.pos ) + rg.Q.intervalSMinus,
             step    : (rg.Q.intervalS-rg.Q.intervalSMinus)/100,
             stepsCount : rgCurve.stepsCount, //101,
         });
-        
+
         /*
         ///possibly redundant because gap points are good
         if( has( rg[ 'foldPoints-' + 1 ], 'svgel$' ) ){
@@ -68,6 +68,6 @@
     //=========================================================
     // \\// lemma custom addons
     //=========================================================
-    
+
 }) ();
 

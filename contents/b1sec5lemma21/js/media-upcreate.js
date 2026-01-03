@@ -1,7 +1,7 @@
 ( function() {
     var {
         ns, sn, $$, nssvg, has, haz, mat,
-        amode, sconf, sDomF, sDomN, ssD, ssF, fixedColors,
+        amode, sconf, sDomF, sDomN, ssD, ssF, topicColors_repo,
         rg, toreg, stdMod,
     } = window.b$l.apptree({
         stdModExportList :
@@ -12,7 +12,7 @@
         },
         setModule,
     });
-    var pointies2line;
+    var pivots_2_svgLineInRg;
     var pos2pointy;
     var paintTriangle;
     return;
@@ -20,7 +20,7 @@
     
     function setModule()
     {
-        pointies2line   = ssF.pointies2line;
+        pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
         pos2pointy      = ssF.pos2pointy;
         paintTriangle   = ssF.paintTriangle;
     }
@@ -189,7 +189,7 @@
                 ////makes ellipse first to put point over it later
                 br.parent = stdMod.mmedia;
                 br['stroke-width'] = 3;
-                br.stroke = ns.arr2rgba( fixedColors[ "ellipse" ] );
+                br.stroke = ns.arr2rgba( topicColors_repo[ "ellipse" ] );
                 br.svgel = nssvg.branch2svg(br);
                 $$.$(br.svgel).cls( 'tp-ellipse tostroke thickable' );
             }

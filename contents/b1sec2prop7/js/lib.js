@@ -27,7 +27,7 @@
         var FORCE_ARRAY_PERIOD = 4; //gives STEPS/FORCE_ARRAY_PERIOD points for graph
         //make program simpler as planeCurveDerivatives,
         //but if even we have STEPS = 1 million, it still works, very sturdy,
-        var rgCurve = rg[ 'approximated-curve' ];
+        var rgCurve = rg.approxer;
         var STEPS = rgCurve.stepsCount;
         var end_q = rgCurve.tEnd;
         var start_q = rgCurve.tStart;
@@ -190,7 +190,7 @@
     {
         const DDD = DD || 1e-5;
         const ADDENDUM = amode.aspect === 'addendum';
-        const fun = rg[ 'approximated-curve' ].t2xy;
+        const fun = rg.approxer.t2xy;
         const c = ssD.curve;
         const garr = stdMod.graphFW_lemma.fw.content.pix2values;
         const len = garr.length;
@@ -275,17 +275,17 @@
 
 
     //analogy of
-    //function  pointsArr_2_singleDividedDifferences()
+    //function  Pivots_2_divdifFW()
     function creates_orbitRack()
     {
-        var rgX = rg[ 'approximated-curve' ];
+        var rgX = rg.approxer;
         var self_result = {};
         var curveName = 'orbit';
-        var lowname = sDomF.topicIdUpperCase_2_underscore( curveName );
+        var lowname = sDomF.tpid2low( curveName );
         //prevents leaks polylineSvg from js-prototype
         rgX.polylineSvg = haz( rgX, 'polylineSvg' );
 
-        //rg[ 'approximated-curve' ] will have these properties:
+        //rg.approxer will have these properties:
         Object.assign( rgX, {
                 tStart : 0,
                 tEnd : 2*Math.PI,

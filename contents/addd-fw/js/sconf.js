@@ -75,7 +75,7 @@
         // //\\ topic group colors,
         //      todm: possibly proliferation
         //-----------------------------------
-        var predefinedTopics =
+        var topicColors_elected =
         {
         };
         //-----------------------------------
@@ -89,7 +89,7 @@
         ///alternatively to this, you can set own colors for originalPoints
         ///by your own
         ns.eachprop( originalPoints, (point,pname) => {
-            point.pcolor = ns.haz( point, 'pcolor' ) || predefinedTopics[ pname ];
+            point.pcolor = ns.haz( point, 'pcolor' ) || topicColors_elected[ pname ];
         });
 
         //model's spacial unit in pixels of the picture:
@@ -101,7 +101,7 @@
 
         ns.paste( sconf, {
             mediaBgImage : "main-picture.png",
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             lines,
             originX_onPicture,

@@ -69,8 +69,8 @@
     //======================================================
 
 
-    
-    
+
+
     //======================================================
     // //\\ figure and base contol points
     //======================================================
@@ -92,7 +92,7 @@
             pdom.setAttributeNS(null, "r", sconf.CTRL_RADIUS);
             //.todm patch
             //pdom.style.fill = 'rgba(255,255,255,1)'; //makes the point hollow
-            //pdom.style.stroke = sDomF.getFixedColor( 'curve' );
+            //pdom.style.stroke = sDomF.tpname0arr_2_rgba( 'curve' );
             pdom.style[ 'stroke-width' ] = '1px';
             pt.x = ctrlPtXYs_js[i].x;
             pt.y = ctrlPtXYs_js[i].y;
@@ -122,7 +122,7 @@
                     //.todm patch
                     'rgba(255,255,255,1)'; //makes the point hollow
                 pdom.style.stroke = !isFig ? 'transparent' :
-                    sDomF.getFixedColor( 'curve' );
+                    sDomF.tpname0arr_2_rgba( 'curve' );
             }
         }
 
@@ -145,7 +145,7 @@
                     //.todm patch
                     'rgba(255,255,255,1)'; //makes the point hollow
                 pdom.style.stroke = !isIn && !isCir ? 'transparent' :
-                    sDomF.getFixedColor( 'curve' );
+                    sDomF.tpname0arr_2_rgba( 'curve' );
             }
         }
         // \\//  dehollowfies basePts
@@ -177,9 +177,9 @@
     // \\// figure and base contol points
     //======================================================
 
-    
-    
-    
+
+
+
     //==================================================
     // //\\ common shape
     //      dom without numeric parameters
@@ -193,7 +193,7 @@
         stdMod.svgScene.appendChild( sdom );
         return sdom;
     }
-    
+
     ///does only dom and bookkeeper, dr.movables[ key ] = draggable,
     ///creates svg-circle-tag with unit-transform and and appends it to svg-root
     function makeDragP_tpl( type, i )
@@ -212,6 +212,6 @@
     //==================================================
     // \\// common shape
     //==================================================
-    
+
 }) ();
 

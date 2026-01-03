@@ -1,11 +1,11 @@
 ( function() {
     var {
         sn, mcurve,
-        stdMod, rg, sconf,
+        amode, stdMod, rg, sconf,
     } = window.b$l.apptree({
         stdModExportList :
         {
-            buildsforceGraphArray,
+            makesGraphArray_8_drawsPlots,
             P2gix,
         },
     });
@@ -13,13 +13,13 @@
     return;
 
 
-    function buildsforceGraphArray()
+    function makesGraphArray_8_drawsPlots()
     {
         var op      = sconf.orbitParameters;
         var qStart  = op.qStart;
         var qEnd    = op.qEnd;
         var rrc     = rg.S.pos;
-        var t2xy    = rg[ 'approximated-curve' ].t2xy;
+        var t2xy    = rg.approxer.t2xy;
         var forceGraphArray = [];
         var Q_STEPS = 400;
         let calcs_fQR = stdMod.calcs_fQR;
@@ -33,13 +33,13 @@
             });
             var {
                 r, //from chosen rrc
-            } = bP;            
-            var fQR = Math.abs( calcs_fQR({ 
+            } = bP;
+            var fQR = Math.abs( calcs_fQR({
                         parq: q + op.sagittaDelta_q,
                         bP,
             }));
             let fQR_instant_abs = bP.fQR_instant_abs =
-                Math.abs( calcs_fQR({ 
+                Math.abs( calcs_fQR({
                         parq: q + op.sagittaDelta_q_instant,
                         bP,
             }));
@@ -79,6 +79,15 @@
             //it is referenced somewhere, so we use element by element set:
             ga[forceArrayIx] = far;
         }
+
+        //mask and draw
+        const mask = [];
+        mask[0] = 'force';
+        mask[1] = amode.logic_phase === 'proof';
+        stdMod.graphFW_lemma.wraps_draw_graph({
+            mask,
+            printAxisXDigits : true,
+        });
     }
 
 

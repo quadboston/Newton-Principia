@@ -15,7 +15,7 @@
     function attach_graph_methods ( graph_wrap, graph_methods ){
         graph_wrap.sets_axes = sets_axes;
         graph_wrap.setsGraphTpClasses = setsGraphTpClasses;
-        graph_wrap.doSetpix2color = doSetpix2color;
+        graph_wrap.makes_pix2color = makes_pix2color;
         graph_wrap.creates_global_css = creates_global_css;
         graph_wrap.creates_chain_of_containers_under_parent =
                    creates_chain_of_containers_under_parent;
@@ -42,14 +42,14 @@
             return tpnames;
         }
 
-        function doSetpix2color (){
+        function makes_pix2color (){
             let pix2color = [
-                sDomF.getFixedColor( 'proof' ),
-                sDomF.getFixedColor( 'orbit' ),
-                sDomF.getFixedColor( 'force' ),
-                sDomF.getFixedColor( 'semiaxes' ),
+                sDomF.tpname0arr_2_rgba( 'proof' ),
+                sDomF.tpname0arr_2_rgba( 'orbit' ),
+                sDomF.tpname0arr_2_rgba( 'force' ),
+                sDomF.tpname0arr_2_rgba( 'semiaxes' ),
             ];
-            graph_wrap.pix2color = pix2color;
+            graph_wrap.fw.content.pix2color = pix2color;
             return pix2color;
         }
 
@@ -72,7 +72,7 @@
             // //\\ calls api
             //==================================================
             //y-legend color; taken from first plot color:
-            const yColor = graph_wrap.pix2color[ 0 ];
+            const yColor = graph_wrap.fw.content.pix2color[ 0 ];
 
             //axis x and legend x color:
             //manually picked color, not from plot,
@@ -247,7 +247,7 @@
         function doDrawToolline (){
             return {
                 toollineStyle : {
-                        stroke : graph_wrap.pix2color[2],
+                        stroke : graph_wrap.fw.content.pix2color[2],
                     'stroke-width' : 3,
                 },
                 abscissaIxValue : stdMod.P2gix(),

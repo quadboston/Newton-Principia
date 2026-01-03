@@ -221,7 +221,7 @@
 
             var zebraColor = zebraColArr[ bix ].rgba_high;
 
-            var rgX_bar = ssF.pnames2poly( [ ltBName, ltName, rtName, rtBName ],
+            var rgX_bar = ssF.namesArr_2_svgpoly( [ ltBName, ltName, rtName, rtBName ],
                             cssClass,
                             !!'correctJoin'
             );

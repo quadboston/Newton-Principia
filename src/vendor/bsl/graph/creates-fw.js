@@ -82,14 +82,14 @@
             doDrawToolline,
             brightenGrid,
         }){
-            const content = fw_self.content;
-            const pix2values = content.pix2values;
+            const gcontent = fw_self.content;
+            const pix2values = gcontent.pix2values;
             const graphlen = pix2values.length;
             if( graphlen === 0 ) return;
 
-            const pix2mask = content.pix2mask;
-            const pix2color = content.pix2color;
-            const pstyle = content.style;
+            const pix2mask = gcontent.pix2mask;
+            const pix2color = gcontent.pix2color;
+            const pstyle = gcontent.style;
             //==================================
             // //\\ sets defaults if missed
             //==================================
@@ -332,7 +332,7 @@
             //======================================================
             // //\\ draws svg-plots from polylines
             //======================================================
-            const pix2bc = fw_self.content.pix2tpcls;
+            const pix2bc = gcontent.pix2tpcls;
             let gMedia = fw_self.gmedia$();
             //polylines is usually a small number of graph curved lines
             //and polylines have common index with pix2color and
@@ -368,7 +368,7 @@
             //======================================================
             ///unmasked, full length array for all plots
             if( plotsPars ) {//curveLabels
-                const pix2bc = fw_self.content.pix2tpcls;
+                const pix2bc = gcontent.pix2tpcls;
                 plotsPars.forEach( (pp,pix) => {//curveLabels
                     var ownPolyline = polylines[ pix ];
 

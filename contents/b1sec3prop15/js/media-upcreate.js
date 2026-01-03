@@ -1,0 +1,19 @@
+(function(){
+    const {rg} = window.b$l.apptree({ stdModExportList : {
+            media_upcreate___part_of_medupcr_basic,
+            media_upcreate___before_basic,
+        },
+    });
+    return;
+
+
+    function media_upcreate___before_basic (){
+        //this is a "policy" ... should be in the state manager if any ...
+        rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
+    }
+
+    function media_upcreate___part_of_medupcr_basic (){
+        //enables curve move when dragging an entire diagram
+        rg.approxer.poly2svg({});
+    }
+})();

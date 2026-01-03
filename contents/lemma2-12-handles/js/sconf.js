@@ -83,7 +83,7 @@
         //todm: this disables functionality ... not only CSS:
         fconf.appDecor.helpBox_opacity0             = true;
         fconf.appDecor.idleHelpButtonTooltip        = '';
-        
+
         //to make legend nicely seen, the legend needs
         //own css independent of rectangulars:
         //then so, we can decreas opacities below for nicer diagram:
@@ -91,7 +91,7 @@
         //these are additional over high and low opacities in color itself:
         sconf.ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS = 0.8;
         sconf.ANCHOR_TOPIC__OPACITY_IN_FOCUS = 1;
-        
+
         //no dice: sconf.default_tp_lightness = 0;
 
         //=====================================
@@ -101,7 +101,6 @@
         {
             dontDoMathJax : false, //true,
             skipGenDragList : true,
-            dontRun_ExpandConfig : false,
             //----------------------------------
             // //\\ model-view parameters
             //----------------------------------
@@ -121,7 +120,7 @@
                 //data setter
                 {x:modorInPicX, y: modorInPicY},
 
-                //movable handles    
+                //movable handles
                 {x:50,          y: 45},
                             {x:75,         y: 45},
                 {x:100,         y: 45},
@@ -456,7 +455,7 @@
 
 
         nspaste( sconf, {
-            predefinedTopics : predT,
+            topicColors_elected : predT,
             originalPoints,
             linesArray,
             //lines,

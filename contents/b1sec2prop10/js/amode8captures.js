@@ -43,7 +43,7 @@
 
         //todo sort out why this is commented out,
         // toreg( 'sForSagitta' )( 'val', sconf.sForSagitta_valQ );
-        // nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy( sconf.PparT ));
+        // nspaste( rg.P.pos, rg.approxer.t2xy( sconf.PparT ));
 
         //won't work in study model
         //because is overriden in in_subessay_launch____amode2lemma by

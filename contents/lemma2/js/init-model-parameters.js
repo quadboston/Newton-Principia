@@ -29,7 +29,7 @@
     function setModule()
     {
         ///this thing works in context of
-        ///LANDING_IV___loadLemmaJSCodes() after
+        ///IV__loadLemmaJSCodes() after
         ///and overrided setModule of Landing II
         sapp.finish_sapp_UI = finish_sapp_UI;
     }
@@ -67,11 +67,11 @@
                     z-index             : 111111111;
                 `,
             });
-        }        
+        }
 
         // dom z-order patch
         haff( ssF, 'continue_create_8_prepopulate_svg' );
-        
+
         //----------------------------------------------
         // //\\ fits lemma to modern framework
         // //\\ trick
@@ -97,12 +97,12 @@
 
         guicon.constructsWidestRect();
         guicon.constructsRects_tillExtraOffset_parlessDom();
-        
+
         //numberless:
         guicon.constructsCurve8Area(); //do on top of ancestors
 
         guicon.constructBasePts_domParless(dr.basePts);
-        
+
         //sets their positions:
         guicon.constructsControlPoints();
         //guicon.constructsCtrPoints();
@@ -116,7 +116,7 @@
         //createsBaseSlider();
 
         gui.buildSlider();
-        
+
         sDomF.detected_user_interaction_effect( 'doUndetected' );
     }
 

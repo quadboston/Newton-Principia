@@ -24,7 +24,7 @@
         // or
         // t |-> [x,y]
         //for example, //ssD.repoConf[0].fun
-        fun,        
+        fun,
 
         //--------------------------------------------------------------------------
         // //\\ optional args
@@ -38,7 +38,7 @@
         //todm      add tp-both-curves in call, don't make "tp-both-curves" automatic
         addedCssClass,   //optional, overrides tp-..rgName
 
-        stroke, //for color, otherwise taken from sDomF.getFixedColor( rgName )
+        stroke, //for color, otherwise taken from sDomF.tpname0arr_2_rgba( rgName )
         strokeWidth,
 
         pointA,     //has pos[0] which is a start value for independent var t
@@ -106,7 +106,7 @@
                 var step            = 0.015*85/stepsCount;
             }
         }
-        addedCssClass = sDomF.topicIdUpperCase_2_underscore( addedCssClass || 'tp-' + rgName );
+        addedCssClass = sDomF.tpid2low( addedCssClass || 'tp-' + rgName );
         //-----------------------------------------------------------------
         // \\// rgName, pointA,B, start, step, tp-class
         //-----------------------------------------------------------------
@@ -140,7 +140,7 @@
                 start,
                 step,
                 curve           : mediaFunction,
-                stroke          : stroke || sDomF.getFixedColor( rgName ),
+                stroke          : stroke || sDomF.tpname0arr_2_rgba( rgName ),
                 "stroke-width"  : strokeWidth || 2,
                 svgel           : rgX.svgel, //[ rgName ].svg,
                 dontClose       : true,

@@ -24,6 +24,8 @@
     ///====================================================
     function init_conf()
     {
+        sconf.dontRun_ExpandConfig = true;
+
         var MONITOR_Y_FLIP = -1;
         var innerMediaWidth = 1000;
 
@@ -32,7 +34,6 @@
         //----------------------------------------------------
         to_sconf =
         {
-            dontRun_ExpandConfig : true,
             EPSILON : 0.36,
             DELTA_FRACTION : 0.7,
 

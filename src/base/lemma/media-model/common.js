@@ -17,7 +17,8 @@
 
 
 
-    ///declares whirl for model and simulation/user scenario;
+    ///declares whirl (do call it modShape?)
+    ///for model and simulation/user scenario;
     ///               not for view for media and GUI;
     ///whirl is geometrical-shape-in-model: point, line, ...
     ///we don't want to call them "shape" because it collides with word "shape" in svg
@@ -33,7 +34,7 @@
                 rgX = toreg( pname )
                     ( 'pname', pname )
                     ( 'pos', pos )
-                    //( 'pcolor' : sDomF.getFixedColor( pname ) ),
+                    //( 'pcolor' : sDomF.tpname0arr_2_rgba( pname ) ),
                     ///todm: work out to remove this
                     ///      proliferated coding: medpos, pos, ...  are two places:
                     ///      because of pWrap of itself is a proliferation of rg.pname rack
@@ -41,7 +42,7 @@
                         'pointWrap',
                         {
                            pos : pos,
-                           pcolor : sDomF.getFixedColor( pname ), //todm remove
+                           pcolor : sDomF.tpname0arr_2_rgba( pname ), //todm remove
                            doPaintPname : true, //todm remove
                         }
                     )

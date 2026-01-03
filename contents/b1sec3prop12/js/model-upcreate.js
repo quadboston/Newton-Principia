@@ -1,15 +1,10 @@
-( function() {
-    var {
-        sn, $$, nsmethods, nspaste, nssvg, mcurve, integral, mat, has,
-        fconf, ssF, sData,
-        stdMod, amode, sconf, rg, toreg,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
+(function(){
+    const { sn, $$, nspaste, mcurve, mat, haff, has, fconf,
+            ssF, stdMod, sconf, rg,
+    } = window.b$l.apptree({ stdModExportList : {
             model_upcreate,
         },
     });
-    var sop = sn( 'sampleOrbitParameters', sconf );
     return;
 
 
@@ -18,7 +13,7 @@
         const op        = sconf.orbitParameters;
         const cosAxis   = Math.cos( op.mainAxisAngle );
         const sinAxis   = Math.sin( op.mainAxisAngle );
-        const fun       = rg[ 'approximated-curve' ].t2xy;
+        const fun       = rg.approxer.t2xy;
         const q         = rg.P.q;
         const rr0       = fun( q );
         const rrc       = rg.S.pos;
@@ -59,7 +54,7 @@
         //================================================
         // //\\ arc, sagittae and related
         //================================================
-        if( fconf.effId === "b1sec3prop14" ) {
+        if( fconf.effId === "prop_from_14_to_17" ) {
             ////delta q is derived from delta t
             var {
                 rr, //for pos for Q
@@ -69,7 +64,8 @@
             op.sagittaDelta_q = sagittaDeltaQ;
             //rg.R.caption = fconf.sappId === "b1sec3prop15" ?
             //    'R' : 'Δt = ' + op.Kepler_v.toFixed(3);
-            rg[ 'P,vb' ].caption = fconf.sappId === "b1sec3prop15" || fconf.effId !== 'b1sec3prop14' ?
+            rg[ 'P,vb' ].caption = fconf.sappId === "b1sec3prop15" ||
+                fconf.effId !== 'prop_from_14_to_17' ?
                 '' :  'v = ' + op.Kepler_v.toFixed(3);
             rg.SY.caption = fconf.sappId === "b1sec3prop16" ?
                 'SY = ' + (rg.P.sinOmega * rg.P.abs ).toFixed(3) :
@@ -94,7 +90,8 @@
                     if( ( abs_Q - sing ) * ( abs_q - sing ) <= 0 ){
                         ////singularity is between q and abs_Q,
                         ////changes Q making it in the same singularity sector,
-                        //creates new sag_delta_q unrelated to value of the former sag_delta_q
+                        //creates new sag_delta_q unrelated to value
+                        //of the former sag_delta_q
                         var new_sag_delta_q = Math.abs( sing - abs_q )
                                           / 3; //factor 3 is an arbitraty > 1
                         ////shifts q down if increment is negative
@@ -120,7 +117,8 @@
         {
             //dropLine(... = start + direction * t
             let udir = op.cosOmega * cosOmega + op.om * sinOmega;
-            nspaste( rg.vb.pos, mat.dropLine( 1, null, null, rg.P.pos, uu, udir * op.Kepler_v ) );
+            nspaste( rg.vb.pos, mat.dropLine( 1, null, null,
+                     rg.P.pos, uu, udir * op.Kepler_v ) );
         }
         //T = perp. from Q to radius-vector
         nspaste( rg.T.pos, mat.dropPerpendicular( rg.Q.pos, rrc, rr0 ) );
@@ -137,31 +135,18 @@
         // \\// arc, sagittae and related
         //================================================
 
-
         nspaste( rg.Y.pos, projectionOfCenterOnTangent );
-
 
         //================================================
         // //\\ decorations
         // //\\ graph
         //------------------------------------------------
-        if( fconf.effId !== "b1sec3prop14" ) {
-            stdMod.buildsforceGraphArray();
-            const mask = stdMod.graphFW_lemma.fw.content.pix2mask;
-            mask[0] = 'force';
-            mask[1] = amode.logic_phase === 'proof';
-            stdMod.graphFW_lemma.wraps_draw_graph({
-                printAxisXDigits : true,
-                //t/drawDecimalY : true,
-                //t/drawDecimalX : false,
-                //t/printAxisYDigits : true,
-            });
+        if( fconf.effId !== "prop_from_14_to_17" ) {
+            stdMod.makesGraphArray_8_drawsPlots();
         }
         //------------------------------------------------
         // \\// graph
         //------------------------------------------------
-
-
 
         //------------------------------------------------
         // //\\ PZminus
@@ -253,7 +238,6 @@
         // \\// for prop. 11,12
         //=============================================================
 
-
         //=============================================================
         // //\\ latus
         //=============================================================
@@ -265,7 +249,6 @@
         //=============================================================
         // \\// latus
         //=============================================================
-
 
         //=============================================================
         // //\\ instant triangle
@@ -282,86 +265,10 @@
         // \\// instant triangle
         //=============================================================
 
-
         //=============================================================
         // //\\ prop. 17
         //=============================================================
-        if( "b1sec3prop17" === fconf.sappId ) {
-            //solved orbit hyperbola or ellipse
-            if( amode.subessay === 'corollary1' || amode.subessay === 'corollary2'  ) {
-                nspaste( rg.D.pos, rg.P.pos );
-            } else {
-                nspaste( rg.D.pos, fun( 0 ) );
-            }
-            nspaste( rg.K.pos, mat.dropPerpendicular( rg.O.pos, rg.H.pos, rg.P.pos ) );
-            {
-                ////sample orbit
-                let fun = rg[ 'approximated-curve-sample' ].t2xy;
-                //orbit
-                let rrc = rg.S.pos;
-                var {
-                    rr,
-                    uu,
-                    ee,
-                    projectionOfCenterOnTangent,
-                    sinOmega,
-                    cosOmega,
-                } = mcurve.planeCurveDerivatives({
-                    fun,
-                    q   : rg.p.q,
-                    rrc,
-                });
-                nspaste( rg.p.pos, rr );
-                //sample speed vector
-                {
-                    //dropLine(... = start + direction * t
-                    let udir = sop.cosOmega * cosOmega + sop.om * sinOmega;
-                    nspaste( rg.vSample.pos, mat.sm( sop.Kepler_v*udir, uu, 1, rg.p.pos ) );
-                }
-                //sample's decorational dt arc
-                var {
-                    rr,
-                } = mcurve.planeCurveDerivatives({
-                    fun,
-                    q : rg.p.q + sop.sagittaDelta_q_initial,
-                    rrc,
-                });
-                nspaste( rg.q.pos, rr );
-                rg.p.abs = mat.unitVector( rg.p.pos ).abs;
-            }
-            const cosAxis   = Math.cos( sop.mainAxisAngle );
-            const sinAxis   = Math.sin( sop.mainAxisAngle );
-
-            //----------------------------------
-            // //\\ force, gamma, and latus
-            //----------------------------------
-            rg.l.pos[0]  = -sinAxis * sop.latus;
-            rg.l.pos[1]  =  cosAxis * sop.latus;
-            rg.ll.pos[0] =  sinAxis * sop.latus;
-            rg.ll.pos[1] = -cosAxis * sop.latus;
-            rg[ 'l,ll' ].caption = 'l=' + (2*sop.latus).toFixed(3);
-            {
-                ////force and gamma
-                let relativeGamma = op.Kepler_g / sop.Kepler_gInitial;
-                var newLen = relativeGamma * sop.forceHandleInitial;
-                nspaste( rg.f.pos,
-                         mat.sm( rg.p.pos, -1*newLen, ee )
-                );
-                rg[ 'p,f' ].caption = 'f = ' + relativeGamma.toFixed(2);
-            }
-            //----------------------------------
-            // \\// force, gamma, and latus
-            //----------------------------------
-            rg[ 'p,vSample' ].caption = 'vₛ = ' + sop.Kepler_v.toFixed(3);
-
-            rg.Ys.pos[0] = projectionOfCenterOnTangent[0];
-            rg.Ys.pos[1] = projectionOfCenterOnTangent[1];
-
-            // highlight arc (segment of sop around p)
-            sop.highlightSeg = true;
-            sop.segStart = rg.p.q + 0.4;
-            sop.segEnd = sop.segStart - 0.8;
-        }
+        haff( stdMod, 'model_upcreate_addon' );
         //=============================================================
         // \\// prop. 17
         //=============================================================
@@ -375,7 +282,7 @@
 
         op          = sconf.orbitParameters;
         const rrc   = rg.S.pos;
-        const fun   = rg[ 'approximated-curve' ].t2xy;
+        const fun   = rg.approxer.t2xy;
         var q       = rg.P.q;
         var {
                 staticSectorialSpeed_rrrOnUU,
@@ -404,7 +311,8 @@
                 rrc,
             });
             //assumes central force, i.e. constant sectorial speed
-            //var Kepler_v_instant = op.Kepler_v * sectorialSpeed0 / staticSectorialSpeed_rrrOnUU;
+            //var Kepler_v_instant = op.Kepler_v *
+            //sectorialSpeed0 / staticSectorialSpeed_rrrOnUU;
 
             var intervalQ = ds_by_dt / v; //dfi
             q += intervalQ;

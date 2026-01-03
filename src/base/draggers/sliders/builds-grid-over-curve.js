@@ -97,11 +97,11 @@
                 var subGrade = decUnit / 10;
                 for( var gline=linesStart-decUnit; gline<=slider.maxVal; gline+=subGrade ) {
 
-                    if( gline < slider.minVal ) continue;  
+                    if( gline < slider.minVal ) continue;
                     ///main level of the grade on vertical axis of the slider
                     var mediaModelGradeY =
                         //origin on the bottom of svg
-                        //sconf.pictureHeight + 
+                        //sconf.pictureHeight +
                         mod2inn_scale * (
                         //"-" because of screen Y inversion:
                         - ( gline - slider.minVal ) *
@@ -176,10 +176,10 @@
 
 
 
-            //----------------------------------------------------------  
+            //----------------------------------------------------------
             // //\\ prints grade digital lablel for math model magnitude
             //      measured by the gauge
-            //----------------------------------------------------------  
+            //----------------------------------------------------------
             decimalDigits = decimalDigits || 0;
 
             //implement this ? as a function
@@ -208,9 +208,9 @@
                     'opacity'       : 0.5,
                 },
             });
-            //----------------------------------------------------------  
+            //----------------------------------------------------------
             // \\// prints grade digital lablel for math model magnitude
-            //----------------------------------------------------------  
+            //----------------------------------------------------------
         }
 
         returnApi.measurement = {
@@ -253,7 +253,7 @@
                 //addedCssClass   : ns.haz( ssD.repoConf[0], 'addedCssClass' ),
                 stroke          : measurementStroke,
                                     //for color, otherwise taken
-                                    // from sDomF.getFixedColor( rgName )
+                                    // from sDomF.tpname0arr_2_rgba( rgName )
             });
         }
     }

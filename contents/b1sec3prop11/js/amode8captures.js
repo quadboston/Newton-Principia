@@ -33,7 +33,7 @@
         rg.S.pos[0] = -sconf.ellipseFocus;
         rg.S.pos[1] = 0;
         rg.SS.undisplay = true;
-        
+
         /*
         //too much general?:
         if( ADDENDUM ) {
@@ -51,7 +51,7 @@
         rg.H.pos[1] = 0;
 
 
-        if( fconf.sappId === 'b1sec3prop11' ) {
+        //if( fconf.sappId === 'b1sec3prop11' ) {
             rg.VV.undisplay = true;
             rg[ 'P,VV' ].undisplay = true;
             rg.VV.undisplay = true;
@@ -65,11 +65,11 @@
             rg.Tu.undisplay = true;
             rg[ 'u,VV' ].undisplay = true;
             rg.uP.undisplay = true;
-            
+
             //rg.R.undisplay = ADDENDUM;
             //rg.T.undisplay = hideExtras;
             //rg.Q.undisplay = hideExtras;
-            
+
             var hideExtras = ADDENDUM || subessay === 'another-solution';
 
             // //\\ another solution
@@ -119,7 +119,7 @@
             rg.DO.undisplay = hideExtras;
             rg.BO.undisplay = hideExtras;
             rg[ 'PC' ].undisplay = hideExtras;
-            
+
             // //\\ we don't know why one needs chorde-scribed circle
             //      so we disable it forever here
             rg[ 'P,tCircleCenter' ].undisplay = true; //hideExtras;
@@ -134,77 +134,9 @@
             //=====================================================
             // \\// alternates for addendum
             //=====================================================
-
-        } else {
-            //todotodo replace with sconf setting:
-            //rg.S.d8d_find_is_LOCKED = rg.S.hideD8Dpoint = !ADDENDUM;
-            var hideAnother = subessay !== 'another-solution';
-            rg.u.undisplay = hideAnother;
-            rg.Tu.undisplay = hideAnother;
-            rg[ 'u,VV' ].undisplay = hideAnother;
-            rg.uP.undisplay = hideAnother;
-            rg.PQ.undisplay = hideAnother;
-            rg.tangentCircle.undisplay = hideAnother;
-
-            stdMod.medRoot$.css( 'display',
-                logic_phase === 'corollary' || logic_phase === 'scholium' ? 'none' : 'block'
-            )
-
-            //hides prop11
-            rg.HI.undisplay = false;
-            rg.PH.undisplay = false;
-            rg.EO.undisplay = false;
-            rg.E.undisplay = false;
-            rg.I.undisplay = false;
-            rg.H.undisplay = false;
-
-            //=====================================================
-            // //\\ alternates for addendum
-            //=====================================================
-            rg.PF.undisplay = ADDENDUM;
-            rg.GP.undisplay = ADDENDUM;
-            rg.G.undisplay = ADDENDUM;
-            rg.DK.undisplay = ADDENDUM;
-            rg.K.undisplay = ADDENDUM;
-            rg.D.undisplay = ADDENDUM;
-            rg.F.undisplay = ADDENDUM;
-            rg.A.undisplay = ADDENDUM;
-            rg.B.undisplay = ADDENDUM;
-            rg.G.undisplay = ADDENDUM;
-            rg.T.undisplay = ADDENDUM;
-            rg.Q.undisplay = ADDENDUM;
-            rg.R.undisplay = ADDENDUM;
-
-            rg.VV.undisplay = ADDENDUM;
-            rg.v.undisplay = ADDENDUM;
-            rg.u.undisplay = ADDENDUM;
-            rg.Pv.undisplay = ADDENDUM;
-            rg.Qv.undisplay = ADDENDUM;
-            rg.Tv.undisplay = ADDENDUM;
-            rg.vG.undisplay = ADDENDUM;
-            rg.QT.undisplay = ADDENDUM;
-            rg.PT.undisplay = ADDENDUM;
-            rg.QR.undisplay = ADDENDUM;
-            rg.SQ.undisplay = ADDENDUM;
-            rg.GO.undisplay = ADDENDUM;
-            rg.GP.undisplay = ADDENDUM;
-
-            rg.AO.undisplay = ADDENDUM;
-            rg.DO.undisplay = ADDENDUM;
-            rg.BO.undisplay = ADDENDUM;
-            rg.PO.undisplay = ADDENDUM;
-            rg[ 'P,VV' ].undisplay = ADDENDUM;
-            //=====================================================
-            // \\// alternates for addendum
-            //=====================================================
-
-        }
-
-
+        //}
         //comment out to remove Book's diagram after timeout
         sDomF.detected_user_interaction_effect( 'doUndetected' );
         return captured;
     }
-
-}) ();
-
+})();

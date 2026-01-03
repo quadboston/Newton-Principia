@@ -24,7 +24,7 @@
     function creates_delta_time_slider()
     {
         var pos2pointy    = ssF.pos2pointy;
-        var pointies2line = ssF.pointies2line;
+        var pivots_2_svgLineInRg = ssF.pivots_2_svgLineInRg;
 
         //=========================================
         // //\\ slider api pars
@@ -35,7 +35,7 @@
         var slCaption0  = '∆t';
 
         ///will be overridden with tp-color if any:
-        var COLOR = sDomF.getFixedColor( sliderId );
+        var COLOR = sDomF.tpname0arr_2_rgba( sliderId );
         var customSliderShift = -20; //picture units
         //=========================================
         // \\// slider api pars
@@ -89,6 +89,10 @@
         //--------------------------------------------------------
         // //\\ slider api
         //--------------------------------------------------------
+        
+        //todo ?not required?
+        //api.piovots     = [ rg[ start_rgid ], rg[ end_rgid ] ];
+
         api.pos         = [startX, startY];
         api.startX      = startX;
         api.endX        = endX;
@@ -110,7 +114,7 @@
         ///draws rails
         ///if tpclass does exist, it apparently overrides stroke and
         ///some other styles,
-        var rails = pointies2line(
+        var rails = pivots_2_svgLineInRg(
              rails_rgid,
              [ railsStart, railsEnd ],
              { stroke           : COLOR,
@@ -198,7 +202,7 @@
 
 
         ///this function does "minor" update: it does not
-        ///recalculate the evolution, but 
+        ///recalculate the evolution, but
         ///  sets slider position and
         ///  shows evolution corresponding to time;
         function updates_sliderGUI()
@@ -209,7 +213,7 @@
             //-----------------------------------------------------
             //interpolates slider GUI position
             var sliderXpos =
-                 railsStart.pos[0] + 
+                 railsStart.pos[0] +
                  rawDeltaT / sconf.initialTimieStep * api.railsLength;
             api.pos = [ sliderXpos, railsStart.pos[1] ];
 

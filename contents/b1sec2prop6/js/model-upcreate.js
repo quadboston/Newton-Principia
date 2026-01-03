@@ -1,12 +1,8 @@
 ( function() {
-    var {
+    const {
         sn, $$, nsmethods, nssvg, mcurve, integral,
-        mat, has, userOptions,
-        ssF, ssD, sData,
-        amode, stdMod, sconf, rg, toreg,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
+        mat, has, ssF, ssD, amode, stdMod, sconf, rg, toreg,
+    } = window.b$l.apptree({ stdModExportList : {
             model_upcreate,
         },
     });
@@ -47,7 +43,8 @@
             rg.QtimeDecor.pos = Porb.rrplus;
             let sagV = Porb.sagittaVector;
             rg.sagitta.pos = [sagV[0]+rr[0],sagV[1]+rr[1]];
-            const chord = rg.chord = [ rrplus[0] - rrminus[0], rrplus[1] - rrminus[1], ];
+            const chord = rg.chord = [ rrplus[0] - rrminus[0],
+                          rrplus[1] - rrminus[1], ];
             rg.chord2 = chord[0]*chord[0]+chord[1]*chord[1];
 
             //R = parallel-projection of Q to tangent
@@ -105,20 +102,12 @@
         // //\\ decorations
         // //\\ graph
         //------------------------------------------------
-        {
-            const mask = stdMod.graphFW_lemma.fw.content.pix2mask;
-            mask[1] = solvable
-                && (
-                amode.subessay === 'corollary1' ||
-                amode.subessay === 'corollary5'
-            );
-        }
         if( solvable ) {
+            //t/const mask = [];
+            //t/mask[1]=0;
             stdMod.graphFW_lemma.wraps_draw_graph({
-                //drawDecimalY : true,
-                //drawDecimalX : false,
+                //t/mask,
                 printAxisXDigits : true,
-                //printAxisYDigits : true,
             });
         }
         //------------------------------------------------
@@ -149,7 +138,8 @@
             let foldps = ssD.foldPoints;
             let flen = foldps.length;
             let pastlen = ssD.pastFoldPoints;
-            //c cc( 'folds='+flen + ' pains='+pp.length + ' past='+pastlen );
+            //c cc( 'folds='+flen + ' pains='+pp.length +
+            //' past='+pastlen );
             if( has( ssD, 'pastFoldPoints' ) ) {
                 //todm for( let i=foldps.length; i<flen; i++ ) {
                 for( let i=0; i<pastlen; i++ ) {
@@ -246,5 +236,4 @@
         //      for non-Kepler curve
         //================================================
     }
-}) ();
-
+})();

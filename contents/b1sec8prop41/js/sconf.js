@@ -1,13 +1,13 @@
 ( function() {
     const {
-        sn, mat, eachprop, nspaste, userOptions, fixedColors,
+        sn, mat, eachprop, nspaste, userOptions, topicColors_repo,
         fconf, sconf, rg, stdMod,
     } = window.b$l.apptree({ //export to apptree
         ssFExportList : { init_conf }
     });
     const op = sn( 'orbitParameters', sconf );
     const sf = sconf;
-    const fc = fixedColors;
+    const fc = topicColors_repo;
     return;
 
 
@@ -69,7 +69,7 @@
         // //\\ decorational parameters
         //***************************************************************
         //making size to better fit lemma's diagram
-        fconf.LETTER_FONT_SIZE_PER_1000 = 20;
+        sconf.LETTER_FONT_SIZE_PER_1000 = 20;
 
         //--------------------------------------
         // //\\ does override engine defaults,
@@ -112,7 +112,7 @@
             angleArea,
             angle,
             hidden,
-        } = fixedColors;
+        } = topicColors_repo;
 
         //special or derivative parameters
         const fi      = [...fc.angle];
@@ -125,7 +125,7 @@
         var Z2graph   = [...fc.body];
         Z2graph[3]    = 0.4;
         Z2graph[4]    = 1;
-        
+
         var ro        = distance;
 
         var vgraph    = force;
@@ -145,9 +145,9 @@
         Tarea[3]      = 0.01;
         Tarea[4]      = 0.7;
 
-        ///they will add up (will reexport) to sconf.fixedColors and
+        ///they will add up (will reexport) to sconf.topicColors_repo and
         //initiate keys in rg when they expanded in expand-config.js
-        var predefinedTopics =
+        var topicColors_elected =
         {
             given,
             proof,
@@ -181,7 +181,7 @@
             'D𝑐𝑥E' : [0,  0,  150,   0.01, 0.3],
             'D𝑏𝑧E' : [110, 90,  0,   0.01, 0.3],
             VIC : [110, 90, 0, 0.001, 0.5 ],
-  
+
             //needs color model working:
             ICK : [110, 90, 0, 0.001, 0.5 ], //good but hidden
             //ICK : [110, 90, 0, 0.1, 1 ], //visible, but initially annoying,
@@ -281,7 +281,7 @@
             vgpoint : {
                 caption : 'v',
                 pos : A,
-                //no effect: pcolor : predefinedTopics.vgpoint,
+                //no effect: pcolor : topicColors_elected.vgpoint,
                 letterAngle : 45,
             },
 
@@ -500,7 +500,7 @@
         //stdMod.init_sliders_conf();
         nspaste( sconf, {
             mediaBgImage : "diagram.jpg",
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             originX_onPicture,

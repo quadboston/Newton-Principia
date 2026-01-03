@@ -18,7 +18,7 @@
     });
     return;
 
-    
+
     ///===================================================================
     /// app-mode to lemma states and actions,
     ///     runs only in three? categories of click events and
@@ -43,7 +43,7 @@
             'subessay--' + subessay
         );
         // \\// patch. works for
-        
+
         //------------------------------------------------
         // //\\ sets "undefined" flag
         //      for registry rg members with defined pname,
@@ -63,7 +63,7 @@
                 prop.undisplay = !(
                     has( sconf, 'rgShapesVisible' ) ?
                         sconf.rgShapesVisible :
-                        fconf.rgShapesVisible
+                        sconf.rgShapesVisible
                 );
             }
         });
@@ -100,7 +100,7 @@
         ///------------------------------------------------------------------
         /// \\// takes conditions scripted at the bottom of professor-script,
         ///------------------------------------------------------------------
-        
+
         ///enables or disables conditional drag point if preset in sconf.js,
         eachprop( rg, (shape, pname) => {
             if( has( shape, 'conditionalDrag' ) ){

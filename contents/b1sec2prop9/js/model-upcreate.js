@@ -113,28 +113,13 @@
         // //\\ graph
         //------------------------------------------------
         {
+            const mask = [];
+            mask[1] = amode.logic_phase === 'proof';
+            mask[3] = amode.logic_phase === 'proof';
             let graphArg = {
-                //drawDecimalY : true,
-                //drawDecimalX : false,
-                //printAxisYDigits : true,
+                mask
             }
-            /*
-            if( !b onus ) {
-                let ga = stdMod.graphFW_lemma..fw.content.pix2values;
-                let len = ga.length;
-                let sumAbs = 0;
-                var yMax =0;
-                for( ix = 0; ix<len; ix++ ) {
-                    let yy = Math.abs( ga[ix].y[0] );
-                    sumAbs += yy;
-                    yMax = Math.max( yMax, yy );
-                }
-                let averageY = sumAbs/len;
-                graphArg.yMax = Math.max( yMax, averageY*1.5 );
-                graphArg.yMin = 0;
-            }
-            */
-            stdMod.graphFW_lemma.wraps_draw_graph(graphArg);
+            stdMod.graphFW_lemma.wraps_draw_graph( graphArg );
         }
         //------------------------------------------------
         // \\// graph

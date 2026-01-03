@@ -54,7 +54,7 @@
         fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
 
         //making size to better fit lemma's diagram
-        fconf.LETTER_FONT_SIZE_PER_1000 = 30;
+        sconf.LETTER_FONT_SIZE_PER_1000 = 30;
 
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r= 3;
@@ -145,7 +145,7 @@
         var context = [0,     0,   0,      1];
         var invalid = [200,  150,  0,      1];
         var curvature  = [200,   40,  200, 1];
-        var predefinedTopics =
+        var topicColors_elected =
         {
             given,
             proof,
@@ -469,7 +469,7 @@
             curveParFiMax,
             sForSagitta_valQ,
 
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             originX_onPicture,

@@ -37,7 +37,7 @@
         let orbSolved = sData.quadSolved;
         let F = orbSolved.F;
         let kernel = orbSolved.kernel;
-        let xy = rg[ 'approximated-curve' ].curvePoints;
+        let xy = rg.approxer.curvePoints;
         nspaste( rg.a.pos, kernel.Tkernel[ orbSolved.fiStartedIx - orbSolved.roPlus0Top ] );
         {
             var Dpos = rg.D.pos;
@@ -229,7 +229,7 @@
         });
 
         //:paints colors
-        var lowname = sDomF.topicIdUpperCase_2_underscore( rgX.rgId );
+        var lowname = sDomF.tpid2low( rgX.rgId );
         rgX.svgel$.addClass( 'to' + fill0stroke + ' thickable tp-' + lowname );
     }
 

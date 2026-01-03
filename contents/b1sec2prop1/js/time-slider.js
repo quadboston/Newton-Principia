@@ -1,4 +1,4 @@
-( function() {
+(function(){
     var {
         sn, $$, sv, globalCss, haz,
         sconf, sDomF, ssF, ssD, toreg, rg,
@@ -9,15 +9,8 @@
             //creates_sliderDomModel__4__time,
         },
     });
-    stdMod.creates_sliderDomModel__4__time = creates_sliderDomModel__4__time; 
+    stdMod.creates_sliderDomModel__4__time = creates_sliderDomModel__4__time;
     return;
-
-
-
-
-
-
-
 
 
     //----------------------------------------
@@ -25,10 +18,9 @@
     //      creates slider only once per
     //      app model creation;
     //----------------------------------------
-    function creates_sliderDomModel__4__time()
-    {
+    function creates_sliderDomModel__4__time (){
         var pos2pointy    = ssF.pos2pointy;
-        var pointies2line = ssF.pointies2line;
+        var pivots_2_svgLineInRg = ssF.pivots_2_svgLineInRg;
 
         //=========================================
         // //\\ slider api pars
@@ -43,7 +35,7 @@
 
         var captionPrefix = 'm = ';
         ///will be overridden with tp-color if any:
-        var COLOR         = sDomF.getFixedColor( sliderId );
+        var COLOR         = sDomF.tpname0arr_2_rgba( sliderId );
         var customSliderShift = 0; //picture units
         //=========================================
         // \\// slider api pars
@@ -63,7 +55,6 @@
         var rails_rgid  = 'slider_'     + sliderId;
         var tpId        = sliderId;
         var tptpId      = 'tp-' + tpId;
-
 
         //----------------------------------------------------------------------------
         // //\\ in model units and reference system
@@ -87,7 +78,6 @@
         //----------------------------------------------------------------------------
         // \\// in model units and reference system
         //----------------------------------------------------------------------------
-
 
         //:spawns api pars
         var startPos          = [ startX, startY ];
@@ -120,7 +110,7 @@
         ///draws rails
         ///if tpclass does exist, it apparently overrides stroke and
         ///some other styles,
-        var rails = pointies2line(
+        var rails = pivots_2_svgLineInRg(
              rails_rgid,
              [ railsStart, railsEnd ],
              { stroke           : COLOR,
@@ -133,7 +123,6 @@
         //-------------------------------------
         // \\// adds helpers
         //-------------------------------------
-
 
         //------------------------------------------------
         // //\\ makes svg representation of api
@@ -178,9 +167,6 @@
             `,
             'svg-text-special'
         );
-
-
-
         api.apiValueName        = apiValueName;
         api.move_2_updates      = move_2_updates;
         api.processDownEvent    = processDownEvent;
@@ -199,24 +185,18 @@
         });
         return;
 
-
-
-
-
-
-
         ///this function does "minor" update: it does not
-        ///recalculate the evolution, but 
+        ///recalculate the evolution, but
         ///  sets slider position and
         ///  shows evolution corresponding to time;
-        function upates_timeSlider8unmasksSvgDom()
-        {
+        function upates_timeSlider8unmasksSvgDom (){
+            //c cc( 'upates_timeSlider8unmasksSvgDom()' );
             var rawTime = api[ apiValueName ]; //===rg.slider_sltime.curtime;
 
             //interpolates slider GUI position
             var sliderXpos =
-                 railsStart.pos[0] + 
-                 rawTime / sconf.trange * api.railsLength;
+                 railsStart.pos[0] +
+                 rawTime / sconf.timeRange * api.railsLength;
             api.pos = [ sliderXpos, railsStart.pos[1] ];
 
             //does what it says, no extra calculations
@@ -224,7 +204,7 @@
 
             api.slCaption = slCaption0 + ' = ' +
                             //discrete time:
-                            rg.displayTime.value;                                
+                            rg.displayTime.value;
                             //continuous time: api[ apiValueName ].toFixed(2);
             //at curr. ver.,
             //    does pos to GUI, does slCaption
@@ -246,17 +226,15 @@
     //----------------------------------------
     // \\// makes up time slider
     //----------------------------------------
-    
+
     ///must be in contex of pointWrap ( like this = rg.B )
-    function processDownEvent( arg )
-    {
+    function processDownEvent( arg ){
         this.achieved.achieved = this.curtime;
     }
 
     ///move_2_val8gui8cb
     ///todm: this sub should be automatically throttled
-    function move_2_updates( move_in_model )
-    {
+    function move_2_updates( move_in_model ){
         var api = this;
         amode.userControl = 'diagram';
         sDomF.detected_user_interaction_effect();
@@ -270,7 +248,7 @@
         var newTime = api.achieved.achieved +
                             move_in_model[ 0 ] /
                             api.railsLength *
-                            sconf.trange;
+                            sconf.timeRange;
         //sets value:
         stdMod.protects_curTime_ranges( newTime );
 
@@ -280,17 +258,15 @@
         //stdMod.model_upcreate();
         //======================================================
     }
-    
-   
-    function slTime_2_stepIndice8tCaption()
-    {
+
+    function slTime_2_stepIndice8tCaption (){
         var sp8ep   = haz( rg, 'slider_sltime' );
         var ctime    = rg.slider_sltime.curtime;
         //----------------------------------------
         // //\\ establishes model step and substep
-        //      stepIx4   = 0,1,2,3,  4,5,6,7,  8,9,10,11, ... 
+        //      stepIx4   = 0,1,2,3,  4,5,6,7,  8,9,10,11, ...
         //      substepIx = 0,1,2,3,  0,1,2,3,  0,1, 2, 3, ...
-        //      stepIx    = 0,0,0,0,  1,1,1,1,  2,2, 2, 2, ... 
+        //      stepIx    = 0,0,0,0,  1,1,1,1,  2,2, 2, 2, ...
         //      point     = A,A,A,A,  -,-,-,B,  -,-, C, C, ...
         //----------------------------------------
         //virtual thing, just stretches time to better subdivide stepIx
@@ -300,11 +276,15 @@
         rg.substepIx    = stepIx4%4;
         //steps in its original meaning
         var stepIx      = ( stepIx4 - rg.substepIx ) / 4;
-        //The following line caused some bugs, has been commented out, and left for reference.  If the delta time slider is moved to the
-        //left of its maximum eg. 0.73, then when the time slider is moved to the left from its maximum, the time shown first increases
-        //then decreases (eg. 9.43 to 10.15 then back to 9.43).  This caused similar increasing/decreasing issues for the “path step” text
-        //in the Proof tab, and showing/hiding the last red force vector in the model area.
-        // stepIx          = Math.min( stepIx, rg.spatialSteps - 1 );
+        //The following line caused some bugs, has been commented out,
+        //and left for reference.  If the delta time slider is moved to the
+        //left of its maximum eg. 0.73, then when the time slider is moved
+        //to the left from its maximum, the time shown first increases
+        //then decreases (eg. 9.43 to 10.15 then back to 9.43).
+        //This caused similar increasing/decreasing issues for the “path step”
+        //text in the Proof tab, and showing/hiding the last red force vector
+        //in the model area.
+        // stepIx = Math.min( stepIx, rg.spatialSteps - 1 );
         toreg( 'stepIx' )( 'value', stepIx );
         /*
             c cc( 'ctime=' + ctime +
@@ -322,6 +302,4 @@
         rg.displayTime.value = ( nexStepDisplay * rg.rgslid_dt.val ).toFixed(2);
         rg.displayPathStep = { value:nexStepDisplay };
     }
-
-}) ();
-
+})();

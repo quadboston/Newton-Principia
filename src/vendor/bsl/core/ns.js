@@ -8,7 +8,7 @@
 // //\\// Super-module of b$l framework. Must be executed first
 //        Checks if there is a conflict in global namespace with this library name.
 //        Adds ns.$$ - lite weight dom wrap.
-//  
+//
 //        Creates only one global: window[ APP_NAME ]
 //        jQuery can be added with no collision.
 
@@ -215,7 +215,7 @@
             return sns;
 
             /*
-            //proposes even deeper property conflict detection with JS native objects in 
+            //proposes even deeper property conflict detection with JS native objects in
             //prototype-tree depths
             var sns = parentNS[ subname ];
             if( sns ) {
@@ -280,7 +280,7 @@
             {
                 return (typeof obj === 'function' ? obj() : obj);
             }
-            
+
             var gen = function() {
                 var ctxEl = null;
                 var methods =
@@ -308,7 +308,7 @@
                     qa:     function( selector, parent )    { ctxEl =                (parent||document.body).querySelectorAll( selector ); },
 
 
-                    // //\\ information providers 
+                    // //\\ information providers
                     box:    function( obj )                 { obj = obj || null;
                                                               ctxEl = obj || ctxEl;
                                                               return ctxEl && ctxEl.getBoundingClientRect();
@@ -325,7 +325,7 @@
                     //does update css-value only if it is different
                     css_:   function( name, value, obj )    {
                                                                ctxEl = obj || ctxEl;
-                                                               if( !ctxEl ) return;  
+                                                               if( !ctxEl ) return;
                                                                var cssProp = ctxEl.style[ name ];
                                                                if( cssProp !== value ) {
                                                                     ctxEl.style[ name ] = value;
@@ -343,10 +343,10 @@
                     /*
                     a_:    function( prop, value, obj )     { obj = obj || null;
                                                               ctxEl = obj || ctxEl;
-                                                              if( !ctxEl ) return ctxEl;  
+                                                              if( !ctxEl ) return ctxEl;
                                                               var attr = ctxEl.getAttribute( prop );
-                                                              //was this bug: if( prop !== attr ) {  
-                                                              if( value !== attr ) {  
+                                                              //was this bug: if( prop !== attr ) {
+                                                              if( value !== attr ) {
                                                                 setAttribute( prop, value );
                                                               }
                                                             },
@@ -356,10 +356,10 @@
                     //does update for prefixless attributes of svg-elements (null is used for name s.)
                     aNS_:  function( prop, value, obj )     { obj = obj || null;
                                                               ctxEl = obj || ctxEl;
-                                                              if( !ctxEl ) return ctxEl;  
+                                                              if( !ctxEl ) return ctxEl;
                                                               var attr = ctxEl.getAttributeNS( null, prop );
-                                                              //was this bug: if( prop !== attr ) {  
-                                                              if( value !== attr ) {  
+                                                              //was this bug: if( prop !== attr ) {
+                                                              if( value !== attr ) {
                                                                 ctxEl.setAttributeNS( null, prop, value );
                                                               }
                                                             },
@@ -384,7 +384,7 @@
                                                           return doesContainCls;
                                                         },
 
-                    // \\// information providers 
+                    // \\// information providers
 
                     svg:    function()                      { ctxEl =                document.createElementNS( ns.svgNS, 'svg' ); },
                     cNS:    function( type )                { ctxEl =                document.createElementNS( ns.svgNS, type ); },
@@ -424,8 +424,8 @@
                     ///supports multiword class,
                     ///does not create duplicate words in class,
                     addClass:   function( text, obj )
-                                {   
-                                    ctxEl = obj || ctxEl;  //bug fix: if text === '', then 
+                                {
+                                    ctxEl = obj || ctxEl;  //bug fix: if text === '', then
                                                            //element is still created to save
                                                            //the "chain" of $$ calls
                                     if( !text ) return; //sugar, saves extra "if"
@@ -464,11 +464,11 @@
 
                     //removes class.
                     removeClass: function( text, obj )
-                                { 
+                                {
                                     if( !text ) return; //sugar, saves extra "if"
 
                                     //c onsole.log( 'removing=' + text );
-                                    ctxEl = obj || ctxEl;  
+                                    ctxEl = obj || ctxEl;
                                     var clss = text.split(/\s+/);
                                     if( clss.length>1 ) {
                                         ////many classes are supplied ...
@@ -636,7 +636,7 @@
         if( ns.h( ns, 'd' ) ) return; //creates debugger only once
 
         ///------------------------------------------------------------
-        ///Checks if bsl-debug textarea exists and 
+        ///Checks if bsl-debug textarea exists and
         /// outputs to debug and scrolls to the end.
         /// If debug-block is commented-out, this function does nothing
         /// and in the code it is still safe to use the lines:
@@ -662,7 +662,7 @@
                 debWind.setAttribute( 'id', 'bsl-debug' );
                 debWind.setAttribute( 'disabled', 'yes' );
                 document.body.appendChild( debWind );
-                debWind.style.cssText = 
+                debWind.style.cssText =
                         //'height:18%; width:30%; z-index:1111111;' +
                         //'height:250px; width:350px; z-index:1111111;' +
                         'display:none;' +
@@ -713,8 +713,8 @@
     // //\\ configures from URL
     //=========================================================
     ns.url2conf = function( conf )
-    {  
-        //      if supplied, it overrides internal application conf 
+    {
+        //      if supplied, it overrides internal application conf
         //      format: ...index.html?conf=a.b.c.d=4,a.b.e=5
         var urlPars     = window.location.search || '';
         /*
@@ -730,12 +730,14 @@
             urlConf.forEach( function( opt ) {
                 //reserved chars: !#$%&'()*+,/:;=?@[]
                 //but no need to escape if char has no reserved purpose
-                //https://en.wikipedia.org/wiki/Percent-encoding#Reserved_characters
+                //https://en.wikipedia.org/wiki/
+                //  Percent-encoding#Reserved_characters
                 var cc = opt.split('=');
                 if( cc[1] ) {
                     ////parameter x exists after sign "=" in expression p=x
                     //let user to say "yes" or "no"
-                    cc[1] = cc[1] === "yes" ? true : ( cc[1] === "no" ? false : cc[1] );
+                    cc[1] = cc[1] === "yes" ?
+                            true : ( cc[1] === "no" ? false : cc[1] );
 
                 } else {
                     ////*****************************
@@ -854,7 +856,7 @@
 	//					in tp		- only ownProperties are copied
 	//					in jQuery	- only two options "deep copy" or "not deep"
 	//					in tp		- reference deepness can be controlled
-	//							
+	//
 	//	Input:			All args are optional.
 	//					skip_undefined	- omitting it allows copying "wall <- paper.undefined".
 	//					recdepth		- stops recursion at level > recdepth: nothing copied if level > recdepth
@@ -883,7 +885,7 @@
 		}
 
 		///Recursion limit is exceeded. Truncates recursion by recdepth value.
-		if( ( recdepth || recdepth ===0 ) && level > recdepth ) 
+		if( ( recdepth || recdepth ===0 ) && level > recdepth )
 		{
 			return '';
 		}
@@ -934,7 +936,7 @@
 		}
 		return wall;
 	};// ...paste_non_arrays=function...
-	
+
     ///before pasting to wall,
     ///removes wall's own properties and array elements if any
     ns.cleanpaste = function ( wall, paper )
@@ -971,7 +973,7 @@
     var repo                = {};
 
     //:methods
-    globalCss.update               = update;       
+    globalCss.update               = update;
     globalCss.add8update           = update;
     globalCss.updateIfDifferent    = updateIfDifferent;
     globalCss.updateIfKeyDifferent = updateIfKeyDifferent;
@@ -982,7 +984,7 @@
     globalCss.replace       = replace;
     globalCss.replaceNow    = replace;
 
-    nsmethods.topicIdUpperCase_2_underscore = topicIdUpperCase_2_underscore;
+    nsmethods.tpid2low = tpid2low;
     nsmethods.camelName2cssName = camelName2cssName;
     return;
 
@@ -1005,9 +1007,9 @@
                 cssText : '',
                 cssDom$ : ns.$$
                     .style()
-                    .cls( topicIdUpperCase_2_underscore( htmlkey ) )
+                    .cls( tpid2low( htmlkey ) )
                     .to( document.head )
-                    ,    
+                    ,
                 queueHandle : null, //timeout handle
             };
         }
@@ -1090,7 +1092,7 @@
     };
 
     ///converts "A" -> "_a",  ... and "," to "_-"
-    function topicIdUpperCase_2_underscore( camelId )
+    function tpid2low( camelId )
     {
         return camelName2cssName( camelId );
     }
@@ -1154,7 +1156,7 @@
 
 (function () {
     var ns          = window.b$l;
-    var sn          = ns.sn;    
+    var sn          = ns.sn;
     var methods     = sn('methods');
 
     ///polifill for forEach for nodes

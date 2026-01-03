@@ -1,8 +1,9 @@
 ( function() {
     const {
-        sn, haz, has, eachprop, own, nsmethods,
-        fconf, sconf, sf, ssF, sDomF, fixedColors, fixedColorsOriginal,
-        originalPoints, originalPoints_cssNames, toreg, stdMod,
+        sn, haz, has, eachprop, own, nsmethods, nspaste,
+        fconf, sconf, sf, rg, ssF, sDomF, topicColors_repo,
+        topicColors_repo_camel2col,
+        originalPoints, toreg, stdMod,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -22,10 +23,10 @@
     ///                     1. expands sf and
     //                      2. expnds sf into rg
     ///==============================================
-    function doExpandConfig() 
+    function doExpandConfig()
     {
         var {
-            predefinedTopics,
+            topicColors_elected,
             lines,
             linesArray,
 
@@ -48,7 +49,6 @@
         } = sf;
         //secures omitted settings
         const formulas = sn( 'SHOW_FORMULAS', sf, [] );
-
         //-----------------------------------------------------------
         // //\\ transition from poor name in legacy code
         //      , removing "pictureWidth", ...
@@ -65,7 +65,6 @@
         //-----------------------------------------------------------
         // \\// transition from poor name in legacy code
         //-----------------------------------------------------------
-
 
         originX_onPicture = typeof modorInPicX === 'undefined' ?
                             originX_onPicture : modorInPicX;
@@ -91,7 +90,7 @@
         //  1  codirectional with the screen
         //     which means from screen-top to
         //      screen bottom
-        var MONITOR_Y_FLIP = -1 * fconf.mod2inn_scaleY;
+        var MONITOR_Y_FLIP = -1 * sconf.mod2inn_scaleY;
         //----------------------------------
         // \\// MONITOR Y FLIP
         //----------------------------------
@@ -104,9 +103,9 @@
         var inn2mod_scale = 1/mod2inn_scale;
 
 
-        ///adds point's color from predefinedTopics if missed
+        ///adds point's color from topicColors_elected if missed
         eachprop( originalPoints, (point,pname) => {
-            point.pcolor = haz( point, 'pcolor' ) || predefinedTopics[ pname ];
+            point.pcolor = haz( point, 'pcolor' ) || topicColors_elected[ pname ];
         });
 
         ///it is vital to set these pars now ...
@@ -153,17 +152,13 @@
             //--------------------------------------------------
             ///expands predefinedTopic colors into rg
             //--------------------------------------------------
-            Object.keys( predefinedTopics ).forEach( topicKey => {
+            Object.keys( topicColors_elected ).forEach( topicKey => {
                 toreg( topicKey )( 'pname', topicKey );
-                var lowkey = sDomF.topicIdUpperCase_2_underscore( topicKey );
-                
-                //populates fixedColors from blesson.predefinedTopics
-                let fc = fixedColors[ lowkey ] = predefinedTopics[ topicKey ];
-                fixedColorsOriginal[ topicKey ] = fc;
-                fc.isPoint = false;
-                fc.isLine = false;
-                fc.isArea = false;
-                fc.isPoint0Line = false;
+                var lowkey = sDomF.tpid2low( topicKey );
+
+                //populates topicColors_repo from blesson.topicColors_elected
+                let fc = topicColors_repo[ lowkey ] = topicColors_elected[ topicKey ];
+                topicColors_repo_camel2col[ topicKey ] = fc;
             });
 
             //--------------------------------------------------
@@ -185,11 +180,11 @@
                                              opInArr.draggableY : draggableY;
                         opInArr.doPaintPname = has( opInArr, 'doPaintPname' ) ?
                                              opInArr.doPaintPname : doPaintPname;
-                        expandsOrPoints( opInArr, pname + '-' + inIx );
+                        expandsOrPoint( opInArr, pname + '-' + inIx );
                     });
                 } else {
                     ////handles single originalPoint
-                    expandsOrPoints( op, pname );
+                    expandsOrPoint( op, pname );
                 }
             });
             //--------------------------------------------------
@@ -209,11 +204,30 @@
                 });
             }
 
-
             ///apparently non-unified with shapes-points, points have more properties
             eachprop( lines, ( gshape, pname ) => {
-                var rgX = toreg( pname )( 'pname', pname )();
+                let rgX = sn( pname, rg );
+                rgX.pname = pname;
                 rgX.tostroke = true;
+                rgX.isPoint = false;
+                rgX.isLine = true;
+                [
+                    //'cssClass', //converts later below
+                    //'pcolor',   //converts later below
+                    //'fontSize', //converts later
+                    'caption',
+                    'captionShiftNorm',
+                    'undisplay',
+                    'zOrderAfter',  
+                    'notp',
+                    'vectorTipIx',
+                    'tipFraction',
+                    'tipFill',
+                    'pivotNames',
+                ].forEach( propname => {
+                    has(gshape,propname) && (rgX[propname] = gshape[propname]);
+                })
+                
                 //todm: mess: lines array elements attributes go into
                 //line-maker in lemma-linerars-machine lineAttr
                 //, but this is done via "str2line" which ignores "everything" except
@@ -221,41 +235,19 @@
                 //here we create even more mess because adding alternative stream for
                 //pcolor
                 if( has( gshape, 'pcolor' ) ) {
-                    var tk = sDomF.topicIdUpperCase_2_underscore( pname );
+                    var tk = sDomF.tpid2low( pname );
                     //concat() separates generic color-arrays from
-                    //specific shapes permitting them own flags isPoint, etc.
-                    let fc = fixedColors[ tk ] = gshape.pcolor.concat();
-                    fixedColorsOriginal[ pname ] = fc;
-                    fc.isPoint = false;
-                    fc.isLine = true;
-                    fc.isArea = false;
-                    fc.isPoint0Line = true;
-                    rgX.pcolor = sDomF.getFixedColor( gshape.pcolor );
-                    rgX.opaqueColor = sDomF.getFixedColor( gshape.pcolor, !!'makeOpacity1' );
+                    let fc = topicColors_repo[ tk ] = gshape.pcolor.concat();
+                    topicColors_repo_camel2col[ pname ] = fc;
+                    rgX.pcolor = sDomF.tpname0arr_2_rgba( gshape.pcolor );
+                    rgX.opaqueColor = sDomF.tpname0arr_2_rgba(
+                                      gshape.pcolor, !!'makeOpacity1' );
                 } else {
-                    rgX.pcolor = sDomF.getFixedColor( pname );
-                    rgX.opaqueColor = sDomF.getFixedColor( pname, !!'makeOpacity1' );
+                    rgX.pcolor = sDomF.tpname0arr_2_rgba( pname );
+                    rgX.opaqueColor = sDomF.tpname0arr_2_rgba( pname,
+                                      !!'makeOpacity1' );
                 }
 
-                ///todm: this code is extremely non-automated:
-                if( has( gshape, 'captionShiftNorm' ) ) {
-                    rgX.captionShiftNorm = gshape.captionShiftNorm;
-                }
-
-                //---------------------------------------------------------
-                // //\\ transfers properties from line-options to rg-lines:
-                //      todo ... we stumbled upon this 100 times ...
-                //               property transfer must automate ...
-                //               every time we forget to transfer new
-                //               property, we lose hours ...
-                //---------------------------------------------------------
-                if( has( gshape, 'undisplay' ) ) {
-                    rgX.undisplay = gshape.undisplay;
-                }
-
-                //meaningful for lines yet
-                rgX.zOrderAfter = haz( gshape, 'zOrderAfter' ); 
-                rgX.notp        = haz( gshape, 'notp' );
                 let gclass = haz( gshape, 'cssClass' );
                 if( gclass ){
                     if( gclass.indexOf( '--' )>0 ){
@@ -265,13 +257,8 @@
                     }
                 }
                 rgX.cssClass = gclass;
-
-                if( has( gshape, 'vectorTipIx' ) ) {
-                    rgX.vectorTipIx = gshape.vectorTipIx;
-                }
-
                 rgX.fontSize    = estimatesSizeScale * ( has( gshape, 'fontSize' ) ?
-                                  gshape.fontSize : fconf.LETTER_FONT_SIZE_PER_1000 );
+                                  gshape.fontSize : sconf.LETTER_FONT_SIZE_PER_1000 );
                 //---------------------------------------------------------
                 // \\// transfers properties from line-options to rg-lines:
                 //---------------------------------------------------------
@@ -281,17 +268,13 @@
             //----------------------------------
             return;
 
-            function expandsOrPoints( op, pname )
-            {
-                originalPoints_cssNames[
-                    nsmethods.camelName2cssName( pname )
-                ] = op;
-               
+            ///rg becomes normalized expansion of originalPoints
+            function expandsOrPoint( op, pname ){
                 //todo ... non-readable: it tranfers properties from
                 //??original points to here,
                 //      this must be clearly written in code,
                 op.own          = own;
-                var pictureP    = op.own( 'pos' );
+                var pictureP    = op.own( 'pos' );  //=media pos
                 var modelP      = op.own( 'mpos' );
 
                 //at the moment for missing flag, doPaintPname === true,
@@ -342,22 +325,16 @@
                     rgX.individual_zindex = op.individual_zindex;
                 }
 
-                rgX.draggableX = draggableX;
-                rgX.draggableY = draggableY;
-
+                //in some weird lemmas, rgX.draggableX is defined
+                //in sconf.js, don't erase it:
+                sn( 'draggableX', rgX, draggableX );
+                sn( 'draggableY', rgX, draggableY );
 
                 //rgX.noKernel === true does remove "the bonus",
                 //the bouns is an extra "fake" disk over dragger,
                 if( has( op, 'noKernel' ) ) {
                     rgX.noKernel = op.noKernel;
                 }
-
-                /*
-                if( has( op, 'ignore_hideD8Dpoint_for_CSS' ) ) {
-                    rgX.ignore_hideD8Dpoint_for_CSS =
-                    op.ignore_hideD8Dpoint_for_CSS;
-                }
-                */
 
                 //todm why was it disabled?
                 //for d8d machinery overlay
@@ -404,20 +381,17 @@
                 }
                 // \\// todm: automate property transfer
 
-
                 if( has( op, 'pcolor' ) ) {
-                    var tk = sDomF.topicIdUpperCase_2_underscore( pname );
-                    let fc =  fixedColors[ tk ] = op.pcolor;
-                    fixedColorsOriginal[ pname ] = fc;
-                    fc.isPoint = true;
-                    fc.isLine = false;
-                    fc.isArea = false;
-                    fc.isPoint0Line = true;
-                    rgX.pcolor = sDomF.getFixedColor( op.pcolor );
-                    rgX.opaqueColor = sDomF.getFixedColor( op.pcolor, !!'makeOpacity1' );
+                    var tk = sDomF.tpid2low( pname );
+                    let fc = topicColors_repo[ tk ] = op.pcolor; //low
+                    topicColors_repo_camel2col[ pname ] = fc;       //camel
+                    rgX.pcolor = sDomF.tpname0arr_2_rgba( op.pcolor );
+                    rgX.opaqueColor = sDomF.tpname0arr_2_rgba( op.pcolor,
+                                      !!'makeOpacity1' );
                 } else {
-                    rgX.pcolor = sDomF.getFixedColor( pname );
-                    rgX.opaqueColor = sDomF.getFixedColor( pname, !!'makeOpacity1' );
+                    rgX.pcolor = sDomF.tpname0arr_2_rgba( pname );
+                    rgX.opaqueColor = sDomF.tpname0arr_2_rgba( pname,
+                                      !!'makeOpacity1' );
                 }
                 rgX.undisplay = has( op, 'undisplay' ) ? op.undisplay : false;
 
@@ -432,7 +406,7 @@
                 var letterOffset    = estimatesSizeScale * ( has( op, 'letterRotRadius' ) ?
                                       op.letterRotRadius : LETTER_ROTATION_RADIUS_PER_1000 );
                 var fontSize        = estimatesSizeScale * ( has( op, 'fontSize' ) ?
-                                      op.fontSize : fconf.LETTER_FONT_SIZE_PER_1000 );
+                                      op.fontSize : sconf.LETTER_FONT_SIZE_PER_1000 );
 
                 rgX.textLineTurn  = haz( op, 'textLineTurn' );
                 var letterShift     = haz( op, 'letterShift' );
@@ -450,11 +424,11 @@
                 }
                 rgX.letterOffsetY   *= -1; //for screen y-direction
 
-                var letterColor = haz( op, 'letterColor' ); 
+                var letterColor = haz( op, 'letterColor' );
                 if( letterColor ) {
-                    //todm ... 
-                    //rgX.letterColor     = haz( op, 'letterColor' ) || rgX.pcolor; 
-                    rgX.letterColor = sDomF.getFixedColor( letterColor );
+                    //todm ...
+                    //rgX.letterColor     = haz( op, 'letterColor' ) || rgX.pcolor;
+                    rgX.letterColor = sDomF.tpname0arr_2_rgba( letterColor );
                 }
                 rgX.fontSize = fontSize;
                 //----------------------------------------------------------
@@ -465,7 +439,6 @@
         //---------------------------------------------------------------------------
         // \\// derives initial model parameters from picture's points
         //---------------------------------------------------------------------------
-
 
         //----------------------------------------------------
         // //\\  prepares sf data holder
@@ -502,7 +475,7 @@
             'hover_width',
             'nonhover_width',
             'text_hover_width',
-            'text_nonhover_width', 
+            'text_nonhover_width',
             'handleRadius',
         ]
         .forEach( pn => {
@@ -518,8 +491,8 @@
         //=========================================
         // \\// thickness
         //=========================================
-        
-        
+
+
         if( !has( sf, 'enableStudylab' ) ) {
             ////this way, the legacy lemmas are preserved,
             ////new lemmas must set this in own "sf",

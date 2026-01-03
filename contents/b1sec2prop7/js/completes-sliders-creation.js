@@ -42,9 +42,9 @@
             let { v, uu } = rg.Q.Qparams;
             let qgrid_step = (deltaPos[0]*uu[0] + deltaPos[1]*uu[1])/v;
             let new_q = rg.Q.q + qgrid_step;
-            
+
             //this is resundant: this is validated in model
-            //if( new_q <=0 || new_q >= 1 ) return false; 
+            //if( new_q <=0 || new_q >= 1 ) return false;
 
             //let delta_t = qgrid_step / rg.Q.dt2dq
             let sagg_t = rg.tForSagitta.val + qgrid_step / rg.Q.dt2dq;
@@ -61,7 +61,7 @@
             //      prevents moving body come too close to pivotsPos
             //--------------------------------------------------------------------
             var returnValue = true;
-            
+
             if( sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES ) {
                 ///this is a partial validation,
                 ///because of overlapping can happen during
@@ -78,7 +78,7 @@
             //--------------------------------------------------------------------
             // \\// to separate dragging pivotsPos and moving body,
             //--------------------------------------------------------------------
-            
+
             rg.tForSagitta.val = sagg_t;
             //--------------------------------------------------------------------
             // \\// sets delta t
@@ -104,9 +104,9 @@
         // P.DRAGGEE_HALF_SIZE = 60 and for Q is 30,
         rg.P.dragPriority = 60;
         rg.P.DRAGGEE_HALF_SIZE = fconf.DRAG_HANDLE_HALFHOTSPOT;
-        
+
         rg.P.processOwnDownEvent = () => {
-            const rgCurve = rg[ 'approximated-curve' ];
+            const rgCurve = rg.approxer;
             if( sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING ) {
                 ssD.PdragInitiated = true;
             }
@@ -114,17 +114,17 @@
             let curvePix = Math.floor( (rg.P.q - rgCurve.tStart )*rgCurve.q2ix );
             sData.stashed_curvePP = ssD.curve[curvePix];
         };
-        
+
         rg.P.processOwnUpEvent = () => { ssD.PdragInitiated = false; };
-        
+
         rg.P.acceptPos = (newPos, move) => {
-            const rgCurve = rg[ 'approximated-curve' ];
+            const rgCurve = rg.approxer;
             let REPELLING_DISTANCE = 0.02;
             let returnValue = true;
             {
                 let curvePP = sData.stashed_curvePP;
                 let { v, uu, rr, curveIx } = curvePP;
-                
+
                 // //\\  we project INCREMENTAL move
                 // to instant speed to calculate incremental angle:
                 let move0 = newPos[0]-rr[0];
@@ -133,11 +133,11 @@
                     Math.floor( (uu[0]*move0 + uu[1]*move1)/v*rgCurve.q2ix );
                 curveIx = curveIx + delta_curveIx;
                 // \\//  we project INCREMENTAL move
-                
+
                 curveIx = (curveIx+ssD.curveSTEPS*2)%ssD.curveSTEPS;
                 //Math.max(0, Math.min( curveIx, ssD.curveSTEPS) );
                 let stashed_curvePP = ssD.curve[ curveIx ];
-                
+
                 ///validates
                 if( sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES ) {
                     sconf.originalPoints.curvePivots.forEach( (cp,cpix) => {
@@ -159,7 +159,7 @@
         // \\// point P slider
         //=========================================================================
 
-      
+
 
         //=========================================================================
         // //\\ point S slider
@@ -185,9 +185,9 @@
         // \\// point S slider
         //=========================================================================
 
-        
-        
-        
+
+
+
         //=========================================================================
         // //\\ point Rcol2 slider
         //=========================================================================
@@ -211,7 +211,7 @@
         //=========================================================================
         // \\// point Rcol2 slider
         //=========================================================================
-        
+
     }
 
 

@@ -1,5 +1,5 @@
 ( function() {
-    var { sn, has, haz, rg, amode, stdMod, sconf, ssD, sData, }
+    const { sn, has, haz, rg, amode, stdMod, sconf, ssD, sData, }
         = window.b$l.apptree({ stdModExportList : {
             builds_orbit_data_graph,
             P2gix,
@@ -19,8 +19,9 @@
 
     function builds_orbit_data_graph()
     {
-        const ADDENDUM = amode.aspect === 'addendum';
-        const ULTIM_NORM = !ADDENDUM && haz( sconf, 'NORMALIZE_BY_ULTIM_IN_NON_ADDEN' );
+        const ADD = amode.aspect === 'addendum';
+        const ULTIM_NORM = !ADD && haz( sconf,
+                           'NORMALIZE_BY_ULTIM_IN_NON_ADDEN' );
         const TIME = sconf.TIME_IS_FREE_VARIABLE;
         const GRAPH_PATH = sData.GRAPH_PATH;
         const QS = sconf.Q_STEPS;
@@ -41,6 +42,9 @@
         let show_force_max = [];
         let show_force_min = [];
         var speedMax = 0;
+
+        let forceSign = 1;
+
         //var fullPath = qix2orb[ gend ].pathAtQ;
         for( let qix=gstart; qix<=gend; qix++ ){
             const bP = qix2orb[ qix ];
@@ -58,11 +62,17 @@
                 var instantForce = bP.instant_fQR;
             }
             bP.instantForce = instantForce;
+            if( forceSign > 0 ){
+                //once it happened -1, it stays -1,
+                forceSign = Math.sign(instantForce) < 0 ? -1 : 1;
+            }
             if( !(qix%dataPeriod) || qix===QS ){
                 if( TIME ){
-                    sagittaMax = Math.max( Math.abs( sagitta ), sagittaMax );
+                    sagittaMax = Math.max( Math.abs( sagitta ),
+                                           sagittaMax );
                 }
-                instantForceMax = Math.max( Math.abs( instantForce ), instantForceMax );
+                instantForceMax = Math.max( Math.abs( instantForce ),
+                                            instantForceMax );
                 fQR_max = Math.max( Math.abs( fQR ), fQR_max );
                 speedMax = Math.max( speedMax, ds_dt );
                 let graphColumn = {
@@ -96,19 +106,17 @@
         //------------------------------------------
         // //\\ resets graphArray
         //------------------------------------------
+        graphArray.forceSign = forceSign;
         var arrLen = graphArray.length;
         const instantForceMax1 = 1/instantForceMax;
         const fQR_max1 = ULTIM_NORM ? 1/instantForceMax : 1/fQR_max;
         const sagittaMax1 = 1/sagittaMax;
         const speedMax1 = 1/speedMax;
 
-        //we estimate the sign of force by the sign of the first element
-        //of instant force calculated as instant_fQR,
+        //we estimate the sign of force by the sign of
+        //some of the element,
         //if, in the future, this method become inaccurate,
         //this line needs modification,
-        const fsignum = Math.sign( qix2orb[0].instant_fQR );
-        const showSign = ADDENDUM ? fsignum : 1;
-        const cancelSign = !ADDENDUM && fsignum < 0 ? -1 : 1;
         for( var gix = 0; gix<arrLen; gix++ ){
             const ga = graphArray[ gix ];
             const qix = ga.qix;
@@ -116,14 +124,17 @@
             bP.gix = gix;
             let ds_dt = bP.ds_dt;
             ds_dt *= speedMax1;
-            ga.y[0]= bP.instantForce * instantForceMax1 * cancelSign;
-            ga.y[1]= bP.fQR * fQR_max1 *cancelSign;
+            const inf = bP.instantForce;
+            ga.y[0]= instantForceMax1 * (ADD ? inf : Math.abs(inf));
+            ga.y[1]= fQR_max1 * (ADD ? bP.fQR : Math.abs(bP.fQR)) ;
             ga.y[2]=ds_dt;
             if( TIME ){
-                ga.y[3] = bP.sagitta * sagittaMax1 * cancelSign;
+                ga.y[3] = sagittaMax1 * (
+                    ADD ? bP.sagitta : Math.abs(bP.sagitta)) ;
             }
             sconf.SHOW_FORMULAS.forEach( (f,fix) => {
-                ga.y[4+fix] /= showSign * show_force_max[fix];
+                ga.y[4+fix] /= show_force_max[fix] * (
+                    ADD ? forceSign : 1);
             });
         }
         //------------------------------------------

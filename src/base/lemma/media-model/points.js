@@ -1,7 +1,7 @@
 ( function() {
     var {
         sn, $$, nsmethods, haz, has, han, nssvg, eachprop,
-        sconf, sDomF, sDomN, ssF, ssD, lowId2topics, rg, toreg,
+        sconf, sDomF, sDomN, ssF, ssD, lowtpid_2_glocss8anchorRack, rg, toreg,
         stdMod, amode,
     } = window.b$l.apptree({
         ssFExportList :
@@ -34,7 +34,7 @@
     ///       optional:
     ///         attrs, 'tpclass',
     ///         haz( pt, 'svgel' )
-    ///         attrs: see below: //optional attrs 
+    ///         attrs: see below: //optional attrs
     ///Does:  main thing is adding coordinates converted
     ///       from model space to media-space
     ///       pt.medpos = //mod 2 inn//
@@ -56,7 +56,7 @@
 
             ////long, initial version of pos2pointy
             //c cc( 'dressing' + pName );
-            var tpclass = nsmethods.topicIdUpperCase_2_underscore(
+            var tpclass = nsmethods.tpid2low(
                           ( haz( attrs, 'tpclass' ) ) || pName
             );
             var cssClass = has( attrs, 'cssClass' ) ? attrs['cssClass'] + ' ' :  '';
@@ -66,9 +66,9 @@
             pt.pname                = pName;
             //optional attrs
             pt.stroke               = haz( pt, 'stroke' ) ||
-                                      han( attrs, 'stroke', sDomF.getFixedColor( tpclass ) );
+                                      han( attrs, 'stroke', sDomF.tpname0arr_2_rgba( tpclass ) );
             pt.fill                 = haz( pt, 'fill' ) ||
-                                      han( attrs, 'fill', sDomF.getFixedColor( tpclass ) );
+                                      han( attrs, 'fill', sDomF.tpname0arr_2_rgba( tpclass ) );
             pt.initialStrokeWidth   = han( attrs, 'stroke-width', 0 );
             pt.initialR             = han( pt, 'initialR', han( attrs, 'r', 4 ) );
             pt.media                = stdMod.mmedia;
@@ -87,8 +87,8 @@
 
             ///shapes without pName presribed in Topics do
             ///paint colors in own atributes
-            var lowId = nsmethods.topicIdUpperCase_2_underscore( pName );
-            var tpactive = haz( lowId2topics, lowId );
+            var low_tpID = nsmethods.tpid2low( pName );
+            var tpactive = haz( lowtpid_2_glocss8anchorRack, low_tpID );
             if( !tpactive ) {
                 argsvg.fill = pt.fill;
                 argsvg.stroke = pt.stroke;
@@ -111,7 +111,7 @@
             //fails
             if( has( pt, 'title' ) ) {;
                 svgel$.ch( $$.c( 'title' ).html( pt.title ) );
-                //svgel$.e( 'mouseover', 
+                //svgel$.e( 'mouseover',
             }
             */
 
@@ -277,7 +277,7 @@
             );
             rgX.pnameLabelsvg.addEventListener( 'mouseover', ()=>{
                     let me = rgX.pnameLabelsvg;
-                    me.style.cursor = 
+                    me.style.cursor =
                         //wrong: me.parentNode.style.cursor;
                         stdMod.simScene.style.cursor;
             });
@@ -286,7 +286,8 @@
             if( txtclass ) {
                 $$$svg.addClass( txtclass );
             }
-            
+            //make tp - boldable all points labels:
+            $$$svg.addClass( 'tobold' );
             /*
             fails:
             if( has( rgX, 'hideCaption' ) ) {

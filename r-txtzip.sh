@@ -10,5 +10,5 @@ b=$(basename $root)
 cd $root
 cd ..
 
-cmd="$b/deploy/zipify.php $b nogit skipsall";
+cmd="$b/deploy/zipify.php $b nogit skipsall local-version";
 eval $cmd

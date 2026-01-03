@@ -28,7 +28,7 @@
         // //\\ header
         //==================================================
         function buildHeader() {
-            let hClass = userOptions.showingBonusFeatures() ? "extramat-showing" : "default";
+            let hClass = userOptions.showingExtraFeatures() ? "extramat-showing" : "default";
             $$.c('header').addClass(hClass).to(fapp.homePage$()).html(`
             <div class="hp-section-wrap">
                 <div class="landing-text">
@@ -46,14 +46,14 @@
         // \\// header
         //==================================================
 
-        
+
         //==================================================
         // //\\ table of contents
         //==================================================
          function buildTableOfContents()
          {
             var coreText = '<h2 id="model-list">Table of contents</h2>' + buildListOfLemmas(true);
-            if (userOptions.showingBonusFeatures()) {
+            if (userOptions.showingExtraFeatures()) {
                 $$.c('div').addClass('landing-table-of-contents bonusTOC hp-section-wrap').to(fapp.homePage$())
                     .html(coreText);
             } else {
@@ -74,7 +74,7 @@
             <div class="hp-section-wrap">
                 <h2>Usage Tips</h2>
                 <div class=" how-to-grid">
-                
+
                     <div class="how-to__cell">
                         <p>Hover over labels to highlight corresponding items in the diagram</p>
                         <div class="how-to__cell__image">
@@ -134,18 +134,18 @@
             var coreText = `
                 <h2>Options</h2>
                 <div>
-                    <p class="option__text">      
-                        <input type="checkbox" id="latinCheckbox" aria-label="latin"> 
+                    <p class="option__text">
+                        <input type="checkbox" id="latinCheckbox" aria-label="latin">
                             Latin tabs (in progress)<br>
-                        <input type="checkbox" id="fadeCheckbox" aria-label="fade"> 
+                        <input type="checkbox" id="fadeCheckbox" aria-label="fade">
                             overlay original diagrams<br>
 
                         <!-- hidden, available only via URL -->
                         <!--
-                        <input type="checkbox" id="bonusCheckbox" aria-label="extramat"> 
+                        <input type="checkbox" id="bonusCheckbox" aria-label="extramat">
                             shows development
                         -->
-                        
+
                     </p>
                 </div>`;
             $$.c('div').addClass('options hp-section-wrap').to(fapp.homePage$())
@@ -170,9 +170,9 @@
                             lead programming, addenda, UI<br>
                         <span class="dd-label"><a href="https://www.linkedin.com/in/kathryn-lepome">Kathryn LePome:</a></span>
                             voice<br>
-                        <span class="dd-label"><a href="https://github.com/quadboston/Newton-Principia">Source Code:</a></span> 
+                        <span class="dd-label"><a href="https://github.com/quadboston/Newton-Principia">Source Code:</a></span>
                             open source, MIT license. Built ${fapp.buildDateString}, Version 0.${fapp.version}<br>
-                        <span class="dd-label"><a href="changelog/changelog.html">What's New</a></span> 
+                        <span class="dd-label"><a href="changelog/changelog.html">What's New</a></span>
                     </p>
                 </div>`;
             $$.c('div').addClass('hp-text-section hp-section-wrap').to(fapp.homePage$())
@@ -234,12 +234,12 @@
         // //\\ feedback wrapper
         //==================================================
         function buildFeedbackAndTip() {
-            var coreText = 
+            var coreText =
                 `
                 <div class="feedback">
                     <span class="feedback-label"><a href="javascript:decryptEmail('ZmVlZGJhY2tAc2NpZW5jZWhpa2UuY29t');">Feedback</a></span> welcome, as well as donations:
-                
-                    &nbsp;<a href='https://ko-fi.com/L4L618688P' target='_blank'><img height='24' style='border:0px;height:24px;' 
+
+                    &nbsp;<a href='https://ko-fi.com/L4L618688P' target='_blank'><img height='24' style='border:0px;height:24px;'
                     src='https://storage.ko-fi.com/cdn/kofi1.png?v=6' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
                 </div>
                 `;
@@ -249,7 +249,7 @@
         //==================================================
         // \\// feedback wrapper
         //==================================================
-        
+
 
         //==================================================
         // //\\ pad bottom
@@ -300,11 +300,11 @@
                 </li>`;
             if(isHomepage) {
                 ////todm: apparent home-made patches:
-                if (userOptions.showingBonusFeatures()) {
+                if (userOptions.showingExtraFeatures()) {
                     if (sappItem.sappId === "b1sec3prop14") {
                         ////?? this is hand made home page patch to close and reopen column of lemmas
                         coreText += `</ul></div></div><div class="column" style="padding-top: 3rem"><div><ul>`;
-                    }  
+                    }
                 } else if (sappItem.sappId === "b1sec2prop9") {
                     ////?? this is hand made home page patch to close and reopen column of lemmas
                     coreText += `</ul></div></div><div class="column" style="padding-top: 3rem"><div><ul>`;

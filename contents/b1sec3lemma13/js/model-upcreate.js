@@ -18,7 +18,7 @@
     ///****************************************************
     function model_upcreate()
     {
-        const fun = rg[ 'approximated-curve' ].t2xy;
+        const fun = rg.approxer.t2xy;
         var rr0 = rg.P.pos;
         var rrc = rg.S.pos;
         var parP = stdMod.pos2t( rr0 );
@@ -124,18 +124,7 @@
         //================================================
         */
 
-        //================================================
-        // //\\ decorations
-        // //\\ graph
-        //------------------------------------------------
-        ///for initial launch only
-        stdMod.buildsforceGraphArray();
-        stdMod.graphFW_lemma.wraps_draw_graph({});
-        //------------------------------------------------
-        // \\// graph
-        //------------------------------------------------
-
-
+        stdMod.makesGraphArray_8_drawsPlots();
 
         //------------------------------------------------
         // //\\ PZminus
@@ -235,7 +224,7 @@
         const STEP_NGRAL = ( intervalS === null ? intervalT : intervalS )
                            / INTEGRATION_STEPS;
         const rrc = rg.S.pos;
-        const fun = rg[ 'approximated-curve' ].t2xy;
+        const fun = rg.approxer.t2xy;
 
         //: integration starting values
         var s = stdMod.pos2t( rr0 );
@@ -253,7 +242,7 @@
             //real speed must change from point P to point P,
             //this speed only indicates negative direction of speed,
             //speed multiplied here for performance,
-            * vt0; 
+            * vt0;
 
         var intervalT = 0;
         for( var ix = 0; ix <= INTEGRATION_STEPS; ix++ ) {
@@ -274,7 +263,7 @@
             if( intervalS === null ) {
                 //timeStep*vt, vt = tangential speed
                 s += STEP_NGRAL * vt;
-                //ccc( s.toFixed(3), 'vt=' + vt.toFixed(3), 
+                //ccc( s.toFixed(3), 'vt=' + vt.toFixed(3),
                 //     sectorialSpeed0.toFixed(3), staticSectorialSpeed_rrrOnUU.toFixed(3) );
             } else {
                 s += STEP_NGRAL;

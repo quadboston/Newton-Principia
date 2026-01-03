@@ -1,16 +1,15 @@
 // //\\// site-wide conf
 //        as of nov 13, 2025, the execution order is:
 //        this file then lemma.conf.js
-(function() {
-    var {
-        ns, url2conf,userOptions,
-        fconf,
-    } = window.b$l.apptree({
-    });
-
+(function(){
+    const {ns, url2conf,userOptions,fapp, fconf} = window.b$l.apptree({});
     //fconf.basicSiteFeatures = true;
     url2conf( fconf );
+    full_conf();
+    fapp.doesConfigLemma();
+    return;
 
+function full_conf(){
     //apparently, we can do '.' because "contents" is moved levels up
     //when move-to-prod-folder.php builds production package folders,
     //will be it better to explicitly set './'?
@@ -20,23 +19,14 @@
     fconf.engineImg             = 'engine-img';
     fconf.pathToContents        = fconf.pathToContentSite + '/contents';
 
-    //====================================================
-    // //\\ put configuration parameters here
-    //====================================================
-    to_fconf =
-    {
-        
-        DRAG_HANDLE_HALFHOTSPOT : 15,
+    ///====================================================
+    /// put configuration parameters here
+    ///====================================================
+    Object.assign( fconf, {
         hideSingleItemContentMenus : true, //todm fails to work at once
         SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM : false,
 
         timeToShowOriginalDiagram  : 3600000, //ms
-
-        //we adopt strategy when svg x-scale is unchanged and set as
-        //sconf.mod2inn_scale, but y-scale can have additional factor,
-        //mod2inn_scaleY, to be overriden in lemma's conf.js
-        //but only for lemmas where dontRun_ExpandConfig is not true
-        mod2inn_scaleY              : 1,
 
         doDisplayPageTopNavigatMenu : true,
         lemmaHasHomeButton          : true,
@@ -79,6 +69,7 @@
 
         DRAG_POINTS_THROTTLE_TIME : 50, //ms
         DRAGGEE_HALF_SIZE : 15, //40, //px
+        DRAG_HANDLE_HALFHOTSPOT : 15,
 
         //setting this to "false" does hide slider
         //decoration spinning arrows
@@ -88,17 +79,16 @@
         //as of ver 2955 is created automatically in content2exegs.js
         //dragPointDecoratorClasses : [],
         //[ 'aspect--video', 'aspect--english', 'aspect--xixcentury' ],
-
-
-        LETTER_FONT_SIZE_PER_1000 : 32,
         //--------------------
         // \\// view
         //--------------------
 
         //developer's proposals
-        //these constants are used for development planning: they are not needed for application
+        //these constants are used for development planning:
+        //they are not needed for application
         //approvalGranted: {},
-        //fconf.approvalGranted[ 'area-fragments-manager-to-link-with-app' ] = true;
+        //fconf.approvalGranted[
+        // 'area-fragments-manager-to-link-with-app' ] = true;
 
         ///abandoned code
         ///this should be moved into lab/tools/sliders
@@ -113,13 +103,6 @@
         //--------------------
         // \\// page-wide
         //--------------------
-
-        rgShapesVisible : true, //initial visibility of rg elements with pname
-                                //when subessay relaunches
-
-
-
-
 
         //app decorations
         appDecor :
@@ -172,16 +155,6 @@
         //------------------------------------------------------
         // \\// macros
         //------------------------------------------------------
-    };
-
-    
-    //====================================================
-    // \\// put configuration parameters here
-    //====================================================
-
-
-    ///spawns config to its final place
-    Object.assign( fconf, to_fconf );
-
-}) ();
-
+    });
+}
+})();

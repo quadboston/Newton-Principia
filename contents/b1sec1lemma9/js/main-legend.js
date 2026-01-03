@@ -85,7 +85,7 @@
 
         ww.ABDPerACE.innerHTML  = (calcA[ 'AFD' ].total/calcA[ 'AGE' ].total).toFixed(3);
         ww.AD2PerAE2.innerHTML  = (claimR*claimR).toFixed(3);
-        
+
         var ww = clustersToUpdate_claim;
         //: vanishing areas
         ww.ABDPerACE.innerHTML  = (calcA[ 'AFD' ].total/calcA[ 'AGE' ].total).toFixed(3);
@@ -119,7 +119,7 @@
         var row = $$.c('tr')
             .addClass('proof row1')
             .addClass('tostroke')
-            .to(tb)();              
+            .to(tb)();
         makeFormatterCell( row, 'DD', '11111', 'first' );
         makeFormatterCell( row, 'DD', '11111', 'second' );
         makeFormatterCell( row, 'DDD/DDD', '11111', 'third' );
@@ -209,7 +209,7 @@
 
 
         //=======================
-        // //\\ model linear unit 
+        // //\\ model linear unit
         //=======================
         var row = $$.c('tr')
             //.addClass('tostroke')
@@ -218,7 +218,7 @@
         makeCl( row, 'model-linear-unit', 'Ae').cls('tp-_ae-length tostroke');
         clustersToUpdate['model-linear-unit'].innerHTML = sconf.LEGEND_NUMERICAL_SCALE.toFixed();
         //=======================
-        // \\// model linear unit 
+        // \\// model linear unit
         //=======================
         return;
 
@@ -325,12 +325,12 @@
     //
     //=========================================
     ///Makes:  magnitude's cluster in table,
-    ///Effect: represents magnitude in html-table-row in 
+    ///Effect: represents magnitude in html-table-row in
     ///        form "mname = mvalue",
     ///Input:  mname = magnitude name
     function makeClBoth( row, mname, mcaption, spanIx, spanVal, alignCaptionToRight, claim0proof )
     {
-        var cssName = sDomF.topicIdUpperCase_2_underscore( mname );
+        var cssName = sDomF.tpid2low( mname );
         var c$ = $$.c('td')
                    .html( mcaption||mname )
                    .addClass('tostroke tocolor tobold tp-' + cssName)

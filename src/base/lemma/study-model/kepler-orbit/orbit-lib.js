@@ -8,9 +8,9 @@
     });
     return;
 
-    
+
     ///analogy of function
-    ///pointsArr_2_singleDividedDifferences()
+    ///Pivots_2_divdifFW()
     function creates_poly2svg_for_lemma()
     {
         var polylineSvg;
@@ -22,7 +22,7 @@
         {
             const curve_points = ssD.orbitXYToDraw;
             polylineSvg = nssvg.polyline({
-                pivots  : curve_points.map( cp => ssF.mod2inn( cp, stdMod ) ), 
+                pivots  : curve_points.map( cp => ssF.mod2inn( cp, stdMod ) ),
                 svgel   : polylineSvg,
                 parent  : stdMod.svgScene,
 
@@ -31,12 +31,12 @@
                 //'stroke-width'   : haz( arg, 'stroke-width' ),
                 //fill             : haz( arg, 'fill' ),
             });
-            const lowname = sDomF.topicIdUpperCase_2_underscore( 'orbit' );
+            const lowname = sDomF.tpid2low( 'orbit' );
             //sets tp-machine
             $$.$( polylineSvg ).addClass( 'tostroke thickable tp-'+lowname );
         }
     }
-    
+
     ///INPUT    input parameters are in model namespace,
     ///         curve formula to branches of a curve,
     ///OUTPUT   result attaches to brsObj
@@ -64,7 +64,7 @@
                 brs[ branchesLen ].points = bpoints;
                 branchesLen++;
             }
-            pointPar = orb.pointPar;            
+            pointPar = orb.pointPar;
             bpoints.push( point );
             totalPoints.push( point );
         }

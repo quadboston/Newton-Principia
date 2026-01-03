@@ -1,6 +1,7 @@
 // //\\// widget config
 ( function() {
-    const { mat, fapp, fconf, sconf, } = window.b$l.apptree({
+    const { nspaste, mat, fapp, fconf, sconf, topicColors_repo, originalPoints } =
+    window.b$l.apptree({
         ssFExportList : { init_conf }
     });
     return;
@@ -29,7 +30,7 @@
         let slider_aX=532;
         let slider_aY=pictureHeight*0.9;
         let pointRadius = 12;
-        
+
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
@@ -37,7 +38,7 @@
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
-        fconf.LETTER_FONT_SIZE_PER_1000 = 20; //works
+        sconf.LETTER_FONT_SIZE_PER_1000 = 20; //works
 
         //--------------------------------------
         // //\\ does override engine defaults,
@@ -65,8 +66,8 @@
         // \\// does override engine defaults,
         // \\// decorational parameters
         //***************************************************************
-        
-        var predefinedTopics =
+
+        var topicColors_elected =
         {
             "static"                : [0,     200, 255, 1],
             "core"                  : [155,  70, 0, 1],
@@ -75,7 +76,7 @@
             "ellipse"               : [0,   150, 0, 1],
             "legend"                : [200,   200, 200],
         };
-        let pt = predefinedTopics;   
+        let pt = topicColors_elected;
         pt[ "key-triangle" ] = pt.core;
         pt[ "key-parts" ] = pt.core;
         pt[ "similar-triangle" ] = pt.static;
@@ -91,10 +92,9 @@
         pt[ "focus" ] = pt.legend;
         pt[ "rectum" ] = pt.legend;
         pt[ "ellipse_center" ] = pt.legend;
-        
 
-        var originalPoints =
-        {
+
+        Object.assign( originalPoints, {
             P : { pos: [996, 570],
                   pcolor: pt.static,
                   cssClass: 'tp-key-triangle',
@@ -122,7 +122,7 @@
                   letterAngle : 45,
                   letterRotRadius : 20,
                 },
-  
+
             // //\\ aux points
             G : {
                    pcolor : pt.aux,
@@ -183,7 +183,7 @@
                   initialR: pointRadius,
                 },
             // \\// aux points
-  
+
             ///-------------------------------------------------
             ///builds center point first to be used in ellipse
             ///-------------------------------------------------
@@ -240,9 +240,9 @@
                   fontSize : 15,
             },
             // \\// decorations
-  
-  
-  
+
+
+
             //derived points, should not be used in model
             Q : { pos: [1077, 1231],
                   pcolor: pt.static,
@@ -252,7 +252,7 @@
                   letterRotRadius : 20,
                 },
             D : { pos: [1410, 965],
-                  pcolor: predefinedTopics['generators'],
+                  pcolor: topicColors_elected['generators'],
                   cssClass: 'tp-generators',
                   initialR: pointRadius,
                   letterRotRadius : 20,
@@ -260,7 +260,7 @@
                   draggableY : true,
                 },
             R : { pos: [1010, 712],
-                  pcolor: predefinedTopics['key-triangle'],
+                  pcolor: topicColors_elected['key-triangle'],
                   cssClass: 'tp-key-triangle',
                   initialR: pointRadius,
                   letterAngle : -10,
@@ -279,7 +279,7 @@
             //============================================
             T : { pos: [1283, 572],
                   draggableX : true,
-                  pcolor: predefinedTopics['key-triangle'],
+                  pcolor: topicColors_elected['key-triangle'],
                   style: {fill: '#ffffff'},
                   cssClass: 'tp-key-triangle',
                   letterAngle : 45,
@@ -290,10 +290,10 @@
                     caption : 'eccentricity',
                     draggableX : true,
                     draggableY : false,
-                    
+
                     pos: [slider_aX,slider_aY],
-                    pcolor : predefinedTopics.ellipse,
-    
+                    pcolor : topicColors_elected.ellipse,
+
                     letterAngle : 90,
                     letterRotRadius : 20,
                     //makes display independent on user action
@@ -303,14 +303,14 @@
             //rails
             eStart : {
                 pos : [ slider_a_start, slider_aY ],
-                pcolor : predefinedTopics.ellipse,
+                pcolor : topicColors_elected.ellipse,
                 undisplayAlways : true,
                 doPaintPname : false,
                 unscalable  : true,
             },
             eEnd : {
                 pos : [ slider_a_end, slider_aY ],
-                pcolor : predefinedTopics.ellipse,
+                pcolor : topicColors_elected.ellipse,
                 undisplayAlways : true,
                 doPaintPname : false,
                 unscalable  : true,
@@ -318,12 +318,12 @@
             //============================================
             // \\// sliders
             //============================================
-        };
+        });
         //----------------------------------
         // \\// original material parameters
         //----------------------------------
 
-        
+
         var linesArray =
         [
             { 'KS' : {
@@ -365,28 +365,28 @@
            //-------------------------
            // \\// base-figure
            //-------------------------
-  
+
            { 'PT' : {
-                        pcolor : predefinedTopics["key-triangle"],
+                        pcolor : topicColors_elected["key-triangle"],
                         'stroke-width' : 10,
                         cssClass : 'tp-key-triangle tp-key-parts',
                     }
            },
            { 'PR' : {
-                        pcolor : predefinedTopics["key-triangle"],
+                        pcolor : topicColors_elected["key-triangle"],
                         'stroke-width' : 10,
                         cssClass : 'tp-key-triangle tp-key-parts',
                     }
            },
            { 'RT' : {
-                        pcolor : predefinedTopics["key-triangle"],
+                        pcolor : topicColors_elected["key-triangle"],
                         'stroke-width' : 10,
                         cssClass : 'tp-key-triangle',
                     }
            },
 
 
-  
+
             //-------------------------
             // //\\ given parallelogram
             //-------------------------
@@ -451,7 +451,7 @@
             // \\// linear-generators
             //------------------------
 
-            
+
             //------------------------
             // //\\ aux-lines
             //------------------------
@@ -516,7 +516,7 @@
             //------------------------
             // \\// aux-lines
             //------------------------
-            
+
             //------------------------
             // //\\ static triangle
             //------------------------
@@ -526,22 +526,22 @@
                     }
             },
             { 'Pr' : {
-                        pcolor : predefinedTopics["static-generator"],
+                        pcolor : topicColors_elected["static-generator"],
                         cssClass : 'tp-static-generator',
                     }
             },
             { 'Pt' : {
-                        pcolor : predefinedTopics["static-generator"],
+                        pcolor : topicColors_elected["static-generator"],
                         cssClass : 'tp-static-generator',
                     }
             },
             { 'Cd' : {
-                        pcolor : predefinedTopics["aux"],
+                        pcolor : topicColors_elected["aux"],
                         cssClass : 'subessay--corollary3',
                     }
             },
             { 'Pq' : {
-                        pcolor : predefinedTopics["aux"],
+                        pcolor : topicColors_elected["aux"],
                         cssClass : 'subessay--corollary3',
                     }
             },
@@ -554,12 +554,12 @@
             //      in circle case
             //------------------------
             { 'BP' : {
-                        pcolor : predefinedTopics["similar-triangle"],
+                        pcolor : topicColors_elected["similar-triangle"],
                         cssClass : 'tp-similar-triangle',
                     }
             },
             { 'BC' : {
-                        pcolor : predefinedTopics["similar-triangle"],
+                        pcolor : topicColors_elected["similar-triangle"],
                         cssClass : 'tp-similar-triangle',
                     }
             },
@@ -568,22 +568,22 @@
             //------------------------
 
             { 'eStart,eEnd' : {
-                    pcolor : predefinedTopics["ellipse"],
+                    pcolor : topicColors_elected["ellipse"],
                     cssClass : 'ellipse',
                 }
             },
 
             // //\\ decorations
             { 'rectumLow,rectum' : {
-                    pcolor : predefinedTopics["rectum"],
+                    pcolor : topicColors_elected["rectum"],
                 }
             },
             { 'perigeum,apogee' : {
-                    pcolor : predefinedTopics["rectum"],
+                    pcolor : topicColors_elected["rectum"],
                 }
             },
             { 'focus,apogee' : {
-                    pcolor : predefinedTopics["rectum"],
+                    pcolor : topicColors_elected["rectum"],
                 }
             },
             // \\// decorations
@@ -600,7 +600,7 @@
             let P = [ PP[0] - OO[0], PP[1] - OO[1] ];
             pictureActiveArea = mat.unitVector(P).abs;
         }
-        //mediaSize = mod2inn_scale * modelSize, 
+        //mediaSize = mod2inn_scale * modelSize,
         var mod2inn_scale = pictureActiveArea;
         //----------------------------------
         // \\// app view parameters
@@ -612,11 +612,10 @@
         fapp.normalizeSliders( pictureHeight / 444 );
         to_sconf =
         {
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             mediaBgImage : "l20.jpg",
-            //dontRun_ExpandConfig : true,
 
             //for e slider
             eMax : 1.5,
@@ -634,17 +633,7 @@
             initialparA : 5.17,
             initialparB : -0.51,
             // \\// this approximately fits Newton's diagram
-            
-            /*
-            //it is hard to fit original Newton diagram
-            //probably, one needs bigger latus
-            latus2 : 185,  //in media scale
-            initialParT : 0.75, //parameter T on line Pt
-            initialparC : 0.55,
-            initialparP : -0.05,
-            initialparA : 5.18,
-            initialparB : -0.52,
-            */
+
             //----------------------------------
             // //\\ model-view parameters
             //----------------------------------

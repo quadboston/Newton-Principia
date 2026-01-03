@@ -40,7 +40,7 @@
         rgX.pivots = has( rgX, 'pivots' ) ? rgX.pivots : [];
         for( var ix=0; ix<len; ix++ ) {
             var angle = angleMin + angleStep * ix;
-            rgX.pivots[ix] =[ 
+            rgX.pivots[ix] =[
                           -radius * Math.sin( angle ), //effective "x"-axis to the screen left
                            radius * Math.cos( angle )
                         ];
@@ -127,7 +127,7 @@
         //=============================================================
         //vital: enables curve move when dragging an entire diagram,
         //       othewise, pivots and curve are non-synched,
-        rg[ 'approximated-curve' ].poly2svg({});
+        rg.approxer.poly2svg({});
         //=============================================================
         // \\// draws curves
         //=============================================================

@@ -25,7 +25,7 @@
         circRects       : {offset:0, visOffset:0, list:[]},
         InscrRects       : {offset:0, visOffset:0, list:[]},
         differenceRects  : {offset:0, visOffset:0, list:[]},
-        
+
         //baseLabels      : {offset:1, visOffset:0, list:[]},
         curvLabels      : {offset:0, visOffset:0, list:[]},
         leftLabels      : {offset:0, visOffset:0, list:[]},
@@ -42,7 +42,7 @@
     sdata.view = { isInscribed:1, isCircumscribed:1, isFigureChecked:1 };
     //=====================================
     // \\// presets data
-    //=====================================    
+    //=====================================
     return;
 
 
@@ -115,7 +115,7 @@
         //todm: this disables functionality ... not only CSS:
         fconf.appDecor.helpBox_opacity0             = true;
         fconf.appDecor.idleHelpButtonTooltip        = '';
-        
+
         //to make legend nicely seen, the legend needs
         //own css independent of rectangulars:
         //then so, we can decreas opacities below for nicer diagram:
@@ -123,7 +123,7 @@
         //these are additional over high and low opacities in color itself:
         sconf.ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS = 0.8;
         sconf.ANCHOR_TOPIC__OPACITY_IN_FOCUS = 1;
-        
+
         //no dice: sconf.default_tp_lightness = 0;
 
         //=====================================
@@ -140,7 +140,6 @@
             // \\// subapp regim switches
             //====================================================
 
-            dontRun_ExpandConfig : false,
             //----------------------------------
             // //\\ model-view parameters
             //----------------------------------
@@ -158,13 +157,13 @@
             ctrlPtXYs_js    :
             [
                 {x:modorInPicX,             y: modorInPicY},
-                
+
                 //four middle handles:
                 {x: 74.8, y: 45.97726888798351},
                 {x: 118.1, y: 72.70148453700233},
                 {x: 161.4, y: 109.92474464283467},
                 {x: 204.7, y: 166.52378909964816},
-                
+
                 //three middle handles
                 //{x:85,          y: 51.5},
                 //{x:139,         y: 89.0},
@@ -184,7 +183,7 @@
             DRAGGEE_HALF_SIZE : 20, //"rectangular-distance" to point to be detected
 
             default_tp_stroke_width : 8,
-            //rubbish: 
+            //rubbish:
             //dragPointVisibilityToggling  : false, //show or hide drag points by mouse-enter
         });
 
@@ -426,7 +425,7 @@
         ];
 
         nspaste( sconf, {
-            predefinedTopics : predT,
+            topicColors_elected : predT,
             originalPoints,
             linesArray,
             //lines,

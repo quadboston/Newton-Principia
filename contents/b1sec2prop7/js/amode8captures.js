@@ -93,19 +93,19 @@
 
         if( subessay === 'corollary2' || subessay === 'corollary3' ){
             sDomF.detected_user_interaction_effect( !'doUndetected' );
-            nspaste( rg.A.pos, rg[ 'approximated-curve' ].t2xy(
+            nspaste( rg.A.pos, rg.approxer.t2xy(
                 -0.5, //chosen value for A
             ));
-            nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy(
+            nspaste( rg.P.pos, rg.approxer.t2xy(
                 0.5, //chosen value for P
             ));
             var Ss = Math.PI * 1.2;
-            var S = rg[ 'approximated-curve' ].t2xy( Ss );
+            var S = rg.approxer.t2xy( Ss );
             rg.S.pos[0] = S[0]*0.4;
             rg.S.pos[1] = S[1]*0.4;
 
             var Rcol2_s = Math.PI * 0.75;
-            var Rcol2 = rg[ 'approximated-curve' ].t2xy( Rcol2_s );
+            var Rcol2 = rg.approxer.t2xy( Rcol2_s );
             rg.Rcol2.pos[0] = Rcol2[0]*0.4;
             rg.Rcol2.pos[1] = rg.P.pos[1]; //Rcol2[1]*0.4;
             setsCoroll2( !!'yes0not' );
@@ -117,7 +117,7 @@
             nspaste( rg.S.pos,
                 [-0.6030729600066013, 0.13447833820836858] //Book's value
             );
-            nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy(
+            nspaste( rg.P.pos, rg.approxer.t2xy(
                 0.7262954797868 // Book's value for P
             ));
             setsCoroll2( !'yes0not' );

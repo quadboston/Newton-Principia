@@ -10,6 +10,7 @@
         exegs, actionsList_coded, actionsList_default,
         ssF, ssD, amode,
         rg,
+        stdMod,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -175,7 +176,7 @@
             var autopilotEventId = haz( eventBlock, 'autopilotEventId' );
 
             var wwMessage = 'a u t o p   ' + eventBlock.autopilotEventId +
-                                ' in st=' + subessayRack.scenario_stateId; 
+                                ' in st=' + subessayRack.scenario_stateId;
             doDebugMessage( wwMessage )
 
             if( autopilotEventId ) {
@@ -194,7 +195,7 @@
         return true;
     }
 
-    ///aka: var wwMessage = 'a u t o p   '+eventBlock.autopilotEventId; 
+    ///aka: var wwMessage = 'a u t o p   '+eventBlock.autopilotEventId;
     function doDebugMessage( wwMessage )
     {
         //ccc( wwMessage );
@@ -217,7 +218,7 @@
 
         var { subessay }    = amode;
         var cssPath         = '.subessay-' + subessay;
-
+        //c cc( cssPath );
         //finds window from content-script
         var fbFrame_dom = document.querySelector( cssPath + ' .model-user-feedback' );
         if( ctype === ':' || ctype === ':-' ) {
@@ -227,7 +228,7 @@
                        () => {} :
                        () => { fbFrame_dom.scrollTop = fbFrame_dom.scrollHeight; }
 
-        //adds ecommand to feedback frame 
+        //adds ecommand to feedback frame
         ecommand            = '<div class="dialog-prompt">' + ecommand + '</div>';
         var newMessage_dom  = $$.c('div')();
         $$.$( fbFrame_dom ).ch( newMessage_dom );

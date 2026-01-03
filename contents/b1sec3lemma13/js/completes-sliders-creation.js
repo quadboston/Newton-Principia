@@ -39,7 +39,7 @@
             if( t < Math.PI*0.01 || t > sconf.curveParFiMax ) {
                 t = ( t + sconf.curveParFiMax ) % sconf.curveParFiMax;
             } //  return false;
-            var newP = rg[ 'approximated-curve' ].t2xy( t );
+            var newP = rg.approxer.t2xy( t );
             newPos[0] = newP[0];
             newPos[1] = newP[1];
             //-------------------------------------------------------------------

@@ -165,7 +165,7 @@
                             clusterIx,
                         },
                         clusterPars
-                    )); 
+                    ));
                 }
                 updateCaptionsRow();
             }
@@ -200,7 +200,7 @@
                             clusterIx,
                         },
                         clusterPars
-                    )); 
+                    ));
                 }
             }
             //================================================
@@ -213,7 +213,7 @@
         //
         //=========================================
         ///Makes:  magnitude's cluster in table,
-        ///Effect: represents magnitude in html-table-row in 
+        ///Effect: represents magnitude in html-table-row in
         ///        form "clusterKey = mvalue",
         ///Input:  clusterKey = magnitude name
         function makesClusterCells({
@@ -222,14 +222,14 @@
                 clusterKey,     //tp-aware
                 tpCssName,      //unfilteredYetCapsTopic-with-additional-tokens
                 clusterCaption,
-                ixOfSpanBeginning,     
+                ixOfSpanBeginning,
                 spanVal,
                 alignCaptionToRight,
                 noEqualSign,
                 fillerAfterValue,
                 style,
         }){
-            tpCssName = sDomF.topicIdUpperCase_2_underscore( tpCssName || clusterKey );
+            tpCssName = sDomF.tpid2low( tpCssName || clusterKey );
             tpCssName = tpCssName.replace( /<_>/g, ' ' );
             var dataMonospace = tpCssName.indexOf( 'data-monospace' ) > -1;
             if( dataMonospace ) {

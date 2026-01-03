@@ -44,7 +44,8 @@
             plotsCount,
             extraAxisY,
     }){
-        brightenGrid = typeof brightenGrid === 'undefined' ? 1 : brightenGrid;
+        brightenGrid = typeof brightenGrid === 'undefined' ?
+                       1 : brightenGrid;
         //======================================================
         // //\\ axisX, axisY API
         //      todo NEED function in bsl

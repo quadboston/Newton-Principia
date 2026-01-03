@@ -1,107 +1,53 @@
-( function() {
-    var {
-        mat, nspaste,
+//sets slider hanlders
+(function() {
+    const {
+        sn, mat, nspaste,
         sconf, sDomF, ssF, rg, toreg,
         stdMod, amode,
-    } = window.b$l.apptree({
-        ssFExportList :
-        {
-            doesSchedule_A_B_V_sliders_in_init_pars,
-            v2GUI,
-        },
-    });
+    } = window.b$l.apptree({ ssFExportList : {
+            sets_A_v_forces_sliders,
+    }});
     return;
 
 
-
-
-
-
-
-
-
-
     ///executes one time
-    function doesSchedule_A_B_V_sliders_in_init_pars()
-    {
+    function sets_A_v_forces_sliders (){
         //**********************
         //initially does job which sliders do at run-time
         toreg( 'slider_sltime' )( 'curtime',
                 sconf.unitlessMinTime * sconf.initialTimieStep );
-        toreg( 'speeds' )( 'pos', [ sconf.v0 ] );
-        toreg( 'speedsAracc' )( 'pos', [ sconf.v0 ] );
+        toreg( 'speeds' )( 'pos', [ sconf.modelPoints.v0 ] );
+        toreg( 'speedsAracc' )( 'pos', [ sconf.modelPoints.v0 ] );
         toreg( 'rgslid_dt' )( 'val', sconf.initialTimieStep );
         //**********************
 
         //---------------------------------------------------
         //interface for B
         //---------------------------------------------------
-        sDomF.params__2__rgX8dragwrap_gen_list({
-            pname : 'v',
-            acceptPos : v2params,
-            orientation : 'rotate',
-            pos: rg.v.pos,
+        sn( 'v', rg ).acceptPos = v2params;
+
+        ///---------------------------------------------------
+        ///interfaces for force hanles
+        ///---------------------------------------------------
+        ['B','C','D','E','F'].forEach( (name, ix) => {
+            let nam1='VVV'+ix;
+            rgX = sn( nam1, rg );
+            rgX.acceptPos =
+                function( newVPos, dummyPar, enforceNewPos ) {
+                    return V2forceParams(newVPos, dummyPar, enforceNewPos, ix);
+                };
         });
-
-        {
-            ////---------------------------------------------------
-            ////interfaces for force hanles
-            ////---------------------------------------------------
-            ['B','C','D','E','F'].forEach( (name, ix) => {
-                let nam1='VVV'+ix;
-                
-                //************************************
-                let pcolor = rg[ nam1 ].pcolor;
-                //because of params__2__rgX8dragwrap_gen_list
-                //breaks rgX in 
-                //sub ssF.upcreate__pars2rgShape({ pname, pos, stdMod })
-                //todm, make path around these two subs avoiding
-                //breakage of the entire legace code
-                //************************************
-
-                sDomF.params__2__rgX8dragwrap_gen_list({
-                    pname : nam1,
-                    acceptPos : function( newVPos, dummyPar, enforceNewPos ) {
-                        return V2forceParams(newVPos, dummyPar, enforceNewPos, ix);
-                    },
-                    pos: rg[nam1].pos,
-                });
-                rg[ nam1 ].pcolor = pcolor;
-            });
-        }        
-
 
         //---------------------------------------------------
         ///interface for A (for distance to S)
         ///still needs:
-        ///      media-model.js::pos2pointy( ... 'A', //vital
-        ///      media-model-draw-evol.js::if( ... && pname !== 'A'  ) {
+        ///      ??media-model.js::pos2pointy( ... 'A', //vital
+        ///      ??media-model-draw-evol.js::if( ... && pname !== 'A'  ) {
         ///                              :: [ 'V', 'B', 'A' ].forEach( pname => {
-        ///                                 ... fakeName = pname+'-white-filler'; 
+        ///                                 ... fakeName = pname+'-white-filler';
         //---------------------------------------------------
-        ///remember medpos still has to be created and updated,
-        ///this does not create medpos:
-        sDomF.params__2__rgX8dragwrap_gen_list({
-            pname : 'A',
-            acceptPos : A2distanceToS,
-            pos: rg.A.pos,
-        });
-        //===================================================
-        // \\// special points and points needed at model
-        //===================================================
+        sn( 'A', rg ).acceptPos = A2distanceToS;
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
     ///=============================================================
     /// estimates speed direction in the first step and
@@ -115,7 +61,7 @@
         // gets new speed, but speed abs value does not change
         var newv0 = mat.scaleV( sconf.speed, unitAv.unitVec );
         var newv0 = path_Av;
-        
+
         toreg( 'speeds' )( 'pos', [ newv0 ] );
         toreg( 'speedsAracc' )( 'pos', [ newv0 ] );
 
@@ -126,15 +72,6 @@
 
         return true;
     }
-
-    ///updates point v position from speed
-    function v2GUI()
-    {
-        let v = rg.speeds.pos[0];
-        var pos = mat.addV( v, rg.A.pos );
-        nspaste( rg.v.pos, pos );
-    }
-
 
     ///=============================================================
     ///when dragging point V, converts V pos change to force-law constant change,
@@ -194,12 +131,8 @@
         return true;
     }
 
-
-
-
-
-
     ///=========================================================
+    ///Needed???
     /// updates figure (and creates if none)
     ///      cases: either one newPos to rgX.pos change
     ///      or none of them
@@ -214,5 +147,4 @@
         //ssF.solvesTrajectoryMath__O();
     }
     */
-}) ();
-
+})();

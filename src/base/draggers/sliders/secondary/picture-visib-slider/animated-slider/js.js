@@ -32,7 +32,7 @@
         //:optional
         var setCaption      = sarg.setCaption;
         //.overrides animated-slider-plugin's default css
-        var customCss       = sarg.customCss; 
+        var customCss       = sarg.customCss;
         //.hides but displays slider by ancestor css-class
         var ancestorClassToHideSlider = sarg.ancestorClassToHideSlider;
         //:
@@ -78,7 +78,7 @@
         //======================
         // //\\ creates slider
         //======================
-        ///as of version 1072, calls this function from module bsl/slider/d8d-app-template.js 
+        ///as of version 1072, calls this function from module bsl/slider/d8d-app-template.js
         ///there are too many drag-and-drop variants now, it's easy to be lost ...
         var slider = ns.sliderControl({
             drawSurfaceDomEl:   return_slider.slider$(),
@@ -117,7 +117,7 @@
 
         ///defines landing animation
         function doSet_childOpeningAnimation(
-            startX,     //initial application data  
+            startX,     //initial application data
             endX,       //final application data
             dur         //duration of animation
         ){
@@ -140,7 +140,7 @@
                     //pushes data by timestamp
                     emulatesMove, //fun,        //fun for one of runners
 
-                    dur,          //duration,   //dur for one of runners  
+                    dur,          //duration,   //dur for one of runners
                     completesMove //funComplete //for one of runners
                 //--------------------
             );

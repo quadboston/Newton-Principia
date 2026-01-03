@@ -2,7 +2,7 @@
     var {
         ns, $$, sn, nsmethods, has, haz, nspaste, eachprop,
         fapp, fconf, sconf, ssD, sapp, sDomF, sDomN, capture, rg,
-        topics, fixedColors, fixedColorsOriginal, references, exegs,
+        topics, topicColors_repo, topicColors_repo_camel2col, references, exegs,
         stdMod, amode, userOptions
     } = window.b$l.apptree({
         ssFExportList :
@@ -10,7 +10,7 @@
             LANDING_V___loads_professorList8cont_8_buildsSubexegs,
         },
     });
-    sDomF.getFixedColor = getFixedColor;
+    sDomF.tpname0arr_2_rgba = tpname0arr_2_rgba;
     var dataFiles = sn( 'dataFiles', ssD, [] );
     var dataFiles_id2content = sn( 'dataFiles_id2content', ssD );
     return;
@@ -21,7 +21,7 @@
     /// loads_scenarioList8refs8conf8contents__8__builds_exegs8subexegs
     ///==========================================
     function LANDING_V___loads_professorList8cont_8_buildsSubexegs(
-        prepare8do_LANDING_VI_and_beyond___cb
+        cb__LANDING_VI
     ){
         var allEssays__str = "";
         var lemmaConfig = fconf.sappId2lemmaDef[ fconf.sappId ];
@@ -29,74 +29,69 @@
         return;
 
         ///This ajax-load takes contents-files, concatenates them, and calls
-        ///final subroutine, subessays2subexegs_8_doProcessSubexegs.
+        ///final subroutine, cb__subessays2subexegs_8_doProcessSubexegs.
         function contentsList_2_essaions_2_exegs( lemmaConfig )
         {
             var lemma_bookfiles_list = lemmaConfig[ 'contents-list' ];
-            //=========================================================
-            // //\\ ajax load
-            //=========================================================
-                // //\\  making the list
-                //------------------------------------
-                var lbf_forAjax = [];
+            //------------------------------------
+            // //\\  makes_bflist
+            //------------------------------------
+            var lbf_forAjax = [];
 
-                ///does two things: sets responseType and
-                ///                 later on extracts "data-id"=match[1]
-                var matchRe = /^data\/([^\.]+)./;
-                var res_matchRe = /\/resources\/([^\/]+)$/;  // ends with /resources/<file-name>
-                lemma_bookfiles_list.forEach( function( listItem ) {
-                    if( !listItem.match( /^\s*$/ ) ) {
-                        var match = listItem.match( matchRe );
-                        var responseType = match ? 'arraybuffer' : 'text';
-                        lbf_forAjax.push({
-                              id: listItem,
-                              responseType,
-                              link : fconf.pathToContentSite + '/contents/' +
-                                     fconf.sappId + '/' + listItem
-                        });
+            ///does two things: sets responseType and
+            ///                 later on extracts "data-id"=match[1]
+            var matchRe = /^data\/([^\.]+)./;
+            //ends with /resources/<file-name>
+            var excludes_resources_RE = /\/resources\/([^\/]+)$/;
+            lemma_bookfiles_list.forEach( function( listItem ) {
+                if( !listItem.match( /^\s*$/ ) ) {
+                    var match = listItem.match( matchRe );
+                    var responseType = match ? 'arraybuffer' : 'text';
+                    lbf_forAjax.push({
+                        id: listItem,
+                        responseType,
+                        link : fconf.pathToContentSite + '/contents/' +
+                               fconf.sappId + '/' + listItem
+                    });
+                }
+            });
+            //------------------------------------
+            // \\//  makes_bflist
+            //------------------------------------
+            //loads book texts
+            nsmethods.loadAjaxFiles( lbf_forAjax, loads_bf );
+            return;
+
+            function loads_bf( loadedFilesById_II ) {
+                lbf_forAjax.forEach( function( listItem ) {
+
+                    //do collect resources somewhere elese, like
+                    //for PIXI plugin ...
+                    //patch //todm ... does double job,
+                    //load resources only once ...
+                    if( listItem.id.match( excludes_resources_RE ) )
+                        return;
+
+                    var match = listItem.id.match( matchRe );
+                    if( match ) {
+                        dataFiles.push( loadedFilesById_II[ listItem.id ] );
+                        dataFiles_id2content[ match[1] ] =
+                            loadedFilesById_II[ listItem.id ];
+                    } else {
+                        allEssays__str += loadedFilesById_II[ listItem.id ].text;
                     }
                 });
-                //------------------------------------
-                // \\//  making the list
-                //------------------------------------
-
-                //------------------------------------
-                // //\\  making the load
-                //------------------------------------
-                nsmethods.loadAjaxFiles( lbf_forAjax, function( loadedFilesById_II ) {
-                        lbf_forAjax.forEach( function( listItem ) {
-
-                            //do collect resources somewhere elese, like for PIXI plugin ...
-                            if( listItem.id.match( res_matchRe ) ) return;
-                            //patch
-                            //todm ... does double job, load resources only once ...
-
-                            var match = listItem.id.match( matchRe );
-                            if( match ) {
-                                dataFiles.push( loadedFilesById_II[ listItem.id ] );
-                                dataFiles_id2content[ match[1] ] =
-                                    loadedFilesById_II[ listItem.id ];
-                            } else {
-                                allEssays__str += loadedFilesById_II[ listItem.id ].text;
-                            }
-                        });
-                        subessays2subexegs_8_doProcessSubexegs( lemmaConfig );
-                    }
-                );
-                //------------------------------------
-                // \\//  making the load
-            //=========================================================
-            // \\// ajax load
-            //=========================================================
+                cb__subessays2subexegs_8_doProcessSubexegs();
+            }
         }
 
         //====================================================
         // //\\ on content Files Load Success
         //====================================================
-        function subessays2subexegs_8_doProcessSubexegs( lemmaConfig )
-        {
+        function cb__subessays2subexegs_8_doProcessSubexegs(){
             references.text =
-                haz( fconf.sappId2lemmaDef[ fconf.sappId ], 'referencesForAllLemmaEssays' );
+                haz( fconf.sappId2lemmaDef[ fconf.sappId ],
+                     'referencesForAllLemmaEssays' );
             var SUBESSAYS_DIVIDOR = /\*::\*/g;
             var subessays = allEssays__str.split( SUBESSAYS_DIVIDOR );
 
@@ -105,25 +100,23 @@
             //      and prebuilds esssay-placeholders and indexes them
             //=========================================================
             subessays.forEach( function( singleSubessay ) {
-
                 //removes subessays which are empty text
-                if( singleSubessay.replace( /(\s|\n\r)*/g, '').length === 0 ) return;
-
+                if(singleSubessay.replace(/(\s|\n\r)*/g, '').length === 0) return;
                 //--------------------------------------
                 // //\\ splits the singleSubessay ...
                 //--------------------------------------
-                //      singleSubessay = proof|english precontent
-                //             precontent = \nJSON*..*\n content
-                //             JSON in singleSubessay is optional
+                // singleSubessay = proof|english precontent
+                //        precontent = \nJSON*..*\n content
+                //        JSON in singleSubessay is optional
                 //
-                //      below: ess_instructions[1] = logic_phase_id: claim, proof,
-                //                                            theorems, neutral, ...
-                //             ess_instructions[2] = aspect_id: english,... latin, ...
-                //             ess_instructions[3] = precontent
+                // below: ess_instructions[1] = logic_phase_id: claim, proof,
+                //                                       theorems, neutral,..
+                //        ess_instructions[2] = aspect_id: english,... latin, ...
+                //        ess_instructions[3] = precontent
                 //https://stackoverflow.com/questions/2429146/
                 //      javascript-regular-expression-single-space-character
                 var ess_instructions =
-                        singleSubessay.match( /^([^\|]*)\|([^\s]*)\s*\n([\s\S]*)$/);
+                    singleSubessay.match( /^([^\|]*)\|([^\s]*)\s*\n([\s\S]*)$/);
 
                 //ess_instructions[3] is text itself
                 if( ess_instructions && ess_instructions[3] ) {
@@ -131,7 +124,7 @@
                     var aspect_id   = ess_instructions[2];
                     var precontent  = ess_instructions[3];
 
-                    if (!aspectTurnedOn(aspect_id)) {
+                    if (!is_id_addendum(aspect_id)) {
                         return;
                     }
                     var wIx         = precontent.indexOf("*..*");
@@ -143,7 +136,8 @@
                     }
 
                     //converts essayion's-header-script to header-js-object,
-                    //will be attached to essay-section only at the very end of this loop,
+                    //will be attached to essay-section only at
+                    //the very end of this loop,
                     //assumes if wHeader exists, it must be valid JSON,
                     var essayHeader = wHeader ? JSON.parse( wHeader ) : {};
 
@@ -235,14 +229,14 @@
                     //---------------------------------------------------------------
                     // //\\ adds topic-categories from
                     //---------------------------------------------------------------
-                    //      essayHeader, 'fixed-colors' to fixedColors
+                    //      essayHeader, 'fixed-colors' to topicColors_repo
                     //      for entire lemma
                     var wwfc = haz( essayHeader, 'fixed-colors' );
                     if( wwfc ) {
                         Object.keys( wwfc ).forEach( topicKey => {
                             var tk = nsmethods.camelName2cssName( topicKey );
-                            fixedColors[ tk ] = wwfc[ topicKey ];
-                            fixedColorsOriginal[ topicKey ]= fixedColors[ tk ];
+                            topicColors_repo[ tk ] = wwfc[ topicKey ];
+                            topicColors_repo_camel2col[ topicKey ]= topicColors_repo[ tk ];
                         });
                     }
                     //---------------------------------------------------------------
@@ -310,7 +304,7 @@
             //---------------------------------------------
             ///     letting other therorions to script
             ///     this aspect_id in book's text
-            
+
             eachprop( exegs, (exeg, exeg_id) => {
                 eachprop( exeg, (aspect, asp_id) => {
                     eachprop( exegs, (exegToFill, fill_id) => {
@@ -325,8 +319,10 @@
                         };
                         var subessay2subexeg = sn( 'subessay2subexeg', aspExeg );
                         subessay2subexeg[ essayHeader.subessay ] = subexeg;
-                        var subessayName2subexegIx = sn( 'subessayName2subexegIx', aspExeg );
-                        subessayName2subexegIx[ essayHeader.subessay ] = subexegsIx;
+                        var subessayName2subexegIx = sn(
+                            'subessayName2subexegIx', aspExeg );
+                        subessayName2subexegIx[ essayHeader.subessay ] =
+                                                subexegsIx;
                         aspExeg.subexegs = [ subexeg ];
                     });
                 });
@@ -350,52 +346,59 @@
                 eachprop( exAspects, ( exAspect, aspect_id ) => {
                     exAspect.subexegs.forEach( ( subex, subexId ) => {
                         var essayHeader = subex.essayHeader;
-                        doesAddStudyModelIfNew( essayHeader, subex );
+                        creates_backgr_image_link( essayHeader, subex );
 
-                        ///we need menu and classes only once per theor-aspect pair
+                        ///we need menu and classes only once per
+                        ///theor-aspect pair
                         if( subexId === 0 ) {
-
-                            //.not elegant: should be in "logic_phase" loop, not in child loop,
+                            //.not elegant: should be in "logic_phase" loop,
+                            // not in child loop,
                             setMenu( logic_phase_id, 'logic_phase', essayHeader );
 
                             setMenu( aspect_id, 'aspect', essayHeader );
-                            //******************************************************************
-                            // //\\ collects decPoint_parentClasses for d8dp.createFramework
+                            //**************************************************
+                            // //\\ collects decPoint_parentClasses for
+                            //      d8dp.createFramework
                             //      media-drag-decoration-enabled-aspect
                             //      todm: looks like useless artifact.
-                            //******************************************************************
+                            //**************************************************
                             //      currently unlocks all aspects in content for
                             //                        ===========
                             //      being able to have dragged points and other
                             //      elements in model,
                             //
-                            //      apparent side effect is increasing a specifity for
+                            //      apparent side effect is increasing a
+                            //      specifity for
                             //      some CSS in "decorator.css.js"
                             //
                             //used in: d8dp.createFramework({
-                            //         decPoint_parentClasses : fconf.dragPointDecoratorClasses,
-                            var wDecArr = sn( 'dragPointDecoratorClasses', fconf, [] );
+                            //         decPoint_parentClasses :
+                            //         fconf.dragPointDecoratorClasses,
+                            var wDecArr = sn( 'dragPointDecoratorClasses',
+                                              fconf, [] );
 
                             var wDecorAspect = 'aspect--' + aspect_id;
                             if( wDecArr.indexOf( wDecorAspect ) < 0 ) {
                                 wDecArr.push( wDecorAspect );
                             }
-                            //******************************************************************
-                            // \\// collects decPoint_parentClasses for d8dp.createFramework
-                            //******************************************************************
+                            //****************************************************
+                            // \\// collects decPoint_parentClasses for
+                            //****************************************************
                         }
 
                         ///scans all subessays ( not only subessay-0 ),
                         ///finds default, and places this
                         ///subessay into subessay's-parent default
                         ///
-                        ///for some reason, essay-section memorizes parent-header if
+                        ///for some reason, essay-section memorizes
+                        ///parent-header if
                         ///parent is an effective default
                         ///remembers default for easy access
                         if( haz( essayHeader, "default" ) === '1' ){
                             //this is an alternative "if" which must work too
                             //if(
-                            //    sapp.amodel_initial.logic_phase === logic_phase_id &&
+                            //    sapp.amodel_initial.logic_phase ===
+                            //    logic_phase_id &&
                             //    sapp.amodel_initial.aspect === aspect_id
                             //){
                             //todm ... name "default" is very unlucky, do change it ...
@@ -405,16 +408,16 @@
                 });
             });
 
-            
+
 
             //-----------
-            //this function prepare8do_LANDING_VI_and_beyond___cb
+            //this function cb__LANDING_VI
             //is predefined as an argument in code-fragment
             ///loads Book
             //ssF.LANDING_V___loads_professorList8cont_8_buildsSubexegs(
             //    function() {
             //-----------
-            prepare8do_LANDING_VI_and_beyond___cb();
+            cb__LANDING_VI();
             //todo do resolve this construct in CSS ... it may be make
             //extra specifity and removing this set will change this specifity and
             //damage the application
@@ -515,16 +518,18 @@
             //imgId is === "empty" or "path-to-image-in-img-folder":
             //      see this below: stdMod.imgRk.srcParsed = src,
             //******************************************************
-            function doesAddStudyModelIfNew( essayHeader, subex ) {
+            function creates_backgr_image_link( essayHeader, subex ) {
                 stdMod.imgRk.cssId = 'bg0';
                 //*************************************************************
                 //first new-s ubmodel header must have img if s ubmodel needs it,
                 //      bg image is per s ubmodel
                 //*************************************************************
                 if( !userOptions.usingBackgroundImage() ) {
-                    //essayHeader.mediaBgImage = null; //disables it for definitness
+                    //disables it for definitness
+                    //essayHeader.mediaBgImage = null;
                     rg.detected_user_interaction_effect_DONE = true;
-                    //ccc( 'Remodel: Landing V: ' + rg.detected_user_interaction_effect_DONE );
+                    //c cc( 'Remodel: Landing V: ' +
+                    //      rg.detected_user_interaction_effect_DONE );
                     stdMod.imgRk.srcParsed = fconf.engineImg + '/empty.png';
                     return;
                 }
@@ -555,9 +560,10 @@
         // \\// on content Files Load Success
         //====================================================
 
-        function aspectTurnedOn(aspect_id) {
-            if (aspect_id === 'model' || aspect_id === 'addendum' || aspect_id === 'xixcentury'){
-                return true; //userOptions.showingBonusFeatures();
+        function is_id_addendum(aspect_id) {
+            if (aspect_id === 'model' || aspect_id === 'addendum' ||
+                aspect_id === 'xixcentury'){
+                return true;
             }
             if (aspect_id === 'latin'){
                 return userOptions.showingLatin();
@@ -576,14 +582,14 @@
     ///               if array, converted as array to color
     ///       makeOpacity1 - means "do make opacity equal to 1",
     ///returns string of fixed color or black,
-    function getFixedColor( ptype0colorArray, makeOpacity1 )
+    function tpname0arr_2_rgba( ptype0colorArray, makeOpacity1 )
     {
         if( typeof ptype0colorArray === 'string' ) {
             //returns blank, ' ' if ptype0colorArray is falsy
             var cleared = nsmethods.camelName2cssName( ptype0colorArray || ' ' );
 
             //returns false if cleared === ' ' and not a key in fixed-colors ...
-            var colorArray = haz( fixedColors, cleared );
+            var colorArray = haz( topicColors_repo, cleared );
         } else {
             var colorArray = ptype0colorArray;
         }

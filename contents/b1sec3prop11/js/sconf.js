@@ -1,37 +1,42 @@
 ( function() {
-    const { nspaste, fconf, sconf } = window.b$l.apptree({
-        ssFExportList : { init_conf }
+    const { nspaste, fconf, sf, topicColors_repo, originalPoints } =
+            window.b$l.apptree({ ssFExportList : { init_conf }
     });
     return;
 
 
     function init_conf()
     {
+        //tools
+        sf.enableStudylab = false;
+        //true enables framework zoom:
+        sf.enableTools = true;
+
         //navigation
-        //t/sconf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
-        //t/sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
+        //t/sf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
+        //t/sf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
 
         //***************************************************************
         // //\\ original picture dimensions for svg scene
         //***************************************************************
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
-        var pictureWidth = 841;
-        var pictureHeight = 728;
+        sf.pictureWidth = 841;
+        sf.pictureHeight = 728;
 
         //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
-        var controlsScale = realSvgSize / sconf.standardSvgSize
+        var realSvgSize = 2 * ( sf.pictureWidth + sf.pictureHeight ) / 2;
+        var controlsScale = realSvgSize / sf.standardSvgSize
 
         var C = [409, 408 ];
 
-        var originX_onPicture = C[0]; //for model's axis x
-        var originY_onPicture = C[1]; //for model's axis y
-        sconf.diagramOrigin = [ 0, 0 ];
+        sf.originX_onPicture = C[0]; //for model's axis x
+        sf.originY_onPicture = C[1]; //for model's axis y
+        sf.diagramOrigin = [ 0, 0 ];
 
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
-        var mod2inn_scale = 360;
+        sf.mod2inn_scale = 360;
         //***************************************************************
         // \\// original picture dimensions for svg scene
         //***************************************************************
@@ -40,38 +45,29 @@
         //***************************************************************
         // //\\ GUI cosmetics
         //***************************************************************
-        //t/fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
-        //t/sconf.rgShapesVisible = true;
+        sf.mediaBgImage = "diagram.png";
+        //sf.default_tp_lightness = 30;
 
-        //?/sconf.TP_OPACITY_FROM_fixed_colors = true;
-        //making size to better fit lemma's diagram
-        fconf.LETTER_FONT_SIZE_PER_1000 = 30;
-        //overrides "global", lemma.conf.js::sconf
-        sconf.pointDecoration.r= 3;
+        //sconf.LETTER_FONT_SIZE_PER_1000 = 30;
+        //sf.pointDecoration.r= 3;
 
         //--------------------------------------
         // //\\ these do override engine defaults,
         //      in expands-conf.js,
         //--------------------------------------
+        /*
         default_tp_stroke_width = Math.floor( 6 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
         handleRadius            = Math.floor( 3 * controlsScale ),
         // //\\ principal tp-css pars
-        //      see: topics-media-glocss.js
-        //this makes hanle's border nicely thin
-        sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
-        sconf.hover_width       = Math.max( 2, Math.floor( 7*controlsScale/1.6 ) );
+        sf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
+        sf.hover_width       = Math.max( 2, Math.floor( 7*controlsScale/1.6 ) );
 
-        //make effect apparently only for line-captions,
-        //not for point-captions bs
-        //misses: pnameLabelsvg).addClass( 'tp-_s tostroke' );
-        //overrides hover_width for texts
-        //for activation, needs class "hover-width" in element
-        sconf.text_nonhover_width   = 1000;
-        sconf.text_hover_width      = 2000;
+        sf.text_nonhover_width   = 1000;
+        sf.text_hover_width      = 2000;
+        */
         // \\// principal tp-css pars
 
-        //?/sconf.default_tp_lightness = 30;
         //--------------------------------------
         // \\// these do override engine defaults,
         //***************************************************************
@@ -82,34 +78,27 @@
         // //\\ model principals parameters
         //******************************************
         //pos of P
-        sconf.parQ = 0.250 * Math.PI;
-        sconf.eccentricity  = 0.59498295;
-        sconf.ellipseA  = 1.07;
-        sconf.ellipseAOriginal  = sconf.ellipseA;
-        sconf.ellipseB  =
-            Math.sqrt( Math.abs( 1 - sconf.eccentricity*sconf.eccentricity ) ) //Lambda
-            * sconf.ellipseA; //0.86;
-        var curveParA   = -0.64;
-        sconf.orbit_q_start = 0;
-        var orbit_q_start = 0.0 * Math.PI;
-        sconf.orbit_q_end = 2 * Math.PI;
+        sf.parQ = 0.250 * Math.PI;
+        sf.eccentricity  = 0.59498295;
+        sf.ellipseA  = 1.07;
+        sf.ellipseAOriginal  = sf.ellipseA;
+        sf.ellipseB  =
+            Math.sqrt( Math.abs( 1 - sf.eccentricity*sf.eccentricity ) ) //Lambda
+            * sf.ellipseA; //0.86;
+        sf.curveParA   = -0.64;
+        sf.orbit_q_start = 0;
+        sf.orbit_q_end = 2 * Math.PI;
 
         {
             // gets ellipse parameters
-            let ellB2 = sconf.ellipseB*sconf.ellipseB;
-            let ellA2 = sconf.ellipseA*sconf.ellipseA;
+            let ellB2 = sf.ellipseB*sf.ellipseB;
+            let ellA2 = sf.ellipseA*sf.ellipseA;
             let excentris2 = 1 - ellA2/ellB2;
             let excentris = Math.sqrt( excentris2 );
-            sconf.ellipseFocus = Math.sqrt( ellA2 - ellB2 );
+            sf.ellipseFocus = Math.sqrt( ellA2 - ellB2 );
         }
 
-        //the law to be studied in given lemma:
-        //fe: for 1/r^2, the assigment is
-        //    sconf.force_law = bP => 1/(bP.r2);
-        //null means that program will calculated the law
-        //based on dt -> 0:
-        sconf.force_law = bP => 1/(bP.r2);
-
+        sf.force_law = bP => 1/(bP.r2);
         //******************************************
         // \\// model principals parameters
         //******************************************
@@ -118,15 +107,15 @@
         //***************************************************************
         // //\\ math model auxilaries
         //***************************************************************
-        const FT = sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
-        sconf.CURVE_REVOLVES = true; //true for cyclic orbit
-        sconf.DQ_SLIDER_MAX = FT ? null : 0.69;
-        sconf.DT_SLIDER_MAX = FT ? 0.32 : null;
-        sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
-        var Q_STEPS = 1500;
-        var TIME_STEPS = 1500;
-        var DATA_GRAPH_STEPS = 500;
-        sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
+        const FT = sf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
+        sf.CURVE_REVOLVES = true; //true for cyclic orbit
+        sf.DQ_SLIDER_MAX = FT ? null : 0.69;
+        sf.DT_SLIDER_MAX = FT ? 0.32 : null;
+        sf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
+        sf.Q_STEPS = 1500;
+        sf.TIME_STEPS = 1500;
+        sf.DATA_GRAPH_STEPS = 500;
+        sf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
         //-------------------------------------------
         // \\// calculation algo parameters
         //-------------------------------------------
@@ -135,29 +124,57 @@
         //intervals of dt or dq to construct an arc for
         //displacement or sagitta,
         if( FT ){
-            var Dt0 = 0.39;
+            sf.Dt0 = 0.39;
         } else {
-            sconf.Dq0 = 0.19;
+            sf.Dq0 = 0.19;
         }
         //***************************************************************
         // \\// math model auxilaries
         //***************************************************************
 
 
+        //***************************************************************
+        // //\\ model comparison demo
+        //***************************************************************
+        //t/sf.SHOW_FORMULAS = [
+        //***************************************************************
+        // \\// model comparison demo
+        //***************************************************************
+
         //*************************************
         // //\\ topic group colors,
         //*************************************
-        var given   = [0,     150, 0,      1];
-        var proof   = [0,     0,   255,    1];
-        var result  = [200,   40,  0,      1];
-        var curvature  = [200,   40,  200, 1];
-        var displacement = [200,   0,  200, 1];
-        var body    = [0,     150,  200,   1];
-        var hidden  = [0,     0,   0,      0];
-        var context = [0,     0,   0,      1];
-        var invalid = [200,  150,  0,      1];
-        var predefinedTopics =
-        {
+    ///does import topic colors
+    const {
+        force,
+        estimatedForce,
+        fQR,
+        displacement,
+        curvature,
+        curvatureCircle,
+        sagitta,
+        distanceToCenter,
+
+        orbit,
+        body,
+        distance,
+        chord,
+
+        time,
+        dtime,
+
+        given,
+        proof,
+        result,
+
+        hidden,
+        context,
+        invalid,
+        shadow,
+    } = topicColors_repo;
+
+        ///does export topic colors
+        sf.topicColors_elected = nspaste( {}, { //need deep copy
             given,
             proof,
             result,
@@ -169,39 +186,15 @@
             orbit   : given,
             force   : result,
             tangentCircle : curvature,
-        };
+        });
         //*************************************
         // \\// topic group colors,
         //*************************************
 
 
         //*************************************
-        // //\\ bricks for originalPoints
-        //*************************************
-        //t/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-        //t/var curvePivots = [];
-        //t/curvePivots.push( [22,315] );
-        //t/if( sconf.BESIER_PIVOTS === 5 ) {
-        //t/curvePivots = curvePivots.map( pivot => ({
-        //t/ pos         : pivot,
-        //t/ pcolor      : given,
-        //t/}));
-        //t/var foldPoints  = (new Array(200)).fill({}).map( fp => ({
-        //t/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-        //*************************************
-        // \\// bricks for originalPoints
-        //*************************************
-
-
-        //*************************************
         // //\\ original app points
         //*************************************
-        var originalPoints =
-        {
-            //t/curvePivots,
-            //t/foldPoints,
-        };
-
         Object.assign( originalPoints, {
             O : {
                 pcolor : context,
@@ -342,7 +335,6 @@
             //----------------------------------------
 
 
-
             //----------------------------------------
             // //\\ Prop. 11
             //----------------------------------------
@@ -375,7 +367,7 @@
             },
 
             P : {
-                //set by sconf.parQ
+                //set by sf.parQ
                 //pos: P,
 
                 pcolor : body,
@@ -406,7 +398,7 @@
         //*************************************
         // //\\ original app lines
         //*************************************
-        var linesArray =
+        sf.linesArray = nspaste( {},
         [
             //-----------------------------------------
             // //\\ Book's prop. 11
@@ -465,36 +457,9 @@
             { 'P,VV' : { pcolor : proof }, },
             { 'P,tCircleCenter' : { pcolor : curvature }, },
 
-        ];
+        ]);
         //*************************************
         // \\// original app lines
-        //*************************************
-
-        nspaste( sconf, {
-            curveParA,
-            orbit_q_start,
-            Dt0,
-            Q_STEPS,
-            DATA_GRAPH_STEPS,
-            TIME_STEPS,
-
-            mediaBgImage : "diagram.png",
-            predefinedTopics,
-            originalPoints,
-            linesArray,
-            originX_onPicture,
-            originY_onPicture,
-            pictureWidth,
-            pictureHeight,
-            mod2inn_scale,
-
-            default_tp_stroke_width,
-            defaultLineWidth,
-            handleRadius,
-        });
-        //t/ sconf.pointDecoration.r = sconf.handleRadius;
-        //*************************************
-        // \\// passing locals to sconf
         //*************************************
     }
 })();

@@ -2,7 +2,7 @@
     const { haz, hafff, nsmethods, sconf, stdMod, ssF, } =
         window.b$l.apptree({ stdModExportList :
         {
-            wraps_graph_fw, //overrides default
+            //wraps_graph_fw, //overrides default
         },
     });
     return;
@@ -42,8 +42,8 @@
                     true : drawDecimalX;
 
                 graph_wrap.setsGraphTpClasses();
-                graph_wrap.doSetpix2color();
-                hafff( graph_wrap, 'creates_mask' );
+                graph_wrap.makes_pix2color();
+                hafff( graph_wrap, 'makes_mask' );
                 var { yColor, xColor, axisYLegend, axisXLegend, } =
                     graph_wrap.sets_axes();
 
@@ -52,7 +52,7 @@
                     pix2mask :
                         graph_wrap.fw.content.pix2mask,
                     graphArray : graph_wrap.fw.content.pix2values,
-                    pix2color : graph_wrap.pix2color,
+                    pix2color : graph_wrap.fw.content.pix2color,
                     style : {
                     //'stroke-width' : 2, //destroys tp-machine
                     },
@@ -86,11 +86,11 @@
                     axisXLegend,
                     plotsCount_overrider : 1000,
                     plotsPars : graph_wrap.plotLabels_2_plotsPars(
-                                graph_wrap.pix2color ),
+                                graph_wrap.fw.content.pix2color ),
                     doPaintGridOnlyOnce : false,
                     doDrawToolline : graph_wrap?.doDrawToolline() || {
                         toollineStyle : {
-                            stroke : graph_wrap.pix2color[2],
+                            stroke : graph_wrap.fw.content.pix2color[2],
                             'stroke-width' : 3,
                         },
                         abscissaIxValue : stdMod.P2gix(),

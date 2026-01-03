@@ -84,7 +84,7 @@
         var row = $$.c('tr')
             .addClass('proof row1')
             .addClass('tostroke')
-            .to(tb)();              
+            .to(tb)();
         makeFormatterCell( row, 'angle.BCM xxx', '1111', 'xxxxx' );
         makeFormatterCell( row, 'angle.BCM.xxx', '1111', 'xxxxx' );
         makeFormatterCell( row, 'dummy', 'dummy', 'xxxxx' );
@@ -167,7 +167,7 @@
     //
     //=========================================
     ///Makes:  magnitude's cluster in table,
-    ///Effect: represents magnitude in html-table-row in 
+    ///Effect: represents magnitude in html-table-row in
     ///        form "mname = mvalue",
     ///Input:  mname = magnitude name
     function makeClBoth( row, mname, mcaption, spanIx, spanVal,
@@ -175,7 +175,7 @@
     {
         //todm: ?no need for extra function argument:
         //      tp-cssName may be taken from "rg.Elem point wrap" ...
-        cssName = sDomF.topicIdUpperCase_2_underscore( cssName || mname );
+        cssName = sDomF.tpid2low( cssName || mname );
 
         if( mcaption !== ']no caption[' ) {
             var c$ = $$.c('td')

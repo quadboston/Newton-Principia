@@ -78,8 +78,8 @@
     //======================================================
 
 
-    
-    
+
+
     //======================================================
     // //\\ figure and base contol points
     //======================================================
@@ -95,7 +95,7 @@
         var offsetX = sconf.originX_onPicture;
         var offsetY = sconf.originY_onPicture;
         var flipY1 = sconf.MONITOR_Y_FLIP;
-        
+
         for (var i=0, len=sconf.ctrlPtXYs_js.length; i < len; i++) {
             var cp = sconf.ctrlPtXYs_js;
             //pt = dr.movables[ type + i ]
@@ -108,18 +108,18 @@
             pdom.setAttributeNS(null, "r", sconf.CTRL_RADIUS);
             //.todm patch
             //pdom.style.fill = 'rgba(255,255,255,1)'; //makes the point hollow
-            //pdom.style.stroke = sDomF.getFixedColor( 'curve' );
+            //pdom.style.stroke = sDomF.tpname0arr_2_rgba( 'curve' );
             pdom.style[ 'stroke-width' ] = '1px';
             pt.x = cp[i].x;
             pt.y = cp[i].y;
-            
+
             ctrlPts.push( pt );
             //dr.ctrlPts_unscaled.push( [pt.x, pt.y] );
         }
         reset_hollowPoints({ onCurve:true, onBase:false });
     }
-    
-    
+
+
     function reset_hollowPoints({ onCurve, onBase })
     {
         let view = sdata.view;
@@ -140,7 +140,7 @@
                     //.todm patch
                     'rgba(255,255,255,1)'; //makes the point hollow
                 pdom.style.stroke = !isFig ? 'transparent' :
-                    sDomF.getFixedColor( 'curve' );
+                    sDomF.tpname0arr_2_rgba( 'curve' );
             }
         }
 
@@ -163,7 +163,7 @@
                     //.todm patch
                     'rgba(255,255,255,1)'; //makes the point hollow
                 pdom.style.stroke = !isIn && !isCir ? 'transparent' :
-                    sDomF.getFixedColor( 'curve' );
+                    sDomF.tpname0arr_2_rgba( 'curve' );
             }
         }
         // \\//  dehollowfies basePts
@@ -195,9 +195,9 @@
     // \\// figure and base contol points
     //======================================================
 
-    
-    
-    
+
+
+
     //==================================================
     // //\\ common shape
     //      dom without numeric parameters
@@ -212,7 +212,7 @@
         stdMod.svgScene.appendChild( sdom );
         return sdom;
     }
-    
+
     ///does only dom and bookkeeper, dr.movables[ key ] = draggable,
     ///creates svg-circle-tag with unit-transform and and appends it to svg-root
     function makeDragP_tpl( type, i )
@@ -231,6 +231,6 @@
     //==================================================
     // \\// common shape
     //==================================================
-    
+
 }) ();
 

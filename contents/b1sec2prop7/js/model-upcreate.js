@@ -25,7 +25,7 @@
         const DDD = 1e-5;
         stdMod.findsFiniteSagitta(DDD);
         const addendum = amode.aspect === 'addendum';
-        const rgCurve = rg[ 'approximated-curve' ];
+        const rgCurve = rg.approxer;
         const fun = rgCurve.t2xy;
         common_fun = fun;
         var sectSpeed0 = ssD.sectSpeed0;
@@ -58,7 +58,7 @@
             rg.Q.Qparams = Qparams;
             rg.Q.dt2dq = dt2dq;
             rg.tForSagitta.val =dt;
-            
+
         } else {
             //================================================
             // //\\ arc, sagittae and related
@@ -112,13 +112,13 @@
         ///continues completing model peacefully
         rg.Q.pos[0] = rg.Q.Qparams.rr[0];
         rg.Q.pos[1] = rg.Q.Qparams.rr[1];
-        //rg.Q.caption = 
+        //rg.Q.caption =
         rg.QtimeDecor.caption = 'Δt=' + (2*rg.tForSagitta.val).toFixed(5);
         rg.QtimeDecor.pos = rg.Q.pos;
         let Qminus = common_fun( rg.Q.q_minus );
         rg.rrminus.pos[0] = Qminus[0];
         rg.rrminus.pos[1] = Qminus[1];
-        
+
         //-----------------------------------------
         // //\\ stashes rollback data
         //      for case user-sliders go crazy
@@ -127,7 +127,7 @@
         rg.tForSagitta.former_val = rg.tForSagitta.val;
         rg.formerP = [ rg.P.pos[0], rg.P.pos[1] ];
         rg.former_Pq = rg.P.q;
-        rg.Q.frormerQparams = rg.Q.Qparams; 
+        rg.Q.frormerQparams = rg.Q.Qparams;
         rg.Q.former_q = rg.Q.q;
         rg.Q.former_q_minus = rg.Q.q_minus;
         //todm: rid:
@@ -156,7 +156,7 @@
         rg.T.pos[0] = wwT[0];
         rg.T.pos[1] = wwT[1];
 
-        
+
         //------------------------------------------------
         // //\\ L
         //------------------------------------------------
@@ -169,7 +169,7 @@
         //------------------------------------------------
         // \\// L
         //------------------------------------------------
-        
+
         var Z = mat.linesCross(
             uu,
             rg.P.pos,
@@ -236,9 +236,9 @@
         rg.SP.vector = mat.p1_to_p2( rg.S.pos, rg.P.pos, );
         rg.RL.vector = mat.p1_to_p2( rg.R.pos, rg.L.pos, );
         rg.PV.vector = mat.p1_to_p2( rg.P.pos, rg.V.pos, );
-            
-            
-        stdMod.buildsforceGraphArray();
+
+
+        stdMod.makesGraphArray_8_drawsPlots();
         //------------------------------------------------
         // //\\ PZminus
         //------------------------------------------------
@@ -300,7 +300,7 @@
             if( has( ssD, 'pastFoldPoints' ) ) {
                 //todm for( let i=foldps.length; i<flen; i++ ) {
                 for( let i=0; i<pastlen; i++ ) {
-                    pp[i].rgX.undisplay = true;  
+                    pp[i].rgX.undisplay = true;
                 }
             }
             ////otherwise, cannot display all separation points;
@@ -313,7 +313,7 @@
                     rgX.undisplay = false;
                 };
                 ssD.pastFoldPoints = flen;
-            } 
+            }
         }
         {
             ///single fold point decorations
@@ -458,7 +458,7 @@
             var dt2dq_plus = sectSpeed0 / ( vplus * secSpeedPlus );
             var qstep = dt2dq_plus * STEP_T;
             var qplus2 = qplus + qstep;
-            
+
             var QparamsMinus = mcurve.planeCurveDerivatives({
                 fun,
                 q : qminus,
@@ -479,11 +479,11 @@
 
             chordTV = [rplus[0]-rminus[0], rplus[1]-rminus[1]];
             chordT2 = chordTV[0]*chordTV[0] + chordTV[1]*chordTV[1];
-            
+
             if( chordT2 < chord2 && qplus2 <= 1 && qminus2 >= 0 ) {
                 qplus = qplus2;
                 qminus = qminus2;
-                dt += STEP_T; 
+                dt += STEP_T;
             } else {
                 //dt += STEP_T/2; //kitchen algo
                 break;
@@ -498,8 +498,8 @@
     }
 
 
-    
-    
+
+
     //builds two arcs, after and before instant position of moving body P
     function deltaT_2_arc(
         intervalT,   //rg.tForSagitta.val
@@ -527,7 +527,7 @@
             //real speed must change from point P to point P,
             //this speed only indicates negative direction of speed,
             //speed multiplied here for performance,
-            //* vt0; 
+            //* vt0;
 
         for( var ix = 0; ix < INTEGRATION_STEPS; ix++ ) {
             //v //v=ds/dq
@@ -548,7 +548,7 @@
         var side = [ rr[0] - rr0[0], rr[1] - rr0[1] ];
         return { rr, side, Qq:q, Qparams, dt2dq:dq_dt };
     }
-    
-    
+
+
 }) ();
 

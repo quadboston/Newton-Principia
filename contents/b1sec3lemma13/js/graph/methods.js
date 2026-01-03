@@ -12,7 +12,7 @@
     function attach_graph_methods ( graph_wrap, graph_methods ){
         graph_wrap.sets_axes = sets_axes;
         graph_wrap.setsGraphTpClasses = setsGraphTpClasses;
-        graph_wrap.doSetpix2color = doSetpix2color;
+        graph_wrap.makes_pix2color = makes_pix2color;
         graph_wrap.creates_global_css = creates_global_css;
         graph_wrap.creates_chain_of_containers_under_parent =
                    creates_chain_of_containers_under_parent;
@@ -39,14 +39,14 @@
             return tpnames;
         }
 
-        function doSetpix2color (){
+        function makes_pix2color (){
             const multi = ssD?.zebraCols?.multicolor;
             if( multi ){
                 var pix2color = multi.map(
                     col => col.rgba_high );
             } else {
                 var pix2color = SETS_PLOTS_TP_NAME().map(
-                    c => sDomF.getFixedColor( c ));
+                    c => sDomF.tpname0arr_2_rgba( c ));
             }
             graph_wrap.fw.content.pix2color = pix2color;
             return pix2color;

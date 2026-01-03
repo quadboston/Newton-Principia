@@ -1,5 +1,5 @@
 ( function() {
-    const { nspaste, fconf, sf, fixedColors, originalPoints } =
+    const { nspaste, fconf, sf, topicColors_repo, originalPoints } =
             window.b$l.apptree({ ssFExportList : { init_conf }
     });
     return;
@@ -107,9 +107,9 @@ function init_conf()
     //***************************************************************
     sf.SHOW_FORMULAS = [
         //usually, bP is aka context of "plane-cureve-derivatives"
-        { label:'1/r²',
+        { label : '1/r²',
           fun:(bP) => 1/bP.r2,
-          //t/ cssclass : 'tp-formula-1 tostroke',
+          //t// cssclass : 'tp-context tostroke etc',
         },
     ];
     //***************************************************************
@@ -148,10 +148,10 @@ function init_conf()
         context,
         invalid,
         shadow,
-    } = fixedColors;
+    } = topicColors_repo;
 
     ///does export topic colors
-    sf.predefinedTopics = nspaste( {}, { //need deep copy
+    sf.topicColors_elected = nspaste( {}, { //need deep copy
         force,
         estimatedForce,
         fQR,
@@ -178,8 +178,8 @@ function init_conf()
         invalid,
         shadow,
 
-        timearc : [...time],
-        APQ     : [...orbit],
+        timearc : time,
+        APQ     : orbit, //[...orbit],
     });
     //*************************************
     // \\// topic group colors,
@@ -231,6 +231,9 @@ function init_conf()
     //*************************************
     // //\\ original app points
     //*************************************
+    //-------------------------------------
+    // //\\ prepares points
+    //-------------------------------------
     curvePivots = curvePivots.map( pivot => ({
         pos         : pivot,
         pcolor      : given,
@@ -239,11 +242,13 @@ function init_conf()
         draggableY  : true,
         doPaintPname : false,
     }));
-
     const foldPoints  = (new Array(200)).fill({}).map( fp => ({
         pcolor      : invalid,
         doPaintPname : false,
     }));
+    //-------------------------------------
+    // \\// prepares points
+    //-------------------------------------
 
     Object.assign( originalPoints, {
         curvePivots,

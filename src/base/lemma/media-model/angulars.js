@@ -88,7 +88,7 @@
             ANGLE_SIZE      : ANGLE_SIZE || 1,
             captionRadiusIncrease,
             tpClassName     : tpclassName === '' ? '' :
-                              tpclassName || sDomF.topicIdUpperCase_2_underscore( rgSample.pname ),
+                              tpclassName || sDomF.tpid2low( rgSample.pname ),
             fill            : fill || rgAngle.pcolor,
 
             //commenting this line does fix non-nice tp-highlighting of angle border
@@ -139,7 +139,7 @@
 
 
             // //\\ todm ... mod2inn_scale must be incapsulated in model
-            //instead we are converting from model to media manually here 
+            //instead we are converting from model to media manually here
             //it is very annoying to always remember to
             //make a correction with MONITOR_Y_FLIP ...
             //todm ... do a better programming

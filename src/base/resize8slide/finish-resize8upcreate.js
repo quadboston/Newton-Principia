@@ -19,7 +19,7 @@
         var hazR = haz( fmethods, 'resizeHappened' );
         fmethods.resizeHappened  = hazR ?
                 () => {
-                    hazR(); 
+                    hazR();
                 }
             :
                 ()=>{}
@@ -61,7 +61,8 @@
         //-------------------------------------------------------------
 
         if(
-            ns.widthThresholds[ fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD ]() //isMobile
+            //isMobile
+            ns.widthThresholds[ fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD ]()
         ) {
             preparesMobile();
         } else {
@@ -70,7 +71,7 @@
                 doDividorSynch,
             });
         }
-        fmethods.resizeHappened(); 
+        fmethods.resizeHappened();
         haff( stdMod, 'model8media_upcreate' );
     }
     ///=============================================================================
@@ -205,7 +206,7 @@
         dividorFractions[0] = fracLeft;
         dividorFractions[1] = 1 - fracLeft;
         if (doDividorSynch) {
-            //Refer to "As the browser is widened..." comment (phase 2), for more detail on when 
+            //Refer to "As the browser is widened..." comment (phase 2), for more detail on when
             //achieved needs to be set here.
             wrkwin.dividor.achieved.achieved = nspaste([], dividorFractions)
             fmethods.panesD8D.updateAllDecPoints();
@@ -241,7 +242,7 @@
         // //\\ wide screen,
         //      legend stays on the right from model
         //-------------------------------------------------------------
-        if( 
+        if(
             //never wide if ...FIXED...
             !STATIC_LEGEND
             &&
@@ -335,14 +336,16 @@
         stdMod.bgImgOffset  = bgImgOffset; //positive or 0
         stdMod.bgImgW       = bgImgW;      //svgSceneW - offsets
         //used only in lemma2:
-        //stdMod.bgImgH       = stdMod.bgImgW * stdMod.simSceSvg_narrowestAsp;   
+        //stdMod.bgImgH       = stdMod.bgImgW * stdMod.simSceSvg_narrowestAsp;
         //-------------------------------------------------------
 
         //see **api innerMediaHeight
         var picCSS_2_svgmodel = sconf.innerMediaWidth / stdMod.bgImgW;
-        //apparently "basic svg width( bgPictureWidth ) + margins(due widening screen)
+        //apparently "basic svg width( bgPictureWidth ) +
+        //margins(due widening screen)
+
         stdMod.svgVB_W        = stdMod.svgSceneW * picCSS_2_svgmodel;
-        stdMod.svgVB_H        = stdMod.svgSceneH * picCSS_2_svgmodel;//sconf.innerMediaHeight;
+        stdMod.svgVB_H        = stdMod.svgSceneH * picCSS_2_svgmodel;
         stdMod.svgVB_offsX    = -stdMod.bgImgOffset * picCSS_2_svgmodel;
         //--------------------------------------------------------------------
         // \\// exports sizes
@@ -440,9 +443,9 @@
         // |x=offset_x < 0 ------------------- |x=0---------------x=width-1|
         // |<-------------- offset_x -------- >|<----narrow width -------->|
         // |<--------------------- width --------------------------------->|
-        // |<---beginning-of-view-----------------------------end-of-view->| 
+        // |<---beginning-of-view-----------------------------end-of-view->|
 
-        var viewBox = 
+        var viewBox =
             offset_x + ' ' + offset_y + ' ' +
             width +    ' ' + height;
         stdMod.mmedia.setAttributeNS(

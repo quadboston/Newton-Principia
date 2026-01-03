@@ -1,4 +1,4 @@
-( function() {
+(function(){
     var {
         nspaste, eachprop, haff, haz,
         sconf, sapp, ssF, rg,
@@ -25,7 +25,7 @@
         ///seems wrong approach, should be model upcreate
         function astate_2_rg8model8media( astate4rg, )
         {
-            astate_2_rg8model( astate4rg, );
+            astate_2_rg8model( astate4rg );
             haff( stdMod, 'sliders_value2pos' );
             //haff is for lemmas from the past: l1, l2, ...
             haff( stdMod, 'media_upcreate' ); //todm swap to ...generic

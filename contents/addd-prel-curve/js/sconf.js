@@ -65,7 +65,7 @@
         var result  = [200,   40,  0,      1];
         var hidden  = [0,     0,   0,      0];
 
-        var predefinedTopics =
+        var topicColors_elected =
         {
             //:basic topics
             proof,
@@ -183,7 +183,7 @@
         ///alternatively to this, you can set own colors for originalPoints
         ///by your own
         ns.eachprop( originalPoints, (point,pname) => {
-            point.pcolor = ns.haz( point, 'pcolor' ) || predefinedTopics[ pname ];
+            point.pcolor = ns.haz( point, 'pcolor' ) || topicColors_elected[ pname ];
         });
 
         //model's spacial unit in pixels of the picture:
@@ -213,7 +213,7 @@
         ///var lines = {};
         ns.paste( sconf, {
             mediaBgImage : "main-picture.png",
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             //lines,

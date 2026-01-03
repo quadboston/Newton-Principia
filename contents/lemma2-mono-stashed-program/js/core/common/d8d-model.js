@@ -80,14 +80,14 @@
                 //base is "dead" in lemma2
                 if( fconf.sappId.indexOf('lemma2') === 0 ) return;
                 pointWrap.spinnerClsId = 'base-'+pwix;
-                pointWrap.dragDecorColor=sDomF.getFixedColor( 'given' );
+                pointWrap.dragDecorColor=sDomF.tpname0arr_2_rgba( 'given' );
             } else {
                 if( pwix === 0 || pwix > dr.ctrlPts.length-2 ) {
-                    pointWrap.dom.style.display = 'none'; 
+                    pointWrap.dom.style.display = 'none';
                     return;
                 }
                 pointWrap.spinnerClsId = 'ctrl-'+pwix;   //optional for css
-                pointWrap.dragDecorColor = sDomF.getFixedColor( 'given' );
+                pointWrap.dragDecorColor = sDomF.tpname0arr_2_rgba( 'given' );
                 var achieved = { x:pointWrap.x, y:pointWrap.y };
 
                 //todm for some reason hole point does not update
@@ -119,7 +119,7 @@
                 achieved        : achieved,
                 nospinner      : nospinner,
                 update_decPoint : decorator,
-                orientation     : pointWrap.type !== 'base' ? 
+                orientation     : pointWrap.type !== 'base' ?
                         ( pwix === 4 ?
                               'axis-x'     //not in use jan 14, 2024
                             : 'axis-y' ) : false,
@@ -133,11 +133,11 @@
         {
             var pw = pointWrap;
             return ( function( decPoint ) {
-                
+
                 if( decPoint.id === 'ctrl3' ) {
                     ccc( decPoint, pw.y );
                 }
-                
+
                 if( pw.x || pw.x === 0 ) {
                     var dompos = sDomF.inn2outparent.call(
                         { medpos : [ pw.x, pw.y ] }
@@ -271,7 +271,7 @@
             var index = item.index;
             if ( "ctrl" === item.type ) {
                 item.x = ach.achieved.x + move[0];
-                
+
                 //makes point E vertically fixed at 0 level
                 let lastHandleIndex = sconf.ctrlPtXYs_js.length - 1;
                 item.y = ach.achieved.y + (index === lastHandleIndex ? 0 :  move[1]);

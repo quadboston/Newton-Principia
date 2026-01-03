@@ -25,19 +25,19 @@
 
 
     //analogy of
-    //function  pointsArr_2_singleDividedDifferences()
+    //function  Pivots_2_divdifFW()
     function creates_orbitRack()
     {
         const A     = sconf.curveParA;
         const fi0   = sconf.curveParFi0;
 
         var curveName = 'orbit';
-        var lowname = sDomF.topicIdUpperCase_2_underscore( curveName );
-        var rgX = rg[ 'approximated-curve' ];
+        var lowname = sDomF.tpid2low( curveName );
+        var rgX = rg.approxer;
         //prevents leaks polylineSvg from js-prototype
         rgX.polylineSvg = haz( rgX, 'polylineSvg' );
 
-        //rg[ 'approximated-curve' ] will have these properties:
+        //rg.approxer will have these properties:
         var result = {
                 t2xy, // f : x |-> rr, rr is in |R^2
                 trange2points,
@@ -91,7 +91,7 @@
             var curvePoints = ownrange2points({ stepsCount:80 });
             var medpoints = curvePoints.map( cp => ssF.mod2inn( cp, stdMod ) );
             var polylineSvg = rgX.polylineSvg = nssvg.polyline({
-                pivots  : medpoints, 
+                pivots  : medpoints,
                 svgel   : rgX.polylineSvg,
                 parent  : stdMod.svgScene,
 

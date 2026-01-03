@@ -22,10 +22,10 @@
     function v2_topics_2_unhighCss()
     {
         var totalCss = '';
-        eachprop( topics.lowId2topics, ( topi_c, lowId ) => {
-            var { fillOpacity, strokeOpacity, rgba_own } = topi_c;
-            var Rtp = ROOT + ' .tp-' + lowId;
-            var tpOpacityLow_str = topi_c.lowOpacity.toFixed(3);
+        eachprop( topics.lowtpid_2_glocss8anchorRack, ( gcssRack, low_tpID ) => {
+            var { fillOpacity, strokeOpacity, rgba_own } = gcssRack;
+            var Rtp = ROOT + ' .tp-' + low_tpID;
+            var tpOpacityLow_str = gcssRack.lowOpacity.toFixed(3);
             var ts = '';
 
             ts += `
@@ -52,22 +52,22 @@ ${Rtp}.tobg {
             //todm move to shape html-element:
             //add on for svg <image>, Oct 23, 2021
             ts += `
-${ROOT} svg image.tp-${lowId} {
+${ROOT} svg image.tp-${low_tpID} {
     opacity : ${ sconf.SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY };
 }
 
-${ROOT} svg .tp-${lowId}.hover-width {
+${ROOT} svg .tp-${low_tpID}.hover-width {
     stroke-width:${ sconf.nonhover_width }px;
 }
-${ROOT} svg text.tp-${lowId}.hover-width {
+${ROOT} svg text.tp-${low_tpID}.hover-width {
     stroke-width:${ sconf.text_nonhover_width }px;
 }
 
-${ROOT} svg.graph-box-svg .tp-${lowId}.hover-width {
+${ROOT} svg.graph-box-svg .tp-${low_tpID}.hover-width {
     stroke-width:${ graphCss.nonhover_width };
 }
-${ROOT} svg.graph-box-svg text.tp-${lowId}.hover-width,
-${ROOT} svg.graph-box-svg tspan.tp-${lowId}.hover-width {
+${ROOT} svg.graph-box-svg text.tp-${low_tpID}.hover-width,
+${ROOT} svg.graph-box-svg tspan.tp-${low_tpID}.hover-width {
     stroke-width:${ graphCss.text_nonhover_width };
 }
 
@@ -83,66 +83,66 @@ ${Rtp}.tobg {
     background-color : ${rgba_own};
 }
             `;
-            globalCss.replace( ts, 'glocss-'+lowId );
+            globalCss.replace( ts, 'glocss-'+low_tpID );
         });
     }
 
     function v2_tplinks_2_highlightCss( nextTplinks )
     {
-        nextTplinks.forEach( (tplink,tplink_ix) => {
-            Object.keys( tplink.tpid2true ).forEach( lowId => {
+        nextTplinks.forEach( (anrack,tplink_ix) => {
+            Object.keys( anrack.tpid2true ).forEach( low_tpID => {
                 var Rix = ROOT + '.tp-' + tplink_ix;
-                var topi_c = topics.lowId2topics[ lowId ];
+                var gcssRack = topics.lowtpid_2_glocss8anchorRack[ low_tpID ];
                 var ts = '';
-                var { highOpacity, rgba_own} = topi_c;
+                var { highOpacity, rgba_own} = gcssRack;
                 var tpOpacityHigh_str = highOpacity.toFixed(3);
 
                 ts += `
-${Rix} .tp-${lowId} {
+${Rix} .tp-${low_tpID} {
     opacity: ${tpOpacityHigh_str};
 }
                      `;
                     //competes with tobold, do we need all of them?
                     ts += `
-${Rix} .tp-${lowId}.tobold {
+${Rix} .tp-${low_tpID}.tobold {
     font-weight : bold;
 }
                     `;
                         ///todm: very crude and wordy stroke width control
                     ts += `
-${Rix} svg .tp-${lowId}.tostroke {
+${Rix} svg .tp-${low_tpID}.tostroke {
     stroke-width:${ sconf.default_tp_stroke_width }px;
 }
                     `;
 
                     ts += `
 
-${Rix} svg .tp-${lowId}.tostroke.hover-width {
+${Rix} svg .tp-${low_tpID}.tostroke.hover-width {
     stroke-width:${ sconf.hover_width }px;
 }
 
-${Rix} svg text.tp-${lowId}.tostroke.hover-width {
+${Rix} svg text.tp-${low_tpID}.tostroke.hover-width {
     stroke-width:${ sconf.text_hover_width }px;
 }
 
-${Rix} svg.graph-box-svg .tp-${lowId}.tostroke.hover-width {
+${Rix} svg.graph-box-svg .tp-${low_tpID}.tostroke.hover-width {
     stroke-width:${ graphCss.hover_width };
 }
-${Rix} svg.graph-box-svg text.tp-${lowId}.tostroke.hover-width,
-${Rix} svg.graph-box-svg tspan.tp-${lowId}.tostroke.hover-width {
+${Rix} svg.graph-box-svg text.tp-${low_tpID}.tostroke.hover-width,
+${Rix} svg.graph-box-svg tspan.tp-${low_tpID}.tostroke.hover-width {
     stroke-width:${ graphCss.text_hover_width };
 }
                     `;
 
                     //todm: can be done via tpOpacityLow = 0;
                     ts += `
-${Rix} .tohidden.tp-${lowId} {
+${Rix} .tohidden.tp-${low_tpID} {
     visibility:visible;
 }
                 `;
 
 
-                globalCss.update( ts, 'glocss-id-' + lowId + '-glocss-ix-'+tplink_ix );
+                globalCss.update( ts, 'glocss-id-' + low_tpID + '-glocss-ix-'+tplink_ix );
             });
         });
     }

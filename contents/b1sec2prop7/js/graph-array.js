@@ -3,16 +3,17 @@
         sn, haz, mcurve, ssD,
         amode, stdMod, rg, sconf,
     } = window.b$l.apptree({
-        stdModExportList : { buildsforceGraphArray,},
+        stdModExportList : { makesGraphArray_8_drawsPlots,},
     });
     return;
 
 
-    function buildsforceGraphArray() ///legacy force sample, rid later
+    function makesGraphArray_8_drawsPlots() ///legacy force sample, rid later
     {
         const subessay = amode.subessay;
         const ADDENDUM = amode.aspect === 'addendum';
-        const ULTIM_NORM = !ADDENDUM && haz( sconf, 'NORMALIZE_BY_ULTIM_IN_NON_ADDEN' );
+        const ULTIM_NORM = !ADDENDUM && haz( sconf,
+                           'NORMALIZE_BY_ULTIM_IN_NON_ADDEN' );
         let graphArg = {
             //drawDecimalX : false,
             printAxisXDigits : ADDENDUM,
@@ -33,7 +34,13 @@
         //for SHOW_FORMULAS
         let toshow = [];
         let toshowNorm = [];
-
+        const fsignum =
+              stdMod.graphFW_lemma.fw.content.pix2values.forceSign =
+              Math.sign(ga[0].y[0]);
+        //central angle =
+        let qQP = rg.Q.q - rg.P.q;
+        //no need for this:
+        //let calcs_fQR = stdMod.calcs_fQR;
         for( ix = 0; ix<glen; ix++ ) {
             let gaix = ga[ix];
             var ssagitta = ssD.ssigned[ix];
@@ -51,9 +58,6 @@
             sconf.SHOW_FORMULAS.forEach( (f,fix) => {
                 toshowVal[fix] = f.fun( cP );
             });
-
-            //central angle =
-            let qQP = rg.Q.q - rg.P.q;
             //VP at tangent angle - QP at tangent angle =
             let qQL = cP.angleRV-qQP*0.5;
             //todm: force sign can be assigned from QR?
@@ -71,16 +75,17 @@
             var forceAbs = 1/(r2*PV*PV*PV);
             var estimatedForceAbs = 1/(r2*RL*PV*PV);
 
-            var fsignum = Math.sign(gaix.y[0]);
             if( ADDENDUM ) {
                 force = forceAbs * fsignum;
                 estimatedForce = estimatedForceAbs * fsignum;
             } else {
-                //this is inaccurate: but this is project requirement:
+                //this is not very inaccurate: but
+                //this is management requirement:
                 var estimatedForceAbs = 1/(r2*RL*RL*RL);
 
                 var force = forceAbs;
                 var estimatedForce = estimatedForceAbs;
+                ssagitta = sagittaAbs;
             }
 
             if( ix === 0 || sagittaMax < sagittaAbs ) {
@@ -119,10 +124,13 @@
             if( ix === 0 || xMax < graphX ) {
                 xMax = graphX;
             }
+
+            //: already absolutified for non ADDENDUM:
             gaix.y[0] = force;
             gaix.y[1] = estimatedForce;
             gaix.y[2] = 1; //body
             gaix.y[3] = ssagitta;
+
             sconf.SHOW_FORMULAS.forEach( (f,fix) => {
                 gaix.y[4+fix] = fsignum * toshowVal[fix];
             });
@@ -164,7 +172,7 @@
             gaix.y[0] /= forceNorm;
             gaix.y[1] /= estimatedNorm;
             gaix.y[2] /= 1; //non-important, will be skipped,
-            gaix.y[3] /= sagittaNorm;
+            gaix.y[3] /= Math.abs(sagittaNorm);
             sconf.SHOW_FORMULAS.forEach( (f,fix) => {
                 gaix.y[4+fix] /= toshowNorm[fix];
             });
@@ -180,6 +188,8 @@
             graphArg.yMax = -0.5;
             graphArg.yMin = -10; //for partial y range,
         }
+        graphArg.mask = [];
+        graphArg.mask[3] = ADDENDUM;
         stdMod.graphFW_lemma.wraps_draw_graph(graphArg);
     }
 })();

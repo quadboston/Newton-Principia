@@ -1,6 +1,6 @@
 ( function() {
     var {
-        $$,
+        $$, has,
         amode, sDomN, sDomF, ssF,
         stdMod, rg, toreg,
     } = window.b$l.apptree({
@@ -16,18 +16,10 @@
     var tableCaptionFun;
     return;
 
-
-
-
-
-
-
-
-
+    
     ///this function is called from common-application-library,
     ///from full-app/dom/...
-    function create_digital_legend()
-    {
+    function create_digital_legend (){
         var mlegend = toreg( 'main-legend' )();
         doCreateTables( mlegend );
     }
@@ -37,8 +29,7 @@
     //      at this lemma, it is called from
     //      slider;
     //=========================================
-    function upcreate_mainLegend()
-    {
+    function upcreate_mainLegend(){
         tableCaptionFun();
 
         //c cc( 'does upcreate_mainLegend' );
@@ -58,7 +49,7 @@
             ww.impulse.innerHTML = fabs.toFixed(3);
             //ww.fx.innerHTML = fx.toFixed(3);
             //ww.fy.innerHTML = fy.toFixed(3);
-            */            
+            */
         }
         var speed = rg.speeds.pos[stepIx-1];
         if( speed ) {
@@ -118,8 +109,8 @@
             .addClass('proof row1')
             .addClass('tostroke')
             .to(tb)();
-            
-        //apparently caption meaning has no importance    
+
+        //apparently caption meaning has no importance
         makeFormatterCell( row, 'xxxxxxxxxxxx', '111', 'firstx' );
         makeFormatterCell( row, 'xxxxxxxxxxxx', '111', 'second' );
         makeFormatterCell( row, 'xxxxxxxxxxxx', '111', 'thirdx' );
@@ -154,7 +145,7 @@
         // //\\ table caption
         //===================
         //prepares force parameters
-        var forceColor = sDomF.getFixedColor( 'force' );
+        var forceColor = sDomF.tpname0arr_2_rgba( 'force' );
         //tableCaptionFun = function( isAddendum ) {
         tableCaptionFun = function() {
             var arr = rg.force.inarray;
@@ -213,8 +204,8 @@
         // \\// time
         //==========================
 
-        
-        
+
+
         //=====================================
         // //\\ alternative row
         //=====================================
@@ -243,7 +234,7 @@
         //=====================================
         // \\// alternative row
         //=====================================
-        
+
         /*
         var row = $$.c('tr')
             .addClass('tostroke')
@@ -264,7 +255,7 @@
             .to(tb)();
         makeCl( row, 'speed', 'velocity', null, null,
                 !!'alignCaptionToRight', 'proof' );
-        
+
         //perhaps good for model
         /*
         makeCl( row, 'vx', null, null, null, !!'alignCaptionToRight', 'proof' );
@@ -323,14 +314,14 @@
     //
     //=========================================
     ///Makes:  magnitude's cluster in table,
-    ///Effect: represents magnitude in html-table-row in 
+    ///Effect: represents magnitude in html-table-row in
     ///        form "mname = mvalue",
     ///Input:  mname = magnitude name, just an ID of a cell and
     ///        tip for the css-class
     function makeClBoth( row, mname, mcaption, spanIx, spanVal,
                          alignCaptionToRight, table_logic_phase, noEqualSign )
     {
-        var cssName = sDomF.topicIdUpperCase_2_underscore( mname );
+        var cssName = sDomF.tpid2low( mname );
 
         if( mcaption !== ']no caption[' ) {
             var c$ = $$.c('td')

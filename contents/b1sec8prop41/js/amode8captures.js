@@ -85,7 +85,7 @@
                 nspaste( cp.rgX.pos, ini[ix].rgX.pos );
             });
             //sets and paints initial orbit
-            stdMod.pointsArr_2_singleDividedDifferences(
+            stdMod.Pivots_2_divdifFW(
                 false, 'force', false, false, 'swap' );
         }
         var op        = sconf.orbitParameters;
