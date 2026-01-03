@@ -1,6 +1,5 @@
-
-( function() {
-    var {
+(function(){
+    const {
         ns, sn, nspaste, has, haz, haff, eachprop,
         sapp, fapp, sconf, fconf, arios, ssF, sDomF, sDomN, ssD, exegs,
         stdMod, amode, rg,
@@ -8,9 +7,6 @@
         setModule
     });
     return;
-
-
-
 
 
     ///************************************************
@@ -36,8 +32,6 @@
     ///=========================================================
     function init_sapp()
     {
-        //console.log('init_sapp');
-
         //======================================================
         // //\\ definitions
         //======================================================
@@ -104,7 +98,7 @@
 
         ssF.in_subessay_launch____amode2lemma();
         haff( stdMod, 'sliders_value2pos' );
-
+        stdMod.media_upcreate(); //todm apparently needed for
         !sconf.skipGenDragList && sDomF.createsFW__8__executes_dragWr_gens_list();
 
         //=======================================================

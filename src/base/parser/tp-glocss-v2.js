@@ -1,6 +1,6 @@
 ( function() {
     var {
-        cssp, eachprop, globalCss, sconf, topics, fixedColors
+        cssp, eachprop, globalCss, sconf, topics, topicColors_repo
     } = window.b$l.apptree({
         ssFExportList : {
             v2_tplinks_2_highlightCss,
@@ -92,7 +92,7 @@ ${Rix} .tp-${low_tpID}.tobold,
 ${Rix} svg text.tp-${low_tpID},
 ${Rix} svg tspan.tp-${low_tpID},
 ${Rix} span.tp-${low_tpID} {
-    background-color : rgb(${fixedColors.highlight}); /* highlight instead of bold */
+    background-color : rgb(${topicColors_repo.highlight}); /* highlight instead of bold */
 }
                     `;
                         ///todm: very crude and wordy stroke width control

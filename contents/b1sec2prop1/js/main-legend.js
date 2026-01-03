@@ -1,6 +1,6 @@
 ( function() {
     var {
-        $$, sDomF, stdMod, rg, toreg,
+        $$, has, sDomF, stdMod, rg, toreg,
     } = window.b$l.apptree({
         stdModExportList : {
             upcreate_mainLegend,
@@ -17,6 +17,7 @@
     ///from full-app/dom/...
     function create_digital_legend()
     {
+        ccc( '+++ does create_digital_legend' );
         var mlegend = toreg( 'main-legend' )();
         doCreateTables( mlegend );
     }
@@ -27,7 +28,6 @@
     //      slider;
     //=========================================
     function upcreate_mainLegend (){
-       //console.log( 'upcreate_mainLegend' );
         var ww = clustersToUpdate;
         var wwc = clustersToUpdate_corollary;
         ww.step.innerHTML = rg.displayPathStep.value + '';

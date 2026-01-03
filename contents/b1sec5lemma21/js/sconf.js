@@ -1,5 +1,5 @@
 ( function() {
-    var { eachprop, mat, fapp, fconf, sconf, fixedColors, } = 
+    var { eachprop, mat, fapp, fconf, sconf, topicColors_repo, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -77,10 +77,10 @@
             aux,
             constructors,
             ellipse,
-        } = fixedColors;
+        } = topicColors_repo;
 
 
-        const predefinedTopics =
+        const topicColors_elected =
         {
             static,
             "static-half"       : staticHalfOpacity,
@@ -97,7 +97,7 @@
             "angle-alpha-core"  : coreHalfOpacity,
             "angle-beta-core"   : coreHalfOpacity,
         };
-        const pt = predefinedTopics;
+        const pt = topicColors_elected;
         
 
         var pointsOnPicture =
@@ -512,7 +512,7 @@
         //----------------------------------------------------
         fapp.normalizeSliders( pictureHeight / 500 ); //todo not automated, prolifer.
         Object.assign( to_sconf, {
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             mediaBgImage : "diagram.png",

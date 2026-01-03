@@ -1,11 +1,9 @@
-( function() {
-    var {
+(function(){
+    const {
         ns, sn, $$, eachprop, nspaste, has, haz, hafff, fmethods,
-        toreg, sconf, ssF, ssD, sDomF, rg, exegs,
+        toreg, fconf, sconf, ssF, ssD, sDomF, rg, exegs,
         amode, stdMod,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
+    } = window.b$l.apptree({ stdModExportList : {
             media_upcreate___before_basic,
             media_upcreate___after_basic,
         },
@@ -13,14 +11,13 @@
     var initialization_is_done = false;
     //enables steps BC, CD, ... by clicks on B, C, ...
     var POINTS_BCDE_ARE_ACTIVE = false;
-    var lemmaP2coroll =
+    const lemmaP2coroll =
         ('Caracc Paracc Varacc CCaracc SCaracc BCaracc BParacc' +
          ' CParacc VVaracc BVaracc CaraccParacc SBCaracc cCaracc').split(' ');
     return;
 
 
     function media_upcreate___before_basic (){
-        //console.log('P1 media_upcreate');
         //reestablishes detecton to hide/unhide image for case the state
         //rg.detected_user_interaction_effect_DONE came from subessay launch
         sDomF.detected_user_interaction_effect(
@@ -29,19 +26,12 @@
         rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
 
         //***********************************************************
-        //wraps remained tasks into d8d slider
-        //if slider is already created ...
-        //needs svgs ? fails
-        //hafff( rg.slider_sltime, 'upates_timeSlider8unmasksSvgDom' );
-
         //todo //patch
         sn( 'displayPathStep', rg, { value : 1 } );
         sn( 'stepIx', rg, { value : 1 } );
         sn( 'p', rg.P, { abs : 1 } );
         //***********************************************************
-    //}
 
-    //function media_upcreate___after_basic (){
         if( sconf.TIMER_AND_LOGIC_STEPS_COINSIDE ||
             ( haz( amode, 'logic_phase') === 'proof' &&
               fconf.sappId === "b1sec2prop1"
@@ -112,36 +102,8 @@
         //-------------------------------------------------------
         //no svg, only logic:
         pathDelays2forceDraggers();
-
-        //:updates subessay menu
-        //var exAspect = exegs[ amode.logic_phase ][ amode.aspect ];
-        //var subexeg = exAspect.subessay2subexeg[ amode.subessay ];
-        //css and reveals subessay in menu and in text
-        //no paints and no svg
-        //sDomF.addsChosenCSSCls_to_subessay8menuSubitem({ exAspect, subexeg })
-
-        //todm ... generalize in one spot
-        //ssF.toogle_detectablilitySliderPoints4Tools();
-
-        ///why apparently duplicate tr 2 shapes?
-        ///because this thing does historical job, it updates core svg shapes
-        ///along the path; but while program progressed, new decorations
-        ///came up which need their own work,
-        ///todo may confilict with lemma core shapes svg,
         stdMod.allPathRacks_2_unseenSVGs();
         stdMod.SAvV_model__2__svg(); //changes svg
-
-        /*
-        //these are the new generation decorational svg objects
-        //does not repeat creation ...A.svgel, ...
-        //they may corrupt svg-zorder-for-dragging-handle-points
-        //if used non-properly, f.e. create and dress svg first,
-        eachprop( stdMod.decor, (dec,pname) => {
-            if( !dec.isPoint && dec.pivotNames.length !== 2 ) {
-                dec.poly_2_updatedPolyPos8undisplay();
-            }
-        });
-        */
         
         //***********************************************************
         //wraps remained tasks into d8d slider
@@ -280,11 +242,5 @@
                 dec.poly_2_updatedPolyPos8undisplay();
             }
         });
-        //***********************************************************
-        //wraps remained tasks into d8d slider
-        //if slider is already created ...
-        //hafff( rg.slider_sltime, 'upates_timeSlider8unmasksSvgDom' );
-        //hafff( rg.rgslid_dt, 'updates_sliderGUI' );
-        //***********************************************************
     }
 })();

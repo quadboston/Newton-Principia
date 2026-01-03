@@ -1,5 +1,5 @@
 ( function() {
-    var { sconf, nspaste, capture, toreg, ssF, ssD, sDomF, fixedColors, } =
+    var { sconf, nspaste, capture, toreg, ssF, ssD, sDomF, topicColors_repo, } =
         window.b$l.apptree({});
     ssF.init_conf_addon = init_conf_addon;
     ssD.P2_P2_electedTopicColors = P2_electedTopicColors;
@@ -24,7 +24,7 @@
             Object.keys( P2_electedTopicColors() ).forEach( topicKey => {
                 toreg( topicKey )( 'pname', topicKey );
                 var tk = sDomF.tpid2low( topicKey );
-                fixedColors[ tk ] = pt[ topicKey ];
+                topicColors_repo[ tk ] = pt[ topicKey ];
             });
             */
          }
@@ -135,7 +135,7 @@
 
             diagram,
             areaDescriptionAccelerated,
-        } = fixedColors;
+        } = topicColors_repo;
 
 
         return {

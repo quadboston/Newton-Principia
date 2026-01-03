@@ -2,7 +2,7 @@
     const {
         sn, haff, has, eachprop, nspaste, capture, toreg,
         stdMod, fconf, sconf, ssF, ssD, sDomF,
-        fixedColors, fixedColorsOriginal, originalPoints,
+        topicColors_repo, topicColors_repo_camel2col, originalPoints,
     } = window.b$l.apptree({ ssFExportList : { init_conf } });
     const linesArray = sn( 'linesArray', sconf, [] );
     return;

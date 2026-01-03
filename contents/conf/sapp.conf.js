@@ -1,6 +1,6 @@
 // //\\// file where to set plugin main configuration
 ( function() {
-    var { fapp, sconf, userOptions, fixedColors, } =
+    var { fapp, sconf, userOptions, topicColors_repo, } =
         window.b$l.apptree({});
 
     fapp.doesConfigLemma = doesConfigLemma;
@@ -39,7 +39,7 @@
 
         //=======================================
         // //\\ topicGroupColors
-        //      historically named as fixedColors
+        //      historically named as topicColors_repo
         //=======================================
 
         //The colors have been moved from each model to this file so they can be standardized.  Note
@@ -89,135 +89,135 @@
         //-Many more similar color variables could likely be combined together.
 
         // background color used to highlight text and table rows on hover
-        fixedColors.highlight = rgbToArray("rgb(234, 234, 234)");
+        topicColors_repo.highlight = rgbToArray("rgb(234, 234, 234)");
 
         //usually as a condition of a claim,
         //condition of the theorem,
         //given parameters of the claim or proof
-        fixedColors.given       = rgbToArray("rgb(0, 113, 0)");
-        fixedColors.givenArea   = [...fixedColors.given, 1];
-        fixedColors.givenOnlyVisibleWhenHighlighted
-            = [...fixedColors.given, 0, 1],
+        topicColors_repo.given       = rgbToArray("rgb(0, 113, 0)");
+        topicColors_repo.givenArea   = [...topicColors_repo.given, 1];
+        topicColors_repo.givenOnlyVisibleWhenHighlighted
+            = [...topicColors_repo.given, 0, 1],
 
         //relates to moving body, to an orbit
-        fixedColors.body    = rgbToArray("rgb(0, 150, 0)");
-        fixedColors.orbit   = fixedColors.body;
+        topicColors_repo.body    = rgbToArray("rgb(0, 150, 0)");
+        topicColors_repo.orbit   = topicColors_repo.body;
 
-        fixedColors.orbitareaSample         = [0, 150, 0,  0.05]; //P12
-        fixedColors.orbitarea               = [0, 150, 0,  0.1, 0.5]; //P14 (in P12 sconf)
-        fixedColors.orbitareaHiddenStart    = [0, 150, 0,  0.001, 0.5]; //P12
-        fixedColors.instanttriangle         = [0, 150, 200, 0.2, 0.5 ]; //P14 (in P12 sconf)
-        fixedColors.instanttriangleHiddenStart  = [0, 150, 200, 0.001, 0.5 ] //P12
+        topicColors_repo.orbitareaSample         = [0, 150, 0,  0.05]; //P12
+        topicColors_repo.orbitarea               = [0, 150, 0,  0.1, 0.5]; //P14 (in P12 sconf)
+        topicColors_repo.orbitareaHiddenStart    = [0, 150, 0,  0.001, 0.5]; //P12
+        topicColors_repo.instanttriangle         = [0, 150, 200, 0.2, 0.5 ]; //P14 (in P12 sconf)
+        topicColors_repo.instanttriangleHiddenStart  = [0, 150, 200, 0.001, 0.5 ] //P12
 
-        fixedColors.time      = rgbToArray("rgb(0, 150, 200)");
-        fixedColors.dtime     = fixedColors.time;
-        fixedColors.distance  = rgbToArray("rgb(60, 20, 0)");
+        topicColors_repo.time      = rgbToArray("rgb(0, 150, 200)");
+        topicColors_repo.dtime     = topicColors_repo.time;
+        topicColors_repo.distance  = rgbToArray("rgb(60, 20, 0)");
 
         //logical steps of the proof, auxilary constructs
         //of a proof
-        fixedColors.proof       = rgbToArray("rgb(0, 0, 255)");
-        fixedColors.proofArea   = [...fixedColors.proof, 1];
-        fixedColors.result      = rgbToArray("rgb(100, 0, 0)");
-        fixedColors.resultOnlyVisibleWhenHighlighted
-            = [...fixedColors.result, 0, 1];
+        topicColors_repo.proof       = rgbToArray("rgb(0, 0, 255)");
+        topicColors_repo.proofArea   = [...topicColors_repo.proof, 1];
+        topicColors_repo.result      = rgbToArray("rgb(100, 0, 0)");
+        topicColors_repo.resultOnlyVisibleWhenHighlighted
+            = [...topicColors_repo.result, 0, 1];
 
         //alert, invalid user actions
-        fixedColors.invalid = rgbToArray("rgb(250, 0, 0)");
+        topicColors_repo.invalid = rgbToArray("rgb(250, 0, 0)");
         //force, energy
-        fixedColors.force   = rgbToArray("rgb(200, 150, 0)");
+        topicColors_repo.force   = rgbToArray("rgb(200, 150, 0)");
         //conclusion of the proof
 
-        fixedColors.forceMove       = fixedColors.force;
-        fixedColors.speed           = rgbToArray("rgb(90, 90, 90)");
+        topicColors_repo.forceMove       = topicColors_repo.force;
+        topicColors_repo.speed           = rgbToArray("rgb(90, 90, 90)");
 
         //neutral elements
-        fixedColors.shadow  = rgbToArray("rgb(50, 50, 50)");
-        fixedColors.hidden  = [0, 0, 0, 0];
+        topicColors_repo.shadow  = rgbToArray("rgb(50, 50, 50)");
+        topicColors_repo.hidden  = [0, 0, 0, 0];
 
 
-        fixedColors.context = rgbToArray("rgb(0, 0, 0)");
+        topicColors_repo.context = rgbToArray("rgb(0, 0, 0)");
 
-        fixedColors.estimatedForce  = rgbToArray("rgb(200, 0, 200)");
-        fixedColors.sagitta         = fixedColors.estimatedForce;
-        fixedColors.displacement    = fixedColors.estimatedForce;
-        fixedColors.curvature       = rgbToArray("rgb(200, 40, 200)");
-        fixedColors.chord           = rgbToArray("rgb(0, 0, 255)");
-        fixedColors.attention       = rgbToArray("rgb(200, 200, 0)");
+        topicColors_repo.estimatedForce  = rgbToArray("rgb(200, 0, 200)");
+        topicColors_repo.sagitta         = topicColors_repo.estimatedForce;
+        topicColors_repo.displacement    = topicColors_repo.estimatedForce;
+        topicColors_repo.curvature       = rgbToArray("rgb(200, 40, 200)");
+        topicColors_repo.chord           = rgbToArray("rgb(0, 0, 255)");
+        topicColors_repo.attention       = rgbToArray("rgb(200, 200, 0)");
 
 
 
         //From L20, L21
-        fixedColors.static              = rgbToArray("rgb(0, 200, 255)");
-        fixedColors.staticHalfOpacity   = [0, 200, 255, 0.5];
-        fixedColors.core                = rgbToArray("rgb(255, 150, 0)");
-        fixedColors.coreHalfOpacity     = [255, 150, 0, 0.5];
-        fixedColors.aux                 = rgbToArray("rgb(255, 0, 255)");
-        fixedColors.constructors        = rgbToArray("rgb(0, 0, 255)");
-        fixedColors.ellipse             = rgbToArray("rgb(0, 150, 0)");
+        topicColors_repo.static              = rgbToArray("rgb(0, 200, 255)");
+        topicColors_repo.staticHalfOpacity   = [0, 200, 255, 0.5];
+        topicColors_repo.core                = rgbToArray("rgb(255, 150, 0)");
+        topicColors_repo.coreHalfOpacity     = [255, 150, 0, 0.5];
+        topicColors_repo.aux                 = rgbToArray("rgb(255, 0, 255)");
+        topicColors_repo.constructors        = rgbToArray("rgb(0, 0, 255)");
+        topicColors_repo.ellipse             = rgbToArray("rgb(0, 150, 0)");
 
 
 
         //From L2, L3, L4
-        fixedColors.difference  = [150, 50, 0, 0, 0.64];
-        fixedColors.figure      = rgbToArray("rgb(0, 150, 0)");
+        topicColors_repo.difference  = [150, 50, 0, 0, 0.64];
+        topicColors_repo.figure      = rgbToArray("rgb(0, 150, 0)");
 
-        fixedColors["figure-area"]              = [0, 150, 0, 0.32, 0.64],
-        fixedColors["figure-area-txt"]          = [0, 150, 0, 0.7, 1],
+        topicColors_repo["figure-area"]              = [0, 150, 0, 0.32, 0.64],
+        topicColors_repo["figure-area-txt"]          = [0, 150, 0, 0.7, 1],
 
-        fixedColors["circumscribed-rectangles"] = [0, 80, 150, 0.32, 0.64],
-        fixedColors["circ-txt"]                 = [0, 80, 150, 0.7, 1],
+        topicColors_repo["circumscribed-rectangles"] = [0, 80, 150, 0.32, 0.64],
+        topicColors_repo["circ-txt"]                 = [0, 80, 150, 0.7, 1],
 
-        fixedColors["inscribed-rectangles"]     = [150, 0, 150, 0.32, 0.64],
-        fixedColors["insc-txt"]                 = [150, 0, 150, 0.7, 1],
+        topicColors_repo["inscribed-rectangles"]     = [150, 0, 150, 0.32, 0.64],
+        topicColors_repo["insc-txt"]                 = [150, 0, 150, 0.7, 1],
 
-        fixedColors.widths                      = [150, 0, 150, 0, 0.64],
+        topicColors_repo.widths                      = [150, 0, 150, 0, 0.64],
 
-        fixedColors.widestRectangular           = [0, 0, 150, 0.28, 0.49],
-        fixedColors.widestRectangularHiddenStart= [0, 0, 150, 0.0, 0.49],
-        fixedColors["widt-txt"]                 = [0, 0, 150, 0.7, 1],
+        topicColors_repo.widestRectangular           = [0, 0, 150, 0.28, 0.49],
+        topicColors_repo.widestRectangularHiddenStart= [0, 0, 150, 0.0, 0.49],
+        topicColors_repo["widt-txt"]                 = [0, 0, 150, 0.7, 1],
 
 
 
         //P1 (Shared with P2)
-        fixedColors.freeMove        = rgbToArray("rgb(0, 150, 0)");
-        fixedColors.diagram         = rgbToArray("rgb(150, 0, 90)");
-        fixedColors.path            = rgbToArray("rgb(0, 0, 150)");
-        fixedColors.sagittaeChords  = fixedColors.sagitta;
+        topicColors_repo.freeMove        = rgbToArray("rgb(0, 150, 0)");
+        topicColors_repo.diagram         = rgbToArray("rgb(150, 0, 90)");
+        topicColors_repo.path            = rgbToArray("rgb(0, 0, 150)");
+        topicColors_repo.sagittaeChords  = topicColors_repo.sagitta;
 
-        fixedColors.trianglePurpleTextAreaColor = fixedColors.path;
-        fixedColors["kepler-triangle-odd"]  = [102, 102, 255, 0.35, 0.7],
-        fixedColors["kepler-triangle-even"] = [153, 153, 255, 0.35, 0.7],
-        fixedColors.triangleGreen           = [0, 150, 0, 0.25, 0.64];
+        topicColors_repo.trianglePurpleTextAreaColor = topicColors_repo.path;
+        topicColors_repo["kepler-triangle-odd"]  = [102, 102, 255, 0.35, 0.7],
+        topicColors_repo["kepler-triangle-even"] = [153, 153, 255, 0.35, 0.7],
+        topicColors_repo.triangleGreen           = [0, 150, 0, 0.25, 0.64];
 
-        fixedColors.perpendicular   = [150, 80, 0];
-        fixedColors.tangent         = [0, 150, 0];
+        topicColors_repo.perpendicular   = [150, 80, 0];
+        topicColors_repo.tangent         = [0, 150, 0];
 
         //P2
-        fixedColors.areaDescriptionAccelerated = rgbToArray("rgb(120, 90, 82)", 1); //Description of areas triangle P2 proof tab
+        topicColors_repo.areaDescriptionAccelerated = rgbToArray("rgb(120, 90, 82)", 1); //Description of areas triangle P2 proof tab
 
 
 
         //P41
         //Note that Fi for P12 is shadow (see its sconf.js ~line 635)
-        fixedColors.fi      = [0, 0, 150, 0.1, 0.3];
-        fixedColors.Fkernel = [0, 0, 150];
+        topicColors_repo.fi      = [0, 0, 150, 0.1, 0.3];
+        topicColors_repo.Fkernel = [0, 0, 150];
 
-        fixedColors.bodyHiddenStart         = [...fixedColors.body.slice(0,3), 0.01, 1];
-        fixedColors.forceTransparentStart   = [...fixedColors.force.slice(0,3), 0.1, 1];
-        fixedColors.VSarea                  = [...fixedColors.force.slice(0,3), 0.3, 0.7];
-        fixedColors.timeHiddenStart         = [...fixedColors.time.slice(0,3), 0.01, 0.7];
+        topicColors_repo.bodyHiddenStart         = [...topicColors_repo.body.slice(0,3), 0.01, 1];
+        topicColors_repo.forceTransparentStart   = [...topicColors_repo.force.slice(0,3), 0.1, 1];
+        topicColors_repo.VSarea                  = [...topicColors_repo.force.slice(0,3), 0.3, 0.7];
+        topicColors_repo.timeHiddenStart         = [...topicColors_repo.time.slice(0,3), 0.01, 0.7];
 
         //Is vgpoint still needed?  Seems to be after "Drop point, A" in Elements under developer tools
         //however may not be visible.
-        fixedColors.vgpoint = [0, 150, 0, 0.01, 1]; //todm: last two pars have no effect
+        topicColors_repo.vgpoint = [0, 150, 0, 0.01, 1]; //todm: last two pars have no effect
 
-        fixedColors.XCY     = [0, 0, 150, 0.03, 0.5];
+        topicColors_repo.XCY     = [0, 0, 150, 0.03, 0.5];
 
-        fixedColors.D𝑐𝑥E    = [0, 0, 150, 0.01, 0.5];
+        topicColors_repo.D𝑐𝑥E    = [0, 0, 150, 0.01, 0.5];
 
-        fixedColors.D𝑏𝑧E    = [110, 90, 0, 0.01, 0.5];
-        fixedColors.VIC     = [110, 90, 0, 0.01, 0.5];
-        fixedColors.ICK     = [110, 90, 0, 0.01, 0.5];
+        topicColors_repo.D𝑏𝑧E    = [110, 90, 0, 0.01, 0.5];
+        topicColors_repo.VIC     = [110, 90, 0, 0.01, 0.5];
+        topicColors_repo.ICK     = [110, 90, 0, 0.01, 0.5];
 
         //=======================================
         // \\// topicGroupColors
@@ -250,7 +250,7 @@
             //---------------------------------------------------
             //affects only ssF.lowtpid__2__glocss8anchorRack and  ssF.colorArray_2_rgba
             //does not affect text anchor colors, but does affect both model and table together
-            TP_OPACITY_LOW : 0.5, // applied to 'predefinedTopics' in page's sconf.js
+            TP_OPACITY_LOW : 0.5, // applied to 'topicColors_elected' in page's sconf.js
             //0.6-makes opacity points do look "non-solid"
             TP_OPACITY_LOW_POINT : 1, // applied to 'originalPoints' and 'linesArray' in page's sconf.js
 
@@ -284,7 +284,7 @@
             //---------------------------------------------------------------
             ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS : 0.8,
             ANCHOR_TOPIC__OPACITY_IN_FOCUS : 1.0,
-            ITEM_BASE_COLOR_TO_ANCHOR : false, //for anchor-text, sets fixed-color opacity to 1
+            ITEM_BASE_COLOR_TO_ANCHOR : false, //for anchor-text, sets tpcolarr opacity to 1
             //---------------------------------------------------------------
             // \\// anchor control
             //---------------------------------------------------------------

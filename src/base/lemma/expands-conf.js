@@ -1,7 +1,7 @@
 (function(){
     const {
         sn, haz, has, eachprop, own, nsmethods, nspaste,
-        fconf, sconf, ssF, sDomF, fixedColors, fixedColorsOriginal,
+        rg, fconf, sconf, ssF, sDomF, topicColors_repo, topicColors_repo_camel2col,
         toreg, stdMod,
     } = window.b$l.apptree({ ssFExportList : { doExpandConfig } });
     var LETTER_ROTATION_RADIUS_PER_1000 = 30;
@@ -17,7 +17,7 @@
     function doExpandConfig (){
         ccc( 'doExpandConfig' );
         var {
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             lines,
             linesArray,
@@ -56,7 +56,6 @@
         //-----------------------------------------------------------
         // \\// transition from poor name in legacy code
         //-----------------------------------------------------------
-
 
         originX_onPicture = typeof modorInPicX === 'undefined' ?
                             originX_onPicture : modorInPicX;
@@ -97,9 +96,9 @@
         var inn2mod_scale = 1/mod2inn_scale;
 
 
-        ///pulls point's color from predefinedTopics if missed
+        ///pulls point's color from topicColors_elected if missed
         eachprop( originalPoints, (point,pname) => {
-            point.pcolor = haz( point, 'pcolor' ) || predefinedTopics[ pname ];
+            point.pcolor = haz( point, 'pcolor' ) || topicColors_elected[ pname ];
         });
 
         ///it is vital to set these pars now ...
@@ -143,20 +142,20 @@
         (function() {
             ///--------------------------------------------------
             ///expands predefinedTopic colors into rg,
-            ///fixedColors, and fixedColorsOriginal,
+            ///topicColors_repo, and topicColors_repo_camel2col,
             ///and adds flags (why?)
             ///--------------------------------------------------
-            Object.keys( predefinedTopics ).forEach( topicKey => {
+            Object.keys( topicColors_elected ).forEach( topicKey => {
                 toreg( topicKey )( 'pname', topicKey );
                 var tk = sDomF.tpid2low( topicKey );
 
                 //this adds colors generated in specific lemma and
                 //bases them on the lowkey:
-                let fc = fixedColors[ tk ] = predefinedTopics[ topicKey ];
+                let fc = topicColors_repo[ tk ] = topicColors_elected[ topicKey ];
 
-                //this does the same completion as for fixedColors, but
+                //this does the same completion as for topicColors_repo, but
                 //based on camel key:
-                fixedColorsOriginal[ topicKey ] = fc;
+                topicColors_repo_camel2col[ topicKey ] = fc;
             });
 
             //--------------------------------------------------
@@ -203,10 +202,31 @@
                     lines[ lname ] = lineConf[ lname ];
                 });
             }
+
             ///apparently non-unified with shapes-points, points have more properties
             eachprop( lines, ( gshape, pname ) => {
-                var rgX = toreg( pname )( 'pname', pname )();
+                let rgX = sn( pname, rg );
+                rgX.pname = pname;
                 rgX.tostroke = true;
+                rgX.isPoint = false;
+                rgX.isLine = true;
+                [
+                    //'cssClass', //converts later below
+                    //'pcolor',   //converts later below
+                    //'fontSize', //converts later
+                    'caption',
+                    'captionShiftNorm',
+                    'undisplay',
+                    'zOrderAfter',  
+                    'notp',
+                    'vectorTipIx',
+                    'tipFraction',
+                    'tipFill',
+                    'pivotNames',
+                ].forEach( propname => {
+                    has(gshape,propname) && (rgX[propname] = gshape[propname]);
+                })
+                
                 //todm: mess: lines array elements attributes go into
                 //line-maker in lemma-linerars-machine lineAttr
                 //, but this is done via "str2line" which ignores "everything" except
@@ -216,36 +236,17 @@
                 if( has( gshape, 'pcolor' ) ) {
                     var tk = sDomF.tpid2low( pname );
                     //concat() separates generic color-arrays from
-                    //specific shapes permitting them own flags isPoint, etc.
-                    let fc = fixedColors[ tk ] = gshape.pcolor.concat();
-                    fixedColorsOriginal[ pname ] = fc;
+                    let fc = topicColors_repo[ tk ] = gshape.pcolor.concat();
+                    topicColors_repo_camel2col[ pname ] = fc;
                     rgX.pcolor = sDomF.tpname0arr_2_rgba( gshape.pcolor );
                     rgX.opaqueColor = sDomF.tpname0arr_2_rgba(
                                       gshape.pcolor, !!'makeOpacity1' );
                 } else {
                     rgX.pcolor = sDomF.tpname0arr_2_rgba( pname );
-                    rgX.opaqueColor = sDomF.tpname0arr_2_rgba( pname, !!'makeOpacity1' );
+                    rgX.opaqueColor = sDomF.tpname0arr_2_rgba( pname,
+                                      !!'makeOpacity1' );
                 }
 
-                ///todm: this code is extremely non-automated:
-                if( has( gshape, 'captionShiftNorm' ) ) {
-                    rgX.captionShiftNorm = gshape.captionShiftNorm;
-                }
-
-                //---------------------------------------------------------
-                // //\\ transfers properties from line-options to rg-lines:
-                //      todo ... we stumbled upon this 100 times ...
-                //               property transfer must automate ...
-                //               every time we forget to transfer new
-                //               property, we lose hours ...
-                //---------------------------------------------------------
-                if( has( gshape, 'undisplay' ) ) {
-                    rgX.undisplay = gshape.undisplay;
-                }
-
-                //meaningful for lines yet
-                rgX.zOrderAfter = haz( gshape, 'zOrderAfter' );
-                rgX.notp        = haz( gshape, 'notp' );
                 let gclass = haz( gshape, 'cssClass' );
                 if( gclass ){
                     if( gclass.indexOf( '--' )>0 ){
@@ -255,15 +256,8 @@
                     }
                 }
                 rgX.cssClass = gclass;
-
-                if( has( gshape, 'vectorTipIx' ) ) {
-                    rgX.vectorTipIx = gshape.vectorTipIx;
-                }
-
                 rgX.fontSize    = estimatesSizeScale * ( has( gshape, 'fontSize' ) ?
                                   gshape.fontSize : fconf.LETTER_FONT_SIZE_PER_1000 );
-                
-                
                 //---------------------------------------------------------
                 // \\// transfers properties from line-options to rg-lines:
                 //---------------------------------------------------------
@@ -273,7 +267,6 @@
             //----------------------------------
             return;
 
-            ///expands into rgX, ?proliferation?
             ///rg becomes normalized expansion of originalPoints
             function expandsOrPoint( op, pname ){
                 //todo ... non-readable: it tranfers properties from
@@ -312,10 +305,12 @@
                 }
                 ////sets or passes option conditionalDrag to point registry
                 rgX.conditionalDrag = haz( op, 'conditionalDrag' );
-
                 if( has( op, 'nospinner' ) ) {
                     //keeps dragging but hides spinning drag overlay
                     rgX.nospinner = op.nospinner;
+                }
+                if( has( op, 'DRAGGEE_HALF_SIZE' ) ) {
+                    rgX.DRAGGEE_HALF_SIZE = op.DRAGGEE_HALF_SIZE;
                 }
                 if( has( op, 'dragDecorColor' ) ) {
                     rgX.dragDecorColor = op.dragDecorColor;
@@ -339,12 +334,6 @@
                 if( has( op, 'noKernel' ) ) {
                     rgX.noKernel = op.noKernel;
                 }
-
-                /*
-                if( has( op, 'ignore_hideD8Dpoint_for_CSS' ) ) {
-                    rgX.ignore_hideD8Dpoint_for_CSS = op.ignore_hideD8Dpoint_for_CSS;
-                }
-                */
 
                 //todm why was it disabled?
                 //for d8d machinery overlay
@@ -391,17 +380,17 @@
                 }
                 // \\// todm: automate property transfer
 
-
                 if( has( op, 'pcolor' ) ) {
                     var tk = sDomF.tpid2low( pname );
-                    let fc = fixedColors[ tk ] = op.pcolor; //low
-                    fixedColorsOriginal[ pname ] = fc;       //camel
+                    let fc = topicColors_repo[ tk ] = op.pcolor; //low
+                    topicColors_repo_camel2col[ pname ] = fc;       //camel
                     rgX.pcolor = sDomF.tpname0arr_2_rgba( op.pcolor );
                     rgX.opaqueColor = sDomF.tpname0arr_2_rgba( op.pcolor,
                                       !!'makeOpacity1' );
                 } else {
                     rgX.pcolor = sDomF.tpname0arr_2_rgba( pname );
-                    rgX.opaqueColor = sDomF.tpname0arr_2_rgba( pname, !!'makeOpacity1' );
+                    rgX.opaqueColor = sDomF.tpname0arr_2_rgba( pname,
+                                      !!'makeOpacity1' );
                 }
                 rgX.undisplay = has( op, 'undisplay' ) ? op.undisplay : false;
 
@@ -424,7 +413,8 @@
                     rgX.letterOffsetX = letterShift[0];
                     rgX.letterOffsetY = letterShift[1];
                 } else {
-                    var letterAngle     = has( op, 'letterAngle' ) ? op.letterAngle : 0;
+                    var letterAngle     = has( op, 'letterAngle' ) ?
+                                          op.letterAngle : 0;
                     var rad             = letterAngle / 180 * Math.PI;
                     rgX.letterOffsetX   = letterOffset * Math.cos( rad ) -
                                           fontSize*LETTER_CENTER_X_PER_FONT_SIZE;

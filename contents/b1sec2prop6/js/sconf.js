@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, fconf, sconf, fixedColors,} = 
+    var { ns, fconf, sconf, topicColors_repo,} = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -172,10 +172,10 @@
             context,
             chord,
             displacement,
-        } = fixedColors;
+        } = topicColors_repo;
 
 
-        var predefinedTopics =
+        var topicColors_elected =
         {
             estimatedForce,
             given,
@@ -430,7 +430,7 @@
             TIME_STEPS,
 
             mediaBgImage : "diagram.png",
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             originX_onPicture,

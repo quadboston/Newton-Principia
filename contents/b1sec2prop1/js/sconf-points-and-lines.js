@@ -1,7 +1,7 @@
 (function(){
     const { sn, eachprop, mapp, nspaste, haz, has, haff,
             sconf, toreg, rg, ssF, ssD, sDomF, amode, stdMod,
-            fixedColors, fixedColorsOriginal, originalPoints,
+            topicColors_repo, topicColors_repo_camel2col, originalPoints,
     } = window.b$l.apptree({ stdModExportList : { sconf_points8lines, }, });
     const decor = sn( 'decor', stdMod );
     const LOGIC = false; //true; //makes logic steps c and C clearer;
@@ -31,7 +31,7 @@ function sconf_points8lines (){
 
         perpendicular,
         tangent,
-    } = fixedColors;
+    } = topicColors_repo;
     ///topic names elected
     
     var tpel = {
@@ -59,8 +59,8 @@ function sconf_points8lines (){
         "SEF"               : trianglePurpleTextAreaColor,
         "SAB"               : trianglePurpleTextAreaColor,
 
-        "kepler-triangle-odd"   : fixedColors["kepler-triangle-odd"],
-        "kepler-triangle-even"  : fixedColors["kepler-triangle-even"],
+        "kepler-triangle-odd"   : topicColors_repo["kepler-triangle-odd"],
+        "kepler-triangle-even"  : topicColors_repo["kepler-triangle-even"],
 
         "sagitta-chords"    : sagittaeChords,
 
@@ -272,14 +272,14 @@ function sconf_points8lines (){
 
         // //\\ c-col3
         h   : {     //Duplicate used by P1 Corollary 3 see
-                    //"sconf.js" predefinedTopics for more
+                    //"sconf.js" topicColors_elected for more
             caption : 'c',
             decStart : decor.C.decStart+1,
             decEnd : decor.F.decStart+4,
             cssClass : 'theor1corollary theor2proof',
         },
         g   : {     //Duplicate used by P1 Corollary 3 see
-                    //"sconf.js" predefinedTopics for more
+                    //"sconf.js" topicColors_elected for more
             caption : 'f',
             decStart : decor.F.decStart,
             decEnd : decor.F.decEnd,
@@ -494,17 +494,17 @@ function sconf_points8lines (){
         },
         { nam : ['B', 'h'], cssClass : 'theor1corollary theor2proof', },
         // Bh   Duplicate used by P1 Corollary 3 see "sconf.js"
-        //predefinedTopics for more
+        //topicColors_elected for more
   
         { nam : ['C', 'h'], cssClass : 'theor1corollary theor2proof', },
         // Ch   Duplicate used by P1 Corollary 3 see "sconf.js"
-        //predefinedTopics for more
+        //topicColors_elected for more
         { nam : ['E', 'g'], cssClass : 'theor1corollary', },
-        // Eg   Duplicate used by P1 Corollary 3 see "sconf.js" predefinedTopics
+        // Eg   Duplicate used by P1 Corollary 3 see "sconf.js" topicColors_elected
         //for more
         { nam : ['F', 'g'], cssClass : 'theor1corollary', },
         // Fg   Duplicate used by P1 Corollary 3 see "sconf.js"
-        //predefinedTopics for more
+        //topicColors_elected for more
 
         { nam : ['D', 'e'], cssClass : 'theor1proof theor2proof', },        // De
         { nam : ['E', 'f'], cssClass : 'theor1proof theor2proof', },        // Ef
@@ -610,8 +610,8 @@ function sconf_points8lines (){
     toreg( 'thoughtStep' )( 'value', '' );
 
     //==================================================
-    // //\\ equalizes predefinedTopics, fixedColors, and
-    // fixedColorsOriginal
+    // //\\ equalizes topicColors_elected, topicColors_repo, and
+    // topicColors_repo_camel2col
     // which should be done in the core,
     //
     // this is abnormal, there must be two arrays:
@@ -621,18 +621,18 @@ function sconf_points8lines (){
     // todo rg.SCd will be crashed later without this
     // expansion, this scenario must have more steps    
     //==================================================
-    sconf.predefinedTopics = tpel;
+    sconf.topicColors_elected = tpel;
     ////array tpel will be discraded upon leaving this function,
     Object.keys( tpel ).forEach( tpCamel => {
         //generates rg for all topics,
         //this code is a substitute of expand-config.js
         toreg( tpCamel )( 'pname', tpCamel );
         var tpLowKey = sDomF.tpid2low( tpCamel );
-        //compliments fixedColors from stuff created in this sconf,
-        //fixedColors are based on non-Camel id,
-        var fck = fixedColors[ tpLowKey ] = tpel[ tpCamel ].concat();
+        //compliments topicColors_repo from stuff created in this sconf,
+        //topicColors_repo are based on non-Camel id,
+        var fck = topicColors_repo[ tpLowKey ] = tpel[ tpCamel ].concat();
         //compensates missing of "extend-confib" in engine core
-        fixedColorsOriginal[ tpCamel ] = fck; //based on Camel Id
+        topicColors_repo_camel2col[ tpCamel ] = fck; //based on Camel Id
         //todo why rg colors are not set here?
     });
     if( has( ssD, 'P2_electedTopicColors' ) ) {
@@ -641,15 +641,15 @@ function sconf_points8lines (){
         Object.keys( p2_elected ).forEach( camelId => {
             if( camelId === 'SBCaracc' ) return;
             var tpLowKey = sDomF.tpid2low( camelId );
-            let fc = fixedColorsOriginal[ camelId ] =
-                    fixedColors[ tpLowKey ] =
+            let fc = topicColors_repo_camel2col[ camelId ] =
+                    topicColors_repo[ tpLowKey ] =
                     tpel[ camelId ];
                 //this thing only affects difference between strokable
                 //and areas like this:
         });
     }
     //==================================================
-    // \\// equalizes predefinedTopics, fixedColors, and
+    // \\// equalizes topicColors_elected, topicColors_repo, and
     //==================================================
     
     //Update decStart for the following decorations if needed,
@@ -666,7 +666,7 @@ function sconf_points8lines (){
             rg.SF, rg.Sf, rg.SEf,
             rg.g, rg.Eg, rg.Fg ].forEach( pn => {
             //Duplicate g, Eg, Fg used by P1 Corollary 3 see "sconf.js"
-            //predefinedTopics for more
+            //topicColors_elected for more
             pn.decStart = rg.SC.decStart + 12;
         });
     }

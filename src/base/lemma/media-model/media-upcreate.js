@@ -1,20 +1,13 @@
-( function() {
-    var {
+(function(){
+    const {
         ns, sn, haz, haff, $$, eachprop,
-        sconf,
-        rg,
-        ssF, ssD,
-        sDomF, amode,
-        stdMod, toreg, rg,
-        exegs,
+        sconf, ssF, ssD, sDomN, sDomF, amode, stdMod, rg, exegs,
     } = window.b$l.apptree({
-        setModule,
-        ssFExportList :
-        {
+        ssFExportList : {
             media_upcreate_generic,
         },
+        setModule,
     });
-
     var pivots_2_svgLineInRg;
     return;
 
@@ -35,7 +28,6 @@
     function media_upcreate_generic()
     {
         // called 3x on page load (more in L2, L3, L4...?)
-        // console.log('media_upcreate_generic');
 
         if( haz( stdMod, 'media_update_is_forbidden' ) ) return;
         haff( stdMod, 'media_upcreate___before_basic' );
@@ -50,7 +42,6 @@
             amode.subessay = match[1];
         }
         var subexeg = exAspect.subessay2subexeg[ amode.subessay ];
-        //console.log(amode.subessay);
         sDomF.addsChosenCSSCls_to_subessay8menuSubitem({ exAspect, subexeg })
 
         ssF.toogle_detectablilitySliderPoints4Tools();//"optional"
@@ -93,15 +84,12 @@
                     var lname   = Object.keys( lineConf )[0];
                     lineAttr    = lineConf[ lname ];
                     if( !lineAttr.zOrderAfter ) {
-                        //ccc( '+++++ paints linesArray el. ' +lname + ' in first-zoom' );
                         ssF.str2line( lname, null, lineAttr );
                     }
             });
         } else {
             ns.eachprop( sconf.lines, (lineAttr,lname) => {
-                ccc( 'retarded code' );
                 if( !lineAttr.zOrderAfter ) {
-                    ccc( '+++++ paints line ' +lname + ' in first-zoom' );
                     ssF.str2line( lname, null, lineAttr );
                 }
             });
@@ -128,22 +116,26 @@
                 var lname   = Object.keys( lineConf )[0];
                 lineAttr    = lineConf[ lname ];
                 if( lineAttr.zOrderAfter ) {
-                    ccc( '+++++ paints linesArray el. ' +lname + ' in second-zoom' );
                     ssF.str2line( lname, null, lineAttr );
                 }
             });
         } else {
             ns.eachprop( sconf.lines, (lineAttr,lname) => {
-                ccc( 'bad' );
                 if( lineAttr.zOrderAfter ) {
                     ssF.str2line( lname, null, lineAttr );
-                    ccc( '+++++ paints lines el. ' +lname + ' in second-zoom' );
                 }
             });
         }
         // \\// upcreates lines after points
         //=============================================
 
+        /*
+        if( !ssF.mediaModelInitialized ) {
+            ccc( 'generic media, preemptive create_digital_legend' );
+            haff( stdMod, 'create_digital_legend' );
+        }
+        */
+        
         //**************************************************
         // //\\ note, former lemmas
         //**************************************************
@@ -155,13 +147,10 @@
                 ///above lines do create legend for all theoreons, this line
                 ///shows only for one:
                 stdMod.upcreate_mainLegend();
-                //console.log('upcreate_mainLegend 1');
             } else if( tlegend ) {
                 tlegend.upcreate_mainLegend();
-                //console.log('upcreate_mainLegend 2');
             } else {
                 ns.haf( ssF, 'upcreate_mainLegend' );
-                //console.log('upcreate_mainLegend 3');
             }
         }
         //**************************************************
@@ -175,5 +164,4 @@
     // \\// updater helper
     //=========================================================
 
-}) ();
-
+})();

@@ -9,7 +9,7 @@
        (lowtpid__2__glocss8anchorRack builds following:)
                 low_tpID //aka "circ-txt"
 
-                fixed-color   //original raw color in array-format aka [x,x,x,...],
+                tpcolarr   //original raw color in array-format aka [x,x,x,...],
                 tpOpacityHigh //??? used in topic-media-glocss
                               //by topics_2_unhighCss, ...
                 tpOpacityLow  //"
@@ -36,13 +36,13 @@
 
 
     ///assigns colors to topics,
-    ///     assigns either zebra-colors or "fixed-color"s,
+    ///     assigns either zebra-colors or "tpcolarr"s,
     ///     sets gcssRack props including low8high signature which is =
     ///     { rgb, rgba_low, rgba_high, lowOpacity, highOpacity }
     function lowtpid__2__glocss8anchorRack (){
         eachprop( lowtpid_2_glocss8anchorRack,
                   ( gcssRack, low_tpID, tcount, allTopicsCount ) => {
-            var fc = haz( gcssRack, 'fixed-color' );
+            var fc = haz( gcssRack, 'tpcolarr' );
             gcssRack.tcount = tcount;
             if( fc ) {
                 colArray_2_flags( gcssRack );
@@ -75,7 +75,7 @@
     }
 
     function colArray_2_flags( gcssRack ){
-        var colorArray = haz( gcssRack, 'fixed-color' );
+        var colorArray = haz( gcssRack, 'tpcolarr' );
         var { rgb, rgba } = ns.arr2rgb_rgba( colorArray );
         var ownHighOp = colorArray[4];
         var ownFlag = !!(ownHighOp || ownHighOp === 0);
@@ -91,7 +91,7 @@
             ////high opacity does not exist,
             ////preserves own color and takes
             ////opacities from global setting
-            let fc = gcssRack['fixed-color'];
+            let fc = gcssRack['tpcolarr'];
 
             if (hasHigherOpacity(gcssRack)) {
                 gcssRack.highOpacity = sconf.AREA_HIGHLIGHT_OPACITY;
@@ -123,7 +123,7 @@
 
     // kludge
     function hasHigherOpacity (gcssRack){
-        return typeof gcssRack['fixed-color'][3] === 'number';
+        return typeof gcssRack['tpcolarr'][3] === 'number';
     }
 
     ///returns JS-object { rgba_low, rgba_high, lowOpacity, highOpacity }

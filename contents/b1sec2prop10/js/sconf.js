@@ -1,6 +1,6 @@
 
 ( function() {
-    const { nspaste, fconf, sconf, fixedColors, } = 
+    const { nspaste, fconf, sconf, topicColors_repo, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -144,10 +144,10 @@
             hidden,
             curvature,
             context,
-        } = fixedColors;
+        } = topicColors_repo;
 
 
-        var predefinedTopics =
+        var topicColors_elected =
         {
             given,
             proof,
@@ -405,7 +405,7 @@
             TIME_STEPS,
 
             mediaBgImage : "diagram.png",
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             originX_onPicture,

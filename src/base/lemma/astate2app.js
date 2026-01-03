@@ -1,5 +1,4 @@
-
-( function() {
+(function(){
     var {
         nspaste, eachprop, haff, haz,
         sconf, sapp, ssF, rg,
@@ -10,16 +9,10 @@
     return;
 
 
-
-
-
-
-
     function setModule()
     {
         sapp.init_astate2sapp = init_astate2sapp;
     }
-
 
     ///inits effective or empty astate_2_.... functions
     function init_astate2sapp()
@@ -39,7 +32,8 @@
         }
 
         ///poor name, should be capture_2_rg8modelUpcreate
-        function astate_2_rg8model( astate )
+        ///possibly has nothing to do with amode toggler:
+        function astate_2_rg8model( astate, dontRun_model_upcreate )
         {
             if( astate ) {
                 nspaste( rg, astate );
@@ -63,7 +57,7 @@
                     amode.subessay = subessay;
                 }
             }
+            !dontRun_model_upcreate && haff( stdMod, 'model_upcreate' );
         }
     }    
-}) ();
-
+})();

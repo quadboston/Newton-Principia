@@ -1,6 +1,6 @@
 ( function() {
     var {
-        haz, fapp, sconf, ssF, topics, fixedColors
+        haz, fapp, sconf, ssF, topics, topicColors_repo
     } = window.b$l.apptree({
         ssFExportList : {
             topics_anchor_css,
@@ -54,10 +54,9 @@
 
         var notfocusOp_str = sconf.ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS.toFixed(3);
         var focusOp_str = sconf.ANCHOR_TOPIC__OPACITY_IN_FOCUS.toFixed(3)
-        var fixedCol = haz( anrack, 'fixed-color' );
+        var fixedCol = haz( anrack, 'tpcolarr' );
         //selects the very first color-operand from anchor
         var gcssRack = topics.lowtpid_2_glocss8anchorRack[ tpIDs[0] ];
-        //ccc('assigns to gcss and anchor',gcssRack);
         if( fixedCol ) {
             //note: high opacity is taken as sconf.TP_OPACITY_HIGH in this ver
             var { rgb, rgba_high, } = ssF.colorArray_2_rgba(
@@ -103,12 +102,12 @@
             }
             ${tplink_str}:hover {
                opacity          : ${focusOp_str};
-               background-color : rgb(${fixedColors.highlight});
+               background-color : rgb(${topicColors_repo.highlight});
                cursor           : default;
             }
             ${tplink_str}:hover span{
                font-weight      : bold;
-               background-color : rgb(${fixedColors.highlight});
+               background-color : rgb(${topicColors_repo.highlight});
                cursor           : default;
             }
         `;
@@ -137,7 +136,6 @@
             fapp.fappRoot$.removeClass( 'tp-' + coreName );
         });
     }
-
 })();
 
 

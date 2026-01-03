@@ -26,10 +26,10 @@
         // //\\ refills corollary pos
         //-------------------------------------------------
         //Duplicate h used by P1 Corollary 3 see "sconf.js"
-        //predefinedTopics for more
+        //topicColors_elected for more
         nspaste( rg.h.pos, rg.c.pos );
         //Duplicate g used by P1 Corollary 3 see "sconf.js"
-        //predefinedTopics for more
+        //topicColors_elected for more
         nspaste( rg.g.pos, rg.f.pos );
         //-------------------------------------------------
         // \\// refills corollary pos

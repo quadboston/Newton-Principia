@@ -2,7 +2,7 @@
     var {
         sn, $$, cssp, nsmethods, globalCss, nspaste, haz, has, eachprop,
         fconf, sDomN, ssD, sDomF, ssF, exegs, topics,
-        fixedColors, lowtpid_2_glocss8anchorRack,
+        topicColors_repo, lowtpid_2_glocss8anchorRack,
         anid2anrack, anix2anrack,
         amode, sconf, rg, userOptions
     } = window.b$l.apptree({
@@ -207,8 +207,7 @@
                         var ww = anchorRack.colorCateg =
                             anchorOperator.match( ANCH_COLOR_CAT_rg );
                         //.fixed set to tp-link
-                            ccc('fixed-color',ww);
-                        anchorRack[ 'fixed-color' ] = haz( fixedColors, ww[1] );
+                        anchorRack[ 'tpcolarr' ] = haz( topicColors_repo, ww[1] );
                         return;
                     }
                     //..........................................................

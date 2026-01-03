@@ -58,14 +58,14 @@ Former tp-model.
        to set your own opacity for standard-points and standard-lines, use notp
        prefix patch which replaces tp-... class with notp- ... class.
 
-    2. format: array fixedColors[ normalized-topic-css-name ] = colorArray
-       fixedColors stems from predefinedTopics[ topicKey ];
+    2. format: array topicColors_repo[ normalized-topic-css-name ] = colorArray
+       topicColors_repo stems from topicColors_elected[ topicKey ];
 
-        fixedColors come from sconf.original_points and set
-            in form fixedColors[ normalized-topic-id ] = array aka [0,21,0, 0.5 ];
+        topicColors_repo come from sconf.original_points and set
+            in form topicColors_repo[ normalized-topic-id ] = array aka [0,21,0, 0.5 ];
                 bookkeeping is:
                     var tk = sDomF.tpid2low( topicKey );
-                    fixedColors[ tk ] = predefinedTopics[ topicKey ];
+                    topicColors_repo[ tk ] = topicColors_elected[ topicKey ];
 
     3.
         rgba_low (ie opacity) in 'topic-colors" is simply ignored in anchor-tp-links,
@@ -75,7 +75,7 @@ Former tp-model.
         normalizedIds_2_entireLemmaTopics still preserves low opacity array and adds merged and
         converted rgba_low, rgba_high.
             normalizedIds_2_entireLemmaTopics[ wwCase( topicId_ ) ] = {
-                'fixed-color' : colorArray,
+                'tpcolarr' : colorArray,
                 ...
                 rgba_low :   //from sconf...opacity if any or from default
                 rgba_high

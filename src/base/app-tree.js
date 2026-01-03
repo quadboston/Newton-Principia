@@ -23,8 +23,8 @@
     const arios     = sn( 'activityScenarios', ario, [] );
 
     var rgtools     = sn('tools',ssD);
-    var fixedColors = sn('fixed-colors',ssD);
-    var fixedColorsOriginal = sn('fixed-colors-original-id',ssD);
+    var topicColors_repo = sn('fixed-colors',ssD);
+    var topicColors_repo_camel2col = sn('fixed-colors-original-id',ssD);
     var wrkwin      = sn('wrkwin',ssD); //work window
     var exegs       = sn('exegs', ssD);
     var references  = sn('references', ssD);
@@ -162,7 +162,7 @@
 
             ss,
             ssF,
-            ssD, fixedColors, fixedColorsOriginal,
+            ssD, topicColors_repo, topicColors_repo_camel2col,
             actionsList_coded,
             actionsList_default,
             //ario,

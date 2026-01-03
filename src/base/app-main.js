@@ -6,7 +6,7 @@
     var {
         ns, sn, $$, cssp, eachprop, nspaste, haff, has, haz, nsmethods, html,
         userOptions, fapp, sapp, fconf, sconf, engCssMs, fmethods, sDomF, sDomN,
-        fixedColorsOriginal,
+        topicColors_repo_camel2col,
         srg_modules, amode,
         //:nearly a patch
         stdMod, ssD, ssF, wrkwin, lowtpid_2_glocss8anchorRack,
@@ -235,7 +235,6 @@
                     ssF.LANDING_V___loads_professorList8cont_8_buildsSubexegs(
                         function() {
                             ////exegs are ready now,
-                    ccc('LANDING_V');
 
                             //this place looks like
                             //the best to establish initial topics,
@@ -247,11 +246,11 @@
                             //pastes ssD['fixed-colors'] into l caseId2allLemTopics
                             //ssD['fixed-colors'] - goes from JS-code and book's text,
                             //l caseId2allLemTopics is empty at this moment,
-                            eachprop( fixedColorsOriginal, ( colorArray, camelId ) => {
+                            eachprop( topicColors_repo_camel2col, ( colorArray, camelId ) => {
                                 var low_tpID = wwCase( camelId );
                                 lowtpid_2_glocss8anchorRack[ low_tpID ] = {
-                                    //todo why fixed-color
-                                    'fixed-color' : colorArray,
+                                    //todo why tpcolarr
+                                    'tpcolarr' : colorArray,
                                     camelId,
                                     low_tpID,
                                 };
@@ -295,6 +294,7 @@
     //does: exegs__2__frags_dom_css_mjax_tpanch_initapp_menu_evs_capture
     function LANDING_VI___exegs_2_frags8majorInit()
     {
+ccc( '****** VI LANDING_VI___exegs_2_frags8majorInit');
         ssF.exegs_2_frags(); //to active-areas
         ssF.frags__2__dom_css_mjax_tpanchors();
 

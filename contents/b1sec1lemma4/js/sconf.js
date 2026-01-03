@@ -1,5 +1,5 @@
 ( function () {
-    var { sn, nspaste, fapp, fconf, sconf, ssF, stdMod, fixedColors, } = 
+    var { sn, nspaste, fapp, fconf, sconf, ssF, stdMod, topicColors_repo, } = 
 	    window.b$l.apptree({ ssFExportList : { init_conf, }, });
     
     var stdL2       = sn('stdL2', fapp );
@@ -100,7 +100,7 @@
             given,
             figure,
             widths,
-        } = fixedColors;
+        } = topicColors_repo;
 
 
         const predT =
@@ -119,15 +119,15 @@
 
             //For highlighting the data table
             'figuresRatio'  : figure,
-            'parallelogramsRatio'   : fixedColors["inscribed-rectangles"],
+            'parallelogramsRatio'   : topicColors_repo["inscribed-rectangles"],
 
             //Individual parallelograms (for highlighting)
-            "inscribed-rectangle-AacE-1" : fixedColors["inscribed-rectangles"],
-            "inscribed-rectangle-PprT-1" : fixedColors["inscribed-rectangles"],
+            "inscribed-rectangle-AacE-1" : topicColors_repo["inscribed-rectangles"],
+            "inscribed-rectangle-PprT-1" : topicColors_repo["inscribed-rectangles"],
 
             //For each figure so they can be highlighted separately
-            "inscribed-rectangles-AacE" : fixedColors["inscribed-rectangles"],
-            "inscribed-rectangles-PprT" : fixedColors["inscribed-rectangles"],
+            "inscribed-rectangles-AacE" : topicColors_repo["inscribed-rectangles"],
+            "inscribed-rectangles-PprT" : topicColors_repo["inscribed-rectangles"],
         }
 
 
@@ -247,7 +247,7 @@
         ];
 
         nspaste( sconf, {
-            predefinedTopics : predT,
+            topicColors_elected : predT,
             originalPoints,
             linesArray,
             //lines,

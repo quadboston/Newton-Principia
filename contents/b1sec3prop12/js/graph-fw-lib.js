@@ -36,9 +36,9 @@
         colorThreadArray = [ equilibConst, 'rgba( 155, 155, 155, 0.5 )', ];
         */
         sData.colorThreadArray = [
-            sDomF.tpname0arr_2_rgba( 'shadow' ), //predefinedTopics.P, !!'makeOpacity1' ),
-            sDomF.tpname0arr_2_rgba( 'force' ), //predefinedTopics.P, !!'makeOpacity1' ),
-            sDomF.tpname0arr_2_rgba( 'body' ), //predefinedTopics.P, !!'makeOpacity1' ),
+            sDomF.tpname0arr_2_rgba( 'shadow' ), //topicColors_elected.P, !!'makeOpacity1' ),
+            sDomF.tpname0arr_2_rgba( 'force' ), //topicColors_elected.P, !!'makeOpacity1' ),
+            sDomF.tpname0arr_2_rgba( 'body' ), //topicColors_elected.P, !!'makeOpacity1' ),
         ];
         return sData.colorThreadArray;
         //===========================================

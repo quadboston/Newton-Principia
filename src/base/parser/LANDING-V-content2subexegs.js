@@ -2,7 +2,7 @@
     var {
         ns, $$, sn, nsmethods, has, haz, nspaste, eachprop,
         fapp, fconf, sconf, ssD, sapp, sDomF, sDomN, capture, rg,
-        topics, fixedColors, fixedColorsOriginal, references, exegs,
+        topics, topicColors_repo, topicColors_repo_camel2col, references, exegs,
         stdMod, amode, userOptions
     } = window.b$l.apptree({
         ssFExportList :
@@ -29,6 +29,7 @@
     function LANDING_V___loads_professorList8cont_8_buildsSubexegs(
         prepare8do_LANDING_VI_and_beyond___cb
     ){
+        ccc('LANDING_V');
         var allEssays__str = "";
         var lemmaConfig = fconf.sappId2lemmaDef[ fconf.sappId ];
         contentsList_2_essaions_2_exegs( lemmaConfig );
@@ -241,14 +242,14 @@
                     //---------------------------------------------------------------
                     // //\\ adds topic-categories from
                     //---------------------------------------------------------------
-                    //      essayHeader, 'fixed-colors' to fixedColors
+                    //      essayHeader, 'fixed-colors' to topicColors_repo
                     //      for entire lemma
                     var wwfc = haz( essayHeader, 'fixed-colors' );
                     if( wwfc ) {
                         Object.keys( wwfc ).forEach( topicKey => {
                             var tk = nsmethods.camelName2cssName( topicKey );
-                            fixedColors[ tk ] = wwfc[ topicKey ];
-                            fixedColorsOriginal[ topicKey ]= fixedColors[ tk ];
+                            topicColors_repo[ tk ] = wwfc[ topicKey ];
+                            topicColors_repo_camel2col[ topicKey ]= topicColors_repo[ tk ];
                         });
                     }
                     //---------------------------------------------------------------
@@ -593,7 +594,7 @@
             var cleared = nsmethods.camelName2cssName( ptype0colorArray || ' ' );
 
             //returns false if cleared === ' ' and not a key in fixed-colors ...
-            var colorArray = haz( fixedColors, cleared );
+            var colorArray = haz( topicColors_repo, cleared );
         } else {
             var colorArray = ptype0colorArray;
         }

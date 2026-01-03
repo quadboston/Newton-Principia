@@ -448,22 +448,22 @@ function makesProfessorsCaptureFootnotes (){
                     //which is good for cor2
                     "captured" : "",
                     "rg" : {
-                        "h": {              //Duplicate used by P1 Corollary 3 see predefinedTopics for more
+                        "h": {              //Duplicate used by P1 Corollary 3 see topicColors_elected for more
                             "decEnd" : 1
                         },
-                        "Bh": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
+                        "Bh": {             //Duplicate used by P1 Corollary 3 see topicColors_elected for more
                             "decEnd" : 1
                         },
-                        "Ch": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
+                        "Ch": {             //Duplicate used by P1 Corollary 3 see topicColors_elected for more
                             "decEnd" : 1
                         },
-                        "g": {              //Duplicate used by P1 Corollary 3 see predefinedTopics for more
+                        "g": {              //Duplicate used by P1 Corollary 3 see topicColors_elected for more
                             "decEnd" : 1
                         },
-                        "Eg": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
+                        "Eg": {             //Duplicate used by P1 Corollary 3 see topicColors_elected for more
                             "decEnd" : 1
                         },
-                        "Fg": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
+                        "Fg": {             //Duplicate used by P1 Corollary 3 see topicColors_elected for more
                             "decEnd" : 1
                         },
                     }
@@ -476,22 +476,22 @@ function makesProfessorsCaptureFootnotes (){
                     //which is good for cor2
                     "captured" : "",
                     "rg" : {
-                        "h": {              //Duplicate used by P1 Corollary 3 see predefinedTopics for more
+                        "h": {              //Duplicate used by P1 Corollary 3 see topicColors_elected for more
                             "decEnd" : 1111111111
                         },
-                        "Bh": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
+                        "Bh": {             //Duplicate used by P1 Corollary 3 see topicColors_elected for more
                             "decEnd" : 1111111111
                         },
-                        "Ch": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
+                        "Ch": {             //Duplicate used by P1 Corollary 3 see topicColors_elected for more
                             "decEnd" : 1111111111
                         },
-                        "g": {              //Duplicate used by P1 Corollary 3 see predefinedTopics for more
+                        "g": {              //Duplicate used by P1 Corollary 3 see topicColors_elected for more
                             "decEnd" : 1111111111
                         },
-                        "Eg": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
+                        "Eg": {             //Duplicate used by P1 Corollary 3 see topicColors_elected for more
                             "decEnd" : 1111111111
                         },
-                        "Fg": {             //Duplicate used by P1 Corollary 3 see predefinedTopics for more
+                        "Fg": {             //Duplicate used by P1 Corollary 3 see topicColors_elected for more
                             "decEnd" : 1111111111
                         },
                     }
