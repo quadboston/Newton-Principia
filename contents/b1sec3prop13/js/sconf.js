@@ -223,7 +223,7 @@
                 draggableX  : true,
                 draggableY  : true,
 				cssClass: 'subessay--solution subessay--corollary2',
-                conditionalDrag : 'subessay--solution subessay--corollary2',
+                conditionalDrag: 'subessay--solution subessay--corollary2',
             },
             AA : {
                 undisplayAlways : true,

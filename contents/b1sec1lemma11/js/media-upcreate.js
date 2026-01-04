@@ -1,11 +1,8 @@
 ( function() {
     var {
-        ns, sn,
         rg,
         ssF, ssD,
-        sDomF,
-        stdMod,
-
+        amode, stdMod,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -13,17 +10,6 @@
         },
     });
     return;
-
-
-
-
-
-
-
-
-
-
-
 
 
     //=========================================================
@@ -42,19 +28,20 @@
                 pointB      : rg.B,
                 addToStepCount : 1,
         });
-        ///paints arc from A to b
-        ssF.paintsCurve({
-                fun         : ssD.repoConf[0].fun,
-                mmedia      : stdMod.mmedia,
-                pointA      : rg.A,
-                pointB      : rg.b,
-                addToStepCount : 1,
-        });
 
+		if (amode.logic_phase !== 'claim') {
+			///paints arc from A to b
+			ssF.paintsCurve({
+					fun         : ssD.repoConf[0].fun,
+					mmedia      : stdMod.mmedia,
+					pointA      : rg.A,
+					pointB      : rg.b,
+					addToStepCount : 1,
+			});
+		}
     }
     //=========================================================
     // \\// lemma custom addons
     //=========================================================
 
 }) ();
-

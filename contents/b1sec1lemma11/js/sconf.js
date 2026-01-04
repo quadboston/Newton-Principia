@@ -139,22 +139,30 @@
                 pos: C,
                 pcolor : given,
                 letterAngle : 180,
+				cssClass: 'logic_phase--proof',
             },
 
             c : {
                 pos: c,
+				caption: '𝑐',
                 pcolor : proof,
                 letterAngle : 180,
+				cssClass: 'logic_phase--proof',
             },
             b : {
                 pos: b,
+				caption: '𝑏',
                 pcolor : proof,
                 letterAngle : 45,
+				cssClass: 'logic_phase--proof',
+				conditionalDrag: 'logic_phase--proof',
             },
             d : {
                 pos: d,
+				caption: '𝑑',
                 pcolor : proof,
                 letterAngle : 90,
+				cssClass: 'logic_phase--proof',
             },
 
             J : {
@@ -166,14 +174,17 @@
             g :
             {
                 pos: [A[0], 622],
+				caption: '𝑔',
                 pcolor : proof,
                 letterAngle : 45,
+				cssClass: 'logic_phase--proof'
             },
             G :
             {
                 pos: [A[0], 677],
                 pcolor : given,
                 letterAngle : -45,
+				cssClass: 'logic_phase--proof'
             },
         };
 
@@ -187,17 +198,29 @@
             { 'AB' : { pcolor : given }, },
             { 'AD' : { pcolor : given }, },
             { 'BD' : { pcolor : given }, },
-            { 'BC' : { pcolor : given }, },
-            { 'AG' : { pcolor : given }, },
-            { 'BG' : { pcolor : given }, },
-            { 'GJ' : { pcolor : given }, },
+            { 'BC' : { pcolor : given,
+				cssClass: 'logic_phase--proof', }, },
+            { 'AG' : { pcolor : given,
+				cssClass: 'logic_phase--proof',
+			 }, },
+            { 'BG' : { pcolor : given,
+				cssClass: 'logic_phase--proof', }, },
+            { 'GJ' : { pcolor : given,
+				cssClass: 'logic_phase--proof', }, },
 
-            { 'Ab' : { pcolor : proof }, },
-            { 'Ad' : { pcolor : proof }, },
-            { 'Ag' : { pcolor : proof }, },
-            { 'bc' : { pcolor : proof }, },
-            { 'bd' : { pcolor : proof }, },
-            { 'bg' : { pcolor : proof }, },
+            { 'Ab' : { pcolor : proof,
+				cssClass: 'logic_phase--proof', }, },
+            { 'Ad' : { pcolor : proof,
+				cssClass: 'logic_phase--proof', }, },
+            { 'Ag' : { pcolor : proof,
+				cssClass: 'logic_phase--proof', }, },
+            { 'bc' : { pcolor : proof,
+				cssClass: 'logic_phase--proof',
+			 }, },
+            { 'bd' : { pcolor : proof,
+				cssClass: 'logic_phase--proof', }, },
+            { 'bg' : { pcolor : proof,
+				cssClass: 'logic_phase--proof', }, },
 
             { 'AJ' : { pcolor : given }, },
         ];
