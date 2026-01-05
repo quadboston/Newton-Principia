@@ -1,7 +1,6 @@
 // For application, creates and exports namespace tree
 // variables ("placeholders") and useful functions.
-
-( function() {
+(function(){
     var nsvars = window.b$l.nstree();
     var { ns, sn, haz, } = nsvars;
     ns.apptree      = apptree;
@@ -34,7 +33,6 @@
     var anid2anrack   = sn('anid2anrack', topics);
     var anix2anrack   = sn('anix2anrack', topics, []);
 
-
     //lemma-dependent lemma-subapplication (aka lemma-class-instance functions in Java)
     var sapp        = sn('sapp');
     var stdMod      = sn('stdMod', sapp);
@@ -43,7 +41,7 @@
     var sData       = sn('sappDat',sapp);
     var amode       = sapp.mode = {};
 
-    var sconf       = sn('sconf', sapp);
+    var sconf       = sn('sconf', fconf);
     var originalPoints = sn( 'originalPoints', sconf );
     var dividorFractions = sn('dividorFractions', wrkwin, []);
 
@@ -53,8 +51,8 @@
 
     //site-wide user options
     var userOptions = sn('userOptions',fapp);
-
     setsEngineDefaults();
+    let ret = null;
     return;
 
 
@@ -83,7 +81,6 @@
         //console.log('apptree');
 
         ssFExportList && Object.assign( ssF, ssFExportList );
-
         expoFun = expoFun || ssFExportList,
         expoFun = ssFExportList;
 
@@ -96,17 +93,16 @@
         modName         = ( modName && modName + '-' ) || '';
 
         srg_modules[ modName + mCount.count ] = () => {
-
             if( setModule ) {
-                //ccc( '... running setModule() for ' + mCount.count );
+                //c cc( '... running setModule() for ' + mCount.count );
                 setModule();
             }
             //todm: why this code is delayes to srg_modules?
             if( stdModExportList ) {
-
                 ///replaces media_upcreate if createMedia0updateMediaAUX is in the list,
                 ///removes createMedia0updateMediaAUX then,
-                var mediaUpcreate = haz( stdModExportList, 'createMedia0updateMediaAUX' );
+                var mediaUpcreate = haz( stdModExportList,
+                                         'createMedia0updateMediaAUX' );
                 if( mediaUpcreate ) {
                     stdMod.media_upcreate = create_media_upcreate(
                         ssF, stdMod, stdModExportList.createMedia0updateMediaAUX );
@@ -126,7 +122,8 @@
                     !ns.h( stdModExportList, 'model8media_upcreate' )
                 ) {
                     stdMod.model8media_upcreate = () => {
-                        // called once on page load and again any time the model/data changes
+                        //called once on page load and again any
+                        //time the model/data changes
                         //console.log('model and media upcreate');
                         stdMod.model_upcreate();
                         ns.haff( stdMod, 'media_upcreate' );
@@ -140,26 +137,18 @@
             sDomFExportList && Object.assign( sDomF, sDomFExportList );
             //==========================================================
         };
-
         sn( 'customDraggers_list', stdMod, [] ); //todm: fake
         //-------------------------------------------------------------
         // \\// module and s ubmodel sugar
         //-------------------------------------------------------------
 
-
-
         //-------------------------------------------------------------
         // //\\ output
         //-------------------------------------------------------------
-        Object.assign( nsvars,
-        {
+        if( ret !== null ) return ret;
+        Object.assign( nsvars, {
             engCssMs,
-
-            fapp,
             fmethods,
-            fconf,
-            sconf,
-
             ss,
             ssF,
             ssD, topicColors_repo, topicColors_repo_camel2col,
@@ -168,7 +157,6 @@
             //ario,
             arios,
             originalPoints,
-
             rg    : sapp.rg,
             topos : sapp.topos,
             toreg : sapp.toreg,
@@ -199,11 +187,11 @@
             modName,
             stdMod,
         });
+        ret = nsvars;
         //-------------------------------------------------------------
         // \\// output
         //-------------------------------------------------------------
-
-        return nsvars;
+        return ret;
     }
 
     //=========================================================
@@ -227,6 +215,4 @@
     //=========================================================
     // \\// updates and creates media
     //=========================================================
-
-}) ();
-
+})();

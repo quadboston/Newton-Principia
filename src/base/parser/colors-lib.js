@@ -93,12 +93,8 @@
             ////opacities from global setting
             let fc = gcssRack['tpcolarr'];
 
-            if (hasHigherOpacity(gcssRack)) {
-                gcssRack.highOpacity = sconf.AREA_HIGHLIGHT_OPACITY;
-                gcssRack.lowOpacity = sconf.AREA_DEFAULT_OPACITY;
-            } else {
-                gcssRack.highOpacity = gcssRack.lowOpacity = 1;
-            }
+            gcssRack.highOpacity = sconf.TP_OPACITY_HIGH;
+            gcssRack.lowOpacity = sconf.TP_OPACITY_LOW;
             gcssRack.rgba_own = rgba;
         };
 

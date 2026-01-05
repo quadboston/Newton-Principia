@@ -186,7 +186,11 @@
 
         // init here to ensure all req'd vars are inited first
         // so we don't need to call media-upcreate() from init-sapp.js
-        stdMod.initDragModel( stdMod.medD8D );
+
+        //kvk: there was a set of bugs: stdMod.medD8D is not yet exists,
+        //this code is moved to init-sapp.js near
+        //fconf.sappId === 'b1sec1lemma9'
+        //stdMod.medD8D && stdMod.initDragModel( stdMod.medD8D )
 
         return;
         // \\//\\// ends imperative part of the module

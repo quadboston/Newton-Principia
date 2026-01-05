@@ -294,7 +294,7 @@
     //does: exegs__2__frags_dom_css_mjax_tpanch_initapp_menu_evs_capture
     function LANDING_VI___exegs_2_frags8majorInit()
     {
-ccc( '****** VI LANDING_VI___exegs_2_frags8majorInit');
+        ccc( 'LANDING_VI___exegs_2_frags8majorInit');
         ssF.exegs_2_frags(); //to active-areas
         ssF.frags__2__dom_css_mjax_tpanchors();
 
