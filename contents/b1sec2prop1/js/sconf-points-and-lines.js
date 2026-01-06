@@ -1,11 +1,11 @@
 (function(){
-    const { sn, eachprop, mapp, nspaste, haz, has, haff,
-            sconf, toreg, rg, ssF, ssD, sDomF, amode, stdMod,
-            topicColors_repo, topicColors_repo_camel2col, originalPoints,
-    } = window.b$l.apptree({ stdModExportList : { sconf_points8lines, }, });
-    const decor = sn( 'decor', stdMod );
-    const LOGIC = false; //true; //makes logic steps c and C clearer;
-    return;
+const { sn, eachprop, mapp, nspaste, haz, has, haff,
+        sconf, toreg, rg, ssF, ssD, sDomF, amode, stdMod,
+        topicColors_repo, topicColors_repo_camel2col, originalPoints,
+} = window.b$l.apptree({ stdModExportList : { sconf_points8lines, }, });
+const decor = sn( 'decor', stdMod );
+const LOGIC = false; //true does separate spatial and logic steps
+return;
 
 
 //-------------------------------------------------------
@@ -16,7 +16,7 @@
 //      runs only once at start of init_model_parameters,
 //-------------------------------------------------------
 function sconf_points8lines (){
-    var {
+    let {
         force,
         freeMove,
         forceMove,
@@ -32,8 +32,12 @@ function sconf_points8lines (){
         perpendicular,
         tangent,
     } = topicColors_repo;
+
+    //0.5 is good for areas, bad for lines,
+    //so, lines shold have color pattern [x,x,x,1,1]
+    forceMove = [forceMove[0],forceMove[1],forceMove[1],1,1];
+
     ///topic names elected
-    
     var tpel = {
         speed,
         force,
@@ -178,12 +182,12 @@ function sconf_points8lines (){
     // //\\ proof points initial settings
     //----------------------------------------------------
     var CDEF_conf = {
+        //"rg" [ 'B', 'C', 'D', 'E', 'F' ].pos <-- path[ ix + 1 ]
         C   : {
-            // //\\ templates are labeled with //t/
+            // //\\ templates
             decStart : 6,
             //pcolor : force,
             //cssClass : 'tp-force',
-            //t/ X : {
             //t/ caption : 'X',
             //t/ pos: S,
             //t/ letterAngle : -90, //works
@@ -194,7 +198,7 @@ function sconf_points8lines (){
             //t/ fontSize : 30,
             //t/ undisplayAlways : true,
             //t/ doPaintPname : false,
-            // \\// templates are labeled with //t/
+            // \\// templates
         },
         D   : { decStart : 10, },
         E   : { decStart : 14,
@@ -271,15 +275,19 @@ function sconf_points8lines (){
         // \\// c,d,e,f
 
         // //\\ c-col3
-        h   : {     //Duplicate used by P1 Corollary 3 see
-                    //"sconf.js" topicColors_elected for more
+        h   : {
+            //rg.h.pos <-- rg.c.pos
+            //Duplicate used by P1 Corollary 3 see
+            //"sconf.js" topicColors_elected for more
             caption : 'c',
             decStart : decor.C.decStart+1,
             decEnd : decor.F.decStart+4,
             cssClass : 'theor1corollary theor2proof',
         },
-        g   : {     //Duplicate used by P1 Corollary 3 see
-                    //"sconf.js" topicColors_elected for more
+        g   : {
+            //rg.g.pos <-- rg.f.pos            
+            //Duplicate used by P1 Corollary 3 see
+            //"sconf.js" topicColors_elected for more
             caption : 'f',
             decStart : decor.F.decStart,
             decEnd : decor.F.decEnd,
@@ -289,13 +297,15 @@ function sconf_points8lines (){
     };
 
     var forceTip_conf = {
+        //double sagitta layed down from point B
+        V   : { decStart : -2, decEnd : 1111111,
+                cssClass : 'theor1corollary theor2corollary'
+              },
+        //double sagitta layed down from point E
         Z   : {
                 decStart : decor.F.decStart,
                 decEnd : decor.F.decEnd,
                 cssClass : 'theor1corollary',
-              },
-        V   : { decStart : -2, decEnd : 1111111,
-                cssClass : 'theor1corollary theor2corollary'
               },
     };
 
@@ -320,66 +330,45 @@ function sconf_points8lines (){
                 cssClass : 'theor1corollary',
                 //undisplay : true,
                 },
-        //sagittae ABC=middle sagitta in sagittae-parallelogram
+        //sagittae ABC = middle sagitta in sagittae-parallelogram,
+        //layed down from point B, 
         U   : {
                 decStart : decor.C.decStart,
                 decEnd : decor.C.decEnd,
                 doPaintPname : false,
-                pointWrap : { doPaintPname : false },
                 cssClass : 'hidden',
         },
         //sagittae DEF=middle sagitta in sagittae-parallelogram
+        //layed down from point E, 
         W   : {
                 decStart : decor.F.decStart,
                 decEnd : decor.D.decEnd,
                 doPaintPname : false,
-                pointWrap : { doPaintPname : false },
                 cssClass : 'hidden',
                 //cssClass : 'theor1corollary',
-        },
-
-        'A-white-filler'   : {
-                decStart    : firstSteps_conf.A.decStart,
-                decEnd      : firstSteps_conf.A.decEnd,
-                doPaintPname : false,
-                pointWrap : { doPaintPname : false },
-        },
-        'v-white-filler'   : {
-                decStart    : firstSteps_conf.B.decStart,
-                decEnd      : firstSteps_conf.B.decEnd, //todm too complex
-                //decStart    :  -2,
-                decEnd      : firstSteps_conf.A.decEnd, //todo patch
-                //decEnd      : firstSteps_conf.vB.decEnd,
-                doPaintPname : false,
-                pointWrap : { doPaintPname : false },
         },
     };
     ['B','C','D','E','F'].forEach( (pname, ix) => {
         let nam0 = 'VV'+ix;  //starts of forces
-        let nam1 = 'VVV'+ix; //tips of forces (double sagittas)
-        //possibly white kernels, possibly duplicates
-        let nam1f = nam1+'-white-filler';
+
+        //tips of forces
+        //rg['VVV'+ix].pos <-- rg['force-'+ix+'-1'].pos
+        let nam1 = 'VVV'+ix;
+  
         let doPaintPname = false;
         let pcolor = tpel.force;
         mixedSteps_conf[ nam0 ] = {
             doPaintPname,
-            pointWrap : { doPaintPname },
             pcolor,
             initialR    : 5 * sconf.controlsScale,
         };
         //tips of foreces (double sagittas)
         mixedSteps_conf[ nam1 ] = {
             doPaintPname,
-            pointWrap : { doPaintPname },
             pcolor,
             initialR    : 5 * sconf.controlsScale,
             draggableX : true,
             draggableY : true,
-        };
-        mixedSteps_conf[ nam1f ] = {
-            doPaintPname,
-            pointWrap : { doPaintPname },
-            pcolor,
         };
     });
     Object.assign( decor, mixedSteps_conf );
@@ -404,20 +393,11 @@ function sconf_points8lines (){
         rgElem = sn( pname, rg );
         rgElem.pname = pname;
         rgElem.isPoint = true;
-        var doPaintPname    = has( dec, 'doPaintPname' ) ?
-                              dec.doPaintPname : true;
+        var doPaintPname = has( dec, 'doPaintPname' ) ?
+                           dec.doPaintPname : true;
             Object.assign( dec, {
             doPaintPname,
             isPoint : true,
-
-            //todm ? ... proliferated coding: medpos, pos, ...  are two places:
-            //           because of pWrap of itself is a
-            //           proliferation of rg.pname rack
-            pointWrap : {
-                pos : [0,0],
-                pname,
-                doPaintPname,
-            },
         });
         Object.assign( rg[ pname ], dec );
         Object.assign( dec, rg[ pname ] );
@@ -532,7 +512,7 @@ function sconf_points8lines (){
             'tipFill' : tpel.forceMove,
         },
         { nam : ['B', 'V'],                                                 // BV
-            cssClass : 'hover-width theor1corollary theor1proof'
+            cssClass : 'hover-width theor1corollary'
         },
 
         { nam : ['E', 'W'],  //saggitae at E                                // EW
@@ -586,12 +566,6 @@ function sconf_points8lines (){
             has(ln,pname) && (lineConf[pname] = ln[pname]);
             has(ln,pname) && (rgElem[pname] = ln[pname]);
         })
-        /*
-        if( ln.nam[0] === 'B' && ln.nam[1] === 'V' ) {
-            ////patch for purpose of drawing a vector tip
-            let line = toreg( 'BV' )();
-        }
-        */
         ///if there is not explicit decStart in the line element, then
         ///decStart in extracted from the directional point of the line segment
         var decStart = has( ln, 'decStart' ) ?

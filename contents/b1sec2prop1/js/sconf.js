@@ -111,6 +111,11 @@ function init_conf (){
         mediaBgImage : "../js/img/b1s2p1t1.png",
         thickness           : 1,
         default_tp_stroke_width : 10,
+
+        //0.5 is good for areas, bad for lines,
+        //so, lines shold have color pattern [x,x,x,1,1]
+        TP_OPACITY_LOW : 0.5,
+        TP_OPACITY_HIGH : 1,
         //======================================
         // \\//does shape GUI
         //======================================

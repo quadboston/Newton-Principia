@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn, $$, sv, nsmethods, nspaste, han, haz, has, mat,
+        ns, sn, $$, sv, nsmethods, han, haz, has, mat,
         sconf, ssF, ssD, sDomF, sDomN, lowtpid_2_glocss8anchorRack, rg, toreg,
         stdMod, amode,
     } = window.b$l.apptree({
@@ -79,12 +79,19 @@
             var stroke      = ns.haz( line, 'pcolor' ) || han( lineAttr, 'stroke', ww );
             var cssClass    = ns.h( lineAttr, 'cssClass' ) ?
                               lineAttr['cssClass'] + ' ' :  '';
-
             //adds params to line:
             var finalTp         = haz( line, 'notp' ) ? 'notp-' : 'tp-';
             line.finalCssClass  = cssClass + finalTp + tpclass;
             line.pname          = pName;
+
+            ///patch for lemma 4 for lines aka
+            //leftbar-1-left-bottom,leftbar-1-right-bottom pivotNames
+            if( has( pv0, 'pname' ) && has( pv1, 'pname' )){
             line.pivotNames     = [ pv0.pname, pv1.pname ];
+            } else {
+                //patch for lemma 4
+                sn( 'pivotNames', line. null );
+            }
 
             var argsvg = {
                 svgel   : ns.haz( line, 'svgel' ),
@@ -174,13 +181,12 @@
                         'font-size' : line.fontSize + 'px',
                     },
                 });
-                ccc( line.pname + ' do set label ' );
                 line.pnameLabelsvg$ = $$.$( line.pnameLabelsvg )
                     .cls( line.finalCssClass )
-                    .addClass( 'tofill hover-width' )
+                    //"tobold" makes all "line-labels" "tp - boldable"
+                    .addClass( 'tofill tobold hover-width' )
                     ;
             }
-            ccc( line.pname + ' 2 do set label ' );
             line.pnameLabelsvg$
                 .aNS( 'x', finalPosX.toFixed()+'px' )
                 .aNS( 'y', finalPosY.toFixed()+'px' )
@@ -195,16 +201,11 @@
                 )
             );
             line.pnameLabelsvg.textContent = caption;
-
-
-            //todo todo bug, must be out of this if-block
-            //  the bug is that only lines with caption are being dressified,
-            //  the others are never,
-            line.pointIsAlreadyDressed = true;
         }
         //=================================================
         // \\// draws line caption
         //=================================================
+        line.pointIsAlreadyDressed = true;
         return line;
     }
 
@@ -270,6 +271,8 @@
                 throw new Error( 'ambiguous line pivots name = ' + str );
             }
             var pns = str.split( splitToken );
+        } else if( !haz( rg, pns[0] )) {
+            throw Error( 'Missed pivot name = ' + pns[0] );
         }
         const pivots = [ rg[ pns[0] ], rg[ pns[1] ] ];
 
@@ -342,6 +345,7 @@
             poly.undisplay = undisplay;
         }
         poly.pname      = pName;
+        //c cc( 'master function for polygons, pNames=', pNames );
         poly.pivotNames = pNames.concat(); //clones array
         poly.pNames     = pNames;
         poly.poly_2_updatedPolyPos8undisplay = poly_2_updatedPolyPos8undisplay;

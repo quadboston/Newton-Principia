@@ -1,7 +1,7 @@
 (function (){
     const { $$, sn, haz, has, nspaste, eachprop,
-            sapp, sconf, rg, stdMod,
-    } = window.b$l.apptree({ stdModExportList : { unmasksVisib, }});
+        sapp, sconf, rg, stdMod } =
+        window.b$l.apptree({ stdModExportList : { unmasksVisib, }});
     const decor = sn( 'decor', stdMod );
     return;
 
@@ -48,7 +48,7 @@
         $$.$( rg[ 'kepltr-' + 0 ].svgel).removeClass( 'undisplay' );
         //Also show the path segment.
         $$.$( rg[ 'pathSegment-' + 0 ].svgel).removeClass( 'undisplay' );
-        rg[ 'VVV0' ].undisplay = false;
+        //rg[ 'VVV0' ].undisplay = false;
         //--------------------------------------
         // \\// picture drawing began
         //--------------------------------------

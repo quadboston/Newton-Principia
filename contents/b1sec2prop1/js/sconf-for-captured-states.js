@@ -270,9 +270,6 @@ function makesProfessorsCaptureFootnotes (){
                         "V": {
                             "decEnd" : 1,
                         },
-                        'V-white-filler' : {
-                            "decStart" : -2,
-                        },
                         "AC": {
                             //normal step=stepIx4=23
                             "decStart" :10, "decEnd" :1

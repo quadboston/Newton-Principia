@@ -1,10 +1,9 @@
 (function(){
-    const { haz, rg, amode, stdMod, sconf,
-    } = window.b$l.apptree({ stdModExportList : {
-            trajectoryShapes_2_groups__III,
-        },
-    });
-    return;
+const { haz, rg, amode, stdMod, sconf,} =
+      window.b$l.apptree({ stdModExportList : {
+          trajectoryShapes_2_groups__III,
+}});
+return;
 
 
 //*******************************************
@@ -12,8 +11,7 @@
 //      called in media-model.js::media_upcreate()::
 //                stdMod.trajectoryShapes_2_groups__III();
 //*******************************************
-function trajectoryShapes_2_groups__III()
-{
+function trajectoryShapes_2_groups__III (){
     var pathRacks = rg.pathRacks.pathRacks;
     ///pathIx_2_groups: pathIx |-> fGroups = [ fgroup0, fgroup1, ... ].
     rg.pathIx_2_pathSubsteps = pathRacks.map( (
@@ -100,11 +98,14 @@ function trajectoryShapes_2_groups__III()
             fgroup.push( rg[ fkey+'-1' ] );
             fgroup.push( rg[ fappliedKey ] );   
             fgroup.push( rg[ tipKey ] );   
-            fgroup.push( rg[ 'VVV'+pix ] );   
+            fgroup.push( rg[ 'VVV'+(pix-1) ] );   
 
-            //The following previously checked "pix<pathRacks.length-1", however pathRacks.length varies even when the desired result doesn't.
-            //As the delta time slider is moved to the left pathRacks.length increases, however when moved back to the right pathRacks.length 
-            //doesn't decrease.  This means that the following would sometimes get added for an extra step.  rg.spatialSteps-1 always has the
+            //The following previously checked "pix<pathRacks.length-1",
+            //however pathRacks.length varies even when the desired result doesn't.
+            //As the delta time slider is moved to the left pathRacks.length
+            //increases, however when moved back to the right pathRacks.length 
+            //doesn't decrease.  This means that the following would sometimes
+            //get added for an extra step.  rg.spatialSteps-1 always has the
             //correct value, and therefore a consistent result.
             if (pix < rg.spatialSteps - 1) {
                 fgroup.push( rg[ 'kepltr-' + pix ] );
@@ -114,7 +115,6 @@ function trajectoryShapes_2_groups__III()
             //------------------------------------
             // \\// logical group 3 = path finalized group
             //------------------------------------
-
         }
         return fGroups;
     });
