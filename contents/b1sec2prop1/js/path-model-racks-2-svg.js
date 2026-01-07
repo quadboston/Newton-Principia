@@ -16,7 +16,7 @@
         var path            = rg.path.pos;
         var pathRacks       = rg.pathRacks.pathRacks;
         var freePath        = rg.freePath.pos;
-        var speeds          = rg.speeds.pos;
+        var speeds          = rg.speeds.vect;
         //=======================================================
         // //\\ spawns path to
         //      path "rgPoints", Kepler-triangles, free-triangles

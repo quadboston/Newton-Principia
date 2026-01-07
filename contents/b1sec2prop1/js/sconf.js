@@ -122,7 +122,10 @@ function init_conf (){
 
         NUMBER_OF_FORCE_HANDLES : 1, //5,
 
+        //"true" means timer slider shows "proof logic",
+        //otherwise it shows "physical motion",
         TIMER_AND_LOGIC_STEPS_COINSIDE : false,
+
         FIRST_POINT_LABELS_DISPLAY_LIMIT : 1000, //to hide gracefully: was: 1.2
 
         //----------------

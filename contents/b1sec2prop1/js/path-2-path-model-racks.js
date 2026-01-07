@@ -20,7 +20,7 @@
     //coinside with paths for
     // rg.pathRacks.pathRacks
     //      'pathSegment-' + pix
-    // rg.speeds.pos
+    // rg.speeds.vect
     
     //indices late by one unit for
     // rg.impulses.vectors
@@ -47,7 +47,7 @@
         var pathRacks       = rg.pathRacks.pathRacks;
 
         var freePath        = rg.freePath.pos;
-        var speeds          = rg.speeds.pos;
+        var speeds          = rg.speeds.vect;
         var dt              = rg.rgslid_dt.val;
 
         //=======================================================

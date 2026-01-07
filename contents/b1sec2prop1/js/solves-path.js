@@ -32,8 +32,8 @@
         var impulsesAracc   = rg.impulsesAracc.vectors;
         var freePath        = rg.freePath.pos;
         //var freePathAracc   = rg.freePathAracc.pos;
-        var speeds          = rg.speeds.pos;
-        var speedsAracc     = rg.speedsAracc.pos;
+        var speeds          = rg.speeds.vect;
+        var speedsAracc     = rg.speedsAracc.vect;
 
         //:fixes lenghts to synch with new sSteps
         path.length         = Math.min( path.length, sSteps );

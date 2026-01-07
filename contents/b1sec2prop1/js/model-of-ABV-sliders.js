@@ -12,8 +12,8 @@ function sets_A_v_forces_sliders (){
     //initially does job which sliders do at run-time
     toreg( 'slider_sltime' )( 'curtime',
             sconf.unitlessMinTime * sconf.initialTimieStep );
-    toreg( 'speeds' )( 'pos', [ sconf.modelPoints.v0 ] );
-    toreg( 'speedsAracc' )( 'pos', [ sconf.modelPoints.v0 ] );
+    toreg( 'speeds' )( 'vect', [ sconf.modelPoints.v0 ] );
+    toreg( 'speedsAracc' )( 'vect', [ sconf.modelPoints.v0 ] );
     toreg( 'rgslid_dt' )( 'val', sconf.initialTimieStep );
     //**********************
 
@@ -48,8 +48,8 @@ function v2params( newPos, dummyPar, ){
     var newv0 = mat.scaleV( sconf.speed, unitAv.unitVec );
     var newv0 = path_Av;
 
-    toreg( 'speeds' )( 'pos', [ newv0 ] );
-    toreg( 'speedsAracc' )( 'pos', [ newv0 ] );
+    toreg( 'speeds' )( 'vect', [ newv0 ] );
+    toreg( 'speedsAracc' )( 'vect', [ newv0 ] );
 
     //updates dragger position
     var newP = mat.addV( newv0, rg.A.pos );
@@ -108,7 +108,7 @@ function A2distanceToS( newAPos, dummyPar, ){
     if( newAS.abs < 1e-20 ) return false;
 
     //updates dragger v position
-    var newP = mat.addV( rg.speeds.pos[0], rg.A.pos );
+    var newP = mat.addV( rg.speeds.vect[0], rg.A.pos );
     rg.v.pos[0] = newP[0];
     rg.v.pos[1] = newP[1];
     return true;

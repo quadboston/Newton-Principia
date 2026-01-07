@@ -50,7 +50,7 @@ function makesProfessorsCaptureFootnotes (){
                 "val": sconf.initialTimieStep
             },
             "speeds": {
-                "pos": [
+                "vect": [
                     [
                         0.2618140190615299 / sconf.initialTimieStep,
                         0.9651183447758357 / sconf.initialTimieStep
@@ -107,7 +107,7 @@ function makesProfessorsCaptureFootnotes (){
         },
         "more-triangles": {
             "speeds": {
-                "pos": [
+                "vect": [
                     [
                         0.15653007129470273/sconf.initialTimieStep,
                         0.9876731933086345/sconf.initialTimieStep
@@ -138,7 +138,7 @@ function makesProfessorsCaptureFootnotes (){
                 "val": sconf.initialTimieStep
             },
             "speeds": {
-                "pos": [
+                "vect": [
                     [
                         0.2618140190615299 / sconf.initialTimieStep,
                         0.9651183447758357 / sconf.initialTimieStep
@@ -199,7 +199,7 @@ function makesProfessorsCaptureFootnotes (){
                 "val": sconf.initialTimieStep
             },
             "speeds": {
-                "pos": [
+                "vect": [
                     [
                         0.2618140190615299/sconf.initialTimieStep,
                         0.9651183447758357/sconf.initialTimieStep
@@ -231,7 +231,7 @@ function makesProfessorsCaptureFootnotes (){
                 "curtime": 4.8 * sconf.initialTimieStep,
             },
             "speeds": {
-                "pos": [
+                "vect": [
                     [
                         0.29155658394042205/sconf.initialTimieStep,
                         0.9565535836329252/sconf.initialTimieStep
@@ -245,7 +245,7 @@ function makesProfessorsCaptureFootnotes (){
                 "val": sconf.initialTimieStep
             },
             "speeds": {
-                "pos": [
+                "vect": [
                     [
                         0.2618140190615299/sconf.initialTimieStep,
                         0.9651183447758357/sconf.initialTimieStep

@@ -13,8 +13,8 @@
     
     function shapeSconf_2_svg (){
         //path and speeds have master-index, pi, offset pi=0
-        toreg( 'path' )( 'pos', [ rg.A.pos ] ); //awkward prop name. "pos"
-        toreg( 'pathAracc' )( 'pos', [ rg.A.pos ] ); //awkward prop name. "pos"
+        toreg( 'path' )( 'pos', [ rg.A.pos ] );
+        toreg( 'pathAracc' )( 'pos', [ rg.A.pos ] );
         Object.keys( shapesConf ).forEach( key => {
             ssF.namesArr_2_svgpoly.apply(
                 null, shapesConf[ key ].initArgs );
@@ -57,18 +57,14 @@
             ;
 
         //path and speeds have master-index, pi, offset pi=0
-        //toreg( 'path' )( 'pos', [ rg.A.pos ] ); //awkward prop name. "pos"
-        //toreg( 'pathAracc' )( 'pos', [ rg.A.pos ] ); //awkward prop name. "pos"
+        //toreg( 'path' )( 'pos', [ rg.A.pos ] );
+        //toreg( 'pathAracc' )( 'pos', [ rg.A.pos ] );
         //:auxiliary params
-        toreg( 'freePath' )( 'pos', [] ); //awkward prop name. "pos"
-        toreg( 'freePathAracc' )( 'pos', [] ); //awkward prop name. "pos"
-
-        //freeTriangles have master-index, pi, offset ... see media-model
-        //tp( 'freeTriangles', [] );
+        toreg( 'freePath' )( 'pos', [] );
+        toreg( 'freePathAracc' )( 'pos', [] );
 
         //keplerTriangles have master-index, pi, offset ... see media-model
-        toreg( 'keplerTriangles' )( 'pos', [] );  //awkward prop name. "pos"
-        toreg( 'keplerTrianglesAracc' )( 'pos', [] ); //awkward prop name. "pos"
+        toreg( 'keplerTriangles' );
 
         //forces have master-index, pi, offset  ... see media-model
         toreg( 'impulses' )( 'vectors', [] );
@@ -133,33 +129,6 @@
             rgElem.decStart = lp.decStart;
             rgElem.decEnd = lp.decEnd;
         });
-
-        /*
-        ///changes args to override svg in init_model, changes end,
-        ///not clear why?,
-        ///
-        ///makes first few free-triangles living
-        ///until the passing of the point f
-        [
-            ['S', 'B', 'c',],   //SBc
-            ['S', 'C', 'd',],   //SCd
-            ['S', 'D', 'e',],   //SDe
-            ['S', 'E', 'f',],   //SEf
-        ].forEach( pNames => {
-            var pName = pNames.join( '');
-            var pName2 = pName+'2'
-            var rgElem = shapesConf[ pName ] = toreg( pName )();
-            var rgElem2 = shapesConf[ pName2 ] = toreg( pName2 )();
-            rgElem2.initArgs = [
-                pNames,
-                '', //'theor1proof theor2proof tofill theor2corollary '
-                null,
-                !!'undisplay',
-                !'tostroke',
-            ];
-            rgElem.decEnd = rg.f.decEnd;
-        });
-        */
     }
 
     function acceleratingArea_2_rg (){

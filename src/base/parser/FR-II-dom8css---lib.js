@@ -224,9 +224,8 @@
                         //ccc( 'FR II, set low_tpID into lowtpid_2_glocss8anchorRack' );
                         if( !has( lowtpid_2_glocss8anchorRack, low_tpID ) ){
                             ////todm: add this warning to GUI:
-                            ccc( 'Topic "'+low_tpID +'" ' +
-                                 'is missed in js-code. ' +
-                                 'If not to be automated, check your texts or code.'
+                            ccc( 'Helper: text topic "'+low_tpID +'" ' +
+                                 'is missed in js-code. '
                             );
                             //for this keyName, 'fixed-colors'
                             //is a flag and is = 'undefined',
@@ -283,9 +282,19 @@
         ) => {
 
             //these subs are the KINGs of processing the Book
+            //  doesInsertSiteHTMLMacros( fragBody_raw )
             //  insertDelayedBatch( fragBody_raw )
             //fragBody_raw = UTF-string of minimal Book-text-fragment
 
+            //***************************************************
+            // //\\ Macros filter
+            //      (Macros are not "tp-anchor-scripts", macros
+            //      are "undivided text bricks".)
+            //      Raw html-script-text is fragBody_raw.
+            //      Main place to add more fragBody_raw
+            //      preconversions before
+            //      convertion fragBody_raw to tp-anchor-scripts.
+            //***************************************************
 
             //----------------------------------------------------
             // //\\ processes tp-batch-controllers
