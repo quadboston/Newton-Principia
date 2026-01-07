@@ -51,7 +51,7 @@
             //ww.fy.innerHTML = fy.toFixed(3);
             */
         }
-        var speed = rg.speeds.pos[stepIx-1];
+        var speed = rg.speeds.vect[stepIx-1];
         if( speed ) {
             var vx = speed[0].toFixed(3);
             var vy = speed[1].toFixed(3);

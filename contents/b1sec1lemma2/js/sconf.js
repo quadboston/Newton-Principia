@@ -1,7 +1,7 @@
 ( function () {
     var {
-        nspaste,
-        fapp, fconf, sconf,
+        sn, nspaste,
+        fapp, fconf, sconf, sf,
         sapp,
     } = window.b$l.apptree({
         ssFExportList :
@@ -9,10 +9,41 @@
             init_conf,
         },
     });
+    var stdL2       = sn('stdL2', fapp );
+    var study       = sn('study', stdL2 );
+    var sdata       = sn('sdata', study );
+    var dr          = sn('datareg', stdL2 );
+    var appstate    = sn('appstate', stdL2 );
+
+    //=====================================
+    // //\\ presets data
+    //=====================================
+    Object.assign( dr,
+    {
+        basePts         : {offset:1, visOffset:0, list:[]},
+        curvPts         : {offset:1, visOffset:0, list:[]},
+        circRects       : {offset:0, visOffset:0, list:[]},
+        InscrRects       : {offset:0, visOffset:0, list:[]},
+        differenceRects  : {offset:0, visOffset:0, list:[]},
+
+        //baseLabels      : {offset:1, visOffset:0, list:[]},
+        curvLabels      : {offset:0, visOffset:0, list:[]},
+        leftLabels      : {offset:0, visOffset:0, list:[]},
+        //righLabels      : {offset:0, visOffset:0, list:[]},
+        //deltaOnLeft historically means "virtual majoranta-rectangle"
+        //is on the right
+        figureParams    : {minX:0, maxX:0, deltaOnLeft:true},
+        ctrlPts         : [],
+        partitionWidths      : [1],
+        basesN         : 4,
+        movables        : {} //key-value for movable jswrap
+    });
+    appstate.movingBasePt = false;
+    sdata.view = { isInscribed:1, isCircumscribed:1, isFigureChecked:1 };
+    //=====================================
+    // \\// presets data
+    //=====================================
     return;
-
-
-
 
 
 
@@ -36,9 +67,8 @@
         //----------------------------------
         // \\// original material parameters
         //----------------------------------
-        let X_RANGE = 248 - modorInPicX;
-        let Y_HANDLES_NUMBER = 4;
-        let HANDLE_BAR_WIDTH = X_RANGE / Y_HANDLES_NUMBER;
+
+
 
         //----------------------------------
         //:app view parameters
@@ -46,9 +76,11 @@
         var MONITOR_Y_FLIP = 0;
         var SLIDERS_LEGEND_HEIGHT = 0;
 
+        sf.mediaMoverPointDisabled = true;
         sconf.default_tp_lightness = 30;
-        sconf.ONLY_MONOTONIC_CURVE = true;
-
+        sconf.ONLY_MONOTONIC_CURVE = false;
+        sconf.skipGenDragList = !false; //false is for media mover,
+        sconf.enableTools     = false;
         //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
         {
             let difference = [150, 50, 0, 0, 0.8 ];
@@ -57,7 +89,6 @@
                 "given"                     : [0,    100,  0 ],
                 difference,
                 "base"                      : [0,    100,  0 ],
-                "wall"                      : [0,    100,  0 ],
                 "curve"                     : [0,    100,  0 ],
 
                 "figure"                    : [0,    100,  0 ],
@@ -68,7 +99,7 @@
                 "inscribed-rectangles"      : [100,  0, 100, 0.4, 0.8],
 
                 //[xx,  xx, xx, 0.1, 0.7],  opacity: 0.1 defalut, 0.7 highlighted
-                "widest-rectangular"      : fconf.sappId.indexOf('lemma2') === 0 ?
+                "widest-rectangular"      : fconf.sappId.indexOf('b1sec1lemma2')===0 ?
                                                     [0,  0, 100, 0.0, 0.7] :
                                                     [0,  0, 100, 0.4, 0.7],
 
@@ -101,11 +132,10 @@
         Object.assign( sconf,
         {
             dontDoMathJax : false, //true,
-            skipGenDragList : true,
             //====================================================
             // //\\ subapp regim switches
             //====================================================
-            enableTools     : false,
+            enableStudylab  : false,
             //====================================================
             // \\// subapp regim switches
             //====================================================
@@ -126,16 +156,20 @@
             //user-adjustable points
             ctrlPtXYs_js    :
             [
-                //data setter
-                {x:modorInPicX, y: modorInPicY},
+                {x:modorInPicX,             y: modorInPicY},
 
-                //movable handles
-                {x:modorInPicX+HANDLE_BAR_WIDTH*1, y: -1},
-                {x:modorInPicX+HANDLE_BAR_WIDTH*2, y: -1},
-                {x:modorInPicX+HANDLE_BAR_WIDTH*3, y: -1},
+                //four middle handles:
+                {x: 74.8, y: 45.97726888798351},
+                {x: 118.1, y: 72.70148453700233},
+                {x: 161.4, y: 109.92474464283467},
+                {x: 204.7, y: 166.52378909964816},
 
-                //data setter
-                {x:modorInPicX+X_RANGE, y: 184},
+                //three middle handles
+                //{x:85,          y: 51.5},
+                //{x:139,         y: 89.0},
+                //{x:193,         y: 148.5 },
+
+                {x:248,         y: 259.5 }
             ],
 
             ////GUI
@@ -149,7 +183,8 @@
             DRAGGEE_HALF_SIZE : 20, //"rectangular-distance" to point to be detected
 
             default_tp_stroke_width : 8,
-            dragPointVisibilityToggling  : false, //show or hide drag points by mouse-enter
+            //rubbish:
+            //dragPointVisibilityToggling  : false, //show or hide drag points by mouse-enter
         });
 
         //=====================================
@@ -245,15 +280,6 @@
             },
 
             //invizible point
-            bk : {
-                pcolor      : predT.given,
-                letterAngle : 45,
-                initialR    : 30,
-                undisplayAlways : true,
-                doPaintPname : false,
-            },
-
-
             c : {
                 pcolor      : predT.given,
                 letterAngle : 45,
@@ -265,22 +291,6 @@
                 letterAngle : 45,
                 initialR    : 3,
             },
-
-            g : {
-                pcolor      : predT.given,
-                letterAngle : 45,
-                initialR    : 3,
-                undisplayAlways : true,
-                doPaintPname : false,
-            },
-            G : {
-                pcolor      : predT.given,
-                letterAngle : 45,
-                initialR    : 3,
-                undisplayAlways : true,
-                doPaintPname : false,
-            },
-
             m : {
                 pcolor      : predT.given,
                 letterAngle : 45,
@@ -305,22 +315,6 @@
                 initialR    : 3,
                 hideCaption  : true,
             },
-
-            p : {
-                pcolor      : predT.given,
-                letterAngle : 45,
-                initialR    : 3,
-                hideCaption  : true,
-            },
-
-            /*
-            baseSlider : {
-                pos         : [0,0.1],
-                pcolor      : [255,0,0],
-                letterAngle : 90,
-                draggableX  : true,
-            },
-            */
         };
 
         //AB, BC, CD
@@ -359,30 +353,13 @@
                         pcolor : predT.given,
                    },
             },
-            { GD : {
-                        pcolor : predT.given,
-                   },
-            },
-            { gE : {
-                        pcolor : predT.given,
-                   },
-            },
-
             // //\\ top rect sides
             //lower
-            { "K,bk" : {
-                        pcolor : predT.given,
-                   },
-            },
             { cL : {
                         pcolor : predT.given,
                    },
             },
             { dM : {
-                        pcolor : predT.given,
-                   },
-            },
-            { gG : {
                         pcolor : predT.given,
                    },
             },
@@ -407,10 +384,6 @@
 
             //upper
             { od : {
-                        pcolor : predT.given,
-                   },
-            },
-            { "m,bk" : {
                         pcolor : predT.given,
                    },
             },
@@ -444,15 +417,12 @@
 
             { Kb : {
                         pcolor : predT.given,
+                        //undisplayAlways : true,
+                        //undisplay : true,
                    },
             },
 
         ];
-
-
-        //rects predT.difference
-
-
 
         nspaste( sconf, {
             topicColors_elected : predT,
@@ -463,10 +433,9 @@
             originY_onPicture : modorInPicY + pictureActiveArea,
             pictureWidth,
             pictureHeight,
-            mod2inn_scale : pictureActiveArea, //todo,
+            mod2inn_scale : 1, //was pictureActiveArea,
             //default_tp_stroke_width : 12,
             handleRadius : 55,
-            modorInPicY, //tofm rid later
         });
         //=====================================
         // \\// patch for quick slider creation

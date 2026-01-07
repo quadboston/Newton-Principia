@@ -1,6 +1,6 @@
 ( function() {
     var {
-        sn,
+        sn, haz,
         fconf, sDomF,
         stdMod, amode, sconf,
     } = window.b$l.apptree({
@@ -81,7 +81,11 @@
     function inn2outparent()
     {
         var off     = sconf.mediaOffset;
-        var medpos  = this.medpos;
+        var medpos  = haz( this, 'medpos' );
+        if( !medpos ) {
+            ////todm fix this in other code?
+            medpos = this.medpos = mod2inn( this.pos );
+        }
         var i2o     = 1/sDomF.out2inn();
         return [
             medpos[0] * i2o + off[0]

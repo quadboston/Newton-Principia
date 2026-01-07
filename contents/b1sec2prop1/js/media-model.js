@@ -1,20 +1,18 @@
 (function(){
-    const {
-        ns, sn, $$, eachprop, nspaste, has, haz, hafff, fmethods,
-        toreg, fconf, sconf, ssF, ssD, sDomF, rg, exegs,
-        amode, stdMod,
-    } = window.b$l.apptree({ stdModExportList : {
-            media_upcreate___before_basic,
-            media_upcreate___after_basic,
-        },
-    });
-    var initialization_is_done = false;
-    //enables steps BC, CD, ... by clicks on B, C, ...
-    var POINTS_BCDE_ARE_ACTIVE = false;
-    const lemmaP2coroll =
-        ('Caracc Paracc Varacc CCaracc SCaracc BCaracc BParacc' +
-         ' CParacc VVaracc BVaracc CaraccParacc SBCaracc cCaracc').split(' ');
-    return;
+const { ns, sn, $$, eachprop, nspaste, has, haz, hafff, fmethods,
+        toreg, fconf, sconf, ssF, ssD, sDomF, rg, exegs, amode, stdMod,
+} = window.b$l.apptree({ stdModExportList : {
+        media_upcreate___before_basic,
+        media_upcreate___after_basic,
+}});
+var initialization_is_done = false;
+var zorderFixed = false;
+//enables steps BC, CD, ... by clicks on B, C, ...
+var POINTS_BCDE_ARE_ACTIVE = false;
+const lemmaP2coroll =
+    ('Caracc Paracc Varacc CCaracc SCaracc BCaracc BParacc ' +
+     'CParacc VVaracc BVaracc CaraccParacc SBCaracc cCaracc').split(' ');
+return;
 
 
 function media_upcreate___before_basic (){
@@ -108,7 +106,7 @@ function media_upcreate___before_basic (){
     //***********************************************************
     //wraps remained tasks into d8d slider
     //if slider is already created ...
-    hafff( rg.slider_sltime, 'upates_timeSlider8unmasksSvgDom' );
+    hafff( rg.slider_sltime, 'upates_timeSlider8unmasksSvg' );
     hafff( rg.rgslid_dt, 'updates_sliderGUI' );
     //***********************************************************
 
@@ -169,13 +167,12 @@ function media_upcreate___before_basic (){
     //----------------------------------------------------
     // \\// shows next move of the proof
     //----------------------------------------------------
-
-    /*
-    //exists in popular ver:
-    rg['main-legend'].tb.corollary.style.display =
-        ( amode.logic_phase === 'corollary' && amode.subessay === 'cor-1' ) ?
-        'table' : 'none';
-    */
+    if(!haz( fconf, 'RESEARCH' )){
+        //exists in popular ver:
+        rg['main-legend'].tb.corollary.style.display =
+           ( amode.logic_phase === 'corollary' && amode.subessay === 'cor-1' ) ?
+           'table' : 'none';
+    }
     {
         ////apparently working with non-standard lemma,
         ////one of triangles
@@ -198,12 +195,7 @@ function media_upcreate___before_basic (){
         if( !has( rg.CaraccParacc, 'svgel' ) ) return; //todo patch
         svg.remove();
         parent.appendChild( svg );
-        //making this point over the line
-        svg = haz( rg['VVV0-white-filler'], 'svgel' );
-        svg.remove();
-        //parent.appendChild( svg );
     }
-
     ssF.mediaModelInitialized = true;
 }
 
@@ -213,25 +205,16 @@ function pathDelays2forceDraggers (){
         let decStart = rg.C.decStart+ix*4;
         let nam0 = 'VV'+ix;
         let nam1 = 'VVV'+ix;
-        let nam1f = nam1+'-white-filler';
         let doPaintPname = false;
         Object.assign( rg[ nam0 ], {
             decStart    : 111111111,
             decEnd,
             doPaintPname,
-            pointWrap : { doPaintPname },
         });
         Object.assign( rg[ nam1 ], {
             decStart    : 111111111,
             decEnd,
             doPaintPname,
-            pointWrap : { doPaintPname },
-        });
-        Object.assign( rg[ nam1f ], {
-            decStart,
-            decEnd,
-            doPaintPname,
-            pointWrap : { doPaintPname },
         });
     });
 }
@@ -244,5 +227,26 @@ function media_upcreate___after_basic (){
             dec.poly_2_updatedPolyPos8undisplay();
         }
     });
+
+    if( !zorderFixed ) {
+        const path = rg.path.pos;
+        path.forEach( (pt, pix) => {
+            if( !pix ) return;
+            const kix = pix-1;
+            const fkey = 'force-' + kix;
+            const pname = fkey+'-applied';
+            //if( !rg[ pname ] ){
+            //    throw Error ( ' cannot reset zoreder, this rg is lost: ' + pname );
+            //}
+            const svg = rg[ pname ].svgel;
+            //if( !svg ) {
+            //    throw Error ( 'missed svg ' + pname );
+            //}
+            const parent = svg.parentNode;
+            svg.remove();
+            parent.appendChild( svg );
+        });
+        zorderFixed = true;
+    }
 }
 })();

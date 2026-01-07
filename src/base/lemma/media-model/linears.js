@@ -77,13 +77,21 @@
             );
             var ww          = sDomF.tpname0arr_2_rgba( tpclass );
             var stroke      = ns.haz( line, 'pcolor' ) || han( lineAttr, 'stroke', ww );
-            var cssClass    = ns.h( lineAttr, 'cssClass' ) ? lineAttr['cssClass'] + ' ' :  '';
-
+            var cssClass    = ns.h( lineAttr, 'cssClass' ) ?
+                              lineAttr['cssClass'] + ' ' :  '';
             //adds params to line:
             var finalTp         = haz( line, 'notp' ) ? 'notp-' : 'tp-';
             line.finalCssClass  = cssClass + finalTp + tpclass;
             line.pname          = pName;
-            line.pivotNames     = [ pv0.pname, pv1.pname ];
+
+            ///patch for lemma 4 for lines aka
+            //leftbar-1-left-bottom,leftbar-1-right-bottom pivotNames
+            if( has( pv0, 'pname' ) && has( pv1, 'pname' )){
+                line.pivotNames     = [ pv0.pname, pv1.pname ];
+            } else {
+                //patch for lemma 4
+                sn( 'pivotNames', line. null );
+            }
 
             var argsvg = {
                 svgel   : ns.haz( line, 'svgel' ),
@@ -193,16 +201,11 @@
                 )
             );
             line.pnameLabelsvg.textContent = caption;
-
-
-            //todo todo bug, must be out of this if-block
-            //  the bug is that only lines with caption are being dressified,
-            //  the others are never,
-            line.pointIsAlreadyDressed = true;
         }
         //=================================================
         // \\// draws line caption
         //=================================================
+        line.pointIsAlreadyDressed = true;
         return line;
     }
 
@@ -268,6 +271,8 @@
                 throw new Error( 'ambiguous line pivots name = ' + str );
             }
             var pns = str.split( splitToken );
+        } else if( !haz( rg, pns[0] )) {
+            throw Error( 'Missed pivot name = ' + pns[0] );
         }
         const pivots = [ rg[ pns[0] ], rg[ pns[1] ] ];
 
@@ -340,6 +345,7 @@
             poly.undisplay = undisplay;
         }
         poly.pname      = pName;
+        //c cc( 'master function for polygons, pNames=', pNames );
         poly.pivotNames = pNames.concat(); //clones array
         poly.pNames     = pNames;
         poly.poly_2_updatedPolyPos8undisplay = poly_2_updatedPolyPos8undisplay;

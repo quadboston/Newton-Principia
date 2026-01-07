@@ -185,7 +185,6 @@
         // //\\ draws vertical lines and points
         //      and adds methods to point
         //-----------------------------------------------
-        //ccc( sconf.pname2point, sconf.basePairs );
         sconf.basePairs.forEach( (bpair,pix) => {
             var x = bpair[0];
             var y = bpair[1];
@@ -239,7 +238,6 @@
                      m <= pix && ptype === 'experimental' ?  'none' : 'block';
             }
 
-            //ccc( x.pname, rg[ x.pname ] )
             ///placed over above line
             pos2pointy(
                 y.pname,
@@ -276,9 +274,6 @@
                 y.pointWrap.pnameLabelsvg.style.display =
                      m <= pix && ptype === 'experimental' ?  'none' : 'block';
             }
-            //ccc( y.pname, rg[ y.pname ] )
-
-
 
             //-------------------------------------------------
             // //\\ adds methods to single base point only once

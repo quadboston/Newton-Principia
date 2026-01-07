@@ -121,7 +121,6 @@
         ///d8d application
         function d8d_cb_middle2lowest( move, mouseUpOrDown )
         {
-            ccc( '***** in template: d8d_cb_middle2lowest' );
             if( mouseUpOrDown === 'down' ) {
                 return;
             }

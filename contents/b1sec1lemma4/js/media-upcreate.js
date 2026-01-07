@@ -201,7 +201,11 @@
             //-------------------------------------------------------
             // //\\ establishes registry for bar vertices
             //-------------------------------------------------------
-            var leftTop     = toreg( ltName )();   leftTop.pos     = [ p1Xtop, p1Y ];
+            var leftTop       = toreg( ltName )();
+                leftTop.pos   = [ p1Xtop, p1Y ];
+            //solution:    
+            //  leftTop.pname = ltName;
+                
             var rightTop    = toreg( rtName )();   rightTop.pos    = [ p2Xtop, p1Y ];
             var leftBottom  = toreg( ltBName )();  leftBottom.pos  = [ p1X, ymin ];
             var rightBottom = toreg( rtBName )();  rightBottom.pos = [ p2X, ymin ];

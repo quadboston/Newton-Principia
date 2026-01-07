@@ -10,11 +10,13 @@
     const fconf     = sn('fconf',fapp);
     const sconf     = sn('sconf',fconf);
     ns.nstree       = nstree;
+    let ret = null;
     return;
 
 
-    function nstree()
-    {
+    function nstree(){
+        if( ret !== null ) return ret;
+
         //do this first:
         // var ret = Object( {}, ns );
 
@@ -22,8 +24,7 @@
         //let ow = Object.prototype.hasOwnProperty.call;
 
         let ow = Object.prototype.hasOwnProperty;
-        var ret =
-        {
+        ret = {
             ow          : function( ob, prop ) { return ow.call( ob, prop ); },
             ns,
             nsd         : ns.d,

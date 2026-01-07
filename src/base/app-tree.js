@@ -1,6 +1,6 @@
 // For application, creates and exports namespace tree
 // variables ("placeholders") and useful functions.
-( function() {
+(function(){
     var nsvars = window.b$l.nstree();
     var { ns, sn, haz, } = nsvars;
     ns.apptree      = apptree;
@@ -52,6 +52,7 @@
     //site-wide user options
     var userOptions = sn('userOptions',fapp);
     setsEngineDefaults();
+    let ret = null;
     return;
 
 
@@ -65,7 +66,7 @@
     }
 
     ///be aware, this function executes multiple times, so any
-    ///"global external" caclulations will be done multiple times,
+    ///"global external" calculations will be done multiple times,
     function apptree({
         //optional variables
         modName,   //default: ''+mCount.count
@@ -76,6 +77,9 @@
         sDomNExportList,
         expoFun,
     }) {
+        //todo: why does it execute so many times??
+        //console.log('apptree');
+
         ssFExportList && Object.assign( ssF, ssFExportList );
         expoFun = expoFun || ssFExportList,
         expoFun = ssFExportList;
@@ -97,7 +101,8 @@
             if( stdModExportList ) {
                 ///replaces media_upcreate if createMedia0updateMediaAUX is in the list,
                 ///removes createMedia0updateMediaAUX then,
-                var mediaUpcreate = haz( stdModExportList, 'createMedia0updateMediaAUX' );
+                var mediaUpcreate = haz( stdModExportList,
+                                         'createMedia0updateMediaAUX' );
                 if( mediaUpcreate ) {
                     stdMod.media_upcreate = create_media_upcreate(
                         ssF, stdMod, stdModExportList.createMedia0updateMediaAUX );
@@ -114,12 +119,12 @@
                     //this condition indicates we are in module "study-model.js" now,
                     //assuming this is a most indicative property,
                     ns.h( stdModExportList, 'model_upcreate' ) &&
-
                     !ns.h( stdModExportList, 'model8media_upcreate' )
                 ) {
-                    //c cc( 'Remodel: in app-tree: ' +
-                    //     'model_upcreate does exist, creating model8media_upcreate' );
                     stdMod.model8media_upcreate = () => {
+                        //called once on page load and again any
+                        //time the model/data changes
+                        //console.log('model and media upcreate');
                         stdMod.model_upcreate();
                         ns.haff( stdMod, 'media_upcreate' );
                   }
@@ -140,8 +145,8 @@
         //-------------------------------------------------------------
         // //\\ output
         //-------------------------------------------------------------
-        Object.assign( nsvars,
-        {
+        if( ret !== null ) return ret;
+        Object.assign( nsvars, {
             engCssMs,
             fmethods,
             ss,
@@ -182,10 +187,11 @@
             modName,
             stdMod,
         });
+        ret = nsvars;
         //-------------------------------------------------------------
         // \\// output
         //-------------------------------------------------------------
-        return nsvars;
+        return ret;
     }
 
     //=========================================================

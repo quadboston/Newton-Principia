@@ -1,7 +1,8 @@
 //default app wide settings for lemmas
 //may be overriden later by URL-query or lemma sconf.js,
 (function(){
-    const {fapp, fconf, sf, topicColors_repo} = window.b$l.apptree({});
+    const { fapp, fconf, sf, userOptions, topicColors_repo } =
+           window.b$l.apptree({});
     fapp.normalizeSliders = normalizeSliders;
     fapp.doesConfigLemma = doesConfigLemma;
     const tr = topicColors_repo;
@@ -13,14 +14,18 @@
 
 
 function doesConfigLemma (){
+    // runs once per page load
+    // c cc('doesConfigLemma');
+ 
     //tools
     sf.enableStudylab = false;
     //true enables framework zoom:
     sf.enableTools = true;
+    //app modes
+    sf.mediaMoverPointDisabled = false;
 
     //=======================================
     // //\\ topic colors repo
-    //      for lemma's sconf.js
     //=======================================
     //-----------------------
     // //\\ physics
@@ -144,9 +149,6 @@ function doesConfigLemma (){
         r               : sf.handleRadius,
     };
 
-    //app modes
-    sf.mediaMoverPointDisabled = false;
-
     Object.assign( sf, {
         //***************************************************
         // //\\ tp color
@@ -166,18 +168,19 @@ function doesConfigLemma (){
         //0.6-makes opacity points do look "non-solid",
         TP_OPACITY_LOW_POINT : 1,
         TP_OPACITY_HIGH : 0.8,
-        TP_OPACITY_HIGH_POINT : 1,
 
-        TP_OPACITY_FROM_fixed_colors : true,
         SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY : 0.6,
         default_tp_stroke_opacity   : 0.5, //2, todotodo bug everywhere
 
-        //affects only anchor colors in Book text,
         ANCHOR_OPACITY_LOW : '0.7',
         ANCHOR_OPACITY_HIGH : '1',
         ANCHOR_DEFAULT_COLOR : 'rgba( 150, 0, 150, 1 )',
+
+        //affects only anchor colors in Book text,
+        TP_OPACITY_FROM_fixed_colors : true,
         //---------------------------------------------------
-        // \\//  tp color
+        // \\// tp color opacity
+        // \\// tp color
         //===================================================
 
         //diagram drag handle mouse pointer styles
@@ -194,9 +197,6 @@ function doesConfigLemma (){
         //---------------------------------------------------------------
         // \\// anchor control
         //---------------------------------------------------------------
-        //***************************************************
-        // \\// TOPIC COLORS AND SHAPES
-        //***************************************************
 
         //***************************************************
         // ??? in better design, this setting should come
@@ -213,7 +213,6 @@ function doesConfigLemma (){
         //***************************************************
 
         mediaOffset : [ 0, 0 ], //in respect to simscene
-
         LETTER_FONT_SIZE_PER_1000 : 32,
 
         GENERIC_SLIDERS_FONT_SIZE : 15,

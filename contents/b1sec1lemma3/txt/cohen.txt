@@ -3,7 +3,7 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
-  "mediaBgImage" : "../../lemma2/img/lemma-23-3rd-ed.png",
+  "mediaBgImage" : "../../b1sec1lemma2/img/lemma-23-3rd-ed.png",
   "logic_phaseCaption" : "Claim"
 }
 *..*

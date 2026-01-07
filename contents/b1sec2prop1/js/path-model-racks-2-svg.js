@@ -16,8 +16,7 @@
         var path            = rg.path.pos;
         var pathRacks       = rg.pathRacks.pathRacks;
         var freePath        = rg.freePath.pos;
-        var speeds          = rg.speeds.pos;
-
+        var speeds          = rg.speeds.vect;
         //=======================================================
         // //\\ spawns path to
         //      path "rgPoints", Kepler-triangles, free-triangles
@@ -121,7 +120,7 @@
                 //----------------------------------
                 var wwpname = fkey+'-applied';
                 let pcolor = sDomF.tpname0arr_2_rgba( 'forceMove' )
-                var wwline = toreg( wwpname )
+                toreg( wwpname )
                     ({ undisplay : true })
 
                     ////patch for purpose of drawing a vector tip
@@ -129,7 +128,6 @@
                     ( 'tipFraction', 0.4 )
                     ( 'pcolor', pcolor )
                     ( 'tipFill', pcolor )
-
                     ();
                 let forceShape = pivots_2_svgLineInRg(
                     wwpname,

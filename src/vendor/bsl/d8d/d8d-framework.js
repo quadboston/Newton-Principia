@@ -312,7 +312,7 @@
             //=====================================================
             var dragWrap =
             {
-                pointWrap       : pointWrap,
+                pointWrap       : pointWrap, //often, should be = rgX
                 doProcessWrap   : doProcessWrap,
                 update_decPoint : update_decPoint,
                 //recall: decPoint = document.createElement( 'div' )

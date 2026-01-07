@@ -6,11 +6,13 @@
 
 function init_conf()
 {
-    sf.dontRun_ExpandConfig = true;
 
     //======================================
     // //\\ scenario
     //======================================
+    //progr:
+    sf.dontRun_ExpandConfig = true;
+    //user:
     sf.enableStudylab = true;
     sf.hideProofSlider = true;
     sf.enableCapture = true;

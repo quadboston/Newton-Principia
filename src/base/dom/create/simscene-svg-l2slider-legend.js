@@ -82,14 +82,16 @@
                     // /16438416/cross-browser-svg-preserveaspectratio
         */
 
-        if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' ) {
+        if( fconf.sappId.indexOf('b1sec1lemma2') === 0 ||
+            fconf.sappId === 'b1sec1lemma3' ) {
             ////l2 patch:
             sliderGroupLemma2();
         }
 
         stdMod.legendRoot$ = $$
             .dct( 'bsl-legend-root', stdMod.simScene );
-        if( fconf.sappId.indexOf('lemma2') === 0 || fconf.sappId === 'lemma3' ) {
+        if( fconf.sappId.indexOf('b1sec1lemma2') === 0 ||
+            fconf.sappId === 'b1sec1lemma3' ) {
             stdMod.legendRoot$.css( 'padding-bottom', '15px' );
         }
     }

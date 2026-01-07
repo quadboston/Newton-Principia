@@ -54,7 +54,7 @@
         pname, acceptPos, orientation, pos, nospinner,
     }) {
         pos                     = pos || ns.haz( sconf.pname2point, pname ) || [];
-        var rgX                 = ssF.upcreate__pars2rgShape({ pname, pos, })
+        var rgX                 = ssF.camelId_2_pos_in_rg_8_pname2point({ pname, pos, })
         rgX.acceptPos           = acceptPos || ( _=>true );
         rgX.move_2_updates      = sDomF.move_2_updates;
         //premature?: rgX.processDownEvent    = processDownEvent || sDomF.processDownEvent;

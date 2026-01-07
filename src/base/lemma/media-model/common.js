@@ -6,7 +6,7 @@
     } = window.b$l.apptree({
         ssFExportList :
         {
-            upcreate__pars2rgShape,
+            camelId_2_pos_in_rg_8_pname2point,
             declareGeomtric,
         },
     });
@@ -23,8 +23,8 @@
     ///whirl is geometrical-shape-in-model: point, line, ...
     ///we don't want to call them "shape" because it collides with word "shape" in svg
     ///which is GUI-geometrical shape - visula representation thing;
-    function upcreate__pars2rgShape({ pname, pos, wtype, })
-    {
+    function camelId_2_pos_in_rg_8_pname2point({ pname, pos, wtype, }){
+        //c cc( pname + ' camelId_2_pos_in_rg_8_pname2point scratches pointWrap' );
         var rgX = null;
         switch ( wtype )
         {
@@ -35,9 +35,13 @@
                     ( 'pname', pname )
                     ( 'pos', pos )
                     //( 'pcolor' : sDomF.tpname0arr_2_rgba( pname ) ),
+                    
+                  
+                    
                     ///todm: work out to remove this
                     ///      proliferated coding: medpos, pos, ...  are two places:
                     ///      because of pWrap of itself is a proliferation of rg.pname rack
+                    /*
                     (
                         'pointWrap',
                         {
@@ -46,25 +50,26 @@
                            doPaintPname : true, //todm remove
                         }
                     )
+                    */
+                    
+                    
+                    
                     ();
+                    
                 //todm ... programming unwanted surprises
+                //todo conflicting format: lemma 5 has more props:
                 sconf.pname2point[ pname ] = pos;
-                //too much?: rgX.medpos = ssF.mod2inn( pt.pos );
 
             break;
-            /*
-            case 'line':
-                rgX = toreg( pname );
+            //case 'line':
+            //    rgX = toreg( pname );
                     //( 'pname', pname )
                     //( 'pos', pos )
-                    ();
-                //sconf.pname2point[ pname ] = pos; //todm ... programming unwanted surprises
-            break;
-            */
+            //sconf.pname2point[ pname ] = pos;
+            //todm ... programming unwanted surprises
         }
         return rgX;
     }
-
 
     ///declares geometric for model and simulation/user scenario;
     ///               not for view for media and GUI;

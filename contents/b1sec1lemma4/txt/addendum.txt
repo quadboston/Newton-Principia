@@ -80,7 +80,7 @@ Areas of inscribed parallograms based on these intervals α, β will be denoted 
             { b/a | x ∊ [0,1), d &gt; 0, a = f<sub>min</sub>d,  b = g<sub>min</sub>h },  
     </div>
 <br>
-(This limit is defined in <a href="&#63;conf=sappId=lemma1#definition-of-limit" target="_blank"> limit addendum </a> as "uniform" convergence of a set.)
+(This limit is defined in <a href="&#63;conf=sappId=b1sec1lemma1#definition-of-limit" target="_blank"> limit addendum </a> as "uniform" convergence of a set.)
 <br><br><i>Proof.</i>
 <br>
 

@@ -208,11 +208,11 @@
                         //if topicId keyName is missed, then an empty object created
                         if( !has( lowtpid_2_glocss8anchorRack, lowId ) ){
                             ////todm: add this warning to GUI:
-                            ccc( 'Topic "'+lowId +'" ' +
-                                 'is missed in js-code. ' +
-                                 'If not to be automated, check your texts or code.'
+                            ccc( 'Helper: text topic "'+lowId +'" ' +
+                                 'is missed in js-code. '
                             );
-                            //for this keyName, 'fixed-colors' is a flag and is = 'undefined'
+                            //for this keyName, 'fixed-colors' is a
+                            //flag and is = 'undefined'
                             sn( lowId, lowtpid_2_glocss8anchorRack );
                         }
                     }

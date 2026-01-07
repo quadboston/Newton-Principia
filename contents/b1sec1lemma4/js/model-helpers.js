@@ -169,7 +169,7 @@
                     stdMod.sliderN_mastN2caption();
                 }
                 //perhaps graph must be redrawn:
-                fw.content.pix2values.length = 0;
+                rg.pHGraph.fw.content.pix2values.length = 0;
                 return true;
             };
         });

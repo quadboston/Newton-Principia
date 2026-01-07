@@ -10,6 +10,12 @@
     return;
 
 function full_conf(){
+    //it is recommeded to keep this flag in both 
+    //canonical and research version to simplfiy code
+    //cross development,
+    //true means research version, false - canonical
+    fconf.RESEARCH = true;
+    
     //apparently, we can do '.' because "contents" is moved levels up
     //when move-to-prod-folder.php builds production package folders,
     //will be it better to explicitly set './'?

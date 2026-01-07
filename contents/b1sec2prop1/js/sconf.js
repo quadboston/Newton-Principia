@@ -111,13 +111,21 @@ function init_conf (){
         mediaBgImage : "../js/img/b1s2p1t1.png",
         thickness           : 1,
         default_tp_stroke_width : 10,
+
+        //0.5 is good for areas, bad for lines,
+        //so, lines shold have color pattern [x,x,x,1,1]
+        TP_OPACITY_LOW : 0.5,
+        TP_OPACITY_HIGH : 1,
         //======================================
         // \\//does shape GUI
         //======================================
 
         NUMBER_OF_FORCE_HANDLES : 1, //5,
 
+        //"true" means timer slider shows "proof logic",
+        //otherwise it shows "physical motion",
         TIMER_AND_LOGIC_STEPS_COINSIDE : false,
+
         FIRST_POINT_LABELS_DISPLAY_LIMIT : 1000, //to hide gracefully: was: 1.2
 
         //----------------

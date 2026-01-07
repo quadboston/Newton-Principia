@@ -144,7 +144,8 @@
         //var dd = mat.calculate_divided_differences( xy ).calculate_polynomial;
         //var Sx = sconf.pname2point.S.pos[0];
         //var rr = dd( Sx );
-        //ccc( 'compare: xexp='+Sx + ' yexp=' + sconf.pname2point.R.pos[1] + ' res=' + rr);
+        //c cc( 'compare: xexp='+Sx + ' yexp=' + sconf.pname2point.R.pos[1] +
+        //' res=' + rr);
     }
     //----------------------------------------------------------
     // \\// calculates original function and

@@ -1,22 +1,23 @@
 (function(){
-    const { haz, rg, amode, stdMod, sconf,
-    } = window.b$l.apptree({ stdModExportList : {
-            trajectoryShapes_2_groups__III,
-        },
-    });
-    return;
+const { haz, rg, amode, stdMod, sconf,} =
+      window.b$l.apptree({ stdModExportList : {
+          trajectoryShapes_2_groups__III,
+}});
+return;
 
 
-//*******************************************
-// //\\ setsup show scenario
-//      called in media-model.js::media_upcreate()::
-//                stdMod.trajectoryShapes_2_groups__III();
-//*******************************************
-function trajectoryShapes_2_groups__III()
-{
+///**********************************************
+/// setsup show scenario,
+/// called every time when media_upcreate()
+/// is called in media-model.js::media_upcreate()
+///
+/// therefore, it is dynamic and sensetive to
+/// haz( amode, 'userControl') === 'text'
+///**********************************************
+function trajectoryShapes_2_groups__III (){
     var pathRacks = rg.pathRacks.pathRacks;
     ///pathIx_2_groups: pathIx |-> fGroups = [ fgroup0, fgroup1, ... ].
-    rg.pathIx_2_pathSubsteps = pathRacks.map( (
+    rg.pathIx_2_pathSubsteps = pathRacks.map((
         rgPathPoint,
         pix //=total index ~ (motion-step, logical-interaction-substep)
     ) => {
@@ -63,16 +64,19 @@ function trajectoryShapes_2_groups__III()
             var fgroup = [];
             fGroups.push( fgroup );   
             fgroup.push( rgPathPoint );
-            
             if( sconf.TIMER_AND_LOGIC_STEPS_COINSIDE ||
-                haz( amode, 'userControl') === 'text' ) {
+                haz( amode, 'userControl') === 'text' ||
+                pix === 1 // this is a sort of anomaly,
+                          // needs a thought,
+            )
+            {
                 //:force appears
                 var fkey        = 'force-' + (pix-1);
                 var fappliedKey = fkey + '-applied';
                 var tipKey      = fkey+'-1';
                 fgroup.push( rg[ fappliedKey ] );   
                 fgroup.push( rg[ tipKey ] );   
-                fgroup.push( rg[ 'VVV'+pix ] );   
+                fgroup.push( rg[ 'VVV'+(pix-1) ] );
                 //this is a blue thickable path line:
                 //we show it here in prelast proof-substep of motion-step
                 //fgroup.push( rg[ 'pathSegment-' + (pix-1) ] ); //bug fix
@@ -100,11 +104,14 @@ function trajectoryShapes_2_groups__III()
             fgroup.push( rg[ fkey+'-1' ] );
             fgroup.push( rg[ fappliedKey ] );   
             fgroup.push( rg[ tipKey ] );   
-            fgroup.push( rg[ 'VVV'+pix ] );   
+            fgroup.push( rg[ 'VVV'+(pix-1) ] );   
 
-            //The following previously checked "pix<pathRacks.length-1", however pathRacks.length varies even when the desired result doesn't.
-            //As the delta time slider is moved to the left pathRacks.length increases, however when moved back to the right pathRacks.length 
-            //doesn't decrease.  This means that the following would sometimes get added for an extra step.  rg.spatialSteps-1 always has the
+            //The following previously checked "pix<pathRacks.length-1",
+            //however pathRacks.length varies even when the desired result doesn't.
+            //As the delta time slider is moved to the left pathRacks.length
+            //increases, however when moved back to the right pathRacks.length 
+            //doesn't decrease.  This means that the following would sometimes
+            //get added for an extra step.  rg.spatialSteps-1 always has the
             //correct value, and therefore a consistent result.
             if (pix < rg.spatialSteps - 1) {
                 fgroup.push( rg[ 'kepltr-' + pix ] );
@@ -114,12 +121,7 @@ function trajectoryShapes_2_groups__III()
             //------------------------------------
             // \\// logical group 3 = path finalized group
             //------------------------------------
-
         }
         return fGroups;
     });
-}
-//*******************************************
-// \\// setsup show scenario
-//*******************************************
-})();
+}})()

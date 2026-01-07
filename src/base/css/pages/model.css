@@ -71,13 +71,17 @@ svg text {
 .slider {
     width: 80%; 
 }  
-  
+ 
+/*
 #widest-visib-toggler-wrap {  /* row in legend line for widthes rectangle */
     display: flex;
 }
+*/
 
-#lemma2.bsl-approot #widest-visib-toggler-wrap,
+/*
+.appid-b1sec1lemma2.bsl-approot #widest-visib-toggler-wrap,
 .bsl-approot.logic_phase--claim #widest-visib-toggler-wrap,
+*/
 .widest-rectangular.invisible,
 .bsl-approot.logic_phase--claim .widest-rectangular {
     display:none;

@@ -135,7 +135,8 @@
         //       possibly only one offender left: theorem1,
         //
         var pointWrap = haz( pt, 'pointWrap' );
-        pointWrap && ( pointWrap.medpos = pt.medpos );
+        pointWrap && ccc( '***** ' + pName, pointWrap, '***end' );
+        //pointWrap && ( pointWrap.medpos = pt.medpos );
         //*****************************************************
 
         if( has( pt, 'undisplayAlways' ) ){
