@@ -730,12 +730,14 @@
             urlConf.forEach( function( opt ) {
                 //reserved chars: !#$%&'()*+,/:;=?@[]
                 //but no need to escape if char has no reserved purpose
-                //https://en.wikipedia.org/wiki/Percent-encoding#Reserved_characters
+                //https://en.wikipedia.org/wiki/
+                //  Percent-encoding#Reserved_characters
                 var cc = opt.split('=');
                 if( cc[1] ) {
                     ////parameter x exists after sign "=" in expression p=x
                     //let user to say "yes" or "no"
-                    cc[1] = cc[1] === "yes" ? true : ( cc[1] === "no" ? false : cc[1] );
+                    cc[1] = cc[1] === "yes" ?
+                            true : ( cc[1] === "no" ? false : cc[1] );
 
                 } else {
                     ////*****************************
@@ -975,7 +977,7 @@
 ///as page loads at landing
 ///keeping css in one html-style-element;
 ( function() {
-    var DEFAULT_KEY         = 'default';
+    var DEFAULT_KEY         = 'default-style-tag-class';
  	var ns                  = window.b$l;
     var globalCss           = ns.sn('globalCss');
     var nsmethods           = ns.sn('methods');

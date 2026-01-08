@@ -187,7 +187,7 @@ function sconf_points8lines (){
             // //\\ templates
             decStart : 6,
             //pcolor : force,
-            //cssClass : 'tp-force',
+            //cssClass : 'tp-force logic_phase--proof',
             //t/ caption : 'X',
             //t/ pos: S,
             //t/ letterAngle : -90, //works
@@ -427,14 +427,15 @@ function sconf_points8lines (){
         { nam : ['S', 'E'], },  // SE
         { nam : ['S', 'F'], },  // SF
 
-        { nam : ['S', 'P'],     // Sc
-            cssClass : 'theor1proof',
+        { nam : ['S', 'P'],
+            cssClass :
+            'theor1proof logic_phase--proof logic_phase--corollary theor1corollary',
+            decStart : -2,
         },
-
-        { nam : ['T', 'P'],     // Sc
-            cssClass : 'theor1proof',
+        { nam : ['T', 'P'],
+            cssClass : 'theor1proof theor1corollary logic_phase--corollary',
+            decStart : -2,
         },
-
         { nam : ['S', 'c'],     // Sc
             cssClass : 'theor1proof',
         },
@@ -498,10 +499,6 @@ function sconf_points8lines (){
           tipFill : tpel.speed,            
         },
 
-        { nam : ['S', 'P'], decStart : -2,                                  // SP
-            cssClass : 'theor1corollary', }, //for perpendicular
-        { nam : ['T', 'P'], decStart : -2,                                  // TP
-            cssClass : 'theor1corollary', }, //for tangent
 
         { nam : ['B', 'U'], //saggitae at B                                 // BU
             cssClass : 'hover-width theor1corollary',

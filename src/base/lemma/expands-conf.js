@@ -212,7 +212,13 @@ function doExpandConfig (){
                 'tipFill',
                 'pivotNames',
             ].forEach( propname => {
+                if( propname === 'pivotNames' ){
+                    if( has(gshape,propname) ){
+                        rgX[propname] = gshape[propname];
+                    }
+                } else {
                 has(gshape,propname) && (rgX[propname] = gshape[propname]);
+                }
             });
             
             //todm: mess: lines array elements attributes go into
@@ -400,6 +406,7 @@ function doExpandConfig (){
     //----------------------------------------------------
     // //\\  prepares sf data holder
     //----------------------------------------------------
+    sn( 'hideProofSlider', sf, true );
     Object.assign( sf, {
         //model-view parameter
         thickness : 1,

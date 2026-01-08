@@ -98,7 +98,12 @@
 
         ssF.in_subessay_launch____amode2lemma();
         haff( stdMod, 'sliders_value2pos' );
-        !sconf.skipGenDragList && sDomF.createsFW__8__executes_dragWr_gens_list();
+        
+        if( fconf.sappId === 'b3lemma5' ){
+            stdMod.media_upcreate();
+        }
+        !sconf.skipGenDragList &&
+            sDomF.createsFW__8__executes_dragWr_gens_list();
         if( fconf.sappId === 'b1sec1lemma9' ||
             fconf.sappId === 'b1sec1lemma10'
         ){
@@ -107,7 +112,7 @@
             //it is possibly created in finalizes-custDraggers8toolsSliders.js,
             //c cc( 'calling by expecting it exists, stdMod.medD8D=', !!stdMod.medD8D );
             //this is an overengineering:
-            stdMod.media_upcreate(); //todm apparently needed for
+            stdMod.media_upcreate();
             stdMod.initDragModel( stdMod.medD8D )
         }
         //=======================================================

@@ -21,6 +21,7 @@
         });
     }
 
+    //one time call function, called in inti...
     function sconf_2_shapes (){
         ///MERGING P1 WITH standalone sconf machinery
         ///syncs these points with hidden force-displacement-handles bases
