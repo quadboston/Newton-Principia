@@ -48,11 +48,12 @@
         rg.T.pos[0] = wwT[0];
         rg.T.pos[1] = wwT[1];
 
-        var Z = mat.linesCross(
-            uu,
+        var Z = mat.dropLine(
+            0.6,
             rg.P.pos,
-            [ rg.Q.pos[0]-rg.T.pos[0], rg.Q.pos[1]-rg.T.pos[1], ],
-            rg.T.pos,
+            null,
+            null,
+            uu,
         );
         rg.Z.pos[0] = Z[0];
         rg.Z.pos[1] = Z[1];
