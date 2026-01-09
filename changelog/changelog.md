@@ -1,5 +1,13 @@
 # Change Log
-  
+
+## 2026-1-11 (Silver Version, 0.4)
+### Improved
+* Proposition 6
+	* minor bug fixes
+	
+* Propositions 10, 11
+	* eccentricity of both models controlled by point A
+
 ## 2025-12-17 (Green Version, 0.3)
 ### Improved
 * General
