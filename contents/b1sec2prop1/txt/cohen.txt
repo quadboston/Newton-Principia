@@ -49,10 +49,9 @@ By a similar
 argument, if the ¦forceMove¦centripetal force¦¦ acts successively at 
 <span class="captured-reference id-1-C">¦C¦¦</span>,
 <span class="captured-reference id-1-D">¦D¦¦</span>, 
-<span class="captured-reference id-1-E">¦E¦¦</span>, 
-..., making
+<span class="captured-reference id-1-E">¦E¦¦</span>,&nbsp;.&nbsp;.&nbsp;.&nbsp;, making
 the body in each of the individual particles of time describe the individual
-straight lines ¦CD¦¦, ¦DE¦¦, ¦EF¦¦, ..., all these lines will lie in the same plane;
+straight lines ¦CD¦¦, ¦DE¦¦, ¦EF¦¦,&nbsp;.&nbsp;.&nbsp;.&nbsp;, all these lines will lie in the same plane;
 and triangle ¦SCD¦¦ will be equal to triangle ¦SBC¦¦, ¦SDE¦¦ to ¦SCD¦¦, and ¦SEF¦¦ to
 ¦SDE¦¦. 
 <br><br>

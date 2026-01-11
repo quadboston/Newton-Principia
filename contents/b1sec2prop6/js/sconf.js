@@ -290,7 +290,6 @@
                 letterRotRadius : 40,
                 draggableX  : true,
                 draggableY  : true,
-                conditionalDrag : 'logic_phase--proof logic_phase--claim',
             },
             QtimeDecor : {
                 undisplayAlways : true,
@@ -384,7 +383,6 @@
 				cssClass: 'subessay--corollary3 subessay--corollary5',
 			 }, },
             { 'SP' : { pcolor : given,
-				cssClass: 'subessay--corollary1 subessay--corollary5',
 			 }, },
             { 'PY' : { pcolor : body,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
