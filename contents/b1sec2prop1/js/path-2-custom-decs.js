@@ -1,5 +1,5 @@
 (function(){
-const { sn, haz, nspaste, mat, sconf, rg, amode, } =     
+const { sn, haz, nspaste, mat, fconf, sconf, rg, amode, } =
         window.b$l.apptree({ stdModExportList : { traj2decs__II } });
 return;
 
@@ -20,19 +20,6 @@ function traj2decs__II (){
     //-----------------------------------------------------
     // \\// allocates positions for c,d,e,f
     //-----------------------------------------------------
-
-    //-------------------------------------------------
-    // //\\ refills corollary pos
-    //-------------------------------------------------
-    //Duplicate h used by P1 Corollary 3 see "sconf.js"
-    //topicColors_elected for more
-    nspaste( rg.h.pos, rg.c.pos );
-    //Duplicate g used by P1 Corollary 3 see "sconf.js"
-    //topicColors_elected for more
-    nspaste( rg.g.pos, rg.f.pos );
-    //-------------------------------------------------
-    // \\// refills corollary pos
-    //-------------------------------------------------
 
     //-----------------------------------------------------
     // //\\ recalculates BCDEF points pos
@@ -62,17 +49,19 @@ function traj2decs__II (){
     // \\// recalculates sagittaes pos
     //-------------------------------------------------
 
-    //top of the accelerated kepler-triangle
-    nspaste( rg.Caracc.pos, rg.pathAracc.pos[ 2 ] );
+    if( fconf.sappId === 'b1sec2prop2' ){
+        //top of the accelerated kepler-triangle
+        nspaste( rg.Caracc.pos, rg.pathAracc.pos[ 2 ] );
 
-    //"legacy"(non-accelerated) perpendicular form C to radii,
-    //rg.Paracc.pos is perpendiculare base-point,
-    nspaste( rg.Paracc.pos, mat.dropPerpendicular( rg.C.pos, rg.S.pos, rg.B.pos ) );
+        //"legacy"(non-accelerated) perpendicular form C to radii,
+        //rg.Paracc.pos is perpendiculare base-point,
+        nspaste( rg.Paracc.pos, mat.dropPerpendicular( rg.C.pos, rg.S.pos, rg.B.pos ) );
 
-    //=== normal-to-radii-displacement - added to position "V"
-    rg.Varacc.pos[0] =
-            rg.Caracc.pos[0]-rg.C.pos[0]+ //normal displaysment
-            rg.V.pos[0];                  //position "V"
-    rg.Varacc.pos[1] = rg.Caracc.pos[1]-rg.C.pos[1]+rg.V.pos[1];
+        //=== normal-to-radii-displacement - added to position "V"
+        rg.Varacc.pos[0] =
+                rg.Caracc.pos[0]-rg.C.pos[0]+ //normal displaysment
+                rg.V.pos[0];                  //position "V"
+        rg.Varacc.pos[1] = rg.Caracc.pos[1]-rg.C.pos[1]+rg.V.pos[1];
+    }
 }
 })();

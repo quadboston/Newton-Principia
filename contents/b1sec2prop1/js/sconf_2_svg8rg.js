@@ -1,6 +1,6 @@
 (function(){
     const { sn, haff, hafff, haz, globalCss, nspaste,
-            sconf, ssF, ssD, stdMod, amode, toreg, rg,
+            fconf, sconf, ssF, ssD, stdMod, amode, toreg, rg,
     } = window.b$l.apptree({ stdModExportList : {
             shapeSconf_2_svg,
             sconf_2_shapes,
@@ -8,6 +8,14 @@
     });
     var decor = sn( 'decor', stdMod );
     const shapesConf = sn( 'shapes', sconf );
+    var theor1proof = fconf.sappId === 'b1sec2prop1' ?
+        'logic_phase--proof' : 'logic_phase--none';
+    var theor2proof = fconf.sappId === 'b1sec2prop2' ?
+        'logic_phase--none' : 'logic_phase--proof';
+    var theor2corollary = fconf.sappId === 'b1sec2prop2' ?
+        'logic_phase--corollary' : 'logic_phase--none';
+    var theor1corollary = fconf.sappId === 'b1sec2prop2' ?
+        'logic_phase--none' : 'logic_phase--corollary';
     return;
 
     
@@ -21,6 +29,7 @@
         });
     }
 
+    //one time call function, called in inti...
     function sconf_2_shapes (){
         ///MERGING P1 WITH standalone sconf machinery
         ///syncs these points with hidden force-displacement-handles bases
@@ -33,7 +42,7 @@
         //      due transparency are still well-visible,
         saggPolyNames_2_rg();
         keplerPolyNames_2_rg();
-        acceleratingArea_2_rg();
+        (fconf.sappId === 'b1sec2prop2') && acceleratingArea_2_rg();
         //=========================================================
         // //\\ placeholders for body states along trajectory,
         //      Aracc postfix stands for "area-accelerating force"
@@ -87,7 +96,7 @@
             var rgElem = shapesConf[ pName ] = toreg( pName )();
             rgElem.initArgs = [
                 pNames,
-                'theor1corollary tostroke',
+                'tostroke hidee '+theor1corollary,
                 null,
                 !!'undisplay',
             ];
@@ -119,7 +128,9 @@
                 //'theor1proof theor2proof tofill theor2corollary tp-triangle_green',
 
                 //must make green:
-                'theor1proof theor2proof tofill theor2corollary',
+                //adding "hidee" is a trick because of these triangles
+                //do not pass though expands-conf.jz machine,
+                'tofill hidee logic_phase--proof ' + theor2corollary,
                 null,
                 !!'undisplay',
                 !'tostroke',
@@ -139,7 +150,7 @@
             var rgElem = shapesConf[ pName ] = toreg( pName )();
             rgElem.initArgs = [
                 pNames,
-                'theor2corollary tofill',
+                'tofill hidee ' + theor2corollary,
                 null,
                 !!'undisplay',
                 !'tostroke',

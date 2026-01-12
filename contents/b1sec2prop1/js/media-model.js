@@ -80,10 +80,13 @@ function media_upcreate___before_basic (){
     // //\\ fixes logical step to 7 for corollary of P2
     //-------------------------------------------------------
     let CStart = rg.C.decStart;
-    lemmaP2coroll.forEach( pn => {
-        rg[pn].decStart = CStart;
-        rg[pn].decEnd = CStart+3;
-        });
+
+    if( fconf.sappId === 'b1sec2prop2' ){
+        lemmaP2coroll.forEach( pn => {
+            rg[pn].decStart = CStart;
+            rg[pn].decEnd = CStart+3;
+            });
+    }
     if(
         amode.subessay === 'cor-1' ||
         amode.subessay === 'cor-6' ||
@@ -181,20 +184,22 @@ function media_upcreate___before_basic (){
         ////covers these two lines,
         ////we do a manual patch to remove and add them
         ////over this triangle,
-        let svg = rg.VVaracc.svgel;
-        if( !svg ) return;
-        let parent = svg.parentNode;
-        if( !parent ) return; //todo fix rightly, fix the cause
-        svg.remove();
-        parent.appendChild( svg );
-        svg = rg.BVaracc.svgel;
-        svg.remove();
-        parent.appendChild( svg );
-        //similar method:
-        svg = rg.CaraccParacc.svgel;
-        if( !has( rg.CaraccParacc, 'svgel' ) ) return; //todo patch
-        svg.remove();
-        parent.appendChild( svg );
+        if( fconf.sappId === "b1sec2prop2" ){
+            let svg = rg.VVaracc.svgel;
+            if( !svg ) return;
+            let parent = svg.parentNode;
+            if( !parent ) return; //todo fix rightly, fix the cause
+            svg.remove();
+            parent.appendChild( svg );
+            svg = rg.BVaracc.svgel;
+            svg.remove();
+            parent.appendChild( svg );
+            //similar method:
+            svg = rg.CaraccParacc.svgel;
+            if( !has( rg.CaraccParacc, 'svgel' ) ) return; //todo patch
+            svg.remove();
+            parent.appendChild( svg );
+        }
     }
     ssF.mediaModelInitialized = true;
 }
@@ -228,7 +233,10 @@ function media_upcreate___after_basic (){
         }
     });
 
+    ///this is a way around canonical config:
+    ///moving svg shapes on top of z order,
     if( !zorderFixed ) {
+        ///path
         const path = rg.path.pos;
         path.forEach( (pt, pix) => {
             if( !pix ) return;
@@ -246,6 +254,49 @@ function media_upcreate___after_basic (){
             svg.remove();
             parent.appendChild( svg );
         });
+
+        ///now put hanler kernels over vector tips
+        ['B','C','D','E','F'].forEach( (pname, ix) => {
+            let nam0 = pname;
+
+            let svg = rg[ nam0 ].svgel;
+            let parent = svg.parentNode;
+            svg.remove();
+            parent.appendChild( svg );
+
+            let nam1 = 'VVV'+ix+'-kernel';
+            svg = rg[ nam1 ].svgel;
+            parent = svg.parentNode;
+            svg.remove();
+            parent.appendChild( svg );
+        });
+
+        //speed over AB
+        let svg = rg.Av.svgel;
+        let parent = svg.parentNode;
+        svg.remove();
+        //svg.style.strokeWidth = '3px';
+        parent.appendChild( svg );
+
+        //speed kernel
+        svg = rg['v-kernel'].svgel;
+        parent = svg.parentNode;
+        svg.remove();
+        parent.appendChild( svg );
+
+        //A kernel
+        svg = rg['A-kernel'].svgel;
+        parent = svg.parentNode;
+        svg.remove();
+        parent.appendChild( svg );
+        zorderFixed = true;
+
+        //S
+        svg = rg['S'].svgel;
+        parent = svg.parentNode;
+        svg.remove();
+        parent.appendChild( svg );
+
         zorderFixed = true;
     }
 }

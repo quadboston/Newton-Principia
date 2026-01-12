@@ -42,7 +42,7 @@ function doesConfigLemma (){
     tr.distanceToCenter = [...tr.body];
 
     //distances
-    tr.path = [0,   0, 150,   1  ];
+    tr.path = [0,   0, 150,  1  ];
     tr.chord = [...tr.path];
     tr.trianglePurpleTextAreaColor = [...tr.path];
     tr["kepler-triangle-odd"]  = [102, 102, 255, 0.35, 0.7];

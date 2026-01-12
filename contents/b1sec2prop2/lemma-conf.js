@@ -3,8 +3,7 @@ window.b$l.apptree({}).fapp.lemmaConfig = function(){ return {
     codesList : [
         { src : 'sconf-addon.js' },
     ],
-    "contents-list" :
-    [
+    "contents-list" : [
         './txt/latin.txt',
         './txt/cohen.txt',
         './txt/addendum-comment.txt',

@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, sn, $$, sv, nsmethods, han, haz, has, mat,
+        ns, sn, $$, sv, nsmethods, han, haz, has, mat, nspaste,
         sconf, ssF, ssD, sDomF, sDomN, lowtpid_2_glocss8anchorRack, rg, toreg,
         stdMod, amode,
     } = window.b$l.apptree({
@@ -48,8 +48,12 @@
         var line        = toreg( pName )();
         pivots          = pivots || haz( line, 'pivots' );
         var vectorTipIx = haz( line, 'vectorTipIx' );
+        if( has( line, 'stroke-width' )){
+            line.finalStrokeWidth = line['stroke-width'];
+        } else {
         var strokeWidth = han( lineAttr, 'stroke-width', 1 );
         line.finalStrokeWidth = strokeWidth * (sconf.thickness || 1);
+        }
         let pv0 = pivots[0];
         let pv1 = pivots[1];
         if( haz( pv0, 'unscalable' ) ) {
@@ -69,7 +73,7 @@
         //line.vector = mat.p1_to_p2(pv0,pv1);
 
         ///this property helps to optimize svg painting
-        var dressed = ownProp.call( line, 'pointIsAlreadyDressed' );
+        var dressed = haz( line, 'pointIsAlreadyDressed' );
         if( !dressed ) {
             ////longer part of optimization: creates svg
             var tpclass = sDomF.tpid2low(
@@ -159,7 +163,8 @@
                     dir[0]
             );
             var leftNormAngle = segAngle + Math.PI/2;
-            var SHIFT = has( lineAttr, 'captionShiftNorm' ) ? lineAttr.captionShiftNorm : 18;
+            var SHIFT = has( lineAttr, 'captionShiftNorm' ) ?
+                            lineAttr.captionShiftNorm : 18;
 
             var finalPosX = lposX + SHIFT * Math.cos( leftNormAngle )
                             - fontSize * lposXSugar;
@@ -200,7 +205,6 @@
                     ( haz( rg, 'allLettersAreHidden' ) || haz( line, 'undisplay' ) )
                 )
             );
-            line.pnameLabelsvg.textContent = caption;
         }
         //=================================================
         // \\// draws line caption

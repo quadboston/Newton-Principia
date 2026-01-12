@@ -16,7 +16,6 @@
 
 
 function doExpandConfig (){
-    ccc( 'doExpandConfig' );
     var {
         topicColors_elected,
         lines,
@@ -211,10 +210,10 @@ function doExpandConfig (){
                 'tipFraction',
                 'tipFill',
                 'pivotNames',
+                'stroke-width',
             ].forEach( propname => {
                 if( propname === 'pivotNames' ){
                     if( has(gshape,propname) ){
-                        ccc( pname +  ', pivotNames=', gshape[propname] );
                         rgX[propname] = gshape[propname];
                     }
                 } else {

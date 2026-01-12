@@ -75,8 +75,8 @@
     ///Collects
     ///      |...|..|| - like preanchor-topics by TOP_ANCH_REG;
     ///Results in:
-    ///     tplink.tpid2true                 [ lowId ] = true;
-    ///     lowtpid_2_glocss8anchorRack[ lowId ]
+    ///     anchorRack.tpid2true                 [ low_tpID ] = true;
+    ///     lowtpid_2_glocss8anchorRack[ low_tpID ]
     ///Returns: collectedTpLinks
     ///*************************************************************
     function fragment__collectsRawTpLinks(
@@ -139,33 +139,43 @@
                     ////config found, extracting it
                     tplinkConf = tplinkConf.substring( 1, tplinkConf.length );
                 }
+                //at the moment tplinkConf is a set of commands,
+                //"config" is a poor word,
                 //=========================================
 
                 //=========================================
                 // collects first link and "loses" others,
                 // collects into anid2anrack
                 //
-                ///this scenario makes tplink missed from tplink_ix index, but
+                ///this scenario makes anchorRack missed from tplink_ix index, but
                 ///it does not matter because these links are searched and
                 ///replaced again in aFrags_2_aFragsWithAnchor
                 ///recall: anid2anrack lives in lemma-scope.
                 //=========================================
+                //right name would be anid2arack //anchor id 2 anchors rack
+                //of properties
                 if( !anid2anrack.hasOwnProperty( tplinkConf ) ) {
-                    //.it counts tplinkConf which "duplicates"
-                    //.shapes or do not map to any shape
+                    ////does strip duplicate propery tplinkConf
+                    ////from anid2anrack
+                    ////  id is equal to tplinkConf
+
+                    //counts unique ids
                     var tplink_ix = tplinkCount++;
 
                     //recall: anix2anrack and anid2anrack do live in lemma-scope.
                     anix2anrack[ tplink_ix ] =
+                    ///at the moment, stripped duplicate links have nothing like
+                    ///this object
                     anid2anrack[ tplinkConf ] = {
                         tplink_ix : tplink_ix,
                         tpid2true : {},
                         //link:parsedLink[2], not-used
                     };
                 }
-                var tplink = anid2anrack[ tplinkConf ];
-                collectedTpLinks[ tplinkConf ] = tplink;
-                var tplink_ix = tplink.tplink_ix;
+                var anchorRack = anid2anrack[ tplinkConf ];
+                //why dubbing?:
+                collectedTpLinks[ tplinkConf ] = anchorRack;
+                var tplink_ix = anchorRack.tplink_ix;
                 //=========================================
                 // \\// indexes topic links and colors
                 //=========================================
@@ -174,46 +184,56 @@
                 // //\\ indexes topics locally and globally
                 //=========================================
                 // splits anchor-configuration to smaller tokens, each
-                // token for separate topic or for reserved-command
-                tplink.raw_tpIDs = tplinkConf.split( SPACE_reg );
+                // token for separate topic or for reserved-command,
+                // raw_tpIDs - are "commands",
+                anchorRack.raw_tpIDs = tplinkConf.split( SPACE_reg );
+                //if( anchorRack.raw_tpIDs.length > 1 )
+                //    ccc(tplinkConf);
                 var ANCH_COLOR_CAT_rg = /\*anch-color\*(.+)/;
-                /// loops via separate topic IDs
-                tplink.raw_tpIDs.forEach( tpid_user => {
+                /// loops via separate anchor operators
+                /// collected in anchor's rack
+                anchorRack.raw_tpIDs.forEach(
+                    anchorOperator => {
                     //..........................................................
                     // //\\ checks for reserved topic categories
                     //      like '*anch-color', ...
                     //..........................................................
-                    if( 'cssbold' === tpid_user ) {
-                        tplink.anchorIsBold = true;
+                    if( 'cssbold' === anchorOperator ) {
+                        anchorRack.anchorIsBold = true;
                         return;
-                    } else if( '*anch-color' === tpid_user ) {
-                        tplink.cssNoColorToShapes = true;
+                    } else if( '*anch-color' === anchorOperator ) {
+                        anchorRack.cssNoColorToShapes = true;
                         return;
-                    } else if( tpid_user.match( ANCH_COLOR_CAT_rg ) ) {
-                        var ww = tplink.colorCateg = tpid_user.match( ANCH_COLOR_CAT_rg );
+                    } else if( anchorOperator.match( ANCH_COLOR_CAT_rg ) ) {
+                        var ww = anchorRack.colorCateg =
+                            anchorOperator.match( ANCH_COLOR_CAT_rg );
                         //.fixed set to tp-link
-                        tplink[ 'tpcolarr' ] = haz( topicColors_repo, ww[1] );
+                        anchorRack[ 'tpcolarr' ] = haz( topicColors_repo, ww[1] );
                         return;
                     }
                     //..........................................................
                     // \\// checks for reserved topic categories
                     //..........................................................
 
-
-                    var lowId = nsmethods.tpid2low( tpid_user );
-                    //tplink has collection of topics,
-                    //here is how this collection is populated:
-                    if( lowId  && lowId.replace( / /g, '' ) ) {
-                        tplink.tpid2true[ lowId ] = true;
+                    //lowcase anchor's topic id
+                    var low_tpID = nsmethods.tpid2low( anchorOperator );
+                    //anchorRack has collection of anchor commands,
+                    ///now we do add anchorRack.tpid2tru to anchorRack,
+                    if( low_tpID  && low_tpID.replace( / /g, '' ) ) {
+                        anchorRack.tpid2true[ low_tpID ] = true;
                         //if topicId keyName is missed, then an empty object created
-                        if( !has( lowtpid_2_glocss8anchorRack, lowId ) ){
+                        //ccc( 'FR II, set low_tpID into lowtpid_2_glocss8anchorRack' );
+                        if( !has( lowtpid_2_glocss8anchorRack, low_tpID ) ){
                             ////todm: add this warning to GUI:
-                            ccc( 'Helper: text topic "'+lowId +'" ' +
+                            ccc( 'Helper: text topic "'+low_tpID +'" ' +
                                  'is missed in js-code. '
                             );
-                            //for this keyName, 'fixed-colors' is a
-                            //flag and is = 'undefined'
-                            sn( lowId, lowtpid_2_glocss8anchorRack );
+                            //for this keyName, 'fixed-colors'
+                            //is a flag and is = 'undefined',
+                            //don't forget lowtpid_2_glocss8anchorRack is in topics.lowtpid_2_glocss8anchorRack
+                            sn( low_tpID,
+                                lowtpid_2_glocss8anchorRack // maps, topicId -> topicId
+                            );
                         }
                     }
                 });
@@ -322,6 +342,7 @@
             //      preconversions before
             //      convertion fragBody_raw to tp-anchor-scripts.
             //***************************************************
+//todo why canonical version misses this?
             fragBody_raw = doesInsertSiteHTMLMacros( fragBody_raw );
 
             //----------------------------------------------------
@@ -484,34 +505,6 @@
         }
         return rawActFrValue;
     }
-
-    /*
-    //**************************************************************************
-    ///This function duplicates functionality of user-options.
-    ///This function is not required at given app version.
-    //==========================================================================
-    ///if we want to keep link-to-link browsing instead of framework with
-    ///addendums added to original text, then we have to update static
-    ///links referred to Addendums,
-    ///this function does this job and is in effect in two places:
-    ///1) at landing time and 2) in "tutor framework" when scenario adds a new message
-    ///to student's console,
-    function updateFrameWorkAnchors_2_basicSiteFeatures( parentDomObj )
-    {
-        if( amode.aspect === 'addendum' ) {
-            let anchors = (parentDomObj||document.body).querySelectorAll( 'a' );
-            let sea = '?conf=sappId=';
-            let reg = new RegExp( '\\' + sea );
-            anchors.forEach( anch => {
-                if( anch.search.indexOf( sea ) === 0 ) {
-                    anch.search = anch.search.replace(
-                        reg, '?conf=extramat=yes,sappId=' );
-                }
-            });
-        }
-    }
-    //**************************************************************************
-    */
 
     ///replaces raw words with value from value found in
     ///collection of collectedDelayedLinks

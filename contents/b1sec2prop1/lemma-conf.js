@@ -6,7 +6,6 @@
         { src : '../js/sconf-for-captured-states.js' },
         { src : '../js/sconf-points-and-lines.js' },
         { src : '../js/sconf_2_svg8rg.js' },
-        { src : '../js/global-css-overrider.js' },
         { src : '../js/decs-2-svg.js' },
 
         //structures core execution

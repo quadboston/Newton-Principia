@@ -10,9 +10,10 @@
 
 
     function init_model_parameters (){
-        ccc( 'init_model_parameters' );
         stdMod.sconf_2_shapes();
         stdMod.shapeSconf_2_svg();
+        rg.displayTime = { value : '' };
+        rg.thoughtStep = { value : '' };
         stdMod.creates_sliderDomModel__4__time();
         stdMod.creates_delta_time_slider();
     }

@@ -252,7 +252,6 @@
         //==================================================
         //sets menu flag
         leafRk.li$.removeClass( 'chosen' );
-
         //sets fappRoot flags
         fapp.fappRoot$.removeClass( 'logic_phase--' + amode.logic_phase +
             ' aspect--' + amode.aspect );
@@ -297,6 +296,7 @@
         fapp.fappRoot$.addClass(
             'logic_phase--' + amode.logic_phase + ' aspect--' + amode.aspect
         );
+        //sets fappRoot flags
 
         //flag to content-text-components
         if( userOptions.shouldShowSubessayMenu(exAspect) ) {

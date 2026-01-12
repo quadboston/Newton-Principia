@@ -4,8 +4,7 @@
         amode, sDomN, sDomF, ssF,
         stdMod, rg, toreg,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             upcreate_mainLegend,
             create_digital_legend,
         },
@@ -29,10 +28,8 @@
     //      at this lemma, it is called from
     //      slider;
     //=========================================
-    function upcreate_mainLegend(){
+    function upcreate_mainLegend (){
         tableCaptionFun();
-
-        //c cc( 'does upcreate_mainLegend' );
         var ww = clustersToUpdate;
         var wwc = clustersToUpdate_corollary;
         ww.time.innerHTML       = rg.displayTime.value;
@@ -40,17 +37,6 @@
         ww.thought.innerHTML    = rg.thoughtStep.value;
         var stepIx = rg.stepIx.value;
         var fullDtRev = 1/rg.rgslid_dt.val * 2;
-        if( stepIx > 0 ) {
-            /*
-            var impulse = rg.impulses.vectors[stepIx-1];
-            var fx = impulse[0]*fullDtRev;
-            var fy = impulse[1]*fullDtRev;
-            var fabs = Math.sqrt( fx*fx + fy*fy );
-            ww.impulse.innerHTML = fabs.toFixed(3);
-            //ww.fx.innerHTML = fx.toFixed(3);
-            //ww.fy.innerHTML = fy.toFixed(3);
-            */
-        }
         var speed = rg.speeds.vect[stepIx-1];
         if( speed ) {
             var vx = speed[0].toFixed(3);
@@ -58,8 +44,6 @@
             var vabs = Math.sqrt( vx*vx + vy*vy ).toFixed(3);
         }
         ww.speed.innerHTML = vabs;
-        //ww.vx.innerHTML = vx;
-        //ww.vy.innerHTML = vy;
         wwc.speed.innerHTML = vabs;
         //------------------------
         // //\\ perpendicular
@@ -76,17 +60,7 @@
     //=========================================
     // \\// updates values during simulation
     //=========================================
-
-
-
-
-
-    //=========================================
-    // //\\ creates proof table
-    //      does one time work of html creation
-    //=========================================
-    function doCreateTables(mlegend)
-    {
+    function doCreateTables(mlegend ){
         mlegend.tb = mlegend.tb || {};
         var tb = mlegend.tb.proof = $$
             .c('table')
@@ -99,11 +73,6 @@
             .cls( 'main-legend corollary' )
             .to( stdMod.legendRoot$ )
             ();
-
-
-        //=====================================================
-        // //\\ idle first row to format table for fixed-layout
-        //=====================================================
         //:Abd Ace
         var row = $$.c('tr')
             .addClass('proof row1')
@@ -363,8 +332,5 @@
         }
         return c$;
     }
-
-
-
-}) ();
+})();
 

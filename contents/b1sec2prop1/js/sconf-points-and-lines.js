@@ -1,6 +1,6 @@
 (function(){
-const { sn, eachprop, mapp, nspaste, haz, has, haff,
-        sconf, toreg, rg, ssF, ssD, sDomF, amode, stdMod,
+const { sn, eachprop, mapp, nspaste, haz, has, haf, haff,
+        fconf, sconf, toreg, rg, ssF, ssD, sDomF, amode, stdMod,
         topicColors_repo, topicColors_repo_camel2col, originalPoints,
 } = window.b$l.apptree({ stdModExportList : { sconf_points8lines, }, });
 const decor = sn( 'decor', stdMod );
@@ -35,7 +35,12 @@ function sconf_points8lines (){
 
     //0.5 is good for areas, bad for lines,
     //so, lines shold have color pattern [x,x,x,1,1]
-    forceMove = [forceMove[0],forceMove[1],forceMove[1],1,1];
+    forceMove = [forceMove[0],forceMove[1],forceMove[2],1,1];
+    path = [ path[0], path[1], path[2], 1, 1 ];
+    freeMove = [freeMove[0],freeMove[1],freeMove[2],1,1];
+    speed = [speed[0],speed[1],speed[2],0.7,1];
+    time = [time[0],time[1],time[2],1,1];
+    force = [force[0],force[1],force[2],1,1];
 
     ///topic names elected
     var tpel = {
@@ -94,16 +99,16 @@ function sconf_points8lines (){
         "Se"                : diagram,
         "Sf"                : diagram,
 
+        //NOTE:
+        //  this goes to color of displacement which is parallel
+        //  to force and sagitta,
+        //  the pcolor which one can try to set on line segment Cc config
+        //  may be overriden by elected topic color:
         "Cc"                : forceMove,
-        //Duplicate of "Cc" used by P1 Corollary 3.
-        //Also referenced in cohen.txt
-        "Ch"                : forceMove,
+
         "Dd"                : forceMove,
         "Ee"                : forceMove,
         "Ff"                : forceMove,
-        //Duplicate of "Ff" used by P1 Corollary 3.
-        //Also referenced in cohen.txt
-        "Fg"                : forceMove,
         "force-0-applied"   : forceMove,
         "force-1-applied"   : forceMove,
         "force-2-applied"   : forceMove,
@@ -140,28 +145,37 @@ function sconf_points8lines (){
 
         "free-path"         : freeMove,
         "c"                 : freeMove,
-        "h"                 : freeMove, //Duplicate of "c" used by P1 Corollary 3
         "d"                 : freeMove,
         "e"                 : freeMove,
         "f"                 : freeMove,
-        "g"                 : freeMove, //Duplicate of "f" used by P1 Corollary 3
 
         "Bc"                : freeMove,
-        //Duplicate of "Bc" used by P1
-        // Corollary 3.  Also referenced in cohen.txt
-        "Bh"                : freeMove, 
         "Cd"                : freeMove,
         "De"                : freeMove,
         "Ef"                : freeMove,
-        //Duplicate of "Ef" used by P1 Corollary 3  Also referenced in cohen.txt
-        "Eg"                : freeMove, 
         "free-triangle"     : freeMove,
     };
     var p2_elected = haff( ssD, 'P2_electedTopicColors' );
     if( p2_elected ) {
         Object.assign( tpel, p2_elected );
     }
-    
+
+    //lemma modes
+    var theor1corollary = fconf.sappId === 'b1sec2prop2' ?
+        'logic_phase--none' : 'logic_phase--corollary';
+    var theor2corollary = fconf.sappId === 'b1sec2prop2' ?
+        'logic_phase--corollary' : 'logic_phase--none';
+    var theor1proof = fconf.sappId === 'b1sec2prop2' ?
+        'logic_phase--none' : 'logic_phase--proof';
+    var theor2proof = fconf.sappId === 'b1sec2prop2' ?
+        'logic_phase--proof' : 'logic_phase--none';
+    var lemmaModes = fconf.sappId === 'b1sec2prop2' ?
+        'logic_phase--proof logic_phase--corollary' :
+        'logic_phase--proof';
+    var cssMove8Mode = 'tp-force-_move ' +
+        fconf.sappId === 'b1sec2prop2' ?
+            'logic_phase--corollary' : 'logic_phase--proof logic_phase--corollary';
+
     //******************************
     // //\\ points config
     //******************************
@@ -173,6 +187,20 @@ function sconf_points8lines (){
     var firstSteps_conf = {
         A   : { decStart : -2, decEnd : 1111111111,
                 draggableX : true, draggableY : true,
+                // //\\ templates
+                //t/ pcolor : force,
+                //t/ cssClass : 'tp-force logic_phase--proof',
+                //t/ caption : 'X',
+                //t/ pos: S,
+                //t/ letterAngle : -90, //works
+                //t/ letterRotRadius : 40, //works
+                //t/ draggableX  : true,
+                //t/ draggableY  : fconf.sappId === 'b1sec2prop7',
+                //t/ initialR    : 5 * sconf.controlsScale, //works
+                //t/ fontSize : 30,
+                //t/ undisplayAlways : true,
+                //t/ doPaintPname : false,
+                // \\// templates
               },
         B   : { decStart : -2, decEnd : 1111111111,
               },
@@ -184,21 +212,7 @@ function sconf_points8lines (){
     var CDEF_conf = {
         //"rg" [ 'B', 'C', 'D', 'E', 'F' ].pos <-- path[ ix + 1 ]
         C   : {
-            // //\\ templates
-            decStart : 6,
-            //pcolor : force,
-            //cssClass : 'tp-force',
-            //t/ caption : 'X',
-            //t/ pos: S,
-            //t/ letterAngle : -90, //works
-            //t/ letterRotRadius : 40, //works
-            //t/ draggableX  : true,
-            //t/ draggableY  : fconf.sappId === 'b1sec2prop7',
-            //t/ initialR    : 5 * sconf.controlsScale, //works
-            //t/ fontSize : 30,
-            //t/ undisplayAlways : true,
-            //t/ doPaintPname : false,
-            // \\// templates
+                decStart : 6,
         },
         D   : { decStart : 10, },
         E   : { decStart : 14,
@@ -221,27 +235,31 @@ function sconf_points8lines (){
     //----------------------------------------------------
     // //\\ theor 2 coroll. path decor
     //----------------------------------------------------
-    var aracc_conf = {
-        Caracc : {
-            caption : "C'",
-            decStart : decor.C.decStart,
-            decEnd : decor.C.decStart,
-            cssClass : 'theor2corollary',
-        },
-        //will be repositioned by algo
-        Paracc : {
-            caption : "C''",
-            decStart : decor.C.decStart,
-            decEnd : decor.C.decStart,
-            cssClass : 'theor2corollary',
-        },
-        Varacc : {
-            caption : "V'",
-            decStart : decor.C.decStart,
-            decEnd : decor.C.decStart,
-            cssClass : 'theor2corollary',
-        },
-    };
+    if( fconf.sappId === 'b1sec2prop2' ){
+        var aracc_conf = {
+            Caracc : {
+                caption : "C'",
+                decStart : decor.C.decStart,
+                decEnd : decor.C.decStart,
+                cssClass : 'logic_phase--corollary',
+            },
+            //will be repositioned by algo
+            Paracc : {
+                caption : "C''",
+                decStart : decor.C.decStart,
+                decEnd : decor.C.decStart,
+                cssClass : 'logic_phase--corollary',
+            },
+            Varacc : {
+                caption : "V'",
+                decStart : decor.C.decStart,
+                decEnd : decor.C.decStart,
+                cssClass : 'logic_phase--corollary',
+            },
+        };
+    } else {
+        aracc_conf = {};
+    }
     //----------------------------------------------------
     // \\// theor 2 coroll. path decor
     //----------------------------------------------------
@@ -252,60 +270,43 @@ function sconf_points8lines (){
             caption : '𝑐',
             decStart : LOGIC ? 5 : decor.C.decStart,
             decEnd : decor.F.decStart+2, //22, //10,
-            cssClass : 'theor1proof theor2proof theor2corollary',
+            cssClass : fconf.sappId === 'b1sec2prop2' ?
+                'logic_phase--proof logic_phase--corollary' :
+                'subessay--cor-3 logic_phase--proof',
         },
         d   : {
             caption : '𝑑',
             decStart : LOGIC ? 9 : decor.D.decStart,
             decEnd : decor.F.decStart+2,
-            cssClass : 'theor1proof theor2proof theor2corollary',
+            cssClass : lemmaModes,
         },
         e   : {
             caption : '𝑒',
             decStart : LOGIC ? 13 : decor.E.decStart,
                 decEnd : decor.F.decStart+2,
-                cssClass : 'theor1proof theor2proof theor2corollary',
+                cssClass : lemmaModes,
         },
         f   : {
             caption : '𝑓',
             decStart : LOGIC ? 17 : decor.F.decStart,
             decEnd : decor.F.decStart+2,
-            cssClass : 'theor1proof theor2proof theor2corollary',
+            cssClass : fconf.sappId === 'b1sec2prop2' ?
+                'logic_phase--proof logic_phase--corollary' :
+                'subessay--cor-3 logic_phase--proof',
         },
-        // \\// c,d,e,f
-
-        // //\\ c-col3
-        h   : {
-            //rg.h.pos <-- rg.c.pos
-            //Duplicate used by P1 Corollary 3 see
-            //"sconf.js" topicColors_elected for more
-            caption : 'c',
-            decStart : decor.C.decStart+1,
-            decEnd : decor.F.decStart+4,
-            cssClass : 'theor1corollary theor2proof',
-        },
-        g   : {
-            //rg.g.pos <-- rg.f.pos            
-            //Duplicate used by P1 Corollary 3 see
-            //"sconf.js" topicColors_elected for more
-            caption : 'f',
-            decStart : decor.F.decStart,
-            decEnd : decor.F.decEnd,
-            cssClass : 'theor1corollary',
-        },
-        // \\// c-col3
-    };
+    }
+    // \\// c,d,e,f
 
     var forceTip_conf = {
         //double sagitta layed down from point B
         V   : { decStart : -2, decEnd : 1111111,
-                cssClass : 'theor1corollary theor2corollary'
+                cssClass : 'logic_phase--corollary'
               },
         //double sagitta layed down from point E
         Z   : {
                 decStart : decor.F.decStart,
                 decEnd : decor.F.decEnd,
-                cssClass : 'theor1corollary',
+                cssClass : theor1corollary,
               },
     };
 
@@ -313,6 +314,7 @@ function sconf_points8lines (){
         S   : {
                 decStart : -2, //always visible
                 letterAngle : -90,
+                initialR : 5 * sconf.controlsScale,
               },
         v   : {
                 //pos      : sconf.B.concat(),
@@ -322,12 +324,12 @@ function sconf_points8lines (){
         P   : {
                 decStart : -2, //always visible
                 doPaintPname : false,
-                cssClass : 'theor1corollary',
+                cssClass : theor1corollary,
                 },
         T   : { decStart : 28,
                 decEnd : -2,  //no end visibility
                 doPaintPname : false,
-                cssClass : 'theor1corollary',
+                cssClass : theor1corollary,
                 //undisplay : true,
                 },
         //sagittae ABC = middle sagitta in sagittae-parallelogram,
@@ -345,7 +347,6 @@ function sconf_points8lines (){
                 decEnd : decor.D.decEnd,
                 doPaintPname : false,
                 cssClass : 'hidden',
-                //cssClass : 'theor1corollary',
         },
     };
     ['B','C','D','E','F'].forEach( (pname, ix) => {
@@ -411,7 +412,17 @@ function sconf_points8lines (){
     //******************************
     // //\\ lines config
     //******************************
-    [
+    var linesConf = [
+
+        { nam : ['A', 'v'],
+          decStart : -2,
+          cssClass : 'tp-speed',
+          vectorTipIx : 1,
+          tipFraction : 0.15,
+          'stroke-width' : 5,
+          pcolor : tpel.speed,
+          tipFill : tpel.speed,
+        },
         { nam : ['A', 'B'], },  // AB
         ////todm possibly redundant, isn't pathSegment-' + pix enough?
         { nam : ['B', 'C'], },  // BC
@@ -426,120 +437,138 @@ function sconf_points8lines (){
         { nam : ['S', 'D'], },  // SD
         { nam : ['S', 'E'], },  // SE
         { nam : ['S', 'F'], },  // SF
+    ];
+    linesConf.push(
+        { nam : ['S', 'P'],
+            cssClass :
+            fconf.sappId === 'b1sec2prop2' ? 'logic_phase--none' :
+                             'logic_phase--proof logic_phase--corollary',
+            decStart : -2,
+        });
 
-        { nam : ['S', 'P'],     // Sc
-            cssClass : 'theor1proof',
+
+    linesConf = linesConf.concat( [
+        { nam : ['T', 'P'],
+            cssClass :
+            fconf.sappId === 'b1sec2prop2' ? 'logic_phase--none' :
+                'logic_phase--proof logic_phase--corollary',
+            decStart : -2,
         },
-
-        { nam : ['T', 'P'],     // Sc
-            cssClass : 'theor1proof',
-        },
-
         { nam : ['S', 'c'],     // Sc
-            cssClass : 'theor1proof',
+            cssClass : theor1proof,
         },
         { nam : ['S', 'd'],     // Sd
-            cssClass : 'theor1proof',
+            cssClass : theor1proof,
         },
         { nam : ['S', 'e'],     // Se
-            cssClass : 'theor1proof',
+            cssClass : theor1proof,
         },
         { nam : ['S', 'f'],     // Sf
-            cssClass : 'theor1proof',
+            cssClass : theor1proof,
         },
-
+    ]);
+    linesConf = linesConf.concat( [
         //this is a thin line, which remains after thick line goes away,
-        { nam : ['C', 'c'], decStart : rg.C.decStart,   // Cc
-            cssClass : 'theor1proof theor2proof theor2corollary tp-force-_move',
-        },
-        { nam : ['D', 'd'],                             // Dd
+        { nam : ['D', 'd'],
             decStart : rg.D.decStart,
-            cssClass : 'theor1proof theor2proof theor2corollary tp-force-_move',
+            cssClass : fconf.sappId === 'b1sec2prop2' ?
+                'logic_phase--proof logic_phase--corollary' :
+                'logic_phase--proof',
         },
-        { nam : ['E', 'e'],                             // Ee
+        { nam : ['C', 'd'],
+            decEnd : rg.f.decStart,
+            cssClass : fconf.sappId === 'b1sec2prop2' ?
+                'logic_phase--proof logic_phase--corollary' :
+                'logic_phase--proof',
+        },
+        { nam : ['D', 'e'],
+            cssClass : fconf.sappId === 'b1sec2prop2' ?
+                'logic_phase--proof logic_phase--corollary' :
+                'logic_phase--proof',
+        },
+        { nam : ['E', 'e'],
             decStart : rg.E.decStart,
-            cssClass : 'theor1proof theor2proof theor2corollary tp-force-_move',
+            cssClass : fconf.sappId === 'b1sec2prop2' ?
+                'logic_phase--proof logic_phase--corollary' :
+                'logic_phase--proof',
         },
-        { nam : ['F', 'f'],                             // Ff
+        //------------------------------------
+        // //\\ cor3 prop1
+        //------------------------------------
+        //normals:
+        { nam : ['B', 'c'],
+            cssClass : fconf.sappId === 'b1sec2prop2' ?
+                'logic_phase--proof logic_phase--corollary' :
+                'subessay--cor-3 logic_phase--proof',
+            decEnd : rg.f.decStart,
+        },
+        { nam : ['C', 'c'], decStart : rg.C.decStart,
+            cssClass : fconf.sappId === 'b1sec2prop2' ?
+                'logic_phase--proof logic_phase--corollary' :
+                'subessay--cor-3 logic_phase--proof',
+        },
+        { nam : ['E', 'f'],
+            cssClass : fconf.sappId === 'b1sec2prop2' ?
+                'logic_phase--proof logic_phase--corollary' :
+                'subessay--cor-3 logic_phase--proof',
+        },
+        { nam : ['F', 'f'],
             decStart : rg.F.decStart,
-            cssClass : 'theor1proof theor2proof theor2corollary tp-force-_move',
+            cssClass : fconf.sappId === 'b1sec2prop2' ?
+                'logic_phase--proof logic_phase--corollary' :
+                'subessay--cor-3 logic_phase--proof',
         },
-        { nam : ['B', 'c'],                             // Bc
-            cssClass : 'theor1proof theor2proof theor2corollary',
-            decEnd : rg.f.decStart,
-        },
-        { nam : ['C', 'd'],                             // Cd
-            cssClass : 'theor1proof theor2proof',
-            decEnd : rg.f.decStart,
-        },
-        { nam : ['B', 'h'], cssClass : 'theor1corollary theor2proof', },
-        // Bh   Duplicate used by P1 Corollary 3 see "sconf.js"
-        //topicColors_elected for more
-  
-        { nam : ['C', 'h'], cssClass : 'theor1corollary theor2proof', },
-        // Ch   Duplicate used by P1 Corollary 3 see "sconf.js"
-        //topicColors_elected for more
-        { nam : ['E', 'g'], cssClass : 'theor1corollary', },
-        // Eg   Duplicate used by P1 Corollary 3 see "sconf.js" topicColors_elected
-        //for more
-        { nam : ['F', 'g'], cssClass : 'theor1corollary', },
-        // Fg   Duplicate used by P1 Corollary 3 see "sconf.js"
-        //topicColors_elected for more
+        //------------------------------------
+        // \\// cor3 prop1
+        //------------------------------------
 
-        { nam : ['D', 'e'], cssClass : 'theor1proof theor2proof', },        // De
-        { nam : ['E', 'f'], cssClass : 'theor1proof theor2proof', },        // Ef
-
-        { nam : ['A', 'v'],
-          decStart : -2,
-          cssClass : 'tp-speed',
-          vectorTipIx : 1,
-          tipFraction : 0.15,
-          pcolor : tpel.speed,
-          tipFill : tpel.speed,            
-        },
-
-        { nam : ['S', 'P'], decStart : -2,                                  // SP
-            cssClass : 'theor1corollary', }, //for perpendicular
-        { nam : ['T', 'P'], decStart : -2,                                  // TP
-            cssClass : 'theor1corollary', }, //for tangent
-
-        { nam : ['B', 'U'], //saggitae at B                                 // BU
-            cssClass : 'hover-width theor1corollary',
+        //------------------------------------
+        // //\\ cor4 prop1
+        //------------------------------------
+        { nam : ['B', 'U'], //saggitae at B
+            cssClass : 'hover-width ' + theor1corollary,
             //for specaial width at hover
             'vectorTipIx' : 1,
             'tipFraction' : 0.2,
             'pcolor' : tpel.forceMove,
             'tipFill' : tpel.forceMove,
         },
-        { nam : ['B', 'V'],                                                 // BV
-            cssClass : 'hover-width theor1corollary'
-        },
-
-        { nam : ['E', 'W'],  //saggitae at E                                // EW
-            decStart : rg.F.decStart,
-            cssClass : 'hover-width theor1corollary',
+        { nam : ['E', 'W'],  //saggitae at E
+            //decStart : rg.F.decStart,
+            cssClass : 'hover-width ' + theor1corollary,
             'vectorTipIx' : 1,
             'tipFraction' : 0.4,
             'pcolor' :  tpel.forceMove,
             'tipFill' :  tpel.forceMove,
         },
+        //------------------------------------
+        // \\// cor4 prop1
+        //------------------------------------
 
-        { nam : ['A', 'C'], cssClass : 'theor1corollary',
+        { nam : ['B', 'V'],                                                 // BV
+            cssClass : 'hover-width ' + theor1corollary,
+        },
+
+        { nam : ['A', 'C'], cssClass : theor1corollary,
         },                 // AC
-        { nam : ['D', 'F'], cssClass : 'theor1corollary' },                 // DF
+        { nam : ['D', 'F'], cssClass : theor1corollary },                 // DF
+    ]);
 
-        { nam : ['c','Caracc'], cssClass : 'theor2corollary', },        // cCaracc
-        { nam : ['C','Caracc'], cssClass : 'theor2corollary', },        // CCaracc
-        { nam : ['S','Caracc'], cssClass : 'theor2corollary', },        // SCaracc
-        { nam : ['B','Caracc'], cssClass : 'theor2corollary', },        // BCaracc
-        { nam : ['B','Paracc'], cssClass : 'theor2corollary', },        // BParacc
-        { nam : ['C','Paracc'], cssClass : 'theor2corollary', },        // CParacc
-        { nam : ['V','Varacc'], cssClass : 'theor2corollary', },        // VVaracc
-        { nam : ['B','Varacc'], cssClass : 'theor2corollary', },        // BVaracc
-        { nam : ['Caracc','Paracc'], cssClass : 'theor2corollary', },
-        // CaraccParacc
+    if( fconf.sappId === 'b1sec2prop2' ){
+        linesConf = linesConf.concat( [
+            { nam : ['c','Caracc'], cssClass : theor2corollary, },
+            { nam : ['C','Caracc'], cssClass : theor2corollary, },
+            { nam : ['S','Caracc'], cssClass : theor2corollary, },
+            { nam : ['B','Caracc'], cssClass : theor2corollary, },
+            { nam : ['B','Paracc'], cssClass : theor2corollary, },
+            { nam : ['C','Paracc'], cssClass : theor2corollary, },
+            { nam : ['V','Varacc'], cssClass : theor2corollary, },
+            { nam : ['B','Varacc'], cssClass : theor2corollary, },
+            { nam : ['Caracc','Paracc'], cssClass : theor2corollary, },
+        ]);
+    }
 
-    ].forEach( ln => {
+    linesConf.forEach( ln => {
         let linesArrElem = {};
         sconf.linesArray.push(linesArrElem);
         const lineName = ln.nam[0]+ln.nam[1];
@@ -559,6 +588,7 @@ function sconf_points8lines (){
             'zOrderAfter',  
             'notp',
             'vectorTipIx',
+            'stroke-width',
             'fontSize',
             'tipFraction',
             'tipFill'
@@ -579,9 +609,6 @@ function sconf_points8lines (){
         rgElem.decStart = decStart;
         rgElem.decEnd = decEnd;
     });
-
-    toreg( 'displayTime' )( 'value', '' );
-    toreg( 'thoughtStep' )( 'value', '' );
 
     //==================================================
     // //\\ equalizes topicColors_elected, topicColors_repo, and
@@ -638,9 +665,7 @@ function sconf_points8lines (){
         });
         [ rg.F, rg.Z, rg.W, rg.EW, rg.DF, rg.f, rg.Ff, rg.Ef, rg.EF,
             rg.SF, rg.Sf, rg.SEf,
-            rg.g, rg.Eg, rg.Fg ].forEach( pn => {
-            //Duplicate g, Eg, Fg used by P1 Corollary 3 see "sconf.js"
-            //topicColors_elected for more
+        ].forEach( pn => {
             pn.decStart = rg.SC.decStart + 12;
         });
     }
