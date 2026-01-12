@@ -1,12 +1,5 @@
-( function() {
-
-    var {
-        ns,
-        eachprop,
-        exegs,
-        topics,
-        references,
-    } = window.b$l.apptree({
+(function(){
+const { ns, eachprop, exegs, topics, fconf, references} = window.b$l.apptree({
         ssFExportList :
         {
             exegs_2_frags,
@@ -61,6 +54,7 @@
                     subexeg.classStr = 'original-text ' + 
                         logic_phase_id + ' ' + aspect_id +
                         ' subessay-' + subessay;
+                    //c cc( exegId, subexeg.classStr );
                     //we do assume that exegId are already 
                     //converted to subessay "human names" where possible:
                     allSkeys[ subessay ] = true;
@@ -124,5 +118,3 @@
         // \\// unhiders
     }
 })();
-
-

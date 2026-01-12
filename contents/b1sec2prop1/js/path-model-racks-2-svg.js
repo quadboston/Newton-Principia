@@ -1,5 +1,5 @@
 ( function() {
-    var { sn, $$, eachprop, sconf, ssF, ssD, sDomF, toreg, rg, amode, } =
+    var { sn, $$, eachprop, fconf, sconf, ssF, ssD, sDomF, toreg, rg, amode, } =
         window.b$l.apptree({ stdModExportList : { allPathRacks_2_unseenSVGs, }, });
     return;
 
@@ -152,13 +152,15 @@
         //-------------------------------------------------
         // //\\ paints free path points
         //-------------------------------------------------
+        var theor1proof = fconf.sappId === 'b1sec2prop1' ?
+            'logic_phase--proof' : 'logic_phase--none';
         freePath.forEach( (pt, pix) => {
             var pkey = 'freepath-' + pix;
             toreg( pkey )({ undisplay : true })();
             rg8pos_2_svg(
                 pkey,
                   {
-                    cssClass: 'tofill tostroke theor1proof',
+                    cssClass: 'tofill tostroke ' + theor1proof,
                     tpclass : 'free-path',
                   }
             );
@@ -182,7 +184,7 @@
                 !'wwPivots',
                 {
                     //stroke:'green',
-                    cssClass:'tofill tostroke theor1proof',
+                    cssClass:'tofill tostroke ' + theor1proof,
                     tpclass : 'free-path',
                     'stroke-width':4
                 }
@@ -216,7 +218,5 @@
         // \\// real path line segment
         //-------------------------------------------------
     }
-
-
-}) ();
+})();
 

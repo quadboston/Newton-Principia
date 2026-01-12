@@ -1,8 +1,9 @@
-( function() {
-    var { sconf, nspaste, capture, toreg, ssF, ssD, sDomF, topicColors_repo, } =
-        window.b$l.apptree({});
+(function(){
+const { sconf, nspaste, capture, toreg,
+         ssF, ssD, sDomF, topicColors_repo,
+    } = window.b$l.apptree({});
     ssF.init_conf_addon = init_conf_addon;
-    ssD.P2_P2_electedTopicColors = P2_electedTopicColors;
+    ssD.P2_topicColors_elected = topicColors_elected;
     return;
 
 
@@ -20,8 +21,8 @@
             ////expands predefinedTopic colors into rg
             ////--------------------------------------------------
             /*
-            let pt = P2_electedTopicColors();
-            Object.keys( P2_electedTopicColors() ).forEach( topicKey => {
+            let pt = topicColors_elected();
+            Object.keys( topicColors_elected() ).forEach( topicKey => {
                 toreg( topicKey )( 'pname', topicKey );
                 var tk = sDomF.tpid2low( topicKey );
                 topicColors_repo[ tk ] = pt[ topicKey ];
@@ -128,7 +129,7 @@
     // \\// makes capture
     }
 
-    function P2_electedTopicColors()
+    function topicColors_elected()
     {
         const {
             forceMove,
@@ -158,5 +159,5 @@
                                                 // area description accelerated
         };
     }
-}) ();
+})();
 

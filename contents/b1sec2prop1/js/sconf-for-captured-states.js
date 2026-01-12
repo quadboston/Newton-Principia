@@ -228,7 +228,7 @@ function makesProfessorsCaptureFootnotes (){
                 "decStart" :21, "decEnd" :111111111111,
             },
             "slider_sltime": {
-                "curtime": 4.8 * sconf.initialTimieStep,
+                "curtime": 5.3 * sconf.initialTimieStep,
             },
             "speeds": {
                 "vect": [
@@ -253,7 +253,7 @@ function makesProfessorsCaptureFootnotes (){
                 ]
             },
             "slider_sltime": {
-                "curtime": 4.8 * sconf.initialTimieStep
+                "curtime": 5.1 * sconf.initialTimieStep
             }
         },
 
@@ -444,26 +444,6 @@ function makesProfessorsCaptureFootnotes (){
                     //we set here condisions of cor4, but saggita will depend on time
                     //which is good for cor2
                     "captured" : "",
-                    "rg" : {
-                        "h": {              //Duplicate used by P1 Corollary 3 see topicColors_elected for more
-                            "decEnd" : 1
-                        },
-                        "Bh": {             //Duplicate used by P1 Corollary 3 see topicColors_elected for more
-                            "decEnd" : 1
-                        },
-                        "Ch": {             //Duplicate used by P1 Corollary 3 see topicColors_elected for more
-                            "decEnd" : 1
-                        },
-                        "g": {              //Duplicate used by P1 Corollary 3 see topicColors_elected for more
-                            "decEnd" : 1
-                        },
-                        "Eg": {             //Duplicate used by P1 Corollary 3 see topicColors_elected for more
-                            "decEnd" : 1
-                        },
-                        "Fg": {             //Duplicate used by P1 Corollary 3 see topicColors_elected for more
-                            "decEnd" : 1
-                        },
-                    }
                 }
             ],
             [
@@ -472,26 +452,6 @@ function makesProfessorsCaptureFootnotes (){
                     //we set here conditions of cor4, but saggita will depend on time
                     //which is good for cor2
                     "captured" : "",
-                    "rg" : {
-                        "h": {              //Duplicate used by P1 Corollary 3 see topicColors_elected for more
-                            "decEnd" : 1111111111
-                        },
-                        "Bh": {             //Duplicate used by P1 Corollary 3 see topicColors_elected for more
-                            "decEnd" : 1111111111
-                        },
-                        "Ch": {             //Duplicate used by P1 Corollary 3 see topicColors_elected for more
-                            "decEnd" : 1111111111
-                        },
-                        "g": {              //Duplicate used by P1 Corollary 3 see topicColors_elected for more
-                            "decEnd" : 1111111111
-                        },
-                        "Eg": {             //Duplicate used by P1 Corollary 3 see topicColors_elected for more
-                            "decEnd" : 1111111111
-                        },
-                        "Fg": {             //Duplicate used by P1 Corollary 3 see topicColors_elected for more
-                            "decEnd" : 1111111111
-                        },
-                    }
                 }
             ],
 

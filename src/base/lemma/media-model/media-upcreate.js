@@ -1,21 +1,12 @@
 (function(){
-    const {
-        ns, sn, haz, haff, $$, eachprop,
-        sconf, ssF, ssD, sDomN, sDomF, amode, stdMod, rg, exegs,
-    } = window.b$l.apptree({
-        ssFExportList : {
+const { ns, sn, haz, haff, $$, eachprop,
+        sconf, ssF, ssD, sDomN, sDomF, amode, stdMod, rg, exegs, } =
+      window.b$l.apptree({ ssFExportList : {
             media_upcreate_generic,
         },
-        setModule,
     });
-    var pivots_2_svgLineInRg;
     return;
 
-
-    function setModule()
-    {
-        pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
-    }
 
     //=========================================================
     // //\\ updater helper
@@ -163,5 +154,4 @@
     //=========================================================
     // \\// updater helper
     //=========================================================
-
 })();
