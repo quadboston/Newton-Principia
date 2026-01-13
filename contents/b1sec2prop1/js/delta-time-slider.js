@@ -89,10 +89,6 @@
         //--------------------------------------------------------
         // //\\ slider api
         //--------------------------------------------------------
-        
-        //todo ?not required?
-        //api.piovots     = [ rg[ start_rgid ], rg[ end_rgid ] ];
-
         api.pos         = [startX, startY];
         api.startX      = startX;
         api.endX        = endX;

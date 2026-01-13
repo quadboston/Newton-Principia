@@ -71,7 +71,7 @@ function unmasksVisib (){
     //Don't go beyond the current step, the number of triangles that
     //should be shown, or the length of the array.
     const indexMax = Math.min(stepIx, rg.spatialSteps - 1,
-                                pathIx_2_pathSubsteps.length - 1);
+                         pathIx_2_pathSubsteps.length - 1);
     //Start with the second group (see the "picture drawing began"
     //section above for the first one).
     for (let index = 1; index <= indexMax; index++) {
@@ -85,9 +85,6 @@ function unmasksVisib (){
                 paintee?.svgel && $$.$(paintee.svgel).removeClass( 'undisplay' );
                 paintee?.vectorArrowSvg$?.removeClass( 'undisplay' );
                 paintee && (paintee.undisplay = false);
-                //this is perplexing, todo
-                //if( !paintee?.vectorArrowSvg$ )
-                    //c cc( 'no vectorArrowSvg$', nspaste( {}, paintee ) );
             });
         }
     }
@@ -113,7 +110,6 @@ function unmasksVisib (){
             if( arrow$ ) {
                 const act = haz( dec, 'undisplay' );
                 arrow$.tgcls( 'undisplay', act );
-                //act && rgX.vectorArrowSvg$.removeClass( 'hidden' );
             }
             if( has( dec, 'svgel$' )){ //todo patch
                 dec.svgel$.tgcls( 'undisplay', haz( dec, 'undisplay' ) );

@@ -248,9 +248,9 @@ function move_2_updates( move_in_model ){
     stdMod.protects_curTime_ranges( newTime );
 
     stdMod.media_upcreate();
-    //we don't need this, this slider does not affect
-    //path calculation
-    //stdMod.model_upcreate();
+    //we don't need this,
+    //  stdMod.model_upcreate();
+    //this slider does not affect path calculation
     //======================================================
 }
 

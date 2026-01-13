@@ -5,38 +5,40 @@
 //   sapp.conf.js works before this code
 
 //\\// Application Entry
+//     recommended: /doc/landing-code-overview.txt
 (function(){
-    var {
-        ns, sn, $$, cssp, eachprop, nspaste, haff, has, haz, nsmethods, html,
-        userOptions, fapp, sapp, fconf, sconf, engCssMs, fmethods, sDomF, sDomN,
-        topicColors_repo_camel2col, srg_modules, amode,
-        //:nearly a patch
-        stdMod, ssD, ssF, wrkwin, lowtpid_2_glocss8anchorRack,
-    } = window.b$l.apptree({});
-    //======================================================
-    // //\\ establishes landing-start-state
-    //======================================================
-    document.documentElement.className += 'non-loaded';
-    $$  .style()
-        .to( document.head )
-        .html(
-            "html.non-loaded body { \n" +
-                "opacity :0; \n" +
-            "} \n" +
-            "html body { \n" +
+const {
+    ns, sn, $$, cssp, eachprop, nspaste, haff, has, haz, nsmethods, html,
+    userOptions, fapp, sapp, fconf, sconf, engCssMs, fmethods, sDomF, sDomN,
+    topicColors_repo_camel2col, srg_modules, amode,
+    //:nearly a patch
+    stdMod, ssD, ssF, wrkwin, lowtpid_2_glocss8anchorRack,
+} = window.b$l.apptree({});
 
-            //duplicate with css file ... dom-roots.css
-            //"    height : 100vh \n" +
-            "    opacity :1; \n" +
-            "    transition  :opacity 1s ease-in-out; \n" +
-            "} \n"
-        );
-    //======================================================
-    // \\// establishes landing-start-state
-    //======================================================
-    //main application entry
-    document.addEventListener( "DOMContentLoaded", I__front_page );
-    return;
+//======================================================
+// //\\ establishes landing-start-state
+//======================================================
+document.documentElement.className += 'non-loaded';
+$$  .style()
+    .to( document.head )
+    .html(
+        "html.non-loaded body { \n" +
+            "opacity :0; \n" +
+        "} \n" +
+        "html body { \n" +
+
+        //duplicate with css file ... dom-roots.css
+        //"    height : 100vh \n" +
+        "    opacity :1; \n" +
+        "    transition  :opacity 1s ease-in-out; \n" +
+        "} \n"
+    );
+//======================================================
+// \\// establishes landing-start-state
+//======================================================
+//main application entry
+document.addEventListener( "DOMContentLoaded", I__front_page );
+return;
 
 
 //***********************************************
@@ -81,8 +83,7 @@ function I__front_page (){
     }
 }
 
-function II__starts_lemma()
-{
+function II__starts_lemma (){
     //=============================================================
     // does first round (of two) of executing setModule for modules
     //=============================================================
@@ -111,8 +112,7 @@ function II__starts_lemma()
 ///-------------------------------------------------
 /// prepares sub-application-source-code-files,
 ///-------------------------------------------------
-function III__config8run_lemmaModules()
-{
+function III__config8run_lemmaModules (){
     fconf.lemmaCode_fullpath = fconf.pathToContents + "/" +
                                 fapp.lemmaDef.sappId;
     nsmethods.loadScripts(
@@ -256,7 +256,6 @@ function cb__activates_modules8lemma (){
 
 function cb__LANDING_VI (){
     ////exegs are ready now,
-    ccc('LANDING_VI');
 
     //this place looks like
     //the best to establish initial topics,
@@ -322,9 +321,8 @@ function cb__LANDING_VI (){
 }
 
 //does: exegs__2__frags_dom_css_mjax_tpanch_initapp_menu_evs_capture
-function VI__exegs2frags_8_initApp()
-{
-    ccc( 'VI__exegs2frags_8_initApp');
+function VI__exegs2frags_8_initApp (){
+    //c cc( 'VI__exegs2frags_8_initApp');
     ssF.exegs_2_frags(); //to active-areas
     ssF.frags__2__dom_css_mjax_tpanchors();
 

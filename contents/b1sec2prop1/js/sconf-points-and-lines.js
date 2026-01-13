@@ -634,7 +634,6 @@ function sconf_points8lines (){
         var fck = topicColors_repo[ tpLowKey ] = tpel[ tpCamel ].concat();
         //compensates missing of "extend-confib" in engine core
         topicColors_repo_camel2col[ tpCamel ] = fck; //based on Camel Id
-        //todo why rg colors are not set here?
     });
     if( has( ssD, 'P2_electedTopicColors' ) ) {
         ////we are working in prop 2,
