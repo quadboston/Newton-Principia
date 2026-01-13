@@ -112,7 +112,6 @@
     }
 
     function keplerPolyNames_2_rg (){
-        //they do not refresh when media scales, todo,
         [   ////these triangles override free triangles attached to path
             ////in path-2-media js-code,
             ['S', 'B', 'c',],   //SBc

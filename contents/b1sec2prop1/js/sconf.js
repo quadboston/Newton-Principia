@@ -1,15 +1,14 @@
 (function(){
-    const {
-        sn, haff, has, eachprop, nspaste, capture, toreg,
-        stdMod, fconf, sconf, ssF, ssD, sDomF,
-        topicColors_repo, topicColors_repo_camel2col, originalPoints,
-    } = window.b$l.apptree({ ssFExportList : { init_conf } });
-    const linesArray = sn( 'linesArray', sconf, [] );
-    return;
+const {
+    sn, haff, has, eachprop, nspaste, capture, toreg,
+    stdMod, fconf, sconf, ssF, ssD, sDomF,
+    topicColors_repo, topicColors_repo_camel2col, originalPoints,
+} = window.b$l.apptree({ ssFExportList : { init_conf } });
+const linesArray = sn( 'linesArray', sconf, [] );
+return;
 
 
 function init_conf (){
-    ccc( 'init_conf' );
     //----------------------------------
     // //\\ scenario
     //----------------------------------

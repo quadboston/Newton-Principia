@@ -1,17 +1,14 @@
 //\\// Application Entry
 //     recommended: /doc/landing-code-overview.txt
-
-
-( function() {
-    var {
+(function(){
+const {
         ns, sn, $$, cssp, eachprop, nspaste, haff, has, haz, nsmethods, html,
         userOptions, fapp, sapp, fconf, sconf, engCssMs, fmethods, sDomF, sDomN,
-        topicColors_repo_camel2col,
-        srg_modules, amode,
+    topicColors_repo_camel2col, srg_modules, amode,
         //:nearly a patch
         stdMod, ssD, ssF, wrkwin, lowtpid_2_glocss8anchorRack,
-    } = window.b$l.apptree({
-    });
+} = window.b$l.apptree({});
+
     //======================================================
     // //\\ establishes landing-start-state
     //======================================================
@@ -33,11 +30,8 @@
     //======================================================
     // \\// establishes landing-start-state
     //======================================================
-
-    //******************************************************
     //main application entry
     document.addEventListener( "DOMContentLoaded", LANDING_I___app_main );
-    //******************************************************
     return;
 
 
@@ -306,7 +300,29 @@
         ns.haff( stdMod, 'create_digital_legend' );
         ns.haff( ssF, 'create_digital_legend' );
 
-        stdModPatch();
+        //======================================================
+        // //\\ stdModPatch
+        //======================================================
+        // todm: patch: generates pars needed possibly for
+        //       d8d creation and decorational points
+        //       before first resize set these pars
+        //       appar. needed for:
+        //              dom2model-scales.js::out2inn() and
+        //              dom2model-scales.js::inn2outparent()
+        stdMod.bgImgOffset = sDomN.bgImgOffset;
+        stdMod.bgImgW = sDomN.bgImgW;
+        //======================================================
+
+        //================================================================
+        // **api simSceSvg_narrowestAsp
+        //Asp when scene svg is shrinked to minimal possible value,
+        //when svg-width fits bg image width:
+        //todo rename with simSceSvg_narrowestAsp
+        stdMod.sceBgAspR = stdMod.simSceSvg_narrowestAsp =
+        sconf.innerMediaHeight/sconf.innerMediaWidth;
+        //======================================================
+        // \\// stdModPatch
+        //======================================================
         sapp.init_sapp();
 
         sDomF.populateMenu();
@@ -326,10 +342,6 @@
         setTimeout( fmethods.fullResize, 500 );
         fmethods.setupCapturerEvents();
     }
-    //***********************************************
-    // \\// establishes lemmas
-    //***********************************************
-
 
     ///apparently does not do any modules landing-load
     function LANDING_VII___landingFlag_8_nextLemmaButtons()
@@ -353,33 +365,5 @@
         //      remove this fix, reproduce
         //      vertical-misplacement-bug and solve it thoroughtly:
         document.body.scrollTop = 0; //todo ... type number? not a "0px"
-    }
-
-    function stdModPatch()
-    {
-        //======================================================
-        // todm: patch: generates pars needed possibly for
-        //       d8d creation and decorational points
-        //       before first resize set these pars
-        //       appar. needed for:
-        //              dom2model-scales.js::out2inn() and
-        //              dom2model-scales.js::inn2outparent()
-        stdMod.bgImgOffset = sDomN.bgImgOffset;
-        stdMod.bgImgW = sDomN.bgImgW;
-        //======================================================
-
-        //================================================================
-        // **api simSceSvg_narrowestAsp
-        //Asp when scene svg is shrinked to minimal possible value,
-        //when svg-width fits bg image width:
-        //todo rename with simSceSvg_narrowestAsp
-        stdMod.sceBgAspR = stdMod.simSceSvg_narrowestAsp =
-                        ( haz( sconf, 'innerMediaHeight' ) ||
-                            sconf.innerMediaHeight )
-                        /
-                        ( haz( sconf, 'innerMediaWidth' ) ||
-                            sconf.innerMediaWidth )
-                        ;
-        //================================================================
     }
 })();
