@@ -12,6 +12,7 @@
 
     
     function initiates_kepler_config() {
+        console.log("initiates_kepler_config");
         sconf.curveQRange = sconf.orbit_q_end - sconf.orbit_q_start;
         sconf.pointDecoration.r = sconf.handleRadius;
         sconf.delta_q_between_steps = sconf.curveQRange / sconf.Q_STEPS;
@@ -52,15 +53,31 @@
         if( rg.S.draggableX || rg.S.draggableY ) {
             stdMod.creates_S_slider();
         }
+
+        if (stdMod.computeQEndTemp)
+            console.log("computeQEndTemp =", stdMod.computeQEndTemp());//TEMP
     }
     
     function rebuilds_orbit( keepThisDt ) {
         const SACC = sconf.SAGITTA_ACCURACY_LIMIT;
         const Q_STEPS = sconf.Q_STEPS;
+        //TEMP To test adjusting the hyperbola length
+        if (stdMod.computeQEndTemp) {
+            sconf.orbit_q_end = stdMod.computeQEndTemp();
+            sconf.orbit_q_start = -sconf.orbit_q_end;
+            sconf.curveQRange = sconf.orbit_q_end - sconf.orbit_q_start;
+            sconf.delta_q_between_steps = sconf.curveQRange / sconf.Q_STEPS;
+        }
+        //TEMP//
         stdMod.recreates_q2xy();
         stdMod.buildsOrbit();
         stdMod.poly2svgP11();
-        sconf.TIME_IS_FREE_VARIABLE && stdMod.builds_orbit_time_grid();
+        // sconf.TIME_IS_FREE_VARIABLE && stdMod.builds_orbit_time_grid();
+        //TEMP Was in "builds-orbit-time-grid.js"
+        //Double check to see if anything else needs to be copied here.
+        if (sconf.TIME_IS_FREE_VARIABLE) {
+            ssD.timeRange =qIndexToOrbit[ Q_STEPS ].timeAtQ -qIndexToOrbit[0].timeAtQ;
+        }
         ssD.Dq = sconf.Dq0;
         ssD.Dt = keepThisDt || sn( ssD, 'Dt', sconf.Dt0 );
         stdMod.builds_dq8sagit8displace({ ulitmacy:sData.ULTIM_MAX });

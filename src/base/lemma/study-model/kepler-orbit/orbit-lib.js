@@ -14,16 +14,30 @@
     function creates_poly2svg_for_lemma()
     {
         var polylineSvg;
+        var polylineSvgMirrored;
         stdMod.poly2svgP11 = poly2svgP11;
         return;
 
         ///decoration, should run in upcreate_media
         function poly2svgP11(arg)
         {
-            const curve_points = ssD.orbitXYToDraw;
-            polylineSvg = nssvg.polyline({
+            //Main orbit polyline
+            const cp = ssD.orbitXYToDraw;
+            polylineSvg = createOrUpdateOrbitPolyline(polylineSvg, cp);
+
+            //Optional mirrored orbit polyline
+            if (sconf.MIRROR_ORBIT && stdMod.computeOrbitXCenter) {
+                const xC = stdMod.computeOrbitXCenter();
+                const cp_mirrored = mirrorCurvePoints(cp, xC);
+                polylineSvgMirrored = createOrUpdateOrbitPolyline(
+                    polylineSvgMirrored, cp_mirrored);
+            }
+        }
+
+        function createOrUpdateOrbitPolyline(svgel, curve_points) {
+            const output = nssvg.polyline({
                 pivots  : curve_points.map( cp => ssF.mod2inn( cp, stdMod ) ), 
-                svgel   : polylineSvg,
+                svgel   : svgel,
                 parent  : stdMod.svgScene,
 
                 //should be overridden by ##tp-machine
@@ -33,7 +47,13 @@
             });
             const lowname = sDomF.topicIdUpperCase_2_underscore( 'orbit' );
             //sets tp-machine
-            $$.$( polylineSvg ).addClass( 'tostroke thickable tp-'+lowname );
+            $$.$( output ).addClass( 'tostroke thickable tp-'+lowname );
+            return output;
+        }
+
+        function mirrorCurvePoints(curve_points, x) {
+            //Mirror curve points relative to x
+            return curve_points.map(cp => [x - (cp[0] - x), cp[1]]);
         }
     }
     

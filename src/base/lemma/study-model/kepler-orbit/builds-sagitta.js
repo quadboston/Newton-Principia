@@ -1,11 +1,12 @@
 ///builds two force estimations, 1) as finite sagitta,
 ///2) as Prop6, cor5 dev/area^2,
+//TEMP This comment probably needs to be adjusted or removed entirely.  For
+//example the part about "grids of t and q".
 ///which is calculated from preintegrated synchronized
 ///grids of t and q, time t and curve parameter q,
 ( function() {
     var { sn, stdMod, sconf, ssD, sData, } = window.b$l.apptree({
         stdModExportList : { builds_dq8sagit8displace, }, });
-    sn( 'tIndexToOrbit', ssD, [] );
     sn( 'qIndexToOrbit', ssD, [] );
     sn( 'graphArray', stdMod, [] );
     sData.ULTIM_MAX = 2;
@@ -18,12 +19,12 @@
         const SACC = sconf.SAGITTA_ACCURACY_LIMIT;
         const CURVE_REVOLVES = sconf.CURVE_REVOLVES;
         const Q_STEPS = sconf.Q_STEPS;
+        const Q_MINUS_EXISTS = sconf.Q_MINUS_EXISTS;
         const q2xy = stdMod.q2xy;
         const qIndexToOrbit = ssD.qIndexToOrbit;
-        const tIndexToOrbit = ssD.tIndexToOrbit;
-        const tIndexToOrbit_len = tIndexToOrbit.length;
         const graphArray = stdMod.graphArray;
-        const delta_t_between_steps = ssD.delta_t_between_steps;
+        //TEMP I believe this has been removed.
+        // const delta_t_between_steps = ssD.delta_t_between_steps;
         const delta_q_between_steps = sconf.delta_q_between_steps;
         const timeRange = ssD.timeRange;
         const qrange = sconf.curveQRange;
@@ -51,6 +52,8 @@
                 var Dq = sconf.DQ_SLIDER_MIN;
                 break;
         }
+        console.log("builds_dq8sagit8displace  ulitmacy =", ulitmacy);
+        console.log(`builds_dq8sagit8displace  ulitmacy = ${ulitmacy}  Dt = ${Dt}`);
         // let outputTemp = "qix, q, timeAtQ, dq_dt, plusQ\n";//TEMP
         for( let qix=0; qix<=Q_STEPS; qix++ ) {
             const bP = qIndexToOrbit[ qix ]; //body point data
@@ -90,41 +93,26 @@
             const rr = bP.rr; //abs
             const r2 = bP.r2; //rel
             {
-                let plusT = bodyTime + Dt;
-                plusT = CURVE_REVOLVES ? ( timeRange + plusT ) % timeRange : plusT;
-                //possibly floating errors do happen
-                let  plusTix = Math.floor( plusT/delta_t_between_steps );
-                ///todm: why this correction needed?
-                if( plusTix >= tIndexToOrbit_len ) {
-                    plusTix = tIndexToOrbit_len -1;
-                    plusT = plusTix * delta_t_between_steps;
-                    if( MAKE_RANGE && !CURVE_REVOLVES ){
-                        plusQ = null;
-                        bP.invalid = true;
-                        ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
-                    }
-                }else if( plusTix < 0 ){
-                    //Seems to only occur when eg. P6 "Orbits are disconnected".
-                    //For now this is just an error check, however additional
-                    //code could be added if needed, perhaps similar to bounds
-                    //check for minusTix code below and plusTix code above.
+                const plusT = bodyTime + Dt;
+                var plusQ = convertTimeToQ(plusT);
 
+                if (plusQ == null) {
+                    if (MAKE_RANGE && !CURVE_REVOLVES) {
+                        //TEMP Greater.  Needs to be improved.
+                        if (plusT > timeRange) {
+                            plusQ = null;
+                            bP.invalid = true;
+                            ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
+                        }
+                        //TEMP Less, should something be added for this?
+                        //Maybe not, maybe plus should only check the positive
+                        //side, and minus only the negative side?
+                    }
                 } else {
                     //TEMP
-                    const time = bodyTime + Dt;
-                    const found = findQixTempBisection(time, bP.qix);
-                    // const found = findQixTempLinearSearch(time, bP.qix);
-                    const plusQix = found.qix;
-                    //TEMP//
-                    // const plusQix = tIndexToOrbit[plusTix].qix;
-                    const plusP = qIndexToOrbit[ plusQix ];
-                    const plusTQix = plusP.timeAtQ;
-                    const plusT_reminder = plusT - plusTQix;
-                    //TEMP Wrong qix (plusQix) often chosen when using
-                    //tIndexToOrbit, and therefore wrong dq_dt
-                    var plusQ = plusP.q +  plusT_reminder * plusP.dq_dt; 
                     //saves data for model-upcreate;
                     bP.plusQ = plusQ;
+                    //TEMP Is the following correct?
                     Dq = plusQ-bP.q;
                     bP.Dq = CURVE_REVOLVES ? (Dq + qrange )%qrange : Dq;
                 }
@@ -144,27 +132,59 @@
             if( plusQ !== null ){
                 const rrplus = bP.rrplus = q2xy( plusQ );
                 let minusT = bodyTime - Dt;
-                minusT = CURVE_REVOLVES ? ( timeRange + minusT ) % timeRange : minusT;
-                const minusTix = Math.floor( minusT/delta_t_between_steps );
-                if( minusTix < 1 ) {
-                    if( MAKE_RANGE && !CURVE_REVOLVES ){
-                        ssD.qix_graph_start = Math.max( ssD.qix_graph_start, qix+1 );
-                        bP.invalid = true;
+                
+                // const minusTix = Math.floor( minusT/delta_t_between_steps );
+                // if( minusTix < 1 ) {
+                //     if( MAKE_RANGE && !CURVE_REVOLVES ){
+                //         ssD.qix_graph_start = Math.max( ssD.qix_graph_start, qix+1 );
+                //         bP.invalid = true;
+                //     }
+                //     continue;
+                // } else if( minusTix >= tIndexToOrbit.length ){
+                //     ////todo why? helps only in P6 when curve shape changes
+                //     if( MAKE_RANGE && !CURVE_REVOLVES ){
+                //         ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
+                //         bP.invalid = true;
+                //     }
+                //     continue;
+                // }
+
+                
+                var minusQ = convertTimeToQ(minusT);
+
+                //TEMP
+                if (minusQ == null) {
+                    //TEMP A setting or similar should probably be added to
+                    //disable this if Q minus isn't present (eg. for P9).
+                    //
+                    //Are there any issues that could occur?  For example
+                    //perhaps the estimated force curve on the graph will end
+                    //up missing a bit on the right side?
+                    // -That seems to be the case but it's probably not a big
+                    //  deal overall
+
+                    //TEMP I suppose convertTimeToQ would take into
+                    //account whether or not CURVE_REVOLVES, so it may not be
+                    //needed here?
+                    // -Perhaps however it's always possible soething could
+                    //change and probably best to leave for clarity.
+
+                    //TEMP The wollowing setting should probably be added to
+                    //sconf, likely only for P6.
+                    // const qMinusPresentTEMP = false;
+                    if( MAKE_RANGE && !CURVE_REVOLVES && Q_MINUS_EXISTS ){
+                        if (minusT < 0) {
+                            ssD.qix_graph_start = Math.max( ssD.qix_graph_start, qix+1 );
+                            bP.invalid = true;
+                        } else if (minusT > timeRange) {
+                            //TEMP Commented, may not need this.
+                            //Does leaving this or removing this cause problems?
+                            // ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
+                            // bP.invalid = true;
+                        }
                     }
                     continue;
-                } else if( minusTix >= tIndexToOrbit.length ){
-                    ////todo why? helps only in P6 when curve shape changes
-                    if( MAKE_RANGE && !CURVE_REVOLVES ){
-                        ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
-                        bP.invalid = true;
-                    }
-                    continue;
-                }   
-                const minusQix = tIndexToOrbit[minusTix].qix;
-                const minusP = qIndexToOrbit[ minusQix ];
-                const minusTQix = minusP.timeAtQ;
-                const minusT_reminder = minusT - minusTQix;
-                var minusQ = minusP.q + minusT_reminder * minusP.dq_dt;
+                }
                 //saves data for model-upcreate;
                 bP.minusQ = minusQ;
                 const rrminus = bP.rrminus = q2xy( minusQ );
@@ -188,94 +208,71 @@
         // \\// t is a free variable
         //**********************************************
         //console.log("outputTemp =", outputTemp);
+        //TEMP
+        // runTest();
     }
 
 
-    // function performanceTest() {
-    //     const Dt = ssD.Dt;
-    //     const Q_STEPS = sconf.Q_STEPS;
-    //     const qIndexToOrbit = ssD.qIndexToOrbit;
-    //     console.time("performanceTest");
-    //     for( let qix=0; qix<=Q_STEPS; qix++ ) {
-    //         const bP = qIndexToOrbit[ qix ]; //body point data
-    //         const bodyTime = bP.timeAtQ; //body time
-    //         const foundData = findQixTempBisection(bodyTime + Dt, bP.qix);
-    //     }
-    //     console.timeEnd("performanceTest");
-    // }
 
+    function convertTimeToQ(time) {
+        //Use the bisection method to find the qix interval containing the
+        //input time, then interpolate and output the q value using that
+        //interval.
 
-    function findQixTempBisection(time, qixStart) {
-        //Temporary test to find the q index that corresponds to the input time
-        //using bisection
+        const CURVE_REVOLVES = sconf.CURVE_REVOLVES;
         const qIndexToOrbit = ssD.qIndexToOrbit;
+        const timeRange = ssD.timeRange;
+
+        //TEMP Could the following have float point error for curves that
+        //revolve, when time is at eg. timeRange?
+        
+        //Adjust time as needed, and ensure within bounds.
+        const timeFind = CURVE_REVOLVES ? (timeRange + time) % timeRange : time;
+        if (timeFind < 0 || timeFind > timeRange)
+            return null;
+
+
+        //Lower and upper bound of interval.
         let qixL = 0;
-        let qixU = qIndexToOrbit.length - 1 - 1;
-        // let qixU = qIndexToOrbit.length - 1;
+        //As interval is always defined by the first qix (not qix + 1), last
+        //possible index can never be a valid value.
+        let qixU = (qIndexToOrbit.length - 1) - 1;
 
-        let count = 0;
 
-        while(qixU - qixL >= 1) {
-            const qixNew = Math.floor((qixL + qixU) / 2);
-            const qix1 = qixStart + qixNew;
-            const qix2 = qix1 + 1;
+        while(qixL <= qixU) {//TEMP Probably needs to be changed, maybe fine now.
+            //Calculate new qix for midpoint
+            const qix = Math.floor((qixL + qixU) / 2);
 
-            const wrapQix1 = (qix1 >= qIndexToOrbit.length);
-            const wrapQix2 = (qix2 >= qIndexToOrbit.length);
+            //Times for current interval
+            const timeStart = qIndexToOrbit[qix].timeAtQ;
+            const timeEnd = qIndexToOrbit[qix + 1].timeAtQ
 
-            const qix1Use = qix1 - (wrapQix1 ? qIndexToOrbit.length : 0);
-            const qix2Use = qix2 - (wrapQix2 ? qIndexToOrbit.length : 0);
-
-            const time1 = qIndexToOrbit[qix1Use].timeAtQ +
-                (wrapQix1 ? ssD.timeRange : 0);
-            const time2 = qIndexToOrbit[qix2Use].timeAtQ +
-                (wrapQix2 ? ssD.timeRange : 0);
-
-            count++;
-
-            if (time >= time1 && time <= time2) {
-                return {
-                    qix: qix1Use,
-                    count,
-                };
-            }
-
-            if (time <= time1) {
-                qixU = qixNew;
+            //TEMP Are the following correct?  What if eg. time was the max?
+            //Then I think there would be an issue because currently the
+            //interval found is equal or greater than the lower bound, but
+            //always less than the upper bound.  Perhaps if the upper bound was
+            //included (or similar) then it could work?
+            if (timeFind < timeStart) {
+                //Lower than current qix, therefore must be less (not same)
+                qixU = qix - 1;
+            } else if (timeFind > timeEnd) {
+                //Higher than current qix, therefore must be greater (not same)
+                qixL = qix + 1;
             } else {
-                qixL = qixNew;
+                //Within current interval (includes lower and upper bound)
+                // return qix;
+
+                //TEMP To output plusQ or similar rather than qix
+                //Found correct qix so convert to q value //TEMP
+                //Convert q index to q value //TEMP
+                const P = qIndexToOrbit[ qix ];
+                const TQix = P.timeAtQ;
+                const T_reminder = timeFind - TQix;
+                const Q = P.q +  T_reminder * P.dq_dt; 
+                return Q;
             }
         }
-        return null;
-    }
 
-
-    function findQixTempLinearSearch(time, qixStart) {
-        //Temporary test to find the q index that corresponds to the input time
-        //using linear search
-        const qIndexToOrbit = ssD.qIndexToOrbit;
-        for(let i = 0; i < qIndexToOrbit.length; i++) {
-            let qix1 = qixStart + i;
-            let qix2 = qix1 + 1;
-
-            const wrapQix1 = (qix1 >= qIndexToOrbit.length);
-            const wrapQix2 = (qix2 >= qIndexToOrbit.length);
-
-            const qix1Use = qix1 - (wrapQix1 ? qIndexToOrbit.length : 0);
-            const qix2Use = qix2 - (wrapQix2 ? qIndexToOrbit.length : 0);
-
-            const time1 = qIndexToOrbit[qix1Use].timeAtQ +
-                (wrapQix1 ? ssD.timeRange : 0);
-            const time2 = qIndexToOrbit[qix2Use].timeAtQ +
-                (wrapQix2 ? ssD.timeRange : 0);
-
-            if (time >= time1 && time <= time2) {
-                return {
-                    qix: qix1Use,
-                    count: i + 1,
-                };
-            }
-        }
         return null;
     }
 }) ();

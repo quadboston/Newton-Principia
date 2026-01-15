@@ -16,7 +16,7 @@
         
         function q2xy( q )
         {
-            //q += fi0; //TEMP
+            q += fi0;
             return [
                 ellipseA * Math.cos( q ) + center[0],
                 ellipseB * Math.sin( q ) + center[1],

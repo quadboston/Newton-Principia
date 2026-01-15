@@ -105,11 +105,13 @@
         sconf.DT_SLIDER_MAX = FT ? 0.18 : null;
         sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
         var Q_STEPS = 1500;
-        var TIME_STEPS = 1000;
         var DATA_GRAPH_STEPS = 200;
         sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
         sconf.GRAPH_PATH = true; //only for not-bonus
         //-------------------------------------------
+        //TEMP This probably needs adjustments.  Eg. perhaps something else
+        //should be used?  Should look at the code specific to Q minus.
+        sconf.Q_MINUS_EXISTS = true;
         // \\// calculation algo parameters
         //-------------------------------------------
 
@@ -427,7 +429,6 @@
             Dt0,
             Q_STEPS,
             DATA_GRAPH_STEPS,
-            TIME_STEPS,
 
             mediaBgImage : "diagram.png",
             predefinedTopics,

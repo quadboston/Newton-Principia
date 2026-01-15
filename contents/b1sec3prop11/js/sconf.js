@@ -96,10 +96,9 @@
         sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
         sconf.CURVE_REVOLVES = true; //true for cyclic orbit
         sconf.DQ_SLIDER_MAX = null;
-        sconf.DT_SLIDER_MAX = 0.4;//0.48;
+        sconf.DT_SLIDER_MAX = 0.48;
         sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
         var Q_STEPS = 1500;
-        var TIME_STEPS = 1500;
         var DATA_GRAPH_STEPS = 500;
         sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
         //-------------------------------------------
@@ -109,18 +108,15 @@
         //-------------------------------------------
         // //\\ curve shape parameters
         //-------------------------------------------
-        // sconf.eccentricity  = 0.59498295;
-        sconf.eccentricity  = 0.99; //TEMP For testing
+        sconf.eccentricity  = 0.59498295;
         sconf.ellipseA  = 1.07;
         sconf.ellipseAOriginal  = sconf.ellipseA;
         sconf.ellipseB  =
             Math.sqrt( Math.abs( 1 - sconf.eccentricity*sconf.eccentricity ) ) //Lambda
             * sconf.ellipseA; //0.86;
         var curveParA   = -0.64;
-        sconf.orbit_q_start = 0;//0.1 * Math.PI;//0.8 * Math.PI; //TEMP For testing
-        sconf.orbit_q_end = 2 * Math.PI;//1.9 * Math.PI;//1.2 * Math.PI; //TEMP For testing
-        // sconf.orbit_q_start = 0.0 * Math.PI;
-        // sconf.orbit_q_end = 2 * Math.PI;
+        sconf.orbit_q_start = 0.0 * Math.PI;
+        sconf.orbit_q_end = 2 * Math.PI;
 
         {
             // gets ellipse parameters
@@ -135,14 +131,12 @@
         //-------------------------------------------
 
         //to be studied in given proposition:
-        // sconf.force_law_function = bP => 1/(bP.r2);
-        sconf.force_law_function = null;//TEMP
+        sconf.force_law_function = bP => 1/(bP.r2);
 
         //intervals of dt or dq to construct an arc for
         //displacement or sagitta,
         //Sets initial distance of point Q from P
-        // sconf.Dt0 = 0.39;
-        sconf.Dt0 = 0.2;
+        sconf.Dt0 = 0.39;
 
         //pos of P
         sconf.parQ = 0.250 * Math.PI;
@@ -454,7 +448,6 @@
             curveParA,
             Q_STEPS,
             DATA_GRAPH_STEPS,
-            TIME_STEPS,
 
             mediaBgImage : "diagram.png",
             predefinedTopics,

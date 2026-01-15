@@ -96,7 +96,6 @@
         sconf.DQ_SLIDER_MAX = FT ? null : 1.0;
         sconf.DT_SLIDER_MAX = FT ? 0.66 : null;
         var Q_STEPS = 1000;
-        var TIME_STEPS = 1000;
         var DATA_GRAPH_STEPS = 500;
         sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX = true;
         sconf.DEVIATION_SCALE_FACTOR = 0.5;
@@ -402,7 +401,6 @@
         nspaste( sconf, {
             Q_STEPS,
             DATA_GRAPH_STEPS,
-            TIME_STEPS,
 
             mediaBgImage : "diagram.png",
             predefinedTopics,

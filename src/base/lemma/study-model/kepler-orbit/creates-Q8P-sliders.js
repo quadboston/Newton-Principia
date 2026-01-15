@@ -4,7 +4,6 @@
 ( function() {
     var { sn, ssD,stdMod, sconf, rg, } = window.b$l.apptree({ stdModExportList : {
             creates_Q8P_sliders, creates__gets_orbit_closest_point, }, });
-    const tIndexToOrbit = sn( 'tIndexToOrbit', ssD, [] );
     const qIndexToOrbit = sn( 'qIndexToOrbit', ssD, [] );
     const graphArray = sn( 'graphArray', stdMod, [] );
     return;
@@ -49,8 +48,16 @@
                     }
                 }
                 //TEMP Disable check for testing
+                //TEMP When enabled dragging point Q doesn't seem to work
+                //correctly for P12
+                //TEMP For some reason dragging point Q for P12 seems to be
+                //working correctly now.  I have to look a bit more closely to
+                //determine exactaly which part fixed it.
                 // if( Dt < ssD.delta_t_between_steps * (sconf.SAGITTA_ACCURACY_LIMIT+1) ||
                 //     sconf.DT_SLIDER_MAX <= Dt ) return;
+                if( Dt < 0.05 ||
+                    sconf.DT_SLIDER_MAX <= Dt ) return;
+
                 ssD.Dt = Dt;
             } else {
                 const q = qIndexToOrbit[ Qqix ].q;
@@ -80,19 +87,28 @@
        stdMod.gets_orbit_closest_point = gets_orbit_closest_point;
        return;
 
+       //TEMP Make sure to check all spots where this function is called to
+       //ensure they work correctly with the new changes.
        function gets_orbit_closest_point(
             r, //distance to this point
             fromGraph //optional, using valid graph points
+
         ){
             //Search every point in the array to ensure point P dragging isn't
             //choppy (previously only some points were checked).  Note this
             //runs in a fraction of a millisecond even with a large number of
             //points.
-            const arr = fromGraph ? graphArray : qIndexToOrbit;
+
             let min = null;
             let qix_min = null;
-            for( let qix=0; qix<arr.length; qix++){
-                const point = arr[qix];
+
+            //Always use qIndexToOrbit, rather than optionally use graphArray.
+            //Sometimes graphArray skips qix values (eg. 0, 5, 10 etc.) and
+            //therefore limits what points can be output.
+            const qS = fromGraph ? ssD.qix_graph_start : 0;
+            const qE = fromGraph ? ssD.qix_graph_end+1 : qIndexToOrbit.length;
+            for( let qix=qS; qix<qE; qix++){
+                const point = qIndexToOrbit[qix];
                 if(!point) continue;
                 const pos = point.rr;
                 const x = r[0]-pos[0];
@@ -100,11 +116,47 @@
                 const d2 = x*x + y*y;
                 if( qix_min === null || min>d2 ){
                     min = d2;
-                    qix_min = fromGraph ? point.qix : qix;
+                    qix_min = qix;
                 }
             }
             return qix_min;
         }
    }
+
+
+//    //TEMP Old version
+//    function creates__gets_orbit_closest_point() {
+//        stdMod.gets_orbit_closest_point = gets_orbit_closest_point;
+//        return;
+
+//        function gets_orbit_closest_point(
+//             r, //distance to this point
+//             fromGraph //optional, using valid graph points
+//         ){
+//             //Search every point in the array to ensure point P dragging isn't
+//             //choppy (previously only some points were checked).  Note this
+//             //runs in a fraction of a millisecond even with a large number of
+//             //points.
+
+//             //TEMP Doesn't using the graph array limit the number of points
+//             //that are usable?
+//             const arr = fromGraph ? graphArray : qIndexToOrbit;
+//             let min = null;
+//             let qix_min = null;
+//             for( let qix=0; qix<arr.length; qix++){
+//                 const point = arr[qix];
+//                 if(!point) continue;
+//                 const pos = point.rr;
+//                 const x = r[0]-pos[0];
+//                 const y = r[1]-pos[1];
+//                 const d2 = x*x + y*y;
+//                 if( qix_min === null || min>d2 ){
+//                     min = d2;
+//                     qix_min = fromGraph ? point.qix : qix;
+//                 }
+//             }
+//             return qix_min;
+//         }
+//    }
 }) ();
 

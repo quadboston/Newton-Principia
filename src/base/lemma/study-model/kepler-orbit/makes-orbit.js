@@ -8,6 +8,8 @@
  *  
  * ****************************************************************************/
 
+//TEMP Is this file still needed?  Regardless maybe the above note and similar
+//should be updated, as I don't believe any of it's used by P12/13.
 ( function() {
     var {
         $$, nssvg, has, haz, ssF,

@@ -103,22 +103,27 @@
         // //\\ calculation algo parameters
         //-------------------------------------------
         const FT = sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
-        sconf.CURVE_REVOLVES = true; //true for cyclic orbit
-        // sconf.CURVE_REVOLVES = false; //true for cyclic orbit //TEMP
-        //TEMP The following values may need to be adjusted
-        sconf.DT_SLIDER_MAX = FT ? 2.32 : null;
+        sconf.CURVE_REVOLVES = false; //true for cyclic orbit
+        sconf.DT_SLIDER_MAX = FT ? 0.8 : null;
         //TEMP P11 has the following is it needed for this model as well?
         // sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
-        var Q_STEPS = 500;//1500*2;//200;//100*10;//1500;//*10;//1500;
-        var TIME_STEPS = 100;//1500;//*50;//15;//*200;//1000;//*100;//*10;//1500;
+        //TEMP Are the following values for STEPS correct, or do they need
+        //adjustments?
+        var Q_STEPS = 500;
         var DATA_GRAPH_STEPS = 500;
-        // var Q_STEPS = 400;//*10;//1600*10;//1500*1;//400;
-        // var TIME_STEPS = 400;//*10;//*40;//1500*1;//400;
-        // var DATA_GRAPH_STEPS = 400;//200;
         sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
 
-        //TEMP For testing, easier to see left part of force curves
-        sconf.USE_LOG_SCALE = true;
+
+        //TEMP For testing, easier to see left part of force curves.  May not
+        //be needed anymore.  If removed remove in standardized code also.
+        sconf.USE_LOG_SCALE = false;//true;
+
+        //Create left side of hyperbola by mirroring right side.  Results in a
+        //curve that's visually identical to if the hyperbola equation was used
+        //to create the left side, however is simpler to implement.  If that
+        //equation was used, the start and end angle for the left side would
+        //need to be computed, so that it matches the right side.
+        sconf.MIRROR_ORBIT = true;
         //-------------------------------------------
         // \\// calculation algo parameters
         //-------------------------------------------
@@ -129,10 +134,39 @@
 
         //TEMP These may need to be in a different spot, and/or replace some
         //code in this file.  Also the values probably need to be adjusted.
-        sconf.orbit_q_start = -Math.PI;//-0.56;//-Math.PI;//-0.6;//-0.58;//-0.57;//-Math.PI;//-0.7;//-0.3;//-0.4;//-Math.PI * 0.9999;
-        sconf.orbit_q_end = Math.PI;//0.56;//Math.PI;//0.6;//0.58;//0.57;//Math.PI;//0.7;//0.9;//Math.PI * 0.9999;
-        // sconf.orbit_q_start = -0.2;//-0.4;//-Math.PI * 0.9999;
-        // sconf.orbit_q_end = 0.6;//Math.PI * 0.9999;
+        //TEMP It may be possible to use 0 to 2PI rather than -PI to PI, if so
+        //that could be helpful for splitting both sides of the hyperbola.
+        // const offsetTemp = 0.4;
+        // sconf.orbit_q_start = Math.PI - offsetTemp;
+        // sconf.orbit_q_end = Math.PI + offsetTemp;
+
+        //TEMP Should the following be switched to use computeQEndTemp?
+        //Another option would be to remove this here, and only have it in the
+        //standardized code.  If that's done then a note should probably be
+        //added.
+        //Another option would be to have a separate function, called here and
+        //in the standardized code as well.
+        
+        const offsetTemp = 2.1004585597194643;//2.366399280279432;
+        sconf.orbit_q_start = -offsetTemp;
+        sconf.orbit_q_end = offsetTemp;
+
+
+        //TEMP
+        // sconf.orbit_q_start = offsetTemp;
+        // sconf.orbit_q_end = 2 * Math.PI * offsetTemp;
+
+        //sconf.orbit_q_start = Math.PI - offsetTemp;
+        //sconf.orbit_q_start = Math.PI - (Math.PI - q);
+        //sconf.orbit_q_start = Math.PI - Math.PI + q;
+        //sconf.orbit_q_start = q;
+        
+        // sconf.orbit_q_end = Math.PI + offsetTemp;
+        // sconf.orbit_q_end = Math.PI + (Math.PI - q);
+        // sconf.orbit_q_end = Math.PI + Math.PI - q;
+        // sconf.orbit_q_end = 2 * Math.PI - q;
+
+
 
         //TEMP Should the following be moved lower down?  For P9/10/11 the next
         //section seems to be ":diagram sandbox spatial parameters".
@@ -151,7 +185,7 @@
         op.delta_v_increase_LIMIT = 1.5;
 
         //conic pars
-        op.initialEccentricity = 1.2;//0.7;//0.8;//1.2;//0.98;//1.365; //hyperbola
+        op.initialEccentricity = 1.365; //hyperbola
         op.latusInitial = 0.90;
         var PparQ = 0.49 * Math.PI;
         
@@ -190,19 +224,19 @@
         //intervals of dt or dq to construct an arc for
         //displacement or sagitta,
         //Sets initial distance of point Q from P
-        sconf.Dt0 = 1.0;//0.1;//2;//5;//0.0001;//0.39;
+        sconf.Dt0 = 0.5;
 
         //TEMP The following was copied from P11 and should probably be changed
         //pos of P
         //TEMP It seems this must be +ve (as per
         //"src\base\lemma\study-model\kepler-orbit\initiates_orbit8graph.js")
         //~line 42 "rg.P.qix ="
-        // sconf.parQ = 0.0;//0.3;//0;//0.99 * Math.PI;//-0.99 * Math.PI;
         // // sconf.parQ = 0.0 * Math.PI;
         // // sconf.parQ = 0.250 * Math.PI;
 
         //TEMP
-        sconf.parQ = (sconf.orbit_q_end - sconf.orbit_q_start) / 2;
+        sconf.parQ = 0.2;
+        // sconf.parQ = (sconf.orbit_q_end - sconf.orbit_q_start) / 2;
 
         //-----------------------------------
         // //\\ topic group colors
@@ -504,7 +538,6 @@
         ns.paste( sconf, {
             Q_STEPS,
             DATA_GRAPH_STEPS,
-            TIME_STEPS,
 
             mediaBgImage : "diagram.png",
             predefinedTopics,
