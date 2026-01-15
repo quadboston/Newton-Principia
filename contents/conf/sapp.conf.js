@@ -161,7 +161,7 @@ function doesConfigLemma (){
 
     //P2
     //Description of areas triangle P2 proof tab
-    tr.areaDescriptionAccelerated = rgbToArray("rgb(120, 90, 82)", 1);
+    tr.areaDescriptionAccelerated = tr.force, //rgbToArray("rgb(120, 90, 82)", 1);
 
     //P41
     //Note that Fi for P12 is shadow (see its sconf.js ~line 635)

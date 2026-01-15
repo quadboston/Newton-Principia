@@ -1,6 +1,6 @@
 (function(){
 const { sconf, nspaste, capture, toreg,
-         ssF, ssD, sDomF, topicColors_repo,
+         ssF, ssD, sDomF,
     } = window.b$l.apptree({});
     ssF.init_conf_addon = init_conf_addon;
     ssD.P2_topicColors_elected = topicColors_elected;
@@ -129,34 +129,37 @@ const { sconf, nspaste, capture, toreg,
     // \\// makes capture
     }
 
-    function topicColors_elected()
-    {
+    function topicColors_elected(tpel){
         const {
+            force,
             forceMove,
-
             diagram,
+            path,
             areaDescriptionAccelerated,
-        } = topicColors_repo;
-
+        } = tpel;
 
         return {
-            "Paracc"            : diagram,  //Point C''
-            "Caracc"            : diagram,  //Point C'
-            "CCaracc"           : diagram,  //Line C to C'
+            "Paracc"            : force,  //Point C''
+            "Caracc"            : force,  //Point C'
+            "CCaracc"           : forceMove,  //Line C to C'
             "CParacc"           : diagram,  //Line C to C''
-            "cCaracc"           : diagram,  //Line c to C'
-            "CaraccParacc"      : diagram,  //Line C' to C''
-            "BParacc"           : diagram,  //Line B to C''
-            "BCaracc"           : diagram,  //Line B to C'
+            "cCaracc"           : forceMove,  //Line c to C'
+            "CaraccParacc"      : forceMove,  //Line C' to C''
+            "BParacc"           : forceMove,  //Line B to C''
+            "BCaracc"           : path,     //Line B to C'
             "SCaracc"           : diagram,  //Line S C'
 
-            "SBCaracc"          : areaDescriptionAccelerated,   // triangle SBC area description accelerated
+            "SBCaracc"          : areaDescriptionAccelerated,
+            // triangle SBC area description accelerated
 
             "Varacc"            : forceMove,    //Point V'
-            "BVaracc"           : forceMove,    // force at B deviated toward V;        Line B to V'
-                                                // area description accelerated
-            "VVaracc"           : forceMove,    // force vector at V displaced to V';   Line V to V'
-                                                // area description accelerated
+            "BVaracc"           : forceMove,
+             // force at B deviated toward V;        Line B to V'
+             // area description accelerated
+
+             "VVaracc"           : forceMove,
+             // force vector at V displaced to V';   Line V to V'
+             // area description accelerated
         };
     }
 })();

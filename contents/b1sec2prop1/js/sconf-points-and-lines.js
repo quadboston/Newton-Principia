@@ -20,7 +20,8 @@ function sconf_points8lines (){
         force,
         freeMove,
         forceMove,
-        diagram,
+        areaDescriptionAccelerated,
+
         path,
         time,
         sagittaeChords,
@@ -31,6 +32,8 @@ function sconf_points8lines (){
 
         perpendicular,
         tangent,
+
+        diagram,
     } = topicColors_repo;
 
     //0.5 is good for areas, bad for lines,
@@ -38,15 +41,17 @@ function sconf_points8lines (){
     forceMove = [forceMove[0],forceMove[1],forceMove[2],1,1];
     path = [ path[0], path[1], path[2], 1, 1 ];
     freeMove = [freeMove[0],freeMove[1],freeMove[2],1,1];
-    speed = [speed[0],speed[1],speed[2],0.7,1];
+    speed = [speed[0],speed[1],speed[2],0.9,1];
     time = [time[0],time[1],time[2],1,1];
     force = [force[0],force[1],force[2],1,1];
 
     ///topic names elected
     var tpel = {
+        diagram,
         speed,
         force,
         forceMove,
+        areaDescriptionAccelerated,
         time,                       //Time slider
         dt                  : time, //Delta time slider
         path,
@@ -155,7 +160,7 @@ function sconf_points8lines (){
         "Ef"                : freeMove,
         "free-triangle"     : freeMove,
     };
-    var p2_elected = haff( ssD, 'P2_electedTopicColors' );
+    var p2_elected = haf( ssD, 'P2_topicColors_elected' )(tpel);
     if( p2_elected ) {
         Object.assign( tpel, p2_elected );
     }
@@ -556,15 +561,33 @@ function sconf_points8lines (){
 
     if( fconf.sappId === 'b1sec2prop2' ){
         linesConf = linesConf.concat( [
-            { nam : ['c','Caracc'], cssClass : theor2corollary, },
-            { nam : ['C','Caracc'], cssClass : theor2corollary, },
+            { nam : ['c','Caracc'], cssClass : theor2corollary,
+              pcolor : forceMove,
+            }, //C'
+            { nam : ['C','Caracc'], cssClass : theor2corollary,
+               pcolor : forceMove,
+            },
             { nam : ['S','Caracc'], cssClass : theor2corollary, },
-            { nam : ['B','Caracc'], cssClass : theor2corollary, },
-            { nam : ['B','Paracc'], cssClass : theor2corollary, },
-            { nam : ['C','Paracc'], cssClass : theor2corollary, },
-            { nam : ['V','Varacc'], cssClass : theor2corollary, },
-            { nam : ['B','Varacc'], cssClass : theor2corollary, },
-            { nam : ['Caracc','Paracc'], cssClass : theor2corollary, },
+            { nam : ['B','Caracc'], cssClass : theor2corollary,
+                //equal to path
+                'stroke-width': 4,
+               pcolor : path,
+            },
+            { nam : ['B','Paracc'], cssClass : theor2corollary,
+               pcolor : forceMove,
+            }, //C''
+            { nam : ['C','Paracc'], cssClass : theor2corollary,
+               pcolor : forceMove,
+            },
+            { nam : ['V','Varacc'], cssClass : theor2corollary,
+               pcolor : forceMove,
+            }, //V'
+            { nam : ['B','Varacc'], cssClass : theor2corollary,
+               pcolor : forceMove,
+            },
+            { nam : ['Caracc','Paracc'], cssClass : theor2corollary,
+               pcolor : forceMove,
+            },
         ]);
     }
 
@@ -635,11 +658,11 @@ function sconf_points8lines (){
         //compensates missing of "extend-confib" in engine core
         topicColors_repo_camel2col[ tpCamel ] = fck; //based on Camel Id
     });
-    if( has( ssD, 'P2_electedTopicColors' ) ) {
+    if( has( ssD, 'P2_topicColors_elected' ) ) {
         ////we are working in prop 2,
         ////above condition is a flag
         Object.keys( p2_elected ).forEach( camelId => {
-            if( camelId === 'SBCaracc' ) return;
+            //if( camelId === 'SBCaracc' ) return;
             var tpLowKey = sDomF.tpid2low( camelId );
             let fc = topicColors_repo_camel2col[ camelId ] =
                     topicColors_repo[ tpLowKey ] =
