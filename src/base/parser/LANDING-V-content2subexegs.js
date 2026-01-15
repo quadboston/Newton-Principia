@@ -29,7 +29,6 @@
     function LANDING_V___loads_professorList8cont_8_buildsSubexegs(
         prepare8do_LANDING_VI_and_beyond___cb
     ){
-        ccc('LANDING_V');
         var allEssays__str = "";
         var lemmaConfig = fconf.sappId2lemmaDef[ fconf.sappId ];
         contentsList_2_essaions_2_exegs( lemmaConfig );

@@ -21,6 +21,11 @@
         eachprop( topics.lowtpid_2_glocss8anchorRack, ( gcssRack, low_tpID ) => {
             var { fillOpacity, strokeOpacity, rgba_own } = gcssRack;
             var Rtp = ROOT + ' .tp-' + low_tpID;
+            //patch only for prop1
+            //if( !gcssRack.lowOpacity )
+            //    ccc( 'no low op in v2_topics_2_unhighCss', gcssRack );
+            //var tpOpacityLow_str = gcssRack.lowOpacity ?
+            //   gcssRack.lowOpacity.toFixed(3) : '0.4';
             var tpOpacityLow_str = gcssRack.lowOpacity.toFixed(3);
             var ts = '';
             ts += `
@@ -68,6 +73,8 @@ ${Rtp}.tobg {
     }
 
 
+    ///this thing runs in LANDING VI and apparently in
+    ///tutor-platform's message
     function v2_tplinks_2_highlightCss(
         nextTplinks,
         doReplace //optional, for prop1,2
@@ -79,6 +86,11 @@ ${Rtp}.tobg {
                 var gcssRack = topics.lowtpid_2_glocss8anchorRack[ low_tpID ];
                 var ts = '';
                 var { highOpacity, rgba_own} = gcssRack;
+                //if( !gcssRack.highOpacity)
+                //    ccc( 'no high op in v2_topics_2_unhighCss', gcssRack );
+                //patch only for prop1
+                //var tpOpacityHigh_str = highOpacity ?
+                //    highOpacity.toFixed(3) : '0.7';
                 var tpOpacityHigh_str = highOpacity.toFixed(3);
                 ts += `
 ${Rix} .tp-${low_tpID} {

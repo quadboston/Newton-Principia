@@ -23,7 +23,7 @@
 (function(){
     const {
         ns, sn, $$, nsmethods, haz, has, eachprop,
-        sconf, rg, sDomF, topics, lowtpid_2_glocss8anchorRack,
+        fconf, sconf, rg, sDomF, topics, lowtpid_2_glocss8anchorRack,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -93,8 +93,20 @@
             ////opacities from global setting
             let fc = gcssRack['tpcolarr'];
 
-            gcssRack.highOpacity = sconf.TP_OPACITY_HIGH;
-            gcssRack.lowOpacity = sconf.TP_OPACITY_LOW;
+            if( fconf.sappId === 'b1sec2prop1' ||
+                fconf.sappId === 'b1sec2prop2'
+            ){
+                gcssRack.highOpacity = sconf.TP_OPACITY_HIGH;
+                gcssRack.lowOpacity = sconf.TP_OPACITY_LOW;
+                gcssRack.rgba_own = rgba;
+            } else {
+                if (hasHigherOpacity(gcssRack)) {
+                    gcssRack.highOpacity = sconf.AREA_HIGHLIGHT_OPACITY;
+                    gcssRack.lowOpacity = sconf.AREA_DEFAULT_OPACITY;
+                } else {
+                    gcssRack.highOpacity = gcssRack.lowOpacity = 1;
+                }
+            }
             gcssRack.rgba_own = rgba;
         };
 

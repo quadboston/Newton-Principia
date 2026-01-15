@@ -229,6 +229,12 @@ function doesConfigLemma (){
         TP_OPACITY_LOW_POINT : 1, 
         TP_OPACITY_HIGH : 1,
 
+        // //\\ remove when lemmas
+        //      will be standartized
+        AREA_HIGHLIGHT_OPACITY : 0.7,
+        AREA_DEFAULT_OPACITY : 0.3,
+        // \\// remove when lemmas
+
         SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY : 0.6,
         default_tp_stroke_opacity   : 0.5, //2, todotodo bug everywhere
 

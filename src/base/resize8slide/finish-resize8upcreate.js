@@ -232,7 +232,7 @@
                 simSceneH/proposedRightW < 3*legendHeight/consideredLegendWidth
             )
         ) {
-            console.log('wide screen');
+            //console.log('wide screen');
             ////wide screen
             var wideScreen_flag = true;
             simSceneH -= 50; // margin at bottom of page (give version # space)
