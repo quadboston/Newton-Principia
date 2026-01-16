@@ -144,11 +144,10 @@
         //=================================================
         // //\\ draws line caption
         //=================================================
-        //todm bad name: too generic
+        //todm bad name: caption is too generic
         //hard to package-search
         var caption = ns.haz( lineAttr, 'caption' ) ||
-                      ns.haz( line, 'caption' );
-        if( caption ) {
+                      ns.haz( line, 'caption' ) || '';
             var fontSize = ns.haz( lineAttr, 'fontSize' ) || 20;
 
             var lposXSugar = 0.5;
@@ -172,9 +171,10 @@
                             //eye to screen view
                             + sconf.MONITOR_Y_FLIP * SHIFT * Math.sin( leftNormAngle )
                             - fontSize * lposYSugar;
+
             if( !line.pointIsAlreadyDressed ) {
                 line.pnameLabelsvg = ns.svg.printText({
-                    //text            : caption,
+                text            : caption,
                     stroke          : stroke, //line.pcolor,
                     fill            : stroke, //line.pcolor,
                     "stroke-width"  : haz( lineAttr, "stroke-width" ) || 1,
@@ -192,6 +192,7 @@
                     .addClass( 'tofill tobold hover-width' )
                     ;
             }
+
             line.pnameLabelsvg$
                 .aNS( 'x', finalPosX.toFixed()+'px' )
                 .aNS( 'y', finalPosY.toFixed()+'px' )
@@ -205,7 +206,6 @@
                     ( haz( rg, 'allLettersAreHidden' ) || haz( line, 'undisplay' ) )
                 )
             );
-        }
         //=================================================
         // \\// draws line caption
         //=================================================

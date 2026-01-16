@@ -20,7 +20,6 @@ function sconf_points8lines (){
         force,
         freeMove,
         forceMove,
-        areaDescriptionAccelerated,
 
         path,
         time,
@@ -36,14 +35,16 @@ function sconf_points8lines (){
         diagram,
     } = topicColors_repo;
 
-    //0.5 is good for areas, bad for lines,
-    //so, lines shold have color pattern [x,x,x,1,1]
-    forceMove = [forceMove[0],forceMove[1],forceMove[2],1,1];
-    path = [ path[0], path[1], path[2], 1, 1 ];
-    freeMove = [freeMove[0],freeMove[1],freeMove[2],1,1];
-    speed = [speed[0],speed[1],speed[2],0.9,1];
-    time = [time[0],time[1],time[2],1,1];
-    force = [force[0],force[1],force[2],1,1];
+    {   const harden = col => ([col[0],col[1],col[2],1,1]);
+        //0.5 is good for areas, bad for lines,
+        //so, lines shold have color pattern [x,x,x,1,1]
+        forceMove = harden(forceMove);
+        path = harden(path);
+        freeMove = harden(freeMove);
+        speed = harden(speed);
+        time = harden(time);
+        force = harden(force);
+    }
 
     ///topic names elected
     var tpel = {
@@ -51,7 +52,6 @@ function sconf_points8lines (){
         speed,
         force,
         forceMove,
-        areaDescriptionAccelerated,
         time,                       //Time slider
         dt                  : time, //Delta time slider
         path,
@@ -561,33 +561,18 @@ function sconf_points8lines (){
 
     if( fconf.sappId === 'b1sec2prop2' ){
         linesConf = linesConf.concat( [
-            { nam : ['c','Caracc'], cssClass : theor2corollary,
-              pcolor : forceMove,
-            }, //C'
-            { nam : ['C','Caracc'], cssClass : theor2corollary,
-               pcolor : forceMove,
-            },
+            { nam : ['c','Caracc'], cssClass : theor2corollary, },
+            { nam : ['C','Caracc'], cssClass : theor2corollary, },
             { nam : ['S','Caracc'], cssClass : theor2corollary, },
             { nam : ['B','Caracc'], cssClass : theor2corollary,
                 //equal to path
                 'stroke-width': 4,
-               pcolor : path,
             },
-            { nam : ['B','Paracc'], cssClass : theor2corollary,
-               pcolor : forceMove,
-            }, //C''
-            { nam : ['C','Paracc'], cssClass : theor2corollary,
-               pcolor : forceMove,
-            },
-            { nam : ['V','Varacc'], cssClass : theor2corollary,
-               pcolor : forceMove,
-            }, //V'
-            { nam : ['B','Varacc'], cssClass : theor2corollary,
-               pcolor : forceMove,
-            },
-            { nam : ['Caracc','Paracc'], cssClass : theor2corollary,
-               pcolor : forceMove,
-            },
+            { nam : ['B','Paracc'], cssClass : theor2corollary, },
+            { nam : ['C','Paracc'], cssClass : theor2corollary, },
+            { nam : ['V','Varacc'], cssClass : theor2corollary, },
+            { nam : ['B','Varacc'], cssClass : theor2corollary, },
+            { nam : ['Caracc','Paracc'], cssClass : theor2corollary, },
         ]);
     }
 
