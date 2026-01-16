@@ -31,13 +31,6 @@
     return;
 
 
-
-
-
-
-
-
-
     ///=============================================================================
     /// //\\ restricts and sets super root and text pane sizes,
     //       main resize engine manager,
@@ -59,7 +52,6 @@
         //stdMod.bgImgAsp = haz( sconf, 'bgImgAsp' ) ||
         //                  bgImg.naturalHeight / bgImg.naturalWidth;
         //-------------------------------------------------------------
-
         if(
             //isMobile
             ns.widthThresholds[ fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD ]()
@@ -74,17 +66,9 @@
         fmethods.resizeHappened();
         haff( stdMod, 'model8media_upcreate' );
     }
-    ///=============================================================================
+    ///========================================================
     /// \\// restricts and sets super root and text pane sizes,
-    ///=============================================================================
-
-
-
-
-
-
-
-
+    ///========================================================
 
     function preparesDesktop({
         draggerMove,
@@ -99,7 +83,7 @@
                             sDomN.pageNavTopBar$.box().height : 0
                           );
         ///-------------------------------------------
-        ///slider group patch for lemmas 2 and 3
+        ///slider group patch for lemmas 2, 3, 4
         ///-------------------------------------------
         var lemma2_slidersH = 0;
 
@@ -119,6 +103,9 @@
         const STATIC_LEGEND = ssF.gets_LEGEND_FIXED_FRACTION();
         let legendWidth = 0, legendHeight = 0;
         if (STATIC_LEGEND) {
+            console.log('static legend');
+            //todo: this doesn't ever seem to be true
+
             ////makes synch with babylon and custom svg easier,
             ////takes "legend" as a reminder after LEGEND_FIXED_FRACTION,
             legendHeight = SSceneH * STATIC_LEGEND;
@@ -136,7 +123,11 @@
             const boxLegend = stdMod.legendRoot$().getBoundingClientRect();
             legendWidth = Math.max(legendWidth, boxLegend.width);
 
-            legendHeight += 20; //todm: patch: adds gap at bottom page
+            legendHeight += 20;
+            //todm: patch:
+            //adds gap at bottom page so data doesn't
+            //overlap version number
+
             if( fconf.sappId.indexOf('b1sec1lemma2') === 0 ||
                 fconf.sappId === 'b1sec1lemma3' )
                 legendHeight += 20; //todm: patch: adds gap at bottom page
@@ -321,10 +312,6 @@
         // \\// phase 4. allocates widths and heights
         //===============================================
 
-
-
-
-
         //--------------------------------------------------------------------
         // //\\ exports sizes
         //--------------------------------------------------------------------
@@ -385,7 +372,6 @@
     ///=============================================================================
     /// \\// restricts and sets super root and text pane sizes
     ///=============================================================================
-
 
 
     ///========================================

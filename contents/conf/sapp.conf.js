@@ -65,8 +65,6 @@ function doesConfigLemma (){
     tr.displacement    = [...tr.estimatedForce];
     tr.fQR             = [...tr.estimatedForce];
     tr.perpendicular   = [150, 80, 0];
-    //Description of areas triangle P2 proof tab
-    tr.areaDescriptionAccelerated = [120, 90, 82, 1]; 
     //-----------------------
     // \\// physics
     //-----------------------

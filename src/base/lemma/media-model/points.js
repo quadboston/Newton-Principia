@@ -45,7 +45,6 @@
     {
         attrs = attrs || {};
         var pt = rg[ pName ];
-        //if( 'curvePivots-3-kernel' === pName ){
 
         //if points are flagged as 'unscalable', then
         //they are immune to scaling when user scales diagram with mouse
@@ -86,7 +85,7 @@
             };
 
             ///shapes without pName presribed in Topics do
-            ///paint colors in own atributes
+            ///paint colors in own attributes
             var low_tpID = nsmethods.tpid2low( pName );
             var tpactive = haz( lowtpid_2_glocss8anchorRack, low_tpID );
             if( !tpactive ) {
@@ -126,7 +125,6 @@
         }
 
 
-
         //*****************************************************
         // todm: get rid of this
         //
@@ -135,10 +133,7 @@
         //       possibly only one offender left: theorem1,
         //
         var pointWrap = haz( pt, 'pointWrap' );
-        pointWrap && ccc( '***** ' + pName, pointWrap, '***end' );
-        //pointWrap && ( pointWrap.medpos = pt.medpos );
         //*****************************************************
-
         if( has( pt, 'undisplayAlways' ) ){
             //good but may be corrupts legacy lemmas
             //pt.undisplay = true; //fixes hiding of letters
@@ -165,7 +160,6 @@
     function doPaintLetter8kernel( pname, )
     {
         var rgX = rg[ pname ];
-
         ///adds fake points over draggable points to
         ///make white kernels drawn above lines
         ///move_2_updates is a flag of point for being a draggee

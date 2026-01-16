@@ -158,7 +158,7 @@ function media_upcreate___before_basic (){
                 rgX.svgel.setAttribute( 'r', pointsAreOn ? '6' : '4' );
                 rgX.svgel.style[ 'fill' ] = pointsAreOn ?
                 '#cccccc' : sDomF.tpname0arr_2_rgba( 'path' );
-            } else {
+            //} else {
                 //todo why is this?
                 //c cc( rgX.pname + ' svg is missed in media-model.js' );
             }
@@ -175,31 +175,6 @@ function media_upcreate___before_basic (){
         rg['main-legend'].tb.corollary.style.display =
            ( amode.logic_phase === 'corollary' && amode.subessay === 'cor-1' ) ?
            'table' : 'none';
-    }
-    {
-        ////apparently working with non-standard lemma,
-        ////one of triangles
-        ////triangle-even tp-_s_b_c tp-kepler-triangle
-        ////(try document.querySelector( '.tp-_s_b_c' ).style.display = 'none';)
-        ////covers these two lines,
-        ////we do a manual patch to remove and add them
-        ////over this triangle,
-        if( fconf.sappId === "b1sec2prop2" ){
-            let svg = rg.VVaracc.svgel;
-            if( !svg ) return;
-            let parent = svg.parentNode;
-            if( !parent ) return; //todo fix rightly, fix the cause
-            svg.remove();
-            parent.appendChild( svg );
-            svg = rg.BVaracc.svgel;
-            svg.remove();
-            parent.appendChild( svg );
-            //similar method:
-            svg = rg.CaraccParacc.svgel;
-            if( !has( rg.CaraccParacc, 'svgel' ) ) return; //todo patch
-            svg.remove();
-            parent.appendChild( svg );
-        }
     }
     ssF.mediaModelInitialized = true;
 }
@@ -234,8 +209,23 @@ function media_upcreate___after_basic (){
     });
 
     ///this is a way around canonical config:
-    ///moving svg shapes on top of z order,
+    ///placing svg shapes on top of configured z order,
     if( !zorderFixed ) {
+        if( fconf.sappId === 'b1sec2prop2' ){
+            let svg = rg.VVaracc.svgel;
+            let parent = svg.parentNode;
+            svg.remove();
+            parent.appendChild( svg );
+
+            svg = rg.BVaracc.svgel;
+            svg.remove();
+            parent.appendChild( svg );
+
+            svg = rg.CaraccParacc.svgel;
+            svg.remove();
+            parent.appendChild( svg );
+        }
+
         ///path
         const path = rg.path.pos;
         path.forEach( (pt, pix) => {
@@ -243,18 +233,35 @@ function media_upcreate___after_basic (){
             const kix = pix-1;
             const fkey = 'force-' + kix;
             const pname = fkey+'-applied';
-            //if( !rg[ pname ] ){
-            //    throw Error ( ' cannot reset zoreder, this rg is lost: ' + pname );
-            //}
             const svg = rg[ pname ].svgel;
-            //if( !svg ) {
-            //    throw Error ( 'missed svg ' + pname );
-            //}
             const parent = svg.parentNode;
             svg.remove();
             parent.appendChild( svg );
         });
 
+        //S
+        svg = rg['S'].svgel;
+        parent = svg.parentNode;
+        svg.remove();
+        parent.appendChild( svg );
+
+        if( fconf.sappId === 'b1sec2prop2' ){
+            ////places dots over lines
+            svg = rg['Caracc'].svgel;
+            parent = svg.parentNode;
+            svg.remove();
+            parent.appendChild( svg );
+
+            svg = rg['Paracc'].svgel;
+            parent = svg.parentNode;
+            svg.remove();
+            parent.appendChild( svg );
+
+            svg = rg['Varacc'].svgel;
+            parent = svg.parentNode;
+            svg.remove();
+            parent.appendChild( svg );
+        };
         ///now put hanler kernels over vector tips
         ['B','C','D','E','F'].forEach( (pname, ix) => {
             let nam0 = pname;
@@ -272,8 +279,8 @@ function media_upcreate___after_basic (){
         });
 
         //speed over AB
-        let svg = rg.Av.svgel;
-        let parent = svg.parentNode;
+        svg = rg.Av.svgel;
+        parent = svg.parentNode;
         svg.remove();
         //svg.style.strokeWidth = '3px';
         parent.appendChild( svg );
@@ -285,15 +292,8 @@ function media_upcreate___after_basic (){
         parent.appendChild( svg );
 
         //A kernel
-        svg = rg['A-kernel'].svgel;
-        parent = svg.parentNode;
-        svg.remove();
-        parent.appendChild( svg );
-        zorderFixed = true;
-
-        //S
-        svg = rg['S'].svgel;
-        parent = svg.parentNode;
+        var svg = rg['A-kernel'].svgel;
+        var parent = svg.parentNode;
         svg.remove();
         parent.appendChild( svg );
 

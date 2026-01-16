@@ -144,68 +144,68 @@
         //=================================================
         // //\\ draws line caption
         //=================================================
-        //todm bad name: too generic
+        //todm bad name: caption is too generic
         //hard to package-search
         var caption = ns.haz( lineAttr, 'caption' ) ||
-                      ns.haz( line, 'caption' );
-        if( caption ) {
-            var fontSize = ns.haz( lineAttr, 'fontSize' ) || 20;
+                      ns.haz( line, 'caption' ) || '';
+        var fontSize = ns.haz( lineAttr, 'fontSize' ) || 20;
 
-            var lposXSugar = 0.5;
-            var lposYSugar = haz( lineAttr, 'lposYSugar' );
-            var lposYSugar = lposYSugar || lposYSugar === 0 ? lposYSugar : -0.3; //1.5;
-            var pvs = pivotsMedPos,
-            lposX = ( pvs[0][0] + pvs[1][0] ) / 2;
-            lposY = ( pvs[0][1] + pvs[1][1] ) / 2;
-            var dir = [ pvs[1][0] - pvs[0][0], pvs[1][1] - pvs[0][1] ];
-            var segAngle = Math.atan2(
-                    dir[1] * sconf.MONITOR_Y_FLIP, //y, screen to model angle
-                    dir[0]
-            );
-            var leftNormAngle = segAngle + Math.PI/2;
-            var SHIFT = has( lineAttr, 'captionShiftNorm' ) ?
-                            lineAttr.captionShiftNorm : 18;
+        var lposXSugar = 0.5;
+        var lposYSugar = haz( lineAttr, 'lposYSugar' );
+        var lposYSugar = lposYSugar || lposYSugar === 0 ? lposYSugar : -0.3; //1.5;
+        var pvs = pivotsMedPos,
+        lposX = ( pvs[0][0] + pvs[1][0] ) / 2;
+        lposY = ( pvs[0][1] + pvs[1][1] ) / 2;
+        var dir = [ pvs[1][0] - pvs[0][0], pvs[1][1] - pvs[0][1] ];
+        var segAngle = Math.atan2(
+                dir[1] * sconf.MONITOR_Y_FLIP, //y, screen to model angle
+                dir[0]
+        );
+        var leftNormAngle = segAngle + Math.PI/2;
+        var SHIFT = has( lineAttr, 'captionShiftNorm' ) ?
+                        lineAttr.captionShiftNorm : 18;
 
-            var finalPosX = lposX + SHIFT * Math.cos( leftNormAngle )
-                            - fontSize * lposXSugar;
-            var finalPosY = lposY
-                            //eye to screen view
-                            + sconf.MONITOR_Y_FLIP * SHIFT * Math.sin( leftNormAngle )
-                            - fontSize * lposYSugar;
-            if( !line.pointIsAlreadyDressed ) {
-                line.pnameLabelsvg = ns.svg.printText({
-                    //text            : caption,
-                    stroke          : stroke, //line.pcolor,
-                    fill            : stroke, //line.pcolor,
-                    "stroke-width"  : haz( lineAttr, "stroke-width" ) || 1,
-                    svgel           : line.pnameLabelsvg,
-                    parent          : stdMod.mmedia,
-                    style           : {
-                        'font-size' : fontSize.toFixed() + 'px',
-                        'line-height' : '1',
-                        'font-size' : line.fontSize + 'px',
-                    },
-                });
-                line.pnameLabelsvg$ = $$.$( line.pnameLabelsvg )
-                    .cls( line.finalCssClass )
-                    //"tobold" makes all "line-labels" "tp - boldable"
-                    .addClass( 'tofill tobold hover-width' )
-                    ;
-            }
-            line.pnameLabelsvg$
-                .aNS( 'x', finalPosX.toFixed()+'px' )
-                .aNS( 'y', finalPosY.toFixed()+'px' )
-                .tgcls( 'undisplay', ns.haz( rg[ line.pname ], 'undisplay' ) )
+        var finalPosX = lposX + SHIFT * Math.cos( leftNormAngle )
+                        - fontSize * lposXSugar;
+        var finalPosY = lposY
+                        //eye to screen view
+                        + sconf.MONITOR_Y_FLIP * SHIFT * Math.sin( leftNormAngle )
+                        - fontSize * lposYSugar;
+
+        if( !line.pointIsAlreadyDressed ) {
+            line.pnameLabelsvg = ns.svg.printText({
+                text            : caption,
+                stroke          : stroke, //line.pcolor,
+                fill            : stroke, //line.pcolor,
+                "stroke-width"  : haz( lineAttr, "stroke-width" ) || 1,
+                svgel           : line.pnameLabelsvg,
+                parent          : stdMod.mmedia,
+                style           : {
+                    'font-size' : fontSize.toFixed() + 'px',
+                    'line-height' : '1',
+                    'font-size' : line.fontSize + 'px',
+                },
+            });
+            line.pnameLabelsvg$ = $$.$( line.pnameLabelsvg )
+                .cls( line.finalCssClass )
+                //"tobold" makes all "line-labels" "tp - boldable"
+                .addClass( 'tofill tobold hover-width' )
                 ;
-            line.pnameLabelsvg$.tgcls(
-                'undisplay',
-                haz( line, 'hideCaption' ) ||
-                (
-                    !haz( line, 'displayAlways' ) &&
-                    ( haz( rg, 'allLettersAreHidden' ) || haz( line, 'undisplay' ) )
-                )
-            );
         }
+
+        line.pnameLabelsvg$
+            .aNS( 'x', finalPosX.toFixed()+'px' )
+            .aNS( 'y', finalPosY.toFixed()+'px' )
+            .tgcls( 'undisplay', ns.haz( rg[ line.pname ], 'undisplay' ) )
+            ;
+        line.pnameLabelsvg$.tgcls(
+            'undisplay',
+            haz( line, 'hideCaption' ) ||
+            (
+                !haz( line, 'displayAlways' ) &&
+                ( haz( rg, 'allLettersAreHidden' ) || haz( line, 'undisplay' ) )
+            )
+        );
         //=================================================
         // \\// draws line caption
         //=================================================
