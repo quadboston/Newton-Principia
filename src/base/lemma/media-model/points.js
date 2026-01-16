@@ -1,6 +1,6 @@
 ( function() {
     var {
-        sn, $$, nsmethods, nspaste, haz, has, han, nssvg, eachprop,
+        sn, $$, nsmethods, haz, has, han, nssvg, eachprop,
         sconf, sDomF, sDomN, ssF, ssD, lowtpid_2_glocss8anchorRack, rg, toreg,
         stdMod, amode,
     } = window.b$l.apptree({
@@ -99,7 +99,6 @@
             //but patches only for lemmas covered with this subroutine and this patch,
             svgel$().style[ 'fill-opacity' ] = '1';
             var finalTp = haz( pt, 'notp' ) ? 'notp' : 'tp';
-            //ccc( pt.pname );
             var wwClass = cssClass + finalTp + '-' +  tpclass;
             pt.svgel.setAttributeNS( null, 'class', wwClass );
             //if( pName === 'fret-0-0' ) {
@@ -134,7 +133,6 @@
         //       possibly only one offender left: theorem1,
         //
         var pointWrap = haz( pt, 'pointWrap' );
-        pointWrap && ( pointWrap.medpos = pt.medpos );
         //*****************************************************
         if( has( pt, 'undisplayAlways' ) ){
             //good but may be corrupts legacy lemmas
@@ -283,7 +281,8 @@
             if( txtclass ) {
                 $$$svg.addClass( txtclass );
             }
-
+            //make tp - boldable all points labels:
+            $$$svg.addClass( 'tobold' );
             /*
             fails:
             if( has( rgX, 'hideCaption' ) ) {

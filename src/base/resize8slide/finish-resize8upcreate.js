@@ -48,7 +48,8 @@
         //                  bgImg.naturalHeight / bgImg.naturalWidth;
         //-------------------------------------------------------------
         if(
-            ns.widthThresholds[ fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD ]() //isMobile
+            //isMobile
+            ns.widthThresholds[ fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD ]()
         ) {
             preparesMobile();
         } else {
@@ -60,15 +61,14 @@
         fmethods.resizeHappened(); 
         haff( stdMod, 'model8media_upcreate' );
     }
-    ///=============================================================================
+    ///========================================================
     /// \\// restricts and sets super root and text pane sizes,
-    ///=============================================================================
+    ///========================================================
 
     function preparesDesktop({
         draggerMove,
         doDividorSynch,
     }){
-        //console.log('preparesDesktop');
         //========================================
         // //\\ phase 1. detects parameters
         //========================================
@@ -77,7 +77,6 @@
                           ( fconf.doDisplayPageTopNavigatMenu ?
                             sDomN.pageNavTopBar$.box().height : 0
                           );
-        //console.log('SSceneH: ' + SSceneH); // height of bsl-sim-superscene
         ///-------------------------------------------
         ///slider group patch for lemmas 2, 3, 4
         ///-------------------------------------------
@@ -88,7 +87,6 @@
                 sliderGroup$.box().height : 0;
             sliderGroup$.css('position', 'absolute');
         }
-        //console.log('bases_slidersH: ' + bases_slidersH);
 
         //-------------------------------------------
         // //\\ calculates legend
@@ -96,7 +94,9 @@
         const STATIC_LEGEND = ssF.gets_LEGEND_FIXED_FRACTION();
         let legendWidth = 0, legendHeight = 0;
         if (STATIC_LEGEND) {
-            console.log('static legend'); //todo: this doesn't ever seem to be true
+            console.log('static legend');
+            //todo: this doesn't ever seem to be true
+
             ////makes synch with babylon and custom svg easier,
             ////takes "legend" as a reminder after LEGEND_FIXED_FRACTION,
             legendHeight = SSceneH * STATIC_LEGEND;
@@ -108,14 +108,16 @@
                 var boxChild = child.getBoundingClientRect();
                 legendWidth = Math.max(legendWidth, boxChild.width);
                 legendHeight = Math.max(legendHeight, boxChild.height);
-                //console.log('boxChild: ' + boxChild);
             });
 
             //measures container legend box itself
             const boxLegend = stdMod.legendRoot$().getBoundingClientRect();
             legendWidth = Math.max(legendWidth, boxLegend.width);
 
-            legendHeight += 60; //adds gap at bottom page so data doesn't overlap version number
+            legendHeight += 60;
+            //adds gap at bottom page so data doesn't
+            //overlap version number
+
             legendHeight = Math.max(legendHeight, boxLegend.height);
         }
         const consideredLegendWidth = Math.min(legendWidth, winW - fconf.ESSAY_MIN_WIDTH);
