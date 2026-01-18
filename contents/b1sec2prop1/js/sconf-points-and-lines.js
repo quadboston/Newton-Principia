@@ -44,6 +44,7 @@ function sconf_points8lines (){
         speed = harden(speed);
         time = harden(time);
         force = harden(force);
+        perpendicular = harden(perpendicular);
     }
 
     ///topic names elected
@@ -317,7 +318,7 @@ function sconf_points8lines (){
 
     var mixedSteps_conf = ssD.mixedSteps_conf = {
         S   : {
-                decStart : -2, //always visible
+                decStart : -2,      //always visible
                 letterAngle : -90,
                 initialR : 5 * sconf.controlsScale,
               },
@@ -435,28 +436,23 @@ function sconf_points8lines (){
         { nam : ['D', 'E'], },  // DE
         { nam : ['E', 'F'], },  // EF
 
-        { nam : ['S', 'A'], },  // SA
-        { nam : ['S', 'B'], },  // SB
+        { nam : ['S', 'A'],
+            decStart : -1, //always started until ended
+        },
+        { nam : ['S', 'B'],
+            decStart : -1, //always started until ended
+        },
         { nam : ['S', 'C'],
         },  // SC
         { nam : ['S', 'D'], },  // SD
         { nam : ['S', 'E'], },  // SE
         { nam : ['S', 'F'], },  // SF
-    ];
-    linesConf.push(
         { nam : ['S', 'P'],
-            cssClass :
-            fconf.sappId === 'b1sec2prop2' ? 'logic_phase--none' :
-                             'logic_phase--proof logic_phase--corollary',
+            cssClass : theor1corollary,
             decStart : -2,
-        });
-
-
-    linesConf = linesConf.concat( [
+        },
         { nam : ['T', 'P'],
-            cssClass :
-            fconf.sappId === 'b1sec2prop2' ? 'logic_phase--none' :
-                'logic_phase--proof logic_phase--corollary',
+            cssClass : theor1corollary,
             decStart : -2,
         },
         { nam : ['S', 'c'],     // Sc
@@ -471,8 +467,6 @@ function sconf_points8lines (){
         { nam : ['S', 'f'],     // Sf
             cssClass : theor1proof,
         },
-    ]);
-    linesConf = linesConf.concat( [
         //this is a thin line, which remains after thick line goes away,
         { nam : ['D', 'd'],
             decStart : rg.D.decStart,
@@ -549,15 +543,13 @@ function sconf_points8lines (){
         //------------------------------------
         // \\// cor4 prop1
         //------------------------------------
-
         { nam : ['B', 'V'],                                                 // BV
             cssClass : 'hover-width ' + theor1corollary,
         },
-
         { nam : ['A', 'C'], cssClass : theor1corollary,
         },                 // AC
         { nam : ['D', 'F'], cssClass : theor1corollary },                 // DF
-    ]);
+    ];
 
     if( fconf.sappId === 'b1sec2prop2' ){
         linesConf = linesConf.concat( [
@@ -684,6 +676,7 @@ function sconf_points8lines (){
         rg.d, rg.Dd, rg.Cd, rg.SD, rg.Sd, rg.SCd,
         rg.e, rg.Ee, rg.De, rg.SE, rg.Se, rg.SDe,
         rg.f, rg.Ff, rg.Ef, rg.SF, rg.Sf, rg.SEf,
+        rg.SA, rg.SB, rg.SC,
     ].forEach( pn => {
         pn.decEnd = rg.f.decStart + 3;
     });
