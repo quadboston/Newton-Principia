@@ -426,8 +426,8 @@ function sconf_points8lines (){
           vectorTipIx : 1,
           tipFraction : 0.15,
           'stroke-width' : 5,
-          pcolor : tpel.speed,
-          tipFill : tpel.speed,
+          //pcolor : tpel.speed,
+          //tipFill : tpel.speed,
         },
         { nam : ['A', 'B'], },  // AB
         ////todm possibly redundant, isn't pathSegment-' + pix enough?
@@ -436,17 +436,29 @@ function sconf_points8lines (){
         { nam : ['D', 'E'], },  // DE
         { nam : ['E', 'F'], },  // EF
 
+        // //\\ raddi
         { nam : ['S', 'A'],
             decStart : -1, //always started until ended
+            cssClass : 'logic_phase--proof',
         },
         { nam : ['S', 'B'],
             decStart : -1, //always started until ended
+            cssClass : 'logic_phase--proof',
         },
         { nam : ['S', 'C'],
+            cssClass : 'logic_phase--proof',
         },  // SC
-        { nam : ['S', 'D'], },  // SD
-        { nam : ['S', 'E'], },  // SE
-        { nam : ['S', 'F'], },  // SF
+        { nam : ['S', 'D'],
+            cssClass : 'logic_phase--proof',
+        },
+        { nam : ['S', 'E'],
+            cssClass : 'logic_phase--proof',
+        },
+        { nam : ['S', 'F'],
+            cssClass : 'logic_phase--proof',
+        },
+        // \\// raddi
+
         { nam : ['S', 'P'],
             cssClass : theor1corollary,
             decStart : -2,

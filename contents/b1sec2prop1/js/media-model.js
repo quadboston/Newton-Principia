@@ -82,9 +82,9 @@ function media_upcreate___before_basic (){
     let CStart = rg.C.decStart;
 
     if( fconf.sappId === 'b1sec2prop2' ){
-    lemmaP2coroll.forEach( pn => {
-        rg[pn].decStart = CStart;
-        rg[pn].decEnd = CStart+3;
+        lemmaP2coroll.forEach( pn => {
+            rg[pn].decStart = CStart;
+            rg[pn].decEnd = CStart+3;
         });
     }
     if(
