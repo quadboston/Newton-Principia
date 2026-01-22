@@ -88,7 +88,7 @@
     {
         //todm: ?no need for extra function argument:
         //      tp-cssName may be taken from "rg.Elem point wrap" ...
-        cssName = sDomF.topicIdUpperCase_2_underscore( cssName || mname );
+        cssName = sDomF.toCssIdentifier( cssName || mname );
 
         if( mcaption !== ']no caption[' ) {
             var c$ = $$.c('td')

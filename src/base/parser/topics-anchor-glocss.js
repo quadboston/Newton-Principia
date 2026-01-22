@@ -1,6 +1,6 @@
 ( function() {
     var {
-        haz, fapp, sconf, ssF, topics, fixedColors
+        haz, fapp, sconf, ssF, topics, topicColors_repo
     } = window.b$l.apptree({
         ssFExportList : {
             topics_anchor_css,
@@ -30,10 +30,10 @@
                 var match = cls.match( /tl-(\S*)/ );
                 if( !match ) return;
                 var tplink_ix = parseInt( match[1] );
-                var tplink    = topics.ix2tplink[ tplink_ix ];
-                assigns_color_to_anchor({ tplink, anchors__cssHighlighter, });
+                var anrack    = topics.anix2anrack[ tplink_ix ];
+                assigns_color_to_anchor({ anrack, anchors__cssHighlighter, });
                 setsAnchor_mouseHighlightEvents( anchor, tplink_ix );
-                nextTplinks[tplink_ix] = tplink;
+                nextTplinks[tplink_ix] = anrack;
             });
             //anchor colors
             styleStr += anchors__cssHighlighter.value;
@@ -46,16 +46,17 @@
     /// assigns color to anchor
     ///-----------------------------
     function assigns_color_to_anchor({
-        tplink,
+        anrack,
         anchors__cssHighlighter,
     }) {
-        var tplink_ix = tplink.tplink_ix;
-        var tpIDs = Object.keys( tplink.tpid2true );
+        var tplink_ix = anrack.tplink_ix;
+        var tpIDs = Object.keys( anrack.tpid2true );
 
         var notfocusOp_str = sconf.ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS.toFixed(3);
         var focusOp_str = sconf.ANCHOR_TOPIC__OPACITY_IN_FOCUS.toFixed(3)
-        var fixedCol = haz( tplink, 'fixed-color' );
-        var topi_c = topics.lowId2topics[ tpIDs[0] ];       
+        var fixedCol = haz( anrack, 'tpcolarr' );
+        //selects the very first color-operand from anchor
+        var gcssRack = topics.lowtpid_2_glocss8anchorRack[ tpIDs[0] ];
         if( fixedCol ) {
             //note: high opacity is taken as sconf.TP_OPACITY_HIGH in this ver
             var { rgb, rgba_high, } = ssF.colorArray_2_rgba(
@@ -68,14 +69,14 @@
             ////setting default anchor color
             var rgba_high = sconf.ANCHOR_DEFAULT_COLOR;
         } else {
-            // see *topi_c properties*
-            //var { rgb, rgba_high, } = topi_c;
-            ////tplink which comprised of more than one topics,
+            // see *gcssRack properties*
+            //var { rgb, rgba_high, } = gcssRack;
+            ////anrack which comprised of more than one topics,
             //.gets color of the first topic in link's topics collection
-            var rgba_high = topi_c.rgba_high;
+            var rgba_high = gcssRack.rgba_high;
         }
-        var forAnchor = ( topi_c && topi_c.forAnchor ) || rgba_high; //patch
-        
+        var forAnchor = ( gcssRack && gcssRack.forAnchor ) || rgba_high; //patch
+
         var rgb_low = forAnchor.replace( /,[^,]+$/, ',' +
                         sconf.ANCHOR_OPACITY_LOW + ')' );
         var rgba_high = forAnchor.replace( /,[^,]+$/, ',' +
@@ -84,29 +85,29 @@
         //  apparently padding highlighted anchor does bloat MathJax font,
         //  so, padding is disabled
         let tplink_str = 'a.tl-'+tplink_ix;
-        
+
         //todm needs more work to proofcheck other texts:
         let baseColor = sconf.ITEM_BASE_COLOR_TO_ANCHOR ? rgb_low : rgba_high;
-        
+
         // adjust darkness with second param
         // decrease to make darker, increase to lighten
-        baseColor = adjustRGBA(baseColor, 1); 
-        
+        baseColor = adjustRGBA(baseColor, 1);
+
         anchors__cssHighlighter.value += `
             ${tplink_str} {
                border-radius : 4px;
                color         : ${baseColor};
                opacity       : ${notfocusOp_str};
-               font-weight   : ${ tplink.anchorIsBold ? 'bold' : 'normal' };
+               font-weight   : ${ anrack.anchorIsBold ? 'bold' : 'normal' };
             }
             ${tplink_str}:hover {
                opacity          : ${focusOp_str};
-               background-color : rgb(${fixedColors.highlight});
+               background-color : rgb(${topicColors_repo.highlight});
                cursor           : default;
             }
             ${tplink_str}:hover span{
                font-weight      : bold;
-               background-color : rgb(${fixedColors.highlight});
+               background-color : rgb(${topicColors_repo.highlight});
                cursor           : default;
             }
         `;
@@ -135,7 +136,6 @@
             fapp.fappRoot$.removeClass( 'tp-' + coreName );
         });
     }
-
 })();
 
 

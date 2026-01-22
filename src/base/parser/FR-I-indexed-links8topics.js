@@ -26,7 +26,7 @@
     ///contains //Frag. step I.
     /*
         todm: dom and menu are messed with links and topics
-                    tplink.tpid2true[ tpid_lowcase ] = true;
+                    anrack.tpid2true[ tpid_lowcase ] = true;
                     sn( tpid_lowcase, l caseId2allLemTopics );
     */
     function exegs__2__dom_indexedLinks_indexedTopics()
@@ -69,7 +69,7 @@
                                     url = url.replace(/subessayId=[^,]*/, `subessayId=${subessayId}`);
                                 } else {
                                     url += `,subessayId=${subessayId}`;
-                                }                                
+                                }
                                 // Update the browser URL without reload
                                 window.history.replaceState({}, "", url);
                           })

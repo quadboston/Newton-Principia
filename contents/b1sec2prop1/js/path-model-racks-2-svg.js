@@ -1,13 +1,13 @@
 ( function() {
-    var { sn, $$, eachprop, sconf, ssF, ssD, sDomF, toreg, rg, amode, } = 
+    var { sn, $$, eachprop, fconf, sconf, ssF, ssD, sDomF, toreg, rg, amode, } =
         window.b$l.apptree({ stdModExportList : { allPathRacks_2_unseenSVGs, }, });
     return;
 
-    
+
     ///this fun. completes the split model and media code,
     function allPathRacks_2_unseenSVGs()
     {
-        var pointies2line   = ssF.pointies2line;
+        var pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
         var rg8pos_2_svg    = ssF.rgPos2rgMedia;
         var paintTriangle   = ssF.paintTriangle;
 
@@ -16,8 +16,7 @@
         var path            = rg.path.pos;
         var pathRacks       = rg.pathRacks.pathRacks;
         var freePath        = rg.freePath.pos;
-        var speeds          = rg.speeds.pos;
-
+        var speeds          = rg.speeds.vect;
         //=======================================================
         // //\\ spawns path to
         //      path "rgPoints", Kepler-triangles, free-triangles
@@ -48,7 +47,8 @@
                 const kix           = pix-1;
                 const pkey          = 'kepltr-' + kix;
 
-                //Add the following classes as required so that the those triangles can be highlighted.
+                //Add the following classes as required so that the
+                //those triangles can be highlighted.
                 let cssCls = '';
                 switch (pix) {
                     case 1: cssCls += 'tp-_s_a_b'; break;
@@ -57,8 +57,10 @@
                     case 4: cssCls += 'tp-_s_d_e'; break;
                     case 5: cssCls += 'tp-_s_e_f'; break;
                 }
-                //Set the following class to either odd or even, to set the color and for highlighting.
-                const tpclass = pix % 2 ? 'kepler-triangle-odd' : 'kepler-triangle-even';
+                //Set the following class to either odd or even, to set
+                //the color and for highlighting.
+                const tpclass = pix % 2 ?
+                      'kepler-triangle-odd' : 'kepler-triangle-even';
 
                 //sets up model vertices for triangle
                 // paints Kepler's triangles rg[pkey] along the path:
@@ -118,7 +120,7 @@
                 //----------------------------------
                 var wwpname = fkey+'-applied';
                 let pcolor = sDomF.getFixedColor( 'forceMove' )
-                var wwline = toreg( wwpname )
+                toreg( wwpname )
                     ({ undisplay : true })
 
                     ////patch for purpose of drawing a vector tip
@@ -126,9 +128,8 @@
                     ( 'tipFraction', 0.4 )
                     ( 'pcolor', pcolor )
                     ( 'tipFill', pcolor )
-
                     ();
-                let forceShape = pointies2line(
+                let forceShape = pivots_2_svgLineInRg(
                     wwpname,
                     fview.pivots,
                     {
@@ -151,13 +152,15 @@
         //-------------------------------------------------
         // //\\ paints free path points
         //-------------------------------------------------
+        var theor1proof = fconf.sappId === 'b1sec2prop1' ?
+            'logic_phase--proof' : 'logic_phase--none';
         freePath.forEach( (pt, pix) => {
             var pkey = 'freepath-' + pix;
             toreg( pkey )({ undisplay : true })();
             rg8pos_2_svg(
                 pkey,
                   {
-                    cssClass: 'tofill tostroke theor1proof',
+                    cssClass: 'tofill tostroke ' + theor1proof,
                     tpclass : 'free-path',
                   }
             );
@@ -176,12 +179,12 @@
             if( pix >= freePathRacks.length ) return;
             var wwpname = 'freePathSegment-' + pix;
             toreg( wwpname )({ undisplay : true })();
-            pointies2line(
+            pivots_2_svgLineInRg(
                 wwpname,
                 !'wwPivots',
                 {
                     //stroke:'green',
-                    cssClass:'tofill tostroke theor1proof',
+                    cssClass:'tofill tostroke ' + theor1proof,
                     tpclass : 'free-path',
                     'stroke-width':4
                 }
@@ -201,7 +204,7 @@
             if( pix === pathRacks.length - 1 ) return;
             var wwpname = 'pathSegment-' + pix;
             toreg( wwpname )({ undisplay : true })();
-            pointies2line(
+            pivots_2_svgLineInRg(
                 wwpname,
                 !'wwPivots',
                 {
@@ -215,7 +218,5 @@
         // \\// real path line segment
         //-------------------------------------------------
     }
-
-
-}) ();
+})();
 

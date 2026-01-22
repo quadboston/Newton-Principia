@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, fconf, sconf, fixedColors } =
+    var { ns, fconf, sconf, topicColors_repo } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -93,9 +93,9 @@
             proof,
             result,
             hidden,
-        } = fixedColors;
+        } = topicColors_repo;
 
-        var predefinedTopics =
+        var topicColors_elected =
         {
             given,
             proof,
@@ -207,7 +207,7 @@
 
         ns.paste( sconf, {
             mediaBgImage : "l11-diagram-3rded.jpg",
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             originX_onPicture,

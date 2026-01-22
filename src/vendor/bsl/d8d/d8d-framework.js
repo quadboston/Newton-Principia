@@ -267,7 +267,7 @@
 
                 if( spinnerClsId ) {
                     //don't do this here: not a d8d concern:
-                    //var cssIdLowCase = sDomF.topicIdUpperCase_2_underscore(
+                    //var cssIdLowCase = sDomF.toCssIdentifier(
                     //spinnerClsId );
                     var cssIdLowCase = spinnerClsId;
 

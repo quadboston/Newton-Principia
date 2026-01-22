@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, sn, mat, fconf, sconf, stdMod, fixedColors, } = 
+    var { ns, sn, mat, fconf, sconf, stdMod, topicColors_repo, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     var op = sn( 'orbitParameters', sconf );
     var sop = sn( 'sampleOrbitParameters', sconf );
@@ -140,10 +140,10 @@
             hidden,
             curvature,
             context,
-        } = fixedColors;
+        } = topicColors_repo;
         let red = [255,0,0]; //for debugging
 
-        var predefinedTopics =
+        var topicColors_elected =
         {
             given,
             proof,
@@ -377,7 +377,7 @@
         //stdMod.init_sliders_conf();
         ns.paste( sconf, {
             mediaBgImage : "diagram.png",
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             originX_onPicture,
