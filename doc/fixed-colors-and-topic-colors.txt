@@ -81,6 +81,6 @@ Former tp-model.
                 rgba_high
             }
     5.
-        method tpname0arr_2_rgba( ... does retrieve low opacity
+        method getFixedColor( ... does retrieve low opacity
 
 

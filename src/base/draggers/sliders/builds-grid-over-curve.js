@@ -253,7 +253,7 @@
                 //addedCssClass   : ns.haz( ssD.repoConf[0], 'addedCssClass' ),
                 stroke          : measurementStroke,
                                     //for color, otherwise taken
-                                    // from sDomF.tpname0arr_2_rgba( rgName )
+                                    // from sDomF.getFixedColor( rgName )
             });
         }
     }

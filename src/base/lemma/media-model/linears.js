@@ -79,7 +79,7 @@
             var tpclass = sDomF.tpid2low(
                           ( ns.haz( lineAttr, 'tpclass' ) ) || pName
             );
-            var ww          = sDomF.tpname0arr_2_rgba( tpclass );
+            var ww          = sDomF.getFixedColor( tpclass );
             var stroke      = ns.haz( line, 'pcolor' ) || han( lineAttr, 'stroke', ww );
             var cssClass    = ns.h( lineAttr, 'cssClass' ) ?
                               lineAttr['cssClass'] + ' ' :  '';
@@ -342,7 +342,7 @@
                       ( ns.haz( attr, 'tpclass' ) ) || pName
         );
         var cssClass    = ns.h( attr, 'cssClass' ) ? attr['cssClass'] + ' ' :  '';
-        var stroke      = han( attr, 'stroke', sDomF.tpname0arr_2_rgba( tpclass ) );
+        var stroke      = han( attr, 'stroke', sDomF.getFixedColor( tpclass ) );
         var strokeWidth = han( attr, 'stroke-width', 1 );
         var poly        = toreg( pName )();
         if( typeof undisplay !== 'undefined' && undisplay !== null ) { //was a bug

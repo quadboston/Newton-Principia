@@ -63,7 +63,7 @@
         //sDomF.processDownEvent;
         rgX.processDownEvent    = sDomF.processDownEvent;
         rgX.processUpEvent      = sDomF.processUpEvent;
-        rgX.pcolor              = sDomF.tpname0arr_2_rgba( rgX.pname );
+        rgX.pcolor              = sDomF.getFixedColor( rgX.pname );
         orientation = orientation ||
         ( haz( rgX, 'draggableY' ) && haz( rgX, 'draggableX' ) ?
             'rotate' :

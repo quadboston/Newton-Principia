@@ -44,7 +44,7 @@
         //todm      add tp-both-curves in call, don't make "tp-both-curves" automatic
         addedCssClass,   //optional, overrides tp-..rgName
 
-        stroke, //for color, otherwise taken from sDomF.tpname0arr_2_rgba( rgName )
+        stroke, //for color, otherwise taken from sDomF.getFixedColor( rgName )
         strokeWidth,
 
         pointA,     //has pos[0] which is a start value for independent var t
@@ -146,7 +146,7 @@
                 start,
                 step,
                 curve           : mediaFunction,
-                stroke          : stroke || sDomF.tpname0arr_2_rgba( rgName ),
+                stroke          : stroke || sDomF.getFixedColor( rgName ),
                 "stroke-width"  : strokeWidth || 2,
                 svgel           : rgX.svgel, //[ rgName ].svg,
                 dontClose       : true,

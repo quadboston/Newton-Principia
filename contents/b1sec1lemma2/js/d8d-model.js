@@ -82,12 +82,12 @@
 
             if( pointWrap.type === 'base' ) {
                 pointWrap.spinnerClsId = 'base-'+pwix;
-                pointWrap.dragDecorColor = sDomF.tpname0arr_2_rgba( 'given' );
+                pointWrap.dragDecorColor = sDomF.getFixedColor( 'given' );
                 orientation = false;
 
             } else if ( pointWrap.type === 'trans' ) {
                 pointWrap.spinnerClsId = 'trans-'+pwix;   //optional for css
-                pointWrap.dragDecorColor = sDomF.tpname0arr_2_rgba( 'given' );
+                pointWrap.dragDecorColor = sDomF.getFixedColor( 'given' );
                 if (pointWrap.draggableX && pointWrap.draggableY)
                     orientation = 'rotate';
                 else if (pointWrap.draggableX)
@@ -97,7 +97,7 @@
 
             } else {
                 pointWrap.spinnerClsId = 'ctrl-'+pwix;   //optional for css
-                pointWrap.dragDecorColor = sDomF.tpname0arr_2_rgba( 'given' );
+                pointWrap.dragDecorColor = sDomF.getFixedColor( 'given' );
                 orientation = 'rotate';
             }
 

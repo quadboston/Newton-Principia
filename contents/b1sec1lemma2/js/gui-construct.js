@@ -145,7 +145,7 @@
                 //.todm patch
                 'rgba(255,255,255,1)'; //makes the point hollow
             pdom.style.stroke = isTransparent ? 'transparent' :
-                sDomF.tpname0arr_2_rgba( 'figure' );
+                sDomF.getFixedColor( 'figure' );
         }
     }
 
@@ -259,7 +259,7 @@
         pdom.setAttributeNS(null, "r", sconf.CTRL_RADIUS);
         //.todm patch
         //pdom.style.fill = 'rgba(255,255,255,1)'; //makes the point hollow
-        //pdom.style.stroke = sDomF.tpname0arr_2_rgba( 'figure' );
+        //pdom.style.stroke = sDomF.getFixedColor( 'figure' );
         pdom.style[ 'stroke-width' ] = '1px';
         pt.x = pos[0];
         pt.y = pos[1];

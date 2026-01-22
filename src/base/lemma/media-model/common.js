@@ -34,7 +34,7 @@
                 rgX = toreg( pname )
                     ( 'pname', pname )
                     ( 'pos', pos )
-                    //( 'pcolor' : sDomF.tpname0arr_2_rgba( pname ) ),
+                    //( 'pcolor' : sDomF.getFixedColor( pname ) ),
                     ///todm: work out to remove this
                     ///      proliferated coding: medpos, pos, ...  are two places:
                     ///      because of pWrap of itself is a proliferation of rg.pname rack
@@ -42,7 +42,7 @@
                         'pointWrap',
                         {
                            pos : pos,
-                           pcolor : sDomF.tpname0arr_2_rgba( pname ), //todm remove
+                           pcolor : sDomF.getFixedColor( pname ), //todm remove
                            doPaintPname : true, //todm remove
                         }
                     )

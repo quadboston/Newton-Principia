@@ -1,8 +1,8 @@
 ( function() {
     var {
-        ns, $$, sn, nsmethods, has, haz, nspaste, eachprop,
-        fapp, fconf, sconf, ssD, sapp, sDomF, sDomN, capture, rg,
-        topics, topicColors_repo, topicColors_repo_camel2col, references, exegs,
+        ns, sn, nsmethods, has, haz, nspaste, eachprop,
+        fconf, sconf, ssD, sapp, sDomF, sDomN, capture, rg,
+        topicColors_repo, topicColors_repo_camel2col, exegs,
         stdMod, amode, userOptions
     } = window.b$l.apptree({
         ssFExportList :
@@ -10,16 +10,10 @@
             LANDING_V___loads_professorList8cont_8_buildsSubexegs,
         },
     });
-    sDomF.tpname0arr_2_rgba = tpname0arr_2_rgba;
+    sDomF.getFixedColor = getFixedColor;
     var dataFiles = sn( 'dataFiles', ssD, [] );
     var dataFiles_id2content = sn( 'dataFiles_id2content', ssD );
     return;
-
-
-
-
-
-
 
 
     ///==========================================
@@ -576,26 +570,26 @@
         }
     }
 
-    ///todm: should be named ptype0colorArray_2_rgba
-    ///converts these two things
-    ///
-    ///input: ptype - optional, is an id in "fixed-colors",
-    ///               if falsy, then "rgba(0,0,0,1)" color is returned,
-    ///               if string, then converted to array first,
-    ///               if captilized-string, then converts to low-case-topic-style
-    ///               if array, converted as array to color
-    ///       makeOpacity1 - means "do make opacity equal to 1",
-    ///returns string of fixed color or black,
-    function tpname0arr_2_rgba( ptype0colorArray, makeOpacity1 )
+
+	/**
+	 * Gets a fixed color as an rgba string. Topic names are looked up in the 
+	 * fixed color palette. Arrays are converted to rgba format.
+	 * 
+	 * @param {string | number[]} topicOrArray - Topic name (e.g., 'given',
+	 * 		'proof') or rgba array [r, g, b, a]. Returns black if falsy.
+	 * @param {boolean} [makeOpacity1] - If true, sets opacity to 1
+	 * @returns {string} rgba color string like 'rgba(44,150,120,1)'
+	 */
+    function getFixedColor(topicOrArray, makeOpacity1)
     {
-        if( typeof ptype0colorArray === 'string' ) {
-            //returns blank, ' ' if ptype0colorArray is falsy
-            var cleared = nsmethods.camelName2cssName( ptype0colorArray || ' ' );
+        if( typeof topicOrArray === 'string' ) {
+            //returns blank, ' ' if topicOrArray is falsy
+            var cleared = nsmethods.camelName2cssName( topicOrArray || ' ' );
 
             //returns false if cleared === ' ' and not a key in fixed-colors ...
             var colorArray = haz( topicColors_repo, cleared );
         } else {
-            var colorArray = ptype0colorArray;
+            var colorArray = topicOrArray;
         }
         ///returns "rgba(0,0,0,1)" if color is falsy
         if( colorArray && makeOpacity1 ) {
@@ -609,4 +603,3 @@
     }
 
 }) ();
-

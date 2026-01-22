@@ -157,7 +157,7 @@ function media_upcreate___before_basic (){
             if( has(rgX, 'svgel' )){
                 rgX.svgel.setAttribute( 'r', pointsAreOn ? '6' : '4' );
                 rgX.svgel.style[ 'fill' ] = pointsAreOn ?
-                '#cccccc' : sDomF.tpname0arr_2_rgba( 'path' );
+                '#cccccc' : sDomF.getFixedColor( 'path' );
             //} else {
                 //todo why is this?
                 //c cc( rgX.pname + ' svg is missed in media-model.js' );

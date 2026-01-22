@@ -232,12 +232,12 @@ function doExpandConfig (){
                 //concat() separates generic color-arrays from
                 let fc = topicColors_repo[ tk ] = gshape.pcolor.concat();
                 topicColors_repo_camel2col[ pname ] = fc;
-                rgX.pcolor = sDomF.tpname0arr_2_rgba( gshape.pcolor );
-                rgX.opaqueColor = sDomF.tpname0arr_2_rgba(
+                rgX.pcolor = sDomF.getFixedColor( gshape.pcolor );
+                rgX.opaqueColor = sDomF.getFixedColor(
                                     gshape.pcolor, !!'makeOpacity1' );
             } else {
-                rgX.pcolor = sDomF.tpname0arr_2_rgba( pname );
-                rgX.opaqueColor = sDomF.tpname0arr_2_rgba( pname,
+                rgX.pcolor = sDomF.getFixedColor( pname );
+                rgX.opaqueColor = sDomF.getFixedColor( pname,
                                     !!'makeOpacity1' );
             }
 
@@ -313,12 +313,12 @@ function doExpandConfig (){
                 var tk = sDomF.tpid2low( pname );
                 let fc = topicColors_repo[ tk ] = op.pcolor; //low
                 topicColors_repo_camel2col[ pname ] = fc;       //camel
-                rgX.pcolor = sDomF.tpname0arr_2_rgba( op.pcolor );
-                rgX.opaqueColor = sDomF.tpname0arr_2_rgba( op.pcolor,
+                rgX.pcolor = sDomF.getFixedColor( op.pcolor );
+                rgX.opaqueColor = sDomF.getFixedColor( op.pcolor,
                                     !!'makeOpacity1' );
             } else {
-                rgX.pcolor = sDomF.tpname0arr_2_rgba( pname );
-                rgX.opaqueColor = sDomF.tpname0arr_2_rgba( pname,
+                rgX.pcolor = sDomF.getFixedColor( pname );
+                rgX.opaqueColor = sDomF.getFixedColor( pname,
                                     !!'makeOpacity1' );
             }
             rgX.undisplay = has( op, 'undisplay' ) ? op.undisplay : false;
@@ -355,7 +355,7 @@ function doExpandConfig (){
             if( letterColor ) {
                 //todm ...
                 //rgX.letterColor = haz( op, 'letterColor' ) || rgX.pcolor;
-                rgX.letterColor = sDomF.tpname0arr_2_rgba( letterColor );
+                rgX.letterColor = sDomF.getFixedColor( letterColor );
             }
             rgX.fontSize = fontSize;
             //----------------------------------------------------------
