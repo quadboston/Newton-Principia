@@ -1,6 +1,6 @@
 (function(){
-const { ns, sn, $$, eachprop, nspaste, has, haz, hafff, fmethods,
-        toreg, fconf, sconf, ssF, ssD, sDomF, rg, exegs, amode, stdMod,
+const { sn, $$, eachprop, has, haz, hafff, fmethods,
+        fconf, sconf, ssF, sDomF, rg,  amode, stdMod,
 } = window.b$l.apptree({ stdModExportList : {
         media_upcreate___before_basic,
         media_upcreate___after_basic,
@@ -199,6 +199,24 @@ function pathDelays2forceDraggers (){
     });
 }
 
+function putInFront(...items) {
+	for (const item of items) {
+		const svg = item.svgel;
+		const parent = svg.parentNode;
+		svg.remove();
+		parent.appendChild(svg);
+	}
+}
+
+function putInBack(...items) {
+	for (const item of items) {
+		const svg = item.svgel;
+		const parent = svg.parentNode;
+		svg.remove();
+		parent.insertBefore(svg, parent.firstChild);
+	}
+}
+
 function media_upcreate___after_basic (){
     ///todm this fixes refreshment of green free Kepler triangles
     ///when media scales,
@@ -211,91 +229,21 @@ function media_upcreate___after_basic (){
     ///this is a way around canonical config:
     ///placing svg shapes on top of configured z order,
     if( !zorderFixed ) {
-        if( fconf.sappId === 'b1sec2prop2' ){
-            let svg = rg.VVaracc.svgel;
-            let parent = svg.parentNode;
-            svg.remove();
-            parent.appendChild( svg );
-
-            svg = rg.BVaracc.svgel;
-            svg.remove();
-            parent.appendChild( svg );
-
-            svg = rg.CaraccParacc.svgel;
-            svg.remove();
-            parent.appendChild( svg );
-        }
+		putInFront(rg['S']);
+		putInBack(rg['Bc']);
 
         ///path
         const path = rg.path.pos;
         path.forEach( (pt, pix) => {
             if( !pix ) return;
-            const kix = pix-1;
-            const fkey = 'force-' + kix;
-            const pname = fkey+'-applied';
-            const svg = rg[ pname ].svgel;
-            const parent = svg.parentNode;
-            svg.remove();
-            parent.appendChild( svg );
+            putInFront(rg[ 'force-' + (pix - 1) + '-applied']);
         });
 
-        //S
-        svg = rg['S'].svgel;
-        parent = svg.parentNode;
-        svg.remove();
-        parent.appendChild( svg );
-
-        if( fconf.sappId === 'b1sec2prop2' ){
-            ////places dots over lines
-            svg = rg['Caracc'].svgel;
-            parent = svg.parentNode;
-            svg.remove();
-            parent.appendChild( svg );
-
-            svg = rg['Paracc'].svgel;
-            parent = svg.parentNode;
-            svg.remove();
-            parent.appendChild( svg );
-
-            svg = rg['Varacc'].svgel;
-            parent = svg.parentNode;
-            svg.remove();
-            parent.appendChild( svg );
-        };
-        ///now put hanler kernels over vector tips
+        ///put handler kernels over vector tips
         ['B','C','D','E','F'].forEach( (pname, ix) => {
-            let nam0 = pname;
-
-            let svg = rg[ nam0 ].svgel;
-            let parent = svg.parentNode;
-            svg.remove();
-            parent.appendChild( svg );
-
-            let nam1 = 'VVV'+ix+'-kernel';
-            svg = rg[ nam1 ].svgel;
-            parent = svg.parentNode;
-            svg.remove();
-            parent.appendChild( svg );
+			putInFront(rg[pname]); // force vector bases
+			putInFront(rg['VVV'+ix+'-kernel']); // force draggers
         });
-
-        //speed over AB
-        svg = rg.Av.svgel;
-        parent = svg.parentNode;
-        svg.remove();
-        //svg.style.strokeWidth = '3px';
-        parent.appendChild( svg );
-
-        //speed kernel
-        svg = rg['v-kernel'].svgel;
-        parent = svg.parentNode;
-        svg.remove();
-        parent.appendChild( svg );
-
-        //A kernel
-        var svg = rg['A-kernel'].svgel;
-        var parent = svg.parentNode;
-        svg.remove();
-        parent.appendChild( svg );
 
         zorderFixed = true;
     }

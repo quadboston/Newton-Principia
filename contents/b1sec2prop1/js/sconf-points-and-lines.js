@@ -437,33 +437,33 @@ function sconf_points8lines (){
         { nam : ['E', 'F'], },  // EF
 
         // //\\ raddi
-        { nam : ['S', 'A'],
+        { nam : ['S', 'A'],		// SA
             decStart : -1, //always started until ended
             cssClass : 'logic_phase--proof',
         },
-        { nam : ['S', 'B'],
+        { nam : ['S', 'B'],		// SB
             decStart : -1, //always started until ended
             cssClass : 'logic_phase--proof',
         },
-        { nam : ['S', 'C'],
+        { nam : ['S', 'C'],		// SC
             cssClass : 'logic_phase--proof',
-        },  // SC
-        { nam : ['S', 'D'],
-            cssClass : 'logic_phase--proof',
-        },
-        { nam : ['S', 'E'],
+        }, 
+        { nam : ['S', 'D'],		// SD
             cssClass : 'logic_phase--proof',
         },
-        { nam : ['S', 'F'],
+        { nam : ['S', 'E'],		// SE
+            cssClass : 'logic_phase--proof',
+        },
+        { nam : ['S', 'F'],		// SF
             cssClass : 'logic_phase--proof',
         },
         // \\// raddi
 
-        { nam : ['S', 'P'],
+        { nam : ['S', 'P'],		// SP
             cssClass : theor1corollary,
             decStart : -2,
         },
-        { nam : ['T', 'P'],
+        { nam : ['T', 'P'],		// TP
             cssClass : theor1corollary,
             decStart : -2,
         },
