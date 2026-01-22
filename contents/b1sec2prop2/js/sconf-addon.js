@@ -22,7 +22,7 @@ function init_conf_addon (){
         let pt = topicColors_elected();
         Object.keys( topicColors_elected() ).forEach( topicKey => {
             toreg( topicKey )( 'pname', topicKey );
-            var tk = sDomF.tpid2low( topicKey );
+            var tk = sDomF.toCssIdentifier( topicKey );
             topicColors_repo[ tk ] = pt[ topicKey ];
         });
         */

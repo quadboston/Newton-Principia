@@ -38,7 +38,7 @@
     }) {
         var pointWrap               = rgX;
         pointWrap.spinnerClsId      = 'point-' +
-            sDomF.tpid2low( rgX.pname ) +
+            sDomF.toCssIdentifier( rgX.pname ) +
             '-slider';
         //**rgX must have dragDecorColor' ) || pcolor:
         pointWrap.dragDecorColor    = haz( rgX, 'dragDecorColor' ) || rgX.pcolor;

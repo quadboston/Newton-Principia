@@ -55,7 +55,7 @@
 
             ////long, initial version of pos2pointy
             //c cc( 'dressing' + pName );
-            var tpclass = nsmethods.tpid2low(
+            var tpclass = nsmethods.toCssIdentifier(
                           ( haz( attrs, 'tpclass' ) ) || pName
             );
             var cssClass = has( attrs, 'cssClass' ) ? attrs['cssClass'] + ' ' :  '';
@@ -86,7 +86,7 @@
 
             ///shapes without pName presribed in Topics do
             ///paint colors in own attributes
-            var low_tpID = nsmethods.tpid2low( pName );
+            var low_tpID = nsmethods.toCssIdentifier( pName );
             var tpactive = haz( lowtpid_2_glocss8anchorRack, low_tpID );
             if( !tpactive ) {
                 argsvg.fill = pt.fill;

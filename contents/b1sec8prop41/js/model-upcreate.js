@@ -226,7 +226,7 @@
         });
 
         //:paints colors
-        var lowname = sDomF.tpid2low( rgX.rgId );
+        var lowname = sDomF.toCssIdentifier( rgX.rgId );
         rgX.svgel$.addClass( 'to' + fill0stroke + ' thickable tp-' + lowname );
     }
 

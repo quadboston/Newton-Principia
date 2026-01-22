@@ -240,7 +240,7 @@
                     var wwfc = haz( essayHeader, 'fixed-colors' );
                     if( wwfc ) {
                         Object.keys( wwfc ).forEach( topicKey => {
-                            var tk = nsmethods.camelName2cssName( topicKey );
+                            var tk = nsmethods.toCssIdentifier( topicKey );
                             topicColors_repo[ tk ] = wwfc[ topicKey ];
                             topicColors_repo_camel2col[ topicKey ]= topicColors_repo[ tk ];
                         });
@@ -584,7 +584,7 @@
     {
         if( typeof topicOrArray === 'string' ) {
             //returns blank, ' ' if topicOrArray is falsy
-            var cleared = nsmethods.camelName2cssName( topicOrArray || ' ' );
+            var cleared = nsmethods.toCssIdentifier( topicOrArray || ' ' );
 
             //returns false if cleared === ' ' and not a key in fixed-colors ...
             var colorArray = haz( topicColors_repo, cleared );

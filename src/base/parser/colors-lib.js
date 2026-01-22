@@ -31,7 +31,7 @@
             lowtpid__2__glocss8anchorRack,
         },
     });
-    sDomF.tpid2low = nsmethods.camelName2cssName;
+    sDomF.toCssIdentifier = nsmethods.toCssIdentifier;
     return;
 
 

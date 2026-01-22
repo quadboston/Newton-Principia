@@ -105,7 +105,7 @@
     ///        tip for the css-class
     function makeCl( row, mname, mcaption, table_logic_phase )
     {
-        var cssName = sDomF.tpid2low( mname );
+        var cssName = sDomF.toCssIdentifier( mname );
 
         if( mcaption !== ']no caption[' ) {
             var c$ = $$.c('td')

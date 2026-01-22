@@ -82,7 +82,7 @@
                     r : RRmedpos,
                 });
                 $$.$( rgCC.svgel ).addClass(
-                    'tp-' + nsmethods.camelName2cssName( CCName ) +
+                    'tp-' + nsmethods.toCssIdentifier( CCName ) +
                     ' tostroke'
                 );
                 rgCC.svgel.style.display =

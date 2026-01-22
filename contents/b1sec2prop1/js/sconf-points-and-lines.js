@@ -640,7 +640,7 @@ function sconf_points8lines (){
         //generates rg for all topics,
         //this code is a substitute of expand-config.js
         toreg( tpCamel )( 'pname', tpCamel );
-        var tpLowKey = sDomF.tpid2low( tpCamel );
+        var tpLowKey = sDomF.toCssIdentifier( tpCamel );
         //compliments topicColors_repo from stuff created in this sconf,
         //topicColors_repo are based on non-Camel id,
         var fck = topicColors_repo[ tpLowKey ] = tpel[ tpCamel ].concat();
@@ -652,7 +652,7 @@ function sconf_points8lines (){
         ////above condition is a flag
         Object.keys( p2_elected ).forEach( camelId => {
             //if( camelId === 'SBCaracc' ) return;
-            var tpLowKey = sDomF.tpid2low( camelId );
+            var tpLowKey = sDomF.toCssIdentifier( camelId );
             let fc = topicColors_repo_camel2col[ camelId ] =
                     topicColors_repo[ tpLowKey ] =
                     tpel[ camelId ];

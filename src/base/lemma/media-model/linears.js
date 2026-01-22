@@ -76,7 +76,7 @@
         var dressed = haz( line, 'pointIsAlreadyDressed' );
         if( !dressed ) {
             ////longer part of optimization: creates svg
-            var tpclass = sDomF.tpid2low(
+            var tpclass = sDomF.toCssIdentifier(
                           ( ns.haz( lineAttr, 'tpclass' ) ) || pName
             );
             var ww          = sDomF.getFixedColor( tpclass );
@@ -110,7 +110,7 @@
             }
             ///shapes without pName presribed in Topics do
             ///paint colors in own atributes
-            var low_tpID = nsmethods.tpid2low( pName );
+            var low_tpID = nsmethods.toCssIdentifier( pName );
             var tpactive = haz( lowtpid_2_glocss8anchorRack, low_tpID );
             if( !tpactive ) {
                 argsvg.stroke = line.stroke;
@@ -338,7 +338,7 @@
                               ( cssClass ? ' ' + cssClass : '' ),
            'stroke-width'  : 2,
         };
-        var tpclass = sDomF.tpid2low(
+        var tpclass = sDomF.toCssIdentifier(
                       ( ns.haz( attr, 'tpclass' ) ) || pName
         );
         var cssClass    = ns.h( attr, 'cssClass' ) ? attr['cssClass'] + ' ' :  '';
@@ -428,7 +428,7 @@
             triang.svgel = sv.polyline( svgarg );
             triang.svgel$ = $$.$( triang.svgel );
 
-            var tpclass = sDomF.tpid2low( tpclass || triangleId );
+            var tpclass = sDomF.toCssIdentifier( tpclass || triangleId );
             cssCls = cssCls ? ' ' + cssCls + ' ' : ' ';
             $$.$( triang.svgel ).cls( 'tofill' + cssCls + 'tp-' + tpclass );
 

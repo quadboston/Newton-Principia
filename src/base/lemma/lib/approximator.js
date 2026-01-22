@@ -64,7 +64,7 @@
         var antider = [ 0 ];
         var curvePoints = [];
 
-        var lowname = sDomF.tpid2low( curveName );
+        var lowname = sDomF.toCssIdentifier( curveName );
 
         ///creates pivots array xy
         sconf.originalPoints.curvePivots.forEach( (pivot,pix) => {

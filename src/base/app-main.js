@@ -53,7 +53,7 @@ const {
         fapp.doesConfigLemma(); // adds colors etc to sconf from lemma-conf.js
         fapp.lemmaDef       = fconf.sappId2lemmaDef[ fconf.sappId ];
         document.title      = fapp.lemmaDef.caption;
-        fconf.sappIdUnCamel = nsmethods.camelName2cssName( fconf.sappId );
+        fconf.sappIdUnCamel = nsmethods.toCssIdentifier( fconf.sappId );
         //=========================
         // \\// sets ids and titles
         //===============================
@@ -233,7 +233,7 @@ const {
                             //this place looks like
                             //the best to establish initial topics,
                             //then additional topics will be extracted from exegs
-                            var wwCase = sDomF.tpid2low;
+                            var wwCase = sDomF.toCssIdentifier;
                             //pppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
                             // //\\ central step
                             //pppppppppppppppppppppppppppppppppppppppppppppppppppppppppp

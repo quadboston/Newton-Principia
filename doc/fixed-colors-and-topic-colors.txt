@@ -64,7 +64,7 @@ Former tp-model.
         topicColors_repo come from sconf.original_points and set
             in form topicColors_repo[ normalized-topic-id ] = array aka [0,21,0, 0.5 ];
                 bookkeeping is:
-                    var tk = sDomF.tpid2low( topicKey );
+                    var tk = sDomF.toCssIdentifier( topicKey );
                     topicColors_repo[ tk ] = topicColors_elected[ topicKey ];
 
     3.

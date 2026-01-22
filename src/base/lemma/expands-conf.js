@@ -141,7 +141,7 @@ function doExpandConfig (){
         ///--------------------------------------------------
         Object.keys( topicColors_elected ).forEach( camelId => {
         toreg( camelId )( 'pname', camelId );
-            var lowId = sDomF.tpid2low( camelId );
+            var lowId = sDomF.toCssIdentifier( camelId );
             let tr = topicColors_repo[ lowId ] = topicColors_elected[ camelId ];
             topicColors_repo_camel2col[ camelId ] = tr;
         });
@@ -228,7 +228,7 @@ function doExpandConfig (){
             //here we create even more mess because adding alternative stream for
             //pcolor
             if( has( gshape, 'pcolor' ) ) {
-                var tk = sDomF.tpid2low( pname );
+                var tk = sDomF.toCssIdentifier( pname );
                 //concat() separates generic color-arrays from
                 let fc = topicColors_repo[ tk ] = gshape.pcolor.concat();
                 topicColors_repo_camel2col[ pname ] = fc;
@@ -310,7 +310,7 @@ function doExpandConfig (){
             rgX.doPaintPname = doPaintPname;
 
             if( has( op, 'pcolor' ) ) {
-                var tk = sDomF.tpid2low( pname );
+                var tk = sDomF.toCssIdentifier( pname );
                 let fc = topicColors_repo[ tk ] = op.pcolor; //low
                 topicColors_repo_camel2col[ pname ] = fc;       //camel
                 rgX.pcolor = sDomF.getFixedColor( op.pcolor );

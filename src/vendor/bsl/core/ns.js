@@ -998,8 +998,7 @@
     globalCss.replace       = replace;
     globalCss.replaceNow    = replace;
 
-    nsmethods.tpid2low = tpid2low;
-    nsmethods.camelName2cssName = camelName2cssName;
+    nsmethods.toCssIdentifier = toCssIdentifier;
     return;
 
 
@@ -1021,7 +1020,7 @@
                 cssText : '',
                 cssDom$ : ns.$$
                     .style()
-                    .cls( tpid2low( htmlkey ) )
+                    .cls( toCssIdentifier( htmlkey ) )
                     .to( document.head )
                     ,    
                 queueHandle : null, //timeout handle
@@ -1105,14 +1104,21 @@
         rack.cssDom$.html( '\n.dummy-style { .dummy-class : dummy-value; }\n ' );
     };
 
-    ///converts "A" -> "_a",  ... and "," to "_-"
-    function tpid2low( camelId )
-    {
-        return camelName2cssName( camelId );
-    }
 
-    ///converts "A" -> "_a",  ... and "," to "_-"
-    function camelName2cssName( camelId )
+	/**
+	 * Converts a camelCase identifier to a valid CSS identifier format.
+	 * Transforms uppercase letters to lowercase with underscore prefix,
+	 * and converts commas to underscore-dash.
+	 * 
+	 * @param {string} camelId - A camelCase identifier (e.g., 'ptId', 'A,B')
+	 * @returns {string} CSS-safe identifier (e.g., 'pt_id', '_a_-_b')
+	 * 
+	 * @example
+	 * toCssIdentifier('givenProof') // returns 'given_proof'
+	 * toCssIdentifier('A') // returns '_a'
+	 * toCssIdentifier('A,B') // returns '_a_-_b'
+	 */
+    function toCssIdentifier( camelId )
     {
         return camelId.replace( /([A-Z,])/g,
             ( match, key1 ) => ( key1 === ',' ? '_-' : '_' + key1.toLowerCase() )
