@@ -12,6 +12,8 @@
             //does this for decorational purposes
             stdMod.rebuilds_orbit( ssD.Dt );
             //this permits an orbitrary move
+
+            updatePointPPos();
             return true;
         }
     }
@@ -70,12 +72,7 @@
                 bezio.updatesPivot( pos, cpix );
 
                 stdMod.rebuilds_orbit( ssD.Dt );
-
-                if( stdMod.graphArray.length ){
-                    ////for case when curve shape changes,
-                    //tricky loop: pos -> qix -> pos( in upcreate_model ):
-                    rg.P.qix = stdMod.gets_orbit_closest_point( rg.P.pos, !!'fromGraph' );
-                }
+                updatePointPPos();
 
                 ///updates curve pivots every time:
                 stdMod.bezierPivotsToCurvePivots();
@@ -94,5 +91,18 @@
     //=========================================================================
     // \\// curve pivotsPos sliders
     //=========================================================================
+
+
+
+    function updatePointPPos() {
+        //Update point P qix (position) to be as close as possible to where it
+        //was before.  Also adjusts it as needed to ensure at valid qix if out
+        //of bounds to prevent issues.
+        if( stdMod.graphArray.length ){
+            ////for case when curve shape changes,
+            //tricky loop: pos -> qix -> pos( in upcreate_model ):
+            rg.P.qix = stdMod.gets_orbit_closest_point( rg.P.pos, !!'fromGraph' );
+        }
+    }
 }) ();
 

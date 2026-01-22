@@ -24,9 +24,7 @@
         //sconf.q2qix = 1 / sconf.delta_q_between_steps;
 
         sconf.ro0SquaredDivide2 = sconf.ro0*sconf.ro0 / 2;
-        
-        //3 and 5 make float noize on graph:
-        sn( 'SAGITTA_ACCURACY_LIMIT', sconf, 10 );
+
         sData.GRAPH_PATH = false; //local lemma can change this
     }    
     
@@ -59,9 +57,10 @@
     }
     
     function rebuilds_orbit( keepThisDt ) {
-        const SACC = sconf.SAGITTA_ACCURACY_LIMIT;
         const Q_STEPS = sconf.Q_STEPS;
         //TEMP To test adjusting the hyperbola length
+        //Note if orbit is elliptical the following can cause errors,
+        //especially if the eccentricity slider is far to the left.
         if (stdMod.computeQEndTemp) {
             sconf.orbit_q_end = stdMod.computeQEndTemp();
             sconf.orbit_q_start = -sconf.orbit_q_end;

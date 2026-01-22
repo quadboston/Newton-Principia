@@ -1,9 +1,6 @@
 ///builds two force estimations, 1) as finite sagitta,
 ///2) as Prop6, cor5 dev/area^2,
-//TEMP This comment probably needs to be adjusted or removed entirely.  For
-//example the part about "grids of t and q".
-///which is calculated from preintegrated synchronized
-///grids of t and q, time t and curve parameter q,
+///which is calculated from time t and curve parameter q,
 ( function() {
     var { sn, stdMod, sconf, ssD, sData, } = window.b$l.apptree({
         stdModExportList : { builds_dq8sagit8displace, }, });
@@ -16,15 +13,12 @@
 
 
     function builds_dq8sagit8displace({ ulitmacy }){
-        const SACC = sconf.SAGITTA_ACCURACY_LIMIT;
         const CURVE_REVOLVES = sconf.CURVE_REVOLVES;
         const Q_STEPS = sconf.Q_STEPS;
         const Q_MINUS_EXISTS = sconf.Q_MINUS_EXISTS;
         const q2xy = stdMod.q2xy;
         const qIndexToOrbit = ssD.qIndexToOrbit;
         const graphArray = stdMod.graphArray;
-        //TEMP I believe this has been removed.
-        // const delta_t_between_steps = ssD.delta_t_between_steps;
         const delta_q_between_steps = sconf.delta_q_between_steps;
         const timeRange = ssD.timeRange;
         const qrange = sconf.curveQRange;
@@ -48,13 +42,10 @@
                 var Dq = ssD.Dq;
                 break;
             case sData.ULTIM_INSTANT:
-                var Dt = 0.0001;//ssD.delta_t_between_steps*(SACC+1); //TEMP
+                var Dt = 0.0001;
                 var Dq = sconf.DQ_SLIDER_MIN;
                 break;
         }
-        console.log("builds_dq8sagit8displace  ulitmacy =", ulitmacy);
-        console.log(`builds_dq8sagit8displace  ulitmacy = ${ulitmacy}  Dt = ${Dt}`);
-        // let outputTemp = "qix, q, timeAtQ, dq_dt, plusQ\n";//TEMP
         for( let qix=0; qix<=Q_STEPS; qix++ ) {
             const bP = qIndexToOrbit[ qix ]; //body point data
             MAKE_RANGE && ( bP.invalid = false );
@@ -96,23 +87,17 @@
                 const plusT = bodyTime + Dt;
                 var plusQ = convertTimeToQ(plusT);
 
-                if (plusQ == null) {
+                if (plusQ === null) {
                     if (MAKE_RANGE && !CURVE_REVOLVES) {
-                        //TEMP Greater.  Needs to be improved.
                         if (plusT > timeRange) {
-                            plusQ = null;
                             bP.invalid = true;
-                            ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
+                            ssD.qix_graph_end =
+                                Math.min( ssD.qix_graph_end, qix-1 );
                         }
-                        //TEMP Less, should something be added for this?
-                        //Maybe not, maybe plus should only check the positive
-                        //side, and minus only the negative side?
                     }
                 } else {
-                    //TEMP
                     //saves data for model-upcreate;
                     bP.plusQ = plusQ;
-                    //TEMP Is the following correct?
                     Dq = plusQ-bP.q;
                     bP.Dq = CURVE_REVOLVES ? (Dq + qrange )%qrange : Dq;
                 }
@@ -132,55 +117,14 @@
             if( plusQ !== null ){
                 const rrplus = bP.rrplus = q2xy( plusQ );
                 let minusT = bodyTime - Dt;
-                
-                // const minusTix = Math.floor( minusT/delta_t_between_steps );
-                // if( minusTix < 1 ) {
-                //     if( MAKE_RANGE && !CURVE_REVOLVES ){
-                //         ssD.qix_graph_start = Math.max( ssD.qix_graph_start, qix+1 );
-                //         bP.invalid = true;
-                //     }
-                //     continue;
-                // } else if( minusTix >= tIndexToOrbit.length ){
-                //     ////todo why? helps only in P6 when curve shape changes
-                //     if( MAKE_RANGE && !CURVE_REVOLVES ){
-                //         ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
-                //         bP.invalid = true;
-                //     }
-                //     continue;
-                // }
-
-                
                 var minusQ = convertTimeToQ(minusT);
 
-                //TEMP
-                if (minusQ == null) {
-                    //TEMP A setting or similar should probably be added to
-                    //disable this if Q minus isn't present (eg. for P9).
-                    //
-                    //Are there any issues that could occur?  For example
-                    //perhaps the estimated force curve on the graph will end
-                    //up missing a bit on the right side?
-                    // -That seems to be the case but it's probably not a big
-                    //  deal overall
-
-                    //TEMP I suppose convertTimeToQ would take into
-                    //account whether or not CURVE_REVOLVES, so it may not be
-                    //needed here?
-                    // -Perhaps however it's always possible soething could
-                    //change and probably best to leave for clarity.
-
-                    //TEMP The wollowing setting should probably be added to
-                    //sconf, likely only for P6.
-                    // const qMinusPresentTEMP = false;
+                if (minusQ === null) {
                     if( MAKE_RANGE && !CURVE_REVOLVES && Q_MINUS_EXISTS ){
                         if (minusT < 0) {
-                            ssD.qix_graph_start = Math.max( ssD.qix_graph_start, qix+1 );
+                            ssD.qix_graph_start =
+                                Math.max( ssD.qix_graph_start, qix+1 );
                             bP.invalid = true;
-                        } else if (minusT > timeRange) {
-                            //TEMP Commented, may not need this.
-                            //Does leaving this or removing this cause problems?
-                            // ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
-                            // bP.invalid = true;
                         }
                     }
                     continue;
@@ -201,15 +145,13 @@
                     bP.instant_sagitta = bP.sagitta;
                 }
             }
-            // outputTemp += `${bP.qix}, ${bP.q}, ${bP.timeAtQ}, ${bP.dq_dt}, ` +
-            //               `${bP.plusQ}\n`;
         }
         //**********************************************
         // \\// t is a free variable
         //**********************************************
-        //console.log("outputTemp =", outputTemp);
-        //TEMP
-        // runTest();
+
+        //Can be enabled temporarily for testing if needed
+        // checkConvertTimeToQ();
     }
 
 
@@ -222,9 +164,6 @@
         const CURVE_REVOLVES = sconf.CURVE_REVOLVES;
         const qIndexToOrbit = ssD.qIndexToOrbit;
         const timeRange = ssD.timeRange;
-
-        //TEMP Could the following have float point error for curves that
-        //revolve, when time is at eg. timeRange?
         
         //Adjust time as needed, and ensure within bounds.
         const timeFind = CURVE_REVOLVES ? (timeRange + time) % timeRange : time;
@@ -232,14 +171,14 @@
             return null;
 
 
-        //Lower and upper bound of interval.
+        //Lower and upper bound for searching
         let qixL = 0;
         //As interval is always defined by the first qix (not qix + 1), last
         //possible index can never be a valid value.
         let qixU = (qIndexToOrbit.length - 1) - 1;
 
 
-        while(qixL <= qixU) {//TEMP Probably needs to be changed, maybe fine now.
+        while(qixL <= qixU) {
             //Calculate new qix for midpoint
             const qix = Math.floor((qixL + qixU) / 2);
 
@@ -247,11 +186,6 @@
             const timeStart = qIndexToOrbit[qix].timeAtQ;
             const timeEnd = qIndexToOrbit[qix + 1].timeAtQ
 
-            //TEMP Are the following correct?  What if eg. time was the max?
-            //Then I think there would be an issue because currently the
-            //interval found is equal or greater than the lower bound, but
-            //always less than the upper bound.  Perhaps if the upper bound was
-            //included (or similar) then it could work?
             if (timeFind < timeStart) {
                 //Lower than current qix, therefore must be less (not same)
                 qixU = qix - 1;
@@ -259,21 +193,77 @@
                 //Higher than current qix, therefore must be greater (not same)
                 qixL = qix + 1;
             } else {
-                //Within current interval (includes lower and upper bound)
-                // return qix;
+                //Within current interval (includes both sides)
 
-                //TEMP To output plusQ or similar rather than qix
-                //Found correct qix so convert to q value //TEMP
-                //Convert q index to q value //TEMP
-                const P = qIndexToOrbit[ qix ];
-                const TQix = P.timeAtQ;
-                const T_reminder = timeFind - TQix;
-                const Q = P.q +  T_reminder * P.dq_dt; 
+                //Found correct qix so calculate q value
+                //Must use dq_dt from PEnd not PStart to be consistent with
+                //how qIndexToOrbit data is setup in "builds-orbit.js"
+                const PStart = qIndexToOrbit[ qix ];
+                const PEnd = qIndexToOrbit[ qix + 1 ];
+                const T_reminder = timeFind - timeStart;
+                const Q = PStart.q +  T_reminder * PEnd.dq_dt;
                 return Q;
             }
         }
 
         return null;
+    }
+
+
+
+    function checkConvertTimeToQ() {
+        //Simple automated test intended to help check if convertTimeToQ
+        //calculates values correctly.  It could be improved for example:
+        // -Could include end of interval.  Note when CURVE_REVOLVES = true
+        //  the end of the last interval can return the fist q value rather
+        //  than the max.  That is to say 0 rather then eg. 2PI (depending on
+        //  the model).
+        // -Could check time values outside range 0 to the maximum (timeRange).
+        //  Note behavior is different depending on value of CURVE_REVOLVES.
+        const qIndexToOrbit = ssD.qIndexToOrbit;
+
+        let countPassed = 0;
+        let countTests = 0;
+
+        const qixMax = (qIndexToOrbit.length - 1);
+        const checksPerInterval = 5;
+
+        for(let qix = 0; qix < qixMax; qix++) {
+            //Values for current interval
+            const pS = qIndexToOrbit[qix];
+            const pE = qIndexToOrbit[qix + 1];
+
+            const qS = pS.q;
+            const qE = pE.q;
+            const tS = pS.timeAtQ;
+            const tE = pE.timeAtQ;
+
+            //Check values within interval (including start, excluding end)
+            for(let i = 0; i < checksPerInterval; i++) {
+                const factor = i / checksPerInterval;
+
+                const time = tS + (tE - tS) * factor;
+                const q    = qS + (qE - qS) * factor;
+                
+                //Calculate and check value
+                const Q = convertTimeToQ(time);
+                if (Q === null) {
+                    //Failed, shouldn't be null
+                } else if (Math.abs(Q - q) < 1e-9) {
+                    //Passed, within error tolerance
+                    countPassed++;
+                }
+                countTests++;
+            }
+        }
+
+        const message = `Simple test for function convertTimeToQ ` +
+            `${countPassed}/${countTests} tests passed.`;
+        if (countPassed === countTests) {
+            console.log(message);
+        } else {
+            console.error(message);
+        }
     }
 }) ();
 
