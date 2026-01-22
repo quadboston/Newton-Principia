@@ -98,6 +98,7 @@
         var Q_STEPS = 1000;
         var TIME_STEPS = 1000;
         var DATA_GRAPH_STEPS = 500;
+        sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
         sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX = true;
         sconf.DEVIATION_SCALE_FACTOR = 0.5;
         //-------------------------------------------
@@ -200,11 +201,6 @@
 				cssClass: 'subessay--solution',
             },
 
-            A : {
-                pcolor : proof,
-                cssClass: 'subessay--solution',
-            },
-
             // //\\ proof
             D : {
                 pcolor : proof,
@@ -258,16 +254,6 @@
                 letterAngle : -45,
                 cssClass: 'subessay--another-solution',
             },
-
-            Q : {
-                pcolor : proof,
-                letterAngle : 180,
-                letterRotRadius : 25,
-                draggableX  : true,
-                draggableY  : true,
-                cssClass: 'logic_phase--proof',
-                conditionalDrag : 'logic_phase--proof',
-            },
             // \\// proof
   
 
@@ -303,6 +289,24 @@
                 letterAngle : 70,
                 draggableX  : true,
                 draggableY  : true,
+            },   
+
+            Q : {
+                pcolor : proof,
+                letterAngle : 180,
+                letterRotRadius : 25,
+                draggableX  : true,
+                draggableY  : true,
+                cssClass: 'logic_phase--proof',
+                conditionalDrag : 'logic_phase--proof',
+            },         
+
+            A : {
+                pcolor : proof,
+                draggableX  : true,
+                draggableY  : true,
+				cssClass: 'subessay--solution',
+                conditionalDrag : 'subessay--solution',
             },
             //---------------------------------------
             // \\// draggable points

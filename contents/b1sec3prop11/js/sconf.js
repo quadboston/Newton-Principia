@@ -210,11 +210,6 @@
 				cssClass: 'subessay--solution',
             },
 
-            A : {
-                pcolor : proof,
-				cssClass: 'subessay--solution',
-            },
-
             AA : {
                 undisplayAlways : true,
                 doPaintPname : false,
@@ -308,8 +303,15 @@
                 pcolor : given,
                 letterAngle : -115,
                 letterRotRadius : 35,
+            },            
+
+            A : {
+                pcolor : proof,
+				cssClass: 'subessay--solution',
                 draggableX  : true,
-                draggableY  : false,
+                draggableY  : true,
+				cssClass: 'subessay--solution',
+                conditionalDrag : 'subessay--solution',
             },
 
             P : {

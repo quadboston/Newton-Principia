@@ -25,12 +25,12 @@ Cᴀsᴇ 1. For every body that moves in a curved line is ¦Cc Dd Ee Ff¦deflect
 a ¦Bc Cd De Ef¦rectilinear course¦¦ by some ¦forceMove¦force¦¦ acting upon it (by law 1). And that ¦forceMove¦force¦¦
 by which the body is deflected from a ¦Bc Cd De Ef¦rectilinear course¦¦ and in equal times
 is made to describe, about an immobile point ¦S¦¦, the equal minimally small
-triangles ¦SAB¦¦, ¦SBC¦¦, ¦SCD¦¦, ..., acts in place ¦B¦¦ along a line parallel to ¦Cc¦𝑐C¦¦ (by
+triangles ¦SAB¦¦, ¦SBC¦¦, ¦SCD¦¦,&nbsp;.&nbsp;.&nbsp;.&nbsp;, acts in place ¦B¦¦ along a line parallel to ¦Cc¦𝑐C¦¦ (by
 <a href="http://aleph0.clarku.edu/~djoyce/elements/bookI/propI40.html">
 book 1, prop. 40, of the Elements</a>,
 and law 2), that is, along the ¦SB¦line BS¦¦; and
 in place ¦C¦¦, the force acts along a line parallel to ¦Dd¦dD¦¦, that is, along the line
-¦SC¦¦, . . . . Therefore it always acts along lines tending toward that unmoving
+¦SC¦¦,&nbsp;.&nbsp;.&nbsp;.&nbsp;. Therefore it always acts along lines tending toward that unmoving
 point ¦S¦¦. Q.E.D.
 <br><br>
 Cᴀsᴇ 2. And, by corol. 5 of the laws, it makes no difference whether
