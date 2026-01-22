@@ -1,5 +1,10 @@
 # Change Log
 
+## 2026-1-? (SteelBlue Version, 0.5)
+### Improved
+* Propositions 1 and 2
+	* fixed issues with z-order, consistent radii colors, label colors, and lower-case italics
+
 ## 2026-1-11 (Silver Version, 0.4)
 ### Improved
 * Proposition 6
