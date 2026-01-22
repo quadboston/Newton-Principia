@@ -132,7 +132,7 @@
                 dragSurface
             );
             //very good for debug:
-            //c cc( spinnerCandidate.pointWrap.pname  );
+            //console.log( spinnerCandidate.pointWrap.pname  );
 
             if( activeDecPoint ) {
                 activeDecPoint.style.display = 'none';
@@ -143,10 +143,16 @@
             //c cc( spinnerCandidate.pointWrap.pname, decPoint );
 
             if( decPoint && spinnerCandidate.pointWrap.pname !== 'media-mover' ) {
+                //console.log( decPoint  );
                 if( spinnerCandidate.pointWrap.hideD8Dpoint ) {
                     decPoint.style.display = 'none';
                 } else {
                     decPoint.style.display = 'block';
+                    for (const child of decPoint.children) {
+                        // show animation on hover
+                        child.style.visibility = 'visible';
+                    }
+
                     //vital
                     //html global style tag does not do this:
                     dragSurface.style.cursor = spinnerCursorGrab || 'grab';

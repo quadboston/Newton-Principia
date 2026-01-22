@@ -240,8 +240,7 @@
             visibility:hidden;
         }
 
-        .active-tip > .brc-slider-draggee .brc-slider-draggee-right,
-        .brc-slider-draggee:hover .brc-slider-draggee-right {
+        .brc-slider-draggee-right {
             content         : '';
             position        : absolute;
             height          : 1px;
@@ -252,8 +251,7 @@
             visibility      : visible;
         }
 
-        .active-tip > .brc-slider-draggee .brc-slider-draggee-left,
-        .brc-slider-draggee:hover .brc-slider-draggee-left {
+        .brc-slider-draggee-left {
             content         : '';
             position        : absolute;
             height          : 1px;

@@ -68,10 +68,9 @@ div.bsl-approot svg.bsl--svgscene .undisplay,
     background-color: #cccccc;
 }
 
-/* .brc-slider-draggee {
-    display: block;
-    background-color: red;
-} */
+.brc-slider-draggee {
+    pointer-events: none; /* necessary for wheel zoom event to work */
+}
 .brc-slider-draggee.dividor:hover:after {
     background-color: transparent;
 }        
