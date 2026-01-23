@@ -9,10 +9,10 @@ Mess with pcolor
 expands-conf.js::
     redundant, but does not hurt: 
     eachprop( originalPoints, (point,pname) => {
-        point.pcolor = haz( point, 'pcolor' ) || predefinedTopics[ pname ];
+        point.pcolor = haz( point, 'pcolor' ) || topicColors_elected[ pname ];
     });
-    For points and lines, missed pcolor can come from fixedColors[ lower-pname ] if exists
-        however, if pcolor exists, then it populates fixedColors[ lower-pname ]
+    For points and lines, missed pcolor can come from topicColors_repo[ lower-pname ] if exists
+        however, if pcolor exists, then it populates topicColors_repo[ lower-pname ]
 
 
 Letter and kerel

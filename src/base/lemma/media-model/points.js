@@ -1,7 +1,7 @@
 ( function() {
     var {
         sn, $$, nsmethods, haz, has, han, nssvg, eachprop,
-        sconf, sDomF, sDomN, ssF, ssD, lowId2topics, rg, toreg,
+        sconf, sDomF, sDomN, ssF, ssD, lowtpid_2_glocss8anchorRack, rg, toreg,
         stdMod, amode,
     } = window.b$l.apptree({
         ssFExportList :
@@ -34,7 +34,7 @@
     ///       optional:
     ///         attrs, 'tpclass',
     ///         haz( pt, 'svgel' )
-    ///         attrs: see below: //optional attrs 
+    ///         attrs: see below: //optional attrs
     ///Does:  main thing is adding coordinates converted
     ///       from model space to media-space
     ///       pt.medpos = //mod 2 inn//
@@ -45,7 +45,6 @@
     {
         attrs = attrs || {};
         var pt = rg[ pName ];
-        //if( 'curvePivots-3-kernel' === pName ){
 
         //if points are flagged as 'unscalable', then
         //they are immune to scaling when user scales diagram with mouse
@@ -56,7 +55,7 @@
 
             ////long, initial version of pos2pointy
             //c cc( 'dressing' + pName );
-            var tpclass = nsmethods.topicIdUpperCase_2_underscore(
+            var tpclass = nsmethods.toCssIdentifier(
                           ( haz( attrs, 'tpclass' ) ) || pName
             );
             var cssClass = has( attrs, 'cssClass' ) ? attrs['cssClass'] + ' ' :  '';
@@ -87,8 +86,8 @@
 
             ///shapes without pName presribed in Topics do
             ///paint colors in own attributes
-            var lowId = nsmethods.topicIdUpperCase_2_underscore( pName );
-            var tpactive = haz( lowId2topics, lowId );
+            var low_tpID = nsmethods.toCssIdentifier( pName );
+            var tpactive = haz( lowtpid_2_glocss8anchorRack, low_tpID );
             if( !tpactive ) {
                 argsvg.fill = pt.fill;
                 argsvg.stroke = pt.stroke;
@@ -111,7 +110,7 @@
             //fails
             if( has( pt, 'title' ) ) {;
                 svgel$.ch( $$.c( 'title' ).html( pt.title ) );
-                //svgel$.e( 'mouseover', 
+                //svgel$.e( 'mouseover',
             }
             */
 
@@ -126,7 +125,6 @@
         }
 
 
-
         //*****************************************************
         // todm: get rid of this
         //
@@ -135,9 +133,7 @@
         //       possibly only one offender left: theorem1,
         //
         var pointWrap = haz( pt, 'pointWrap' );
-        pointWrap && ( pointWrap.medpos = pt.medpos );
         //*****************************************************
-
         if( has( pt, 'undisplayAlways' ) ){
             //good but may be corrupts legacy lemmas
             //pt.undisplay = true; //fixes hiding of letters
@@ -164,7 +160,6 @@
     function doPaintLetter8kernel( pname, )
     {
         var rgX = rg[ pname ];
-
         ///adds fake points over draggable points to
         ///make white kernels drawn above lines
         ///move_2_updates is a flag of point for being a draggee
@@ -277,7 +272,7 @@
             );
             rgX.pnameLabelsvg.addEventListener( 'mouseover', ()=>{
                     let me = rgX.pnameLabelsvg;
-                    me.style.cursor = 
+                    me.style.cursor =
                         //wrong: me.parentNode.style.cursor;
                         stdMod.simScene.style.cursor;
             });
@@ -286,7 +281,8 @@
             if( txtclass ) {
                 $$$svg.addClass( txtclass );
             }
-            
+            //make tp - boldable all points labels:
+            $$$svg.addClass( 'tobold' );
             /*
             fails:
             if( has( rgX, 'hideCaption' ) ) {

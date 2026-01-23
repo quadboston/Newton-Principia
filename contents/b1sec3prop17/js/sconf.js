@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, sn, mat, fconf, sconf, stdMod, fixedColors, } = 
+    var { ns, sn, mat, fconf, sconf, stdMod, topicColors_repo, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     // sn points to sconf.orbitParameters if param exisits, 
     // these are initialized here as empty objs
@@ -167,13 +167,13 @@
             shadow,
             hidden,
             attention,
-        } = fixedColors;
+        } = topicColors_repo;
         let red = [255,0,0]; //for debugging
 
 		const ALL_EXCEPT_PROBLEM_TAB = 
 			'subessay--solution subessay--corollary1 subessay--corollary2';
 
-        var predefinedTopics =
+        var topicColors_elected =
         {
             given,
             proof,
@@ -439,7 +439,7 @@
 
         ns.paste( sconf, {
             mediaBgImage : "diagram.png",
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             originX_onPicture,

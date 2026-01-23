@@ -730,12 +730,14 @@
             urlConf.forEach( function( opt ) {
                 //reserved chars: !#$%&'()*+,/:;=?@[]
                 //but no need to escape if char has no reserved purpose
-                //https://en.wikipedia.org/wiki/Percent-encoding#Reserved_characters
+                //https://en.wikipedia.org/wiki/
+                //  Percent-encoding#Reserved_characters
                 var cc = opt.split('=');
                 if( cc[1] ) {
                     ////parameter x exists after sign "=" in expression p=x
                     //let user to say "yes" or "no"
-                    cc[1] = cc[1] === "yes" ? true : ( cc[1] === "no" ? false : cc[1] );
+                    cc[1] = cc[1] === "yes" ?
+                            true : ( cc[1] === "no" ? false : cc[1] );
 
                 } else {
                     ////*****************************
@@ -975,7 +977,7 @@
 ///as page loads at landing
 ///keeping css in one html-style-element;
 ( function() {
-    var DEFAULT_KEY         = 'default';
+    var DEFAULT_KEY         = 'default-style-tag-class';
  	var ns                  = window.b$l;
     var globalCss           = ns.sn('globalCss');
     var nsmethods           = ns.sn('methods');
@@ -996,8 +998,7 @@
     globalCss.replace       = replace;
     globalCss.replaceNow    = replace;
 
-    nsmethods.topicIdUpperCase_2_underscore = topicIdUpperCase_2_underscore;
-    nsmethods.camelName2cssName = camelName2cssName;
+    nsmethods.toCssIdentifier = toCssIdentifier;
     return;
 
 
@@ -1019,7 +1020,7 @@
                 cssText : '',
                 cssDom$ : ns.$$
                     .style()
-                    .cls( topicIdUpperCase_2_underscore( htmlkey ) )
+                    .cls( toCssIdentifier( htmlkey ) )
                     .to( document.head )
                     ,    
                 queueHandle : null, //timeout handle
@@ -1103,14 +1104,21 @@
         rack.cssDom$.html( '\n.dummy-style { .dummy-class : dummy-value; }\n ' );
     };
 
-    ///converts "A" -> "_a",  ... and "," to "_-"
-    function topicIdUpperCase_2_underscore( camelId )
-    {
-        return camelName2cssName( camelId );
-    }
 
-    ///converts "A" -> "_a",  ... and "," to "_-"
-    function camelName2cssName( camelId )
+	/**
+	 * Converts a camelCase identifier to a valid CSS identifier format.
+	 * Transforms uppercase letters to lowercase with underscore prefix,
+	 * and converts commas to underscore-dash.
+	 * 
+	 * @param {string} camelId - A camelCase identifier (e.g., 'ptId', 'A,B')
+	 * @returns {string} CSS-safe identifier (e.g., 'pt_id', '_a_-_b')
+	 * 
+	 * @example
+	 * toCssIdentifier('givenProof') // returns 'given_proof'
+	 * toCssIdentifier('A') // returns '_a'
+	 * toCssIdentifier('A,B') // returns '_a_-_b'
+	 */
+    function toCssIdentifier( camelId )
     {
         return camelId.replace( /([A-Z,])/g,
             ( match, key1 ) => ( key1 === ',' ? '_-' : '_' + key1.toLowerCase() )

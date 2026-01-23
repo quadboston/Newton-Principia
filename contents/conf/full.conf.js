@@ -33,7 +33,6 @@
         //we adopt strategy when svg x-scale is unchanged and set as
         //sconf.mod2inn_scale, but y-scale can have additional factor,
         //mod2inn_scaleY, to be overriden in lemma's conf.js
-        //but only for lemmas where dontRun_ExpandConfig is not true
         mod2inn_scaleY              : 1,
 
         doDisplayPageTopNavigatMenu : true,

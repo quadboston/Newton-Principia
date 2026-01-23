@@ -88,7 +88,7 @@
             ANGLE_SIZE      : ANGLE_SIZE || 1,
             captionRadiusIncrease,
             tpClassName     : tpclassName === '' ? '' :
-                              tpclassName || sDomF.topicIdUpperCase_2_underscore( rgSample.pname ),
+                              tpclassName || sDomF.toCssIdentifier( rgSample.pname ),
             fill            : fill || rgAngle.pcolor,
 
             //commenting this line does fix non-nice tp-highlighting of angle border
