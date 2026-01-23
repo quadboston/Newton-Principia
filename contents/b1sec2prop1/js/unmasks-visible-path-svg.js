@@ -2,9 +2,9 @@
 
 ( function() {
     var {
-        $$, sn, mat, haz, has, haf, nspaste, eachprop, nssvg,
-        sapp, sconf, sDomF, ssD, ssF, rg,
-        amode, stdMod,
+        $$, sn, haz, eachprop,
+        ssF, rg,
+        stdMod,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -13,11 +13,6 @@
     });
     var decor = sn( 'decor', stdMod );
     return;
-
-
-
-
-
 
 
     //**********************************************************************
@@ -41,7 +36,6 @@
         //----------------------------------------
         // //\\ time offsets
         //----------------------------------------
-        var steps       = pathRacks.length;
         var stepIx4     = rg.stretchedFourTimes_stIx;
         var substepIx   = rg.substepIx;
         var stepIx      = rg.stepIx.value;
@@ -127,20 +121,21 @@
                 dec.undisplay = false;
             }
             if( dec.isPoint ) {
-                dec.svgel$.tgcls( 'undisplay', haz( dec, 'undisplay' ) );
+                dec.svgel$.toggleClass( 'undisplay', haz( dec, 'undisplay' ) );
                 if( dec.doPaintPname &&
                     !haz( rg, 'allLettersAreHidden' )
                 ) {
-                    dec.pnameLabelsvg$.tgcls( 'undisplay', haz( dec, 'undisplay' ) );
+                    dec.pnameLabelsvg$.
+						toggleClass( 'undisplay', haz( dec, 'undisplay' ) );
                 }
             } else {
                 let arrow$ = haz( dec, 'vectorArrowSvg$' );
                 if( arrow$ ) {
                     let act = haz( dec, 'undisplay' );
-                    arrow$.tgcls( 'undisplay', act );
+                    arrow$.toggleClass( 'undisplay', act );
                     //act && rgX.vectorArrowSvg$.removeClass( 'hidden' );
                 }
-                dec.svgel$.tgcls( 'undisplay', haz( dec, 'undisplay' ) );
+                dec.svgel$.toggleClass( 'undisplay', haz( dec, 'undisplay' ) );
             }
         });
         //==============================================
@@ -153,4 +148,3 @@
 
 
 }) ();
-

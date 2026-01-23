@@ -1,8 +1,8 @@
 ( function() {
     var {
-        ns, sn, $$, sv, nsmethods, han, haz, has, mat,
-        sconf, ssF, ssD, sDomF, sDomN, lowId2topics, rg, toreg,
-        stdMod, amode,
+        ns, $$, sv, nsmethods, han, haz, has, mat,
+        sconf, ssF, sDomF, lowId2topics, rg, toreg,
+        stdMod,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -17,13 +17,6 @@
     });
     var ownProp = Object.prototype.hasOwnProperty;
     return;
-
-
-
-
-
-
-
 
 
     //==============================================
@@ -135,7 +128,7 @@
         if( vectorTipIx || vectorTipIx === 0 ) {
             paintsVectorTips({ vectorTipIx, pivots, line, });
         }
-        line.svgel$.tgcls( 'undisplay', ns.haz( line, 'undisplay' ) );
+        line.svgel$.toggleClass( 'undisplay', ns.haz( line, 'undisplay' ) );
         //updates pivots in line:
         line.pivots = [ pv0, pv1 ];
 
@@ -192,9 +185,9 @@
             line.pnameLabelsvg$
                 .aNS( 'x', finalPosX.toFixed()+'px' )
                 .aNS( 'y', finalPosY.toFixed()+'px' )
-                .tgcls( 'undisplay', ns.haz( rg[ line.pname ], 'undisplay' ) )
+                .toggleClass( 'undisplay', ns.haz( rg[ line.pname ], 'undisplay' ) )
                 ;
-            line.pnameLabelsvg$.tgcls(
+            line.pnameLabelsvg$.toggleClass(
                 'undisplay',
                 haz( line, 'hideCaption' ) ||
                 (
@@ -259,7 +252,7 @@
             line.vectorArrowSvg.style.stroke = tipFill;
         }
         line.vectorArrowSvg$ = $$.$(line.vectorArrowSvg)
-            .tgcls( 'undisplay', ns.haz( line, 'undisplay' ) )
+            .toggleClass( 'undisplay', ns.haz( line, 'undisplay' ) )
             .cls( line.finalCssClass + ' tofill' )
             ;
     }
@@ -386,7 +379,7 @@
             'stroke-width' : strokeWidth * sconf.thickness, 
         });
         poly.svgel$ = $$.$(poly.svgel)
-            .tgcls( 'undisplay', ns.haz( poly, 'undisplay' ) )
+            .toggleClass( 'undisplay', ns.haz( poly, 'undisplay' ) )
             .cls( poly.finalCssClass )
             ;
         return poly;
@@ -414,7 +407,7 @@
             svgel   : poly.svgel,
             pivots,
         });
-        poly.svgel$.tgcls( 'undisplay', ns.haz( poly, 'undisplay' ) );
+        poly.svgel$.toggleClass( 'undisplay', ns.haz( poly, 'undisplay' ) );
     }
 
     //==========================================
@@ -461,7 +454,7 @@
             });
         }
         triang.shapeIsAlreadyDressed = true;
-        triang.svgel$.tgcls( 'undisplay', ns.haz( triang, 'undisplay' ) );
+        triang.svgel$.toggleClass( 'undisplay', ns.haz( triang, 'undisplay' ) );
         return triang;
     }
     //==========================================

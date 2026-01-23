@@ -25,8 +25,6 @@
     return;
 
 
-
-
     function setAppNamespace()
     {
         var uniqueEarthWide = 'iamniquelks8e00w-e9jalknfnaegha;s[snfs=sieuhba;fkleub92784bna';
@@ -546,7 +544,7 @@
                 ///input:    condition - optional truthy, if arguments.length === 1
                 ///                      then toggling will be made,
                 ///                      otherwise, "condition" controls cls setting
-                methods.tgcls = function( cls, condition, obj ) {
+                methods.toggleClass = function( cls, condition, obj ) {
                                     obj = obj || null;
                                     ctxEl = obj || ctxEl;
                                     if( !ctxEl ) return;
@@ -625,8 +623,6 @@
 	var ns = window.b$l;
 
 
-
-
     ///invocation:
     ///             way 1: as of September 1, 2020,
     ///                    URL-query: ...?conf=...x=y,deb=yes
@@ -683,8 +679,6 @@
 
 ( function() {
 	var ns = window.b$l;
-
-
 
 
     //=========================================================
@@ -1193,5 +1187,3 @@
     }
 
 }) ();
-
-

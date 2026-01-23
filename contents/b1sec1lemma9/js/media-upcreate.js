@@ -1,19 +1,17 @@
 ( function() {
     var {
-        sn, $$, paste, haz, mat, bezier, nssvg,
-        sconf, sDomF, ssD, ssF,
+        $$, paste, haz, bezier, nssvg,
+        sconf, ssD, ssF,
         stdMod, rg, toreg,
     } = window.b$l.apptree({
         setModule,
     });
-    var pointies2line;
     return;
 
 
     function setModule()
     {
         stdMod.media_upcreate___part_of_medupcr_basic =media_upcreate___part_of_medupcr_basic;
-        pointies2line   = ssF.pointies2line;
     }
 
     //=========================================================
@@ -126,7 +124,7 @@
         });
         $$.$( remoteCurve.mediael.paintedCurve )
             .addClass( 'tostroke tp-_abc' )
-            .tgcls( 'undisplay', haz( remoteCurve, 'undisplay' ) )
+            .toggleClass( 'undisplay', haz( remoteCurve, 'undisplay' ) )
             ;
         // \\// paints curve with two pivot points
 
@@ -222,7 +220,7 @@
 
             $$.$(area.mediael)
                 .cls( ' tp-'+topicGroup_decapitalized + fullMode + ' tofill' )
-                .tgcls( 'undisplay', haz( area, 'undisplay' ) )
+                .toggleClass( 'undisplay', haz( area, 'undisplay' ) )
                 ;
         }
         //==========================================
@@ -249,7 +247,7 @@
             });
             $$.$( area.mediael )
                 .addClass(`tp-${topicGroup_decapitalized} tofill`)
-                .tgcls( 'undisplay', haz( area, 'undisplay' ) )
+                .toggleClass( 'undisplay', haz( area, 'undisplay' ) )
                 ;
         }
         //==========================================
@@ -262,4 +260,3 @@
     //=========================================================
 
 }) ();
-
