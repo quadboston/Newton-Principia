@@ -136,6 +136,13 @@
         // //\\ graph
         //================================================
         {
+            const mask = stdMod.graphFW_lemma.graphArrayMask;
+            //Only plot estimated force curve if solvable, otherwise data is
+            //invalid and can cause errors.
+            mask[1] = solvable && sconf.TIME_IS_FREE_VARIABLE;
+        }
+
+        {
             let graphArg = {
                 //drawDecimalY : true,
                 //drawDecimalX : false,
