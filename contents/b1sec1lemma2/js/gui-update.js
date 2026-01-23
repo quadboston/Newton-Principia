@@ -70,9 +70,9 @@
 
     function sets_pt2movable( pt )
     {
-        pt.dom.setAttributeNS(null, "class", "movable figure");
+        pt.dom.setAttributeNS(null, "class", "figure");
         pt.dom.setAttributeNS(null, "r", sconf.MOVABLE_BASE_RADIUS);
-        pt.movable = true;
+        //pt.movable = true;
     }
 
 

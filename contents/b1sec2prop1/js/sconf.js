@@ -21,16 +21,16 @@ function init_conf (){
     // \\// scenario
     //----------------------------------
      
-    //----------------------------------
-    // //\\ picture points medpos
-    //----------------------------------
+    //***************************************************************
+    // //\\ original picture dimensions for svg scene
+    //***************************************************************
     sconf.pictureWidth = 687;
     sconf.pictureHeight = 657;
     sconf.controlsScale = (sconf.pictureWidth + sconf.pictureHeight)
                           / sconf.standardSvgSize
     sconf.innerMediaHeight = sconf.pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT;
     sconf.innerMediaWidth = sconf.pictureWidth;
-                          
+     
     //----------------------------------
     // //\\ app view parameters
     //      ,in svg or media space,
@@ -72,36 +72,46 @@ function init_conf (){
     //medposD=[448,152]
     //medposE=[299.5,98.5]
     //medposF=[117.5,112.5]
+
+    //----------------------------------
+    // //\\ mod2inn_scale and speed v0
+    //----------------------------------
+    let legacyTimeStep = 0.75; //for case we do change initialTimieStep
+    let initialTimieStep = 0.75;
+    {
+        const mp = sconf.modelPoints = {};
+        const uu = [ medposB[0] - medposA[0], medposB[1] - medposA[1] ];
+        const u2 = uu[0]*uu[0] + uu[1]*uu[1];
+        const u = Math.sqrt( u2 );
+        sconf.mod2inn_scale = u; //initial unit
+        sconf.inn2mod_scale = 1/sconf.mod2inn_scale;
+        mp.v0 = [
+            uu[0]*sconf.inn2mod_scale / initialTimieStep,
+            uu[1]*sconf.inn2mod_scale / initialTimieStep *
+                sconf.MONITOR_Y_FLIP
+        ];
+    }
+    //----------------------------------
+    // \\// mod2inn_scale and speed v0
+    //----------------------------------
     //----------------------------------
     // \\// picture points medpos
     //----------------------------------
+    //***************************************************************
+    // \\// original picture dimensions for svg scene
+    //***************************************************************
 
-    //----------------------------------------------------
-    // //\\  prepares sconf data holder
-    //----------------------------------------------------
-    let legacyTimeStep = 0.75; //for case we do change initialTimieStep
-    let initialTimieStep = 0.75;
-    let dtMin = 0.08;
-    let stepsRange = 14;
-    let timeRange = stepsRange*initialTimieStep;
-    let numberOfManyBases = stepsRange*2;
-    let timeStepOfManyBases = initialTimieStep/4;
-    let unitlessMinTime = 1.000001;
-    let speed = 1/initialTimieStep;
-    
+    //***************************************************************
+    // //\\ GUI cosmetics
+    //      to see templates what to override here, do
+    //      look at conf/conf.js or especally at conf/lemma.conf.js:
+    //      //t/sf.text_nonhover_width   = 0.01;
+    //***************************************************************
     fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
     //affects drag hanldes in p1
     sconf.pointDecoration.r = Math.floor( 5 * sconf.controlsScale );
-    Object.assign( sconf, {
-        //======================================
-        // //\\ does shape GUI
-        //======================================
-        hover_width : Math.max( 10, Math.floor( 7*sconf.controlsScale/1.6 ) ),
-        //nonhover_width  : Math.max( 5, Math.floor( 1*sconf.controlsScale/1.6 ) ),
-        //this collaborates with impulse line-segment, we are afraide to
-        //keep this "undefined",
-        nonhover_width : 5,
 
+    Object.assign( sconf, {
         SLIDERS_OFFSET_Y : 0,
         GENERIC_SLIDER_HEIGHT_Y : 30,
         SLIDER_TEXT_POZ_Y_FACTOR : 0.7,
@@ -115,11 +125,33 @@ function init_conf (){
         //so, lines shold have color pattern [x,x,x,1,1]
         TP_OPACITY_LOW : 0.5,
         TP_OPACITY_HIGH : 1,
-        //======================================
-        // \\//does shape GUI
-        //======================================
+ 
+       hover_width : Math.max( 10, Math.floor( 7*sconf.controlsScale/1.6 ) ),
+        //nonhover_width  : Math.max( 5, Math.floor( 1*sconf.controlsScale/1.6 ) ),
+        //this collaborates with impulse line-segment, we are afraide to
+        //keep this "undefined",
+        nonhover_width : 5,
+    });
+    //***************************************************************
+    // \\// GUI cosmetics
+    //***************************************************************
 
-        NUMBER_OF_FORCE_HANDLES : 1, //5,
+    //******************************************
+    // //\\ model principals parameters
+    //******************************************
+    //----------------------------------------------------
+    // //\\  prepares sconf data holder
+    //----------------------------------------------------
+    let dtMin = 0.08;
+    let stepsRange = 14;
+    let timeRange = stepsRange*initialTimieStep;
+    let numberOfManyBases = stepsRange*2;
+    let timeStepOfManyBases = initialTimieStep/4;
+    let unitlessMinTime = 1.000001;
+    let speed = 1/initialTimieStep;
+    
+    Object.assign( sconf, {
+         NUMBER_OF_FORCE_HANDLES : 1, //5,
 
         //"true" means timer slider shows "proof logic",
         //otherwise it shows "physical motion",
@@ -165,27 +197,10 @@ function init_conf (){
     //----------------------------------------------------
     // \\// prepares sconf data holder
     //----------------------------------------------------
+    //******************************************
+    // \\// model principals parameters
+    //******************************************
 
-    //----------------------------------
-    // //\\ mod2inn_scale and speed v0
-    //----------------------------------
-    {
-        const mp = sconf.modelPoints = {};
-        const uu = [ medposB[0] - medposA[0], medposB[1] - medposA[1] ];
-        const u2 = uu[0]*uu[0] + uu[1]*uu[1];
-        const u = Math.sqrt( u2 );
-        sconf.mod2inn_scale = u; //initial unit
-        sconf.inn2mod_scale = 1/sconf.mod2inn_scale;
-        mp.v0 = [
-            uu[0]*sconf.inn2mod_scale / sconf.initialTimieStep,
-            uu[1]*sconf.inn2mod_scale / sconf.initialTimieStep *
-                sconf.MONITOR_Y_FLIP
-        ];
-    }
-    //----------------------------------
-    // \\// mod2inn_scale and speed v0
-    //----------------------------------
-    
     ssF.setsCommonT1andT2capture();
     //this comes from theorem P2; this does not exist in P1;
     if( has( ssF, 'init_conf_addon' ) ) {
@@ -193,7 +208,30 @@ function init_conf (){
     } else {
         ssF.makesProfessorsCaptureFootnotes();
     }
+
+    //*************************************
+    // //\\ elected colors,
+    //*************************************
     stdMod.sconf_points8lines();
+    //*************************************
+    // \\// elected colors,
+    //*************************************
+
+    //*************************************
+    // //\\ original app points
+    //*************************************
+    //in stdMod.sconf_points8lines();
+    //*************************************
+    // \\// original app points
+    //*************************************
+
+    //*************************************
+    // //\\ original app lines
+    //*************************************
+    //in stdMod.sconf_points8lines();
+    //*************************************
+    // //\\ original app lines
+    //*************************************
     ssF.sets_A_v_forces_sliders();
 }    
 })();

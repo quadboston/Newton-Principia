@@ -36,14 +36,15 @@ function sconf_points8lines (){
     } = topicColors_repo;
 
     {   const harden = col => ([col[0],col[1],col[2],1,1]);
-    //0.5 is good for areas, bad for lines,
-    //so, lines shold have color pattern [x,x,x,1,1]
+        //0.5 is good for areas, bad for lines,
+        //so, lines shold have color pattern [x,x,x,1,1]
         forceMove = harden(forceMove);
         path = harden(path);
         freeMove = harden(freeMove);
         speed = harden(speed);
         time = harden(time);
         force = harden(force);
+        perpendicular = harden(perpendicular);
     }
 
     ///topic names elected
@@ -317,7 +318,7 @@ function sconf_points8lines (){
 
     var mixedSteps_conf = ssD.mixedSteps_conf = {
         S   : {
-                decStart : -2, //always visible
+                decStart : -2,      //always visible
                 letterAngle : -90,
                 initialR : 5 * sconf.controlsScale,
               },
@@ -425,8 +426,8 @@ function sconf_points8lines (){
           vectorTipIx : 1,
           tipFraction : 0.15,
           'stroke-width' : 5,
-          pcolor : tpel.speed,
-          tipFill : tpel.speed,
+          //pcolor : tpel.speed,
+          //tipFill : tpel.speed,
         },
         { nam : ['A', 'B'], },  // AB
         ////todm possibly redundant, isn't pathSegment-' + pix enough?
@@ -435,28 +436,35 @@ function sconf_points8lines (){
         { nam : ['D', 'E'], },  // DE
         { nam : ['E', 'F'], },  // EF
 
-        { nam : ['S', 'A'], },  // SA
-        { nam : ['S', 'B'], },  // SB
+        // //\\ raddi
+        { nam : ['S', 'A'],
+            decStart : -1, //always started until ended
+            cssClass : 'logic_phase--proof',
+        },
+        { nam : ['S', 'B'],
+            decStart : -1, //always started until ended
+            cssClass : 'logic_phase--proof',
+        },
         { nam : ['S', 'C'],
+            cssClass : 'logic_phase--proof',
         },  // SC
-        { nam : ['S', 'D'], },  // SD
-        { nam : ['S', 'E'], },  // SE
-        { nam : ['S', 'F'], },  // SF
-    ];
-    linesConf.push(
+        { nam : ['S', 'D'],
+            cssClass : 'logic_phase--proof',
+        },
+        { nam : ['S', 'E'],
+            cssClass : 'logic_phase--proof',
+        },
+        { nam : ['S', 'F'],
+            cssClass : 'logic_phase--proof',
+        },
+        // \\// raddi
+
         { nam : ['S', 'P'],
-            cssClass :
-            fconf.sappId === 'b1sec2prop2' ? 'logic_phase--none' :
-                             'logic_phase--proof logic_phase--corollary',
+            cssClass : theor1corollary,
             decStart : -2,
-        });
-
-
-    linesConf = linesConf.concat( [
+        },
         { nam : ['T', 'P'],
-            cssClass :
-            fconf.sappId === 'b1sec2prop2' ? 'logic_phase--none' :
-                'logic_phase--proof logic_phase--corollary',
+            cssClass : theor1corollary,
             decStart : -2,
         },
         { nam : ['S', 'c'],     // Sc
@@ -471,8 +479,6 @@ function sconf_points8lines (){
         { nam : ['S', 'f'],     // Sf
             cssClass : theor1proof,
         },
-    ]);
-    linesConf = linesConf.concat( [
         //this is a thin line, which remains after thick line goes away,
         { nam : ['D', 'd'],
             decStart : rg.D.decStart,
@@ -549,15 +555,13 @@ function sconf_points8lines (){
         //------------------------------------
         // \\// cor4 prop1
         //------------------------------------
-
         { nam : ['B', 'V'],                                                 // BV
             cssClass : 'hover-width ' + theor1corollary,
         },
-
         { nam : ['A', 'C'], cssClass : theor1corollary,
         },                 // AC
         { nam : ['D', 'F'], cssClass : theor1corollary },                 // DF
-    ]);
+    ];
 
     if( fconf.sappId === 'b1sec2prop2' ){
         linesConf = linesConf.concat( [
@@ -684,6 +688,7 @@ function sconf_points8lines (){
         rg.d, rg.Dd, rg.Cd, rg.SD, rg.Sd, rg.SCd,
         rg.e, rg.Ee, rg.De, rg.SE, rg.Se, rg.SDe,
         rg.f, rg.Ff, rg.Ef, rg.SF, rg.Sf, rg.SEf,
+        rg.SA, rg.SB, rg.SC,
     ].forEach( pn => {
         pn.decEnd = rg.f.decStart + 3;
     });

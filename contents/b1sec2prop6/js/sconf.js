@@ -1,12 +1,11 @@
-( function() {
-    const { nspaste, fconf, sf, topicColors_repo, originalPoints } =
-            window.b$l.apptree({ ssFExportList : { init_conf }
-    });
-    return;
+(function(){
+const {nspaste, fconf, sf, topicColors_repo, originalPoints} =
+        window.b$l.apptree({ ssFExportList : { init_conf }
+});
+return;
 
 
-function init_conf()
-{
+function init_conf (){
     //navigation
     sf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
     sf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
@@ -33,7 +32,7 @@ function init_conf()
 
     //model's spacial unit expressed in pixels of the picture:
     //vital to set to non-0 value
-    sf.mod2inn_scale = ( A[0] - S[0] );
+    sf.mod2inn_scale = A[0] - S[0];
     //***************************************************************
     // \\// original picture dimensions for svg scene
     //***************************************************************
@@ -117,7 +116,7 @@ function init_conf()
     //***************************************************************
 
     //*************************************
-    // //\\ topic group colors,
+    // //\\ elected colors,
     //      to see templates what to override here, do
     //      look at conf/lemma.conf.js:
     //*************************************
@@ -182,7 +181,7 @@ function init_conf()
         APQ     : orbit, //[...orbit],
     });
     //*************************************
-    // \\// topic group colors,
+    // \\// elected colors,
     //*************************************
 
     //*************************************
@@ -375,8 +374,7 @@ function init_conf()
     //*************************************
     // //\\ original app lines
     //*************************************
-    sf.linesArray = nspaste( {},
-    [
+    sf.linesArray = nspaste( {}, [
         { 'SP' : { pcolor : distanceToCenter }, },
         { 'PV' : { pcolor : curvature }, },
         { 'PR' : { pcolor : body }, },

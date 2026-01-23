@@ -232,7 +232,13 @@ function init_conf(){
         //----------------------------------
         // //\\ scenario
         //----------------------------------
+        //as of Jan 18, 2025, this is the only lemma
+        //which creates landing-animation for slider,
+        //true does not hide initial slider move, it
+        //makes the move visually instant,
         hideProofSlider : false,
+
+        //makes slider handle non-movable
         hideProofSliderCompletely : false,
         //----------------------------------
         // \\// scenario

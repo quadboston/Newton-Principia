@@ -1,13 +1,26 @@
-( function() {
-    const { sn, nspaste, mat,
-            fconf, sf, stdMod, topicColors_repo, originalPoints,
-    } = window.b$l.apptree({ ssFExportList : { init_conf } });
-    const op = sn( 'orbitParameters', sf );
-    return;
+(function (){
+const { sn, nspaste, mat,
+        fconf, sf, stdMod, topicColors_repo, originalPoints,
+} = window.b$l.apptree({ ssFExportList : { init_conf } });
+const op = sn( 'orbitParameters', sf );
+return;
 
 
-function init_conf()
-{
+function init_conf (){
+    //navigation
+    //sf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
+    //sf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
+
+    //====================================================
+    // //\\ subapp regim switches
+    //====================================================
+    //sconf.enableStudylab            = false;
+    //sconf.enableTools               = true;
+    //sconf.rgShapesVisible           = false;
+    //====================================================
+    // \\// subapp regim switches
+    //====================================================
+
     //***************************************************************
     // //\\ original picture dimensions for svg scene
     //***************************************************************
@@ -97,8 +110,21 @@ function init_conf()
     // \\// model principals parameters
     //******************************************
 
+    //***************************************************************
+    // //\\ math model auxilaries
+    //***************************************************************
+    //***************************************************************
+    // \\// math model auxilaries
+    //***************************************************************
+
+    //***************************************************************
+    // //\\ model comparison demo
+    //***************************************************************
+    // \\// model comparison demo
+    //***************************************************************
+
     //*************************************
-    // //\\ topic group colors,
+    // //\\ elected colors,
     //      to see templates what to override here, do
     //      look at conf/lemma.conf.js:
     //*************************************
@@ -120,6 +146,7 @@ function init_conf()
         shadow,
     } = topicColors_repo;
     const attention = [200,  200,  0,      1];
+
     ///does export topic colors
     sf.topicColors_elected = nspaste( {}, { //need deep copy
         force,
@@ -137,14 +164,12 @@ function init_conf()
         instanttriangle : [0, 150, 200, 0.001, 0.5 ],
     });
     //*************************************
-    // \\// topic group colors,
+    // \\// elected colors,
     //*************************************
 
     //*************************************
     // //\\ bricks for originalPoints
     //*************************************
-    //empty section is kept
-    //for modules comparision
     //*************************************
     // \\// bricks for originalPoints
     //*************************************
@@ -155,12 +180,13 @@ function init_conf()
     //-------------------------------------
     // //\\ prepares points
     //-------------------------------------
-    // empty section for comparisions
+    //curvePivots,
     //-------------------------------------
     // \\// prepares points
     //-------------------------------------
 
     Object.assign( originalPoints, {
+        //curvePivots,
         O : {
             pcolor : context,
             caption : 'O',
@@ -469,8 +495,7 @@ function init_conf()
     //*************************************
     // //\\ original app lines
     //*************************************
-    sf.linesArray = nspaste( {},
-    [
+    sf.linesArray = nspaste( {}, [
         //-----------------------------------------
         // //\\ Book's prop. 11
         //-----------------------------------------

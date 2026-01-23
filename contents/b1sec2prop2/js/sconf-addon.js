@@ -155,17 +155,6 @@ function topicColors_elected(tpel){
             "VVaracc"           : forceMove,
             // force vector at V displaced to V';   Line V to V'
                                             // area description accelerated
-
-        //todo what are all of these shapes
-        //"CParacc"           : forceMoveX,
-        "CaraccParacc"      : [100,   0,  100],
-
-        "j"                 : [0,100,0],
-        "e"                 : [0,100,0],
-        "f"                 : [0,100,0],
-
-        "Cj"                : [0,100,0],
-        "Dj"                : [255, 100, 0],
     };
 }
 })();

@@ -102,7 +102,7 @@
             var pt = makeDragP_tpl( "ctrl", i );
             var pdom = pt.dom;
 
-            pdom.setAttributeNS(null, "class", "movable ctrlPt");
+            pdom.setAttributeNS(null, "class", "ctrlPt");
             pdom.setAttributeNS(null, "cx", cp[i].x);
             pdom.setAttributeNS(null, "cy", cp[i].y);
             pdom.setAttributeNS(null, "r", sconf.CTRL_RADIUS);
@@ -116,7 +116,7 @@
             ctrlPts.push( pt );
             //dr.ctrlPts_unscaled.push( [pt.x, pt.y] );
         }
-        reset_hollowPoints({ onCurve:true, onBase:false });
+        reset_hollowPoints({ onCurve:true, onBase: false });
     }
 
 
@@ -138,14 +138,23 @@
                 let pdom = pt.dom;
                 pdom.style.fill = !isFig ? 'transparent' :
                     //.todm patch
+
+                    //in canonical code, there is a flag
+                    //rgX.move_2_updates() which adds white
+                    //kernel to the point, but here we go the custom
+                    //way,
                     'rgba(255,255,255,1)'; //makes the point hollow
-                pdom.style.stroke = !isFig ? 'transparent' :
+
+                //if( i >0 && i < 6 )
+                //    c cc( pt.id + ' ' + pdom.style.fill, pdom,  );
+
+            pdom.style.stroke = !isFig ? 'transparent' :
                     sDomF.tpname0arr_2_rgba( 'curve' );
             }
         }
 
         // //\\ dehollowfies basePts
-        if( onBase && fconf.sappId === 'lemma3' ) {
+        if( onBase && fconf.sappId === 'b1sec1lemma3' ) {
             let bplist = dr.basePts.list;
             const DRAGGABLE_BASE_POINTS = sconf.DRAGGABLE_BASE_POINTS;
             for (var i=0,
@@ -159,9 +168,19 @@
                 //}
                 var pt = bplist[i];
                 var pdom = pt.dom;
+
+                // //\\ apparenly this has no effect,
+                //the effect happens in
+                // aduptPartitionChange() or in
+                // constructBasePts_domParless( basePts )
+                //pdom.style.fill = 'rgba(255,255,255,1)';
                 pdom.style.fill = !isIn && !isCir ? 'transparent' :
                     //.todm patch
                     'rgba(255,255,255,1)'; //makes the point hollow
+                // \\// apparenly this has no effect,
+
+                //if( i >0 && i < 7 )
+                //    c cc( pt.id + ' ' + pdom.style.fill, pdom,  );
                 pdom.style.stroke = !isIn && !isCir ? 'transparent' :
                     sDomF.tpname0arr_2_rgba( 'curve' );
             }
@@ -177,7 +196,7 @@
         //constant, sconf.BASE_MAX_NUM = usually 500,
         //sconf.DRAGGABLE_BASE_POINTS = usually 15,
         const DRAGGABLE_BASE_POINTS = sconf.DRAGGABLE_BASE_POINTS;
-        const l3 = fconf.sappId === 'lemma3';
+        const l3 = fconf.sappId === 'b1sec1lemma3';
         for (var i=0, len=sconf.BASE_MAX_NUM; i <= len; i++) {
             //not yet draggable, just a template
   		    pt = makeDragP_tpl( "base", i );

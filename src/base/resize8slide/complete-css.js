@@ -175,8 +175,8 @@
         //---------------------------------------------------------
         if( wideScreen_flag ) {
             //todo ???
-            //var ww = fconf.sappId.indexOf('lemma2') === 0 ||
-            //         fconf.sappId === 'lemma3' ? 20 : 0;
+            //var ww = fconf.sappId.indexOf('b1sec1lemma2') === 0 ||
+            //         fconf.sappId === 'b1sec1lemma3' ? 20 : 0;
             stdMod.legendRoot$
                 .css( 'left', ( svgSceneW + legendMargin ).toFixed() + 'px' )
                 .css( 'top','0px' )
