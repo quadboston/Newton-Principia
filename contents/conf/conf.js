@@ -78,10 +78,6 @@
         DRAG_POINTS_THROTTLE_TIME : 50, //ms
         DRAGGER_TOLERANCE : 15, // distance from point that is draggable
 
-        //setting this to "false" does hide slider
-        //decoration spinning arrows
-        NAVIGATION_DECORATIONS_ALWAYS_VISIBLE: false,
-
         //since ver 1931 was automated from contents
         //as of ver 2955 is created automatically in content2exegs.js
         //dragPointDecoratorClasses : [],

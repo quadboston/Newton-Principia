@@ -148,10 +148,6 @@
                     decPoint.style.display = 'none';
                 } else {
                     decPoint.style.display = 'block';
-                    for (const child of decPoint.children) {
-                        // show animation on hover
-                        child.style.visibility = 'visible';
-                    }
 
                     //vital
                     //html global style tag does not do this:

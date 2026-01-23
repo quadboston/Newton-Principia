@@ -129,17 +129,6 @@
         domel$.e( 'wheel', wheelHandler );
 
         function wheelHandler( ev ) {
-            if( ev.altKey ) {
-                ////does roaming
-                //doHandle( { move : 2, value : ev.deltaY, target : 'msprite' }, ev );
-            } else {
-                ////does scrolling
-                doHandle( ev );
-            }
-        }
-
-        function doHandle( ev )
-        {
             stopAftershocks( ev );
             sDomF.detected_user_interaction_effect( !'not-moved' );
 
