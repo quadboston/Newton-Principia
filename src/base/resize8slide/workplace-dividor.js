@@ -120,7 +120,6 @@
         ///============================================================
         //.id is vital to have for removing extra disk over dividor
         wrkwin.dividor.spinnerClsId = 'dividor';   //makes a placeholder for handler
-        wrkwin.dividor.makeCentralDiskInvisible = true;
         D8D_fw.pointWrap_2_dragWrap_BSLd8d2PIPE({
             pointWrap           : wrkwin.dividor,
             update_decPoint     : 'update_decPoint_default',

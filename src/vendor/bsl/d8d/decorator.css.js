@@ -14,9 +14,6 @@
     var fapp   = ns.sn('fapp' ); 
     var fconf  = ns.sn('fconf',fapp);
     
-    var CURSOR = 'grab';
-    //var CURSOR = 'crosshair';
-    var CURSOR_GRABBING = 'grabbing';
     //---------------------------------------
     // //\\ configures dimensions
     //---------------------------------------
@@ -29,11 +26,7 @@
     //than change to mouse search cursor:
     dm.WIDTH                =  ( fconf.DRAG_HANDLE_HALFHOTSPOT || 15 ) * 2 +
                                 5; //to overlap dragger-search-hot-spot,
-    dm.HEIGHT               = dm.WIDTH;
-    
-    //dm.HOT_ZONE_ANIM_WIDTH  = dm.WIDTH;
-    //dm.HOT_ZONE_ANIM_HEIGHT = dm.HEIGHT;
-    
+    dm.HEIGHT               = dm.WIDTH;    
     dm.DISK_RADIUS          = dm.WIDTH*0.1;
     dm.DISK_LEFT            = dm.WIDTH*0.5;
     dm.DISK_TOP             = dm.HEIGHT*0.5;
@@ -59,8 +52,7 @@
 
 
     ///creates spinner own global CSS
-    ///applies point specific styles like color, z-index,
-    ///and cursor type (though cursor always seems to be crosshairs)
+    ///applies point specific styles like color, z-index
     function creates_spinnerOwnCss(
         decorCount_debug,
         //appar. can be point's rgId decapitalized
@@ -74,9 +66,6 @@
 
         //optional
         individual_zindex,
-        spinnerCursorGrab,
-        spinnerCursorGrabbed,
-        makeCentralDiskInvisible,
     ) {
         //sets up each draggable object, but does not set position here
         //console.log('spinner: ' + spinnerClsId);
@@ -84,14 +73,9 @@
         //fixing missed parameters
         individual_color = individual_color || 'grey';
         parent_classes = parent_classes || [''];
-
-        CURSOR = spinnerCursorGrab || CURSOR;
-        CURSOR_GRABBING = spinnerCursorGrabbed || CURSOR_GRABBING;
         var ret = '';
         // //\\ css /////////////////////////////////////////
         parent_classes.forEach( function( dclass ) {
-            //console.log( spinnerClsId + ", " + dclass + ", " +  CURSOR + ", " +  CURSOR_GRABBING );
-            centralDiskVisibility  = makeCentralDiskInvisible ? 'hidden' : 'visible';
             ////if dclass exists, apparently it constrains css to ownself,
             ////possibly useless and easy to forget when scripting lemma,
             ////example: dclacc = .aspect--english
@@ -104,14 +88,6 @@
             ret += `
             ${dclass} .${spinnerClsId}.brc-slider-draggee {
                 ${zIndex}
-            }
-            .${spinnerClsId}.brc-slider-draggee,
-            .${spinnerClsId}.brc-slider-draggee:hover:after {
-                cursor: ${CURSOR};
-            }
-            .${spinnerClsId}.brc-slider-draggee.grabbing:hover:after,
-            .${spinnerClsId}.brc-slider-draggee.grabbing {
-                cursor: ${CURSOR_GRABBING};
             }
 
             /*=================================================*/
@@ -138,7 +114,6 @@
     function createSliderArrowsCSS()
     {
         if( globalCssCreated_flag ) return;
-        //c cc( 'global cursors=' + CURSOR + ', ' + CURSOR_GRABBING );
         var ret =
 
         // //\\ css /////////////////////////////////////////
@@ -148,6 +123,7 @@
         /*=============================*/
         .brc-slider-draggee {
             pointer-events: none; /* necessary for wheel zoom event to work */
+            display     : none;
             position    : absolute;
             top         : 0%;
 
@@ -156,7 +132,7 @@
             /* todm HOT_ZONE_ANIM_WIDTH HOT_ZONE_ANIM_HEIGHT */
             
             z-index     : 1000;
-            cursor: ${CURSOR};
+
             /* .good for devel.
             border      : 1px solid red;
             */
@@ -182,38 +158,6 @@
         /* \\// parent handler         */
         /*=============================*/
 
-
-        /*=============================*/
-        /* //\\ parent after;          */
-        /*      this is handle's disk  */
-        /*      if visible;            */
-        /*=============================*/
-        .brc-slider-draggee:hover:after {
-            content         : ''; /* seems vital ... why? */
-            position        : absolute;
-            left            : ${ds.DISK_LEFT};
-            top             : ${ds.DISK_TOP};
-            width           : ${ds.DISK_RADIUS};
-            height          : ${ds.DISK_RADIUS};
-            transform       : translate(-50%, -50%);
-
-            padding-top     : 0px;
-            border-radius   : ${ds.DISK_BORDER_RADIUS};
-            font-size       : 11px;
-            font-weight     : bold;
-            text-align      : center;
-            background-color: black;
-            z-index         : 1000;
-            cursor: ${CURSOR};
-        }
-
-        .brc-slider-draggee.grabbing:hover:after,
-        .brc-slider-draggee.grabbing {
-            cursor: ${CURSOR_GRABBING};
-        }
-        /*=============================*/
-        /* \\// parent after           */
-        /*=============================*/
 
         /*=============================*/
         /* //\\ animates slider arrows */

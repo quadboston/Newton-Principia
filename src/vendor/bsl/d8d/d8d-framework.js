@@ -229,7 +229,6 @@
             ////////////////////////////////////////////////////////////////////
 
             var individual_zindex    = haz( pointWrap, 'individual_zindex' );
-            var makeCentralDiskInvisible = pointWrap.makeCentralDiskInvisible;
             var update_decPoint      = api.update_decPoint;
             var nospinner            = api.nospinner;
             var grabffect            = api.spinnerCursorGrab || spinnerCursorGrab;
@@ -293,7 +292,6 @@
                         addFeaturesToDecPoint,
                             orientation     : orientation,
                             parent_classes  : decPoint_parentClasses,
-                            makeCentralDiskInvisible : makeCentralDiskInvisible,
                     }
                 });
             }
@@ -406,18 +404,6 @@
                 var dompos = handle2dragsurf_pos( dragWrap, dragSurface );
                 decPoint.style.left = dompos[0] + 'px';            
                 decPoint.style.top = dompos[1] + 'px';
-                
-                if( nonenify === 'nonenify' ) {
-                    decPoint.style.display = 'none';
-                } else if( nonenify === 'block' ) {
-                    if( !pointWrap.ignore_hideD8Dpoint_for_CSS &&
-                        pointWrap.hideD8Dpoint
-                    ) {
-                        decPoint.style.display = 'none';
-                    } else {
-                        decPoint.style.display = 'block';
-                    }
-                }
             }
 
             ///this thing runs when no update_decPoint is supplied to

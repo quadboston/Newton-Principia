@@ -32,14 +32,11 @@
             addFeaturesToDecPoint,
 
             parent_classes,
-            makeCentralDiskInvisible,
             orientation,
             tooltip,
         } = (opt||{});
 
         var { spinnerClsId, dragDecorColor, individual_zindex,
-              spinnerCursorGrab,
-              spinnerCursorGrabbed,
         } = ( addFeaturesToDecPoint || {} );
         spinnerClsId = spinnerClsId || 'dec-spinner-id='+decorCount_debug;
         //----------------------------------------------
@@ -59,9 +56,6 @@
                 dragDecorColor, //individual_color for arrows, and disk
                 parent_classes,
                 individual_zindex,
-                spinnerCursorGrab,
-                spinnerCursorGrabbed,
-                makeCentralDiskInvisible,
             );
             cls += ' ' + spinnerClsId;
         }
