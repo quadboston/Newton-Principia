@@ -1,3 +1,6 @@
+// creates html div overlay over draggable points for
+// css animation of spinning arrows as defined in decorator.css.js
+
 //apparently this module was a derivative from
 //  /var/www/html/bwork/vbsl/vendor/bsl/slider/slider-handler.js
 (function() {
@@ -8,11 +11,6 @@
 
     dpdec.adds_decorSpinner = adds_decorSpinner;
     return;
-
-
-
-
-
 
 
     //===============================================
@@ -51,8 +49,9 @@
         //----------------------------------------------
         // //\\ builds cls and CSS
         //----------------------------------------------
-        dpdec.createGlobal(); //idempotent
+        dpdec.createSliderArrowsCSS(); // default arrow styles
         var cls = 'brc-slider-draggee';
+        //overrides specific styles like color for specific points
         if( addFeaturesToDecPoint ) {
             dpdec.creates_spinnerOwnCss(
                 decorCount_debug,

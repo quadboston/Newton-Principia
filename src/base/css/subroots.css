@@ -56,6 +56,7 @@ div.bsl-approot svg.bsl--svgscene .undisplay,
 /*================================*/
 /*================================*/
 
+/* dividing line between left and right panes */
 #bsl-resizable-handle {
     display: flex;
     align-items: center;
@@ -66,16 +67,7 @@ div.bsl-approot svg.bsl--svgscene .undisplay,
     height: 100%;
     cursor: grab; /* overrides dynamic overlay */
     background-color: #cccccc;
-}
-
-/* .brc-slider-draggee {
-    display: block;
-    background-color: red;
-} */
-.brc-slider-draggee.dividor:hover:after {
-    background-color: transparent;
-}        
-
+}  
 
 /*========================================*/
 /* //|| mobile                            */
@@ -88,7 +80,6 @@ div.bsl-approot svg.bsl--svgscene .undisplay,
         display: none;
     }
 }
-
 /*========================================*/
 /* ||// mobile                            */
 /*========================================*/

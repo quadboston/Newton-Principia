@@ -1,3 +1,8 @@
+// defines css classes and animations for spinning arrows around draggable points
+// dom elements created in decorator.js to overlay point positions
+// visibility of spinner is toggled in d8d-framework.js when corresponding 
+// svg element is under mouse (look for decPoint.style.display)
+
 //apparently this module was a derivative from
 //  /var/www/html/bwork/vbsl/vendor/bsl/slider/slider-handler.css.js
 (function() {
@@ -49,13 +54,13 @@
 
     var globalCssCreated_flag   = false;
     dpdec.creates_spinnerOwnCss = creates_spinnerOwnCss;
-    dpdec.createGlobal          = createGlobal;
+    dpdec.createSliderArrowsCSS = createSliderArrowsCSS;
     return;
 
 
     ///creates spinner own global CSS
-    ///appar. overrides spinner's-default CSS by means of
-    ///parent_classes
+    ///applies point specific styles like color, z-index,
+    ///and cursor type (though cursor always seems to be crosshairs)
     function creates_spinnerOwnCss(
         decorCount_debug,
         //appar. can be point's rgId decapitalized
@@ -85,7 +90,7 @@
         var ret = '';
         // //\\ css /////////////////////////////////////////
         parent_classes.forEach( function( dclass ) {
-            //c cc( spinnerClsId, dclass, CURSOR, CURSOR_GRABBING );
+            //console.log( spinnerClsId + ", " + dclass + ", " +  CURSOR + ", " +  CURSOR_GRABBING );
             centralDiskVisibility  = makeCentralDiskInvisible ? 'hidden' : 'visible';
             ////if dclass exists, apparently it constrains css to ownself,
             ////possibly useless and easy to forget when scripting lemma,
@@ -108,47 +113,29 @@
             .${spinnerClsId}.brc-slider-draggee.grabbing {
                 cursor: ${CURSOR_GRABBING};
             }
-            
-            /*=============================*/
-            /* //\\ parent after           */
-            /*=============================*/
-            ${dclass} .${spinnerClsId}.brc-slider-draggee:hover:after {
-                background-color: ${individual_color};
-                visibility      : ${centralDiskVisibility};
-            }
-            /*=============================*/
-            /* \\// parent after           */
-            /*=============================*/
 
-            /*=============================*/
-            /* //\\ animates slider arrows */
-            /*=============================*/
+            /*=================================================*/
+            /* //\\ applies specified color to spinning arrows */
+            /*=================================================*/
             ${dclass} .${spinnerClsId} .brc-slider-draggee-right {
                 border-left : ${ds.ARROW_LENGTH} solid ${individual_color};
             }
             ${dclass} .${spinnerClsId} .brc-slider-draggee-left {
                 border-right : ${ds.ARROW_LENGTH} solid ${individual_color};
             }
-            /*=============================*/
-            /* \\// animates slider arrows */
-            /*=============================*/
+            /*=================================================*/
+            /* \\// applies specified color to spinning arrows */
+            /*=================================================*/
             `
-            //ccc( dclass + ' .' + spinnerClsId + ' o v e r r i d e s  ' +
-            //     ' .brc-slider-draggee-right '
-            //);
         });
         // \\// css /////////////////////////////////////////
-        
-        //good debug
-        //if( 'point-_p-slider' === spinnerClsId ) {
-        //    c cc( spinnerClsId+ '=', ret);
-        //}
 
         ns.globalCss.update( ret, spinnerClsId );
     }
 
 
-    function createGlobal()
+    // defines css for arrow hover animations around draggable points
+    function createSliderArrowsCSS()
     {
         if( globalCssCreated_flag ) return;
         //c cc( 'global cursors=' + CURSOR + ', ' + CURSOR_GRABBING );
@@ -156,11 +143,11 @@
 
         // //\\ css /////////////////////////////////////////
         `
-
         /*=============================*/
         /* //\\ parent handler         */
         /*=============================*/
         .brc-slider-draggee {
+            pointer-events: none; /* necessary for wheel zoom event to work */
             position    : absolute;
             top         : 0%;
 
@@ -196,8 +183,6 @@
         /*=============================*/
 
 
-
-
         /*=============================*/
         /* //\\ parent after;          */
         /*      this is handle's disk  */
@@ -226,8 +211,6 @@
         .brc-slider-draggee.grabbing {
             cursor: ${CURSOR_GRABBING};
         }
-
-
         /*=============================*/
         /* \\// parent after           */
         /*=============================*/
@@ -235,13 +218,8 @@
         /*=============================*/
         /* //\\ animates slider arrows */
         /*=============================*/
-        .brc-slider-draggee .brc-slider-draggee-right,
-        .brc-slider-draggee .brc-slider-draggee-left {
-            visibility:hidden;
-        }
 
-        .active-tip > .brc-slider-draggee .brc-slider-draggee-right,
-        .brc-slider-draggee:hover .brc-slider-draggee-right {
+        .brc-slider-draggee-right {
             content         : '';
             position        : absolute;
             height          : 1px;
@@ -249,11 +227,9 @@
             top             : ${ds.ARROWS_TOP};
             left            : ${ds.RIGHT_DRAGGEE_LEFT};
             animation       : 4s ease-out 0s infinite normal slider-hover-right;
-            visibility      : visible;
         }
 
-        .active-tip > .brc-slider-draggee .brc-slider-draggee-left,
-        .brc-slider-draggee:hover .brc-slider-draggee-left {
+        .brc-slider-draggee-left {
             content         : '';
             position        : absolute;
             height          : 1px;
@@ -261,10 +237,8 @@
             left            : ${ds.LEFT_DRAGGEE_LEFT};
             top             : ${ds.ARROWS_TOP};
             animation       : 4s ease-out 0s infinite normal slider-hover-left;
-            visibility      : visible;
         }
 
-        /* ///todf ... still needs parametrization ... it's obvious ... */
         @keyframes slider-hover-right {
             0% {
 	            left: 15px;
@@ -316,9 +290,6 @@
         /*=============================*/
         /* \\// animates slider arrows */
         /*=============================*/
-
-
-
         `;
         // \\// css /////////////////////////////////////////
         ns.globalCss.update( ret, 'spinner-core-css');
