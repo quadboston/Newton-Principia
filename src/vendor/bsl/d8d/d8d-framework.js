@@ -48,8 +48,6 @@
             attachee,
             doGiveClickEvent,
             doCreateDynamicSpinners,
-            spinnerCursorGrab,
-            spinnerCursorGrabbed,
     }) {
         findDraggee = findDraggee || findDraggee_default;
         handle2dragsurf_pos = handle2dragsurf_pos || handle2dragsurf_pos_default;
@@ -147,17 +145,17 @@
                 if( spinnerCandidate.pointWrap.hideD8Dpoint ) {
                     decPoint.style.display = 'none';
                 } else {
+                    // show spinner animation and crosshair cursor when hovering
+                    // over draggable points
                     decPoint.style.display = 'block';
-
-                    //vital
-                    //html global style tag does not do this:
-                    dragSurface.style.cursor = spinnerCursorGrab || 'grab';
-
+                    dragSurface.style.cursor = 'crosshair';
                     activeDecPoint = decPoint;
                 }
             } else {
                 //Only switch cursor (from default) if media mover is enabled.
-                 dragSurface.style.cursor = sconf.mediaMoverPointDisabled ?
+                //'media-mover' refers to draggable canvas
+                //this changes cursor back to 'grab' after being 'crosshair'
+                dragSurface.style.cursor = sconf.mediaMoverPointDisabled ?
                     '' : 'grab';
             }
         }
@@ -229,12 +227,8 @@
             ////////////////////////////////////////////////////////////////////
 
             var individual_zindex    = haz( pointWrap, 'individual_zindex' );
-            var makeCentralDiskInvisible = pointWrap.makeCentralDiskInvisible;
             var update_decPoint      = api.update_decPoint;
-            var nospinner            = api.nospinner;
-            var grabffect            = api.spinnerCursorGrab || spinnerCursorGrab;
-            var grabbedffect         = api.spinnerCursorGrabbed || spinnerCursorGrabbed;
-            
+            var nospinner            = api.nospinner;            
             var orientation          = api.orientation;
             var achieved             = api.achieved; //api sugar
             var dragHandleDOM        = api.dragHandleDOM;
@@ -279,8 +273,6 @@
                                 dragDecorColor      : dragDecorColor,
                                 spinnerClsId        : cssIdLowCase,
                                 individual_zindex   : individual_zindex,
-                                spinnerCursorGrab   : grabffect,
-                                spinnerCursorGrabbed : grabbedffect,
                             }
                     );
                 }
@@ -293,7 +285,6 @@
                         addFeaturesToDecPoint,
                             orientation     : orientation,
                             parent_classes  : decPoint_parentClasses,
-                            makeCentralDiskInvisible : makeCentralDiskInvisible,
                     }
                 });
             }
@@ -406,18 +397,6 @@
                 var dompos = handle2dragsurf_pos( dragWrap, dragSurface );
                 decPoint.style.left = dompos[0] + 'px';            
                 decPoint.style.top = dompos[1] + 'px';
-                
-                if( nonenify === 'nonenify' ) {
-                    decPoint.style.display = 'none';
-                } else if( nonenify === 'block' ) {
-                    if( !pointWrap.ignore_hideD8Dpoint_for_CSS &&
-                        pointWrap.hideD8Dpoint
-                    ) {
-                        decPoint.style.display = 'none';
-                    } else {
-                        decPoint.style.display = 'block';
-                    }
-                }
             }
 
             ///this thing runs when no update_decPoint is supplied to

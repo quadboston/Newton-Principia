@@ -65,9 +65,13 @@ div.bsl-approot svg.bsl--svgscene .undisplay,
     margin: 0 4px;
     position: absolute;
     height: 100%;
-    cursor: grab; /* overrides dynamic overlay */
     background-color: #cccccc;
 }  
+
+/* only central dots image is actually interactive, so only change cursor there */
+#bsl-resizable-handle img {
+    cursor: col-resize;
+}
 
 /*========================================*/
 /* //|| mobile                            */

@@ -373,8 +373,6 @@ function doExpandConfig (){
                 'individual_zindex',
                 //an extra "fake" disk over dragger,
                 'noKernel',
-                //for d8d machinery overlay
-                'makeCentralDiskInvisible',
                 // \\// dragging
 
                 'notp',
