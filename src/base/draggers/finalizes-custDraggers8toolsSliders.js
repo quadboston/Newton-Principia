@@ -48,8 +48,6 @@
         /// to which arbitrary drag8droppers can be attached from different
         /// lemma modules
         ///****************************************************************
-        var spinnerCursorGrab = sconf.spinnerCursorGrab || 'grab';
-        var spinnerCursorGrabbed = sconf.spinnerCursorGrabbed || 'grabbing';
         var medD8D = stdMod.medD8D =
         d8dp.crePointFW_BSLd8d1CHAMBER({
             findDraggee                         : findDraggee,
@@ -57,8 +55,6 @@
             decPoint_parentClasses              : fconf.dragPointDecoratorClasses,
             inn2outparent                       : sDomF.inn2outparent,
             doCreateDynamicSpinners             : true,
-            spinnerCursorGrab,
-            spinnerCursorGrabbed,
         });
         //no need, done in media-model.js:  update_decPoint( decPoint )
 

@@ -245,10 +245,6 @@ function doesConfigLemma (){
         // \\// tp color
         //===================================================
 
-        //diagram drag handle mouse pointer styles
-        spinnerCursorGrab : 'crosshair',
-        spinnerCursorGrabbed : 'crosshair',
-
         //---------------------------------------------------------------
         // //\\ anchor control
         //---------------------------------------------------------------
