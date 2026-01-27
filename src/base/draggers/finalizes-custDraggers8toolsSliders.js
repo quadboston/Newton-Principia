@@ -30,18 +30,7 @@
     {
         ///creates tools for the first time and only once
 
-        ///******************************************************
-        /// todm,
-        /// nearly a bug, thickness and wheel scaling are coupled
-        /// unnecessarily
-        ///******************************************************
-        if( sconf.enableTools ) {
-            ssF.createSliderPlaceholder_media_scale();
-            ssF.createSliderPlaceholder_thickness();
-            fmethods.attachWeelToDomEl(
-                stdMod.svgScen$,
-            );
-        }
+        enableZoom();
 
         ///****************************************************************
         /// creates a framework, medD8D,
@@ -76,6 +65,19 @@
         ssF.inits_tools_sliders( medD8D, );
         ///***********************************************************************
         ns.globalCss.update(); //for decorator
+
+        ///******************************************************
+        /// todm,
+        /// nearly a bug, thickness and wheel scaling are coupled
+        /// unnecessarily
+        ///******************************************************
+		function enableZoom() {
+			ssF.createSliderPlaceholder_media_scale();
+			ssF.createSliderPlaceholder_thickness();
+			fmethods.attachWeelToDomEl(
+				stdMod.svgScen$
+			);
+		}
     }; 
     //==========================================
     // \\// inits drag model
