@@ -29,16 +29,21 @@
                 addToStepCount : 1,
         });
 
-		if (amode.logic_phase !== 'claim') {
+		if (amode.logic_phase === 'proof') {
 			///paints arc from A to b
 			ssF.paintsCurve({
-					fun         : ssD.repoConf[0].fun,
-					mmedia      : stdMod.mmedia,
-					pointA      : rg.A,
-					pointB      : rg.b,
-					addToStepCount : 1,
+                fun         : ssD.repoConf[0].fun,
+                mmedia      : stdMod.mmedia,
+                pointA      : rg.A,
+                pointB      : rg.b,
+                addToStepCount : 1,
 			});
-		}
+            var arcAb = document.querySelector('.tp-arc-_ab');
+            if(arcAb) arcAb.classList.remove('hidden');
+		} else {
+            var arcAb = document.querySelector('.tp-arc-_ab');
+            if(arcAb) arcAb.classList.add('hidden');
+        }
     }
     //=========================================================
     // \\// lemma custom addons
