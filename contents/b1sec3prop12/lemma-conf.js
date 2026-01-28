@@ -16,7 +16,6 @@
                 { src: 'completes-sliders-creation.js' },
                 
                 { src: 'state-capturer.js' },
-                // { src: 'graph-array.js' }, //TEMP Probably not needed anymore
                 { src: 'graph-fw-lib.js' },
 
                 { src : 'inits/finalizes-subessay-relaunch.js' },

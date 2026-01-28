@@ -113,11 +113,6 @@
         var DATA_GRAPH_STEPS = 500;
         sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
 
-
-        //TEMP For testing, easier to see left part of force curves.  May not
-        //be needed anymore.  If removed remove in standardized code also.
-        sconf.USE_LOG_SCALE = false;//true;
-
         //Create left side of hyperbola by mirroring right side.  Results in a
         //curve that's visually identical to if the hyperbola equation was used
         //to create the left side, however is simpler to implement.  If that
@@ -131,40 +126,10 @@
         //-------------------------------------------
         // //\\ curve shape parameters
         //-------------------------------------------
-
-        //TEMP These may need to be in a different spot, and/or replace some
-        //code in this file.  Also the values probably need to be adjusted.
-        //TEMP It may be possible to use 0 to 2PI rather than -PI to PI, if so
-        //that could be helpful for splitting both sides of the hyperbola.
-        // const offsetTemp = 0.4;
-        // sconf.orbit_q_start = Math.PI - offsetTemp;
-        // sconf.orbit_q_end = Math.PI + offsetTemp;
-
-        //TEMP Should the following be switched to use computeQEndTemp?
-        //Another option would be to remove this here, and only have it in the
-        //standardized code.  If that's done then a note should probably be
-        //added.
-        //Another option would be to have a separate function, called here and
-        //in the standardized code as well.
-        
-        const offsetTemp = 2.1004585597194643;//2.366399280279432;
-        sconf.orbit_q_start = -offsetTemp;
-        sconf.orbit_q_end = offsetTemp;
-
-
-        //TEMP
-        // sconf.orbit_q_start = offsetTemp;
-        // sconf.orbit_q_end = 2 * Math.PI * offsetTemp;
-
-        //sconf.orbit_q_start = Math.PI - offsetTemp;
-        //sconf.orbit_q_start = Math.PI - (Math.PI - q);
-        //sconf.orbit_q_start = Math.PI - Math.PI + q;
-        //sconf.orbit_q_start = q;
-        
-        // sconf.orbit_q_end = Math.PI + offsetTemp;
-        // sconf.orbit_q_end = Math.PI + (Math.PI - q);
-        // sconf.orbit_q_end = Math.PI + Math.PI - q;
-        // sconf.orbit_q_end = 2 * Math.PI - q;
+        sconf.DISTANCE_HYPERBOLA_ENDS_TO_S = 2.4;
+        //The following are set by recalculateOrbitStartAndEnd
+        sconf.orbit_q_start = null;
+        sconf.orbit_q_end = null;
 
 
 
@@ -198,6 +163,8 @@
         //-----------------------------------------------------
         // //\\ sets Kepler_v
         //-----------------------------------------------------
+        //TEMP Which of the following are still needed now that the code has
+        //be updated?
         op.latus = op.latusInitial;
         stdMod.establishesEccentricity( op.initialEccentricity );
         var { Kepler_v, cosOmega, om } = mat.conics.innerPars2innerPars({
@@ -220,23 +187,13 @@
         // \\// curve shape parameters
         //-------------------------------------------
 
-        //TEMP The following was copied from P11 and should probably be changed
-        //intervals of dt or dq to construct an arc for
+        //interval of dt to construct an arc for
         //displacement or sagitta,
         //Sets initial distance of point Q from P
-        sconf.Dt0 = 0.5;
+        sconf.Dt0 = 0.53;
 
-        //TEMP The following was copied from P11 and should probably be changed
         //pos of P
-        //TEMP It seems this must be +ve (as per
-        //"src\base\lemma\study-model\kepler-orbit\initiates_orbit8graph.js")
-        //~line 42 "rg.P.qix ="
-        // // sconf.parQ = 0.0 * Math.PI;
-        // // sconf.parQ = 0.250 * Math.PI;
-
-        //TEMP
-        sconf.parQ = 0.2;
-        // sconf.parQ = (sconf.orbit_q_end - sconf.orbit_q_start) / 2;
+        sconf.parQ = 0.45;
 
         //-----------------------------------
         // //\\ topic group colors

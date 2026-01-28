@@ -2,7 +2,7 @@
     const {
         sn, $$, nssvg, haz, sDomF, ssF, ssD, stdMod, sconf, } = window.b$l.apptree({
         stdModExportList : {
-            creates_poly2svg_for_lemma,
+            creates_createOrUpdateOrbit,
             formula2branches,
         },
     });
@@ -11,15 +11,15 @@
     
     ///analogy of function
     ///pointsArr_2_singleDividedDifferences()
-    function creates_poly2svg_for_lemma()
+    function creates_createOrUpdateOrbit()
     {
         var polylineSvg;
         var polylineSvgMirrored;
-        stdMod.poly2svgP11 = poly2svgP11;
+        stdMod.createOrUpdateOrbit = createOrUpdateOrbit;
         return;
 
         ///decoration, should run in upcreate_media
-        function poly2svgP11(arg)
+        function createOrUpdateOrbit(arg)
         {
             //Main orbit polyline
             const cp = ssD.orbitXYToDraw;

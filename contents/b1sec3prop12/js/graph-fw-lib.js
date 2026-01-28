@@ -114,8 +114,7 @@
             var axisXLegend =
             [
                 {
-                    text    : sconf.USE_LOG_SCALE ? 'Distance from force ln(SP)' :
-                                                    'Distance from force (SP)', 
+                    text    : 'Distance from force (SP)', 
                     x       : -560,
                     y       : 25,
                     style   : {

@@ -15,14 +15,13 @@
         rg.P.acceptPos = newPos => {
             //Ensure solvable and qix exist to help prevent P6 errors when orbits
             //are disconnected
-            //TEMP Disable check for testing
-            // if (ssD.solvable) {//TEMP
+            if (ssD.solvable) {
                 const qix = stdMod.gets_orbit_closest_point( newPos, !!'fromGraph' );
                 if (qix != null) {
                     rg.P.qix = qix;
                     stdMod.model8media_upcreate();
                 }
-            // }
+            }
         }
 
         /// point Q slider

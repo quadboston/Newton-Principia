@@ -12,19 +12,8 @@
 
     
     function initiates_kepler_config() {
-        console.log("initiates_kepler_config");
-        sconf.curveQRange = sconf.orbit_q_end - sconf.orbit_q_start;
         sconf.pointDecoration.r = sconf.handleRadius;
-        sconf.delta_q_between_steps = sconf.curveQRange / sconf.Q_STEPS;
-
-        //todm competing aliases:
-        //Update: Could replace this variable where used with (1 / sconf.delta_q_between_steps)
-        sconf.delta_q_between_steps_reciprocal = 1 / sconf.delta_q_between_steps;
-        //Update: q2qix was a function so could be confusing here, also duplicate of above
-        //sconf.q2qix = 1 / sconf.delta_q_between_steps;
-
         sconf.ro0SquaredDivide2 = sconf.ro0*sconf.ro0 / 2;
-
         sData.GRAPH_PATH = false; //local lemma can change this
     }    
     
@@ -32,13 +21,13 @@
         initiates_kepler_config();
         stdMod.graphFW_lemma = stdMod.createsGraph_FW_lemma({
                digramParentDom$:stdMod.legendRoot$ });
-        stdMod.creates_poly2svg_for_lemma();
+        stdMod.creates_createOrUpdateOrbit();
         stdMod.rebuilds_orbit();
         
         stdMod.creates__gets_orbit_closest_point();
         
         //:sets parameters of P
-        rg.P.qix = Math.floor( sconf.parQ * sconf.delta_q_between_steps_reciprocal );
+        rg.P.qix = Math.floor( sconf.parQ / sconf.delta_q_between_steps );
         var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
         nspaste( rg.P.pos, Porb.rr );
 
@@ -51,31 +40,23 @@
         if( rg.S.draggableX || rg.S.draggableY ) {
             stdMod.creates_S_slider();
         }
-
-        if (stdMod.computeQEndTemp)
-            console.log("computeQEndTemp =", stdMod.computeQEndTemp());//TEMP
     }
     
     function rebuilds_orbit( keepThisDt ) {
         const Q_STEPS = sconf.Q_STEPS;
-        //TEMP To test adjusting the hyperbola length
-        //Note if orbit is elliptical the following can cause errors,
-        //especially if the eccentricity slider is far to the left.
-        if (stdMod.computeQEndTemp) {
-            sconf.orbit_q_end = stdMod.computeQEndTemp();
-            sconf.orbit_q_start = -sconf.orbit_q_end;
-            sconf.curveQRange = sconf.orbit_q_end - sconf.orbit_q_start;
-            sconf.delta_q_between_steps = sconf.curveQRange / sconf.Q_STEPS;
-        }
-        //TEMP//
+
+        if (stdMod.recalculateOrbitStartAndEnd)
+            stdMod.recalculateOrbitStartAndEnd();
+        sconf.curveQRange = sconf.orbit_q_end - sconf.orbit_q_start;
+        sconf.delta_q_between_steps = sconf.curveQRange / Q_STEPS;
+
         stdMod.recreates_q2xy();
         stdMod.buildsOrbit();
-        stdMod.poly2svgP11();
-        // sconf.TIME_IS_FREE_VARIABLE && stdMod.builds_orbit_time_grid();
-        //TEMP Was in "builds-orbit-time-grid.js"
-        //Double check to see if anything else needs to be copied here.
+        stdMod.createOrUpdateOrbit();
         if (sconf.TIME_IS_FREE_VARIABLE) {
-            ssD.timeRange =qIndexToOrbit[ Q_STEPS ].timeAtQ -qIndexToOrbit[0].timeAtQ;
+            const timeS = qIndexToOrbit[0].timeAtQ;
+            const timeE = qIndexToOrbit[Q_STEPS].timeAtQ;
+            ssD.timeRange = timeE - timeS;
         }
         ssD.Dq = sconf.Dq0;
         ssD.Dt = keepThisDt || sn( ssD, 'Dt', sconf.Dt0 );

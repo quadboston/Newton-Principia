@@ -8,8 +8,8 @@
  *  
  * ****************************************************************************/
 
-//TEMP Is this file still needed?  Regardless maybe the above note and similar
-//should be updated, as I don't believe any of it's used by P12/13.
+//Temp This file is still needed by P17 at least.  The above note may need to
+//be updated for P12/13.
 ( function() {
     var {
         $$, nssvg, has, haz, ssF,
@@ -24,6 +24,7 @@
 
     //called from page's init-model-parameters.js
     //analogy of pointsArr_2_singleDividedDifferences() (P41)
+    //TEMP It looks like P17 uses this function both with and without vop
     function creates_orbitRack( vop )
     {
         //console.log('creates_orbitRack'); 
@@ -200,6 +201,10 @@
         }
     }
 
+    //TEMP I believe this is the only function that P12/13 still use in this
+    //file, however they may or may not still need it.  Therefore once the
+    //standardized code is fully implemented for P12/13, check and update any
+    //comments or similar in this file for them as needed.
     /// sets a,b,c,lambda, excentricity for op from excentricity and op.latus
     function establishesEccentricity(
         //latus is used from op.latus and

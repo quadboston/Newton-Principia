@@ -159,7 +159,6 @@
         }
         //TEMP/
         ///for initial launch only
-        // stdMod.buildsforceGraphArray();
         // stdMod.graphFW.drawGraph_wrap();
         //------------------------------------------------
         // \\// graph

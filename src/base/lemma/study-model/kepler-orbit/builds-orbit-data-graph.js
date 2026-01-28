@@ -37,7 +37,6 @@
         var sagittaMax = 0;
         var instantForceMax = 0;
         var speedMax = 0;
-        const maxSP = 1.5;//TEMP
         //var fullPath = qIndexToOrbit[ gend ].pathAtQ;
         for( let qix=gstart; qix<=gend; qix++ ){
             const bP = qIndexToOrbit[ qix ];
@@ -63,20 +62,11 @@
                 let graphColumn = {
                     qix,
                     rr : bP.rr,
-                    // x : GRAPH_PATH ? bP.pathAtQ : bP.r, //TEMP
-                    x : GRAPH_PATH ? bP.pathAtQ : 
-                        (sconf.USE_LOG_SCALE ? Math.log(bP.r) : bP.r),
+                    x : GRAPH_PATH ? bP.pathAtQ : bP.r,
                 };
-                //TEMP To limit how much of the graph is shown
-                // if (bP.r <= maxSP)
-                    graphArray.push( graphColumn );
+                graphArray.push( graphColumn );
             }
-            //TEMP To hide black vertical line when it "leaves" the graph.
-            // if (bP.r <= maxSP) {
-                bP.gix = Math.max(0,graphArray.length-1);
-            // } else {
-            //     bP.gix = -1;
-            // }
+            bP.gix = Math.max(0,graphArray.length-1);
         }
 
         //Sometimes solvable is true at this point but just barely.  When this
@@ -95,7 +85,6 @@
             const ga = graphArray[ gix ];
             const qix = ga.qix;
             const bP = qIndexToOrbit[ qix ];
-            //TEMP Commented as part of hiding the black vertical line
             bP.gix = gix;
             const instf = Math.abs(bP.instantForce) / instantForceMax;
             const disp = Math.abs(bP.displacement) / instantForceMax;

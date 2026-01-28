@@ -39,11 +39,6 @@
         //There seems to be similar code in the following ~line 42
         //"src\base\lemma\study-model\kepler-orbit\initiates_orbit8graph.js"
         // rg.P.q = op.PparQ_initial;
-        //TEMP I think this should be removed?  Should this code be moved to
-        //eg. "config-functions.js"?  I think it was previously used by other
-        //similar models before the code standardization occurred.
-        // ////creates both curve and its area
-        // stdMod.creates_orbitRack();
 
         //TEMP I believe the following sets the poistion of point P, and
         //probably isn't needed here anymore.
