@@ -32,8 +32,6 @@
                     //draggers are close together, arrows are sometimes shown
                     //for a different dragger than the one which gets selected.
                     doCreateDynamicSpinners : true,
-                    spinnerCursorGrabbed : sconf.spinnerCursorGrabbed,
-                    spinnerCursorGrab : sconf.spinnerCursorGrabbed,
                 });
             Object.values(dataregs).forEach(dr => {
                 setDragPoints(dr);

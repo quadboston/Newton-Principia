@@ -1,5 +1,5 @@
 ( function () {
-    var { sn, nspaste, fapp, fconf, sconf, ssF, fixedColors, } =
+    var { sn, nspaste, fapp, fconf, sconf, ssF, topicColors_repo, } =
 	    window.b$l.apptree({ ssFExportList : { init_conf, }, });
     
     var stdL2       = sn('stdL2', fapp );
@@ -74,7 +74,7 @@
 
             widestRectangular,
             widestRectangularHiddenStart,
-        } = fixedColors;
+        } = topicColors_repo;
 
 
         const predT =
@@ -89,19 +89,19 @@
 
             "curve" : figure,
 
-            "figure-area"               : fixedColors["figure-area"],
-            "figure-area-txt"           : fixedColors["figure-area-txt"],
+            "figure-area"               : topicColors_repo["figure-area"],
+            "figure-area-txt"           : topicColors_repo["figure-area-txt"],
 
-            "circumscribed-rectangles"  : fixedColors["circumscribed-rectangles"],
-            "inscribed-rectangles"      : fixedColors["inscribed-rectangles"],
+            "circumscribed-rectangles"  : topicColors_repo["circumscribed-rectangles"],
+            "inscribed-rectangles"      : topicColors_repo["inscribed-rectangles"],
 
             "widest-rectangular"        : fconf.sappId.indexOf('b1sec1lemma2')===0 ?
                                             widestRectangularHiddenStart :
                                             widestRectangular,
 
-            "circ-txt"                  : fixedColors["circ-txt"],
-            "insc-txt"                  : fixedColors["insc-txt"],
-            "widt-txt"                  : fixedColors["widt-txt"],
+            "circ-txt"                  : topicColors_repo["circ-txt"],
+            "insc-txt"                  : topicColors_repo["insc-txt"],
+            "widt-txt"                  : topicColors_repo["widt-txt"],
             'a--K--b--l'                : difference,
             'b--L--c--m'                : difference,
             'c--M--d--n'                : difference,
@@ -339,7 +339,7 @@
         ];
         
         nspaste( sconf, {
-            predefinedTopics : predT,
+            topicColors_elected : predT,
             originalPoints,
             linesArray,
             //lines,

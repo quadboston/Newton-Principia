@@ -9,7 +9,7 @@
     });
 
     var pos2pointy;
-    var pointies2line;
+    var pivots_2_svgLineInRg;
     return;
 
 
@@ -27,7 +27,7 @@
 
         ssF.sliderTemplate = sliderTemplate;
         pos2pointy      = ssF.pos2pointy;
-        pointies2line   = ssF.pointies2line;
+        pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
     }
 
     ///to inject slider near bottom of svgScene, below svgDiagram,
@@ -96,7 +96,7 @@
                 { fill : '#9999dd', tpclass:magnit, cssClass : 'tofill tostroke', },
         );
         ///draws rails
-        var slider_rg = pointies2line(
+        var slider_rg = pivots_2_svgLineInRg(
              'slider-' + magnit,
              [ sliderStart_rg, sliderEnd_rg ],
              {

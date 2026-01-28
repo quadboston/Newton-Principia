@@ -120,14 +120,12 @@
         ///============================================================
         //.id is vital to have for removing extra disk over dividor
         wrkwin.dividor.spinnerClsId = 'dividor';   //makes a placeholder for handler
-        wrkwin.dividor.makeCentralDiskInvisible = true;
         D8D_fw.pointWrap_2_dragWrap_BSLd8d2PIPE({
             pointWrap           : wrkwin.dividor,
             update_decPoint     : 'update_decPoint_default',
             doProcess           : doProcess,
             dragHandleDOM       : mediaHorizontalHandler,
-            //already a default spinnerCursorGrab   : 'grab',
-            //already a default spinnerCursorGrabbed: 'grabbing',
+            // cursor type set in subroots.css: .bsl-resizable-handle img
         });
 
         //Load the following now that the dragger is setup.

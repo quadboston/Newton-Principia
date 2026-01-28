@@ -36,12 +36,6 @@
     return;
 
 
-
-
-
-
-
-
     //====================================
     // //\\ populate menu
     //      creates menu from config list,
@@ -194,6 +188,8 @@
             .e('mouseover', ()=>{ decor$.addClass( 'hovered' ) })
             .e('mouseleave', ()=>{ decor$.removeClass( 'hovered' ) })
             .e('click', function( event ) {
+                //console.log(leafRk.mcat_id + ' ' + leafRk.scat_id);
+                updateURL(leafRk.mcat_id, leafRk.scat_id)
                 if( mcat_id !== 'logic_phase' || !fconf.logic_phaseTab_nonClickable ) {
 
                     //:todm: it is not clear why this is required, and why flag
@@ -226,11 +222,55 @@
     // \\// makes radio menu
     //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 
+    function updateURL(mcat, scat) {
+        const currentUrl = window.location.href;
+        const url = new URL(currentUrl);
+        const confParam = url.searchParams.get("conf");
 
+        let params = {};
+        if (confParam) {
+            confParam.split(",").forEach(pair => {
+                const [key, value] = pair.split("=");
+                params[key] = value;
+            });
+        }
 
+        if(mcat === 'logic_phase' ) { // horizontal tabs
+            params["logic_phaseId"] = scat;  
+        } else if(mcat === 'aspect') { // vertcial tabs
+            params["aspectId"] = scat;
 
+            // update aspect of all links so it persists when changing pages
+            const links = document.querySelectorAll('.lemma-item-title');
+            links.forEach((link) => {            
+                // extract sappId from the link
+                let sappId = null;
+                if(link.href) {
+                    const match = link.href.match(/sappId=([^,]+)/);
+                    if (match) {
+                        sappId = match[1];
+                        var aspect = ns.getAspectId(sappId);
+                        link.href.replace(/aspectId=[^,]*/, `aspectId=${aspect}`);
+                    }
+                }
+            });
 
+        } else {
+            // todo: are there more?
+            console.log('unhandled: ' + mcat + ' ' + scat);
+        }
 
+        // Rebuild the conf string
+        const newConf = Object.entries(params)
+        .map(([key, value]) => `${key}=${value}`)
+        .join(",");
+
+        // Construct the new URL
+        const newUrl = `${url.origin}${url.pathname}?conf=${newConf}`;
+
+        // Update the browser URL without reload
+        window.history.replaceState({}, "", newUrl);
+    }
 
     //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
     // //\\ does select menu-leaf

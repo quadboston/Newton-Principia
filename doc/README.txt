@@ -155,7 +155,7 @@ topic-engine-css
 //\\specific variables
 ********************************************
 In lemma2 "predT" stands for predefined-topic colors.
-In other lemmas it is named as "predefinedTopics"
+In other lemmas it is named as "topicColors_elected"
 
 These are the colors assigned for specific groups of logically bound itmes:
 

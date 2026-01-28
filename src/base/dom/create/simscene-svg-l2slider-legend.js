@@ -22,10 +22,6 @@
         //todo rid redundancy
         sDomN.medRoot$ = simScene$;
         sDomN.medRoot  = simScene;
-        //}
-        if( fconf.NAVIGATION_DECORATIONS_ALWAYS_VISIBLE ) {
-            stdMod.simScene$.addClass( 'active-tip' );
-        }
         //..........................
         // \\// media root
         //..........................

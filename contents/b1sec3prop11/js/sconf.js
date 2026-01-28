@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, fconf, sconf, fixedColors, } = 
+    var { ns, fconf, sconf, topicColors_repo, } = 
         window.b$l.apptree({  ssFExportList : { init_conf } });
     return;
 
@@ -53,7 +53,7 @@
         //--------------------------------------
         default_tp_stroke_width = Math.floor( 6 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 5 * controlsScale ),
+        handleRadius            = Math.floor( 3.1 * controlsScale ),
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius;
         // //\\ principal tp-css pars
@@ -160,10 +160,10 @@
             context,
             sunColor,
             estimatedForce
-        } = fixedColors;
+        } = topicColors_repo;
 
 
-        var predefinedTopics =
+        var topicColors_elected =
         {
             given,
             proof,
@@ -209,11 +209,6 @@
             B : {
                 pcolor : proof,
                 letterAngle : 90,
-				cssClass: 'subessay--solution',
-            },
-
-            A : {
-                pcolor : proof,
 				cssClass: 'subessay--solution',
             },
 
@@ -310,8 +305,15 @@
                 pcolor : sunColor,
                 letterAngle : -115,
                 letterRotRadius : 35,
+            },            
+
+            A : {
+                pcolor : proof,
+				cssClass: 'subessay--solution',
                 draggableX  : true,
-                draggableY  : false,
+                draggableY  : true,
+				cssClass: 'subessay--solution',
+                conditionalDrag : 'subessay--solution',
             },
 
             P : {
@@ -454,7 +456,7 @@
             TIME_STEPS,
 
             mediaBgImage : "diagram.png",
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             originX_onPicture,

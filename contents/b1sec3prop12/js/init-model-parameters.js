@@ -59,7 +59,12 @@
                     ssD.zebraCols.multicolor = wwCols;
                 }
             });
-
+        //the only prop 12 in popular version which relies
+        //on outdated createsGraphFW (non class framework).
+        //others in popular do rely on intermediate
+        //stdMod.createsGraphFW_class
+        //
+        //all lemmas on research fw are already updated to
         stdMod.createsGraphFW( stdMod.legendRoot$ );
         //==================================================
         // \\// decoration graph 

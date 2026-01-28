@@ -10,7 +10,7 @@
             createSliderPlaceholder_media_scale,
         },
     });
-    var pointies2line;
+    var pivots_2_svgLineInRg;
     return;
 
 
@@ -25,7 +25,7 @@
 
     function setModule()
     {
-        pointies2line   = ssF.pointies2line;
+        pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
     }
 
 

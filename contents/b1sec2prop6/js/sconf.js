@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, fconf, sconf, fixedColors,} = 
+    var { ns, fconf, sconf, topicColors_repo,} = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -54,7 +54,7 @@
         //--------------------------------------
         default_tp_stroke_width = Math.floor( 8 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 4 * controlsScale ),
+        handleRadius            = Math.floor( 3.5 * controlsScale ),
         //console.log(handleRadius);
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius; // todo: this doesn't seem to do anything...
@@ -173,10 +173,10 @@
             chord,
             displacement,
 			sunColor
-        } = fixedColors;
+        } = topicColors_repo;
 
 
-        var predefinedTopics =
+        var topicColors_elected =
         {
             estimatedForce,
             given,
@@ -291,7 +291,6 @@
                 letterRotRadius : 40,
                 draggableX  : true,
                 draggableY  : true,
-                conditionalDrag : 'logic_phase--proof logic_phase--claim',
             },
             QtimeDecor : {
                 undisplayAlways : true,
@@ -385,7 +384,6 @@
 				cssClass: 'subessay--corollary3 subessay--corollary5',
 			 }, },
             { 'SP' : { pcolor : given,
-				cssClass: 'subessay--corollary1 subessay--corollary5',
 			 }, },
             { 'PY' : { pcolor : body,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
@@ -431,7 +429,7 @@
             TIME_STEPS,
 
             mediaBgImage : "diagram.png",
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             originX_onPicture,

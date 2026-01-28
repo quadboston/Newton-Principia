@@ -18,11 +18,11 @@
         //Newton's divided differences indexed by levels:
         //  j = level,
         //  F[ j ][ i ]=[ x, dd ] = [ xj, dij ]
-        //  initial level = 
+        //  initial level =
         //  F[0    ][i    ]=[ xi, yi ]
         var F = [];
         //created for performance speed
-            var z = [ pointsXY[0][0] ]; 
+            var z = [ pointsXY[0][0] ];
             var P = [ pointsXY[0][1] ];
         F[0] = pointsXY.concat( [] );
 
@@ -34,7 +34,7 @@
             P[ level ]  = PP;
         }
         // **api-outputs---divided-diff
-        return { coefficients:F, calculate_polynomial, derivativeAtZero }; 
+        return { coefficients:F, calculate_polynomial, derivativeAtZero };
 
 
 
@@ -90,9 +90,9 @@
 
         //checks the job;
         //var dd = mat.calculate_divided_differences( xy ).calculate_polynomial;
-        //var Sx = sconf.pname2point.S.pos[0];
+        //var Sx = sconf.p name2point.S.pos[0];
         //var rr = dd( Sx );
-        //ccc( 'compare: xexp='+Sx + ' yexp=' + sconf.pname2point.R.pos[1] + ' res=' + rr);
+        //ccc( 'compare: xexp='+Sx + ' yexp=' + sconf.p name2point.R.pos[1] + ' res=' + rr);
 
 
         ///calculates_derivative_at_point_zero

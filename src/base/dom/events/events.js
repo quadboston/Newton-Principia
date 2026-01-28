@@ -4,10 +4,10 @@
         sn, $$,
         has, haz, haf, hafa,
         sapp, fapp,
-        fconf,
+        fconf, sconf,
         fmethods,
         stdMod,
-        rg,
+        rg, ns,
         wrkwin,
         ssF, ssD,
         amode,
@@ -89,8 +89,10 @@
         } else {
             var nextSapp = fconf.ix2lemmaDefAllowed[ next ];
             var fullCaption = nextSapp.book + '. ' + nextSapp.caption;
+
             var newLoc = window.location.pathname + '?conf=' +
-                'sappId=' + nextSapp.sappId;
+                'sappId=' + nextSapp.sappId + 
+                ',logic_phaseId=claim,aspectId=english';
 
             if( fconf.appDecor.putTextDescriptionIntoTopNavigationArrows  ){
                 var wwFullCaption = direction === 'right' ? fullCaption : fullCaption + ' ';
@@ -107,7 +109,13 @@
             pager$.a( 'title', "Go to " + nextSapp.caption );
             pager$.removeClass( 'non-displayed' );
             ///this did work but anchor works better
-            pager$.e( 'click', function() {
+            pager$.e( 'click', function() {                     
+                const match = newLoc.match(/sappId=([^,]+)/);
+                if (match) {
+                    var sappId = match[1];              
+                    var aspect = ns.getAspectId(sappId);
+                    newLoc = newLoc.replace(/aspectId=[^,]*/, `aspectId=${aspect}`);
+                }
                 window.location = newLoc;
                 return false;
             });
@@ -121,33 +129,68 @@
         domel$.e( 'wheel', wheelHandler );
 
         function wheelHandler( ev ) {
-            if( ev.altKey ) {
-                ////does roaming
-                //doHandle( { move : 2, value : ev.deltaY, target : 'msprite' }, ev );
-            } else {
-                ////does scrolling
-                doHandle( ev );
-            }
-        }
-
-        function doHandle( ev )
-        {
             stopAftershocks( ev );
             sDomF.detected_user_interaction_effect( !'not-moved' );
+
+            var oldScale = rg.media_scale.value;
+
             var newScale =
                 Math.exp(
-                    Math.log( rg.media_scale.value ) +
-                        ev.deltaY * WHEEL_SCALE_FOR_SCROLL_MODE
+                    Math.log(oldScale) +
+                    ev.deltaY * WHEEL_SCALE_FOR_SCROLL_MODE
                 );
 
             var validated = rg.media_scale.value2validate2pos( newScale );
             if( !validated ) return;
+
             rg.media_scale.value = newScale;
             rg.media_scale.stdMod = stdMod;
-            ssF.scaleValue2app( newScale, ); //resets applic. state to new scale
+            ssF.scaleValue2app( newScale ); // resets applic. state to new scale
             rg.media_scale.modPos_2_GUI();
+            mediaMover(ev, oldScale, newScale); 
             stdMod.model8media_upcreate();
         };
+
+        // moves model so zoom is around mouse
+        function mediaMover(ev, oldScale, newScale) {
+            var svgEl = document.querySelector('svg');
+            var pt = svgEl.createSVGPoint();
+            pt.x = ev.clientX;
+            pt.y = ev.clientY;
+            var ctm = svgEl.getScreenCTM();
+            if (!ctm) {
+                // fallback to bounding rect if CTM not available
+                var rect = svgEl.getBoundingClientRect();
+                var mousePicX = ev.clientX - rect.left;
+                var mousePicY = ev.clientY - rect.top;
+            } else {
+                var svgP = pt.matrixTransform(ctm.inverse());
+                var mousePicX = svgP.x;
+                var mousePicY = svgP.y;
+            }
+
+            var originX = sconf.modorInPicX;
+            var originY = sconf.modorInPicY;
+
+            var r = newScale / oldScale;
+
+            // vector from model origin to mouse in picture coords
+            var dx = mousePicX - originX;
+            var dy = mousePicY - originY;
+
+            // compute dragMove so the model point under the mouse stays fixed
+            var dragMoveX = (1 - r) * dx;
+            var dragMoveY = (1 - r) * dy;
+
+            sconf.modorInPicX += dragMoveX;
+            sconf.modorInPicY += dragMoveY;
+
+            // necessary so drag to move starts at correct position
+            rg[ "media-mover" ].achieved.achieved = [
+                sconf.modorInPicX,
+                sconf.modorInPicY
+            ];
+        }
 
         function stopAftershocks( ev )
         {

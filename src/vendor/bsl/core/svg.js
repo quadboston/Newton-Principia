@@ -37,8 +37,12 @@
                 arg.rgX.svgel = svgel;
                 arg.rgX.svgel$ = $$.$( svgel );
             }
+        } else if( !svgel.parentNode && has( arg, 'parent' ) ) {
+            //todm perhaps this condition is non relilable:
+            //parent node can exist, but be removed and svgel will be "lost"
+            //as similar case happened with graph's tool line:
+            arg.parent.appendChild( svgel );
         }
-
         Object.keys( arg ).forEach( function( key ) {
  
             //--------------------------------------
@@ -107,7 +111,9 @@
                     //ccc( wwPname, key, val );
                     //throw 'err. ' + key;
                 //}
-
+                //if( arg.type === 'text' && key==='class' ){
+                //    ccc( 'ns-svg: class='+val, svgel );
+                //}
                 svgel.setAttributeNS( null, key, val );
             }
             //-------------------------------------
@@ -376,12 +382,21 @@
         arg.type = 'text';
         var svgEl = nssvg.u( arg );
         if( arg.text ) {
-            //https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
-            //https://stackoverflow.com/questions/4282108/how-to-change-
-            //svg-text-tag-using-javascript-innerhtml
             svgEl.textContent = arg.text;
         }
         return svgEl;
     }
-}) ();
-
+    ///Similar to printText, but with innerHTML
+    ///instead of plain text.
+    nssvg.printTextInnerHTML = function( arg )
+    {   
+        arg.type = 'text';
+        var svgEl = nssvg.u( arg );
+        if( has( arg, 'innerHTML' ) ){
+            //https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
+            //https://stackoverflow.com/questions/4282108/how-to-change-
+            //svg-text-tag-using-javascript-innerhtml
+            svgEl.innerHTML = arg.innerHTML;
+        }
+        return svgEl;
+}})();

@@ -169,7 +169,8 @@
         //---------------------------------------------------------
         if( wideScreen_flag ) {
             //todo ???
-            var ww = sDomN.sliderGroup$ ? 20 : 0; //for lemma 2, 3, 4
+            //var ww = fconf.sappId.indexOf('lemma2') === 0 ||
+            //         fconf.sappId === 'lemma3' ? 20 : 0;
             stdMod.legendRoot$
                 .css( 'left', ( svgSceneW + legendMargin ).toFixed() + 'px' )
                 .css( 'top','0px' )

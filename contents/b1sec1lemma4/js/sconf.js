@@ -1,5 +1,5 @@
 ( function () {
-    var { sn, nspaste, fapp, fconf, sconf, ssF, stdMod, fixedColors, } = 
+    var { sn, nspaste, fapp, fconf, sconf, ssF, stdMod, topicColors_repo, } = 
 	    window.b$l.apptree({ ssFExportList : { init_conf, }, });
     
     var stdL2       = sn('stdL2', fapp );
@@ -89,9 +89,10 @@
         ssF.init_conf_common(BASES_SLIDER_WIDTH_FACTOR);
 
         //point sizes
-        sconf.pointDecoration.r = 2.5; // resizes solid points, not hollow draggers
-        sconf.MOVABLE_BASE_RADIUS = 4; // overwrites defaults from sconf-common.js
-        sconf.CTRL_RADIUS = 4;
+        sconf.pointDecoration.r = 2; // solid points
+				// (overwrites defaults from sconf-common.js)
+        sconf.MOVABLE_BASE_RADIUS = 3.2; // movable base points
+        sconf.CTRL_RADIUS = 3.2;	// curve control points
 
 
         //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
@@ -99,7 +100,7 @@
             given,
             figure,
             widths,
-        } = fixedColors;
+        } = topicColors_repo;
 
 
         const predT =
@@ -118,15 +119,15 @@
 
             //For highlighting the data table
             'figuresRatio'  : figure,
-            'parallelogramsRatio'   : fixedColors["inscribed-rectangles"],
+            'parallelogramsRatio'   : topicColors_repo["inscribed-rectangles"],
 
             //Individual parallelograms (for highlighting)
-            "inscribed-rectangle-AacE-1" : fixedColors["inscribed-rectangles"],
-            "inscribed-rectangle-PprT-1" : fixedColors["inscribed-rectangles"],
+            "inscribed-rectangle-AacE-1" : topicColors_repo["inscribed-rectangles"],
+            "inscribed-rectangle-PprT-1" : topicColors_repo["inscribed-rectangles"],
 
             //For each figure so they can be highlighted separately
-            "inscribed-rectangles-AacE" : fixedColors["inscribed-rectangles"],
-            "inscribed-rectangles-PprT" : fixedColors["inscribed-rectangles"],
+            "inscribed-rectangles-AacE" : topicColors_repo["inscribed-rectangles"],
+            "inscribed-rectangles-PprT" : topicColors_repo["inscribed-rectangles"],
         }
 
 
@@ -246,7 +247,7 @@
         ];
 
         nspaste( sconf, {
-            predefinedTopics : predT,
+            topicColors_elected : predT,
             originalPoints,
             linesArray,
             //lines,
@@ -256,7 +257,7 @@
             pictureHeight,
             mod2inn_scale : 5, //was pictureActiveArea,
             //default_tp_stroke_width : 12,
-            handleRadius : 55,
+            handleRadius : 155,
 			mediaBgImage : "l4-diagram.png",
         });
         //=====================================

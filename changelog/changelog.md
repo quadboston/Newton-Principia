@@ -1,6 +1,25 @@
 # Change Log
-  
-## 2025-11-? (MediumVioletRed Version, 0.2)
+
+## 2026-1-? (SteelBlue Version, 0.5)
+### Improved
+* Propositions 1 and 2
+	* fixed issues with z-order, consistent radii colors, label colors, and lower-case italics
+
+## 2026-1-11 (Silver Version, 0.4)
+### Improved
+* Proposition 6
+	* minor bug fixes
+	
+* Propositions 10, 11
+	* eccentricity of both models controlled by point A
+
+## 2025-12-17 (Green Version, 0.3)
+### Improved
+* General
+	* browser refresh does not change tab or submenu state
+	* higher contrast for highlightable text
+ 
+## 2025-12-4 (MediumVioletRed Version, 0.2)
 ### Improved
 * General
 	* performance improvements

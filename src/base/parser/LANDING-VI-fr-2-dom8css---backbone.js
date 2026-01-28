@@ -26,8 +26,7 @@
     ///
     ///called from main.js::bgImagesAreLoaded()...
     ///
-    function frags__2__dom_css_mjax_tpanchors()
-    {
+    function frags__2__dom_css_mjax_tpanchors (){
         //***********************************************************
         //contains //Frag. step I.
         ssF.exegs__2__dom_indexedLinks_indexedTopics();
@@ -35,12 +34,11 @@
 
         //***********************************************************
         //Frag. step Ib. Colors.
-        ssF.topics__2__topicsColorModel();
+        ssF.lowtpid__2__glocss8anchorRack();
         ///Frag. step II. Norm. and anchor-texts and
         ///Frag. step III. Html and global-css-visib-of-active-category.
         ssF.exegs__2__tpAn8dom8css8mjax();
         //***********************************************************
-
 
         //***********************************************************
         // styles
@@ -49,6 +47,8 @@
 
         ///Frag. step IV. Text anchors.
         var { styleAnchors, nextTplinks } = ssF.topics_anchor_css();
+        ssD.nextTplinks = nextTplinks;   //for prop1,2
+        ssD.styleAnchors = styleAnchors; //for prop1,2
 
         ///Frag. step V. Unhighlighted global CSS.
         ssF.v2_topics_2_unhighCss();
@@ -66,7 +66,7 @@
     {
         //Frag. step I.
         //collects and adds more entries into l caseId2allLemTopics,
-        //var collectedTpLinks = 
+        //var collectedTpLinks =
         ssF.fragment__collectsRawTpLinks( singleMessageText );
         //  link = {
         //                tplink_ix : tplink_ix,
@@ -81,7 +81,7 @@
         //Repeates the job which was done for all l caseId2allLemTopics,
         //If some topics are "zerbra-generated", then colors distribution is
         // "condenced" more.
-        ssF.topics__2__topicsColorModel();
+        ssF.lowtpid__2__glocss8anchorRack();
 
         //Input:   rawActiveFrag - string or dictionary of strings,
         //         f.e. subexeg.activeFrags[ ...IX... ] which are elements of

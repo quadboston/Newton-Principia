@@ -153,7 +153,11 @@
                         <span class="dd-label"><a href="https://www.linkedin.com/in/john-scott-61956614/">John Scott</a>:</span>
                             concept, production, programming, video<br>
                         <span class="dd-label"><a href="https://bastyon.com/konstantin_kirillov">Konstantin Kirillov:</a></span>
-                            lead programming, addenda, UI<br>
+                            lead programming, UI<br>
+						<span class="dd-label"><a href=" https://sarahrosannabusch.ca">Sarah Rosanna Busch:</a></span>
+                            programming<br>
+						<span class="dd-label"><a href="https://www.funneractic.com/About.html">David McMurtrie:</a></span>
+                            programming<br>
                         <span class="dd-label"><a href="https://www.linkedin.com/in/kathryn-lepome">Kathryn LePome:</a></span>
                             voice<br>
                         <span class="dd-label"><a href="https://github.com/quadboston/Newton-Principia">Source Code:</a></span> 
@@ -280,8 +284,10 @@
                 `;
             }
             let chosen = sappItem.sappId === fconf.sappId ? ' chosen' : '';
+            //when navigating to a new page, vertical tab persists, horizontal tab reset to claim
+            let aspectId = ns.getAspectId(sappItem.sappId);
             coreText += `
-                <li><a href="${landingPath}?conf=sappId=${sappItem.sappId}"
+                <li><a href="${landingPath}?conf=sappId=${sappItem.sappId},logic_phaseId=claim,aspectId=${aspectId}"
                     class="lemma-item-title ${chosen}">&nbsp;&nbsp;&nbsp;${sappItem.caption}
                     </a>
                 </li>`;

@@ -37,14 +37,6 @@
         {
             pointWrap,
             doProcess,
-            //update_decPoint:
-                //if this property is missed, then using
-                //d8d-framework.js::update_decPoint_inn2outparent() ...
-                //  ... dompos = inn2outparent.call( pointWrap
-
-                //update_decPoint : 'update_decPoint_default',
-                //      apparently above needs this: dragHandleDOM
-                //      which we don't provide as this "argc" prop;
         };
         //ccc( 'does create ' + pointWrap.spinnerClsId + ' ' + pointWrap.pname);
         medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE( argc );

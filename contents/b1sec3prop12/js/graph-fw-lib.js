@@ -36,9 +36,9 @@
         colorThreadArray = [ equilibConst, 'rgba( 155, 155, 155, 0.5 )', ];
         */
         sData.colorThreadArray = [
-            sDomF.getFixedColor( 'shadow' ), //predefinedTopics.P, !!'makeOpacity1' ),
-            sDomF.getFixedColor( 'force' ), //predefinedTopics.P, !!'makeOpacity1' ),
-            sDomF.getFixedColor( 'body' ), //predefinedTopics.P, !!'makeOpacity1' ),
+            sDomF.getFixedColor( 'shadow' ), //topicColors_elected.P, !!'makeOpacity1' ),
+            sDomF.getFixedColor( 'force' ), //topicColors_elected.P, !!'makeOpacity1' ),
+            sDomF.getFixedColor( 'body' ), //topicColors_elected.P, !!'makeOpacity1' ),
         ];
         return sData.colorThreadArray;
         //===========================================

@@ -9,6 +9,7 @@
     //==========================================
     function initDragModel( medD8D )
     {
+        ccc( 'not too many models? initDragModel()' );
         var modCurvPivots   = ssD.curvePivots;
         var yflip           = sconf.MONITOR_Y_FLIP;
         var yRange          = sconf.APP_MODEL_Y_RANGE;

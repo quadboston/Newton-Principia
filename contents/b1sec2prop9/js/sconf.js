@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, fconf, sconf, fixedColors, } = 
+    var { ns, fconf, sconf, topicColors_repo, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -52,7 +52,7 @@
         //--------------------------------------
         default_tp_stroke_width = Math.floor( 8 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 4 * controlsScale ),
+        handleRadius            = Math.floor( 3.2 * controlsScale ),
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius;
         // //\\ principal tp-css pars
@@ -149,10 +149,10 @@
             context,
             sunColor,
             estimatedForce
-        } = fixedColors;
+        } = topicColors_repo;
 
 
-        var predefinedTopics =
+        var topicColors_elected =
         {
             given,
             proof,
@@ -275,7 +275,7 @@
             TIME_STEPS,
 
             mediaBgImage : "diagram.png",
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             originX_onPicture,

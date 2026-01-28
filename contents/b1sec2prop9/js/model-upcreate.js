@@ -94,7 +94,7 @@
         });
         $$.$( rgCurvatureCircle.svgel ).addClass(
             //tostroke thickable ... what is thickable
-            'tostroke tp-' + nsmethods.camelName2cssName( curvatureCircleName )
+            'tostroke tp-' + nsmethods.toCssIdentifier( curvatureCircleName )
         );
         rgCurvatureCircle.svgel.style.display =
             rgCurvatureCircle.undisplay ? 'none' : 'block';

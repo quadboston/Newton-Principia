@@ -1,5 +1,5 @@
 ( function () {
-    var { sn, $$, fapp, sconf, rg, amode, stdMod, } = window.b$l.apptree({
+    var { sn, $$, fapp, sconf, fconf, rg, amode, stdMod, } = window.b$l.apptree({
         stdModExportList : { syncPoints, }, });
     var stdL2       = sn('stdL2', fapp );
     var numModel    = sn('numModel', stdL2 );

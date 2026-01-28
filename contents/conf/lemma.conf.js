@@ -407,6 +407,13 @@
             TP_OPACITY_LOW_POINT : 1, // applied to 'originalPoints' and 'linesArray' in page's sconf.js
 
             TP_OPACITY_HIGH : 1,
+
+			/* in master; which do we want for merge?
+			            AREA_DEFAULT_OPACITY : 0.35,
+            AREA_HIGHLIGHT_OPACITY : 0.7,
+
+            ANCHOR_OPACITY_LOW : '0.7',
+			*/
     
             AREA_DEFAULT_OPACITY : 0.20,
             AREA_HIGHLIGHT_OPACITY : 0.7,

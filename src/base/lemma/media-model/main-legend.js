@@ -189,7 +189,7 @@
                 spanVal,
                 style,
         }){
-            tpCssName = sDomF.topicIdUpperCase_2_underscore( tpCssName || clusterKey );
+            tpCssName = sDomF.toCssIdentifier( tpCssName || clusterKey );
             tpCssName = tpCssName.replace( /<_>/g, ' ' );
             var dataMonospace = tpCssName.indexOf( 'data-monospace' ) > -1;
             if( dataMonospace ) {

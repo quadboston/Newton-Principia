@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, sn, mat, fconf, sconf, stdMod, fixedColors, } = 
+    var { ns, sn, mat, fconf, sconf, stdMod, topicColors_repo, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     var op = sn( 'orbitParameters', sconf );
     var sop = sn( 'sampleOrbitParameters', sconf );
@@ -41,7 +41,7 @@
         // override engine defaults, in expands-conf.js,
         default_tp_stroke_width = Math.floor( 6 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 4.5 * controlsScale ),        
+        handleRadius            = Math.floor( 3.5 * controlsScale ),        
         sconf.pointDecoration.r = handleRadius;
         sconf.default_tp_lightness = 30;
 
@@ -129,9 +129,9 @@
             curvature,
             context,
 			force,
-        } = fixedColors;
+        } = topicColors_repo;
 
-        var predefinedTopics =
+        var topicColors_elected =
         {
             given,
             proof,
@@ -405,7 +405,7 @@
 
         ns.paste( sconf, {
             mediaBgImage : "diagram.png",
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             originX_onPicture,

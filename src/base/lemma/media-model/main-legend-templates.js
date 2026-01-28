@@ -2,7 +2,7 @@
 ( function() {
     var {
         ns, sn, $$, mat,
-        sconf,
+        fapp, sconf,
         rg,
         ssF, ssD,
         stdMod, sDomF, sDomN, amode,
