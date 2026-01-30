@@ -108,7 +108,7 @@
             pdom.setAttributeNS(null, "r", sconf.CTRL_RADIUS);
             //.todm patch
             //pdom.style.fill = 'rgba(255,255,255,1)'; //makes the point hollow
-            //pdom.style.stroke = sDomF.tpname0arr_2_rgba( 'curve' );
+            //pdom.style.stroke = sDomF.tpid0arrc_2_rgba( 'curve' );
             pdom.style[ 'stroke-width' ] = '1px';
             pt.x = cp[i].x;
             pt.y = cp[i].y;
@@ -149,7 +149,7 @@
                 //    c cc( pt.id + ' ' + pdom.style.fill, pdom,  );
 
             pdom.style.stroke = !isFig ? 'transparent' :
-                    sDomF.tpname0arr_2_rgba( 'curve' );
+                    sDomF.tpid0arrc_2_rgba( 'curve' );
             }
         }
 
@@ -182,7 +182,7 @@
                 //if( i >0 && i < 7 )
                 //    c cc( pt.id + ' ' + pdom.style.fill, pdom,  );
                 pdom.style.stroke = !isIn && !isCir ? 'transparent' :
-                    sDomF.tpname0arr_2_rgba( 'curve' );
+                    sDomF.tpid0arrc_2_rgba( 'curve' );
             }
         }
         // \\//  dehollowfies basePts

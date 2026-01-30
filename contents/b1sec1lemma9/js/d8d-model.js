@@ -49,7 +49,7 @@
         //.........................................
         var claimRatio_max = sconf.claimRatio_max;
         var wpoint              = rg.B;
-        wpoint.dragDecorColor   = sDomF.tpname0arr_2_rgba( 'given' );
+        wpoint.dragDecorColor   = sDomF.tpid0arrc_2_rgba( 'given' );
         wpoint.dragPriority     = 9;
         wpoint.spinnerClsId       = 'B';
         createDragger({
@@ -99,7 +99,7 @@
         //moves when the tiltAngle changes.  The following needs the initial E y position.  This could be computed using the initial tiltAngle and initial
         //point C y.  However if achieved stored the initial the tiltAngle, it would not have access to the initial point C y.
         var wpoint              = rg.E;
-        wpoint.dragDecorColor   = ns.haz( rg.E, 'pcolor' ) || sDomF.tpname0arr_2_rgba( 'given' );
+        wpoint.dragDecorColor   = ns.haz( rg.E, 'pcolor' ) || sDomF.tpid0arrc_2_rgba( 'given' );
         wpoint.spinnerClsId       = 'E';
         createDragger({
             achieved            : rg.E.pos.concat([]),
@@ -149,7 +149,7 @@
         var wpoint              = rg.C;
         wpoint.dragPriority     = 10;
         wpoint.spinnerClsId       = 'C';
-        wpoint.dragDecorColor   = sDomF.tpname0arr_2_rgba( 'given' );
+        wpoint.dragDecorColor   = sDomF.tpid0arrc_2_rgba( 'given' );
 
         if( !sconf.hideProofSliderCompletely ){
             createDragger({
@@ -202,7 +202,7 @@
         //  -Works for both lemma 9 and 10
 
         var wpoint              = rg.pivotPoint1;
-        wpoint.dragDecorColor   = ns.haz( rg.pivotPoint1, 'pcolor' ) || sDomF.tpname0arr_2_rgba( 'proof' );
+        wpoint.dragDecorColor   = ns.haz( rg.pivotPoint1, 'pcolor' ) || sDomF.tpid0arrc_2_rgba( 'proof' );
         wpoint.spinnerClsId     = 'pivotPoint1';
         createDragger({
             achieved            : ssD.curvePivots[1].concat([]),
@@ -248,7 +248,7 @@
         //.........................................
         var mainCurve           = rg['mainCurve'];
         var wpoint              = mainCurve.mediael.pivotPoints[2];
-        wpoint.dragDecorColor   = ns.haz( rg.pivotPoint2, 'pcolor' ) || sDomF.tpname0arr_2_rgba( 'given' );
+        wpoint.dragDecorColor   = ns.haz( rg.pivotPoint2, 'pcolor' ) || sDomF.tpid0arrc_2_rgba( 'given' );
         wpoint.spinnerClsId        = 'pivotPoint2';
 
         createDragger({

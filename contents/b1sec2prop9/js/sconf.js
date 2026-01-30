@@ -1,5 +1,6 @@
 ( function() {
-    const { nspaste, fconf, sf, topicColors_repo, originalPoints } =
+    const { nspaste, fconf, sf, tpid2arrc_repo,
+            tpid2arrc_elect, originalPoints } =
             window.b$l.apptree({ ssFExportList : { init_conf }
     });
     return;
@@ -140,10 +141,10 @@ function init_conf()
         context,
         //invalid,
         //shadow,
-    } = topicColors_repo;
+    } = tpid2arrc_repo;
 
     ///does export topic colors
-    sf.topicColors_elected = nspaste( {}, { //need deep copy
+    nspaste( tpid2arrc_elect, { //need deep copy
         force,
         estimatedForce,
         fQR,
@@ -247,7 +248,7 @@ function init_conf()
         Y : {
             pcolor : proof,
             letterAngle : -90,
-            cssClass : 'logic_phase--proof',            
+            cssClass : 'logic_phase--proof',
         },
         Or : {
             doPaintPname : false,

@@ -1,8 +1,9 @@
 ( function() {
     var {
-        ns, $$, sn, nsmethods, has, haz, nspaste, eachprop,
+        ns, $$, sn, nsmethods, has, haz, hob, nspaste, eachprop,
         fapp, fconf, sconf, ssD, sapp, sDomF, sDomN, capture, rg,
-        topics, topicColors_repo, topicColors_repo_camel2col, references, exegs,
+        topics, tpid2arrc_repo,
+        tpid2arrc_elect, references, exegs,
         stdMod, amode, userOptions
     } = window.b$l.apptree({
         ssFExportList :
@@ -10,7 +11,7 @@
             LANDING_V___loads_professorList8cont_8_buildsSubexegs,
         },
     });
-    sDomF.tpname0arr_2_rgba = tpname0arr_2_rgba;
+    sDomF.tpid0arrc_2_rgba = tpid0arrc_2_rgba;
     var dataFiles = sn( 'dataFiles', ssD, [] );
     var dataFiles_id2content = sn( 'dataFiles_id2content', ssD );
     return;
@@ -226,22 +227,19 @@
                     //===============================================================
 
 
-                    //---------------------------------------------------------------
+                    //-------------------------------------------------------
                     // //\\ adds topic-categories from
-                    //---------------------------------------------------------------
-                    //      essayHeader, 'fixed-colors' to topicColors_repo
+                    //-------------------------------------------------------
+                    //      essayHeader, 'fixed-colors' to tpid2arrc_elect
                     //      for entire lemma
-                    var wwfc = haz( essayHeader, 'fixed-colors' );
-                    if( wwfc ) {
-                        Object.keys( wwfc ).forEach( topicKey => {
-                            var tk = nsmethods.camelName2cssName( topicKey );
-                            topicColors_repo[ tk ] = wwfc[ topicKey ];
-                            topicColors_repo_camel2col[ topicKey ]= topicColors_repo[ tk ];
-                        });
-                    }
-                    //---------------------------------------------------------------
+                    // happens after expands-conf.js
+                    // modifies already modified elected, this
+                    // can be hidden unexpected surprise,
+                    nspaste( tpid2arrc_elect,
+                             hob( essayHeader, 'fixed-colors' ) );
+                    //-------------------------------------------------------
                     // \\// adds topic-categories from
-                    //---------------------------------------------------------------
+                    //-------------------------------------------------------
 
                     //---------------------------------------------------------
                     // //\\ captured states
@@ -572,7 +570,7 @@
         }
     }
 
-    ///todm: should be named ptype0colorArray_2_rgba
+    ///todm: should be named tpid0arrc_2_rgba
     ///converts these two things
     ///
     ///input: ptype - optional, is an id in "fixed-colors",
@@ -582,16 +580,13 @@
     ///               if array, converted as array to color
     ///       makeOpacity1 - means "do make opacity equal to 1",
     ///returns string of fixed color or black,
-    function tpname0arr_2_rgba( ptype0colorArray, makeOpacity1 )
+    function tpid0arrc_2_rgba( tpid0arrc, makeOpacity1 )
     {
-        if( typeof ptype0colorArray === 'string' ) {
-            //returns blank, ' ' if ptype0colorArray is falsy
-            var cleared = nsmethods.camelName2cssName( ptype0colorArray || ' ' );
-
-            //returns false if cleared === ' ' and not a key in fixed-colors ...
-            var colorArray = haz( topicColors_repo, cleared );
+        if( typeof tpid0arrc === 'string' ) {
+            var colorArray = haz( tpid2arrc_elect, tpid0arrc ) ||
+                             haz( tpid2arrc_repo, tpid0arrc );
         } else {
-            var colorArray = ptype0colorArray;
+            var colorArray = tpid0arrc;
         }
         ///returns "rgba(0,0,0,1)" if color is falsy
         if( colorArray && makeOpacity1 ) {

@@ -1,15 +1,7 @@
-
 ( function() {
-    var { ns, fconf, sconf } =
-    window.b$l.apptree({ ssFExportList : { init_conf } });
-    return;
-
-
-
-
-
-
-
+var { ns, tpid2arrc_elect, fconf, sconf } =
+window.b$l.apptree({ ssFExportList : { init_conf } });
+return;
 
 
     ///====================================================
@@ -74,9 +66,6 @@
         // //\\ topic group colors,
         //      todm: possibly proliferation
         //-----------------------------------
-        var topicColors_elected =
-        {
-        };
         //-----------------------------------
         // \\// topic group colors,
         //-----------------------------------
@@ -88,7 +77,7 @@
         ///alternatively to this, you can set own colors for originalPoints
         ///by your own
         ns.eachprop( originalPoints, (point,pname) => {
-            point.pcolor = ns.haz( point, 'pcolor' ) || topicColors_elected[ pname ];
+            point.pcolor = ns.haz( point, 'pcolor' ) || tpid2arrc_elect[ pname ];
         });
 
         //model's spacial unit in pixels of the picture:
@@ -100,7 +89,6 @@
 
         ns.paste( sconf, {
             mediaBgImage : "main-picture.png",
-            topicColors_elected,
             originalPoints,
             lines,
             originX_onPicture,
@@ -108,7 +96,7 @@
             pictureWidth,
             pictureHeight,
             mod2inn_scale,
-            
+
             default_tp_stroke_width : 12,
         });
     }

@@ -1,11 +1,12 @@
 ( function() {
-    var {
-        nspaste, fconf, sf, topicColors_repo, originalPoints,      eachprop, mat,
-        fapp, sconf,
-    } = window.b$l.apptree({
-        ssFExportList : { init_conf }
-    });
-    return;
+var {
+    nspaste, fconf, sf,
+    tpid2arrc_elect, originalPoints, eachprop, mat,
+    fapp, sconf,
+} = window.b$l.apptree({
+    ssFExportList : { init_conf }
+});
+return;
 
 
     function init_conf(){
@@ -67,8 +68,7 @@
         // \\// decorational parameters
         //***************************************************************
 
-        var topicColors_elected =
-        {
+        nspaste( tpid2arrc_elect, { //need deep copy
             "static"                : [0,     200, 255, 1],
 
             //with half opacity
@@ -80,8 +80,8 @@
             "aux"                   : [255,   0, 255, 1],
             "constructors"          : [0,     0, 255, 1],
             "ellipse"               : [0,   150, 0, 1],
-        };
-        let pt = topicColors_elected;
+        });
+        let pt = tpid2arrc_elect;
         pt[ "gamma" ] = pt[ "core" ];
         pt[ "g-parameter" ] = pt[ "core" ];
         pt[ "angle-alpha" ] = pt[ "static-half" ];
@@ -513,7 +513,6 @@
         //----------------------------------------------------
         fapp.normalizeSliders( pictureHeight / 500 ); //todo not automated, prolifer.
         Object.assign( to_sconf, {
-            topicColors_elected,
             originalPoints,
             linesArray,
             mediaBgImage : "diagram.png",

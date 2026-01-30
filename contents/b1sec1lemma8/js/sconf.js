@@ -1,10 +1,11 @@
-{ let { ns, fconf, sconf, topicColors_repo } =
+{ let { ns, eachprop, haz, nspaste, fconf, sconf, tpid2arrc_repo,
+        tpid2arrc_elect, } =
   window.b$l.apptree({ ssFExportList : { init_conf : function(){
 
     //overrides "global", lemma.conf.js::sconf
     // opacity of items defined in originalPoints and linesArray below
     sconf.TP_OPACITY_LOW_POINT = 1;
-    // applied to items defined in topicColors_elected below
+    // applied to items defined in tpid2arrc_elect below
     sconf.TP_OPACITY_LOW = 1;
     // darkness of lines, curves
     sconf.default_tp_lightness = 22;
@@ -49,15 +50,15 @@
     //-----------------------------------
     // //\\ svg model colors
     //-----------------------------------
-    var given = topicColors_repo.given; // claim
-    var proof   = topicColors_repo.proof;
-    var shadow  = topicColors_repo.shadow; // colour of φ both point and label
-    var result  = topicColors_repo.result; // used only if sconf.rgShapesVisible === true
+    var given = tpid2arrc_repo.given; // claim
+    var proof   = tpid2arrc_repo.proof;
+    var shadow  = tpid2arrc_repo.shadow; // colour of φ both point and label
+    var result  = tpid2arrc_repo.result; // used only if sconf.rgShapesVisible === true
     var context = [0,   0,   0]; // used only if sconf.rgShapesVisible === true
-    var hidden  = topicColors_repo.hidden;
+    var hidden  = tpid2arrc_repo.hidden;
     var red = [255,0,0]; //for debugging
 
-    var topicColors_elected = {
+    nspaste( tpid2arrc_elect, { //need deep copy
         //:basic topics
         proof,
         given,
@@ -96,7 +97,7 @@
         'rAd' : proof,
         'rAcb-rAb' : proof,
         'rAd-rAb' : proof,
-    };
+    });
 
     var originalPoints = {
 
@@ -317,8 +318,8 @@
     };
 
     ///alternatively to this, you can set own colors for originalPoints
-    ns.eachprop( originalPoints, (point,pname) => {
-        point.pcolor = ns.haz( point, 'pcolor' ) || topicColors_elected[ pname ];
+    eachprop( originalPoints, (point,pname) => {
+        point.pcolor = haz( point, 'pcolor' ) || tpid2arrc_elect[ pname ];
     });
 
     var linesArray =
@@ -456,11 +457,10 @@
     // \\// curve pars
     //----------------------------------
 
-    ns.paste( sconf, { // adds these members to globally available sconf
+    nspaste( sconf, { // adds these members to globally available sconf
         //double back step ../../ is to reuse this path in code for lemma7
         mediaBgImage : "../../b1sec1lemma8/img/d.png",
         givenCurve_pivots_inModel,
-        topicColors_elected,
         originalPoints,
         linesArray,
         //lines,

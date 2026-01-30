@@ -2,8 +2,10 @@
 ( function() {
     var { //import from apptree
         ns,
+        nspaste,
         fconf,
         sconf,
+        tpid2arrc_elect,
     } = window.b$l.apptree({ //export to apptree
         ssFExportList : { init_conf }
     });
@@ -130,8 +132,7 @@
         var hidden  = [0,     0,   0,      0];
         var context = [0,     0,   0,      1];
         var invalid = [200,  150,  0,      1];
-        var topicColors_elected =
-        {
+        nspaste( tpid2arrc_elect, { //need deep copy
             given,
             proof,
             result,
@@ -143,7 +144,7 @@
             force   : result,
             tangentCircle : curvature,
             //curvatureCircle : curvature,
-        };
+        });
         //-----------------------------------
         // \\// topic group colors,
         //-----------------------------------
@@ -424,14 +425,13 @@
 
         ];
 
-        ns.paste( sconf, {
+        nspaste( sconf, {
             PparT,
             curveParA,
             curveParFi0,
             curveParFiMax,
             sForSagitta_valQ,
 
-            topicColors_elected,
             originalPoints,
             linesArray,
             originX_onPicture,

@@ -34,6 +34,7 @@
             $$          : ns.$$,
             own         : ns.own,
             haz         : ns.haz,
+            hob         : ns.hob,
             hazz        : ns.hazz,
             ha          : ns.ha,
             has         : ns.h,
@@ -67,7 +68,7 @@
             d8dp        : sn( 'd8dp' ),
             plugins     : sn('plugins'),
             tframes     : sn('tframes'),
- 
+
             fapp,
             fconf,
             sconf,

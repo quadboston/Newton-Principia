@@ -15,7 +15,7 @@
     var tableCaptionFun;
     return;
 
-    
+
     ///this function is called from common-application-library,
     ///from full-app/dom/...
     function create_digital_legend (){
@@ -114,7 +114,7 @@
         // //\\ table caption
         //===================
         //prepares force parameters
-        var forceColor = sDomF.tpname0arr_2_rgba( 'force' );
+        var forceColor = sDomF.tpid0arrc_2_rgba( 'force' );
         //tableCaptionFun = function( isAddendum ) {
         tableCaptionFun = function() {
             var arr = rg.force.inarray;

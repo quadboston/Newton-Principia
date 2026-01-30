@@ -1,21 +1,7 @@
-
 ( function() {
-    var {
-        ns, eachprop,
-        fconf,
-        sconf,
-    } =
-    window.b$l.apptree({
-        ssFExportList : { init_conf }
-    });
-    return;
-
-
-
-
-
-
-
+var {ns, eachprop, nspaste, fconf, sconf, tpid2arrc_elect, } =
+window.b$l.apptree({ ssFExportList: { init_conf } });
+return;
 
 
     //====================================================
@@ -128,9 +114,7 @@
         var context = [0,     0,   0,      1];
 
         sconf.INDIVIDUAL_BAR_INDEX_IN_LEMMA = 1;
-
-        var topicColors_elected =
-        {
+        nspaste( tpid2arrc_elect, { //need deep copy
             given,
             proof,
             result,
@@ -147,16 +131,16 @@
             'barsRatio' : result,
             'figuresRatio' : result,
             'ratio' : result,
-        };
+        });
         sconf.MONO_BARS_COLOR = proof;
 
         //optional GUI sugar
         //matching bars:
         //patch which manually matches generated random zebra6-color for bar 1
         //when total bars max = 200:
-        topicColors_elected[ 'left-bar-' +
+        tpid2arrc_elect[ 'left-bar-' +
             sconf.INDIVIDUAL_BAR_INDEX_IN_LEMMA ] = [111, 50, 1]; //[254, 254, 1];
-        topicColors_elected[ 'right-bar-' +
+        tpid2arrc_elect[ 'right-bar-' +
             sconf.INDIVIDUAL_BAR_INDEX_IN_LEMMA ] = [111, 50, 1];
         //-----------------------------------
         // \\// topic group colors,
@@ -471,7 +455,7 @@
             handleRadius,
 
             mediaBgImage : "l4-diagram.png",
-            topicColors_elected,
+            tpid2arrc_elect,
             originalPoints,
             linesArray,
             originX_onPicture,

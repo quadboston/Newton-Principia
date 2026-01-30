@@ -2,7 +2,7 @@
 const { sconf, nspaste, capture, toreg, ssF, ssD, sDomF,} =
       window.b$l.apptree({});
 ssF.init_conf_addon = init_conf_addon;
-ssD.P2_topicColors_elected = topicColors_elected;
+ssD.P2_topicColors_elected = P2_topicColors_elected;
 return;
 
 
@@ -11,22 +11,6 @@ return;
 ///====================================================
 function init_conf_addon (){
     sconf.mediaBgImage = "../../b1sec2prop1/js/img/b1s2p1t1.png";
-    //sconf.hide_perp_P_and_alike = true;
-    //dose not work: sconf.SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY = 0.8;
-
-    //{
-        ////--------------------------------------------------
-        ////expands predefinedTopic colors into rg
-        ////--------------------------------------------------
-        /*
-        let pt = topicColors_elected();
-        Object.keys( topicColors_elected() ).forEach( topicKey => {
-            toreg( topicKey )( 'pname', topicKey );
-            var tk = sDomF.tpid2low( topicKey );
-            topicColors_repo[ tk ] = pt[ topicKey ];
-        });
-        */
-    //}
 
     // //\\ makes capture
     nspaste( capture, {
@@ -120,7 +104,7 @@ function init_conf_addon (){
   });
 }
 
-function topicColors_elected(tpel){
+function P2_topicColors_elected(tpel){
     const {
         force,
         forceMove,

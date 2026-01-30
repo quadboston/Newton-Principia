@@ -1,7 +1,8 @@
 (function(){
 const { sn, eachprop, mapp, nspaste, haz, has, haf, haff,
         fconf, sconf, toreg, rg, ssF, ssD, sDomF, amode, stdMod,
-        topicColors_repo, topicColors_repo_camel2col, originalPoints,
+        tpid2arrc_repo, tpid2arrc_elect,
+        originalPoints,
 } = window.b$l.apptree({ stdModExportList : { sconf_points8lines, }, });
 const decor = sn( 'decor', stdMod );
 const LOGIC = false; //true does separate spatial and logic steps
@@ -33,7 +34,7 @@ function sconf_points8lines (){
         tangent,
 
         diagram,
-    } = topicColors_repo;
+    } = tpid2arrc_repo;
 
     {   const harden = col => ([col[0],col[1],col[2],1,1]);
         //0.5 is good for areas, bad for lines,
@@ -48,7 +49,7 @@ function sconf_points8lines (){
     }
 
     ///topic names elected
-    var tpel = {
+    var tpel = nspaste( tpid2arrc_elect, { //need deep copy
         diagram,
         speed,
         force,
@@ -74,8 +75,8 @@ function sconf_points8lines (){
         "SEF"               : trianglePurpleTextAreaColor,
         "SAB"               : trianglePurpleTextAreaColor,
 
-        "kepler-triangle-odd"   : topicColors_repo["kepler-triangle-odd"],
-        "kepler-triangle-even"  : topicColors_repo["kepler-triangle-even"],
+        "kepler-triangle-odd"   : tpid2arrc_repo["kepler-triangle-odd"],
+        "kepler-triangle-even"  : tpid2arrc_repo["kepler-triangle-even"],
 
         "sagitta-chords"    : sagittaeChords,
 
@@ -160,7 +161,7 @@ function sconf_points8lines (){
         "De"                : freeMove,
         "Ef"                : freeMove,
         "free-triangle"     : freeMove,
-    };
+    });
     var p2_elected = haf( ssD, 'P2_topicColors_elected' )(tpel);
     if( p2_elected ) {
         Object.assign( tpel, p2_elected );
@@ -339,7 +340,7 @@ function sconf_points8lines (){
                 //undisplay : true,
                 },
         //sagittae ABC = middle sagitta in sagittae-parallelogram,
-        //layed down from point B, 
+        //layed down from point B,
         U   : {
                 decStart : decor.C.decStart,
                 decEnd : decor.C.decEnd,
@@ -347,7 +348,7 @@ function sconf_points8lines (){
                 cssClass : 'hidden',
         },
         //sagittae DEF=middle sagitta in sagittae-parallelogram
-        //layed down from point E, 
+        //layed down from point E,
         W   : {
                 decStart : decor.F.decStart,
                 decEnd : decor.D.decEnd,
@@ -361,7 +362,7 @@ function sconf_points8lines (){
         //tips of forces
         //rg['VVV'+ix].pos <-- rg['force-'+ix+'-1'].pos
         let nam1 = 'VVV'+ix;
-  
+
         let doPaintPname = false;
         let pcolor = tpel.force;
         mixedSteps_conf[ nam0 ] = {
@@ -392,7 +393,7 @@ function sconf_points8lines (){
             pointRack[pointKey] = pointProp;
         });
     });
-    
+
     //---------------------------------------------------
     // //\\ equalizing points in decor and rg
     //---------------------------------------------------
@@ -597,7 +598,7 @@ function sconf_points8lines (){
             'caption',
             'captionShiftNorm',
             'undisplay',
-            'zOrderAfter',  
+            'zOrderAfter',
             'notp',
             'vectorTipIx',
             'stroke-width',
@@ -623,47 +624,14 @@ function sconf_points8lines (){
     });
 
     //==================================================
-    // //\\ equalizes topicColors_elected, topicColors_repo, and
-    // topicColors_repo_camel2col
-    // which should be done in the core,
-    //
-    // this is abnormal, there must be two arrays:
-    // topics_repo and tpel
-    //
-    // expands predefinedTopic colors into rg,
+    // expands tpid into rg
     // todo rg.SCd will be crashed later without this
-    // expansion, this scenario must have more steps    
+    // expansion, this scenario must have more steps
     //==================================================
-    sconf.topicColors_elected = tpel;
-    ////array tpel will be discraded upon leaving this function,
-    Object.keys( tpel ).forEach( tpCamel => {
-        //generates rg for all topics,
-        //this code is a substitute of expand-config.js
-        toreg( tpCamel )( 'pname', tpCamel );
-        var tpLowKey = sDomF.tpid2low( tpCamel );
-        //compliments topicColors_repo from stuff created in this sconf,
-        //topicColors_repo are based on non-Camel id,
-        var fck = topicColors_repo[ tpLowKey ] = tpel[ tpCamel ].concat();
-        //compensates missing of "extend-confib" in engine core
-        topicColors_repo_camel2col[ tpCamel ] = fck; //based on Camel Id
+    Object.keys( tpel ).forEach( tpid => {
+        toreg( tpid )( 'pname', tpid );
     });
-    if( has( ssD, 'P2_topicColors_elected' ) ) {
-        ////we are working in prop 2,
-        ////above condition is a flag
-        Object.keys( p2_elected ).forEach( camelId => {
-            //if( camelId === 'SBCaracc' ) return;
-            var tpLowKey = sDomF.tpid2low( camelId );
-            let fc = topicColors_repo_camel2col[ camelId ] =
-                    topicColors_repo[ tpLowKey ] =
-                    tpel[ camelId ];
-                //this thing only affects difference between strokable
-                //and areas like this:
-        });
-    }
-    //==================================================
-    // \\// equalizes topicColors_elected, topicColors_repo, and
-    //==================================================
-    
+
     //Update decStart for the following decorations if needed,
     //to ensure they start becoming visible for the specified steps.
     if (sconf.TIMER_AND_LOGIC_STEPS_COINSIDE === false) {

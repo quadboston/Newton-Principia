@@ -1,5 +1,6 @@
 ( function() {
-    const { nspaste, fconf, sf, topicColors_repo, originalPoints } =
+    const { nspaste, fconf, sf, tpid2arrc_repo,
+            tpid2arrc_elect, originalPoints } =
             window.b$l.apptree({ ssFExportList : { init_conf }
     });
     return;
@@ -171,10 +172,10 @@
         context,
         invalid,
         shadow,
-    } = topicColors_repo;
+    } = tpid2arrc_repo;
 
         ///does export topic colors
-        sf.topicColors_elected = nspaste( {}, { //need deep copy
+        nspaste( tpid2arrc_elect, { //need deep copy
             given,
             proof,
             result,

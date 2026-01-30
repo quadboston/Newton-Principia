@@ -48,7 +48,6 @@
         //i.e. swaps only in two places,
         doSwapXY,
     ){
-        ccc( 'approx' );
         curveName       = curveName || 'orbit';
         pivotsName      = pivotsName || 'curvePivots';
         approxCurveName = approxCurveName || 'approxer';

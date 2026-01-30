@@ -1,5 +1,5 @@
 (function(){
-    const { sconf, paste, fconf, rg } =
+    const {sconf, nspaste, fconf, rg, tpid2arrc_elect,} =
     window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -97,8 +97,7 @@ function init_conf(){
     var hidden  = [0,     0,   0,  ];
 
 
-    var topicColors_elected =
-    {
+    nspaste( tpid2arrc_elect, { //need deep copy
         given,
         proof,
         result,
@@ -125,7 +124,7 @@ function init_conf(){
 
         "ABDPerACE"         : given,
         "AD2PerAE2"         : result,
-    };
+    });
     //-----------------------------------
     // \\// topic group colors,
     //-----------------------------------
@@ -330,14 +329,13 @@ function init_conf(){
     //making size to better fit lemma's diagram
     sconf.LETTER_FONT_SIZE_PER_1000 = 30;
 
-    paste( sconf,
-        paste( to_sconf,
+    nspaste( sconf,
+        nspaste( to_sconf,
         {
             //double back step ../../ is to reuse this path in code for twin-lemma
             mediaBgImage : "../../b1sec1lemma9/img/lemma9-original.png",
 
             linesArray,
-            topicColors_elected,
             originalPoints,
             originX_onPicture,
             originY_onPicture,

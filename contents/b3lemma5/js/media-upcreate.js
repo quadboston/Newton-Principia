@@ -1,7 +1,7 @@
 ( function() {
     var {
         ns, sn, $$, sv,
-        sconf, ssF, ssD, sDomF, topicColors_repo,
+        sconf, ssF, ssD, sDomF, tpid2arrc_repo,
         rg, amode, stdMod, toreg,
     } = window.b$l.apptree({
         setModule, //delayed till mods loaded
@@ -35,7 +35,7 @@
     //=========================================================
     // //\\ updates and creates media
     //=========================================================
-    ///a candidate for replacement with 
+    ///a candidate for replacement with
     ///media_upcreate___before_basic
     function media_upcreate()
     {
@@ -75,7 +75,7 @@
         //-------------------------------------------------
         // //\\ colors
         //-------------------------------------------------
-        var wwfc        = topicColors_repo;
+        var wwfc        = tpid2arrc_repo;
         var arr2rgba    = ns.arr2rgba;
         var wwex        = wwfc[ "experimental" ];
         var wwap        = wwfc[ "approximator" ];
@@ -99,7 +99,7 @@
             toreg( "abscissa" );
             rg.abscissa.svgel = sv.polyline({
                 svgel   : rg.abscissa.svgel,
-                stroke  : 'black',                    
+                stroke  : 'black',
                 parent  : stdMod.mmedia,
                 pivots  : [ mod2med([-1,0]), mod2med([5,0]) ],
                 'stroke-width' : 1,
@@ -209,8 +209,8 @@
             ///placed over above line
             pos2pointy(
                 x.pname,
-                { 
-                    //tpclass       : ptype, 
+                {
+                    //tpclass       : ptype,
 
                     cssClass        : 'tostroke thickable',
                     'stroke'        : pcolor,
@@ -241,7 +241,7 @@
             ///placed over above line
             pos2pointy(
                 y.pname,
-                { 
+                {
                     //todm these fail ... why? ...
                     //??? remove tpfill to disable tp
                     //tpclass         : ptype,

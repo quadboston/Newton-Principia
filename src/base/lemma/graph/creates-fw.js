@@ -59,7 +59,7 @@
                     col => col.rgba_high );
             } else {
                 var pix2color = SETS_PLOTS_TP_NAME().map(
-                    c => sDomF.tpname0arr_2_rgba( c ));
+                    c => sDomF.tpid0arrc_2_rgba( c ));
             }
             gcontent.pix2color = pix2color;
             return pix2color;
@@ -81,7 +81,7 @@
             //y-legend color; taken from first plot color:
             const yColor = gcontent.pix2color[ 0 ];
 
-            let n2c = sDomF.tpname0arr_2_rgba; //name to color
+            let n2c = sDomF.tpid0arrc_2_rgba; //name to color
             const c_orbit = n2c( 'orbit' );
             const c_body = n2c( 'body' );
             const c_force = n2c( 'force' );

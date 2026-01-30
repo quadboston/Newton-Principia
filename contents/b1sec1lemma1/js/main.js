@@ -1,50 +1,25 @@
-( function() {
-    var {
-        sn, has,
-        stdMod, sapp, fconf, sconf, ssF,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-        },
-        setModule,
-    });
-    return;
+(function(){
+const {sn, has, stdMod, sapp, fconf, sconf, ssF,} =
+    window.b$l.apptree({ ssFExportList: {
+        finish_sapp_UI,
+        init_sapp,
+    },
+});
+return;
 
 
-
-
-
-    function setModule()
-    {
-        sapp.init_sapp = init_sapp;
-        sapp.finish_sapp_UI = finish_sapp_UI;
+///inits model and it's view
+function init_sapp (){
+    if( has( stdMod, 'model8media_upcreate' ) ) {
+        stdMod.model8media_upcreate();
+        stdMod.initDragModel()
     }
+    sapp.updatesLemmaCss();
+}
 
-    //=========================================================
-    // //\\ inits app
-    //=========================================================
-    function init_sapp() 
-    {
-        //======================================
-        // //\\ inits model and it's view
-        //======================================
-        if( has( stdMod, 'model8media_upcreate' ) ) {
-            stdMod.model8media_upcreate();
-            stdMod.initDragModel()
-        }
-        sapp.updatesLemmaCss();
-        //======================================
-        // \\// inits model and it's view
-        //======================================
-    }
-
-    function finish_sapp_UI() 
-    {
-        ssF.mediaModelInitialized = true;
-    }
-    //=========================================================
-    // \\// inits app
-    //=========================================================
-
-}) ();
+function finish_sapp_UI()
+{
+    ssF.mediaModelInitialized = true;
+}
+})();
 

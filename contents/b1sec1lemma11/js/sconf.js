@@ -1,15 +1,7 @@
-
-( function() {
-    var { ns, fconf, sconf } =
-    window.b$l.apptree({ ssFExportList : { init_conf } });
-    return;
-
-
-
-
-
-
-
+(function(){
+var { ns, nspaste, fconf, sconf, tpid2arrc_elect } =
+window.b$l.apptree({ ssFExportList : { init_conf } });
+return;
 
 
     //====================================================
@@ -94,8 +86,7 @@
         var result  = [200,   40,  0,      1];
         var hidden  = [0,     0,   0,      0];
 
-        var topicColors_elected =
-        {
+        nspaste( tpid2arrc_elect, { //need deep copy
             given,
             proof,
             result,
@@ -109,7 +100,7 @@
             'bd-BD'     : proof,
             'claimRatio': proof,
             'limitRatio': result,
-        };
+        });
         //-----------------------------------
         // \\// topic group colors,
         //-----------------------------------
@@ -203,9 +194,8 @@
         //making size to better fit lemma's diagram
         sconf.LETTER_FONT_SIZE_PER_1000 = 20;
 
-        ns.paste( sconf, {
+        nspaste( sconf, {
             mediaBgImage : "l11-diagram-3rded.jpg",
-            topicColors_elected,
             originalPoints,
             linesArray,
             originX_onPicture,

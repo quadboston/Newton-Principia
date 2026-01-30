@@ -65,9 +65,9 @@
             pt.pname                = pName;
             //optional attrs
             pt.stroke               = haz( pt, 'stroke' ) ||
-                                      han( attrs, 'stroke', sDomF.tpname0arr_2_rgba( tpclass ) );
+                                      han( attrs, 'stroke', sDomF.tpid0arrc_2_rgba( tpclass ) );
             pt.fill                 = haz( pt, 'fill' ) ||
-                                      han( attrs, 'fill', sDomF.tpname0arr_2_rgba( tpclass ) );
+                                      han( attrs, 'fill', sDomF.tpid0arrc_2_rgba( tpclass ) );
             pt.initialStrokeWidth   = han( attrs, 'stroke-width', 0 );
             pt.initialR             = han( pt, 'initialR', han( attrs, 'r', 4 ) );
             pt.media                = stdMod.mmedia;

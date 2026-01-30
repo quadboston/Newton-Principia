@@ -8,13 +8,12 @@
 //     recommended: /doc/landing-code-overview.txt
 (function(){
 const {
-    ns, sn, $$, cssp, eachprop, nspaste, haff, has, haz, nsmethods, html,
-    userOptions, fapp, sapp, fconf, sconf, engCssMs, fmethods, sDomF, sDomN,
-    topicColors_repo_camel2col, srg_modules, amode,
+    ns, sn, $$, cssp, eachprop, nspaste, haff, has, haz, nsmethods,
+    html, userOptions, fapp, sapp, fconf, sconf, engCssMs, fmethods,
+    sDomF, sDomN, tpid2arrc_elect, srg_modules, amode,
     //:nearly a patch
     stdMod, ssD, ssF, wrkwin, lowtpid_2_glocss8anchorRack,
 } = window.b$l.apptree({});
-
 //======================================================
 // //\\ establishes landing-start-state
 //======================================================
@@ -70,7 +69,7 @@ function I__front_page (){
 
     if( fconf.sappId === 'home-pane' ) {
         //// home. apparently does not do any modules landing-load
-        VII__finalize_app_and_cosmetics();
+        FINISH__landing();
         sDomN.landingPage8Options_click( !!'goToFrontPage' );
         ns.doScrollToHash();
     } else {
@@ -233,7 +232,7 @@ function cb__activates_modules8lemma (){
     //unscaled mediaSize = originalMod2inn_scale * modelSize,
     sconf.originalMod2inn_scale = sconf.mod2inn_scale;
     //can add this here: doesImproveSconf();
-    
+
     //all lemmas except 1, and 5 are normalized and do not
     //need this flag:
     !haz(sconf, 'dontRun_ExpandConfig') && ssF.doExpandConfig();
@@ -269,8 +268,7 @@ function cb__LANDING_VI (){
     //ssD['fixed-colors'] - goes from JS-code and
     //book's text,
     //l caseId2allLemTopics is empty at this moment,
-    eachprop( topicColors_repo_camel2col,
-                ( colorArray, camelId ) => {
+    eachprop( tpid2arrc_elect, ( colorArray, camelId ) => {
         var lowId = tpid2low( camelId );
         lowtpid_2_glocss8anchorRack[ lowId ] = {
             tpcolarr : colorArray,
@@ -300,7 +298,7 @@ function cb__LANDING_VI (){
         ///loading all media-bg-images:
         () => {
             VI__exegs2frags_8_initApp();
-            VII__finalize_app_and_cosmetics();
+            FINISH__landing();
             ns.doScrollToHash();
 
             ///.this is a patch: the cause and real solution
@@ -365,10 +363,10 @@ function VI__exegs2frags_8_initApp (){
     //======================================================
     // \\// stdModPatch
     //======================================================
-    sapp.init_sapp();
+    ssF.init_sapp();
 
     sDomF.populateMenu();
-    ns.haff( sapp, 'finish_sapp_UI' );
+    ns.haff( ssF, 'finish_sapp_UI' );
     nsmethods.establishesContentTriggers();
     sapp.isInitialized = true;
     fmethods.setupEvents();
@@ -397,7 +395,7 @@ function VI__exegs2frags_8_initApp (){
     fmethods.setupCapturerEvents();
 }
 
-function VII__finalize_app_and_cosmetics (){
+function FINISH__landing (){
     //--------------------------------------------
     // //\\ remove_landing_state_from_top_html();
     //--------------------------------------------

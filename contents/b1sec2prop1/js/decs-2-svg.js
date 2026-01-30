@@ -53,7 +53,7 @@
             'A',
             {
                 'fill' : 'white', //? fake prop, no effect
-                'stroke' : sDomF.tpname0arr_2_rgba( 'path' ),
+                'stroke' : sDomF.tpid0arrc_2_rgba( 'path' ),
                 'stroke-width' : 1,  //static case, overrided by tp
                 r : 6,
                 cssClass : 'tofill tostroke',
@@ -78,7 +78,7 @@
                 //tpclass : 'path',
 
                 'fill' : 'white',
-                'stroke' : sDomF.tpname0arr_2_rgba( 'speed' ),
+                'stroke' : sDomF.tpid0arrc_2_rgba( 'speed' ),
                 'stroke-width' : 1,
                 r : 6,
             }
@@ -102,8 +102,8 @@
                 //this possibly collides with white filling
                 //tpclass : 'path',
 
-                'fill' : sDomF.tpname0arr_2_rgba( 'forceMove' ),
-                'stroke' : sDomF.tpname0arr_2_rgba( 'forceMove' ),
+                'fill' : sDomF.tpid0arrc_2_rgba( 'forceMove' ),
+                'stroke' : sDomF.tpid0arrc_2_rgba( 'forceMove' ),
                 //'stroke-width' : 3,
                 r : 5,
             }

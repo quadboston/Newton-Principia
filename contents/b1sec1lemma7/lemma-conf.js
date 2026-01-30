@@ -2,7 +2,7 @@ window.b$l.apptree({}).fapp.lemmaConfig = function() { return {
     "contents-list" : [
         'txt/latin.txt',
         'txt/cohen-donahue.txt',
-        'txt/video.txt',
+        //breaks, access not authorized: 'txt/video.txt',
         'txt/addendum-comment.txt',
     ],
     codesList : [
@@ -15,7 +15,7 @@ window.b$l.apptree({}).fapp.lemmaConfig = function() { return {
         { src : 'state-capturer.js' },
         { src : 'main-legend.js' },
         { src : 'amode8captures.js' },
-    ],            
+    ],
     //optional additional reference html
     referencesForAllLemmaEssays : '',
 }}

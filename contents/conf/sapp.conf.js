@@ -1,11 +1,11 @@
 //default app wide settings for lemmas
 //may be overriden later by URL-query or lemma sconf.js,
 (function(){
-    const { fapp, fconf, sf, userOptions, topicColors_repo } =
+    const { fapp, fconf, sf, userOptions, tpid2arrc_repo } =
            window.b$l.apptree({});
     fapp.normalizeSliders = normalizeSliders;
     fapp.doesConfigLemma = doesConfigLemma;
-    const tr = topicColors_repo;
+    const tr = tpid2arrc_repo;
 
     //MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD is in fconf
     //todm ... merge some fconf and sf ... anyway, they
@@ -16,7 +16,7 @@
 function doesConfigLemma (){
     // runs once per page load
     // c cc('doesConfigLemma');
- 
+
     //tools
     sf.enableStudylab = false;
     //true enables framework zoom:
@@ -32,7 +32,7 @@ function doesConfigLemma (){
     //-----------------------
     tr.time   = [0,   150, 200     ];
     tr.dtime  = [...tr.time, 1];
-    
+
     //moving body on orbit
     tr.body   = [0,   120,  0,   1 ];
     tr.speed  = [...tr.body];
@@ -68,12 +68,12 @@ function doesConfigLemma (){
     //-----------------------
     // \\// physics
     //-----------------------
-    
+
     // //\\ diagram
     tr.angle       = [0,  0,  150,   0.1, 0.4 ];
     tr.angleArea   = [0,  0,  150,   0.1, 0.3 ];
     // \\// diagram
-    
+
     // //\\ proof steps
     tr.given       = [0,   150, 0,   1  ];
     tr.proof       = [0,   0,   255     ];
@@ -85,7 +85,7 @@ function doesConfigLemma (){
     tr.shadow      = [50,  50, 50,      ];
     tr.hidden      = [0,   0,  0,    0  ];
     tr.context     = [0,   0,  0,    1  ];
-    tr.attention   = [250, 150,   0 ];
+    tr.attention   = [200, 70, 0 ];
     //=======================================
     // \\// topic colors repo
     //=======================================

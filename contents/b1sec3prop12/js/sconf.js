@@ -1,7 +1,8 @@
 (function (){
-const { sn, nspaste, mat,
-        fconf, sf, stdMod, topicColors_repo, originalPoints,
-} = window.b$l.apptree({ ssFExportList : { init_conf } });
+const {sn, nspaste, mat,
+       fconf, sf, stdMod, tpid2arrc_repo,
+       tpid2arrc_elect, originalPoints, } =
+       window.b$l.apptree({ ssFExportList : { init_conf } });
 const op = sn( 'orbitParameters', sf );
 return;
 
@@ -12,13 +13,10 @@ function init_conf (){
     //sf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
 
     //====================================================
-    // //\\ subapp regim switches
+    // //\\ user scenarios
     //====================================================
-    //sconf.enableStudylab            = false;
-    //sconf.enableTools               = true;
-    //sconf.rgShapesVisible           = false;
     //====================================================
-    // \\// subapp regim switches
+    // \\// user scenarios
     //====================================================
 
     //***************************************************************
@@ -120,13 +118,12 @@ function init_conf (){
     //***************************************************************
     // //\\ model comparison demo
     //***************************************************************
+    //***************************************************************
     // \\// model comparison demo
     //***************************************************************
 
     //*************************************
     // //\\ elected colors,
-    //      to see templates what to override here, do
-    //      look at conf/lemma.conf.js:
     //*************************************
     ///does import topic colors
     const {
@@ -144,11 +141,11 @@ function init_conf (){
         context,
         invalid,
         shadow,
-    } = topicColors_repo;
+    } = tpid2arrc_repo;
     const attention = [200,  200,  0,      1];
 
     ///does export topic colors
-    sf.topicColors_elected = nspaste( {}, { //need deep copy
+    nspaste( tpid2arrc_elect, { //need deep copy
         force,
         curvature,
         given,
@@ -168,14 +165,13 @@ function init_conf (){
     //*************************************
 
     //*************************************
+    // //\\ original app points
+    //*************************************
+    //*************************************
     // //\\ bricks for originalPoints
     //*************************************
     //*************************************
     // \\// bricks for originalPoints
-    //*************************************
-
-    //*************************************
-    // //\\ original app points
     //*************************************
     //-------------------------------------
     // //\\ prepares points
@@ -491,6 +487,15 @@ function init_conf (){
     //*************************************
     // \\// original app points
     //*************************************
+
+    //*********************************************
+    // //\\ pcolor -> elected topics,
+    //      colors can be set in points and
+    //      then added to elected topics
+    //*********************************************
+    //*********************************************
+    // \\// pcolor -> elected topics,
+    //*********************************************
 
     //*************************************
     // //\\ original app lines

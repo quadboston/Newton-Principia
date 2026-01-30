@@ -105,7 +105,7 @@ function media_upcreate___before_basic (){
     pathDelays2forceDraggers();
     stdMod.allPathRacks_2_unseenSVGs();
     stdMod.SAvV_model__2__svg(); //changes svg
-    
+
     //***********************************************************
     //wraps remained tasks into d8d slider
     //if slider is already created ...
@@ -157,7 +157,7 @@ function media_upcreate___before_basic (){
             if( has(rgX, 'svgel' )){
                 rgX.svgel.setAttribute( 'r', pointsAreOn ? '6' : '4' );
                 rgX.svgel.style[ 'fill' ] = pointsAreOn ?
-                '#cccccc' : sDomF.tpname0arr_2_rgba( 'path' );
+                '#cccccc' : sDomF.tpid0arrc_2_rgba( 'path' );
             //} else {
                 //todo why is this?
                 //c cc( rgX.pname + ' svg is missed in media-model.js' );
@@ -201,7 +201,7 @@ function pathDelays2forceDraggers (){
 
 function media_upcreate___after_basic (){
     ///todm this fixes refreshment of green free Kepler triangles
-    ///when media scales, 
+    ///when media scales,
     eachprop( stdMod.decor, (dec,pname) => {
         if( !dec.isPoint && dec.pivotNames.length !== 2 ) {
             dec.poly_2_updatedPolyPos8undisplay();

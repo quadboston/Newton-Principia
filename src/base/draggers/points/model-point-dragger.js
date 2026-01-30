@@ -60,7 +60,7 @@
         //premature?: rgX.processDownEvent    = processDownEvent || sDomF.processDownEvent;
         rgX.processDownEvent    = sDomF.processDownEvent;
         rgX.processUpEvent      = sDomF.processUpEvent;
-        rgX.pcolor              = sDomF.tpname0arr_2_rgba( rgX.pname );
+        rgX.pcolor              = sDomF.tpid0arrc_2_rgba( rgX.pname );
         orientation = orientation ||
         ( haz( rgX, 'draggableY' ) && haz( rgX, 'draggableX' ) ?
             'rotate' :

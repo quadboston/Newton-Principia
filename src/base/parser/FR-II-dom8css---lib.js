@@ -2,7 +2,7 @@
     var {
         sn, $$, cssp, nsmethods, globalCss, nspaste, haz, has, eachprop,
         fconf, sDomN, ssD, sDomF, ssF, exegs, topics,
-        topicColors_repo, lowtpid_2_glocss8anchorRack,
+        tpid2arrc_repo, lowtpid_2_glocss8anchorRack,
         anid2anrack, anix2anrack,
         amode, sconf, rg, userOptions
     } = window.b$l.apptree({
@@ -205,10 +205,11 @@
                         anchorRack.cssNoColorToShapes = true;
                         return;
                     } else if( anchorOperator.match( ANCH_COLOR_CAT_rg ) ) {
-                        var ww = anchorRack.colorCateg =
-                            anchorOperator.match( ANCH_COLOR_CAT_rg );
+                        const match = anchorRack.colorCateg =
+                              anchorOperator.match( ANCH_COLOR_CAT_rg );
                         //.fixed set to tp-link
-                        anchorRack[ 'tpcolarr' ] = haz( topicColors_repo, ww[1] );
+                        //elect is already done in expand:
+                        anchorRack[ 'tpcolarr' ] = haz( tpid2arrc_elect, match[1] );
                         return;
                     }
                     //..........................................................
@@ -230,7 +231,8 @@
                             );
                             //for this keyName, 'fixed-colors'
                             //is a flag and is = 'undefined',
-                            //don't forget lowtpid_2_glocss8anchorRack is in topics.lowtpid_2_glocss8anchorRack
+                            //don't forget lowtpid_2_glocss8anchorRack is
+                            //in topics.lowtpid_2_glocss8anchorRack
                             sn( low_tpID,
                                 lowtpid_2_glocss8anchorRack // maps, topicId -> topicId
                             );

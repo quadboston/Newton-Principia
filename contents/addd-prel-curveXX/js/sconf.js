@@ -1,15 +1,7 @@
-
 ( function() {
-    var { ns, fconf, sconf } =
-    window.b$l.apptree({ ssFExportList : { init_conf } });
-    return;
-
-
-
-
-
-
-
+var { ns, nspaste, tpid2arrc_elect, fconf, sconf } =
+window.b$l.apptree({ ssFExportList : { init_conf } });
+return;
 
 
     ///====================================================
@@ -66,8 +58,7 @@
         var result  = [200,   40,  0,      1];
         var hidden  = [0,     0,   0,      0];
 
-        var topicColors_elected =
-        {
+        nspaste( tpid2arrc_elect, { //need deep copy
             //:basic topics
             proof,
             given,
@@ -82,7 +73,7 @@
             curveRightCircle    : given,
             curveParabola       : given,
             curvatureCircle     : result,
-        };
+        });
         //-----------------------------------
         // \\// topic group colors,
         //-----------------------------------
@@ -91,7 +82,7 @@
         {
             /*
             //:originals from Book
-            A : { 
+            A : {
                 //assigment by reference to pos is safe: no parasite links, pos is recalculated later
                 pos         : A,
                 letterAngle : 90,
@@ -102,7 +93,7 @@
             //---------------------------------------
             // //\\ curvature related
             //---------------------------------------
-            B : { 
+            B : {
                 pos         : B,
                 letterAngle : 0,
                 pcolor      : proof,
@@ -110,24 +101,24 @@
             },
 
             //for circumscribed circle
-            D : { 
+            D : {
                 pos         : A,
                 letterAngle : 0,
                 pcolor      : proof,
             },
-            R : { 
+            R : {
                 pos         : A,
                 letterAngle : 0,
                 pcolor      : result,
             },
             //curvature center
-            Rc : { 
+            Rc : {
                 pos         : A,
                 letterAngle : 180,
                 letterRotRadius : 50,
                 pcolor      : result,
             },
-            N : { 
+            N : {
                 pos         : [ A[0], 1100*0.9 ],
                 letterAngle : 180,
                 letterRotRadius : 50,
@@ -185,7 +176,7 @@
         ///alternatively to this, you can set own colors for originalPoints
         ///by your own
         ns.eachprop( originalPoints, (point,pname) => {
-            point.pcolor = ns.haz( point, 'pcolor' ) || topicColors_elected[ pname ];
+            point.pcolor = ns.haz( point, 'pcolor' ) || tpid2arrc_elect[ pname ];
         });
 
         //model's spacial unit in pixels of the picture:
@@ -217,7 +208,6 @@
         ///var lines = {};
         ns.paste( sconf, {
             mediaBgImage : "lemma-theoremII-corollary1.jpg",
-            topicColors_elected,
             originalPoints,
             linesArray,
             //lines,
@@ -226,7 +216,7 @@
             pictureWidth,
             pictureHeight,
             mod2inn_scale,
-            
+
             default_tp_stroke_width : 12,
         });
         //--------------------------------------

@@ -44,10 +44,10 @@
 
         function makes_pix2color (){
             let pix2color = [
-                sDomF.tpname0arr_2_rgba( 'proof' ),
-                sDomF.tpname0arr_2_rgba( 'orbit' ),
-                sDomF.tpname0arr_2_rgba( 'force' ),
-                sDomF.tpname0arr_2_rgba( 'semiaxes' ),
+                sDomF.tpid0arrc_2_rgba( 'proof' ),
+                sDomF.tpid0arrc_2_rgba( 'orbit' ),
+                sDomF.tpid0arrc_2_rgba( 'force' ),
+                sDomF.tpid0arrc_2_rgba( 'semiaxes' ),
             ];
             graph_wrap.fw.content.pix2color = pix2color;
             return pix2color;

@@ -67,10 +67,10 @@
                 //base is "dead" in lemma2
                 if( fconf.sappId.indexOf('b1sec1lemma2') === 0 ) return;
                 pointWrap.spinnerClsId = 'base-'+pwix;
-                pointWrap.dragDecorColor=sDomF.tpname0arr_2_rgba( 'given' );
+                pointWrap.dragDecorColor=sDomF.tpid0arrc_2_rgba( 'given' );
             } else {
                 pointWrap.spinnerClsId = 'ctrl-'+pwix;   //optional for css
-                pointWrap.dragDecorColor = sDomF.tpname0arr_2_rgba( 'given' );
+                pointWrap.dragDecorColor = sDomF.tpid0arrc_2_rgba( 'given' );
             }
             if( typeof pointWrap.x === 'number' ) {
                 decorator = Update_decPoint( pointWrap )

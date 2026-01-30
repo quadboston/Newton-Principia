@@ -1,7 +1,7 @@
 (function(){
-const {nspaste, fconf, sf, topicColors_repo, originalPoints} =
-        window.b$l.apptree({ ssFExportList : { init_conf }
-});
+const {nspaste, fconf, sf, tpid2arrc_repo,
+       tpid2arrc_elect, originalPoints,} =
+      window.b$l.apptree({ ssFExportList : { init_conf } });
 return;
 
 
@@ -9,6 +9,13 @@ function init_conf (){
     //navigation
     sf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
     sf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
+
+    //====================================================
+    // //\\ user scenarios
+    //====================================================
+    //====================================================
+    // \\// user scenarios
+    //====================================================
 
     //***************************************************************
     // //\\ original picture dimensions for svg scene
@@ -101,8 +108,6 @@ function init_conf (){
 
     //***************************************************************
     // //\\ model comparison demo
-    //      , even if no sf.SHOW_FORMULAS, do preserve this as
-    //      a commented template,
     //***************************************************************
     sf.SHOW_FORMULAS = [
         //usually, bP is aka context of "plane-cureve-derivatives"
@@ -117,10 +122,8 @@ function init_conf (){
 
     //*************************************
     // //\\ elected colors,
-    //      to see templates what to override here, do
-    //      look at conf/lemma.conf.js:
     //*************************************
-    ///does import topic colors
+    ///does import topic colors from conf/lemma.conf.js
     const {
         force,
         estimatedForce,
@@ -147,10 +150,10 @@ function init_conf (){
         context,
         invalid,
         shadow,
-    } = topicColors_repo;
+    } = tpid2arrc_repo;
 
     ///does export topic colors
-    sf.topicColors_elected = nspaste( {}, { //need deep copy
+    nspaste( tpid2arrc_elect, { //need deep copy
         force,
         estimatedForce,
         fQR,
@@ -184,6 +187,9 @@ function init_conf (){
     // \\// elected colors,
     //*************************************
 
+    //*************************************
+    // //\\ original app points
+    //*************************************
     //*************************************
     // //\\ bricks for originalPoints
     //*************************************
@@ -225,10 +231,6 @@ function init_conf (){
     }
     //*************************************
     // \\// bricks for originalPoints
-    //*************************************
-
-    //*************************************
-    // //\\ original app points
     //*************************************
     //-------------------------------------
     // //\\ prepares points
@@ -370,6 +372,15 @@ function init_conf (){
     //*************************************
     // \\// original app points
     //*************************************
+
+    //*********************************************
+    // //\\ pcolor -> elected topics,
+    //      colors can be set in points and
+    //      then added to elected topics
+    //*********************************************
+    //*********************************************
+    // \\// pcolor -> elected topics,
+    //*********************************************
 
     //*************************************
     // //\\ original app lines

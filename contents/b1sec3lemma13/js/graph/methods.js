@@ -46,7 +46,7 @@
                     col => col.rgba_high );
             } else {
                 var pix2color = SETS_PLOTS_TP_NAME().map(
-                    c => sDomF.tpname0arr_2_rgba( c ));
+                    c => sDomF.tpid0arrc_2_rgba( c ));
             }
             graph_wrap.fw.content.pix2color = pix2color;
             return pix2color;

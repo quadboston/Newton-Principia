@@ -1,6 +1,6 @@
-
 ( function() {
-    var { ns, fconf, sconf, topicColors_repo, userOptions } =
+    var { nspaste, haz, eachprop, fconf, sconf, tpid2arrc_repo,
+        tpid2arrc_elect, userOptions } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
 
     function init_conf()
@@ -125,14 +125,12 @@
         //      todm: possibly proliferation
         //-----------------------------------
         var context = [0, 0, 0];
-        var given   = topicColors_repo.given;
-        var proof   = topicColors_repo.proof;
-        var result  = topicColors_repo.result;
-        var hidden  = topicColors_repo.hidden;
+        var given   = tpid2arrc_repo.given;
+        var proof   = tpid2arrc_repo.proof;
+        var result  = tpid2arrc_repo.result;
+        var hidden  = tpid2arrc_repo.hidden;
 
-
-        var topicColors_elected =
-        {
+        nspaste( tpid2arrc_elect, { //need deep copy
             //:basic topics
             proof,
             given,
@@ -156,7 +154,7 @@
             "tangentPhi"    : result,
             'angleBAD'      : given,
             'conterminousRatio' : proof,
-        };
+        });
         //-----------------------------------
         // \\// topic group colors,
         //-----------------------------------
@@ -368,8 +366,8 @@
         };
         ///alternatively to this, you can set own colors for originalPoints
         ///by your own
-        ns.eachprop( originalPoints, (point,pname) => {
-            point.pcolor = ns.haz( point, 'pcolor' ) || topicColors_elected[ pname ];
+        eachprop( originalPoints, (point,pname) => {
+            point.pcolor = haz( point, 'pcolor' ) || tpid2arrc_elect[ pname ];
         });
 
         //model's spacial unit in pixels of the picture:
@@ -498,11 +496,10 @@
         //making size to better fit lemma's diagram
         sconf.LETTER_FONT_SIZE_PER_1000 = 20;
 
-        ns.paste( sconf, {
+        nspaste( sconf, {
             //double back step ../../ is to reuse this path in code for lemma7
             mediaBgImage : "../../b1sec1lemma6/img/b1s1l6-diagram-3rded-b.png",
             givenCurve_pivots_inModel,
-            topicColors_elected,
             originalPoints,
             linesArray,
             //lines,

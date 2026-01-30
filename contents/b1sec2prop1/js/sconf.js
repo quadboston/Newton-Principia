@@ -1,26 +1,29 @@
 (function(){
-const {
-    sn, haff, has, eachprop, nspaste, capture, toreg,
-    stdMod, fconf, sconf, ssF, ssD, sDomF,
-    topicColors_repo, topicColors_repo_camel2col, originalPoints,
-} = window.b$l.apptree({ ssFExportList : { init_conf } });
+const {sn, haff, has, eachprop, nspaste, capture, toreg,
+      stdMod, fconf, sconf, ssF, ssD, sDomF,
+      originalPoints,} =
+      window.b$l.apptree({ ssFExportList : { init_conf } });
 const linesArray = sn( 'linesArray', sconf, [] );
 return;
 
 
 function init_conf (){
-    //----------------------------------
-    // //\\ scenario
-    //----------------------------------
+    //navigation
+    //sf.FIXED_CHORD_LENGTH_WHEN_DRAGGING = false;
+    //sf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES = false;
+
+    //====================================================
+    // //\\ user scenarios
+    //====================================================
     sconf.enableStudylab = false;
     //hideProofSlider = true, //false,
     sconf.enableCapture = true;
     sconf.enableTools = true;
     //enableDataFunctionsRepository : true,
-    //----------------------------------
-    // \\// scenario
-    //----------------------------------
-     
+    //====================================================
+    // \\// user scenarios
+    //====================================================
+
     //***************************************************************
     // //\\ original picture dimensions for svg scene
     //***************************************************************
@@ -30,7 +33,7 @@ function init_conf (){
                           / sconf.standardSvgSize
     sconf.innerMediaHeight = sconf.pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT;
     sconf.innerMediaWidth = sconf.pictureWidth;
-     
+
     //----------------------------------
     // //\\ app view parameters
     //      ,in svg or media space,
@@ -54,7 +57,7 @@ function init_conf (){
     //(pic.bottom-y=+picHeight)
     sconf.originY_onPicture = activeAreaOffsetOnPictureY +
         ( sconf.MONITOR_Y_FLIP === -1 ? sconf.pictureActiveArea : 0 );
-    //todm duplic?        
+    //todm duplic?
     sconf.modorInPicY = sconf.originY_onPicture;
     //.set it from graph editor
     //.todm: trully 611 and rotated
@@ -125,7 +128,7 @@ function init_conf (){
         //so, lines shold have color pattern [x,x,x,1,1]
         TP_OPACITY_LOW : 0.5,
         TP_OPACITY_HIGH : 1,
- 
+
        hover_width : Math.max( 10, Math.floor( 7*sconf.controlsScale/1.6 ) ),
         //nonhover_width  : Math.max( 5, Math.floor( 1*sconf.controlsScale/1.6 ) ),
         //this collaborates with impulse line-segment, we are afraide to
@@ -149,7 +152,7 @@ function init_conf (){
     let timeStepOfManyBases = initialTimieStep/4;
     let unitlessMinTime = 1.000001;
     let speed = 1/initialTimieStep;
-    
+
     Object.assign( sconf, {
          NUMBER_OF_FORCE_HANDLES : 1, //5,
 
@@ -201,6 +204,21 @@ function init_conf (){
     // \\// model principals parameters
     //******************************************
 
+    //***************************************************************
+    // //\\ math model auxilaries
+    //***************************************************************
+    //***************************************************************
+    // \\// math model auxilaries
+    //***************************************************************
+
+    //***************************************************************
+    // //\\ model comparison demo
+    //***************************************************************
+    //***************************************************************
+    // \\// model comparison demo
+    //***************************************************************
+
+
     ssF.setsCommonT1andT2capture();
     //this comes from theorem P2; this does not exist in P1;
     if( has( ssF, 'init_conf_addon' ) ) {
@@ -212,6 +230,7 @@ function init_conf (){
     //*************************************
     // //\\ elected colors,
     //*************************************
+    ///does import topic colors from conf/lemma.conf.js
     stdMod.sconf_points8lines();
     //*************************************
     // \\// elected colors,
@@ -220,18 +239,39 @@ function init_conf (){
     //*************************************
     // //\\ original app points
     //*************************************
+    //*************************************
+    // //\\ bricks for originalPoints
+    //*************************************
+    //*************************************
+    // \\// bricks for originalPoints
+    //*************************************
+    //-------------------------------------
+    // //\\ prepares points
+    //-------------------------------------
+    //-------------------------------------
+    // \\// prepares points
+    //-------------------------------------
     //in stdMod.sconf_points8lines();
     //*************************************
     // \\// original app points
     //*************************************
+
+    //*********************************************
+    // //\\ pcolor -> elected topics,
+    //      colors can be set in points and
+    //      then added to elected topics
+    //*********************************************
+    //*********************************************
+    // \\// pcolor -> elected topics,
+    //*********************************************
 
     //*************************************
     // //\\ original app lines
     //*************************************
     //in stdMod.sconf_points8lines();
     //*************************************
-    // //\\ original app lines
+    // \\// original app lines
     //*************************************
     ssF.sets_A_v_forces_sliders();
-}    
+}
 })();

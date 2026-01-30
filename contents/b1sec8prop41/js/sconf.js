@@ -1,13 +1,14 @@
 ( function() {
     const {
-        sn, mat, eachprop, nspaste, userOptions, topicColors_repo,
+        sn, mat, eachprop, nspaste, userOptions,
+        tpid2arrc_repo, tpid2arrc_elect,
         fconf, sconf, rg, stdMod,
     } = window.b$l.apptree({ //export to apptree
         ssFExportList : { init_conf }
     });
     const op = sn( 'orbitParameters', sconf );
     const sf = sconf;
-    const fc = topicColors_repo;
+    const fc = tpid2arrc_repo;
     return;
 
 
@@ -112,7 +113,7 @@
             angleArea,
             angle,
             hidden,
-        } = topicColors_repo;
+        } = tpid2arrc_repo;
 
         //special or derivative parameters
         const fi      = [...fc.angle];
@@ -145,10 +146,7 @@
         Tarea[3]      = 0.01;
         Tarea[4]      = 0.7;
 
-        ///they will add up (will reexport) to sconf.topicColors_repo and
-        //initiate keys in rg when they expanded in expand-config.js
-        var topicColors_elected =
-        {
+        nspaste( tpid2arrc_elect, { //need deep copy
             given,
             proof,
             result,
@@ -185,7 +183,7 @@
             //needs color model working:
             ICK : [110, 90, 0, 0.001, 0.5 ], //good but hidden
             //ICK : [110, 90, 0, 0.1, 1 ], //visible, but initially annoying,
-        };
+        });
         //-----------------------------------
         // \\// topic group colors,
         //-----------------------------------
@@ -281,7 +279,7 @@
             vgpoint : {
                 caption : 'v',
                 pos : A,
-                //no effect: pcolor : topicColors_elected.vgpoint,
+                //no effect: pcolor : tpid2arrc_elect.vgpoint,
                 letterAngle : 45,
             },
 
@@ -500,7 +498,6 @@
         //stdMod.init_sliders_conf();
         nspaste( sconf, {
             mediaBgImage : "diagram.jpg",
-            topicColors_elected,
             originalPoints,
             linesArray,
             originX_onPicture,

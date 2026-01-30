@@ -2,7 +2,7 @@
     var {
         sn, haz, fapp, sconf, ssF,
         //team's work?
-        topicColors_repo,
+        tpid2arrc_repo,
         topics,
     } = window.b$l.apptree({
         ssFExportList :
@@ -60,7 +60,7 @@
         var focusOp_str = sconf.ANCHOR_TOPIC__OPACITY_IN_FOCUS.toFixed(3)
         var fixedCol = haz( anrack, 'tpcolarr' );
         //selects the very first color-operand from anchor
-        var gcssRack = topics.lowtpid_2_glocss8anchorRack[ tpIDs[0] ];       
+        var gcssRack = topics.lowtpid_2_glocss8anchorRack[ tpIDs[0] ];
         if( fixedCol ) {
             //note: high opacity is taken as sconf.TP_OPACITY_HIGH in this ver
             var { rgb, rgba_high, } = ssF.colorArray_2_rgba(
@@ -80,7 +80,7 @@
             var rgba_high = gcssRack.rgba_high;
         }
         var forAnchor = ( gcssRack && gcssRack.forAnchor ) || rgba_high; //patch
-        
+
         var rgb_low = forAnchor.replace( /,[^,]+$/, ',' +
                         sconf.ANCHOR_OPACITY_LOW + ')' );
         var rgba_high = forAnchor.replace( /,[^,]+$/, ',' +
@@ -89,7 +89,7 @@
         //  apparently padding highlighted anchor does bloat MathJax font,
         //  so, padding is disabled
         let tplink_str = 'a.tl-'+tplink_ix;
-        
+
         //todm needs more work to proofcheck other texts:
         let baseColor = sconf.ITEM_BASE_COLOR_TO_ANCHOR ? rgb_low : rgba_high;
 
@@ -98,7 +98,7 @@
         // decrease to make darker, increase to lighten
         baseColor = adjustRGBA(baseColor, 1);
 */
-        
+
         anchors__cssHighlighter.value += `
             ${tplink_str} {
                border-radius : 4px;
@@ -110,7 +110,8 @@
                opacity          : ${focusOp_str};
                background-color : #eaeaea;
                /*team's work?
-               background-color : rgb(${topicColors_repo.highlight});
+                * this bypasses elected colors, the surprise
+               background-color : rgb(${tpid2arrc_repo.highlight});
                */
                cursor           : default;
             }
@@ -118,7 +119,7 @@
                font-weight      : bold;
                background-color : #eaeaea;
                /*team's work?
-               background-color : rgb(${topicColors_repo.highlight});
+               background-color : rgb(${tpid2arrc_repo.highlight});
                */
                cursor           : default;
             }

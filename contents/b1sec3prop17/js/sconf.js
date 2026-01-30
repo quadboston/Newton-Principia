@@ -1,6 +1,7 @@
 (function() {
     const {
-        sn, nspaste, mat, fconf, sf, topicColors_repo, originalPoints,
+        sn, nspaste, mat, fconf, sf, tpid2arrc_repo,
+        tpid2arrc_elect, originalPoints,
         stdMod,
     } = window.b$l.apptree({ //export to apptree
         ssFExportList : { init_conf }
@@ -202,7 +203,7 @@
             context,
             invalid,
             shadow,
-        } = topicColors_repo;
+        } = tpid2arrc_repo;
         orbitSample = given;
 
         //orbit to be calculated based on sample orbit
@@ -220,8 +221,7 @@
 
         var proofHidden = [0, 0,   255, 0.05];
 
-        ///does export topic colors
-        sf.topicColors_elected = nspaste( {}, { //need deep copy
+        nspaste( tpid2arrc_elect, { //need deep copy
             force,
             curvature,
             given,

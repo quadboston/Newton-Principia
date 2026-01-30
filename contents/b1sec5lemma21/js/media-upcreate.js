@@ -1,7 +1,7 @@
 ( function() {
     var {
         ns, sn, $$, nssvg, has, haz, mat,
-        amode, sconf, sDomF, sDomN, ssD, ssF, topicColors_repo,
+        amode, sconf, sDomF, sDomN, ssD, ssF, tpid2arrc_repo,
         rg, toreg, stdMod,
     } = window.b$l.apptree({
         stdModExportList :
@@ -17,7 +17,7 @@
     var paintTriangle;
     return;
 
-    
+
     function setModule()
     {
         pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
@@ -55,7 +55,7 @@
         //      , static angles
         //---------------------------------------
         var ANGLE_SIZE = 0.1;
-        
+
          rg.alpha.angleSvg = nssvg.ellipseSector({
             stepsCount : 20,
             x0 : rg.C.medpos[0],
@@ -70,11 +70,11 @@
             'stroke-width':1,
         });
         $$.$(rg.alpha.angleSvg).cls( 'tp-angle-alpha tofill' );
-        
+
         rg.beta.angleSvg = nssvg.ellipseSector({
             stepsCount : 20,
             // //\\ todm ... mod2inn_scale must be incapsulated in model
-            //instead we are converting from model to media manually here 
+            //instead we are converting from model to media manually here
             //it is very annoying to always remember to
             //make a correction with MONITOR_Y_FLIP ...
             //todm ... do a better programming
@@ -189,7 +189,7 @@
                 ////makes ellipse first to put point over it later
                 br.parent = stdMod.mmedia;
                 br['stroke-width'] = 3;
-                br.stroke = ns.arr2rgba( topicColors_repo[ "ellipse" ] );
+                br.stroke = ns.arr2rgba( tpid2arrc_repo[ "ellipse" ] );
                 br.svgel = nssvg.branch2svg(br);
                 $$.$(br.svgel).cls( 'tp-ellipse tostroke thickable' );
             }

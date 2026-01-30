@@ -1,10 +1,10 @@
-// //\\// widget config
 ( function() {
-    const { nspaste, mat, fapp, fconf, sconf, topicColors_repo, originalPoints } =
-    window.b$l.apptree({
+const { nspaste, mat, fapp, fconf, sconf,
+        tpid2arrc_elect, originalPoints } =
+      window.b$l.apptree({
         ssFExportList : { init_conf }
-    });
-    return;
+});
+return;
 
 
     function init_conf()
@@ -67,16 +67,15 @@
         // \\// decorational parameters
         //***************************************************************
 
-        var topicColors_elected =
-        {
+        nspaste( tpid2arrc_elect, { //need deep copy
             "static"                : [0,     200, 255, 1],
             "core"                  : [155,  70, 0, 1],
             "aux"                   : [255,   0, 255, 1],
             "constructors"          : [0,     0, 255, 1],
             "ellipse"               : [0,   150, 0, 1],
             "legend"                : [200,   200, 200],
-        };
-        let pt = topicColors_elected;
+        });
+        let pt = tpid2arrc_elect;
         pt[ "key-triangle" ] = pt.core;
         pt[ "key-parts" ] = pt.core;
         pt[ "similar-triangle" ] = pt.static;
@@ -252,7 +251,7 @@
                   letterRotRadius : 20,
                 },
             D : { pos: [1410, 965],
-                  pcolor: topicColors_elected['generators'],
+                  pcolor: tpid2arrc_elect['generators'],
                   cssClass: 'tp-generators',
                   initialR: pointRadius,
                   letterRotRadius : 20,
@@ -260,7 +259,7 @@
                   draggableY : true,
                 },
             R : { pos: [1010, 712],
-                  pcolor: topicColors_elected['key-triangle'],
+                  pcolor: tpid2arrc_elect['key-triangle'],
                   cssClass: 'tp-key-triangle',
                   initialR: pointRadius,
                   letterAngle : -10,
@@ -279,7 +278,7 @@
             //============================================
             T : { pos: [1283, 572],
                   draggableX : true,
-                  pcolor: topicColors_elected['key-triangle'],
+                  pcolor: tpid2arrc_elect['key-triangle'],
                   style: {fill: '#ffffff'},
                   cssClass: 'tp-key-triangle',
                   letterAngle : 45,
@@ -292,7 +291,7 @@
                     draggableY : false,
 
                     pos: [slider_aX,slider_aY],
-                    pcolor : topicColors_elected.ellipse,
+                    pcolor : tpid2arrc_elect.ellipse,
 
                     letterAngle : 90,
                     letterRotRadius : 20,
@@ -303,14 +302,14 @@
             //rails
             eStart : {
                 pos : [ slider_a_start, slider_aY ],
-                pcolor : topicColors_elected.ellipse,
+                pcolor : tpid2arrc_elect.ellipse,
                 undisplayAlways : true,
                 doPaintPname : false,
                 unscalable  : true,
             },
             eEnd : {
                 pos : [ slider_a_end, slider_aY ],
-                pcolor : topicColors_elected.ellipse,
+                pcolor : tpid2arrc_elect.ellipse,
                 undisplayAlways : true,
                 doPaintPname : false,
                 unscalable  : true,
@@ -367,19 +366,19 @@
            //-------------------------
 
            { 'PT' : {
-                        pcolor : topicColors_elected["key-triangle"],
+                        pcolor : tpid2arrc_elect["key-triangle"],
                         'stroke-width' : 10,
                         cssClass : 'tp-key-triangle tp-key-parts',
                     }
            },
            { 'PR' : {
-                        pcolor : topicColors_elected["key-triangle"],
+                        pcolor : tpid2arrc_elect["key-triangle"],
                         'stroke-width' : 10,
                         cssClass : 'tp-key-triangle tp-key-parts',
                     }
            },
            { 'RT' : {
-                        pcolor : topicColors_elected["key-triangle"],
+                        pcolor : tpid2arrc_elect["key-triangle"],
                         'stroke-width' : 10,
                         cssClass : 'tp-key-triangle',
                     }
@@ -526,22 +525,22 @@
                     }
             },
             { 'Pr' : {
-                        pcolor : topicColors_elected["static-generator"],
+                        pcolor : tpid2arrc_elect["static-generator"],
                         cssClass : 'tp-static-generator',
                     }
             },
             { 'Pt' : {
-                        pcolor : topicColors_elected["static-generator"],
+                        pcolor : tpid2arrc_elect["static-generator"],
                         cssClass : 'tp-static-generator',
                     }
             },
             { 'Cd' : {
-                        pcolor : topicColors_elected["aux"],
+                        pcolor : tpid2arrc_elect["aux"],
                         cssClass : 'subessay--corollary3',
                     }
             },
             { 'Pq' : {
-                        pcolor : topicColors_elected["aux"],
+                        pcolor : tpid2arrc_elect["aux"],
                         cssClass : 'subessay--corollary3',
                     }
             },
@@ -554,12 +553,12 @@
             //      in circle case
             //------------------------
             { 'BP' : {
-                        pcolor : topicColors_elected["similar-triangle"],
+                        pcolor : tpid2arrc_elect["similar-triangle"],
                         cssClass : 'tp-similar-triangle',
                     }
             },
             { 'BC' : {
-                        pcolor : topicColors_elected["similar-triangle"],
+                        pcolor : tpid2arrc_elect["similar-triangle"],
                         cssClass : 'tp-similar-triangle',
                     }
             },
@@ -568,22 +567,22 @@
             //------------------------
 
             { 'eStart,eEnd' : {
-                    pcolor : topicColors_elected["ellipse"],
+                    pcolor : tpid2arrc_elect["ellipse"],
                     cssClass : 'ellipse',
                 }
             },
 
             // //\\ decorations
             { 'rectumLow,rectum' : {
-                    pcolor : topicColors_elected["rectum"],
+                    pcolor : tpid2arrc_elect["rectum"],
                 }
             },
             { 'perigeum,apogee' : {
-                    pcolor : topicColors_elected["rectum"],
+                    pcolor : tpid2arrc_elect["rectum"],
                 }
             },
             { 'focus,apogee' : {
-                    pcolor : topicColors_elected["rectum"],
+                    pcolor : tpid2arrc_elect["rectum"],
                 }
             },
             // \\// decorations
@@ -612,7 +611,6 @@
         fapp.normalizeSliders( pictureHeight / 444 );
         to_sconf =
         {
-            topicColors_elected,
             originalPoints,
             linesArray,
             mediaBgImage : "l20.jpg",

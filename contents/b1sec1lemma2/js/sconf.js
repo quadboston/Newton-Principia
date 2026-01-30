@@ -1,40 +1,8 @@
 (function(){
-const {sn, nspaste, fapp, fconf, sconf, sf, sapp, originalPoints, } =
-      window.b$l.apptree({ ssFExportList : { init_conf }     
+const {sn, nspaste, fapp, fconf, sconf, sf, sapp, originalPoints,
+       tpid2arrc_repo, tpid2arrc_elect,} =
+      window.b$l.apptree({ ssFExportList : { init_conf }
 });
-var stdL2       = sn('stdL2', fapp );
-var study       = sn('study', stdL2 );
-var sdata       = sn('sdata', study );
-var dr          = sn('datareg', stdL2 );
-var appstate    = sn('appstate', stdL2 );
-
-//=====================================
-// //\\ presets data placeholders
-//=====================================
-Object.assign( dr, {
-    basePts         : {offset:1, visOffset:0, list:[]},
-    curvPts         : {offset:1, visOffset:0, list:[]},
-    circRects       : {offset:0, visOffset:0, list:[]},
-    InscrRects      : {offset:0, visOffset:0, list:[]},
-    differenceRects : {offset:0, visOffset:0, list:[]},
-
-    //baseLabels    : {offset:1, visOffset:0, list:[]},
-    curvLabels      : {offset:0, visOffset:0, list:[]},
-    leftLabels      : {offset:0, visOffset:0, list:[]},
-    //righLabels      : {offset:0, visOffset:0, list:[]},
-    //deltaOnLeft historically means "virtual majoranta-rectangle"
-    //is on the right
-    figureParams    : {minX:0, maxX:0, deltaOnLeft:true},
-    ctrlPts         : [],
-    partitionWidths : [1],
-    basesN          : 4,
-    movables        : {} //key-value for movable jswrap
-});
-appstate.movingBasePt = false;
-sdata.view = { isInscribed:1, isCircumscribed:1, isFigureChecked:1 };
-//=====================================
-// \\// presets data placeholders
-//=====================================
 return;
 
 
@@ -47,6 +15,7 @@ function init_conf (){
     sf.dontDoMathJax = false;
     sf.enableTools = false;
     sf.enableStudylab = false;
+    sf.mediaMoverPointDisabled = true;
     //***************************************************************
     // \\// user scenarios
     //***************************************************************
@@ -69,6 +38,15 @@ function init_conf (){
     //***************************************************************
 
     //***************************************************************
+    // //\\ app scenario
+    //***************************************************************
+    sconf.skipGenDragList = true; //false is for media mover,
+    sconf.ONLY_MONOTONIC_CURVE = false;
+    //***************************************************************
+    // \\// app scenario
+    //***************************************************************
+
+    //***************************************************************
     // //\\ GUI cosmetics
     //      to see templates what to override here, do
     //      look at conf/conf.js or especally at conf/lemma.conf.js:
@@ -77,14 +55,9 @@ function init_conf (){
     //sconf.TP_OPACITY_FROM_fixed_colors = true;
     //sf.mediaBgImage = "diagram.png";
     //sf.default_tp_lightness = 30;
-    var MONITOR_Y_FLIP = 0;
     var SLIDERS_LEGEND_HEIGHT = 0;
 
-    sf.mediaMoverPointDisabled = true;
     sconf.default_tp_lightness = 30;
-    sconf.ONLY_MONOTONIC_CURVE = false;
-    sconf.skipGenDragList = !false; //false is for media mover,
-    //no dice: sconf.default_tp_lightness = 0;
 
     //todm: this disables functionality ... not only CSS:
     fconf.appDecor.helpBox_opacity0             = true;
@@ -99,7 +72,22 @@ function init_conf (){
     sconf.ANCHOR_TOPIC__OPACITY_IN_FOCUS = 1;
     sf.handleRadius = 55;
     sf.SLIDERS_LEGEND_HEIGHT = SLIDERS_LEGEND_HEIGHT;
-    sf.MONITOR_Y_FLIP = MONITOR_Y_FLIP;
+    Object.assign( sconf, {
+        ////GUI
+        FINEPTS_RADIUS  : 10,
+        MOVABLE_BASE_RADIUS : 3,
+        CTRL_RADIUS     : 3,
+        BASE_POINTS_REPELLING_DISTANCE : 5, //formerly PAD
+
+        //:d8d
+        //ms, softens drag8drop on performance-weak-devices
+        //DRAG_POINTS_THROTTLE_TIME : 0,
+
+        //"rectangular-distance" to point to be detected
+        DRAGGEE_HALF_SIZE : 20,
+
+        default_tp_stroke_width : 8,
+    });
     //***************************************************************
     // \\// GUI cosmetics
     //***************************************************************
@@ -107,13 +95,6 @@ function init_conf (){
     //******************************************
     // //\\ model principals parameters
     //******************************************
-    //******************************************
-    // \\// model principals parameters
-    //******************************************
-
-    //=====================================
-    // //\\ configures application engine
-    //=====================================
     Object.assign( sconf, {
         //:model
         BASE_MAX_NUM         : 500,
@@ -149,38 +130,18 @@ function init_conf (){
             {x: 265, y: 252},
             */
         ],
-
-        ////GUI
-        FINEPTS_RADIUS  : 10,
-        MOVABLE_BASE_RADIUS : 3,
-        CTRL_RADIUS     : 3,
-        BASE_POINTS_REPELLING_DISTANCE : 5, //formerly PAD
-
-        //:d8d
-        //ms, softens drag8drop on performance-weak-devices
-        //DRAG_POINTS_THROTTLE_TIME : 0,
-
-        //"rectangular-distance" to point to be detected
-        DRAGGEE_HALF_SIZE : 20,
-
-        default_tp_stroke_width : 8,
-        //rubbish:
-        //show or hide drag points by mouse
-        //dragPointVisibilityToggling  : false,-enter
     });
-    //=====================================
-    // \\// configures application engine
-    //=====================================
+    //******************************************
+    // \\// model principals parameters
+    //******************************************
 
     //*************************************
     // //\\ elected colors,
-    //      to see templates what to override here, do
-    //      look at conf/lemma.conf.js:
     //*************************************
     //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
     {
         let difference = [150, 50, 0, 0, 0.8 ];
-        var tpel = sf.topicColors_elected = nspaste( {}, {
+        var tpel = nspaste( tpid2arrc_elect, {
             "given"                     : [0,    100,  0 ],
             difference,
             "base"                      : [0,    100,  0 ],
@@ -205,6 +166,7 @@ function init_conf (){
             'b--L--c--m'                : difference,
             'c--M--d--n'                : difference,
             'd--e--p--o'                : difference,
+            attention                   : tpid2arrc_repo.attention,
         });
     }
     //*************************************
@@ -214,97 +176,102 @@ function init_conf (){
     //*************************************
     // //\\ original app points
     //*************************************
+    //*************************************
+    // //\\ bricks for originalPoints
+    //*************************************
+    //*************************************
+    // \\// bricks for originalPoints
+    //*************************************
+    //-------------------------------------
+    // //\\ prepares points
+    //-------------------------------------
+    //-------------------------------------
+    // \\// prepares points
+    //-------------------------------------
+
     Object.assign( originalPoints, {
+        A : {
+            pcolor      : tpel.given,
+            letterAngle : -45,
+            initialR    : 3,
+        },
         B : {
             pcolor      : tpel.given,
             letterAngle : -45,
             initialR    : 3,
         },
-
+        C : {
+            pcolor      : tpel.given,
+            letterAngle : -45,
+            initialR    : 3,
+        },
+        D : {
+            pcolor      : tpel.given,
+            letterAngle : -45,
+            initialR    : 3,
+        },
+        E : {
+            pcolor      : tpel.given,
+            letterAngle : -45,
+            initialR    : 3,
+        },
+        F : {
+            pcolor      : tpel[ "widest-rectangular" ],
+            letterAngle : 45,
+            initialR    : 3,
+        },
         K : {
             pcolor      : tpel.given,
             letterAngle : -145,
             letterRotRadius : 40,
             initialR    : 3,
         },
-
         L : {
             pcolor      : tpel.given,
             letterAngle : -145,
             initialR    : 3,
         },
-
         M : {
             pcolor      : tpel.given,
             letterAngle : -145,
             letterRotRadius : 40,
             initialR    : 3,
         },
-
         a : {
             pcolor      : tpel.given,
             letterAngle : 45,
             initialR    : 3,
         },
-
-        A : {
-            pcolor      : tpel.given,
-            letterAngle : -45,
-            initialR    : 3,
-        },
-
-        F : {
-            pcolor      : tpel[ "widest-rectangular" ],
-            letterAngle : 45,
-            initialR    : 3,
-        },
-
-        f : {
-            pcolor      : tpel.given,
-            letterAngle : 90,
-            initialR    : 3,
-        },
-
-        C : {
-            pcolor      : tpel.given,
-            letterAngle : -45,
-            initialR    : 3,
-        },
-
-        D : {
-            pcolor      : tpel.given,
-            letterAngle : -45,
-            initialR    : 3,
-        },
-
-        E : {
-            pcolor      : tpel.given,
-            letterAngle : -45,
-            initialR    : 3,
-        },
-
-        l : {
-            pcolor      : tpel.given,
-            letterAngle : 135,
-            initialR    : 3,
-        },
-
         b : {
             pcolor      : tpel.given,
             letterAngle : 45,
             initialR    : 3,
         },
-
         //invizible point
         c : {
             pcolor      : tpel.given,
             letterAngle : 45,
             initialR    : 3,
         },
-
         d : {
             pcolor      : tpel.given,
             letterAngle : 45,
+            initialR    : 3,
+        },
+        e : {
+            pcolor      : tpel.given,
+            letterAngle : 45,
+            initialR    : 3,
+            hideCaption  : true,
+        },
+        f : {
+            pcolor      : tpel.given,
+            letterAngle : 90,
+            initialR    : 3,
+        },
+        l : {
+            pcolor      : tpel.given,
+            letterAngle : 135,
             initialR    : 3,
         },
         m : {
@@ -312,28 +279,33 @@ function init_conf (){
             letterAngle : 45,
             initialR    : 3,
         },
-
         n : {
             pcolor      : tpel.given,
             letterAngle : 45,
             initialR    : 3,
         },
-
         o : {
             pcolor      : tpel.given,
             letterAngle : 45,
             initialR    : 3,
         },
-
-        e : {
-            pcolor      : tpel.given,
-            letterAngle : 45,
-            initialR    : 3,
-            hideCaption  : true,
-        },
     });
+    //*************************************
+    // \\// original app points
+    //*************************************
 
-    //AB, BC, CD
+    //*********************************************
+    // //\\ pcolor -> elected topics,
+    //      colors can be set in points and
+    //      then added to elected topics
+    //*********************************************
+    //*********************************************
+    // \\// pcolor -> elected topics,
+    //*********************************************
+
+    //*************************************
+    // //\\ original app lines
+    //*************************************
     sf.linesArray = nspaste( {}, [
         { AB : {
                     pcolor : tpel.given,
@@ -432,13 +404,11 @@ function init_conf (){
 
         { Kb : {
                     pcolor : tpel.given,
-                    //undisplayAlways : true,
-                    //undisplay : true,
-                },
+               },
         },
     ]);
     //*************************************
-    // \\// original app points
+    // \\// original app lines
     //*************************************
-};
+}
 })();

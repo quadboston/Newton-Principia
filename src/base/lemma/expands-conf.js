@@ -1,10 +1,10 @@
-//expands sconf.js into rg, topicColors_repo and
+//expands sconf.js into rg, tpid2arrc_repo and
 //"unifies" and normalizes them,
 (function(){
     const {
         sn, haz, has, eachprop, own, nsmethods, nspaste,
-        rg, fconf, sf, ssF, sDomF, topicColors_repo,
-        topicColors_repo_camel2col,
+        rg, fconf, sf, ssF, sDomF, tpid2arrc_repo,
+        tpid2arrc_elect,
         originalPoints, toreg, stdMod,
     } = window.b$l.apptree({ ssFExportList : { doExpandConfig } });
     const LETTER_ROTATION_RADIUS_PER_1000 = 30;
@@ -17,7 +17,6 @@
 
 function doExpandConfig (){
     var {
-        topicColors_elected,
         lines,
         linesArray,
 
@@ -38,6 +37,7 @@ function doExpandConfig (){
 
         mod2inn_scale,
     } = sf;
+    //c cc( 'expand'); //helps debugging landing scenario
     //secures omitted settings
     const formulas = sn( 'SHOW_FORMULAS', sf, [] );
     //-----------------------------------------------------------
@@ -91,9 +91,9 @@ function doExpandConfig (){
     //---------------------------------------------------------------------------
     var inn2mod_scale = 1/mod2inn_scale;
 
-    ///adds point's color from topicColors_elected if missed
+    ///adds point's color from tpid2arrc_elect if missed
     eachprop( originalPoints, (point,pname) => {
-        point.pcolor = haz( point, 'pcolor' ) || topicColors_elected[ pname ];
+        point.pcolor = haz( point, 'pcolor' ) || tpid2arrc_elect[ pname ];
     });
 
     ///it is vital to set these pars now ...
@@ -139,11 +139,8 @@ function doExpandConfig (){
         ///--------------------------------------------------
         ///equalizes repo and elected and makes place in rg
         ///--------------------------------------------------
-        Object.keys( topicColors_elected ).forEach( camelId => {
+        Object.keys( tpid2arrc_elect ).forEach( camelId => {
             toreg( camelId )( 'pname', camelId );
-            var lowId = sDomF.tpid2low( camelId );
-            let tr = topicColors_repo[ lowId ] = topicColors_elected[ camelId ];
-            topicColors_repo_camel2col[ camelId ] = tr;
         });
 
         //--------------------------------------------------
@@ -204,7 +201,7 @@ function doExpandConfig (){
                 'caption',
                 'captionShiftNorm',
                 'undisplay',
-                'zOrderAfter',  
+                'zOrderAfter',
                 'notp',
                 'vectorTipIx',
                 'tipFraction',
@@ -220,7 +217,7 @@ function doExpandConfig (){
                     has(gshape,propname) && (rgX[propname] = gshape[propname]);
                 }
             });
-            
+
             //todm: mess: lines array elements attributes go into
             //line-maker in lemma-linerars-machine lineAttr
             //, but this is done via "str2line" which ignores "everything" except
@@ -228,16 +225,14 @@ function doExpandConfig (){
             //here we create even more mess because adding alternative stream for
             //pcolor
             if( has( gshape, 'pcolor' ) ) {
-                var tk = sDomF.tpid2low( pname );
                 //concat() separates generic color-arrays from
-                let fc = topicColors_repo[ tk ] = gshape.pcolor.concat();
-                topicColors_repo_camel2col[ pname ] = fc;
-                rgX.pcolor = sDomF.tpname0arr_2_rgba( gshape.pcolor );
-                rgX.opaqueColor = sDomF.tpname0arr_2_rgba(
+                tpid2arrc_elect[ pname ] = gshape.pcolor.concat();
+                rgX.pcolor = sDomF.tpid0arrc_2_rgba( gshape.pcolor );
+                rgX.opaqueColor = sDomF.tpid0arrc_2_rgba(
                                     gshape.pcolor, !!'makeOpacity1' );
             } else {
-                rgX.pcolor = sDomF.tpname0arr_2_rgba( pname );
-                rgX.opaqueColor = sDomF.tpname0arr_2_rgba( pname,
+                rgX.pcolor = sDomF.tpid0arrc_2_rgba( pname );
+                rgX.opaqueColor = sDomF.tpid0arrc_2_rgba( pname,
                                     !!'makeOpacity1' );
             }
 
@@ -310,15 +305,13 @@ function doExpandConfig (){
             rgX.doPaintPname = doPaintPname;
 
             if( has( op, 'pcolor' ) ) {
-                var tk = sDomF.tpid2low( pname );
-                let fc = topicColors_repo[ tk ] = op.pcolor; //low
-                topicColors_repo_camel2col[ pname ] = fc;       //camel
-                rgX.pcolor = sDomF.tpname0arr_2_rgba( op.pcolor );
-                rgX.opaqueColor = sDomF.tpname0arr_2_rgba( op.pcolor,
+                tpid2arrc_elect[ pname ] = op.pcolor.concat();
+                rgX.pcolor = sDomF.tpid0arrc_2_rgba( op.pcolor );
+                rgX.opaqueColor = sDomF.tpid0arrc_2_rgba( op.pcolor,
                                     !!'makeOpacity1' );
             } else {
-                rgX.pcolor = sDomF.tpname0arr_2_rgba( pname );
-                rgX.opaqueColor = sDomF.tpname0arr_2_rgba( pname,
+                rgX.pcolor = sDomF.tpid0arrc_2_rgba( pname );
+                rgX.opaqueColor = sDomF.tpid0arrc_2_rgba( pname,
                                     !!'makeOpacity1' );
             }
             rgX.undisplay = has( op, 'undisplay' ) ? op.undisplay : false;
@@ -355,7 +348,7 @@ function doExpandConfig (){
             if( letterColor ) {
                 //todm ...
                 //rgX.letterColor = haz( op, 'letterColor' ) || rgX.pcolor;
-                rgX.letterColor = sDomF.tpname0arr_2_rgba( letterColor );
+                rgX.letterColor = sDomF.tpid0arrc_2_rgba( letterColor );
             }
             rgX.fontSize = fontSize;
             //----------------------------------------------------------

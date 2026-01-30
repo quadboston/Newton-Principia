@@ -29,7 +29,7 @@
     function create_digital_legend_for_logic_phase( logic_phase )
     {
         //sample:
-        //let sagittaColor = sDomF.tpname0arr_2_rgba( 'sagitta' ).replace( / /g, '<_>' ).replace( /,/g, '<>' );
+        //let sagittaColor = sDomF.tpid0arrc_2_rgba( 'sagitta' ).replace( / /g, '<_>' ).replace( /,/g, '<>' );
 
         //--------------------------
         // //\\ data source scenario
