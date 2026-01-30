@@ -241,7 +241,7 @@
         }
         curvePivots = curvePivots.map( pivot => ({
             pos         : pivot,
-            pcolor      : given,
+            pcolor      : context,
             letterAngle : 45,
             draggableX  : true,
             draggableY  : true,
@@ -265,7 +265,7 @@
         Object.assign( originalPoints, {
             A : {
                 pos: posA,
-                pcolor : given,
+                pcolor : orbit,
 				cssClass: 'logic_phase--corollary',
             },
 
@@ -286,7 +286,7 @@
             },
 
             Q : {
-                pcolor : proof,
+                pcolor : estimatedForce,
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
@@ -305,7 +305,7 @@
 
             T : {
                 pos: [0,0],
-                pcolor : proof,
+                pcolor : estimatedForce,
                 letterAngle : 180,
 				cssClass: 'subessay--corollary1 subessay--corollary5',
             },
@@ -327,7 +327,7 @@
             // Q's counterpart at other end of arc
             rrminus : {
                 caption : '',
-                pcolor : proof,
+                pcolor : given,
                 letterAngle : 225,
                 letterRotRadius : 40,
 				cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
@@ -343,14 +343,14 @@
             },
 
             Y : {
-                pcolor : proof,
+                pcolor : estimatedForce,
                 letterAngle : 80,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
             },
 
             V : {
                 pos: posS,
-                pcolor : curvature,
+                pcolor : estimatedForce,
                 letterAngle : -45,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
             },
@@ -380,7 +380,7 @@
 
         var linesArray =
         [
-            { 'PV' : { pcolor : curvature,
+            { 'PV' : { pcolor : estimatedForce,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
 			 }, },
             { 'SP' : { pcolor : given,
@@ -394,7 +394,7 @@
             { 'PR' : { pcolor : body,
 				cssClass: 'logic_phase--corollary',
 			 }, },
-            { 'SY' : { pcolor : proof,
+            { 'SY' : { pcolor : estimatedForce,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
 			 }, },
             { 'QR' : { pcolor : displacement,
@@ -410,7 +410,7 @@
             { 'PC' : { pcolor : curvature,
 				cssClass: 'subessay--corollary3',
 			 }, },
-            { 'Q,rrminus' : { pcolor : proof,
+            { 'Q,rrminus' : { pcolor : given,
 				cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
 			 }, },
             { 'P,sagitta' : { pcolor : sagitta,

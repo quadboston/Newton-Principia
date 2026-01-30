@@ -164,7 +164,7 @@
         tr.instanttriangleHiddenStart  = [0, 150, 200, 0.001, 0.5 ] //P12
 
 		tr.time      = BLUE_GREEN;
-        tr.dtime     = tr.time;
+        tr.dtime     = tr.estimatedForce;
         tr.distance  = rgbToArray("rgb(60, 20, 0)");
 
 		//From L20, L21
@@ -243,25 +243,9 @@
         //=======================================
 
         const colorSets = [ 
-            {
-                // copy of above for reference and so it's included in the options
-                given : rgbToArray("rgb(0, 113, 0)"),
-                givenArea : [...tr.given, 1],
 
-                proof : rgbToArray("rgb(0, 0, 255)"),
-                proofArea : [...tr.proof, 1],
-				proofOnlyVisibleWhenHighlighted : [...rgbToArray("rgb(0, 0, 255)"), 0, 1],
-
-				sunColor    : rgbToArray("rgb(0, 113, 0)"),
-				orbit: rgbToArray("rgb(0, 113, 0)"),
-				body: rgbToArray("rgb(0, 113, 0)"),
-
-				estimatedForce: rgbToArray("rgb(200, 0, 200)"),
-				displacement: rgbToArray("rgb(200, 0, 200)"),
-				force: rgbToArray("rgb(200, 150, 0)"),
-                // ** copy more colors as defined above here **
-            },
 			{
+				given: MEDIUM_GREEN,
 				proofOnlyVisibleWhenHighlighted : [...rgbToArray("rgb(0, 0, 255)"), 0, 1],
 			},
             {
@@ -279,7 +263,27 @@
 				estimatedForce: rgbToArray("rgb(123, 105, 112)"),
 				displacement: rgbToArray("rgb(123, 105, 112)"),
 				force: rgbToArray("rgb(180, 63, 0)"),
-            },            
+            },
+			{
+                // copy of above for reference and so it's included in the options
+                given : rgbToArray("rgb(0, 113, 0)"),
+                givenArea : [...tr.given, 1],
+
+                proof : rgbToArray("rgb(0, 0, 255)"),
+                proofArea : [...tr.proof, 1],
+				proofOnlyVisibleWhenHighlighted : [...rgbToArray("rgb(0, 0, 255)"), 0, 1],
+
+				sunColor    : rgbToArray("rgb(0, 113, 0)"),
+				orbit: rgbToArray("rgb(0, 113, 0)"),
+				body: rgbToArray("rgb(0, 113, 0)"),
+
+				estimatedForce: rgbToArray("rgb(200, 0, 200)"),
+				displacement: rgbToArray("rgb(200, 0, 200)"),
+				force: rgbToArray("rgb(200, 150, 0)"),
+
+				dtime: tr.time,
+                // ** copy more colors as defined above here **
+            },
             // ** add as many color sets as you like here **
         ];    
 		//tr.displacement    = tr.estimatedForce;
