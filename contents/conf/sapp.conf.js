@@ -101,7 +101,7 @@
 		//usually as a condition of a claim,
 		//condition of the theorem,
 		//given parameters of the claim or proof
-		tr.given       = DARK_BLUE;
+		tr.given       = rgbToArray("rgb(0, 133, 0)");//DARK_BLUE;DARK_GREEN
 		tr.givenArea   = [...tr.given, 1];
 		tr.givenOnlyVisibleWhenHighlighted
 			= [...tr.given, 0, 1],
@@ -123,7 +123,7 @@
 
 		//logical steps of the proof, auxilary constructs
 		//of a proof
-		tr.proof       = DARK_GREEN
+		tr.proof       = rgbToArray("rgb(139, 105, 20)");
 		tr.proofArea   = [...tr.proof, 1];
 		tr.result      = rgbToArray("rgb(100, 0, 0)");
 		tr.resultOnlyVisibleWhenHighlighted
@@ -153,7 +153,7 @@
 		/*tr.estimatedForce  = rgbToArray("rgb(200, 0, 200)");*/
 		tr.sagitta         = tr.estimatedForce;
 		tr.displacement    = tr.estimatedForce;
-		tr.curvature       = BROWN;//rgbToArray("rgb(200, 40, 200)");
+		tr.curvature       = DARK_GRAY;//BROWN;//rgbToArray("rgb(200, 40, 200)");
 		tr.chord           = rgbToArray("rgb(0, 0, 255)");
 		tr.attention       = rgbToArray("rgb(200, 200, 0)");
 
@@ -245,7 +245,8 @@
         const colorSets = [ 
 
 			{
-				given: MEDIUM_GREEN,
+				//given:  DARK_GREEN,//MEDIUM_GREEN,
+
 				proofOnlyVisibleWhenHighlighted : [...rgbToArray("rgb(0, 0, 255)"), 0, 1],
 			},
             {
