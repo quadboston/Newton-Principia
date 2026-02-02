@@ -13,7 +13,7 @@
     {
         const sectSpeed0 = ssD.sectSpeed0;
         const solvable = ssD.solvable;
-        //stdMod.builds_dq8sagit8displace({});
+        //qIndexToOrbit is meta data for all points on orbit, qix is index of P
         const Porb = ssD.qIndexToOrbit[ rg.P.qix ];
         if (Porb) {
             var {
@@ -22,35 +22,69 @@
                 rr,
             } = Porb;
             rg.P.q = Porb.q;
-            rg.P.pos[0] = rr[0];
-            rg.P.pos[1] = rr[1];
-            const rr0 = rg.P.pos;
-            const rrc = rg.S.pos;
+            rg.P.pos = rr;
             const Rc = R; //curvature radius
 
             if( solvable ){
-                const rrplus = Porb.rrplus;
-                const rrminus = rg.rrminus.pos = Porb.rrminus;
+                // --- helpers ---
+                function normalize(v){
+                    const L = Math.hypot(v[0], v[1]);
+                    return L === 0 ? [0,0] : [v[0]/L, v[1]/L];
+                }
+                function sub(a,b){ return [a[0]-b[0], a[1]-b[1]]; }
+                function add(a,b){ return [a[0]+b[0], a[1]+b[1]]; }
+                function mul(a,s){ return [a[0]*s, a[1]*s]; }
+                function dot(a,b){ return a[0]*b[0] + a[1]*b[1]; }
+
+                // Force sagitta onto S->P direction (preserve signed magnitude along SP)
+                const SP = sub(rg.P.pos, rg.S.pos);
+                const nSP = normalize(SP);
+                let sagV = Porb.sagittaVector || [0,0];
+                const sagLenAlongSP = dot(sagV, nSP);
+                const sagPoint = add(rr, mul(nSP, sagLenAlongSP));
+                rg.sagitta.pos = sagPoint;
+
+                // cord
+                if (rg.dragging === 'P') {
+                    // current Q coordinates
+                    const Qx = rg.Q.pos[0];
+                    const Qy = rg.Q.pos[1];
+
+                    // midpoint M
+                    const M = rg.sagitta.pos;
+
+                    // slope of line MQ
+                    const m = (M[1] - Qy) / (M[0] - Qx);
+
+                    // compute Q' y so Q' lies on the same line through M with slope m
+                    Porb.rrminus[1] = rg.rrminus.pos[1] = M[1] + m * (Porb.rrminus[0] - M[0]);
+                    //todo: ensure Q' always falls on the curve
+                }
+                const rrplus = Porb.rrplus; // Q
+                const rrminus = rg.rrminus.pos = Porb.rrminus; // Q'
                 rg.Q.q = Porb.plusQ;
                 rg.Q.q_minus = Porb.minusQ;
                 rg.Q.pos[0] = rrplus[0];
                 rg.Q.pos[1] = rrplus[1];
-                rg.QtimeDecor.caption = '';
+
+                rg.QtimeDecor.caption = ''; // todo: remove? seems unused
                 rg.QtimeDecor.pos = Porb.rrplus;
-                let sagV = Porb.sagittaVector;
-                rg.sagitta.pos = [sagV[0]+rr[0],sagV[1]+rr[1]];
                 const chord = rg.chord = [ rrplus[0] - rrminus[0], rrplus[1] - rrminus[1], ];
                 rg.chord2 = chord[0]*chord[0]+chord[1]*chord[1];
 
+                //R and T only used in corollaries
+                //todo: sconf.logic_phaseId is not updating properly
+                //console.log(sconf.logic_phaseId);
+                
                 //R = parallel-projection of Q to tangent
                 var RR = mat.linesCross(
-                    uu, rr0, //direction, start
-                    [rr0[0]-rrc[0], rr0[1]-rrc[1]], rg.Q.pos, //direction, start
+                    uu, rg.P.pos, //direction, start
+                    [rg.P.pos[0]-rg.S.pos[0], rg.P.pos[1]-rg.S.pos[1]], rg.Q.pos, //direction, start
                 );
                 rg.R.pos[0] = RR[0];
                 rg.R.pos[1] = RR[1];
                 //T = perp. from Q to radius-vector
-                const TT = mat.dropPerpendicular( rg.Q.pos, rrc, rr0 )
+                const TT = mat.dropPerpendicular( rg.Q.pos, rg.S.pos, rg.P.pos )
                 rg.T.pos[0] = TT[0];
                 rg.T.pos[1] = TT[1];
             }

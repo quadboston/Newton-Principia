@@ -171,6 +171,7 @@
                 if( ulitmacy === sData.ULTIM_INSTANT ){
                     bP.instant_sagitta = bP.sagitta;
                 }
+                //console.log('Q = ' + rrplus + ", Q' = " + rrminus + ', M = ' + bP.sagittaVector);
             }
         }
         //**********************************************

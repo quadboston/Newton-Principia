@@ -34,7 +34,7 @@
         stdMod.graphFW_lemma = stdMod.createsGraph_FW_lemma({
                digramParentDom$:stdMod.legendRoot$ });
         stdMod.creates_poly2svg_for_lemma();
-        stdMod.rebuilds_orbit();
+        stdMod.rebuilds_orbit(); // qIndexToOrbit populated here
         
         stdMod.creates__gets_orbit_closest_point();
         
