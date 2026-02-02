@@ -46,19 +46,15 @@
 
                 // cord
                 if (rg.dragging === 'P') {
-                    // current Q coordinates
-                    const Qx = rg.Q.pos[0];
-                    const Qy = rg.Q.pos[1];
+                    const Q = rg.Q.pos;           // [Qx, Qy]
+                    const M = rg.sagitta.pos;     // [Mx, My]
 
-                    // midpoint M
-                    const M = rg.sagitta.pos;
+                    // Q' = 2*M - Q  (ensures |M Q'| == |Q M| and M is chord midpoint)
+                    const QprimeX = 2 * M[0] - Q[0];
+                    const QprimeY = 2 * M[1] - Q[1];
 
-                    // slope of line MQ
-                    const m = (M[1] - Qy) / (M[0] - Qx);
-
-                    // compute Q' y so Q' lies on the same line through M with slope m
-                    Porb.rrminus[1] = rg.rrminus.pos[1] = M[1] + m * (Porb.rrminus[0] - M[0]);
-                    //todo: ensure Q' always falls on the curve
+                    Porb.rrminus[0] = rg.rrminus.pos[0] = QprimeX;
+                    Porb.rrminus[1] = rg.rrminus.pos[1] = QprimeY;
                 }
                 const rrplus = Porb.rrplus; // Q
                 const rrminus = rg.rrminus.pos = Porb.rrminus; // Q'
