@@ -93,22 +93,25 @@
 		const MAGENTA    = rgbToArray("rgb(211, 87, 254)");
 		const RED           = rgbToArray("rgb(255, 0, 0)");
 
-
-		tr.invalid     = RED;  //alert, invalid user actions
 		tr.sunColor    = ORANGE; // center of force (S or C in propositions)
+		tr.given       = rgbToArray("rgb(0, 133, 0)");//DARK_BLUE;DARK_GREEN
+		tr.proof       = rgbToArray("rgb(139, 105, 20)");
+		tr.force       = PURPLE;
+        tr.estimatedForce  = MAGENTA;
+		tr.orbit       = LIGHT_BLUE;
+		tr.invalid     = RED;  //alert, invalid user actions
+		tr.curvature       = DARK_GRAY;//BROWN;//rgbToArray("rgb(200, 40, 200)");
+
 		tr.body        = LIGHT_BLUE;
 
 		//usually as a condition of a claim,
 		//condition of the theorem,
 		//given parameters of the claim or proof
-		tr.given       = rgbToArray("rgb(0, 133, 0)");//DARK_BLUE;DARK_GREEN
+		//tr.given       = rgbToArray("rgb(0, 133, 0)");//DARK_BLUE;DARK_GREEN
 		tr.givenArea   = [...tr.given, 1];
 		tr.givenOnlyVisibleWhenHighlighted
 			= [...tr.given, 0, 1],
 
-		// force
-		tr.force       = PURPLE;
-        tr.estimatedForce  = MAGENTA;
 
 		/*//relates to moving body, to an orbit
 		tr.orbitareaSample         = [0, 150, 0,  0.05]; //P12
@@ -123,7 +126,7 @@
 
 		//logical steps of the proof, auxilary constructs
 		//of a proof
-		tr.proof       = rgbToArray("rgb(139, 105, 20)");
+		//tr.proof       = rgbToArray("rgb(139, 105, 20)");
 		tr.proofArea   = [...tr.proof, 1];
 		tr.result      = rgbToArray("rgb(100, 0, 0)");
 		tr.resultOnlyVisibleWhenHighlighted
@@ -131,7 +134,6 @@
 
 		// merge misc: used?
         tr.speed       = DARK_GRAY;
-        tr.orbit       = tr.body;
         tr.forceMove       = tr.force;
 		// end merge misc
 
@@ -153,7 +155,7 @@
 		/*tr.estimatedForce  = rgbToArray("rgb(200, 0, 200)");*/
 		tr.sagitta         = tr.estimatedForce;
 		tr.displacement    = tr.estimatedForce;
-		tr.curvature       = DARK_GRAY;//BROWN;//rgbToArray("rgb(200, 40, 200)");
+		//tr.curvature       = DARK_GRAY;//BROWN;//rgbToArray("rgb(200, 40, 200)");
 		tr.chord           = rgbToArray("rgb(0, 0, 255)");
 		tr.attention       = rgbToArray("rgb(200, 200, 0)");
 
