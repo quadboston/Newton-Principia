@@ -40,6 +40,7 @@
 			});
             var arcAb = document.querySelector('.tp-arc-_ab');
             if(arcAb) arcAb.classList.remove('hidden');
+			ssF.putInBack(rg['arc-Ab']);
 		} else {
             var arcAb = document.querySelector('.tp-arc-_ab');
             if(arcAb) arcAb.classList.add('hidden');
