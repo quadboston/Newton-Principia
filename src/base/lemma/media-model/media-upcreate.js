@@ -23,14 +23,26 @@ const { ns, sn, haz, haff, $$, eachprop,
         if( haz( stdMod, 'media_update_is_forbidden' ) ) return;
         haff( stdMod, 'media_upcreate___before_basic' );
 
-        var url = window.location.href;
-        const match = url.match(/subessayId=([^,&]*)/);
+        var subessayId = ns.getSubessayIdFromURL(); // returns 0 if none
 
         //:updates subessay menu
         var exAspect = exegs[ amode.logic_phase ][ amode.aspect ];
-        if ( match && haz(exAspect.subessay2subexeg, match[1] )) {
+        if ( subessayId && haz(exAspect.subessay2subexeg, subessayId )) {
             // selected subessay persists when toggling tabs
-            amode.subessay = match[1];
+            amode.subessay = subessayId;
+        }
+        // ensure url is correct and consist with amode
+        if (subessayId !== amode.subessay) {
+            const param = `subessayId=${amode.subessay}`;
+            var url = window.location.href;
+            if (url.includes('subessayId=')) {
+                // Replace existing subessayId value (stop at next comma or end)
+                url = url.replace(/subessayId=[^,]*/g, param);
+            } else {
+                // Append with a comma separator (avoid double comma)
+                url = url.endsWith(',') ? url + param : url + ',' + param;
+            }
+            window.history.replaceState({}, '', url);
         }
         var subexeg = exAspect.subessay2subexeg[ amode.subessay ];
         sDomF.addsChosenCSSCls_to_subessay8menuSubitem({ exAspect, subexeg })

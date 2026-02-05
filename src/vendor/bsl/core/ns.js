@@ -777,6 +777,12 @@
     // \\// if pages doesn't have passed in aspect, return default
     //=========================================================
 
+    ns.getSubessayIdFromURL = function() {
+        var url = window.location.href;
+        const match = url.match(/subessayId=([^,&]*)/);
+        subessayId = match ? match[1] : 0;
+        return subessayId;
+    }
 
 
     // //\\ helpers
