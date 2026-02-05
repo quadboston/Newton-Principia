@@ -15,11 +15,12 @@
         const solvable = ssD.solvable;
         //qIndexToOrbit is meta data for all points on orbit, qix is index of P
         const Porb = ssD.qIndexToOrbit[ rg.P.qix ];
+        //console.log(ssD.qIndexToOrbit[ rg.P.qix ]); 
         if (Porb) {
             var {
                 RC, R, curvatureChordSecondPoint, projectionOfCenterOnTangent,
                 uu,
-                rr,
+                rr, //rg.P.pos
             } = Porb;
             rg.P.q = Porb.q;
             rg.P.pos = rr;
@@ -35,27 +36,47 @@
                 function add(a,b){ return [a[0]+b[0], a[1]+b[1]]; }
                 function mul(a,s){ return [a[0]*s, a[1]*s]; }
                 function dot(a,b){ return a[0]*b[0] + a[1]*b[1]; }
+                const sqDist = (a,b) => {
+                    const dx = a[0]-b[0], dy = a[1]-b[1];
+                    return dx*dx + dy*dy;
+                };
+                function nearestSamplePoint(samples, pt) {
+                    let bestI = 0;
+                    let bestD = sqDist(samples[0].rr, pt);
+                    for (let i = 1; i < samples.length; i++) {
+                        const d = sqDist(samples[i].rr, pt);
+                        if (d < bestD) { bestD = d; bestI = i; }
+                    }
+                    return { point: samples[bestI].rr.slice(), index: bestI, dist2: bestD };
+                }
 
-                // Force sagitta onto S->P direction (preserve signed magnitude along SP)
+                // Force sagitta onto S->P direction
                 const SP = sub(rg.P.pos, rg.S.pos);
                 const nSP = normalize(SP);
                 let sagV = Porb.sagittaVector || [0,0];
                 const sagLenAlongSP = dot(sagV, nSP);
                 const sagPoint = add(rr, mul(nSP, sagLenAlongSP));
-                rg.sagitta.pos = sagPoint;
+                rg.sagitta.pos = sagPoint; //estimate
 
-                // cord
                 if (rg.dragging === 'P') {
-                    const Q = rg.Q.pos;           // [Qx, Qy]
-                    const M = rg.sagitta.pos;     // [Mx, My]
+                    const Q = rg.Q.pos; 
+                    const M = rg.sagitta.pos;
 
-                    // Q' = 2*M - Q  (ensures |M Q'| == |Q M| and M is chord midpoint)
-                    const QprimeX = 2 * M[0] - Q[0];
-                    const QprimeY = 2 * M[1] - Q[1];
+                    // reflect Q across M to get Q'
+                    const Qprime = [ 2*M[0] - Q[0], 2*M[1] - Q[1] ];
 
-                    Porb.rrminus[0] = rg.rrminus.pos[0] = QprimeX;
-                    Porb.rrminus[1] = rg.rrminus.pos[1] = QprimeY;
+                    // find nearest point on curve
+                    const nearest = nearestSamplePoint(ssD.qIndexToOrbit, Qprime);
+
+                    Porb.rrminus[0] = rg.rrminus.pos[0] = nearest.point[0];
+                    Porb.rrminus[1] = rg.rrminus.pos[1] = nearest.point[1];
+
+                    // adjust M to be real midpoint
+                    const Mx = (Q[0] + Porb.rrminus[0]) / 2;
+	                const My = (Q[1] + Porb.rrminus[1]) / 2;
+                    rg.sagitta.pos = [Mx, My];
                 }
+
                 const rrplus = Porb.rrplus; // Q
                 const rrminus = rg.rrminus.pos = Porb.rrminus; // Q'
                 rg.Q.q = Porb.plusQ;
