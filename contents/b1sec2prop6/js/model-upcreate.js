@@ -58,24 +58,22 @@
                 const sagPoint = add(rr, mul(nSP, sagLenAlongSP));
                 rg.sagitta.pos = sagPoint; //estimate
 
-                if (rg.dragging === 'P') {
-                    const Q = rg.Q.pos; 
-                    const M = rg.sagitta.pos;
+                const Q = rg.Q.pos; 
+                const M = rg.sagitta.pos;
 
-                    // reflect Q across M to get Q'
-                    const Qprime = [ 2*M[0] - Q[0], 2*M[1] - Q[1] ];
+                // reflect Q across M to get Q'
+                const Qprime = [ 2*M[0] - Q[0], 2*M[1] - Q[1] ];
 
-                    // find nearest point on curve
-                    const nearest = nearestSamplePoint(ssD.qIndexToOrbit, Qprime);
+                // find nearest point on curve
+                const nearest = nearestSamplePoint(ssD.qIndexToOrbit, Qprime);
 
-                    Porb.rrminus[0] = rg.rrminus.pos[0] = nearest.point[0];
-                    Porb.rrminus[1] = rg.rrminus.pos[1] = nearest.point[1];
+                Porb.rrminus[0] = rg.rrminus.pos[0] = nearest.point[0];
+                Porb.rrminus[1] = rg.rrminus.pos[1] = nearest.point[1];
 
-                    // adjust M to be real midpoint
-                    const Mx = (Q[0] + Porb.rrminus[0]) / 2;
-	                const My = (Q[1] + Porb.rrminus[1]) / 2;
-                    rg.sagitta.pos = [Mx, My];
-                }
+                // adjust M to be real midpoint
+                const Mx = (Q[0] + Porb.rrminus[0]) / 2;
+                const My = (Q[1] + Porb.rrminus[1]) / 2;
+                rg.sagitta.pos = [Mx, My];
 
                 const rrplus = Porb.rrplus; // Q
                 const rrminus = rg.rrminus.pos = Porb.rrminus; // Q'
@@ -89,10 +87,7 @@
                 const chord = rg.chord = [ rrplus[0] - rrminus[0], rrplus[1] - rrminus[1], ];
                 rg.chord2 = chord[0]*chord[0]+chord[1]*chord[1];
 
-                //R and T only used in corollaries
-                //todo: sconf.logic_phaseId is not updating properly
-                //console.log(sconf.logic_phaseId);
-                
+                ///R and T only used in corollaries                
                 //R = parallel-projection of Q to tangent
                 var RR = mat.linesCross(
                     uu, rg.P.pos, //direction, start

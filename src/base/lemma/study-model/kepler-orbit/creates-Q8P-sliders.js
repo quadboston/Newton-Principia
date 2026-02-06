@@ -18,7 +18,6 @@
     {
         /// point P slider
         rg.P.acceptPos = newPos => {
-            rg.dragging  = 'P';
             //Ensure solvable and qix exist to help prevent P6 errors when orbits
             //are disconnected
             if (ssD.solvable) {
@@ -32,7 +31,6 @@
 
         /// point Q slider
         rg.Q.acceptPos = newPos => {
-            rg.dragging  = 'Q';
             //console.log('moving Q');
             const qix = rg.P.qix;
             var Qqix = stdMod.gets_orbit_closest_point( newPos );
