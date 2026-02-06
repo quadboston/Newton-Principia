@@ -36,6 +36,9 @@
                 function add(a,b){ return [a[0]+b[0], a[1]+b[1]]; }
                 function mul(a,s){ return [a[0]*s, a[1]*s]; }
                 function dot(a,b){ return a[0]*b[0] + a[1]*b[1]; }
+                function dist(a, b) {
+                    return Math.hypot(a[0] - b[0], a[1] - b[1]);
+                }
                 const sqDist = (a,b) => {
                     const dx = a[0]-b[0], dy = a[1]-b[1];
                     return dx*dx + dy*dy;
@@ -48,6 +51,34 @@
                         if (d < bestD) { bestD = d; bestI = i; }
                     }
                     return { point: samples[bestI].rr.slice(), index: bestI, dist2: bestD };
+                }
+                function adjustQprime() {
+                    // ensures Qprime is correct even on wonky curves
+                    let Mx = (Q[0] + nearest.point[0]) / 2;
+                    let My = (Q[1] + nearest.point[1]) / 2;
+                    let Mdiff = dist([Mx, My], rg.sagitta.pos).toFixed(3);
+                    if(Mdiff < 0.01) {                        
+                        Porb.rrminus[0] = rg.rrminus.pos[0] = nearest.point[0];
+                        Porb.rrminus[1] = rg.rrminus.pos[1] = nearest.point[1];
+                    } else {
+                        let i = nearest.index;
+                        for(i = nearest.index; i < rg.P.qix; i++) {
+                            let newQprime = ssD.qIndexToOrbit[i]?.rr; 
+                            Mx = (Q[0] + newQprime[0]) / 2;
+                            My = (Q[1] + newQprime[1]) / 2;
+                            Mdiff = dist([Mx, My], rg.sagitta.pos).toFixed(3);
+                            if(Mdiff < 0.1) {
+                                Porb.rrminus[0] = rg.rrminus.pos[0] = newQprime[0];
+                                Porb.rrminus[1] = rg.rrminus.pos[1] = newQprime[1];
+                                //console.log('corrected');
+                                break;
+                            }
+                            if(i === rg.P.qix-1) {
+                                console.log('???'); //todo: it should never get here...
+                            }
+                        }
+                    }
+                    //console.log(Mdiff);
                 }
 
                 // Force sagitta onto S->P direction
@@ -66,14 +97,10 @@
 
                 // find nearest point on curve
                 const nearest = nearestSamplePoint(ssD.qIndexToOrbit, Qprime);
-
-                Porb.rrminus[0] = rg.rrminus.pos[0] = nearest.point[0];
-                Porb.rrminus[1] = rg.rrminus.pos[1] = nearest.point[1];
-
-                // adjust M to be real midpoint
-                const Mx = (Q[0] + Porb.rrminus[0]) / 2;
-                const My = (Q[1] + Porb.rrminus[1]) / 2;
-                rg.sagitta.pos = [Mx, My];
+                adjustQprime();  
+                let Mx = (Q[0] + Porb.rrminus[0]) / 2;
+                let My = (Q[1] + Porb.rrminus[1]) / 2;
+                rg.sagitta.pos = [Mx, My]; //ensures we're showing the true M
 
                 const rrplus = Porb.rrplus; // Q
                 const rrminus = rg.rrminus.pos = Porb.rrminus; // Q'
