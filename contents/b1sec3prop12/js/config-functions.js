@@ -41,9 +41,9 @@
 
 
     function recalculateOrbitStartAndEnd() {
-        //Set start and end of orbit so hyperbola ends are needed distance to S
+        //Set start and end of orbit so the ends are the needed distance to S
         const op = sconf.orbitParameters;
-        const r = sconf.DISTANCE_HYPERBOLA_ENDS_TO_S;
+        const r = sconf.DISTANCE_ORBIT_ENDS_TO_S;
 
         const cosValue = (1 - op.latus / r) / op.eccentricity;
         if (cosValue < -1 || cosValue > 1) {

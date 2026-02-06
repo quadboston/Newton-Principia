@@ -1,20 +1,18 @@
 ( function() {
-    var { $$, sDomF, sconf, stdMod, }
+    var { $$, sDomF, stdMod, }
         = window.b$l.apptree({ stdModExportList : { createsGraph_FW_lemma, }, });
-        return;
+    return;
 
 
-        function createsGraph_FW_lemma({ digramParentDom$ }){
-            const graphFW = {};
-            stdMod.createsGraphFW_class({
+    function createsGraph_FW_lemma({ digramParentDom$ }){
+        const graphFW = {};
+        stdMod.createsGraphFW_class({
             graphFW,
             digramParentDom$,
             doSetColorThreadArray,
             setsGraphContainerAttributes,
             setsGraphAxes,
             plotLabels_2_plotsPars,
-            setsGraphTpClasses,
-            //TEMP Isn't this the same as above, why are there two
             setsGraphTpClasses,
         });
         //first array must be enabled
@@ -100,7 +98,6 @@
                                 '</tspan>' +
 
                                 '<tspan> forces</tspan>' +
-                                // '<tspan> forces (per their max)</tspan>' +
                                 '</text>',
                     x       : 250,
                     y       : 40,
@@ -139,7 +136,6 @@
 
         function plotLabels_2_plotsPars( colorThreadArray )
         {
-        //TEMP Are so many still needed?
             return [
                 {
                     fraqX : 0.01,
@@ -175,12 +171,9 @@
         ///the unmasked indices must be the same as here:
         function setsGraphTpClasses()
         {
-                const svg = graphFW.fw.plotIx2plotSvg;
-                $$.$( svg[0] ).addClass( 'tp-force tostroke' );
-                $$.$( svg[1] ).addClass( 'tp-displacement tostroke' );
-                //TEMP
-                // svg[2] && $$.$( svg[2] ).addClass( 'tp-body tostroke' );
-                // svg[3] && $$.$( svg[3] ).addClass( 'tp-sagitta tostroke' );
+            const svg = graphFW.fw.plotIx2plotSvg;
+            $$.$( svg[0] ).addClass( 'tp-force tostroke' );
+            $$.$( svg[1] ).addClass( 'tp-displacement tostroke' );
         }
     }
 }) ();

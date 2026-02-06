@@ -3,7 +3,6 @@
     var { ns, sn, mat, fconf, sconf, stdMod, fixedColors, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     var op = sn( 'orbitParameters', sconf );
-    var sop = sn( 'sampleOrbitParameters', sconf );
     return;
 
 
@@ -59,6 +58,8 @@
         sconf.pointDecoration.r = handleRadius;
         //TEMP P9/10/11 don't seem to have the following.  Does the value for
         //this setting make sense, or should it be adjusted?
+        //It seems like this is used in "src\base\parser\colors-lib.js",
+        //however the functions that reference this may not be in use for P12.
         sconf.default_tp_lightness = 30;
 
         // //\\ principal tp-css pars
@@ -82,10 +83,6 @@
         //=============================================
         // //\\ points reused in config
         //=============================================
-        //TEMP What should go here?  It seems different models set different
-        //variables.
-        //TEMP The other models seem to use different variable names for the
-        //following, is this name ok?
         var origin = [ 492, 565 ]; //x,y of whole svg model
         //=============================================
         // \\// points reused in config
@@ -102,15 +99,14 @@
         //-------------------------------------------
         // //\\ calculation algo parameters
         //-------------------------------------------
-        const FT = sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
+        sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
         sconf.CURVE_REVOLVES = false; //true for cyclic orbit
-        sconf.DT_SLIDER_MAX = FT ? 0.8 : null;
-        //TEMP P11 has the following is it needed for this model as well?
-        // sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
-        //TEMP Are the following values for STEPS correct, or do they need
-        //adjustments?
+        sconf.DT_SLIDER_MAX = 0.8;
         var Q_STEPS = 500;
         var DATA_GRAPH_STEPS = 500;
+        //TEMP Added DEVIATION.. so both curves are scaled by actual force max
+        sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX = true;
+        sconf.DEVIATION_SCALE_FACTOR = 1;
         sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
 
         //Create left side of hyperbola by mirroring right side.  Results in a
@@ -126,63 +122,18 @@
         //-------------------------------------------
         // //\\ curve shape parameters
         //-------------------------------------------
-        sconf.DISTANCE_HYPERBOLA_ENDS_TO_S = 2.4;
+        sconf.DISTANCE_ORBIT_ENDS_TO_S = 2.4;
         //The following are set by recalculateOrbitStartAndEnd
         sconf.orbit_q_start = null;
         sconf.orbit_q_end = null;
 
-
-
-        //TEMP Should the following be moved lower down?  For P9/10/11 the next
-        //section seems to be ":diagram sandbox spatial parameters".
-        //  -DONE
-        //TEMP Are any changes needed for the following?  eg. rename "PparQ" or
-        //similar?
-        //gravitational constant
-        var Kepler_g = 0.64478; //3.5105 * (0.6/1.4)*(0.6/1.4);
-        op.Kepler_g = op.Kepler_gInitial = Kepler_g;
-        sop.Kepler_g = sop.Kepler_gInitial = Kepler_g;
-
-
         //sets model offset
-        op.mainAxisAngle_initial = 0;
-        op.mainAxisAngle = op.mainAxisAngle_initial;
-        op.delta_v_increase_LIMIT = 1.5;
+        op.mainAxisAngle = 0;
 
         //conic pars
         op.initialEccentricity = 1.365; //hyperbola
-        op.latusInitial = 0.90;
-        var PparQ = 0.49 * Math.PI;
-        
-        op.sagittaDelta_q_initial = 1;
-
-        op.PparQ_initial        = PparQ;
-        op.PparQ_initial_essay  = PparQ;
-        op.sagittaDelta_q       = op.sagittaDelta_q_initial;
-
-        //-----------------------------------------------------
-        // //\\ sets Kepler_v
-        //-----------------------------------------------------
-        //TEMP Which of the following are still needed now that the code has
-        //be updated?
-        op.latus = op.latusInitial;
+        op.latus = 0.90;
         stdMod.establishesEccentricity( op.initialEccentricity );
-        var { Kepler_v, cosOmega, om } = mat.conics.innerPars2innerPars({
-                lat         : op.latusInitial,
-                fi          : PparQ,
-                e           : op.initialEccentricity,
-                Kepler_g    : op.Kepler_g,
-        });
-        //saves initial speed
-        op.cosOmega             = cosOmega;
-        op.om                   = om;
-        op.cosOmega_initial     = cosOmega;
-        op.om_initial           = om;
-        op.Kepler_v_initial     = Kepler_v;
-        op.Kepler_v             = op.Kepler_v_initial;
-        //-----------------------------------------------------
-        // \\// sets Kepler_v
-        //-----------------------------------------------------
         //-------------------------------------------
         // \\// curve shape parameters
         //-------------------------------------------
@@ -225,8 +176,7 @@
             orbit               : orbit,
             orbitdq             : orbit,
             shadow,
-            force,//               : result,//TEMP
-            // force               : result,
+            force,
             instanttriangle     : instanttriangleHiddenStart,
         };
         //-----------------------------------
@@ -374,11 +324,9 @@
                 pcolor : orbit,
                 letterAngle : 150,
                 letterRotRadius : 38,
-                //TEMP If this "sconf.js" file is separate from the one for P13
-                //then these conditionals should probably be switched to true.
-                draggableX  : 'b1sec3prop13' !== fconf.sappId,
-                undisplayAlways  : 'b1sec3prop13' === fconf.sappId,
-                doPaintPname : 'b1sec3prop13' !== fconf.sappId,
+                draggableX  : true,
+                undisplayAlways  : false,
+                doPaintPname : true,
                 unscalable  : true,
                 fontSize : 16,
             },

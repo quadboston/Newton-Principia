@@ -51,6 +51,7 @@
             
             // Kepler's motion: rvₜcos(w) = M
             // f = M²/(Rr²cos³(w))
+            //TEMP Shouldn't cosAbs be renamed to sinAbs?
             cosAbs = Math.abs( sinOmega );
             if( NON_SOLVABLE_THRESHOLD > cosAbs ) {
                 solvable = false;
