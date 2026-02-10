@@ -365,10 +365,24 @@
 
             nonSolvablePoint : {
                 //pos will be calculated
-                caption : 'Orbits are disconnected.',
+                caption : '',
                 fontSize : '25',
                 undisplayAlways : true,
                 pcolor : invalid,
+                letterAngle : 0,
+            },
+            errorMessage : { // nonSolvablePoint message shown at to of canvas
+                pos : [20, 20],
+                caption: "error state", // value get overwritten in model-upcreate by const set in builds-orbit.js
+                fontSize : '25',
+                pcolor : invalid,
+                letterAngle : 0,
+            },
+            infoMessage : {
+                pos : [20, 20],
+                caption: "In the limit, the sagitta will pass through the center of forces",
+                fontSize : '25',
+                pcolor : context,
                 letterAngle : 0,
             }
         });

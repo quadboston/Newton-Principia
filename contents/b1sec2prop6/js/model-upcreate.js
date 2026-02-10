@@ -67,18 +67,19 @@
                             Mx = (Q[0] + newQprime[0]) / 2;
                             My = (Q[1] + newQprime[1]) / 2;
                             Mdiff = dist([Mx, My], rg.sagitta.pos).toFixed(3);
-                            if(Mdiff < 0.1) {
+                            if(Mdiff < 0.02) {
                                 Porb.rrminus[0] = rg.rrminus.pos[0] = newQprime[0];
                                 Porb.rrminus[1] = rg.rrminus.pos[1] = newQprime[1];
-                                //console.log('corrected');
                                 break;
-                            }
-                            if(i === rg.P.qix-1) {
-                                console.log('???'); //todo: it should never get here...
                             }
                         }
                     }
-                    //console.log(Mdiff);
+                    console.log(Mdiff);
+                    if(Mdiff > 0.02) {                        
+                        rg.infoMessage.undisplay = false;
+                    } else {                            
+                        rg.infoMessage.undisplay = true;
+                    }
                 }
 
                 // Force sagitta onto S->P direction
@@ -98,9 +99,6 @@
                 // find nearest point on curve
                 const nearest = nearestSamplePoint(ssD.qIndexToOrbit, Qprime);
                 adjustQprime();  
-                let Mx = (Q[0] + Porb.rrminus[0]) / 2;
-                let My = (Q[1] + Porb.rrminus[1]) / 2;
-                rg.sagitta.pos = [Mx, My]; //ensures we're showing the true M
 
                 const rrplus = Porb.rrplus; // Q
                 const rrminus = rg.rrminus.pos = Porb.rrminus; // Q'
@@ -113,6 +111,10 @@
                 rg.QtimeDecor.pos = Porb.rrplus;
                 const chord = rg.chord = [ rrplus[0] - rrminus[0], rrplus[1] - rrminus[1], ];
                 rg.chord2 = chord[0]*chord[0]+chord[1]*chord[1];
+                
+                let Mx = (rrplus[0] + Porb.rrminus[0]) / 2;
+                let My = (rrplus[1] + Porb.rrminus[1]) / 2;
+                rg.sagitta.pos = [Mx, My]; //ensures we're showing the true M
 
                 ///R and T only used in corollaries                
                 //R = parallel-projection of Q to tangent
@@ -267,11 +269,14 @@
                 ////displays last fold point
                 nsp.pos[0] = ssD.foldPoints[len-1][0];
                 nsp.pos[1] = ssD.foldPoints[len-1][1];
+                rg.errorMessage.caption = ssD.nonSolvablePointCaption;
+                rg.errorMessage.undisplay = false;
                 nsp.undisplay = false;
                 nsl.undisplay = false;
             } else {
                 nsp.undisplay = true;
                 nsl.undisplay = true;
+                rg.errorMessage.undisplay = true;
             }
         }
         //================================================

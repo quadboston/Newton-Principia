@@ -233,11 +233,14 @@
                 ////displays last fold point
                 nsp.pos[0] = ssD.foldPoints[len-1][0];
                 nsp.pos[1] = ssD.foldPoints[len-1][1];
+                rg.errorMessage.caption = ssD.nonSolvablePointCaption;
+                rg.errorMessage.undisplay = false;
                 nsp.undisplay = false;
                 nsl.undisplay = false;
             } else {
                 nsp.undisplay = true;
                 nsl.undisplay = true;
+                rg.errorMessage.undisplay = true;
             }
         }
         //================================================
