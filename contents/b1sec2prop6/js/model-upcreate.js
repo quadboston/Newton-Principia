@@ -28,77 +28,66 @@
 
             if( solvable ){
                 // --- helpers ---
-                function normalize(v){
-                    const L = Math.hypot(v[0], v[1]);
-                    return L === 0 ? [0,0] : [v[0]/L, v[1]/L];
-                }
-                function sub(a,b){ return [a[0]-b[0], a[1]-b[1]]; }
-                function add(a,b){ return [a[0]+b[0], a[1]+b[1]]; }
-                function mul(a,s){ return [a[0]*s, a[1]*s]; }
-                function dot(a,b){ return a[0]*b[0] + a[1]*b[1]; }
                 function dist(a, b) {
                     return Math.hypot(a[0] - b[0], a[1] - b[1]);
                 }
-                const sqDist = (a,b) => {
-                    const dx = a[0]-b[0], dy = a[1]-b[1];
-                    return dx*dx + dy*dy;
-                };
-                function nearestSamplePoint(samples, pt) {
-                    let bestI = 0;
-                    let bestD = sqDist(samples[0].rr, pt);
-                    for (let i = 1; i < samples.length; i++) {
-                        const d = sqDist(samples[i].rr, pt);
-                        if (d < bestD) { bestD = d; bestI = i; }
-                    }
-                    return { point: samples[bestI].rr.slice(), index: bestI, dist2: bestD };
+                function lineIntersection(A, B, C, D) {
+                    const x1 = A[0], y1 = A[1];
+                    const x2 = B[0], y2 = B[1];
+                    const x3 = C[0], y3 = C[1];
+                    const x4 = D[0], y4 = D[1];
+
+                    const den = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+                    if (den === 0) return null; // parallel or coincident
+
+                    const px = ((x1*y2 - y1*x2) * (x3 - x4) - (x1 - x2) * (x3*y4 - y3*x4)) / den;
+                    const py = ((x1*y2 - y1*x2) * (y3 - y4) - (y1 - y2) * (x3*y4 - y3*x4)) / den;
+
+                    return [px, py];
                 }
+
                 function adjustQprime() {
-                    // ensures Qprime is correct even on wonky curves
-                    let Mx = (Q[0] + nearest.point[0]) / 2;
-                    let My = (Q[1] + nearest.point[1]) / 2;
-                    let Mdiff = dist([Mx, My], rg.sagitta.pos).toFixed(3);
-                    if(Mdiff < 0.01) {                        
-                        Porb.rrminus[0] = rg.rrminus.pos[0] = nearest.point[0];
-                        Porb.rrminus[1] = rg.rrminus.pos[1] = nearest.point[1];
-                    } else {
-                        let i = nearest.index;
-                        for(i = nearest.index; i < rg.P.qix; i++) {
-                            let newQprime = ssD.qIndexToOrbit[i]?.rr; 
-                            Mx = (Q[0] + newQprime[0]) / 2;
-                            My = (Q[1] + newQprime[1]) / 2;
-                            Mdiff = dist([Mx, My], rg.sagitta.pos).toFixed(3);
-                            if(Mdiff < 0.02) {
-                                Porb.rrminus[0] = rg.rrminus.pos[0] = newQprime[0];
-                                Porb.rrminus[1] = rg.rrminus.pos[1] = newQprime[1];
-                                break;
-                            }
+                    let best = null;
+                    let bestDiff = Infinity;
+                    const Q = rg.Q.pos;
+
+                    for (let i = 0; i < rg.P.qix; i++) {
+                        const Qp = ssD.qIndexToOrbit[i]?.rr;
+                        if (!Qp) continue;
+
+                        // intersection I(Q') of SP and QQ'
+                        const I = lineIntersection(rg.S.pos, rg.P.pos, rg.Q.pos, Qp);
+                        if (!I) {
+                            console.log(I);
+                            continue; 
+                        }
+
+                        // midpoint M(Q, Q')
+                        const M = [
+                            (Q[0] + Qp[0]) / 2,
+                            (Q[1] + Qp[1]) / 2
+                        ];
+
+                        const d = dist(M, I);
+                        if (d < bestDiff) {
+                            bestDiff = d;
+                            best = Qp;
                         }
                     }
-                    console.log(Mdiff);
-                    if(Mdiff > 0.02) {                        
+
+                    //console.log(bestDiff.toFixed(3));
+                    if(bestDiff > 0.001) {            
+                        Porb.rrminus[0] = rg.rrminus.pos[0] = rg.rrminus.pos[0];
+                        Porb.rrminus[1] = rg.rrminus.pos[1] = rg.rrminus.pos[1];             
                         rg.infoMessage.undisplay = false;
-                    } else {                            
+                    } else {             
+                        Porb.rrminus[0] = rg.rrminus.pos[0] = best[0];
+                        Porb.rrminus[1] = rg.rrminus.pos[1] = best[1];               
                         rg.infoMessage.undisplay = true;
                     }
                 }
 
-                // Force sagitta onto S->P direction
-                const SP = sub(rg.P.pos, rg.S.pos);
-                const nSP = normalize(SP);
-                let sagV = Porb.sagittaVector || [0,0];
-                const sagLenAlongSP = dot(sagV, nSP);
-                const sagPoint = add(rr, mul(nSP, sagLenAlongSP));
-                rg.sagitta.pos = sagPoint; //estimate
-
-                const Q = rg.Q.pos; 
-                const M = rg.sagitta.pos;
-
-                // reflect Q across M to get Q'
-                const Qprime = [ 2*M[0] - Q[0], 2*M[1] - Q[1] ];
-
-                // find nearest point on curve
-                const nearest = nearestSamplePoint(ssD.qIndexToOrbit, Qprime);
-                adjustQprime();  
+                adjustQprime(); // finds Q' that brings M closest to I
 
                 const rrplus = Porb.rrplus; // Q
                 const rrminus = rg.rrminus.pos = Porb.rrminus; // Q'
