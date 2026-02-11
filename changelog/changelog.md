@@ -1,7 +1,14 @@
 # Change Log
 
-## 2026-1-? (SteelBlue Version, 0.5)
+## 2026-2-? (SteelBlue Version, 0.5)
 ### Improved
+* General:
+	* fixed refresh can result in changed diagram component visibility 
+	* zoom centers on cursor
+
+* Lemmas 6 - 11:
+	* Zoom added (only lemmas 2, 3, 4 lack zoom)
+
 * Propositions 1 and 2
 	* fixed issues with z-order, consistent radii colors, label colors, and lower-case italics
 
