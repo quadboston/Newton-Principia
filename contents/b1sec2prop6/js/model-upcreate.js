@@ -258,6 +258,7 @@
                 ////displays last fold point
                 nsp.pos[0] = ssD.foldPoints[len-1][0];
                 nsp.pos[1] = ssD.foldPoints[len-1][1];
+                rg.infoMessage.undisplay = true; // hide if was showing
                 rg.errorMessage.caption = ssD.nonSolvablePointCaption;
                 rg.errorMessage.undisplay = false;
                 nsp.undisplay = false;
