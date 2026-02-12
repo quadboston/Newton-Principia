@@ -1,9 +1,9 @@
 # Change Log
 
-## 2026-2-? (SteelBlue Version, 0.5)
+## 2026-2-12 (SteelBlue Version, 0.5)
 ### Improved
 * General:
-	* fixed refresh can result in changed diagram component visibility 
+	* fixed bug where refresh could change diagram component visibility 
 	* zoom centers on cursor
 
 * Lemmas 6 - 11:
