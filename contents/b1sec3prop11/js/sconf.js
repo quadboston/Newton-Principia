@@ -29,8 +29,6 @@
         // //\\ subapp regim switches
         //====================================================
         sconf.enableStudylab = false;
-        //true enables framework zoom
-        sconf.enableTools = true;
         //====================================================
         // \\// subapp regim switches
         //====================================================

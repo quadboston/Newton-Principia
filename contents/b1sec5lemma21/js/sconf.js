@@ -12,7 +12,6 @@
         sconf.insertDelayedBatch        = true;
         sconf.enableStudylab            = false;
         //for some standard sliders
-        sconf.enableTools               = true;
         sconf.hideProofSlider           = true; //todo
         //sconf.rgShapesVisible         = true;
         //====================================================
