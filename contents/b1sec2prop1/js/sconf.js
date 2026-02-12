@@ -15,7 +15,6 @@ function init_conf (){
     sconf.enableStudylab = false;
     //hideProofSlider = true, //false,
     sconf.enableCapture = true;
-    sconf.enableTools = true;
     //enableDataFunctionsRepository : true,
     //----------------------------------
     // \\// scenario
