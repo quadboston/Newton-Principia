@@ -546,7 +546,7 @@
                 ///input:    condition - optional truthy, if arguments.length === 1
                 ///                      then toggling will be made,
                 ///                      otherwise, "condition" controls cls setting
-                methods.tgcls = function( cls, condition, obj ) {
+                methods.toggleClass = function( cls, condition, obj ) {
                                     obj = obj || null;
                                     ctxEl = obj || ctxEl;
                                     if( !ctxEl ) return;

@@ -463,11 +463,6 @@ function doExpandConfig (){
         ////new lemmas must set this in own "sf",
         sf.enableStudylab = true;
     }
-    if( !has( sf, 'enableTools' ) ) {
-        ////this way, the legacy lemmas are preserved,
-        ////new lemmas must set this in own "sf",
-        sf.enableTools = true;
-    }
     //----------------------------------
     // \\// prepares sf data holder
     //----------------------------------------------------

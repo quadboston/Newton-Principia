@@ -48,31 +48,29 @@
         //..........................
         // //\\ change-tools button
         //..........................
-        if( sconf.enableTools ) {
-            $$
-                .c( 'div' )
-                .addClass( 'change-tools-button' )
-                .html( "tools" )
-                .to( topMediaControls$() )
-                //.css( 'display', 'block' )
-                .e( 'click', () => {
-                    rgtools.value = rgtools.value === 'on' ? 'off' : 'on';
-                    if( rgtools.value === 'on' ) {
-                        fapp.fappRoot$.addClass( 'rgtools' );
-                    } else {
-                        fapp.fappRoot$.removeClass( 'rgtools' );
-                    }
-                    var wwsm = ns.haf( stdMod, 'model8media_upcreate' );
-                    if( wwsm ) {
-                        wwsm();
-                    } else {
-                        ns.haf( ssF, 'model8media_upcreate' )();
-                    }
-                })
-                ;
-                rgtools.value = 'off'
-                fapp.fappRoot$.removeClass( 'rgtools' );
-        }
+		$$
+			.c( 'div' )
+			.addClass( 'change-tools-button' )
+			.html( "tools" )
+			.to( topMediaControls$() )
+			//.css( 'display', 'block' )
+			.e( 'click', () => {
+				rgtools.value = rgtools.value === 'on' ? 'off' : 'on';
+				if( rgtools.value === 'on' ) {
+					fapp.fappRoot$.addClass( 'rgtools' );
+				} else {
+					fapp.fappRoot$.removeClass( 'rgtools' );
+				}
+				var wwsm = ns.haf( stdMod, 'model8media_upcreate' );
+				if( wwsm ) {
+					wwsm();
+				} else {
+					ns.haf( ssF, 'model8media_upcreate' )();
+				}
+			})
+			;
+			rgtools.value = 'off'
+			fapp.fappRoot$.removeClass( 'rgtools' );
         //..........................
         // \\// change-tools button
         //..........................

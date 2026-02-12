@@ -1,20 +1,36 @@
 ( function() {
     var {
         sn, haz,
-        sconf, ssF, sDomF, sDomN, rg, toreg,
-        stdMod, amode,
+        sconf, ssF, sDomF, rg, toreg,
     } = window.b$l.apptree({
         ssFExportList :
         {
             upcreate__pars2rgShape,
             declareGeomtric,
+			putInFront,
+			putInBack,
         },
     });
     return;
 
 
+	function putInFront(...items) {
+		for (const item of items) {
+			const svg = item.svgel;
+			const parent = svg.parentNode;
+			svg.remove();
+			parent.appendChild(svg);
+		}
+	}
 
-
+	function putInBack(...items) {
+		for (const item of items) {
+			const svg = item.svgel;
+			const parent = svg.parentNode;
+			svg.remove();
+			parent.insertBefore(svg, parent.firstChild);
+		}
+	}
 
 
     ///declares whirl (do call it modShape?)

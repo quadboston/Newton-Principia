@@ -21,7 +21,6 @@
         // //\\ subapp regim switches
         //====================================================
         sconf.enableStudylab            = false; // true to include options as in Book 3 Lemma 5
-        sconf.enableTools               = false;
         sconf.rgShapesVisible           = false; // false to show only relevant lines, points, labels
         //====================================================
         // \\// subapp regim switches

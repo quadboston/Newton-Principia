@@ -17,7 +17,6 @@
         // //\\ subapp regim switches
         //====================================================
         sconf.enableStudylab            = false;
-        sconf.enableTools               = true;
         sconf.rgShapesVisible           = true;
         //====================================================
         // \\// subapp regim switches

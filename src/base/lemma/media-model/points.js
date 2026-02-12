@@ -1,8 +1,8 @@
 ( function() {
     var {
-        sn, $$, nsmethods, haz, has, han, nssvg, eachprop,
-        sconf, sDomF, sDomN, ssF, ssD, lowtpid_2_glocss8anchorRack, rg, toreg,
-        stdMod, amode,
+        sn, $$, nsmethods, haz, has, han, nssvg,
+        sconf, sDomF, ssF, lowtpid_2_glocss8anchorRack, rg, toreg,
+        stdMod,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -16,11 +16,6 @@
     ssF.rgPos2rgMedia = pos2pointy; //modifies svg-dom, more sensible alias
     var ownProp = Object.prototype.hasOwnProperty;
     return;
-
-
-
-
-
 
 
     //==============================================
@@ -137,9 +132,9 @@
         if( has( pt, 'undisplayAlways' ) ){
             //good but may be corrupts legacy lemmas
             //pt.undisplay = true; //fixes hiding of letters
-            pt.svgel$.tgcls( 'undisplay', pt.undisplayAlways );
+            pt.svgel$.toggleClass( 'undisplay', pt.undisplayAlways );
         } else {
-            pt.svgel$.tgcls( 'undisplay',
+            pt.svgel$.toggleClass( 'undisplay',
                              !haz( pt, 'displayAlways' ) && haz( pt, 'undisplay' )
             );
         }
@@ -262,7 +257,7 @@
             //--------------------------------------------------------------------------
 
             let $$$svg = $$.$( rgX.pnameLabelsvg );
-            $$$svg.tgcls(
+            $$$svg.toggleClass(
                 'undisplay',
                 rgX.hideCaption ||
                 (
@@ -293,7 +288,7 @@
         } else {
             ////bug fix: June 3, 2021
             var wwSvg = haz( rgX, 'pnameLabelsvg' );
-            $$.$( wwSvg ).tgcls( 'undisplay', true );
+            $$.$( wwSvg ).toggleClass( 'undisplay', true );
             /*
             rgX.hideCaption ||
             (
@@ -336,4 +331,3 @@
     //-------------------------------------------------
 
 }) ();
-

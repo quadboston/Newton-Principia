@@ -1,7 +1,7 @@
 ( function() {
     var {
-        sn, $$, paste, haz, mat, bezier, nssvg,
-        sconf, sDomF, ssD, ssF,
+        sn, $$, paste, haz, bezier, nssvg,
+        sconf, ssD, ssF,
         stdMod, rg, toreg,
     } = window.b$l.apptree({
         setModule,
@@ -45,8 +45,6 @@
         var pointA     = rg.A;
         var pointD     = rg.D;
         var pointE     = rg.E;
-        var pointB     = rg.B;
-        var pointC     = rg.C;
 
         rg.B.doWhiteKernel = true;
         rg.C.doWhiteKernel = true;
@@ -54,10 +52,7 @@
 
         var pointOd     = rg.d;
         var pointOe     = rg.e;
-        var pointOb     = rg.b;
-        var pointOc     = rg.c;
-        var pointOg     = rg.g;
-        var pointOf     = rg.f;
+
         //===================================================
         // \\// spawns study model from main parameters ssD
         //===================================================
@@ -126,7 +121,7 @@
         });
         $$.$( remoteCurve.mediael.paintedCurve )
             .addClass( 'tostroke tp-_abc' )
-            .tgcls( 'undisplay', haz( remoteCurve, 'undisplay' ) )
+            .toggleClass( 'undisplay', haz( remoteCurve, 'undisplay' ) )
             ;
         // \\// paints curve with two pivot points
 
@@ -226,7 +221,7 @@
 
             $$.$(area.mediael)
                 .cls( ' tp-'+topicGroup_decapitalized + fullMode + ' tofill' )
-                .tgcls( 'undisplay', haz( area, 'undisplay' ) )
+                .toggleClass( 'undisplay', haz( area, 'undisplay' ) )
                 ;
         }
         //==========================================
@@ -253,7 +248,7 @@
             });
             $$.$( area.mediael )
                 .addClass(`tp-${topicGroup_decapitalized} tofill`)
-                .tgcls( 'undisplay', haz( area, 'undisplay' ) )
+                .toggleClass( 'undisplay', haz( area, 'undisplay' ) )
                 ;
         }
         //==========================================

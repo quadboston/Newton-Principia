@@ -11,7 +11,6 @@
         // //\\ subapp regim switches
         //====================================================
         sconf.enableStudylab            = false;
-        sconf.enableTools               = false;
         sconf.rgShapesVisible           = false; // shows hidden objects not shown on normal page or addendum
         //====================================================
         // \\// subapp regim switches

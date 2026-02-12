@@ -20,7 +20,6 @@
         // //\\ subapp regim switches
         //====================================================
         sconf.enableStudylab            = false;
-        sconf.enableTools               = true;
 
         //setting to false removes S, SA, P, SP, eccentricity label and line (not dot)
         sconf.rgShapesVisible           = true; 
