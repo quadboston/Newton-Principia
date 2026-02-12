@@ -164,7 +164,7 @@
             force,
             invalid,
             hidden,
-
+            info,
             estimatedForce,
             sagitta,
             curvature,
@@ -381,7 +381,7 @@
                 pos : [20, 20],
                 caption: "In the limit, the sagitta will pass through the center of forces",
                 fontSize : '25',
-                pcolor : context,
+                pcolor : info,
                 letterAngle : 0,
             }
         });

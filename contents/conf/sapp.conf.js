@@ -83,6 +83,8 @@ function doesConfigLemma (){
     tr.instanttriangle         = [0, 150, 200, 0.2, 0.5 ]; //P14 (in P12 sconf)
     tr.instanttriangleHiddenStart  = [0, 150, 200, 0.001, 0.5 ] //P12
 
+    tr.info = [98, 109, 126]; // info text for P6, etc
+
     tr.time      = rgbToArray("rgb(0, 150, 200)");
     tr.dtime     = tr.time;
     tr.distance  = rgbToArray("rgb(60, 20, 0)");
