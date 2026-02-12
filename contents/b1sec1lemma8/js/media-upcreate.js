@@ -1,6 +1,6 @@
 ( function() {
     var {
-        $$, haz, fconf, ssF, ssD, sconf, amode, stdMod, rg, toreg, bezier, nssvg
+        $$, haz, fconf, ssF, ssD, amode, stdMod, rg, toreg, nssvg
     } = window.b$l.apptree({
         stdModExportList : {
             media_upcreate___part_of_medupcr_basic,
@@ -188,7 +188,7 @@
 
             $$.$(area.mediael)
                 .cls(`tp-${topicGroup_decapitalized} tofill`)
-                .tgcls('undisplay', haz(area, 'undisplay'));
+                .toggleClass('undisplay', haz(area, 'undisplay'));
         }
 
         //==========================================
