@@ -1,11 +1,8 @@
 ( function() {
     var {
-        ns, sn,
         rg,
         ssF, ssD,
-        sDomF,
-        stdMod,
-
+        amode, stdMod,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -15,17 +12,6 @@
     return;
 
 
-
-
-
-
-
-
-
-
-
-
-
     //=========================================================
     // //\\ lemma custom addons
     //=========================================================
@@ -33,28 +19,21 @@
     {
         //this is a "policy" ... should be in the state manager if any ...
         rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
+		paintCurveFromAto(rg.b)
+		paintCurveFromAto(rg.B)
 
-        ///paints arc from A to B
-        ssF.paintsCurve({
-                fun         : ssD.repoConf[0].fun,
-                mmedia      : stdMod.mmedia,
-                pointA      : rg.A,
-                pointB      : rg.B,
-                addToStepCount : 1,
-        });
-        ///paints arc from A to b
-        ssF.paintsCurve({
-                fun         : ssD.repoConf[0].fun,
-                mmedia      : stdMod.mmedia,
-                pointA      : rg.A,
-                pointB      : rg.b,
-                addToStepCount : 1,
-        });
-
+		function paintCurveFromAto(endPoint) {
+			ssF.paintsCurve({
+				fun         : ssD.repoConf[0].fun,
+				mmedia      : stdMod.mmedia,
+				pointA      : rg.A,
+				pointB      : endPoint,
+				addToStepCount : 1,
+			});
+		}
     }
     //=========================================================
     // \\// lemma custom addons
     //=========================================================
 
 }) ();
-
