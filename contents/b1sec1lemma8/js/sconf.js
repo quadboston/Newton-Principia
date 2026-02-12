@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, fconf, sconf, fixedColors } =
+    var { ns, fconf, sconf, topicColors_repo } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -57,9 +57,9 @@
             result,
             givenArea,
             proofArea
-        } = fixedColors;
+        } = topicColors_repo;
 
-        var predefinedTopics = { 
+        var topicColors_elected = { 
             //:basic topics
             proof,
             given,
@@ -258,7 +258,7 @@
             //double back step ../../ is to reuse this path in code for lemma7
             mediaBgImage : "../../b1sec1lemma8/img/d.png",
             givenCurve_pivots_inModel,
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             modorInPicX,

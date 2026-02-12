@@ -3,11 +3,6 @@
     width: 100%;
 }
 
-/* apparently about draggable point on graph */
-.movable {
-    cursor: pointer;
-}
-
 /* sub data-legend html-element,
     display:inline-block; is vital for position,
 */

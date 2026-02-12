@@ -1,17 +1,14 @@
 //\\// Application Entry
 //     recommended: /doc/landing-code-overview.txt
-
-
-( function() {
-    var {
+(function(){
+const {
         ns, sn, $$, cssp, eachprop, nspaste, haff, has, haz, nsmethods, html,
         userOptions, fapp, sapp, fconf, sconf, engCssMs, fmethods, sDomF, sDomN,
-        fixedColorsOriginal,
-        srg_modules, amode,
+    topicColors_repo_camel2col, srg_modules, amode,
         //:nearly a patch
-        stdMod, ssD, ssF, wrkwin, lowId2topics,
-    } = window.b$l.apptree({
-    });
+        stdMod, ssD, ssF, wrkwin, lowtpid_2_glocss8anchorRack,
+} = window.b$l.apptree({});
+
     //======================================================
     // //\\ establishes landing-start-state
     //======================================================
@@ -33,18 +30,15 @@
     //======================================================
     // \\// establishes landing-start-state
     //======================================================
-
-    //******************************************************
     //main application entry
     document.addEventListener( "DOMContentLoaded", LANDING_I___app_main );
-    //******************************************************
     return;
 
 
     //***********************************************
     // //\\ begins establish home and lemmas
     //***********************************************
-    function LANDING_I___app_main() 
+    function LANDING_I___app_main()
     {
         // each page is independent so this gets re-run on each page load
         // console.log('domContentLoaded - app_main');
@@ -54,12 +48,12 @@
         // //\\ sets ids and titles
         //===============================
         // if fconf.sappId is undefined, sets it to 'home-pane' (otherwise it's the page id, ex b1sec1lemma6)
-        sn( 'sappId', fconf, 'home-pane' ); 
+        sn( 'sappId', fconf, 'home-pane' );
         ssF.spawns_lemsDefArr(); // contents/content-list.js to fconf
         fapp.doesConfigLemma(); // adds colors etc to sconf from lemma-conf.js
         fapp.lemmaDef       = fconf.sappId2lemmaDef[ fconf.sappId ];
         document.title      = fapp.lemmaDef.caption;
-        fconf.sappIdUnCamel = nsmethods.camelName2cssName( fconf.sappId );
+        fconf.sappIdUnCamel = nsmethods.toCssIdentifier( fconf.sappId );
         //=========================
         // \\// sets ids and titles
         //===============================
@@ -215,11 +209,10 @@
                     {
                         haff( stdMod, 'init_conf' );
                         //expansion patch: todm: make function for this:
-                        //unscaled mediaSize = originalMod2inn_scale * modelSize, 
+                        //unscaled mediaSize = originalMod2inn_scale * modelSize,
                         sconf.originalMod2inn_scale = sconf.mod2inn_scale;
                         //can add this here: doesImproveSconf();
-                        !haz( sconf, 'dontRun_ExpandConfig' ) &&
-                                ssF.doExpandConfig();
+                        ssF.doExpandConfig();
                         ns.url2conf( sconf );
                     }
                     ns.url2conf( fconf ); //overriding url-query one more time
@@ -240,19 +233,20 @@
                             //this place looks like
                             //the best to establish initial topics,
                             //then additional topics will be extracted from exegs
-                            var wwCase = sDomF.topicIdUpperCase_2_underscore;
+                            var wwCase = sDomF.toCssIdentifier;
                             //pppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
                             // //\\ central step
                             //pppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
                             //pastes ssD['fixed-colors'] into l caseId2allLemTopics
                             //ssD['fixed-colors'] - goes from JS-code and book's text,
                             //l caseId2allLemTopics is empty at this moment,
-                            eachprop( fixedColorsOriginal, ( colorArray, camelId ) => {
-                                var lowId = wwCase( camelId );
-                                lowId2topics[ lowId ] = {
-                                    'fixed-color' : colorArray,
+                            eachprop( topicColors_repo_camel2col, ( colorArray, camelId ) => {
+                                var low_tpID = wwCase( camelId );
+                                lowtpid_2_glocss8anchorRack[ low_tpID ] = {
+                                    //todo why tpcolarr
+                                    'tpcolarr' : colorArray,
                                     camelId,
-                                    lowId, 
+                                    low_tpID,
                                 };
                             });
                             //pppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
@@ -292,8 +286,7 @@
     }
 
     //does: exegs__2__frags_dom_css_mjax_tpanch_initapp_menu_evs_capture
-    function LANDING_VI___exegs_2_frags8majorInit()
-    {
+    function LANDING_VI___exegs_2_frags8majorInit (){
         ssF.exegs_2_frags(); //to active-areas
         ssF.frags__2__dom_css_mjax_tpanchors();
 
@@ -305,11 +298,33 @@
         ns.haff( stdMod, 'create_digital_legend' );
         ns.haff( ssF, 'create_digital_legend' );
 
-        stdModPatch();
+        //======================================================
+        // //\\ stdModPatch
+        //======================================================
+        // todm: patch: generates pars needed possibly for
+        //       d8d creation and decorational points
+        //       before first resize set these pars
+        //       appar. needed for:
+        //              dom2model-scales.js::out2inn() and
+        //              dom2model-scales.js::inn2outparent()
+        stdMod.bgImgOffset = sDomN.bgImgOffset;
+        stdMod.bgImgW = sDomN.bgImgW;
+        //======================================================
+
+        //================================================================
+        // **api simSceSvg_narrowestAsp
+        //Asp when scene svg is shrinked to minimal possible value,
+        //when svg-width fits bg image width:
+        //todo rename with simSceSvg_narrowestAsp
+        stdMod.sceBgAspR = stdMod.simSceSvg_narrowestAsp =
+        sconf.innerMediaHeight/sconf.innerMediaWidth;
+        //======================================================
+        // \\// stdModPatch
+        //======================================================
         sapp.init_sapp();
 
         sDomF.populateMenu();
-        ns.haff( sapp, 'finish_sapp_UI' ); 
+        ns.haff( sapp, 'finish_sapp_UI' );
         nsmethods.establishesContentTriggers();
         sapp.isInitialized = true;
         fmethods.setupEvents();
@@ -325,10 +340,6 @@
         setTimeout( fmethods.fullResize, 500 );
         fmethods.setupCapturerEvents();
     }
-    //***********************************************
-    // \\// establishes lemmas
-    //***********************************************
-
 
     ///apparently does not do any modules landing-load
     function LANDING_VII___landingFlag_8_nextLemmaButtons()
@@ -349,36 +360,8 @@
         fmethods.does_set_next_lemma_button_event( 'left' );
 
         //todo: do observe does it fix vertical-misplacement-bug?
-        //      remove this fix, reproduce 
+        //      remove this fix, reproduce
         //      vertical-misplacement-bug and solve it thoroughtly:
         document.body.scrollTop = 0; //todo ... type number? not a "0px"
-    }
-
-    function stdModPatch()
-    {
-        //======================================================
-        // todm: patch: generates pars needed possibly for
-        //       d8d creation and decorational points
-        //       before first resize set these pars
-        //       appar. needed for:
-        //              dom2model-scales.js::out2inn() and 
-        //              dom2model-scales.js::inn2outparent()
-        stdMod.bgImgOffset = sDomN.bgImgOffset;
-        stdMod.bgImgW = sDomN.bgImgW;
-        //======================================================
-
-        //================================================================
-        // **api simSceSvg_narrowestAsp
-        //Asp when scene svg is shrinked to minimal possible value,
-        //when svg-width fits bg image width:
-        //todo rename with simSceSvg_narrowestAsp
-        stdMod.sceBgAspR = stdMod.simSceSvg_narrowestAsp =
-                        ( haz( sconf, 'innerMediaHeight' ) ||
-                            sconf.innerMediaHeight )
-                        /
-                        ( haz( sconf, 'innerMediaWidth' ) ||
-                            sconf.innerMediaWidth )
-                        ;
-        //================================================================
     }
 })();

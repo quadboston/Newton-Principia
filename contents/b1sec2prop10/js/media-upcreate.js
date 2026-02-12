@@ -44,7 +44,7 @@
             r : RRmedpos,
         });
         $$.$( rgTCir.svgel ).addClass(
-            'tostroke tp-' + nsmethods.camelName2cssName( tCircleName )
+            'tostroke tp-' + nsmethods.toCssIdentifier( tCircleName )
         );
         rgTCir.svgel.style.display =
             rgTCir.undisplay ? 'none' : 'block';

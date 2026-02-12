@@ -24,7 +24,7 @@
     function creates_delta_time_slider()
     {
         var pos2pointy    = ssF.pos2pointy;
-        var pointies2line = ssF.pointies2line;
+        var pivots_2_svgLineInRg = ssF.pivots_2_svgLineInRg;
 
         //=========================================
         // //\\ slider api pars
@@ -110,7 +110,7 @@
         ///draws rails
         ///if tpclass does exist, it apparently overrides stroke and
         ///some other styles,
-        var rails = pointies2line(
+        var rails = pivots_2_svgLineInRg(
              rails_rgid,
              [ railsStart, railsEnd ],
              { stroke           : COLOR,
@@ -198,7 +198,7 @@
 
 
         ///this function does "minor" update: it does not
-        ///recalculate the evolution, but 
+        ///recalculate the evolution, but
         ///  sets slider position and
         ///  shows evolution corresponding to time;
         function updates_sliderGUI()
@@ -209,7 +209,7 @@
             //-----------------------------------------------------
             //interpolates slider GUI position
             var sliderXpos =
-                 railsStart.pos[0] + 
+                 railsStart.pos[0] +
                  rawDeltaT / sconf.initialTimieStep * api.railsLength;
             api.pos = [ sliderXpos, railsStart.pos[1] ];
 

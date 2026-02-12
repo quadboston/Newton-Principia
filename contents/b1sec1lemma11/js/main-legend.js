@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ssF, stdMod, fixedColors
+        ssF, stdMod, topicColors_repo
     } = window.b$l.apptree({
         stdModExportList : {
             create_digital_legend,
@@ -21,7 +21,7 @@
         const {
             given,
             proof
-        } = fixedColors;
+        } = topicColors_repo;
 
         //--------------------------
         // //\\ data source scenario

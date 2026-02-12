@@ -112,7 +112,7 @@
                 var step            = 0.015*85/stepsCount;
             }
         }
-        addedCssClass = sDomF.topicIdUpperCase_2_underscore( addedCssClass || 'tp-' + rgName );
+        addedCssClass = sDomF.toCssIdentifier( addedCssClass || 'tp-' + rgName );
         //-----------------------------------------------------------------
         // \\// rgName, pointA,B, start, step, tp-class
         //-----------------------------------------------------------------

@@ -1,53 +1,50 @@
-( function() {
-    var {
-        ns, sn, haz, haff, $$, eachprop,
-        sconf,
-        rg,
-        ssF, ssD,
-        sDomF, amode,
-        stdMod, toreg, rg,
-        exegs,
-    } = window.b$l.apptree({
-        setModule,
-        ssFExportList :
-        {
+(function(){
+const { ns, sn, haz, haff, $$, eachprop,
+        sconf, ssF, ssD, sDomN, sDomF, amode, stdMod, rg, exegs, } =
+      window.b$l.apptree({ ssFExportList : {
             media_upcreate_generic,
         },
     });
-
-    var pointies2line;
     return;
 
-
-    function setModule()
-    {
-        pointies2line   = ssF.pointies2line;
-    }
 
     //=========================================================
     // //\\ updater helper
     //      - runs every time model changes
     //=========================================================
-    ///overrides lemma's stdMod.media_upcreate if missed
+    ///overrides lemma's stdMod.media_upcreate if missed,
+    ///how? media_upcreate prevales when finalizing lemma in
+    ///init_sapp: if lemma does not provide the latter, then
+    ///this function takes over:
     function media_upcreate_generic()
     {
         // called 3x on page load (more in L2, L3, L4...?)
-        // console.log('media_upcreate_generic');
 
         if( haz( stdMod, 'media_update_is_forbidden' ) ) return;
         haff( stdMod, 'media_upcreate___before_basic' );
 
-        var url = window.location.href;
-        const match = url.match(/subessayId=([^,&]*)/);
+        var subessayId = ns.getSubessayIdFromURL(); // returns 0 if none
 
         //:updates subessay menu
         var exAspect = exegs[ amode.logic_phase ][ amode.aspect ];
-        if ( match && haz(exAspect.subessay2subexeg, match[1] )) {
+        if ( subessayId && haz(exAspect.subessay2subexeg, subessayId )) {
             // selected subessay persists when toggling tabs
-            amode.subessay = match[1];
+            amode.subessay = subessayId;
+        }
+        // ensure url is correct and consist with amode
+        if (subessayId !== amode.subessay) {
+            const param = `subessayId=${amode.subessay}`;
+            var url = window.location.href;
+            if (url.includes('subessayId=')) {
+                // Replace existing subessayId value (stop at next comma or end)
+                url = url.replace(/subessayId=[^,]*/g, param);
+            } else {
+                // Append with a comma separator (avoid double comma)
+                url = url.endsWith(',') ? url + param : url + ',' + param;
+            }
+            window.history.replaceState({}, '', url);
         }
         var subexeg = exAspect.subessay2subexeg[ amode.subessay ];
-        //console.log(amode.subessay);
         sDomF.addsChosenCSSCls_to_subessay8menuSubitem({ exAspect, subexeg })
 
         ssF.toogle_detectablilitySliderPoints4Tools();//"optional"
@@ -105,11 +102,11 @@
 
         haff( stdMod, 'media_upcreate___part_of_medupcr_basic' );
         //sunday service: start here:
-        
+
         //appar. for preemptive svg-position. and z-order,
         //if( !p2p ) return;
         ssF.doPaintPoints();
-        
+
         if( ssF.mediaModelInitialized ) {
             //dragWraps.forEach
             stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
@@ -134,6 +131,13 @@
         }
         // \\// upcreates lines after points
         //=============================================
+
+        /*
+        if( !ssF.mediaModelInitialized ) {
+            ccc( 'generic media, preemptive create_digital_legend' );
+            haff( stdMod, 'create_digital_legend' );
+        }
+        */
         
         //**************************************************
         // //\\ note, former lemmas
@@ -146,13 +150,10 @@
                 ///above lines do create legend for all theoreons, this line
                 ///shows only for one:
                 stdMod.upcreate_mainLegend();
-                //console.log('upcreate_mainLegend 1');
             } else if( tlegend ) {
                 tlegend.upcreate_mainLegend();
-                //console.log('upcreate_mainLegend 2');
             } else {
                 ns.haf( ssF, 'upcreate_mainLegend' );
-                //console.log('upcreate_mainLegend 3');
             }
         }
         //**************************************************
@@ -165,6 +166,4 @@
     //=========================================================
     // \\// updater helper
     //=========================================================
-
-}) ();
-
+})();
