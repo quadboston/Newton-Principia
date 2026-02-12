@@ -15,7 +15,6 @@
         const solvable = ssD.solvable;
         //qIndexToOrbit is meta data for all points on orbit, qix is index of P
         const Porb = ssD.qIndexToOrbit[ rg.P.qix ];
-        //console.log(ssD.qIndexToOrbit[ rg.P.qix ]); 
         if (Porb) {
             var {
                 RC, R, curvatureChordSecondPoint, projectionOfCenterOnTangent,
@@ -49,14 +48,14 @@
                 function adjustQprime() {
                     let best = null;
                     let bestDiff = Infinity;
-                    const Q = rg.Q.pos;
+                    const Q = Porb.rrplus;
 
-                    for (let i = 0; i < rg.P.qix; i++) {
+                    for (let i = rg.P.qix; i > 0; i--) {
                         const Qp = ssD.qIndexToOrbit[i]?.rr;
                         if (!Qp) continue;
 
                         // intersection I(Q') of SP and QQ'
-                        const I = lineIntersection(rg.S.pos, rg.P.pos, rg.Q.pos, Qp);
+                        const I = lineIntersection(rg.S.pos, rg.P.pos, Q, Qp);
                         if (!I) {
                             console.log(I);
                             continue; 
@@ -72,6 +71,11 @@
                         if (d < bestDiff) {
                             bestDiff = d;
                             best = Qp;
+                            if(bestDiff < 0.001) {
+                                // break out of for loop once we found a 
+                                // point that's close enough
+                                break;
+                            } 
                         }
                     }
 
@@ -117,6 +121,8 @@
                 const TT = mat.dropPerpendicular( rg.Q.pos, rg.S.pos, rg.P.pos )
                 rg.T.pos[0] = TT[0];
                 rg.T.pos[1] = TT[1];
+            } else {
+                console.log('unsolvable');
             }
 
             //================================================
