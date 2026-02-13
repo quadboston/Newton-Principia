@@ -71,7 +71,7 @@
                         if (d < bestDiff) {
                             bestDiff = d;
                             best = Qp;
-                            if(bestDiff < 0.001) {
+                            if(bestDiff < 0.0005) {
                                 // break out of for loop once we found a 
                                 // point that's close enough
                                 break;
@@ -80,7 +80,7 @@
                     }
 
                     //console.log(bestDiff.toFixed(3));
-                    if(bestDiff > 0.001) {            
+                    if(bestDiff > 0.0005) {            
                         Porb.rrminus[0] = rg.rrminus.pos[0] = rg.rrminus.pos[0];
                         Porb.rrminus[1] = rg.rrminus.pos[1] = rg.rrminus.pos[1];             
                         rg.infoMessage.undisplay = false;
