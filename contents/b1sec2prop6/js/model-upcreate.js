@@ -49,6 +49,7 @@
                     let best = null;
                     let bestDiff = Infinity;
                     const Q = Porb.rrplus;
+					const sagittaOnSP_Tolerance = 0.0005;
 
                     for (let i = rg.P.qix; i > 0; i--) {
                         const Qp = ssD.qIndexToOrbit[i]?.rr;
@@ -71,7 +72,7 @@
                         if (d < bestDiff) {
                             bestDiff = d;
                             best = Qp;
-                            if(bestDiff < 0.0005) {
+                            if(bestDiff < sagittaOnSP_Tolerance) {
                                 // break out of for loop once we found a 
                                 // point that's close enough
                                 break;
@@ -80,15 +81,15 @@
                     }
 
                     //console.log(bestDiff.toFixed(3));
-                    if(bestDiff > 0.0005) {            
+                    if(bestDiff > sagittaOnSP_Tolerance) {
                         Porb.rrminus[0] = rg.rrminus.pos[0] = rg.rrminus.pos[0];
                         Porb.rrminus[1] = rg.rrminus.pos[1] = rg.rrminus.pos[1];             
-                        rg.infoMessage.undisplay = false;
                     } else {             
                         Porb.rrminus[0] = rg.rrminus.pos[0] = best[0];
                         Porb.rrminus[1] = rg.rrminus.pos[1] = best[1];               
-                        rg.infoMessage.undisplay = true;
                     }
+					rg.infoMessage.undisplay = 
+						bestDiff <= 2 * sagittaOnSP_Tolerance;
                 }
 
                 adjustQprime(); // finds Q' that brings M closest to I
