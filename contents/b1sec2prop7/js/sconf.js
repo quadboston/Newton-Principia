@@ -323,6 +323,7 @@
                 fontSize : '25',
                 pcolor : invalid,
                 letterAngle : 0,
+                unscalable  : true,
             },
 
             //corollary 2

@@ -376,6 +376,7 @@
                 fontSize : '25',
                 pcolor : invalid,
                 letterAngle : 0,
+                unscalable  : true,
             },
             infoMessage : {
                 pos : [20, 20],
@@ -383,6 +384,7 @@
                 fontSize : '25',
                 pcolor : info,
                 letterAngle : 0,
+                unscalable  : true,
             }
         });
 
