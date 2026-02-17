@@ -546,7 +546,7 @@
                 ///input:    condition - optional truthy, if arguments.length === 1
                 ///                      then toggling will be made,
                 ///                      otherwise, "condition" controls cls setting
-                methods.tgcls = function( cls, condition, obj ) {
+                methods.toggleClass = function( cls, condition, obj ) {
                                     obj = obj || null;
                                     ctxEl = obj || ctxEl;
                                     if( !ctxEl ) return;
@@ -777,6 +777,12 @@
     // \\// if pages doesn't have passed in aspect, return default
     //=========================================================
 
+    ns.getSubessayIdFromURL = function() {
+        var url = window.location.href;
+        const match = url.match(/subessayId=([^,&]*)/);
+        subessayId = match ? match[1] : 0;
+        return subessayId;
+    }
 
 
     // //\\ helpers

@@ -170,60 +170,29 @@
                     // //\\ sets sapp.amodel_initial
                     //      to "default" or to the first essay if no "default"
                     //----------------------------------------------------------------
-                    if( haz( essayHeader, "default" ) === "1" ||
-                        !haz( sapp, 'amodel_initial' )
-                    ) {
+                    if(logic_phase_id === fconf.logic_phaseId) {
                         var ami = haz( sapp, 'amodel_initial' );
                         if( !ami ) {
-                            var ami = sn( 'amodel_initial', sapp, {
-                                posOverriden : false
-                            });
+                            var ami = sn( 'amodel_initial', sapp, {});
                             var logic_phaseId  = haz( fconf, 'logic_phaseId' );
                             var aspectId    = haz( fconf, 'aspectId' );
                             if( logic_phaseId && aspectId ) {
                                 var subessayId  = haz( fconf, 'subessayId' );
                                 if( !subessayId ) {
-                                    ////default subessayId is set to 0,
-                                    ////to enable missed subessayId in URL-query-config
-                                    subessayId = '0';
+                                    subessayId = ns.getSubessayIdFromURL(); // returns 0 if none
+                                    if( !subessayId) {
+                                        subessayId = essayHeader.subessay;
+                                    }
                                 }
                                 ami.logic_phase = logic_phaseId;
                                 ami.aspect = aspectId;
                                 ami.subessay = subessayId;
-                                ami.posOverriden = {
-                                    logic_phase : logic_phaseId,
-                                    aspect : aspectId,
-                                    subessay : subessayId,
-                                };
                             }
-                        }
-
-                        if( !ami.posOverriden ) {
-                            ami.logic_phase = logic_phase_id;
-                            ami.aspect = aspect_id;
-                            ami.subessay = essayHeader.subessay;
-                            //sets 'default' for case it will be missed in all text
-                            essayHeader[ 'default' ] = '1';
                         }
                         //**********************************
                         //at least from now, amode is set
                         //**********************************
                         Object.assign( amode, ami );
-                    }
-
-                    var ao = sapp.amodel_initial.posOverriden;
-                    if( ao ) {
-                        ///these conditions preserve legacy structure of
-                        ///essayHeader in case if default are supplied from URLquery
-                        if(
-                            logic_phase_id          !== ao.logic_phase ||
-                            aspect_id            !== ao.aspect ||
-                            essayHeader.subessay !== ao.subessay
-                        ){
-                            essayHeader[ 'default' ] = '0';
-                        } else {
-                            essayHeader[ 'default' ] = '1';
-                        }
                     }
                     //----------------------------------------------------------------
                     // \\// sets sapp.amodel_initial

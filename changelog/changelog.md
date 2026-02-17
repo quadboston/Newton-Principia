@@ -1,7 +1,17 @@
 # Change Log
 
-## 2026-1-? (SteelBlue Version, 0.5)
+## 2026-2-12 (SteelBlue Version, 0.5)
 ### Improved
+* General:
+	* fixed bug where refresh could change diagram component visibility 
+	* zoom centers on cursor
+
+* Lemmas 6 - 11:
+	* Zoom added (only lemmas 2, 3, 4 lack zoom)
+
+* Lemma 11:
+	* customized diagram for each tab / submenu
+
 * Propositions 1 and 2
 	* fixed issues with z-order, consistent radii colors, label colors, and lower-case italics
 
@@ -41,7 +51,7 @@
 	* eccentricity slider de-emphasized
 
 * Proposition 13
-	* simplified diagram by not showing more than what is described for each section
+	* customized diagram for each tab / submenu
 
 * Proposition 17
 	* reported conics include circles
@@ -60,7 +70,7 @@
 		* feedback given when figures are not monotonic
 
 * Proposition 12
-	* simplified diagram by not showing more than what is described for each section
+	* customized diagram for each tab / submenu
 	* added missing text-diagram highlights
 	* fractions changed from linear style to stacked
 
@@ -83,11 +93,11 @@
 ## 2025-9-15 (DarkGoldenRod Version, 0.13858)
 ### Improved
 * Proposition 10
-	* simplified diagram by not showing more than what is described for each section
+	* customized diagram for each tab / submenu
 	* fixed Q getting stuck when P and Q straddle A
 
 * Proposition 11
-	* simplified diagram by not showing more than what is described for each section
+	* customized diagram for each tab / submenu
 	* fixed point Q's range to include its initial position (fixes initial jumping issue)
 	* fixed Q getting stuck when P and Q straddle A
 
@@ -108,7 +118,7 @@
 
 * Proposition 17
 	* force dragger not "dropped" when past limit
-	* simplified diagram by not showing more than what is described for each section
+	* customized diagram for each tab / submenu
 	* perpendiculars and latus recta only shown when highlighted
 	* left-hand side of equation does not break across lines
 	* point q added 
@@ -159,7 +169,7 @@
 * Lemma 20
 	* eccentricity ranges from 0 to 1.5, to show circles, ellipses, parabolas, and hyperbolas
 	* point D now manipulatable
-	* simplified diagram by not showing more than what is described for each section
+	* customized diagram for each tab / submenu
 	* fixed text and highlighting errors
 
 * Proposition 41
@@ -178,7 +188,7 @@
 * Proposition 6
     * changed to Cohen translation
     * fixed link to Lemma 10
-    * simplified diagram by not showing more than what is described
+    * customized diagram for each tab / submenu
 
 * Proposition 7
     * fixed highlighting in corollaries 2 and 3
@@ -237,7 +247,7 @@
     * refined data section
 
 * Lemma 10
-    * simplified diagram by not showing more than what is described
+    * customized diagram for each tab / submenu
     * data section refined
 
 * Lemma 11
@@ -246,10 +256,10 @@
     * changed to Cohen translation
 
 * Proposition 7
-    * simplified diagram by not showing more than what is described
+    * customized diagram for each tab / submenu
 
 * Proposition 9
-    * simplified diagram by not showing more than what is described
+    * customized diagram for each tab / submenu
     * graph changed to only show estimated and actual force
     * fractions changed from linear style to stacked
     * products expressed with ×, not x

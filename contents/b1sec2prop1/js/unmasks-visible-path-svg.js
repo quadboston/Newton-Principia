@@ -1,6 +1,6 @@
 (function (){
-const { $$, sn, haz, has, nspaste, eachprop,
-        sapp, sconf, rg, stdMod } =
+const { $$, sn, haz, has, eachprop,
+        rg, stdMod } =
         window.b$l.apptree({ stdModExportList : { unmasksVisib, }});
 const decor = sn( 'decor', stdMod );
 return;
@@ -109,10 +109,10 @@ function unmasksVisib (){
             const arrow$ = haz( dec, 'vectorArrowSvg$' );
             if( arrow$ ) {
                 const act = haz( dec, 'undisplay' );
-                arrow$.tgcls( 'undisplay', act );
+                arrow$.toggleClass( 'undisplay', act );
             }
             if( has( dec, 'svgel$' )){ //todo patch
-                dec.svgel$.tgcls( 'undisplay', haz( dec, 'undisplay' ) );
+                dec.svgel$.toggleClass( 'undisplay', haz( dec, 'undisplay' ) );
             }
         }
     });

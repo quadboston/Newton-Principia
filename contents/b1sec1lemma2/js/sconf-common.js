@@ -23,7 +23,6 @@
         sconf.default_tp_lightness = 30;
         sconf.mediaMoverPointDisabled = !false;
         sconf.skipGenDragList = !false; //false is for media mover,
-        sconf.enableTools     = !true;
         
         
         //todm: this disables functionality ... not only CSS:

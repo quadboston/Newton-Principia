@@ -70,7 +70,7 @@ same as ¦AB¦¦² to ¦Ab¦A𝑏¦¦². &nbsp;&nbsp; Q.E.D.
 }
 *..*
 And even when angle ¦AD BD¦D¦¦ is not given, if the straight line ¦BD¦¦
-converges to a given point or is drawn according to any ¦limitRatio¦other specification¦¦,
+converges to a given point or is drawn according to any other specification,
 still the angles ¦AD BD¦D¦¦ and ¦Ad bd¦𝑑¦¦ (constructed according to the specification common
 to both) will always tend to equality and will approach each other so closely
 that their difference will be less than any assigned quantity, and thus will

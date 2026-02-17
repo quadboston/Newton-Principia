@@ -2,22 +2,13 @@
 
 ( function() {
     var {
-        ns, $$, sn, haz, haff,
-        ssF, sconf, fconf,
-        stdMod, sDomF, sDomN, amode,
+        ns, $$, haz, haff,
+        ssF, sconf,
+        stdMod, sDomF,
     } = window.b$l.apptree({
         setModule,
     });
     return;
-
-
-
-
-
-
-
-
-
 
 
     function setModule()
@@ -28,7 +19,6 @@
         sDomF.params__2__rgX8dragwrap_gen_list     = params__2__rgX8dragwrap_gen_list;
         sDomF.pname__2__rgX8dragwrap_gen_list    = pname__2__rgX8dragwrap_gen_list;
     }
-
 
 
 
@@ -136,7 +126,7 @@
         if( ns.haz( this, 'mediaMover' ) ) {
             //// non-ordinary case:
             this.hideD8Dpoint = false;
-            $$.$( this.svgel ).tgcls( 'undisplay', false );
+            $$.$( this.svgel ).toggleClass( 'undisplay', false );
 
             var mscale = sDomF.out2inn();
             this.medpos = sDomF.outparent2inn( arg.point_on_dragSurf );
@@ -170,7 +160,7 @@
             //// non-ordinary case:
             this.undisplay = true;
             this.hideD8Dpoint = true;
-            $$.$( this.svgel ).tgcls( 'undisplay', true );
+            $$.$( this.svgel ).toggleClass( 'undisplay', true );
             $$.$( this.svgel ).removeClass( 'grabbing' );
             if( ns.haz( arg.dragWrap, 'decPoint' )) {
                 $$.$( arg.dragWrap.decPoint ).css( 'display', 'none' );
@@ -189,7 +179,4 @@
         stdMod.model8media_upcreate(); //capital update, todo: check
     }
 
-
-
 }) ();
-
