@@ -36,9 +36,6 @@
 
         rg.SQ.undisplay                 = true;
         rg[ 'sagitta' ].undisplay       = true;
-        rg[ 'rrminus' ].undisplay       = true;
-        rg[ 'Q,rrminus' ].undisplay     = true;
-        rg[ 'P,rrminus' ].undisplay     = true;
         rg.curvatureCircle.undisplay    = true;
         rg.PC.undisplay                 = true;
         //----------------------------------

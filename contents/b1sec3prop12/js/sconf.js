@@ -56,10 +56,6 @@
         handleRadius            = Math.floor( 3.5 * controlsScale ),
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius;
-        //TEMP P9/10/11 don't seem to have the following.  Does the value for
-        //this setting make sense, or should it be adjusted?
-        //It seems like this is used in "src\base\parser\colors-lib.js",
-        //however the functions that reference this may not be in use for P12.
         sconf.default_tp_lightness = 30;
 
         // //\\ principal tp-css pars
@@ -71,8 +67,6 @@
         //make effect apparently only for line-captions,
         //not for point-captions bs
         //misses: pnameLabelsvg).addClass( 'tp-_s tostroke' );
-        //TEMP The values of the following are very different from P9/10/11,
-        //should the values be adjusted?
         sconf.text_nonhover_width   = 0.2; //vital to fix too thick font
         sconf.text_hover_width      = 1.5;
         // \\// principal tp-css pars
@@ -104,7 +98,7 @@
         sconf.DT_SLIDER_MAX = 0.8;
         var Q_STEPS = 500;
         var DATA_GRAPH_STEPS = 500;
-        //TEMP Added DEVIATION.. so both curves are scaled by actual force max
+        //Scale estimated force curve by actual force max
         sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX = true;
         sconf.DEVIATION_SCALE_FACTOR = 1;
         sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
@@ -127,6 +121,12 @@
         sconf.orbit_q_start = null;
         sconf.orbit_q_end = null;
 
+        //Min and max eccentricity values for Zeta slider
+        const eccentricityMin = 1.1;
+        const eccentricityMax = 3.0;
+        op.ZETA_MIN = Math.atan(eccentricityMin);
+        op.ZETA_MAX = Math.atan(eccentricityMax);
+
         //sets model offset
         op.mainAxisAngle = 0;
 
@@ -141,7 +141,7 @@
         //interval of dt to construct an arc for
         //displacement or sagitta,
         //Sets initial distance of point Q from P
-        sconf.Dt0 = 0.53;
+        sconf.Dt0 = 0.4;
 
         //pos of P
         sconf.parQ = 0.45;
@@ -153,7 +153,6 @@
             given,
             body,
             orbit,
-            instanttriangleHiddenStart,
             resultOnlyVisibleWhenHighlighted,
             proof,
             force,
@@ -177,14 +176,11 @@
             orbitdq             : orbit,
             shadow,
             force,
-            instanttriangle     : instanttriangleHiddenStart,
         };
         //-----------------------------------
         // \\// topic group colors,
         //-----------------------------------
 
-        //TEMP It's possible some changes may be needed for the following. eg.
-        //set "pos" for some points?  I should check this over more.
         var originalPoints = {};
         Object.assign( originalPoints, {
             // hyperbola
@@ -356,8 +352,6 @@
             },
         });
 
-        //TEMP It's possible some changes may be needed for the following, I
-        //should check this over more.
         var linesArray =
         [
             // hyperbola

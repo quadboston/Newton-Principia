@@ -64,5 +64,10 @@
         stdMod.builds_dq8sagit8displace({ ulitmacy:sData.ULTIM_INSTANT });
         stdMod.builds_dq8sagit8displace({});
         stdMod.builds_orbit_data_graph();
+
+        //Adjust point P if out of bounds
+        const qixMin = ssD.qix_graph_start;
+        const qixMax = ssD.qix_graph_end;
+        rg.P.qix = Math.max(qixMin, Math.min(qixMax, rg.P.qix));
     }
 }) ();

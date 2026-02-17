@@ -11,12 +11,6 @@
     {
         stdMod.initiates_orbit8graph();
         stdMod.creates_Zeta_slider();
-
-        //TEMP Is the following still needed?
-        toreg( 'instanttriangle' );
-
-        //TEMP Does this need to be added here?  Probably not?
-        // rg.allLettersAreHidden = true;
     }
 
 }) ();

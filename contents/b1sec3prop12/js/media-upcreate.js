@@ -4,7 +4,6 @@
         }, });
     return;
 
-    //TEMP Does function "media_upcreate___before_basic" need to be added here?
 
     //=========================================================
     // //\\ lemma custom addons

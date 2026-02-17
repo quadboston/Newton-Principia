@@ -2,7 +2,7 @@
 ///2) as Prop6, cor5 dev/area^2,
 ///which is calculated from time t and curve parameter q,
 ( function() {
-    var { sn, stdMod, sconf, ssD, sData, } = window.b$l.apptree({
+    var { sn, stdMod, sconf, ssD, sData, rg, } = window.b$l.apptree({
         stdModExportList : { builds_dq8sagit8displace, }, });
     sn( 'qIndexToOrbit', ssD, [] );
     sn( 'graphArray', stdMod, [] );
@@ -15,7 +15,7 @@
     function builds_dq8sagit8displace({ ulitmacy }){
         const CURVE_REVOLVES = sconf.CURVE_REVOLVES;
         const Q_STEPS = sconf.Q_STEPS;
-        const Q_MINUS_EXISTS = sconf.Q_MINUS_EXISTS;
+        const Q_MINUS_EXISTS = rg.rrminus != null;
         const q2xy = stdMod.q2xy;
         const qIndexToOrbit = ssD.qIndexToOrbit;
         const graphArray = stdMod.graphArray;

@@ -108,8 +108,6 @@
             nspaste( rg.G.pos, mat.dropLine( -1, rg.C.pos, rg.P.pos, ) );
         }
 
-        //TEMP Decide whether to keep this or not when working on the
-        //eccentricity slider.
         ////hyperbola or ellipse
         let D = mat.sm( rg.C.pos, -1, uu );
         nspaste( rg.D.pos, D );    
@@ -158,9 +156,6 @@
         ));
 
 
-        //TEMP It seems that the following is specific to P12/13
-        //Actually it looks like P11 now has similar code for L and LL but
-        //higher up (just after "} = Porb;").
         //=============================================================
         // //\\ latus
         //=============================================================
@@ -171,24 +166,6 @@
         //=============================================================
         // \\// latus
         //=============================================================
-
-
-        //TEMP Is the following still needed?
-        //=============================================================
-        // //\\ instant triangle
-        //=============================================================
-        {
-            let pkey = 'instanttriangle';
-            rg[ pkey ].vertices = [ rg.S.pos, rg.P.pos, rg.Q.pos ];
-            ssF.paintTriangle(
-                pkey,                       //triangleId,
-                'tofill',                   //cssCls,
-            );
-        }
-        //=============================================================
-        // \\// instant triangle
-        //=============================================================
-
     }
 
 }) ();

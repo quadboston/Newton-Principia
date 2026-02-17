@@ -99,7 +99,7 @@
 
                                 '<tspan> forces</tspan>' +
                                 '</text>',
-                    x       : 250,
+                    x       : 310,
                     y       : 40,
                     style   : {
                                 'font-size' : '30',

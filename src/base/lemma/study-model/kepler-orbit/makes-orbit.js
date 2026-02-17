@@ -8,8 +8,6 @@
  *  
  * ****************************************************************************/
 
-//Temp This file is still needed by P17 at least.  The above note may need to
-//be updated for P12/13.
 ( function() {
     var {
         $$, nssvg, has, haz, ssF,
@@ -24,7 +22,6 @@
 
     //called from page's init-model-parameters.js
     //analogy of pointsArr_2_singleDividedDifferences() (P41)
-    //TEMP It looks like P17 uses this function both with and without vop
     function creates_orbitRack( vop )
     {
         //console.log('creates_orbitRack'); 
@@ -201,10 +198,6 @@
         }
     }
 
-    //TEMP I believe this is the only function that P12/13 still use in this
-    //file, however they may or may not still need it.  Therefore once the
-    //standardized code is fully implemented for P12/13, check and update any
-    //comments or similar in this file for them as needed.
     /// sets a,b,c,lambda, excentricity for op from excentricity and op.latus
     function establishesEccentricity(
         //latus is used from op.latus and
@@ -263,9 +256,14 @@
         function eccentricity2sliderPos()
         {
             if( !has( rg, 'ZetaEnd' ) ) return;
+
+            const zetaMin = haz(op, 'ZETA_MIN') || 0.0;
+            const zetaMax = haz(op, 'ZETA_MAX') || Math.PI / 2;
+
             var scale = rg.ZetaEnd.pos[0] - rg.ZetaStart.pos[0];
             var zeta = Math.atan( op.eccentricity );
-            rg.Zeta.pos[0] = zeta / (Math.PI / 2) * scale + rg.ZetaStart.pos[0];
+            rg.Zeta.pos[0] = (zeta - zetaMin) / (zetaMax - zetaMin) * scale +
+                                rg.ZetaStart.pos[0];
             rg.ZetaCaption.pos[0] = rg.Zeta.pos[0];
             rg.ZetaCaption.caption = op.eccentricity.toFixed(3);
         }

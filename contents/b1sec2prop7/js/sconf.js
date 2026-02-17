@@ -268,13 +268,6 @@
                 doPaintPname : false,
             },
 
-            rrminus : {
-                caption : 'Q-',
-                pcolor : proof,
-                letterAngle : 225,
-                letterRotRadius : 40,
-            },
-
             sagitta : {
                 caption : 'I',
                 //pos: Q,
@@ -371,9 +364,7 @@
             { 'PT' : { pcolor : proof }, },
 
             { 'PC' : { pcolor : curvature }, },
-            { 'P,rrminus' : { pcolor : proof }, },
             { 'P,sagitta' : { pcolor : sagitta, vectorTipIx : 1 } },
-            { 'Q,rrminus' : { pcolor : proof }, },
 
             //corollary 2
             { 'Rcol2,P' : { pcolor : proof }, },

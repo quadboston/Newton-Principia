@@ -28,7 +28,7 @@
 
         if(solvable){
             const rrplus = Porb.rrplus;
-            const rrminus = rg.rrminus.pos = Porb.rrminus;
+            const rrminus = Porb.rrminus;
             rg.Q.q = Porb.plusQ;
             rg.Q.q_minus = Porb.minusQ;
             rg.Q.pos[0] = rrplus[0];
@@ -277,8 +277,6 @@
             ////visibility has been not yet stashed;
             ////therefore, doing stashing now,
             ssD.stashedVisibility = {
-                'Q,rrminus'             : rg[ 'Q,rrminus' ].undisplay,
-                'P,rrminus'             : rg[ 'P,rrminus' ].undisplay,
                 'P,sagitta'             : rg[ 'P,sagitta' ].undisplay,
                 'Q'                     : rg.Q.undisplay,
                 'QtimeDecor'            : rg.QtimeDecor.undisplay,
@@ -290,7 +288,6 @@
                 'SQ'                    : rg.SQ.undisplay,
                 'T'                     : rg.T.undisplay,
                 'QT'                    : rg.QT.undisplay,
-                'rrminus'               : rg.rrminus.undisplay,
                 'sagitta'               : rg.sagitta.undisplay,
                 'curvatureCircle'       : rg.curvatureCircle.undisplay,
             };

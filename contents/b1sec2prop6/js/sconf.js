@@ -109,9 +109,6 @@
         sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
         sconf.GRAPH_PATH = true; //only for not-bonus
         //-------------------------------------------
-        //TEMP This probably needs adjustments.  Eg. perhaps something else
-        //should be used?  Should look at the code specific to Q minus.
-        sconf.Q_MINUS_EXISTS = true;
         // \\// calculation algo parameters
         //-------------------------------------------
 
