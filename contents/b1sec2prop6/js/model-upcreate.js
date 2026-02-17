@@ -82,8 +82,8 @@
 
                     //console.log(bestDiff.toFixed(3));
                     if(bestDiff > sagittaOnSP_Tolerance) {
-                        Porb.rrminus[0] = rg.rrminus.pos[0] = rg.rrminus.pos[0];
-                        Porb.rrminus[1] = rg.rrminus.pos[1] = rg.rrminus.pos[1];             
+                        Porb.rrminus[0] = rg.rrminus.pos[0];
+                        Porb.rrminus[1] = rg.rrminus.pos[1];             
                     } else {             
                         Porb.rrminus[0] = rg.rrminus.pos[0] = best[0];
                         Porb.rrminus[1] = rg.rrminus.pos[1] = best[1];               
