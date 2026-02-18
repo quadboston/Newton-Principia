@@ -92,6 +92,8 @@
             proof,
             result,
             hidden,
+			resultOnlyVisibleWhenHighlighted,
+			givenOnlyVisibleWhenHighlighted,
         } = topicColors_repo;
 
         var topicColors_elected =
@@ -109,6 +111,7 @@
             'BD-bd'     : proof,
             'claimRatio': proof,
             'ratio'     : proof,
+            'circleJA'  : givenOnlyVisibleWhenHighlighted,
         };
         //-----------------------------------
         // \\// topic group colors,

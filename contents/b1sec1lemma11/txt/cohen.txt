@@ -5,7 +5,7 @@
   "logic_phaseCaption" : "Claim"
 }
 *..*
-In all ¦curve-AB¦curves¦¦ having a ¦AJ¦finite curvature¦¦ at the ¦A¦point of contact¦¦, the vanishing
+In all ¦curve-AB¦curves¦¦ having a ¦AJ circleJA¦finite curvature¦¦ at the ¦A¦point of contact¦¦, the vanishing
 ¦BD¦subtense¦¦ of the ¦AD arc-AB¦angle of contact¦¦ is ultimately in the squared ratio of the ¦AB¦subtense¦¦
 of the ¦arc-AB¦conterminous arc¦¦.
 <br><br>
