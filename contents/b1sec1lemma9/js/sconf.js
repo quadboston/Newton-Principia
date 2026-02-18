@@ -1,5 +1,5 @@
 ( function() {
-    var { sconf, paste, fconf, rg, fixedColors } =
+    var { sconf, paste, fconf, rg, topicColors_repo } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -18,7 +18,6 @@
         // //\\ subapp regim switches
         //====================================================
         sconf.enableStudylab            = false;
-        sconf.enableTools               = false;
         //sconf.rgShapesVisible           = true;
         //====================================================
         // \\// subapp regim switches
@@ -99,10 +98,10 @@
             hidden,
             givenArea,
             proofArea
-        } = fixedColors;
+        } = topicColors_repo;
 
 
-        var predefinedTopics =
+        var topicColors_elected =
         {
             given,
             proof,
@@ -334,7 +333,7 @@
                 mediaBgImage : "../../b1sec1lemma9/img/lemma9-original.png",
 
                 linesArray,
-                predefinedTopics,
+                topicColors_elected,
                 originalPoints,
                 originX_onPicture,
                 originY_onPicture,

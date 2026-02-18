@@ -1,23 +1,40 @@
 ( function() {
     var {
         sn, haz,
-        sconf, ssF, sDomF, sDomN, rg, toreg,
-        stdMod, amode,
+        sconf, ssF, sDomF, rg, toreg,
     } = window.b$l.apptree({
         ssFExportList :
         {
             upcreate__pars2rgShape,
             declareGeomtric,
+			putInFront,
+			putInBack,
         },
     });
     return;
 
 
+	function putInFront(...items) {
+		for (const item of items) {
+			const svg = item.svgel;
+			const parent = svg.parentNode;
+			svg.remove();
+			parent.appendChild(svg);
+		}
+	}
+
+	function putInBack(...items) {
+		for (const item of items) {
+			const svg = item.svgel;
+			const parent = svg.parentNode;
+			svg.remove();
+			parent.insertBefore(svg, parent.firstChild);
+		}
+	}
 
 
-
-
-    ///declares whirl for model and simulation/user scenario;
+    ///declares whirl (do call it modShape?)
+    ///for model and simulation/user scenario;
     ///               not for view for media and GUI;
     ///whirl is geometrical-shape-in-model: point, line, ...
     ///we don't want to call them "shape" because it collides with word "shape" in svg

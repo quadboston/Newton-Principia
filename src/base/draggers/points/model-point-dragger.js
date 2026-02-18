@@ -2,22 +2,13 @@
 
 ( function() {
     var {
-        ns, $$, sn, haz, haff,
-        ssF, sconf, fconf,
-        stdMod, sDomF, sDomN, amode,
+        ns, $$, haz, haff,
+        ssF, sconf,
+        stdMod, sDomF,
     } = window.b$l.apptree({
         setModule,
     });
     return;
-
-
-
-
-
-
-
-
-
 
 
     function setModule()
@@ -28,7 +19,6 @@
         sDomF.params__2__rgX8dragwrap_gen_list     = params__2__rgX8dragwrap_gen_list;
         sDomF.pname__2__rgX8dragwrap_gen_list    = pname__2__rgX8dragwrap_gen_list;
     }
-
 
 
 
@@ -46,18 +36,21 @@
     ///         (rgX = this)
     ///
     ///===================================================
+    ///possibly outdated, the only lemma 11 relies on this:
     function pname__2__rgX8dragwrap_gen_list( pname,)
-    { 
+    {
         return params__2__rgX8dragwrap_gen_list({ pname,});
     }
     function params__2__rgX8dragwrap_gen_list({
         pname, acceptPos, orientation, pos, nospinner,
     }) {
+        //ccc( pname + ' adds to list in common' );
         pos                     = pos || ns.haz( sconf.pname2point, pname ) || [];
         var rgX                 = ssF.upcreate__pars2rgShape({ pname, pos, })
         rgX.acceptPos           = acceptPos || ( _=>true );
         rgX.move_2_updates      = sDomF.move_2_updates;
-        //premature?: rgX.processDownEvent    = processDownEvent || sDomF.processDownEvent;
+        //premature?: rgX.processDownEvent    = processDownEvent ||
+        //sDomF.processDownEvent;
         rgX.processDownEvent    = sDomF.processDownEvent;
         rgX.processUpEvent      = sDomF.processUpEvent;
         rgX.pcolor              = sDomF.getFixedColor( rgX.pname );
@@ -133,7 +126,7 @@
         if( ns.haz( this, 'mediaMover' ) ) {
             //// non-ordinary case:
             this.hideD8Dpoint = false;
-            $$.$( this.svgel ).tgcls( 'undisplay', false );
+            $$.$( this.svgel ).toggleClass( 'undisplay', false );
 
             var mscale = sDomF.out2inn();
             this.medpos = sDomF.outparent2inn( arg.point_on_dragSurf );
@@ -161,13 +154,13 @@
     function processUpEvent( arg )
     {
         if( ns.haz( this, 'mediaMover' ) ) {
-            this.achieved.achieved[ 0 ] = sconf.modorInPicX; 
-            this.achieved.achieved[ 1 ] = sconf.modorInPicY; 
+            this.achieved.achieved[ 0 ] = sconf.modorInPicX;
+            this.achieved.achieved[ 1 ] = sconf.modorInPicY;
 
             //// non-ordinary case:
             this.undisplay = true;
             this.hideD8Dpoint = true;
-            $$.$( this.svgel ).tgcls( 'undisplay', true );
+            $$.$( this.svgel ).toggleClass( 'undisplay', true );
             $$.$( this.svgel ).removeClass( 'grabbing' );
             if( ns.haz( arg.dragWrap, 'decPoint' )) {
                 $$.$( arg.dragWrap.decPoint ).css( 'display', 'none' );
@@ -186,7 +179,4 @@
         stdMod.model8media_upcreate(); //capital update, todo: check
     }
 
-
-
 }) ();
-

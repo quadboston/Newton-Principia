@@ -1,12 +1,11 @@
 // For application, creates and exports namespace tree
 // variables ("placeholders") and useful functions.
-
-( function() {
+(function(){
     var nsvars = window.b$l.nstree();
     var { ns, sn, haz, } = nsvars;
     ns.apptree      = apptree;
     var engCssMs    = sn('engCssMs');
-    var fapp        = sn('fapp' ); 
+    var fapp        = sn('fapp' );
     var fmethods    = sn('methods',fapp);
     var fconf       = sn('fconf',fapp);
 
@@ -23,17 +22,16 @@
     const arios     = sn( 'activityScenarios', ario, [] );
 
     var rgtools     = sn('tools',ssD);
-    var fixedColors = sn('fixed-colors',ssD);
-    var fixedColorsOriginal = sn('fixed-colors-original-id',ssD);
+    var topicColors_repo = sn('fixed-colors',ssD);
+    var topicColors_repo_camel2col = sn('fixed-colors-original-id',ssD);
     var wrkwin      = sn('wrkwin',ssD); //work window
     var exegs       = sn('exegs', ssD);
     var references  = sn('references', ssD);
     var capture     = sn( 'capture', ssD );
     var topics      = sn('topics', ssD);
-    var lowId2topics= sn('lowId2topics', topics);
-    var id2tplink   = sn('id2tplink', topics);
-    var ix2tplink   = sn('ix2tplink', topics, []);
-
+    var lowtpid_2_glocss8anchorRack= sn('lowtpid_2_glocss8anchorRack', topics);
+    var anid2anrack   = sn('anid2anrack', topics);
+    var anix2anrack   = sn('anix2anrack', topics, []);
 
     //lemma-dependent lemma-subapplication (aka lemma-class-instance functions in Java)
     var sapp        = sn('sapp');
@@ -42,21 +40,19 @@
     var sDomN       = sn('dnative',sapp);
     var sData       = sn('sappDat',sapp);
     var amode       = sapp.mode = {};
-    
-    var sconf       = sn('sconf', sapp);
+
+    var sconf       = sn('sconf', fconf);
     var originalPoints = sn( 'originalPoints', sconf );
-    var originalPoints_cssNames = sn( 'originalPoints_cssNames', sconf );
-    
     var dividorFractions = sn('dividorFractions', wrkwin, []);
 
     //non-consistent: srg should be under fapp or sapp, not both:
-    var srg         = sn('sapprg', fapp ); 
+    var srg         = sn('sapprg', fapp );
     var srg_modules = sn('srg_modules', sapp);
 
     //site-wide user options
     var userOptions = sn('userOptions',fapp);
-
     setsEngineDefaults();
+    let ret = null;
     return;
 
 
@@ -85,7 +81,6 @@
         //console.log('apptree');
 
         ssFExportList && Object.assign( ssF, ssFExportList );
-
         expoFun = expoFun || ssFExportList,
         expoFun = ssFExportList;
 
@@ -98,17 +93,16 @@
         modName         = ( modName && modName + '-' ) || '';
 
         srg_modules[ modName + mCount.count ] = () => {
-
             if( setModule ) {
-                //ccc( '... running setModule() for ' + mCount.count );
+                //c cc( '... running setModule() for ' + mCount.count );
                 setModule();
             }
             //todm: why this code is delayes to srg_modules?
             if( stdModExportList ) {
-
                 ///replaces media_upcreate if createMedia0updateMediaAUX is in the list,
                 ///removes createMedia0updateMediaAUX then,
-                var mediaUpcreate = haz( stdModExportList, 'createMedia0updateMediaAUX' );
+                var mediaUpcreate = haz( stdModExportList,
+                                         'createMedia0updateMediaAUX' );
                 if( mediaUpcreate ) {
                     stdMod.media_upcreate = create_media_upcreate(
                         ssF, stdMod, stdModExportList.createMedia0updateMediaAUX );
@@ -120,7 +114,7 @@
                 ///if "model_upcreate" does exist in the list, but
                 ///"model8media_upcreate" does not, then latter is created
                 ///and added possible "media_upcreate".
-                if( 
+                if(
                     //todm patch
                     //this condition indicates we are in module "study-model.js" now,
                     //assuming this is a most indicative property,
@@ -128,10 +122,11 @@
                     !ns.h( stdModExportList, 'model8media_upcreate' )
                 ) {
                     stdMod.model8media_upcreate = () => {
-                        // called once on page load and again any time the model/data changes
-                        //console.log('model and media upcreate');                        
-                        stdMod.model_upcreate();                        
-                        ns.haff( stdMod, 'media_upcreate' ); 
+                        //called once on page load and again any
+                        //time the model/data changes
+                        //console.log('model and media upcreate');
+                        stdMod.model_upcreate();
+                        ns.haff( stdMod, 'media_upcreate' );
                     }
                 }
             }
@@ -142,36 +137,26 @@
             sDomFExportList && Object.assign( sDomF, sDomFExportList );
             //==========================================================
         };
-
         sn( 'customDraggers_list', stdMod, [] ); //todm: fake
         //-------------------------------------------------------------
         // \\// module and s ubmodel sugar
         //-------------------------------------------------------------
 
-
-
         //-------------------------------------------------------------
         // //\\ output
         //-------------------------------------------------------------
-        Object.assign( nsvars,
-        {
+        if( ret !== null ) return ret;
+        Object.assign( nsvars, {
             engCssMs,
-
-            fapp,
             fmethods,
-            fconf,
-            sconf,
-
             ss,
             ssF,
-            ssD, fixedColors, fixedColorsOriginal,
+            ssD, topicColors_repo, topicColors_repo_camel2col,
             actionsList_coded,
             actionsList_default,
             //ario,
             arios,
             originalPoints,
-            originalPoints_cssNames,            
-
             rg    : sapp.rg,
             topos : sapp.topos,
             toreg : sapp.toreg,
@@ -180,9 +165,9 @@
 
             capture,
             topics,
-            lowId2topics,
-            id2tplink,
-            ix2tplink,
+            lowtpid_2_glocss8anchorRack,
+            anid2anrack,
+            anix2anrack,
 
             sapp,
             amode,
@@ -202,11 +187,11 @@
             modName,
             stdMod,
         });
+        ret = nsvars;
         //-------------------------------------------------------------
         // \\// output
         //-------------------------------------------------------------
-
-        return nsvars;
+        return ret;
     }
 
     //=========================================================
@@ -230,6 +215,4 @@
     //=========================================================
     // \\// updates and creates media
     //=========================================================
-
-}) ();
-
+})();

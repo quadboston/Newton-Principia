@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, sn, mat, fconf, sconf, stdMod, fixedColors, } = 
+    var { ns, sn, mat, fconf, sconf, stdMod, topicColors_repo, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     var op = sn( 'orbitParameters', sconf );
     return;
@@ -30,7 +30,6 @@
         // //\\ subapp regim switches
         //====================================================
         sconf.enableStudylab            = false;
-        sconf.enableTools               = true;
         //====================================================
         // \\// subapp regim switches
         //====================================================
@@ -146,9 +145,9 @@
             hidden,
             curvature,
             context,
-        } = fixedColors;
+        } = topicColors_repo;
 
-        var predefinedTopics =
+        var topicColors_elected =
         {
             given,
             proof,
@@ -239,7 +238,7 @@
                 draggableX  : true,
                 draggableY  : true,
 				cssClass: 'subessay--solution subessay--corollary2',
-                conditionalDrag : 'subessay--solution subessay--corollary2',
+                conditionalDrag: 'subessay--solution subessay--corollary2',
             },
             AA : {
                 undisplayAlways : true,
@@ -401,7 +400,7 @@
             DATA_GRAPH_STEPS,
 
             mediaBgImage : "diagram.png",
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             originX_onPicture,

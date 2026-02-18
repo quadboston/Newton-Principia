@@ -1,8 +1,8 @@
 ( function() {
     var {
-        sn, $$, nsmethods, haz, has, han, nssvg, eachprop,
-        sconf, sDomF, sDomN, ssF, ssD, lowId2topics, rg, toreg,
-        stdMod, amode,
+        sn, $$, nsmethods, haz, has, han, nssvg,
+        sconf, sDomF, ssF, lowtpid_2_glocss8anchorRack, rg, toreg,
+        stdMod,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -18,11 +18,6 @@
     return;
 
 
-
-
-
-
-
     //==============================================
     // //\\ Adds DOM and decorations to pointRack
     //      creates or modifies svg-dom
@@ -34,7 +29,7 @@
     ///       optional:
     ///         attrs, 'tpclass',
     ///         haz( pt, 'svgel' )
-    ///         attrs: see below: //optional attrs 
+    ///         attrs: see below: //optional attrs
     ///Does:  main thing is adding coordinates converted
     ///       from model space to media-space
     ///       pt.medpos = //mod 2 inn//
@@ -45,7 +40,6 @@
     {
         attrs = attrs || {};
         var pt = rg[ pName ];
-        //if( 'curvePivots-3-kernel' === pName ){
 
         //if points are flagged as 'unscalable', then
         //they are immune to scaling when user scales diagram with mouse
@@ -56,7 +50,7 @@
 
             ////long, initial version of pos2pointy
             //c cc( 'dressing' + pName );
-            var tpclass = nsmethods.topicIdUpperCase_2_underscore(
+            var tpclass = nsmethods.toCssIdentifier(
                           ( haz( attrs, 'tpclass' ) ) || pName
             );
             var cssClass = has( attrs, 'cssClass' ) ? attrs['cssClass'] + ' ' :  '';
@@ -87,8 +81,8 @@
 
             ///shapes without pName presribed in Topics do
             ///paint colors in own attributes
-            var lowId = nsmethods.topicIdUpperCase_2_underscore( pName );
-            var tpactive = haz( lowId2topics, lowId );
+            var low_tpID = nsmethods.toCssIdentifier( pName );
+            var tpactive = haz( lowtpid_2_glocss8anchorRack, low_tpID );
             if( !tpactive ) {
                 argsvg.fill = pt.fill;
                 argsvg.stroke = pt.stroke;
@@ -111,7 +105,7 @@
             //fails
             if( has( pt, 'title' ) ) {;
                 svgel$.ch( $$.c( 'title' ).html( pt.title ) );
-                //svgel$.e( 'mouseover', 
+                //svgel$.e( 'mouseover',
             }
             */
 
@@ -126,7 +120,6 @@
         }
 
 
-
         //*****************************************************
         // todm: get rid of this
         //
@@ -135,15 +128,13 @@
         //       possibly only one offender left: theorem1,
         //
         var pointWrap = haz( pt, 'pointWrap' );
-        pointWrap && ( pointWrap.medpos = pt.medpos );
         //*****************************************************
-
         if( has( pt, 'undisplayAlways' ) ){
             //good but may be corrupts legacy lemmas
             //pt.undisplay = true; //fixes hiding of letters
-            pt.svgel$.tgcls( 'undisplay', pt.undisplayAlways );
+            pt.svgel$.toggleClass( 'undisplay', pt.undisplayAlways );
         } else {
-            pt.svgel$.tgcls( 'undisplay',
+            pt.svgel$.toggleClass( 'undisplay',
                              !haz( pt, 'displayAlways' ) && haz( pt, 'undisplay' )
             );
         }
@@ -164,7 +155,6 @@
     function doPaintLetter8kernel( pname, )
     {
         var rgX = rg[ pname ];
-
         ///adds fake points over draggable points to
         ///make white kernels drawn above lines
         ///move_2_updates is a flag of point for being a draggee
@@ -267,7 +257,7 @@
             //--------------------------------------------------------------------------
 
             let $$$svg = $$.$( rgX.pnameLabelsvg );
-            $$$svg.tgcls(
+            $$$svg.toggleClass(
                 'undisplay',
                 rgX.hideCaption ||
                 (
@@ -275,18 +265,13 @@
                     ( haz( rg, 'allLettersAreHidden' ) || haz( rgX, 'undisplay' ) )
                 )
             );
-            rgX.pnameLabelsvg.addEventListener( 'mouseover', ()=>{
-                    let me = rgX.pnameLabelsvg;
-                    me.style.cursor = 
-                        //wrong: me.parentNode.style.cursor;
-                        stdMod.simScene.style.cursor;
-            });
 
             let txtclass = haz( rgX, 'classmark' );
             if( txtclass ) {
                 $$$svg.addClass( txtclass );
             }
-            
+            //make tp - boldable all points labels:
+            $$$svg.addClass( 'tobold' );
             /*
             fails:
             if( has( rgX, 'hideCaption' ) ) {
@@ -303,7 +288,7 @@
         } else {
             ////bug fix: June 3, 2021
             var wwSvg = haz( rgX, 'pnameLabelsvg' );
-            $$.$( wwSvg ).tgcls( 'undisplay', true );
+            $$.$( wwSvg ).toggleClass( 'undisplay', true );
             /*
             rgX.hideCaption ||
             (
@@ -346,4 +331,3 @@
     //-------------------------------------------------
 
 }) ();
-

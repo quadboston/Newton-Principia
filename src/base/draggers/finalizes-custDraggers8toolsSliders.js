@@ -30,26 +30,13 @@
     {
         ///creates tools for the first time and only once
 
-        ///******************************************************
-        /// todm,
-        /// nearly a bug, thickness and wheel scaling are coupled
-        /// unnecessarily
-        ///******************************************************
-        if( sconf.enableTools ) {
-            ssF.createSliderPlaceholder_media_scale();
-            ssF.createSliderPlaceholder_thickness();
-            fmethods.attachWeelToDomEl(
-                stdMod.svgScen$,
-            );
-        }
+        enableZoom();
 
         ///****************************************************************
         /// creates a framework, medD8D,
         /// to which arbitrary drag8droppers can be attached from different
         /// lemma modules
         ///****************************************************************
-        var spinnerCursorGrab = sconf.spinnerCursorGrab || 'grab';
-        var spinnerCursorGrabbed = sconf.spinnerCursorGrabbed || 'grabbing';
         var medD8D = stdMod.medD8D =
         d8dp.crePointFW_BSLd8d1CHAMBER({
             findDraggee                         : findDraggee,
@@ -57,8 +44,6 @@
             decPoint_parentClasses              : fconf.dragPointDecoratorClasses,
             inn2outparent                       : sDomF.inn2outparent,
             doCreateDynamicSpinners             : true,
-            spinnerCursorGrab,
-            spinnerCursorGrabbed,
         });
         //no need, done in media-model.js:  update_decPoint( decPoint )
 
@@ -80,6 +65,19 @@
         ssF.inits_tools_sliders( medD8D, );
         ///***********************************************************************
         ns.globalCss.update(); //for decorator
+
+        ///******************************************************
+        /// todm,
+        /// nearly a bug, thickness and wheel scaling are coupled
+        /// unnecessarily
+        ///******************************************************
+		function enableZoom() {
+			ssF.createSliderPlaceholder_media_scale();
+			ssF.createSliderPlaceholder_thickness();
+			fmethods.attachWeelToDomEl(
+				stdMod.svgScen$
+			);
+		}
     }; 
     //==========================================
     // \\// inits drag model

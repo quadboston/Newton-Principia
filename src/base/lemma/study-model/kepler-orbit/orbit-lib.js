@@ -45,7 +45,7 @@
                 'stroke-width' : sconf.PATH_WIDTH,
                 //fill             : haz( arg, 'fill' ),
             });
-            const lowname = sDomF.topicIdUpperCase_2_underscore( 'orbit' );
+            const lowname = sDomF.toCssIdentifier( 'orbit' );
             //sets tp-machine
             $$.$( output ).addClass( 'tostroke thickable tp-'+lowname );
             return output;

@@ -1,8 +1,7 @@
 ( function() {
     const {
-        ns, sn, haz, $$,
-        sconf, ssF, sDomF, rg,
-        stdMod,
+        ns, sn, haz,
+        ssF, sDomF, rg,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -10,12 +9,6 @@
         },
     });
     return;
-
-
-
-
-
-
 
 
     ///********************************************************
@@ -112,7 +105,7 @@
                 var step            = 0.015*85/stepsCount;
             }
         }
-        addedCssClass = sDomF.topicIdUpperCase_2_underscore( addedCssClass || 'tp-' + rgName );
+        addedCssClass = sDomF.toCssIdentifier( addedCssClass || 'tp-' + rgName );
         //-----------------------------------------------------------------
         // \\// rgName, pointA,B, start, step, tp-class
         //-----------------------------------------------------------------
@@ -153,7 +146,7 @@
                 parent          : mmedia,
             });
         rgX.svgel$
-            .tgcls( 'undisplay', ns.haz( rgX, 'undisplay' ) )
+            .toggleClass( 'undisplay', ns.haz( rgX, 'undisplay' ) )
             .addClass( 'tostroke thickable ' + addedCssClass);
         //====================================================
         // \\// registers and paints to svg

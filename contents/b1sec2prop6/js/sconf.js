@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, fconf, sconf, fixedColors,} = 
+    var { ns, fconf, sconf, topicColors_repo,} = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -30,7 +30,6 @@
         //====================================================
         sconf.enableStudylab = false;
         //true enables framework zoom
-        sconf.enableTools = true;
         //====================================================
         // \\// subapp regim switches
         //====================================================
@@ -171,10 +170,10 @@
             context,
             chord,
             displacement,
-        } = fixedColors;
+        } = topicColors_repo;
 
 
-        var predefinedTopics =
+        var topicColors_elected =
         {
             estimatedForce,
             given,
@@ -289,7 +288,6 @@
                 letterRotRadius : 40,
                 draggableX  : true,
                 draggableY  : true,
-                conditionalDrag : 'logic_phase--proof logic_phase--claim',
             },
             QtimeDecor : {
                 undisplayAlways : true,
@@ -383,7 +381,6 @@
 				cssClass: 'subessay--corollary3 subessay--corollary5',
 			 }, },
             { 'SP' : { pcolor : given,
-				cssClass: 'subessay--corollary1 subessay--corollary5',
 			 }, },
             { 'PY' : { pcolor : body,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
@@ -428,7 +425,7 @@
             DATA_GRAPH_STEPS,
 
             mediaBgImage : "diagram.png",
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             originX_onPicture,

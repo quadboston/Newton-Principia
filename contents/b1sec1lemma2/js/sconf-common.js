@@ -23,7 +23,6 @@
         sconf.default_tp_lightness = 30;
         sconf.mediaMoverPointDisabled = !false;
         sconf.skipGenDragList = !false; //false is for media mover,
-        sconf.enableTools     = !true;
         
         
         //todm: this disables functionality ... not only CSS:
@@ -53,7 +52,6 @@
             // \\// subapp regim switches
             //====================================================
 
-            dontRun_ExpandConfig : false,
             //----------------------------------
             // //\\ model-view parameters
             //----------------------------------

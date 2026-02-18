@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, fconf, sconf, fixedColors } =
+    var { ns, fconf, sconf, topicColors_repo } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -21,7 +21,6 @@
         // //\\ subapp regim switches
         //====================================================
         sconf.enableStudylab            = false; // true to include options as in Book 3 Lemma 5
-        sconf.enableTools               = false;
         sconf.rgShapesVisible           = false; // false to show only relevant lines, points, labels
         //====================================================
         // \\// subapp regim switches
@@ -57,9 +56,9 @@
             result,
             givenArea,
             proofArea
-        } = fixedColors;
+        } = topicColors_repo;
 
-        var predefinedTopics = { 
+        var topicColors_elected = { 
             //:basic topics
             proof,
             given,
@@ -258,7 +257,7 @@
             //double back step ../../ is to reuse this path in code for lemma7
             mediaBgImage : "../../b1sec1lemma8/img/d.png",
             givenCurve_pivots_inModel,
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             modorInPicX,

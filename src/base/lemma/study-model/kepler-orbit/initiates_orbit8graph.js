@@ -40,6 +40,9 @@
         if( rg.S.draggableX || rg.S.draggableY ) {
             stdMod.creates_S_slider();
         }
+        if( rg.A && (rg.A.draggableX || rg.A.draggableY) ) {
+            stdMod.creates_A_slider();
+        }
     }
     
     function rebuilds_orbit( keepThisDt ) {

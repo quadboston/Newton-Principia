@@ -1,8 +1,8 @@
 ( function() {
     var {
-        ns, sn, ow, $$, sv, haz,
-        sconf, ssF, ssD, sDomF, sDomN, rg, toreg,
-        stdMod, amode,
+        ns, sn, $$, sv, haz,
+        sconf, ssF, sDomF, rg, toreg,
+        stdMod,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -13,11 +13,6 @@
     });
     var ownProp = Object.prototype.hasOwnProperty;
     return;
-
-
-
-
-
 
 
     function segmentAngle( segm )
@@ -37,8 +32,8 @@
 
         var svgel$          = haz( rgAngle, 'svgel$' );
         var pnameLabelsvg$  = haz( rgAngle, 'pnameLabelsvg$' );
-        svgel$              && svgel$.tgcls(            'undisplay', doUndisplay );
-        pnameLabelsvg$      && pnameLabelsvg$.tgcls(    'undisplay', doUndisplay );
+        svgel$              && svgel$.toggleClass(            'undisplay', doUndisplay );
+        pnameLabelsvg$      && pnameLabelsvg$.toggleClass(    'undisplay', doUndisplay );
     }
 
     ///paints angle from "start" to "end" by placing result in the range (-PI,+PI) counting
@@ -88,7 +83,7 @@
             ANGLE_SIZE      : ANGLE_SIZE || 1,
             captionRadiusIncrease,
             tpClassName     : tpclassName === '' ? '' :
-                              tpclassName || sDomF.topicIdUpperCase_2_underscore( rgSample.pname ),
+                              tpclassName || sDomF.toCssIdentifier( rgSample.pname ),
             fill            : fill || rgAngle.pcolor,
 
             //commenting this line does fix non-nice tp-highlighting of angle border
@@ -171,7 +166,7 @@
                                 (fill ? ' tofill' : '' )
                             )
         );
-        svgel$.tgcls( 'undisplay', ns.haz( rgX, 'undisplay' ) );
+        svgel$.toggleClass( 'undisplay', ns.haz( rgX, 'undisplay' ) );
 
 
         ///draws caption
@@ -203,7 +198,7 @@
             });
             var pnameLabelsvg$ = rgX.pnameLabelsvg$ =
                 haz( rgX, 'pnameLabelsvg$' ) || $$.$( rgX.pnameLabelsvg );
-            pnameLabelsvg$.tgcls( 'undisplay', ns.haz( rg[rgX.pname], 'undisplay' ) );
+            pnameLabelsvg$.toggleClass( 'undisplay', ns.haz( rg[rgX.pname], 'undisplay' ) );
             //ccc( tpClassName );
             pnameLabelsvg$.addClass( tpcls );
         }

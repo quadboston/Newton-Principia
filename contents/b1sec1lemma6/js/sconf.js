@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, fconf, sconf, fixedColors, userOptions } =
+    var { ns, fconf, sconf, topicColors_repo, userOptions } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
     
@@ -11,7 +11,6 @@
         // //\\ subapp regim switches
         //====================================================
         sconf.enableStudylab            = false;
-        sconf.enableTools               = false;
         sconf.rgShapesVisible           = false; // shows hidden objects not shown on normal page or addendum
         //====================================================
         // \\// subapp regim switches
@@ -101,12 +100,12 @@
         //================================================================      
         
         //: topic group colors
-        var given   = fixedColors.given;        
-        var proof   = fixedColors.proof;
-        var result  = fixedColors.result;
-        var hidden  = fixedColors.hidden;
+        var given   = topicColors_repo.given;        
+        var proof   = topicColors_repo.proof;
+        var result  = topicColors_repo.result;
+        var hidden  = topicColors_repo.hidden;
 
-        var predefinedTopics =
+        var topicColors_elected =
         {
             //:basic topics
             proof,
@@ -164,12 +163,12 @@
         function addBonusVars() {            
             // *** these are only used if BONUS || rgShapesVisible (some maybe not at all)
 
-            var predefinedTopicsBonus = {
+            var topicColors_electedBonus = {
                 //proof
                 "curve-Ab"      : proof,
                 "arc-Ab"        : proof,
             }
-            predefinedTopics = {...predefinedTopics, ...predefinedTopicsBonus};
+            topicColors_elected = {...topicColors_elected, ...topicColors_electedBonus};
 
             var originalPointsBonus = {
 
@@ -272,7 +271,7 @@
             //double back step ../../ is to reuse this path in code for lemma7
             mediaBgImage : "../../b1sec1lemma6/img/b1s1l6-diagram-3rded-b.png",
             givenCurve_pivots_inModel,
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             modorInPicX,

@@ -1,19 +1,19 @@
 ( function() {
     var {
-        sn, $$, paste, haz, mat, bezier, nssvg,
-        sconf, sDomF, ssD, ssF,
+        sn, $$, paste, haz, bezier, nssvg,
+        sconf, ssD, ssF,
         stdMod, rg, toreg,
     } = window.b$l.apptree({
         setModule,
     });
-    var pointies2line;
+    var pivots_2_svgLineInRg;
     return;
 
 
     function setModule()
     {
         stdMod.media_upcreate___part_of_medupcr_basic =media_upcreate___part_of_medupcr_basic;
-        pointies2line   = ssF.pointies2line;
+        pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
     }
 
     //=========================================================
@@ -45,19 +45,14 @@
         var pointA     = rg.A;
         var pointD     = rg.D;
         var pointE     = rg.E;
-        var pointB     = rg.B;
-        var pointC     = rg.C;
-        
+
         rg.B.doWhiteKernel = true;
         rg.C.doWhiteKernel = true;
         rg.E.doWhiteKernel = true;
 
         var pointOd     = rg.d;
         var pointOe     = rg.e;
-        var pointOb     = rg.b;
-        var pointOc     = rg.c;
-        var pointOg     = rg.g;
-        var pointOf     = rg.f;
+
         //===================================================
         // \\// spawns study model from main parameters ssD
         //===================================================
@@ -78,7 +73,7 @@
             {
                 'stroke-width' : 1 * sconf.thickness
             },
-            //Ensure second paint pivot is hidden.  Otherwise a small dot will be in its location for the claim tab, since the point that would 
+            //Ensure second paint pivot is hidden.  Otherwise a small dot will be in its location for the claim tab, since the point that would
             //cover it for other tabs is hidden.
             paintPivots : {
                 topaint : [ null, null, true ],
@@ -126,7 +121,7 @@
         });
         $$.$( remoteCurve.mediael.paintedCurve )
             .addClass( 'tostroke tp-_abc' )
-            .tgcls( 'undisplay', haz( remoteCurve, 'undisplay' ) )
+            .toggleClass( 'undisplay', haz( remoteCurve, 'undisplay' ) )
             ;
         // \\// paints curve with two pivot points
 
@@ -138,7 +133,7 @@
         wCCA( 'area-Ace', medRemoteCurPivots,  tC, pointA.medpos, pointOe.medpos );
         wCCA( 'area-Abd', medRemoteCurPivots,  tB, pointA.medpos, pointOd.medpos );
         paintCurveArea( 'area-Ace', 'logic_phase--proof', '_ace' );
-        //.apparently makes this shape-element exclusively present in 
+        //.apparently makes this shape-element exclusively present in
         //.'logic_phase--proof' mode
         paintCurveArea( 'area-Abd', 'logic_phase--proof', '_abd' );
         //------------------------------------------
@@ -186,7 +181,11 @@
 
         // init here to ensure all req'd vars are inited first
         // so we don't need to call media-upcreate() from init-sapp.js
-        stdMod.initDragModel( stdMod.medD8D ); 
+
+        //kvk: there was a set of bugs: stdMod.medD8D is not yet exists,
+        //this code is moved to init-sapp.js near
+        //fconf.sappId === 'b1sec1lemma9'
+        //stdMod.medD8D && stdMod.initDragModel( stdMod.medD8D )
 
         return;
         // \\//\\// ends imperative part of the module
@@ -200,14 +199,14 @@
             var area = rg[ areaId ];
 
             var lowCurve = rg[ areaId ].curve;
-            
+
             var dd = '';
             dd += "M" + area.startPoint[0] + ' ' +
                         area.startPoint[1] + ' ';
-            dd += "Q" + 
+            dd += "Q" +
                   lowCurve[1][0].toFixed(2) + ' ' + lowCurve[1][1].toFixed(2) + ' ' +
                   lowCurve[2][0].toFixed(2) + ' ' + lowCurve[2][1].toFixed(2) + ' ';
-            dd += "L" + 
+            dd += "L" +
                         area.endPoint[0] + ' ' +
                         area.endPoint[1] + ' ';
 
@@ -222,7 +221,7 @@
 
             $$.$(area.mediael)
                 .cls( ' tp-'+topicGroup_decapitalized + fullMode + ' tofill' )
-                .tgcls( 'undisplay', haz( area, 'undisplay' ) )
+                .toggleClass( 'undisplay', haz( area, 'undisplay' ) )
                 ;
         }
         //==========================================
@@ -249,7 +248,7 @@
             });
             $$.$( area.mediael )
                 .addClass(`tp-${topicGroup_decapitalized} tofill`)
-                .tgcls( 'undisplay', haz( area, 'undisplay' ) )
+                .toggleClass( 'undisplay', haz( area, 'undisplay' ) )
                 ;
         }
         //==========================================

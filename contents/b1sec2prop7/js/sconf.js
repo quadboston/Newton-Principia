@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, fconf, sconf, fixedColors, } = 
+    var { ns, fconf, sconf, topicColors_repo, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -29,8 +29,6 @@
         // //\\ subapp regim switches
         //====================================================
         sconf.enableStudylab            = false;
-        //true enables framework zoom
-        sconf.enableTools               = true;
         //====================================================
         // \\// subapp regim switches
         //====================================================
@@ -157,10 +155,10 @@
             curvature,
             context,
             chord,
-        } = fixedColors;
+        } = topicColors_repo;
 
 
-        var predefinedTopics =
+        var topicColors_elected =
         {
             estimatedForce,
             body,
@@ -381,7 +379,7 @@
             DATA_GRAPH_STEPS,
 
             mediaBgImage : "diagram.png",
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             originX_onPicture,

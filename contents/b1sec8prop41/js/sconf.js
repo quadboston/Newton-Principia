@@ -1,6 +1,6 @@
 
 ( function() {
-    var { sn, mat, eachprop, nspaste, userOptions, fixedColors, fconf, sconf,
+    var { sn, mat, eachprop, nspaste, userOptions, topicColors_repo, fconf, sconf,
         rg, stdMod, } = window.b$l.apptree({ ssFExportList : { init_conf } });
     var op = sn( 'orbitParameters', sconf );
     return;
@@ -24,8 +24,6 @@
         // //\\ subapp regim switches
         //====================================================
         sconf.enableStudylab            = false;
-        sconf.enableTools               = true;
-        //sconf.rgShapesVisible           = true;
         //====================================================
         // \\// subapp regim switches
         //====================================================
@@ -156,7 +154,7 @@
             D𝑏𝑧E,
             VIC,
             ICK,
-        } = fixedColors;
+        } = topicColors_repo;
 
         const Zgraph = bodyHiddenStart;
         const vgraph = forceTransparentStart;
@@ -164,7 +162,7 @@
         const Tkernel = time;
 
 
-        var predefinedTopics =
+        var topicColors_elected =
         {
             given,
             proof,
@@ -301,7 +299,7 @@
             vgpoint : {
                 caption : 'v',
                 pos : A,
-                //no effect: pcolor : predefinedTopics.vgpoint,
+                //no effect: pcolor : topicColors_elected.vgpoint,
                 letterAngle : 45,
             },
 
@@ -520,7 +518,7 @@
         //stdMod.init_sliders_conf();
         nspaste( sconf, {
             mediaBgImage : "diagram.jpg",
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             originX_onPicture,

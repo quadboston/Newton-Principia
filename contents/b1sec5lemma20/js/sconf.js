@@ -1,6 +1,6 @@
 // //\\// widget config
 ( function() {
-    var { mat, fapp, fconf, sconf, fixedColors, } = 
+    var { mat, fapp, fconf, sconf, topicColors_repo, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -13,7 +13,6 @@
         sconf.insertDelayedBatch        = true;
         sconf.enableStudylab            = false;
         //for some standard sliders
-        sconf.enableTools               = true;
         sconf.hideProofSlider           = true; //todo
         //sconf.rgShapesVisible         = true;
         //====================================================
@@ -75,10 +74,10 @@
             aux,
             constructors,
             ellipse,
-        } = fixedColors;
+        } = topicColors_repo;
 
         
-        const predefinedTopics =
+        const topicColors_elected =
         {   
             static,
             core,
@@ -97,7 +96,7 @@
             "tangent"               : constructors,
             "aux-dots"              : aux,
         }
-        const pt = predefinedTopics;
+        const pt = topicColors_elected;
         
         
         var originalPoints =
@@ -204,14 +203,14 @@
                   letterRotRadius : 20,
                 },
             D : { pos: [1410, 965],
-                  pcolor: predefinedTopics['generators'],
+                  pcolor: topicColors_elected['generators'],
                   cssClass: 'tp-generators',
                   letterRotRadius : 20,
                   draggableX : true,
                   draggableY : true,
                 },
             R : { pos: [1010, 712],
-                  pcolor: predefinedTopics['key-triangle'],
+                  pcolor: topicColors_elected['key-triangle'],
                   cssClass: 'tp-key-triangle',
                   letterAngle : -10,
                   letterRotRadius : 20,
@@ -228,7 +227,7 @@
             //============================================
             T : { pos: [1283, 572],
                   draggableX : true,
-                  pcolor: predefinedTopics['key-triangle'],
+                  pcolor: topicColors_elected['key-triangle'],
                   style: {fill: '#ffffff'},
                   cssClass: 'tp-key-triangle',
                   letterAngle : 45,
@@ -241,7 +240,7 @@
                     draggableY : false,
                     
                     pos: [slider_aX,slider_aY],
-                    pcolor : predefinedTopics.ellipse,
+                    pcolor : topicColors_elected.ellipse,
     
                     letterAngle : 166,
                     letterRotRadius : 104,
@@ -252,14 +251,14 @@
             //rails
             eStart : {
                 pos : [ slider_a_start, slider_aY ],
-                pcolor : predefinedTopics.ellipse,
+                pcolor : topicColors_elected.ellipse,
                 undisplayAlways : true,
                 doPaintPname : false,
                 unscalable  : true,
             },
             eEnd : {
                 pos : [ slider_a_end, slider_aY ],
-                pcolor : predefinedTopics.ellipse,
+                pcolor : topicColors_elected.ellipse,
                 undisplayAlways : true,
                 doPaintPname : false,
                 unscalable  : true,
@@ -317,13 +316,13 @@
            //-------------------------
   
            { 'PT' : {
-                        pcolor : predefinedTopics["key-triangle"],
+                        pcolor : topicColors_elected["key-triangle"],
                         'stroke-width' : 10,
                         cssClass : 'tp-key-triangle tp-key-parts',
                     }
            },
            { 'PR' : {
-                        pcolor : predefinedTopics["key-triangle"],
+                        pcolor : topicColors_elected["key-triangle"],
                         'stroke-width' : 10,
                         cssClass : 'tp-key-triangle tp-key-parts',
                     }
@@ -456,22 +455,22 @@
             // //\\ static triangle
             //------------------------
             { 'Pr' : {
-                        pcolor : predefinedTopics["static-generator"],
+                        pcolor : topicColors_elected["static-generator"],
                         cssClass : 'tp-static-generator subessay--corollary1 subessay--corollary2',
                     }
             },
             { 'Pt' : {
-                        pcolor : predefinedTopics["static-generator"],
+                        pcolor : topicColors_elected["static-generator"],
                         cssClass : 'tp-static-generator subessay--corollary1 subessay--corollary2',
                     }
             },
             { 'Cd' : {
-                        pcolor : predefinedTopics["aux"],
+                        pcolor : topicColors_elected["aux"],
                         cssClass : 'subessay--corollary3',
                     }
             },
             { 'Pq' : {
-                        pcolor : predefinedTopics["aux"],
+                        pcolor : topicColors_elected["aux"],
                         cssClass : 'subessay--corollary3',
                     }
             },
@@ -484,17 +483,17 @@
             //      in circle case
             //------------------------
             { 'BP' : {
-                        pcolor : predefinedTopics["similar-triangle"],
+                        pcolor : topicColors_elected["similar-triangle"],
                         cssClass : 'subessay--case1 subessay--case2',
                     }
             },
             { 'BC' : {
-                        pcolor : predefinedTopics["similar-triangle"],
+                        pcolor : topicColors_elected["similar-triangle"],
                         cssClass : 'subessay--corollary1 subessay--corollary2',
                     }
             },
 			{ 'CP' : {
-                        pcolor : predefinedTopics["similar-triangle"],
+                        pcolor : topicColors_elected["similar-triangle"],
                         cssClass : 'subessay--case1',
                     }
            },
@@ -503,7 +502,7 @@
             //------------------------
 
             { 'eStart,eEnd' : {
-                        pcolor : predefinedTopics["ellipse"],
+                        pcolor : topicColors_elected["ellipse"],
                         cssClass : 'ellipse',
                     }
             },
@@ -533,11 +532,10 @@
         fapp.normalizeSliders( pictureHeight / 444 );
         to_sconf =
         {
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             mediaBgImage : "l20.jpg",
-            //dontRun_ExpandConfig : true,
 
             //for e slider
             eMax : 1.5,

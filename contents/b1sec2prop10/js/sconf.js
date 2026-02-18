@@ -1,6 +1,6 @@
 
 ( function() {
-    const { nspaste, fconf, sconf, fixedColors, } = 
+    const { nspaste, fconf, sconf, topicColors_repo, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -29,7 +29,6 @@
         // //\\ subapp regim switches
         //====================================================
         sconf.enableStudylab            = false;
-        sconf.enableTools               = true;
         //====================================================
         // \\// subapp regim switches
         //====================================================
@@ -97,6 +96,7 @@
         sconf.DT_SLIDER_MAX = FT ? 0.66 : null;
         var Q_STEPS = 1000;
         var DATA_GRAPH_STEPS = 500;
+        sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
         sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX = true;
         sconf.DEVIATION_SCALE_FACTOR = 0.5;
         //-------------------------------------------
@@ -143,10 +143,10 @@
             hidden,
             curvature,
             context,
-        } = fixedColors;
+        } = topicColors_repo;
 
 
-        var predefinedTopics =
+        var topicColors_elected =
         {
             given,
             proof,
@@ -197,11 +197,6 @@
                 pcolor : proof,
                 letterAngle : 90,
 				cssClass: 'subessay--solution',
-            },
-
-            A : {
-                pcolor : proof,
-                cssClass: 'subessay--solution',
             },
 
             // //\\ proof
@@ -257,16 +252,6 @@
                 letterAngle : -45,
                 cssClass: 'subessay--another-solution',
             },
-
-            Q : {
-                pcolor : proof,
-                letterAngle : 180,
-                letterRotRadius : 25,
-                draggableX  : true,
-                draggableY  : true,
-                cssClass: 'logic_phase--proof',
-                conditionalDrag : 'logic_phase--proof',
-            },
             // \\// proof
   
 
@@ -302,6 +287,24 @@
                 letterAngle : 70,
                 draggableX  : true,
                 draggableY  : true,
+            },   
+
+            Q : {
+                pcolor : proof,
+                letterAngle : 180,
+                letterRotRadius : 25,
+                draggableX  : true,
+                draggableY  : true,
+                cssClass: 'logic_phase--proof',
+                conditionalDrag : 'logic_phase--proof',
+            },         
+
+            A : {
+                pcolor : proof,
+                draggableX  : true,
+                draggableY  : true,
+				cssClass: 'subessay--solution',
+                conditionalDrag : 'subessay--solution',
             },
             //---------------------------------------
             // \\// draggable points
@@ -403,7 +406,7 @@
             DATA_GRAPH_STEPS,
 
             mediaBgImage : "diagram.png",
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             originX_onPicture,

@@ -1,3 +1,8 @@
+// defines css classes and animations for spinning arrows around draggable points
+// dom elements created in decorator.js to overlay point positions
+// visibility of spinner is toggled in d8d-framework.js when corresponding 
+// svg element is under mouse (look for decPoint.style.display)
+
 //apparently this module was a derivative from
 //  /var/www/html/bwork/vbsl/vendor/bsl/slider/slider-handler.css.js
 (function() {
@@ -9,9 +14,6 @@
     var fapp   = ns.sn('fapp' ); 
     var fconf  = ns.sn('fconf',fapp);
     
-    var CURSOR = 'grab';
-    //var CURSOR = 'crosshair';
-    var CURSOR_GRABBING = 'grabbing';
     //---------------------------------------
     // //\\ configures dimensions
     //---------------------------------------
@@ -24,11 +26,7 @@
     //than change to mouse search cursor:
     dm.WIDTH                =  ( fconf.DRAG_HANDLE_HALFHOTSPOT || 15 ) * 2 +
                                 5; //to overlap dragger-search-hot-spot,
-    dm.HEIGHT               = dm.WIDTH;
-    
-    //dm.HOT_ZONE_ANIM_WIDTH  = dm.WIDTH;
-    //dm.HOT_ZONE_ANIM_HEIGHT = dm.HEIGHT;
-    
+    dm.HEIGHT               = dm.WIDTH;    
     dm.DISK_RADIUS          = dm.WIDTH*0.1;
     dm.DISK_LEFT            = dm.WIDTH*0.5;
     dm.DISK_TOP             = dm.HEIGHT*0.5;
@@ -49,13 +47,12 @@
 
     var globalCssCreated_flag   = false;
     dpdec.creates_spinnerOwnCss = creates_spinnerOwnCss;
-    dpdec.createGlobal          = createGlobal;
+    dpdec.createSliderArrowsCSS = createSliderArrowsCSS;
     return;
 
 
     ///creates spinner own global CSS
-    ///appar. overrides spinner's-default CSS by means of
-    ///parent_classes
+    ///applies point specific styles like color, z-index
     function creates_spinnerOwnCss(
         decorCount_debug,
         //appar. can be point's rgId decapitalized
@@ -69,9 +66,6 @@
 
         //optional
         individual_zindex,
-        spinnerCursorGrab,
-        spinnerCursorGrabbed,
-        makeCentralDiskInvisible,
     ) {
         //sets up each draggable object, but does not set position here
         //console.log('spinner: ' + spinnerClsId);
@@ -79,14 +73,9 @@
         //fixing missed parameters
         individual_color = individual_color || 'grey';
         parent_classes = parent_classes || [''];
-
-        CURSOR = spinnerCursorGrab || CURSOR;
-        CURSOR_GRABBING = spinnerCursorGrabbed || CURSOR_GRABBING;
         var ret = '';
         // //\\ css /////////////////////////////////////////
         parent_classes.forEach( function( dclass ) {
-            //c cc( spinnerClsId, dclass, CURSOR, CURSOR_GRABBING );
-            centralDiskVisibility  = makeCentralDiskInvisible ? 'hidden' : 'visible';
             ////if dclass exists, apparently it constrains css to ownself,
             ////possibly useless and easy to forget when scripting lemma,
             ////example: dclacc = .aspect--english
@@ -100,67 +89,41 @@
             ${dclass} .${spinnerClsId}.brc-slider-draggee {
                 ${zIndex}
             }
-            .${spinnerClsId}.brc-slider-draggee,
-            .${spinnerClsId}.brc-slider-draggee:hover:after {
-                cursor: ${CURSOR};
-            }
-            .${spinnerClsId}.brc-slider-draggee.grabbing:hover:after,
-            .${spinnerClsId}.brc-slider-draggee.grabbing {
-                cursor: ${CURSOR_GRABBING};
-            }
-            
-            /*=============================*/
-            /* //\\ parent after           */
-            /*=============================*/
-            ${dclass} .${spinnerClsId}.brc-slider-draggee:hover:after {
-                background-color: ${individual_color};
-                visibility      : ${centralDiskVisibility};
-            }
-            /*=============================*/
-            /* \\// parent after           */
-            /*=============================*/
 
-            /*=============================*/
-            /* //\\ animates slider arrows */
-            /*=============================*/
+            /*=================================================*/
+            /* //\\ applies specified color to spinning arrows */
+            /*=================================================*/
             ${dclass} .${spinnerClsId} .brc-slider-draggee-right {
                 border-left : ${ds.ARROW_LENGTH} solid ${individual_color};
             }
             ${dclass} .${spinnerClsId} .brc-slider-draggee-left {
                 border-right : ${ds.ARROW_LENGTH} solid ${individual_color};
             }
-            /*=============================*/
-            /* \\// animates slider arrows */
-            /*=============================*/
+            /*=================================================*/
+            /* \\// applies specified color to spinning arrows */
+            /*=================================================*/
             `
-            //ccc( dclass + ' .' + spinnerClsId + ' o v e r r i d e s  ' +
-            //     ' .brc-slider-draggee-right '
-            //);
         });
         // \\// css /////////////////////////////////////////
-        
-        //good debug
-        //if( 'point-_p-slider' === spinnerClsId ) {
-        //    c cc( spinnerClsId+ '=', ret);
-        //}
 
         ns.globalCss.update( ret, spinnerClsId );
     }
 
 
-    function createGlobal()
+    // defines css for arrow hover animations around draggable points
+    function createSliderArrowsCSS()
     {
         if( globalCssCreated_flag ) return;
-        //c cc( 'global cursors=' + CURSOR + ', ' + CURSOR_GRABBING );
         var ret =
 
         // //\\ css /////////////////////////////////////////
         `
-
         /*=============================*/
         /* //\\ parent handler         */
         /*=============================*/
         .brc-slider-draggee {
+            pointer-events: none; /* necessary for wheel zoom event to work */
+            display     : none;
             position    : absolute;
             top         : 0%;
 
@@ -169,7 +132,7 @@
             /* todm HOT_ZONE_ANIM_WIDTH HOT_ZONE_ANIM_HEIGHT */
             
             z-index     : 1000;
-            cursor: ${CURSOR};
+
             /* .good for devel.
             border      : 1px solid red;
             */
@@ -196,52 +159,11 @@
         /*=============================*/
 
 
-
-
-        /*=============================*/
-        /* //\\ parent after;          */
-        /*      this is handle's disk  */
-        /*      if visible;            */
-        /*=============================*/
-        .brc-slider-draggee:hover:after {
-            content         : ''; /* seems vital ... why? */
-            position        : absolute;
-            left            : ${ds.DISK_LEFT};
-            top             : ${ds.DISK_TOP};
-            width           : ${ds.DISK_RADIUS};
-            height          : ${ds.DISK_RADIUS};
-            transform       : translate(-50%, -50%);
-
-            padding-top     : 0px;
-            border-radius   : ${ds.DISK_BORDER_RADIUS};
-            font-size       : 11px;
-            font-weight     : bold;
-            text-align      : center;
-            background-color: black;
-            z-index         : 1000;
-            cursor: ${CURSOR};
-        }
-
-        .brc-slider-draggee.grabbing:hover:after,
-        .brc-slider-draggee.grabbing {
-            cursor: ${CURSOR_GRABBING};
-        }
-
-
-        /*=============================*/
-        /* \\// parent after           */
-        /*=============================*/
-
         /*=============================*/
         /* //\\ animates slider arrows */
         /*=============================*/
-        .brc-slider-draggee .brc-slider-draggee-right,
-        .brc-slider-draggee .brc-slider-draggee-left {
-            visibility:hidden;
-        }
 
-        .active-tip > .brc-slider-draggee .brc-slider-draggee-right,
-        .brc-slider-draggee:hover .brc-slider-draggee-right {
+        .brc-slider-draggee-right {
             content         : '';
             position        : absolute;
             height          : 1px;
@@ -249,11 +171,9 @@
             top             : ${ds.ARROWS_TOP};
             left            : ${ds.RIGHT_DRAGGEE_LEFT};
             animation       : 4s ease-out 0s infinite normal slider-hover-right;
-            visibility      : visible;
         }
 
-        .active-tip > .brc-slider-draggee .brc-slider-draggee-left,
-        .brc-slider-draggee:hover .brc-slider-draggee-left {
+        .brc-slider-draggee-left {
             content         : '';
             position        : absolute;
             height          : 1px;
@@ -261,10 +181,8 @@
             left            : ${ds.LEFT_DRAGGEE_LEFT};
             top             : ${ds.ARROWS_TOP};
             animation       : 4s ease-out 0s infinite normal slider-hover-left;
-            visibility      : visible;
         }
 
-        /* ///todf ... still needs parametrization ... it's obvious ... */
         @keyframes slider-hover-right {
             0% {
 	            left: 15px;
@@ -316,9 +234,6 @@
         /*=============================*/
         /* \\// animates slider arrows */
         /*=============================*/
-
-
-
         `;
         // \\// css /////////////////////////////////////////
         ns.globalCss.update( ret, 'spinner-core-css');

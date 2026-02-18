@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, sn, mat, fconf, sconf, stdMod, fixedColors, } = 
+    var { ns, sn, mat, fconf, sconf, stdMod, topicColors_repo, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     // sn points to sconf.orbitParameters if param exisits, 
     // these are initialized here as empty objs
@@ -20,7 +20,6 @@
         // //\\ subapp regim switches
         //====================================================
         sconf.enableStudylab            = false;
-        sconf.enableTools               = true;
 
         //setting to false removes S, SA, P, SP, eccentricity label and line (not dot)
         sconf.rgShapesVisible           = true; 
@@ -64,7 +63,7 @@
         sconf.text_hover_width      = 1.5;
         
         // points reused in config      
-        var F = [ 350, 410 ]; //x,y of whole svg model
+        var F = [ 350, 410 ]; //x,y of whole svg model (S's starting pos)
         sconf.diagramOrigin = [ 0, 0 ];
         var originX_onPicture = F[0]; //for model's axis x
         var originY_onPicture = F[1]; //for model's axis y
@@ -167,13 +166,13 @@
             shadow,
             hidden,
             attention,
-        } = fixedColors;
+        } = topicColors_repo;
         let red = [255,0,0]; //for debugging
 
 		const ALL_EXCEPT_PROBLEM_TAB = 
 			'subessay--solution subessay--corollary1 subessay--corollary2';
 
-        var predefinedTopics =
+        var topicColors_elected =
         {
             given,
             proof,
@@ -439,7 +438,7 @@
 
         ns.paste( sconf, {
             mediaBgImage : "diagram.png",
-            predefinedTopics,
+            topicColors_elected,
             originalPoints,
             linesArray,
             originX_onPicture,
