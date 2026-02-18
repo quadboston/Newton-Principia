@@ -105,8 +105,8 @@ squares will also be ultimately as the subtenses ¦BD¦¦ and ¦bd¦𝑏𝑑¦¦
 }
 *..*
 The squares of these ¦AD Ad¦tangents¦¦, ¦arc-AB arc-Ab¦arcs¦¦, and ¦BC bc¦sines¦¦ are also
-ultimately as the sagittas of the ¦arc-AB arc-Ab¦arcs¦¦, which bisect the ¦AB Ab¦chords¦¦ and converge
-to a given point. For these sagittas are as the subtenses ¦BD¦¦ and ¦bd¦𝑏𝑑¦¦.
+ultimately as the ¦bM¦sagittas¦¦ of the ¦arc-AB arc-Ab¦arcs¦¦, which bisect the ¦AB Ab¦chords¦¦ and converge
+to a given point. For these ¦bM¦sagittas¦¦ are as the subtenses ¦BD¦¦ and ¦bd¦𝑏𝑑¦¦.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 440.</div>
 
@@ -119,7 +119,7 @@ to a given point. For these sagittas are as the subtenses ¦BD¦¦ and ¦bd¦�
   "subessay" : "cor-3"
 }
 *..*
-And thus the sagitta is in the squared ratio of the time
+And thus the ¦bM¦sagitta¦¦ is in the squared ratio of the time
 in which a body describes the ¦arc-AB¦arc¦¦ with a given velocity.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 440.</div>
