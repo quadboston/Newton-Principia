@@ -104,7 +104,6 @@
         sconf.DQ_SLIDER_MAX = FT ? null : 1.0;
         sconf.DT_SLIDER_MAX = FT ? 0.50 : null;
         var Q_STEPS = 1000;
-        var TIME_STEPS = 1000;
         var DATA_GRAPH_STEPS = 500;
         sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX = true;
         sconf.DEVIATION_SCALE_FACTOR = 4;
@@ -267,13 +266,6 @@
                 doPaintPname : false,
             },
 
-            rrminus : {
-                caption : 'Q-',
-                pcolor : proof,
-                letterAngle : 225,
-                letterRotRadius : 40,
-            },
-
             sagitta : {
                 caption : 'I',
                 //pos: Q,
@@ -311,16 +303,19 @@
 
             nonSolvablePoint : {
                 pos: [0,0], //will be calculated
-                caption : 'Orbits are disconnected.',
+                caption : '',
                 fontSize : '25',
-                /*
-                //no dice:
-                title : 'Kepler force does not exist ' +
-                        'in neighborhood of this point.',
-                */
                 undisplayAlways : true,
                 pcolor : invalid,
                 letterAngle : 0,
+            },
+            errorMessage : { // nonSolvablePoint message shown at to of canvas
+                pos : [20, 20],
+                caption: "error state", // value get overwritten in model-upcreate by const set in builds-orbit.js
+                fontSize : '25',
+                pcolor : invalid,
+                letterAngle : 0,
+                unscalable  : true,
             },
 
             //corollary 2
@@ -370,9 +365,7 @@
             { 'PT' : { pcolor : proof }, },
 
             { 'PC' : { pcolor : curvature }, },
-            { 'P,rrminus' : { pcolor : proof }, },
             { 'P,sagitta' : { pcolor : sagitta, vectorTipIx : 1 } },
-            { 'Q,rrminus' : { pcolor : proof }, },
 
             //corollary 2
             { 'Rcol2,P' : { pcolor : proof }, },
@@ -387,7 +380,6 @@
             prop7R,
             Q_STEPS,
             DATA_GRAPH_STEPS,
-            TIME_STEPS,
 
             mediaBgImage : "diagram.png",
             topicColors_elected,

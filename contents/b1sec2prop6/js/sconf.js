@@ -104,7 +104,6 @@
         sconf.DT_SLIDER_MAX = FT ? 0.18 : null;
         sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
         var Q_STEPS = 1500;
-        var TIME_STEPS = 1000;
         var DATA_GRAPH_STEPS = 200;
         sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
         sconf.GRAPH_PATH = true; //only for not-bonus
@@ -164,7 +163,7 @@
             force,
             invalid,
             hidden,
-
+            info,
             estimatedForce,
             sagitta,
             curvature,
@@ -364,11 +363,27 @@
 
             nonSolvablePoint : {
                 //pos will be calculated
-                caption : 'Orbits are disconnected.',
+                caption : '',
                 fontSize : '25',
                 undisplayAlways : true,
                 pcolor : invalid,
                 letterAngle : 0,
+            },
+            errorMessage : { // nonSolvablePoint message shown at to of canvas
+                pos : [20, 20],
+                caption: "error state", // value get overwritten in model-upcreate by const set in builds-orbit.js
+                fontSize : '25',
+                pcolor : invalid,
+                letterAngle : 0,
+                unscalable  : true,
+            },
+            infoMessage : {
+                pos : [20, 20],
+                caption: "In the limit, the sagitta will pass through the center of forces",
+                fontSize : '25',
+                pcolor : info,
+                letterAngle : 0,
+                unscalable  : true,
             }
         });
 
@@ -424,7 +439,6 @@
             Dt0,
             Q_STEPS,
             DATA_GRAPH_STEPS,
-            TIME_STEPS,
 
             mediaBgImage : "diagram.png",
             topicColors_elected,

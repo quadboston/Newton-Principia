@@ -19,7 +19,7 @@
     function media_upcreate___part_of_medupcr_basic()
     {
         //enables curve move when dragging an entire diagram
-        stdMod.poly2svgP11({});
+        stdMod.createOrUpdateOrbit({});
     }
     //=========================================================
     // \\// lemma custom addons

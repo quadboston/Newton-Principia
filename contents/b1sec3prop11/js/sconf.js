@@ -97,7 +97,6 @@
         sconf.DT_SLIDER_MAX = 0.48;
         sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
         var Q_STEPS = 1500;
-        var TIME_STEPS = 1500;
         var DATA_GRAPH_STEPS = 500;
         sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
         //-------------------------------------------
@@ -449,7 +448,6 @@
             curveParA,
             Q_STEPS,
             DATA_GRAPH_STEPS,
-            TIME_STEPS,
 
             mediaBgImage : "diagram.png",
             topicColors_elected,
