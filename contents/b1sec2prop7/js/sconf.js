@@ -104,7 +104,6 @@
         sconf.DQ_SLIDER_MAX = FT ? null : 1.0;
         sconf.DT_SLIDER_MAX = FT ? 0.50 : null;
         var Q_STEPS = 1000;
-        var TIME_STEPS = 1000;
         var DATA_GRAPH_STEPS = 500;
         sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX = true;
         sconf.DEVIATION_SCALE_FACTOR = 4;
@@ -267,13 +266,6 @@
                 doPaintPname : false,
             },
 
-            rrminus : {
-                caption : 'Q-',
-                pcolor : proof,
-                letterAngle : 225,
-                letterRotRadius : 40,
-            },
-
             sagitta : {
                 caption : 'I',
                 //pos: Q,
@@ -370,9 +362,7 @@
             { 'PT' : { pcolor : proof }, },
 
             { 'PC' : { pcolor : curvature }, },
-            { 'P,rrminus' : { pcolor : proof }, },
             { 'P,sagitta' : { pcolor : sagitta, vectorTipIx : 1 } },
-            { 'Q,rrminus' : { pcolor : proof }, },
 
             //corollary 2
             { 'Rcol2,P' : { pcolor : proof }, },
@@ -387,7 +377,6 @@
             prop7R,
             Q_STEPS,
             DATA_GRAPH_STEPS,
-            TIME_STEPS,
 
             mediaBgImage : "diagram.png",
             topicColors_elected,

@@ -4,7 +4,6 @@
     var NON_SOLVABLE_THRESHOLD = 0.05;
 
     const graphArray = sn( 'graphArray', stdMod, [] );
-    const tIndexToOrbit = sn( 'tIndexToOrbit', ssD, [] );
     const qIndexToOrbit = sn( 'qIndexToOrbit', ssD, [] );
     const orbitXYToDraw = sn( 'orbitXYToDraw', ssD, [] );
     return;
@@ -12,10 +11,6 @@
 
     function buildsOrbit()
     {
-        //this array speeds up conversion between q and t grids:
-        //it elimiantes extra calculations and loops:
-        tIndexToOrbit.length = 0;
-        
         graphArray.length =0;
         qIndexToOrbit.length = 0;
         
@@ -56,8 +51,8 @@
             
             // Kepler's motion: rvₜcos(w) = M
             // f = M²/(Rr²cos³(w))
-            cosAbs = Math.abs( sinOmega );
-            if( NON_SOLVABLE_THRESHOLD > cosAbs ) {
+            sinAbs = Math.abs( sinOmega );
+            if( NON_SOLVABLE_THRESHOLD > sinAbs ) {
                 solvable = false;
                 foldPoints.push( [ rr[0], rr[1] ] );
                 bP.solvablePoint = solvable;
