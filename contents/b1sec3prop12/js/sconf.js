@@ -3,7 +3,6 @@
     var { ns, sn, mat, fconf, sconf, stdMod, topicColors_repo, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     var op = sn( 'orbitParameters', sconf );
-    var sop = sn( 'sampleOrbitParameters', sconf );
     return;
 
 
@@ -12,40 +11,55 @@
     //====================================================
     function init_conf()
     {
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        sconf.enableStudylab            = false;
-        sconf.rgShapesVisible           = true;
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
-
         //***************************************************************
-        // //\\ decorational parameters
+        // //\\ geometical scales
         //***************************************************************
-        //media
+        //for real picture if diagram's picture is supplied or
+        //for graphical-media work-area if not supplied:
         var pictureWidth = 690;
         var pictureHeight = 836; //728;
 
         //to comply standard layout, one must add these 2 lines:
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize;
+        //***************************************************************
+        // \\// geometical scales
+        //***************************************************************
+
+        //====================================================
+        // //\\ subapp regim switches
+        //====================================================
+        sconf.enableStudylab            = false;
+        //====================================================
+        // \\// subapp regim switches
+        //====================================================
+
+
+        //***************************************************************
+        // //\\ decorational parameters
+        //***************************************************************
+        //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
+        sconf.rgShapesVisible = true;
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
         
         fconf.DRAGGER_TOLERANCE = 15; // distance where crosshair appears
 
-        // override engine defaults, in expands-conf.js,
+        //--------------------------------------
+        // //\\ do override engine defaults,
+        //      in expands-conf.js,
+        //--------------------------------------
         default_tp_stroke_width = Math.floor( 6 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 3.5 * controlsScale ),        
+        handleRadius            = Math.floor( 3.5 * controlsScale ),
+        //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius;
         sconf.default_tp_lightness = 30;
 
-        // principal tp-css pars; see: topics-media-glocss.js
-        // this makes hanle's border nicely thin
+        // //\\ principal tp-css pars
+        //      see: topics-media-glocss.js
+        //this makes hanle's border nicely thin
         sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
         sconf.hover_width       = Math.max( 2, Math.floor( 7*controlsScale/1.6 ) );
 
@@ -54,63 +68,82 @@
         //misses: pnameLabelsvg).addClass( 'tp-_s tostroke' );
         sconf.text_nonhover_width   = 0.2; //vital to fix too thick font
         sconf.text_hover_width      = 1.5;
-
-        // points reused in config      
-        var origin = [ 492, 565 ]; //x,y of whole svg model
-        sconf.diagramOrigin = [ 0, 0 ];
-        var originX_onPicture = origin[0]; //for model's axis x
-        var originY_onPicture = origin[1]; //for model's axis y
-        //***************************************************************
+        // \\// principal tp-css pars
+        // \\// do override engine defaults,
         // \\// decorational parameters
         //***************************************************************
 
-        //gravitational constant
-        var Kepler_g = 0.64478; //3.5105 * (0.6/1.4)*(0.6/1.4);
-        op.Kepler_g = op.Kepler_gInitial = Kepler_g;
-        sop.Kepler_g = sop.Kepler_gInitial = Kepler_g;
+        //=============================================
+        // //\\ points reused in config
+        //=============================================
+        var origin = [ 492, 565 ]; //x,y of whole svg model
+        //=============================================
+        // \\// points reused in config
+        //=============================================
 
+        //:diagram sandbox spatial parameters
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
         var mod2inn_scale = 145;
+        var originX_onPicture = origin[0]; //for model's axis x
+        var originY_onPicture = origin[1]; //for model's axis y
+        sconf.diagramOrigin = [ 0, 0 ];
+
+        //-------------------------------------------
+        // //\\ calculation algo parameters
+        //-------------------------------------------
+        sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
+        sconf.CURVE_REVOLVES = false; //true for cyclic orbit
+        sconf.DT_SLIDER_MAX = 0.8;
+        var Q_STEPS = 500;
+        var DATA_GRAPH_STEPS = 500;
+        //Scale estimated force curve by actual force max
+        sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX = true;
+        sconf.DEVIATION_SCALE_FACTOR = 1;
+        sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
+
+        //Create left side of hyperbola by mirroring right side.  Results in a
+        //curve that's visually identical to if the hyperbola equation was used
+        //to create the left side, however is simpler to implement.  If that
+        //equation was used, the start and end angle for the left side would
+        //need to be computed, so that it matches the right side.
+        sconf.MIRROR_ORBIT = true;
+        //-------------------------------------------
+        // \\// calculation algo parameters
+        //-------------------------------------------
+
+        //-------------------------------------------
+        // //\\ curve shape parameters
+        //-------------------------------------------
+        sconf.DISTANCE_ORBIT_ENDS_TO_S = 2.4;
+        //The following are set by recalculateOrbitStartAndEnd
+        sconf.orbit_q_start = null;
+        sconf.orbit_q_end = null;
+
+        //Min and max eccentricity values for Zeta slider
+        const eccentricityMin = 1.1;
+        const eccentricityMax = 3.0;
+        op.ZETA_MIN = Math.atan(eccentricityMin);
+        op.ZETA_MAX = Math.atan(eccentricityMax);
 
         //sets model offset
-        op.mainAxisAngle_initial = 0;
-        op.mainAxisAngle = op.mainAxisAngle_initial;
-        op.delta_v_increase_LIMIT = 1.5;
+        op.mainAxisAngle = 0;
 
         //conic pars
         op.initialEccentricity = 1.365; //hyperbola
-        op.latusInitial = 0.90;
-        var PparQ = 0.49 * Math.PI;
-        
-        op.sagittaDelta_q_initial = 1;
-               
-        op.PparQ_initial        = PparQ;
-        op.PparQ_initial_essay  = PparQ;
-        op.sagittaDelta_q       = op.sagittaDelta_q_initial;
-
-        //-----------------------------------------------------
-        // //\\ sets Kepler_v
-        //-----------------------------------------------------
-        op.latus = op.latusInitial;
+        op.latus = 0.90;
         stdMod.establishesEccentricity( op.initialEccentricity );
-        var { Kepler_v, cosOmega, om } = mat.conics.innerPars2innerPars({
-                lat         : op.latusInitial,
-                fi          : PparQ,
-                e           : op.initialEccentricity,
-                Kepler_g    : op.Kepler_g,
-        });
-        //saves initial speed
-        op.cosOmega             = cosOmega;
-        op.om                   = om;
-        op.cosOmega_initial     = cosOmega;
-        op.om_initial           = om;
-        op.Kepler_v_initial     = Kepler_v;
-        op.Kepler_v             = op.Kepler_v_initial;
-        //-----------------------------------------------------
-        // \\// sets Kepler_v
-        //-----------------------------------------------------
+        //-------------------------------------------
+        // \\// curve shape parameters
+        //-------------------------------------------
 
+        //interval of dt to construct an arc for
+        //displacement or sagitta,
+        //Sets initial distance of point Q from P
+        sconf.Dt0 = 0.4;
+
+        //pos of P
+        sconf.parQ = 0.45;
 
         //-----------------------------------
         // //\\ topic group colors
@@ -119,9 +152,9 @@
             given,
             body,
             orbit,
-            instanttriangleHiddenStart,
             resultOnlyVisibleWhenHighlighted,
             proof,
+            force,
             result,
             shadow,
             hidden,
@@ -141,8 +174,7 @@
             orbit               : orbit,
             orbitdq             : orbit,
             shadow,
-            force               : result,
-            instanttriangle     : instanttriangleHiddenStart,
+            force,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -287,9 +319,9 @@
                 pcolor : orbit,
                 letterAngle : 150,
                 letterRotRadius : 38,
-                draggableX  : 'b1sec3prop13' !== fconf.sappId,
-                undisplayAlways  : 'b1sec3prop13' === fconf.sappId,
-                doPaintPname : 'b1sec3prop13' !== fconf.sappId,
+                draggableX  : true,
+                undisplayAlways  : false,
+                doPaintPname : true,
                 unscalable  : true,
                 fontSize : 16,
             },
@@ -402,6 +434,9 @@
         ];
 
         ns.paste( sconf, {
+            Q_STEPS,
+            DATA_GRAPH_STEPS,
+
             mediaBgImage : "diagram.png",
             topicColors_elected,
             originalPoints,
@@ -411,6 +446,7 @@
             pictureWidth,
             pictureHeight,
             mod2inn_scale,
+
             default_tp_stroke_width,
             defaultLineWidth,
             handleRadius,

@@ -8,9 +8,7 @@
             creates_A_slider,
             creates__gets_orbit_closest_point, 
         },});
-    const tIndexToOrbit = sn( 'tIndexToOrbit', ssD, [] );
     const qIndexToOrbit = sn( 'qIndexToOrbit', ssD, [] );
-    const graphArray = sn( 'graphArray', stdMod, [] );
     return;
 
 
@@ -22,7 +20,7 @@
             //are disconnected
             if (ssD.solvable) {
                 const qix = stdMod.gets_orbit_closest_point( newPos, !!'fromGraph' );
-                if (qix) {
+                if (qix != null) {
                     rg.P.qix = qix;
                     stdMod.model8media_upcreate();
                 }
@@ -47,7 +45,7 @@
                         Dt = (Dt + ssD.timeRange) % ssD.timeRange;
                     }
                 }
-                if( Dt < ssD.delta_t_between_steps * (sconf.SAGITTA_ACCURACY_LIMIT+1) ||
+                if( Dt < 0.05 ||
                     sconf.DT_SLIDER_MAX <= Dt ) return;
                 ssD.Dt = Dt;
             } else {
@@ -131,11 +129,17 @@
             //choppy (previously only some points were checked).  Note this
             //runs in a fraction of a millisecond even with a large number of
             //points.
-            const arr = fromGraph ? graphArray : qIndexToOrbit;
+
             let min = null;
             let qix_min = null;
-            for( let qix=0; qix<arr.length; qix++){
-                const point = arr[qix];
+
+            //Always use qIndexToOrbit, rather than optionally use graphArray.
+            //Sometimes graphArray skips qix values (eg. 0, 5, 10 etc.) and
+            //therefore limits what points can be output.
+            const qS = fromGraph ? ssD.qix_graph_start : 0;
+            const qE = fromGraph ? ssD.qix_graph_end+1 : qIndexToOrbit.length;
+            for( let qix=qS; qix<qE; qix++){
+                const point = qIndexToOrbit[qix];
                 if(!point) continue;
                 const pos = point.rr;
                 const x = r[0]-pos[0];
@@ -143,7 +147,7 @@
                 const d2 = x*x + y*y;
                 if( qix_min === null || min>d2 ){
                     min = d2;
-                    qix_min = fromGraph ? point.qix : qix;
+                    qix_min = qix;
                 }
             }
             return qix_min;

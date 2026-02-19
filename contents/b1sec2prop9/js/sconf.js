@@ -100,7 +100,6 @@
         sconf.DQ_SLIDER_MIN = FT ? null : 0.0001;
         sconf.DT_SLIDER_MAX = FT ? 0.32 : null;
         var Q_STEPS = 1000;
-        var TIME_STEPS = 1000;
         var DATA_GRAPH_STEPS = 200;
         //-------------------------------------------
         // \\// calculation algo parameters
@@ -272,7 +271,6 @@
             curveParA,
             Q_STEPS,
             DATA_GRAPH_STEPS,
-            TIME_STEPS,
 
             mediaBgImage : "diagram.png",
             topicColors_elected,
