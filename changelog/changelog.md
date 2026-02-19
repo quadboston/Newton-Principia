@@ -2,6 +2,9 @@
 
 ## 2026-2-? (Olive Version, 0.6)
 ### Improved
+* Lemma 11
+	* added highlights for "finite curvature", "sagittas", and "sagitta" 
+
 * Proposition 6:
 	* sagitta is drawn to middle of chord when possible; info messge shown when not
 	* clearer message when orbit is not allowed
