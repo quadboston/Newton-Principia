@@ -76,10 +76,12 @@
 		tr.orbit   = tr.body;
 
 		tr.orbitareaSample         = [0, 150, 0,  0.05]; //P12
-		tr.orbitarea               = [0, 150, 0,  0.1, 0.5]; //P14 (in P12 sconf)
+		tr.orbitarea               = [0, 150, 0,  0.1, 0.5]; //P14 (P12 sconf)
 		tr.orbitareaHiddenStart    = [0, 150, 0,  0.001, 0.5]; //P12
-		tr.instanttriangle         = [0, 150, 200, 0.2, 0.5 ]; //P14 (in P12 sconf)
+		tr.instanttriangle         = [0, 150, 200, 0.2, 0.5 ]; //P14 (P12 sconf)
 		tr.instanttriangleHiddenStart  = [0, 150, 200, 0.001, 0.5 ] //P12
+
+    	tr.info = rgbToArray("rgb(98, 109, 126)"); // info text (Prop6, etc)
 
 		tr.time      = rgbToArray("rgb(0, 150, 200)");
 		tr.dtime     = tr.time;

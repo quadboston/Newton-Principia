@@ -28,7 +28,7 @@
 
         if(solvable){
             const rrplus = Porb.rrplus;
-            const rrminus = rg.rrminus.pos = Porb.rrminus;
+            const rrminus = Porb.rrminus;
             rg.Q.q = Porb.plusQ;
             rg.Q.q_minus = Porb.minusQ;
             rg.Q.pos[0] = rrplus[0];
@@ -136,6 +136,13 @@
         // //\\ graph
         //================================================
         {
+            const mask = stdMod.graphFW_lemma.graphArrayMask;
+            //Only plot estimated force curve if solvable, otherwise data is
+            //invalid and can cause errors.
+            mask[1] = solvable && sconf.TIME_IS_FREE_VARIABLE;
+        }
+
+        {
             let graphArg = {
                 //drawDecimalY : true,
                 //drawDecimalX : false,
@@ -233,11 +240,14 @@
                 ////displays last fold point
                 nsp.pos[0] = ssD.foldPoints[len-1][0];
                 nsp.pos[1] = ssD.foldPoints[len-1][1];
+                rg.errorMessage.caption = ssD.nonSolvablePointCaption;
+                rg.errorMessage.undisplay = false;
                 nsp.undisplay = false;
                 nsl.undisplay = false;
             } else {
                 nsp.undisplay = true;
                 nsl.undisplay = true;
+                rg.errorMessage.undisplay = true;
             }
         }
         //================================================
@@ -270,8 +280,6 @@
             ////visibility has been not yet stashed;
             ////therefore, doing stashing now,
             ssD.stashedVisibility = {
-                'Q,rrminus'             : rg[ 'Q,rrminus' ].undisplay,
-                'P,rrminus'             : rg[ 'P,rrminus' ].undisplay,
                 'P,sagitta'             : rg[ 'P,sagitta' ].undisplay,
                 'Q'                     : rg.Q.undisplay,
                 'QtimeDecor'            : rg.QtimeDecor.undisplay,
@@ -283,7 +291,6 @@
                 'SQ'                    : rg.SQ.undisplay,
                 'T'                     : rg.T.undisplay,
                 'QT'                    : rg.QT.undisplay,
-                'rrminus'               : rg.rrminus.undisplay,
                 'sagitta'               : rg.sagitta.undisplay,
                 'curvatureCircle'       : rg.curvatureCircle.undisplay,
             };

@@ -140,9 +140,9 @@
         const b = aa[0][1];
         const c = aa[1][0];
         const d = aa[1][1];
-        const det = a*d - c*b;
+        let det = a*d - c*b;
         if( det === 0 ) {
-            //clumsy way to handle this, //TEMP Should this code be changed?
+            //clumsy way to handle this,
             det = 1e+150;
             //alternative way is to provide message,
         }

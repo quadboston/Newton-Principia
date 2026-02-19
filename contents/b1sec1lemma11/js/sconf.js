@@ -92,6 +92,8 @@
             proof,
             result,
             hidden,
+			resultOnlyVisibleWhenHighlighted,
+			givenOnlyVisibleWhenHighlighted,
         } = topicColors_repo;
 
         var topicColors_elected =
@@ -109,6 +111,7 @@
             'BD-bd'     : proof,
             'claimRatio': proof,
             'ratio'     : proof,
+            'circleJA'  : givenOnlyVisibleWhenHighlighted,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -132,6 +135,9 @@
                 pcolor : given,
                 letterAngle : 0,
 				//cssClass: 'logic_phase--proof subessay--cor-1 subessay--cor-2',
+            },
+            M : { // AB midpoint
+                pcolor : hidden
             },
             C : {
                 pos: C,
@@ -222,6 +228,8 @@
 				cssClass: 'logic_phase--proof', }, },
             { 'AJ' : { pcolor : given,
 				cssClass: 'logic_phase--claim logic_phase--proof', }, },
+            { 'bM' : { pcolor : resultOnlyVisibleWhenHighlighted,
+				cssClass: 'logic_phase--corollary',}, },
         ];
 
         //making size to better fit lemma's diagram

@@ -13,46 +13,117 @@
     {
         const sectSpeed0 = ssD.sectSpeed0;
         const solvable = ssD.solvable;
-        //stdMod.builds_dq8sagit8displace({});
+        //qIndexToOrbit is meta data for all points on orbit, qix is index of P
         const Porb = ssD.qIndexToOrbit[ rg.P.qix ];
         if (Porb) {
             var {
                 RC, R, curvatureChordSecondPoint, projectionOfCenterOnTangent,
                 uu,
-                rr,
+                rr, //rg.P.pos
             } = Porb;
             rg.P.q = Porb.q;
-            rg.P.pos[0] = rr[0];
-            rg.P.pos[1] = rr[1];
-            const rr0 = rg.P.pos;
-            const rrc = rg.S.pos;
+            rg.P.pos = rr;
             const Rc = R; //curvature radius
 
             if( solvable ){
-                const rrplus = Porb.rrplus;
-                const rrminus = rg.rrminus.pos = Porb.rrminus;
+                // --- helpers ---
+                function dist(a, b) {
+                    return Math.hypot(a[0] - b[0], a[1] - b[1]);
+                }
+                function lineIntersection(A, B, C, D) {
+                    const x1 = A[0], y1 = A[1];
+                    const x2 = B[0], y2 = B[1];
+                    const x3 = C[0], y3 = C[1];
+                    const x4 = D[0], y4 = D[1];
+
+                    const den = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+                    if (den === 0) return null; // parallel or coincident
+
+                    const px = ((x1*y2 - y1*x2) * (x3 - x4) - (x1 - x2) * (x3*y4 - y3*x4)) / den;
+                    const py = ((x1*y2 - y1*x2) * (y3 - y4) - (y1 - y2) * (x3*y4 - y3*x4)) / den;
+
+                    return [px, py];
+                }
+
+                function adjustQprime() {
+                    let best = null;
+                    let bestDiff = Infinity;
+                    const Q = Porb.rrplus;
+					const sagittaOnSP_Tolerance = 0.0005;
+
+                    for (let i = rg.P.qix; i > 0; i--) {
+                        const Qp = ssD.qIndexToOrbit[i]?.rr;
+                        if (!Qp) continue;
+
+                        // intersection I(Q') of SP and QQ'
+                        const I = lineIntersection(rg.S.pos, rg.P.pos, Q, Qp);
+                        if (!I) {
+                            console.log(I);
+                            continue; 
+                        }
+
+                        // midpoint M(Q, Q')
+                        const M = [
+                            (Q[0] + Qp[0]) / 2,
+                            (Q[1] + Qp[1]) / 2
+                        ];
+
+                        const d = dist(M, I);
+                        if (d < bestDiff) {
+                            bestDiff = d;
+                            best = Qp;
+                            if(bestDiff < sagittaOnSP_Tolerance) {
+                                // break out of for loop once we found a 
+                                // point that's close enough
+                                break;
+                            } 
+                        }
+                    }
+
+                    //console.log(bestDiff.toFixed(3));
+                    if(bestDiff > sagittaOnSP_Tolerance) {
+                        Porb.rrminus[0] = rg.rrminus.pos[0];
+                        Porb.rrminus[1] = rg.rrminus.pos[1];             
+                    } else {             
+                        Porb.rrminus[0] = rg.rrminus.pos[0] = best[0];
+                        Porb.rrminus[1] = rg.rrminus.pos[1] = best[1];               
+                    }
+					rg.infoMessage.undisplay = 
+						bestDiff <= 2 * sagittaOnSP_Tolerance;
+                }
+
+                adjustQprime(); // finds Q' that brings M closest to I
+
+                const rrplus = Porb.rrplus; // Q
+                const rrminus = rg.rrminus.pos = Porb.rrminus; // Q'
                 rg.Q.q = Porb.plusQ;
                 rg.Q.q_minus = Porb.minusQ;
                 rg.Q.pos[0] = rrplus[0];
                 rg.Q.pos[1] = rrplus[1];
-                rg.QtimeDecor.caption = '';
+
+                rg.QtimeDecor.caption = ''; // todo: remove? seems unused
                 rg.QtimeDecor.pos = Porb.rrplus;
-                let sagV = Porb.sagittaVector;
-                rg.sagitta.pos = [sagV[0]+rr[0],sagV[1]+rr[1]];
                 const chord = rg.chord = [ rrplus[0] - rrminus[0], rrplus[1] - rrminus[1], ];
                 rg.chord2 = chord[0]*chord[0]+chord[1]*chord[1];
+                
+                let Mx = (rrplus[0] + Porb.rrminus[0]) / 2;
+                let My = (rrplus[1] + Porb.rrminus[1]) / 2;
+                rg.sagitta.pos = [Mx, My]; //ensures we're showing the true M
 
+                ///R and T only used in corollaries                
                 //R = parallel-projection of Q to tangent
                 var RR = mat.linesCross(
-                    uu, rr0, //direction, start
-                    [rr0[0]-rrc[0], rr0[1]-rrc[1]], rg.Q.pos, //direction, start
+                    uu, rg.P.pos, //direction, start
+                    [rg.P.pos[0]-rg.S.pos[0], rg.P.pos[1]-rg.S.pos[1]], rg.Q.pos, //direction, start
                 );
                 rg.R.pos[0] = RR[0];
                 rg.R.pos[1] = RR[1];
                 //T = perp. from Q to radius-vector
-                const TT = mat.dropPerpendicular( rg.Q.pos, rrc, rr0 )
+                const TT = mat.dropPerpendicular( rg.Q.pos, rg.S.pos, rg.P.pos )
                 rg.T.pos[0] = TT[0];
                 rg.T.pos[1] = TT[1];
+            } else {
+                console.log('unsolvable');
             }
 
             //================================================
@@ -194,11 +265,15 @@
                 ////displays last fold point
                 nsp.pos[0] = ssD.foldPoints[len-1][0];
                 nsp.pos[1] = ssD.foldPoints[len-1][1];
+                rg.infoMessage.undisplay = true; // hide if was showing
+                rg.errorMessage.caption = ssD.nonSolvablePointCaption;
+                rg.errorMessage.undisplay = false;
                 nsp.undisplay = false;
                 nsl.undisplay = false;
             } else {
                 nsp.undisplay = true;
                 nsl.undisplay = true;
+                rg.errorMessage.undisplay = true;
             }
         }
         //================================================
