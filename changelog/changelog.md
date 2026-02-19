@@ -1,5 +1,23 @@
 # Change Log
 
+## 2026-2-? (Olive Version, 0.6)
+### Improved
+* Proposition 6:
+	* sagitta is drawn to middle of chord when possible; info messge shown when not
+	* clearer message when orbit is not allowed
+
+* Proposition 7:
+	* clearer message when orbit is not allowed
+
+* Proposition 12:
+    * graph changed to only show estimated and actual force
+	* fixed bug where Q and other points left the hyperbola
+	* fixed bug where P jumps with changing eccentricity
+	* model restricted to hyperbolas
+
+* Proposition 13:
+    * graph changed to only show estimated and actual force
+
 ## 2026-2-12 (SteelBlue Version, 0.5)
 ### Improved
 * General:
