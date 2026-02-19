@@ -303,16 +303,19 @@
 
             nonSolvablePoint : {
                 pos: [0,0], //will be calculated
-                caption : 'Orbits are disconnected.',
+                caption : '',
                 fontSize : '25',
-                /*
-                //no dice:
-                title : 'Kepler force does not exist ' +
-                        'in neighborhood of this point.',
-                */
                 undisplayAlways : true,
                 pcolor : invalid,
                 letterAngle : 0,
+            },
+            errorMessage : { // nonSolvablePoint message shown at to of canvas
+                pos : [20, 20],
+                caption: "error state", // value get overwritten in model-upcreate by const set in builds-orbit.js
+                fontSize : '25',
+                pcolor : invalid,
+                letterAngle : 0,
+                unscalable  : true,
             },
 
             //corollary 2

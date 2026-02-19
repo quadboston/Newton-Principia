@@ -29,6 +29,7 @@
 
         /// point Q slider
         rg.Q.acceptPos = newPos => {
+            //console.log('moving Q');
             const qix = rg.P.qix;
             var Qqix = stdMod.gets_orbit_closest_point( newPos );
             if( Qqix === qix ) return;

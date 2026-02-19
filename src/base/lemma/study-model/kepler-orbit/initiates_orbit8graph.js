@@ -22,7 +22,7 @@
         stdMod.graphFW_lemma = stdMod.createsGraph_FW_lemma({
                digramParentDom$:stdMod.legendRoot$ });
         stdMod.creates_createOrUpdateOrbit();
-        stdMod.rebuilds_orbit();
+        stdMod.rebuilds_orbit(); // qIndexToOrbit populated here
         
         stdMod.creates__gets_orbit_closest_point();
         
