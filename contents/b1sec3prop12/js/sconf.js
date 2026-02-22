@@ -121,10 +121,10 @@
         sconf.orbit_q_end = null;
 
         //Min and max eccentricity values for Zeta slider
-        const eccentricityMin = 1.1;
-        const eccentricityMax = 3.0;
-        op.ZETA_MIN = Math.atan(eccentricityMin);
-        op.ZETA_MAX = Math.atan(eccentricityMax);
+        op.eccentricityMin = 1.1;
+        op.eccentricityMax = 3.0;
+        op.ZETA_MIN = Math.atan(op.eccentricityMin);
+        op.ZETA_MAX = Math.atan(op.eccentricityMax);
 
         //sets model offset
         op.mainAxisAngle = 0;
@@ -200,6 +200,7 @@
             A : {
                 pcolor : orbit,
                 letterAngle : -120,
+                draggableX  : true,
 				cssClass: 'subessay--solution',
             },            
             AA : { // opposite A

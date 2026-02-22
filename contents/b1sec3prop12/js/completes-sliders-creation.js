@@ -10,23 +10,22 @@
         //=========================================================================
         // //\\ eccentricity slider
         //=========================================================================
-        rg.Zeta.acceptPos = newPos => {
-            const zetaMin = op.ZETA_MIN;
-            const zetaMax = op.ZETA_MAX;
+        rg.A.acceptPos = newPos => {
+            const eMin = op.eccentricityMin;
+            const eMax = op.eccentricityMax;
+            const delta = newPos[0] - rg.A.pos[0];            
+            const k = 0.1; // proportionate change factor
+            const prevE = op.eccentricity;
+            let newEccentricity = prevE + delta * k;
 
-            var scale = ( rg.ZetaEnd.pos[0] - rg.ZetaStart.pos[0] );
-            var modelPar = ( newPos[0] - rg.ZetaStart.pos[0] )
-                           / scale;
-            modelPar = Math.max( 0.0000000001, Math.min( 0.99999999, modelPar ) );  //validates
-            var zeta = (zetaMax - zetaMin) * modelPar + zetaMin;
-            var eccentricity = Math.tan( zeta );
-            stdMod.establishesEccentricity( eccentricity, false );
-            newPos[0] = rg.Zeta.pos[0];         //corrects
-            newPos[1] = rg.ZetaStart.pos[1];    //corrects
+            // clamp to bounds
+            newEccentricity = Math.max(eMin, Math.min(eMax, newEccentricity));
 
+            stdMod.establishesEccentricity(newEccentricity, false);
             stdMod.rebuilds_orbit();
+
             return true;
-        }
+        };
         //=========================================================================
         // \\// eccentricity slider
         //=========================================================================
