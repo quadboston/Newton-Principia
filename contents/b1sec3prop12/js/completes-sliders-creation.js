@@ -14,7 +14,7 @@
             const eMin = op.eccentricityMin;
             const eMax = op.eccentricityMax;
             const delta = newPos[0] - rg.A.pos[0];            
-            const k = 0.1; // proportionate change factor
+            const k = 10; // proportionate change factor
             const prevE = op.eccentricity;
             let newEccentricity = prevE + delta * k;
 
