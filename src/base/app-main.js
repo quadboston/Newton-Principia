@@ -50,7 +50,8 @@ const {
         // if fconf.sappId is undefined, sets it to 'home-pane' (otherwise it's the page id, ex b1sec1lemma6)
         sn( 'sappId', fconf, 'home-pane' );
         ssF.spawns_lemsDefArr(); // contents/content-list.js to fconf
-        fapp.doesConfigLemma(); // adds colors etc to sconf from lemma-conf.js
+        fapp.setUIConstants();
+		fapp.setColors();
         fapp.lemmaDef       = fconf.sappId2lemmaDef[ fconf.sappId ];
         document.title      = fapp.lemmaDef.caption;
         fconf.sappIdUnCamel = nsmethods.toCssIdentifier( fconf.sappId );
