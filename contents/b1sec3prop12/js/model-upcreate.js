@@ -1,6 +1,5 @@
 ( function() {
-    var { 
-        nspaste, mcurve, mat, fconf, ssF, stdMod, sconf, rg, 
+    var { nspaste, mat, fconf, ssF, ssD, stdMod, sconf, rg, 
     } = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
     return;
 
@@ -11,14 +10,23 @@
     ///****************************************************
     function model_upcreate()
     {
+        stdMod.builds_dq8sagit8displace({});
         const op        = sconf.orbitParameters;
         const cosAxis   = Math.cos( op.mainAxisAngle );
         const sinAxis   = Math.sin( op.mainAxisAngle );
-        const fun       = rg[ 'approximated-curve' ].t2xy;
-        const q         = rg.P.q;
-        const rr0       = fun( q );
-        const rrc       = rg.S.pos;
-        nspaste( rg.P.pos, rr0 );
+        const q2xy = stdMod.q2xy;
+        var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
+        rg.P.pos[0] = Porb.rr[0];
+        rg.P.pos[1] = Porb.rr[1];
+        var rr0 = rg.P.pos;
+        var rrc = rg.S.pos;
+        var Qpos = q2xy( Porb.plusQ );
+        rg.Q.pos[0] = Qpos[0];
+        rg.Q.pos[1] = Qpos[1];
+
+        var {
+            uu,
+        } = Porb;
 
         //"caustics"
         const axisC     = op.conicSignum === -1 ? -op.C : op.C;
@@ -27,61 +35,9 @@
         rg.H.pos[0]     = 2*rg.C.pos[0];
         rg.H.pos[1]     = 2*rg.C.pos[1];
 
-        // **api-input---plane-curve-derivatives
-        var diff = mcurve.planeCurveDerivatives({
-            fun,
-            q,
-            rrc,
-        });
-        var {
-            r,
-            uu,
-            ee,
-            sinOmega,
-        } = diff;
-        rg.P.sinOmega = sinOmega;
-        rg.P.uu = uu;
-        rg.P.ee = ee;
-        rg.P.abs = r;
-
         //================================================
         // //\\ arc, sagittae and related
         //================================================
-
-        ////delta q is set not from delta t
-        let sag_delta_q = op.sagittaDelta_q;
-        //-pi,+pi locating is irrelevant for move
-        let Q = q + sag_delta_q;
-        {
-            //--------------------------------------------
-            // //\\ validates sagitta q
-            //      and sets it to op.sagittaDelta_q,
-            //      does this job for any slider which
-            //      affects q and Q
-            //--------------------------------------------
-            if( op.conicSignum === -1 ) {
-                let abs_Q = Math.abs( Q );
-                let abs_q = Math.abs( q );
-                let sing = op.SINGULARITY_ANGLE;
-                ////keeps hyperbola's saggita in the same branch as hyperbola branch
-                if( ( abs_Q - sing ) * ( abs_q - sing ) <= 0 ){
-                    ////singularity is between q and abs_Q,
-                    ////changes Q making it in the same singularity sector,
-                    //creates new sag_delta_q unrelated to value of the former sag_delta_q
-                    var new_sag_delta_q = Math.abs( sing - abs_q )
-                                        / 3; //factor 3 is an arbitraty > 1
-                    ////shifts q down if increment is negative
-                    new_sag_delta_q *= Math.sign( sag_delta_q );
-                    Q = q + new_sag_delta_q;
-                    op.sagittaDelta_q = new_sag_delta_q;
-                }
-            }
-            //--------------------------------------------
-            // \\// validates sagitta q
-            //--------------------------------------------
-        }
-        nspaste( rg.Q.pos, fun(Q) );
-
         //R = parallel-projection of Q to tangent
         nspaste( rg.R.pos,
             mat.linesCross(
@@ -110,13 +66,14 @@
         // //\\ decorations
         // //\\ graph
         //------------------------------------------------
-        ///for initial launch only
-        stdMod.buildsforceGraphArray();
-        stdMod.graphFW.drawGraph_wrap();
+        {
+            let graphArg = {
+            }
+            stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
+        }
         //------------------------------------------------
         // \\// graph
         //------------------------------------------------
-
 
         //------------------------------------------------
         // //\\ PZminus
@@ -162,9 +119,7 @@
         //vuFV
         //v = parallel-projection of Q to tangent
         var DK = [ rg.K.pos[0]-rg.D.pos[0], rg.K.pos[1]-rg.D.pos[1] ];
-
         var PG = [ rg.P.pos[0]-rg.G.pos[0], rg.P.pos[1]-rg.G.pos[1] ];
-
         nspaste( rg.v.pos,
             mat.linesCross(
                 uu, rg.Q.pos, //direction, start
@@ -172,8 +127,8 @@
             )
         );
 
-        nspaste( rg.A.pos, fun( Math.PI ) );
-        nspaste( rg.AA.pos, fun( 0 ) );
+        nspaste( rg.A.pos, q2xy( Math.PI ) );
+        nspaste( rg.AA.pos, q2xy( 0 ) );
         {
             let posBx = op.conicSignum === -1 ? -op.C : op.C;
             let posB = [posBx, op.B,];
@@ -184,9 +139,6 @@
             nspaste( rg.BB.pos, ww );
         }
 
-        //=============================================================
-        // //\\ for prop. 11,12
-        //=============================================================
         //point x
         nspaste( rg.x.pos, mat.lineSegmentsCross(
             rg.T.pos, rg.P.pos,
@@ -197,13 +149,11 @@
             rg.D.pos, rg.K.pos,
             rg.S.pos, rg.P.pos,
         ));
+        //point I
         nspaste( rg.I.pos, mat.linesCross(
             DK, rg.H.pos, //direction, start
             mat.sm( rg.S.pos, -1, rg.P.pos ), rg.S.pos, //direction, start
         ));
-        //=============================================================
-        // \\// for prop. 11,12
-        //=============================================================
 
 
         //=============================================================
@@ -216,23 +166,6 @@
         //=============================================================
         // \\// latus
         //=============================================================
-
-
-        //=============================================================
-        // //\\ instant triangle
-        //=============================================================
-        {
-            let pkey = 'instanttriangle';
-            rg[ pkey ].vertices = [ rg.S.pos, rg.P.pos, rg.Q.pos ];
-            ssF.paintTriangle(
-                pkey,                       //triangleId,
-                'tofill',                   //cssCls,
-            );
-        }
-        //=============================================================
-        // \\// instant triangle
-        //=============================================================
-
     }
 
 }) ();

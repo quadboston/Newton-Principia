@@ -256,9 +256,14 @@
         function eccentricity2sliderPos()
         {
             if( !has( rg, 'ZetaEnd' ) ) return;
+
+            const zetaMin = haz(op, 'ZETA_MIN') || 0.0;
+            const zetaMax = haz(op, 'ZETA_MAX') || Math.PI / 2;
+
             var scale = rg.ZetaEnd.pos[0] - rg.ZetaStart.pos[0];
             var zeta = Math.atan( op.eccentricity );
-            rg.Zeta.pos[0] = zeta / (Math.PI / 2) * scale + rg.ZetaStart.pos[0];
+            rg.Zeta.pos[0] = (zeta - zetaMin) / (zetaMax - zetaMin) * scale +
+                                rg.ZetaStart.pos[0];
             rg.ZetaCaption.pos[0] = rg.Zeta.pos[0];
             rg.ZetaCaption.caption = op.eccentricity.toFixed(3);
         }

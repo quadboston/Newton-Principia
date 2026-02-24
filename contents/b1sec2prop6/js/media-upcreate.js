@@ -12,7 +12,7 @@
     //=========================================================
     function media_upcreate___part_of_medupcr_basic()
     {
-        stdMod.poly2svgP11({});
+        stdMod.createOrUpdateOrbit({});
 
         // entire green curve
         //todm this is a redundant step, graphArray is already
