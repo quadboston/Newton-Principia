@@ -160,7 +160,6 @@
             hidden,
             curvature,
             context,
-			force,
         } = topicColors_repo;
 
         var topicColors_elected =
