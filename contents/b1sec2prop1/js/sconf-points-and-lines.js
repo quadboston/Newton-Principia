@@ -46,6 +46,7 @@ function sconf_points8lines (){
         time = harden(time);
         force = harden(force);
         perpendicular = harden(perpendicular);
+		sunColor = harden(sunColor);
     }
 
     ///topic names elected

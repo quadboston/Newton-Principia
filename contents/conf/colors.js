@@ -352,7 +352,7 @@
 			// //\\ remove when lemmas
 			//      will be standartized
 			AREA_HIGHLIGHT_OPACITY : 0.7,
-			AREA_DEFAULT_OPACITY : 0.2,
+			AREA_DEFAULT_OPACITY : 0.3,
 			// \\// remove when lemmas
 
 			SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY : 0.6,
