@@ -10,10 +10,19 @@
         //=========================================================================
         // //\\ eccentricity slider
         //=========================================================================
+        let lastTime = 0;
         rg.A.acceptPos = newPos => {
+            let now = performance.now();
+            let deltaTime = now - lastTime;
+            if(deltaTime < 60) return; // reduces jitter
+            lastTime = now;
+
             const eMin = op.eccentricityMin;
             const eMax = op.eccentricityMax;
-            const delta = newPos[0] - rg.A.pos[0];            
+            const delta = newPos[0] - rg.A.pos[0];   
+
+            if(Math.abs(delta) < 0.01) return; // to avoid jitter on Mac  
+
             const k = 10; // proportionate change factor
             const prevE = op.eccentricity;
             let newEccentricity = prevE + delta * k;
