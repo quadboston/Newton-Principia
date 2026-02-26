@@ -1,6 +1,6 @@
 # Change Log
 
-## 2026-2-? (Olive Version, 0.6)
+## 2026-2-26 (Olive Version, 0.6)
 ### Improved
 * Lemma 11
 	* added highlights for "finite curvature", "sagittas", and "sagitta" 
@@ -14,8 +14,6 @@
 
 * Proposition 12:
     * graph changed to only show estimated and actual force
-	* fixed bug where Q and other points left the hyperbola
-	* fixed bug where P jumps with changing eccentricity
 	* model restricted to hyperbolas
 
 * Proposition 13:
