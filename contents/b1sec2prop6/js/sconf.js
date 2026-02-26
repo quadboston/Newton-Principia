@@ -155,21 +155,16 @@
         //-----------------------------------
         const {
             given,
-            //body,
-            orbit,//
-            //time,
-            //dtime,
+            body,
+            orbit,
+            dtime,
             proof,
             force,
             invalid,
-            //hidden,
             info,
             estimatedForce,
-            //sagitta,
             curvature,
-            //context,
-            //chord,
-            //displacement,
+            displacement,
 			sunColor
         } = topicColors_repo;
 
@@ -179,20 +174,15 @@
             estimatedForce,
             given,
             proof,
-            //hidden,
-            //context,
             curvature,
-            //dtime,
-            //time,
+            dtime,
             curvatureCircle : curvature,
-            //body,
-            orbit,//
+            body,
+            orbit,
             timearc : proof,
-            APQ     : orbit,//body,
+            APQ     : orbit,
             force,
             invalid,
-            //sagitta,
-            //chord,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -277,7 +267,7 @@
 
             P : {
                 pos: posP,
-                pcolor : orbit,
+                pcolor : body,
                 letterAngle : 70,
                 draggableX  : true,
                 draggableY  : true,
@@ -294,7 +284,7 @@
                 undisplayAlways : true,
                 //pos: will be as Q, 
                 cssClass : 'tp-dtime',
-                pcolor : estimatedForce,//dtime, //proof,
+                pcolor : dtime,
                 fontSize : 20,
                 letterAngle : 225,
                 letterShift : [10,0],
@@ -309,8 +299,7 @@
             },
 
             R : {
-                //pos: Q,
-                pcolor : estimatedForce,//displacement,
+                pcolor : displacement,
                 letterAngle : 45,
 				cssClass: 'logic_phase--corollary',
             },
@@ -411,7 +400,7 @@
             { 'SY' : { pcolor : estimatedForce,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
 			 }, },
-            { 'QR' : { pcolor : estimatedForce,
+            { 'QR' : { pcolor : displacement,
 				cssClass: 'logic_phase--corollary',
 			 }, },
             { 'QP' : { pcolor : proof }, },
