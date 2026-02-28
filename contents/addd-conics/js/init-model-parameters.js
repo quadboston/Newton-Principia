@@ -6,14 +6,14 @@
     } = window.b$l.apptree({
         stdModExportList :
         {
-            init_model_parameters,
+            init_lemma,
         },
     });
     const graphArray = sn( 'graphArray', stdMod, [] );
     return;
 
 
-    function init_model_parameters()
+    function init_lemma()
     {
         //=================================================
         // //\\ model parameters,

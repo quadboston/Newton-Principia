@@ -22,20 +22,20 @@
     return;
 
 
-    ///input:       lineName aka 'AB'
+    ///input:       shpid aka 'AB'
     ///acts:        takes rg-points aka rg.A and rg.B
     ///             and adds to line segment AB values .. ..
     ///returns      .. .. abs, abs2, dx, dy,
     ///             angle = Math.atan2( dy, dx );
     ///todm         reduce this to "linePoints2abs"
     function line2abs(
-        lineName,
+        shpid,
         dropPointParam,     //optional
         dropPointParam_t,   //optional, unitless parameter counted from point A
     ){
-        var splitToken = lineName.indexOf( ',' ) > -1 ? ',' : '';
-        var points = lineName.split( splitToken );
-        var AB = toreg( lineName )();
+        var splitToken = shpid.indexOf( ',' ) > -1 ? ',' : '';
+        var points = shpid.split( splitToken );
+        var AB = toreg( shpid )();
         var A = rg[ points[0] ].pos;
         var B = rg[ points[1] ].pos;
         var dx = B[0]-A[0];
@@ -93,7 +93,7 @@
         return AB;
     }
 
-    ///given a string XY and registry of points, 
+    ///given a string XY and registry of points,
     ///returns function which calculates circum... on points in the string XY,
     function circumscribeCircleOverChordAndBothNormals_XY(
         rg, //registry which holds shape of keyName XY,
@@ -162,8 +162,8 @@
     //===============================================================
     // \\// scriptable arguments in string
     //===============================================================
-       
-       
+
+
     ///will be ssF.gets_orbit_closest_point in
     ///contrary to stdMod.gets_orbit_closest_point
     function gets_orbit_closest_point(

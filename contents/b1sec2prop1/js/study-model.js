@@ -2,14 +2,14 @@
     const { sn, haff, hafff, nspaste, haz, globalCss, mat,
             rg, sconf, ssF, stdMod,
     } = window.b$l.apptree({ stdModExportList : {
-            init_model_parameters,
+            init_lemma,
             model_upcreate,
         },
     });
     return;
 
 
-    function init_model_parameters (){
+    function init_lemma (){
         stdMod.sconf_2_shapes();
         stdMod.shapeSconf_2_svg();
         rg.displayTime = { value : '' };

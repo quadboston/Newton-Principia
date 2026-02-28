@@ -11,7 +11,6 @@
             { src: sm + 'media-upcreate.js' },
             { src: sm + 'main-legend.js' },
             { src: sm + 'amode8captures.js' },
-            { src: sm + 'state-capturer.js' },
             { src: sm + 'config-functions.js' },
         ],
         "contents-list" :

@@ -50,9 +50,9 @@
     function amode2rgstate( captured )
     {
         var { logic_phase, aspect, subessay } = amode;
-        var media_scale = toreg( 'media_scale' )();
-        rg.media_scale.value = 1;
-        ssF.scaleValue2app( rg.media_scale.value, stdMod );
+        var medzoom = toreg( 'medzoom' )();
+        rg.medzoom.value = 1;
+        ssF.newzoom2app( rg.medzoom.value, stdMod );
         toreg( 'sForSagitta' )( 'val', sconf.sForSagitta_valQ );
         nspaste( rg.P.pos, rg.approxer.t2xy( sconf.PparT ));
 
@@ -148,7 +148,7 @@
 
         {
             let vis = subessay === 'interval' ? 'visible' : 'hidden';
-            stdMod.svgScene$.css( 'visibility', vis );
+            stdMod.medScene$.css( 'visibility', vis );
             //ccc( 'no cont: stdMod.graphFW_lemma=', stdMod.graphFW_lemma );
             //todm what is this?
             //stdMod.graphFW_lemma.container$.css( 'visibility', vis );

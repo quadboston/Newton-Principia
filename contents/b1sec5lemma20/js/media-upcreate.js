@@ -12,7 +12,7 @@
         },
         setModule,
     });
-    var mod2inn;
+    var modpos2medpos;
     var pivots_2_svgLineInRg;
     var pos2pointy;
     var paintTriangle;
@@ -22,7 +22,7 @@
 
     function setModule()
     {
-        mod2inn         = ssF.mod2inn;
+        modpos2medpos         = ssF.modpos2medpos;
         pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
         pos2pointy      = ssF.pos2pointy;
         paintTriangle   = ssF.paintTriangle;
@@ -41,7 +41,7 @@
     {
         branches2svg();
         if( ssF.mediaModelInitialized ) {
-            stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
+            stdMod.lemmaD8D && stdMod.lemmaD8D.updateAllDecPoints();
         }
         ssF.upcreate_mainLegend(); //placed into "slider"
         {
@@ -73,7 +73,7 @@
                 nssvg.branch2svg(br, bN===1);
             } else {
                 ////makes ellipse first to put point over it later
-                br.parent = stdMod.mmedia;
+                br.parent = stdMod.medScene;
                 br['stroke-width'] = 5;
                 br.stroke = ns.arr2rgba( tpid2arrc_repo[ "ellipse" ] );
                 br.svgel = nssvg.branch2svg(br, bN===1);

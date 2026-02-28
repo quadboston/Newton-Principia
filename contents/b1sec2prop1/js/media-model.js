@@ -109,8 +109,8 @@ function media_upcreate___before_basic (){
     //***********************************************************
     //wraps remained tasks into d8d slider
     //if slider is already created ...
-    hafff( rg.slider_sltime, 'upates_timeSlider8unmasksSvg' );
-    hafff( rg.rgslid_dt, 'updates_sliderGUI' );
+    hafff( rg['sl-shpid-time'], 'upates_timeSlider8unmasksSvg' );
+    hafff( rg['sl-shpid-dt'], 'updates_sliderGUI' );
     //***********************************************************
 
     //----------------------------------------------------
@@ -152,35 +152,39 @@ function media_upcreate___before_basic (){
     }
     var pointsAreOn = POINTS_BCDE_ARE_ACTIVE &&
                         amode.logic_phase === 'proof';
+    const pathFill = sDomF.tpid0arrc_2_rgba( 'path' );
     ['B', 'C', 'D', 'E'].forEach( id => {
             let rgX = rg[ id ];
             if( has(rgX, 'svgel' )){
                 rgX.svgel.setAttribute( 'r', pointsAreOn ? '6' : '4' );
                 rgX.svgel.style[ 'fill' ] = pointsAreOn ?
-                '#cccccc' : sDomF.tpid0arrc_2_rgba( 'path' );
+                '#cccccc' : pathFill;
             //} else {
                 //todo why is this?
-                //c cc( rgX.pname + ' svg is missed in media-model.js' );
+                //c cc( rgX.shpid + ' svg is missed in media-model.js' );
             }
             if( POINTS_BCDE_ARE_ACTIVE ) {
                 rg[ id + 'title' ].textContent =
                     pointsAreOn ? 'show next move' : '';
             }
     });
+    //todm this is patch making F blue, why it?
+    has(rg.F, 'svgel') && (rg.F.svgel.style.fill = pathFill);
     //----------------------------------------------------
     // \\// shows next move of the proof
     //----------------------------------------------------
     if(!haz( fconf, 'RESEARCH' )){
         //exists in popular ver:
         rg['main-legend'].tb.corollary.style.display =
-           ( amode.logic_phase === 'corollary' && amode.subessay === 'cor-1' ) ?
+           ( amode.logic_phase === 'corollary' &&
+             amode.subessay === 'cor-1' ) ?
            'table' : 'none';
     }
     ssF.mediaModelInitialized = true;
 }
 
 function pathDelays2forceDraggers (){
-    ['B','C','D','E','F'].forEach( (pname, ix) => {
+    ['B','C','D','E','F'].forEach( (shpid, ix) => {
         let decEnd = rg.C.decEnd+(ix+10)*4;
         let decStart = rg.C.decStart+ix*4;
         let nam0 = 'VV'+ix;
@@ -202,7 +206,7 @@ function pathDelays2forceDraggers (){
 function media_upcreate___after_basic (){
     ///todm this fixes refreshment of green free Kepler triangles
     ///when media scales,
-    eachprop( stdMod.decor, (dec,pname) => {
+    eachprop( stdMod.decor, (dec,shpid) => {
         if( !dec.isPoint && dec.pivotNames.length !== 2 ) {
             dec.poly_2_updatedPolyPos8undisplay();
         }
@@ -232,8 +236,8 @@ function media_upcreate___after_basic (){
             if( !pix ) return;
             const kix = pix-1;
             const fkey = 'force-' + kix;
-            const pname = fkey+'-applied';
-            const svg = rg[ pname ].svgel;
+            const shpid = fkey+'-applied';
+            const svg = rg[ shpid ].svgel;
             const parent = svg.parentNode;
             svg.remove();
             parent.appendChild( svg );
@@ -263,15 +267,12 @@ function media_upcreate___after_basic (){
             parent.appendChild( svg );
         };
         ///now put hanler kernels over vector tips
-        ['B','C','D','E','F'].forEach( (pname, ix) => {
-            let nam0 = pname;
-
-            let svg = rg[ nam0 ].svgel;
+        ['B','C','D','E','F'].forEach( (shpid, ix) => {
+            let svg = rg[ shpid ].svgel;
             let parent = svg.parentNode;
             svg.remove();
             parent.appendChild( svg );
-
-            let nam1 = 'VVV'+ix+'-kernel';
+            let nam1 = 'VVV'+ix;
             svg = rg[ nam1 ].svgel;
             parent = svg.parentNode;
             svg.remove();
@@ -285,14 +286,14 @@ function media_upcreate___after_basic (){
         //svg.style.strokeWidth = '3px';
         parent.appendChild( svg );
 
-        //speed kernel
-        svg = rg['v-kernel'].svgel;
+        //speed
+        svg = rg['v'].svgel;
         parent = svg.parentNode;
         svg.remove();
         parent.appendChild( svg );
 
-        //A kernel
-        var svg = rg['A-kernel'].svgel;
+        //A
+        var svg = rg['A'].svgel;
         var parent = svg.parentNode;
         svg.remove();
         parent.appendChild( svg );

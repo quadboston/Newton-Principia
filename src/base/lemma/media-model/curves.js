@@ -16,7 +16,7 @@
     ///paints model-function on media
     ///********************************************************
     function paintsCurve({
-        mmedia,     //where to attach: usually = stdMod.mmedia
+        mscene,     //where to attach: usually = stdMod.medScene
 
 
         //fun is a function in model space for t,x,y
@@ -86,7 +86,7 @@
         //-----------------------------------------------------------------
         stepsCount = stepsCount || 85;
         if( pointA && pointB ) {
-            rgName              = rgName || 'arc-' + pointA.pname + pointB.pname;
+            rgName              = rgName || 'arc-' + pointA.shpid + pointB.shpid;
         } else {
             rgName              = rgName || 'curve-' + pointsName;
             if( pointsName ) {
@@ -144,7 +144,7 @@
                 "stroke-width"  : strokeWidth || 2,
                 svgel           : rgX.svgel, //[ rgName ].svg,
                 dontClose       : true,
-                parent          : mmedia,
+                parent          : mscene,
             });
         rgX.svgel$
             .tgcls( 'undisplay', ns.haz( rgX, 'undisplay' ) )
@@ -181,8 +181,8 @@
                                   annPointsPositions[aix].par : start + incr * aix;
                 var pos         = fun( pointParam );
                 var annName     = 'ann-' + rgName + '-' + aix;
-                var rgAnn = rgAnnPoints[ aix ] = ssF.declareGeomtric({
-                            pname   : annName,
+                var rgAnn = rgAnnPoints[ aix ] = ssF.populates__pos_medpos_rgX_p2p({
+                            shpid   : annName,
                             pos,
                             caption : captionFunct({
                                 pointParam, pointIndex : aix, pointPos : pos

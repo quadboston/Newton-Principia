@@ -2,12 +2,6 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
-  "fixed-colors" :
-  {
-    "given"          : [0,     50, 0,      1],
-    "experimental"   : [0,     0,   255,    1],
-    "approximator"   : [255,   0,   0,      1]
-  },  
   "logic_phaseCaption" : "Claim"
 }
 *..*

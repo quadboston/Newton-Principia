@@ -1,108 +1,66 @@
-( function () {
-    var {
-        sn,
-        fapp, fconf, sconf, sDomF, ssF,
-        stdMod,
-    } = window.b$l.apptree({});
-    var stdL2       = sn('stdL2', fapp );
-    var gui         = sn('gui', stdL2 );
-    var guiup       = sn('guiUpdate',gui);
-    var appstate    = sn('appstate', stdL2 );
-    var dr          = sn('datareg', stdL2 );
+(function(){
 
-    //=====================================
-    // //\\ does gui configuration
-    //=====================================
-    Object.assign( sconf,
-    {
-        //:slider config
-        MINP            : 4,
-        MAXP            : 50
-    });
-    //=====================================
-    // \\// does gui configuration
-    //=====================================
-
-    //======================================
-    // //\\ exports module
-    //======================================
-    Object.assign( gui, {
-        buildSlider: buildSlider
-    });
-    //======================================
-    // \\// exports module
-    //======================================
-    return;
-
-
-
+var {sn, fapp, fconf, sconf, sDomF, ssF, rg, stdMod} =
+    window.b$l.apptree({
+        stdModExportList: {completes_bottomSlider}
+});
+var stdL2       = sn('stdL2', fapp );
+var gui         = sn('gui', stdL2 );
+var guiup       = sn('guiUpdate',gui);
+var appstate    = sn('appstate', stdL2 );
+var dr          = sn('datareg', stdL2 );
+return;
 
 
     //======================================
-    // //\\ slider
+    // //\\ bottomSlider
     //======================================
-    function buildSlider()
-    {
-        //.appar. slider-for-base-points-number
-        var slider = document.getElementById("mySlider");
-        slider.setAttributeNS( null, "min", sconf.MINP );
-        slider.setAttributeNS( null, "max", sconf.MAXP );
+    function completes_bottomSlider (){
+        const start = rg.bottomSliderStart.pos[0];
+        const end = rg.bottomSliderEnd.pos[0];
+        const scale = end-start;
+        const valueScale = sconf.BASE_MAX_NUM - sconf.MINP;
+        model2pos (rg.bottomSlider.pos);
 
-        //.appar. sets current base-points-number
-        slider.setAttributeNS( null, "value", dr.basesN );
-
-        var sliderOutput = document.getElementById("baseSpan");
-        var baseLabel = document.getElementById("baseLabelSpan");
-        showBasesNumberInGui( sliderOutput, baseLabel );
-
-        slider.oninput = function() {
+        rg.bottomSlider.acceptPos = newPos => {
+            var slideFraction = ( newPos[0]-start ) / scale;
+            var newModelValue = sconf.MINP+Math.min( Math.max(
+                0, Math.floor(slideFraction*valueScale) ),
+                valueScale );
             stdMod.removeOutdatedClasses();
-            appstate.movingBasePt = false; // better way?
-	        var newBases = interpretSlider( this.value );
-            //dr.basesN === basesAmount
+            appstate.basePointsAreMoving = false;
             sDomF.detected_user_interaction_effect();
-	        aduptPartitionChange( newBases, dr.basePts );
-	        dr.basesN = newBases;
-	        showBasesNumberInGui( sliderOutput, baseLabel );
-
-            stdMod.model8media_upcreate();
-      	}
-
-        function aduptPartitionChange( newBases, basePts, undef) {
-	        if( fconf.sappId === 'b1sec1lemma3' ) {
-                const pointsLimit = Math.min( newBases, sconf.DRAGGABLE_BASE_POINTS );
-                ///dynamically adds more base points
-                for (var i=dr.basesN; i<pointsLimit; i++) {
-                    ///prevents making too many draggable base points
-   		            guiup.sets_pt2movable( basePts.list[i] );
-                }
-            }
-            var partitionWidths = dr.partitionWidths;
-            for (var i=newBases; i < dr.basesN; i++) {
-	            partitionWidths[i] = undef;
-            }
-        }
-
-        function showBasesNumberInGui( sliderOutput, baseLabel )
-        {
-            sliderOutput.innerHTML = dr.basesN;
-            baseLabel.innerHTML = dr.basesN === 1 ? " base":" bases";
-        }
-
-        function interpretSlider(val)
-        {
-            const maxLinV = 20; //linear through 20
-            if (val <= maxLinV) {
-	            return parseInt(val);
-            }
-            const minV = Math.log(maxLinV);
-            const maxV = Math.log(sconf.BASE_MAX_NUM);
-            var scale = (maxV-minV) / (sconf.MAXP-maxLinV);
-            return Math.round(Math.exp(minV + scale*(val-maxLinV)));
+            adaptsPartitionChange( newModelValue, dr.basePts );
+            dr.basesN = newModelValue;
+            model2pos (newPos);
+            return true;
+        };
+        function model2pos (newPos){
+            newPos[0] = start +
+                (dr.basesN-sconf.MINP)*scale/valueScale;;
+            newPos[1] = rg.bottomSliderStart.pos[1];
+            rg.bottomSlider.caption = dr.basesN +
+                (dr.basesN === 1 ? " base":" bases");
         }
     }
     //======================================
-    // \\// slider
+    // \\// bottomSlider
     //======================================
-}) ();
+
+    function adaptsPartitionChange( newBases, basePts, undef) {
+        if( fconf.sappId === 'b1sec1lemma3' ) {
+            const pointsLimit =
+                Math.min( newBases, sconf.DRAGGABLE_BASE_POINTS );
+            ///dynamically adds more base points
+            for (var i=dr.basesN; i<pointsLimit; i++) {
+                ///prevents making too many draggable base points
+                guiup.figurePnt_2_cls8style( basePts.list[i] );
+            }
+        }
+        var partitionWidths = dr.partitionWidths;
+        for (var i=newBases; i < dr.basesN; i++) {
+            partitionWidths[i] = undef;
+        }
+    }
+})();
 

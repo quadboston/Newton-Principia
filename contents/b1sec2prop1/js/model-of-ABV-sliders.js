@@ -1,6 +1,6 @@
 //sets slider hanlders
 (function() {
-const { sn, mat, nspaste, sconf, sDomF, ssF, rg, toreg, stdMod, amode } =        
+const { sn, mat, nspaste, sconf, sDomF, ssF, rg, toreg, stdMod, amode } =
         window.b$l.apptree({ ssFExportList : { sets_A_v_forces_sliders
 }});
 return;
@@ -10,11 +10,11 @@ return;
 function sets_A_v_forces_sliders (){
     //**********************
     //initially does job which sliders do at run-time
-    toreg( 'slider_sltime' )( 'curtime',
+    toreg( 'sl-shpid-time' )( 'curtime',
             sconf.unitlessMinTime * sconf.initialTimieStep );
     toreg( 'speeds' )( 'vect', [ sconf.modelPoints.v0 ] );
     toreg( 'speedsAracc' )( 'vect', [ sconf.modelPoints.v0 ] );
-    toreg( 'rgslid_dt' )( 'val', sconf.initialTimieStep );
+    toreg( 'sl-shpid-dt' )( 'val', sconf.initialTimieStep );
     //**********************
 
     //---------------------------------------------------
@@ -30,7 +30,8 @@ function sets_A_v_forces_sliders (){
         rgX = sn( nam1, rg );
         rgX.acceptPos =
             function( newVPos, dummyPar, enforceNewPos ) {
-                return V2forceParams(newVPos, dummyPar, enforceNewPos, ix);
+                return V2forceParams(
+                    newVPos, dummyPar, enforceNewPos, ix);
             };
     });
     sn( 'A', rg ).acceptPos = A2distanceToS;
@@ -65,7 +66,7 @@ function v2params( newPos, dummyPar, ){
 function V2forceParams( newVPos, dummyPar, enforceNewPos, fix ){
     let nam0='VV'+fix;
     let nam1='VVV'+fix;
-    var tstep               = rg.rgslid_dt.val;
+    var tstep               = rg['sl-shpid-dt'].val;
     var posB                = rg[nam0].pos;
     var posS                = rg.S.pos;
     var newBV               = mat.unitVector( mat.subV( newVPos, posB ) );

@@ -6,19 +6,19 @@
     } = window.b$l.apptree({
         stdModExportList :
         {
-            init_model_parameters,
+            init_lemma,
         },
     });
 
-    
-    function init_model_parameters()
+
+    function init_lemma()
     {
         //---------------------------------------------
         // //\\ saves originals for lemma 8
         //---------------------------------------------
-        // defined in sconf.js, factor to determine distance between B and b            
+        // defined in sconf.js, factor to determine distance between B and b
         let b2B = sconf.b_per_B_original;
-        
+
         nspaste( rg.b.pos, [ rg.B.pos[0] * b2B, rg.B.pos[1] * b2B ] );
         let D = rg.D.pos;
         let B = rg.B.pos;
@@ -36,7 +36,7 @@
         rg.d.pos[1] = rg.D.pos[1] * b2B;
         nspaste( rg.imageOfR.pos, rg.r.pos );
         nspaste( rg.imageOfD.pos, rg.d.pos );
-        
+
         rg.B.originalPos = [];
         nspaste( rg.B.originalPos, rg.B.pos );
         rg.D.originalPos = [];
@@ -67,9 +67,9 @@
             sData.unrotatedParameterX = rg.B.unrotatedParameterX;
             sData.RB_slope = [ rg.B.pos[0] - rg.R.pos[0], rg.B.pos[1] - rg.R.pos[1] ];
         };
-        sDomF.params__2__rgX8dragwrap_gen_list({
+        sDomF.rgx2draglist({
             stdMod,
-            pname : 'B',
+            shpid : 'B',
             acceptPos : ( newPos ) =>
             {
                 var ach = rg.B.achieved;
@@ -97,7 +97,7 @@
                 }
 
                 rg.B.unrotatedParameterX = new_unrotatedParameterX;
-                
+
                 /*
                 if( !user Options.s howingBonusFeatures() &&
                     fconf.sappId === "b1sec1lemma 8") {
@@ -119,10 +119,8 @@
             sData.unrotatedParameterX = rg.B.unrotatedParameterX;
             sData.RB_slope = [ rg.B.pos[0] - rg.R.pos[0], rg.B.pos[1] - rg.R.pos[1] ];
         };
-
-        sDomF.params__2__rgX8dragwrap_gen_list({
-            stdMod,
-            pname : 'R',
+        sDomF.rgx2draglist({
+            shpid : 'R',
             acceptPos : ( newPos ) =>
             {
                 // R can move along y axis only
@@ -165,23 +163,22 @@
         // \\// dragger R
         //-------------------------------------------------
 
-
         //-------------------------------------------------
         // //\\ dragger fi
         //-------------------------------------------------
         rg.fi.processOwnDownEvent = function() {
             sData.RB_slope = [ rg.B.pos[0] - rg.R.pos[0], rg.B.pos[1] - rg.R.pos[1] ];
         };
-        sDomF.params__2__rgX8dragwrap_gen_list({
+        sDomF.rgx2draglist({
             stdMod,
-            pname : 'fi',
+            shpid : 'fi',
             acceptPos : ( newPos ) =>
             {
                 //-------------------------------------------------------------------
                 // //\\ corrects approximate mouse point to exact point on the circle
                 //-------------------------------------------------------------------
                 var q = Math.atan2( newPos[1], newPos[0] );
-                var posAbs = mat.unitVector( newPos ).abs;            
+                var posAbs = mat.unitVector( newPos ).abs;
                 //sets handle
                 newPos[0] = posAbs*Math.cos( q );
                 newPos[1] = posAbs*Math.sin( q );
@@ -195,7 +192,6 @@
         //-------------------------------------------------
         // \\// dragger fi
         //-------------------------------------------------
-
 
         //getting original gap tangent
         const orTan = rg.originalGapTangent = {};
@@ -213,8 +209,7 @@
 
     }
 
-    function dir8innerB_2_R( RB_slope )
-    {
+    function dir8innerB_2_R( RB_slope ){
         //prepares point B which implies new position of point R
         //finds new point B
         let posB = ssD.repoConf[ssD.repoConf.customFunction]
@@ -230,6 +225,4 @@
         );
         return newRpos;
     }
-
-}) ();
-
+})();

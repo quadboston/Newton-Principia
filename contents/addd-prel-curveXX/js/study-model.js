@@ -6,7 +6,7 @@
     } = window.b$l.apptree({
         stdModExportList :
         {
-            init_model_parameters,
+            init_lemma,
             model_upcreate,
         },
     });
@@ -28,7 +28,7 @@
     ///****************************************************
     /// model initiation
     ///****************************************************
-    function init_model_parameters()
+    function init_lemma()
     {
     }
 

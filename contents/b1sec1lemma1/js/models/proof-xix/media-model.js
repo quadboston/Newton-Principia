@@ -28,8 +28,8 @@
     {
         if( !ssF.mediaModelInitialized ) {
             nssvg.printText(
-            {   
-                parent  : stdMod.mmedia$(),
+            {
+                parent  : stdMod.medScene$(),
                 type    : 'text',
                 text    : '',
                 x       : '100',
@@ -38,7 +38,7 @@
             });
         //} else {
             //.vital for making
-            //var ww = stdMod.medD8D;
+            //var ww = stdMod.lemmaD8D;
             //ww && ww.updateAllDecPoints();
         }
     }

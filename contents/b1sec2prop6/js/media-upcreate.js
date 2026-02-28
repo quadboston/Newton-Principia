@@ -12,7 +12,7 @@
     let foldPointsRemovedFromTp = false;
     return;
 
-    
+
     //=========================================================
     // //\\ lemma custom addons
     //=========================================================
@@ -24,7 +24,7 @@
         //todm this is a redundant step, graphArray is already
         //built and can be used
         let rgX = ssF.paintsCurve({
-            mmedia  : stdMod.svgScene,
+            mscene  : stdMod.medScene,
             fun     : stdMod.q2xy,
             rgName  : 'orbitcurve',
             start   : 0,      //existence is a flag
@@ -38,7 +38,7 @@
         //built and can be used
         //arc updates
         ssF.paintsCurve({
-            mmedia  : stdMod.svgScene,
+            mscene  : stdMod.medScene,
             fun     : stdMod.q2xy,
             rgName  : 'timearc',
             stepsCount : 101,
@@ -50,7 +50,7 @@
         //todm this is a redundant step, graphArray is already
         //built and can be used
         ssF.paintsCurve({
-            mmedia  : stdMod.svgScene,
+            mscene  : stdMod.medScene,
             fun     : stdMod.q2xy,
             rgName  : 'APQ',
             stepsCount : 101,
@@ -61,6 +61,6 @@
     //=========================================================
     // \\// lemma custom addons
     //=========================================================
-    
+
 }) ();
 

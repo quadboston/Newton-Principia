@@ -14,7 +14,7 @@ return;
 //      complimentary to and runs after
 //      sconf.js::init_conf(),
 //
-//      runs only once at start of init_model_parameters,
+//      runs only once at start of init_lemma,
 //-------------------------------------------------------
 function sconf_points8lines (){
     let {
@@ -181,7 +181,8 @@ function sconf_points8lines (){
         'logic_phase--proof';
     var cssMove8Mode = 'tp-force-_move ' +
         fconf.sappId === 'b1sec2prop2' ?
-            'logic_phase--corollary' : 'logic_phase--proof logic_phase--corollary';
+            'logic_phase--corollary' :
+            'logic_phase--proof logic_phase--corollary';
 
     //******************************
     // //\\ points config
@@ -356,7 +357,7 @@ function sconf_points8lines (){
                 cssClass : 'hidden',
         },
     };
-    ['B','C','D','E','F'].forEach( (pname, ix) => {
+    ['B','C','D','E','F'].forEach( (shpid, ix) => {
         let nam0 = 'VV'+ix;  //starts of forces
 
         //tips of forces
@@ -385,9 +386,9 @@ function sconf_points8lines (){
     Object.assign( decor, aracc_conf );
 
     ///unifies with originalPoints
-    Object.keys( decor ).forEach( propKey => {
-        const point = decor[propKey];
-        const pointRack = originalPoints[propKey]={};
+    Object.keys( decor ).forEach( shpid => {
+        const point = decor[ shpid ];
+        const pointRack = originalPoints[ shpid ]={};
         Object.keys( point ).forEach( pointKey => {
             let pointProp = point[pointKey];
             pointRack[pointKey] = pointProp;
@@ -397,9 +398,9 @@ function sconf_points8lines (){
     //---------------------------------------------------
     // //\\ equalizing points in decor and rg
     //---------------------------------------------------
-    eachprop( decor, (dec,pname) => {
-        rgElem = sn( pname, rg );
-        rgElem.pname = pname;
+    eachprop( decor, (dec,shpid) => {
+        rgElem = sn( shpid, rg );
+        rgElem.shpid = shpid;
         rgElem.isPoint = true;
         var doPaintPname = has( dec, 'doPaintPname' ) ?
                            dec.doPaintPname : true;
@@ -407,9 +408,9 @@ function sconf_points8lines (){
             doPaintPname,
             isPoint : true,
         });
-        Object.assign( rg[ pname ], dec );
-        Object.assign( dec, rg[ pname ] );
-        rg[ pname ] = dec;
+        Object.assign( rg[ shpid ], dec );
+        Object.assign( dec, rg[ shpid ] );
+        rg[ shpid ] = dec;
     });
     //---------------------------------------------------
     // \\// equalizing decor and rg
@@ -584,13 +585,13 @@ function sconf_points8lines (){
     linesConf.forEach( ln => {
         let linesArrElem = {};
         sconf.linesArray.push(linesArrElem);
-        const lineName = ln.nam[0]+ln.nam[1];
-        const lineConf = linesArrElem[ lineName ] = {
+        const shpid = ln.nam[0]+ln.nam[1];
+        const lineConf = linesArrElem[ shpid ] = {
             isLine : true,
         };
         //equalizing rg, decor elements and lineConf,
-        let rgElem = decor[ lineName ] = sn( lineName, rg );
-        rgElem.pname = lineName;
+        let rgElem = decor[ shpid ] = sn( shpid, rg );
+        rgElem.shpid = shpid;
         rgElem.pivotNames = [ln.nam[0],ln.nam[1]];
         rgElem.isPoint = false;
         [   'cssClass',
@@ -605,9 +606,9 @@ function sconf_points8lines (){
             'fontSize',
             'tipFraction',
             'tipFill'
-        ].forEach( pname => {
-            has(ln,pname) && (lineConf[pname] = ln[pname]);
-            has(ln,pname) && (rgElem[pname] = ln[pname]);
+        ].forEach( shpid => {
+            has(ln,shpid) && (lineConf[shpid] = ln[shpid]);
+            has(ln,shpid) && (rgElem[shpid] = ln[shpid]);
         })
         ///if there is not explicit decStart in the line element, then
         ///decStart in extracted from the directional point of the line segment
@@ -624,12 +625,12 @@ function sconf_points8lines (){
     });
 
     //==================================================
-    // expands tpid into rg
+    // expands shpid into rg
     // todo rg.SCd will be crashed later without this
     // expansion, this scenario must have more steps
     //==================================================
-    Object.keys( tpel ).forEach( tpid => {
-        toreg( tpid )( 'pname', tpid );
+    Object.keys( tpel ).forEach( shpid => {
+        toreg( shpid )( 'shpid', shpid );
     });
 
     //Update decStart for the following decorations if needed,

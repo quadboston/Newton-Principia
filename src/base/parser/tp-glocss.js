@@ -22,7 +22,8 @@
     function v2_topics_2_unhighCss()
     {
         var totalCss = '';
-        eachprop( topics.lowtpid_2_glocss8anchorRack, ( gcssRack, low_tpID ) => {
+        eachprop( topics.lowtpid_2_glocss8anchorRack,
+                  ( gcssRack, low_tpID ) => {
             var { fillOpacity, strokeOpacity, rgba_own } = gcssRack;
             var Rtp = ROOT + ' .tp-' + low_tpID;
             var tpOpacityLow_str = gcssRack.lowOpacity.toFixed(3);
@@ -72,17 +73,15 @@ ${ROOT} svg.graph-box-svg tspan.tp-${low_tpID}.hover-width {
 }
 
       `;
-
-
-//todo experiment
-ts += `
+/*
+rid
 ${Rtp}.tocolor {
     color : ${rgba_own};
 }
 ${Rtp}.tobg {
     background-color : ${rgba_own};
 }
-            `;
+*/
             globalCss.replace( ts, 'glocss-'+low_tpID );
         });
     }

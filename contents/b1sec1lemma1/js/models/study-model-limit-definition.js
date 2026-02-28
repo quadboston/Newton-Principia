@@ -47,7 +47,7 @@
             limDemo.instance = limDemo.setDemo( ww );
 
             modelPaths = limDemo.instance.model_2_media(
-                stdMod.mmedia
+                stdMod.medScene
             );
             toreg( 'modelPaths' )( 'modelPaths', modelPaths );
         }

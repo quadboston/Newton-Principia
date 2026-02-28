@@ -22,7 +22,7 @@
     ///===================================================================
     /// app-mode to lemma states and actions,
     ///     runs only in three? categories of click events and
-    ///     after init_model_parameters in init-sapp.js::init_sapp...s tudyMods,
+    ///     after init_lemma in init-sapp.js::init_sapp...s tudyMods,
     ///     more comments are in: ver/excluded/code-overview/init-params-tips.txt
     ///===================================================================
     function in_subessay_launch____amode2lemma( amodel2app_8_extraWork,  )
@@ -37,7 +37,7 @@
         //element, they will be erased by this statement:
         //this element is (non comfortably) made holding only
         //class for visibility:
-        stdMod.svgScene$().setAttribute( 'class', 'bsl--svgscene ' +
+        stdMod.medScene$().setAttribute( 'class', 'bsl--svgscene ' +
             'logic_phase--' + logic_phase + ' ' +
             'aspect--' + aspect + ' ' +
             'subessay--' + subessay
@@ -46,7 +46,7 @@
 
         //------------------------------------------------
         // //\\ sets "undefined" flag
-        //      for registry rg members with defined pname,
+        //      for registry rg members with defined shpid,
         //      uses sconf.rgShapesVisible if defined in lemma,
         //      if not, uses existing sconf.rgShapesVisible.
         //------------------------------------------------
@@ -55,11 +55,11 @@
             //we don't implement this now because of
             //damage to other legacy lemmas,
             //general solution should be
-            //if( hazz( prop, 'pname' ) && !has( prop, propname ) ) {
+            //if( hazz( prop, 'shpid' ) && !has( prop, propname ) ) {
             //,or in case of 'undisplay'
-            //if( hazz( prop, 'pname' ) && !has( prop, 'undisplay' ) ) {
+            //if( hazz( prop, 'shpid' ) && !has( prop, 'undisplay' ) ) {
 
-            if( hazz( prop, 'pname' ) ) {
+            if( hazz( prop, 'shpid' ) ) {
                 prop.undisplay = !(
                     has( sconf, 'rgShapesVisible' ) ?
                         sconf.rgShapesVisible :
@@ -102,7 +102,7 @@
         ///------------------------------------------------------------------
 
         ///enables or disables conditional drag point if preset in sconf.js,
-        eachprop( rg, (shape, pname) => {
+        eachprop( rg, (shape, shpid) => {
             if( has( shape, 'conditionalDrag' ) ){
                 let dohide = true;
                 //options which do activate drag
@@ -119,7 +119,7 @@
                             ( aname === 'sappId' && fconf.sappId === match[1] )
                         ) {
                             dohide = false;
-                            //c cc( pname, match[1] );
+                            //c cc( shpid, match[1] );
                         }
                     }
                 })

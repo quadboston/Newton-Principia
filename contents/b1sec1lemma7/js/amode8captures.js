@@ -10,7 +10,7 @@
         },
     });
     ///diff and Euclid tangents are equal
-    const ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] = 
+    const ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] =
     {
         "angle": 0.10579977792284677,
         "sin": 0.10560250842053673,
@@ -26,7 +26,7 @@
     };
     setCapture();
     return;
-    
+
 
     function setCapture()
     {
@@ -200,12 +200,12 @@
         nspaste( rg.curveEnd.pos, ssD.curveEndInitialPos );
         ssD.repoConf.customFunction = 0;
         rg.B.unrotatedParameterX = 1;
-        var media_scale = toreg( 'media_scale' )();
+        var medzoom = toreg( 'medzoom' )();
         //----------------------------------
         // \\// common values
         //----------------------------------
 
-        
+
         //*****************************************************************************
         // //\\ lemma 7
         //*****************************************************************************
@@ -357,14 +357,14 @@
                 amode.subessay === 'sine derivative' ||
                 amode.subessay === 'vector-derivative'
             ){
-                rg.media_scale.value = 0.45;
-                ssF.scaleValue2app( rg.media_scale.value, stdMod );
+                rg.medzoom.value = 0.45;
+                ssF.newzoom2app( rg.medzoom.value, stdMod );
             } else if( amode.subessay === 'sin(x)/x' ) {
-                rg.media_scale.value = 0.8;
-                ssF.scaleValue2app( rg.media_scale.value, stdMod );
+                rg.medzoom.value = 0.8;
+                ssF.newzoom2app( rg.medzoom.value, stdMod );
             }
 
-            
+
             if( logic_phase === 'corollary' ) {
                 [
                     'curve-AB',
@@ -383,8 +383,8 @@
             } else if( aspect !== 'model' ) {
                 sDomF.detected_user_interaction_effect( 'doUndetected' );
                 captured = "L-equal-d";
-                rg.media_scale.value = 1;
-                ssF.scaleValue2app( rg.media_scale.value, stdMod );
+                rg.medzoom.value = 1;
+                ssF.newzoom2app( rg.medzoom.value, stdMod );
 
                 nspaste( rg.curveStart.pos, [ -0.2, 0 ] );
                 nspaste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ] );

@@ -121,7 +121,7 @@ return;
 
         ///derives initial model parameters from picture's points
         var to_sconf = {};
-        var mod2inn_scale;
+        var mod2med;
         (function() {
             var pp = pointsOnPicture;
             var B = pp.B;
@@ -131,7 +131,7 @@ return;
             var N = pp.N;
             var A = pp.A;
             var BC = [ B[0] - C[0], B[1] - C[1] ];
-            mod2inn_scale = mat.unitVector(BC).abs;
+            mod2med = mat.unitVector(BC).abs;
             var wwb = ( B[0] - O[0] ) / ( B[0] - C[0] ); //0.6
             //a = 1 - wwb;
             a = 0.435;
@@ -139,7 +139,7 @@ return;
             //---sets initial param g
             var OM = [ M[0] - O[0], M[1] - O[1] ];
             initial_Munit = mat.unitVector(OM);
-            //possibly initial_g = initial_Munit.abs/mod2inn_scale;
+            //possibly initial_g = initial_Munit.abs/mod2med;
             initial_g = 0.105;
             //is an absolute value of an angle:
             gamma = Math.acos( initial_Munit.unitVec[0] );
@@ -163,7 +163,7 @@ return;
             to_sconf.beta = beta;
             to_sconf.gamma = gamma;
             to_sconf.initial_g = initial_g;
-            to_sconf.initial_gN = -initial_Nunit.abs/mod2inn_scale;
+            to_sconf.initial_gN = -initial_Nunit.abs/mod2med;
             //c cc( 'alpha fraction=' + (alpha/Math.PI).toFixed(3) );
         })();
 
@@ -545,9 +545,9 @@ return;
         // //\\ spawns to_conf
         //----------------------------------
         (function () {
-            var inn2mod_scale = 1/mod2inn_scale;
-            to_sconf.mod2inn_scale = mod2inn_scale;
-            to_sconf.inn2mod_scale = inn2mod_scale;
+            var med2mod = 1/mod2med;
+            to_sconf.mod2med = mod2med;
+            to_sconf.med2mod = med2mod;
         })();
         //----------------------------------
         // \\// spawns to_conf

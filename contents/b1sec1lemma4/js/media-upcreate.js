@@ -7,7 +7,7 @@
         amode,
         toreg,
         stdMod,
-        
+
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -40,7 +40,7 @@
     function media_upcreate___part_of_medupcr_basic()
     {
         //-------------------------------------------------
-        // //\\ corrects sliderN caption 
+        // //\\ corrects sliderN caption
         //-------------------------------------------------
         var processedBarsCount = rg.orderedPartPoints.val.length - 1;
         rg.countNSlider.caption = processedBarsCount + ' bases';
@@ -49,7 +49,7 @@
             rg.countNSlider.caption += ' ( ' + wwL + ' shown )';
         }
         //-------------------------------------------------
-        // \\// corrects sliderN caption 
+        // \\// corrects sliderN caption
         //-------------------------------------------------
 
         //establishes svg place for these points before
@@ -66,7 +66,7 @@
         /// paints right side curve
         ///-------------------------------------------------
         ssF.paintsCurve({
-            mmedia          : stdMod.mmedia,
+            mscene          : stdMod.medScene,
             fun             : rg.rightFun_2_rightFigure,
             rgName          : 'prT',
             pointA          : rg.A,
@@ -80,7 +80,7 @@
         ///-------------------------------------------------
         ssF.paintsCurve({
             //addedCssClass   : 'tp-ac_e hover-width',
-            mmedia          : stdMod.mmedia,
+            mscene          : stdMod.medScene,
             fun             : rg.leftFunction.dividedDifferences.calculate_polynomial,
             pointsName      : 'aE',
             rgName          : 'acE',
@@ -93,7 +93,7 @@
         rg.PT.svgel$.addClass( 'hover-width' );
         rg.Pp.svgel$.addClass( 'hover-width' );
         rg.Aa.svgel$.addClass( 'hover-width' );
-        // \\// sets dynamic tp width for x/y axes 
+        // \\// sets dynamic tp width for x/y axes
 
         displayBars( 'left' );
         displayBars( 'right' );
@@ -150,7 +150,7 @@
         })
 
         //localizers for speed
-        var mod2inn = ssF.mod2inn;
+        var modpos2medpos = ssF.modpos2medpos;
 
         ordPP.forEach( (bar, bix) => {
             if( bix === BCOUNT_1 ) return; //last point has no bar
@@ -188,7 +188,7 @@
                 var p1X         = p1X * T00 + rg.P.pos[0];
                 var p2X         = p2X * T00 + rg.P.pos[0];
                 var p1Xtop      = p1X + fmin4bar*T10;
-                var p2Xtop      = p2X + fmin4bar*T10; 
+                var p2Xtop      = p2X + fmin4bar*T10;
                 var p1Y         = fmin4bar * T11 + rg.P.pos[1]; //-rg.A.pos[1];
                 var ymin        = rg.P.pos[1];
                 var cssClass    = 'tp-proof tp-right-bars tp-right-bar-' + bix;
@@ -203,9 +203,9 @@
             //-------------------------------------------------------
             var leftTop       = toreg( ltName )();
                 leftTop.pos   = [ p1Xtop, p1Y ];
-            //solution:    
-            //  leftTop.pname = ltName;
-                
+            //solution:
+            //  leftTop.shpid = ltName;
+
             var rightTop    = toreg( rtName )();   rightTop.pos    = [ p2Xtop, p1Y ];
             var leftBottom  = toreg( ltBName )();  leftBottom.pos  = [ p1X, ymin ];
             var rightBottom = toreg( rtBName )();  rightBottom.pos = [ p2X, ymin ];
@@ -218,10 +218,10 @@
             // //\\ drawing bars edges
             //-------------------------------------------------------
             //:converts var vertices from model to media
-            leftTop.medpos      = mod2inn( leftTop.pos );
-            rightTop.medpos     = mod2inn( rightTop.pos );
-            leftBottom.medpos   = mod2inn( leftBottom.pos );
-            rightBottom.medpos  = mod2inn( rightBottom.pos );
+            leftTop.medpos      = modpos2medpos( leftTop.pos );
+            rightTop.medpos     = modpos2medpos( rightTop.pos );
+            leftBottom.medpos   = modpos2medpos( leftBottom.pos );
+            rightBottom.medpos  = modpos2medpos( rightBottom.pos );
 
             var zebraColor = zebraColArr[ bix ].rgba_high;
 

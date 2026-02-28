@@ -1,23 +1,22 @@
 (function(){
     const {
         sn, $$, mat, nssvg, haz,
-        stdMod, sconf, rg, ssF, ssD, sDomF, toreg,
+        stdMod, sconf, rg, ssF, ssD, sDomF, toreg, pntRgid2rgx,
     } = window.b$l.apptree({ stdModExportList : {
             Pivots_2_divdifFW,
         },
     });
-    const pname2point = sn( 'pname2point', sconf );
     //outdated test
     /*
         var { q2xy, trange2points } =
             stdMod.Pivots_2_divdifFW();
 
         var curvePoints = trange2points({ tStart:0, tEnd:9, stepsCount:180 });
-        var medpoints = curvePoints.map( cp => ssF.mod2inn( cp, ) );
+        var medpoints = curvePoints.map( cp => ssF.modpos2medpos( cp, ) );
         var psvg = nssvg.polyline({
             pivots  : medpoints,
             svgel   : psvg,
-            parent  : stdMod.svgScene,
+            parent  : stdMod.medScene,
         });
     */
     return;
@@ -51,7 +50,7 @@
         curveName       = curveName || 'orbit';
         pivotsName      = pivotsName || 'curvePivots';
         approxCurveName = approxCurveName || 'approxer';
-        const cpivots   = sconf.originalPoints.curvePivots;
+        const cpivots   = ssD.curvePivots;
         const fw = {
             ////constructed framework
             curvePoints : [], //they are x/y-swapped for case
@@ -76,8 +75,8 @@
 
         ///creates pivots array xy
         cpivots.forEach( (pivot,pix) => {
-            var pname = pivotsName + '-' + pix;
-            var p = pname2point[pname]; //p has format [xx,xx],
+            var shpid = pivotsName + '-' + pix;
+            var p = rg[shpid].pos;
             if( separateXYforParamT ) {
                 xt[ pix ] = [ pix, p[0] ];
                 yt[ pix ] = [ pix, p[1] ];
@@ -160,13 +159,13 @@
 
         function buildsPlot(){
             var medpoints = fw.curvePoints.map( cp => {
-                return ssF.mod2inn( cp, );
+                return ssF.modpos2medpos( cp, );
             });
             //c cc( fw.curvePoints, medpoints );
             var polylineSvg = rgX.polylineSvg = nssvg.polyline({
                 pivots  : medpoints,
                 svgel   : rgX.polylineSvg,
-                parent  : stdMod.svgScene,
+                parent  : stdMod.medScene,
                 //should be overridden by tp-machine
                 //stroke           : haz( arg, 'stroke' ),
                 //'stroke-width'   : haz( arg, 'stroke-width' ),

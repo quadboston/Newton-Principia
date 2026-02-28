@@ -39,7 +39,7 @@ function init_conf (){
 
     //model's spacial unit expressed in pixels of the picture:
     //vital to set to non-0 value
-    sf.mod2inn_scale = A[0] - S[0];
+    sf.mod2med = A[0] - S[0];
     //***************************************************************
     // \\// original picture dimensions for svg scene
     //***************************************************************

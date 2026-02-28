@@ -37,9 +37,9 @@
     function amode2rgstate( captured )
     {
         const { logic_phase, aspect, subessay } = amode;
-        const media_scale = toreg( 'media_scale' )();
-        rg.media_scale.value = 1;
-        ssF.scaleValue2app( rg.media_scale.value, stdMod );
+        const medzoom = toreg( 'medzoom' )();
+        rg.medzoom.value = 1;
+        ssF.newzoom2app( rg.medzoom.value, stdMod );
 
         //todo sort out why this is commented out,
         // toreg( 'sForSagitta' )( 'val', sconf.sForSagitta_valQ );

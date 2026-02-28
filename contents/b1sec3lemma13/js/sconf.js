@@ -87,7 +87,7 @@
         //=============================================
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
-        var mod2inn_scale = 360;
+        var mod2med = 360;
 
         var C = [409, 408 ];
         var originX_onPicture = C[0]; //for model's axis x
@@ -156,7 +156,7 @@
             //apparently this is not enough, need following in study-model.js
                 //except point P which will be user-slided along curve,
                 //merges selected points with controls points
-                var cPivots = sconf.originalPoints.curvePivots;
+                var cPivots = ssD.curvePivots;
                 //merges positions to help d8d
                 rg.a.pos = cPivots[0].rgX.pos;
                 rg.c.pos = cPivots[2].rgX.pos;
@@ -438,7 +438,7 @@
             originY_onPicture,
             pictureWidth,
             pictureHeight,
-            mod2inn_scale,
+            mod2med,
 
             default_tp_stroke_width,
             defaultLineWidth,

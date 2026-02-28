@@ -8,7 +8,7 @@
     const nssvg   = sn( 'svg' );
     const mat     = sn( 'mat' );
 
-    const fapp      = sn('fapp' ); 
+    const fapp      = sn('fapp' );
     var ss          = sn('ss', fapp);
     var ssF         = sn('ssFunctions',ss);
 
@@ -44,7 +44,7 @@
             arg.parent.appendChild( svgel );
         }
         Object.keys( arg ).forEach( function( key ) {
- 
+
             //--------------------------------------
             // //\\ ignores 'parent' and 'type'
             //      properties which were used above
@@ -82,11 +82,11 @@
             //-------------------------------------
             var val = arg[ key ];
             if( val || val === 0 ) {
-                
+
                 //valuable for d e b u g
                 //if( typeof val === 'string' && val.indexOf('NaN')> 0 )
                 //    c cc( val );
-                
+
                 // //\\ adds a piece of sugar into CSS:
                 //      removes excessive digits from CSS:
                 //      assuming that scale of svg will be > 100px
@@ -94,7 +94,7 @@
                     if( ( key==='cx' || key==='cy' || key==='r' ) &&
                         typeof val === 'number'
                     ) {
-                        val = val.toFixed(3);  
+                        val = val.toFixed(3);
                     }
                 }
                 // \\// adds a piece of sugar into CSS
@@ -106,7 +106,7 @@
                     //ccc( Number.MIN_VALUE, Number.MAX_VALUE  );
                     //5e-324 1.7976931348623157e+308
                     //if( haz( arg, 'rgX' ) ) {
-                    //    var wwPname = rgX.pname;
+                    //    var wwPname = rgX.shpid;
                     //}
                     //ccc( wwPname, key, val );
                     //throw 'err. ' + key;
@@ -157,7 +157,7 @@
 
         ///todm
         /// 1. first paste
-        /// 2. then extend like arg.XXX = arg.XXXX || .... 
+        /// 2. then extend like arg.XXX = arg.XXXX || ....
         ///this thing must paste arg into arg, not to manually
         ///reassign props., misleading and error prone,
         return nssvg.u({
@@ -167,7 +167,7 @@
             type    : 'polyline',
             points  : pivotsStr,
             style   : arg.style,
-            stroke  : arg.stroke || 'rgba( 0,0,0, 1 )', 
+            stroke  : arg.stroke || 'rgba( 0,0,0, 1 )',
                 //must be transparent bs stroke or fill are often exclusive
 
             fill    : arg.fill || 'transparent',
@@ -202,11 +202,11 @@
         strokeWidth && svgel.setAttributeNS( null, 'stroke-width', strokeWidth || 1 );
     }
 
-    
+
     /*
      * apparently no longer used,
      * but should be useful
-    
+
     ///"manually" created polyline which formes ellipse,
     ///input: in media scale,
     ///       ellipse = (x-x0)^2/a^2 + (y-y0)^2/b^2 = 1;
@@ -246,10 +246,10 @@
         pivots.push( [ xx, yy ] );
         //makes ellipse closed:
         pivots.push( pivots[0] );
-        return nssvg.polyline( arg ); 
+        return nssvg.polyline( arg );
     };
     */
-    
+
     ///input parameters are in model namespace,
     nssvg.branch2svg = function( arg, doClose )
     {
@@ -257,11 +257,11 @@
         const points = arg.points;
         const len = points.length;
         for( var ii = 0; ii < len; ii++ ){
-            pivots.push( ssF.mod2inn( points[ii] ) );
+            pivots.push( ssF.modpos2medpos( points[ii] ) );
         }
         //makes branch closed:
         doClose && pivots.push( pivots[0] );
-        return nssvg.polyline( arg ); 
+        return nssvg.polyline( arg );
     };
 
     ///"manually" created polyline which formes ellipse's sector,
@@ -314,7 +314,7 @@
         //makes sector closed:
         //todm not good:  use arg...
         cpivots.push( cpivots[0] );
-        return nssvg.polyline( arg ); 
+        return nssvg.polyline( arg );
     };
 
     ///"manually" creates polyline which formes curve,
@@ -322,7 +322,7 @@
     ///signature of
     ///callback "curve":    curvePar => ({x:x, y:y} or [x,y])
     ///                                 x,y are in media frame of reference
-    ///                                 
+    ///
     ///autocloses unless    arg.dontClose = true,
     ///returns:             svg-element
     nssvg.curve = function( arg )
@@ -363,7 +363,7 @@
         if( !dontClose ) {
             polyline.push( polyline[0] );
         }
-        return nssvg.polyline( arg ); 
+        return nssvg.polyline( arg );
     };
 
     ///====================================
@@ -378,7 +378,7 @@
     ///     arg.style
     ///Returns: svg-element
     nssvg.printText = function( arg )
-    {   
+    {
         arg.type = 'text';
         var svgEl = nssvg.u( arg );
         if( arg.text ) {
@@ -389,7 +389,7 @@
     ///Similar to printText, but with innerHTML
     ///instead of plain text.
     nssvg.printTextInnerHTML = function( arg )
-    {   
+    {
         arg.type = 'text';
         var svgEl = nssvg.u( arg );
         if( has( arg, 'innerHTML' ) ){

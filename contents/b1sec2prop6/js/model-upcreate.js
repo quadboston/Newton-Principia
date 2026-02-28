@@ -9,13 +9,11 @@
     return;
 
 
-
     ///****************************************************
     /// model scenario
     /// is required; to skip define as ()=>{};
     ///****************************************************
-    function model_upcreate()
-    {
+    function model_upcreate (){
         const sectSpeed0 = ssD.sectSpeed0;
         const solvable = sn( 'solvable', ssD, true );
         //stdMod.builds_dq8sagit8displace({});
@@ -70,14 +68,14 @@
         rg.Y.pos[0] = projectionOfCenterOnTangent[0];
         rg.Y.pos[1] = projectionOfCenterOnTangent[1];
         {
-            const RCmedpos = ssF.mod2inn( RC, );
-            const RRmedpos = sconf.mod2inn_scale * Rc;
+            const RCmedpos = ssF.modpos2medpos( RC, );
+            const RRmedpos = sconf.mod2med * Rc;
             //todo nearly bug: why create svg and set cls every time?
             const CCName = 'curvatureCircle';
             var rgCC = toreg( CCName )();
             rgCC.svgel = nssvg.u({
                 svgel   : rgCC.svgel,
-                parent  : stdMod.mmedia,
+                parent  : stdMod.medScene,
                 type    : 'circle',
                 stroke  : rg.C.pcolor,
                 fill    : 'transparent',
@@ -96,7 +94,6 @@
         //================================================
         // \\// curvature circle
         //================================================
-
 
         //================================================
         // //\\ decorations
@@ -128,7 +125,6 @@
         // \\// PZ
         // \\// decorations
         //================================================
-
 
         //================================================
         // //\\ hides/shows split points

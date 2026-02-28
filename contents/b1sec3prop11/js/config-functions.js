@@ -11,7 +11,7 @@
     });
     return;
 
-    
+
     ///parameters are enclosed in closure for performance
     function recreates_q2xy()
     {
@@ -21,7 +21,7 @@
         const center = sconf.diagramOrigin;
         stdMod.q2xy = q2xy;
         return;
-        
+
         function q2xy( q )
         {
             q += fi0;
@@ -32,8 +32,8 @@
         }
     }
 
-    
-    
+
+
     function recreatesPosCorrector()
     {
         const dor = sconf.diagramOrigin;
@@ -42,7 +42,7 @@
         const fi0 = sconf.curveParFi0;
         stdMod.correctsPos8angle2angle = correctsPos8angle2angle;
         return;
-        
+
         ///pos to "virtual" andle
         function pos2t( newPos )
         {
@@ -53,8 +53,8 @@
                     //"virtueal" inner_angle fi0
         }
         ///corrects approximate mouse point to exact point on the circle
-        function correctsPos8angle2angle( pname, newPos, inner_angle ){
-            let rgX = rg[pname];
+        function correctsPos8angle2angle( shpid, newPos, inner_angle ){
+            let rgX = rg[shpid];
             if( typeof inner_angle === 'undefined' ){
                 inner_angle = pos2t( newPos );
             }
@@ -70,6 +70,6 @@
             pos[1] = newP[1];
             return pos;
         }
-    }    
+    }
 }) ();
 

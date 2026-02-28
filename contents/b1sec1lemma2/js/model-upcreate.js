@@ -23,24 +23,11 @@
 
 
 
-    function model_upcreate()
-    {
-        // //\\ rescaling
-        //      patch where only dr.ctrlPts_unscaled
-        //      is a model,
-        //let mscale = sconf.mod2inn_scale;
-        /*
-        dr.ctrlPts_unscaled.forEach( (pt,ix) => {
-            dr.ctrlPts[ix].x = pt[0]*mscale;
-            dr.ctrlPts[ix].y = pt[1]*mscale;
-        });
-        */
-        // \\// rescaling
-
+    function model_upcreate (){
         let max = numModel.ctrlPt_2_maxIx();
         let min = numModel.ctrlPt_2_minIx();
-        dr.figureParams.minX= dr.ctrlPts[min].x;
-        dr.figureParams.maxX= dr.ctrlPts[max].x;
+        dr.figureParams.minX= dr.rgCtrlPts[min].x;
+        dr.figureParams.maxX= dr.rgCtrlPts[max].x;
 
         study.calculates_microPoints();
         study.calculates_monotIntervals8ref();
@@ -58,8 +45,8 @@
         let fb = dr.figureParams;
         let max = numModel.ctrlPt_2_maxIx();
         let min = numModel.ctrlPt_2_minIx();
-        let minX = fb.minX = dr.ctrlPts[min].x;
-        let maxX = fb.maxX = dr.ctrlPts[max].x;
+        let minX = fb.minX = dr.rgCtrlPts[min].x;
+        let maxX = fb.maxX = dr.rgCtrlPts[max].x;
         let xRange = fb.maxX - fb.minX;
         let curveMicroPts = dr.curveMicroPts = [];
         let curveFun = numModel.curveFun;
@@ -76,7 +63,7 @@
         curveMicroPts.push([maxX,yy]);
     }
 
-    
+
 
     ///second point in changes contains first turning point
     ///if function is monotonic, then there is only

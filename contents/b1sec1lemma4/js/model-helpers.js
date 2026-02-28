@@ -22,7 +22,7 @@
         //-----------------------------------------------------------
         // //\\ establishes right curve pivot draggers
         //-----------------------------------------------------------
-        var cPivots          = sconf.originalPoints.curvePivots;
+        var cPivots          = ssD.curvePivots;
         var rightCurvePivots = sconf.originalPoints.rightCurvePivots;
         var T                = rg.ptransform.val;
 
@@ -107,7 +107,7 @@
             var rgDragger = rpivot.rgX;
             rgDragger.acceptPos = newPos =>
             {
-                var normPos = sconf.originalPoints.rightCurvePivots_normalized[ pix ].rgX.pos;
+                var normPos = ssD.rightCurvePivots_normalized[ pix ].rgX.pos;
                 var normPosX = normPos[0]; //stashed to block hor. move,
 
                 rgDragger.pos[1] = newPos[1];
@@ -125,7 +125,7 @@
                     normPos[0] = normPosX;
                 }
                 ///blocks curve movement below minimum line
-                var proposedNormPos = sconf.originalPoints.rightCurvePivots_normalized.map(
+                var proposedNormPos = ssD.rightCurvePivots_normalized.map(
                         rpivot =>[ rpivot.rgX.pos[0], rpivot.rgX.pos[1] ]
                 );
                 //for test, modifies only one one point in normalized array
@@ -177,7 +177,7 @@
         //-----------------------------------------------------------
         // //\\ establishes right curve pivots
         //-----------------------------------------------------------
-        var rpNorm = sconf.originalPoints.rightCurvePivots_normalized;
+        var rpNorm = ssD.rightCurvePivots_normalized;
         rpNorm.forEach( (rpivot,pix) => {
             var pos         = cPivots[ pix ].rgX.pos;
             rpivot.rgX.pos  = [ pos[0], pos[1] ];
@@ -312,13 +312,13 @@
     ///stashes for case if functions become less than fmin,
     function stashesPivots8functions()
     {
-        stasher.curvePivots = { posArray : sconf.originalPoints.curvePivots.map( pivot => (
+        stasher.curvePivots = { posArray : ssD.curvePivots.map( pivot => (
                 [ pivot.rgX.pos[0], pivot.rgX.pos[1] ]
         ))};
         stasher.leftFunction_dividedDifferences = rg.leftFunction.dividedDifferences;
 
         stasher.rightCurvePivots_normalized = { posArray :
-            sconf.originalPoints.rightCurvePivots_normalized.map( pivot => (
+            ssD.rightCurvePivots_normalized.map( pivot => (
                 [ pivot.rgX.pos[0], pivot.rgX.pos[1] ]
         ))};
         stasher.rightFunction_dividedDifferences = rg.rightFunction.dividedDifferences;
@@ -329,14 +329,14 @@
     function restoresPivots8functions()
     {
         var stashedPos = stasher.curvePivots.posArray;
-        sconf.originalPoints.curvePivots.forEach( (pivot, pix) => {
+        ssD.curvePivots.forEach( (pivot, pix) => {
             pivot.rgX.pos[0] = stashedPos[pix][0];
             pivot.rgX.pos[1] = stashedPos[pix][1];
         });
         rg.leftFunction.dividedDifferences = stasher.leftFunction_dividedDifferences;
 
         var stashedPos = stasher.rightCurvePivots_normalized.posArray;
-        sconf.originalPoints.rightCurvePivots_normalized.forEach( (pivot, pix) => {
+        ssD.rightCurvePivots_normalized.forEach( (pivot, pix) => {
             pivot.rgX.pos[0] = stashedPos[pix][0];
             pivot.rgX.pos[1] = stashedPos[pix][1];
         });

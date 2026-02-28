@@ -28,12 +28,12 @@
     ///     line.svgel
     /// Input:
     ///     required:
-    ///         pName - kname of line in rg,
-    ///         pivots - as in args or in rg[ pName ], specifically:
+    ///         shpid - kname of line in rg,
+    ///         pivots - as in args or in rg[ shpid ], specifically:
     ///                     pivots[0].medpos, pv1.medpos
     ///
     ///     optional:
-    ///         line as toreg( pName )
+    ///         line as toreg( shpid )
     ///         lineAttr.stroke
     ///         lineAttr[ 'stroke-width' ]
     ///         lineAttr.cssClass
@@ -43,9 +43,9 @@
     ///         sconf.thickness
     ///
     /// Output: adds pivots-media-positions to line
-    function pivots_2_svgLineInRg( pName, pivots, lineAttr ){
+    function pivots_2_svgLineInRg( shpid, pivots, lineAttr ){
         var lineAttr    = lineAttr || {};
-        var line        = toreg( pName )();
+        var line        = toreg( shpid )();
         pivots          = pivots || haz( line, 'pivots' );
         var vectorTipIx = haz( line, 'vectorTipIx' );
         if( has( line, 'stroke-width' )){
@@ -57,14 +57,14 @@
         let pv0 = pivots[0];
         let pv1 = pivots[1];
         if( haz( pv0, 'unscalable' ) ) {
-            pv0.medpos = ssF.mod2inn_original( pv0.pos );
+            pv0.medpos = ssF.modpos2medpos_original( pv0.pos );
         } else if( !has(pv0, 'medpos' ) ) {
-            pv0.medpos = ssF.mod2inn( pv0.pos );
+            pv0.medpos = ssF.modpos2medpos( pv0.pos );
         }
         if( haz( pv1, 'unscalable' ) ) {
-            pv1.medpos = ssF.mod2inn_original( pv1.pos );
+            pv1.medpos = ssF.modpos2medpos_original( pv1.pos );
         } else if( !has(pv1, 'medpos' ) ) {
-            pv1.medpos = ssF.mod2inn( pv1.pos );
+            pv1.medpos = ssF.modpos2medpos( pv1.pos );
         }
         var pivotsMedPos= [ pv0.medpos, pv1.medpos ];
 
@@ -77,7 +77,7 @@
         if( !dressed ) {
             ////longer part of optimization: creates svg
             var tpclass = sDomF.tpid2low(
-                          ( ns.haz( lineAttr, 'tpclass' ) ) || pName
+                          ( ns.haz( lineAttr, 'tpclass' ) ) || shpid
             );
             var ww          = sDomF.tpid0arrc_2_rgba( tpclass );
             var stroke      = ns.haz( line, 'pcolor' ) || han( lineAttr, 'stroke', ww );
@@ -86,12 +86,12 @@
             //adds params to line:
             var finalTp         = haz( line, 'notp' ) ? 'notp-' : 'tp-';
             line.finalCssClass  = cssClass + finalTp + tpclass;
-            line.pname          = pName;
+            line.shpid          = shpid;
 
             ///patch for lemma 4 for lines aka
             //leftbar-1-left-bottom,leftbar-1-right-bottom pivotNames
-            if( has( pv0, 'pname' ) && has( pv1, 'pname' )){
-                line.pivotNames     = [ pv0.pname, pv1.pname ];
+            if( has( pv0, 'shpid' ) && has( pv1, 'shpid' )){
+                line.pivotNames     = [ pv0.shpid, pv1.shpid ];
             } else {
                 //patch for lemma 4
                 sn( 'pivotNames', line. null );
@@ -100,17 +100,17 @@
             var argsvg = {
                 svgel   : ns.haz( line, 'svgel' ),
 
-                parent  : stdMod.mmedia,
+                parent  : stdMod.medScene,
                 //todm everywhere in this module:
-                //parent  : stdMod.mmedia,
+                //parent  : stdMod.medScene,
 
                 pivots      : pivotsMedPos,
                 'stroke-width' : line.finalStrokeWidth.toFixed(4),
                 'stroke-linecap' : 'round'
             }
-            ///shapes without pName presribed in Topics do
+            ///shapes without shpid presribed in Topics do
             ///paint colors in own atributes
-            var low_tpID = nsmethods.tpid2low( pName );
+            var low_tpID = nsmethods.tpid2low( shpid );
             var tpactive = haz( lowtpid_2_glocss8anchorRack, low_tpID );
             if( !tpactive ) {
                 argsvg.stroke = line.stroke;
@@ -179,7 +179,7 @@
                 fill            : stroke, //line.pcolor,
                 "stroke-width"  : haz( lineAttr, "stroke-width" ) || 1,
                 svgel           : line.pnameLabelsvg,
-                parent          : stdMod.mmedia,
+                parent          : stdMod.medScene,
                 style           : {
                     'font-size' : fontSize.toFixed() + 'px',
                     'line-height' : '1',
@@ -196,7 +196,7 @@
         line.pnameLabelsvg$
             .aNS( 'x', finalPosX.toFixed()+'px' )
             .aNS( 'y', finalPosY.toFixed()+'px' )
-            .tgcls( 'undisplay', ns.haz( rg[ line.pname ], 'undisplay' ) )
+            .tgcls( 'undisplay', ns.haz( rg[ line.shpid ], 'undisplay' ) )
             ;
         line.pnameLabelsvg$.tgcls(
             'undisplay',
@@ -243,7 +243,7 @@
         ];
         line.vectorArrowSvg = sv.polyline({
             svgel   : ns.haz( line, 'vectorArrowSvg' ),
-            parent  : stdMod.mmedia,
+            parent  : stdMod.medScene,
             pivots,
             //'stroke-width' : strokeWidth * sconf.thickness,
         });
@@ -321,8 +321,8 @@
         tostroke,
     ){
         var CLOSED_POLYLINE = true;
-        var pName = pNames.join( correctJoin ? '--' : '');
-        var pivots = pNames.map( pname => rg[ pname ].medpos );
+        var shpid = pNames.join( correctJoin ? '--' : '');
+        var pivots = pNames.map( shpid => rg[ shpid ].medpos );
         if( CLOSED_POLYLINE ) {
             pivots.push( pivots[0] );
         }
@@ -339,16 +339,16 @@
            'stroke-width'  : 2,
         };
         var tpclass = sDomF.tpid2low(
-                      ( ns.haz( attr, 'tpclass' ) ) || pName
+                      ( ns.haz( attr, 'tpclass' ) ) || shpid
         );
         var cssClass    = ns.h( attr, 'cssClass' ) ? attr['cssClass'] + ' ' :  '';
         var stroke      = han( attr, 'stroke', sDomF.tpid0arrc_2_rgba( tpclass ) );
         var strokeWidth = han( attr, 'stroke-width', 1 );
-        var poly        = toreg( pName )();
+        var poly        = toreg( shpid )();
         if( typeof undisplay !== 'undefined' && undisplay !== null ) { //was a bug
             poly.undisplay = undisplay;
         }
-        poly.pname      = pName;
+        poly.shpid      = shpid;
         //c cc( 'master function for polygons, pNames=', pNames );
         poly.pivotNames = pNames.concat(); //clones array
         poly.pNames     = pNames;
@@ -357,7 +357,7 @@
         poly.svgel = sv.polyline({
             svgel   : ns.haz( poly, 'svgel' ),
             stroke,
-            parent  : stdMod.mmedia,
+            parent  : stdMod.medScene,
             pivots,
             'stroke-width' : strokeWidth * sconf.thickness,
         });
@@ -383,11 +383,11 @@
         var CLOSED_POLYLINE = true;
         var pNames = poly.pNames;
         if( poly.UPDATE_MPOS_BEFORE_POLY ) {
-            let mod2inn = ssF.mod2inn;
-            pNames.forEach( pname =>
-                { rg[ pname ].medpos = mod2inn( rg[ pname ].pos ) } );
+            let modpos2medpos = ssF.modpos2medpos;
+            pNames.forEach( shpid =>
+                { rg[ shpid ].medpos = modpos2medpos( rg[ shpid ].pos ) } );
         }
-        var pivots = pNames.map( pname => rg[ pname ].medpos );
+        var pivots = pNames.map( shpid => rg[ shpid ].medpos );
         if( CLOSED_POLYLINE ) {
             pivots.push( pivots[0] );
         }
@@ -407,17 +407,17 @@
     function paintTriangle( triangleId, cssCls, tpclass, defaultFill, )
     {
         var triang = rg[ triangleId ];
-        var mod2inn = ssF.mod2inn;
+        var modpos2medpos = ssF.modpos2medpos;
         var vertices = triang.vertices.map( pos => {
-            return mod2inn( pos, );
+            return modpos2medpos( pos, );
         });
         var dressed = ownProp.call( triang, 'shapeIsAlreadyDressed' );
         if( !dressed ) {
-            triang.mmedia = stdMod.mmedia;
+            triang.mscene = stdMod.medScene; //todo rid of this prop?
             var svgarg = {
                 pivots  : vertices,
                 svgel   : triang.svgel,
-                parent  : triang.mmedia,
+                parent  : triang.mscene,
             };
             if( defaultFill ) {
                 svgarg.fill = defaultFill;

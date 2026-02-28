@@ -4,7 +4,7 @@
         sn, $$,
         has, haz, haf, hafa,
         sapp, fapp,
-        fconf,
+        fconf, sconf,
         fmethods,
         stdMod,
         rg,
@@ -51,7 +51,7 @@
         //was: hafa( stdMod, 'astate_2_rg8model8media' )( ... match[1] ], match[1] );
         hafa( stdMod, 'astate_2_rg8model8media' )( ssD.capture[ captureKeyName ] );
     }
-    
+
     function setupEvents()
     {
         window.addEventListener( 'resize', fullResize );
@@ -74,7 +74,7 @@
 
     function does_set_next_lemma_button_event( direction )
     {
-        var pager$ = direction === 'right' ? sDomN.rightButton$ :       
+        var pager$ = direction === 'right' ? sDomN.rightButton$ :
                      sDomN.leftButton$;
 
         var mList = fconf.sappId2lemmaDef[ fconf.sappId ];
@@ -96,7 +96,7 @@
                 var wwFullCaption = direction === 'right' ? fullCaption : fullCaption + ' ';
             } else {
                 var wwFullCaption = '';
-            } 
+            }
             pager$.html( direction === 'right' ?
                 '<img alt="forward arrow" src="' + fconf.engineImg +
                 '/right-page-triangle.svg"> ' +
@@ -113,47 +113,73 @@
             });
         }
     }
-    
 
-    function attachWeelToDomEl( domel$, )
-    {
+
+    function attachWeelToDomEl( domel$, ){
         const WHEEL_SCALE_FOR_SCROLL_MODE = 0.001;
         domel$.e( 'wheel', wheelHandler );
 
         function wheelHandler( ev ) {
             if( ev.altKey ) {
                 ////does roaming
-                //doHandle( { move : 2, value : ev.deltaY, target : 'msprite' }, ev );
+                //doHandle( { move : 2, value : ev.deltaY,
+                //target : 'msprite' }, ev );
             } else {
                 ////does scrolling
                 doHandle( ev );
             }
         }
 
-        function doHandle( ev )
-        {
+        function doHandle( ev ){
             stopAftershocks( ev );
             sDomF.detected_user_interaction_effect( !'not-moved' );
-            var newScale =
+            var formerScale = rg.medzoom.value;
+            var newZoom =
                 Math.exp(
-                    Math.log( rg.media_scale.value ) +
+                    Math.log( rg.medzoom.value ) +
                         ev.deltaY * WHEEL_SCALE_FOR_SCROLL_MODE
                 );
+            //=============================================
+            // //\\ recenteres model center on media
+            //=============================================
+            //      to keep modpos view on meadia unmovable
+            //      to provide pleasant user experience.
+            //1) finds out point position medpos in media
+            //recall: d8dp.deviceFW dragSurface ===
+            //dragSurface::lemmaFW === stdMod.medParent,
+            const simbox = stdMod.medParent.getBoundingClientRect();
+            var dspos = [
+                Math.round( event.clientX - simbox.left ),
+                Math.round( event.clientY - simbox.top )
+            ];
+            var medpos = sDomF.dspos2medpos( dspos );
+            //2) finds out point position in model
+            var modpos = ssF.medpos2modpos( medpos );
 
-            var validated = rg.media_scale.value2validate2pos( newScale );
-            if( !validated ) return;
-            rg.media_scale.value = newScale;
-            rg.media_scale.stdMod = stdMod;
-            ssF.scaleValue2app( newScale, ); //resets applic. state to new scale
-            rg.media_scale.modPos_2_GUI();
+            const increase = sconf.mod2med_original *
+                (newZoom - rg.medzoom.value);
+            //does compensate origin to keep modpos view initact
+            sconf.modorInPicX -= modpos[0] * increase;
+            //+= means monitor Y flip
+            sconf.modorInPicY += modpos[1] * increase;
+            rg['media-mover'].achieved.achieved = [
+                sconf.modorInPicX,
+                sconf.modorInPicY
+            ];
+            //=============================================
+            // \\// recenteres model center on media
+            //=============================================
+
+            rg.medzoom.value = newZoom;
+            ssF.newzoom2app( newZoom, ); //resets applic. state to new scale
             stdMod.model8media_upcreate();
         };
 
-        function stopAftershocks( ev )
-        {
+        function stopAftershocks( ev ){
             ev.preventDefault();
             //this.event.cancelBubble = true;
-            //historical? https://developer.mozilla.org/en-US/docs/Web/API/Event/cancelBubble
+            //historical? https://developer.mozilla.org/en-US/docs
+            // /Web/API/Event/cancelBubble
             //very good: https://javascript.info/bubbling-and-capturing
             if( ev.stopImmediatePropagation ) {
                 ////missed on Android 2.?.?

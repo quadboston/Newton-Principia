@@ -1,14 +1,16 @@
-( function() {
-    var { sn, $$, eachprop, fconf, sconf, ssF, ssD, sDomF, toreg, rg, amode, } =
-        window.b$l.apptree({ stdModExportList : { allPathRacks_2_unseenSVGs, }, });
+(function(){
+    const { sn, $$, eachprop, fconf, sconf, ssF, ssD,
+            sDomF, toreg, rg, amode, } =
+          window.b$l.apptree({ stdModExportList :
+              { allPathRacks_2_unseenSVGs, }
+    });
     return;
 
 
     ///this fun. completes the split model and media code,
-    function allPathRacks_2_unseenSVGs()
-    {
+    function allPathRacks_2_unseenSVGs (){
         var pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
-        var rg8pos_2_svg    = ssF.rgPos2rgMedia;
+        var rgxpoint2updatedSvg    = ssF.rgxpoint2updatedSvg;
         var paintTriangle   = ssF.paintTriangle;
 
         var S               = rg.S.pos;
@@ -29,7 +31,7 @@
             //---------------------------------------------------------
             var pkey = 'path-' + pix;
             pathRacks[ pix ].undisplay = true;
-            rg8pos_2_svg(
+            rgxpoint2updatedSvg(
                 pkey,
                   {
                     'fill' : 'transparent',
@@ -70,7 +72,8 @@
                     pkey,       //triangleId
                     cssCls,
                     tpclass,
-                    '', //rgba( 100,100,255,0.2)'    //for svgarg.fill = defaultFill
+                    '', //rgba( 100,100,255,0.2)'
+                    //for svgarg.fill = defaultFill
                 );
             }
             //---------------------------------------------------------
@@ -101,12 +104,12 @@
                 toreg( ffkey0 )({ undisplay : true })();
                 toreg( ffkey1 )({ undisplay : true })();
 
-                rg8pos_2_svg( ffkey0, {
+                rgxpoint2updatedSvg( ffkey0, {
                     fill:'transparent',
                     tpclass : 'force-_move hidden',
                 } );
                 //paints tip of the force in red
-                rg8pos_2_svg( ffkey1, {
+                rgxpoint2updatedSvg( ffkey1, {
                     //fill:'red',
                     cssClass:'tofill',
                     tpclass : 'force-_move hidden',
@@ -157,7 +160,7 @@
         freePath.forEach( (pt, pix) => {
             var pkey = 'freepath-' + pix;
             toreg( pkey )({ undisplay : true })();
-            rg8pos_2_svg(
+            rgxpoint2updatedSvg(
                 pkey,
                   {
                     cssClass: 'tofill tostroke ' + theor1proof,

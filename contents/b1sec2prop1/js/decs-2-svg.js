@@ -11,7 +11,7 @@
         setModule,
     });
     var pivots_2_svgLineInRg;
-    var rgPos2rgMedia;
+    var rgxpoint2updatedSvg;
     var handleR = 5;
     return;
 
@@ -19,10 +19,10 @@
     function setModule()
     {
         pivots_2_svgLineInRg = ssF.pivots_2_svgLineInRg;
-        rgPos2rgMedia = ssF.rgPos2rgMedia;
+        rgxpoint2updatedSvg = ssF.rgxpoint2updatedSvg;
     }
 
-    ///ssF.rgPos2rgMedia = pos2pointy; //modifies svg-dom
+    ///ssF.rgxpoint2updatedSvg = pos2pointy; //modifies svg-dom
     function SAvV_model__2__svg()
     {
         //==========================================
@@ -30,9 +30,9 @@
         //      "Wrong code". Does not match this sub
         //      definition.
         //==========================================
-        ['S'].forEach( pname => {
-            ssF.rgPos2rgMedia(
-                pname,
+        ['S'].forEach( shpid => {
+            ssF.rgxpoint2updatedSvg(
+                shpid,
                 {
                     cssClass: 'tofill tostroke',
                 }
@@ -49,7 +49,7 @@
         //
         //      but, white core will be put even over this point
         //-------------------------------------------------
-        rgPos2rgMedia(
+        rgxpoint2updatedSvg(
             'A',
             {
                 'fill' : 'white', //? fake prop, no effect
@@ -68,7 +68,7 @@
         //      put this el-definition last to
         //      override all other graphics
         //-------------------------------------------------
-        rgPos2rgMedia(
+        rgxpoint2updatedSvg(
             'v',
             {
                 //this possibly collides with white filling
@@ -93,7 +93,7 @@
         //      making them in arbitrary time position and not
         //      in point B,
         //-------------------------------------------------
-        rgPos2rgMedia(
+        rgxpoint2updatedSvg(
             'V',
             {
                 //this possibly collides with white filling

@@ -12,8 +12,11 @@
     return;
 
 
-    function init_conf()
-    {
+    function init_conf (){
+        //todo true makes a bug
+        //in amode8captures in prop 41
+        sf.mediaMover_isDisabled = false;
+
         //----------------------------------
         // //\\ study model parameters
         //----------------------------------
@@ -47,7 +50,7 @@
 
                     //model's spacial unit expressed in pixels of the picture:
                     //vital to set to non-0 value
-                    var mod2inn_scale = C[1] - V[1];
+                    var mod2med = C[1] - V[1];
 
                     var A = [C[0], 39];
                     var B = [464,  A[1]];
@@ -79,7 +82,6 @@
         sconf.default_tp_lightness = 30;
         sconf.TP_OPACITY_FROM_fixed_colors = true;
         TP_OPACITY_LOW = 0.3;
-        TP_OPACITY_LOW_POINT = 1;
         TP_OPACITY_HIGH = 1;
         TP_OPACITY_FROM_fixed_colors = false;
         // \\// does override engine defaults,
@@ -504,7 +506,7 @@
             originY_onPicture,
             pictureWidth,
             pictureHeight,
-            mod2inn_scale,
+            mod2med,
         });
     }
 })();

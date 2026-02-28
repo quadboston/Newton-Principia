@@ -27,9 +27,9 @@
     {
         var { logic_phase, aspect, subessay } = amode;
         var ADDENDUM = aspect === 'addendum';
-        var media_scale = toreg( 'media_scale' )();
-        rg.media_scale.value = 1;
-        ssF.scaleValue2app( rg.media_scale.value, stdMod );
+        var medzoom = toreg( 'medzoom' )();
+        rg.medzoom.value = 1;
+        ssF.newzoom2app( rg.medzoom.value, stdMod );
         rg.S.pos[0] = -sconf.ellipseFocus;
         rg.S.pos[1] = 0;
         rg.SS.undisplay = true;

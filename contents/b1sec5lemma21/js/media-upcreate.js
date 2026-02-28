@@ -40,7 +40,7 @@
         branches2svg();
         createMedia0updateMediaAUX();
         if( ssF.mediaModelInitialized ) {
-            stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
+            stdMod.lemmaD8D && stdMod.lemmaD8D.updateAllDecPoints();
         }
         ssF.upcreate_mainLegend(); //placed into "slider"
         ssF.mediaModelInitialized = true;
@@ -60,12 +60,12 @@
             stepsCount : 20,
             x0 : rg.C.medpos[0],
             y0 : rg.C.medpos[1],
-            a  : sconf.mod2inn_scale*ANGLE_SIZE*1.5,
-            b  : sconf.mod2inn_scale*ANGLE_SIZE*1.5,
+            a  : sconf.mod2med*ANGLE_SIZE*1.5,
+            b  : sconf.mod2med*ANGLE_SIZE*1.5,
             t0 : 0,
             t1 : rg.alpha.value*sconf.MONITOR_Y_FLIP,
             svgel : rg.alpha.angleSvg,
-            parent : stdMod.mmedia,
+            parent : stdMod.medScene,
             fill : 'transparent',
             'stroke-width':1,
         });
@@ -73,21 +73,21 @@
 
         rg.beta.angleSvg = nssvg.ellipseSector({
             stepsCount : 20,
-            // //\\ todm ... mod2inn_scale must be incapsulated in model
+            // //\\ todm ... mod2med must be incapsulated in model
             //instead we are converting from model to media manually here
             //it is very annoying to always remember to
             //make a correction with MONITOR_Y_FLIP ...
             //todm ... do a better programming
             x0 : rg.B.medpos[0],
             y0 : rg.B.medpos[1],
-            a  : sconf.mod2inn_scale*ANGLE_SIZE*1.5,
-            b  : sconf.mod2inn_scale*ANGLE_SIZE*1.5,
+            a  : sconf.mod2med*ANGLE_SIZE*1.5,
+            b  : sconf.mod2med*ANGLE_SIZE*1.5,
             t0 : Math.PI-rg.beta.value*sconf.MONITOR_Y_FLIP,
-            // \\// todm ... mod2inn_scale must be incapsulated in model
+            // \\// todm ... mod2med must be incapsulated in model
 
             t1 : Math.PI,
             svgel : rg.beta.angleSvg,
-            parent : stdMod.mmedia,
+            parent : stdMod.medScene,
             fill : 'transparent',
             'stroke-width':1,
             //a, b, t0, t1
@@ -128,14 +128,14 @@
             stepsCount : 20,
             x0 : rg.C.medpos[0],
             y0 : rg.C.medpos[1],
-            //a  : sconf.mod2inn_scale*AG.abs*0.3,
-            //b  : sconf.mod2inn_scale*AG.abs*0.3,
-            a  : sconf.mod2inn_scale*ANGLE_SIZE,
-            b  : sconf.mod2inn_scale*ANGLE_SIZE,
+            //a  : sconf.mod2med*AG.abs*0.3,
+            //b  : sconf.mod2med*AG.abs*0.3,
+            a  : sconf.mod2med*ANGLE_SIZE,
+            b  : sconf.mod2med*ANGLE_SIZE,
             t0 : alphaS*sconf.MONITOR_Y_FLIP,
             t1 : (alphaS + rg.alpha.value) * sconf.MONITOR_Y_FLIP,
             svgel : rg.alpha.appliedAngleSvg,
-            parent : stdMod.mmedia,
+            parent : stdMod.medScene,
             fill : 'rgba( 155, 155, 0, 0.3 )',
             stroke: 'transparent',
             'stroke-width':1,
@@ -151,12 +151,12 @@
             stepsCount : 20,
             x0 : rg.B.medpos[0],
             y0 : rg.B.medpos[1],
-            a  : sconf.mod2inn_scale*ANGLE_SIZE,
-            b  : sconf.mod2inn_scale*ANGLE_SIZE,
+            a  : sconf.mod2med*ANGLE_SIZE,
+            b  : sconf.mod2med*ANGLE_SIZE,
             t0 : betaS*sconf.MONITOR_Y_FLIP,
             t1 : (betaS - rg.beta.value) * sconf.MONITOR_Y_FLIP,
             svgel : rg.beta.appliedAngleSvg,
-            parent : stdMod.mmedia,
+            parent : stdMod.medScene,
             fill : 'rgba( 155, 155, 0, 0.3 )',
             stroke: 'transparent',
             'stroke-width':1,
@@ -187,7 +187,7 @@
                 nssvg.branch2svg(br);
             } else {
                 ////makes ellipse first to put point over it later
-                br.parent = stdMod.mmedia;
+                br.parent = stdMod.medScene;
                 br['stroke-width'] = 3;
                 br.stroke = ns.arr2rgba( tpid2arrc_repo[ "ellipse" ] );
                 br.svgel = nssvg.branch2svg(br);

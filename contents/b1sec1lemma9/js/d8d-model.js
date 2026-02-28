@@ -22,24 +22,14 @@
     return;
 
 
-
-
-
-
-
-
-
-
     //==========================================
     // //\\ inits drag points
     //==========================================
-    function initDragModel( medD8D )
-    {
+    function initDragModel( lemmaD8D ){
         var modCurvPivots   = ssD.curvePivots;
         var yflip           = sconf.MONITOR_Y_FLIP;
         var yRange          = sconf.APP_MODEL_Y_RANGE;
         var mat             = sn( 'mat' );
-
 
         //==========================================
         // //\\ sets drag points
@@ -52,11 +42,11 @@
         wpoint.dragDecorColor   = sDomF.tpid0arrc_2_rgba( 'given' );
         wpoint.dragPriority     = 9;
         wpoint.spinnerClsId       = 'B';
-        createDragger({
+        rgx2dragwraps({
             achieved    : sconf.claimRatio,
             pointWrap   : wpoint,
             cssClasses  : ['axis-y'],
-            doProcess   : function( arg )
+            finish_DownMoveUp : function( arg )
             {
                 var ach = arg.pointWrap.achieved;
                 switch( arg.down_move_up ) {
@@ -73,8 +63,8 @@
                         var startDy = ach.achieved * Ey;
                         var newDy   = Math.min(
                                         Ey * claimRatio_max,
-                                        startDy - arg.surfMove[1] * sconf.inn2mod_scale *
-                                        sDomF.out2inn()
+                                        startDy - arg.surfMove[1] * sconf.med2mod *
+                                        sDomF.ds2med()
                                       );
                         newDy = Math.max( newDy, Ey*0.01 ); //todm make ranges in conf
                         ssD.claimRatio = newDy/Ey;
@@ -101,11 +91,11 @@
         var wpoint              = rg.E;
         wpoint.dragDecorColor   = ns.haz( rg.E, 'pcolor' ) || sDomF.tpid0arrc_2_rgba( 'given' );
         wpoint.spinnerClsId       = 'E';
-        createDragger({
+        rgx2dragwraps({
             achieved            : rg.E.pos.concat([]),
             pointWrap           : wpoint,
             cssClasses          : ['axis-y'],
-            doProcess : function( arg )
+            finish_DownMoveUp : function( arg )
             {
                 var ach = arg.pointWrap.achieved;
                 switch( arg.down_move_up ) {
@@ -121,7 +111,7 @@
                         const modC = bezier.parT2point( ssD.tC, modCurvPivots );
 
                         //Dragger offset in y direction relative to initial dragger position (note dragger offset and diagram use different scales).
-                        const yOffset = sDomF.out2inn() * sconf.inn2mod_scale * arg.surfMove[1] * yflip;
+                        const yOffset = sDomF.ds2med() * sconf.med2mod * arg.surfMove[1] * yflip;
 
                         //Calculate and constrain the new tiltAngle (angle of line EC from perspective of E)
                         const newEy = ach.achieved[1] + yOffset;
@@ -152,11 +142,11 @@
         wpoint.dragDecorColor   = sDomF.tpid0arrc_2_rgba( 'given' );
 
         if( !sconf.hideProofSliderCompletely ){
-            createDragger({
+            rgx2dragwraps({
                 achieved            : sconf.tC,
                 pointWrap           : rg.C,
                 cssClasses          : ['green'],
-                doProcess : function( arg )
+                finish_DownMoveUp : function( arg )
                 {
                     var ach = arg.pointWrap.achieved;
                     switch( arg.down_move_up ) {
@@ -169,7 +159,7 @@
                              var startCx = bezier.parT2point(
                                            ach.achieved, modCurvPivots )[0];
                              var newCx = startCx + arg.surfMove[0] *
-                                         sconf.inn2mod_scale * sDomF.out2inn();
+                                         sconf.med2mod * sDomF.ds2med();
                              newCx = Math.max( newCx, Cx_min );
                              //c cc( 'start Ex=' + startCx + ' start tC=' + ach.achieved +
                              //     ' arg.move[0]=' + arg.move[0] );
@@ -204,11 +194,11 @@
         var wpoint              = rg.pivotPoint1;
         wpoint.dragDecorColor   = ns.haz( rg.pivotPoint1, 'pcolor' ) || sDomF.tpid0arrc_2_rgba( 'proof' );
         wpoint.spinnerClsId     = 'pivotPoint1';
-        createDragger({
+        rgx2dragwraps({
             achieved            : ssD.curvePivots[1].concat([]),
             pointWrap           : wpoint,
             cssClasses          : ['axis-x'],
-            doProcess : function( arg )
+            finish_DownMoveUp : function( arg )
             {
                 var ach = arg.pointWrap.achieved;
                 var pv = ssD.curvePivots[1];
@@ -222,8 +212,8 @@
                     break;
                     case 'move':
                         //Dragger offset in x direction relative to initial dragger position (note dragger offset and diagram use different scales).
-                        const wwMed = sDomF.out2inn();
-                        const xOffset = wwMed * sconf.inn2mod_scale * arg.surfMove[0];
+                        const wwMed = sDomF.ds2med();
+                        const xOffset = wwMed * sconf.med2mod * arg.surfMove[0];
 
                         //Calculate the new bezier middle pivot, ensure it's on line ec.
                         //Would be (newX, yRange) if line ec was horizontal.  Then tiltAngle adds or subtracts in the y direction.
@@ -251,11 +241,11 @@
         wpoint.dragDecorColor   = ns.haz( rg.pivotPoint2, 'pcolor' ) || sDomF.tpid0arrc_2_rgba( 'given' );
         wpoint.spinnerClsId        = 'pivotPoint2';
 
-        createDragger({
-            achieved            : sconf.curvePivots[2].concat([]),
+        rgx2dragwraps({
+            achieved            : ssD.curvePivots[2].concat([]),
             pointWrap           : wpoint,
             cssClasses          : ['given','rotate'],
-            doProcess : function( arg )
+            finish_DownMoveUp : function( arg )
             {
                 var ach = arg.pointWrap.achieved;
                 var pv = ssD.curvePivots[2];
@@ -264,9 +254,9 @@
                                  sDomF.detected_user_interaction_effect();
                     break;
                     case 'move':
-                        var wwMed = sDomF.out2inn();
-                        var mx = wwMed * sconf.inn2mod_scale * arg.surfMove[0];
-                        var my = wwMed * sconf.inn2mod_scale * arg.surfMove[1] * yflip;
+                        var wwMed = sDomF.ds2med();
+                        var mx = wwMed * sconf.med2mod * arg.surfMove[0];
+                        var my = wwMed * sconf.med2mod * arg.surfMove[1] * yflip;
 
                         var newX = ach.achieved[0] + mx;
                         var newY = ach.achieved[1] + my;
@@ -287,9 +277,7 @@
         ns.globalCss.update(); //for decorator
         return;
 
-
-
-        function createDragger( argc )
+        function rgx2dragwraps( argc )
         {
             var pointWrap        = argc.pointWrap;
             pointWrap.dragDecorColor = pointWrap.dragDecorColor || 'red';
@@ -301,71 +289,11 @@
                 });
                 argc.orientation = orientation;
             }
-            medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE( argc );
+            lemmaD8D.pointWrap_2_dragWraps( argc );
         }
     };
     //==========================================
     // \\// inits drag points
     //==========================================
-
-
-
-
-    /*
-    //====================
-    // //\\ finds draggee
-    //====================
-    ///Uses:    sDomF.outparent2inn( testPoint );
-    ///
-    ///Returns: point drag Wrap
-    ///         which is closest to testPoint.
-    function findDraggee( testPoint, dragWraps )
-    {
-        //.if distance to testPoint is "outside" of this par.,
-        //.then dragWrap is not "considered" for drag
-        var DRAGGEE_HALF_SIZE = fconf.DRAGGEE_HALF_SIZE;
-
-        //:for Pif. metric
-        //var DRAGGEE_HALF_SIZE2 = sconf.DRAGGEE_HALF_SIZE;
-        //DRAGGEE_HALF_SIZE2 *= DRAGGEE_HALF_SIZE2;
-
-        var closestDragWrap = null;
-        var closestTd = null;
-        //.the bigger is priority, the more "choicable" is the drag Wrap point
-        var closestDragPriority = 0;
-
-        var testMedpos = sDomF.outparent2inn( testPoint );
-        var testMediaX = testMedpos[0];
-        var testMediaY = testMedpos[1];
-        //c cc( '\n\n****', testPoint, testMediaX, testMediaY,
-        //' wwMed='+wwMed );
-
-        dragWraps.forEach( function( dragWrap, dix ) {
-            var dragPoint   = dragWrap.pointWrap;
-            var tdX         = Math.abs( testMediaX - dragPoint.medpos[0] );
-            var tdY         = Math.abs( testMediaY - dragPoint.medpos[1] );
-            var td          = Math.max( tdX, tdY );
-            //Pif. metric: var td2     = tdX*tdX + tdY*tdY;
-            //c cc( 'test: td=' + td + ' dp=' + dragPoint.medpos[0] + ' ' + dragPoint.medpos[1] );
-
-            //.td is a "rect-metric" for distance between testPoint and drag-point-candidate
-            if( td <= DRAGGEE_HALF_SIZE ) {
-                //c cc( 'test:' + dragPoint.spinnerClsId + ' ' + td, dragPoint.medpos);
-                if( !closestDragWrap || closestTd > td ||
-                    (dragPoint.dragPriority || 0 ) > closestDragPriority ) {
-                    closestDragWrap = dragWrap;
-                    closestTd = td;
-                    closestDragPriority = dragPoint.dragPriority || 0;
-                    //c cc( dragPoint.spinnerClsId + ' ' + td );
-               }
-            }
-        });
-        return closestDragWrap;
-    }
-    */
-    //====================
-    // \\// finds draggee
-    //====================
-
-}) ();
+})();
 

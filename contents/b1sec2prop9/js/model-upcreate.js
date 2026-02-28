@@ -81,15 +81,15 @@
         rg.Y.pos[0] = projectionOfCenterOnTangent[0];
         rg.Y.pos[1] = projectionOfCenterOnTangent[1];
 
-        var RCmedpos = ssF.mod2inn( RC, stdMod );
-        var RRmedpos = sconf.mod2inn_scale * Rc;
+        var RCmedpos = ssF.modpos2medpos( RC, stdMod );
+        var RRmedpos = sconf.mod2med * Rc;
 
         //todo nearly bug: why create svg and set cls every time?
         var curvatureCircleName = 'curvatureCircle';
         var rgCurvatureCircle = toreg( curvatureCircleName )();
         rgCurvatureCircle.svgel = nssvg.u({
             svgel   : rgCurvatureCircle.svgel,
-            parent  : stdMod.mmedia,
+            parent  : stdMod.medScene,
             type    : 'circle',
             stroke  : rg.C.pcolor,
             fill    : 'transparent',

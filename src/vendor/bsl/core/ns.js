@@ -36,15 +36,13 @@
         ///if prop does not exist, returns primitive-value of undefined type,
         ///if exists, returns this prop,
         ///this funct. will be attached to object-like JS-entity,
-        function returnOwnPropertyIfExist()
-        {
-            var wwHas = shortcutInClosure_for_speed;
-            var und = undef;
-            return ( function(pname) {
-                return wwHas.call( this, pname ) ? this[ pname ] : und;
+        function returnOwnPropertyIfExist (){
+            const ownp = shortcutInClosure_for_speed;
+            const und = undef;
+            return (function(id) {
+                return ownp.call( this, id ) ? this[id] : und;
             });
         }
-
 
         var ns = window[ APP_NAME ];
         if( ns ) {
@@ -173,7 +171,7 @@
             return ret;
         }
 
-        ///if property does not exist, returns empty object;
+        ///if property does not exist, returns empty js-object;
         //    otherwise, returns property which is intended to be object
         function hob( obj, property ) {
             return shortcutInClosure_for_speed.call( obj, property ) &&
@@ -863,8 +861,17 @@
 
 	//	Results in:		changed wall properties.
 	//	Returns:		combined clone of paper to wall.
-	var paste_non_arrays = ns.paste = ns.paste_non_arrays = function ( wall, paper, level, skip_undefined, refdepth, recdepth )
-	{
+	var paste_non_arrays = ns.paste = ns.paste_non_arrays =
+    function (
+            wall, paper, level, skip_undefined, refdepth, recdepth
+    ){
+        if( arguments.length === 1 ){
+            ////enables single argujent call which
+            ////menas "deep copy of supplied wall"
+            paper = wall;
+
+            wall = null;
+        }
 
 		level = level || 0;
 		var t = typeof paper;

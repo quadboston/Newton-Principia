@@ -16,7 +16,7 @@ var fconf       = sn('fconf',fapp);
 //this invisibility is not yet done in many praxis sites,
 var ss          = sn('ss', fapp);   //todm remove ss later
 var ssF         = sn('ssFunctions',ss);
-var ssD         = sn('ssData',ss);
+var ssD         = sn('ssD',ss);
 const ts        = sn( 'activityScenario', ss );
 var actionsList_coded = sn( 'actionsList_coded', ts );
 var actionsList_default = sn( 'actionsList_default', ts );
@@ -24,8 +24,8 @@ const ario      = sn( 'activityScenario', ss );
 const arios     = sn( 'activityScenarios', ario, [] );
 
 var rgtools     = sn('tools',ssD);
-var tpid2arrc_repo = sn('fixed-colors',ssD);
-var tpid2arrc_elect = sn('tpid2arrc_elect',ssD);
+var tpid2arrc_repo = sn('topicRepo',ssD);
+var tpid2arrc_elect = sn('topicElect',ssD);
 var wrkwin      = sn('wrkwin',ssD); //work window
 var exegs       = sn('exegs', ssD);
 var references  = sn('references', ssD);
@@ -45,6 +45,8 @@ var sData       = sn('sappDat',sapp);
 var amode       = sapp.mode = {};
 
 var sconf       = sn('sconf', fconf);
+var pntRgid2rgx = sn( 'pntRgid2rgx', sconf );
+
 var originalPoints = sn( 'originalPoints', sconf );
 var dividorFractions = sn('dividorFractions', wrkwin, []);
 
@@ -143,7 +145,7 @@ function apptree({
             }
         }
     };
-    sn( 'customDraggers_list', stdMod, [] ); //todm: fake
+    sn( 'dragList', stdMod, [] ); //todm: fake
     //-------------------------------------------------------------
     // \\// module and sub-model sugar
     //-------------------------------------------------------------
@@ -166,6 +168,7 @@ function apptree({
             //ario,
             arios,
             originalPoints,
+            pntRgid2rgx,
             rg    : sapp.rg,
             topos : sapp.topos,
             toreg : sapp.toreg,
@@ -210,11 +213,9 @@ function apptree({
 //=========================================================
 function create_media_upcreate( ssF, createMedia0updateMediaAUX ){
     return ( function media_upcreate (){
-        //refreshes detectability
-        ssF.toogle_detectablilitySliderPoints4Tools();
         createMedia0updateMediaAUX();
         if( ssF.mediaModelInitialized ) {
-            stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
+            stdMod.lemmaD8D && stdMod.lemmaD8D.updateAllDecPoints();
         }
         ssF.mediaModelInitialized = true;
     });

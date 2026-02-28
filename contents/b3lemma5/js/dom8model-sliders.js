@@ -1,3 +1,4 @@
+// happens possibly in l5 and nowhere else
 ( function() {
     var {
         $$, nssvg,
@@ -41,6 +42,7 @@
         // //\\ generalize: variable parameters
         //----------------------------------------------------------------------------
         var sliderId          = 'm';
+        ccc( 'where is this happens? sliderId = ' + sliderId );
         var captionPrefix     = 'm = ';
 
         //m is a degree of result-polynomial, it is not a number of
@@ -58,8 +60,8 @@
         var startX            = ( -sconf.modorInPicX +
                                  sconf.innerMediaWidth * sconf.SLIDERS_OFFSET_X
                                 ) *
-                                sconf.inn2mod_scale;
-        var endX              = startX + sconf.innerMediaWidth * sconf.inn2mod_scale *
+                                sconf.med2mod;
+        var endX              = startX + sconf.innerMediaWidth * sconf.med2mod *
                                          sconf.SLIDERS_LENGTH_X;
         var startY            = sconf.originY_onPicture
                                       - sconf.innerMediaHeight
@@ -67,7 +69,7 @@
                                       + customSliderShift
                                       + sconf.SLIDERS_OFFSET_Y
                                 ;
-        var startY            =  startY * sconf.inn2mod_scale;
+        var startY            =  startY * sconf.med2mod;
         //----------------------------------------------------------------------------
         // \\// in model units and reference system
         // \\// generalize: variable parameters
@@ -133,10 +135,10 @@
 
         function updateSliderHandlePos()
         {
-            m.medpos = ssF.mod2inn_original( m.pos, stdMod );
+            m.medpos = ssF.modpos2medpos_original( m.pos, stdMod );
             nssvg.u({
                 svgel   : m.svgel,
-                parent  : stdMod.mmedia,
+                parent  : stdMod.medScene,
                 cx : m.medpos[0],
                 cy : m.medpos[1],
             });
@@ -175,7 +177,7 @@
         function printText()
         {
             m.text_svg = nssvg.printText({
-                parent  : stdMod.mmedia,
+                parent  : stdMod.medScene,
                 text    : captionPrefix + (m.value-1),
                 svgel   : m.text_svg,
                'stroke-width' : 1,

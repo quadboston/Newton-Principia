@@ -84,7 +84,7 @@
                         },
 
 
-                        mmedia      : stdMod.mmedia,
+                        mscene      : stdMod.medScene,
                         addToStepCount : 1,
                         //stroke      : 'red',
                         stepsCount  : 20000,    //40000 worked as well too
@@ -126,7 +126,7 @@
                             ]
                         },
 
-                        mmedia      : stdMod.mmedia,
+                        mscene      : stdMod.medScene,
                         addToStepCount : 1,
                         //stroke      : 'red',
                         stepsCount  : 20000,    //40000 worked as well too
@@ -159,7 +159,7 @@
                             ]
                         },
 
-                        mmedia      : stdMod.mmedia,
+                        mscene      : stdMod.medScene,
                         addToStepCount : 1,
                         //stroke      : 'red',
                         stepsCount  : 1000,
@@ -193,7 +193,7 @@
                             ]
                         },
 
-                        mmedia      : stdMod.mmedia,
+                        mscene      : stdMod.medScene,
                         addToStepCount : 1,
                         //stroke      : 'red',
                         stepsCount  : 1000,
@@ -215,7 +215,7 @@
                             ]
                         },
 
-                        mmedia      : stdMod.mmedia,
+                        mscene      : stdMod.medScene,
                         addToStepCount : 1,
                         //stroke      : 'red',
                         stepsCount  : 1000,
@@ -253,7 +253,7 @@
                             ]
                         },
 
-                        mmedia      : stdMod.mmedia,
+                        mscene      : stdMod.medScene,
                         addToStepCount : 1,
                         //stroke      : 'red',
                         stepsCount  : 1000,
@@ -287,7 +287,7 @@
                             ]
                         },
 
-                        mmedia      : stdMod.mmedia,
+                        mscene      : stdMod.medScene,
                         addToStepCount : 1,
                         //stroke      : 'red',
                         stepsCount  : 1000,
@@ -319,7 +319,7 @@
                             ]
                         },
 
-                        mmedia      : stdMod.mmedia,
+                        mscene      : stdMod.medScene,
                         addToStepCount : 1,
                         //stroke      : 'red',
                         stepsCount  : 1000,
@@ -351,7 +351,7 @@
                             ]
                         },
 
-                        mmedia      : stdMod.mmedia,
+                        mscene      : stdMod.medScene,
                         addToStepCount : 1,
                         //stroke      : 'red',
                         stepsCount  : 1000,

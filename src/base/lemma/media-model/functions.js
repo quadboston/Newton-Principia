@@ -25,7 +25,7 @@
         magnitude,  //scales graph [x,f(x)]
     ) {
         magnitude = magnitude || 1;
-        //var fun = aka ssD.repoConf[0].fun; or simple 
+        //var fun = aka ssD.repoConf[0].fun; or simple
         //          one argument returning function,
         return function( x ) {
             var point = fun( x );
@@ -35,7 +35,7 @@
                 var xx = x;
                 var yy = point;
             }
-            var res = ssF.mod2inn([ xx*magnitude, yy*magnitude ]);
+            var res = ssF.modpos2medpos([ xx*magnitude, yy*magnitude ]);
             return res;
         }
     }
@@ -43,7 +43,7 @@
 
     ///todm ... is it ever used?
     ///converts model-function to media-function
-    ///returns "inner-media function" and 
+    ///returns "inner-media function" and
     function modFun2scaledXY({
         fun,        //must return array [x,y]
         magnitudeX, //scales x
@@ -52,7 +52,7 @@
         //var fun = ssD.repoConf[0].fun;
         return function( x ) {
             var [xx,yy] = fun( x );
-            var res = ssF.mod2inn([ xx*magnitudeX, yy*magnitudeY ]);
+            var res = ssF.modpos2medpos([ xx*magnitudeX, yy*magnitudeY ]);
             return res;
         }
     }

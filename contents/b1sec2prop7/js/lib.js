@@ -342,11 +342,11 @@
             //arg
         ){
             var curvePoints = ownrange2points();
-            var medpoints = curvePoints.map( cp => ssF.mod2inn( cp, stdMod ) );
+            var medpoints = curvePoints.map( cp => ssF.modpos2medpos( cp, stdMod ) );
             var polylineSvg = rgX.polylineSvg = nssvg.polyline({
                 pivots  : medpoints,
                 svgel   : rgX.polylineSvg,
-                parent  : stdMod.svgScene,
+                parent  : stdMod.medScene,
 
                 //should be overridden by ##tp-machine
                 //stroke           : haz( arg, 'stroke' ),

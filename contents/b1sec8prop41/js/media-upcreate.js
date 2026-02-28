@@ -55,14 +55,14 @@
         {
             ///draws fi
             ///adds an extra point, fi, at rg.O to comply angle-api
-            var fi = toreg( 'fi' )( 'pname', 'fi' )( 'pos', rg.C.pos )
+            var fi = toreg( 'fi' )( 'shpid', 'fi' )( 'pos', rg.C.pos )
                 ( 'pcolor', 'rgba(0,0,0,0.05)' ) //rg.Fi.pcolor
                 ();
-            fi.medpos = ssF.mod2inn( fi.pos );
+            fi.medpos = ssF.modpos2medpos( fi.pos );
             ssF.drawAngleFrom_rayAB2rayCD_at_medpos({
                 AB          : rg[ 'CV' ].pivots,
                 CD          : rg[ 'CX' ].pivots,
-                rgSample    : fi, //pname used for tp...
+                rgSample    : fi, //shpid used for tp...
                 ANGLE_SIZE  : 2*rg.V.pos[1],
                 captionRadiusIncrease : 1.02,
                 caption     : 'φ',
@@ -72,28 +72,28 @@
         {
             ///draws fi
             ///adds an extra point, fi, at rg.O to comply angle-api
-            var XCY = toreg( 'XCY' )( 'pname', 'XCY' )( 'pos', rg.C.pos )
+            var XCY = toreg( 'XCY' )( 'shpid', 'XCY' )( 'pos', rg.C.pos )
                 ( 'pcolor', 'rgba(0,0,0,0.05)' ) //rg.Fi.pcolor
                 ();
-            XCY.medpos = ssF.mod2inn( XCY.pos );
+            XCY.medpos = ssF.modpos2medpos( XCY.pos );
             ssF.drawAngleFrom_rayAB2rayCD_at_medpos({
                 AB          : rg[ 'CX' ].pivots,
                 CD          : rg[ 'CY' ].pivots,
-                rgSample    : XCY, //pname used for tp...
+                rgSample    : XCY, //shpid used for tp...
                 ANGLE_SIZE  : 2*rg.V.pos[1],
                 //captionRadiusIncrease : 1.02,
                 caption     : '',
             });
         }
 
-        eachprop( sData.quadSolved.kernel, (prop,pname) => {
-            let rgX = toreg( pname )();
+        eachprop( sData.quadSolved.kernel, (prop,shpid) => {
+            let rgX = toreg( shpid )();
             rgX.pivots = prop;
             stdMod.buildsQuadPlot( rgX );
         });
-        eachprop( sData.quadSolved, (prop,pname) => {
-            if( pname !== 'orbit' ) return;
-            let rgX = toreg( pname )();
+        eachprop( sData.quadSolved, (prop,shpid) => {
+            if( shpid !== 'orbit' ) return;
+            let rgX = toreg( shpid )();
             rgX.pivots = prop;
             stdMod.buildsQuadPlot( rgX );
         });

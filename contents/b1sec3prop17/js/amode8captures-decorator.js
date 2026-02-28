@@ -226,7 +226,7 @@ function amode2rgstate_decorator (){
             rg['P,vb'].undisplay = false;
         }
         stdMod.imgRk.dom$.css( 'visibility', imgVisib );
-        stdMod.svgScene$.css( 'visibility', imgVisib );
+        stdMod.medScene$.css( 'visibility', imgVisib );
         if( logic_phase === 'corollary' && amode.subessay === 'corollary2' ){
             rg.vSample.hideD8Dpoint = true;
         }

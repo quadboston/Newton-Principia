@@ -5,25 +5,25 @@
     } = window.b$l.apptree({
         stdModExportList :
         {
-            init_model_parameters,
+            init_lemma,
         },
     });
     return;
 
 
-    function init_model_parameters()
+    function init_lemma()
     {
         sData.initialparC = sconf.initialparC;
         sData.initialparA = sconf.initialparA;
         sData.initialparB = sconf.initialparB;
         sData.initialparP = sconf.initialparP;
         toreg( 'b' )( 'value', sconf.b );
-        const i2m = sconf.inn2mod_scale;
+        const i2m = sconf.med2mod;
         {
             sData.polar_ell_model = {
                 q0 : sconf.q0,
                 e : sconf.excentricity,
-                focus : ssF.inn2mod( sconf.focus ),
+                focus : ssF.medpos2modpos( sconf.focus ),
                 latus2 : sconf.latus2*i2m,
                 stepsCount : 1000,
             };

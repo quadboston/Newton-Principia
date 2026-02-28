@@ -366,12 +366,12 @@
         };
         ///alternatively to this, you can set own colors for originalPoints
         ///by your own
-        eachprop( originalPoints, (point,pname) => {
-            point.pcolor = haz( point, 'pcolor' ) || tpid2arrc_elect[ pname ];
+        eachprop( originalPoints, (point,shpid) => {
+            point.pcolor = haz( point, 'pcolor' ) || tpid2arrc_elect[ shpid ];
         });
 
         //model's spacial unit in pixels of the picture:
-        var mod2inn_scale = originalPoints.R.pos[1] - originalPoints.A.pos[1];
+        var mod2med = originalPoints.R.pos[1] - originalPoints.A.pos[1];
         var linesArray =
         [
             { 'Ad' : { pcolor : proof } },
@@ -476,10 +476,10 @@
             //[360.5, 239.0], //"oversampling"
         ];
         var ww_MONITOR_Y_FLIP = -1;
-        var ww_inn2mod_scale = 1/mod2inn_scale;
-        var ww_factor = ww_MONITOR_Y_FLIP * ww_inn2mod_scale;
+        var ww_med2mod_scale = 1/mod2med;
+        var ww_factor = ww_MONITOR_Y_FLIP * ww_med2mod_scale;
         var givenCurve_pivots_inModel = givenCurve_pivots.map( opoint =>
-            [ ( opoint[0] - modorInPicX ) * ww_inn2mod_scale,
+            [ ( opoint[0] - modorInPicX ) * ww_med2mod_scale,
               ( opoint[1] - modorInPicY +
 
                 //additional tune-up: shifting curve exactly into origin A
@@ -507,7 +507,7 @@
             modorInPicY,
             pictureWidth,
             pictureHeight,
-            mod2inn_scale,
+            mod2med,
         });
     }
 }) ();

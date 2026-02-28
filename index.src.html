@@ -29,7 +29,7 @@
 
     <script src="src/vendor/bsl/slider/d8d-app-template.js"></script>
     <script src="src/vendor/bsl/d8d/d8d-device.js"></script>
-    <script src="src/vendor/bsl/d8d/d8d-framework.js"></script>
+    <script src="src/vendor/bsl/d8d/d8d-lemma.js"></script>
     <script src="src/vendor/bsl/d8d/decorator.css.js"></script>
     <script src="src/vendor/bsl/d8d/decorator.js"></script>
 
@@ -117,7 +117,7 @@
     <script src="src/base/parser/FR-II-dom8css---lib.js"></script>
 
     <script src="src/base/parser/FR-II-finalizes-delayed-anchors---lib.js"></script>
-    <script src="src/base/parser/tp-glocss-v2.js"></script>
+    <script src="src/base/parser/tp-glocss.js"></script>
     <script src="src/base/parser/topics-anchor-glocss.js"></script>
     <script src="src/base/parser/colors-lib.js"></script>
     <!-- \\// core html -->
@@ -126,7 +126,6 @@
     <!-- //\\ lib -->
     <script src="changelog/version.js"></script>
 
-    <script src="src/base/lemma/state-capturer.js"></script>
     <script src="src/base/lemma/media-model/common.js"></script>
     <script src="src/base/lemma/media-model/functions.js"></script>
     <script src="src/base/lemma/media-model/points.js"></script>
@@ -141,17 +140,14 @@
     <script src="src/base/lemma/study-model/subessay-amode-2-lemma.js"></script>
     <script src="src/base/lemma/spawns-lemma-definition-list.js"></script>
 
-    <script src="src/base/draggers/sliders/tools/def-scale.js"></script>
-    <script src="src/base/draggers/sliders/tools/def-thickness.js"></script>
-    <script src="src/base/draggers/sliders/tools/defs2draggers.js"></script>
-    <script src="src/base/draggers/sliders/rgX2dragger-as-custom-slider.js"></script>
-    <script src="src/base/draggers/sliders/template.js"></script>
-    <script src="src/base/draggers/sliders/builds-grid-over-slider.js"></script>
-    <script src="src/base/draggers/sliders/builds-grid-over-curve.js"></script>
-    <script src="src/base/draggers/points/media-plane-dragger.js"></script>
-    <script src="src/base/draggers/points/model-point-dragger.js"></script>
-    <script src="src/base/draggers/points/createsDragger4pointRgX.js"></script>
-    <script src="src/base/draggers/finalizes-custDraggers8toolsSliders.js"></script>
+
+    <script src="src/base/d8d/draglist/rg2draglist.js"></script>
+    <script src="src/base/d8d/draglist/rgx2draglist.js"></script>
+    <script src="src/base/d8d/draglist/rgx-media-mover--2--draglist.js"></script>
+
+    <script src="src/base/d8d/draglist/draglist-finalizer.js"></script>
+    <script src="src/base/d8d/ruler-draglist/template.js"></script>
+    <script src="src/base/d8d/finish-down-move-up-template.js"></script>
 
     <!-- //\\ plugins -->
     <!-- //\\ plugin topic-scenario -->
@@ -163,8 +159,8 @@
     <!-- //\\ abandoned -->
 	<!-- used in L9 -->
     <script src="src/vendor/bsl/animated-frames/aframes.js"></script>
-    <script src="src/base/draggers/sliders/secondary/picture-visib-slider/animated-slider/js.js"></script>
-    <script src="src/base/draggers/sliders/secondary/picture-visib-slider/animated-slider/css.js"></script>
+    <script src="src/base/d8d/animated/js.js"></script>
+    <script src="src/base/d8d/animated/css.js"></script>
     <!-- \\// abandoned -->
 
     <script src="src/base/lemma/init-sapp.js"></script>
@@ -179,7 +175,6 @@
     <link rel="stylesheet" href="src/base/css/lemma-comp.css">
     <link rel="stylesheet" href="src/base/css/homepage.css">
     <link rel="stylesheet" href="src/base/css/pages/inner-page.css">
-    <link rel="stylesheet" href="src/base/css/pages/slider.css">
     <link rel="stylesheet" href="src/base/css/pages/model.css">
     <!-- \\// replace with prod script -->
 
@@ -195,9 +190,11 @@
     <!-- \\// full app config -->
 
     <!--
-            <script src="src/base/dom/dom-exegesis-tabs.js"></script>
-            <script src="src/base/draggers/sliders/secondary/picture-visib-slider/origin-picture-vis-slider.js">
-            </script>
+        <script src="src/base/d8d/curved-ruler/builds-grid-over-slider.js"></script>
+        <script src="src/base/d8d/curved-ruler/builds-grid-over-curve.js"></script>
+        <script src="src/base/dom/dom-exegesis-tabs.js"></script>
+        <script src="src/base/d8d/sliders/secondary/picture-visib-slider/origin-picture-vis-slider.js">
+        </script>
     -->
   </head>
   <body>

@@ -599,8 +599,8 @@ return;
             let P = [ PP[0] - OO[0], PP[1] - OO[1] ];
             pictureActiveArea = mat.unitVector(P).abs;
         }
-        //mediaSize = mod2inn_scale * modelSize,
-        var mod2inn_scale = pictureActiveArea;
+        //mediaSize = mod2med * modelSize,
+        var mod2med = pictureActiveArea;
         //----------------------------------
         // \\// app view parameters
         //----------------------------------
@@ -660,9 +660,9 @@ return;
         // //\\ spawns to_conf
         //----------------------------------
         (function () {
-            var inn2mod_scale = 1/mod2inn_scale;
-            to_sconf.mod2inn_scale = mod2inn_scale;
-            to_sconf.inn2mod_scale = inn2mod_scale;
+            var med2mod = 1/mod2med;
+            to_sconf.mod2med = mod2med;
+            to_sconf.med2mod = med2mod;
         })();
         //----------------------------------
         // \\// spawns to_conf

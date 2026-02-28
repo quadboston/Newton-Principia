@@ -35,7 +35,7 @@ function init_conf()
 
     //model's spacial unit expressed in pixels of the picture:
     //vital to set to non-0 value
-    sf.mod2inn_scale = 360; //RR;
+    sf.mod2med = 360; //RR;
     //***************************************************************
     // \\// original picture dimensions for svg scene
     //***************************************************************

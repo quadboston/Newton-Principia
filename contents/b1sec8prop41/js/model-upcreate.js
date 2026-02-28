@@ -127,9 +127,9 @@
         // //\\ orbit areas
         //----------------------------------------
         {
-            let pname = 'ICK';
+            let shpid = 'ICK';
             let graph = sData.quadSolved.orbit;
-            let rgX = toreg( pname )( 'pname', pname )();
+            let rgX = toreg( shpid )( 'shpid', shpid )();
             let pivots = rgX.pivots = [];
 
             //:fills model pivots
@@ -143,9 +143,9 @@
         }
 
         {
-            let pname = 'VIC';
+            let shpid = 'VIC';
             let graph = sData.quadSolved.orbit;
-            let rgX = toreg( pname )( 'pname', pname )();
+            let rgX = toreg( shpid )( 'shpid', shpid )();
             let pivots = rgX.pivots = [];
 
             //:fills model pivots
@@ -191,14 +191,14 @@
 
 
 
-    function pivots2graph( pname, graph, lastIq, firstIq, fill0stroke )
+    function pivots2graph( shpid, graph, lastIq, firstIq, fill0stroke )
     {
         //alternates
         fill0stroke = fill0stroke || 'fill';
         firstIq = firstIq || 0;
 
         //sets registry space
-        let rgX = toreg( pname )( 'pname', pname )();
+        let rgX = toreg( shpid )( 'shpid', shpid )();
         let pivots = rgX.pivots = [];
 
         //:fills model pivots
@@ -218,14 +218,14 @@
         fill0stroke = fill0stroke || 'stroke';
 
         //fills media pivots
-        var pivots = rgX.pivots.map( p => ssF.mod2inn( p, stdMod ) );
+        var pivots = rgX.pivots.map( p => ssF.modpos2medpos( p, stdMod ) );
 
         //draws svg
         nssvg.polyline({
             rgX,
             pivots,
             svgel   : haz( rgX, 'svgel' ),
-            parent  : stdMod.svgScene,
+            parent  : stdMod.medScene,
         });
 
         //:paints colors

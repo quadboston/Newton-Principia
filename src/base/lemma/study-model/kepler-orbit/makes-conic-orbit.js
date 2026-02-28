@@ -198,7 +198,7 @@
                 doDeltaArc
             });
             // scales up conic
-            var medpoints = curvePoints.map( cp => ssF.mod2inn( cp, stdMod ) );
+            var medpoints = curvePoints.map( cp => ssF.modpos2medpos( cp, stdMod ) );
 
             // defines segment of conic
             if(op.highlightSeg) {
@@ -207,7 +207,7 @@
                     start: op.segStart,
                     end: op.segEnd
                 });
-                segPoints = segPoints.map( sp => ssF.mod2inn( sp, stdMod ) );
+                segPoints = segPoints.map( sp => ssF.modpos2medpos( sp, stdMod ) );
             }
 
             if( -1 === op.conicSignum ) {
@@ -217,7 +217,7 @@
                 var polylineSvgA = rgXX.polylineSvgA = nssvg.polyline({
                     pivots  : branchA,
                     svgel   : rgXX.polylineSvgA,
-                    parent  : stdMod.svgScene,
+                    parent  : stdMod.medScene,
                 });
                 if( !has( rgXX, 'polylineSvgA$' ) ) {
                     rgXX.polylineSvgA$ = $$.$( polylineSvgA );
@@ -228,7 +228,7 @@
                 var polylineSvg = rgXX.polylineSvg = nssvg.polyline({
                     pivots  : branchB,
                     svgel   : rgXX.polylineSvg,
-                    parent  : stdMod.svgScene,
+                    parent  : stdMod.medScene,
                 });
                 if( !has( rgXX, 'polylineSvg$' ) ) {
                     rgXX.polylineSvg$ = $$.$( polylineSvg );
@@ -239,7 +239,7 @@
                 var polylineSvg = rgXX.polylineSvg = nssvg.polyline({
                     pivots  : medpoints,
                     svgel   : rgXX.polylineSvg,
-                    parent  : stdMod.svgScene,
+                    parent  : stdMod.medScene,
                 });
                 if( !has( rgXX, 'polylineSvg$' ) ) {
                     rgXX.polylineSvg$ = $$.$( polylineSvg );
@@ -261,7 +261,7 @@
             let areaSvg = rgA.areaSvg = nssvg.polyline({
                 pivots  : medpoints,
                 svgel   : rgA.areaSvg,
-                parent  : stdMod.svgScene,
+                parent  : stdMod.medScene,
                 //should be overridden by ##tp-machine
                 //stroke           : haz( arg, 'stroke' ),
                 //'stroke-width'   : haz( arg, 'stroke-width' ),

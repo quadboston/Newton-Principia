@@ -39,7 +39,7 @@
 
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
-        sf.mod2inn_scale = 360;
+        sf.mod2med = 360;
         //***************************************************************
         // \\// original picture dimensions for svg scene
         //***************************************************************

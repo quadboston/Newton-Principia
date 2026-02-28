@@ -93,8 +93,13 @@
             ////opacities from global setting
             let fc = gcssRack['tpcolarr'];
 
+            var rgX = haz( rg, gcssRack.camelId );
+            if( rgX && (rgX.isLine || rgX.isPoint) ){
+                gcssRack.lowOpacity = sconf.TP_OPACITY_LOW_POINT;
+            } else {
+                gcssRack.lowOpacity = sconf.TP_OPACITY_LOW;
+            }
             gcssRack.highOpacity = sconf.TP_OPACITY_HIGH;
-            gcssRack.lowOpacity = sconf.TP_OPACITY_LOW;
             gcssRack.rgba_own = rgba;
         };
 

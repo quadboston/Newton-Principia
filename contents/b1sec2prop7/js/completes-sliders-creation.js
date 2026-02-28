@@ -66,7 +66,7 @@
                 ///this is a partial validation,
                 ///because of overlapping can happen during
                 //moving of P
-                sconf.originalPoints.curvePivots.forEach( (cp,cpix) => {
+                ssD.curvePivots.forEach( (cp,cpix) => {
                     let rgX = rg[ 'curvePivots-' + cpix ];
                     if( REPELLING_DISTANCE > Math.abs( new_q - rgX.q ) ) {
                         returnValue = false;
@@ -140,7 +140,7 @@
 
                 ///validates
                 if( sconf.GO_AROUND_CURVE_PIVOTS_WHEN_DRAG_OTHER_HANDLES ) {
-                    sconf.originalPoints.curvePivots.forEach( (cp,cpix) => {
+                    ssD.curvePivots.forEach( (cp,cpix) => {
                         let rgX = rg[ 'curvePivots-' + cpix ];
                         if( REPELLING_DISTANCE > Math.abs( stashed_curvePP.q - rgX.q ) ) {
                             returnValue = false;

@@ -26,20 +26,15 @@
         //===============================================
         // //\\ widest-rect
         //===============================================
-        guicon.constructsWidestRect = function()
+        guicon.createsWidestRectSvg = function()
         {
             dr.faaf   = document.createElementNS( svgNS, "rect");
             $$.$(dr.faaf)
                 .addClass( 'widest-rectangular tp-widest-rectangular tofill' )
-                .to( stdMod.svgScene );
+                .to( stdMod.medScene );
         };
 
-
-        gui.drawsWidestRect = function(pt, showRectPts, view)
-        {
-	        pt.setAttributeNS(null, "class", "figure");
-	        pt.setAttributeNS(null, "r", showRectPts ? sconf.FINEPTS_RADIUS : 0);
-
+        gui.drawsWidestRect = function (){
             let { left, right, top, } = dr.widestRect;
 	        guiup.xywh2svg(
                 dr.faaf, //item

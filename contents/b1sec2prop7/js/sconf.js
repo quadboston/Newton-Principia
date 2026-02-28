@@ -46,7 +46,7 @@ function init_conf()
 
     //model's spacial unit expressed in pixels of the picture:
     //vital to set to non-0 value
-    sf.mod2inn_scale = RR;
+    sf.mod2med = RR;
 
     sf.prop7R = 1;
     sf.prop7Center = [ 0, 0 ];

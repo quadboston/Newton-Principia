@@ -1,7 +1,7 @@
 ( function() {
     var {
         sn, $$, has, mat, mcurve, nspaste,
-        fconf, sData,
+        fconf, sData, ssD,
         amode, stdMod, sconf, rg,
     } = window.b$l.apptree({
         stdModExportList :
@@ -34,12 +34,9 @@
         // //\\ curve pivots sliders
         //=========================================================================
         var nsp = rg.nonSolvablePoint;
-        var pivs = sconf.originalPoints.curvePivots;
+        var pivs = ssD.curvePivots;
 
         pivs.forEach( (cp,cpix) => {
-
-            //recall that pos is in sync by reference:
-            //sconf.pname2point[ pname ] = rgX.pos
             var pos1 = rg[ 'curvePivots-' + cpix ].pos;
             var stashedPos = null;
 

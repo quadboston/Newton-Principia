@@ -13,7 +13,7 @@ return;
 ///      as of Aug11,2021 does not run alone, but attached to
 ///      slider maintenance,
 ///      apparently, this function uses outdated engine design because of
-///      it does not use: doPaintLetter8kernel( pname )
+///      it does not use: doesPaintPointCaption( shpid )
 ///**********************************************************************
 function unmasksVisib (){
     //===================================================
@@ -62,7 +62,7 @@ function unmasksVisib (){
 
     //Each step has decorations that should be shown.  Each step corresponds
     //to a group, and each group has sub-groups which
-    //correspond to substeps.  Therefore any group before the current step 
+    //correspond to substeps.  Therefore any group before the current step
     //("stepIx") should show its final sub-group, the
     //current step should show its sub-group corresponding to the current
     //substep ("substepIx"), and any remaining groups
@@ -81,7 +81,7 @@ function unmasksVisib (){
                 indexFGroupsMax : substepIx), indexFGroupsMax);
         if (indexSubstep > -1) {
             fgroups[indexSubstep].forEach( (paintee) => {
-                //paintee?.pname === 'VVV0' && ccc(index,indexSubstep,paintee)
+                //paintee?.shpid === 'VVV0' && ccc(index,indexSubstep,paintee)
                 paintee?.svgel && $$.$(paintee.svgel).removeClass( 'undisplay' );
                 paintee?.vectorArrowSvg$?.removeClass( 'undisplay' );
                 paintee && (paintee.undisplay = false);

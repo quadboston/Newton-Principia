@@ -1,7 +1,7 @@
 ( function() {
     var ns      = window.b$l;
-    var fapp    = ns.sn('fapp' ); 
-    fapp.lemmaConfig = lemmaConfig;    
+    var fapp    = ns.sn('fapp' );
+    fapp.lemmaConfig = lemmaConfig;
     return;
 
 
@@ -21,7 +21,6 @@
                 { src:'media-upcreate.js' },
                 { src:'main-legend.js' },
                 { src:'amode8captures.js' },
-                { src:'state-capturer.js' },
                 { src:'graph/creates-fw.js' },
                 { src:'graph/decorations.js' },
                 { src:'lib.js' },

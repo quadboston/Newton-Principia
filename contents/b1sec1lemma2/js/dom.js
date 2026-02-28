@@ -1,10 +1,9 @@
 (function(){
-const {sn, $$, fapp, fconf, sf, tpid2arrc_elect,
+const {sn, $$, globalCss, fapp, fconf, sf, tpid2arrc_elect,
        sDomN, ssF, sDomF, stdMod, amode,} =
       window.b$l.apptree({
         stdModExportList: { constructsCurve8Area, },
-        ssFExportList: { continue_create_8_prepopulate_svg,
-                         create_digital_legend, },
+        ssFExportList: { create_digital_legend, },
 });
 var stdL2   = sn('stdL2', fapp );
 var dr      = sn('datareg', stdL2 );
@@ -14,7 +13,16 @@ return;
 
 
 function constructsCurve8Area (){
-    var svg = stdMod.mmedia$.aNS( 'id', 'illus' )();
+    var svg = stdMod.medScene;
+    //todm rid of:
+    globalCss.update( `
+    /* the same as bsl-media
+        was #illus
+    */
+    .bsl--svgscene {
+        width: 100%;
+    }
+    `, 'lemma2-svg-scene' );
     sDomN.curve_pre$ = $$.cNS( 'polyline' )
         .aNS( 'class', "outline-cls" )
         .css( 'stroke', sDomF.tpid0arrc_2_rgba(
@@ -36,22 +44,6 @@ function constructsCurve8Area (){
         .to(svg)
         ;
     dr.figureInternalArea = sDomN.figureInternalArea$();
-}
-
-function continue_create_8_prepopulate_svg (){
-    var svg = stdMod.mmedia$.aNS( 'id', 'illus' )();
-
-    //====================================================================
-    // //\\ paints preliminary elements
-    //====================================================================
-    //creates "shallow axis line"
-    dr.baseAxis = $$.cNS( 'line' )
-        .aNS( 'class', "tp-figure tp-base figure outline-cls tostroke" )
-        .to(svg)
-        ();
-    //====================================================================
-    // \\// paints preliminary elements
-    //====================================================================
 }
 
 ///====================================================================

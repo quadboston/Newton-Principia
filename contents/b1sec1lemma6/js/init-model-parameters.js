@@ -6,14 +6,14 @@
     } = window.b$l.apptree({
         stdModExportList :
         {
-            init_model_parameters,
+            init_lemma,
         },
     });
 
     ///****************************************************
     /// model initiation
     ///****************************************************
-    function init_model_parameters()
+    function init_lemma()
     {
         ssD.curveStartInitialPos = ns.paste( {}, rg.curveStart.pos );
         ssD.curveEndInitialPos = ns.paste( {}, rg.curveEnd.pos );
@@ -21,10 +21,10 @@
         //-------------------------------------------------
         // //\\ dragger L for the rectilinear angle
         //-------------------------------------------------
-        sDomF.params__2__rgX8dragwrap_gen_list({
+        sDomF.rgx2draglist({
             stdMod,
             orientation : 'axis-y',
-            pname : 'L',
+            shpid : 'L',
             acceptPos : ( newPos ) =>
             {
                 var fullAngle = Math.atan( newPos[1]/newPos[0] );
@@ -74,9 +74,9 @@
         //rotational angle = 0,
         //rg.B.unrotatedParameterX = rg.B.pos[0]*1.02;
         //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-        sDomF.params__2__rgX8dragwrap_gen_list({
+        sDomF.rgx2draglist({
             stdMod,
-            pname : 'B',
+            shpid : 'B',
             acceptPos : ( newPos ) =>
             {
                 var ach = rg.B.achieved;
@@ -85,7 +85,8 @@
                 var cpos = cfun( new_unrotatedParameterX );
 
                 //patch: instead of fixing arc-Ab calculations properly,
-                //       this code-fragment restricts area where this arc miscalculated:
+                //       this code-fragment restricts area where this
+                //       arc miscalculated:
                 if( new_unrotatedParameterX < sconf.NON_ZERO_A_PREVENTOR ) {
                     ///we need to put some constraint here, to
                     ///prevent chord vanishing
@@ -98,10 +99,10 @@
                   [rg.A.pos, cpos ],
                   [rg.A.pos, rg.L.pos],
                 ]).angle
-                
+
                 if( fconf.sappId === "b1sec1lemma6" &&
                     //core essays:
-                    ( !(amode.aspect === 'model') && amode.logic_phase === 'proof' ) && 
+                    ( !(amode.aspect === 'model') && amode.logic_phase === 'proof' ) &&
                     (angleBAM < 0 || cpos[1] > -0.01)
                 ){
                     adjust_new_unrotatedParameterX_asNeccesary();
@@ -116,7 +117,7 @@
                 }
 
                 rg.B.unrotatedParameterX = new_unrotatedParameterX;
-                
+
                 return true;
 
                 function adjust_new_unrotatedParameterX_asNeccesary() {
@@ -152,7 +153,7 @@
             sconf.givenCurve_pivots_inModel
         ).derivativeAtZero();
         orTan.angle = Math.atan( rg.originalGapTangent.tangent );
-        
+
         //sets angle as it is in original picture in lemma
         toreg( 'curveRotationAngle' )( 'angle', 0 );
         rg.curveRotationAngle.sin = Math.sin( rg.curveRotationAngle.angle );

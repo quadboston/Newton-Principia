@@ -3,13 +3,7 @@
         sn, $$, userOptions,
         fapp, fconf, sconf, sDomN, ssF,
         rg, amode, stdMod,
-    } = window.b$l.apptree({
-        stdModExportList :
-        {
-            syncPoint,
-            syncPoints,
-        },
-    });
+    } = window.b$l.apptree({});
     var stdL2       = sn('stdL2', fapp );
     var dr          = sn('datareg', stdL2 );
     var numModel    = sn('numModel', stdL2 );
@@ -25,7 +19,7 @@
     Object.assign( guiup, {
         updatePtsRectsLabelsAreas,
         normalizedStr,
-        sets_pt2movable,
+        figurePnt_2_cls8style,
         //updateLabel,
         xywh2svg,
         xy2shape,
@@ -48,10 +42,18 @@
         line.setAttribute("y2", y2);
     }
     ///2 use cases: base, ctrl ...
-    function xy_2_xy8shape( item, xName, x, yName, y )
+    function xy_2_xy8shape(
+            item, //list[i]
+            xName, x, yName, y )
     {
+        ////x comes from updatePtsRectsLabelsAreas
         item.x = x;
         item.y = y;
+
+        //merging with core code
+        item.medpos[0] = x;
+        item.medpos[1] = y;
+
         item.dom.setAttributeNS( null, xName, x );
         item.dom.setAttributeNS( null, yName, y );
     }
@@ -67,16 +69,10 @@
         item.setAttributeNS(null, "height", height);
     }
 
-
-    function sets_pt2movable( pt )
-    {
+    function figurePnt_2_cls8style( pt ){ //change to decoratesPoint
         pt.dom.setAttributeNS(null, "class", "figure");
         pt.dom.setAttributeNS(null, "r", sconf.MOVABLE_BASE_RADIUS);
-        //pt.movable = true;
     }
-
-
-
 
     ///rather redigitizes model for curves and more
     function paints_curve8axes()
@@ -108,7 +104,7 @@
         var figAreaStr = mpRounded.concat([
             [x_end.toFixed(2) ,maxY.toFixed(2)],
             [x_start.toFixed(2) ,maxY.toFixed(2)]
-        ]);        
+        ]);
         figAreaStr = figAreaStr.join(" ");
         dr.figureInternalArea.setAttribute( "points",figAreaStr );
         //=============================================
@@ -181,10 +177,10 @@
             guiup.xywh2svg( rectDom, x, y, width, height );
         }
     }
-    function updatePts(i, x)
-    {
+    function updatePts(i, x){
+        ////x comes from updatePtsRectsLabelsAreas
         var yRef = dr.yVariations.yRef;
-        if (!appstate.movingBasePt) {
+        if (!appstate.basePointsAreMoving) {
 	        guiup.xy_2_xy8shape( dr.basePts.list[i], "cx", x, "cy", yRef );
         }
     }
@@ -207,7 +203,7 @@
             updatePts(i, x);
         }
         updatePts( basN, dr.yVariations.x_end);
-        gui.drawsWidestRect( dr.basePts.list[basN].dom,false, sdata.view );
+        gui.drawsWidestRect();
         //-----------------------------------------------------
         // //\\ legend amounts
         //-----------------------------------------------------
@@ -229,229 +225,6 @@
     //========================================
     // \\// possibly move to gui-update module
     //========================================
-
-
-    ///======================================
-    /// syncronizes positions for
-    /// framework points with L2/3 legacy
-    /// code points (with rg[ name ].pos)
-    ///======================================
-    function syncPoint( item )
-    {
-        var dv = dr.yVariations;
-        var xoff = sconf.originX_onPicture;
-        var yoff = sconf.originY_onPicture;
-        var scale = sconf.mod2inn_scale;
-        var cirYar = dr.basePts.circumscribedY;
-        var insYar = dr.basePts.inscribedY;
-        if( item.type === 'base' ) {
-            let blist = dr.basePts.list;
-            var bN = dr.basesN;
-            var iIx = item.index;
-
-            let insPy = -( insYar[iIx] - yoff ) / scale;
-            var cirPy = -( cirYar[iIx] - yoff ) / scale;
-            let posAx = blist[0].x;
-            let posBx = blist[1].x;
-            let posCx = blist[2].x;
-            let posDx = blist[3].x;
-            let posEx = blist[4].x;
-
-            switch( iIx ) {
-            case 0 : var pname = 'A';
-                        var itemx = posAx;
-                        var pnameFun = 'a'; //right on the curve
-                        var pnameLow_ = 'K'; //min of the interval
-                        rg[ pnameLow_ ].pos[0] = (itemx - xoff) / scale;
-                        //rg[ pname ].pos[0];
-                        rg[ pnameLow_ ].pos[1] = insPy;
-
-                        var pnameTop_ = 'l'; //min of the interval
-                        rg[ pnameTop_ ].pos[0] = (posBx - xoff) / scale;
-                        rg[ pnameTop_ ].pos[1] = cirPy;
-                     break;
-            case 1 : var pname = 'B';
-                     var itemx = posBx;
-                     ////optional names
-                     var pnameFun = 'b'; //right on the curve
-                     var pnameLow_ = 'L'; //min of the interval
-                     rg[ pnameLow_ ].pos[0] = (itemx - xoff) / scale;
-                     rg[ pnameLow_ ].pos[1] = insPy;
-
-                    var pnameTop_ = 'm'; //min of the interval
-                    rg[ pnameTop_ ].pos[0] = (posCx - xoff) / scale;
-                    //rg[ 'C' ].pos[0];
-                    rg[ pnameTop_ ].pos[1] = cirPy;
-                    break;
-            case 2 : var pname = 'C';
-                     var itemx = posCx;
-                     ////optional names
-                     var pnameFun = 'c';
-                     var pnameLow_ = 'M'; //min of the interval
-                     rg[ pnameLow_ ].pos[0] = (itemx - xoff) / scale;
-                     rg[ pnameLow_ ].pos[1] = insPy;
-
-                    var pnameTop_ = 'n'; //min of the interval
-                    rg[ pnameTop_ ].pos[0] = (posDx - xoff) / scale;
-                    rg[ pnameTop_ ].pos[1] = cirPy;
-                    break;
-            case 3 : var pname = 'D';
-                    var itemx = posDx;
-                     ////optional names   
-                     var pnameFun = 'd';
-                    var pnameTop_ = 'o'; //min of the interval
-                    rg[ pnameTop_ ].pos[0] = (posEx - xoff) / scale;
-                    rg[ pnameTop_ ].pos[1] = cirPy;
-                     //var pnameLow_ = 'G'; //min of the interval
-                     //rg[ pnameLow_ ].pos[0] = (posDx - xoff) / scale;
-                     //rg[ pnameLow_ ].pos[1] = insPy;
-                     
-                     //--------------------------------------------
-                     // //\\ making low boundary of difference-rect
-                     //--------------------------------------------
-                     rg.e.pos[0] = (posDx - xoff) / scale;
-                     rg.e.pos[1] = insPy;
-                     //--------------------------------------------
-                     // \\// making low boundary of difference-rect
-                     //--------------------------------------------
-                     break;
-            case 4 :
-                     var pname = 'E';
-                     var itemx = posEx;
-                     //--------------------------------------------
-                     // //\\ making low boundary of difference-rect
-                     //--------------------------------------------
-                     ////rg.p.pos[0] = (itemx - xoff) / scale;
-                     //this fails: bases are too low:
-                     //( blist[4].y - yoff )  / scale;
-                     //insPy;
-                     ////rg.p.pos[1] = rg.e.pos[1];
-                     //--------------------------------------------
-                     // \\// making low boundary of difference-rect
-                     //--------------------------------------------
-                     break;
-            }
-        }
-        if( pname ) {
-            var iY = item.type === 'base' ? dv.maxY : item.y;
-            ////apparently convert from svg-space to model-space
-            ////apparently program and numModel.curveFun made in svg-space and
-            ////not in gemetrical-model-space;
-            rg[ pname ].pos[0] = (itemx - xoff) / scale;
-            rg[ pname ].pos[1] = -(iY - yoff) / scale;
-
-            ////optional names
-            if( pnameFun ) {
-                if( pnameFun === 'a' || pnameFun === 'b') {
-                    ////sets upper boundary of the bar
-                    rg[ pnameFun ].pos[1] = cirPy;
-                } else {
-                    rg[ pnameFun ].pos[1] = -( numModel.curveFun( itemx ) - yoff ) / scale;
-                }
-                rg[ pnameFun ].pos[0] = rg[ pname ].pos[0];
-            }
-        }
-    }
-
-
-    function syncPoints() {
-        let videoMode = amode.aspect === 'video';
-        let view = sdata.view;
-        let isFig = !!view.isFigureChecked;
-        let isIn = !!view.isInscribed;
-        let isCir = !!view.isCircumscribed;
-        let onlyFig = !isIn&&!isCir;
-        {
-            let s = videoMode || onlyFig;
-            [ 'a', 'b', 'c', 'd', 
-              'A', 'B', 'C', 'D', 'E',
-            ].forEach( function( l ) {
-                    rg[ l ].undisplay = s;
-                    rg[ l ].doPaintPname = !s;
-            });
-            [ 'AE', 'AB', 'BC', 'CD' ].forEach( function( l ) {
-                    rg[ l ].undisplay = s;
-            });
-            [ 'Bb', 'Cc', 'Dd', 'oE', 'Aa' ].forEach( function( l ) {
-                    rg[ l ].undisplay = s;
-            });
-            if( !isFig && isIn && !isCir ) {
-                rg["a"].undisplay = true;
-            }
-            if( isFig ) {
-                rg["Aa"].undisplay = false;
-            } else if( !isCir ) {
-                rg["Aa"].undisplay = true;
-            }
-        }
-        let doset = videoMode || !isIn;
-        rg.K.undisplay = doset;
-        rg.L.undisplay = doset;
-        rg.M.undisplay = doset;
-
-        //some were missed in program
-        rg["Kb"].undisplay = doset;
-        rg.AK.undisplay = doset;
-        rg.LB.undisplay = doset;
-        rg.MC.undisplay = doset;
-
-        doset = videoMode || !isCir;
-        rg.la.undisplay = doset;
-        //right sides:
-        rg.lB.undisplay = doset;
-        rg.mC.undisplay = doset;
-        rg.nD.undisplay = doset;
-        rg.oE.undisplay = doset;
-
-        rg.l.undisplay = doset;
-        rg.m.undisplay = doset;
-        rg.n.undisplay = doset;
-        rg.o.undisplay = doset;
-
-        //:true is because of not in use in text
-        rg.e.undisplay = true;
-        rg.dM.undisplay = true;
-        rg.cL.undisplay = true;
-        rg.nc.undisplay = true;
-        rg.od.undisplay = true;
-        
-
-        //order of statements seems vital
-        [0,1,2,3,4].forEach( ix => { syncPoint( dr.basePts.list[ ix ] ); });
-        dr.ctrlPts.forEach( item => { syncPoint( item ); });
-
-        // //\\ majorant rect
-        var xoff = sconf.originX_onPicture;
-        //yoff is equal to 0 in "numerical space" of "rg.point.pos"
-        var yoff = sconf.originY_onPicture;
-        var scale = sconf.mod2inn_scale;
-        let dv = dr.yVariations;
-        
-        rg.F.pos[1] = -( dv.maxY - yoff ) / scale;
-        rg.E.pos[1] = -( dv.maxY - yoff ) / scale;
-        var { left, right, bottom, top, } = dr.widestRect;
-        rg.f.pos[1] = -( top - yoff ) / scale;
-        rg.F.pos[0] = ( right - xoff ) / scale;
-        rg.f.pos[0] = ( right - xoff ) / scale;
-        //--------------------------------------
-        // //\\ majorant
-        //--------------------------------------
-        {
-            let l2 = fconf.sappId.indexOf('b1sec1lemma2') === 0;
-            let checked = amode.logic_phase !== 'claim';
-            let undisplay = !checked || videoMode || onlyFig;
-            rg.F.undisplay = undisplay||l2;
-            rg.f.undisplay = undisplay||l2;
-            rg.AF.undisplay = undisplay||l2;
-            //majorant bar:
-            $$.$(dr.faaf).css( 'display', undisplay ? 'none' : 'block' );
-        }
-        //--------------------------------------
-        // \\// majorant
-        //--------------------------------------
-        stdMod.setsDifferenceBarsMonotonity();
-        ( dv.chchosen.dir <= 0 ) && stdMod.swapMonotonity();
-    }
 
     //======================================
     // //\\ manages visibility
@@ -484,7 +257,7 @@
     //======================================
     // \\// manages visibility
     //======================================
-    
-    
+
+
 }) ();
 

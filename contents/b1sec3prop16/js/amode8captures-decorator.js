@@ -137,7 +137,7 @@
             rg.vb.undisplay = true;
 
             stdMod.imgRk.dom$.css( 'visibility', 'visible' );
-            stdMod.svgScene$.css( 'visibility', 'visible' );
+            stdMod.medScene$.css( 'visibility', 'visible' );
             if( logic_phase === 'corollary' ) {
                 if( subessay === "corollary1" ) {
                     ////latus on others: swaps latus and speed
@@ -145,7 +145,7 @@
                     rg.L.hideD8Dpoint = true;
                 } else {
                     stdMod.imgRk.dom$.css( 'visibility', 'hidden' );
-                    stdMod.svgScene$.css( 'visibility', 'hidden' );
+                    stdMod.medScene$.css( 'visibility', 'hidden' );
                 }
             }
         }

@@ -49,7 +49,7 @@
         //----------------------------------
         //rg.A.undisplay              = false;
         //rg.B.undisplay              = false;
-        //var media_scale = toreg( 'media_scale' )();
+        //var medzoom = toreg( 'medzoom' )();
         //----------------------------------
         // \\// common values
         //----------------------------------

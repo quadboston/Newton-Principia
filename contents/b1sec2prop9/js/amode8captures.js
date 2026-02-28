@@ -28,9 +28,9 @@
     function amode2rgstate( captured )
     {
         const { logic_phase, aspect, subessay } = amode;
-        toreg( 'media_scale' )();
-        rg.media_scale.value = 1;
-        ssF.scaleValue2app( rg.media_scale.value, stdMod );
+        toreg( 'medzoom' )();
+        rg.medzoom.value = 1;
+        ssF.newzoom2app( rg.medzoom.value, stdMod );
         //toreg( 'sForSagitta' )( 'val', sconf.sForSagitta_valQ );
         //nspaste( rg.P.pos, rg.approxer.t2xy( sconf.PparT ));
 

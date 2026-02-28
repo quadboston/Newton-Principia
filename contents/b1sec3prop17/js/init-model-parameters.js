@@ -2,7 +2,7 @@
     const { ns, sn, nspaste, mcurve, mat,
           ssD, stdMod, sconf, rg, toreg,
     } = window.b$l.apptree({ stdModExportList : {
-            init_model_parameters,
+            init_lemma,
         },
     });
     const sop = sn( 'sampleOrbitParameters', sconf );
@@ -10,7 +10,7 @@
     return;
 
 
-    function init_model_parameters()
+    function init_lemma()
     {
         var op = sconf.orbitParameters;
         toreg( 'approxer' );

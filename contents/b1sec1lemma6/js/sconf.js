@@ -44,7 +44,7 @@ function init_conf (){
     //sets position of axis-y for Calculus-framework, not for model axis-y
     var ytop = [-151, 50];
     //model's spacial unit in pixels of the picture:
-    sf.mod2inn_scale = R[1] - A[1];
+    sf.mod2med = R[1] - A[1];
     //***************************************************************
     // \\// original picture dimensions for svg scene
     //***************************************************************
@@ -187,10 +187,10 @@ function init_conf (){
     ];
     {
         const MONITOR_Y_FLIP = -1;
-        const inn2mod_scale = 1/sf.mod2inn_scale;
-        const factor = MONITOR_Y_FLIP * inn2mod_scale;
+        const med2mod = 1/sf.mod2med;
+        const factor = MONITOR_Y_FLIP * med2mod;
         sf.givenCurve_pivots_inModel = givenCurve_pivots.map( opoint =>
-            [ ( opoint[0] -  sf.modorInPicX ) * inn2mod_scale,
+            [ ( opoint[0] -  sf.modorInPicX ) * med2mod,
                 ( opoint[1] - sf.modorInPicY +
 
                 //additional tune-up: shifting curve exactly into origin A
@@ -416,9 +416,9 @@ function init_conf (){
     //*********************************************
     ///alternatively to this, you can set own colors for originalPoints
     ///by your own
-    ns.eachprop( sf.originalPoints, (point,pname) => {
+    ns.eachprop( sf.originalPoints, (point,shpid) => {
         point.pcolor = ns.haz( point, 'pcolor' ) ||
-        tpid2arrc_elect[ pname ];
+        tpid2arrc_elect[ shpid ];
     });
     //*********************************************
     // \\// pcolor -> elected topics,

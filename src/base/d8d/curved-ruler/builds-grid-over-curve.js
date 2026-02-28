@@ -25,7 +25,7 @@
         tA,         //tStart
         tB,         //tEnd
         tN,         //number of steps used to paint measurement arc,
-        svgParent,  //f.e., stdMod.svgScen,
+        svgParent,  //f.e., stdMod.medScene,
 
         //conditionally optionals
         //svgel,       //possibly existing svgel to avoid recreation
@@ -102,7 +102,7 @@
                     var mediaModelGradeY =
                         //origin on the bottom of svg
                         //sconf.pictureHeight +
-                        mod2inn_scale * (
+                        mod2med * (
                         //"-" because of screen Y inversion:
                         - ( gline - slider.minVal ) *
                         slider.value2media
@@ -135,7 +135,7 @@
 
             var t = ( gline - studyStart ) / studyRange * ( tB - tA );
             var gridPos = curveFun( t );
-            var gridMedpos = ssF.mod2inn( gridPos, );
+            var gridMedpos = ssF.modpos2medpos( gridPos, );
 
             //----------------------------------
             // //\\ creates grade radial lines
@@ -144,8 +144,8 @@
             var GRID_LETTER_WIDTH = 0.03;
 
             var norm = getsCurveNormal( t, tA, tB );
-            var normMedpos = ssF.mod2inn( norm, );
-            var medpos = ssF.mod2inn( [0,0], );
+            var normMedpos = ssF.modpos2medpos( norm, );
+            var medpos = ssF.modpos2medpos( [0,0], );
             var medNorm = [ (normMedpos[0]-medpos[0])*GRID_WIDTH,
                             (normMedpos[1]-medpos[1])*GRID_WIDTH,
             ];
@@ -242,7 +242,7 @@
         {
             var step = ( tB - tA ) / tN;
             returnApi.measurement.rgX = ssF.paintsCurve({
-                mmedia          : svgParent,
+                mscene          : svgParent,
                 fun             : curveFun,
                 rgName          : returnApi.measurement.rgName,
                 strokeWidth     : measurementStrokeWidth || 30,

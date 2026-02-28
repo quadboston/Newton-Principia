@@ -1,18 +1,18 @@
-//expands sconf.js into rg, tpid2arrc_repo and
+//expands sconf.js into rg,
 //"unifies" and normalizes them,
 (function(){
-    const {
-        sn, haz, has, eachprop, own, nsmethods, nspaste,
-        rg, fconf, sf, ssF, sDomF, tpid2arrc_repo,
-        tpid2arrc_elect,
-        originalPoints, toreg, stdMod,
-    } = window.b$l.apptree({ ssFExportList : { doExpandConfig } });
-    const LETTER_ROTATION_RADIUS_PER_1000 = 30;
-    const LETTER_CENTER_X_PER_FONT_SIZE = 0.2;
-    const LETTER_CENTER_Y_PER_FONT_SIZE = 0.3;
-    const graphCss = sn( 'graphCss', sf );
-    const diagramCss = sn( 'diagramCss', sf );
-    return;
+
+const {
+    sn, haz, has, eachprop, own, nsmethods, nspaste,
+    rg, fconf, sf, ssF, sDomF, tpid2arrc_elect,
+    originalPoints, toreg, stdMod, ssD,
+} = window.b$l.apptree({ ssFExportList : { doExpandConfig } });
+const LETTER_ROTATION_RADIUS_PER_1000 = 30;
+const LETTER_CENTER_X_PER_FONT_SIZE = 0.2;
+const LETTER_CENTER_Y_PER_FONT_SIZE = 0.3;
+const graphCss = sn( 'graphCss', sf );
+const diagramCss = sn( 'diagramCss', sf );
+return;
 
 
 function doExpandConfig (){
@@ -35,7 +35,7 @@ function doExpandConfig (){
         svgModel_width,
         svgModel_height,
 
-        mod2inn_scale,
+        mod2med,
     } = sf;
     //c cc( 'expand'); //helps debugging landing scenario
     //secures omitted settings
@@ -69,7 +69,7 @@ function doExpandConfig (){
     lines = lines || sn( 'lines', sf, [] );
 
     //todo: this thing also gets more members from "dragger engine": poor job,
-    var pname2point = sn( 'pname2point', sf );
+    var pntRgid2rgx = sn( 'pntRgid2rgx', sf );
 
     //----------------------------------
     // //\\ MONITOR Y FLIP
@@ -81,7 +81,7 @@ function doExpandConfig (){
     //  1  codirectional with the screen
     //     which means from screen-top to
     //      screen bottom
-    var MONITOR_Y_FLIP = -1 * sf.mod2inn_scaleY;
+    var MONITOR_Y_FLIP = -1 * sf.mod2med_scaleY;
     //----------------------------------
     // \\// MONITOR Y FLIP
     //----------------------------------
@@ -89,11 +89,11 @@ function doExpandConfig (){
     //---------------------------------------------------------------------------
     // //\\ derives initial model parameters from picture's points
     //---------------------------------------------------------------------------
-    var inn2mod_scale = 1/mod2inn_scale;
+    var med2mod = 1/mod2med;
 
     ///adds point's color from tpid2arrc_elect if missed
-    eachprop( originalPoints, (point,pname) => {
-        point.pcolor = haz( point, 'pcolor' ) || tpid2arrc_elect[ pname ];
+    eachprop( originalPoints, (point,shpid) => {
+        point.pcolor = haz( point, 'pcolor' ) || tpid2arrc_elect[ shpid ];
     });
 
     ///it is vital to set these pars now ...
@@ -104,11 +104,11 @@ function doExpandConfig (){
         //----------------------------------
         MONITOR_Y_FLIP,
 
-        mod2inn_scale,
-        inn2mod_scale,
+        mod2med,
+        med2mod,
 
-        //mod2inn_scale_initial : mod2inn_scale,
-        //inn2mod_scale_initial : inn2mod_scale,
+        //mod2med_scale_initial : mod2med,
+        //med2mod_scale_initial : med2mod,
 
         //do use:
         modorInPicX,
@@ -134,19 +134,22 @@ function doExpandConfig (){
     );
     var estimatesSizeScale = estimatedPictureSize/1000;
 
-    var factor = MONITOR_Y_FLIP * inn2mod_scale;
+    var factor = MONITOR_Y_FLIP * med2mod;
     (function() {
         ///--------------------------------------------------
         ///equalizes repo and elected and makes place in rg
         ///--------------------------------------------------
         Object.keys( tpid2arrc_elect ).forEach( camelId => {
-            toreg( camelId )( 'pname', camelId );
+            toreg( camelId )( 'shpid', camelId );
         });
 
         //--------------------------------------------------
         // //\\ expands originalPoints placeholders
         //--------------------------------------------------
-        eachprop( originalPoints, ( op, pname ) => {
+        ssD.curvePivots =
+            haz( originalPoints, 'curvePivots' );
+
+        eachprop( originalPoints, ( op, shpid ) => {
             if( Array.isArray( op ) ) {
                 ////handles array of originalPoints
 
@@ -163,11 +166,11 @@ function doExpandConfig (){
                                             opInArr.draggableY : draggableY;
                     opInArr.doPaintPname = has( opInArr, 'doPaintPname' ) ?
                                             opInArr.doPaintPname : doPaintPname;
-                    expandsOrPoint( opInArr, pname + '-' + inIx );
+                    expandsOrPoint( opInArr, shpid + '-' + inIx );
                 });
             } else {
                 ////handles single originalPoint
-                expandsOrPoint( op, pname );
+                expandsOrPoint( op, shpid );
             }
         });
         //--------------------------------------------------
@@ -187,10 +190,11 @@ function doExpandConfig (){
             });
         }
 
-        ///apparently non-unified with shapes-points, points have more properties
-        eachprop( lines, ( gshape, pname ) => {
-            let rgX = sn( pname, rg );
-            rgX.pname = pname;
+        ///apparently non-unified with shapes-points,
+        //points have more properties
+        eachprop( lines, ( gshape, shpid ) => {
+            let rgX = sn( shpid, rg );
+            rgX.shpid = shpid;
             rgX.tostroke = true;
             rgX.isPoint = false;
             rgX.isLine = true;
@@ -220,19 +224,20 @@ function doExpandConfig (){
 
             //todm: mess: lines array elements attributes go into
             //line-maker in lemma-linerars-machine lineAttr
-            //, but this is done via "str2line" which ignores "everything" except
+            //, but this is done via "str2line" which ignores
+            //"everything" except
             //stroke, 'stroke-width', and 'caption'
-            //here we create even more mess because adding alternative stream for
-            //pcolor
+            //here we create even more mess because adding alternative
+            //stream for pcolor
             if( has( gshape, 'pcolor' ) ) {
                 //concat() separates generic color-arrays from
-                tpid2arrc_elect[ pname ] = gshape.pcolor.concat();
+                tpid2arrc_elect[ shpid ] = gshape.pcolor.concat();
                 rgX.pcolor = sDomF.tpid0arrc_2_rgba( gshape.pcolor );
                 rgX.opaqueColor = sDomF.tpid0arrc_2_rgba(
                                     gshape.pcolor, !!'makeOpacity1' );
             } else {
-                rgX.pcolor = sDomF.tpid0arrc_2_rgba( pname );
-                rgX.opaqueColor = sDomF.tpid0arrc_2_rgba( pname,
+                rgX.pcolor = sDomF.tpid0arrc_2_rgba( shpid );
+                rgX.opaqueColor = sDomF.tpid0arrc_2_rgba( shpid,
                                     !!'makeOpacity1' );
             }
 
@@ -241,7 +246,7 @@ function doExpandConfig (){
                 if( gclass.indexOf( '--' )>0 ){
                     gclass += ' hidee';
                     gshape.cssClass = gclass;
-                    //c cc( pname +' gclass='+ gclass );
+                    //c cc( shpid +' gclass='+ gclass );
                 }
             }
             rgX.cssClass = gclass;
@@ -257,7 +262,7 @@ function doExpandConfig (){
         return;
 
         ///rg becomes normalized expansion of originalPoints
-        function expandsOrPoint( op, pname ){
+        function expandsOrPoint( op, shpid ){
             //todo ... non-readable: it tranfers properties from
             //??original points to here,
             //      this must be clearly written in code,
@@ -268,21 +273,24 @@ function doExpandConfig (){
             //at the moment for missing flag, doPaintPname === true,
 
             // //\\ todm: automate property transfer
-            var doPaintPname= has( op, 'doPaintPname' ) ?
+            var doPaintPname = has( op, 'doPaintPname' ) ?
                                 op.doPaintPname : true;
             var draggableX = has( op, 'draggableX' ) ? op.draggableX : false;
             var draggableY = has( op, 'draggableY' ) ? op.draggableY : false;
             // \\// todm: automate property transfer
 
-            var pos = pname2point[ pname ] = !pictureP ?
-                [0,0] :
-                [ ( pictureP[0] - originX_onPicture ) * inn2mod_scale,
-                    ( pictureP[1] - originY_onPicture ) * factor,
-                ];
+            var pos = pictureP ?
+                [ ( pictureP[0] - originX_onPicture ) * med2mod,
+                  ( pictureP[1] - originY_onPicture ) * factor,
+                ] :
+                [0,0];
             //creates rgX or reuses existing one
-            var rgX = op.rgX = ssF.declareGeomtric({
-                pname, pos, caption : haz( op, 'caption' ),
-            });
+            var rgX =
+                op.rgX //used in curvePivots
+                = ssF.populates__pos_medpos_rgX_p2p({
+                    shpid, pos, caption : haz( op, 'caption' ),
+                });
+            rgX.isPoint = true;
 
             //in some weird lemmas, rgX.draggableX is defined
             //in sf.js, don't erase it:
@@ -295,7 +303,8 @@ function doExpandConfig (){
                     opclass += ' hidee';
                     op.cssClass = opclass;
                 }
-                rgX.classmark = opclass;
+                rgX.classmark //todo rid of
+                = opclass;
             } else if( has( op, 'classmark' ) ) {
                 if( op.classmark.indexOf( '--' )>0 ){
                     op.classmark += ' hidee';
@@ -304,20 +313,25 @@ function doExpandConfig (){
             }
             rgX.doPaintPname = doPaintPname;
 
+            ///color precedence is:
+            ///op.pcolor --> tpid2arrc_elect,
+            ///moreover, existing op.pcolor overrides elected,
             if( has( op, 'pcolor' ) ) {
-                tpid2arrc_elect[ pname ] = op.pcolor.concat();
+                tpid2arrc_elect[ shpid ] = op.pcolor.concat();
                 rgX.pcolor = sDomF.tpid0arrc_2_rgba( op.pcolor );
-                rgX.opaqueColor = sDomF.tpid0arrc_2_rgba( op.pcolor,
-                                    !!'makeOpacity1' );
+                rgX.opaqueColor = sDomF.tpid0arrc_2_rgba(
+                                  op.pcolor, !!'makeOpacity1' );
             } else {
-                rgX.pcolor = sDomF.tpid0arrc_2_rgba( pname );
-                rgX.opaqueColor = sDomF.tpid0arrc_2_rgba( pname,
-                                    !!'makeOpacity1' );
+                rgX.pcolor = sDomF.tpid0arrc_2_rgba( shpid );
+                rgX.opaqueColor = sDomF.tpid0arrc_2_rgba(
+                                  shpid, !!'makeOpacity1' );
             }
-            rgX.undisplay = has( op, 'undisplay' ) ? op.undisplay : false;
+            rgX.undisplay = has( op, 'undisplay' ) ?
+                op.undisplay : false;
 
-            //todm ... make it a stand-alone function to facilitate
-            //         dynamic points creation ... to avoid extra declaration
+            //todm ... make it a stand-alone function to
+            //facilitate
+            //dynamic points creation ... to avoid extra declaration
             //----------------------------------------------------------
             // //\\ sets up point letters
             //----------------------------------------------------------
@@ -366,6 +380,7 @@ function doExpandConfig (){
                 'individual_zindex',
                 //an extra "fake" disk over dragger,
                 'noKernel',
+                'doWhiteKernel',
                 //for d8d machinery overlay
                 'makeCentralDiskInvisible',
                 // \\// dragging
@@ -377,6 +392,7 @@ function doExpandConfig (){
                 //before multiplication by initialR * sf.thickness,
                 'initialR',
                 'unscalable',
+                'stroke-width', //scaleless per picture
             ].forEach( propname => {
                 has(op,propname) && (rgX[propname] = op[propname]);
             });
@@ -392,9 +408,9 @@ function doExpandConfig (){
             });
         }
     })();
-    //---------------------------------------------------------------------------
+    //---------------------------------------------------------------
     // \\// derives initial model parameters from picture's points
-    //---------------------------------------------------------------------------
+    //---------------------------------------------------------------
 
     //----------------------------------------------------
     // //\\  prepares sf data holder
@@ -436,19 +452,16 @@ function doExpandConfig (){
     //=========================================
     // \\// thickness
     //=========================================
-
-    if( !has( sf, 'enableStudylab' ) ) {
-        ////this way, the legacy lemmas are preserved,
-        ////new lemmas must set this in own "sf",
-        sf.enableStudylab = true;
-    }
-    if( !has( sf, 'enableTools' ) ) {
-        ////this way, the legacy lemmas are preserved,
-        ////new lemmas must set this in own "sf",
-        sf.enableTools = true;
-    }
     //----------------------------------
     // \\// prepares sf data holder
-    //----------------------------------------------------
+    //----------------------------------
+
+    //make isPoint a proper property
+    const hasown = Object.prototype.hasOwnProperty;
+    Object.values( rg ).forEach( rgX => {
+        if( !hasown.call(rgX, 'isPoint') ){
+            rgX.isPoint = false;
+        }
+    });
 }
 })();

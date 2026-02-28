@@ -15,7 +15,7 @@ function init_conf_addon (){
     // //\\ makes capture
     nspaste( capture, {
     "proof-step-D": {
-    "slider_sltime": {
+    "sl-shpid-time": {
         "curtime": 4.01 * sconf.initialTimieStep
     },
     "A": {
@@ -27,7 +27,7 @@ function init_conf_addon (){
     },
 
     "initial-state" : {
-    "slider_sltime": {
+    "sl-shpid-time": {
         "curtime": 5.0001 * sconf.initialTimieStep
     },
     "A": {
@@ -40,10 +40,10 @@ function init_conf_addon (){
     "t2corollary": {
 
     "detected_user_interaction_effect_DONE" : true,
-    "slider_sltime": {
+    "sl-shpid-time": {
         "curtime": 7.0001/4 * sconf.initialTimieStep
     },
-            "rgslid_dt": {
+            "sl-shpid-dt": {
             "val": sconf.initialTimieStep
     },
     "media-mover": {
@@ -83,8 +83,8 @@ function init_conf_addon (){
         {
             "rg" :
             {
-                "rgslid_dt" : { "val" : sconf.initialTimieStep },
-                "slider_sltime": {
+                "sl-shpid-dt" : { "val" : sconf.initialTimieStep },
+                "sl-shpid-time": {
                     "curtime": 3.2 //to capture dD, triangle SCD
                 }
             }

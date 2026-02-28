@@ -25,12 +25,13 @@
     //==========================================
     function populates__cust_draggers_list()
     {
-        stdMod.customDraggers_list.push( createDraggers_p );
-        stdMod.customDraggers_list.push( createDragger_m );
+        stdMod.dragList.push( createDraggers_p );
+        stdMod.dragList.push( createDragger_m );
 
         //todm ... do automate
-        stdMod.railsCustomSlidersCount = has( stdMod, 'railsCustomSlidersCount' ) ?
-            stdMod.railsCustomSlidersCount + 1 : 1; 
+        stdMod.railsCustomSlidersCount = has(
+            stdMod, 'railsCustomSlidersCount' ) ?
+            stdMod.railsCustomSlidersCount + 1 : 1;
     };
     //==========================================
     // \\// inits drag model
@@ -43,25 +44,25 @@
     //===========================================
     // //\\ create draggers p
     //===========================================
-    function createDraggers_p( medD8D )
+    function createDraggers_p( lemmaD8D )
     {
         sconf.basePairs.forEach( bpair => {
-            createDragger_p( bpair[0].pointWrap, medD8D );
+            createDragger_p( bpair[0].pointWrap, lemmaD8D );
         });
     }
 
-    function createDragger_p( pointWrap, medD8D )
+    function createDragger_p( pointWrap, lemmaD8D )
     {
         //:sets dragger handle color
-        //.making this class unique may help to set correct color ... todm
-        pointWrap.spinnerClsId    = 'dragged-point-'+pointWrap.pname;
+        //.making this class unique may help to set
+        //correct color ... todm
+        pointWrap.spinnerClsId    = 'dragged-point-'+pointWrap.l5key;
         pointWrap.dragDecorColor = pointWrap.pcolor;
-        var argc =
-        {
-            pointWrap           : pointWrap,
-            doProcess           : doProcess_slider_point,
+        var argc = {
+            pointWrap : pointWrap,
+            finish_DownMoveUp : doProcess_slider_point,
         };
-        medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE( argc );
+        lemmaD8D.pointWrap_2_dragWraps( argc );
     }
 
 
@@ -82,9 +83,9 @@
                 sDomF.detected_user_interaction_effect();
                 p.pos2value([
                     ach.achieved[0] + arg.surfMove[0] *
-                        sconf.inn2mod_scale * sDomF.out2inn(),
+                        sconf.med2mod * sDomF.ds2med(),
                     ach.achieved[1] + arg.surfMove[1] * sconf.MONITOR_Y_FLIP *
-                        sconf.inn2mod_scale * sDomF.out2inn()
+                        sconf.med2mod * sDomF.ds2med()
                 ]);
                 break;
         }
@@ -103,15 +104,15 @@
     //============================================
     // //\\ slider m
     //============================================
-    function createDragger_m( medD8D )
+    function createDragger_m( lemmaD8D )
     {
         var pointWrap = rg.m;
         //:sets dragger handle color
         pointWrap.spinnerClsId    = 'tp-m';
         //todm ... not straight
         pointWrap.dragDecorColor= pointWrap.svgel.getAttribute( 'stroke' );
-        medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE({
-            doProcess           : doProcess_slider_m,
+        lemmaD8D.pointWrap_2_dragWraps({
+            finish_DownMoveUp           : doProcess_slider_m,
             pointWrap           : rg.m,
             tooltip             : "Selects Newton Polynomial of degree m",
         });
@@ -129,8 +130,8 @@
                 sDomF.detected_user_interaction_effect();
                 var new_m = [
                         ach.achieved[0] + arg.surfMove[0] *
-                            ( 1 / sconf.originalMod2inn_scale ) *
-                            sDomF.out2inn(),
+                            ( 1 / sconf.mod2med_original ) *
+                            sDomF.ds2med(),
                         ach.achieved[1] //unchanged => only abscissa move
                     ];
                     m.pos2value( new_m );

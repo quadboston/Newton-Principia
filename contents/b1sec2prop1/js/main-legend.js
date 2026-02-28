@@ -36,7 +36,7 @@
         ww.step.innerHTML       = rg.displayPathStep.value + '';
         ww.thought.innerHTML    = rg.thoughtStep.value;
         var stepIx = rg.stepIx.value;
-        var fullDtRev = 1/rg.rgslid_dt.val * 2;
+        var fullDtRev = 1/rg['sl-shpid-dt'].val * 2;
         var speed = rg.speeds.vect[stepIx-1];
         if( speed ) {
             var vx = speed[0].toFixed(3);

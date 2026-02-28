@@ -55,7 +55,7 @@
         ns.paste( rg.curveStart.pos, ssD.curveStartInitialPos );
         ssD.repoConf.customFunction = 0;
         */
-        var media_scale = toreg( 'media_scale' )();
+        var medzoom = toreg( 'medzoom' )();
         //----------------------------------
         // \\// common values
         //----------------------------------
@@ -65,14 +65,14 @@
 
             //todm ... why was it 0.7? and not 1?
             //         this made problems with bars number > DONT_PAINT_BARS_MORE_THAN
-            rg.media_scale.value = 1; //0.7;
+            rg.medzoom.value = 1; //0.7;
 
-            ssF.scaleValue2app( rg.media_scale.value, stdMod );
+            ssF.newzoom2app( rg.medzoom.value, stdMod );
             sDomF.detected_user_interaction_effect( !'doUndetected' );
 
         } else {
-            rg.media_scale.value = 1;
-            ssF.scaleValue2app( rg.media_scale.value, stdMod );
+            rg.medzoom.value = 1;
+            ssF.newzoom2app( rg.medzoom.value, stdMod );
         }
         //*****************************************************************************
         // \\// lemma 7

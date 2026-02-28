@@ -1,5 +1,6 @@
 ( function() {
-    const { sn, haz, fconf, fapp, sf, sconf, } =
+    const { sn, haz, nspaste, fconf, fapp, sf, sconf,
+            tpid2arrc_elect, } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -86,14 +87,14 @@ function init_conf()
     ];
     sf.basePairs.forEach( pair => {
         var x = pair[0];
-        pair[0].pname = Object.keys( x )[0];
+        pair[0].l5key = Object.keys( x )[0];
         //makes in synch with pos
-        pair[0].picturepos = x[ pair[0].pname ];
+        pair[0].picturepos = x[ pair[0].l5key ];
 
         var y = pair[1];
-        pair[1].pname = Object.keys( y )[0];
+        pair[1].l5key = Object.keys( y )[0];
         //makes in synch with pos
-        pair[1].picturepos = y[ pair[1].pname ];
+        pair[1].picturepos = y[ pair[1].l5key ];
         pair[1].picturepos[0] = pair[0].picturepos[0]; // = abscissa
     });
     //--------------------------------------
@@ -104,9 +105,9 @@ function init_conf()
     // //\\ derives initial model parameters from picture's points
     //------------------------------------------------------------
     //appar. as by I.N.: difference between two first x-points:
-    sf.mod2inn_scale = sf.basePairs[1][0].picturepos[0] -
+    sf.mod2med = sf.basePairs[1][0].picturepos[0] -
                        sf.basePairs[0][0].picturepos[0];
-    sf.inn2mod_scale = 1/sf.mod2inn_scale;
+    sf.med2mod = 1/sf.mod2med;
     //------------------------------------------------------------
     // \\// derives initial model parameters from picture's points
     //------------------------------------------------------------
@@ -149,25 +150,31 @@ function init_conf()
     //------------------------------------------------------------
     // //\\ derives initial model parameters from picture's points
     //------------------------------------------------------------
-    sf.pname2point = {};
+    sf.pntRgid2rgx = {}; //todo align with expand-conf
     //var initialModPoints;
-    var factor = sf.MONITOR_Y_FLIP * sf.inn2mod_scale;
+    var factor = sf.MONITOR_Y_FLIP * sf.med2mod;
     (function() {
         sf.basePairs.forEach( bpair => {
             bpair.forEach( point => {
                 var pp = point.picturepos;
-                var pname = point.pname;
+                var l5key = point.l5key;
                 var pos = [ pp[0] - sf.modorInPicX, pp[1] - modorInPicY ];
-                point.pos = [ pos[0]*sf.inn2mod_scale, pos[1]*factor ];
-                sf.pname2point[pname] = point;
+                point.pos = [ pos[0]*sf.med2mod, pos[1]*factor ];
+                sf.pntRgid2rgx[l5key] = point;
             });
         });
     })();
     //adds model's origin
-    sf.pname2point.O = { pos:[0,0], pname : 'O' };
+    sf.pntRgid2rgx.O = { pos:[0,0], l5key : 'O' };
     //-------------------------------------------------------------
     // \\// derives initial model parameters from picture's points
     //-------------------------------------------------------------
+
+    nspaste( tpid2arrc_elect, {
+        "given"          : [0,     50, 0,      1],
+        "experimental"   : [0,     0,   255,    1],
+        "approximator"   : [255,   0,   0,      1]
+    });
 
     //todm not automated, prolifer.
     fapp.normalizeSliders( pictureHeight / 444 );

@@ -17,6 +17,7 @@ function init_sapp (){
     sapp.updatesLemmaCss();
 }
 
+///this thing overrides app-wide finish_sapp_UI
 function finish_sapp_UI()
 {
     ssF.mediaModelInitialized = true;

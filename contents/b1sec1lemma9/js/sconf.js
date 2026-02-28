@@ -37,7 +37,7 @@ function init_conf(){
     //.set it from graph editor
     var pictureActiveArea = pointA[1] - 46;
 
-    var mod2inn_scale = pictureActiveArea / APP_MODEL_Y_RANGE;
+    var mod2med = pictureActiveArea / APP_MODEL_Y_RANGE;
     var originX_onPicture = pointA[0];
     var originY_onPicture = pointA[1];
     //----------------------------------
@@ -129,9 +129,40 @@ function init_conf(){
     // \\// topic group colors,
     //-----------------------------------
 
+    //-------------------------------------
+    // //\\ prepares points
+    //-------------------------------------
+    let curvePivots = [
+            [0, 0],
+            //The bezier middle pivot is constrained in "model-upcreate.js"
+            //beginning of "model_upcreate" function.
+            [440, APP_MODEL_Y_RANGE],
+            [ 1060, 567 ]
 
-    var originalPoints =
-    {
+            /* very good for debug: simple curve
+            [0, 0],
+            [500, 1000],
+            [1000, 0]
+            */
+    ];
+    curvePivots = curvePivots.map( pivot => ({
+        pos         : pivot,
+        pcolor      : given,
+        letterAngle : 45,
+        draggableX  : true,
+        draggableY  : true,
+        doPaintPname : false,
+    }));
+    //-------------------------------------
+    // \\// prepares points
+    //-------------------------------------
+
+    var originalPoints = {
+        curvePivots,
+        //----------------------------------
+        // //\\ original lemma parameters
+        //----------------------------------
+
         'A' : {
             pos         : pointA,
             pcolor      : given,
@@ -244,25 +275,6 @@ function init_conf(){
         //----------------------------------
 
 
-        //----------------------------------
-        // //\\ original lemma parameters
-        //----------------------------------
-        curvePivots :
-        [
-            [0, 0],
-            //The bezier middle pivot is constrained in "model-upcreate.js"
-            //beginning of "model_upcreate" function.
-            [440, APP_MODEL_Y_RANGE],
-            [ 1060, 567 ]
-
-            /* very good for debug: simple curve
-            [0, 0],
-            [500, 1000],
-            [1000, 0]
-            */
-        ],
-
-
         //*************************************************
         // //\\ lemma model parameters
         //*************************************************
@@ -341,7 +353,7 @@ function init_conf(){
             originY_onPicture,
             pictureWidth,
             pictureHeight,
-            mod2inn_scale,
+            mod2med,
         })
     );
     //----------------------------------------------------

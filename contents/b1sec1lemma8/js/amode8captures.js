@@ -9,7 +9,7 @@
         },
     });
     ///diff and Euclid tangents are equal
-    const ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] = 
+    const ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] =
     {
         "angle": 0,
         "sin": 0,
@@ -25,7 +25,7 @@
     };
     setCapture();
     return;
-    
+
 
     function setCapture()
     {
@@ -152,7 +152,7 @@
         nspaste( rg.curveEnd.pos, ssD.curveEndInitialPos );
         ssD.repoConf.customFunction = 0;
         rg.B.unrotatedParameterX = 1;
-        var media_scale = toreg( 'media_scale' )();
+        var medzoom = toreg( 'medzoom' )();
         //----------------------------------
         // \\// common values
         //----------------------------------
@@ -172,8 +172,8 @@
         rg.fi.pos[0] = rg.R.pos[0];
         rg.fi.pos[1] = rg.R.pos[1] * 1.2; // this is why fi is floating below R to start
 
-        rg.media_scale.value = 1;
-        ssF.scaleValue2app( rg.media_scale.value, stdMod );
+        rg.medzoom.value = 1;
+        ssF.newzoom2app( rg.medzoom.value, stdMod );
 
         nspaste( rg.curveStart.pos, [ -0.2, 0 ] ); //todm what is this?
         nspaste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ] );
@@ -253,7 +253,7 @@
             rg.R.hideD8Dpoint   = false; // enables mouse events on point R
             rg.fi.hideD8Dpoint  = true;  // fi only used in "extramat" features
         }
-          
+
         //*****************************************************************************
         // \\// lemma 8
         //*****************************************************************************

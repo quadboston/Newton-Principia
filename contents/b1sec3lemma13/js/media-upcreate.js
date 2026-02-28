@@ -39,13 +39,13 @@
         var tCircleName = 'tangentCircle';
         var rgTCir = rg[ tCircleName ];
 
-        var RCmedpos = ssF.mod2inn( rg.tCircleCenter.pos, stdMod );
-        var RRmedpos = sconf.mod2inn_scale * rgTCir.tangentCircleRadius;
+        var RCmedpos = ssF.modpos2medpos( rg.tCircleCenter.pos, stdMod );
+        var RRmedpos = sconf.mod2med * rgTCir.tangentCircleRadius;
 
         //todo nearly bug: why create svg and set cls every time?
         rgTCir.svgel = nssvg.u({
             svgel   : rgTCir.svgel,
-            parent  : stdMod.mmedia,
+            parent  : stdMod.medScene,
             type    : 'circle',
             stroke  : rg.C.pcolor,
             fill    : 'transparent',

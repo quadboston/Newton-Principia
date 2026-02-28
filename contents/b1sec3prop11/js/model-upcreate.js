@@ -74,8 +74,8 @@
         //================================================
         rg.C.pos[0] = RC[0];
         rg.C.pos[1] = RC[1];
-        var RCmedpos = ssF.mod2inn( RC, stdMod );
-        var RRmedpos = sconf.mod2inn_scale * Rc;
+        var RCmedpos = ssF.modpos2medpos( RC, stdMod );
+        var RRmedpos = sconf.mod2med * Rc;
         //================================================
         // \\// curvature circle
         //================================================

@@ -19,10 +19,6 @@
     {
         fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
 
-        //max diagram magnitude for scale
-        //mouse-wheel sliders
-        sconf.MAX_MAGNITUDE = 10;
-
         //====================================================
         // //\\ subapp regim switches
         //====================================================
@@ -181,12 +177,12 @@
 
         ///alternatively to this, you can set own colors for originalPoints
         ///by your own
-        ns.eachprop( originalPoints, (point,pname) => {
-            point.pcolor = ns.haz( point, 'pcolor' ) || tpid2arrc_elect[ pname ];
+        ns.eachprop( originalPoints, (point,shpid) => {
+            point.pcolor = ns.haz( point, 'pcolor' ) || tpid2arrc_elect[ shpid ];
         });
 
         //model's spacial unit in pixels of the picture:
-        var mod2inn_scale = 1000;
+        var mod2med = 1000;
 
         var linesArray =
         [
@@ -219,7 +215,7 @@
             originY_onPicture,
             pictureWidth,
             pictureHeight,
-            mod2inn_scale,
+            mod2med,
 
             default_tp_stroke_width : 12,
         });

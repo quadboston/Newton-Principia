@@ -169,7 +169,7 @@ return;
 
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
-        var mod2inn_scale = ( originalPoints.J.pos[1] - originalPoints.A.pos[1] ) / 2;
+        var mod2med = ( originalPoints.J.pos[1] - originalPoints.A.pos[1] ) / 2;
 
         var linesArray =
         [
@@ -202,7 +202,7 @@ return;
             originY_onPicture,
             pictureWidth,
             pictureHeight,
-            mod2inn_scale,
+            mod2med,
         });
         //--------------------------------------
         // \\// geometics parameters

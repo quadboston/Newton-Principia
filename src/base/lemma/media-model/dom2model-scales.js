@@ -1,125 +1,108 @@
-( function() {
-    var {
-        sn, haz,
-        fconf, sDomF,
-        stdMod, amode, sconf,
-    } = window.b$l.apptree({
-        ssFExportList :
-        {
-            scaleValue2app,
-            mod2inn,
-            inn2mod,
-            mod2inn_original,
+(function(){
+    const {sn, haz, fconf, sDomF, stdMod, amode, sconf, sf} =
+    window.b$l.apptree({
+        ssFExportList : {
+            newzoom2app,
+            modpos2medpos,
+            medpos2modpos,
+            modpos2medpos_original,
         },
-        sDomFExportList :
-        {
-            out2inn,
-            outparent2inn,
-            inn2outparent,
+        sDomFExportList : {
+            ds2med,
+            dspos2medpos,
+            medpos2dspos,
         },
     });
     return;
 
 
-    function scaleValue2app( svalue, ) {
-        var sc = sconf;
-        sc.mod2inn_scale = sc.originalMod2inn_scale * svalue;
-        sc.inn2mod_scale = 1 / sc.mod2inn_scale;
+    function newzoom2app( zoomChange ) {
+        sf.mod2med = sf.mod2med_original * zoomChange;
+        sf.med2mod = 1 / sf.mod2med;
     }
     //==========================================
     // //\\ pos to pos
     //==========================================
     ///transforms model-coordinates to media-coordinates
-    function mod2inn( pos )
-    {
-        const m2i = sconf.mod2inn_scale;
-        pos = pos || this;
+    function modpos2medpos( modpos ){
+        const o2e = sconf.mod2med;
+        modpos = modpos || this;
         return [
-            pos[0] * m2i + sconf.modorInPicX,
-            pos[1] * m2i *
-                    sconf.MONITOR_Y_FLIP +
-                    sconf.modorInPicY,
+            modpos[0] * o2e + sconf.modorInPicX,
+            modpos[1] * o2e * sconf.MONITOR_Y_FLIP +
+                sconf.modorInPicY,
         ];
     }
     ///transforms media-coordinates to model-coordinates
-    function inn2mod( medpos, original )
-    {
-        medpos = medpos || this;
-        const i2m = original ?
-                    1/sconf.originalMod2inn_scale :
-                    sconf.inn2mod_scale;
+    function medpos2modpos( medpos, original ){
+        //this is obsolete: medpos = medpos || this;
+        //this function does not rely on its parent,
+        const e2o = original ?
+                    1/sconf.mod2med_original :
+                    sconf.med2mod;
         const cx =  original ? sconf.originX_onPicture : sconf.modorInPicX;
         const cy =  original ? sconf.originY_onPicture : sconf.modorInPicY;
         return [
-            (medpos[0]-cx) * i2m,
-            (medpos[1]-cy) * i2m * sconf.MONITOR_Y_FLIP,
+            (medpos[0]-cx) * e2o,
+            (medpos[1]-cy) * e2o * sconf.MONITOR_Y_FLIP,
         ];
     }
     ///purpose: use for controls independent on model scale and origin
     ///         user controls,
-    function mod2inn_original( pos, )
-    {
-        const m2oi = sconf.originalMod2inn_scale;
-        pos = pos || this;
+    function modpos2medpos_original( pos ){
+        const o2e = sconf.mod2med_original;
+        //this is obsolete: pos = pos || this;
+        //this function does not rely on its parent,
         return [
-            pos[0] * m2oi + sconf.originX_onPicture,
-            pos[1] * m2oi * sconf.MONITOR_Y_FLIP +
-                            sconf.originY_onPicture,
+            pos[0] * o2e + sconf.originX_onPicture,
+            pos[1] * o2e * sconf.MONITOR_Y_FLIP +
+                sconf.originY_onPicture,
         ];
     }
     //==========================================
     // \\// pos to pos
     //==========================================
 
-
     //===============================
-    // //\\ inn2outparent and inverse
+    // //\\ medpos2dspos and inverse
     //===============================
-    ///wrong?: converts pos-in-media-scope to 
-    ///pos-in-dom-scope-related-to-media-dom-offset
-    ///right?    .... to-media-parent-dom-offset
-    function inn2outparent()
-    {
-        var off     = sconf.mediaOffset;
-        var medpos  = haz( this, 'medpos' );
+    ///svgpos2parentCssPos
+    ///parent is involved to contain html-decoration points
+    ///in it, it is hard to attach them to svg itself,
+    function medpos2dspos (){
+        ///this function often attaches itself to the object,
+        var medpos = haz( this, 'medpos' );
         if( !medpos ) {
             ////todm fix this in other code?
-            medpos = this.medpos = mod2inn( this.pos );
+            medpos = this.medpos = modpos2medpos( this.pos );
         }
-        var i2o     = 1/sDomF.out2inn();
+        var s2e = 1/sDomF.ds2med();
         return [
-            medpos[0] * i2o + off[0]
+            medpos[0] * s2e
 
             //adds fake value ...
             //see "todm: patch: generates pars needed possibly for"
             + stdMod.bgImgOffset,
 
-            medpos[1] * i2o + off[1]
+            medpos[1] * s2e
         ];
     };
 
     ///converts dom-pos to media pos
-    ///for lemma1, drag_surface = sDomN.medRoot
-    function outparent2inn( outparent ) //css2media_converter (with offset)
-    {
-        var moffset = sconf.mediaOffset;
-        var c2m     = sDomF.out2inn();
+    function dspos2medpos( outparent ){
+        const s2e = sDomF.ds2med();
         return [
-            c2m * ( outparent[0] - moffset[0]
-                    - stdMod.bgImgOffset //very vital to use
+            s2e * ( outparent[0]
+                    - stdMod.bgImgOffset
                   ),
-            c2m * ( outparent[1] - moffset[1] )
+            s2e * outparent[1]
         ];
     };
     //===============================
-    // \\// inn2outparent and inverse
+    // \\// medpos2dspos and inverse
     //===============================
 
-    function out2inn() //css2media_scale
-    {
-        //returns fake scale for landing mode for draggers creation,
-        //see "todm: patch: generates pars needed possibly for"
+    function ds2med (){
         return sconf.innerMediaWidth / stdMod.bgImgW;
     };
-}) ();
-
+})();

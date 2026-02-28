@@ -43,7 +43,7 @@
         //----------------------------------------------------------------
         // //\\ medias spatial css
         //----------------------------------------------------------------
-        stdMod.svgScene.style.width = '100%';
+        stdMod.medScene.style.width = '100%';
         //amends desktop setting
         //sDomN.simSScene$.css( 'height', 'auto' );
         var imgDom$ = haz( stdMod.imgRk, 'dom$' );
@@ -156,7 +156,7 @@
         // //\\ medias spatial css
         //---------------------------------------------------------
         //compares with initial landing config:
-        stdMod.svgScene.style.width =
+        stdMod.medScene.style.width =
             stdMod.svgSceneW.toFixed() + 'px';
 
         var imgDom$ = haz( stdMod.imgRk, 'dom$' );

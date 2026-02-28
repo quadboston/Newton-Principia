@@ -6,14 +6,14 @@
     } = window.b$l.apptree({
         stdModExportList :
         {
-            init_model_parameters,
+            init_lemma,
         },
     });
 
     ///****************************************************
     /// model initiation
     ///****************************************************
-    function init_model_parameters()
+    function init_lemma()
     {
         ssD.curveStartInitialPos = ns.paste( {}, rg.curveStart.pos );
         ssD.curveEndInitialPos = ns.paste( {}, rg.curveEnd.pos );
@@ -39,9 +39,9 @@
         //rg.B.unrotatedParameterX = rg.B.pos[0]*1.02;
         //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
         rg.B.dragPriority = 100;
-        sDomF.params__2__rgX8dragwrap_gen_list({
+        sDomF.rgx2draglist({
             stdMod,
-            pname : 'B',
+            shpid : 'B',
             acceptPos : ( newPos ) =>
             {
                 var ach = rg.B.achieved;
@@ -64,14 +64,14 @@
                   [rg.A.pos, cpos ],
                   [rg.A.pos, rg.L.pos],
                 ]).angle
-                
+
                 ///prevents user from playing with too big curves
                 if( new_unrotatedParameterX > rg.curveEnd.pos[0] ) {
                     new_unrotatedParameterX = rg.curveEnd.pos[0]-0.00001;
                 }
 
                 rg.B.unrotatedParameterX = new_unrotatedParameterX;
-                
+
                 return true;
 
             }
@@ -88,19 +88,19 @@
         if(!sconf.B ONUS) {
             rg.D.processOwnDownEvent = function() {
                 ssD.draggerInUse = 'D';
-            }; 
+            };
             rg.D.processOwnUpEvent = function() {
                 ssD.draggerInUse = '';
-            }; 
-            sDomF.params__2__rgX8dragwrap_gen_list({
+            };
+            sDomF.rgx2draglist({
                 stdMod,
-                pname : 'D',
+                shpid : 'D',
                 acceptPos : ( newPos ) => {
                     let originalDx = rg.D.originalPos[0];
-                    // D can move half the width of AD in either dir 
+                    // D can move half the width of AD in either dir
                     let half_AD = originalDx / 2;
                     newPos[1] = 0; // y pos doesn't change
-                    let x = newPos[0]; 
+                    let x = newPos[0];
                     if(x < originalDx - half_AD || x > originalDx + half_AD) {
                         return false;
                     } else {

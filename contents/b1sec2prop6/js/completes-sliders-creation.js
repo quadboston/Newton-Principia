@@ -1,6 +1,10 @@
 ( function() {
-    const { sn, mat, ssD, stdMod, sconf, fconf, rg, } = window.b$l.apptree({
-        stdModExportList : { creates__curve_pivots_sliders, creates_S_slider, }, });
+    const { sn, mat, stdMod, sconf, fconf, rg, ssD } =
+          window.b$l.apptree({
+              stdModExportList : {
+                  creates__curve_pivots_sliders,
+                  creates_S_slider, },
+    });
     return;
 
 
@@ -19,13 +23,13 @@
     //=========================================================================
     // \\// point S slider
     //=========================================================================
-    
+
     //=========================================================================
     // //\\ curve pivotsPos sliders
     //=========================================================================
     function creates__curve_pivots_sliders(){
         const bezio = ssD.bezio;
-        var pivs = sconf.originalPoints.curvePivots;
+        var pivs = ssD.curvePivots;
         pivs.forEach( (cp,cpix) => {
             var pos1 = rg[ 'curvePivots-' + cpix ].pos;
             var stashedPos = null;
@@ -61,7 +65,7 @@
                 let pos = bezio.pivotsPos[cpix];
                 let bpos0 = pos[0];
                 let bpos1 = pos[1];
-                
+
                 //this is clear, we calculate dependency, then
                 //multiply this dependency with curve-pivot displecement
                 //and add the reusult to bezier-pivot,
@@ -71,7 +75,7 @@
                 bezio.updatesPivot( pos, cpix );
 
                 stdMod.rebuilds_orbit( ssD.Dt );
-                
+
                 if( stdMod.graphArray.length ){
                     ////for case when curve shape changes,
                     //tricky loop: pos -> qix -> pos( in upcreate_model ):
@@ -80,7 +84,7 @@
 
                 ///updates curve pivots every time:
                 stdMod.bp2cp();
-                
+
 
                 stashedPos = [ newPos[0], newPos[1] ];
                 if( ssD.foldPoints.length ) {

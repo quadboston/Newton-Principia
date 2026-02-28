@@ -3,7 +3,7 @@
         mat,
         sconf,
         rg,
-        stdMod,
+        stdMod, ssD,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -34,7 +34,7 @@
     {
         //left function
         rg.leftFunction.dividedDifferences = mat.calculate_divided_differences(
-            sconf.originalPoints.curvePivots.map( pivot => (
+            ssD.curvePivots.map( pivot => (
                 [ pivot.rgX.pos[0], pivot.rgX.pos[1] ]
             )
         ));
@@ -43,7 +43,7 @@
         //normalized: (non-normalized should be decorational and obtained by
         //            direct transform.
         rg.rightFunction.dividedDifferences = mat.calculate_divided_differences(
-            sconf.originalPoints.rightCurvePivots_normalized.map( rpivot =>
+            ssD.rightCurvePivots_normalized.map( rpivot =>
                 [ rpivot.rgX.pos[0], rpivot.rgX.pos[1] ]
             )
         );

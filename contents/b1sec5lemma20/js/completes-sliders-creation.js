@@ -10,8 +10,8 @@
         },
     });
     return;
-    
-    
+
+
     function completesSlidersCreation()
     {
         rg.a.acceptPos = slider_a_pos2value;
@@ -39,7 +39,7 @@
             stdMod.model8media_upcreate();
         }
     }
-    
+
     ///does newPos -> value -> pos (pos -> value in model)
     function slider_a_pos2value( newPos )
     {
@@ -47,7 +47,7 @@
         sData.eScale = scale / sconf.eMax;
         var modelPar = ( newPos[0] - rg.eStart.pos[0] ) / sData.eScale;
         if( modelPar < 0.0000000001 || modelPar > sconf.eMax ) return false;
-        
+
         // //\\ making pause at e=1
         {
             const START = 0.90
@@ -75,7 +75,7 @@
         const change = Math.abs(eChange);
         {
             /*
-            const initialFocus = ssF.inn2mod( sconf.focus, !!'original' );
+            const initialFocus = ssF.medpos2modpos( sconf.focus, !!'original' );
             c1 = Math.abs(change-1);
             const focusShift = eChange < 0 ?
                   1-change*0.5 : 1-(1-c1*c1);
@@ -85,7 +85,7 @@
             */
         }
         {
-            //const initialLatus = sconf.latus2/sconf.originalMod2inn_scale;
+            //const initialLatus = sconf.latus2/sconf.mod2med_original;
             //const latusFactor = eChange < 0 ?  1+change*2 :
                     //1-change*6+change*change*6;
                     1;
@@ -113,7 +113,7 @@
         stdMod.curveModel2branches();
         newPos[1] = rg.eStart.pos[1];
         return true;
-    }    
+    }
     function slider_a_value2pos()
     {
         rg.a.pos[0] = rg.eStart.pos[0] +

@@ -38,7 +38,7 @@
 
     //model's spacial unit in pixels of the picture:
     //conversion factor to calc values displayed in data table
-    var mod2inn_scale = 239;
+    var mod2med = 239;
 
     var A = [modorInPicX, modorInPicY];
     var B = [358, 165];
@@ -318,8 +318,8 @@
     };
 
     ///alternatively to this, you can set own colors for originalPoints
-    eachprop( originalPoints, (point,pname) => {
-        point.pcolor = haz( point, 'pcolor' ) || tpid2arrc_elect[ pname ];
+    eachprop( originalPoints, (point,shpid) => {
+        point.pcolor = haz( point, 'pcolor' ) || tpid2arrc_elect[ shpid ];
     });
 
     var linesArray =
@@ -445,10 +445,10 @@
         [377,206],
     ];
     var ww_MONITOR_Y_FLIP = -1;
-    var ww_inn2mod_scale = 1/mod2inn_scale;
-    var ww_factor = ww_MONITOR_Y_FLIP * ww_inn2mod_scale;
+    var ww_med2mod_scale = 1/mod2med;
+    var ww_factor = ww_MONITOR_Y_FLIP * ww_med2mod_scale;
     var givenCurve_pivots_inModel = givenCurve_pivots.map( opoint =>
-        [ ( opoint[0] - modorInPicX ) * ww_inn2mod_scale,
+        [ ( opoint[0] - modorInPicX ) * ww_med2mod_scale,
             ( opoint[1] - modorInPicY
             ) * ww_factor,
         ]
@@ -468,7 +468,7 @@
         modorInPicY,
         pictureWidth,
         pictureHeight,
-        mod2inn_scale,
+        mod2med,
     });
 }}})}
 

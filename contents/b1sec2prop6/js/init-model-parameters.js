@@ -7,18 +7,18 @@
     } = window.b$l.apptree({
         stdModExportList :
         {
-            init_model_parameters,
+            init_lemma,
         },
     });
     return;
 
 
-    function init_model_parameters()
+    function init_lemma()
     {
         ///curve pars
         ///sconf is insufficient, there is a fine tuneup,
         {
-            let ocp = sconf.originalPoints.curvePivots;
+            let ocp = ssD.curvePivots;
             let pivotsPos = ocp.map( (cp,cpix) => {
                 let pos = rg[ 'curvePivots-' + cpix ].pos;
                 return [ pos[0], pos[1] ];

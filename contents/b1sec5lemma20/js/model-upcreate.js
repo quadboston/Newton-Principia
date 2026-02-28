@@ -32,15 +32,15 @@
         var PR = rg.T.pos2Tpar( rg.T.pos ) * Pr_by_Pt;
         var qScale = 1.4;
         var Pq = PR * qScale;
-        var Rpos = [ P[0] + Pr.unitVec[0] * PR, P[1] + Pr.unitVec[1] * PR ]; 
-        var qpos = [ P[0] + Pr.unitVec[0] * Pq, P[1] + Pr.unitVec[1] * Pq ]; 
+        var Rpos = [ P[0] + Pr.unitVec[0] * PR, P[1] + Pr.unitVec[1] * PR ];
+        var qpos = [ P[0] + Pr.unitVec[0] * Pq, P[1] + Pr.unitVec[1] * Pq ];
         var R = pos8tg_2_rg( 'R', Rpos ).pos;
         var q = pos8tg_2_rg( 'q', qpos ).pos;
 
         var C = rg.C.pos;
         var CR = mat.p1_to_p2( C,R );
         var Cq = mat.p1_to_p2( C,q );
-        
+
         var B = rg.B.pos;
         var BT = mat.p1_to_p2( B,rg.T.pos );
 
@@ -92,13 +92,13 @@
         // \\// legends
     }
 
-    function q2rg( parQ, pname )
+    function q2rg( parQ, shpid )
     {
         const pem = sData.polar_ell_model;
         pem.q = parQ;
         var { point, tangent } = mat.polar_ellipse( pem );
-        pos8tg_2_rg( pname, point, tangent );
-        return rg[ pname ];
+        pos8tg_2_rg( shpid, point, tangent );
+        return rg[ shpid ];
     }
 
     /*
@@ -109,7 +109,7 @@
         q2rg( ePar, 'art' )
         ssF.pos2pointy(
             'art',
-            { 
+            {
                 cssClass        : 'tofill tostroke',
                 'stroke'        : 'brown',
                 'fill'          : 'white',
@@ -119,7 +119,7 @@
         );
     }
     */
-    
+
     function pos8tg_2_rg( nameP, pos, tangent )
     {
         //we cannot do P = t r( nameP, 'pos', [x, y] );
@@ -135,7 +135,7 @@
             Ptangent[1] = tangent[1];
         }
         return rg[ nameP ];
-    } 
+    }
 
     function deriveParameters( doSetT )
     {
@@ -220,7 +220,7 @@
         return PTalgebraic;
      }
 
-     
+
     ///input parameters are in model namespace,
     ///ellipse to array
     function curveModel2branches(){

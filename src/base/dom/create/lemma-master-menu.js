@@ -3,9 +3,9 @@
             mcat_id = "logic_phase", "aspect"
             menu tree is like:
                 mcat_id = "logic_phase"
-                              scat_id = claim, proof, ...           
+                              scat_id = claim, proof, ...
                 mcat_id = "aspect"
-                              scat_id = latin, english, video, ...           
+                              scat_id = latin, english, video, ...
 */
 
 
@@ -112,7 +112,7 @@
         //------------------------------------
         //makes shuttle non-chosen and its position undefined
         decorOfShuttle$ = $$.dct( 'litem shuttle', teaf$ );
-        /*       
+        /*
                             .ch( $$.dc( 'shuttle-oval-body' ) )
                             .ch( $$.dc( 'shuttle-shadow' ) )
                             ;
@@ -171,7 +171,7 @@
             $$
             .div()
             .cls( iconClass )
-            //:can put this css into fapp.css.js 
+            //:can put this css into fapp.css.js
             //:while no specific place exist
             .css( 'display', 'inline-block' )
             .css( 'position', 'relative' )
@@ -208,7 +208,7 @@
             .ch([
                 $$
                     .dc( 'caption' )
-                    .ch( 
+                    .ch(
                         [   videoPlaceholder$,
                             leafRk.mItemCaptionHtml$ = $$.span().html( caption )
                         ]
@@ -376,9 +376,9 @@
 
         if( amodel2app_8_extraWork ) {
             haff(stdMod, 'sliders_value2pos');
-            
+
             //Tab (text or video) changed so load the following.
-            wrkwin.loadPosPartitionHandle();
+            wrkwin.loads_dividorState_from_sessionStore();
 
             //.todm code proliferation ... model runs twice?
             var res = wrkwin.start8finish_media8Ess8Legend_resize__upcreate;

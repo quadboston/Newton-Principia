@@ -45,7 +45,7 @@
         }
         createMedia0updateMediaAUX();
         if( ssF.mediaModelInitialized ) {
-            stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
+            stdMod.lemmaD8D && stdMod.lemmaD8D.updateAllDecPoints();
         } else {
             $$.q( '.change-model-data-button' )
               .html( "function" )
@@ -69,8 +69,6 @@
     //=========================================================
     function createMedia0updateMediaAUX()
     {
-        ssF.toogle_detectablilitySliderPoints4Tools( stdMod, ); //todm ... generalize in one spot
-
         var pictureLeft = rg.detected_user_interaction_effect_DONE;
         //-------------------------------------------------
         // //\\ colors
@@ -95,13 +93,13 @@
         //      only once? ... no we cannot, user can move origin ...
         //-------------------------------------------------
         ( function () {
-            var mod2med = ssF.mod2inn;
+            var modpos2medpos = ssF.modpos2medpos;
             toreg( "abscissa" );
             rg.abscissa.svgel = sv.polyline({
                 svgel   : rg.abscissa.svgel,
                 stroke  : 'black',
-                parent  : stdMod.mmedia,
-                pivots  : [ mod2med([-1,0]), mod2med([5,0]) ],
+                parent  : stdMod.medScene,
+                pivots  : [ modpos2medpos([-1,0]), modpos2medpos([5,0]) ],
                 'stroke-width' : 1,
             });
         })();
@@ -116,9 +114,9 @@
         //-------------------------------------------------
         drawCurveFromDividedDifferences = ( function() {
             var dd = rg.experimental.expFunction;
-            var mod2med = ssF.mod2inn;
+            var modpos2medpos = ssF.modpos2medpos;
             return function( x ) {
-                 return mod2med([ x, dd(x) ]); };
+                 return modpos2medpos([ x, dd(x) ]); };
         })();
         rg.experimental.svg = ns.svg.curve({
             stepsCount      : 120,
@@ -129,7 +127,7 @@
             "stroke-width"  : 2,
             svgel           : rg.experimental.svg,
             dontClose       : true,
-            parent          : stdMod.mmedia,
+            parent          : stdMod.medScene,
         });
         $$.$(rg.experimental.svg).addClass( 'tostroke thickable tp-given' );
         //-------------------------------------------------
@@ -143,8 +141,8 @@
         //-------------------------------------------------
         drawCurveFromDividedDifferences_A = ( function() {
             var dd = rg.approximator_curve.dividedDifferences.calculate_polynomial;
-            var mod2med = ssF.mod2inn;
-            return function( x ) { return mod2med([ x, dd(x) ]); };
+            var modpos2medpos = ssF.modpos2medpos;
+            return function( x ) { return modpos2medpos([ x, dd(x) ]); };
         })();
         rg.approximator_curve.svg = ns.svg.curve({
             stepsCount      : 120,
@@ -155,7 +153,7 @@
             "stroke-width"  : 2,
             svgel           : rg.approximator_curve.svg,
             dontClose       : true,
-            parent          : stdMod.mmedia,
+            parent          : stdMod.medScene,
         });
         $$.$(rg.approximator_curve.svg).addClass( 'tostroke thickable tp-approximator' );
         //-------------------------------------------------
@@ -167,14 +165,14 @@
         // //\\ adds to points their media position
         //      and sets point's color
         //-------------------------------------------------
-        Object.keys( sconf.pname2point ).forEach( pname => {
-            var point = sconf.pname2point[ pname ];
+        Object.keys( sconf.pntRgid2rgx ).forEach( l5key => {
+            var point = sconf.pntRgid2rgx[ l5key ];
             point.pointWrap.pcolor = point.ptype === 'approximator' ?
                                                       approxColor : experColor;
-            if( pname !== 'O' ) {
+            if( l5key !== 'O' ) {
                 point.pointWrap.doPaintPname = true;
             }
-            pn2mp( pname );
+            pn2mp( l5key );
         });
         //-------------------------------------------------
         // \\// adds to points their media position
@@ -194,8 +192,8 @@
             var m = rg.m.value;
 
             var line = pivots_2_svgLineInRg(
-                x.pname + '-' + y.pname,
-                [ rg[ x.pname ], rg[ y.pname ]],
+                x.l5key + '-' + y.l5key,
+                [ rg[ x.l5key ], rg[ y.l5key ]],
                 {
                     tpclass         : ptype,
                     cssClass        :'tostroke thickable',
@@ -208,7 +206,7 @@
 
             ///placed over above line
             pos2pointy(
-                x.pname,
+                x.l5key,
                 {
                     //tpclass       : ptype,
 
@@ -219,17 +217,17 @@
                     r               : handleR,
                 }
             );
-            rg[ x.pname ].svgel.style.display =
+            rg[ x.l5key ].svgel.style.display =
                  m <= pix && ptype === 'experimental' ?  'none' : 'block';
             ///paints latin letters for points
             if( x.pointWrap.doPaintPname && pictureLeft ) {
                 x.pointWrap.pnameLabelsvg = ns.svg.printText({
-                    text : x.pname,
+                    text : x.l5key,
                     stroke : pcolor,
                     fill : pcolor,
                     "stroke-width" : 2,
                     svgel : x.pointWrap.pnameLabelsvg,
-                    parent : stdMod.mmedia,
+                    parent : stdMod.medScene,
                     x : x.pointWrap.medpos[0]-12,
                     y : x.pointWrap.medpos[1]+60,
                     style : { 'font-size' : '50px' },
@@ -240,7 +238,7 @@
 
             ///placed over above line
             pos2pointy(
-                y.pname,
+                y.l5key,
                 {
                     //todm these fail ... why? ...
                     //??? remove tpfill to disable tp
@@ -254,19 +252,19 @@
                     r               : handleR,
                 }
             );
-            rg[ y.pname ].svgel.style.display =
+            rg[ y.l5key ].svgel.style.display =
                  m <= pix && ptype === 'experimental' ?  'none' : 'block';
 
 
             ///paints latin letters for points
             if( y.pointWrap.doPaintPname && pictureLeft ) {
                 y.pointWrap.pnameLabelsvg = ns.svg.printText({
-                    text : y.pname,
+                    text : y.l5key,
                     stroke : pcolor,
                     fill : pcolor,
                     "stroke-width" : 2,
                     svgel : y.pointWrap.pnameLabelsvg,
-                    parent : stdMod.mmedia,
+                    parent : stdMod.medScene,
                     x : y.pointWrap.medpos[0]-12,
                     y : y.pointWrap.medpos[1]-20,
                     style : { 'font-size' : '50px' },
@@ -280,8 +278,8 @@
             //-------------------------------------------------
             ///attaches updater right to the point G to ease
             ///this function lookup right from dragger-of-G
-            if( !ns.h( rg[ x.pname ], 'model8media_upcreate' )) {
-                var pointWrap = rg[ x.pname ];
+            if( !ns.h( rg[ x.l5key ], 'model8media_upcreate' )) {
+                var pointWrap = rg[ x.l5key ];
                 pointWrap.model8media_upcreate = function() {
                     stdMod.model8media_upcreate();
                 }
@@ -291,7 +289,7 @@
                     var posX = newPos[ 0 ];
                     x.pos[0] = posX;
                     y.pos[0] = posX;
-                    y.pos[1] = x.pname === 'S' ?
+                    y.pos[1] = x.l5key === 'S' ?
                         rg.approximator_curve.dividedDifferences.calculate_polynomial( posX ) :
                         rg.experimental.expFunction( posX );
                     pointWrap.model8media_upcreate();
@@ -321,7 +319,7 @@
     ///shortcut to build medpos property
     function pn2mp( ptname ) {
         var pt = rg[ ptname ];
-        pt.medpos = ssF.mod2inn( pt.pos );
+        pt.medpos = ssF.modpos2medpos( pt.pos );
     }
 
 }) ();

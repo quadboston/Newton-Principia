@@ -1,69 +1,64 @@
-( function() {
-    var {
-        sn, $$, cssp, nsmethods, globalCss, nspaste, haz, has, eachprop,
-        fconf, sDomN, ssD, sDomF, ssF, exegs, topics,
-        tpid2arrc_repo, lowtpid_2_glocss8anchorRack,
-        anid2anrack, anix2anrack,
-        amode, sconf, rg, userOptions
-    } = window.b$l.apptree({
-        ssFExportList :
-        {
-            BodyMathJax_2_HTML,
-            fragment__collectsRawTpLinks,
-            rawFragments2htmlText,
-            builtFrags_2_dom8mj,
-            //updateFrameWorkAnchors_2_basicSiteFeatures,
-        },
-    });
-    var collectedDelayedLinks = sn( 'collectedDelayedLinks', ssD );
+(function(){
 
+var {
+    sn, $$, cssp, nsmethods, globalCss, nspaste, haz, has, eachprop,
+    fconf, sDomN, ssD, sDomF, ssF, exegs, topics,
+    tpid2arrc_elect, lowtpid_2_glocss8anchorRack,
+    anid2anrack, anix2anrack,
+    amode, sconf, rg, userOptions
+} = window.b$l.apptree({
+    ssFExportList :
+    {
+        BodyMathJax_2_HTML,
+        fragment__collectsRawTpLinks,
+        rawFragments2htmlText,
+        builtFrags_2_dom8mj,
+        //updateFrameWorkAnchors_2_basicSiteFeatures,
+    },
+});
+var collectedDelayedLinks = sn( 'collectedDelayedLinks', ssD );
+//---------------------------------------------
+// //\\ topic engine variables
+//---------------------------------------------
+var tplinkCount = 0;
 
-    //---------------------------------------------
-    // //\\ topic engine variables
-    //---------------------------------------------
-    var tplinkCount = 0;
+//: lemma-wise constructs
+//var topicsCount = 0; //indexes shapes lemma-wise
 
-    //: lemma-wise constructs
-    //var topicsCount = 0; //indexes shapes lemma-wise
+//var SPACE_reg = /(\s|\/)+/; //this version has a flaw: adds seps to split
+var SPACE_reg = /\s+|\//;
 
-    //var SPACE_reg = /(\s|\/)+/; //this version has a flaw: adds seps to split
-    var SPACE_reg = /\s+|\//;
+//todo: these regexes do proliferate in two files
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
 
-    //todo: these regexes do proliferate in two files
-    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+//for delaeyd batch tp-clause:
+//1. these chars "[ \ ^ $ . | ? * + ( )"  must not exist in replaceeKey
+//   ¦controls¦replaceeKey¦¦¦
+//2. replaceeKey must not be naked in controls for ordinary tp-clause and in
+//   , until this fixed, controls for batch.
 
-    //for delaeyd batch tp-clause:
-    //1. these chars "[ \ ^ $ . | ? * + ( )"  must not exist in replaceeKey
-    //   ¦controls¦replaceeKey¦¦¦
-    //2. replaceeKey must not be naked in controls for ordinary tp-clause and in
-    //   , until this fixed, controls for batch.
+var TOP_ANCH_REG =
+    '(¦[^¦]+|)¦' +  //catches tplinkConf
+    '([^¦]+)'   +   //catches topic caption
+    '¦¦'        +   //catches topic terminator
+    '(?:(¦)(¦)*' +  //catches delayed topc-link for MathJax sibling
+    '|(\n|.)|$)';   //catches remainder for later accurate replacement
 
-    var TOP_ANCH_REG =
-        '(¦[^¦]+|)¦' +  //catches tplinkConf
-        '([^¦]+)'   +   //catches topic caption
-        '¦¦'        +   //catches topic terminator
-        '(?:(¦)(¦)*' +  //catches delayed topc-link for MathJax sibling
-        '|(\n|.)|$)';   //catches remainder for later accurate replacement
-
-    //flag: u 	"unicode"; treat a pattern as a sequence of unicode code points.
-    var TOP_ANCH_REG_gu = new RegExp( TOP_ANCH_REG, 'gu' );
-    //flag "g": With this flag the search looks for all matches,
-    //          without it – only the first match is returned.
-    //          https://javascript.info/regexp-introduction
-    //.adding flag "g" ruins the job ... why?
-    //.perhaps: "The g flag with match will only return multiple whole
-    //          matches, not multiple sub-matches"
-    //          https://stackoverflow.com/questions/19913667
-    //          /javascript-regex-global-match-groups
-    var TOP_ANCH_REG_u = new RegExp( TOP_ANCH_REG, 'u' );
-    //---------------------------------------------
-    // \\// topic engine variables
-    //---------------------------------------------
-    return;
-
-
-
-
+//flag: u 	"unicode"; treat a pattern as a sequence of unicode code points.
+var TOP_ANCH_REG_gu = new RegExp( TOP_ANCH_REG, 'gu' );
+//flag "g": With this flag the search looks for all matches,
+//          without it – only the first match is returned.
+//          https://javascript.info/regexp-introduction
+//.adding flag "g" ruins the job ... why?
+//.perhaps: "The g flag with match will only return multiple whole
+//          matches, not multiple sub-matches"
+//          https://stackoverflow.com/questions/19913667
+//          /javascript-regex-global-match-groups
+var TOP_ANCH_REG_u = new RegExp( TOP_ANCH_REG, 'u' );
+//---------------------------------------------
+// \\// topic engine variables
+//---------------------------------------------
+return;
 
 
     ///*************************************************************
@@ -97,17 +92,22 @@
                 //=========================================
                 // //\\ indexes topic links and colors
                 //=========================================
-                //parsedLink[3] === '(?:(¦)(¦)*' +  //catches delayed topc-link for MathJax sibling
+                //parsedLink[3] === '(?:(¦)(¦)*' +
+                //catches delayed topc-link for MathJax sibling
                 if(  parsedLink[3] ) {
 
-                    ///this array collects information for spawning plain-words (which are
-                    ///original match keys), collected info will be used later for first-step for
+                    ///this array collects information for spawning
+                    //plain-words (which are
+                    ///original match keys), collected info will be
+                    //used later for first-step for
                     ///replacing plain-words with match-clauses,
-                    ///in the later second-step replacement, match-clauses will be normally
+                    ///in the later second-step replacement,
+                    //match-clauses will be normally
                     ///parsed to html-anchors as usual "tp-topics",
                     collectedDelayedLinks[ parsedLink[2] ] = {
 
-                        //total future match clause = string aka  ¦anchor config¦anchor caption¦¦
+                        //total future match clause = string aka
+                        //¦anchor config¦anchor caption¦¦
                         //note: trailing ¦¦ are stripped,
                         match : parsedLink[0].substring( 0,
                                 //"length-1" erases last char which is "¦"
@@ -115,7 +115,8 @@
                                 parsedLink[0].length-1
                         ),
                         anchorConfig : parsedLink[1],
-                        replaceeKey : parsedLink[2],  //anchor caption = first match key
+                        replaceeKey : parsedLink[2],
+                        //anchor caption = first match key
                     };
                     //todo: now do remove this tp-clause from rawActFrValue
                 }
@@ -222,19 +223,15 @@
                     ///now we do add anchorRack.tpid2tru to anchorRack,
                     if( low_tpID  && low_tpID.replace( / /g, '' ) ) {
                         anchorRack.tpid2true[ low_tpID ] = true;
-                        //if topicId keyName is missed, then an empty object created
-                        //ccc( 'FR II, set low_tpID into lowtpid_2_glocss8anchorRack' );
+                        //if topicId keyName is missed, then an
+                        //empty object created
                         if( !has( lowtpid_2_glocss8anchorRack, low_tpID ) ){
                             ////todm: add this warning to GUI:
                             ccc( 'Helper: text topic "'+low_tpID +'" ' +
                                  'is missed in js-code. '
                             );
-                            //for this keyName, 'fixed-colors'
-                            //is a flag and is = 'undefined',
-                            //don't forget lowtpid_2_glocss8anchorRack is
-                            //in topics.lowtpid_2_glocss8anchorRack
                             sn( low_tpID,
-                                lowtpid_2_glocss8anchorRack // maps, topicId -> topicId
+                                lowtpid_2_glocss8anchorRack
                             );
                         }
                     }
@@ -344,7 +341,7 @@
             //      preconversions before
             //      convertion fragBody_raw to tp-anchor-scripts.
             //***************************************************
-//todo why canonical version misses this?
+            //todo why canonical version misses this?
             fragBody_raw = doesInsertSiteHTMLMacros( fragBody_raw );
 
             //----------------------------------------------------
@@ -515,11 +512,14 @@
         if( Object.keys( collectedDelayedLinks ).length ) {
             var regEx = '';
             eachprop( collectedDelayedLinks, (lnk) => {
-                //these chars "\ [ ] { } ( ) \ ^ $ . | ? * +" must not exist in replaceeKey:
+                //these chars "\ [ ] { } ( ) \ ^ $ . | ? * +" must not
+                //exist in replaceeKey:
                 //see https://javascript.info/regexp-escaping
                 //replaceeKey is a "raw word caption": made before as:
-                //      replaceeKey : parsedLink[2],  //anchor caption = original-raw-caption
-                //      must have no destroy-reg-ex-chars = [ ] { } ( ) \ ^ $ . | ? * +
+                //      replaceeKey : parsedLink[2],
+                //          anchor caption = original-raw-caption
+                //      must have no destroy-reg-ex-chars =
+                //      [ ] { } ( ) \ ^ $ . | ? * +
                 regEx += (regEx ? '|' : '') + lnk.replaceeKey;
             });
             //***************************************************************
@@ -534,21 +534,24 @@
             fragBody_raw = fragBody_raw.replace( regEx, function( arg ) {
                 ///returns full-replacer = full match which
                 ///        is match=leadingDividor+|config|caption||+trailingDividor,
-                ///        this full-replacer is inserted after execution of this "return",
+                ///        this full-replacer is inserted after
+                ///        execution of this "return",
                 return arguments[1] + //leading spacer
 
-                       //this "match" will be a match-key for future replacement with anchor
+                       //this "match" will be a match-key for future
+                       //replacement with anchor
                        //match===all===config+key+pipes: aka: ¦v2graph VSarea¦ABFD¦¦
                        collectedDelayedLinks[ arguments[2] ].match +
 
-                       arguments[3];  //trailing spacer: !!it cannot be used in ajacent RegEx if any,
-                                      //must: KWA dividorA dividorB KWB, not dividorA is the same as
+                       arguments[3];  //trailing spacer: !!it cannot be used
+                                      //in ajacent RegEx if any,
+                                      //must: KWA dividorA dividorB KWB,
+                                      //not dividorA is the same as
                                       //dividorB
             });
         }
         return fragBody_raw;
     }
-
-}) ();
+})();
 
 

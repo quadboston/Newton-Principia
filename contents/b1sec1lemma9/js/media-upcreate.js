@@ -43,13 +43,13 @@
 
 
 
-        //var medCurvPivots      = modCurvPivots.map( mod2innCustom );
-        //var medRemoteCurPivots = ssD.modRemoteCurPivots.map( mod2innCustom );
+        //var medCurvPivots      = modCurvPivots.map( mod2medCustom );
+        //var medRemoteCurPivots = ssD.modRemoteCurPivots.map( mod2medCustom );
         var medCurvPivots      = modCurvPivots.map( pos => {
-            return ssF.mod2inn( pos, stdMod );
+            return ssF.modpos2medpos( pos, stdMod );
         });
         var medRemoteCurPivots = ssD.modRemoteCurPivots.map( pos => {
-            return ssF.mod2inn( pos, stdMod );
+            return ssF.modpos2medpos( pos, stdMod );
         });
 
         var pointA     = rg.A;
@@ -91,7 +91,7 @@
         var mainCurve = toreg( 'mainCurve' )();
         mainCurve.mediael = bezier.mediafy({
             mediael : mainCurve.mediael, //this is a rack, not svg: goal?: not to recreate DOM.
-            parentSVG : stdMod.mmedia,
+            parentSVG : stdMod.medScene,
             pivots : medCurvPivots,
             bcurve :
             {
@@ -135,7 +135,7 @@
         var remoteCurve = toreg( 'remoteCurve' )();
         remoteCurve.mediael = bezier.mediafy({
             mediael : remoteCurve.mediael,
-            parentSVG : stdMod.mmedia,
+            parentSVG : stdMod.medScene,
             pivots : medRemoteCurPivots,
             bcurve :
             {
@@ -203,7 +203,7 @@
         // \\// does paint view
         //==========================================
         if( ssF.mediaModelInitialized ) {
-            var ww = stdMod.medD8D;
+            var ww = stdMod.lemmaD8D;
             ww && ww.updateAllDecPoints();
         }
         return;
@@ -234,7 +234,7 @@
                 svgel : area.mediael,
                 type : 'path',
                 d:dd,
-                parent : stdMod.mmedia
+                parent : stdMod.medScene
             });
             //area.mediael.setAttributeNS( null, 'class', fullMode + ' tofill' );
             fullMode = fullMode ? ' ' + fullMode : '';
@@ -259,12 +259,12 @@
         {
             var area = rg[ areaId ];
             var vertices = area.vertices.map( pos => {
-                return ssF.mod2inn( pos, stdMod );
+                return ssF.modpos2medpos( pos, stdMod );
             });
             area.mediael = nssvg.polyline({
                 pivots : vertices,
                 svgel : area.mediael,
-                parent : stdMod.mmedia
+                parent : stdMod.medScene
             });
             var ww$ = $$.$( area.mediael )
                         .addClass( 'tp-' + topicGroup_decapitalized )
@@ -284,15 +284,15 @@
         //==========================================
 
         ///converts model-pos and attributes to pointy
-        function pos2pointy4lemma9( pName, attrs, skipSVG, customSWidth, medPosKnown )
+        function pos2pointy4lemma9( shpid, attrs, skipSVG, customSWidth, medPosKnown )
         {
-            return pt              = toreg( pName )();
+            return pt              = toreg( shpid )();
             /*
-            pt.pname            = pName;
+            pt.shpid            = shpid;
             if( !medPosKnown ) {
-                var pos         = rg[ pName ].pos;
+                var pos         = rg[ shpid ].pos;
                 pt.pos          = pos;
-                pt.medpos       = ssF.mod2inn( pt.pos );
+                pt.medpos       = ssF.modpos2medpos( pt.pos );
             }
             return pt;
             */
@@ -304,7 +304,7 @@
             if( skipSVG ) return pt;
             pt.svgel = nssvg.u({
                 svgel   : pt.svgel,
-                parent  : stdMod.mmedia,
+                parent  : stdMod.medScene,
                 type    : 'circle',
                 fill    : attrs && attrs.fill,
                 stroke  : attrs && attrs.stroke,
@@ -316,7 +316,7 @@
                 r : ( customSWidth || 0.7 ) * sconf.thickness * 8 //todo
             });
             var cssClass = attrs && attrs['cssClass'] && ( attrs['cssClass'] + ' ' );
-            $$.$(pt.svgel).cls( cssClass + 'tp-' +  sDomF.tpid2low( pName ) );
+            $$.$(pt.svgel).cls( cssClass + 'tp-' +  sDomF.tpid2low( shpid ) );
             return pt;
             */
         }

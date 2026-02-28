@@ -1,50 +1,51 @@
-//***************************************************************************************************
-// //\\//   "maximally closes to device" level drag and drop processor;
-//          ns.d8dp.creFW_BSLd8d1BASE 
+//************************************************************************************
+// //\\//   drag and drop processor which is
+//          "maximally closest to device" level;
+//          ns.d8dp.deviceFW
 //              - a method of the layer between mouse/touch events and application
 //                  - handles DOM events,
-//                  - submits results to app-processor, d8d_cb_middle2lowest
+//                  - submits results to app-processor, cbDownMoveUp
 //                    which can cancel d8d if returns "forbidden=true" ( see below ).
 //          Copyright (c) 2018-2021 Konstantin Kirillov. License MIT.
 //
-//          file history: /var/www/html/bwork/CANV-SVG-VIDEO-CSS/canvas/
-//                        diagram-editor-vladislav/prj/steps/fios-jan19-35-more/3rd/btb/d8d-device.js
-//***************************************************************************************************
-( function () {
-    var ns = window.b$l;
-    var haz = ns.haz;
-    var eventId = 0;
-    var d8dp = ns.sn( 'd8dp' ); //d8d platform framework
-    var mouseMoveCount = 0;
+//          file history: /var/www/html/bwork/CANV-SVG-VIDEO-CSS/canvas
+//          /diagram-editor-vladislav/prj/steps/fios-jan19-35-more/3rd
+//          /btb/d8d-device.js
+//************************************************************************************
+(function(){
+//we don't use nstree to ease porting this module
+//outside of bsl platform,
+const ns = window.b$l;
+const d8dp = ns.sn( 'd8dp' ); //d8d platform
+const haz = ns.haz;
 
+var eventId = 0;
+var mouseMoveCount = 0;
 
     ///****************************************************************
 	/// d8d object constructor
-    //  this is most basic d8d constructor sitting on the "bottom" of
+    //  this is most basic d8d constructor sitting in the "bottom" of
     //  all d8d constructs of the application,
     ///****************************************************************
-	ns.d8d = d8dp.creFW_BSLd8d1BASE = function ( arg )
-	{
+	d8dp.deviceFW = function ( arg ){
         //------------------------------------------
         // //\\ input arguments
         //------------------------------------------
         //:application-level-handler
         // see function-call-signature in code below
-		var d8d_cb_middle2lowest  = arg.d8d_cb_middle2lowest;
+		var cbDownMoveUp  = arg.cbDownMoveUp;
 
-        //:	where to draw:
+        //where to draw:
         //  final destination of mouse-point-coordinates detection;
         //		can be a div or media;
         //      media means canvas, img, or possibly video;
         //		in general for media, finally detected mouse-point is
         //		in internal media coordinates;
-		var surface	= arg.surface;	
-
- 		//:	to whom to attach events
-		var att = arg.attachee || surface;
+        //
+        //to whom to attach events
+		var ds	= arg.dragSurface;
 
         var skipD8D = arg.skipD8D || default_skip;
-
         var frameworkId = arg.frameworkId; //piggyback id
 
         var dontStopDownAfteshocks = haz( arg, 'dontStopDownAfteshocks' );
@@ -67,7 +68,7 @@
         // //\\ locals
         //------------------------------------------
         //.is a d8d-in-progress-flag ...
-		var startPoint	= null; 
+		var startPoint	= null;
 		var lastPoint   = null;
         //------------------------------------------
         // \\// locals
@@ -76,7 +77,7 @@
 
         let movesAndFindsHandle = haz( arg, 'movesAndFindsHandle' );
         if( movesAndFindsHandle &&  !mouseMoveCount ) {
-            att.addEventListener( 'mousemove', movesAndFindsHandle );
+            ds.addEventListener( 'mousemove', movesAndFindsHandle );
             mouseMoveCount++;
         }
         var returned = {
@@ -110,31 +111,29 @@
         function addEvents()
         {
 		    //  possible Android fix:
-            //  http://stackoverflow.com/questions/5186441/javascript-drag-and-drop-for-touch-devices
+            //  http://stackoverflow.com/questions/5186441
+            //  /javascript-drag-and-drop-for-touch-devices
             //. todo: touch must provide event which then tested for
             //  Ctrl-pressed flag: use different handler
-            att.addEventListener( 'touchstart', doStartDown );  
-            att.addEventListener( 'mousedown', doStartDown );
+            ds.addEventListener( 'touchstart', doStartDown );
+            ds.addEventListener( 'mousedown', doStartDown );
         };
 
         function removeEvents()
         {
-            att.removeEventListener( 'touchstart', doStartDown );
-            att.removeEventListener( 'mousedown', doStartDown );
+            ds.removeEventListener( 'touchstart', doStartDown );
+            ds.removeEventListener( 'mousedown', doStartDown );
         };
         //******************************************************************
 		// \\// d8d-scenario root events
         //******************************************************************
-
-
 
         //*****************************************
 		// //\\ DOWN SUBROUTINES
         //*****************************************
 		// //\\ root d8d handler
         //========================================
-        function doStartDown( ev )
-        {
+        function doStartDown( ev ){
             eventId++;
             var forbidden;
 
@@ -151,9 +150,9 @@
                 forbidden = do_complete_down( event, ev );
                 if( !forbidden ) {
                     !dontStopDownAfteshocks && stopsAftershocks ( ev );
-                    att.addEventListener( 'touchmove',   touchMove);
-                    att.addEventListener( 'touchend',    touchEnd);
-                    att.addEventListener( 'touchcancel', touchEnd);
+                    ds.addEventListener( 'touchmove',   touchMove);
+                    ds.addEventListener( 'touchend',    touchEnd);
+                    ds.addEventListener( 'touchcancel', touchEnd);
                     //vital-for-mobile
                     //ns.d('mob: fw' + frameworkId + ' eid' + eventId + ' owes drag');
                 } else {
@@ -163,27 +162,28 @@
             ///mouse-down
             } else {
                 forbidden = do_complete_down( ev );
-                if( !forbidden ) { 
+                if( !forbidden ) {
                     !dontStopDownAfteshocks && stopsAftershocks ( ev );
-                    att.addEventListener( 'mousemove', mouseMove);
-                    att.addEventListener( 'mouseup',   mouseEnd);
+                    ds.addEventListener( 'mousemove', mouseMove);
+                    ds.addEventListener( 'mouseup',   mouseEnd);
 
                     if( !dontCancelAtMouseleave ) {
                         //.todm suspicion: this approach seems not reliable ...
                         // fires right after the mouseDown ...
-                        att.addEventListener( 'mouseleave',  mouseEnd);
+                        ds.addEventListener( 'mouseleave',  mouseEnd);
                     }
                     //vital
                     //ns.d('desk: fw' + frameworkId + ' eid' + eventId + ' owes drag');
                 //} else {
                 //    ccc( 'other clicks are permitted in raw d8d' );
                     //vital
-                    //ns.d('desk: fw' + frameworkId + ' eid' + eventId + ' skips drag');
+                    //ns.d('desk: fw' + frameworkId + ' eid' +
+                    //eventId + ' skips drag');
                 }
             }
             if( movesAndFindsHandle && mouseMoveCount ) {
                 //c cc( mouseMoveCount + ' removes' );
-                att.removeEventListener( 'mousemove', movesAndFindsHandle );
+                ds.removeEventListener( 'mousemove', movesAndFindsHandle );
                 mouseMoveCount--;
             }
         }
@@ -191,12 +191,10 @@
 		// \\// root d8d handler
         //========================================
 
-
         //=========================================
 		// //\\ second level of down-handling
         //=========================================
-        function do_complete_down( childEvent, rootEvent )
-        {
+        function do_complete_down( childEvent, rootEvent ){
             //ns.d( 'do_complete_down: started' );
             if( startPoint !== null ) {
                 return true;
@@ -205,12 +203,13 @@
 
             if( !point_on_dragSurf ) {
                 //vital-for-mobile
-                //ns.d('\nfw' + frameworkId + ' eid' + eventId + ' point is out dsurf');
+                //ns.d('\nfw' + frameworkId + ' eid' + eventId +
+                //' point is out dsurf');
                 return true;
             }
 
             //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-			var forbidden = d8d_cb_middle2lowest( [0,0], 'down',
+			var forbidden = cbDownMoveUp( [0,0], 'down',
                             point_on_dragSurf, childEvent, [0,0] );
             //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 			if( forbidden ) {
@@ -248,9 +247,9 @@
             if( !startPoint ) {
                 //ns.d('mouseMove: no start point exist');
                 return;
-            } 
+            }
             var surfPoint = eventPos_2_surfacePos( childEvent );
-            if(!surfPoint) { 
+            if(!surfPoint) {
                 //vital-for-mobile
                 //ns.d('\nmouseMove: media point failed');
                 return;
@@ -265,12 +264,12 @@
 		function do_complete_move( surfPoint, childEvent, moveIncrement )
 		{
 			var surfMove =
-			[	
+			[
 				surfPoint[ 0 ] - startPoint[ 0 ],
 				surfPoint[ 1 ] - startPoint[ 1 ]
 			];
-            ///api: 
-            d8d_cb_middle2lowest(
+            ///api:
+            cbDownMoveUp(
                 //todo: do name? it (drag?)SurfaceAccomulatedMove
                 surfMove, //total move which begins from down event
                 'move',
@@ -293,9 +292,9 @@
 		// //\\ END SUBROUTINES
         //*****************************************
         function touchEnd( rootEvent ) {
-            att.removeEventListener( 'touchmove',   touchMove );
-            att.removeEventListener( 'touchend',    touchEnd );
-            att.removeEventListener( 'touchcancel', touchEnd );
+            ds.removeEventListener( 'touchmove',   touchMove );
+            ds.removeEventListener( 'touchend',    touchEnd );
+            ds.removeEventListener( 'touchcancel', touchEnd );
             var childEvent = rootEvent.touches && rootEvent.touches[0];
             do_complete_end( childEvent, rootEvent );
         }
@@ -305,14 +304,14 @@
         {
             eventId++;
             //ns.d( '***eid=' + eventId + ' removing mouse events\n\n' );
-            att.removeEventListener( 'mousemove', mouseMove );
-            att.removeEventListener( 'mouseup',  mouseEnd );
-            att.removeEventListener( 'mouseleave', mouseEnd );
+            ds.removeEventListener( 'mousemove', mouseMove );
+            ds.removeEventListener( 'mouseup',  mouseEnd );
+            ds.removeEventListener( 'mouseleave', mouseEnd );
             do_complete_end( child8rootEvent );
             if( movesAndFindsHandle && !mouseMoveCount ) {
                 //c cc( mouseMoveCount + ' readds' );
                 mouseMoveCount++;
-                att.addEventListener( 'mousemove', movesAndFindsHandle );
+                ds.addEventListener( 'mousemove', movesAndFindsHandle );
             }
         }
 
@@ -326,7 +325,7 @@
             //ccc( 'do_complete_end childEvent='+!!(childEvent) );
             if( startPoint ) {
                 !dontStopEndAfteshocks && stopsAftershocks( rootEvent || childEvent );
-                //.programmer may want to make d8d_cb_middle2lowest throttable:
+                //.programmer may want to make cbDownMoveUp throttable:
                 //.this is why it is importan to provide "up" with surfPoint
                 //.in case the "move" event will be erased by "up"
                 //var surf_point = surfPoint || lastPoint;
@@ -337,10 +336,10 @@
                     //ccc( 'surfPoint=', surfPoint );
                     var moveIncrement = [ surfPoint[0]-lastPoint[0], surfPoint[1]-lastPoint[1] ];
                     var moveAbsolute = do_complete_move( surfPoint, childEvent, moveIncrement );
-                 	d8d_cb_middle2lowest( moveAbsolute, 'up', surfPoint, childEvent, moveIncrement );
+                 	cbDownMoveUp( moveAbsolute, 'up', surfPoint, childEvent, moveIncrement );
                 } else {
                     //ccc( 'no surfPoint=', surfPoint );
-                 	d8d_cb_middle2lowest( null, 'up', null, childEvent );
+                 	cbDownMoveUp( null, 'up', null, childEvent );
                 }
 	            startPoint = null;
                 //ns.d('end fw' + frameworkId + ' eid' + eventId + ' startPoint cleared');
@@ -363,10 +362,11 @@
         //===========================================
         function eventPos_2_surfacePos( event )
         {
-            //https://developer.mozilla.org/en-US/docs/Web/API/Element.getBoundingClientRect
-            var box	= surface.getBoundingClientRect();
+            //https://developer.mozilla.org/en-US/docs/Web/API
+            // /Element.getBoundingClientRect
+            var box	= ds.getBoundingClientRect();
             var loc	=
-            [ 
+            [
                 Math.round( event.clientX - box.left ),
                 Math.round( event.clientY - box.top )
             ];
@@ -386,13 +386,13 @@
         function default_skip( ev )
         {
             var tag = ev.target.tagName.toLowerCase();
-            if(     
-                    //protects wbd debugger    
+            if(
+                    //protects wbd debugger
                     tag === 'textarea' ||
-                    //protects forms    
+                    //protects forms
                     tag === 'input' || tag === 'select' || tag === 'button'
-                    //protects firmware plugins which use svg  
-                    // || tag === 'rect' || tag === 'path'                            
+                    //protects firmware plugins which use svg
+                    // || tag === 'rect' || tag === 'path'
             ) {
                 return true;
             }
@@ -423,8 +423,8 @@
             }
             /*
             ns.d( 'fw ' + frameworkId + ' blocked dflt and prop ' +
-                'on coord surf "' + surface.getAttribute( 'class' ) + '",' +
-                'on att "' + att.getAttribute( 'class' ) + '"'
+                'on coord surf "' + ds.getAttribute( 'class' ) + '",' +
+                'on ds "' + ds.getAttribute( 'class' ) + '"'
             );
             */
         }

@@ -1,10 +1,10 @@
 // //\\// Main entrance into sub-application.
 (function(){
-const {sn, haff, fapp, sf, ssF, sData, sDomF, rg, stdMod,
+const {sn, $$, nspaste, haff, fapp, sf, ssF, sData, sDomF, rg, stdMod,
        tpid2arrc_elect} =
-    window.b$l.apptree({
+      window.b$l.apptree({
         ssFExportList: {finish_sapp_UI,},
-        stdModExportList: {init_model_parameters,},
+        stdModExportList: {init_lemma,},
 });
 var stdL2       = sn('stdL2', fapp );
 var study       = sn('study', stdL2 );
@@ -18,11 +18,14 @@ return;
 
 
 ///one of the first thing called in app-wide sapp.init_sapp
-function init_model_parameters (){
-    createsDataPlaceholders ();
+function init_lemma (){
+    createsDataPlaceholders();
+    //========================
+    // //\\ creates button
+    //========================
     {
         let pid = 'proof-pop-up';
-        let button = ssF.createButton({
+        ssF.createButton({
             caption                 :
                 'Newton\'s logic applies to monotonic curves',
             buttonUniversalId       : pid,
@@ -44,15 +47,24 @@ function init_model_parameters (){
                 font-size           : 16px;
                 text-align          : center;
                 background-color    : #dddddd;
-                color: ${sDomF.tpid0arrc_2_rgba(tpid2arrc_elect.attention)};
+                color: ${sDomF.tpid0arrc_2_rgba(
+                           tpid2arrc_elect.attention)};
                 cursor              : pointer;
                 z-index             : 111111111;
             `,
         });
     }
+    //========================
+    // \\// creates button
+    //========================
 
-    // dom z-order patch
-    haff( ssF, 'continue_create_8_prepopulate_svg' );
+    //dom z-order patch
+    //creates "shallow axis line"
+    dr.baseAxis = $$.cNS( 'line' )
+        .aNS( 'class',
+                "tp-figure tp-base figure outline-cls tostroke" )
+        .to(stdMod.medScene)
+        ();
 
     //----------------------------------------------
     // //\\ fits lemma to modern framework
@@ -60,25 +72,13 @@ function init_model_parameters (){
     //---------------------------------------------
     //forces generic-fw-points to be initiated under specific points,
     //specific points will be initiated later,
-    //this call is from core engine, not from lemma-code:
+    //this call does invoke core engine, and not lemma-code:
     //it will not call stdMod.media_upcreate___before_basic because this
     //function does not exist in engine core:
     ssF.media_upcreate_generic();
 
-    //*************************************************************
-    //this completes media_upcreate_generic and media_upcreate
-    //*************************************************************
-    //we do this because of this sub
-    //may play role of model, so all the
-    //stuff for gui must be created before framework's media update
-    stdMod.media_upcreate___before_basic = stdMod.media_upcreate___before_basic_L2;
-    //---------------------------------------------
-    // \\// trick
-    // \\// fits lemma to modern framework
-    //----------------------------------------------
-
-    guicon.constructsWidestRect();
-    guicon.constructsRects_tillExtraOffset_parlessDom();
+    guicon.createsWidestRectSvg();
+    guicon.constructsRectsSvg_tillExtraOffset_without_parameters();
 
     //numberless:
     stdMod.constructsCurve8Area(); //do on top of ancestors
@@ -87,49 +87,32 @@ function init_model_parameters (){
 
     //sets their positions:
     guicon.constructsControlPoints();
-    //guicon.constructsCtrPoints();
 
     stdMod.model_upcreate();
+    stdMod.completes_bottomSlider();
+
+    //*************************************************************
+    //this completes media_upcreate_generic and media_upcreate
+    //*************************************************************
+    //we do delay this assignment till this moment
+    //because of this sub may play role of model, so all the
+    //stuff for gui must be created before lemma's media update
+    stdMod.media_upcreate___before_basic =
+        stdMod.media_upcreate___before_basic_L2;
     //now, this call does
     //stdMod.media_upcreate___before_basic_L2
+
+    //ssF.media_upcreate_generic(); //vital, perhaps for synch
+    //because of media_upcreate and giu
+    //builders are already done
     ssF.media_upcreate_generic(); //vital, perhaps for synch
-
-    //see:     ///modern approach ... abandoned
-    //createsBaseSlider();
-
-    gui.buildSlider();
-
+    //---------------------------------------------
+    // \\// trick
+    // \\// fits lemma to modern framework
+    //---------------------------------------------
+    stdMod.fixesZorder();
     sDomF.detected_user_interaction_effect( 'doUndetected' );
 }
-
-/*
-///modern approach ... abandoned
-///unrem this: //todm remove: experiment:
-function createsBaseSlider()
-{
-    //====================================
-    // //\\ slider
-    //====================================
-    var pname = 'baseSlider';
-    sDomF.params__2__rgX8dragwrap_gen_list({
-        stdMod,
-        pname,
-        orientation : 'axis-x',
-        acceptPos : newPos =>
-        {
-            var drX = rg[ pname ];
-            drX.pos[0] = newPos[0];
-            newPos[1] = drX.pos[1];
-            return !!'move permitted';
-        },
-    });
-    c cc( rg.baseSlider );
-    sDomF.createsFW__8__executes_dragWr_gens_list( stdMod );
-    //====================================
-    // \\// slider
-    //====================================
-}
-*/
 
 function createsDataPlaceholders (){
     Object.assign( dr, {
@@ -146,15 +129,16 @@ function createsDataPlaceholders (){
         //deltaOnLeft historically means "virtual majoranta-rectangle"
         //is on the right
         figureParams    : {minX:0, maxX:0, deltaOnLeft:true},
-        ctrlPts         : [],
+        rgCtrlPts       : [],
         partitionWidths : [1],
         basesN          : 4,
-        movables        : {} //key-value for movable jswrap
+        //movables        : {} //key-value for movable jswrap
     });
-    appstate.movingBasePt = false;
+    appstate.basePointsAreMoving = false;
     sdata.view = { isInscribed:1, isCircumscribed:1, isFigureChecked:1 };
 }
 
+///this thing overrides app-wide finish_sapp_UI
 function finish_sapp_UI (){
     gui.createDragModel();
     study.setupEvents();

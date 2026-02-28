@@ -74,14 +74,14 @@
         // \\// returns diagram back at every menu click
         //------------------------------------------------
 
-        var media_scale         = toreg( 'media_scale' )();
-        rg.media_scale.value    = 1;
-        ssF.scaleValue2app( rg.media_scale.value, stdMod );
+        var medzoom         = toreg( 'medzoom' )();
+        rg.medzoom.value    = 1;
+        ssF.newzoom2app( rg.medzoom.value, stdMod );
 
         {
             ////restores original pivots positions
-            let ini = sconf.originalPoints.curvePivots_initial;
-            sconf.originalPoints.curvePivots.forEach( (cp,ix) => {
+            let ini = ssD.curvePivots_initial;
+            ssD.curvePivots.forEach( (cp,ix) => {
                 nspaste( cp.rgX.pos, ini[ix].rgX.pos );
             });
             //sets and paints initial orbit
@@ -116,7 +116,7 @@
             {
                 //// scholium
                 let imgVisib = 'hidden';
-                stdMod.svgScene$.css( 'visibility', imgVisib );
+                stdMod.medScene$.css( 'visibility', imgVisib );
             }
             */
         }

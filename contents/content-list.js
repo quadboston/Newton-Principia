@@ -8,12 +8,14 @@
             caption : 'Principia models',
             annotation : "Home Page and Contents",
         },
+        /*
         {
             sappId : 'b1sec1lemma1',
             book : 'Book 1',
             caption : 'Sec. 1. Lemma 1.',
             annotation : "Core lemma introducing limit method",
         },
+        */
         {   sappId : 'b1sec1lemma2',
             book : 'Book 1',
             caption : 'Sec. 1, Lemma 2.',

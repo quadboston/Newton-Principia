@@ -37,7 +37,7 @@
 
         //arc updates
         ssF.paintsCurve({
-            mmedia  : stdMod.svgScene,
+            mscene  : stdMod.medScene,
             fun     : rgCurve.t2xy,
             rgName  : 'timearc',
             start   : stdMod.pos2t( rg.P.pos ) + rg.Q.intervalSMinus,

@@ -40,7 +40,7 @@
         var limDemo = pwork.limDemo;
         var points2media = pwork.points2media;
 
-        var mmedia = stdMod.mmedia$();
+        var mscene = stdMod.medScene$();
         var nLine = rg[ 'neighbHor' ][ 'neighbHor' ];
         var nLineChosen = rg[ 'chosenDelta' ][ 'chosenDelta' ];
 
@@ -65,7 +65,7 @@
 
         xNeighbMark = nssvg.printText({
             svgel   : xNeighbMark,
-            parent  : mmedia,
+            parent  : mscene,
             type    : 'text',
             text    : "c+δ'", //&#x03B4;'
             fill    : 'black',
@@ -79,7 +79,7 @@
         ///mark of delta finally chosen in proof for given epsilon
         xChosenMark = nssvg.printText({
             svgel   : xChosenMark,
-            parent  : mmedia,
+            parent  : mscene,
             type    : 'text',
             text    : "c+δ", //&#x03B4;'
             style   : { fontFamily: fontFam, fontSize: fontSize },
@@ -90,7 +90,7 @@
 
         xNm = nssvg.printText({
             svgel   : xNm,
-            parent  : mmedia,
+            parent  : mscene,
             type    : 'text',
             text    : 'N',
             style   : { fontFamily: fontFam, fontSize: fontSize },
@@ -102,7 +102,7 @@
 
         xNdm = nssvg.printText({
             svgel   : xNdm,
-            parent  : mmedia,
+            parent  : mscene,
             type    : 'text',
             text    : 'δ',
             style   : { fontFamily: fontFam, fontSize: fontSize },
@@ -122,7 +122,7 @@
         epsP = xy2m( epsPoint[0]+EPS_X, (epsPoint[1]-lim)/2 + lim );
         epsLab = nssvg.printText({
             svgel   : epsLab,
-            parent  : mmedia,
+            parent  : mscene,
             type    : 'text',
             text    : 'ε',
             style   : { fontFamily: fontFam, fontSize: fontSize },
@@ -134,7 +134,7 @@
         var limP = xy2m( -0.045, lim );
         limSvg = nssvg.printText({
             svgel   : limSvg,
-            parent  : mmedia,
+            parent  : mscene,
             type    : 'text',
             text    : 'h',
             x : limP[0],
@@ -149,14 +149,14 @@
         //==========================================
         // \\// epsilon stuff
         //==========================================
-        
+
         //----------------
         // //\\ gamma axis
         //----------------
         var gammaAxisP = xy2m( limDemo.dataSamples.beats_sample.xRange + 0.01, 0 );
         gammaAxisSvg = nssvg.printText({
             svgel   : gammaAxisSvg,
-            parent  : mmedia,
+            parent  : mscene,
             type    : 'text',
             text    : 'γ',
             style   : { fontFamily: fontFam, fontSize: fontSize },
@@ -174,7 +174,7 @@
         var gAxisP = xy2m( -0.01, 1.015 );
         gAxisSvg = nssvg.printText({
             svgel   : gAxisSvg,
-            parent  : mmedia,
+            parent  : mscene,
             type    : 'text',
             text    : 'g',
             fill    : 'black',
@@ -197,7 +197,7 @@
         var cP = xy2m( -0.01, -0.08 );
         cPSvg = nssvg.printText({
             svgel   : cPSvg,
-            parent  : mmedia,
+            parent  : mscene,
             type    : 'text',
             text    : 'c',
             x : cP[0],
@@ -219,7 +219,7 @@
         var aP = xy2m( -0.01, -0.04 );
         aPSvg = nssvg.printText({
             svgel   : aPSvg,
-            parent  : mmedia,
+            parent  : mscene,
             type    : 'text',
             text    : 'a',
             fill    : 'black',
@@ -242,7 +242,7 @@
         var bP = xy2m( 0.99, -0.04 );
         bPSvg = nssvg.printText({
             svgel   : bPSvg,
-            parent  : mmedia,
+            parent  : mscene,
             type    : 'text',
             text    : 'b',
             fill    : 'black',
@@ -267,7 +267,7 @@
         var legendP = xy2m( 0.4, -0.12 );
         legendSvg = nssvg.printText({
             svgel   : legendSvg,
-            parent  : mmedia,
+            parent  : mscene,
             type    : 'text',
             text    : 'Γ = (a,b)', //'&#x0393;',
             fill    : 'black',

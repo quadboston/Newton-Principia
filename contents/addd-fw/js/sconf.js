@@ -54,7 +54,7 @@
         //====================================================
         // //\\ subapp regim switches
         //====================================================
-        sconf.mediaMoverPointDisabled   = true;
+        sconf.mediaMover_isDisabled   = true;
         sconf.enableStudylab            = false;
         sconf.enableTools               = false;
         sconf.SLIDERS_LEGEND_HEIGHT     = 0;
@@ -85,12 +85,12 @@
 
         ///alternatively to this, you can set own colors for originalPoints
         ///by your own
-        ns.eachprop( originalPoints, (point,pname) => {
-            point.pcolor = ns.haz( point, 'pcolor' ) || tpid2arrc_elect[ pname ];
+        ns.eachprop( originalPoints, (point,shpid) => {
+            point.pcolor = ns.haz( point, 'pcolor' ) || tpid2arrc_elect[ shpid ];
         });
 
         //model's spacial unit in pixels of the picture:
-        var mod2inn_scale = 1;
+        var mod2med = 1;
 
         var lines =
         {
@@ -104,7 +104,7 @@
             originY_onPicture,
             pictureWidth,
             pictureHeight,
-            mod2inn_scale,
+            mod2med,
 
             default_tp_stroke_width : 12,
         });

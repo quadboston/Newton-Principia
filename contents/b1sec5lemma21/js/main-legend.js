@@ -53,16 +53,10 @@
 
         ww[ 'beta' ].innerHTML = (rg.beta.value*rad2grad).toFixed(1) + grad;
         ww[ 'alpha' ].innerHTML = (rg.alpha.value*rad2grad).toFixed(1) + grad;
-
-        //ww[ 'media_scale' ].innerHTML = rg.media_scale.value.toFixed(3);
     }
     //=========================================
     // \\// updates values during simulation
     //=========================================
-
-
-
-
 
     //=========================================
     // //\\ creates proof table
@@ -137,7 +131,7 @@
         /*
         var row = $$.c('tr')
             .to(tb)();
-        makeCl( row, 'media_scale', 'scale', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'media_scale' );
+        makeCl( row, 'medzoom', 'scale', null, null, !'alignCaptionToRight', 'proof', !'skipEqualSign', 'medzoom' );
         */
         //===================
         // \\//

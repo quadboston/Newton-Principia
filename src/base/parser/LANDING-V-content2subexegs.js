@@ -222,24 +222,9 @@
                     }
                     //----------------------------------------------------------------
                     // \\// sets sapp.amodel_initial
-                    //===============================================================
+                    //==========================================
                     // \\// sets initial amode
-                    //===============================================================
-
-
-                    //-------------------------------------------------------
-                    // //\\ adds topic-categories from
-                    //-------------------------------------------------------
-                    //      essayHeader, 'fixed-colors' to tpid2arrc_elect
-                    //      for entire lemma
-                    // happens after expands-conf.js
-                    // modifies already modified elected, this
-                    // can be hidden unexpected surprise,
-                    nspaste( tpid2arrc_elect,
-                             hob( essayHeader, 'fixed-colors' ) );
-                    //-------------------------------------------------------
-                    // \\// adds topic-categories from
-                    //-------------------------------------------------------
+                    //==========================================
 
                     //---------------------------------------------------------
                     // //\\ captured states
@@ -573,10 +558,11 @@
     ///todm: should be named tpid0arrc_2_rgba
     ///converts these two things
     ///
-    ///input: ptype - optional, is an id in "fixed-colors",
+    ///input: ptype - optional, is an id in "topic repo",
     ///               if falsy, then "rgba(0,0,0,1)" color is returned,
     ///               if string, then converted to array first,
-    ///               if captilized-string, then converts to low-case-topic-style
+    ///               if captilized-string, then converts to
+    ///               low-case-topic-style
     ///               if array, converted as array to color
     ///       makeOpacity1 - means "do make opacity equal to 1",
     ///returns string of fixed color or black,
@@ -584,6 +570,8 @@
     {
         if( typeof tpid0arrc === 'string' ) {
             var colorArray = haz( tpid2arrc_elect, tpid0arrc ) ||
+                             //todm inconsistent: elected must be a
+                             //master or nothing:
                              haz( tpid2arrc_repo, tpid0arrc );
         } else {
             var colorArray = tpid0arrc;

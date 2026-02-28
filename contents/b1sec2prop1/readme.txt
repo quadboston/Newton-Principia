@@ -34,7 +34,7 @@ Following is possibly an outdated readme:
   rg.c.decoration_range
 
   ssD.decor contains this:
-      sconf.pname2point
+      sconf.pntRgid2rgx
       ssD.decor.B = rg.B
       line segments and polygons
         ...

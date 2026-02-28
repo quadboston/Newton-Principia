@@ -9,7 +9,7 @@
             media_upcreate___part_of_medupcr_basic,
         },
     });
-    
+
     //=========================================================
     // //\\ lemma custom addons
     //=========================================================
@@ -67,7 +67,7 @@
                 // \\// apparently this fixes
                 //-----------------------------------------
 
-                mmedia      : stdMod.mmedia,
+                mscene      : stdMod.medScene,
                 addToStepCount : 1,
         });
 
@@ -81,7 +81,7 @@
                 pointA      : rg.A,
 
                 pointB      : rg.curveEnd,
-                mmedia      : stdMod.mmedia,
+                mscene      : stdMod.medScene,
                 addToStepCount : 1,
         });
 
@@ -92,7 +92,7 @@
 
                 pointA      : rg.A,
                 pointB      : rg.curveLeftEnd,
-                mmedia      : stdMod.mmedia,
+                mscene      : stdMod.medScene,
                 addToStepCount : 1,
         });
         //-------------------------------------------------
@@ -111,10 +111,10 @@
                 fun         : cfun.fun, //for l8, cust fun = 0 = rotated fun
                 pointA      : rg.A,
                 pointB      : rg.derotated_b,
-                mmedia      : stdMod.mmedia,
+                mscene      : stdMod.medScene,
                 magnitude,
-                //addedCssClass: 'tp-arc-Ab tp-both-curves', 
-                addedCssClass: 'tp-arc-Ab', 
+                //addedCssClass: 'tp-arc-Ab tp-both-curves',
+                addedCssClass: 'tp-arc-Ab',
                 addToStepCount : 1,
                 stepsCount : fconf.sappId === "b1sec1lemma8" ? 200 : null,
         });
@@ -127,9 +127,9 @@
             ( amode.subessay === 'derivative' ||
               amode.subessay === 'vector-derivative'
             ) ? 'ψ' : 'φₒ';
-        var wwRg = toreg( 'tangentPhi' )( 'pname', 'tangentPhi' )
+        var wwRg = toreg( 'tangentPhi' )( 'shpid', 'tangentPhi' )
                         ( 'pos', rg.L.pos )( 'pcolor', rg.L.pcolor )();
-        wwRg.medpos = ssF.mod2inn( rg.tangentPhi.pos );
+        wwRg.medpos = ssF.modpos2medpos( rg.tangentPhi.pos );
         ssF.drawAngleFrom_rayAB2rayCD_at_medpos({
             AB : [ rg.dr.pivots[1], rg.dr.pivots[0] ],
             CD : rg.AL.pivots,
@@ -142,7 +142,7 @@
         ( function() {
             var AB = null;
             ////delta phi
-            var rgSample = toreg( 'deltaphi' )( 'pname', 'deltaphi' )( 'pcolor', rg.A.pcolor )();
+            var rgSample = toreg( 'deltaphi' )( 'shpid', 'deltaphi' )( 'pcolor', rg.A.pcolor )();
             if( amode.subessay === 'sin(x)/x' ){
                 ///draws phi and renames it
                 var caption = 'φ';
@@ -156,7 +156,7 @@
                 var AB = [ rg.AO.pivots[1], rg.AO.pivots[0] ];
                 var CD = [ rg.BO.pivots[1], rg.BO.pivots[0] ];
             }
-            rgSample.medpos = ssF.mod2inn( rgSample.pos );
+            rgSample.medpos = ssF.modpos2medpos( rgSample.pos );
             if( AB ) {
                 ///todM useless when not displayed, but algo fails to omit this block:
                 ssF.drawAngleFrom_rayAB2rayCD_at_medpos({
@@ -168,7 +168,7 @@
                 })
             }
         }) ();
-        ssF.angleVisib({ pname : 'deltaphi' });
+        ssF.angleVisib({ shpid : 'deltaphi' });
 
         if( amode.subessay === 'sine derivative' ||
             amode.subessay === 'derivative' ||
@@ -176,9 +176,9 @@
         ){
             ///draws phi
             ///adds an extra point at rg.O to comply angle-api
-            var wwRg = toreg( 'phi0' )( 'pname', 'phi0' )( 'pos', rg.O.pos )
+            var wwRg = toreg( 'phi0' )( 'shpid', 'phi0' )( 'pos', rg.O.pos )
                             ( 'pcolor', rg.A.pcolor )();
-            wwRg.medpos = ssF.mod2inn( wwRg.pos );
+            wwRg.medpos = ssF.modpos2medpos( wwRg.pos );
             ssF.drawAngleFrom_rayAB2rayCD_at_medpos({
                 AB          : rg[ 'O,ytop' ].pivots,
                 CD          : [ rg.AO.pivots[1], rg.AO.pivots[0] ],
@@ -187,7 +187,7 @@
                 caption     : 'φₒ',
             })
         }
-        ssF.angleVisib({ pname : 'phi0' });
+        ssF.angleVisib({ shpid : 'phi0' });
 
         if( amode.subessay === 'sine derivative' ) {
             var wwLine = ssF.str2line( 'x0,x', 'tp-debug', sconf.lines[ 'x0,x' ], 'Δsin(φ)' );

@@ -3,7 +3,7 @@
         sconf,
         rg,
         toreg,
-        stdMod,
+        stdMod, ssD,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -140,7 +140,7 @@
         //----------------------------------------------------
         /*
         ccc( 'found=' + count + ' GRID_LENGTH='+GRID_LENGTH +
-             ' fill fraction=' + (count/GRID_LENGTH) + 
+             ' fill fraction=' + (count/GRID_LENGTH) +
              ' effectivity fraction=' + ( count/ safeCount )
         );
         ccc( 'grid=', grid, 'floatGrid=',floatGrid );
@@ -150,11 +150,11 @@
             floatGrid,
             performanceEffectivity : count/ safeCount,
             builtCells : count,
-            missedCells : GRID_LENGTH - count, 
+            missedCells : GRID_LENGTH - count,
             missedPerRequested : ( GRID_LENGTH - count) / GRID_LENGTH,
             timeSpentMs : endTime - startTime,
         };
-        //ccc( 'requested NODES NUMBER=' + GRID_LENGTH, results ); 
+        //ccc( 'requested NODES NUMBER=' + GRID_LENGTH, results );
         return results;
         //----------------------------------------------------
         // \\// returns results
@@ -215,7 +215,7 @@
 
     function draggable__allTxy_2_allxy()
     {
-        var rNorm       = sconf.originalPoints.rightCurvePivots_normalized;
+        var rNorm       = ssD.rightCurvePivots_normalized;
         var rDraggable  = sconf.originalPoints.rightCurvePivots;
         rDraggable.forEach( (rd,pix) => {
             var normPos = stdMod.Txy_2_xy( rd.rgX.pos );
@@ -227,7 +227,7 @@
 
     function draggable__allxy_2_allTxy()
     {
-        var rNorm       = sconf.originalPoints.rightCurvePivots_normalized;
+        var rNorm       = ssD.rightCurvePivots_normalized;
         var rDraggable  = sconf.originalPoints.rightCurvePivots;
         rDraggable.forEach( (rd,pix) => {
             var dragPos = stdMod.xy_2_Txy( rNorm[ pix ].rgX.pos );

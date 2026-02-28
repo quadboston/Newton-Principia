@@ -36,14 +36,14 @@
     //=========================================================
     function media_upcreate()
     {
-        var mmedia = stdMod.mmedia$();
+        var mscene = stdMod.medScene$();
 
         //:study-pars
         var EPSILON = ssD.EPSILON;
         //:run-time-pars
         if( ssF.mediaModelInitialized ) {
             //.vital for making
-            var ww = stdMod.medD8D;
+            var ww = stdMod.lemmaD8D;
             ww && ww.updateAllDecPoints();
         } else {
             globalStyle$ = $$.style().to( document.head );
@@ -83,7 +83,7 @@
         );
         var point_E = pos2pointy4lemma1(
             'point-E',
-            { 
+            {
                 dragDecorColor: 'rgba(42,1,152,1)', //todo ... patch
                 'stroke-width' : 2,
                 cssClass : 'tp-epsilon tostroke',
@@ -145,7 +145,7 @@
 
         var point_D = pos2pointy4lemma1(
             'point-D',
-            { 
+            {
                 dragDecorColor: '#988201', //todo  //blue',
                 cssClass : 'tp-neighborhood tostroke',
                 'stroke-width' : 2,
@@ -175,7 +175,7 @@
             type    : 'polyline',
             'class' : 'tp-neighborhood tofill',
             points  : forthPath + backPath,
-            parent  : mmedia,
+            parent  : mscene,
             style : { 'fill-opacity':'1' }
         });
         //--------------------------
@@ -193,7 +193,7 @@
             type    :'polyline',
             'class' :'tp-set-function tofill tohidden',
             points  :graph_model,
-            parent  :mmedia,
+            parent  :mscene,
             style   :
             {
                 'fill-opacity':'1',
@@ -230,7 +230,7 @@
     {
         svgEl = nssvg.polyline({
             svgel   : svgEl,
-            parent  : stdMod.mmedia$(),
+            parent  : stdMod.medScene$(),
             pivots  : interval,
             style   : attr && attr.style,
             'stroke-width' : ( attr && attr[ 'stroke-width' ] || 1 ) * sconf.thickness
@@ -263,17 +263,17 @@
 
 
     ///converts model-pos and attributes to pointy
-    function pos2pointy4lemma1( pName, attrs )
+    function pos2pointy4lemma1( shpid, attrs )
     {
-        var pt              = toreg( pName )();
+        var pt              = toreg( shpid )();
         var pos             = pt.pos;
-        pt.spinnerClsId       = pName;
+        pt.spinnerClsId       = shpid;
         pt.pos              = pos;
         pt.dragDecorColor   = attrs.dragDecorColor || pt.dragDecorColor;
         pt.medpos           = limDemo.instance.xy2mediaArr( pt.pos[0], pt.pos[1] );
         pt.svgel = nssvg.u({
             svgel   : pt.svgel,
-            parent  : stdMod.mmedia$(),
+            parent  : stdMod.medScene$(),
             type    : 'circle',
             fill    : attrs && attrs.fill,
             stroke  : attrs && attrs.stroke,

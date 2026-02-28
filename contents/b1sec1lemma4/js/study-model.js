@@ -2,11 +2,11 @@
     const {
         sn, nspaste, mat,
         sconf, ssD, sDomF,
-        stdMod, toreg, rg,
+        stdMod, toreg, rg, originalPoints,
     } = window.b$l.apptree({
         stdModExportList :
         {
-            init_model_parameters,
+            init_lemma,
             model_upcreate,
         },
     });
@@ -18,8 +18,9 @@
     return;
 
 
-    function init_model_parameters()
-    {
+    function init_lemma (){
+        ssD.rightCurvePivots_normalized =
+            originalPoints.rightCurvePivots_normalized;
         //-------------------------------------------------
         // //\\ configs model parameters
         //-------------------------------------------------
@@ -40,7 +41,7 @@
         // //\\ merges lemma legacy points a, c, ...
         //      with controls points
         //-------------------------------------------------
-        var cPivots = sconf.originalPoints.curvePivots;
+        var cPivots = ssD.curvePivots;
         rg.a.pos = cPivots[0].rgX.pos;
         rg.c.pos = cPivots[2].rgX.pos;
         var rightCurvePivots = sconf.originalPoints.rightCurvePivots;
@@ -60,7 +61,7 @@
         //stashes fraction of decorational point r on interval PT
         rg.r.r2T = ( rg.r.pos[0]-rg.P.pos[0] ) / ( rg.T.pos[0]-rg.P.pos[0] );
     }
-    
+
     ///****************************************************
     /// model scenario
     /// is required; to skip define as ()=>{};
@@ -75,7 +76,7 @@
         //-------------------------------------------------
         // //\\ this is breadth-points d8d limitator,
         //      if coder is not lazy, this limitator
-        //      should be coded for sDomF.params__2__rgX8dragwrap_gen_list
+        //      should be coded for sDomF.rgx2draglist
         //      todm: why more than 3 points checked every time? They are constants.
         //-------------------------------------------------
         sconf.originalPoints.bars.forEach( (bar, bix) =>  {
@@ -89,7 +90,7 @@
         // \\// this is breadth-points d8d limitator,
         //-------------------------------------------------
 
-        
+
         //=============================================================================
         // //\\ removes and recreates ordered bars
         //=============================================================================
@@ -121,7 +122,7 @@
                         ////skips bar which is too close to initial bars
                         //ccc( bix + ' skipped or=', reservedPP[ dragIx ].rgX.pos[0].toFixed(3),
                         //     bar.rgX.pos[0].toFixed(3)
-                        //); 
+                        //);
                         return;
                     }
                 }

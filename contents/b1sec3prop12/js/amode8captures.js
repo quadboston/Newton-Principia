@@ -66,9 +66,9 @@
         // \\// returns diagram back at every menu click
         //------------------------------------------------
 
-        var media_scale         = toreg( 'media_scale' )();
-        rg.media_scale.value    = 1;
-        ssF.scaleValue2app( rg.media_scale.value, stdMod );
+        var medzoom         = toreg( 'medzoom' )();
+        rg.medzoom.value    = 1;
+        ssF.newzoom2app( rg.medzoom.value, stdMod );
         rg.f.caption = '';
 
         //==================================================

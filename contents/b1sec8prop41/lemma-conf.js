@@ -1,5 +1,5 @@
 ( function() {
-    window.b$l.apptree({}).fapp.lemmaConfig = lemmaConfig;    
+    window.b$l.apptree({}).fapp.lemmaConfig = lemmaConfig;
     return;
 
     function lemmaConfig()
@@ -16,7 +16,6 @@
                 { src: sm + 'media-upcreate.js' },
                 { src: sm + 'main-legend.js' },
                 { src: sm + 'amode8captures.js' },
-                { src: sm + 'state-capturer.js' },
                 { src: sm + 'quadr-lib.js' },
             ],
             "contents-list" :

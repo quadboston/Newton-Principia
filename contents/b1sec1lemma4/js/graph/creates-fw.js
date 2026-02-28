@@ -31,7 +31,7 @@
         ///===========================================
         graph_wrap.container$ = $$.div()
             .addClass( 'graph-box-svg-container' )
-            .to( stdMod.simScene )
+            .to( stdMod.medParent )
             ;
 
         graph_wrap.parent = graph_wrap.container$;

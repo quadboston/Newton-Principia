@@ -1,8 +1,3 @@
-/* the same as bsl-media */
-#illus {
-    width: 100%;
-}
-
 /* apparently about draggable point on graph */
 .movable {
     cursor: pointer;
@@ -23,7 +18,7 @@
 /*---------------------*/
 .desc--claim {
     margin-top: 24px;
-    margin-bottom: 64px; 
+    margin-bottom: 64px;
 }
 
 .desc--proof {
@@ -56,27 +51,27 @@
 
 .desc--areas {
     position: absolute;
-    bottom: 0px; 
+    bottom: 0px;
 }
 
 .desc--areas h2 {
     font-family: var(--default-font);
-    font-size: 1rem; 
+    font-size: 1rem;
 }
 
 .areas__checkboxes {
     font-family: var(--default-font);
-    font-size: 1rem; 
+    font-size: 1rem;
 }
 
 .areas__checkboxes-row {
     display: flex;
     align-items: center;
-    margin-bottom: 8px; 
+    margin-bottom: 8px;
 }
 
 .areas__checkboxes .checkbox {
-    margin-right: 12px; 
+    margin-right: 12px;
 }
 
 /*---------------------*/

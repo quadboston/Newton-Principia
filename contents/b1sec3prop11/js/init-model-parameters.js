@@ -6,13 +6,13 @@
     } = window.b$l.apptree({
         stdModExportList :
         {
-            init_model_parameters,
+            init_lemma,
         },
     });
     return;
 
 
-    function init_model_parameters()
+    function init_lemma()
     {
         rg.S.pos[0] = -sconf.ellipseFocus;
         rg.S.pos[1] = 0;
@@ -47,7 +47,7 @@
                 }
             });
         //==================================================
-        // \\// zebraCols 
+        // \\// zebraCols
         //==================================================
 
         rg.allLettersAreHidden = true;

@@ -29,7 +29,7 @@
                 sconf.GRAPH_PATH
                 && !amode.aspect === 'addendum'
                 && aspect !== 'addendum';
-        
+
         sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
             fp.rgX.undisplay = true;
         });
@@ -39,7 +39,7 @@
         //----------------------------------
         rg[ 'sagitta' ].undisplay = true;
         rg.curvatureCircle.undisplay = false;
-        var media_scale = toreg( 'media_scale' )();
+        var medzoom = toreg( 'medzoom' )();
 
 
         //won't work in study model
@@ -49,7 +49,7 @@
             rg[ 'S,nonSolvablePoint' ].undisplay = true;
             rg[ 'nonSolvablePoint' ].undisplay = true;
         }
-        
+
         rg[ 'QP' ].undisplay = true;
         rg[ 'Q,rrminus' ].undisplay = true;
         rg[ 'P,rrminus' ].undisplay = true;
@@ -91,9 +91,9 @@
 
             if( logic_phase === 'claim' || logic_phase === 'proof' ){
 
-                rg.media_scale.value = 1;
+                rg.medzoom.value = 1;
 
-                ssF.scaleValue2app( rg.media_scale.value, );
+                ssF.newzoom2app( rg.medzoom.value, );
 
                 rg.A.undisplay = true;
                 rg.T.undisplay = true;
@@ -210,8 +210,8 @@
                 rg[ 'QP' ].undisplay = true;
                 rg.APQ.undisplay = true;
             } else {
-                rg.media_scale.value = 1;
-                ssF.scaleValue2app( rg.media_scale.value, );
+                rg.medzoom.value = 1;
+                ssF.newzoom2app( rg.medzoom.value, );
             }
         }
 

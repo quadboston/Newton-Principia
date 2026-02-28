@@ -26,7 +26,7 @@ function create_digital_legend(){
         updatesDataInCell,
     })
     return;
-    
+
     ///================================================
     /// creates first row below the table caption;
     /// fills it like:
@@ -103,7 +103,7 @@ function create_digital_legend(){
     {
         var bpair = columnPars[ clusterIx ];
         var clusterCellIx = 0;
-        var columnCaptionTitle = bpair[0].pname +
+        var columnCaptionTitle = bpair[0].l5key +
             //.makes this string smaller to tackle the unclear bug of
             //.table disappearence
             '<span style="font-size:9px">' +

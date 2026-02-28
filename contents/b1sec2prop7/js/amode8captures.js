@@ -58,9 +58,9 @@
         //----------------------------------
         rg[ 'sagitta' ].undisplay = true;
         rg.curvatureCircle.undisplay = false;
-        var media_scale = toreg( 'media_scale' )();
-        rg.media_scale.value = 1;
-        ssF.scaleValue2app( rg.media_scale.value );
+        var medzoom = toreg( 'medzoom' )();
+        rg.medzoom.value = 1;
+        ssF.newzoom2app( rg.medzoom.value );
 
         //interval of t to construct an arc for
         //Newton's sagitta

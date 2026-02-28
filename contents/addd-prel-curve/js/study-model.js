@@ -11,7 +11,7 @@
     } = window.b$l.apptree({
         stdModExportList :
         {
-            init_model_parameters,
+            init_lemma,
             model_upcreate,
         },
     });
@@ -33,16 +33,16 @@
     ///****************************************************
     /// model initiation
     ///****************************************************
-    function init_model_parameters()
+    function init_lemma()
     {
         stdMod.createModelFunctions();
 
         rg.B.circleScribedCurvature_param_t = 0.095; //taking arbitrary
         rg.B.circleScribedParabola_param_t = 0.2; //taking arbitrary
-        sDomF.params__2__rgX8dragwrap_gen_list({
+        sDomF.rgx2draglist({
             stdMod,
-            //pname, acceptPos, orientation, pos, nospinner,stdMod,
-            pname : 'B',
+            //shpid, acceptPos, orientation, pos, nospinner,stdMod,
+            shpid : 'B',
             orientation : 'rotate',
             acceptPos : ( newPos, possibly_dragSurfaceAccomulatedMove ) =>
             {

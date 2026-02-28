@@ -43,7 +43,7 @@
     return;
 
 
-    
+
     //***********************************************
     // //\\  auxiliary prepprocessing functions
     //***********************************************
@@ -51,7 +51,7 @@
     function curveFun(x) {
         //.in legacy code, this depends on order of
         //.modules-load "intergral.js" must be before "model.js"
-        const pts = dr.ctrlPts;
+        const pts = dr.rgCtrlPts;
         var sum = 0;
         for (var i=0; i<pts.length; i++) {
 	        var num = pts[i].y;
@@ -81,7 +81,7 @@
     ///finds index of control point with maximum x
     function ctrlPt_2_maxIx()
     {
-        const pts = dr.ctrlPts;
+        const pts = dr.rgCtrlPts;
         var xi;
         var n;
         for (var i=0; i<pts.length; i++) {
@@ -95,7 +95,7 @@
     ///finds index of control point with minimum x
     function ctrlPt_2_minIx()
     {
-        const pts = dr.ctrlPts;
+        const pts = dr.rgCtrlPts;
         var xi;
         var n;
         for (var i=0; i<pts.length; i++) {
@@ -206,8 +206,8 @@
             top,
         };
     }
-    
-    
+
+
     function calculates_inscr8circums()
     {
         var insYar = sn( 'inscribedY', dr.basePts, [] );
@@ -230,7 +230,7 @@
             bbl += pwidths[ib];
             baseBarsRights[ib] = bbl;
         }
-        
+
         // //\\ calculates min and max on separate bases
         {
             let ff = numModel.curveFun;
@@ -256,7 +256,7 @@
         }
         // \\// calculates min and max on separate bases
 
-        
+
         // //\\ calculates min and max areas
         var pwidths = dr.partitionWidths;
         var areaCir = 0;
@@ -274,5 +274,5 @@
     //***********************************************
     // \\// auxiliary postprocessing functions
     //***********************************************
-    
+
 }) ();

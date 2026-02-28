@@ -12,7 +12,6 @@ window.b$l.apptree({}).fapp.lemmaConfig = function() { return {
         { src : 'init-model-parameters.js' },
         { src : 'media-upcreate.js' },
         { src : 'model-upcreate.js' },
-        { src : 'state-capturer.js' },
         { src : 'main-legend.js' },
         { src : 'amode8captures.js' },
     ],

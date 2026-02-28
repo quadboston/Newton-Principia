@@ -27,10 +27,10 @@
 
 
     ///shows/hides angle if its caption if any
-    ///inputs:  pname - name of master element
-    function angleVisib({ pname })
+    ///inputs:  shpid - name of master element
+    function angleVisib({ shpid })
     {
-        var anglePname      = 'rays-angle-' + pname;
+        var anglePname      = 'rays-angle-' + shpid;
         var rgAngle         = haz( rg, anglePname );
         if( !rgAngle )      return;
         var doUndisplay     = ns.haz( rgAngle, 'undisplay' );
@@ -50,7 +50,7 @@
         CD,         //ending angle ray = [ pivotC, pivotD ]
 
         rgSample,   //provides angle's vertex === rgSample.medpos,
-                    //see the usage below at "var pname",
+                    //see the usage below at "var shpid",
         ANGLE_SIZE,
         caption,
         fill,
@@ -75,9 +75,9 @@
             angleDelta -= Math.PI*2;
         }
         angleEnd = angleStart + angleDelta;
-        var pname           = 'rays-angle-' + rgSample.pname;
-        var rgAngle         = toreg( pname )();
-        rgAngle.pname       = pname;
+        var shpid           = 'rays-angle-' + rgSample.shpid;
+        var rgAngle         = toreg( shpid )();
+        rgAngle.shpid       = shpid;
         rgAngle.medpos      = rgSample.medpos;
         rgAngle.pcolor      = rgSample.pcolor;
         rgAngle.undisplay   = rgSample.undisplay;
@@ -88,7 +88,7 @@
             ANGLE_SIZE      : ANGLE_SIZE || 1,
             captionRadiusIncrease,
             tpClassName     : tpclassName === '' ? '' :
-                              tpclassName || sDomF.tpid2low( rgSample.pname ),
+                              tpclassName || sDomF.tpid2low( rgSample.shpid ),
             fill            : fill || rgAngle.pcolor,
 
             //commenting this line does fix non-nice tp-highlighting of angle border
@@ -138,23 +138,23 @@
             stepsCount : stepsCount || 20, //todm: too granular .. fix but don't make slow
 
 
-            // //\\ todm ... mod2inn_scale must be incapsulated in model
+            // //\\ todm ... mod2med must be incapsulated in model
             //instead we are converting from model to media manually here
             //it is very annoying to always remember to
             //make a correction with MONITOR_Y_FLIP ...
             //todm ... do a better programming
             x0 : rgX.medpos[0],
             y0 : rgX.medpos[1],
-            a  : sconf.mod2inn_scale*ANGLE_SIZE*0.5,
-            b  : sconf.mod2inn_scale*ANGLE_SIZE*0.5,
+            a  : sconf.mod2med*ANGLE_SIZE*0.5,
+            b  : sconf.mod2med*ANGLE_SIZE*0.5,
 
             t0 : angleStart,
             t1 : angleEnd,
-            // \\// todm ... mod2inn_scale must be incapsulated in model
+            // \\// todm ... mod2med must be incapsulated in model
 
 
             svgel : rgX.svgel,
-            parent : ns.sapp.stdMod.mmedia,
+            parent : ns.sapp.stdMod.medScene,
             //fill : 'rgba( 255, 0, 0, 0.1 )',
             fill : fill || 'transparent',
             stroke : stroke || 'transparent',
@@ -181,9 +181,9 @@
 
             var lposXSugar = Math.abs( Math.sin(wwAngle) ) > 0.7 ? 0.5 : 0;
             let rad = ANGLE_SIZE * 0.5 * sn( 'captionRadiusIncrease', arguments[0], 1.1 );
-            var lposX = rad * sconf.mod2inn_scale * Math.cos( wwAngle )+rgX.medpos[0] +
+            var lposX = rad * sconf.mod2med * Math.cos( wwAngle )+rgX.medpos[0] +
                         -fontSize * lposXSugar;
-            var lposY = rad * sconf.mod2inn_scale * Math.sin( wwAngle )+rgX.medpos[1] +
+            var lposY = rad * sconf.mod2med * Math.sin( wwAngle )+rgX.medpos[1] +
                         -fontSize * 0.2;
             var tpcls = tpClassName ? ' tostroke tobold tofill tp-' + tpClassName : '';
             rgX.pnameLabelsvg = ns.svg.printText({
@@ -193,7 +193,7 @@
                 //fill            : rgX.pcolor,
                 "stroke-width"  : 1,
                 svgel           : rgX.pnameLabelsvg,
-                parent          : stdMod.mmedia,
+                parent          : stdMod.medScene,
                 x               : lposX.toFixed()+'px',
                 y               : lposY.toFixed()+'px',
                 style           : {
@@ -203,7 +203,7 @@
             });
             var pnameLabelsvg$ = rgX.pnameLabelsvg$ =
                 haz( rgX, 'pnameLabelsvg$' ) || $$.$( rgX.pnameLabelsvg );
-            pnameLabelsvg$.tgcls( 'undisplay', ns.haz( rg[rgX.pname], 'undisplay' ) );
+            pnameLabelsvg$.tgcls( 'undisplay', ns.haz( rg[rgX.shpid], 'undisplay' ) );
             //ccc( tpClassName );
             pnameLabelsvg$.addClass( tpcls );
         }

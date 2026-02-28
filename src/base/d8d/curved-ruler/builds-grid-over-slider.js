@@ -33,8 +33,8 @@
                                 //  slider.grid - is an svgel
         rgBottomPoint,  //only must have medpos ready
         rgTopPoint,     //only must have medpos ready
-        svgParent,      //f.e., stdMod.svgScen
-        mod2inn_scale,  //f.e. sconf.mod2inn_scale
+        svgParent,      //f.e., stdMod.medScene
+        mod2med,  //f.e. sconf.mod2med
         gridColor,
         gridStrokeWidth,
     }){
@@ -61,7 +61,7 @@
         /*
         if( sconf.USE_CONCENTRATION_SLIDERS ) {
             ////we need to build a proportional scale
-            var scRange = 
+            var scRange =
         */
 
         //calculates grid's grades
@@ -88,12 +88,12 @@
                 var subGrade = decUnit / 10;
                 for( var gline=linesStart-decUnit; gline<=slider.maxVal; gline+=subGrade ) {
 
-                    if( gline < slider.minVal ) continue;  
+                    if( gline < slider.minVal ) continue;
                     ///main level of the grade on vertical axis of the slider
                     var mediaModelGradeY =
                         //origin on the bottom of svg
-                        //sconf.pictureHeight + 
-                        mod2inn_scale * (
+                        //sconf.pictureHeight +
+                        mod2med * (
                         //"-" because of screen Y inversion:
                         - ( gline - slider.minVal ) *
                         slider.value2media
@@ -129,8 +129,8 @@
             ///main level of the grade on vertical axis of the slider
             var mediaModelGradeY =
                 //origin on the bottom of svg
-                //sconf.pictureHeight + 
-                mod2inn_scale * (
+                //sconf.pictureHeight +
+                mod2med * (
                 //"-" because of screen Y inversion:
                 - ( gline - slider.minVal ) *
                 slider.value2media  // + slider.mediaBottom
@@ -154,17 +154,17 @@
                 },
             });
 
-            //----------------------------------------------------------  
+            //----------------------------------------------------------
             // //\\ prints grade digital lablel for math model magnitude
             //      measured by the gauge
-            //----------------------------------------------------------  
+            //----------------------------------------------------------
             var decimalDigits = 0;
 
             //implement this ? as a function
             //var variableGrade = slider.variableGrades[ gradeCounter++ ] = {};
             //variableGrade.gline = gline;
             //variableGrade.decimalDigits = decimalDigits;
-            //variableGrade.svgel = 
+            //variableGrade.svgel =
             nssvg.printText({
                 text : gline.toFixed( decimalDigits ),
                 x   : gridPivots[0][0]+5,
@@ -179,9 +179,9 @@
                      opacity        : '0.5',
                 },
             });
-            //----------------------------------------------------------  
+            //----------------------------------------------------------
             // \\// prints grade digital lablel for math model magnitude
-            //----------------------------------------------------------  
+            //----------------------------------------------------------
         }
         //--------------------------------------------------------
         // \\// builds grid over the slider

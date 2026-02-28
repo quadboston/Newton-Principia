@@ -61,8 +61,8 @@
                         .aNS( 'y', offset.y + subLeg.y )
                         ();
                     t.innerHTML = html;
-                    eachprop( sstyle, (prop, pname) => {
-                        t.style[ pname ] = prop;
+                    eachprop( sstyle, (prop, id) => {
+                        t.style[ id ] = prop;
                     });
                     //nice to know: Array.from(g.children).forEach( ch => {
                 } else {

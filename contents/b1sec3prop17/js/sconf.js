@@ -28,7 +28,7 @@
         sf.diagramOrigin = [ 0, 0 ];
         sf.originX_onPicture = F[0]; //for model's axis x
         sf.originY_onPicture = F[1]; //for model's axis y
-        sf.mod2inn_scale = 260;
+        sf.mod2med = 260;
         //***************************************************************
         // \\// original picture dimensions for svg scene
         //***************************************************************

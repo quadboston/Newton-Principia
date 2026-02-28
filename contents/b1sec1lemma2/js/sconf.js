@@ -1,4 +1,5 @@
 (function(){
+
 const {sn, nspaste, fapp, fconf, sconf, sf, sapp, originalPoints,
        tpid2arrc_repo, tpid2arrc_elect,} =
       window.b$l.apptree({ ssFExportList : { init_conf }
@@ -7,15 +8,14 @@ return;
 
 
 function init_conf (){
-    //as of Ap/13 2023 sets data in preset-data.js
-
     //***************************************************************
     // //\\ user scenarios
     //***************************************************************
     sf.dontDoMathJax = false;
     sf.enableTools = false;
     sf.enableStudylab = false;
-    sf.mediaMoverPointDisabled = true;
+    sf.enableZoom = false;
+    sf.mediaMover_isDisabled = true;
     //***************************************************************
     // \\// user scenarios
     //***************************************************************
@@ -32,7 +32,7 @@ function init_conf (){
     sf.originX_onPicture = sf.modorInPicX;
     sf.originY_onPicture = sf.modorInPicY +
                            259 - sf.modorInPicY; //pic. active area,
-    sf.mod2inn_scale = 1;
+    sf.mod2med = 1;
     //***************************************************************
     // \\// original picture dimensions for svg scene
     //***************************************************************
@@ -40,7 +40,6 @@ function init_conf (){
     //***************************************************************
     // //\\ app scenario
     //***************************************************************
-    sconf.skipGenDragList = true; //false is for media mover,
     sconf.ONLY_MONOTONIC_CURVE = false;
     //***************************************************************
     // \\// app scenario
@@ -55,7 +54,6 @@ function init_conf (){
     //sconf.TP_OPACITY_FROM_fixed_colors = true;
     //sf.mediaBgImage = "diagram.png";
     //sf.default_tp_lightness = 30;
-    var SLIDERS_LEGEND_HEIGHT = 0;
 
     sconf.default_tp_lightness = 30;
 
@@ -71,10 +69,13 @@ function init_conf (){
     sconf.ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS = 0.8;
     sconf.ANCHOR_TOPIC__OPACITY_IN_FOCUS = 1;
     sf.handleRadius = 55;
-    sf.SLIDERS_LEGEND_HEIGHT = SLIDERS_LEGEND_HEIGHT;
+
+    sf.SLIDERS_LEGEND_HEIGHT = 0;
+    sf.MINP=4;  //bottom slider min bases
+    sf.MAXP=50; //todm what is this
+
     Object.assign( sconf, {
         ////GUI
-        FINEPTS_RADIUS  : 10,
         MOVABLE_BASE_RADIUS : 3,
         CTRL_RADIUS     : 3,
         BASE_POINTS_REPELLING_DISTANCE : 5, //formerly PAD
@@ -86,7 +87,7 @@ function init_conf (){
         //"rectangular-distance" to point to be detected
         DRAGGEE_HALF_SIZE : 20,
 
-        default_tp_stroke_width : 8,
+        default_tp_stroke_width : 4,
     });
     //***************************************************************
     // \\// GUI cosmetics
@@ -96,11 +97,11 @@ function init_conf (){
     // //\\ model principals parameters
     //******************************************
     Object.assign( sconf, {
-        //:model
+        //number of intervals in base partition
         BASE_MAX_NUM         : 500,
         DRAGGABLE_BASE_POINTS : 15,
-        //user-adjustable points
-        ctrlPtXYs_js : [
+        //user-draggable points
+        ctrlMedpos : [
             {x:sf.modorInPicX, y: sf.modorInPicY},
 
             //four middle handles:
@@ -140,25 +141,30 @@ function init_conf (){
     //*************************************
     //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
     {
-        let difference = [150, 50, 0, 0, 0.8 ];
-        var tpel = nspaste( tpid2arrc_elect, {
-            "given"                     : [0,    100,  0 ],
-            difference,
-            "base"                      : [0,    100,  0 ],
-            "curve"                     : [0,    100,  0 ],
+        let { given, legends } = tpid2arrc_repo;
+        let curve = [0, 120, 0, 1, 1];
+        given = [given[0],given[1],given[2], 1, 1];
+        const difference = [150, 50, 0, 0, 0.8 ];
 
-            "figure"                    : [0,    100,  0 ],
+        var tpel = nspaste( tpid2arrc_elect, {
+            "given"                     : given,
+            difference,
+            "base"                      : curve,
+            curve,
+
+            "figure"                    : curve,
             "figure-area"               : [0,    80,  0, 0.4, 0.8 ],
             "figure-area-txt"           : [0,    80,  0, 0.7, 1],
 
             "circumscribed-rectangles"  : [0,  50, 100, 0.4, 0.8],
             "inscribed-rectangles"      : [100,  0, 100, 0.4, 0.8],
 
-            //[xx,  xx, xx, 0.1, 0.7],  opacity: 0.1 defalut, 0.7 highlighted
-            "widest-rectangular"      : fconf.sappId.indexOf('b1sec1lemma2')===0 ?
-                                                [0,  0, 100, 0.0, 0.7] :
-                                                [0,  0, 100, 0.4, 0.7],
-
+            //[xx,  xx, xx, 0.1, 0.7],
+            //opacity: 0.1 defalut, 0.7 highlighted
+            "widest-rectangular" :
+                fconf.sappId.indexOf('b1sec1lemma2')===0 ?
+                    [0,  0, 100, 0.0, 0.7] :
+                    [0,  0, 100, 0.4, 0.7],
             "circ-txt"                  : [0,  50, 100, 0.7, 1],
             "insc-txt"                  : [100,  0, 100, 0.7, 1],
             "widt-txt"                  : [0,  0, 100, 0.7, 1],
@@ -167,6 +173,7 @@ function init_conf (){
             'c--M--d--n'                : difference,
             'd--e--p--o'                : difference,
             attention                   : tpid2arrc_repo.attention,
+            legends,
         });
     }
     //*************************************
@@ -188,107 +195,159 @@ function init_conf (){
     //-------------------------------------
     // \\// prepares points
     //-------------------------------------
-
-    Object.assign( originalPoints, {
+    nspaste( originalPoints, {
+       ctrl0 : {
+            pcolor      : tpel.base,
+            pos: [sconf.ctrlMedpos[0].x,
+                  sconf.ctrlMedpos[0].y],
+            hideCaption: true,
+        },
+        ctrl1 : {
+            pcolor      : tpel.base,
+            pos: [sconf.ctrlMedpos[1].x,
+                  sconf.ctrlMedpos[1].y],
+            hideCaption: true,
+        },
+        ctrl2 : {
+            pcolor      : tpel.base,
+            pos: [sconf.ctrlMedpos[2].x,
+                  sconf.ctrlMedpos[2].y],
+            hideCaption: true,
+        },
+        ctrl3 : {
+            pcolor      : tpel.base,
+            pos: [sconf.ctrlMedpos[3].x,
+                  sconf.ctrlMedpos[3].y],
+            hideCaption: true,
+        },
+        ctrl4 : {
+            pcolor      : tpel.base,
+            pos: [sconf.ctrlMedpos[4].x,
+                  sconf.ctrlMedpos[4].y],
+            hideCaption: true,
+        },
+        ctrl5 : {
+            pcolor      : tpel.base,
+            pos: [sconf.ctrlMedpos[5].x,
+                  sconf.ctrlMedpos[5].y],
+            hideCaption: true,
+        },
         A : {
-            pcolor      : tpel.given,
+            pcolor      : tpel.base,
             letterAngle : -45,
-            initialR    : 3,
         },
         B : {
-            pcolor      : tpel.given,
+            pcolor      : tpel.base,
             letterAngle : -45,
-            initialR    : 3,
+            doWhiteKernel : fconf.sappId === 'b1sec1lemma3',
         },
         C : {
-            pcolor      : tpel.given,
+            pcolor      : tpel.base,
             letterAngle : -45,
-            initialR    : 3,
+            doWhiteKernel : fconf.sappId === 'b1sec1lemma3',
         },
         D : {
-            pcolor      : tpel.given,
+            pcolor      : tpel.base,
             letterAngle : -45,
-            initialR    : 3,
+            doWhiteKernel : fconf.sappId === 'b1sec1lemma3',
         },
         E : {
-            pcolor      : tpel.given,
+            pcolor      : tpel.base,
             letterAngle : -45,
-            initialR    : 3,
         },
         F : {
             pcolor      : tpel[ "widest-rectangular" ],
             letterAngle : 45,
-            initialR    : 3,
         },
         K : {
-            pcolor      : tpel.given,
+            pcolor      : tpel.curve,
             letterAngle : -145,
             letterRotRadius : 40,
-            initialR    : 3,
         },
         L : {
-            pcolor      : tpel.given,
+            pcolor      : tpel.curve,
             letterAngle : -145,
-            initialR    : 3,
         },
         M : {
-            pcolor      : tpel.given,
+            pcolor      : tpel.curve,
             letterAngle : -145,
             letterRotRadius : 40,
-            initialR    : 3,
         },
         a : {
-            pcolor      : tpel.given,
+            pcolor      : tpel.curve,
             letterAngle : 45,
-            initialR    : 3,
         },
         b : {
-            pcolor      : tpel.given,
+            pcolor      : tpel.curve,
             letterAngle : 45,
-            initialR    : 3,
         },
         //invizible point
         c : {
-            pcolor      : tpel.given,
+            pcolor      : tpel.curve,
             letterAngle : 45,
-            initialR    : 3,
         },
         d : {
-            pcolor      : tpel.given,
+            pcolor      : tpel.curve,
             letterAngle : 45,
-            initialR    : 3,
         },
         e : {
-            pcolor      : tpel.given,
+            pcolor      : tpel.curve,
             letterAngle : 45,
-            initialR    : 3,
             hideCaption  : true,
         },
         f : {
-            pcolor      : tpel.given,
+            pcolor      : tpel.curve,
             letterAngle : 90,
-            initialR    : 3,
         },
         l : {
-            pcolor      : tpel.given,
+            pcolor      : tpel.curve,
             letterAngle : 135,
-            initialR    : 3,
         },
         m : {
-            pcolor      : tpel.given,
+            pcolor      : tpel.curve,
             letterAngle : 45,
-            initialR    : 3,
         },
         n : {
-            pcolor      : tpel.given,
+            pcolor      : tpel.curve,
             letterAngle : 45,
-            initialR    : 3,
         },
         o : {
-            pcolor      : tpel.given,
+            pcolor      : tpel.curve,
             letterAngle : 45,
-            initialR    : 3,
         },
+        //-------------------
+        // //\\ bottomSlider
+        //-------------------
+        bottomSlider : {
+            caption : 'bases count',
+            pos : [ sf.pictureWidth * 0.5, sf.pictureHeight * 0.95 ],
+            pcolor : tpel.legends,
+            letterAngle : -90,
+            letterRotRadius : 40,
+            draggableX  : true,
+            undisplayAlways  : false,
+            doPaintPname : true,
+            unscalable  : true,
+        },
+        bottomSliderStart : {
+            pos : [ sf.pictureWidth * 0.1, sf.pictureHeight * 0.95 ],
+            undisplayAlways : true,
+            doPaintPname : false,
+            unscalable  : true,
+        },
+        bottomSliderEnd : {
+            pos : [ sf.pictureWidth * 0.9, sf.pictureHeight * 0.95 ],
+            undisplayAlways : true,
+            doPaintPname : false,
+            unscalable  : true,
+        },
+        //-------------------
+        // \\// bottomSlider
+        //-------------------
+    });
+    Object.values( originalPoints ).forEach( pt => {
+        pt['stroke-width'] = 0.5;
+        pt.initialR = 3;
     });
     //*************************************
     // \\// original app points
@@ -327,7 +386,10 @@ function init_conf (){
                     pcolor : tpel.given,
                 },
         },
-
+        { aK : {
+                    pcolor : tpel.given,
+               },
+        },
         { AK : {
                     pcolor : tpel.given,
                 },
@@ -368,7 +430,6 @@ function init_conf (){
                 },
         },
 
-
         //upper
         { od : {
                     pcolor : tpel.given,
@@ -377,6 +438,10 @@ function init_conf (){
         { nc : {
                     pcolor : tpel.given,
                 },
+        },
+        { mb : {
+                    pcolor: tpel.given,
+               },
         },
         { la : {
                     pcolor : tpel.given,
@@ -405,6 +470,9 @@ function init_conf (){
         { Kb : {
                     pcolor : tpel.given,
                },
+        },
+        { 'bottomSliderStart,bottomSliderEnd' :
+            { pcolor : tpel.diagram }
         },
     ]);
     //*************************************

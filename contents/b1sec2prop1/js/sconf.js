@@ -15,11 +15,11 @@ function init_conf (){
     //====================================================
     // //\\ user scenarios
     //====================================================
-    sconf.enableStudylab = false;
+    //sconf.enableStudylab = false;
     //hideProofSlider = true, //false,
-    sconf.enableCapture = true;
-    sconf.enableTools = true;
+    //sconf.enableTools = false;
     //enableDataFunctionsRepository : true,
+    sconf.enableCapture = true;
     //====================================================
     // \\// user scenarios
     //====================================================
@@ -31,7 +31,8 @@ function init_conf (){
     sconf.pictureHeight = 657;
     sconf.controlsScale = (sconf.pictureWidth + sconf.pictureHeight)
                           / sconf.standardSvgSize
-    sconf.innerMediaHeight = sconf.pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT;
+    sconf.innerMediaHeight = sconf.pictureHeight +
+          sconf.SLIDERS_LEGEND_HEIGHT;
     sconf.innerMediaWidth = sconf.pictureWidth;
 
     //----------------------------------
@@ -62,7 +63,8 @@ function init_conf (){
     //.set it from graph editor
     //.todm: trully 611 and rotated
     //for Y:
-    sconf.APP_MODEL_Y_RANGE = sconf.pictureActiveArea / sconf.mod2inn_scale;
+    sconf.APP_MODEL_Y_RANGE = sconf.pictureActiveArea
+          / sconf.mod2med;
     sconf.areaScale = 1 / sconf.APP_MODEL_Y_RANGE
                         / sconf.APP_MODEL_Y_RANGE;
     sconf.LEGEND_NUMERICAL_SCALE = 1; //todm what is this?
@@ -77,7 +79,7 @@ function init_conf (){
     //medposF=[117.5,112.5]
 
     //----------------------------------
-    // //\\ mod2inn_scale and speed v0
+    // //\\ mod2med and speed v0
     //----------------------------------
     let legacyTimeStep = 0.75; //for case we do change initialTimieStep
     let initialTimieStep = 0.75;
@@ -86,16 +88,16 @@ function init_conf (){
         const uu = [ medposB[0] - medposA[0], medposB[1] - medposA[1] ];
         const u2 = uu[0]*uu[0] + uu[1]*uu[1];
         const u = Math.sqrt( u2 );
-        sconf.mod2inn_scale = u; //initial unit
-        sconf.inn2mod_scale = 1/sconf.mod2inn_scale;
+        sconf.mod2med = u; //initial unit
+        sconf.med2mod = 1/sconf.mod2med;
         mp.v0 = [
-            uu[0]*sconf.inn2mod_scale / initialTimieStep,
-            uu[1]*sconf.inn2mod_scale / initialTimieStep *
+            uu[0]*sconf.med2mod / initialTimieStep,
+            uu[1]*sconf.med2mod / initialTimieStep *
                 sconf.MONITOR_Y_FLIP
         ];
     }
     //----------------------------------
-    // \\// mod2inn_scale and speed v0
+    // \\// mod2med and speed v0
     //----------------------------------
     //----------------------------------
     // \\// picture points medpos
@@ -129,8 +131,10 @@ function init_conf (){
         TP_OPACITY_LOW : 0.5,
         TP_OPACITY_HIGH : 1,
 
-       hover_width : Math.max( 10, Math.floor( 7*sconf.controlsScale/1.6 ) ),
-        //nonhover_width  : Math.max( 5, Math.floor( 1*sconf.controlsScale/1.6 ) ),
+       hover_width : Math.max( 10,
+                     Math.floor( 7*sconf.controlsScale/1.6 ) ),
+        //nonhover_width  : Math.max( 5, Math.floor(
+        //           1*sconf.controlsScale/1.6 ) ),
         //this collaborates with impulse line-segment, we are afraide to
         //keep this "undefined",
         nonhover_width : 5,
@@ -160,14 +164,16 @@ function init_conf (){
         //otherwise it shows "physical motion",
         TIMER_AND_LOGIC_STEPS_COINSIDE : false,
 
-        FIRST_POINT_LABELS_DISPLAY_LIMIT : 1000, //to hide gracefully: was: 1.2
+        FIRST_POINT_LABELS_DISPLAY_LIMIT : 1000,
+        //to hide gracefully: was: 1.2
 
         //----------------
         // //\\ math model
         //----------------
         force :
         [
-            //[ -2, 3.9 ], //apparently, the first number is a power n for f=Ar^n
+            //[ -2, 3.9 ], //apparently, the first number
+            //is a power n for f=Ar^n
             //f=kr^n
             [   -2,                      //=n
                 1.95 / initialTimieStep / initialTimieStep //=k

@@ -1,7 +1,8 @@
 //default app wide settings for lemmas
 //may be overriden later by URL-query or lemma sconf.js,
 (function(){
-    const { fapp, fconf, sf, userOptions, tpid2arrc_repo } =
+    const {sn, fapp, fconf, sf, userOptions, tpid2arrc_repo,
+           rg, stdMod} =
            window.b$l.apptree({});
     fapp.normalizeSliders = normalizeSliders;
     fapp.doesConfigLemma = doesConfigLemma;
@@ -16,13 +17,17 @@
 function doesConfigLemma (){
     // runs once per page load
     // c cc('doesConfigLemma');
-
-    //tools
+    //====================================================
+    // //\\ user scenarios
+    //====================================================
     sf.enableStudylab = false;
-    //true enables framework zoom:
-    sf.enableTools = true;
-    //app modes
-    sf.mediaMoverPointDisabled = false;
+    sf.enableTools = false;
+    sf.enableZoom = true;
+    sf.mediaMover_isDisabled = false; //todo true makes a bug
+                                      //in amode8captures in prop 41
+    //====================================================
+    // \\// user scenarios
+    //====================================================
 
     //=======================================
     // //\\ topic colors repo
@@ -85,21 +90,21 @@ function doesConfigLemma (){
     tr.shadow      = [50,  50, 50,      ];
     tr.hidden      = [0,   0,  0,    0  ];
     tr.context     = [0,   0,  0,    1  ];
-    tr.attention   = [200, 70, 0 ];
+    tr.legends     = [0,   0,  0,    1  ];
+    tr.attention   = [200, 90, 0 ];
     //=======================================
     // \\// topic colors repo
     //=======================================
 
-
     //we adopt strategy when svg x-scale is unchanged and set as
-    //sconf.mod2inn_scale, but y-scale can have additional factor,
-    //mod2inn_scaleY, to be overriden in lemma's conf.js
+    //sconf.mod2med, but y-scale can have additional factor,
+    //mod2med_scaleY, to be overriden in lemma's conf.js
     //except lemmas 1 and 5 for which dontRun_ExpandConfig === true
     //
     //as of Dec 2025 never used in this app,
-    sf.mod2inn_scaleY = 1;
+    sf.mod2med_scaleY = 1;
 
-    //initial visibility of rg elements with pname
+    //initial visibility of rg elements with shpid
     //when subessay relaunches
     sf.rgShapesVisible = true;
 
@@ -116,7 +121,7 @@ function doesConfigLemma (){
     //---------------------------------------------------------------
     sf.default_tp_stroke_width = 10;
     sf.defaultLineWidth = 4;
-    sf.handleRadius = 3;
+    sf.handleRadius = 4;
 
     //unitless, will be multiplied by controlsScale,
     //controlsScale = realSvgSize / sf.standardSvgSize
@@ -142,8 +147,11 @@ function doesConfigLemma (){
     //this looks not very consistent because
     //gives this object special attention:
     sf.pointDecoration =  {
+
+        //todm is this ever used?:
         cssClass        : 'tostroke tofill thickable',
-        'stroke-width'  : sf.handleRadius,
+
+        'stroke-width'  : 2,
         r               : sf.handleRadius,
     };
 
@@ -162,9 +170,11 @@ function doesConfigLemma (){
         //does not affect anchor colors,
         TP_OPACITY_LOW : 0.5,
 
-        //for points only,
+        //for points and lines only,
         //0.6-makes opacity points do look "non-solid",
+        //todo implement this for curve and orbit strokes,
         TP_OPACITY_LOW_POINT : 1,
+
         TP_OPACITY_HIGH : 0.8,
 
         SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY : 0.6,
@@ -210,7 +220,6 @@ function doesConfigLemma (){
         main_horizontal_dividor_width_px : 21,
         //***************************************************
 
-        mediaOffset : [ 0, 0 ], //in respect to simscene
         LETTER_FONT_SIZE_PER_1000 : 32,
 
         GENERIC_SLIDERS_FONT_SIZE : 15,
@@ -222,6 +231,12 @@ function doesConfigLemma (){
         SLIDERS_LENGTH_X : 0.70, //in respect to background-image-width
         dragHidesPictures : true,  //vital for show/hide letters machinery
     });
+
+    //changable data
+    //backups media zoom for case if its rule dragger
+    //is not set:
+    sn( 'medzoom', rg ).val = 1;
+    stdMod.railsCustomSlidersCount = 0;
 }
 
 function normalizeSliders( sscale )

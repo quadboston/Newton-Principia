@@ -9,13 +9,6 @@
     return;
 
 
-
-
-
-
-
-
-
     //----------------------------------------
     // //\\ makes up time slider
     //      creates slider only once per
@@ -42,13 +35,13 @@
         //=========================================
 
         //:spawns api pars
-        var api_rgid    = 'rgslid_'   + sliderId;
+        var api_rgid    = 'sl-shpid-'   + sliderId;
 
-        //leaving this as toolsSliders breaks sliders, needs
+        //leaving this as rulerDraglist breaks sliders, needs
         //split from generic slider framework,
-        var toolsSliders_    = sn( 'toolsSliders_',stdMod, [] );
-        var sliderIx        = toolsSliders_.length;
-        toolsSliders_.push( api_rgid );
+        var rulerDraggers_  = sn( 'rulerDraggers_',stdMod, [] );
+        var sliderIx        = rulerDraggers_.length;
+        rulerDraggers_.push( api_rgid );
 
         var api         = toreg( api_rgid )();
         var rgX         = api;
@@ -62,10 +55,10 @@
         var startX            = ( -sconf.originX_onPicture +
                                    sconf.innerMediaWidth *
                                    sconf.SLIDERS_OFFSET_X
-                                ) * sconf.inn2mod_scale;
+                                ) * sconf.med2mod;
         var endX              = startX + sconf.innerMediaWidth *
                                          sconf.SLIDERS_LENGTH_X *
-                                         sconf.inn2mod_scale;
+                                         sconf.med2mod;
         var startY            = sconf.originY_onPicture
                                         - sconf.innerMediaHeight
                                         + sconf.SLIDERS_OFFSET_Y
@@ -74,7 +67,7 @@
                                           ) * sconf.GENERIC_SLIDER_HEIGHT_Y
                                         + sconf.SLIDERS_LEGEND_HEIGHT
                                 ;
-        var startY            =  startY * sconf.inn2mod_scale;
+        var startY            =  startY * sconf.med2mod;
         //--------------------------------------------------------------------------
         // \\// in model units and reference system
         //--------------------------------------------------------------------------
@@ -148,7 +141,7 @@
 
         /// adds text to api-GUI
         api.text_svg = sv.printText({
-            parent          : stdMod.mmedia,
+            parent          : stdMod.medScene,
             text            : sliderId,
            'stroke-width'   : 1,
             style           :
@@ -169,33 +162,25 @@
             'svg-text-special'
         );
 
-        api.move_2_updates      = move_2_updates;
-        api.processDownEvent    = processDownEvent;
-        api.modPos_2_GUI        = ssF.modPos_2_GUI;
-        api.stdMod              = stdMod;
-        api.val                 = sconf.initialTimieStep;
-        api.updates_sliderGUI   = updates_sliderGUI;
+        api.move2updates = move2updates;
+        api.processDownEvent = processDownEvent;
+        api.sliderRgxPos2unscaledSvgs = ssF.sliderRgxPos2unscaledSvgs;
+        api.val = sconf.initialTimieStep;
+        api.updates_sliderGUI = updates_sliderGUI;
+        //api.draggableX = true;
+        api.unscalable = true;
         //-------------------------------------
         // \\// slider api
         //--------------------------------------------------------
 
         ///this sub is defined in full-app/lib/custom-slider.js module
-        ssF.rgXSlider__2__dragwrap_gen_list({
-            rgX,
-            orientation         : 'axis-x',
+        sDomF.rgx2draglist({
+            pos: rgX.pos,
+            shpid: rgX.shpid,
+            orientation: 'axis-x',
+            noDefaultMethods: true,
         });
         return;
-
-
-
-
-
-
-
-
-
-
-
 
         ///this function does "minor" update: it does not
         ///recalculate the evolution, but
@@ -218,19 +203,19 @@
             ///updates media position of svg-shape from
             ///model position of this shape;
             ///also updates text-caption if any of this shape;
-            api.modPos_2_GUI();
+            api.sliderRgxPos2unscaledSvgs();
             //-----------------------------------------------------
             // \\// corrects pos and updates slider's GUI
             //-----------------------------------------------------
 
             //api.text_svg = sv.printText({
-            //    parent          : stdMod.mmedia,
+            //    parent          : stdMod.medScene,
             //    text            : sliderId,
             //at the end of job, runs application-provided callback
             //stdMod.unmasks Visib();
             //stdMod.upcreate_ mainLegend();
             if( ssF.mediaModelInitialized ) {
-                stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
+                stdMod.lemmaD8D && stdMod.lemmaD8D.updateAllDecPoints();
             }
         };
     }
@@ -246,7 +231,7 @@
 
     ///move_2_val8gui8cb
     ///todm: this sub should be automatically throttled
-    function move_2_updates( move_in_model )
+    function move2updates( move_in_model )
     {
         var api = this;
         sDomF.detected_user_interaction_effect();

@@ -7,6 +7,7 @@
 //\\// Application Entry
 //     recommended: /doc/landing-code-overview.txt
 (function(){
+
 const {
     ns, sn, $$, cssp, eachprop, nspaste, haff, has, haz, nsmethods,
     html, userOptions, fapp, sapp, fconf, sconf, engCssMs, fmethods,
@@ -168,13 +169,14 @@ function IV__loads_img8ancestors8own ( ancestor_jsModules ){
         });
         //loads images first and then calls back
         //to load scripts
-        nsmethods.loadImages( loads_ancestors8own, imagesToLoadList );
+        nsmethods.loadImages( IVb__loads__ancestLemma8lemma__jsModules,
+                              imagesToLoadList );
     } else {
-        loads_ancestors8own();
+        IVb__loads__ancestLemma8lemma__jsModules();
     }
 
-    function loads_ancestors8own (){
-        const all_jsModules = ancestor_jsModules;
+    function IVb__loads__ancestLemma8lemma__jsModules (){
+        const ancest8own__lemmaJsModules__paths = ancestor_jsModules;
         //c cc( 'ancestor ancestor_jsModules=', ancestor_jsModules );
 
         ///we complete paths for ancestor list if any,
@@ -187,24 +189,25 @@ function IV__loads_img8ancestors8own ( ancestor_jsModules ){
 
         //c cc( 'descendant codes=', fapp.lemmaDef.codesList );
         ///adds ancestors (if any) to own (if any) and accumulates
-        ///result in all_jsModules
+        ///result in ancest8own__lemmaJsModules__paths
         fapp.lemmaDef.codesList.forEach( function( codeItem ) {
-            all_jsModules.push({
+            ancest8own__lemmaJsModules__paths.push({
                 src : fconf.lemmaCode_fullpath + "/js/" + codeItem.src
             });
         });
-        //all_jsModules has ancestor and desc list merged and
+        //ancest8own__lemmaJsModules__paths has ancestor and desc
+        //list merged and
         //polished for fapp.lemmaDef.sappId,
         //goes again to web site and gets all own and ancestor
         //js-modules contents for lemma:
         nsmethods.loadScripts(
-            all_jsModules,
-            cb__activates_modules8lemma
+            ancest8own__lemmaJsModules__paths,
+            IVc__cb__initiates_lemma8ancestor_JSModules
         );
     }
 }
 
-function cb__activates_modules8lemma (){
+function IVc__cb__initiates_lemma8ancestor_JSModules (){
     //----------------------------------------------------------
     ///module can be executed right after load if it is safe or
     ///module can register subs. in setModule and execute them
@@ -229,8 +232,8 @@ function cb__activates_modules8lemma (){
         fconf.timeToShowOriginalDiagram : 1;
     haff( stdMod, 'init_conf' );
     //expansion patch: todm: make function for this:
-    //unscaled mediaSize = originalMod2inn_scale * modelSize,
-    sconf.originalMod2inn_scale = sconf.mod2inn_scale;
+    //unscaled mediaSize = mod2med_original * modelSize,
+    sconf.mod2med_original = sconf.mod2med;
     //can add this here: doesImproveSconf();
 
     //all lemmas except 1, and 5 are normalized and do not
@@ -246,7 +249,7 @@ function cb__activates_modules8lemma (){
     sDomF.creates_mainWorkspace_domRoots();
     //rename: ?? popul sim Super Scene
     fmethods.populate_mediaSuperRoot();
-    sDomF.cre_simscene8svg8legendIIslider();
+    sDomF.cre_medParent8svg8legendIIslider();
     ///loads Book
     ssF.LANDING_V___loads_professorList8cont_8_buildsSubexegs(
         cb__LANDING_VI
@@ -263,11 +266,6 @@ function cb__LANDING_VI (){
     //ppppppppppppppppppppppppppppppppppppppppppppppp
     // //\\ central step
     //ppppppppppppppppppppppppppppppppppppppppppppppp
-    //pastes ssD['fixed-colors'] into
-    //l caseId2allLemTopics
-    //ssD['fixed-colors'] - goes from JS-code and
-    //book's text,
-    //l caseId2allLemTopics is empty at this moment,
     eachprop( tpid2arrc_elect, ( colorArray, camelId ) => {
         var lowId = tpid2low( camelId );
         lowtpid_2_glocss8anchorRack[ lowId ] = {
@@ -324,9 +322,6 @@ function VI__exegs2frags_8_initApp (){
     ssF.exegs_2_frags(); //to active-areas
     ssF.frags__2__dom_css_mjax_tpanchors();
 
-    ///inits effective or empty astate_2_.... functions
-    sapp.init_astate2sapp();
-
     // init legends here to ensure they are in DOM when layout it calculated
     // todo: some pages use stdMod, others ssF - should be same
     if( fconf.sappId !== 'b3lemma5' ){
@@ -339,19 +334,6 @@ function VI__exegs2frags_8_initApp (){
     //new lemmas may use stdMod ns,
     //note, here, legend is created too early, before model,
     ns.haff( ssF, 'create_digital_legend' );
-
-    //======================================================
-    // //\\ stdModPatch
-    //======================================================
-    // todm: patch: generates pars needed possibly for
-    //       d8d creation and decorational points
-    //       before first resize set these pars
-    //       appar. needed for:
-    //              dom2model-scales.js::out2inn() and
-    //              dom2model-scales.js::inn2outparent()
-    stdMod.bgImgOffset = sDomN.bgImgOffset;
-    stdMod.bgImgW = sDomN.bgImgW;
-    //======================================================
 
     //================================================================
     // **api simSceSvg_narrowestAsp

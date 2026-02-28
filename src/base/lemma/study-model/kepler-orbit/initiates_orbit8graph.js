@@ -14,10 +14,9 @@
     const qix2orb = sn( 'qix2orb', ssD, [] );
     return;
 
-    
+
     function initiates_kepler_config() {
         sconf.curveQRange = sconf.orbit_q_end - sconf.orbit_q_start;
-        //sconf.pointDecoration.r = sconf.handleRadius;
         sconf.qgrid_step = sconf.curveQRange / sconf.Q_STEPS;
 
         //todm competing aliases:
@@ -25,21 +24,21 @@
         sconf.q2qix = 1 / sconf.qgrid_step;
 
         sconf.ro02 = sconf.ro0*sconf.ro0 / 2;
-        
+
         //3 and 5 make float noize on graph:
         sn( 'SAGITTA_ACCURACY_LIMIT', sconf, 10 );
         sData.GRAPH_PATH = false; //local lemma can change this
-    }    
-    
+    }
+
     function initiates_orbit8graph( graph_methods ) {
         initiates_kepler_config();
         stdMod.graphFW_lemma = stdMod.wraps_graph_fw
             ({ digramParentDom$:stdMod.legendRoot$, graph_methods });
         stdMod.creates_poly2svg_for_lemma();
         stdMod.rebuilds_orbit();
-        
+
         stdMod.creates__gets_orbit_closest_point();
-        
+
         //:sets parameters of P
         rg.P.qix = Math.floor( sconf.parQ * sconf.q2qix );
         var Porb = ssD.qix2orb[ rg.P.qix ];
@@ -51,13 +50,13 @@
         rg.P.DRAGGEE_HALF_SIZE = 40; //lets to catch P before Q,
         rg.Q.DRAGGEE_HALF_SIZE = 15; //usual default in fconf,
         // \\// scenario: coincided P and Q: Q splits first
-        
+
         stdMod.creates_Q8P_sliders();
         if( rg.S.draggableX || rg.S.draggableY ) {
             stdMod.creates_S_slider();
         }
     }
-    
+
     function rebuilds_orbit( keepThisDt ) {
         const SACC = sconf.SAGITTA_ACCURACY_LIMIT;
         const QS = sconf.Q_STEPS;

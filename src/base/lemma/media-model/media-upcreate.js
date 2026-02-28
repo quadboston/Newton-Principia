@@ -1,6 +1,7 @@
 (function(){
-const { ns, sn, haz, haff, $$, eachprop,
-        sconf, ssF, ssD, sDomN, sDomF, amode, stdMod, rg, exegs, } =
+const {ns, sn, haz, haff, $$, eachprop, nspaste,
+       sconf, ssF, ssD, sDomN, sDomF, amode, stdMod, rg, exegs,
+       pntRgid2rgx,} =
       window.b$l.apptree({ ssFExportList : {
             media_upcreate_generic,
         },
@@ -22,7 +23,7 @@ const { ns, sn, haz, haff, $$, eachprop,
         haff( stdMod, 'media_upcreate___before_basic' );
         sDomN.zoomInfo$.html('zoom='+
             ( 100 * //see min_magnit for min value:
-            sconf.mod2inn_scale/sconf.originalMod2inn_scale)
+            sconf.mod2med/sconf.mod2med_original)
             .toFixed()
             +'%' );
         //:updates subessay menu
@@ -30,13 +31,11 @@ const { ns, sn, haz, haff, $$, eachprop,
         var subexeg = exAspect.subessay2subexeg[ amode.subessay ];
         sDomF.addsChosenCSSCls_to_subessay8menuSubitem({ exAspect, subexeg })
 
-        ssF.toogle_detectablilitySliderPoints4Tools();//"optional"
         {
             ////preliminary setting for painting lines,
             ////no points painting at this moment,
-            eachprop( sconf.pname2point, (point,pname) => {
-                var pointRg = rg[ pname ];
-                pointRg.medpos = ssF.mod2inn( pointRg.pos, );
+            eachprop( pntRgid2rgx, rgX => {
+                rgX.medpos = ssF.modpos2medpos( rgX.pos, );
             });
         }
 
@@ -46,7 +45,7 @@ const { ns, sn, haz, haff, $$, eachprop,
             !ns.h( ssD.repoConf, 'customFunction' )
         ) {
             ssF.paintsCurve({
-                    mmedia          : stdMod.mmedia,
+                    mscene          : stdMod.medScene,
                     fun             : ssD.repoConf[0].fun,
                     pointsName      : ns.haz( ssD.repoConf[0], 'pointsName' ) || 'AB',
                     rgName          : ns.haz( ssD.repoConf[0], 'rgName' ),
@@ -85,15 +84,6 @@ const { ns, sn, haz, haff, $$, eachprop,
 
         haff( stdMod, 'media_upcreate___part_of_medupcr_basic' );
         //sunday service: start here:
-        
-        //appar. for preemptive svg-position. and z-order,
-        //if( !p2p ) return;
-        ssF.doPaintPoints();
-        
-        if( ssF.mediaModelInitialized ) {
-            //dragWraps.forEach
-            stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
-        }
 
         //=============================================
         // //\\ upcreates lines after points
@@ -115,13 +105,22 @@ const { ns, sn, haz, haff, $$, eachprop,
         // \\// upcreates lines after points
         //=============================================
 
+        //appar. for preemptive svg-position. and z-order,
+        //if( !p2p ) return;
+        ssF.doPaintPoints();
+
+        if( ssF.mediaModelInitialized ) {
+            //dragWraps.forEach
+            stdMod.lemmaD8D && stdMod.lemmaD8D.updateAllDecPoints();
+        }
+
         /*
         if( !ssF.mediaModelInitialized ) {
             ccc( 'generic media, preemptive create_digital_legend' );
             haff( stdMod, 'create_digital_legend' );
         }
         */
-        
+
         //**************************************************
         // //\\ note, former lemmas
         //**************************************************

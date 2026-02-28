@@ -37,7 +37,7 @@
         ///paints arc from A to B
         ssF.paintsCurve({
                 fun         : ssD.repoConf[0].fun,
-                mmedia      : stdMod.mmedia,
+                mscene      : stdMod.medScene,
                 pointA      : rg.A,
                 pointB      : rg.B,
                 addToStepCount : 1,
@@ -45,7 +45,7 @@
         ///paints arc from A to b
         ssF.paintsCurve({
                 fun         : ssD.repoConf[0].fun,
-                mmedia      : stdMod.mmedia,
+                mscene      : stdMod.medScene,
                 pointA      : rg.A,
                 pointB      : rg.b,
                 addToStepCount : 1,

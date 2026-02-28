@@ -181,11 +181,11 @@
 .todo-this-fails-for-fancy-handlers {
 }
 
-.tp-thickness, .tp-media_scale {
+.tp-thickness, .tp-medzoom {
     display : none;
 }
 
-.rgtools .tp-thickness, .rgtools .tp-media_scale {
+.rgtools .tp-thickness, .rgtools .tp-medzoom {
     display : block;
 }
 /*********************************************/
@@ -270,16 +270,16 @@
   --------------------------------------------*/
 
 div.trigger-option {
-    cursor : pointer;     
+    cursor : pointer;
     display : inline-block;
-    white-space : normal; 
+    white-space : normal;
     font-family: var(--default-font);
 }
 img.isopen,
 img.isclosed {
     width : 20px;
     height  : 20px;
-    cursor : pointer;  
+    cursor : pointer;
 }
 .isopen div.trigger-content {
     display:block;
@@ -299,4 +299,4 @@ img.isclosed {
     background-color:#efefef;
     margin-left:20px;
     padding:5px;
-} 
+}

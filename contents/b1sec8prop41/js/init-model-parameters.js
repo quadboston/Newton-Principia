@@ -6,7 +6,7 @@
     } = window.b$l.apptree({
         stdModExportList :
         {
-            init_model_parameters,
+            init_lemma,
         },
     });
     var op = sn( 'orbitParameters', sconf );
@@ -27,12 +27,12 @@
     ///****************************************************
     /// model initiation
     ///****************************************************
-    function init_model_parameters()
+    function init_lemma()
     {
         //var op = sconf.orbitParameters;
         toreg( 'approxer' );
         //toreg( 'orbitarea' );
-        sconf.originalPoints.curvePivots_initial = nspaste( {}, sconf.originalPoints.curvePivots );
+        ssD.curvePivots_initial = nspaste( {}, ssD.curvePivots );
 
         //sets and paints initial orbit
         stdMod.Pivots_2_divdifFW(

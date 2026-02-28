@@ -11,29 +11,29 @@ function setsCommonT1andT2capture (){
     nspaste( capture, {
         //"1-B", replaced with 1-4
         "1-C": {
-            "slider_sltime": {
+            "sl-shpid-time": {
                 //"curtime": 2.71, // 2.5752915514853103 * sconf.initialTimieStep
                 "curtime": 3.01 * sconf.initialTimieStep
             },
-            "rgslid_dt": {
+            "sl-shpid-dt": {
                 "val": sconf.initialTimieStep
             },
         },
         "1-D": {
-            "slider_sltime": {
+            "sl-shpid-time": {
                 //"curtime": 3.45
                 "curtime": 4.01 * sconf.initialTimieStep
             },
-            "rgslid_dt": {
+            "sl-shpid-dt": {
                 "val": sconf.initialTimieStep
             },
         },
         "1-E": {
-            "slider_sltime": {
+            "sl-shpid-time": {
                 //"curtime": 4.26
                 "curtime": 5.01 * sconf.initialTimieStep
             },
-            "rgslid_dt": {
+            "sl-shpid-dt": {
                 "val": sconf.initialTimieStep
             },
         },
@@ -46,7 +46,7 @@ function setsCommonT1andT2capture (){
 function makesProfessorsCaptureFootnotes (){
     nspaste( capture, {
         "1-0": {
-            "rgslid_dt": {
+            "sl-shpid-dt": {
                 "val": sconf.initialTimieStep
             },
             "speeds": {
@@ -64,44 +64,44 @@ function makesProfessorsCaptureFootnotes (){
                 ]
             },
 
-            "slider_sltime": {
+            "sl-shpid-time": {
                 //"curtime": 1.75000001 * sconf.initialTimieStep
                 "curtime": 1.01  * sconf.initialTimieStep
             },
         },
 
         "1-1": {
-            "slider_sltime": {
+            "sl-shpid-time": {
                 //"curtime": 2.099161816013016 * sconf.initialTimieStep
                 "curtime": 1.26 * sconf.initialTimieStep
             },
-            "rgslid_dt": {
+            "sl-shpid-dt": {
                 "val": sconf.initialTimieStep
             },
         },
         "1-2": {
-            "slider_sltime": {
+            "sl-shpid-time": {
                 //"curtime": 2.099161816013016 * sconf.initialTimieStep
                 "curtime": 1.51 * sconf.initialTimieStep
             },
-            "rgslid_dt": {
+            "sl-shpid-dt": {
                 "val": sconf.initialTimieStep
             },
         },
         "1-3": {
-            "slider_sltime": {
+            "sl-shpid-time": {
                 //"curtime": 2.765743445674228 * sconf.initialTimieStep
                 "curtime": 1.751 * sconf.initialTimieStep
             },
-            "rgslid_dt": {
+            "sl-shpid-dt": {
                 "val": sconf.initialTimieStep
             },
         },
         "motion-F": {
-            "slider_sltime": {
+            "sl-shpid-time": {
                 "curtime": 5.01 * sconf.initialTimieStep
             },
-            "rgslid_dt": {
+            "sl-shpid-dt": {
                 "val": sconf.initialTimieStep
             },
         },
@@ -114,11 +114,11 @@ function makesProfessorsCaptureFootnotes (){
                     ]
                 ]
             },
-            "slider_sltime": {
+            "sl-shpid-time": {
                 "curtime":
                     sconf.numberOfManyBases * sconf.timeStepOfManyBases,
             },
-            "rgslid_dt": {
+            "sl-shpid-dt": {
                 "val": sconf.timeStepOfManyBases
             },
         },
@@ -131,10 +131,10 @@ function makesProfessorsCaptureFootnotes (){
                     -0.010267216433785486
                 ]
             },
-            "slider_sltime": {
+            "sl-shpid-time": {
                 "curtime": 5.01 * sconf.initialTimieStep
             },
-            "rgslid_dt": {
+            "sl-shpid-dt": {
                 "val": sconf.initialTimieStep
             },
             "speeds": {
@@ -160,10 +160,10 @@ function makesProfessorsCaptureFootnotes (){
                     ]
                 }
             },
-                "rgslid_dt": {
+                "sl-shpid-dt": {
                 "val": sconf.initialTimieStep
             },
-            "slider_sltime": {
+            "sl-shpid-time": {
                 "curtime": 3.00,
             },
 
@@ -195,7 +195,7 @@ function makesProfessorsCaptureFootnotes (){
             //---------------------------
         },
         "corollary-2": {
-            "rgslid_dt": {
+            "sl-shpid-dt": {
                 "val": sconf.initialTimieStep
             },
             "speeds": {
@@ -206,12 +206,12 @@ function makesProfessorsCaptureFootnotes (){
                     ]
                 ]
             },
-            "slider_sltime": {
+            "sl-shpid-time": {
                 "curtime": 2.9897076114077104 * sconf.initialTimieStep
             }
         },
         "corollary-4" : {
-            "rgslid_dt": {
+            "sl-shpid-dt": {
                 "val": sconf.initialTimieStep
             },
             "AC": {
@@ -227,7 +227,7 @@ function makesProfessorsCaptureFootnotes (){
             "EW": {
                 "decStart" :21, "decEnd" :111111111111,
             },
-            "slider_sltime": {
+            "sl-shpid-time": {
                 "curtime": 5.3 * sconf.initialTimieStep,
             },
             "speeds": {
@@ -241,7 +241,7 @@ function makesProfessorsCaptureFootnotes (){
         },
 
         "corollary-3" : {
-            "rgslid_dt": {
+            "sl-shpid-dt": {
                 "val": sconf.initialTimieStep
             },
             "speeds": {
@@ -252,7 +252,7 @@ function makesProfessorsCaptureFootnotes (){
                     ]
                 ]
             },
-            "slider_sltime": {
+            "sl-shpid-time": {
                 "curtime": 5.1 * sconf.initialTimieStep
             }
         },

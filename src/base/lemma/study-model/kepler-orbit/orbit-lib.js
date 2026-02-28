@@ -22,9 +22,9 @@
         {
             const curve_points = ssD.orbitXYToDraw;
             polylineSvg = nssvg.polyline({
-                pivots  : curve_points.map( cp => ssF.mod2inn( cp, stdMod ) ),
+                pivots  : curve_points.map( cp => ssF.modpos2medpos( cp, stdMod ) ),
                 svgel   : polylineSvg,
-                parent  : stdMod.svgScene,
+                parent  : stdMod.medScene,
 
                 //should be overridden by ##tp-machine
                 //stroke           : haz( arg, 'stroke' ),

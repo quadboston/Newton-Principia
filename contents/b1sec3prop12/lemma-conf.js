@@ -13,7 +13,6 @@
             { src: sm + 'amode8captures.js' },
             { src: sm + 'amode8captures-decorator.js' },
             { src: sm + 'amode8captures-model.js' },
-            { src: sm + 'state-capturer.js' },
             { src: sm + 'graph-array.js' },
             { src : sm + 'inits/finalizes-subessay-relaunch.js' },
             { src : sm + 'learner-scenario/activity-scenario-I.conf.js' },

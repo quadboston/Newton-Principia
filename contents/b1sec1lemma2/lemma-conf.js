@@ -1,7 +1,7 @@
 ( function() {
     var ns      = window.b$l;
-    var fapp    = ns.sn('fapp' ); 
-    fapp.lemmaConfig = lemmaConfig;    
+    var fapp    = ns.sn('fapp' );
+    fapp.lemmaConfig = lemmaConfig;
     return;
 
 
@@ -23,6 +23,7 @@
                 {  src:"model-aux.js" },
                 {  src:"media-upcreate.js" },
                 {  src:"gui-update.js" },
+                {  src:"gui-sync-points.js" },
                 {  src:"gui-update-widest.js" },
                 {  src:"gui-swap-monotonity.js" },
                 {  src:"event-handlers.js" },

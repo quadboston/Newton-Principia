@@ -18,7 +18,7 @@
         'logic_phase--none' : 'logic_phase--corollary';
     return;
 
-    
+
     function shapeSconf_2_svg (){
         //path and speeds have master-index, pi, offset pi=0
         toreg( 'path' )( 'pos', [ rg.A.pos ] );
@@ -51,7 +51,7 @@
             ( 'lawPower', sconf.force[0][0] ) //-2
             ( 'lawConstant', sconf.force[0][1]
             );
-        rg.force.inarray = ['B','C','D','E','F'].map( (pname, fix) => {
+        rg.force.inarray = ['B','C','D','E','F'].map( () => {
             return {
                 'lawPower' : sconf.force[0][0],
                 'lawConstant' : sconf.force[0][1],
@@ -92,15 +92,15 @@
             ['A', 'B', 'C', 'V'],   //ABCV
             ['D', 'E', 'F', 'Z'],   //DEFZ
         ].forEach( pNames => {
-            var pName = pNames.join( '');
-            var rgElem = shapesConf[ pName ] = toreg( pName )();
+            var shpid = pNames.join( '');
+            var rgElem = shapesConf[ shpid ] = toreg( shpid )();
             rgElem.initArgs = [
                 pNames,
                 'tostroke hidee '+theor1corollary,
                 null,
                 !!'undisplay',
             ];
-            decor[ pName ] = rgElem;
+            decor[ shpid ] = rgElem;
             //lead Point defines range and ix
             var leadPoint = 2;
             rgElem.decStart = rg[ pNames[leadPoint] ].decStart;
@@ -119,8 +119,8 @@
             ['S', 'D', 'e',],   //SDe
             ['S', 'E', 'f',],   //SEf
         ].forEach( pNames => {
-            var pName = pNames.join( '');
-            var rgElem = shapesConf[ pName ] = toreg( pName )();
+            var shpid = pNames.join( '');
+            var rgElem = shapesConf[ shpid ] = toreg( shpid )();
             rgElem.initArgs = [
                 pNames,
                 //no dice
@@ -134,7 +134,7 @@
                 !!'undisplay',
                 !'tostroke',
             ];
-            decor[ pName ] = rgElem;
+            decor[ shpid ] = rgElem;
             var lp = rg[ pNames[ 2 ] ];
             rgElem.decStart = lp.decStart;
             rgElem.decEnd = lp.decEnd;
@@ -145,8 +145,8 @@
         [
             ['S', 'B', 'Caracc',],  //SBCaracc
         ].forEach( pNames => {
-            var pName = pNames.join( '');
-            var rgElem = shapesConf[ pName ] = toreg( pName )();
+            var shpid = pNames.join( '');
+            var rgElem = shapesConf[ shpid ] = toreg( shpid )();
             rgElem.initArgs = [
                 pNames,
                 'tofill hidee ' + theor2corollary,
@@ -155,7 +155,7 @@
                 !'tostroke',
             ];
             var lp = rg[ pNames[ pNames.length-1 ] ];
-            decor[ pName ] = rgElem;
+            decor[ shpid ] = rgElem;
             rgElem.decStart = lp.decStart;
             rgElem.decEnd = lp.decEnd;
         });

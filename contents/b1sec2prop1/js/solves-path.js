@@ -8,7 +8,7 @@
     });
     return;
 
-    
+
     ///=================================================================
     ///
     /// Calculation of path has two distinct models. There are two paths
@@ -21,8 +21,9 @@
     function solvesTrajectoryMath__O()
     {
         //:study-pars
-        var sSteps          = rg.spatialSteps = Math.floor(sconf.timeRange
-                              / rg.rgslid_dt.val);
+        var sSteps          = rg.spatialSteps =
+            Math.floor(sconf.timeRange
+            / rg['sl-shpid-dt'].val);
         var S               = rg.S.pos;
         var B               = rg.B.pos;
         var force           = rg.force;
@@ -50,11 +51,11 @@
         //      later;
         //      time here starts with 0 and
         //      has nothing to do with
-        //      time rg.slider_sltime.... set for lemma;
+        //      time rg.sl-shpid-time.... set for lemma;
         //***********************************************
         {
             var path = rg.path.pos;
-            var timeStep = rg.rgslid_dt.val;
+            var timeStep = rg['sl-shpid-dt'].val;
             //pi = path index, we start here from poinit B:
             for( pi = 1; pi<sSteps; pi++ ) {
                 //====================================================
@@ -144,7 +145,7 @@
                     * timeStep*2;
                 var fy = forceAbs * ruy
                     * timeStep*2;
-                    
+
                 //impulses begin with point B and, naturally,
                 //shifted in one unit from index of paht array
                 impulses[pi-1] = [fx,fy];

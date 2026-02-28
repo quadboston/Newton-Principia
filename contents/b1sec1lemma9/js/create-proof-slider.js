@@ -42,7 +42,7 @@
         sDomF.proofSlider = ssF.animatedSlider({
             //parent            :sDomN.menu,
             //.adds slider usually below numbers' table
-            parent              :stdMod.simScene,
+            parent              :stdMod.medParent,
             cssp                :'bsl',
             hideProofSlider     :sconf.hideProofSlider,
             sliderClassId       :'simple',

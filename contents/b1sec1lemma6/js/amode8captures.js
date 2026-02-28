@@ -8,9 +8,9 @@
         {
             amode2rgstate,
         },
-    }); 
+    });
     ///diff and Euclid tangents are equal
-    const ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] = 
+    const ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] =
     {
         "angle": 0.10579,
         "sin": 0.105602,
@@ -27,7 +27,7 @@
     setCapture();
     return;
 
-    
+
     function setCapture()
     {
         paste( capture,
@@ -127,7 +127,7 @@
         nspaste( rg.curveEnd.pos, ssD.curveEndInitialPos );
         ssD.repoConf.customFunction = 0;
         rg.B.unrotatedParameterX = 1;
-        var media_scale = toreg( 'media_scale' )();
+        var medzoom = toreg( 'medzoom' )();
         //----------------------------------
         // \\// common values
         //----------------------------------
@@ -154,7 +154,7 @@
             'C',
         ].forEach( gname => { rg[ gname ].undisplay = false; });
         if(
-            logic_phase === 'proof' || logic_phase === 'claim' 
+            logic_phase === 'proof' || logic_phase === 'claim'
         ) {
             sDomF.detected_user_interaction_effect( 'doUndetected' );
             [

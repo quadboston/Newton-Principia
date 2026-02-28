@@ -1,7 +1,7 @@
 ( function() {
     var ns = window.b$l;
-    var fapp = ns.sn('fapp' ); 
-    fapp.lemmaConfig = lemmaConfig;    
+    var fapp = ns.sn('fapp' );
+    fapp.lemmaConfig = lemmaConfig;
     return;
 
 
@@ -18,7 +18,6 @@
                 { src:'main-legend.js' },
                 { src:'dom8model-sliders.js' },
                 { src:'complete-sliders-creation.js' },
-                { src:'state-capturer.js' },
             ],
             "contents-list" :
             [

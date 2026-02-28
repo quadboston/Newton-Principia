@@ -2,13 +2,13 @@
     var at = window.b$l.apptree({
         stdModExportList : {
             updateExperimentalFunction,
-            init_model_parameters,
+            init_lemma,
             toggleData : toggleExperimentalFunction,
         }
     });
     var sDomF = at.sDomF;
     //at.stdMod.updateExperimentalFunction = updateExperimentalFunction;
-    
+
     //=================================================
     // //\\ configures repo of "experimental" functions
     //=================================================
@@ -80,7 +80,7 @@
     //===================================================
     // //\\ registers model pars into common scope
     //===================================================
-    function init_model_parameters()
+    function init_lemma()
     {
         var toreg = at.toreg;
         var rg = at.rg;
@@ -97,14 +97,15 @@
         //.spawns original experimental function data from book;
         addBookFunction();
 
-        ///does indexing of pname2point related constructs;
+        ///does indexing of pntRgid2rgx related constructs;
         ///does this for all repo functions at once;
-        Object.keys( at.sconf.pname2point ).forEach( pname => {
-            toreg( pname )( 'pos', at.sconf.pname2point[ pname ].pos ); //in sync by reference
-            rg[ pname ].pname   = pname;
-            var opoint          = at.sconf.pname2point[ pname ];
-            opoint.pointWrap    = rg[ pname ];
-            opoint.ptype        = opoint.pname === "S" ?
+        Object.keys( at.sconf.pntRgid2rgx ).forEach( l5key => {
+            toreg( l5key )( 'pos', at.sconf.pntRgid2rgx[ l5key ].pos );
+            //in sync by reference
+            rg[ l5key ].l5key   = l5key;
+            var opoint          = at.sconf.pntRgid2rgx[ l5key ];
+            opoint.pointWrap    = rg[ l5key ];
+            opoint.ptype        = opoint.l5key === "S" ?
                                   'approximator' : 'experimental';
         });
         rg.chosenExperimentalFunction.value = -1;
@@ -142,9 +143,9 @@
         };
         //checks the job;
         //var dd = mat.calculate_divided_differences( xy ).calculate_polynomial;
-        //var Sx = sconf.pname2point.S.pos[0];
+        //var Sx = sconf.pntRgid2rgx.S.pos[0];
         //var rr = dd( Sx );
-        //c cc( 'compare: xexp='+Sx + ' yexp=' + sconf.pname2point.R.pos[1] +
+        //c cc( 'compare: xexp='+Sx + ' yexp=' + sconf.pntRgid2rgx.R.pos[1] +
         //' res=' + rr);
     }
     //----------------------------------------------------------
@@ -167,7 +168,7 @@
         for( i=0; i<n; i++ ) {
             //// this context does:
             //// the master data points are in
-            //// sconf.pname2point[ pname ].pos;
+            //// sconf.pntRgid2rgx[ l5key ].pos;
             //// do change them and this will change an experimental data points;
 
             var rp = at.sconf.basePairs[ i ];
@@ -178,6 +179,6 @@
         rg.experimental.fname = chosen.fname;
     }
 
-    
+
 }) ();
 
