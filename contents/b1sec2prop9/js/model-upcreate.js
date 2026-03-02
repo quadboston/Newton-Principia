@@ -138,6 +138,41 @@
                 //printAxisXDigits : bonus,
                 //printAxisYDigits : true,
             }
+            //TEMP
+            console.log(`ssD.MAF = ${ssD.MAF}  ssD.MEF = ${ssD.MEF}`);
+
+            const estimatedForceMaxInitial = ssD.MEF2Temp / ssD.MAF;
+
+            //Options...
+            const yMaxH = ssD.MEF / ssD.MAF;
+            const yMaxL = ssD.MAF / ssD.MAF;
+
+            // const yMaxH = estimatedForceMaxInitial * 3;
+            // const yMaxL = ssD.MAF / ssD.MAF;
+
+            // const yMaxH = estimatedForceMaxInitial * 3;
+            // const yMaxL = estimatedForceMaxInitial;
+
+            // const yMaxH = ssD.MEF / ssD.MAF;
+            // const yMaxL = estimatedForceMaxInitial;
+
+
+            // if (ssD.yMaxL == null || ssD.yMaxH == null) {
+            //     ssD.yMaxL = 1;
+            //     ssD.yMaxH = ssD.MEF;
+            // }
+            // const yMaxL = ssD.yMaxL;
+            // const yMaxH = ssD.yMaxH;
+
+            console.log(`yMaxL = ${yMaxL}  yMaxH = ${yMaxH}`);
+
+
+            const MEF2CurrentTemp = stdMod.calculateMaxDisplacementTemp();
+            const estimatedForceMaxCurrent = MEF2CurrentTemp / ssD.MAF;
+            graphArg.yMax = Math.max(Math.min(estimatedForceMaxCurrent, yMaxH), yMaxL);
+            //TEMP//
+
+
             stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
         }
         //------------------------------------------------

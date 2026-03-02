@@ -3,6 +3,7 @@
         = window.b$l.apptree({ stdModExportList : {
             builds_orbit_data_graph,
             qIndexFromPointPToGraphIndex,
+            calculateMaxDisplacementTemp,
         },
     });
     const graphArray = sn( 'graphArray', stdMod, [] );
@@ -43,16 +44,19 @@
             const displacement = bP.displacement;
             const sagitta = bP.sagitta;
             const ds_dt = bP.ds_dt;
-            if( force_law_function ){
-                var instantForce = force_law_function(bP);
+            //TEMP
+            // if( force_law_function ){
+            //     var instantForce = force_law_function(bP);
 
-            //this is a stub for non-Kepler orbits:    
-            //} else if( sconf.TIME_IS_FREE_VARIABLE ){
-            //    var instantForce = bP.instant_sagitta;
+            // //this is a stub for non-Kepler orbits:    
+            // //} else if( sconf.TIME_IS_FREE_VARIABLE ){
+            // //    var instantForce = bP.instant_sagitta;
 
-            } else {
-                var instantForce = bP.instant_displacement;
-            }
+            // } else {
+            //     var instantForce = bP.instant_displacement;
+            // }
+            //TEMP
+            var instantForce = bP.instant_displacement;
             bP.instantForce = instantForce;
             if( !(qix%dataPeriod) || qix===Q_STEPS ){
                 sagittaMax = Math.max( Math.abs( sagitta ), sagittaMax );
@@ -78,15 +82,23 @@
         //------------------------------------------
         // //\\ resets graphArray
         //------------------------------------------
+        //TEMP
+        console.log("resets graphArray");
         var arrLen = graphArray.length;
         for( var gix = 0; gix<arrLen; gix++ ){
             const ga = graphArray[ gix ];
             const qix = ga.qix;
             const bP = qIndexToOrbit[ qix ];
             bP.gix = gix;
-            const instf = Math.abs(bP.instantForce) / instantForceMax;
-            const disp = Math.abs(bP.displacement) / (IS_DEVIATION_SCALED_BY_FORCE_MAX ?
-                        instantForceMax * DEVIATION_SCALE_FACTOR : displMax);
+            //TEMP
+            // const instf = Math.abs(bP.instantForce) / instantForceMax;
+            // const disp = Math.abs(bP.displacement) / (IS_DEVIATION_SCALED_BY_FORCE_MAX ?
+            //             instantForceMax * DEVIATION_SCALE_FACTOR : displMax);
+
+            const instf = Math.abs(bP.instantForce) / ssD.MAF;
+            const disp = Math.abs(bP.displacement) / ssD.MAF;
+
+
             const ds_dt = bP.ds_dt / speedMax;
             const sagitta = Math.abs(bP.sagitta) / sagittaMax;
             ga.y = [
@@ -96,6 +108,11 @@
                 sagitta,
             ];
         }
+        //TEMP
+        console.log("**********");
+        console.log("instantForceMax =", instantForceMax);
+        console.log("displMax =", displMax);
+        //TEMP//
         ///this is a common graph lines, but this mask can be
         ///overriden in model_upcreate()
         stdMod.graphFW_lemma.graphArrayMask = 
@@ -106,5 +123,27 @@
         //------------------------------------------
         // \\// resets graphArray
         //------------------------------------------
+    }
+
+
+    //TEMP
+    function calculateMaxDisplacementTemp() {
+        const Q_STEPS = sconf.Q_STEPS;
+        const DATA_GRAPH_STEPS = sconf.DATA_GRAPH_STEPS;
+        const dataPeriod = Math.max( 1, Math.floor( Q_STEPS/DATA_GRAPH_STEPS ) );
+
+        const gstart = ssD.qix_graph_start;
+        const gend = ssD.qix_graph_end;
+        var displMax = 0;
+        for( let qix=gstart; qix<=gend; qix++ ){
+            const bP = qIndexToOrbit[ qix ];
+            const displacement = bP.displacement;
+            if( !(qix%dataPeriod) || qix===Q_STEPS ){
+                //TEMP I believe the forces are often negative, should that be
+                //adjusted somewhere, or is just having Math.abs here enough?
+                displMax = Math.max( Math.abs( displacement ), displMax );
+            }
+        }
+        return displMax;
     }
 }) ();

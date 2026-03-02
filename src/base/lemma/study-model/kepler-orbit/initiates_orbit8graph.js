@@ -64,8 +64,25 @@
         ssD.Dq = sconf.Dq0;
         ssD.Dt = keepThisDt || sn( ssD, 'Dt', sconf.Dt0 );
         stdMod.builds_dq8sagit8displace({ ulitmacy:sData.ULTIM_MAX });
+        //TEMP
+        if (ssD.MEF == null) {
+            ssD.MEF = stdMod.calculateMaxDisplacementTemp();
+        }
         stdMod.builds_dq8sagit8displace({ ulitmacy:sData.ULTIM_INSTANT });
+        //TEMP
+        if (ssD.MAF == null)
+            ssD.MAF = stdMod.calculateMaxDisplacementTemp();
         stdMod.builds_dq8sagit8displace({});
+        if (ssD.MEF2Temp == null) {
+            ssD.MEF2Temp = stdMod.calculateMaxDisplacementTemp();
+        }
+        //TEMP Looks like this function is only called when P9 loads, not when
+        //eg. Q is dragged.  The following would probably be the wrong spot for
+        //this draft code.
+        // ssD.MEF2CurrentTemp = stdMod.calculateMaxDisplacementTemp();
+        console.log(`Calculated ssD.MAF = ${ssD.MAF}  ssD.MEF = ${ssD.MEF}  ` +
+                    `ssD.MEF2Temp = ${ssD.MEF2Temp}`);//  ` +
+                    // `ssD.MEF2CurrentTemp = ${ssD.MEF2CurrentTemp}`);
         stdMod.builds_orbit_data_graph();
 
         //Adjust point P if out of bounds
