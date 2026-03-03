@@ -229,7 +229,7 @@
         }
         curvePivots = curvePivots.map( pivot => ({
             pos         : pivot,
-            pcolor      : curvature,
+            pcolor      : info,
             letterAngle : 45,
             draggableX  : true,
             draggableY  : true,

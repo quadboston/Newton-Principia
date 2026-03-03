@@ -3,7 +3,7 @@
 (function(){
     const { fapp, sf, topicColors_repo } =
            window.b$l.apptree({});
-    fapp.setColorsToMaster = setColorsToMaster;
+    fapp.setColors = setColors;
     const tr = topicColors_repo;
 
     //MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD is in fconf
@@ -12,7 +12,7 @@
     return;
 
 
-	function setColorsToMaster (){
+	function setColors (){
 		// runs once per page load
 
 		//=======================================
@@ -62,48 +62,74 @@
 
 		// background color used to highlight text and table rows on hover
 		tr.highlight = rgbToArray("rgb(234, 234, 234)");
+		const DARK_GRAY     = rgbToArray("rgb(99, 99, 99)");
+		const LIGHT_BLUE    = rgbToArray("rgb(45, 131, 157)");
+		const MEDIUM_BLUE   = rgbToArray("rgb(29, 96, 204)");
+		const DARK_BLUE     = rgbToArray("rgb(2, 74, 180)");
+		const BLUE_GREEN    = rgbToArray("rgb(42, 157, 143)");
+		const LIGHT_GREEN   = rgbToArray("rgb(39, 222, 0)");
+		const MEDIUM_GREEN  = rgbToArray("rgb(119, 187, 65)");
+		const DARK_GREEN    = rgbToArray("rgb(35, 109, 16)");
+		const BROWN         = rgbToArray("rgb(83, 51, 1)");
+		const PURPLE        = rgbToArray("rgb(131, 56, 236)");
+		const PINK          = rgbToArray("rgb(255, 105, 180)");
+		const ORANGE        = rgbToArray("rgb(202, 131, 0)");
+		const ENGAGING      = rgbToArray("rgb(102, 153, 204)");
+		const DYNAMIC       = rgbToArray("rgb(153, 0, 255)");
+		const MAGENTA    = rgbToArray("rgb(211, 87, 254)");
+		const RED           = rgbToArray("rgb(255, 0, 0)");
+
+		tr.sunColor    = ORANGE; // center of force (S or C in propositions)
+		tr.given       = rgbToArray("rgb(0, 133, 0)");//DARK_BLUE;DARK_GREEN
+		tr.proof       = rgbToArray("rgb(139, 105, 20)");
+		tr.force       = PURPLE;
+        tr.estimatedForce  = MAGENTA;
+		tr.orbit       = LIGHT_BLUE;
+		tr.invalid     = RED;  //alert, invalid user actions
+		tr.curvature       = DARK_GRAY;//BROWN;//rgbToArray("rgb(200, 40, 200)");
+
+		tr.body        = LIGHT_BLUE;
 
 		//usually as a condition of a claim,
 		//condition of the theorem,
 		//given parameters of the claim or proof
-		tr.given       = rgbToArray("rgb(0, 113, 0)");
+		//tr.given       = rgbToArray("rgb(0, 133, 0)");//DARK_BLUE;DARK_GREEN
 		tr.givenArea   = [...tr.given, 1];
 		tr.givenOnlyVisibleWhenHighlighted
 			= [...tr.given, 0, 1],
-		tr.sunColor = tr.given;
 
 		//relates to moving body, to an orbit
-		tr.body    = rgbToArray("rgb(0, 150, 0)");
-		tr.orbit   = tr.body;
-
 		tr.orbitareaSample         = [0, 150, 0,  0.05]; //P12
-		tr.orbitarea               = [0, 150, 0,  0.1, 0.5]; //P14 (P12 sconf)
+		tr.orbitarea               = [0, 150, 0,  0.1, 0.5]; //P14 (in P12 sconf)
 		tr.orbitareaHiddenStart    = [0, 150, 0,  0.001, 0.5]; //P12
-		tr.instanttriangle         = [0, 150, 200, 0.2, 0.5 ]; //P14 (P12 sconf)
+		tr.instanttriangle         = [0, 150, 200, 0.2, 0.5 ]; //P14 (in P12 sconf)
 		tr.instanttriangleHiddenStart  = [0, 150, 200, 0.001, 0.5 ] //P12
 
-    	tr.info = rgbToArray("rgb(98, 109, 126)"); // info text (Prop6, etc)
-
-		tr.time      = rgbToArray("rgb(0, 150, 200)");
+		/*tr.time      = rgbToArray("rgb(0, 150, 200)");
 		tr.dtime     = tr.time;
-		tr.distance  = rgbToArray("rgb(60, 20, 0)");
+		tr.distance  = rgbToArray("rgb(60, 20, 0)");*/
 
 		//logical steps of the proof, auxilary constructs
 		//of a proof
-		tr.proof       = rgbToArray("rgb(0, 0, 255)");
+		//tr.proof       = rgbToArray("rgb(139, 105, 20)");
 		tr.proofArea   = [...tr.proof, 1];
 		tr.result      = rgbToArray("rgb(100, 0, 0)");
 		tr.resultOnlyVisibleWhenHighlighted
 			= [...tr.result, 0, 1];
 
-		//alert, invalid user actions
+		// merge misc: used?
+        tr.speed       = DARK_GRAY;
+        tr.forceMove       = tr.force;
+		// end merge misc
+
+		/*//alert, invalid user actions
 		tr.invalid = rgbToArray("rgb(250, 0, 0)");
 		//force, energy
 		tr.force   = rgbToArray("rgb(200, 150, 0)");
 		//conclusion of the proof
 
 		tr.forceMove       = tr.force;
-		tr.speed           = rgbToArray("rgb(90, 90, 90)");
+		tr.speed           = rgbToArray("rgb(90, 90, 90)");*/
 
 		//neutral elements
 		tr.shadow  = rgbToArray("rgb(50, 50, 50)");
@@ -111,12 +137,16 @@
 
 		tr.context = rgbToArray("rgb(0, 0, 0)");
 
-		tr.estimatedForce  = rgbToArray("rgb(200, 0, 200)");
+		/*tr.estimatedForce  = rgbToArray("rgb(200, 0, 200)");*/
 		tr.sagitta         = tr.estimatedForce;
 		tr.displacement    = tr.estimatedForce;
-		tr.curvature       = rgbToArray("rgb(200, 40, 200)");
+		//tr.curvature       = DARK_GRAY;//BROWN;//rgbToArray("rgb(200, 40, 200)");
 		tr.chord           = rgbToArray("rgb(0, 0, 255)");
 		tr.attention       = rgbToArray("rgb(200, 200, 0)");
+
+		tr.time      = BLUE_GREEN;
+        tr.dtime     = tr.estimatedForce;
+        tr.distance  = rgbToArray("rgb(60, 20, 0)");
 
 		//From L20, L21
 		tr.static              = rgbToArray("rgb(0, 200, 255)");
@@ -149,7 +179,7 @@
 		//P1 (Shared with P2)
 		tr.freeMove        = rgbToArray("rgb(0, 150, 0)");
 		tr.diagram         = rgbToArray("rgb(150, 0, 90)");
-		tr.path            = rgbToArray("rgb(0, 0, 150)");
+		tr.path            = tr.body;//rgbToArray("rgb(0, 0, 150)");
 		tr.sagittaeChords  = tr.sagitta;
 
 		tr.trianglePurpleTextAreaColor = tr.path;
@@ -159,7 +189,9 @@
 
 		tr.perpendicular   = [150, 80, 0];
 		tr.tangent         = [0, 150, 0];
-
+	
+	    //P2
+        tr.areaDescriptionAccelerated = rgbToArray("rgb(120, 90, 82)", 1); //Description of areas triangle P2 proof tab
 		//P41
 		//Note that Fi for P12 is shadow (see its sconf.js ~line 635)
 		tr.fi      = [0, 0, 150, 0.1, 0.3];
@@ -182,9 +214,114 @@
 		tr.D𝑏𝑧E    = [110, 90, 0, 0.01, 0.5];
 		tr.VIC     = [110, 90, 0, 0.01, 0.5];
 		tr.ICK     = [110, 90, 0, 0.01, 0.5];
+
 		//=======================================
 		// \\// topic colors repo
 		//=======================================
+
+        //=======================================
+        // //\\ Color-Set Buttons
+        //=======================================
+
+        const colorSets = [ 
+
+			{
+				// current master; loaded below
+			},
+			{
+				body : rgbToArray("rgb(12, 67, 168)"),
+			},
+            {
+                given : rgbToArray("rgb(124, 57, 201)"),
+                givenArea : [124, 57, 201, 1],
+
+                proof : rgbToArray("rgb(29, 111, 182)"),
+                proofArea : [39, 182, 39, 1],
+				proofOnlyVisibleWhenHighlighted : [...rgbToArray("rgb(39, 161, 182)"), 0, 1],
+                
+                sunColor    : rgbToArray("rgb(222, 200, 0)"),
+				orbit: rgbToArray("rgb(0, 0, 222)"),
+				body: rgbToArray("rgb(0, 0, 222)"),
+
+				estimatedForce: rgbToArray("rgb(123, 105, 112)"),
+				displacement: rgbToArray("rgb(123, 105, 112)"),
+				force: rgbToArray("rgb(180, 63, 0)"),
+            },
+			{
+                // copy of above for reference and so it's included in the options
+                given : rgbToArray("rgb(0, 113, 0)"),
+                givenArea : [...tr.given, 1],
+
+                proof : rgbToArray("rgb(0, 0, 255)"),
+                proofArea : [...tr.proof, 1],
+				proofOnlyVisibleWhenHighlighted : [...rgbToArray("rgb(0, 0, 255)"), 0, 1],
+
+				sunColor    : rgbToArray("rgb(0, 113, 0)"),
+				orbit: rgbToArray("rgb(0, 113, 0)"),
+				body: rgbToArray("rgb(0, 113, 0)"),
+
+				estimatedForce: rgbToArray("rgb(200, 0, 200)"),
+				displacement: rgbToArray("rgb(200, 0, 200)"),
+				force: rgbToArray("rgb(200, 150, 0)"),
+
+				dtime: tr.time,
+                // ** copy more colors as defined above here **
+            },
+            // ** add as many color sets as you like here **
+        ];    
+		//tr.displacement    = tr.estimatedForce;
+        
+        const prevBtn = document.getElementsByClassName("prev")[0];
+        const nextBtn = document.getElementsByClassName("next")[0];
+        const idxElem = document.getElementById("colorSetIdx");
+
+        let colorSetIdx = localStorage.getItem('COLORSET'); 
+        if(!colorSetIdx) colorSetIdx = 0; 
+        idxElem.innerText = colorSetIdx; 
+
+        prevBtn.onclick = () => {
+            colorSetIdx--;
+            if(colorSetIdx < 0) colorSetIdx = colorSets.length - 1; 
+            localStorage.setItem('COLORSET', colorSetIdx);
+            window.location.reload();
+        }
+        nextBtn.onclick = () => {
+            colorSetIdx++;
+            if(colorSetIdx >= colorSets.length) colorSetIdx = 0; 
+            localStorage.setItem('COLORSET', colorSetIdx);
+            window.location.reload();
+        }
+                  
+        console.log('Color Set: ' + colorSetIdx)
+		if (colorSetIdx == 0) {
+			fapp.setColorsToMaster();
+		} else {
+			for(let key in colorSets[colorSetIdx]) {
+				value = colorSets[colorSetIdx][key];
+				tr[key] = value;
+			}
+        }
+
+		groupCommonColors();
+
+		function groupCommonColors() {
+			tr.orbit = tr.body;
+			if (colorSetIdx > 0) {
+
+			}
+		}
+
+        //=======================================
+        // \\// Color-Set Buttons
+        //=======================================
+
+
+		sf.default_tp_stroke_width = 10;
+		///for default points (and draggers???)
+		///in module points.js
+		sf.handleRadius = 8;
+		sf.standardSvgSize = 1000;
+		sf.PATH_WIDTH = '2';
 
 		Object.assign( sf, {
 			//***************************************************
