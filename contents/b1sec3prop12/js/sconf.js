@@ -121,10 +121,10 @@
         sconf.orbit_q_end = null;
 
         //Min and max eccentricity values for Zeta slider
-        const eccentricityMin = 1.1;
-        const eccentricityMax = 3.0;
-        op.ZETA_MIN = Math.atan(eccentricityMin);
-        op.ZETA_MAX = Math.atan(eccentricityMax);
+        op.eccentricityMin = 1.1;
+        op.eccentricityMax = 3.0;
+        op.ZETA_MIN = Math.atan(op.eccentricityMin);
+        op.ZETA_MAX = Math.atan(op.eccentricityMax);
 
         //sets model offset
         op.mainAxisAngle = 0;
@@ -200,7 +200,9 @@
             A : {
                 pcolor : orbit,
                 letterAngle : -120,
-				cssClass: 'subessay--solution',
+                draggableX  : true,
+				cssClass: 'logic_phase--proof logic_phase--comment',
+                conditionalDrag : 'logic_phase--proof logic_phase--comment',
             },            
             AA : { // opposite A
                 undisplayAlways : true,
@@ -311,44 +313,6 @@
 				undisplayAlways : true,
 				doPaintPname : false,
             },
-
-            // eccentricity slider
-            Zeta : {
-                caption : 'eccentricity',
-                pos : [ pictureWidth * 0.5, pictureHeight * 1.05 ],
-                pcolor : orbit,
-                letterAngle : 150,
-                letterRotRadius : 38,
-                draggableX  : true,
-                undisplayAlways  : false,
-                doPaintPname : true,
-                unscalable  : true,
-                fontSize : 16,
-            },
-            ZetaCaption : {
-                pos : [ pictureWidth * 0.5, pictureHeight * 1.09 ],
-                pcolor : orbit,
-                undisplayAlways : true,
-                letterAngle : 90,
-                letterRotRadius : 20,
-                doPaintPname : false, // set to true to show value
-                unscalable  : true,
-                fontSize : 16,
-            },
-            ZetaStart : {
-                pos : [ pictureWidth * 0.3, pictureHeight * 1.05 ],
-                pcolor : orbit,
-                undisplayAlways : true,
-                doPaintPname : false,
-                unscalable  : true,
-            },
-            ZetaEnd : {
-                pos : [ pictureWidth * 0.7, pictureHeight * 1.05 ],
-                pcolor : orbit,
-                undisplayAlways : true,
-                doPaintPname : false,
-                unscalable  : true,
-            },
         });
 
         var linesArray =
@@ -427,10 +391,6 @@
             { 'L,LL' : { pcolor : resultOnlyVisibleWhenHighlighted,
                captionShiftNorm : 22, lposYSugar : 3 }, },
 
-            // e slider
-            { 'ZetaStart,ZetaEnd' :
-              { pcolor : orbit } 
-            },
         ];
 
         ns.paste( sconf, {

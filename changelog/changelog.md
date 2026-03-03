@@ -1,6 +1,11 @@
 # Change Log
 
-## 2026-2-? (Olive Version, 0.6)
+## 2026-3-?? (? Version, 0.7)
+### Improved
+* Proposition 13
+	* eccentricity control integrated into the model with point A
+
+## 2026-2-26 (Olive Version, 0.6)
 ### Improved
 * Lemma 11
 	* added highlights for "finite curvature", "sagittas", and "sagitta" 
@@ -14,8 +19,6 @@
 
 * Proposition 12:
     * graph changed to only show estimated and actual force
-	* fixed bug where Q and other points left the hyperbola
-	* fixed bug where P jumps with changing eccentricity
 	* model restricted to hyperbolas
 
 * Proposition 13:
@@ -42,7 +45,7 @@
 	* minor bug fixes
 	
 * Propositions 10, 11
-	* eccentricity of both models controlled by point A
+	* eccentricity control integrated into the model with point A
 
 ## 2025-12-17 (Green Version, 0.3)
 ### Improved
