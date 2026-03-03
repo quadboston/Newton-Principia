@@ -237,6 +237,9 @@
 
 				proofOnlyVisibleWhenHighlighted : [...rgbToArray("rgb(0, 0, 255)"), 0, 1],
 			},
+			{
+				body : rgbToArray("rgb(12, 67, 168)"),
+			},
             {
                 given : rgbToArray("rgb(124, 57, 201)"),
                 givenArea : [124, 57, 201, 1],
@@ -303,6 +306,12 @@
             value = colorSets[colorSetIdx][key];
             tr[key] = value;
         }
+
+		if (colorSetIdx > 0) groupCommonColors();
+
+		function groupCommonColors() {
+			tr.orbit = tr.body;
+		}
 
         //=======================================
         // \\// Color-Set Buttons
