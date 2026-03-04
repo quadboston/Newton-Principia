@@ -98,14 +98,7 @@
         sconf.CURVE_REVOLVES = false; //true for cyclic orbit
         sconf.DQ_SLIDER_MAX = FT ? null : 0.69;
         sconf.DQ_SLIDER_MIN = FT ? null : 0.0001;
-        //TEMP
-        //To test what showing the entire actual force curve looks like
-        // sconf.DT_SLIDER_MAX = 0.0001;
-        //Only show actual force for same range of x values as estimated force
-        sconf.DT_SLIDER_MAX = 0.32;
-        console.log("sconf.DT_SLIDER_MAX =", sconf.DT_SLIDER_MAX);
-        //TEMP Original code
-        // sconf.DT_SLIDER_MAX = FT ? 0.32 : null;
+        sconf.DT_SLIDER_MAX = FT ? 0.32 : null;
         var Q_STEPS = 1000;
         var DATA_GRAPH_STEPS = 200;
         //-------------------------------------------
@@ -117,21 +110,8 @@
         //-------------------------------------------
         var ro0 = 1.17; //spiral's ro0
         var curveParA = -0.64;
-
-        //TEMP Original Diagram
-        // sconf.orbit_q_start = 0.0;
-        // sconf.orbit_q_end = 0.26 * Math.PI;
-        
-        //TEMP Between
-        // sconf.orbit_q_start = -0.05 * Math.PI;//0.0;
-        // sconf.orbit_q_end = 0.70 * Math.PI;
-
-        //TEMP How orbit has been for a long time
         sconf.orbit_q_start = -0.05 * Math.PI;
         sconf.orbit_q_end = 1.3 * Math.PI;
-        
-        //TEMP
-        console.log("sconf.orbit_q_end =", sconf.orbit_q_end);
         //-------------------------------------------
         // \\// curve shape parameters
         //-------------------------------------------
@@ -143,17 +123,7 @@
         //displacement or sagitta,
         //Sets initial distance of point Q from P
         if( FT ){
-            //TEMP
-            //TEMP Seems to allow eg. Q to line up with original diagram when...
-            //...the orbit matches the original diagram
-            // sconf.Dt0 = 0.29;
-            //...the orbit is between
-            // sconf.Dt0 = 0.25;//0.29;
-            //...the orbit matches what it has been for a long time
             sconf.Dt0 = 0.25;
-
-            //TEMP Original code
-            // sconf.Dt0 = 0.3;
         } else {
             sconf.Dq0 = 0.4;
         }

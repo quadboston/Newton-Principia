@@ -69,6 +69,25 @@
         {
             let graphArg = {
             }
+            // stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
+
+
+            //TEMP
+            if (fconf.sappId === 'b1sec3prop13') {
+                //Options...
+                console.log(`ssD.MAF = ${ssD.MAF}  ssD.MEF = ${ssD.MEF}  ` +
+                            `ssD.MEF / ssD.MAF = ${ssD.MEF / ssD.MAF}`);
+                const MEF2CurrentTemp = stdMod.calculateMaxDisplacementTemp();
+                const estimatedForceMaxCurrent = MEF2CurrentTemp / ssD.MAF;
+                console.log(`MEF2CurrentTemp = ${MEF2CurrentTemp}`);
+                console.log(`estimatedForceMaxCurrent = ${estimatedForceMaxCurrent}`);
+
+
+                graphArg.yMax = ssD.MEF / ssD.MAF;
+            }
+            //TEMP//
+
+
             stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
         }
         //------------------------------------------------
