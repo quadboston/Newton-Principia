@@ -1,6 +1,10 @@
 # Change Log
 
 ## 2026-3-?? (? Version, 0.7)
+### Added
+* Lemma 6 and beyond
+	* added pinch-to-zoom support
+
 ### Improved
 * Proposition 13
 	* eccentricity control integrated into the model with point A
