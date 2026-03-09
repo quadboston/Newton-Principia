@@ -143,68 +143,23 @@
         {
             return [
                 {
+					// Actual force
                     fraqX : 0.2,
-                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    //pcaption : 'Actual force',
                     fontShiftX : 0,
                     fontShiftY : 0,
                     style : {
                         'font-size' : '40px',
                         'stroke'  : colorThreadArray[0],
                     },
-                    //overrides tp class
-                    //plotStyle : {
-                    //    'stroke-width'  : '5',   //optional
-                    //},
                 },
                 {
+					// Estimated force
                     fraqX : 0.6,
-                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    //pcaption : 'Displacement/area^2',
                     fontShiftX : 0,
                     fontShiftY : 0,
                     style : {
                         'font-size' : '40px',
                         'stroke'  : colorThreadArray[1],
-                        //'fill' : colorThreadArray[0],
-                    },
-                    //overrides tp class
-                    //plotStyle : {
-                    //    'stroke-width'  : '5',   //optional
-                    //},
-                },
-                {
-                    fraqX : 0.9,
-                    //pcaption : 'v',
-                    fontShiftX : 0,
-                    fontShiftY : 0,
-                    style : {
-                        'font-size' : '40px',
-                        'stroke'  : colorThreadArray[4],
-                    },
-                },
-                {
-                    //sagitta
-                    fraqX : 0.9,
-                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    //pcaption : 'v',
-                    fontShiftX : 0,
-                    fontShiftY : 0,
-                    style : {
-                        'font-size' : '40px',
-                        'stroke'  : colorThreadArray[4],
-                    },
-                },
-                {
-                    //sample force
-                    fraqX : 0.8,
-                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    pcaption : '-1/r²',
-                    fontShiftX : 0,
-                    fontShiftY : 0,
-                    style : {
-                        'font-size' : '40px',
-                        'stroke'  : colorThreadArray[3],
                     },
                 },
             ];
