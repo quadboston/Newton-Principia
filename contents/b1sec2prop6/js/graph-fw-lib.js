@@ -175,7 +175,6 @@
                     case 0: pl && $$.$(pl).addClass( 'tp-force tostroke' ); break;
                     case 1: pl && $$.$(pl).addClass( 'tp-displacement tostroke' ); break;
                     case 2: pl && $$.$(pl).addClass( 'tp-body tostroke' ); break;
-                    case 3: pl && $$.$(pl).addClass( 'tp-_p_-sagitta tostroke' ); break;
                 }
             });
         }
