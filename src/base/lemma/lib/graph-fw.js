@@ -6,7 +6,7 @@
 // These creators, however dependent via createsLowTireGlobalCSS.
 
 ( function() {
-    var { ns, sn, nsmethods, haz, haff, hafa, globalCss, sData, stdMod, }
+    var { nsmethods, haff, hafa, globalCss, sData, stdMod, }
         = window.b$l.apptree({ stdModExportList : { createsGraphFW, }, });
     var GLOBAL_CSS_APPENDED = false;
     return;
@@ -24,7 +24,6 @@
             setsGraphContainerAttributes,
             setsGraphAxes,
             plotLabels_2_plotsPars,
-            setsGraphTpClasses,
             doDrawToolline,
             graphAxisX,
             graphAxisY,
@@ -70,13 +69,6 @@
 
         createsLowTireGlobalCSS();
         return;
-
-
-
-
-
-
-
 
 
         //===================================================
@@ -137,8 +129,6 @@
             //==================================================
             // \\// calls low tire api
             //==================================================
-
-            haff( stdMod, 'setsGraphTpClasses' );
         }
         //===================================================
         // \\// top tire painter which wraps low tire painter
@@ -197,4 +187,3 @@
     }
     
 }) ();
-

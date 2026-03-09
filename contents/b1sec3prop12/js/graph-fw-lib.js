@@ -13,7 +13,6 @@
             setsGraphContainerAttributes,
             setsGraphAxes,
             plotLabels_2_plotsPars,
-            setsGraphTpClasses,
         });
         //first array must be enabled
         //but can be dynamically overridden,
@@ -165,15 +164,6 @@
                     },
                 },
             ];
-        }
-
-        ///this thing fails if not to synch it with mask,
-        ///the unmasked indices must be the same as here:
-        function setsGraphTpClasses()
-        {
-            const svg = graphFW.fw.plotIx2plotSvg;
-            $$.$( svg[0] ).addClass( 'tp-force tostroke' );
-            $$.$( svg[1] ).addClass( 'tp-displacement tostroke' );
         }
     }
 }) ();
