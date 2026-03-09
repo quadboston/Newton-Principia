@@ -27,7 +27,7 @@
         ////**********************************************************************************
 
         var legendScriptParsed = [
-            [['estimatedForce<_>data-monospace', 'Δt', '(ssD.Dt*2).toFixed(4)']]
+            [['dtime<_>data-monospace', 'Δt', '(ssD.Dt*2).toFixed(4)']]
         ];
 
         var rowsCount       = legendScriptParsed.length;
