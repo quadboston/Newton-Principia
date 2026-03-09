@@ -13,8 +13,6 @@
             setsGraphContainerAttributes,
             setsGraphAxes,
             plotLabels_2_plotsPars,
-            setsGraphTpClasses,
-            setsGraphTpClasses,
         });
         return graphFW;
 
@@ -163,21 +161,6 @@
                     },
                 },
             ];
-        }
-
-		/**
-         * Makes a particular graph plot highlight along with its 
-		 * corresponding text.
-         */
-        ///this thing fails if not to synch it with mask,
-        ///the unmasked indices must be the same as here:
-        function setsGraphTpClasses()
-        {
-            graphFW.fw.plotIx2plotSvg.forEach( (pl,pix) => {
-                switch(pix) {
-                    case 0: pl && $$.$(pl).addClass( 'tp-force tostroke' ); break;
-                }
-            });
         }
     }
 }) ();
