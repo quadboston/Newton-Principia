@@ -6,7 +6,7 @@
 // These creators, however dependent via createsLowTireGlobalCSS.
 
 ( function() {
-    var { ns, sn, nsmethods, haz, haff, hafa, globalCss, stdMod, }
+    var { $$, nsmethods, haz, globalCss, stdMod, }
         = window.b$l.apptree({ stdModExportList : { createsGraphFW_class, }, });
     var GLOBAL_CSS_APPENDED = false;
     return;
@@ -24,9 +24,6 @@
         setsGraphContainerAttributes,
         setsGraphAxes,
         plotLabels_2_plotsPars,
-        
-        //optional:
-        setsGraphTpClasses,
     }){
         var graphFW__self = graphFW;
         var colorThreadArray = graphFW__self.colorThreadArray = doSetColorThreadArray();
@@ -115,7 +112,7 @@
             // \\// calls low tier api
             //==================================================
 
-            setsGraphTpClasses && setsGraphTpClasses();
+        	setsGraphTpClasses(graphFW__self.fw);
         }
         //===================================================
         // \\// top tier painter which wraps low tier painter
@@ -217,6 +214,19 @@
             'chem-equilibr-graph-style'
         `);
     }
-    
-}) ();
 
+	/**
+	 * Makes a particular graph plot highlight along with its 
+	 * corresponding text.
+	 */
+	///this thing fails if not to synch it with mask,
+	///the unmasked indices must be the same as here:
+	function setsGraphTpClasses(fw)
+	{
+		fw.plotIx2plotSvg.forEach( (pl,pix) => {
+			switch(pix) {
+				case 0: pl && $$.$(pl).addClass( 'tp-force tostroke' ); break;
+			}
+		});
+	}
+}) ();

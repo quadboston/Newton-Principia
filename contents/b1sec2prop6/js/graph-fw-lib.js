@@ -13,8 +13,6 @@
             setsGraphContainerAttributes,
             setsGraphAxes,
             plotLabels_2_plotsPars,
-            setsGraphTpClasses,
-            setsGraphTpClasses,
         });
         return graphFW;
 
@@ -139,90 +137,30 @@
             return { yColor, xColor, axisYLegend, axisXLegend, };
         }
 
-        function plotLabels_2_plotsPars( colorThreadArray )
+        function plotLabels_2_plotsPars(colorThreadArray)
         {
             return [
                 {
+					// Actual force
                     fraqX : 0.2,
-                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    //pcaption : 'Actual force',
                     fontShiftX : 0,
                     fontShiftY : 0,
                     style : {
                         'font-size' : '40px',
                         'stroke'  : colorThreadArray[0],
                     },
-                    //overrides tp class
-                    //plotStyle : {
-                    //    'stroke-width'  : '5',   //optional
-                    //},
                 },
                 {
+					// Estimated force
                     fraqX : 0.6,
-                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    //pcaption : 'Displacement/area^2',
                     fontShiftX : 0,
                     fontShiftY : 0,
                     style : {
                         'font-size' : '40px',
                         'stroke'  : colorThreadArray[1],
-                        //'fill' : colorThreadArray[0],
-                    },
-                    //overrides tp class
-                    //plotStyle : {
-                    //    'stroke-width'  : '5',   //optional
-                    //},
-                },
-                {
-                    fraqX : 0.9,
-                    //pcaption : 'v',
-                    fontShiftX : 0,
-                    fontShiftY : 0,
-                    style : {
-                        'font-size' : '40px',
-                        'stroke'  : colorThreadArray[4],
-                    },
-                },
-                {
-                    //sagitta
-                    fraqX : 0.9,
-                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    //pcaption : 'v',
-                    fontShiftX : 0,
-                    fontShiftY : 0,
-                    style : {
-                        'font-size' : '40px',
-                        'stroke'  : colorThreadArray[4],
-                    },
-                },
-                {
-                    //sample force
-                    fraqX : 0.8,
-                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    pcaption : '-1/r²',
-                    fontShiftX : 0,
-                    fontShiftY : 0,
-                    style : {
-                        'font-size' : '40px',
-                        'stroke'  : colorThreadArray[3],
                     },
                 },
             ];
-        }
-
-        ///this thing fails if not to synch it with mask,
-        ///the unmasked indices must be the same as here:
-        function setsGraphTpClasses()
-        {
-            //let m = graphFW.graphArrayMask;
-            graphFW.fw.plotIx2plotSvg.forEach( (pl,pix) => {
-                switch(pix) {
-                    case 0: pl && $$.$(pl).addClass( 'tp-force tostroke' ); break;
-                    case 1: pl && $$.$(pl).addClass( 'tp-displacement tostroke' ); break;
-                    case 2: pl && $$.$(pl).addClass( 'tp-body tostroke' ); break;
-                    case 3: pl && $$.$(pl).addClass( 'tp-_p_-sagitta tostroke' ); break;
-                }
-            });
         }
     }
 }) ();
