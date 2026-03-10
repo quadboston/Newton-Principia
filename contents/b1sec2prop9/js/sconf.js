@@ -192,7 +192,7 @@
             },
 
             T : {
-                pcolor : proof,
+                pcolor : estimatedForce,
                 letterAngle : 180,
             },
 
