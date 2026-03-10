@@ -9,32 +9,10 @@
         stdMod.createsGraphFW_class({
             graphFW,
             digramParentDom$,
-            setsGraphContainerAttributes,
             setsGraphAxes,
         });
         return graphFW;
 
-
-        function setsGraphContainerAttributes( digramParentDom$ )
-        {
-            container$ = $$.div()
-            .addClass( 'chem-equiibr-graph-container' )
-            .to( $$.div().to( digramParentDom$ )
-                    .addClass( 'lost-diagram-parent' )
-                    //.css( 'position', 'absolute' )
-
-                    //:this data sets outer dimensions of the graph
-                    .css( 'width', '400px' )
-                    .css( 'height', '230px' )
-                    .css( 'top', '0' )
-                    .css( 'left', '0' )
-                    .css( 'z-index', '111111' )
-            );
-            //creates low tire api
-            graph_dimX = 1000;  //innerWidth
-            graph_dimY = 580;   //innerHeight
-            return {container$, graph_dimX, graph_dimY}
-        }
 
         function setsGraphAxes()
         {
