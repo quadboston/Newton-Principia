@@ -6,7 +6,7 @@
 // These creators, however dependent via createsLowTireGlobalCSS.
 
 ( function() {
-    var { $$, nsmethods, haz, globalCss, stdMod, }
+    var { $$, sDomF, nsmethods, haz, globalCss, stdMod, }
         = window.b$l.apptree({ stdModExportList : { createsGraphFW_class, }, });
     var GLOBAL_CSS_APPENDED = false;
     return;
@@ -20,12 +20,11 @@
     function createsGraphFW_class({
         graphFW,
         digramParentDom$,
-        doSetColorThreadArray,
         setsGraphContainerAttributes,
         setsGraphAxes,
     }){
         var graphFW__self = graphFW;
-        var colorThreadArray = graphFW__self.colorThreadArray = doSetColorThreadArray();
+        var colorThreadArray = graphFW__self.colorThreadArray = setColorThreadArray();
 
         //===========================================
         // //\\ fills wrap-object
@@ -212,6 +211,22 @@
             'chem-equilibr-graph-style'
         `);
     }
+
+	///this thing is not dynamic (missed in design),
+	///but, colorThreadArray is accessible for reset
+	///dynamically,
+	///
+	//this is just an example how to reset colors dynamically
+	//in model_upcreate():
+	//stdMod.graphFW_lemma.colorThreadArray[0] = sDomF.getFixedColor( 'force' );
+	function setColorThreadArray()
+	{
+		let colorThreadArray = [
+			sDomF.getFixedColor( 'force' ),
+			sDomF.getFixedColor( 'displacement' ),
+		];
+		return colorThreadArray;
+	}
 
 	/**
 	 * Makes a particular graph plot highlight along with its 

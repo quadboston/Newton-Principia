@@ -9,7 +9,6 @@
         stdMod.createsGraphFW_class({
             graphFW,
             digramParentDom$,
-            doSetColorThreadArray,
             setsGraphContainerAttributes,
             setsGraphAxes,
         });
@@ -17,18 +16,6 @@
         //but can be dynamically overridden,
         graphFW.graphArrayMask = [ 'force', 'estforce', ];
         return graphFW;
-
-        ///this thing is not dynamic (missed in design),
-        ///but, colorThreadArray is accessible for reset
-        ///dynamically,
-        function doSetColorThreadArray()
-        {
-            let colorThreadArray = [
-                sDomF.getFixedColor( 'force' ),
-                sDomF.getFixedColor( 'displacement' ),
-            ];
-            return colorThreadArray;
-        }
 
         function setsGraphContainerAttributes( digramParentDom$ )
         {

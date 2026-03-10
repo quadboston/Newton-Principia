@@ -9,29 +9,11 @@
         stdMod.createsGraphFW_class({
             graphFW,
             digramParentDom$,
-            doSetColorThreadArray,
             setsGraphContainerAttributes,
             setsGraphAxes,
         });
         return graphFW;
 
-        ///this thing is not dynamic (missed in design),
-        ///but, colorThreadArray is accessible for reset
-        ///dynamically,
-        ///
-        //this is just an example how to reset colors dynamically
-        //in model_upcreate():
-        //stdMod.graphFW_lemma.colorThreadArray[0] = sDomF.getFixedColor( 'force' );
-        function doSetColorThreadArray()
-        {
-            let colorThreadArray = [
-                sDomF.getFixedColor( 'force' ),
-                sDomF.getFixedColor( 'displacement' ),
-                sDomF.getFixedColor( 'body' ),
-                sDomF.getFixedColor( 'sagitta' ),
-            ];
-            return colorThreadArray;
-        }
 
         function setsGraphContainerAttributes( digramParentDom$ )
         {
