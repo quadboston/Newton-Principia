@@ -12,7 +12,6 @@
             doSetColorThreadArray,
             setsGraphContainerAttributes,
             setsGraphAxes,
-            plotLabels_2_plotsPars,
         });
         //first array must be enabled
         //but can be dynamically overridden,
@@ -132,50 +131,6 @@
                 },
             ];
             return { yColor, xColor, axisYLegend, axisXLegend, };
-        }
-
-        function plotLabels_2_plotsPars( colorThreadArray )
-        {
-            return [
-                {
-                    fraqX : 0.01,
-                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    //pcaption : '',
-                    fontShiftX : 0,
-                    fontShiftY : 0,
-                    style : {
-                        'font-size' : '30px',
-                        'stroke'  : colorThreadArray[0],
-                        //'fill' : colorThreadArray[0],
-                    },
-                    //overrides tp class
-                    //plotStyle : {
-                    //    'stroke-width'  : '5',   //optional
-                    //},
-                },
-                {
-                    fraqX : 0.01,
-                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    //pcaption : 'Estimated force',
-                    fontShiftX : 0,
-                    fontShiftY : 0,
-                    style : {
-                        'font-size' : '30px',
-                        'stroke'  : colorThreadArray[1],
-                    },
-                },
-                {
-                    fraqX : 0.01,
-                    //todm: make dynamic pcaption : 'f', //'P(v), ' + ig.vname2vob.P.units,
-                    //pcaption : '-r⁻²',
-                    fontShiftX : -50,
-                    fontShiftY : 0,
-                    style : {
-                        'font-size' : '30px',
-                        'stroke'  : colorThreadArray[2],
-                    },
-                },
-            ];
         }
     }
 }) ();

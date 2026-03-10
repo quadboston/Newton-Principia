@@ -12,7 +12,6 @@
             doSetColorThreadArray,
             setsGraphContainerAttributes,
             setsGraphAxes,
-            plotLabels_2_plotsPars,
         });
         return graphFW;
 
@@ -135,32 +134,6 @@
                 },
             ];
             return { yColor, xColor, axisYLegend, axisXLegend, };
-        }
-
-        function plotLabels_2_plotsPars(colorThreadArray)
-        {
-            return [
-                {
-					// Actual force
-                    fraqX : 0.2,
-                    fontShiftX : 0,
-                    fontShiftY : 0,
-                    style : {
-                        'font-size' : '40px',
-                        'stroke'  : colorThreadArray[0],
-                    },
-                },
-                {
-					// Estimated force
-                    fraqX : 0.6,
-                    fontShiftX : 0,
-                    fontShiftY : 0,
-                    style : {
-                        'font-size' : '40px',
-                        'stroke'  : colorThreadArray[1],
-                    },
-                },
-            ];
         }
     }
 }) ();

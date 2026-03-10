@@ -23,7 +23,6 @@
             doSetColorThreadArray,
             setsGraphContainerAttributes,
             setsGraphAxes,
-            plotLabels_2_plotsPars,
             doDrawToolline,
             graphAxisX,
             graphAxisY,
@@ -113,7 +112,6 @@
                 axisYLegend,
                 axisXLegend,
                 plotsCount_overrider : 1000,
-                plotsPars : stdMod.plotLabels_2_plotsPars( colorThreadArray ),
                 doPaintGridOnlyOnce : false,
                 doDrawToolline : haff( stdMod, 'doDrawToolline' ) || {
                     toollineStyle : {

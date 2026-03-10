@@ -23,7 +23,6 @@
         doSetColorThreadArray,
         setsGraphContainerAttributes,
         setsGraphAxes,
-        plotLabels_2_plotsPars,
     }){
         var graphFW__self = graphFW;
         var colorThreadArray = graphFW__self.colorThreadArray = doSetColorThreadArray();
@@ -98,7 +97,6 @@
                 axisYLegend,
                 axisXLegend,
                 plotsCount_overrider : 1000,
-                plotsPars : plotLabels_2_plotsPars( colorThreadArray ),
                 doPaintGridOnlyOnce : false,
                 doDrawToolline : doDrawToolline(),
 				brightenGrid : 0.3,
