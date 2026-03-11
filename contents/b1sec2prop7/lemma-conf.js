@@ -18,7 +18,6 @@
                 { src: sm + 'amode8captures.js' },
                 { src: sm + 'state-capturer.js' },
                 { src: sm + 'config-functions.js' },
-                { src: sm + 'graph-fw-lib.js' },
             ],
             "contents-list" :
             [
