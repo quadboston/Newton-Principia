@@ -67,10 +67,8 @@
                 axisY,      //optional, set to default if missed, API is as in default below
                 axisYLegend,
                 axisXLegend,
-                title,
                 drawAllAxes,
                 plotsCount_overrider,
-                plotsPars,
                 doTruncateOutOfRangeY,
                 doPaintGridOnlyOnce,
                 doDrawToolline,
@@ -300,10 +298,6 @@
                 if( !pl ) return;
                 var effStyle = Object.assign( {}, style );
                 effStyle.stroke = colorThreadArray[ plix ];
-                var plotStyle = haz( plotsPars && plotsPars[ plix ], 'plotStyle' );
-                if( plotStyle ) {
-                    Object.assign( effStyle, plotStyle );
-                }
                 let svg = plotIx2plotSvg[ plix ];
                 svg = plotIx2plotSvg[ plix ] = nssvg.polyline({
                     svgel : svg,
@@ -332,44 +326,6 @@
             //ccc( plotIx2plotSvg );
             //======================================================
             // \\// draws svg-plots from polylines
-            //======================================================
-
-
-            //======================================================
-            // //\\ user plotPars to legens and more
-            //======================================================
-            ///unmasked, full length array for all plots
-            if( plotsPars ) {
-                plotsPars.forEach( (pp,pix) => {
-                    var ownPolyline = polylines[ pix ];
-
-                    //occasionally and conveniently there can be more labels,
-                    //just skip them:
-                    //if( typeof ownPolyline === 'undefined' ) return;
-                    if( !ownPolyline ) return;
-
-                    var xIndex = Math.floor( ( ownPolyline.length - 0.001 ) * pp.fraqX );
-                    xIndex = Math.min( ownPolyline.length-1, xIndex );
-                    var [ mediaX, mediaY ] = ownPolyline[ xIndex ];
-                    //polylinesLablesSVGs$[ pix ] = 
-                    pp.svgTextEl = nssvg.printText({
-                        svgel   : !doPaintGridOnlyOnce ? null : haz( pp, 'svgTextEl' ),
-                        text    : pp.pcaption,
-                        x       : mediaX + pp.fontShiftX,
-                        y       : mediaY + pp.fontShiftY,
-                        parent  : graphFM_self.gmedia$(),
-                        //svgel   : polylinesLablesSVGs$[ pix ],
-                        style   : Object.assign( {
-                                        stroke : colorThreadArray[ pix ],
-                                        fill : colorThreadArray[ pix ],
-                                      },
-                                      pp.style
-                                  ),  
-                    });
-                });
-            }
-            //======================================================
-            // \\// user plotPars to legens and more
             //======================================================
 
             if( doDrawToolline ) {
