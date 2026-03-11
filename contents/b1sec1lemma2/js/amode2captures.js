@@ -1,5 +1,5 @@
 ( function() {
-    var { nspaste, capture, ssF, stdMod, amode, } = window.b$l.apptree({
+    var { nspaste, capture, ssF, } = window.b$l.apptree({
         ssFExportList : { amode2rgstate, }, });
     setCapture();
     return;
@@ -22,4 +22,3 @@
     }
 
 }) ();
-
