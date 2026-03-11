@@ -14,6 +14,8 @@
     ///*************************************************
     /// CSS decorations and opacity for mouse non-hover,
     /// creates and updates,
+	//
+	//"hover-width" decreases gigantic bold
     ///*************************************************
     function v2_topics_2_unhighCss()
     {

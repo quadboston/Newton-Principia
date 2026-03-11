@@ -71,7 +71,7 @@
 			var { legendText, legendX } = customXLegend ? 
 				customXLegend() :
 				{ legendText: 'Distance from force (SP)', legendX : -560 };
-            var { yColor, xColor, axisYLegend, axisXLegend, } = setGraphAxes(graphFW, legendText, legendX);
+            var { textColor, textColor, axisYLegend, axisXLegend, } = setGraphAxes(graphFW, legendText, legendX);
             //==================================================
             // //\\ calls api
             // //\\ calls low tier api
@@ -85,8 +85,8 @@
                 style : {
                    //'stroke-width' : 2, //destroys tp-machine
                 },
-                axisX : graphAxisX( xColor ),
-                axisY : graphAxisY( yColor ),
+                axisX : graphAxisX( textColor ),
+                axisY : graphAxisY( textColor ),
                 drawDecimalY,
                 drawDecimalX,
                 doSideAxes : true,
@@ -130,28 +130,28 @@
         }
 
         ///horizontal axis x pars, font, etc,
-        function graphAxisX( xColor )
+        function graphAxisX( textColor )
         {
             return {
                 'font-size'     : '18px',
                 fontShiftX      : -12, //in media scale
                 fontShiftY      : +14,
                 decimalDigits   : 3,
-                stroke          : xColor,
-                fill            : xColor,
+                stroke          : textColor,
+                fill            : textColor,
                 'stroke-width'  : '0.2',
             };
         }
 
-        function graphAxisY( yColor )
+        function graphAxisY( textColor )
         {
             return {
                 'font-size'     : '20px',
                 fontShiftX      : -45, //in media scale
                 fontShiftY      : +5,
                 decimalDigits   : 1,
-                stroke          : yColor,
-                fill            : yColor,
+                stroke          : textColor,
+                fill            : textColor,
                 'stroke-width'  : '1',
             };
         }
@@ -255,20 +255,12 @@
 		//==================================================
 		// //\\ calls api
 		//==================================================
-		//y-legend color; taken from first plot color:
-		var yColor      = graphFW.colorThreadArray[ 0 ]; //equilibConst;
-
-		//axis x and legend x color:
-		//manually picked color, not from plot,
-		var xColor      = 'rgba(0,0,0,1)';
+		var textColor      = 'rgba(0,0,0,1)';
 		var axisYLegend =
 		[
 			{
-				//"hover-width" decreases gigantict bold
 				//together, tobold hover-width and tostroke can be redundant
-				text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
-							//overrides tp machinery
-							' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
+				text    :   '<text><tspan class="tofill tobold hover-width"' +
 							'>Force</tspan></text>',
 				x       : 40,
 				y       : 25,
@@ -306,14 +298,13 @@
 				y       : 25,
 				style   : {
 							'font-size' : '30',
-							'stroke' : xColor,
-							'fill' : xColor,
+							'stroke' : textColor,
+							'fill' : textColor,
 				},
 			},
 		];
-		return { yColor, xColor, axisYLegend, axisXLegend, };
+		return { textColor, textColor, axisYLegend, axisXLegend, };
 	}
-
 
 	/**
 	 * Makes a particular graph plot highlight along with its 
