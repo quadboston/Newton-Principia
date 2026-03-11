@@ -1,5 +1,5 @@
 ( function() {
-    var { sn, nspaste, haff, haz, rg, stdMod, sconf, ssD, sData, }
+    var { sn, nspaste, rg, stdMod, sconf, ssD, sData, }
         = window.b$l.apptree({ stdModExportList : {
             initiates_orbit8graph,
             rebuilds_orbit,
@@ -19,8 +19,8 @@
     
     function initiates_orbit8graph() {
         initiates_kepler_config();
-        stdMod.graphFW_lemma = stdMod.createsGraph_FW_lemma({
-               digramParentDom$:stdMod.legendRoot$ });
+        stdMod.graphFW_lemma = createGraph_FW_lemma({
+               digramParentDom$:stdMod.legendRoot$ }, stdMod.customXLegend);
         stdMod.creates_createOrUpdateOrbit();
         stdMod.rebuilds_orbit(); // qIndexToOrbit populated here
         
@@ -45,6 +45,19 @@
                 stdMod.creates_A_slider();
             }
         }
+
+		function createGraph_FW_lemma({ digramParentDom$ }, customXLegend){
+			const graphFW = {};
+			stdMod.createsGraphFW_class({
+				graphFW,
+				digramParentDom$,
+				customXLegend,
+			});
+			//first array must be enabled
+			//but can be dynamically overridden,
+			graphFW.graphArrayMask = [ 'force', 'estforce', ];
+			return graphFW;
+		}
     }
     
     function rebuilds_orbit( keepThisDt ) {
