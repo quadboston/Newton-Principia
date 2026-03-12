@@ -84,6 +84,7 @@
         //------------------------------------------
         //TEMP
         console.log("resets graphArray");
+        let output = `SP, Actual Force\n`;
         var arrLen = graphArray.length;
         for( var gix = 0; gix<arrLen; gix++ ){
             const ga = graphArray[ gix ];
@@ -95,8 +96,15 @@
             // const disp = Math.abs(bP.displacement) / (IS_DEVIATION_SCALED_BY_FORCE_MAX ?
             //             instantForceMax * DEVIATION_SCALE_FACTOR : displMax);
 
-            const instf = Math.abs(bP.instantForce) / ssD.MAF;
-            const disp = Math.abs(bP.displacement) / ssD.MAF;
+            // const MAFTemp = fconf.sappId === 'b1sec3prop12' ?
+            //     10.973936187350242 : ssD.MAF;
+            const MAFTemp = sconf.MAFTemp ?? ssD.MAF;
+
+            const instf = Math.abs(bP.instantForce) / MAFTemp;
+            const disp = Math.abs(bP.displacement) / MAFTemp;
+            // const instf = Math.abs(bP.instantForce) / ssD.MAF;
+            // const disp = Math.abs(bP.displacement) / ssD.MAF;
+            output += `${bP.r}, ${instf}\n`;
 
 
             const ds_dt = bP.ds_dt / speedMax;
@@ -112,6 +120,7 @@
         console.log("**********");
         console.log("instantForceMax =", instantForceMax);
         console.log("displMax =", displMax);
+        // console.log("output =", output);
         //TEMP//
         ///this is a common graph lines, but this mask can be
         ///overriden in model_upcreate()

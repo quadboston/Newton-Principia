@@ -92,9 +92,83 @@
         //-------------------------------------------
         // //\\ calculation algo parameters
         //-------------------------------------------
+        //TEMP
+        //Options
+        // sconf.GRAPH_OPTIONS = Object.freeze({
+        //     SAME_AS_CURRENT_MASTER: 0,
+        //     Y_AXIS_FIXED_SETTINGS_ADJUSTED: 1,
+        //     Y_AXIS_FIXED: 2,
+        //     Y_AXIS_COMBINATION: 3,
+        // });
+        sconf.Y_AXIS_OPTIONS = Object.freeze({
+            VARIABLE: 0,
+            FIXED: 1,
+            COMBINATION: 2,
+        });
+
+
+        const eccentricityMin = 1.1;
+        let eccentricityMax = eccentricityMin;
+
+
+
+        //****************************************\\
+        //****************************************\\
+        //****************************************\\
+        //****************************************\\
+        //****************************************\\
+        //Adjust to change option
+        const option = 4;
+
+        //Values below can also be adjusted if needed
+        switch (option) {
+            case 2:
+                //Y_AXIS_FIXED (Option 2)
+                //Maximum distance between Q and P
+                sconf.DT_SLIDER_MAX = 0.8;
+                sconf.MAFTemp = 10.973936187350242;
+                sconf.MEFTemp = 32.24671975584604;
+                eccentricityMax = 3;
+                sconf.Y_AXIS_OPTION_SELECTED = sconf.Y_AXIS_OPTIONS.FIXED;
+                break;
+
+            case 3:
+                //Y_AXIS_FIXED_SETTINGS_ADJUSTED (Option 3)
+                //Maximum distance between Q and P
+                sconf.DT_SLIDER_MAX = 0.6;
+                sconf.MAFTemp = 6.172839303261136;
+                sconf.MEFTemp = 12.383534283579309;
+                eccentricityMax = 2;
+                sconf.Y_AXIS_OPTION_SELECTED = sconf.Y_AXIS_OPTIONS.FIXED;
+                break;
+
+            case 4:
+                //Y_AXIS_COMBINATION (Option 4)
+                //Maximum distance between Q and P
+                sconf.DT_SLIDER_MAX = 0.8;
+                sconf.MAFTemp = 10.973936187350242;
+                sconf.MEFTemp = 32.24671975584604;
+                //Determines what value the y axis starts growing at
+                sconf.FORCE_Y_AXIS_FIXED_TO_VARIABLE = 15.012344704295131056;
+                eccentricityMax = 3;
+                sconf.Y_AXIS_OPTION_SELECTED = sconf.Y_AXIS_OPTIONS.COMBINATION;
+                break;
+        }
+        console.log(`Option ${option} selected`);
+        //****************************************//
+        //****************************************//
+        //****************************************//
+        //****************************************//
+        //****************************************//
+
+
+        //TEMP//
         sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
         sconf.CURVE_REVOLVES = false; //true for cyclic orbit
-        sconf.DT_SLIDER_MAX = 0.8;
+        //TEMP
+        // sconf.DT_SLIDER_MAX = 0.6;//0.5;//0.8;//0.6;//0.8;//0.5;
+        //TEMP Original value
+        // sconf.DT_SLIDER_MAX = 0.8;
         var Q_STEPS = 500;
         var DATA_GRAPH_STEPS = 500;
         //Scale estimated force curve by actual force max
@@ -108,6 +182,21 @@
         //equation was used, the start and end angle for the left side would
         //need to be computed, so that it matches the right side.
         sconf.MIRROR_ORBIT = true;
+
+        //TEMP When eccentricityMax = 2.1   DT_SLIDER_MAX - 0.5
+        // sconf.MAFTemp = 6.591220604568374;
+        // sconf.MEFTemp = 10.865350869852698;
+
+        //TEMP When eccentricityMax = 2.1   DT_SLIDER_MAX - 0.8
+        // sconf.MAFTemp = 6.591220604568374;
+        // sconf.MEFTemp = 21.61593180098621;
+        // TEMP When eccentricityMax = 3.0   DT_SLIDER_MAX - 0.8
+        // sconf.MAFTemp = 10.973936187350242;
+        // sconf.MEFTemp = 32.24671975584604;
+
+        
+        // sconf.MAFTemp = 6.591220604568374;//6.591220604568374;//10.973936187350242;
+        // sconf.MEFTemp = 13.075853263516436;//10.651090344932046;//31.908817798698923;//20.82750549086855;
         //-------------------------------------------
         // \\// calculation algo parameters
         //-------------------------------------------
@@ -121,8 +210,11 @@
         sconf.orbit_q_end = null;
 
         //Min and max eccentricity values for Zeta slider
-        const eccentricityMin = 1.1;
-        const eccentricityMax = 3.0;
+        // const eccentricityMin = 1.1;
+        //TEMP
+        // const eccentricityMax = 2.1;//1.75;//2.1;
+        //TEMP Original value
+        // const eccentricityMax = 3.0;
         op.ZETA_MIN = Math.atan(eccentricityMin);
         op.ZETA_MAX = Math.atan(eccentricityMax);
 

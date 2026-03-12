@@ -73,7 +73,66 @@
 
 
             //TEMP
-            if (fconf.sappId === 'b1sec3prop13') {
+            if (fconf.sappId === 'b1sec3prop12') {
+                console.log("ssD.Dt =", ssD.Dt);
+                //TEMP x
+                graphArg.xMin = 0;
+                //TEMP May be best to keep this here to ensure the x max is
+                //always correct.
+                graphArg.xMax = sconf.DISTANCE_ORBIT_ENDS_TO_S;
+
+
+                switch (sconf.Y_AXIS_OPTION_SELECTED) {
+                    case sconf.Y_AXIS_OPTIONS.VARIABLE:
+                        break;
+
+                    case sconf.Y_AXIS_OPTIONS.FIXED:
+                        graphArg.yMax = sconf.MEFTemp / sconf.MAFTemp;
+                        break;
+
+                    case sconf.Y_AXIS_OPTIONS.COMBINATION:
+                        const yMaxH = sconf.MEFTemp / sconf.MAFTemp;
+                        const yMaxL = sconf.FORCE_Y_AXIS_FIXED_TO_VARIABLE / sconf.MAFTemp;//1.368;
+                        
+                        const MEF2CurrentTemp = stdMod.calculateMaxDisplacementTemp();
+                        const estimatedForceMaxCurrent = MEF2CurrentTemp / sconf.MAFTemp;
+                        graphArg.yMax = Math.max(Math.min(estimatedForceMaxCurrent, yMaxH), yMaxL);
+                        break;
+                }
+                //TEMP y
+                // graphArg.yMax = sconf.MEFTemp / sconf.MAFTemp;
+
+
+
+                // graphArg.yMax = sconf.MEFTemp / sconf.MAFTemp / 2;
+
+                
+                // graphArg.yMax = sconf.MEFTemp / sconf.MAFTemp;
+
+
+
+                //TEMP Should be for combination of fixed and variable
+                // const yMaxH = sconf.MEFTemp / sconf.MAFTemp;
+                // const yMaxL = 1.368;//1.65;//1.4;//1.0;//1.6485;//1.4;//1.0;
+                
+                // const MEF2CurrentTemp = stdMod.calculateMaxDisplacementTemp();
+                // const estimatedForceMaxCurrent = MEF2CurrentTemp / sconf.MAFTemp;
+                // // const estimatedForceMaxCurrent = MEF2CurrentTemp / ssD.MAF;
+                // // graphArg.yMax = Math.min(estimatedForceMaxCurrent, yMaxH);
+                // graphArg.yMax = Math.max(Math.min(estimatedForceMaxCurrent, yMaxH), yMaxL);
+
+
+
+
+                // // const MAFManualTemp = 10.973936187350242;
+                // // const MEFManualTemp = 32.24671975584604;
+                // // graphArg.yMax = MEFManualTemp / MAFManualTemp;
+
+                // // graphArg.yMax = MEFManualTemp / ssD.MAF;
+                // // // graphArg.yMax = ssD.MEF / ssD.MAF;
+
+
+            } else if (fconf.sappId === 'b1sec3prop13') {
                 //Options...
                 console.log(`ssD.MAF = ${ssD.MAF}  ssD.MEF = ${ssD.MEF}  ` +
                             `ssD.MEF / ssD.MAF = ${ssD.MEF / ssD.MAF}`);
