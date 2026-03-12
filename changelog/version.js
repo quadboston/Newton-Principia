@@ -3,8 +3,8 @@
     var fapp        = ns.fapp           = ns.fapp           || {};
 
     // //\\ updated automatically. Don't edit these strings.
-    fapp.version = 6; //application version
-    fapp.buildDateString = "2026-02-26"; //build date
+    fapp.version = 7; //application version
+    fapp.buildDateString = "2026-03-12"; //build date
     // \\// updated automatically. Don't edit these strings.
 
     fapp.versionColor = 'Indigo'; //color for version display
