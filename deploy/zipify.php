@@ -150,7 +150,7 @@
                         '\s*' .
                     '=' .
                         '\s*' .
-                    '(\d*)' .
+                    '(\d+(?:\.\d+)?)' . // Matches integers or decimals
                         '\s*' .
                     ';' .
                         '\s*' .
@@ -167,7 +167,7 @@
     );
     if( !$matches ) exit( 'invalid version string in file ' .
                           $list[0] . '.' );
-    $version = (int)$matches[1];
+    $version = (float)$matches[1];
     if( (!$version && $version !== 0) || $version . '' !== $matches[1] )
     {
         exit( 'invalid version "' . $matches[1] . "\"\n" );
