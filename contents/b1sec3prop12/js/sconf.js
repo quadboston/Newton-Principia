@@ -184,7 +184,7 @@
         Object.assign( originalPoints, {
             // hyperbola
             S : {
-                pcolor : result,
+                pcolor : given,
                 letterAngle : -90,
 				letterRotRadius : 26,
             },
