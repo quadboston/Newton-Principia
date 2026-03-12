@@ -145,6 +145,7 @@
             hidden,
             curvature,
             context,
+			sunColor,
         } = topicColors_repo;
 
         var topicColors_elected =
@@ -222,7 +223,7 @@
 				cssClass: 'subessay--solution',
             },
             S : {
-                pcolor : result,
+                pcolor : sunColor,
                 letterAngle : -90,
                 letterRotRadius : 25,
             },
