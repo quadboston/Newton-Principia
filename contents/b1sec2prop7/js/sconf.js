@@ -200,10 +200,7 @@
         Object.assign( originalPoints, {
             A : {
                 pos: A,
-                pcolor : orbit,
-                //letterAngle : -90,
-                //undisplayAlways : true,
-                //doPaintPname : false,
+                pcolor : proof,
             },
 
             S : {
@@ -255,7 +252,7 @@
             },
 
             Z : {
-                pcolor : body,
+                pcolor : proof,
                 letterAngle : 45,
             },
 
@@ -348,10 +345,10 @@
 
             { 'PY' : { pcolor : body }, },
             { 'P,Zminus' : { pcolor : body }, },
-            { 'PZ' : { pcolor : body }, },
-            { 'ZR' : { pcolor : body }, },
+            { 'PZ' : { pcolor : proof }, },
+            { 'ZR' : { pcolor : proof }, },
 
-            { 'PR' : { pcolor : body }, },
+            { 'PR' : { pcolor : proof }, },
             { 'ZQ' : { pcolor : body }, },
 
 
