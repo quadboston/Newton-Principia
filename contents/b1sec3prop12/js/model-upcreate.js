@@ -106,6 +106,7 @@
             nspaste( rg.N.pos, mat.dropPerpendicular( rg.O.pos, rg.M.pos, rg.P.pos ) );
         } else {
             nspaste( rg.G.pos, mat.dropLine( -1, rg.C.pos, rg.P.pos, ) );
+        	nspaste( rg.F.pos, mat.dropPerpendicular( rg.P.pos, rg.D.pos, rg.K.pos ) );
         }
 
         ////hyperbola or ellipse
@@ -126,9 +127,6 @@
                 PG, rg.P.pos, //direction, start
             )
         );
-
-        //point F
-        nspaste( rg.F.pos, mat.dropPerpendicular( rg.P.pos, rg.D.pos, rg.K.pos ) );
 
         nspaste( rg.A.pos, q2xy( Math.PI ) );
         nspaste( rg.AA.pos, q2xy( 0 ) );
