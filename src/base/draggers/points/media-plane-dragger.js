@@ -4,13 +4,13 @@
         ns, $$, sn, ssF, sconf, nspaste,
         stdMod, sDomF, sDomN, rg
     } = window.b$l.apptree({
-        setModule,
         resetModelPos
     });
+    initModule();
     return;
 
 
-    function setModule()
+    function initModule()
     {
         sDomF.creates_mediaMover_in_rgX8dragWrapGenList =
             creates_mediaMover_in_rgX8dragWrapGenList;

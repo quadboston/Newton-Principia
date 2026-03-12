@@ -3,14 +3,13 @@
         sn, $$, paste, haz, bezier, nssvg,
         sconf, ssD, ssF,
         stdMod, rg, toreg,
-    } = window.b$l.apptree({
-        setModule,
-    });
+    } = window.b$l.apptree({});
     var pivots_2_svgLineInRg;
+    initModule();
     return;
 
 
-    function setModule()
+    function initModule()
     {
         stdMod.media_upcreate___part_of_medupcr_basic =media_upcreate___part_of_medupcr_basic;
         pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;

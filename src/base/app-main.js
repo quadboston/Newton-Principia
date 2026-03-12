@@ -4,7 +4,7 @@
 const {
         ns, sn, $$, cssp, eachprop, nspaste, haff, has, haz, nsmethods, html,
         userOptions, fapp, sapp, fconf, sconf, engCssMs, fmethods, sDomF, sDomN,
-    topicColors_repo_camel2col, srg_modules, amode,
+        topicColors_repo_camel2col, amode,
         //:nearly a patch
         stdMod, ssD, ssF, wrkwin, lowtpid_2_glocss8anchorRack,
 } = window.b$l.apptree({});
@@ -185,19 +185,21 @@ const {
 
                 function loadsJSScripts_atLastLoadedScript()
                 {
-                    //----------------------------------------------------------
-                    ///module can be executed right after load if it is safe or
-                    ///module can register subs. in setModule and execute them
-                    ///here right below after all lemma-modules are loaded,
-                    ///
-                    ///executes loaded modules from modules registry
-                    ///this is a second and a last round of executing setModule for
-                    ///lemma modules
-                    eachprop( srg_modules, function( setModule, wwProp ) {
-                        setModule();
-                    });
-                    //----------------------------------------------------------
-
+                    ///if "model_upcreate" does exist in the list, but
+                    ///"model8media_upcreate" does not, then latter is created
+                    ///and added possible "media_upcreate".
+                    if(
+                        ns.h( stdMod, 'model_upcreate' ) &&
+                        !ns.h( stdMod, 'model8media_upcreate' )
+                    ) {
+                        stdMod.model8media_upcreate = () => {
+                            //called once on page load and again any
+                            //time the model/data changes
+                            //console.log('model and media upcreate');
+                            stdMod.model_upcreate();
+                            ns.haff( stdMod, 'media_upcreate' );
+                        }
+                    }
                     //==========================================================
                     // //\\ init_conf for models
                     //==========================================================

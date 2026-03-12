@@ -8,15 +8,15 @@
         {
             SAvV_model__2__svg,
         },
-        setModule,
     });
     var pivots_2_svgLineInRg;
     var rgPos2rgMedia;
     var handleR = 5;
+    initModule();
     return;
 
 
-    function setModule()
+    function initModule()
     {
         pivots_2_svgLineInRg = ssF.pivots_2_svgLineInRg;
         rgPos2rgMedia = ssF.rgPos2rgMedia;

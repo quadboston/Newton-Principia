@@ -1,11 +1,11 @@
 ( function () {
-    var { sn, $$, svgNS, fapp, stdMod, } = window.b$l.apptree({
-        setModule, });
+    var { sn, $$, svgNS, fapp, stdMod, } = window.b$l.apptree({});
     var stdL2 = sn('stdL2', fapp );
+    initModule();
     return;
 
 
-    function setModule()
+    function initModule()
     {
         var gui         = sn('gui', stdL2 );
         var guicon      = sn('guiConstruct', gui );

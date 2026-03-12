@@ -3,13 +3,12 @@
         nspaste, eachprop, haff, haz,
         sconf, sapp, ssF, rg,
         stdMod, amode,
-    } = window.b$l.apptree({
-        setModule,
-    });
+    } = window.b$l.apptree({});
+    initModule()
     return;
 
 
-    function setModule()
+    function initModule()
     {
         sapp.init_astate2sapp = init_astate2sapp;
     }

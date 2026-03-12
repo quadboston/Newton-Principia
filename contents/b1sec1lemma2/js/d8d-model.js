@@ -1,13 +1,14 @@
 // //\\// application-level d8d module
 ( function () {
     var { sn, mat, dpdec, d8dp, fmethods, globalCss, fapp, sconf, sDomN, sDomF,
-        ssF, fconf, amode, stdMod, } = window.b$l.apptree({ setModule, });
+        ssF, fconf, amode, stdMod, } = window.b$l.apptree({});
     var stdL2       = sn('stdL2', fapp );
     var dataregs    = sn('dataregs', stdL2 );
+    initModule();
     return;
 
 
-    function setModule()
+    function initModule()
     {
         var gui         = sn('gui', stdL2 );
         var guiup       = sn('guiUpdate',gui);

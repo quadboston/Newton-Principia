@@ -2,22 +2,21 @@
 
 (function() {
     var { sn, haff, fapp, sapp, ssF, sDomF, sData, stdMod, }
-        = window.b$l.apptree({ setModule,
-        stdModExportList : { init_model_parameters, }, });
+        = window.b$l.apptree({ stdModExportList : { init_model_parameters, }, });
     var stdL2       = sn('stdL2', fapp );
     var study       = sn('study', stdL2 );
     var gui         = sn('gui', stdL2 );
     var dataregs    = sn('dataregs', stdL2 );
     var numModel    = sn('numModel', stdL2 );
     var guicon      = sn('guiConstruct', gui );
+    initModule();
     return;
 
 
-    function setModule()
+    function initModule()
     {
         ///this thing works in context of
         ///LANDING_IV___loadLemmaJSCodes() after
-        ///and overrided setModule of Landing II
         sapp.finish_sapp_UI = finish_sapp_UI;
     }
 

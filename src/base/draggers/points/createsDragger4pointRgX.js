@@ -2,22 +2,12 @@
     var {
         ns, $$, sn, haz, sconf, fconf,
         sDomF,
-    } = window.b$l.apptree({
-        setModule,
-    });
+    } = window.b$l.apptree({});
+    initModule();
     return;
 
 
-
-
-
-
-
-
-
-
-
-    function setModule()
+    function initModule()
     {
         //todm: must be loop via stMods
         sDomF.rgX_2_dragWrap   = rgX_2_dragWrap;

@@ -4,26 +4,17 @@
         sconf, ssF, rg, toreg,
         stdMod, amode,
     } = window.b$l.apptree({
-        setModule,
         ssFExportList : {
             scaleValue2app,
             createSliderPlaceholder_media_scale,
         },
     });
     var pivots_2_svgLineInRg;
+    initModule();
     return;
 
 
-
-
-
-
-
-
-
-
-
-    function setModule()
+    function initModule()
     {
         pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
     }

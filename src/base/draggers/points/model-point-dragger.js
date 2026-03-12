@@ -5,13 +5,12 @@
         ns, $$, haz, haff,
         ssF, sconf,
         stdMod, sDomF,
-    } = window.b$l.apptree({
-        setModule,
-    });
+    } = window.b$l.apptree({});
+    initModule()
     return;
 
 
-    function setModule()
+    function initModule()
     {
         sDomF.move_2_updates        = move_2_updates;
         sDomF.processDownEvent      = processDownEvent;

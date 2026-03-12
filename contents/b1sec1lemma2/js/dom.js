@@ -1,13 +1,14 @@
 ( function() {
     var { sn, $$, fapp, fconf, sDomF, sDomN, ssF, stdMod, amode, }
-        = window.b$l.apptree({ setModule, });
+        = window.b$l.apptree({});
     var stdL2   = sn('stdL2', fapp );
     var gui     = sn('gui', stdL2 );
     var guicon  = sn('guiConstruct', gui );
+    initModule();
     return;
 
 
-    function setModule()
+    function initModule()
     {
         Object.assign( ssF,
         {

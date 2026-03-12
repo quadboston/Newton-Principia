@@ -10,15 +10,15 @@
             media_upcreate___part_of_medupcr_basic,
             media_upcreate___before_basic,
         },
-        setModule,
     });
     var pivots_2_svgLineInRg;
     var pos2pointy;
     var paintTriangle;
+    initModule();
     return;
 
 
-    function setModule()
+    function initModule()
     {
         pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
         pos2pointy      = ssF.pos2pointy;

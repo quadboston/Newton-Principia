@@ -1,6 +1,6 @@
 ( function () {
     var { sn, haz, fapp, ssD, sapp, sconf, rg, amode, stdMod, }
-        = window.b$l.apptree({ setModule, stdModExportList : {
+        = window.b$l.apptree({ stdModExportList : {
              media_upcreate___before_basic_L2,
         },
     });
@@ -11,10 +11,11 @@
     var sdata   = sn('sdata', study );
     var dataregs= sn('dataregs', stdL2 );
     var guiup   = sn('guiUpdate', gui);
+    initModule();
     return;
 
 
-    function setModule()
+    function initModule()
     {
         ///same in meaning to legacy !view.isNewton property
         sapp.isLite = function()

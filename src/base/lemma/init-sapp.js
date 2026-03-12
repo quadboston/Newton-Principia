@@ -3,9 +3,8 @@
         ns, sn, nspaste, has, haz, haff, eachprop,
         sapp, fapp, sconf, fconf, arios, ssF, sDomF, sDomN, ssD, exegs,
         stdMod, amode, rg,
-    } = window.b$l.apptree({
-        setModule
-    });
+    } = window.b$l.apptree({});
+    initModule();
     return;
 
 
@@ -17,7 +16,7 @@
     /// lemma-specific modules
     /// which override common subroutines
     ///************************************************
-    function setModule()
+    function initModule()
     {
         sapp.init_sapp = init_sapp;
         sapp.finish_sapp_UI = finish_sapp_UI;

@@ -2,18 +2,9 @@
     var {
         mat,
         ssD,
-    } = window.b$l.apptree({
-        setModule,
-    });
+    } = window.b$l.apptree({});
+    createsModelFunctions();
     return;
-
-
-
-
-    function setModule()
-    {
-        createsModelFunctions();
-    }
 
 
     //=================================================

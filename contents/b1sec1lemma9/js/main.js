@@ -3,16 +3,12 @@
         eachprop,
         sconf, sapp, ssF,
         stdMod,
-    } = window.b$l.apptree({
-        setModule,
-    });
+    } = window.b$l.apptree({});
+    initModule();
     return;
 
 
-
-
-
-    function setModule()
+    function initModule()
     {
         sapp.finish_sapp_UI = finish_sapp_UI;
     }

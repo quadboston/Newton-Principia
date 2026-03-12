@@ -2,7 +2,7 @@
     var {
         ///standard levels of application
         sn, $$, svgNS, fapp, fconf, sconf, sDomF, stdMod, }
-        = window.b$l.apptree({ setModule, });
+        = window.b$l.apptree({ });
     var stdL2               = sn('stdL2', fapp );
     var gui                 = sn('gui', stdL2 );
     var guicon              = sn('guiConstruct', gui );
@@ -11,10 +11,11 @@
 
     var study               = sn('study', stdL2 );
     var sdata               = sn('sdata', study );
+    initModule();
     return;
 
 
-    function setModule()
+    function initModule()
     {
         Object.assign( guicon,
         {

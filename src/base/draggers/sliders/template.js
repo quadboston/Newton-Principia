@@ -5,21 +5,15 @@
         stdMod, rg,
     } = window.b$l.apptree({
         modName : 'mediaModel_create',
-        setModule,
     });
 
     var pos2pointy;
     var pivots_2_svgLineInRg;
+    initModule();
     return;
 
 
-
-
-
-
-
-
-    function setModule()
+    function initModule()
     {
         ssF.modPos_2_GUI = modPos_2_GUI;
         ssF.toogle_detectablilitySliderPoints4Tools =

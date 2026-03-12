@@ -4,7 +4,7 @@
     var nsvars = window.b$l.nstree();
     var { ns, sn, haz, } = nsvars;
     ns.apptree      = apptree;
-    var engCssMs    = sn('engCssMs');
+    var engCssMs    = sn('engCssMs'); // sn returns property if it exists
     var fapp        = sn('fapp' );
     var fmethods    = sn('methods',fapp);
     var fconf       = sn('fconf',fapp);
@@ -47,7 +47,6 @@
 
     //non-consistent: srg should be under fapp or sapp, not both:
     var srg         = sn('sapprg', fapp );
-    var srg_modules = sn('srg_modules', sapp);
 
     //site-wide user options
     var userOptions = sn('userOptions',fapp);
@@ -65,19 +64,17 @@
         //todm: poor? name: to be "amode.stdmod" //study model
     }
 
-    ///be aware, this function executes multiple times, so any
-    ///"global external" calculations will be done multiple times,
+    ///this function is called at the top of each module 
+    ///to retrieve 'global' objects and register functions
     function apptree({
         //optional variables
         modName,   //default: ''+mCount.count
-        setModule,
         stdModExportList,
         ssFExportList,   //removes need to import var ssF into calling module
         sDomFExportList,
         sDomNExportList,
         expoFun,
     }) {
-        //todo: why does it execute so many times??
         //console.log('apptree');
 
         ssFExportList && Object.assign( ssF, ssFExportList );
@@ -87,56 +84,22 @@
         //-------------------------------------------------------------
         // //\\ module and s ubmodel sugar
         //-------------------------------------------------------------
-        //:advances modules registry
+        //todo: are these really used?
         var mCount      = sn('modulesCount', sapp);
         mCount.count    = mCount.count ? mCount.count + 1 : 1;
         modName         = ( modName && modName + '-' ) || '';
 
-        srg_modules[ modName + mCount.count ] = () => {
-            if( setModule ) {
-                //c cc( '... running setModule() for ' + mCount.count );
-                setModule();
-            }
-            //todm: why this code is delayes to srg_modules?
-            if( stdModExportList ) {
-                ///replaces media_upcreate if createMedia0updateMediaAUX is in the list,
-                ///removes createMedia0updateMediaAUX then,
-                var mediaUpcreate = haz( stdModExportList,
-                                         'createMedia0updateMediaAUX' );
-                if( mediaUpcreate ) {
-                    stdMod.media_upcreate = create_media_upcreate(
-                        ssF, stdMod, stdModExportList.createMedia0updateMediaAUX );
-                    delete stdModExportList.createMedia0updateMediaAUX;
-                }
+        if( stdModExportList ) {
+            Object.assign( stdMod, stdModExportList );
+        }
+        
+        //==========================================================
+        //the minor advantage of these is that client-modules do not
+        //have to import an extra vars sDomN, sDomF,
+        sDomNExportList && Object.assign( sDomN, sDomNExportList );
+        sDomFExportList && Object.assign( sDomF, sDomFExportList );
+        //==========================================================
 
-                Object.assign( stdMod, stdModExportList );
-
-                ///if "model_upcreate" does exist in the list, but
-                ///"model8media_upcreate" does not, then latter is created
-                ///and added possible "media_upcreate".
-                if(
-                    //todm patch
-                    //this condition indicates we are in module "study-model.js" now,
-                    //assuming this is a most indicative property,
-                    ns.h( stdModExportList, 'model_upcreate' ) &&
-                    !ns.h( stdModExportList, 'model8media_upcreate' )
-                ) {
-                    stdMod.model8media_upcreate = () => {
-                        //called once on page load and again any
-                        //time the model/data changes
-                        //console.log('model and media upcreate');
-                        stdMod.model_upcreate();
-                        ns.haff( stdMod, 'media_upcreate' );
-                    }
-                }
-            }
-            //==========================================================
-            //the minor advantage of these is that client-modules do not
-            //have to import an extra vars sDomN, sDomF,
-            sDomNExportList && Object.assign( sDomN, sDomNExportList );
-            sDomFExportList && Object.assign( sDomF, sDomFExportList );
-            //==========================================================
-        };
         sn( 'customDraggers_list', stdMod, [] ); //todm: fake
         //-------------------------------------------------------------
         // \\// module and s ubmodel sugar
@@ -178,7 +141,6 @@
             dividorFractions,
 
             srg,
-            srg_modules,
 
             userOptions,
 
@@ -193,26 +155,4 @@
         //-------------------------------------------------------------
         return ret;
     }
-
-    //=========================================================
-    // //\\ updates and creates media
-    //      stdMod.createMedia0updateMediaAUX must exist
-    //      at time of inner function call
-    //=========================================================
-    function create_media_upcreate( ssF, createMedia0updateMediaAUX )
-    {
-        return ( function media_upcreate()
-        {
-            //refreshes detectability
-            ssF.toogle_detectablilitySliderPoints4Tools();
-            createMedia0updateMediaAUX();
-            if( ssF.mediaModelInitialized ) {
-                stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
-            }
-            ssF.mediaModelInitialized = true;
-        });
-    }
-    //=========================================================
-    // \\// updates and creates media
-    //=========================================================
 })();
