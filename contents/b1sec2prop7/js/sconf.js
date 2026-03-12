@@ -155,6 +155,8 @@
             curvature,
             context,
             chord,
+			sunColor,
+			corollaryColor,
         } = topicColors_repo;
 
 
@@ -199,7 +201,7 @@
         Object.assign( originalPoints, {
             A : {
                 pos: A,
-                pcolor : orbit,
+                pcolor : proof,
                 //letterAngle : -90,
                 //undisplayAlways : true,
                 //doPaintPname : false,
@@ -207,7 +209,7 @@
 
             S : {
                 pos: S,
-                pcolor : force,
+                pcolor : sunColor,
                 letterAngle : -90,
                 draggableX  : true,
                 draggableY  : true,
@@ -254,7 +256,7 @@
             },
 
             Z : {
-                pcolor : body,
+                pcolor : proof,
                 letterAngle : 45,
             },
 
@@ -283,12 +285,12 @@
 
             V : {
                 pos: V,
-                pcolor : curvature,
+                pcolor : proof,
                 letterAngle : -45,
             },
 
             L : {
-                pcolor : curvature,
+                pcolor : proof,
                 letterAngle : -45,
             },
 
@@ -311,7 +313,6 @@
             },
             errorMessage : { // nonSolvablePoint message shown at to of canvas
                 pos : [20, 20],
-                caption: "error state", // value get overwritten in model-upcreate by const set in builds-orbit.js
                 fontSize : '25',
                 pcolor : invalid,
                 letterAngle : 0,
@@ -321,19 +322,19 @@
             //corollary 2
             Tcol2 : {
                 caption : 'T',
-                pcolor : curvature,
+                pcolor : corollaryColor,
                 letterAngle : -45,
             },
             Rcol2 : {
                 caption : 'R',
-                pcolor : curvature,
+                pcolor : sunColor,
                 letterAngle : -45,
                 draggableX  : true,
                 draggableY  : true,
             },
             Gcol2 : {
                 caption : 'G',
-                pcolor : curvature,
+                pcolor : corollaryColor,
                 letterAngle : -45,
             },
         });
@@ -343,17 +344,16 @@
         [
             { 'PV' : { pcolor : proof }, },
             { 'AV' : { pcolor : proof }, },
-            { 'SP' : { pcolor : orbit }, },
+            { 'SP' : { pcolor : proof }, },
             { 'AP' : { pcolor : proof }, },
 
             { 'PY' : { pcolor : body }, },
             { 'P,Zminus' : { pcolor : body }, },
-            { 'PZ' : { pcolor : body }, },
-            { 'ZR' : { pcolor : body }, },
+            { 'PZ' : { pcolor : proof }, },
+            { 'ZR' : { pcolor : proof }, },
 
-            { 'PR' : { pcolor : body }, },
+            { 'PR' : { pcolor : proof }, },
             { 'ZQ' : { pcolor : body }, },
-
 
             { 'RL' : { pcolor : proof }, },
 
