@@ -1,6 +1,6 @@
 # Change Log
 
-## 2026-3-?? (Indigo Version, 0.7)
+## 2026-3-12 (Indigo Version, 0.7)
 ### Added
 * Lemma 6 and beyond
 	* added pinch-to-zoom support
