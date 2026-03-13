@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, sn, mat, fconf, sconf, stdMod, topicColors_repo, } = 
+    var { ns, sn, fconf, sconf, stdMod, topicColors_repo, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     var op = sn( 'orbitParameters', sconf );
     return;
@@ -145,6 +145,7 @@
             hidden,
             curvature,
             context,
+			sunColor,
         } = topicColors_repo;
 
         var topicColors_elected =
@@ -222,7 +223,7 @@
 				cssClass: 'subessay--solution',
             },
             S : {
-                pcolor : result,
+                pcolor : sunColor,
                 letterAngle : -90,
                 letterRotRadius : 25,
             },
@@ -415,4 +416,3 @@
         });
     }
 }) ();
-

@@ -1,5 +1,13 @@
 # Change Log
 
+## 2026-3-12 (Indigo Version, 0.7.1)
+### Improved
+* Proposition 13:
+	* fixed bug preventing proposition 13 from loading
+
+* Propositions 7, 12, 13:
+	* more consistent color coding
+
 ## 2026-3-12 (Indigo Version, 0.7)
 ### Added
 * Lemma 6 and beyond

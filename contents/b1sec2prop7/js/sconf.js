@@ -155,7 +155,8 @@
             curvature,
             context,
             chord,
-            sunColor
+			sunColor,
+			corollaryColor,
         } = topicColors_repo;
 
 
@@ -309,7 +310,6 @@
             },
             errorMessage : { // nonSolvablePoint message shown at to of canvas
                 pos : [20, 20],
-                caption: "error state", // value get overwritten in model-upcreate by const set in builds-orbit.js
                 fontSize : '25',
                 pcolor : invalid,
                 letterAngle : 0,
@@ -319,7 +319,7 @@
             //corollary 2
             Tcol2 : {
                 caption : 'T',
-                pcolor : proof,
+                pcolor : corollaryColor,
                 letterAngle : -45,
             },
             Rcol2 : {
@@ -331,7 +331,7 @@
             },
             Gcol2 : {
                 caption : 'G',
-                pcolor : proof,
+                pcolor : corollaryColor,
                 letterAngle : -45,
             },
         });
@@ -350,7 +350,6 @@
 
             { 'PR' : { pcolor : proof }, },
             { 'ZQ' : { pcolor : body }, },
-
 
             { 'RL' : { pcolor : proof }, },
 
