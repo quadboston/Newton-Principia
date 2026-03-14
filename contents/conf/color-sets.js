@@ -78,10 +78,12 @@
 		const DYNAMIC       = rgbToArray("rgb(153, 0, 255)");
 		const MAGENTA    = rgbToArray("rgb(211, 87, 254)");
 		const RED           = rgbToArray("rgb(255, 0, 0)");
+		const GIVEN_BROWN = rgbToArray("rgb(139, 105, 20)");
+		const PROOF_GREEN = rgbToArray("rgb(0, 133, 0)");
 
 		tr.sunColor    = ORANGE; // center of force (S or C in propositions)
-		tr.given       = rgbToArray("rgb(0, 133, 0)");//DARK_BLUE;DARK_GREEN
-		tr.proof       = rgbToArray("rgb(139, 105, 20)");
+		tr.given       = GIVEN_BROWN;//DARK_BLUE;DARK_GREEN
+		tr.proof       = PROOF_GREEN;
 		tr.force       = PURPLE;
         tr.estimatedForce  = MAGENTA;
 		tr.orbit       = LIGHT_BLUE;
