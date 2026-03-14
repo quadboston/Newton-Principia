@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, sn, mat, fconf, sconf, stdMod, topicColors_repo, } = 
+    var { ns, sn, fconf, sconf, stdMod, topicColors_repo, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     var op = sn( 'orbitParameters', sconf );
     return;
@@ -223,16 +223,14 @@
                 letterAngle : -45,
 				cssClass: 'logic_phase--proof',
             },
-            Zminus : {
-                caption : 'Z',
-                pcolor : body,
+            Z : {
+                pcolor : orbit,
                 letterAngle : 90,
 				cssClass: 'subessay--solution',
             },
-            Z : {
+            Zminus : {
                 undisplayAlways : true,
                 doPaintPname : false,
-				cssClass: 'subessay--solution',
             },
             Q : {
                 pcolor : proof,
@@ -413,4 +411,3 @@
         });
     }
 }) ();
-
