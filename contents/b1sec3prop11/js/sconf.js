@@ -384,17 +384,17 @@
                 captionShiftNorm : 22, lposYSugar : 3
 			}, },
 
-            { 'P,Zminus' : { pcolor : body,
+            { 'P,Zminus' : { pcolor : proof,
 				cssClass: 'logic_phase--proof',
 			 }, },
-            { 'PZ' : { pcolor : body,
+            { 'PZ' : { pcolor : proof,
 				cssClass: 'logic_phase--proof',
 			 }, },
-            { 'ZR' : { pcolor : body,
+            { 'ZR' : { pcolor : proof,
 				cssClass: 'logic_phase--proof',
 			 }, },
 
-            { 'PR' : { pcolor : body,
+            { 'PR' : { pcolor : proof,
 				cssClass: 'logic_phase--proof',
 			 }, },
             { 'QR' : { pcolor : estimatedForce,
