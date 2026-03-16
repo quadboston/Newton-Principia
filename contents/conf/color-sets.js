@@ -232,6 +232,7 @@
 			},
 			{
 				body : rgbToArray("rgb(12, 67, 168)"),
+				proofOnlyVisibleWhenHighlighted : [...PROOF_GREEN, 0, 1],
 			},
             {
                 given : rgbToArray("rgb(124, 57, 201)"),
@@ -239,7 +240,7 @@
 
                 proof : rgbToArray("rgb(29, 111, 182)"),
                 proofArea : [39, 182, 39, 1],
-				proofOnlyVisibleWhenHighlighted : [...rgbToArray("rgb(39, 161, 182)"), 0, 1],
+				proofOnlyVisibleWhenHighlighted : [...rgbToArray("rgb(29, 111, 182)"), 0, 1],
                 
                 sunColor    : rgbToArray("rgb(222, 200, 0)"),
 				orbit: rgbToArray("rgb(0, 0, 222)"),

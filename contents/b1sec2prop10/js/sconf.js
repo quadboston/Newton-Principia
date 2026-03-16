@@ -144,6 +144,8 @@
             curvature,
             context,
 			sunColor,
+			estimatedForce,
+			proofOnlyVisibleWhenHighlighted
         } = topicColors_repo;
 
 
@@ -158,7 +160,7 @@
             body,
             orbit,
             force,
-            tangentCircle : proof,
+            tangentCircle : curvature,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -181,7 +183,7 @@
             },
 
             Z : {
-                pcolor : body,
+                pcolor : proof,
                 undisplayAlways : true,
                 doPaintPname : false,
             },
@@ -267,7 +269,7 @@
 
             tCircleCenter : {
                 pos : posC,
-                caption : "C'",
+                caption : "",
                 pcolor : curvature,
                 letterAngle : -45,
                 cssClass: 'subessay--another-solution',
@@ -321,10 +323,10 @@
             { 'B,BB' : { pcolor : proof,
 					 cssClass: 'subessay--corollary2',
 			 }, },
-            { 'PZ' : { pcolor : body,
+            { 'PZ' : { pcolor : proof,
 					 cssClass: 'subessay--solution',
 			}, },
-            { 'ZR' : { pcolor : body,
+            { 'ZR' : { pcolor : proof,
 					 cssClass: 'subessay--solution',
 			}, },
             { CA : { pcolor : proof,
@@ -333,25 +335,21 @@
             { CB : { pcolor : proof,
                      cssClass: 'subessay--solution',
             }, },
-            { PC : { pcolor : proof,
-                cssClass: 
-				'logic_phase--proof subessay--corollary1 logic_phase--scholium',
-            }, },
 
             // //\\ proof
             { 'P,VV' : { pcolor : proof,
                          cssClass: 'subessay--another-solution',
             }, },
-            { 'PR' : { pcolor : body,
+            { 'PR' : { pcolor : proof,
                        cssClass: 'subessay--solution',
             }, },
-            { 'QR' : { pcolor : proof,
+            { 'QR' : { pcolor : estimatedForce,
                        cssClass: 'subessay--solution',
             }, },
-            { 'QT' : { pcolor : proof,
+            { 'QT' : { pcolor : estimatedForce,
                        cssClass: 'logic_phase--proof',
             }, },
-            { 'PT' : { pcolor : proof,
+            { 'PT' : { pcolor : proofOnlyVisibleWhenHighlighted,
                        cssClass: 'logic_phase--proof',
             }, },
             { DK : { pcolor : proof,
@@ -363,14 +361,17 @@
             { Qv : { pcolor : proof,
                      cssClass: 'logic_phase--proof',
             }, },
-            { Pv : { pcolor : proof,
+            { Pv : { pcolor : proofOnlyVisibleWhenHighlighted,
                      cssClass: 'logic_phase--proof',
             }, },
-            { Tv : { pcolor : proof,
+            { Tv : { pcolor : proofOnlyVisibleWhenHighlighted,
                      cssClass: 'logic_phase--proof',
             }, },
 
-            { vG : { pcolor : proof,                 
+            { vC : { pcolor : proofOnlyVisibleWhenHighlighted,                 
+                     cssClass: 'logic_phase--proof',
+            }, },
+			{ CG : { pcolor : proof,                 
                      cssClass: 'logic_phase--proof',
             }, },
             { PF : { pcolor : proof,
@@ -385,13 +386,13 @@
             // \\// proof
 
             //Book's "another solution"
-            { Tu : { pcolor : proof,
+            { Tu : { pcolor : proofOnlyVisibleWhenHighlighted,
                      cssClass: 'subessay--another-solution',
             }, },
-            { 'u,VV' : { pcolor : proof,
+            { 'u,VV' : { pcolor : proofOnlyVisibleWhenHighlighted,
                          cssClass: 'subessay--another-solution',
             }, },
-            { uP : { pcolor : proof,
+            { uP : { pcolor : proofOnlyVisibleWhenHighlighted,
                      cssClass: 'subessay--another-solution',
             }, },
             { PQ : { pcolor : proof,
@@ -399,6 +400,10 @@
             }, },
             { 'P,tCircleCenter' : { pcolor : curvature,
                      cssClass: 'subessay--another-solution',
+            }, },
+			{ PC : { pcolor : estimatedForce,
+                cssClass: 
+				'logic_phase--proof subessay--corollary1 logic_phase--scholium',
             }, },
         ];
 
