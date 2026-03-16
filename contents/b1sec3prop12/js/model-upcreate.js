@@ -49,7 +49,7 @@
         //T = perp. from Q to radius-vector
         nspaste( rg.T.pos, mat.dropPerpendicular( rg.Q.pos, rrc, rr0 ) );
 
-        nspaste( rg.Zminus.pos,
+        nspaste( rg.Z.pos,
             mat.linesCross(
                 uu,
                 rg.P.pos,
@@ -78,7 +78,7 @@
         //------------------------------------------------
         // //\\ PZminus
         //------------------------------------------------
-        nspaste( rg.Z.pos,
+        nspaste( rg.Zminus.pos,
             mat.dropLine(
                 -1.3,
                 rg.P.pos,
