@@ -309,6 +309,7 @@
 
 		function groupCommonColors() {
 			tr.orbit = tr.body;
+			tr.corollaryColor = tr.proof;
 			if (colorSetIdx > 0) {
 
 			}

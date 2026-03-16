@@ -157,6 +157,7 @@
             chord,
 			sunColor,
 			corollaryColor,
+			proofOnlyVisibleWhenHighlighted,
         } = topicColors_repo;
 
 
@@ -339,11 +340,12 @@
 
         var linesArray =
         [
-            { 'PV' : { pcolor : proof }, },
+            { 'PV' : { pcolor : proofOnlyVisibleWhenHighlighted }, },
+			{ 'SV' : { pcolor : proof }, },
             { 'AV' : { pcolor : proof }, },
             { 'AP' : { pcolor : proof }, },
 
-            { 'PY' : { pcolor : body }, },
+            { 'PY' : { pcolor : proof }, },
             { 'P,Zminus' : { pcolor : body }, },
             { 'PZ' : { pcolor : proof }, },
             { 'ZR' : { pcolor : proof }, },
@@ -351,14 +353,15 @@
             { 'PR' : { pcolor : proof }, },
             { 'ZQ' : { pcolor : body }, },
 
-            { 'RL' : { pcolor : proof }, },
+			{ 'RL' : { pcolor : proofOnlyVisibleWhenHighlighted }, },
+			{ 'QL' : { pcolor : proof }, },
 
             { 'SY' : { pcolor : proof }, },
             { 'QR' : { pcolor : estimatedForce }, },
             { 'QP' : { pcolor : proof }, },
             { 'SQ' : { pcolor : proof }, },
             { 'QT' : { pcolor : estimatedForce }, },
-            { 'PT' : { pcolor : proof }, },
+            { 'PT' : { pcolor : proofOnlyVisibleWhenHighlighted }, },
 
             { 'PC' : { pcolor : curvature }, },
             { 'P,sagitta' : { pcolor : sagitta, vectorTipIx : 1 } },

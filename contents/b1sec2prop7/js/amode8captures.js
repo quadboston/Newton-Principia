@@ -119,10 +119,12 @@
                 'PT',
                 'PV',
                 'PZ',
+				'QL',
                 'QR',
                 'QT',
                 'RL',
                 'SP',
+				'SV',
                 'ZQ',
                 'ZR',
             );
@@ -140,6 +142,7 @@
                 'PY',
                 'PZ',
                 'SP',
+				'SV',
                 'SY'
             );
         } else if (subessay === 'corollary1') {
@@ -164,6 +167,7 @@
                 'Rcol2,P',
                 'Rcol2,Tcol2',
                 'SP',
+				'SV',
                 'Tcol2,V',
             );
         } else if (subessay === 'corollary3') {
