@@ -249,8 +249,7 @@
                 cssClass: 'logic_phase--proof',
             },
 
-            VV : {
-                caption : 'V',
+            V : {
                 pcolor : proof,
                 letterAngle : -45,
                 cssClass: 'subessay--another-solution',
@@ -337,7 +336,7 @@
             }, },
 
             // //\\ proof
-            { 'P,VV' : { pcolor : proof,
+            { 'PV' : { pcolor : proof,
                          cssClass: 'subessay--another-solution',
             }, },
             { 'PR' : { pcolor : proof,
@@ -389,7 +388,7 @@
             { Tu : { pcolor : proofOnlyVisibleWhenHighlighted,
                      cssClass: 'subessay--another-solution',
             }, },
-            { 'u,VV' : { pcolor : proofOnlyVisibleWhenHighlighted,
+            { 'uV' : { pcolor : proofOnlyVisibleWhenHighlighted,
                          cssClass: 'subessay--another-solution',
             }, },
             { uP : { pcolor : proofOnlyVisibleWhenHighlighted,

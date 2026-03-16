@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, sn, mat, fconf, sconf, stdMod, topicColors_repo, } = 
+    var { ns, sn, fconf, sconf, stdMod, topicColors_repo, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     var op = sn( 'orbitParameters', sconf );
     return;
@@ -415,4 +415,3 @@
         });
     }
 }) ();
-
