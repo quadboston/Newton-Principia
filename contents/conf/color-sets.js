@@ -88,8 +88,9 @@
         tr.estimatedForce  = MAGENTA;
 		tr.orbit       = LIGHT_BLUE;
 		tr.invalid     = RED;  //alert, invalid user actions
-		tr.curvature       = DARK_GRAY;//BROWN;//rgbToArray("rgb(200, 40, 200)");
-
+		tr.supplementColor = tr.curvature       = DARK_GRAY;//BROWN;//rgbToArray("rgb(200, 40, 200)");
+		tr.supplementColorOnlyVisibleWhenHighlighted
+			= [...tr.supplementColor, 0, 1];
 		tr.body        = LIGHT_BLUE;
 
 		//usually as a condition of a claim,
@@ -311,7 +312,9 @@
 			tr.orbit = tr.body;
 			tr.corollaryColor = tr.proof;
 			if (colorSetIdx > 0) {
-
+				tr.speed = tr.curvature = tr.supplementColor = BLUE_GREEN;
+				tr.supplementColorOnlyVisibleWhenHighlighted
+					= [...tr.supplementColor, 0, 1];
 			}
 		}
 
