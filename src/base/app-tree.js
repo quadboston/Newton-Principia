@@ -75,7 +75,7 @@
         sDomNExportList,
         expoFun,
     }) {
-        //console.log('apptree');
+        console.log('apptree');
 
         ssFExportList && Object.assign( ssF, ssFExportList );
         expoFun = expoFun || ssFExportList,

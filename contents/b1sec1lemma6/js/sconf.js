@@ -1,8 +1,10 @@
-
 ( function() {
-    var { ns, fconf, sconf, topicColors_repo, userOptions } =
-    window.b$l.apptree({ ssFExportList : { init_conf } });
-    return;
+	const ns = window.b$l;
+	const fconf = ns.fapp.fconf;
+	const sconf = fconf.sconf;
+	const topicColors_repo = ns.fapp.ss.ssData['fixed-colors'];
+	init_conf();
+	return;  
     
 
     function init_conf()

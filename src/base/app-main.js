@@ -204,7 +204,7 @@ const {
                     // //\\ init_conf for models
                     //==========================================================
                     //adds common-module data to fconf.sconf
-                    ssF.init_conf();
+                    if (ssF.init_conf) ssF.init_conf();
                     //modifies appearance effect depending on user options
                     fconf.timeToShowOriginalDiagram_effective =
                         userOptions.usingBackgroundImage() ? fconf.timeToShowOriginalDiagram : 1;
