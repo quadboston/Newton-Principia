@@ -246,8 +246,7 @@
                 cssClass: 'logic_phase--proof',
             },
 
-            VV : {
-                caption : 'V',
+            V : {
                 pcolor : proof,
                 letterAngle : -45,
                 cssClass: 'subessay--another-solution',
@@ -266,7 +265,7 @@
 
             tCircleCenter : {
                 pos : posC,
-                caption : "C'",
+                caption : "",
                 pcolor : curvature,
                 letterAngle : -45,
                 cssClass: 'subessay--another-solution',
@@ -338,7 +337,7 @@
             }, },
 
             // //\\ proof
-            { 'P,VV' : { pcolor : proof,
+            { 'PV' : { pcolor : proof,
                          cssClass: 'subessay--another-solution',
             }, },
             { 'PR' : { pcolor : body,
@@ -387,7 +386,7 @@
             { Tu : { pcolor : proof,
                      cssClass: 'subessay--another-solution',
             }, },
-            { 'u,VV' : { pcolor : proof,
+            { 'uV' : { pcolor : proof,
                          cssClass: 'subessay--another-solution',
             }, },
             { uP : { pcolor : proof,

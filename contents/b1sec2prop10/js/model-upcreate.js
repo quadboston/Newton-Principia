@@ -105,8 +105,8 @@
             rg.G.pos, //B,
             rg.u.pos, //start, //optional
         );
-        rg.VV.pos[0] = wwu[0];
-        rg.VV.pos[1] = wwu[1];
+        rg.V.pos[0] = wwu[0];
+        rg.V.pos[1] = wwu[1];
 
         //extra points
         nspaste( rg.F.pos, mat.dropPerpendicular( rg.P.pos, rg.D.pos, rg.K.pos ) );
