@@ -106,7 +106,7 @@
             sconf.ellipseA = a;
             sconf.ellipseFocus = Math.sqrt(a*a - b*b);
             sconf.eccentricity = sconf.ellipseFocus / a;
-            if(sconf.ellipseFocus <= 0) sconf.ellipseFocus = 0.0001; // to avoid cuckoo graph
+            if(sconf.ellipseFocus <= 0) sconf.ellipseFocus = 0.00001; // to avoid cuckoo graph
 			rg.A.pos[0] = x;
 			rg.A.pos[1] = y;
             rg.S.pos[0] = -sconf.ellipseFocus;
