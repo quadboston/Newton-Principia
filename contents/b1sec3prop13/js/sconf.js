@@ -252,13 +252,12 @@
                 letterAngle : -45,
 				cssClass: 'subessay--solution',
             },
-            Zminus : {
-                caption : 'Z',
+            Zminus : { // only here for Prop 12 code?
                 pcolor : body,
                 letterAngle : 145,
                 letterRotRadius : 20,
                 doPaintPname : false,
- 				cssClass: 'subessay--solution',
+ 				undisplayAlways  : true,
             },
 
             // //\\ eccentricity slider
