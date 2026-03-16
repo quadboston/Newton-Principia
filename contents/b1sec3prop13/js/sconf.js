@@ -168,12 +168,10 @@
         var originalPoints = {};
         Object.assign( originalPoints, {
             L : {
-                pcolor : orbit,
 				doPaintPname : false,
  				undisplayAlways : true,
             },
             LL : {
-                pcolor : orbit,
                 doPaintPname : false,
 				undisplayAlways : true,
             },
