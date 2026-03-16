@@ -1,4 +1,3 @@
-
 ( function() {
     const { nspaste, fconf, sconf, topicColors_repo, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
@@ -336,7 +335,7 @@
             }, },
 
             // //\\ proof
-            { 'PV' : { pcolor : proof,
+			{ 'CV' : { pcolor : proof,
                          cssClass: 'subessay--another-solution',
             }, },
             { 'PR' : { pcolor : proof,
@@ -354,7 +353,7 @@
             { DK : { pcolor : proof,
                      cssClass: 'logic_phase--proof',
             }, },
-            { GP : { pcolor : proof,
+            { GP : { pcolor : proofOnlyVisibleWhenHighlighted,
                      cssClass: 'logic_phase--proof',
             }, },
             { Qv : { pcolor : proof,
@@ -366,14 +365,10 @@
             { Tv : { pcolor : proofOnlyVisibleWhenHighlighted,
                      cssClass: 'logic_phase--proof',
             }, },
-
             { vC : { pcolor : proofOnlyVisibleWhenHighlighted,                 
                      cssClass: 'logic_phase--proof',
             }, },
 			{ CG : { pcolor : proof,                 
-                     cssClass: 'logic_phase--proof',
-            }, },
-            { PF : { pcolor : proof,
                      cssClass: 'logic_phase--proof',
             }, },
             { DC : { pcolor : proof,
@@ -403,6 +398,9 @@
 			{ PC : { pcolor : estimatedForce,
                 cssClass: 
 				'logic_phase--proof subessay--corollary1 logic_phase--scholium',
+            }, },
+			{ PF : { pcolor : proof,
+                     cssClass: 'logic_phase--proof',
             }, },
         ];
 

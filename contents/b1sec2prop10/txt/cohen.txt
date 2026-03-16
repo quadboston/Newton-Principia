@@ -122,13 +122,13 @@ so that ¦Tu¦T𝑢¦¦ is equal to ¦Tv¦T𝑣¦¦; then take ¦uV¦𝑢V¦¦ s
 ¦PC¦¦². And since (from the Conics) ¦Qv¦Q𝑣¦¦² is to ¦Pv¦P𝑣¦¦ × ¦vC CG¦𝑣G¦¦ as
 ¦DC¦¦² to ¦PC¦¦², ¦Qv¦Q𝑣¦¦²
 will be equal to ¦Pv¦P𝑣¦¦ × ¦uV¦𝑢V¦¦. Add the rectangle ¦uP¦𝑢P¦¦ × ¦Pv¦P𝑣¦¦ to both sides, and the
-square of the chord of arc ¦PQ¦¦ will come out equal to the rectangle ¦PV¦VP¦¦ × ¦Pv¦P𝑣¦¦;
+square of the chord of arc ¦PQ¦¦ will come out equal to the rectangle ¦PC CV¦VP¦¦ × ¦Pv¦P𝑣¦¦;
 and therefore ¦tangentCircle¦a circle¦¦ that touches
 the conic section at ¦P¦¦ and passes through
 point ¦Q¦¦ will also pass through point ¦V¦¦. Let points ¦P¦¦ and ¦Q¦¦ come together,
 and the ratio of ¦uV¦𝑢V¦¦ to ¦vC CG¦𝑣G¦¦, which is the same as the ratio of ¦DC¦¦² to ¦PC¦¦²,
-will become the ratio of ¦PV¦¦ to ¦GP¦PG¦¦ or ¦PV¦¦ to 2¦PC¦¦;
-and therefore ¦PV¦¦ will
+will become the ratio of ¦PC CV¦PV¦¦ to ¦GP¦PG¦¦ or ¦PC CV¦PV¦¦ to 2¦PC¦¦;
+and therefore ¦PC CV¦PV¦¦ will
 be equal to 
 
 <!-- 2DC² / PC -->
