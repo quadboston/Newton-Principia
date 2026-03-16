@@ -244,17 +244,14 @@
 				cssClass: 'logic_phase--proof',
             },
 
-            Z : {
-                pcolor : body,
-                letterAngle : 45,
+            Zminus : {
                 undisplayAlways : true,
                 doPaintPname : false,
 				cssClass: 'subessay--solution',
             },
 
-            Zminus : {
-                caption : 'Z',
-                pcolor : body,
+            Z : {
+                pcolor : proof,
                 letterAngle : 45,
                 cssClass: 'subessay--solution',
             },
