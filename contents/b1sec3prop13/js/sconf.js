@@ -1,4 +1,3 @@
-
 ( function() {
     var { ns, sn, fconf, sconf, stdMod, topicColors_repo, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
@@ -181,8 +180,8 @@
 
             A : {
                 pcolor : orbit,
-				letterRotRadius : 25,
-                letterAngle : -90,
+				letterRotRadius : 28,
+                letterAngle : -124,
  				cssClass: 'subessay--solution',
             },
             M : {
@@ -252,13 +251,12 @@
                 letterAngle : -45,
 				cssClass: 'subessay--solution',
             },
-            Zminus : {
-                caption : 'Z',
+            Zminus : { // only here for Prop 12 code?
                 pcolor : body,
                 letterAngle : 145,
                 letterRotRadius : 20,
                 doPaintPname : false,
- 				cssClass: 'subessay--solution',
+ 				undisplayAlways  : true,
             },
 
             // //\\ eccentricity slider
