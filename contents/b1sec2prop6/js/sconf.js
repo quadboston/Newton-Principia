@@ -161,7 +161,7 @@
             proof,
             force,
             invalid,
-            info,
+            infoColor,
             estimatedForce,
             curvature,
             displacement,
@@ -229,7 +229,7 @@
         }
         curvePivots = curvePivots.map( pivot => ({
             pos         : pivot,
-            pcolor      : info,
+            pcolor      : infoColor,
             letterAngle : 45,
             draggableX  : true,
             draggableY  : true,
@@ -371,7 +371,7 @@
                 pos : [20, 20],
                 caption: "In the limit, the sagitta will pass through the center of forces",
                 fontSize : '25',
-                pcolor : info,
+                pcolor : infoColor,
                 letterAngle : 0,
                 unscalable  : true,
             }
