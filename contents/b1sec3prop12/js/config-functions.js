@@ -1,7 +1,8 @@
 ( function() {
-    var { mat, stdMod, sconf, } = window.b$l.apptree({ stdModExportList : { 
+    var { fconf, stdMod, sconf, } = window.b$l.apptree({ stdModExportList : {
             recreates_q2xy,
             recalculateOrbitStartAndEnd,
+            calculateMAFandMEF,
         }, });
     return;
 
@@ -55,5 +56,25 @@
         sconf.orbit_q_start = q;
         sconf.orbit_q_end = 2 * Math.PI - q;
     }
+
+
+    function calculateMAFandMEF() {
+        if (fconf.sappId === 'b1sec3prop12') {
+            const op = sconf.orbitParameters;
+            const eccentricityStored = op.eccentricity;
+
+            //The highest forces for this model occur when eccentricity is max,
+            //therefore temporarily adjust it and calculate the maximum forces.
+            stdMod.establishesEccentricity(op.eccentricityMax);
+            stdMod.rebuilds_orbit(null, true);
+            
+            //Reset eccentricity
+            stdMod.establishesEccentricity(eccentricityStored);
+
+        } else if (fconf.sappId === 'b1sec3prop13') {
+            //No adjustments needed, just calculate maximum forces.
+            stdMod.rebuilds_orbit(null, true);
+        }
+    };
 }) ();
 

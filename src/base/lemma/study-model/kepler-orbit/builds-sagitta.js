@@ -112,6 +112,9 @@
                 if( ulitmacy === sData.ULTIM_INSTANT ){
                     bP.instant_displacement = displ;
                 }
+                else if( ulitmacy === sData.ULTIM_MAX ){
+                    bP.max_displacement = displ;
+                }
             }
             
             if( plusQ !== null ){

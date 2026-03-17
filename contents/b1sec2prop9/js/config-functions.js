@@ -1,6 +1,8 @@
 ( function() {
-    var { mat, stdMod, sconf, } = window.b$l.apptree({
-        stdModExportList : { recreates_q2xy, }, });
+    var { mat, stdMod, sconf, } = window.b$l.apptree({ stdModExportList : {
+            recreates_q2xy,
+            calculateMAFandMEF,
+        }, });
     return;
 
 
@@ -36,5 +38,11 @@
             return q_radius - q0; // this is the original q before offset
         }
     }
+
+
+    function calculateMAFandMEF() {
+        //No adjustments needed, just calculate maximum forces.
+        stdMod.rebuilds_orbit(null, true);
+    };
 }) ();
 

@@ -24,9 +24,7 @@
             newPos[0] = rg.Zeta.pos[0];         //corrects
             newPos[1] = rg.ZetaStart.pos[1];    //corrects
 
-            //TEMP
-            console.log("op.eccentricity =", op.eccentricity);
-            //TEMP Keep distance between Q and P constant as slider dragged
+            //Don't reset distance between Q and P
             stdMod.rebuilds_orbit(ssD.Dt);
             return true;
         }

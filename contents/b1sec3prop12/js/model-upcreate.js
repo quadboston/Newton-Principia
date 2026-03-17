@@ -69,70 +69,25 @@
         {
             let graphArg = {
             }
-            // stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
 
 
-            //TEMP
             if (fconf.sappId === 'b1sec3prop12') {
-                console.log("ssD.Dt =", ssD.Dt);
-                //TEMP x
+                //The bounds of the graph are fixed as follows.  This allows
+                //different arrangements of curves to easily be compared to one
+                //another (eg. different eccentricities).  Note when the axes
+                //are variable, the curves are distorted when compared, which is
+                //misleading for this model.
+
                 graphArg.xMin = 0;
-                //TEMP May be best to keep this here to ensure the x max is
-                //always correct.
+                //Ensure x max is fixed to the correct value
                 graphArg.xMax = sconf.DISTANCE_ORBIT_ENDS_TO_S;
 
-
-                switch (sconf.Y_AXIS_OPTION_SELECTED) {
-                    case sconf.Y_AXIS_OPTIONS.VARIABLE:
-                        break;
-
-                    case sconf.Y_AXIS_OPTIONS.FIXED:
-                        graphArg.yMax = sconf.MEFTemp / sconf.MAFTemp;
-                        break;
-
-                    case sconf.Y_AXIS_OPTIONS.COMBINATION:
-                        const yMaxH = sconf.MEFTemp / sconf.MAFTemp;
-                        const yMaxL = sconf.FORCE_Y_AXIS_FIXED_TO_VARIABLE / sconf.MAFTemp;//1.368;
-                        
-                        const MEF2CurrentTemp = stdMod.calculateMaxDisplacementTemp();
-                        const estimatedForceMaxCurrent = MEF2CurrentTemp / sconf.MAFTemp;
-                        graphArg.yMax = Math.max(Math.min(estimatedForceMaxCurrent, yMaxH), yMaxL);
-                        break;
-                }
-                //TEMP y
-                // graphArg.yMax = sconf.MEFTemp / sconf.MAFTemp;
-
-
-
-                // graphArg.yMax = sconf.MEFTemp / sconf.MAFTemp / 2;
-
-                
-                // graphArg.yMax = sconf.MEFTemp / sconf.MAFTemp;
-
-
-
-                //TEMP Should be for combination of fixed and variable
-                // const yMaxH = sconf.MEFTemp / sconf.MAFTemp;
-                // const yMaxL = 1.368;//1.65;//1.4;//1.0;//1.6485;//1.4;//1.0;
-                
-                // const MEF2CurrentTemp = stdMod.calculateMaxDisplacementTemp();
-                // const estimatedForceMaxCurrent = MEF2CurrentTemp / sconf.MAFTemp;
-                // // const estimatedForceMaxCurrent = MEF2CurrentTemp / ssD.MAF;
-                // // graphArg.yMax = Math.min(estimatedForceMaxCurrent, yMaxH);
-                // graphArg.yMax = Math.max(Math.min(estimatedForceMaxCurrent, yMaxH), yMaxL);
-
-
-
-
-                // // const MAFManualTemp = 10.973936187350242;
-                // // const MEFManualTemp = 32.24671975584604;
-                // // graphArg.yMax = MEFManualTemp / MAFManualTemp;
-
-                // // graphArg.yMax = MEFManualTemp / ssD.MAF;
-                // // // graphArg.yMax = ssD.MEF / ssD.MAF;
+                //Largest possible y value for all curves, for all arrangements
+                graphArg.yMax = ssD.MEF / ssD.MAF;
 
 
             } else if (fconf.sappId === 'b1sec3prop13') {
+                //TEMP
                 //Options...
                 console.log(`ssD.MAF = ${ssD.MAF}  ssD.MEF = ${ssD.MEF}  ` +
                             `ssD.MEF / ssD.MAF = ${ssD.MEF / ssD.MAF}`);
@@ -144,7 +99,6 @@
 
                 graphArg.yMax = ssD.MEF / ssD.MAF;
             }
-            //TEMP//
 
 
             stdMod.graphFW_lemma.drawGraph_wrap(graphArg);

@@ -19,7 +19,7 @@
     }
 
 
-    function builds_orbit_data_graph()
+    function builds_orbit_data_graph(setMAFandMEF)
     {
         const GRAPH_PATH = sData.GRAPH_PATH;
         const Q_STEPS = sconf.Q_STEPS;
@@ -38,6 +38,11 @@
         var sagittaMax = 0;
         var instantForceMax = 0;
         var speedMax = 0;
+        //TEMP
+        if (setMAFandMEF) {
+            ssD.MAF = 0;
+            ssD.MEF = 0;
+        }
         //var fullPath = qIndexToOrbit[ gend ].pathAtQ;
         for( let qix=gstart; qix<=gend; qix++ ){
             const bP = qIndexToOrbit[ qix ];
@@ -63,6 +68,15 @@
                 instantForceMax = Math.max( Math.abs( instantForce ), instantForceMax );
                 displMax = Math.max( Math.abs( displacement ), displMax );
                 speedMax = Math.max( speedMax, ds_dt );
+
+                //TEMP
+                if (setMAFandMEF) {
+                    const forceA = bP.instant_displacement;
+                    const forceE = bP.max_displacement;
+                    ssD.MAF = Math.max(Math.abs(forceA), ssD.MAF);
+                    ssD.MEF = Math.max(Math.abs(forceE), ssD.MEF);
+                }
+
                 let graphColumn = {
                     qix,
                     rr : bP.rr,
@@ -96,14 +110,10 @@
             // const disp = Math.abs(bP.displacement) / (IS_DEVIATION_SCALED_BY_FORCE_MAX ?
             //             instantForceMax * DEVIATION_SCALE_FACTOR : displMax);
 
-            // const MAFTemp = fconf.sappId === 'b1sec3prop12' ?
-            //     10.973936187350242 : ssD.MAF;
-            const MAFTemp = sconf.MAFTemp ?? ssD.MAF;
 
-            const instf = Math.abs(bP.instantForce) / MAFTemp;
-            const disp = Math.abs(bP.displacement) / MAFTemp;
-            // const instf = Math.abs(bP.instantForce) / ssD.MAF;
-            // const disp = Math.abs(bP.displacement) / ssD.MAF;
+            //TEMP
+            const instf = Math.abs(bP.instantForce) / ssD.MAF;
+            const disp = Math.abs(bP.displacement) / ssD.MAF;
             output += `${bP.r}, ${instf}\n`;
 
 

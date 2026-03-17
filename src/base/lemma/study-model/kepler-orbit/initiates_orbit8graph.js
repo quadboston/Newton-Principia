@@ -22,6 +22,12 @@
         stdMod.graphFW_lemma = stdMod.createsGraph_FW_lemma({
                digramParentDom$:stdMod.legendRoot$ });
         stdMod.creates_createOrUpdateOrbit();
+        //TEMP Perhaps all models should run this function, not just the ones
+        //that have it.  That's to say that eventually all models should
+        //probably have it.
+        //TEMP Maybe add a short comment explaining what these are?
+        if (stdMod.calculateMAFandMEF)
+            stdMod.calculateMAFandMEF();
         stdMod.rebuilds_orbit(); // qIndexToOrbit populated here
         
         stdMod.creates__gets_orbit_closest_point();
@@ -45,7 +51,7 @@
         }
     }
     
-    function rebuilds_orbit( keepThisDt ) {
+    function rebuilds_orbit(keepThisDt, setMAFandMEF) {
         const Q_STEPS = sconf.Q_STEPS;
 
         if (stdMod.recalculateOrbitStartAndEnd)
@@ -64,26 +70,9 @@
         ssD.Dq = sconf.Dq0;
         ssD.Dt = keepThisDt || sn( ssD, 'Dt', sconf.Dt0 );
         stdMod.builds_dq8sagit8displace({ ulitmacy:sData.ULTIM_MAX });
-        //TEMP
-        if (ssD.MEF == null) {
-            ssD.MEF = stdMod.calculateMaxDisplacementTemp();
-        }
         stdMod.builds_dq8sagit8displace({ ulitmacy:sData.ULTIM_INSTANT });
-        //TEMP
-        if (ssD.MAF == null)
-            ssD.MAF = stdMod.calculateMaxDisplacementTemp();
         stdMod.builds_dq8sagit8displace({});
-        if (ssD.MEF2Temp == null) {
-            ssD.MEF2Temp = stdMod.calculateMaxDisplacementTemp();
-        }
-        //TEMP Looks like this function is only called when P9 loads, not when
-        //eg. Q is dragged.  The following would probably be the wrong spot for
-        //this draft code.
-        // ssD.MEF2CurrentTemp = stdMod.calculateMaxDisplacementTemp();
-        console.log(`Calculated ssD.MAF = ${ssD.MAF}  ssD.MEF = ${ssD.MEF}  ` +
-                    `ssD.MEF2Temp = ${ssD.MEF2Temp}`);//  ` +
-                    // `ssD.MEF2CurrentTemp = ${ssD.MEF2CurrentTemp}`);
-        stdMod.builds_orbit_data_graph();
+        stdMod.builds_orbit_data_graph(setMAFandMEF);
 
         //Adjust point P if out of bounds
         const qixMin = ssD.qix_graph_start;
