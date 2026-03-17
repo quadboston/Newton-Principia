@@ -140,6 +140,11 @@
         rg.C.pos[1] = rg.B.pos[1];
         rg.c.pos[1] = rg.b.pos[1];
 
+        // find midpoint of AB
+        let Mx = (rg.A.pos[0] + rg.B.pos[0]) / 2;
+        let My = (rg.A.pos[1] + rg.B.pos[1]) / 2;
+        rg.M.pos = [Mx, My]; 
+
         //mostly for demo purposes
         var line2abs = ssF.line2abs;
         line2abs( 'AB' );

@@ -1,5 +1,5 @@
 ( function() {
-    var { nspaste, mat, fconf, ssF, ssD, stdMod, sconf, rg, 
+    var { nspaste, mat, fconf, ssD, stdMod, sconf, rg, 
     } = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
     return;
 
@@ -49,7 +49,7 @@
         //T = perp. from Q to radius-vector
         nspaste( rg.T.pos, mat.dropPerpendicular( rg.Q.pos, rrc, rr0 ) );
 
-        nspaste( rg.Z.pos,
+        nspaste( rg.Zminus.pos,
             mat.linesCross(
                 uu,
                 rg.P.pos,
@@ -110,7 +110,7 @@
         //------------------------------------------------
         // //\\ PZminus
         //------------------------------------------------
-        nspaste( rg.Zminus.pos,
+        nspaste( rg.Z.pos,
             mat.dropLine(
                 -1.3,
                 rg.P.pos,
@@ -138,6 +138,7 @@
             nspaste( rg.N.pos, mat.dropPerpendicular( rg.O.pos, rg.M.pos, rg.P.pos ) );
         } else {
             nspaste( rg.G.pos, mat.dropLine( -1, rg.C.pos, rg.P.pos, ) );
+        	nspaste( rg.F.pos, mat.dropPerpendicular( rg.P.pos, rg.D.pos, rg.K.pos ) );
         }
 
         ////hyperbola or ellipse
@@ -201,4 +202,3 @@
     }
 
 }) ();
-

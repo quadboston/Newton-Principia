@@ -60,7 +60,6 @@
             mat,
             mcurve      : sn( 'mcurve', mat ),
             integral    : sn( 'integral', mat ),
-            chemistry   : sn('chemistry'),
             dpdec       : sn('drag-point-decorator'),
             sv          : sn('svg'),
             nssvg       : sn('svg'),

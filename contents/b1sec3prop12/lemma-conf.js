@@ -14,10 +14,7 @@
                 { src: 'model-upcreate.js' },
                 { src: 'media-upcreate.js' },
                 { src: 'completes-sliders-creation.js' },
-                
                 { src: 'state-capturer.js' },
-                { src: 'graph-fw-lib.js' },
-
                 { src : 'inits/finalizes-subessay-relaunch.js' },
                 { src : 'learner-scenario/activity-scenario-I.conf.js' },
             ],

@@ -125,6 +125,7 @@
 
     function attachWeelToDomEl( domel$, )
     {
+        // mouse wheel to zoom
         const WHEEL_SCALE_FOR_SCROLL_MODE = 0.001;
         domel$.e( 'wheel', wheelHandler );
 
@@ -147,12 +148,7 @@
             rg.media_scale.stdMod = stdMod;
             ssF.scaleValue2app( newScale ); // resets applic. state to new scale
             rg.media_scale.modPos_2_GUI();
-            mediaMover(ev, oldScale, newScale); 
-            stdMod.model8media_upcreate();
-        };
 
-        // moves model so zoom is around mouse
-        function mediaMover(ev, oldScale, newScale) {
             var svgEl = document.querySelector('svg');
             var pt = svgEl.createSVGPoint();
             pt.x = ev.clientX;
@@ -168,6 +164,91 @@
                 var mousePicX = svgP.x;
                 var mousePicY = svgP.y;
             }
+
+            mediaMover(oldScale, newScale, mousePicX, mousePicY); 
+            stdMod.model8media_upcreate();
+        };
+
+        // pinch to zoom
+        let startDist = 0;
+        const PINCH_SCALE_FACTOR = 0.015;
+        domel$.e('touchstart', pinchStart);
+        domel$.e('touchmove', pinchZoom);
+        domel$.e('touchend', pinchEnd);
+
+        function getDistance(t1, t2) {
+            return Math.hypot(t2.clientX - t1.clientX, t2.clientY - t1.clientY);
+        }
+
+        function pinchStart(e) {
+            if (e.touches.length !== 2) return;
+
+            const [t1, t2] = e.touches;
+            startDist = getDistance(t1, t2);
+
+            // midpoint in screen coords
+            const midX = (t1.clientX + t2.clientX) / 2;
+            const midY = (t1.clientY + t2.clientY) / 2;
+
+            // convert midpoint to SVG coords at touch start
+            const svgEl = document.querySelector('svg');
+            const pt = svgEl.createSVGPoint();
+            pt.x = midX;
+            pt.y = midY;
+
+            const ctm = svgEl.getScreenCTM();
+
+            if (!ctm) {
+                const rect = svgEl.getBoundingClientRect();
+                pinchCenterPicX = midX - rect.left;
+                pinchCenterPicY = midY - rect.top;
+            } else {
+                const svgP = pt.matrixTransform(ctm.inverse());
+                pinchCenterPicX = svgP.x;
+                pinchCenterPicY = svgP.y;
+            }
+        }
+
+        function pinchZoom(e) {
+            if (e.touches.length !== 2) return;
+
+            e.preventDefault();
+            stopAftershocks(e);
+            sDomF.detected_user_interaction_effect(!'not-moved');
+
+            const [t1, t2] = e.touches;
+            const oldScale = rg.media_scale.value;
+
+            // compute scale delta
+            const dist = getDistance(t1, t2);
+            const ratio = dist / startDist;
+            const deltaLog = Math.log(ratio) * PINCH_SCALE_FACTOR;
+
+            const newScale = Math.exp(Math.log(oldScale) + deltaLog);
+
+            const validated = rg.media_scale.value2validate2pos(newScale);
+            if (!validated) return;
+
+            // apply scale same as wheelHandler
+            rg.media_scale.value = newScale;
+            rg.media_scale.stdMod = stdMod;
+            ssF.scaleValue2app(newScale);
+            rg.media_scale.modPos_2_GUI();
+
+            // use the original midpoint as zoom center
+            mediaMover(oldScale, newScale, pinchCenterPicX, pinchCenterPicY);
+
+            stdMod.model8media_upcreate();
+        }
+
+        function pinchEnd(e) {
+            if (e.touches.length < 2) {
+                startDist = 0;
+            }
+        }
+
+        // moves model so zoom is around mouse
+        function mediaMover(oldScale, newScale, mousePicX, mousePicY) {
 
             var originX = sconf.modorInPicX;
             var originY = sconf.modorInPicY;
