@@ -189,8 +189,8 @@
             .e('mouseleave', ()=>{ decor$.removeClass( 'hovered' ) })
             .e('click', function( event ) {
                 //console.log(leafRk.mcat_id + ' ' + leafRk.scat_id);
-                updateURL(leafRk.mcat_id, leafRk.scat_id)
-                if( mcat_id !== 'logic_phase' || !fconf.logic_phaseTab_nonClickable ) {
+                let update = updateURL(leafRk.mcat_id, leafRk.scat_id)
+                if( update && (mcat_id !== 'logic_phase' || !fconf.logic_phaseTab_nonClickable) ) {
 
                     //:todm: it is not clear why this is required, and why flag
                     //:'chosen' is not cleared up downstream automatically
@@ -236,7 +236,11 @@
         }
 
         if(mcat === 'logic_phase' ) { // horizontal tabs
-            params["logic_phaseId"] = scat;  
+            if(params["logic_phaseId"] !== scat) {
+                params["logic_phaseId"] = scat;  
+            } else {
+                return false; // do not update model if we haven't actually switched tabs
+            }
         } else if(mcat === 'aspect') { // vertcial tabs
             params["aspectId"] = scat;
 
@@ -270,6 +274,8 @@
 
         // Update the browser URL without reload
         window.history.replaceState({}, "", newUrl);
+
+        return true; // indicates the model should be updated
     }
 
     //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
