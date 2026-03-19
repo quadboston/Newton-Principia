@@ -92,18 +92,7 @@
         //-------------------------------------------
         sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
         sconf.CURVE_REVOLVES = false; //true for cyclic orbit
-        //TEMP
-        //MEF should be ~10x MAF
-        // sconf.DT_SLIDER_MAX = 1.84;
-        //MEF should be ~4x MAF
-        sconf.DT_SLIDER_MAX = 1.49;
-        //MEF should be ~3x MAF
-        // sconf.DT_SLIDER_MAX = 1.33;
-        //MEF should be ~2x MAF
-        // sconf.DT_SLIDER_MAX = 1.06;
-
-        //TEMP Original code
-        // sconf.DT_SLIDER_MAX = 1.84;
+        sconf.DT_SLIDER_MAX = 1.84;
         var Q_STEPS = 500;
         var DATA_GRAPH_STEPS = 500;
         //Scale estimated force curve by actual force max
