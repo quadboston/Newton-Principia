@@ -63,43 +63,24 @@
 		// background color used to highlight text and table rows on hover
 		tr.highlight = rgbToArray("rgb(234, 234, 234)");
 		const DARK_GRAY     = rgbToArray("rgb(99, 99, 99)");
-		const LIGHT_BLUE    = rgbToArray("rgb(45, 131, 157)");
-		const MEDIUM_BLUE   = rgbToArray("rgb(29, 96, 204)");
-		const DARK_BLUE     = rgbToArray("rgb(2, 74, 180)");
 		const BLUE_GREEN    = rgbToArray("rgb(42, 157, 143)");
-		const LIGHT_GREEN   = rgbToArray("rgb(39, 222, 0)");
-		const MEDIUM_GREEN  = rgbToArray("rgb(119, 187, 65)");
-		const DARK_GREEN    = rgbToArray("rgb(35, 109, 16)");
-		const BROWN         = rgbToArray("rgb(83, 51, 1)");
 		const PURPLE        = rgbToArray("rgb(131, 56, 236)");
-		const PINK          = rgbToArray("rgb(255, 105, 180)");
-		const ORANGE        = rgbToArray("rgb(202, 131, 0)");
-		const ENGAGING      = rgbToArray("rgb(102, 153, 204)");
-		const DYNAMIC       = rgbToArray("rgb(153, 0, 255)");
 		const MAGENTA    = rgbToArray("rgb(211, 87, 254)");
 		const RED           = rgbToArray("rgb(255, 0, 0)");
-		const GIVEN_BROWN = rgbToArray("rgb(139, 105, 20)");
 		const PROOF_GREEN = rgbToArray("rgb(0, 133, 0)");
 
-		tr.sunColor    = ORANGE; // center of force (S or C in propositions)
-		tr.given       = GIVEN_BROWN;//DARK_BLUE;DARK_GREEN
+		tr.sunColor    = rgbToArray("rgb(202, 131, 0)"); // center of force (S or C in propositions)
+		tr.given       = rgbToArray("rgb(139, 105, 20)");
 		tr.proof       = PROOF_GREEN;
 		tr.force       = PURPLE;
         tr.estimatedForce  = MAGENTA;
-		tr.orbit       = LIGHT_BLUE;
 		tr.invalid     = RED;  //alert, invalid user actions
 		tr.supplementColor = tr.curvature       = DARK_GRAY;//BROWN;//rgbToArray("rgb(200, 40, 200)");
 		tr.supplementColorOnlyVisibleWhenHighlighted
 			= [...tr.supplementColor, 0, 1];
-		tr.body        = LIGHT_BLUE;
+		tr.body        = rgbToArray("rgb(51, 107, 186)"),
 
-		//usually as a condition of a claim,
-		//condition of the theorem,
-		//given parameters of the claim or proof
-		//tr.given       = rgbToArray("rgb(0, 133, 0)");//DARK_BLUE;DARK_GREEN
-		tr.givenArea   = [...tr.given, 1];
-		tr.givenOnlyVisibleWhenHighlighted
-			= [...tr.given, 0, 1],
+
 
 		//relates to moving body, to an orbit
 		tr.orbitareaSample         = [0, 150, 0,  0.05]; //P12
@@ -108,14 +89,6 @@
 		tr.instanttriangle         = [0, 150, 200, 0.2, 0.5 ]; //P14 (in P12 sconf)
 		tr.instanttriangleHiddenStart  = [0, 150, 200, 0.001, 0.5 ] //P12
 
-		/*tr.time      = rgbToArray("rgb(0, 150, 200)");
-		tr.dtime     = tr.time;
-		tr.distance  = rgbToArray("rgb(60, 20, 0)");*/
-
-		//logical steps of the proof, auxilary constructs
-		//of a proof
-		//tr.proof       = rgbToArray("rgb(139, 105, 20)");
-		tr.proofArea   = [...tr.proof, 1];
 		tr.result      = rgbToArray("rgb(100, 0, 0)");
 		tr.resultOnlyVisibleWhenHighlighted
 			= [...tr.result, 0, 1];
@@ -124,15 +97,6 @@
         tr.speed       = DARK_GRAY;
         tr.forceMove       = tr.force;
 		// end merge misc
-
-		/*//alert, invalid user actions
-		tr.invalid = rgbToArray("rgb(250, 0, 0)");
-		//force, energy
-		tr.force   = rgbToArray("rgb(200, 150, 0)");
-		//conclusion of the proof
-
-		tr.forceMove       = tr.force;
-		tr.speed           = rgbToArray("rgb(90, 90, 90)");*/
 
 		//neutral elements
 		tr.shadow  = rgbToArray("rgb(50, 50, 50)");
@@ -147,7 +111,8 @@
 		tr.chord           = rgbToArray("rgb(0, 0, 255)");
 		tr.attention       = rgbToArray("rgb(200, 200, 0)");
 
-		tr.time      = BLUE_GREEN;
+		//>>>>>>>>>>>>>>>>>
+
         tr.dtime     = tr.estimatedForce;
         tr.distance  = rgbToArray("rgb(60, 20, 0)");
 
@@ -195,28 +160,7 @@
 	
 	    //P2
         tr.areaDescriptionAccelerated = rgbToArray("rgb(120, 90, 82)", 1); //Description of areas triangle P2 proof tab
-		//P41
-		//Note that Fi for P12 is shadow (see its sconf.js ~line 635)
-		tr.fi      = [0, 0, 150, 0.1, 0.3];
-		tr.Fkernel = [0, 0, 150];
 
-		tr.bodyHiddenStart         = [...tr.body.slice(0,3), 0.01, 1];
-		tr.forceTransparentStart   = [...tr.force.slice(0,3), 0.1, 1];
-		tr.VSarea                  = [...tr.force.slice(0,3), 0.3, 0.7];
-		tr.timeHiddenStart         = [...tr.time.slice(0,3), 0.01, 0.7];
-
-		//Is vgpoint still needed?  Seems to be after "Drop point, A"
-		//in Elements under developer tools
-		//however may not be visible.
-		tr.vgpoint = [0, 150, 0, 0.01, 1]; //todm: last two pars have no effect
-
-		tr.XCY     = [0, 0, 150, 0.03, 0.5];
-
-		tr.D𝑐𝑥E    = [0, 0, 150, 0.01, 0.5];
-
-		tr.D𝑏𝑧E    = [110, 90, 0, 0.01, 0.5];
-		tr.VIC     = [110, 90, 0, 0.01, 0.5];
-		tr.ICK     = [110, 90, 0, 0.01, 0.5];
 
 		//=======================================
 		// \\// topic colors repo
@@ -232,21 +176,13 @@
 				// current master; loaded below
 			},
 			{ // 1
-				body : rgbToArray("rgb(51, 107, 186)"),//("rgb(12, 67, 168)"),
-				proofOnlyVisibleWhenHighlighted : [...PROOF_GREEN, 0, 1],
+				// use default set above
 			},
             { // 2
                 given : rgbToArray("rgb(124, 57, 201)"),
-                givenArea : [124, 57, 201, 1],
-
                 proof : rgbToArray("rgb(29, 111, 182)"),
-                proofArea : [39, 182, 39, 1],
-				proofOnlyVisibleWhenHighlighted : [...rgbToArray("rgb(29, 111, 182)"), 0, 1],
-                
                 sunColor    : rgbToArray("rgb(222, 200, 0)"),
-				orbit: rgbToArray("rgb(0, 0, 222)"),
-				//body: rgbToArray("rgb(0, 0, 222)"),
-
+				body: rgbToArray("rgb(0, 0, 222)"),
 				estimatedForce: rgbToArray("rgb(123, 105, 112)"),
 				displacement: rgbToArray("rgb(123, 105, 112)"),
 				force: rgbToArray("rgb(180, 63, 0)"),
@@ -254,36 +190,31 @@
 			{ // 3
                 // copy of above for reference and so it's included in the options
                 given : rgbToArray("rgb(0, 113, 0)"),
-                givenArea : [...tr.given, 1],
-
                 proof : rgbToArray("rgb(0, 0, 255)"),
-                proofArea : [...tr.proof, 1],
-				proofOnlyVisibleWhenHighlighted : [...rgbToArray("rgb(0, 0, 255)"), 0, 1],
-
 				sunColor    : rgbToArray("rgb(0, 113, 0)"),
-				orbit: rgbToArray("rgb(0, 113, 0)"),
 				body: rgbToArray("rgb(0, 113, 0)"),
-
 				estimatedForce: rgbToArray("rgb(200, 0, 200)"),
 				displacement: rgbToArray("rgb(200, 0, 200)"),
 				force: rgbToArray("rgb(200, 150, 0)"),
 
 				dtime: tr.time,
-                // ** copy more colors as defined above here **
             },
-            // ** add as many color sets as you like here **
         ];    
-		//tr.displacement    = tr.estimatedForce;
 
 		function groupCommonColors() {
 			tr.orbit = tr.body;
 			tr.corollaryColor = tr.proof;
-			if (colorSetIdx > 0) {
-				tr.speed = tr.curvature = tr.supplementColor;
-				tr.supplementColorOnlyVisibleWhenHighlighted
-					= [...tr.supplementColor, 0, 1];
-			}
+			tr.speed = tr.curvature = tr.supplementColor;
+			tr.supplementColorOnlyVisibleWhenHighlighted = 
+					[...tr.supplementColor, 0, 1];
+			tr.proofArea   = [...tr.proof, 1];
+			tr.proofOnlyVisibleWhenHighlighted  = [...tr.proof, 0, 1];
+			tr.givenArea   = [...tr.given, 1];
+			tr.givenOnlyVisibleWhenHighlighted = [...tr.given, 0, 1];
 		}
+
+		//Prop 41
+		setProp41Colors();
         
         const prevBtn = document.getElementsByClassName("prev")[0];
         const nextBtn = document.getElementsByClassName("next")[0];
@@ -314,9 +245,10 @@
 				value = colorSets[colorSetIdx][key];
 				tr[key] = value;
 			}
+			groupCommonColors();
         }
 
-		groupCommonColors();
+
 
 
 
@@ -395,6 +327,31 @@
 			// \\// anchor control
 			//---------------------------------------------------------------
 		});
+
+		function setProp41Colors() {
+			//Note that Fi for P12 is shadow (see its sconf.js ~line 635)
+			tr.time = rgbToArray("rgb(0, 150, 200)");
+			tr.fi = [0, 0, 150, 0.1, 0.3];
+			tr.Fkernel = [0, 0, 150];
+
+			tr.bodyHiddenStart = [...tr.body.slice(0, 3), 0.01, 1];
+			tr.forceTransparentStart = [...tr.force.slice(0, 3), 0.1, 1];
+			tr.VSarea = [...tr.force.slice(0, 3), 0.3, 0.7];
+			tr.timeHiddenStart = [...tr.time.slice(0, 3), 0.01, 0.7];
+
+			//Is vgpoint still needed?  Seems to be after "Drop point, A"
+			//in Elements under developer tools
+			//however may not be visible.
+			tr.vgpoint = [0, 150, 0, 0.01, 1]; //todm: last two pars have no effect
+
+			tr.XCY = [0, 0, 150, 0.03, 0.5];
+
+			tr.D𝑐𝑥E = [0, 0, 150, 0.01, 0.5];
+
+			tr.D𝑏𝑧E = [110, 90, 0, 0.01, 0.5];
+			tr.VIC = [110, 90, 0, 0.01, 0.5];
+			tr.ICK = [110, 90, 0, 0.01, 0.5];
+		}
 	}
 
 	function rgbToArray(rgbString, alpha) {
