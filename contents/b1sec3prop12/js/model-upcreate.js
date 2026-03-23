@@ -92,6 +92,14 @@
         // \\// decorations
         //================================================
 
+        ////hyperbola or ellipse
+        let D = mat.sm( rg.C.pos, -1, uu );
+        nspaste( rg.D.pos, D );    
+        let K = mat.sm( rg.C.pos,  1, uu );
+        nspaste( rg.K.pos, K );    
+        //is this a numerical glitch in the Book?:
+        //nspaste( rg.K.pos, mat.dropLine(  2.13, rg.C.pos, rg.P.pos, null, uu) );
+        
         //conjugate diameters and tangents
         if( "b1sec3prop13" === fconf.sappId ) {
             nspaste( rg.G.pos, mat.dropLine(
@@ -108,14 +116,6 @@
             nspaste( rg.G.pos, mat.dropLine( -1, rg.C.pos, rg.P.pos, ) );
         	nspaste( rg.F.pos, mat.dropPerpendicular( rg.P.pos, rg.D.pos, rg.K.pos ) );
         }
-
-        ////hyperbola or ellipse
-        let D = mat.sm( rg.C.pos, -1, uu );
-        nspaste( rg.D.pos, D );    
-        let K = mat.sm( rg.C.pos,  1, uu );
-        nspaste( rg.K.pos, K );    
-        //is this a numerical glitch in the Book?:
-        //nspaste( rg.K.pos, mat.dropLine(  2.13, rg.C.pos, rg.P.pos, null, uu) );
 
         //vuFV
         //v = parallel-projection of Q to tangent
