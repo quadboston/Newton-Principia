@@ -371,7 +371,7 @@
 			{ CG : { pcolor : proof,                 
                      cssClass: 'logic_phase--proof',
             }, },
-            { DC : { pcolor : proof,
+            { DC : { pcolor : proofOnlyVisibleWhenHighlighted,
                      cssClass: 'logic_phase--proof',
             }, },
             { CF : { pcolor : proof,
