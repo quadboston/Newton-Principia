@@ -228,14 +228,14 @@
 
         const colorSets = [ 
 
-			{
+			{ //0
 				// current master; loaded below
 			},
-			{
-				body : rgbToArray("rgb(12, 67, 168)"),
+			{ // 1
+				body : rgbToArray("rgb(51, 107, 186)"),//("rgb(12, 67, 168)"),
 				proofOnlyVisibleWhenHighlighted : [...PROOF_GREEN, 0, 1],
 			},
-            {
+            { // 2
                 given : rgbToArray("rgb(124, 57, 201)"),
                 givenArea : [124, 57, 201, 1],
 
@@ -245,13 +245,13 @@
                 
                 sunColor    : rgbToArray("rgb(222, 200, 0)"),
 				orbit: rgbToArray("rgb(0, 0, 222)"),
-				body: rgbToArray("rgb(0, 0, 222)"),
+				//body: rgbToArray("rgb(0, 0, 222)"),
 
 				estimatedForce: rgbToArray("rgb(123, 105, 112)"),
 				displacement: rgbToArray("rgb(123, 105, 112)"),
 				force: rgbToArray("rgb(180, 63, 0)"),
             },
-			{
+			{ // 3
                 // copy of above for reference and so it's included in the options
                 given : rgbToArray("rgb(0, 113, 0)"),
                 givenArea : [...tr.given, 1],
@@ -274,6 +274,16 @@
             // ** add as many color sets as you like here **
         ];    
 		//tr.displacement    = tr.estimatedForce;
+
+		function groupCommonColors() {
+			tr.orbit = tr.body;
+			tr.corollaryColor = tr.proof;
+			if (colorSetIdx > 0) {
+				tr.speed = tr.curvature = tr.supplementColor;
+				tr.supplementColorOnlyVisibleWhenHighlighted
+					= [...tr.supplementColor, 0, 1];
+			}
+		}
         
         const prevBtn = document.getElementsByClassName("prev")[0];
         const nextBtn = document.getElementsByClassName("next")[0];
@@ -308,15 +318,7 @@
 
 		groupCommonColors();
 
-		function groupCommonColors() {
-			tr.orbit = tr.body;
-			tr.corollaryColor = tr.proof;
-			if (colorSetIdx > 0) {
-				tr.speed = tr.curvature = tr.supplementColor = BLUE_GREEN;
-				tr.supplementColorOnlyVisibleWhenHighlighted
-					= [...tr.supplementColor, 0, 1];
-			}
-		}
+
 
         //=======================================
         // \\// Color-Set Buttons
