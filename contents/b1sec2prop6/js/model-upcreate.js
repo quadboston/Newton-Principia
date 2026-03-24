@@ -169,14 +169,6 @@
         // //\\ decorations
         // //\\ graph
         //------------------------------------------------
-        //core code displays: force, mask[1] and sagitta, mask[3]
-        {
-            const mask = stdMod.graphFW_lemma.graphArrayMask;
-            mask[1] = false; //displ.
-            mask[2] = false;
-            //sagitta in proof, but not in ...
-            mask[3] = solvable && sconf.TIME_IS_FREE_VARIABLE;
-        }
 
         {
             let graphArg = {
