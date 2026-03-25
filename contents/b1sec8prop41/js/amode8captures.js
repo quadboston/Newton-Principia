@@ -1,8 +1,8 @@
 ( function() {
     var {
         nspaste, toreg, 
-        sDomF, ssF, fconf,
-        stdMod, amode, rg, sconf,
+        sDomF, ssF, 
+        stdMod, rg, sconf,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -16,7 +16,6 @@
     ///"init model parameters"
     function amode2rgstate( captured )
     {
-        var { logic_phase, aspect, subessay } = amode;
 
         sDomF.resetModelPos();
 
@@ -47,12 +46,6 @@
         rg.Z.undisplay = true;
         rg.vgpoint.undisplay = true;
         rg.Zgpoint.undisplay = true;
-        if( fconf.sappId === 'b1sec8prop41' ) {
-            //nspaste( rg.omegaHandle.pos, rg.omegaHandle.initialPos );
-            if( aspect === 'addendum' ) {
-                rg.R.undisplay = true;
-            }
-        }
 
         //comment out to remove Book's diagram after timeout
         sDomF.detected_user_interaction_effect( 'doUndetected' );
@@ -61,4 +54,3 @@
     }
 
 }) ();
-
