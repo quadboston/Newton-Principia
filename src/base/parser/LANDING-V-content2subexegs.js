@@ -529,7 +529,7 @@
 
 
         function aspectTurnedOn(aspect_id) {
-            if (aspect_id === 'model' || aspect_id === 'addendum'){
+            if (aspect_id === 'model'){
                 return false;
             }
             if (aspect_id === 'latin'){
