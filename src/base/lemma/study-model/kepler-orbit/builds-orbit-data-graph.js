@@ -1,5 +1,5 @@
 ( function() {
-    var { sn, haz, rg, amode, stdMod, sconf, ssD, sData, } 
+    var { sn, rg, stdMod, sconf, ssD, sData, } 
         = window.b$l.apptree({ stdModExportList : {
             builds_orbit_data_graph,
             qIndexFromPointPToGraphIndex,
@@ -7,7 +7,6 @@
     });
     const graphArray = sn( 'graphArray', stdMod, [] );
     const qIndexToOrbit = sn( 'qIndexToOrbit', ssD, [] );
-    const orbitXYToDraw = sn( 'orbitXYToDraw', ssD, [] );
     return;
 
 
@@ -20,7 +19,6 @@
 
     function builds_orbit_data_graph()
     {
-        const GRAPH_PATH = sData.GRAPH_PATH;
         const Q_STEPS = sconf.Q_STEPS;
         const DATA_GRAPH_STEPS = sconf.DATA_GRAPH_STEPS;
         const force_law_function = sconf.force_law_function;
@@ -62,7 +60,7 @@
                 let graphColumn = {
                     qix,
                     rr : bP.rr,
-                    x : GRAPH_PATH ? bP.pathAtQ : bP.r,
+                    x : sData.PLOT_BY_PATH ? bP.pathAtQ : bP.r,
                 };
                 graphArray.push( graphColumn );
             }

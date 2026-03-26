@@ -354,7 +354,7 @@
                 //logical bonus: pointWrap may be missed in
                 //doProcess closure ...
                 arg.pointWrap = pointWrap; 
-                var appFeedback = doProcess(
+                doProcess(
                     //see: **api-doProcessWrap
                     /*
                         down_move_up    : down_move_up,
@@ -365,11 +365,6 @@
                     */
                     arg
                 );
-                if( 'do disappear d8d' === appFeedback ) {
-                    selectedElement_flag = null;
-                    //ccc( 'doProcessWrap: appFeedback=', appFeedback );
-                    return appFeedback;
-                }
                 //ccc( 'doProcessWrap: allowed' );
                 if( arg.down_move_up === 'up' ) {
                     const decPoint = haz( selectedElement_flag, 'decPoint' );
