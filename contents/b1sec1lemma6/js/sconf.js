@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, fconf, sconf, topicColors_repo, userOptions } =
+    var { ns, fconf, sconf, topicColors_repo } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
     
@@ -149,6 +149,32 @@
                 letterAngle : -45,
                 pcolor      : proof,
             },
+			R : {
+				pos: R,
+				letterAngle : 135,
+				pcolor      : given,
+			},
+			curveStart  : {
+				pos : [ A[0]-80, 0 ],
+			},
+			curveEnd : {
+				pos : [B[0]+50,0],
+			},
+			r : {
+				pos: r,
+				letterAngle : 135,
+				pcolor      : given,
+			},
+			d : {
+				pos         : d,
+				letterAngle : 90,
+				pcolor      : proof,
+			},
+			DLeft : {
+				letterAngle : 90,
+				pcolor      : given,
+				doPaintPname : false,
+			},
         };
         
         var linesArray =
@@ -158,70 +184,6 @@
             { 'AL' : { pcolor : proof } }, // rectilinear angle
             { 'A,DLeft'  : { pcolor : given, 'stroke-width' : 2, } }, //extends AD to the left
         ];
-
-        addBonusVars(); // todo: would be great if we only called this if BONUS === true, but as is that would break the page
-        function addBonusVars() {            
-            // *** these are only used if BONUS || rgShapesVisible (some maybe not at all)
-
-            var topicColors_electedBonus = {
-                //proof
-                "curve-Ab"      : proof,
-                "arc-Ab"        : proof,
-            }
-            topicColors_elected = {...topicColors_elected, ...topicColors_electedBonus};
-
-            var originalPointsBonus = {
-
-                //:originals from Book
-                r : {
-                    pos: r,
-                    letterAngle : 135,
-                    pcolor      : given,
-                },
-                R : {
-                    pos: R,
-                    letterAngle : 135,
-                    pcolor      : given,
-                },
-                DLeft : {
-                    letterAngle : 90,
-                    pcolor      : given,
-                    doPaintPname : false,
-                },
-
-                //proof
-                b : {
-                    pos: b,
-                    letterAngle : 0,
-                    pcolor      : proof,
-                },
-
-                c : {
-                    letterAngle : 45,
-                    letterRotRadius : 13,
-                    pcolor      : proof,
-                },
-    
-                d : {
-                    pos         : d,
-                    letterAngle : 90,
-                    pcolor      : proof,
-                },
-
-                curveStart  : {
-                    pos : [ A[0]-80, 0 ],
-                },
-
-                curveEnd : {
-                    pos : [B[0]+50,0],
-                },
-                curveLeftEnd : {
-                    pos : [250,100],
-                },
-            }
-            originalPoints = {...originalPoints, ...originalPointsBonus};
-        }
-
 
         //----------------------------------
         // //\\ curve pars
@@ -282,4 +244,3 @@
         });
     }
 }) ();
-

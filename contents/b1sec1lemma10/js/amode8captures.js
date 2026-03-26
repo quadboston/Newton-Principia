@@ -6,7 +6,7 @@
 
     function amode2rgstate( captured )
     {
-        var { logic_phase, aspect, subessay } = amode;
+        var { logic_phase } = amode;
 
         //hides all proof material, proof is already done in lemma 9
         [
@@ -38,7 +38,6 @@
             //:linear areas
             "Afd",
             "Age",
-
         ].forEach( gname => { rg[ gname ].undisplay = true; });
 
         rg.pivotPoint1.pcolor = sDomF.getFixedColor( 'given' )
@@ -48,16 +47,9 @@
             //Sets and constrains the tiltAngle as follows.
             rg.tiltAngle.value = 0;
         }
-        if(
-            aspect === 'addendum'
-        ) {
-            sDomF.detected_user_interaction_effect( !'doUndetected' );
-        }
         rg.Ae.pcolor = sDomF.getFixedColor( 'given' )
         rg.e.pcolor = sDomF.getFixedColor( 'given' )
 
         return captured;
     }
-
 }) ();
-

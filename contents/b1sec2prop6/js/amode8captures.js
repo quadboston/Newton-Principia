@@ -1,6 +1,6 @@
 ( function() {
     var { sDomF, ssD, ssF,
-        sData, sconf, amode, toreg, stdMod, rg, }
+        sconf, amode, toreg, stdMod, rg, }
         = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     foldPointsRemovedFromTp = false;
     return;
@@ -8,8 +8,7 @@
 
     function amode2rgstate( captured )
     {
-        var { logic_phase, aspect, subessay } = amode;
-        sData.GRAPH_PATH = sconf.GRAPH_PATH;
+        var { logic_phase, subessay } = amode;
         
         sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
             fp.rgX.undisplay = true;

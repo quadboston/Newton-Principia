@@ -1,12 +1,12 @@
 ( function() {
-    var { sData, }
+    var { }
         = window.b$l.apptree({ stdModExportList : { customXLegend}, });
     return;
 
 
 	function customXLegend() {
 		return {
-			legendText	: sData.GRAPH_PATH ? 'Distance along arc' : 'Distance from force center, r',
+			legendText	: 'Distance along arc',
 			legendX	: -520,
 		}
 	}
