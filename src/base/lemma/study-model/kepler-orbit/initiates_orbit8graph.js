@@ -6,7 +6,6 @@
             initiates_kepler_config,
         },
     });
-    const graphArray = sn( 'graphArray', stdMod, [] );
     const qIndexToOrbit = sn( 'qIndexToOrbit', ssD, [] );
     return;
 
@@ -14,7 +13,6 @@
     function initiates_kepler_config() {
         sconf.pointDecoration.r = sconf.handleRadius;
         sconf.ro0SquaredDivide2 = sconf.ro0*sconf.ro0 / 2;
-        sData.GRAPH_PATH = false; //local lemma can change this
     }    
     
     function initiates_orbit8graph() {
