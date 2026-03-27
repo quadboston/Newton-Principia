@@ -24,16 +24,16 @@ from a ¦P¦given place¦¦ with a given ¦PR¦velocity¦¦ along a ¦PR¦given 
 }
 *..*
 Let the centripetal ¦p,f¦force¦¦ tending toward a point ¦S¦¦ be such that a body ¦p¦¦
-revolves by its action in any given orbit ¦orbit-sample¦pq¦¦, and let its ¦p,vSample¦velocity¦¦ in the place ¦p¦¦
+revolves by its action in any given orbit ¦orbit-sample¦pq¦¦, and let its ¦p,point_r¦velocity¦¦ in the place ¦p¦¦
 be found out. Let body ¦P¦¦ go forth from place ¦P¦¦ along line ¦PR¦¦ with a given
 ¦PR¦velocity¦¦ and thereupon be deflected from that line into a conic ¦orbit¦PQ¦¦ under
 the compulsion of the centripetal ¦p,f¦force¦¦. Therefore the straight line ¦PR¦¦ will
-touch this ¦orbit¦conic¦¦ at ¦P¦¦. Let some straight line ¦p,vSample¦pr¦¦ likewise touch the orbit ¦orbit-sample¦pq¦¦
+touch this ¦orbit¦conic¦¦ at ¦P¦¦. Let some straight line ¦p,point_r¦pr¦¦ likewise touch the orbit ¦orbit-sample¦pq¦¦
 at ¦p¦¦, and if ¦S,Ys SY¦perpendiculars¦¦ are understood to be dropped from ¦S¦¦ to
-¦p,vSample PR¦these tangents¦¦,
+¦p,point_r PR¦these tangents¦¦,
 the principal ¦L,LL¦latus rectum of the conic¦¦ will (by prop. 16, corol. 1)
 be to the principal ¦l,ll¦latus rectum of the orbit¦¦ in a ratio compounded of the
-squares of the ¦S,Ys SY¦perpendiculars¦¦ and the squares of the ¦p,vSample PR¦velocities¦¦ and thus is 
+squares of the ¦S,Ys SY¦perpendiculars¦¦ and the squares of the ¦p,point_r PR¦velocities¦¦ and thus is 
 given. Let L be the ¦L,LL¦latus rectum of the conic¦¦. The focus ¦S¦¦ of the ¦orbit¦conic¦¦ is
 also given. Let angle ¦PR PH¦RPH¦¦ be the complement of angle ¦PR SP¦RPS¦¦ to two right
 angles [i.e., the supplement of angle ¦PR SP¦RPS¦¦]; then the line ¦PH¦¦, on which the

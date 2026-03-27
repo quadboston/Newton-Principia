@@ -259,7 +259,7 @@
                 pcolor : given,
                 letterAngle : 120,
             },
-            vSample : { // dragger r
+            point_r : { // dragger r
                 caption : 'r',
                 pcolor : given,
                 letterAngle : 135,
@@ -423,7 +423,7 @@
                 captionShiftNorm : 44, 
                 lposYSugar : -5, }, 
             },
-            { 'p,vSample' : { 
+            { 'p,point_r' : { 
                 pcolor : given, 
                 'stroke-width' : 1.1, 
                 captionShiftNorm : -18,

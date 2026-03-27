@@ -131,7 +131,7 @@
                 //dropLine(... = start + direction * t
                 let udir = sop.cosOmega * cosOmega + sop.om * sinOmega;
                 nspaste( 
-                    rg.vSample.pos, 
+                    rg.point_r.pos, 
                     mat.sm( sop.Kepler_v*udir, uu, 1, rg.p.pos ) 
                 );
             }

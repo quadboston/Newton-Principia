@@ -233,10 +233,10 @@
         // //\\ sample slider for point r
         //      for Kepler_v
         //=========================================================================
-        rg.vSample.processOwnDownEvent = function() {
+        rg.point_r.processOwnDownEvent = function() {
             const pp                    = rg.p.pos;
-            sData.pos_r                 = nspaste( [], rg.vSample.pos );
-            var dShift                  = mat.sm( 1, rg.vSample.pos, -1, pp );
+            sData.pos_r                 = nspaste( [], rg.point_r.pos );
+            var dShift                  = mat.sm( 1, rg.point_r.pos, -1, pp );
             sData.dShift_r              = Math.sqrt( 
                                             dShift[0]*dShift[0] + 
                                             dShift[1]*dShift[1] 
@@ -247,8 +247,8 @@
             sData.stashedLatus4slider_r = sop.latus;
         };
 
-        rg.vSample.acceptPos = ( newPos, dragMove ) => {
-            //console.log('moving vSample');
+        rg.point_r.acceptPos = ( newPos, dragMove ) => {
+            //console.log('moving point_r');
             var { logic_phase, aspect, subessay } = amode;
             const pp = rg.p.pos;
             let np = nspaste( [], [
