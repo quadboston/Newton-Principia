@@ -148,7 +148,7 @@
             body,
             orbit,
             proof,
-            resultOnlyVisibleWhenHighlighted,
+            supplementColorOnlyVisibleWhenHighlighted,
 			proofOnlyVisibleWhenHighlighted,
             force,
             result,
@@ -280,13 +280,11 @@
 
             // latus rectum
             L : {
-                pcolor : orbit,
                 cssClass : 'hidden',
                 letterAngle : -45,
                 letterRotRadius : 20,
             },
             LL : {
-                pcolor : orbit,
                 cssClass : 'hidden',
                 doPaintPname : false,
             },
@@ -377,7 +375,7 @@
 			},},
 
             { 'L,LL' : { 
-			    pcolor : resultOnlyVisibleWhenHighlighted,
+			    pcolor : supplementColorOnlyVisibleWhenHighlighted,
                 captionShiftNorm : 22, lposYSugar : 3
 			}, },
 

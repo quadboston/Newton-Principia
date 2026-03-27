@@ -152,7 +152,7 @@
             given,
             body,
             orbit,
-            resultOnlyVisibleWhenHighlighted,
+            supplementColorOnlyVisibleWhenHighlighted,
             proof,
             force,
             result,
@@ -390,7 +390,7 @@
             { CD : { pcolor : proof,
 						cssClass: 'subessay--solution',}, },
 
-            { 'L,LL' : { pcolor : resultOnlyVisibleWhenHighlighted,
+            { 'L,LL' : { pcolor : supplementColorOnlyVisibleWhenHighlighted,
                captionShiftNorm : 22, lposYSugar : 3 }, },
 
         ];

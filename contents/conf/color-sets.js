@@ -63,7 +63,6 @@
 		// background color used to highlight text and table rows on hover
 		tr.highlight = rgbToArray("rgb(234, 234, 234)");
 		const DARK_GRAY     = rgbToArray("rgb(99, 99, 99)");
-		const BLUE_GREEN    = rgbToArray("rgb(42, 157, 143)");
 		const PURPLE        = rgbToArray("rgb(131, 56, 236)");
 		const MAGENTA    = rgbToArray("rgb(211, 87, 254)");
 		const RED           = rgbToArray("rgb(255, 0, 0)");

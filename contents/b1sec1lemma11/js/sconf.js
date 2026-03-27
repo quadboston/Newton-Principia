@@ -92,7 +92,7 @@
             proof,
             result,
             hidden,
-			resultOnlyVisibleWhenHighlighted,
+			supplementColorOnlyVisibleWhenHighlighted,
 			givenOnlyVisibleWhenHighlighted,
         } = topicColors_repo;
 
@@ -228,7 +228,7 @@
 				cssClass: 'logic_phase--proof', }, },
             { 'AJ' : { pcolor : given,
 				cssClass: 'logic_phase--claim logic_phase--proof', }, },
-            { 'bM' : { pcolor : resultOnlyVisibleWhenHighlighted,
+            { 'bM' : { pcolor : supplementColorOnlyVisibleWhenHighlighted,
 				cssClass: 'logic_phase--corollary',}, },
         ];
 
