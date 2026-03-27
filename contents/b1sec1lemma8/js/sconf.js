@@ -46,7 +46,8 @@
         
         var A = [modorInPicX, modorInPicY];
         var B = [358, 165];
-        var D = [496, modorInPicY];
+        var D = [496, modorInPicY];        
+        var DLeft = [100, modorInPicY];
 
         //: svg model colors
         const {
@@ -170,6 +171,7 @@
                 pos : [250,100],
             },
             DLeft : {
+                pos         : DLeft,
                 letterAngle : 90,
                 pcolor      : given,
                 doPaintPname : false,
