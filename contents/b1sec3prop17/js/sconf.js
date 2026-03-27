@@ -235,8 +235,7 @@
 				cssClass: 'subessay--corollary1 subessay--corollary2',
                 letterRotRadius : 20,
             },
-            vb : { //speed of the body (dragger)
-                caption : 'R',
+            R : { //speed of the body (dragger)
                 pcolor : body,
                 letterAngle : 135, // degrees CCW from east
                 letterRotRadius : 25, //distance from point
@@ -365,7 +364,7 @@
 				pcolor : proof,
 				cssClass: 'subessay--solution',
 			}, },
-            { 'P,vb' : { 
+            { PR : { 
                 pcolor : body, 'stroke-width' : 2, 
                 captionShiftNorm : -18,
                 vectorTipIx : 1
