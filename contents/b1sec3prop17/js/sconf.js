@@ -256,11 +256,12 @@
             // //\\ sop (green conic)
             //-------------------------------------------
             p : {
+				caption : '𝑝',
                 pcolor : given,
                 letterAngle : 120,
             },
             point_r : { // dragger r
-                caption : 'r',
+                caption : '𝑟',
                 pcolor : given,
                 letterAngle : 135,
                 letterRotRadius : 20,
@@ -277,6 +278,7 @@
                 fontSize : 20,
             },
             q : {
+				caption : '𝑞',
                 pcolor : given,
 				cssClass : 'subessay--solution',
                 letterAngle : -65,
