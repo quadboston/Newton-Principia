@@ -139,11 +139,11 @@
 
 
         //=========================================================================
-        // //\\  body speed slider vb (R)
+        // //\\  body speed slider (R)
         //=========================================================================
         rg.vb.processOwnDownEvent = function() {
             const pp                    = rg.P.pos;
-            sData.vbpos                 = nspaste( [], rg.vb.pos );
+            sData.Rpos                 = nspaste( [], rg.vb.pos );
             var dShift                  = mat.sm( 1, rg.vb.pos, -1, pp );
             sData.dShift                = Math.sqrt( 
                                             dShift[0]*dShift[0] + 
@@ -161,8 +161,8 @@
             var { logic_phase, aspect, subessay } = amode;
             const pp = rg.P.pos;
             let np = nspaste( [], [
-                dragMove[0] + sData.vbpos[0],
-                -dragMove[1] + sData.vbpos[1]
+                dragMove[0] + sData.Rpos[0],
+                -dragMove[1] + sData.Rpos[1]
             ]);
             var dShift = mat.sm( 1, np, -1, pp );
             var dS = Math.sqrt( dShift[0]*dShift[0] + dShift[1]*dShift[1] );

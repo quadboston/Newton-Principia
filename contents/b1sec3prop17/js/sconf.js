@@ -166,8 +166,8 @@
             shadow,
             hidden,
             attention,
+			sunColor
         } = topicColors_repo;
-        let red = [255,0,0]; //for debugging
 
 		const ALL_EXCEPT_PROBLEM_TAB = 
 			'subessay--solution subessay--corollary1 subessay--corollary2';
@@ -179,15 +179,11 @@
             result,
             hidden,
             body,
-            orbit               : result,
+            orbit,
             'orbit-sample'      : given,
             trace               : [...given, 0.5], // show only faint line for full sample orbit
             shadow,
             force               : force,
-
-            // table colours
-            e                   : result,
-            conic               : result
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -196,7 +192,7 @@
         var originalPoints = {};
         Object.assign( originalPoints, {
             S : {
-                pcolor : result,
+                pcolor : sunColor,
                 letterAngle : -115,
                 letterRotRadius : 20,
             },
@@ -235,9 +231,9 @@
 				cssClass: 'subessay--corollary1 subessay--corollary2',
                 letterRotRadius : 20,
             },
-            vb : { //speed of the body (dragger)
+            vb : { //velocity of the body (dragger)
                 caption : 'R',
-                pcolor : body,
+                pcolor : given,
                 letterAngle : 135, // degrees CCW from east
                 letterRotRadius : 25, //distance from point
                 draggableX  : true,
