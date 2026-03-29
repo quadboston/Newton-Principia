@@ -86,7 +86,8 @@
 
         var A = [modorInPicX, modorInPicY];
         var B = [323, 156];
-        var D = [474, modorInPicY];
+        var D = [474, modorInPicY];        
+        var DLeft = [70, modorInPicY];
         var d = [778, modorInPicY];
         var b = [514, 254];
 
@@ -157,6 +158,7 @@
             }, 
 
             DLeft : {
+                pos         : DLeft,
                 letterAngle : 90,
                 pcolor      : given,
                 doPaintPname : false,

@@ -86,7 +86,7 @@
         var A = [modorInPicX, modorInPicY];
         var B = [323, 156];
         var D = [474, modorInPicY];
-
+        var DLeft = [50, modorInPicY];
 
         //: *** used only if BONUS || rgShapesVisible
         var r = [modorInPicX, 531];
@@ -171,6 +171,7 @@
 				pcolor      : proof,
 			},
 			DLeft : {
+                pos         : DLeft,
 				letterAngle : 90,
 				pcolor      : given,
 				doPaintPname : false,
