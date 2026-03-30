@@ -78,6 +78,7 @@
 		tr.supplementColorOnlyVisibleWhenHighlighted
 			= [...tr.supplementColor, 0, 1];
 		tr.body        = rgbToArray("rgb(51, 107, 186)"),
+		tr.body2       = rgbToArray("rgb(205, 103, 54)"),//rgbToArray("rgb(255, 149, 111)"),
 
 
 
@@ -202,7 +203,9 @@
 
 		function groupCommonColors() {
 			tr.orbit = tr.body;
+			tr.orbit2 = tr.body2;
 			tr.corollaryColor = tr.proof;
+			tr.corollaryColorOnlyVisibleWhenHighlighted = [...tr.corollaryColor, 0, 1];
 			tr.speed = tr.curvature = tr.supplementColor;
 			tr.supplementColorOnlyVisibleWhenHighlighted = 
 					[...tr.supplementColor, 0, 1];

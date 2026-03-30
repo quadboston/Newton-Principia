@@ -158,14 +158,17 @@
             given,
             body,
             orbit,
+			body2,
+			orbit2,
             proof,
-			resultOnlyVisibleWhenHighlighted,
+			supplementColorOnlyVisibleWhenHighlighted,
 			givenOnlyVisibleWhenHighlighted,
             result,
             force,
             shadow,
             hidden,
-            attention,
+			corollaryColor,
+			corollaryColorOnlyVisibleWhenHighlighted,
 			sunColor
         } = topicColors_repo;
 
@@ -180,7 +183,7 @@
             hidden,
             body,
             orbit,
-            'orbit-sample'      : given,
+            'orbit-sample'      : orbit2,
             trace               : [...given, 0.5], // show only faint line for full sample orbit
             shadow,
             force               : force,
@@ -213,21 +216,21 @@
             B : {
                 letterRotRadius : 20,
 				cssClass: 'subessay--solution',
-                pcolor : result,
+                pcolor : body,
             },
             C : { //center symmetry of orbit
-                pcolor : result,
+                pcolor : proof,
 				cssClass: 'subessay--solution',
                 letterAngle : -45,
             },
 
             H : {
-                pcolor : result,
+                pcolor : proof,
 				cssClass: ALL_EXCEPT_PROBLEM_TAB,
                 letterAngle : -90,
             },
             D : {
-                pcolor : result,
+                pcolor : corollaryColor,
 				cssClass: 'subessay--corollary1 subessay--corollary2',
                 letterRotRadius : 20,
             },
@@ -239,7 +242,7 @@
                 draggableY  : true,
             },
             Q : {
-                pcolor : result,
+                pcolor : body,
 				cssClass : 'subessay--solution',
                 letterAngle : 225,
                 letterRotRadius : 20,
@@ -253,7 +256,7 @@
             //-------------------------------------------
             p : {
 				caption : '𝑝',
-                pcolor : given,
+                pcolor : body2,
                 letterAngle : 120,
             },
             point_r : { // dragger r
@@ -275,7 +278,7 @@
             },
             q : {
 				caption : '𝑞',
-                pcolor : given,
+                pcolor : body2,
 				cssClass : 'subessay--solution',
                 letterAngle : -65,
                 letterRotRadius : 20,
@@ -337,7 +340,7 @@
             //-------------------------------------------
             // //\\ op (PR brown conic)
             //-------------------------------------------                        
-            { SP : { pcolor : body},},   
+            { SP : { pcolor : given},},   
             { SK : {
 				pcolor : proof,
 				cssClass: 'subessay--solution subessay--corollary1',
@@ -347,15 +350,15 @@
 				cssClass: 'subessay--solution subessay--corollary1',
 			}, },
             { PK : {
-				pcolor : attention,
+				pcolor : proof,
 				cssClass: 'subessay--solution subessay--corollary1',
 			}, },
             { 'L,LL' : { 
-				pcolor : resultOnlyVisibleWhenHighlighted,
+				pcolor : supplementColorOnlyVisibleWhenHighlighted,
                captionShiftNorm : 22, lposYSugar : 3
 			}, },
             { CB : {
-				pcolor : result,
+				pcolor : proof,
 				cssClass: 'subessay--solution',
 			}, },   
             { BH : {
@@ -363,7 +366,7 @@
 				cssClass: 'subessay--solution',
 			}, },
             { PR : { 
-                pcolor : body,
+                pcolor : given,
                 captionShiftNorm : -18,
                 vectorTipIx : 1
 			}, },
@@ -371,15 +374,15 @@
             //not visible, because behind overlapping lines  
             //but may be highlighted in text links                      
             { CS : {
-				pcolor : result,
+				pcolor : proof,
 				cssClass: 'subessay--solution',
 			}, },
             { DS : { 
-				pcolor : proof,
+				pcolor : corollaryColorOnlyVisibleWhenHighlighted,
 				cssClass: 'subessay--corollary1 subessay--corollary2',
 			}, },
             { DH : {
-				pcolor : result,
+				pcolor :corollaryColorOnlyVisibleWhenHighlighted,
 				cssClass: 'subessay--corollary1 subessay--corollary2',
 			}, },
             { CH : {
@@ -390,12 +393,12 @@
             // perpendiculars referenced in the Solution
             { 'SY' : { 
 				// perpendicular from S to PR
-                pcolor : resultOnlyVisibleWhenHighlighted,
+                pcolor : supplementColorOnlyVisibleWhenHighlighted,
                 captionShiftNorm : -28 
             }, }, 
             { 'S,Ys' : { 
 				// perpendicular from S to pr
-                pcolor : givenOnlyVisibleWhenHighlighted,
+                pcolor : supplementColorOnlyVisibleWhenHighlighted,
                 captionShiftNorm : -28 
             }, },
             //-------------------------------------------
