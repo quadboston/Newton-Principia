@@ -92,7 +92,6 @@
         var r = [modorInPicX, 531];
         var R = [modorInPicX, 302];
         var d = [778, modorInPicY];
-        var b = [514, 254];
         //var M = [50, modorInPicY];
 
         //================================================================
@@ -175,6 +174,9 @@
 				letterAngle : 90,
 				pcolor      : given,
 				doPaintPname : false,
+			},
+			curveLeftEnd : {
+				pos : [250,100],
 			},
         };
         
