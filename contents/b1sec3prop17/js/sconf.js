@@ -167,7 +167,6 @@
             hidden,
             attention,
         } = topicColors_repo;
-        let red = [255,0,0]; //for debugging
 
 		const ALL_EXCEPT_PROBLEM_TAB = 
 			'subessay--solution subessay--corollary1 subessay--corollary2';
@@ -367,7 +366,7 @@
 				cssClass: 'subessay--solution',
 			}, },
             { PR : { 
-                pcolor : body, 'stroke-width' : 2, 
+                pcolor : body,
                 captionShiftNorm : -18,
                 vectorTipIx : 1
 			}, },
@@ -453,4 +452,3 @@
         });
     }
 }) ();
-
