@@ -86,13 +86,12 @@
         var A = [modorInPicX, modorInPicY];
         var B = [323, 156];
         var D = [474, modorInPicY];
-
+        var DLeft = [50, modorInPicY];
 
         //: *** used only if BONUS || rgShapesVisible
         var r = [modorInPicX, 531];
         var R = [modorInPicX, 302];
         var d = [778, modorInPicY];
-        var b = [514, 254];
         //var M = [50, modorInPicY];
 
         //================================================================
@@ -171,9 +170,13 @@
 				pcolor      : proof,
 			},
 			DLeft : {
+                pos         : DLeft,
 				letterAngle : 90,
 				pcolor      : given,
 				doPaintPname : false,
+			},
+			curveLeftEnd : {
+				pos : [250,100],
 			},
         };
         

@@ -231,8 +231,7 @@
 				cssClass: 'subessay--corollary1 subessay--corollary2',
                 letterRotRadius : 20,
             },
-            vb : { //velocity of the body (dragger)
-                caption : 'R',
+            R : { //velocity of the body (dragger)
                 pcolor : given,
                 letterAngle : 135, // degrees CCW from east
                 letterRotRadius : 25, //distance from point
@@ -253,11 +252,12 @@
             // //\\ sop (green conic)
             //-------------------------------------------
             p : {
+				caption : '𝑝',
                 pcolor : given,
                 letterAngle : 120,
             },
-            vSample : { // dragger r
-                caption : 'r',
+            point_r : { // dragger r
+                caption : '𝑟',
                 pcolor : given,
                 letterAngle : 135,
                 letterRotRadius : 20,
@@ -274,6 +274,7 @@
                 fontSize : 20,
             },
             q : {
+				caption : '𝑞',
                 pcolor : given,
 				cssClass : 'subessay--solution',
                 letterAngle : -65,
@@ -361,8 +362,8 @@
 				pcolor : proof,
 				cssClass: 'subessay--solution',
 			}, },
-            { 'P,vb' : { 
-                pcolor : body, 'stroke-width' : 2, 
+            { PR : { 
+                pcolor : body,
                 captionShiftNorm : -18,
                 vectorTipIx : 1
 			}, },
@@ -420,7 +421,7 @@
                 captionShiftNorm : 44, 
                 lposYSugar : -5, }, 
             },
-            { 'p,vSample' : { 
+            { 'p,point_r' : { 
                 pcolor : given, 
                 'stroke-width' : 1.1, 
                 captionShiftNorm : -18,
@@ -448,4 +449,3 @@
         });
     }
 }) ();
-
