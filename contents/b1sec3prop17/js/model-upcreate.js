@@ -76,12 +76,12 @@
         } = deltaT_2_arc();
         nspaste( rg.Q.pos, rr );
 
-        // dragger vb (aka Pv)
+        // dragger R
         {
             //dropLine(... = start + direction * t
             let udir = op.cosOmega * cosOmega + op.om * sinOmega;
             nspaste( 
-                rg.vb.pos, 
+                rg.R.pos, 
                 mat.sm( op.Kepler_v*udir, uu, 1, rg.P.pos ) 
             );
         }
@@ -131,7 +131,7 @@
                 //dropLine(... = start + direction * t
                 let udir = sop.cosOmega * cosOmega + sop.om * sinOmega;
                 nspaste( 
-                    rg.vSample.pos, 
+                    rg.point_r.pos, 
                     mat.sm( sop.Kepler_v*udir, uu, 1, rg.p.pos ) 
                 );
             }

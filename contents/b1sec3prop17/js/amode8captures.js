@@ -20,7 +20,7 @@
         rg.media_scale.value = 1;
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
 
-		rg.vSample.hideD8Dpoint =
+		rg.point_r.hideD8Dpoint =
 			// for this corollary, p's velocity is determined by the force
 			logic_phase === 'corollary' && amode.subessay === 'corollary2';
 			

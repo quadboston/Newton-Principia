@@ -8,7 +8,7 @@
 Supposing that the centripetal ¦p,f¦force¦¦ is inversely proportional to the square of the
 ¦Sp SP¦distance of places¦¦ from the ¦S¦center¦¦ and that the absolute quantity of this ¦p,f¦force¦¦ is
 known, it is required to find the ¦orbit¦line¦¦ which a ¦P¦body¦¦ describes when going forth
-from a ¦P¦given place¦¦ with a given ¦P,vb¦velocity¦¦ along a ¦P,vb¦given straight line¦¦.
+from a ¦P¦given place¦¦ with a given ¦PR¦velocity¦¦ along a ¦PR¦given straight line¦¦.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 470.</div>
 
@@ -24,19 +24,19 @@ from a ¦P¦given place¦¦ with a given ¦P,vb¦velocity¦¦ along a ¦P,vb¦gi
 }
 *..*
 Let the centripetal ¦p,f¦force¦¦ tending toward a point ¦S¦¦ be such that a body ¦p¦¦
-revolves by its action in any given orbit ¦orbit-sample¦pq¦¦, and let its ¦p,vSample¦velocity¦¦ in the place ¦p¦¦
-be found out. Let body ¦P¦¦ go forth from place ¦P¦¦ along line ¦P,vb¦PR¦¦ with a given
-¦P,vb¦velocity¦¦ and thereupon be deflected from that line into a conic ¦orbit¦PQ¦¦ under
-the compulsion of the centripetal ¦p,f¦force¦¦. Therefore the straight line ¦P,vb¦PR¦¦ will
-touch this ¦orbit¦conic¦¦ at ¦P¦¦. Let some straight line ¦p,vSample¦pr¦¦ likewise touch the orbit ¦orbit-sample¦pq¦¦
+revolves by its action in any given orbit ¦orbit-sample¦pq¦¦, and let its ¦p,point_r¦velocity¦¦ in the place ¦p¦¦
+be found out. Let body ¦P¦¦ go forth from place ¦P¦¦ along line ¦PR¦¦ with a given
+¦PR¦velocity¦¦ and thereupon be deflected from that line into a conic ¦orbit¦PQ¦¦ under
+the compulsion of the centripetal ¦p,f¦force¦¦. Therefore the straight line ¦PR¦¦ will
+touch this ¦orbit¦conic¦¦ at ¦P¦¦. Let some straight line ¦p,point_r¦pr¦¦ likewise touch the orbit ¦orbit-sample¦pq¦¦
 at ¦p¦¦, and if ¦S,Ys SY¦perpendiculars¦¦ are understood to be dropped from ¦S¦¦ to
-¦p,vSample P,vb¦these tangents¦¦,
+¦p,point_r PR¦these tangents¦¦,
 the principal ¦L,LL¦latus rectum of the conic¦¦ will (by prop. 16, corol. 1)
 be to the principal ¦l,ll¦latus rectum of the orbit¦¦ in a ratio compounded of the
-squares of the ¦S,Ys SY¦perpendiculars¦¦ and the squares of the ¦p,vSample P,vb¦velocities¦¦ and thus is 
+squares of the ¦S,Ys SY¦perpendiculars¦¦ and the squares of the ¦p,point_r PR¦velocities¦¦ and thus is 
 given. Let L be the ¦L,LL¦latus rectum of the conic¦¦. The focus ¦S¦¦ of the ¦orbit¦conic¦¦ is
-also given. Let angle ¦P,vb PH¦RPH¦¦ be the complement of angle ¦P,vb SP¦RPS¦¦ to two right
-angles [i.e., the supplement of angle ¦P,vb SP¦RPS¦¦]; then the line ¦PH¦¦, on which the
+also given. Let angle ¦PR PH¦RPH¦¦ be the complement of angle ¦PR SP¦RPS¦¦ to two right
+angles [i.e., the supplement of angle ¦PR SP¦RPS¦¦]; then the line ¦PH¦¦, on which the
 other focus ¦H¦¦ is located, will be given in position. 
 <br><br>
 Drop the perpendicular
@@ -57,16 +57,16 @@ Add to each side
 = 2(¦SP¦¦ × ¦PH¦¦) + 2(¦PK¦KP¦¦ × ¦PH¦¦), or ¦SP¦¦ + ¦PH¦¦ will be to ¦PH¦¦ as 2¦SP¦¦ + 2¦PK¦KP¦¦ to ¦L,LL¦L¦¦.
 Hence ¦PH¦¦ is given in length as well as in position.
 <br><br>
-Specifically, if the ¦P,vb¦velocity¦¦
+Specifically, if the ¦PR¦velocity¦¦
 of the body at ¦P¦¦ is such that the latus rectum ¦L,LL¦L¦¦ is less than 2¦SP¦¦ + 2¦PK¦KP¦¦, ¦PH¦¦
-will lie on the same side of the tangent ¦P,vb¦PR¦¦ as the line ¦SP¦PS¦¦; and thus the ¦orbit¦figure¦¦
+will lie on the same side of the tangent ¦PR¦¦ as the line ¦SP¦PS¦¦; and thus the ¦orbit¦figure¦¦
 will be an ellipse and will be given from the given foci ¦S¦¦ and ¦H¦¦ and the
-given principal axis ¦SP¦¦ + ¦PH¦¦. But if the ¦P,vb¦velocity¦¦ of the ¦P¦body¦¦ is so great that
+given principal axis ¦SP¦¦ + ¦PH¦¦. But if the ¦PR¦velocity¦¦ of the ¦P¦body¦¦ is so great that
 the latus rectum ¦L,LL¦L¦¦ is equal to 2¦SP¦¦ + 2¦PK¦KP¦¦, the length ¦PH¦¦ will be infinite; and
 accordingly the ¦orbit¦figure¦¦ will be a parabola having its axis ¦CS CH¦SH¦¦ parallel to the
 line ¦PK¦¦, and hence will be given. But if the ¦P¦body¦¦ goes forth from its place
-¦P¦¦ with a still greater ¦P,vb¦velocity¦¦, the length ¦PH¦¦ will have to be taken on the
-other side of the ¦P,vb¦tangent¦¦; and thus, since the ¦P,vb¦tangent¦¦ goes between the ¦S H¦foci¦¦,
+¦P¦¦ with a still greater ¦PR¦velocity¦¦, the length ¦PH¦¦ will have to be taken on the
+other side of the ¦PR¦tangent¦¦; and thus, since the ¦PR¦tangent¦¦ goes between the ¦S H¦foci¦¦,
 the ¦orbit¦figure¦¦ will be a hyperbola having its principal axis equal to the difference
 of the lines ¦SP¦¦ and ¦PH¦¦, and hence will be given. 
 <br><br>
@@ -78,8 +78,8 @@ cases revolves in a ¦orbit¦conic¦¦ thus found, it has been demonstrated in p
 that the centripetal ¦p,f¦force¦¦ will be inversely as the square of the
 distance of the ¦P¦body¦¦ from the center of forces ¦S¦¦; and thus the line ¦orbit¦PQ¦¦ is
 correctly determined, which a ¦P¦body¦¦ will describe under the action of such a
-¦p,f¦force¦¦, when it goes forth from a given place ¦P¦¦ with a given ¦P,vb¦velocity¦¦ along a
-straight line ¦P,vb¦PR¦¦ given in position. &nbsp;&nbsp; Q.E.F.
+¦p,f¦force¦¦, when it goes forth from a given place ¦P¦¦ with a given ¦PR¦velocity¦¦ along a
+straight line ¦PR¦¦ given in position. &nbsp;&nbsp; Q.E.F.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 470.</div>
 <hr>
@@ -117,9 +117,9 @@ dividendo], becomes ¦DS¦¦ to ¦DH¦¦ as 4¦DS¦¦&nbsp;−&nbsp;¦L,LL¦L¦�
   "subessay" : "corollary2"
 }
 *..*
-Hence, given the ¦P,vb¦velocity¦¦ of a ¦P¦body¦¦ in the principal vertex
+Hence, given the ¦PR¦velocity¦¦ of a ¦P¦body¦¦ in the principal vertex
 ¦D¦¦, the orbit will be found expeditiously, namely, by taking its ¦L,LL¦latus rectum¦¦ to
-twice the distance ¦DS¦¦ as the square of the ratio of this given ¦P,vb¦velocity¦¦ to the
+twice the distance ¦DS¦¦ as the square of the ratio of this given ¦PR¦velocity¦¦ to the
 velocity of a body revolving in a circle at a distance ¦DS¦¦ (by prop. 16, corol.
 3), and then taking ¦DH¦¦ to ¦DS¦¦ as the ¦L,LL¦latus rectum¦¦ to the difference between
 the ¦L,LL¦latus rectum¦¦ and 4¦DS¦¦.
