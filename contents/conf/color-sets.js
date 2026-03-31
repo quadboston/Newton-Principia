@@ -74,7 +74,7 @@
 		tr.forceColor       = PURPLE;
         tr.estimatedForce  = MAGENTA;
 		tr.invalid     = RED;  //alert, invalid user actions
-		tr.supplementColor = tr.curvature       = DARK_GRAY;//BROWN;//rgbToArray("rgb(200, 40, 200)");
+		tr.supplementColor = DARK_GRAY;//BROWN;//rgbToArray("rgb(200, 40, 200)");
 		tr.supplementColorOnlyVisibleWhenHighlighted
 			= [...tr.supplementColor, 0, 1];
 		tr.body        = rgbToArray("rgb(51, 107, 186)"),
@@ -89,10 +89,6 @@
 		tr.instanttriangle         = [0, 150, 200, 0.2, 0.5 ]; //P14 (in P12 sconf)
 		tr.instanttriangleHiddenStart  = [0, 150, 200, 0.001, 0.5 ] //P12
 
-		// merge misc: used?
-        tr.speed       = DARK_GRAY;
-		// end merge misc
-
 		//neutral elements
 		tr.hidden  = [0, 0, 0, 0];
 
@@ -101,7 +97,6 @@
 		/*tr.estimatedForce  = rgbToArray("rgb(200, 0, 200)");*/
 		tr.sagitta         = tr.estimatedForce;
 		tr.displacement    = tr.estimatedForce;
-		//tr.curvature       = DARK_GRAY;//BROWN;//rgbToArray("rgb(200, 40, 200)");
 		tr.chord           = rgbToArray("rgb(0, 0, 255)");
 
 		//>>>>>>>>>>>>>>>>>
