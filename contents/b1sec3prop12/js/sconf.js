@@ -157,7 +157,6 @@
 			estimatedForce,
             proof,
             forceColor,
-            shadow,
             hidden,
             curvature,
             context,
@@ -174,9 +173,7 @@
             body,
             orbit               : orbit,
             orbitdq             : orbit,
-            shadow,
             force: forceColor,
-			
         };
         //-----------------------------------
         // \\// topic group colors,

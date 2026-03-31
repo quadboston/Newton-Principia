@@ -164,7 +164,6 @@
 			supplementColorOnlyVisibleWhenHighlighted,
 			givenOnlyVisibleWhenHighlighted,
             forceColor,
-            shadow,
             hidden,
 			corollaryColor,
 			corollaryColorOnlyVisibleWhenHighlighted,
@@ -183,7 +182,6 @@
             orbit,
             'orbit-sample'      : orbit2,
             trace               : [...given, 0.5], // show only faint line for full sample orbit
-            shadow,
             force               : forceColor,
         };
         //-----------------------------------
