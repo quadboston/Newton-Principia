@@ -118,10 +118,6 @@
 		tr.constructors        = rgbToArray("rgb(0, 0, 255)");
 		tr.ellipse             = rgbToArray("rgb(0, 150, 0)");
 
-		//From Prop 41
-		tr.shadow  = rgbToArray("rgb(50, 50, 50)"); // Prop 41 only
-		tr.distance  = rgbToArray("rgb(60, 20, 0)");
-
 		//From L2, L3, L4
 		tr.difference  = [150, 50, 0, 0, 0.64];
 		tr.figure      = rgbToArray("rgb(0, 150, 0)");
@@ -212,7 +208,6 @@
 			tr.givenOnlyVisibleWhenHighlighted = [...tr.given, 0, 1];
 		}
 
-		//Prop 41
 		setProp41Colors();
         
         const prevBtn = document.getElementsByClassName("prev")[0];
@@ -350,6 +345,9 @@
 			tr.D𝑏𝑧E = [110, 90, 0, 0.01, 0.5];
 			tr.VIC = [110, 90, 0, 0.01, 0.5];
 			tr.ICK = [110, 90, 0, 0.01, 0.5];
+
+			tr.shadow  = rgbToArray("rgb(50, 50, 50)"); // Prop 41 only
+			tr.distance  = rgbToArray("rgb(60, 20, 0)");
 		}
 	}
 
