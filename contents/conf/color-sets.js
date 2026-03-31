@@ -85,7 +85,6 @@
 
 		tr.sagitta         = tr.estimatedForce;
 		tr.displacement    = tr.estimatedForce;
-		tr.chord           = rgbToArray("rgb(0, 0, 255)");
 
 		//>>>>>>>>>>>>>>>>>
 
