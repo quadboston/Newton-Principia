@@ -35,8 +35,6 @@
             rg.Q.pos[1] = rrplus[1];
             rg.QtimeDecor.caption = '';
             rg.QtimeDecor.pos = Porb.rrplus;
-            let sagV = Porb.sagittaVector;
-            rg.sagitta.pos = [sagV[0]+rr[0],sagV[1]+rr[1]];
             const chord = rg.chord = [ rrplus[0] - rrminus[0], rrplus[1] - rrminus[1], ];
             rg.chord2 = chord[0]*chord[0]+chord[1]*chord[1];
 
@@ -280,7 +278,6 @@
             ////visibility has been not yet stashed;
             ////therefore, doing stashing now,
             ssD.stashedVisibility = {
-                'P,sagitta'             : rg[ 'P,sagitta' ].undisplay,
                 'Q'                     : rg.Q.undisplay,
                 'QtimeDecor'            : rg.QtimeDecor.undisplay,
                 'APQ'                   : rg.APQ.undisplay,
@@ -291,7 +288,6 @@
                 'SQ'                    : rg.SQ.undisplay,
                 'T'                     : rg.T.undisplay,
                 'QT'                    : rg.QT.undisplay,
-                'sagitta'               : rg.sagitta.undisplay,
                 'curvatureCircle'       : rg.curvatureCircle.undisplay,
             };
             ///heres is an actual code which hides shapes

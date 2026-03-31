@@ -22,8 +22,9 @@
         const Q_STEPS = sconf.Q_STEPS;
         const DATA_GRAPH_STEPS = sconf.DATA_GRAPH_STEPS;
         const force_law_function = sconf.force_law_function;
-        const IS_DEVIATION_SCALED_BY_FORCE_MAX = sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX;
-        const DEVIATION_SCALE_FACTOR = sconf.DEVIATION_SCALE_FACTOR || 1;
+        const IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX =
+            sconf.IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX;
+        const ESTIMATED_SCALE_FACTOR = sconf.ESTIMATED_SCALE_FACTOR || 1;
         const dataPeriod = Math.max( 1, Math.floor( Q_STEPS/DATA_GRAPH_STEPS ) );
 
         stdMod.graphFW_lemma.graphArray = graphArray;
@@ -31,32 +32,21 @@
         ///prepares averages and placeholder for data graphs
         const gstart = ssD.qix_graph_start;
         const gend = ssD.qix_graph_end;
-        var displMax = 0;
-        var sagittaMax = 0;
-        var instantForceMax = 0;
-        var speedMax = 0;
+        let estimatedForceMax = 0;
+        let actualForceMax = 0;
         //var fullPath = qIndexToOrbit[ gend ].pathAtQ;
         for( let qix=gstart; qix<=gend; qix++ ){
             const bP = qIndexToOrbit[ qix ];
-            const displacement = bP.displacement;
-            const sagitta = bP.sagitta;
-            const ds_dt = bP.ds_dt;
+            const estimatedForce = bP.estimatedForce;
             if( force_law_function ){
-                var instantForce = force_law_function(bP);
-
-            //this is a stub for non-Kepler orbits:    
-            //} else if( sconf.TIME_IS_FREE_VARIABLE ){
-            //    var instantForce = bP.instant_sagitta;
-
+                var actualForce = force_law_function(bP);
             } else {
-                var instantForce = bP.instant_displacement;
+                var actualForce = bP.actualForce;
             }
-            bP.instantForce = instantForce;
+            bP.actualForce = actualForce;
             if( !(qix%dataPeriod) || qix===Q_STEPS ){
-                sagittaMax = Math.max( Math.abs( sagitta ), sagittaMax );
-                instantForceMax = Math.max( Math.abs( instantForce ), instantForceMax );
-                displMax = Math.max( Math.abs( displacement ), displMax );
-                speedMax = Math.max( speedMax, ds_dt );
+                actualForceMax = Math.max(Math.abs(actualForce), actualForceMax);
+                estimatedForceMax = Math.max(Math.abs(estimatedForce), estimatedForceMax);
                 let graphColumn = {
                     qix,
                     rr : bP.rr,
@@ -76,22 +66,19 @@
         //------------------------------------------
         // //\\ resets graphArray
         //------------------------------------------
+        const estimatedForceScale = (IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX ?
+            actualForceMax * ESTIMATED_SCALE_FACTOR : estimatedForceMax);
         var arrLen = graphArray.length;
         for( var gix = 0; gix<arrLen; gix++ ){
             const ga = graphArray[ gix ];
             const qix = ga.qix;
             const bP = qIndexToOrbit[ qix ];
             bP.gix = gix;
-            const instf = Math.abs(bP.instantForce) / instantForceMax;
-            const disp = Math.abs(bP.displacement) / (IS_DEVIATION_SCALED_BY_FORCE_MAX ?
-                        instantForceMax * DEVIATION_SCALE_FACTOR : displMax);
-            const ds_dt = bP.ds_dt / speedMax;
-            const sagitta = Math.abs(bP.sagitta) / sagittaMax;
+            const actualForce = Math.abs(bP.actualForce) / actualForceMax;
+            const estimatedForce = Math.abs(bP.estimatedForce) / estimatedForceScale;
             ga.y = [
-                instf,
-                disp,
-                ds_dt,
-                sagitta,
+                actualForce,
+                estimatedForce,
             ];
         }
         ///this is a common graph lines, but this mask can be
@@ -99,7 +86,7 @@
         stdMod.graphFW_lemma.graphArrayMask = 
             [ 
                 'force',
-                'displacement',
+                'estimatedForce',
             ];
         //------------------------------------------
         // \\// resets graphArray
