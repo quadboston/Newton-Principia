@@ -105,8 +105,6 @@
 		tr.shadow  = rgbToArray("rgb(50, 50, 50)");
 		tr.hidden  = [0, 0, 0, 0];
 
-		tr.context = rgbToArray("rgb(0, 0, 0)");
-
 		tr.estimatedForce  = tr.proof;
 		tr.sagitta         = rgbToArray("rgb(200, 0, 200)");
 		tr.displacement    = tr.sagitta;

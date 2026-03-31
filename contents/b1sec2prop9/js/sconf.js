@@ -143,7 +143,6 @@
             forceColor,
             hidden,
             curvature,
-            context,
             sunColor,
             estimatedForce
         } = topicColors_repo;
@@ -154,7 +153,6 @@
             given,
             proof,
             hidden,
-            context,
             curvatureCircle : curvature,
             body,
             orbit,

@@ -92,9 +92,6 @@
 		//neutral elements
 		tr.hidden  = [0, 0, 0, 0];
 
-		tr.context = rgbToArray("rgb(0, 0, 0)");
-
-		/*tr.estimatedForce  = rgbToArray("rgb(200, 0, 200)");*/
 		tr.sagitta         = tr.estimatedForce;
 		tr.displacement    = tr.estimatedForce;
 		tr.chord           = rgbToArray("rgb(0, 0, 255)");

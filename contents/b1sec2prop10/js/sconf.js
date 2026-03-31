@@ -140,7 +140,6 @@
             forceColor,
             hidden,
             curvature,
-            context,
 			sunColor,
 			estimatedForce,
 			proofOnlyVisibleWhenHighlighted
@@ -152,7 +151,6 @@
             given,
             //proof,
             hidden,
-            context,
             curvature,
             body,
             orbit,

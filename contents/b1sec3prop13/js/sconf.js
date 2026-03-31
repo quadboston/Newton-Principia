@@ -141,7 +141,6 @@
             forceColor,
             hidden,
             curvature,
-            context,
 			sunColor,
         } = topicColors_repo;
 
@@ -150,7 +149,6 @@
             given,
             proof,
             hidden,
-            context,
             curvature,
             body,
             orbit               : orbit,
