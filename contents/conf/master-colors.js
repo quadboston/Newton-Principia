@@ -99,7 +99,7 @@
 		tr.force   = rgbToArray("rgb(200, 150, 0)");
 		//conclusion of the proof
 
-		tr.forceMove       = tr.force;
+		tr.forceColor       = tr.force;
 		tr.speed           = rgbToArray("rgb(90, 90, 90)");
 
 		//neutral elements

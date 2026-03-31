@@ -17,9 +17,8 @@ return;
 //-------------------------------------------------------
 function sconf_points8lines (){
     let {
-        force,
         freeMove,
-        forceMove,
+        forceColor,
 
         path,
         time,
@@ -39,12 +38,12 @@ function sconf_points8lines (){
     {   const harden = col => ([col[0],col[1],col[2],1,1]);
         //0.5 is good for areas, bad for lines,
         //so, lines shold have color pattern [x,x,x,1,1]
-        forceMove = harden(forceMove);
+        forceColor = harden(forceColor);
         path = harden(path);
         freeMove = harden(freeMove);
         speed = harden(speed);
         time = harden(time);
-        force = harden(force);
+        forceColor = harden(forceColor);
         perpendicular = harden(perpendicular);
 		sunColor = harden(sunColor);
     }
@@ -53,8 +52,7 @@ function sconf_points8lines (){
     var tpel = {
         diagram,
         speed,
-        force,
-        forceMove,
+        forceColor,
         time,                       //Time slider
         dt                  : time, //Delta time slider
         path,
@@ -99,8 +97,8 @@ function sconf_points8lines (){
         "DE"                : path,
         "EF"                : path,
 
-        "ABCV"              : forceMove,
-        "DEFZ"              : forceMove,
+        "ABCV"              : forceColor,
+        "DEFZ"              : forceColor,
 
         "Sc"                : diagram,
         "Sd"                : diagram,
@@ -112,18 +110,18 @@ function sconf_points8lines (){
         //  to force and sagitta,
         //  the pcolor which one can try to set on line segment Cc config
         //  may be overriden by elected topic color:
-        "Cc"                : forceMove,
+        "Cc"                : forceColor,
 
-        "Dd"                : forceMove,
-        "Ee"                : forceMove,
-        "Ff"                : forceMove,
-        "force-0-applied"   : forceMove,
-        "force-1-applied"   : forceMove,
-        "force-2-applied"   : forceMove,
-        "force-3-applied"   : forceMove,
-        "force-4-applied"   : forceMove,
+        "Dd"                : forceColor,
+        "Ee"                : forceColor,
+        "Ff"                : forceColor,
+        "force-0-applied"   : forceColor,
+        "force-1-applied"   : forceColor,
+        "force-2-applied"   : forceColor,
+        "force-3-applied"   : forceColor,
+        "force-4-applied"   : forceColor,
 
-        "force-center"      : force,
+        "force-center"      : forceColor,
         "S"                 : sunColor,
 
         "SA"                : path,
@@ -133,16 +131,16 @@ function sconf_points8lines (){
         "SE"                : path,
         "SF"                : path,
 
-        "BU"                : forceMove,
-        "EW"                : forceMove,
+        "BU"                : forceColor,
+        "EW"                : forceColor,
         "AC"                : sagittaeChords,
         "Av"                : speed,
         "DF"                : sagittaeChords,
 
-        force,
-        "Z"                 : force,
-        "V"                 : force,
-        "BV"                : forceMove,
+        force : forceColor,
+        "Z"                 : forceColor,
+        "V"                 : forceColor,
+        "BV"                : forceColor,
 
         //perpendicular
         "SP"                : perpendicular,
@@ -543,16 +541,16 @@ function sconf_points8lines (){
             //for specaial width at hover
             'vectorTipIx' : 1,
             'tipFraction' : 0.2,
-            'pcolor' : tpel.forceMove,
-            'tipFill' : tpel.forceMove,
+            'pcolor' : tpel.forceColor,
+            'tipFill' : tpel.forceColor,
         },
         { nam : ['E', 'W'],  //saggitae at E
             //decStart : rg.F.decStart,
             cssClass : 'hover-width ' + theor1corollary,
             'vectorTipIx' : 1,
             'tipFraction' : 0.4,
-            'pcolor' :  tpel.forceMove,
-            'tipFill' :  tpel.forceMove,
+            'pcolor' :  tpel.forceColor,
+            'tipFill' :  tpel.forceColor,
         },
         //------------------------------------
         // \\// cor4 prop1

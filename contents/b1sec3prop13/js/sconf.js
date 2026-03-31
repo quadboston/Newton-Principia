@@ -138,7 +138,7 @@
             orbit,
 			supplementColorOnlyVisibleWhenHighlighted,
             proof,
-            force,
+            forceColor,
             shadow,
             hidden,
             curvature,
@@ -157,7 +157,7 @@
             orbit               : orbit,
             orbitdq             : orbit,
             shadow,
-            force,
+            force : forceColor,
         };
         //-----------------------------------
         // \\// topic group colors,

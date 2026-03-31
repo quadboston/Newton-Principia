@@ -150,7 +150,7 @@
             proof,
             supplementColorOnlyVisibleWhenHighlighted,
 			proofOnlyVisibleWhenHighlighted,
-            force,
+            forceColor,
             hidden,
             curvature,
             context,
@@ -168,7 +168,7 @@
             curvature,
             body,
             orbit,
-            force,
+            force : forceColor,
         };
         //-----------------------------------
         // \\// topic group colors,

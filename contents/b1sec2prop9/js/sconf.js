@@ -140,7 +140,7 @@
             orbit,
             body,
             proof,
-            force,
+            forceColor,
             hidden,
             curvature,
             context,
@@ -158,7 +158,7 @@
             curvatureCircle : curvature,
             body,
             orbit,
-            force,
+			force : forceColor,
             "arc-QP" : body
         };
         //-----------------------------------

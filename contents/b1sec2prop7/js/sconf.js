@@ -147,7 +147,7 @@
             time,
             dtime,
             proof,
-            force,
+            forceColor,
             invalid,
             hidden,
             estimatedForce,
@@ -165,7 +165,7 @@
         {
             estimatedForce,
             body,
-            force,
+            forceColor,
             sagitta,
             chord,
             invalid,
@@ -176,6 +176,7 @@
             dtime,
             time,
             curvatureCircle : curvature,
+			force : forceColor,
             orbit,
             APQ     : orbit,
         };

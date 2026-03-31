@@ -9,7 +9,7 @@
 Every body that moves in some ¦path¦curved line¦¦ described in a plane and, by a radius
 drawn to a ¦S¦point¦¦, either unmoving or moving uniformly forward with a rectilinear
 motion, describes ¦SAB kepler-triangle-odd kepler-triangle-even¦areas¦¦ around that ¦S¦point¦¦ proportional to the times, is urged by a
-¦forceMove¦centripetal force¦¦ tending toward that same ¦S¦point¦¦.
+¦forceColor¦centripetal force¦¦ tending toward that same ¦S¦point¦¦.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 446.</div>
 
@@ -22,7 +22,7 @@ motion, describes ¦SAB kepler-triangle-odd kepler-triangle-even¦areas¦¦ arou
 }
 *..*
 Cᴀsᴇ 1. For every body that moves in a curved line is ¦Cc Dd Ee Ff¦deflected¦¦ from
-a ¦Bc Cd De Ef¦rectilinear course¦¦ by some ¦forceMove¦force¦¦ acting upon it (by law 1). And that ¦forceMove¦force¦¦
+a ¦Bc Cd De Ef¦rectilinear course¦¦ by some ¦forceColor¦force¦¦ acting upon it (by law 1). And that ¦forceColor¦force¦¦
 by which the body is deflected from a ¦Bc Cd De Ef¦rectilinear course¦¦ and in equal times
 is made to describe, about an immobile point ¦S¦¦, the equal minimally small
 triangles ¦SAB¦¦, ¦SBC¦¦, ¦SCD¦¦,&nbsp;.&nbsp;.&nbsp;.&nbsp;, acts in place ¦B¦¦ along a line parallel to ¦Cc¦𝑐C¦¦ (by
@@ -74,7 +74,7 @@ meet in the direction toward which the motion takes place.
   "logic_phaseCaption" : "Scholium"
 }
 *..*
-A body can be urged by a ¦forceMove¦centipetal force¦¦ compounded of several forces.
+A body can be urged by a ¦forceColor¦centipetal force¦¦ compounded of several forces.
 In this case the meaning of the proposition is that the force which is compounded
 of all the forces tends toward point ¦S¦¦. Further, if some force acts
 continually along a line perpendicular to the surface described, it will cause

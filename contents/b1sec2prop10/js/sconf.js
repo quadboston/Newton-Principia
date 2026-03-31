@@ -137,7 +137,7 @@
             body,
             orbit,
             proof,
-            force,
+            forceColor,
             hidden,
             curvature,
             context,
@@ -156,8 +156,9 @@
             curvature,
             body,
             orbit,
-            force,
+            forceColor,
             tangentCircle : curvature,
+			force : forceColor,
         };
         //-----------------------------------
         // \\// topic group colors,

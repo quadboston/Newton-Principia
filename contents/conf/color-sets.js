@@ -91,7 +91,7 @@
 
 		// merge misc: used?
         tr.speed       = DARK_GRAY;
-        tr.forceMove       = tr.force;
+        tr.forceColor       = tr.force;
 		// end merge misc
 
 		//neutral elements
