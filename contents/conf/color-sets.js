@@ -94,7 +94,6 @@
 		// end merge misc
 
 		//neutral elements
-		tr.shadow  = rgbToArray("rgb(50, 50, 50)");
 		tr.hidden  = [0, 0, 0, 0];
 
 		tr.context = rgbToArray("rgb(0, 0, 0)");
@@ -108,7 +107,7 @@
 		//>>>>>>>>>>>>>>>>>
 
         tr.dtime     = tr.estimatedForce;
-        tr.distance  = rgbToArray("rgb(60, 20, 0)");
+
 
 		//From L20, L21
 		tr.static              = rgbToArray("rgb(0, 200, 255)");
@@ -118,6 +117,10 @@
 		tr.aux                 = rgbToArray("rgb(255, 0, 255)");
 		tr.constructors        = rgbToArray("rgb(0, 0, 255)");
 		tr.ellipse             = rgbToArray("rgb(0, 150, 0)");
+
+		//From Prop 41
+		tr.shadow  = rgbToArray("rgb(50, 50, 50)"); // Prop 41 only
+		tr.distance  = rgbToArray("rgb(60, 20, 0)");
 
 		//From L2, L3, L4
 		tr.difference  = [150, 50, 0, 0, 0.64];
