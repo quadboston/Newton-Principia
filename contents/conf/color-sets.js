@@ -80,15 +80,6 @@
 		tr.body        = rgbToArray("rgb(51, 107, 186)"),
 		tr.body2       = rgbToArray("rgb(205, 103, 54)"),//rgbToArray("rgb(255, 149, 111)"),
 
-
-
-		//relates to moving body, to an orbit
-		tr.orbitareaSample         = [0, 150, 0,  0.05]; //P12
-		tr.orbitarea               = [0, 150, 0,  0.1, 0.5]; //P14 (in P12 sconf)
-		tr.orbitareaHiddenStart    = [0, 150, 0,  0.001, 0.5]; //P12
-		tr.instanttriangle         = [0, 150, 200, 0.2, 0.5 ]; //P14 (in P12 sconf)
-		tr.instanttriangleHiddenStart  = [0, 150, 200, 0.001, 0.5 ] //P12
-
 		//neutral elements
 		tr.hidden  = [0, 0, 0, 0];
 
