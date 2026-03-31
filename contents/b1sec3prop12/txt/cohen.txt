@@ -28,8 +28,8 @@ ordinate to the diameter ¦GP¦¦. Draw ¦SP¦¦ cutting diameter ¦DK¦¦ in ¦
 equal to the transverse semiaxis ¦CA¦AC¦¦, because when line ¦HI¦¦ is drawn parallel
 to ¦EC¦¦ from the other ¦H¦focus H¦¦ of the ¦orbit¦hyperbola¦¦, ¦ES¦¦ and ¦EI¦¦ are equal because
 ¦CS¦¦ and ¦CH¦¦ are equal;
-so that ¦EP¦¦ is the half-difference of ¦SP¦PS¦¦ and ¦PI¦¦, that
-is (because ¦HI¦IH¦¦ and ¦PR¦¦ are parallel and the angles ¦PR PI¦IPR¦¦ and ¦PH P,Zminus¦HPZ¦¦ are equal),
+so that ¦EP¦¦ is the half-difference of ¦SP¦PS¦¦ and ¦PE EI¦PI¦¦, that
+is (because ¦HI¦IH¦¦ and ¦PR¦¦ are parallel and the angles ¦PR PE EI ¦IPR¦¦ and ¦PH P,Zminus¦HPZ¦¦ are equal),
 of ¦SP¦PS¦¦ and ¦PH¦¦, the difference of which equals the whole axis 2¦CA¦AC¦¦. Drop
 ¦QT¦¦ perpendicular to ¦SP¦¦. Then, if ¦L,LL¦L¦¦ denotes the principal ¦L,LL¦latus rectum¦¦ of
 the ¦orbit¦hyperbola¦¦
