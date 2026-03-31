@@ -141,7 +141,6 @@
             body,
             proof,
             force,
-            result,
             hidden,
             curvature,
             context,
@@ -154,7 +153,6 @@
         {
             given,
             proof,
-            result,
             hidden,
             context,
             curvatureCircle : curvature,

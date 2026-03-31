@@ -139,7 +139,6 @@
 			supplementColorOnlyVisibleWhenHighlighted,
             proof,
             force,
-            result,
             shadow,
             hidden,
             curvature,
@@ -151,7 +150,6 @@
         {
             given,
             proof,
-            result,
             hidden,
             context,
             curvature,

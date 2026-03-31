@@ -92,9 +92,6 @@
 		//of a proof
 		tr.proof       = rgbToArray("rgb(0, 0, 255)");
 		tr.proofArea   = [...tr.proof, 1];
-		tr.result      = rgbToArray("rgb(100, 0, 0)");
-		tr.resultOnlyVisibleWhenHighlighted
-			= [...tr.result, 0, 1];
 
 		//alert, invalid user actions
 		tr.invalid = rgbToArray("rgb(250, 0, 0)");

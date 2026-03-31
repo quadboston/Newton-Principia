@@ -90,7 +90,6 @@
         const {
             given,
             proof,
-            result,
             hidden,
 			supplementColorOnlyVisibleWhenHighlighted,
 			givenOnlyVisibleWhenHighlighted,
@@ -100,7 +99,6 @@
         {
             given,
             proof,
-            result,
             hidden,
             'curve-AB'  : given,
             'arc-AB'    : given,

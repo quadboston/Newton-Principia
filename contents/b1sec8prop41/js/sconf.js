@@ -134,7 +134,6 @@
             proof,
             force,
             invalid,
-            result,
             shadow,
             hidden,
 
@@ -166,7 +165,6 @@
         {
             given,
             proof,
-            result,
             hidden,
             body,
             orbit,

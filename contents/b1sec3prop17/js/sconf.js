@@ -163,7 +163,6 @@
             proof,
 			supplementColorOnlyVisibleWhenHighlighted,
 			givenOnlyVisibleWhenHighlighted,
-            result,
             force,
             shadow,
             hidden,
@@ -179,7 +178,6 @@
         {
             given,
             proof,
-            result,
             hidden,
             body,
             orbit,
@@ -289,7 +287,6 @@
             
             //not shown as points, but used in calculations to draw lines
 			A : {
-                pcolor : result,
 				cssClass : 'hidden',
                 letterRotRadius : 20,
                 letterAngle : -90,

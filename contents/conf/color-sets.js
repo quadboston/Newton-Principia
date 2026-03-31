@@ -89,10 +89,6 @@
 		tr.instanttriangle         = [0, 150, 200, 0.2, 0.5 ]; //P14 (in P12 sconf)
 		tr.instanttriangleHiddenStart  = [0, 150, 200, 0.001, 0.5 ] //P12
 
-		tr.result      = rgbToArray("rgb(100, 0, 0)");
-		tr.resultOnlyVisibleWhenHighlighted
-			= [...tr.result, 0, 1];
-
 		// merge misc: used?
         tr.speed       = DARK_GRAY;
         tr.forceMove       = tr.force;
