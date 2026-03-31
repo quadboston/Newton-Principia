@@ -62,80 +62,26 @@
 
 		// background color used to highlight text and table rows on hover
 		tr.highlight = rgbToArray("rgb(234, 234, 234)");
-		const DARK_GRAY     = rgbToArray("rgb(99, 99, 99)");
-		const PURPLE        = rgbToArray("rgb(131, 56, 236)");
-		const MAGENTA    = rgbToArray("rgb(211, 87, 254)");
-		const RED           = rgbToArray("rgb(255, 0, 0)");
-		const PROOF_GREEN = rgbToArray("rgb(0, 133, 0)");
 
 		tr.sunColor    = rgbToArray("rgb(202, 131, 0)"); // center of force (S or C in propositions)
 		tr.given       = rgbToArray("rgb(139, 105, 20)");
-		tr.proof       = PROOF_GREEN;
-		tr.forceColor       = PURPLE;
-        tr.estimatedForce  = MAGENTA;
-		tr.invalid     = RED;  //alert, invalid user actions
-		tr.supplementColor = DARK_GRAY;//BROWN;//rgbToArray("rgb(200, 40, 200)");
+		tr.proof       = rgbToArray("rgb(0, 133, 0)");
+		tr.forceColor       = rgbToArray("rgb(131, 56, 236)");
+        tr.estimatedForce  = rgbToArray("rgb(211, 87, 254)");
+		tr.invalid     = rgbToArray("rgb(255, 0, 0)");  //alert, invalid user actions
+		tr.supplementColor = rgbToArray("rgb(99, 99, 99)");//BROWN;//rgbToArray("rgb(200, 40, 200)");
 		tr.supplementColorOnlyVisibleWhenHighlighted
 			= [...tr.supplementColor, 0, 1];
 		tr.body        = rgbToArray("rgb(51, 107, 186)"),
 		tr.body2       = rgbToArray("rgb(205, 103, 54)"),//rgbToArray("rgb(255, 149, 111)"),
 
-		//neutral elements
 		tr.hidden  = [0, 0, 0, 0];
 
-		tr.sagitta         = tr.estimatedForce;
-		tr.displacement    = tr.estimatedForce;
-
-		//>>>>>>>>>>>>>>>>>
-
-        tr.dtime     = tr.estimatedForce;
-
-
-		//From L20, L21
-		tr.static              = rgbToArray("rgb(0, 200, 255)");
-		tr.staticHalfOpacity   = [0, 200, 255, 0.5];
-		tr.core                = rgbToArray("rgb(255, 150, 0)");
-		tr.coreHalfOpacity     = [255, 150, 0, 0.5];
-		tr.aux                 = rgbToArray("rgb(255, 0, 255)");
-		tr.constructors        = rgbToArray("rgb(0, 0, 255)");
-		tr.ellipse             = rgbToArray("rgb(0, 150, 0)");
-
-		//From L2, L3, L4
-		tr.difference  = [150, 50, 0, 0, 0.64];
-		tr.figure      = rgbToArray("rgb(0, 150, 0)");
-
-		tr["figure-area"]              = [0, 150, 0, 0.32, 0.64],
-		tr["figure-area-txt"]          = [0, 150, 0, 0.7, 1],
-
-		tr["circumscribed-rectangles"] = [0, 80, 150, 0.32, 0.64],
-		tr["circ-txt"]                 = [0, 80, 150, 0.7, 1],
-
-		tr["inscribed-rectangles"]     = [150, 0, 150, 0.32, 0.64],
-		tr["insc-txt"]                 = [150, 0, 150, 0.7, 1],
-
-		tr.widths                      = [150, 0, 150, 0, 0.64],
-
-		tr.widestRectangular           = [0, 0, 150, 0.28, 0.49],
-		tr.widestRectangularHiddenStart= [0, 0, 150, 0.0, 0.49],
-		tr["widt-txt"]                 = [0, 0, 150, 0.7, 1],
-
-		//P1 (Shared with P2)
-		tr.freeMove        = rgbToArray("rgb(0, 150, 0)");
-		tr.diagram         = rgbToArray("rgb(150, 0, 90)");
-		tr.path            = tr.body;//rgbToArray("rgb(0, 0, 150)");
-		tr.sagittaeChords  = tr.sagitta;
-
-		tr.trianglePurpleTextAreaColor = tr.path;
-		tr["kepler-triangle-odd"]  = [102, 102, 255, 0.35, 0.7],
-		tr["kepler-triangle-even"] = [153, 153, 255, 0.35, 0.7],
-		tr.triangleGreen           = [0, 150, 0, 0.25, 0.64];
-
-		tr.perpendicular   = [150, 80, 0];
-		tr.tangent         = [0, 150, 0];
-	
-	    //P2
-        tr.areaDescriptionAccelerated = rgbToArray("rgb(120, 90, 82)", 1); //Description of areas triangle P2 proof tab
-
+		groupCommonColors();
+		setL2throughL4Colors();
+		setProp1andProp2Colors();
+		setL20andL21Colors();
+		setProp41Colors();
 
 		//=======================================
 		// \\// topic colors repo
@@ -146,7 +92,6 @@
         //=======================================
 
         const colorSets = [ 
-
 			{ //0
 				// current master; loaded below
 			},
@@ -188,9 +133,11 @@
 			tr.proofOnlyVisibleWhenHighlighted  = [...tr.proof, 0, 1];
 			tr.givenArea   = [...tr.given, 1];
 			tr.givenOnlyVisibleWhenHighlighted = [...tr.given, 0, 1];
-		}
 
-		setProp41Colors();
+			tr.sagitta         = 
+			tr.displacement    = 
+			tr.dtime     = tr.estimatedForce;
+		}
         
         const prevBtn = document.getElementsByClassName("prev")[0];
         const nextBtn = document.getElementsByClassName("next")[0];
@@ -223,11 +170,6 @@
 			}
 			groupCommonColors();
         }
-
-
-
-
-
         //=======================================
         // \\// Color-Set Buttons
         //=======================================
@@ -303,6 +245,56 @@
 			// \\// anchor control
 			//---------------------------------------------------------------
 		});
+
+
+		function setL2throughL4Colors() {
+			tr.difference  = [150, 50, 0, 0, 0.64];
+			tr.figure      = rgbToArray("rgb(0, 150, 0)");
+
+			tr["figure-area"]              = [0, 150, 0, 0.32, 0.64],
+			tr["figure-area-txt"]          = [0, 150, 0, 0.7, 1],
+
+			tr["circumscribed-rectangles"] = [0, 80, 150, 0.32, 0.64],
+			tr["circ-txt"]                 = [0, 80, 150, 0.7, 1],
+
+			tr["inscribed-rectangles"]     = [150, 0, 150, 0.32, 0.64],
+			tr["insc-txt"]                 = [150, 0, 150, 0.7, 1],
+
+			tr.widths                      = [150, 0, 150, 0, 0.64],
+
+			tr.widestRectangular           = [0, 0, 150, 0.28, 0.49],
+			tr.widestRectangularHiddenStart= [0, 0, 150, 0.0, 0.49],
+			tr["widt-txt"]                 = [0, 0, 150, 0.7, 1];
+		}
+
+		function setL20andL21Colors() {
+			tr.static              = rgbToArray("rgb(0, 200, 255)");
+			tr.staticHalfOpacity   = [0, 200, 255, 0.5];
+			tr.core                = rgbToArray("rgb(255, 150, 0)");
+			tr.coreHalfOpacity     = [255, 150, 0, 0.5];
+			tr.aux                 = rgbToArray("rgb(255, 0, 255)");
+			tr.constructors        = rgbToArray("rgb(0, 0, 255)");
+			tr.ellipse             = rgbToArray("rgb(0, 150, 0)");
+		}
+
+		function setProp1andProp2Colors() {
+			//P1 (Shared with P2)
+			tr.freeMove        = rgbToArray("rgb(0, 150, 0)");
+			tr.diagram         = rgbToArray("rgb(150, 0, 90)");
+			tr.path            = tr.body;//rgbToArray("rgb(0, 0, 150)");
+			tr.sagittaeChords  = tr.sagitta;
+
+			tr.trianglePurpleTextAreaColor = tr.path;
+			tr["kepler-triangle-odd"]  = [102, 102, 255, 0.35, 0.7],
+			tr["kepler-triangle-even"] = [153, 153, 255, 0.35, 0.7],
+			tr.triangleGreen           = [0, 150, 0, 0.25, 0.64];
+
+			tr.perpendicular   = [150, 80, 0];
+			tr.tangent         = [0, 150, 0];
+		
+			//P2
+			tr.areaDescriptionAccelerated = rgbToArray("rgb(120, 90, 82)", 1); //Description of areas triangle P2 proof tab
+		}
 
 		function setProp41Colors() {
 			//Note that Fi for P12 is shadow (see its sconf.js ~line 635)
