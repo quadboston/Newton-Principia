@@ -110,7 +110,9 @@
 			rg.A.pos[0] = x;
 			rg.A.pos[1] = y;
             rg.S.pos[0] = -sconf.ellipseFocus;
-            rg.H.pos[0] = sconf.ellipseFocus;
+			if (rg.H) {
+				rg.H.pos[0] = sconf.ellipseFocus;
+			}
 
 			stdMod.rebuilds_orbit(); // draws ellipse
 			stdMod.model8media_upcreate(); // repositions points
