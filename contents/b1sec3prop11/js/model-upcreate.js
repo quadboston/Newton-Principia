@@ -11,7 +11,7 @@
     ///****************************************************
     function model_upcreate()
     {
-        stdMod.builds_dq8sagit8displace({});
+        stdMod.builds_force_plusQ_minusQ_and_related();
         const q2xy = stdMod.q2xy;
         var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
         var parQ = Porb.q;

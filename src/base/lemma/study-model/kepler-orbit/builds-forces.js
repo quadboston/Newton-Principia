@@ -1,25 +1,25 @@
-///builds two force estimations, 1) as finite sagitta,
-///2) as Prop6, cor5 dev/area^2,
-///which is calculated from time t and curve parameter q,
+///builds force estimation, as Prop6 cor5 dev/area^2,
+///which is calculated from time t and curve parameter q
 ( function() {
     var { sn, stdMod, sconf, ssD, sData, rg, } = window.b$l.apptree({
-        stdModExportList : { builds_dq8sagit8displace, }, });
+        stdModExportList : { builds_force_plusQ_minusQ_and_related, }, });
     sn( 'qIndexToOrbit', ssD, [] );
     sn( 'graphArray', stdMod, [] );
     sData.ULTIM_MAX = 2;
-    sData.ULTIM_INSTANT = 1;
-    sData.ULTIM_MIDDLE = 0;
+    sData.ULTIM_ACTUAL = 1;
+    sData.ULTIM_ESTIMATED = 0;
     return;
 
 
-    function builds_dq8sagit8displace({ ulitmacy }){
+    function builds_force_plusQ_minusQ_and_related(ulitmacy) {
+        //Calculates:
+        //-force for specified ulitmacy
+        //-plusQ, minusQ, and related (eg. valid graph qix values)
         const CURVE_REVOLVES = sconf.CURVE_REVOLVES;
         const Q_STEPS = sconf.Q_STEPS;
         const Q_MINUS_EXISTS = rg.rrminus != null;
         const q2xy = stdMod.q2xy;
         const qIndexToOrbit = ssD.qIndexToOrbit;
-        const graphArray = stdMod.graphArray;
-        const delta_q_between_steps = sconf.delta_q_between_steps;
         const timeRange = ssD.timeRange;
         const qrange = sconf.curveQRange;
         ulitmacy = !ulitmacy ? 0 : ulitmacy;
@@ -37,11 +37,11 @@
                 ssD.qix_graph_start = 0;
                 ssD.qix_graph_end = Q_STEPS;
                 break;
-            case sData.ULTIM_MIDDLE:
+            case sData.ULTIM_ESTIMATED:
                 var Dt = ssD.Dt;
                 var Dq = ssD.Dq;
                 break;
-            case sData.ULTIM_INSTANT:
+            case sData.ULTIM_ACTUAL:
                 var Dt = 0.0001;
                 var Dq = sconf.DQ_SLIDER_MIN;
                 break;
@@ -61,13 +61,17 @@
                     }
                 } else {
                     bP.plusQ = plusQ;
-                    const displ = stdMod.calcs__displacement({ 
+                    const force = stdMod.calculateForce({
                         parq: plusQ,
                         bP
                     });
-                    bP.displacement = displ;
-                    if( ulitmacy === sData.ULTIM_INSTANT ){
-                        bP.instant_displacement = displ;
+                    switch (ulitmacy) {
+                        case sData.ULTIM_ESTIMATED:
+                            bP.estimatedForce = force;
+                            break;
+                        case sData.ULTIM_ACTUAL:
+                            bP.actualForce = force;
+                            break;
                     }
                 }
                 continue;
@@ -81,8 +85,6 @@
             // //\\ t is a free variable
             //**********************************************
             const bodyTime = bP.timeAtQ; //body time
-            const rr = bP.rr; //abs
-            const r2 = bP.r2; //rel
             {
                 const plusT = bodyTime + Dt;
                 var plusQ = convertTimeToQ(plusT);
@@ -104,18 +106,22 @@
             }
 
             if( plusQ !== null ){
-                const displ = stdMod.calcs__displacement({ 
+                const force = stdMod.calculateForce({
                     parq: plusQ,
                     bP
                 });
-                bP.displacement = displ;
-                if( ulitmacy === sData.ULTIM_INSTANT ){
-                    bP.instant_displacement = displ;
+                switch (ulitmacy) {
+                    case sData.ULTIM_ESTIMATED:
+                        bP.estimatedForce = force;
+                        break;
+                    case sData.ULTIM_ACTUAL:
+                        bP.actualForce = force;
+                        break;
                 }
             }
             
             if( plusQ !== null ){
-                const rrplus = bP.rrplus = q2xy( plusQ );
+                bP.rrplus = q2xy( plusQ );
                 let minusT = bodyTime - Dt;
                 var minusQ = convertTimeToQ(minusT);
 
@@ -131,20 +137,9 @@
                 }
                 //saves data for model-upcreate;
                 bP.minusQ = minusQ;
-                const rrminus = bP.rrminus = q2xy( minusQ );
-                const s0 = (rrplus[0]+rrminus[0]-2*rr[0])*0.5;
-                const s1 = (rrplus[1]+rrminus[1]-2*rr[1])*0.5;
+                bP.rrminus = q2xy( minusQ );
 
-                //when displacement is parallel to rrr, then sign > 0
-                const rrr = bP.rrr;
-                const sign = Math.sign( rrr[0]*s0 + rrr[1]*s1 );
-                const sagittaAbs = Math.sqrt( s0*s0+s1*s1 );
-                bP.sagitta = sign * sagittaAbs;
-                bP.sagittaVector = [s0, s1];
-                if( ulitmacy === sData.ULTIM_INSTANT ){
-                    bP.instant_sagitta = bP.sagitta;
-                }
-                //console.log('Q = ' + rrplus + ", Q' = " + rrminus + ', M = ' + bP.sagittaVector);
+                // console.log('Q = ' + bP.rrplus + ", Q' = " + bP.rrminus);
             }
         }
         //**********************************************

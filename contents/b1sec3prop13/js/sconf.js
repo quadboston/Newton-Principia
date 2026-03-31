@@ -96,8 +96,8 @@
         var Q_STEPS = 500;
         var DATA_GRAPH_STEPS = 500;
         //Scale estimated force curve by actual force max
-        sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX = true;
-        sconf.DEVIATION_SCALE_FACTOR = 1;
+        sconf.IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX = true;
+        sconf.ESTIMATED_SCALE_FACTOR = 1;
         //-------------------------------------------
         // \\// calculation algo parameters
         //-------------------------------------------
@@ -121,8 +121,7 @@
         // \\// curve shape parameters
         //-------------------------------------------
 
-        //interval of dt to construct an arc for
-        //displacement or sagitta,
+        //interval of dt to construct an arc for estimated force
         //Sets initial distance of point Q from P
         sconf.Dt0 = 1.06;
 
@@ -140,6 +139,7 @@
             proof,
             force,
             result,
+            estimatedForce,
             shadow,
             hidden,
             curvature,
@@ -149,6 +149,7 @@
 
         var topicColors_elected =
         {
+            estimatedForce,
             given,
             proof,
             result,
