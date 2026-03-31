@@ -163,7 +163,7 @@
             proof,
 			supplementColorOnlyVisibleWhenHighlighted,
 			givenOnlyVisibleWhenHighlighted,
-            force,
+            forceColor,
             shadow,
             hidden,
 			corollaryColor,
@@ -184,7 +184,7 @@
             'orbit-sample'      : orbit2,
             trace               : [...given, 0.5], // show only faint line for full sample orbit
             shadow,
-            force               : force,
+            force               : forceColor,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -267,7 +267,7 @@
             },
             f : { //force dragger
                 caption : '',
-                pcolor : force,
+                pcolor : forceColor,
                 letterAngle : 90,
                 letterRotRadius : 17,
                 draggableX  : true,
@@ -411,7 +411,7 @@
                 captionShiftNorm : -18}, 
             },
             { 'p,f' : { 
-                pcolor : force,
+                pcolor : forceColor,
                 'stroke-width' : 1.1, 
                 captionShiftNorm : -18,
                 vectorTipIx : 1 }, 

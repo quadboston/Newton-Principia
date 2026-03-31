@@ -71,7 +71,7 @@
 		tr.sunColor    = rgbToArray("rgb(202, 131, 0)"); // center of force (S or C in propositions)
 		tr.given       = rgbToArray("rgb(139, 105, 20)");
 		tr.proof       = PROOF_GREEN;
-		tr.force       = PURPLE;
+		tr.forceColor       = PURPLE;
         tr.estimatedForce  = MAGENTA;
 		tr.invalid     = RED;  //alert, invalid user actions
 		tr.supplementColor = tr.curvature       = DARK_GRAY;//BROWN;//rgbToArray("rgb(200, 40, 200)");
@@ -91,7 +91,6 @@
 
 		// merge misc: used?
         tr.speed       = DARK_GRAY;
-        tr.forceColor       = tr.force;
 		// end merge misc
 
 		//neutral elements
@@ -181,7 +180,7 @@
 				body: rgbToArray("rgb(0, 0, 222)"),
 				estimatedForce: rgbToArray("rgb(123, 105, 112)"),
 				displacement: rgbToArray("rgb(123, 105, 112)"),
-				force: rgbToArray("rgb(180, 63, 0)"),
+				forceColor: rgbToArray("rgb(180, 63, 0)"),
             },
 			{ // 3
                 // copy of above for reference and so it's included in the options
@@ -191,7 +190,7 @@
 				body: rgbToArray("rgb(0, 113, 0)"),
 				estimatedForce: rgbToArray("rgb(200, 0, 200)"),
 				displacement: rgbToArray("rgb(200, 0, 200)"),
-				force: rgbToArray("rgb(200, 150, 0)"),
+				forceColor: rgbToArray("rgb(200, 150, 0)"),
 
 				dtime: tr.time,
             },
@@ -333,8 +332,8 @@
 			tr.Fkernel = [0, 0, 150];
 
 			tr.bodyHiddenStart = [...tr.body.slice(0, 3), 0.01, 1];
-			tr.forceTransparentStart = [...tr.force.slice(0, 3), 0.1, 1];
-			tr.VSarea = [...tr.force.slice(0, 3), 0.3, 0.7];
+			tr.forceTransparentStart = [...tr.forceColor.slice(0, 3), 0.1, 1];
+			tr.VSarea = [...tr.forceColor.slice(0, 3), 0.3, 0.7];
 			tr.timeHiddenStart = [...tr.time.slice(0, 3), 0.01, 0.7];
 
 			//Is vgpoint still needed?  Seems to be after "Drop point, A"

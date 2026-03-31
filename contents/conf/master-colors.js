@@ -96,10 +96,9 @@
 		//alert, invalid user actions
 		tr.invalid = rgbToArray("rgb(250, 0, 0)");
 		//force, energy
-		tr.force   = rgbToArray("rgb(200, 150, 0)");
+		tr.forceColor   = rgbToArray("rgb(200, 150, 0)");
 		//conclusion of the proof
 
-		tr.forceColor       = tr.force;
 		tr.speed           = rgbToArray("rgb(90, 90, 90)");
 
 		//neutral elements
@@ -163,8 +162,8 @@
 		tr.Fkernel = [0, 0, 150];
 
 		tr.bodyHiddenStart         = [...tr.body.slice(0,3), 0.01, 1];
-		tr.forceTransparentStart   = [...tr.force.slice(0,3), 0.1, 1];
-		tr.VSarea                  = [...tr.force.slice(0,3), 0.3, 0.7];
+		tr.forceTransparentStart   = [...tr.forceColor.slice(0,3), 0.1, 1];
+		tr.VSarea                  = [...tr.forceColor.slice(0,3), 0.3, 0.7];
 		tr.timeHiddenStart         = [...tr.time.slice(0,3), 0.01, 0.7];
 
 		//Is vgpoint still needed?  Seems to be after "Drop point, A"
