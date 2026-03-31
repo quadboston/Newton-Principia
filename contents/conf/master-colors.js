@@ -112,7 +112,6 @@
 		tr.displacement    = tr.sagitta;
 		tr.curvature       = rgbToArray("rgb(200, 40, 200)");
 		tr.chord           = rgbToArray("rgb(0, 0, 255)");
-		tr.attention       = rgbToArray("rgb(200, 200, 0)");
 
 		//From L20, L21
 		tr.static              = rgbToArray("rgb(0, 200, 255)");

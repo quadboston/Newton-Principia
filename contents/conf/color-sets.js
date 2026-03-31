@@ -104,7 +104,6 @@
 		tr.displacement    = tr.estimatedForce;
 		//tr.curvature       = DARK_GRAY;//BROWN;//rgbToArray("rgb(200, 40, 200)");
 		tr.chord           = rgbToArray("rgb(0, 0, 255)");
-		tr.attention       = rgbToArray("rgb(200, 200, 0)");
 
 		//>>>>>>>>>>>>>>>>>
 
