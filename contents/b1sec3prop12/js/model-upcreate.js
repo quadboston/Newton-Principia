@@ -10,7 +10,7 @@
     ///****************************************************
     function model_upcreate()
     {
-        stdMod.builds_dq8sagit8displace({});
+        stdMod.builds_force_plusQ_minusQ_and_related();
         const op        = sconf.orbitParameters;
         const cosAxis   = Math.cos( op.mainAxisAngle );
         const sinAxis   = Math.sin( op.mainAxisAngle );

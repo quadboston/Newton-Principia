@@ -64,7 +64,7 @@
                 ssD.Dq = Dq;
             }
             //:Dt or Dq changed
-            stdMod.builds_dq8sagit8displace({});
+            stdMod.builds_force_plusQ_minusQ_and_related();
             stdMod.builds_orbit_data_graph();
             stdMod.model8media_upcreate();
             return; //avoids repetition

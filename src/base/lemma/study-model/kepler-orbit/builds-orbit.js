@@ -18,7 +18,6 @@
         const q2xy = stdMod.q2xy;
         const Q_STEPS = sconf.Q_STEPS;
         const orbitXYToDraw_LIMIT = Math.min( 1000, Q_STEPS );
-        const qrange = sconf.curveQRange;
         const delta_q_between_steps = sconf.delta_q_between_steps;
         var momentum0; //at start of the path
         
@@ -45,10 +44,6 @@
                 staticSectorialSpeed_rrrOnUU,
                 sinOmega, //for Kepler's motion, f = 1/R vₜ² / sin(w)
             } = bP;
-            if( qix === 0 ) {
-                //sometimes utilized in model for precise sagitta calculations
-                ssD.sectSpeed0 = staticSectorialSpeed_rrrOnUU;
-            }
             
             // Kepler's motion: rvₜcos(w) = M
             // f = M²/(Rr²cos³(w))
@@ -75,7 +70,6 @@
                 var pathAtQ = bP.pathAtQ = pathAtQ + delta_q_between_steps * ds_dq;
                 var timeAtQ = bP.timeAtQ = timeAtQ + delta_q_between_steps / dq_dt;
             }
-            bP.ds_dt = ds_dt;
             bP.dq_dt = dq_dt;
             //------------------------------------------
             // \\// preparing time array

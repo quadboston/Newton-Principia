@@ -11,7 +11,6 @@
     ///****************************************************
     function model_upcreate()
     {
-        const sectSpeed0 = ssD.sectSpeed0;
         const solvable = ssD.solvable;
         //qIndexToOrbit is meta data for all points on orbit, qix is index of P
         const Porb = ssD.qIndexToOrbit[ rg.P.qix ];

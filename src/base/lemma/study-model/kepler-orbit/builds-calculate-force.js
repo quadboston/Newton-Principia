@@ -1,13 +1,13 @@
-///builds estimated force as displacement/area^2,
+///builds (estimated) force as displacement/area^2,
 ///notations are from Prop6, cor. 5,
 ///displacement = QR, area = QT*SP,
 ( function() {
-    var { sn, mat, stdMod, }
-        = window.b$l.apptree({ stdModExportList : { calcs__displacement, }, });
+    var { mat, stdMod, } = window.b$l.apptree({
+        stdModExportList : { calculateForce, }, });
     return;
 
 
-    function calcs__displacement({
+    function calculateForce({
         parq, //orbit argument
         bP    //orbit point P rack
     }){
@@ -33,8 +33,8 @@
        const QT = Math.sqrt( QT0*QT0 + QT1*QT1 );
        const SP = bP.r;
        const area = SP*QT;
-       const displacement = QR/(area*area);
-       return sign * displacement;
+       const force = QR/(area*area);
+       return sign * force;
     }
 }) ();
 
