@@ -1,5 +1,20 @@
 # Change Log
 
+## 2026-3-25 (Magenta Version, 0.8)
+### Improved
+* General
+	* fixed bug where reclicking tab did not update diagram
+
+* Proposition 6
+	* fixed bug of incorrect estimated force plot
+
+* Proposition 11
+	* fixed bug where changing eccentricity did not adjust foci
+	* fixed graph when orbit is a circle
+
+* Proposition 12
+	* smoother eccentricity adjustment
+
 ## 2026-3-12 (Indigo Version, 0.7.1)
 ### Improved
 * Proposition 13:

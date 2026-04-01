@@ -1,5 +1,5 @@
 ( function() {
-    var { sn, haz, rg, amode, stdMod, sconf, ssD, sData, } 
+    var { sn, rg, stdMod, sconf, ssD, sData, } 
         = window.b$l.apptree({ stdModExportList : {
             builds_orbit_data_graph,
             qIndexFromPointPToGraphIndex,
@@ -8,7 +8,6 @@
     });
     const graphArray = sn( 'graphArray', stdMod, [] );
     const qIndexToOrbit = sn( 'qIndexToOrbit', ssD, [] );
-    const orbitXYToDraw = sn( 'orbitXYToDraw', ssD, [] );
     return;
 
 
@@ -21,12 +20,12 @@
 
     function builds_orbit_data_graph(setMAFandMEF)
     {
-        const GRAPH_PATH = sData.GRAPH_PATH;
         const Q_STEPS = sconf.Q_STEPS;
         const DATA_GRAPH_STEPS = sconf.DATA_GRAPH_STEPS;
         const force_law_function = sconf.force_law_function;
-        const IS_DEVIATION_SCALED_BY_FORCE_MAX = sconf.IS_DEVIATION_SCALED_BY_FORCE_MAX;
-        const DEVIATION_SCALE_FACTOR = sconf.DEVIATION_SCALE_FACTOR || 1;
+        const IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX =
+            sconf.IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX;
+        const ESTIMATED_SCALE_FACTOR = sconf.ESTIMATED_SCALE_FACTOR || 1;
         const dataPeriod = Math.max( 1, Math.floor( Q_STEPS/DATA_GRAPH_STEPS ) );
 
         stdMod.graphFW_lemma.graphArray = graphArray;
@@ -34,10 +33,8 @@
         ///prepares averages and placeholder for data graphs
         const gstart = ssD.qix_graph_start;
         const gend = ssD.qix_graph_end;
-        var displMax = 0;
-        var sagittaMax = 0;
-        var instantForceMax = 0;
-        var speedMax = 0;
+        let estimatedForceMax = 0;
+        let actualForceMax = 0;
         //TEMP
         if (setMAFandMEF) {
             ssD.MAF = 0;
@@ -46,32 +43,23 @@
         //var fullPath = qIndexToOrbit[ gend ].pathAtQ;
         for( let qix=gstart; qix<=gend; qix++ ){
             const bP = qIndexToOrbit[ qix ];
-            const displacement = bP.displacement;
-            const sagitta = bP.sagitta;
-            const ds_dt = bP.ds_dt;
+            const estimatedForce = bP.estimatedForce;
             //TEMP
             // if( force_law_function ){
-            //     var instantForce = force_law_function(bP);
-
-            // //this is a stub for non-Kepler orbits:    
-            // //} else if( sconf.TIME_IS_FREE_VARIABLE ){
-            // //    var instantForce = bP.instant_sagitta;
-
+            //     var actualForce = force_law_function(bP);
             // } else {
-            //     var instantForce = bP.instant_displacement;
+            //     var actualForce = bP.actualForce;
             // }
             //TEMP
-            var instantForce = bP.instant_displacement;
-            bP.instantForce = instantForce;
+            var actualForce = bP.actualForce;
+            bP.actualForce = actualForce;
             if( !(qix%dataPeriod) || qix===Q_STEPS ){
-                sagittaMax = Math.max( Math.abs( sagitta ), sagittaMax );
-                instantForceMax = Math.max( Math.abs( instantForce ), instantForceMax );
-                displMax = Math.max( Math.abs( displacement ), displMax );
-                speedMax = Math.max( speedMax, ds_dt );
+                actualForceMax = Math.max(Math.abs(actualForce), actualForceMax);
+                estimatedForceMax = Math.max(Math.abs(estimatedForce), estimatedForceMax);
 
                 //TEMP
                 if (setMAFandMEF) {
-                    const forceA = bP.instant_displacement;
+                    const forceA = bP.actualForce;
                     const forceE = bP.max_displacement;
                     ssD.MAF = Math.max(Math.abs(forceA), ssD.MAF);
                     ssD.MEF = Math.max(Math.abs(forceE), ssD.MEF);
@@ -80,7 +68,7 @@
                 let graphColumn = {
                     qix,
                     rr : bP.rr,
-                    x : GRAPH_PATH ? bP.pathAtQ : bP.r,
+                    x : sData.PLOT_BY_PATH ? bP.pathAtQ : bP.r,
                 };
                 graphArray.push( graphColumn );
             }
@@ -99,6 +87,8 @@
         //TEMP
         console.log("resets graphArray");
         let output = `SP, Actual Force\n`;
+        const estimatedForceScale = (IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX ?
+            actualForceMax * ESTIMATED_SCALE_FACTOR : estimatedForceMax);
         var arrLen = graphArray.length;
         for( var gix = 0; gix<arrLen; gix++ ){
             const ga = graphArray[ gix ];
@@ -106,30 +96,23 @@
             const bP = qIndexToOrbit[ qix ];
             bP.gix = gix;
             //TEMP
-            // const instf = Math.abs(bP.instantForce) / instantForceMax;
-            // const disp = Math.abs(bP.displacement) / (IS_DEVIATION_SCALED_BY_FORCE_MAX ?
-            //             instantForceMax * DEVIATION_SCALE_FACTOR : displMax);
+            // const actualForce = Math.abs(bP.actualForce) / actualForceMax;
+            // const estimatedForce = Math.abs(bP.estimatedForce) / estimatedForceScale;
 
 
             //TEMP
-            const instf = Math.abs(bP.instantForce) / ssD.MAF;
-            const disp = Math.abs(bP.displacement) / ssD.MAF;
-            output += `${bP.r}, ${instf}\n`;
-
-
-            const ds_dt = bP.ds_dt / speedMax;
-            const sagitta = Math.abs(bP.sagitta) / sagittaMax;
+            const actualForce = Math.abs(bP.actualForce) / ssD.MAF;
+            const estimatedForce = Math.abs(bP.estimatedForce) / ssD.MAF;
+            output += `${bP.r}, ${actualForce}\n`;
             ga.y = [
-                instf,
-                disp,
-                ds_dt,
-                sagitta,
+                actualForce,
+                estimatedForce,
             ];
         }
         //TEMP
         console.log("**********");
-        console.log("instantForceMax =", instantForceMax);
-        console.log("displMax =", displMax);
+        console.log("actualForceMax =", actualForceMax);
+        console.log("estimatedForceMax =", estimatedForceMax);
         // console.log("output =", output);
         //TEMP//
         ///this is a common graph lines, but this mask can be
@@ -137,7 +120,7 @@
         stdMod.graphFW_lemma.graphArrayMask = 
             [ 
                 'force',
-                'displacement',
+                'estimatedForce',
             ];
         //------------------------------------------
         // \\// resets graphArray

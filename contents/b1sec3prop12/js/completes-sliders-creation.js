@@ -23,7 +23,7 @@
 
             if(Math.abs(delta) < 0.01) return; // to avoid jitter on Mac  
 
-            const k = 10; // proportionate change factor
+            const k = 1; // proportionate change factor
             const prevE = op.eccentricity;
             let newEccentricity = prevE + delta * k;
 

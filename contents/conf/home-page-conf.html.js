@@ -127,11 +127,11 @@
             var coreText = `
                 <h2>Options</h2>
                 <div>
-                    <p class="option__text">      
+                    <p class="option__text"> 
+					    <input type="checkbox" id="fadeCheckbox" aria-label="fade"> 
+                            overlay original diagrams (beta)<br>
                         <input type="checkbox" id="latinCheckbox" aria-label="latin"> 
-                            Latin tabs (in progress)<br>
-                        <input type="checkbox" id="fadeCheckbox" aria-label="fade"> 
-                            overlay original diagrams<br>
+                            Latin tabs (experimental)<br>
                     </p>
                 </div>`;
             $$.c('div').addClass('options hp-section-wrap').to(fapp.homePage$())

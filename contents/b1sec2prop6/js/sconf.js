@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, fconf, sconf, topicColors_repo,} = 
+    var { ns, fconf, sData, sconf, topicColors_repo,} = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -106,7 +106,7 @@
         var Q_STEPS = 1500;
         var DATA_GRAPH_STEPS = 200;
         sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
-        sconf.GRAPH_PATH = true; //only for not-bonus
+        sData.PLOT_BY_PATH = true;
         //-------------------------------------------
         // \\// calculation algo parameters
         //-------------------------------------------
@@ -127,8 +127,7 @@
         //based on dt -> 0:
         sconf.force_law_function = null;
 
-        //intervals of dt or dq to construct an arc for
-        //displacement or sagitta,
+        //intervals of dt or dq to construct an arc for estimated force
         //Sets initial distance of point Q from P
         if( FT ){
             var Dt0 = 0.168; //0.1;

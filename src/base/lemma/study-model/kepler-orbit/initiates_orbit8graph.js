@@ -6,7 +6,6 @@
             initiates_kepler_config,
         },
     });
-    const graphArray = sn( 'graphArray', stdMod, [] );
     const qIndexToOrbit = sn( 'qIndexToOrbit', ssD, [] );
     return;
 
@@ -14,7 +13,6 @@
     function initiates_kepler_config() {
         sconf.pointDecoration.r = sconf.handleRadius;
         sconf.ro0SquaredDivide2 = sconf.ro0*sconf.ro0 / 2;
-        sData.GRAPH_PATH = false; //local lemma can change this
     }    
     
     function initiates_orbit8graph() {
@@ -59,9 +57,6 @@
 				digramParentDom$,
 				customXLegend,
 			});
-			//first array must be enabled
-			//but can be dynamically overridden,
-			graphFW.graphArrayMask = [ 'force', 'estforce', ];
 			return graphFW;
 		}
     }
@@ -84,9 +79,9 @@
         }
         ssD.Dq = sconf.Dq0;
         ssD.Dt = keepThisDt || sn( ssD, 'Dt', sconf.Dt0 );
-        stdMod.builds_dq8sagit8displace({ ulitmacy:sData.ULTIM_MAX });
-        stdMod.builds_dq8sagit8displace({ ulitmacy:sData.ULTIM_INSTANT });
-        stdMod.builds_dq8sagit8displace({});
+        stdMod.builds_force_plusQ_minusQ_and_related(sData.ULTIM_MAX);
+        stdMod.builds_force_plusQ_minusQ_and_related(sData.ULTIM_ACTUAL);
+        stdMod.builds_force_plusQ_minusQ_and_related();
         stdMod.builds_orbit_data_graph(setMAFandMEF);
 
         //Adjust point P if out of bounds

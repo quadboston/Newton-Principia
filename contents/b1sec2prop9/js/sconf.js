@@ -119,8 +119,7 @@
         //to be studied in given proposition:
         sconf.force_law_function = bP => 1/(bP.r2*bP.r);
 
-        //intervals of dt or dq to construct an arc for
-        //displacement or sagitta,
+        //intervals of dt or dq to construct an arc for estimated force
         //Sets initial distance of point Q from P
         if( FT ){
             sconf.Dt0 = 0.25;
@@ -143,14 +142,15 @@
             force,
             result,
             hidden,
+            estimatedForce,
             curvature,
             context,
-            displacement,
         } = topicColors_repo;
 
 
         var topicColors_elected =
         {
+            estimatedForce,
             given,
             proof,
             result,

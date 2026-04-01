@@ -18,7 +18,6 @@
     function media_upcreate___part_of_medupcr_basic()
     {
         //console.log('updating/creating arcs')
-        rg.DLeft.pos[0] = -0.3; //extends tangent to the left
         //=================================================
         // //\\ manages legend CSS-visibility
         //      by essay-state

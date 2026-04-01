@@ -15,8 +15,6 @@
                 { src: 'media-upcreate.js' },
                 { src: 'completes-sliders-creation.js' },
                 { src: 'state-capturer.js' },
-                { src : 'inits/finalizes-subessay-relaunch.js' },
-                { src : 'learner-scenario/activity-scenario-I.conf.js' },
             ],
             "contents-list" : [
                 'txt/latin.txt',
