@@ -136,6 +136,7 @@
             body,
             orbit,
 			supplementColorOnlyVisibleWhenHighlighted,
+			proofOnlyVisibleWhenHighlighted,
             proof,
 			estimatedForce,
             forceColor,
@@ -245,16 +246,12 @@
 				cssClass: 'subessay--solution',
             },
             Zminus : { // only here for Prop 12 code?
-                pcolor : body,
-                letterAngle : 145,
-                letterRotRadius : 20,
                 doPaintPname : false,
  				undisplayAlways  : true,
             },
 
             // //\\ eccentricity slider
             Zeta : {
-                caption : 'eccentricity, e',
                 pos : [ pictureWidth * 0.5, pictureHeight * 0.92 ],
                 pcolor : orbit,
                 letterAngle : 90,
@@ -302,7 +299,6 @@
                 letterAngle : -90,
             },
             Z : {
-                pcolor : body,
                 letterAngle : 45,
                 undisplayAlways : true,
                 doPaintPname : false,
@@ -344,18 +340,18 @@
 
         });
 
-		const proofSolution = { pcolor : body,
+		const proofSolution = { pcolor : proof,
  				cssClass: 'subessay--solution', };
 
         var linesArray =
         [
-			{ QR : { pcolor : proof,
+			{ QR : { pcolor : estimatedForce,
  				cssClass: 'subessay--solution subessay--corollary2', }, },
-            { QT : { pcolor : proof,
+            { QT : { pcolor : estimatedForce,
  				cssClass: 'subessay--solution subessay--corollary2', }, },
-            { SP : { pcolor : body,
+            { SP : { pcolor : estimatedForce,
  				cssClass: 'subessay--solution logic_phase--corollary', }, },
-            { PM : { pcolor : body,
+            { PM : { pcolor : proof,
  				cssClass: 'subessay--solution', }, },
             { SM : proofSolution },
             { GP : proofSolution },
@@ -364,19 +360,19 @@
             { Pv :  proofSolution },
             { Qv :  proofSolution }, 
             { Qx :  proofSolution },  
-            { Px :  proofSolution },
-            { Tx :  proofSolution },
+            { Px :  { pcolor : proofOnlyVisibleWhenHighlighted }, },
+            { Tx :  { pcolor : proofOnlyVisibleWhenHighlighted }, },
             { SA :  proofSolution },
             { xv :  proofSolution },
 
             // tangent
             { 'PR' : { 
-                pcolor : body, 
+                pcolor : proof, 
                 'stroke-width' : 2, 
                 captionShiftNorm : -18,
 				cssClass: 'subessay--solution logic_phase--corollary', }, 
             },                
-            { 'P,Zminus' : { pcolor : body,
+            { 'P,Zminus' : { pcolor : proof,
  				cssClass: 'subessay--solution', }, },
 
             // base line
