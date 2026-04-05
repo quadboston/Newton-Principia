@@ -215,15 +215,6 @@
                 doPaintPname : false,
             },
 
-
-            Zminus : {
-                pcolor : body,
-                letterAngle : 45,
-                //undisplay : true,
-                undisplayAlways : true,
-                doPaintPname : false,
-            },
-
             Y : {
                 pcolor : proof,
                 letterAngle : -90,
@@ -254,7 +245,6 @@
             { 'SP' : { pcolor : given }, },
 
             { 'PY' : { pcolor : body }, },
-            { 'P,Zminus' : { pcolor : body }, },
             { 'PZ' : { pcolor : body }, },
             { 'ZR' : { pcolor : body }, },
 
@@ -288,4 +278,3 @@
         });
     }
 }) ();
-
