@@ -241,13 +241,9 @@
         var linesArray =
         [
             { 'PV' : { pcolor : proof }, },
-
             { 'SP' : { pcolor : given }, },
-
             { 'PY' : { pcolor : body }, },
             { 'PZ' : { pcolor : body }, },
-            { 'ZR' : { pcolor : body }, },
-
             { 'PR' : { pcolor : body }, },
             { 'SY' : { pcolor : proof }, },
             { 'QR' : { pcolor : proof }, },
