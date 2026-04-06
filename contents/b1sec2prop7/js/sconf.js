@@ -334,7 +334,7 @@
             { 'SP' : { pcolor : proof }, },
             { 'AP' : { pcolor : proof }, },
 
-            { 'PY' : { pcolor : body }, },
+            { 'PY' : { pcolor : proof }, },
             { 'P,Zminus' : { pcolor : body }, },
             { 'PZ' : { pcolor : proof }, },
             { 'ZR' : { pcolor : proof }, },
