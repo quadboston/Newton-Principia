@@ -111,15 +111,15 @@
                     bP
                 });
                 switch (ulitmacy) {
+                    case sData.ULTIM_MAX:
+                        bP.max_displacement = force;
+                        break;
                     case sData.ULTIM_ESTIMATED:
                         bP.estimatedForce = force;
                         break;
                     case sData.ULTIM_ACTUAL:
                         bP.actualForce = force;
                         break;
-                }
-                if( ulitmacy === sData.ULTIM_MAX ){
-                    bP.max_displacement = force;
                 }
             }
             
