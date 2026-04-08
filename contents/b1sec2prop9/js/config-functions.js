@@ -1,7 +1,7 @@
 ( function() {
     var { mat, stdMod, sconf, } = window.b$l.apptree({ stdModExportList : {
             recreates_q2xy,
-            calculateMAFandMEF,
+            calculateMaxGraphValues,
         }, });
     return;
 
@@ -40,7 +40,7 @@
     }
 
 
-    function calculateMAFandMEF() {
+    function calculateMaxGraphValues() {
         //No adjustments needed, just calculate maximum forces.
         stdMod.rebuilds_orbit(null, true);
     };

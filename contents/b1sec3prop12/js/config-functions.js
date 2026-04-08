@@ -2,7 +2,7 @@
     var { fconf, stdMod, sconf, } = window.b$l.apptree({ stdModExportList : {
             recreates_q2xy,
             recalculateOrbitStartAndEnd,
-            calculateMAFandMEF,
+            calculateMaxGraphValues,
         }, });
     return;
 
@@ -58,7 +58,7 @@
     }
 
 
-    function calculateMAFandMEF() {
+    function calculateMaxGraphValues() {
         if (fconf.sappId === 'b1sec3prop12') {
             const op = sconf.orbitParameters;
             const eccentricityStored = op.eccentricity;

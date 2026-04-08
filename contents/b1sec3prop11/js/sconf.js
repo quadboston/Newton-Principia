@@ -94,7 +94,7 @@
         sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
         sconf.CURVE_REVOLVES = true; //true for cyclic orbit
         sconf.DQ_SLIDER_MAX = null;
-        sconf.DT_SLIDER_MAX = 0.48;
+        sconf.DT_SLIDER_MAX = 0.325;
         sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
         var Q_STEPS = 1500;
         var DATA_GRAPH_STEPS = 500;
@@ -107,6 +107,7 @@
         // //\\ curve shape parameters
         //-------------------------------------------
         sconf.eccentricity  = 0.59498295;
+        sconf.eccentricityMax = 0.66;
         sconf.ellipseA  = 1.07;
         sconf.ellipseAOriginal  = sconf.ellipseA;
         sconf.ellipseB  =
@@ -133,7 +134,7 @@
 
         //intervals of dt or dq to construct an arc for estimated force
         //Sets initial distance of point Q from P
-        sconf.Dt0 = 0.39;
+        sconf.Dt0 = 0.26;
 
         //pos of P
         sconf.parQ = 0.250 * Math.PI;

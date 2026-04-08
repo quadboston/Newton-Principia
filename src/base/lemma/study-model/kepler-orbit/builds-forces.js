@@ -66,6 +66,10 @@
                         bP
                     });
                     switch (ulitmacy) {
+                        case sData.ULTIM_MAX:
+                            //Largest estimated force (max QP distance)
+                            bP.estimatedForceLargest = force;
+                            break;
                         case sData.ULTIM_ESTIMATED:
                             bP.estimatedForce = force;
                             break;
@@ -112,7 +116,8 @@
                 });
                 switch (ulitmacy) {
                     case sData.ULTIM_MAX:
-                        bP.max_displacement = force;
+                        //Largest estimated force (max QP distance)
+                        bP.estimatedForceLargest = force;
                         break;
                     case sData.ULTIM_ESTIMATED:
                         bP.estimatedForce = force;

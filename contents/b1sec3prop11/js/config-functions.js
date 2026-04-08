@@ -1,6 +1,10 @@
 ( function() {
     var { mat, rg, ssD, stdMod, sconf, } = window.b$l.apptree({
-        stdModExportList : { recreates_q2xy, recreatesPosCorrector, }, });
+        stdModExportList : {
+            recreates_q2xy,
+            recreatesPosCorrector,
+            calculateMaxGraphValues,
+        }, });
     return;
 
     
@@ -60,6 +64,40 @@
             pos[1] = newP[1];
             return pos;
         }
-    }    
+    }
+
+
+    function calculateMaxGraphValues() {
+        //Calculate initial value on page load
+        stdMod.rebuilds_orbit(null, false);
+        //TEMP Should the following be moved to eg. "builds-orbit-data-graph.js"
+        ssD.estimatedForceMaxInitial = ssD.estimatedForceMaxCurrent;
+
+
+        //The highest forces for this model occur when eccentricity is max,
+        //therefore temporarily adjust it and calculate the maximum forces.
+        const eccentricityStored = sconf.eccentricity;
+        setEccentricityAndRelated(sconf.eccentricityMax);
+        stdMod.rebuilds_orbit(null, true);
+
+        //Reset eccentricity
+        setEccentricityAndRelated(eccentricityStored);
+
+
+        function setEccentricityAndRelated(eccentricity) {
+            //Set eccentricity and related values needed for above calculations
+            sconf.eccentricity = eccentricity;
+
+            const lambda = Math.sqrt(Math.abs(1 - sconf.eccentricity**2));
+            const b = sconf.ellipseB;
+            sconf.ellipseA = b / lambda;
+
+            const a = sconf.ellipseA;
+            sconf.ellipseFocus = Math.sqrt(a*a - b*b);
+
+            rg.S.pos[0] = -sconf.ellipseFocus;
+            rg.H.pos[0] = sconf.ellipseFocus;
+        }
+    }
 }) ();
 

@@ -76,6 +76,25 @@
         {
             let graphArg = {
             }
+
+
+            //The bounds of the graph are mostly fixed as follows.  The
+            //exception being the y axis which switches between a fixed and
+            //variable y max.  This allows most of the arrangements to be
+            //compared under conditions where the axes are fixed, without the
+            //curves appearing really zoomed in.  When variable the curves are
+            //fully visible for arrangements where the y axis grows.
+
+            graphArg.xMin = 0;
+            //Ensure x max is fixed to the correct value
+            graphArg.xMax = ssD.xMaxFixedGraphAxis;
+
+            graphArg.yMin = 0;
+            const yMaxFixed = ssD.estimatedForceMaxInitial / ssD.MAF;
+            const yMaxVariable = ssD.estimatedForceMaxCurrent / ssD.MAF;
+            graphArg.yMax = Math.max(yMaxFixed, yMaxVariable);
+
+
             stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
         }
         //------------------------------------------------
