@@ -10,7 +10,7 @@
     function creates_S_slider() {
         rg.S.acceptPos = newPos => {
             //does this for decorational purposes
-            stdMod.rebuilds_orbit( ssD.Dt );
+            stdMod.rebuilds_orbit();
             //this permits an orbitrary move
 
             updatePointPPos();
@@ -71,7 +71,7 @@
                 pos[1] += dpos1*c2p;
                 bezio.updatesPivot( pos, cpix );
 
-                stdMod.rebuilds_orbit( ssD.Dt );
+                stdMod.rebuilds_orbit();
                 updatePointPPos();
 
                 ///updates curve pivots every time:
