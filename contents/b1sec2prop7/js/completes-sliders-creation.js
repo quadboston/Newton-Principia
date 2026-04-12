@@ -11,7 +11,7 @@
         rg.S.dragPriority  = 30;
         rg.S.acceptPos = newPos => {
             //does this for decorational purposes
-            stdMod.rebuilds_orbit( ssD.Dt );
+            stdMod.rebuilds_orbit();
             //this permits an orbitrary move
             return true;
         }

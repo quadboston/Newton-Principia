@@ -79,7 +79,7 @@
         modifyDecorationVisibility();
 
         ssD.stashedVisibility = null;
-        stdMod.rebuilds_orbit(ssD.Dt);
+        stdMod.rebuilds_orbit();
         sDomF.detected_user_interaction_effect( 'doShowDiagram' );
         return captured;
     }

@@ -20,11 +20,51 @@
         rg.P.pos[1] = Porb.rr[1];
         var rr0 = rg.P.pos;
         var rrc = rg.S.pos;
-        var Qpos = q2xy( Porb.plusQ );
-        var rr = Qpos;
+        
+        // Determine Q position: use stored angle if available, else use computed plusQ
+        var Qpos;
+        if( ssD.anglePSQ !== undefined ){
+            // Find orbit point that maintains the stored angle from focus S
+            const angleSP = Math.atan2( rr0[1] - rrc[1], rr0[0] - rrc[0] );
+            const targetAngleSQ = angleSP + ssD.anglePSQ;
+            
+            // Search all orbit points for the one whose angle from S is closest to target
+            const qIndexToOrbit = ssD.qIndexToOrbit;
+            let bestQix = rg.P.qix;
+            let bestAngleDiff = Math.PI; // max possible angle difference
+            
+            for( let testQix = 0; testQix < qIndexToOrbit.length; testQix++ ){
+                if( testQix === rg.P.qix ) continue; // skip P itself
+                const testPoint = qIndexToOrbit[ testQix ].rr;
+                const testAngle = Math.atan2( testPoint[1] - rrc[1], testPoint[0] - rrc[0] );
+                let angleDiff = testAngle - targetAngleSQ;
+                
+                // Normalize angle difference to [-π, π]
+                while( angleDiff > Math.PI ) angleDiff -= 2 * Math.PI;
+                while( angleDiff < -Math.PI ) angleDiff += 2 * Math.PI;
+                
+                if( Math.abs(angleDiff) < Math.abs(bestAngleDiff) ){
+                    bestAngleDiff = angleDiff;
+                    bestQix = testQix;
+                }
+            }
+            Qpos = qIndexToOrbit[ bestQix ].rr;
+        } else {
+            // First time: compute Q from plusQ and initialize angle
+            Qpos = q2xy( Porb.plusQ );
+            const angleSP = Math.atan2( rr0[1] - rrc[1], rr0[0] - rrc[0] );
+            const angleSQ = Math.atan2( Qpos[1] - rrc[1], Qpos[0] - rrc[0] );
+            ssD.anglePSQ = angleSQ - angleSP;
+        }
+        
         rg.Q.pos[0] = Qpos[0];
         rg.Q.pos[1] = Qpos[1];
-        var side = [ Qpos[0] - rr0[0], Qpos[1] - rr0[1] ];
+
+        // for debugging
+        // const angleSP = Math.atan2( rr0[1] - rrc[1], rr0[0] - rrc[0] );
+        // const angleSQ = Math.atan2( Qpos[1] - rrc[1], Qpos[0] - rrc[0] );
+        // const anglePSQ = angleSQ - angleSP;
+        //console.log( 'Angle PSQ: ' + (anglePSQ * 180 / Math.PI).toFixed(2) + ' degrees' );
 
         // **api-input---plane-curve-derivatives
         var {

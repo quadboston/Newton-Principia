@@ -55,7 +55,7 @@
 		}
     }
     
-    function rebuilds_orbit( keepThisDt ) {
+    function rebuilds_orbit() {
         const Q_STEPS = sconf.Q_STEPS;
 
         if (stdMod.recalculateOrbitStartAndEnd)
@@ -71,8 +71,10 @@
             const timeE = qIndexToOrbit[Q_STEPS].timeAtQ;
             ssD.timeRange = timeE - timeS;
         }
-        ssD.Dq = sconf.Dq0;
-        ssD.Dt = keepThisDt || sn( ssD, 'Dt', sconf.Dt0 );
+        const prevDq = ssD.Dq;
+        const prevDt = ssD.Dt;
+        ssD.Dq = prevDq !== undefined ? prevDq : sconf.Dq0;
+        ssD.Dt = prevDt || sn( ssD, 'Dt', sconf.Dt0 );
         stdMod.builds_force_plusQ_minusQ_and_related(sData.ULTIM_MAX);
         stdMod.builds_force_plusQ_minusQ_and_related(sData.ULTIM_ACTUAL);
         stdMod.builds_force_plusQ_minusQ_and_related();
