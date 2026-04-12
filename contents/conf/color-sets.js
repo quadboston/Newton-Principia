@@ -137,6 +137,8 @@
 			tr.sagitta         = 
 			tr.displacement    = 
 			tr.dtime     = tr.estimatedForce;
+
+			tr.force = tr.forceColor; // need to track down and eliminate
 		}
         
         const prevBtn = document.getElementsByClassName("prev")[0];
