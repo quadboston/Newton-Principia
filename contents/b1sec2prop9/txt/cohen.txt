@@ -7,7 +7,7 @@
 *..*
 Let a ¦body P¦body¦¦ revolve in a spiral ¦orbit¦PQS¦¦ intersecting all its radii ¦SP¦SP¦¦,
 ¦SQ¦¦, ... , at a
-given angle; it is required to find the law of the ¦force¦centripetal force¦¦ tending toward
+given ¦SP PZ¦angle¦¦; it is required to find the law of the ¦force¦centripetal force¦¦ tending toward
 the ¦S¦center of the spiral¦¦.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 458.</div>
@@ -24,7 +24,7 @@ the ¦S¦center of the spiral¦¦.
 }
 *..*
 Let the indefinitely small angle ¦SP SQ¦PSQ¦¦ be given, and because all the angles
-are given, the species [i.e., the ratio of all the parts] of the figure ¦SP SQ QR QT¦SPRQT¦¦
+are given, the species [i.e., the ratio of all the parts] of the figure ¦SP SQ QR QT PR¦SPRQT¦¦
 will be given.
 Therefore, the ratio 
 

@@ -14,7 +14,7 @@
     ///"init model parameters"
     function amode2rgstate( captured )
     {
-        const { logic_phase, aspect, subessay } = amode;
+        const { logic_phase, subessay } = amode;
         var media_scale = toreg( 'media_scale' )();
         rg.media_scale.value = 1;
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
@@ -32,10 +32,7 @@
                 'R',
                 'Y',
                 'SY',
-                'PZ',
-                'ZR',
                 'PR',
-                'P,Zminus',
                 'T', 
                 'QT', 
                 'PT',
@@ -60,9 +57,7 @@
                 'R',
                 'SQ',
                 'PZ',
-                'ZR',
                 'PR',
-                'P,Zminus',
                 'T', 
                 'QT', 
                 'PT',
