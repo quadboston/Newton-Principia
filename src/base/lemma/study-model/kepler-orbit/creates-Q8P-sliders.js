@@ -48,6 +48,14 @@
                 if( Dt < 0.05 ||
                     sconf.DT_SLIDER_MAX <= Dt ) return;
                 ssD.Dt = Dt;
+                
+                // Store PSQ to be used optionally in model-upcreate to maintain constant angle
+                const posPorb = qIndexToOrbit[ qix ].rr;
+                const posQorb = qIndexToOrbit[ Qqix ].rr;
+                const focusS = rg.S.pos;
+                const angleSP = Math.atan2( posPorb[1] - focusS[1], posPorb[0] - focusS[0] );
+                const angleSQ = Math.atan2( posQorb[1] - focusS[1], posQorb[0] - focusS[0] );
+                ssD.anglePSQ = angleSQ - angleSP;
             } else {
                 const q = qIndexToOrbit[ Qqix ].q;
                 let Dq = q - qIndexToOrbit[ qix ].q;
@@ -109,8 +117,10 @@
             if(sconf.ellipseFocus <= 0) sconf.ellipseFocus = 0.00001; // to avoid cuckoo graph
 			rg.A.pos[0] = x;
 			rg.A.pos[1] = y;
-            rg.S.pos[0] = -sconf.ellipseFocus;
-            rg.H.pos[0] = sconf.ellipseFocus;
+			if (rg.H && rg.S) {
+                rg.S.pos[0] = -sconf.ellipseFocus;
+				rg.H.pos[0] = sconf.ellipseFocus;
+			}
 
 			stdMod.rebuilds_orbit(); // draws ellipse
 			stdMod.model8media_upcreate(); // repositions points

@@ -30,7 +30,7 @@
         // \\// model
         //=============================================================
 
-        stdMod.rebuilds_orbit(ssD.Dt);
+        stdMod.rebuilds_orbit();
         //comment out to remove Book's diagram after timeout
         sDomF.detected_user_interaction_effect( 'doUndetected' );
         return captured;
