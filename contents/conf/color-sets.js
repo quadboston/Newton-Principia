@@ -69,27 +69,9 @@
 		tr.forceColor       = rgbToArray("rgb(131, 56, 236)");
         tr.estimatedForce  = rgbToArray("rgb(211, 87, 254)");
 		tr.invalid     = rgbToArray("rgb(255, 0, 0)");  //alert, invalid user actions
-		tr.supplementColor = rgbToArray("rgb(99, 99, 99)");//BROWN;//rgbToArray("rgb(200, 40, 200)");
-		tr.supplementColorOnlyVisibleWhenHighlighted
-			= [...tr.supplementColor, 0, 1];
+		tr.supplementColor = rgbToArray("rgb(99, 99, 99)");
 		tr.body        = rgbToArray("rgb(51, 107, 186)"),
-		tr.body2       = rgbToArray("rgb(205, 103, 54)"),//rgbToArray("rgb(255, 149, 111)"),
-
-		tr.hidden  = [0, 0, 0, 0];
-
-		groupCommonColors();
-		setL2throughL4Colors();
-		setProp1andProp2Colors();
-		setL20andL21Colors();
-		setProp41Colors();
-
-		//=======================================
-		// \\// topic colors repo
-		//=======================================
-
-        //=======================================
-        // //\\ Color-Set Buttons
-        //=======================================
+		tr.body2       = rgbToArray("rgb(205, 103, 54)");//rgbToArray("rgb(255, 149, 111)"),
 
         const colorSets = [ 
 			{ //0
@@ -98,30 +80,29 @@
 			{ // 1
 				// use default set above
 			},
-            { // 2
-                given : rgbToArray("rgb(124, 57, 201)"),
-                proof : rgbToArray("rgb(29, 111, 182)"),
+			{ // 2
+                proof : rgbToArray("rgb(124, 57, 201)"),
+                given : rgbToArray("rgb(29, 111, 182)"),
                 sunColor    : rgbToArray("rgb(222, 200, 0)"),
 				body: rgbToArray("rgb(0, 0, 222)"),
-				estimatedForce: rgbToArray("rgb(123, 105, 112)"),
-				displacement: rgbToArray("rgb(123, 105, 112)"),
-				forceColor: rgbToArray("rgb(180, 63, 0)"),
+				estimatedForce:  rgbToArray("rgb(0, 133, 0)"),
             },
-			{ // 3
-                // copy of above for reference and so it's included in the options
-                given : rgbToArray("rgb(0, 113, 0)"),
-                proof : rgbToArray("rgb(0, 0, 255)"),
-				sunColor    : rgbToArray("rgb(0, 113, 0)"),
-				body: rgbToArray("rgb(0, 113, 0)"),
-				estimatedForce: rgbToArray("rgb(200, 0, 200)"),
-				displacement: rgbToArray("rgb(200, 0, 200)"),
-				forceColor: rgbToArray("rgb(200, 150, 0)"),
-
-				dtime: tr.time,
+			{ // 3 faveorite so far
+                proof : rgbToArray("rgb(124, 57, 201)"),
+                body : rgbToArray("rgb(29, 111, 182)"),
+				given: rgbToArray("rgb(0, 0, 222)"),
+				estimatedForce:  rgbToArray("rgb(0, 133, 0)"),
             },
+			{ // 4
+				given : rgbToArray("rgb(69, 174, 162)"),
+				forceColor : rgbToArray("rgb(0, 133, 0)"),
+				estimatedForce:  rgbToArray("rgb(124, 57, 201)"),
+				sunColor    : rgbToArray("rgb(222, 200, 0)"),
+			},
         ];    
 
-		function groupCommonColors() {
+		function setCommonColors() {
+			tr.hidden  = [0, 0, 0, 0];
 			tr.orbit = tr.body;
 			tr.orbit2 = tr.body2;
 			tr.corollaryColor = tr.proof;
@@ -133,6 +114,8 @@
 			tr.proofOnlyVisibleWhenHighlighted  = [...tr.proof, 0, 1];
 			tr.givenArea   = [...tr.given, 1];
 			tr.givenOnlyVisibleWhenHighlighted = [...tr.given, 0, 1];
+			tr.supplementColorOnlyVisibleWhenHighlighted
+				= [...tr.supplementColor, 0, 1];
 
 			tr.sagitta         = 
 			tr.displacement    = 
@@ -140,6 +123,11 @@
 
 			tr.force = tr.forceColor; // need to track down and eliminate
 		}
+
+		setL2throughL4Colors();
+		setProp1andProp2Colors();
+		setL20andL21Colors();
+		setProp41Colors();
         
         const prevBtn = document.getElementsByClassName("prev")[0];
         const nextBtn = document.getElementsByClassName("next")[0];
@@ -149,6 +137,9 @@
         if(!colorSetIdx) colorSetIdx = 0; 
         idxElem.innerText = colorSetIdx; 
 
+		//=======================================
+        // //\\ Color-Set Buttons
+        //=======================================
         prevBtn.onclick = () => {
             colorSetIdx--;
             if(colorSetIdx < 0) colorSetIdx = colorSets.length - 1; 
@@ -170,7 +161,7 @@
 				value = colorSets[colorSetIdx][key];
 				tr[key] = value;
 			}
-			groupCommonColors();
+			setCommonColors();
         }
         //=======================================
         // \\// Color-Set Buttons
