@@ -74,26 +74,23 @@
 		tr.body2       = rgbToArray("rgb(205, 103, 54)");//rgbToArray("rgb(255, 149, 111)"),
 
         const colorSets = [ 
-			{ //0
-				// current master; loaded below
-			},
-			{ // 1
+			{ // 0
 				// use default set above
 			},
-			{ // 2
+			{ // 1
                 proof : rgbToArray("rgb(124, 57, 201)"),
                 given : rgbToArray("rgb(29, 111, 182)"),
                 sunColor    : rgbToArray("rgb(222, 200, 0)"),
 				body: rgbToArray("rgb(0, 0, 222)"),
 				estimatedForce:  rgbToArray("rgb(0, 133, 0)"),
             },
-			{ // 3 faveorite so far
+			{ // 2 faveorite so far
                 proof : rgbToArray("rgb(124, 57, 201)"),
                 body : rgbToArray("rgb(29, 111, 182)"),
 				given: rgbToArray("rgb(0, 0, 222)"),
 				estimatedForce:  rgbToArray("rgb(0, 133, 0)"),
             },
-			{ // 4
+			{ // 3
 				given : rgbToArray("rgb(69, 174, 162)"),
 				forceColor : rgbToArray("rgb(0, 133, 0)"),
 				estimatedForce:  rgbToArray("rgb(124, 57, 201)"),
@@ -153,16 +150,12 @@
             window.location.reload();
         }
                   
-        console.log('Color Set: ' + colorSetIdx)
-		if (colorSetIdx == 0) {
-			fapp.setColorsToMaster();
-		} else {
-			for(let key in colorSets[colorSetIdx]) {
-				value = colorSets[colorSetIdx][key];
-				tr[key] = value;
-			}
-			setCommonColors();
-        }
+        console.log('Color Set: ' + colorSetIdx);
+		for(let key in colorSets[colorSetIdx]) {
+			value = colorSets[colorSetIdx][key];
+			tr[key] = value;
+		}
+		setCommonColors();
         //=======================================
         // \\// Color-Set Buttons
         //=======================================
