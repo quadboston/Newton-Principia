@@ -18,7 +18,9 @@
     {
 		const { logic_phase, aspect, subessay } = amode;
         toreg( 'media_scale' )();
-        rg.media_scale.value = 1;
+        if(!rg.media_scale.value) {
+            rg.media_scale.value = 1;
+        }
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
         rg.S.pos[0] = -sconf.ellipseFocus;
         rg.S.pos[1] = 0;

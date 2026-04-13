@@ -11,7 +11,9 @@
     {
         const { logic_phase, aspect, subessay } = amode;
         toreg( 'media_scale' )();
-        rg.media_scale.value = 1;
+        if(!rg.media_scale.value) {
+            rg.media_scale.value = 1;
+        }
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
 
         //todo sort out why this is commented out,
