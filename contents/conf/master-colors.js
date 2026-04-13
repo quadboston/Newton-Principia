@@ -97,6 +97,8 @@
 		tr.invalid = rgbToArray("rgb(250, 0, 0)");
 		//force, energy
 		tr.forceColor   = rgbToArray("rgb(200, 150, 0)");
+		tr.force = tr.forceColor; // need to track down and eliminate
+
 		//conclusion of the proof
 
 		tr.speed           = rgbToArray("rgb(90, 90, 90)");
