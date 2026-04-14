@@ -136,6 +136,7 @@
         //-----------------------------------
         const {
             given,
+			givenOnlyVisibleWhenHighlighted,
             orbit,
             body,
             proof,
@@ -238,8 +239,8 @@
         [
             { 'PV' : { pcolor : proof }, },
             { 'PY' : { pcolor : body }, },
-            { 'PZ' : { pcolor : body }, },
-            { 'PR' : { pcolor : body }, },
+            { 'PZ' : { pcolor : given }, },
+            { 'PR' : { pcolor : givenOnlyVisibleWhenHighlighted }, },
             { 'SY' : { pcolor : proof }, },
             { 'QR' : { pcolor : estimatedForce }, },
             { 'SQ' : { pcolor : given }, },
