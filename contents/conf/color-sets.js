@@ -79,14 +79,14 @@
 			},
 			{ // 1
                 proof : rgbToArray("rgb(124, 57, 201)"),
-                given : rgbToArray("rgb(29, 111, 182)"),
+                given : rgbToArray("rgb(29, 126, 182)"),
                 sunColor    : rgbToArray("rgb(222, 200, 0)"),
 				body: rgbToArray("rgb(0, 0, 222)"),
 				estimatedForce:  rgbToArray("rgb(0, 133, 0)"),
             },
 			{ // 2 faveorite so far
                 proof : rgbToArray("rgb(124, 57, 201)"),
-                body : rgbToArray("rgb(29, 111, 182)"),
+                body : rgbToArray("rgb(29, 136, 182)"),
 				given: rgbToArray("rgb(0, 0, 222)"),
 				estimatedForce:  rgbToArray("rgb(0, 133, 0)"),
             },
