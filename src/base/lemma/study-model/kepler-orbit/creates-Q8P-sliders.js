@@ -2,7 +2,7 @@
 ///for dq and body in
 ///models in propopositions 6-17 in Principia
 ( function() {
-    var { sn, ssD,stdMod, sconf, rg, } = window.b$l.apptree({ 
+    var { sn, ssD, sData, stdMod, sconf, rg, } = window.b$l.apptree({ 
         stdModExportList : {
             creates_Q8P_sliders, 
             creates_A_slider,
@@ -30,27 +30,54 @@
         /// point Q slider
         rg.Q.acceptPos = newPos => {
             //console.log('moving Q');
-            const qix = rg.P.qix;
-            var Qqix = stdMod.gets_orbit_closest_point( newPos );
-            if( Qqix === qix ) return;
+            const Pqix = rg.P.qix;
+            const Qqix = stdMod.gets_orbit_closest_point( newPos );
             if( sconf.TIME_IS_FREE_VARIABLE ){
-                let tt = qIndexToOrbit[ Qqix ].timeAtQ;
-                let Dt = tt - qIndexToOrbit[ qix ].timeAtQ;
-                if( sconf.CURVE_REVOLVES ){
-                    if( Dt<0 ) {
-                        ////the point P crossed start of the coninc,
-                        ////usually point A and point t(Q) became less than t(P),
-                        ////this line adjusts Dt by using "cycled t change",
-                        ////where time period is ssD.timeRange,
-                        Dt = (Dt + ssD.timeRange) % ssD.timeRange;
+                const timeQ = qIndexToOrbit[ Qqix ].timeAtQ;
+                const timeP = qIndexToOrbit[ Pqix ].timeAtQ;
+                let Dt = timeQ - timeP;
+                if (sconf.CURVE_REVOLVES) {
+                    //For models that "revolve" (eg. circular orbit), "wrap" Dt
+                    //around if needed.
+
+                    //If the angle between Q and P is calculated and used
+                    //directly, sometimes round-off error can lead to issues.
+                    //For example where Dt jumps back and fourth many times
+                    //between the minimum and the maximum value.  Therefore use
+                    //an angular increment instead (refer to "angleIncrement"
+                    //calculation for more).
+
+                    const incrementQ = qIndexToOrbit[Qqix].angleIncrement;
+                    const incrementP = qIndexToOrbit[Pqix].angleIncrement;
+                    const incrementsBtwQandP = incrementQ - incrementP;
+
+                    //If the angle between Q and P is within half the number of
+                    //increments (180 degrees), no wrapping occurs, which means
+                    //no adjustments are needed.  Otherwise add or remove the
+                    //timeRange to "wrap" the time around.  This is a similar
+                    //idea to how angles wrap eg.
+                    // 181 is the "same" as,  181 - 360 = -179 degrees
+                    //-181 is the "same" as, -181 + 360 =  179 degrees
+                    if (incrementsBtwQandP < -ssD.ANGLE_INCREMENTS / 2) {
+                        Dt += ssD.timeRange;
+                    } else if (incrementsBtwQandP > ssD.ANGLE_INCREMENTS / 2) {
+                        Dt -= ssD.timeRange;
                     }
                 }
-                if( Dt < 0.05 ||
-                    sconf.DT_SLIDER_MAX <= Dt ) return;
+                
+                //Clamp as needed
+                if (Dt > sconf.DT_SLIDER_MAX) {
+                    Dt = sconf.DT_SLIDER_MAX;
+                    //TEMP Should the following be switched to 0?
+                } else if (Dt < sData.DT_ACTUAL_FORCE)  {
+                    Dt = sData.DT_ACTUAL_FORCE;
+                }
                 ssD.Dt = Dt;
+
             } else {
+                if( Qqix === Pqix ) return;
                 const q = qIndexToOrbit[ Qqix ].q;
-                let Dq = q - qIndexToOrbit[ qix ].q;
+                let Dq = q - qIndexToOrbit[ Pqix ].q;
                 if( sconf.CURVE_REVOLVES ){
                     if( Dq<0 ) {
                         ////the point P crossed start of the coninc,
