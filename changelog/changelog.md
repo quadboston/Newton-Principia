@@ -1,9 +1,13 @@
 # Change Log
 
-## 2026-4-? ( Version, 0.9)
+## 2026-4-? (Version, 0.9)
 ### Improved
+* General
+    * zoom persists across tabs
+
 * Proposition 9
-	* angles remain constant as P is moved in accordance with the first solution
+    * given angle highlighted
+    * angles remain constant as P moves in accordance with the first solution
 
 ## 2026-3-25 (Magenta Version, 0.8)
 ### Improved
