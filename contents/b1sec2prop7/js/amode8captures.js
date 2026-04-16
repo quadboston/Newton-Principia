@@ -19,7 +19,9 @@
         //----------------------------------
         rg.curvatureCircle.undisplay = false;
         var media_scale = toreg( 'media_scale' )();
-        rg.media_scale.value = 1;
+        if(!rg.media_scale.value) {
+            rg.media_scale.value = 1;
+        }
         ssF.scaleValue2app( rg.media_scale.value );
 
         //interval of t to construct an arc for
