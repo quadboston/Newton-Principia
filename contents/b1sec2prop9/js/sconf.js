@@ -136,7 +136,7 @@
         //-----------------------------------
         const {
             given,
-			givenOnlyVisibleWhenHighlighted,
+			givenHover,
             orbit,
             body,
             proof,
@@ -236,7 +236,7 @@
             { 'PV' : { pcolor : proof,
 				cssClass:'subessay--another-solution',}, },
             { 'PY' : { pcolor : given }, },
-            { 'PR' : { pcolor : givenOnlyVisibleWhenHighlighted,
+            { 'PR' : { pcolor : givenHover,
 				cssClass:'subessay--another-solution',}, },
             { 'SY' : { pcolor : proof,
 				cssClass:'subessay--another-solution',}, },

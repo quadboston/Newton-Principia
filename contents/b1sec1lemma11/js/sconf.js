@@ -91,8 +91,8 @@
             given,
             proof,
             hidden,
-			supplementColorOnlyVisibleWhenHighlighted,
-			givenOnlyVisibleWhenHighlighted,
+			supplementHover,
+			givenHover,
         } = topicColors_repo;
 
         var topicColors_elected =
@@ -109,7 +109,7 @@
             'BD-bd'     : proof,
             'claimRatio': proof,
             'ratio'     : proof,
-            'circleJA'  : givenOnlyVisibleWhenHighlighted,
+            'circleJA'  : givenHover,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -226,7 +226,7 @@
 				cssClass: 'logic_phase--proof', }, },
             { 'AJ' : { pcolor : given,
 				cssClass: 'logic_phase--claim logic_phase--proof', }, },
-            { 'bM' : { pcolor : supplementColorOnlyVisibleWhenHighlighted,
+            { 'bM' : { pcolor : supplementHover,
 				cssClass: 'logic_phase--corollary',}, },
         ];
 

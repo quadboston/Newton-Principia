@@ -161,12 +161,12 @@
 			body2,
 			orbit2,
             proof,
-			supplementColorOnlyVisibleWhenHighlighted,
-			givenOnlyVisibleWhenHighlighted,
+			supplementHover,
+			givenHover,
             forceColor,
             hidden,
 			corollaryColor,
-			corollaryColorOnlyVisibleWhenHighlighted,
+			corollaryHover,
 			sunColor
         } = topicColors_repo;
 
@@ -349,7 +349,7 @@
 				cssClass: 'subessay--solution subessay--corollary1',
 			}, },
             { 'L,LL' : { 
-				pcolor : supplementColorOnlyVisibleWhenHighlighted,
+				pcolor : supplementHover,
                captionShiftNorm : 22, lposYSugar : 3
 			}, },
             { CB : {
@@ -373,11 +373,11 @@
 				cssClass: 'subessay--solution',
 			}, },
             { DS : { 
-				pcolor : corollaryColorOnlyVisibleWhenHighlighted,
+				pcolor : corollaryHover,
 				cssClass: 'subessay--corollary1 subessay--corollary2',
 			}, },
             { DH : {
-				pcolor :corollaryColorOnlyVisibleWhenHighlighted,
+				pcolor :corollaryHover,
 				cssClass: 'subessay--corollary1 subessay--corollary2',
 			}, },
             { CH : {
@@ -388,12 +388,12 @@
             // perpendiculars referenced in the Solution
             { 'SY' : { 
 				// perpendicular from S to PR
-                pcolor : supplementColorOnlyVisibleWhenHighlighted,
+                pcolor : supplementHover,
                 captionShiftNorm : -28 
             }, }, 
             { 'S,Ys' : { 
 				// perpendicular from S to pr
-                pcolor : supplementColorOnlyVisibleWhenHighlighted,
+                pcolor : supplementHover,
                 captionShiftNorm : -28 
             }, },
             //-------------------------------------------
@@ -415,7 +415,7 @@
                 vectorTipIx : 1 }, 
             },
             { 'l,ll' : { 
-                pcolor : givenOnlyVisibleWhenHighlighted,
+                pcolor : givenHover,
                 captionShiftNorm : 44, 
                 lposYSugar : -5, }, 
             },

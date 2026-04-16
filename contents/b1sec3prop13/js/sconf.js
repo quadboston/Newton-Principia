@@ -135,8 +135,8 @@
             given,
             body,
             orbit,
-			supplementColorOnlyVisibleWhenHighlighted,
-			proofOnlyVisibleWhenHighlighted,
+			supplementHover,
+			proofHover,
             proof,
 			estimatedForce,
             forceColor,
@@ -360,8 +360,8 @@
             { Pv :  proofSolution },
             { Qv :  proofSolution }, 
             { Qx :  proofSolution },  
-            { Px :  { pcolor : proofOnlyVisibleWhenHighlighted }, },
-            { Tx :  { pcolor : proofOnlyVisibleWhenHighlighted }, },
+            { Px :  { pcolor : proofHover }, },
+            { Tx :  { pcolor : proofHover }, },
             { SA :  proofSolution },
             { xv :  proofSolution },
 
@@ -379,7 +379,7 @@
             { 'A,AA' : { pcolor : orbit,
  				cssClass: 'subessay--solution', }, },
 
-            { 'L,LL' : { pcolor : supplementColorOnlyVisibleWhenHighlighted,
+            { 'L,LL' : { pcolor : supplementHover,
                captionShiftNorm : 22, lposYSugar : 3 }, },
         ];
 

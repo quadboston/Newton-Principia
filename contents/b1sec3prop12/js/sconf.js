@@ -151,8 +151,8 @@
             given,
             body,
             orbit,
-            supplementColorOnlyVisibleWhenHighlighted,
-			proofOnlyVisibleWhenHighlighted,
+            supplementHover,
+			proofHover,
 			estimatedForce,
             proof,
             forceColor,
@@ -354,7 +354,7 @@
 						cssClass: 'subessay--solution',}, },
             { EC : { pcolor : proof,
 						cssClass: 'logic_phase--proof',}, },
-            { ES : { pcolor : proofOnlyVisibleWhenHighlighted,
+            { ES : { pcolor : proofHover,
 						cssClass: 'logic_phase--proof',}, },
             { EI : { pcolor : proof,
 						cssClass: 'subessay--solution',}, },
@@ -367,7 +367,7 @@
             
             { QT : { pcolor : estimatedForce,
 						cssClass: 'subessay--solution',}, },
-            { PT : { pcolor : proofOnlyVisibleWhenHighlighted,
+            { PT : { pcolor : proofHover,
 						cssClass: 'subessay--solution',}, },
             { AT : { pcolor : proof,
 						cssClass: 'subessay--solution',}, },
@@ -384,7 +384,7 @@
             { CD : { pcolor : proof,
 						cssClass: 'subessay--solution',}, },
 
-            { 'L,LL' : { pcolor : supplementColorOnlyVisibleWhenHighlighted,
+            { 'L,LL' : { pcolor : supplementHover,
                captionShiftNorm : 22, lposYSugar : 3 }, },
 
         ];

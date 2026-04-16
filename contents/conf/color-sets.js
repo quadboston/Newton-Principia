@@ -79,15 +79,15 @@
 			tr.orbit = tr.body;
 			tr.orbit2 = tr.body2;
 			tr.corollaryColor = tr.proof;
-			tr.corollaryColorOnlyVisibleWhenHighlighted = [...tr.corollaryColor, 0, 1];
+			tr.corollaryHover = [...tr.corollaryColor, 0, 1];
 			tr.speed = tr.curvature = tr.supplementColor;
-			tr.supplementColorOnlyVisibleWhenHighlighted = 
+			tr.supplementHover = 
 					[...tr.supplementColor, 0, 1];
 			tr.proofArea   = [...tr.proof, 1];
-			tr.proofOnlyVisibleWhenHighlighted  = [...tr.proof, 0, 1];
+			tr.proofHover  = [...tr.proof, 0, 1];
 			tr.givenArea   = [...tr.given, 1];
-			tr.givenOnlyVisibleWhenHighlighted = [...tr.given, 0, 1];
-			tr.supplementColorOnlyVisibleWhenHighlighted
+			tr.givenHover = [...tr.given, 0, 1];
+			tr.supplementHover
 				= [...tr.supplementColor, 0, 1];
 
 			tr.sagitta         = 
