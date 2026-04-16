@@ -2,12 +2,13 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
+  "subessay" : "claim",
   "logic_phaseCaption" : "Problem 4"
 }
 *..*
 Let a ¦body P¦body¦¦ revolve in a spiral ¦orbit¦PQS¦¦ intersecting all its radii ¦SP¦SP¦¦,
 ¦SQ¦¦, ... , at a
-given ¦SP PZ¦angle¦¦; it is required to find the law of the ¦force¦centripetal force¦¦ tending toward
+given ¦SP PY¦angle¦¦; it is required to find the law of the ¦force¦centripetal force¦¦ tending toward
 the ¦S¦center of the spiral¦¦.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 458.</div>
@@ -18,7 +19,6 @@ the ¦S¦center of the spiral¦¦.
 {
   "menuCaption" : "Text",
   "subessayCaption" : "[<i>First solution</i>]",
-  "subessay" : "solution",
   "subessay" : "solution",
   "logic_phaseCaption" : "Solutions"
 }

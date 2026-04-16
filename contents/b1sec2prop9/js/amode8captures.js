@@ -28,46 +28,9 @@
         //sconf.rgShapesVisible
 
         //Modify visibility for the below decorations based on the following settings.
-        if (logic_phase === 'claim') {
-            hide(
-                'PY',
-                'R',
-                'Y',
-                'SY',
-                'PR',
-                'T', 
-                'QT', 
-                'PT',
-                'PV',
-                'QR',
-                'V',
-                'curvatureCircle',
-                'arc-QP'
-            );
-        } else if (subessay === 'solution') {
-            hide(
-                'PV',
-                'PY',
-                'V',
-                'Y',
-                'SY',
-                'curvatureCircle'
-            );
-        } else if (subessay === 'another-solution') {
-            hide(
-                'Q',
-                'R',
-                'SQ',
-                'PZ',
-                'PR',
-                'T', 
-                'QT', 
-                'PT',
-                'QR',
-                'V',
-                'arc-QP'
-            );
-        }
+		 if (subessay !== 'another-solution') {
+			hide('curvatureCircle');
+		 }
 
         sDomF.detected_user_interaction_effect( 'doUndetected' );
         return captured;
