@@ -175,55 +175,51 @@
                 doPaintPname : false,
                 pos: C,
             },
-
             S : {
                 pos: S,
                 pcolor : given,
                 letterAngle : -90,
-                //draggableX  : true,
-                //draggableY  : true,
             },
-
             P : {
                 pcolor : body,
                 letterAngle : 70,
                 draggableX  : true,
             },
-
             T : {
                 pcolor : proof,
                 letterAngle : 180,
+				cssClass:  'subessay--solution',
             },
-
             R : {
                 pcolor : proof,
                 letterAngle : 45,
-            },
-
+ 				cssClass:  'subessay--solution',
+           },
             Q : {
                 pcolor : given,
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
                 draggableY  : fconf.sappId === 'b1sec2prop7',
+				cssClass:  'subessay--claim subessay--solution',
+				conditionalDrag: 'subessay--claim subessay--solution',
             },
-
             Z : {
                 pcolor : body,
                 letterAngle : 45,
                 undisplayAlways : true,
                 doPaintPname : false,
             },
-
             Y : {
                 pcolor : proof,
                 letterAngle : -90,
+				cssClass:'subessay--another-solution',
             },
-
             V : {
                 pos: V,
                 pcolor : curvature,
                 letterAngle : -45,
+				cssClass:'subessay--another-solution',
             },
 
             //center of instant curvature circle
@@ -240,16 +236,22 @@
 
         var linesArray =
         [
-            { 'PV' : { pcolor : proof }, },
+            { 'PV' : { pcolor : proof,
+				cssClass:'subessay--another-solution',}, },
             { 'SP' : { pcolor : given }, },
-            { 'PY' : { pcolor : body }, },
-            { 'PZ' : { pcolor : body }, },
-            { 'PR' : { pcolor : body }, },
-            { 'SY' : { pcolor : proof }, },
-            { 'QR' : { pcolor : proof }, },
-            { 'SQ' : { pcolor : given }, },
-            { 'QT' : { pcolor : proof }, },
-            { 'PT' : { pcolor : proof }, },
+            { 'PY' : { pcolor : body,}, },
+            { 'PR' : { pcolor : body,
+				cssClass:'subessay--another-solution',}, },
+            { 'SY' : { pcolor : proof,
+				cssClass:'subessay--another-solution',}, },
+            { 'QR' : { pcolor : proof,
+				cssClass:'subessay--solution',}, },
+            { 'SQ' : { pcolor : given,
+				cssClass:  'subessay--claim subessay--solution',},},
+            { 'QT' : { pcolor : proof,
+				 cssClass:'subessay--solution',}, },
+            { 'PT' : { pcolor : proof,
+				cssClass:'subessay--another-solution',}, },
         ];
 
         ns.paste( sconf, {
