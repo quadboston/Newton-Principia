@@ -1,6 +1,6 @@
 (function(){
-const { sn, eachprop, mapp, nspaste, haz, has, haf, haff,
-        fconf, sconf, toreg, rg, ssF, ssD, sDomF, amode, stdMod,
+const { sn, eachprop, has, haf, 
+        fconf, sconf, toreg, rg, ssD, sDomF, stdMod,
         topicColors_repo, topicColors_repo_camel2col, originalPoints,
 } = window.b$l.apptree({ stdModExportList : { sconf_points8lines, }, });
 const decor = sn( 'decor', stdMod );
@@ -22,7 +22,7 @@ function sconf_points8lines (){
 
         path,
         time,
-        sagittaeChords,
+        corollaryColor,
         speed,
 
         trianglePurpleTextAreaColor,
@@ -77,7 +77,7 @@ function sconf_points8lines (){
         "kepler-triangle-odd"   : topicColors_repo["kepler-triangle-odd"],
         "kepler-triangle-even"  : topicColors_repo["kepler-triangle-even"],
 
-        "sagitta-chords"    : sagittaeChords,
+        "sagitta-chords"    : corollaryColor,
 
         "SBc"               : triangleGreen,
         "SCd"               : triangleGreen,
@@ -133,9 +133,9 @@ function sconf_points8lines (){
 
         "BU"                : forceColor,
         "EW"                : forceColor,
-        "AC"                : sagittaeChords,
+        "AC"                : corollaryColor,
         "Av"                : speed,
-        "DF"                : sagittaeChords,
+        "DF"                : corollaryColor,
 
         force : forceColor,
         "Z"                 : forceColor,
@@ -173,14 +173,9 @@ function sconf_points8lines (){
         'logic_phase--corollary' : 'logic_phase--none';
     var theor1proof = fconf.sappId === 'b1sec2prop2' ?
         'logic_phase--none' : 'logic_phase--proof';
-    var theor2proof = fconf.sappId === 'b1sec2prop2' ?
-        'logic_phase--proof' : 'logic_phase--none';
     var lemmaModes = fconf.sappId === 'b1sec2prop2' ?
         'logic_phase--proof logic_phase--corollary' :
         'logic_phase--proof';
-    var cssMove8Mode = 'tp-force-_move ' +
-        fconf.sappId === 'b1sec2prop2' ?
-            'logic_phase--corollary' : 'logic_phase--proof logic_phase--corollary';
 
     //******************************
     // //\\ points config
@@ -229,7 +224,7 @@ function sconf_points8lines (){
         },
     };
     ///makes proof points disappear after a while
-    eachprop( CDEF_conf, (fs, kName) => {
+    eachprop( CDEF_conf, (fs) => {
         fs.decEnd = sconf.numberOfManyBases*4 *
                     sconf.FIRST_POINT_LABELS_DISPLAY_LIMIT;
     });
@@ -653,9 +648,6 @@ function sconf_points8lines (){
         Object.keys( p2_elected ).forEach( camelId => {
             //if( camelId === 'SBCaracc' ) return;
             var tpLowKey = sDomF.toCssIdentifier( camelId );
-            let fc = topicColors_repo_camel2col[ camelId ] =
-                    topicColors_repo[ tpLowKey ] =
-                    tpel[ camelId ];
                 //this thing only affects difference between strokable
                 //and areas like this:
         });
