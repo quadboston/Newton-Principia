@@ -235,7 +235,7 @@
         [
             { 'PV' : { pcolor : proof,
 				cssClass:'subessay--another-solution',}, },
-            { 'PY' : { pcolor : body }, },
+            { 'PY' : { pcolor : given }, },
             { 'PR' : { pcolor : givenOnlyVisibleWhenHighlighted,
 				cssClass:'subessay--another-solution',}, },
             { 'SY' : { pcolor : proof,
