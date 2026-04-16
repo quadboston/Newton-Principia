@@ -70,47 +70,9 @@
         tr.estimatedForce  = rgbToArray("rgb(211, 87, 254)");
 		tr.invalid     = rgbToArray("rgb(255, 0, 0)");  //alert, invalid user actions
 		tr.supplementColor = rgbToArray("rgb(99, 99, 99)");
-		tr.body        = rgbToArray("rgb(51, 107, 186)"),
+		tr.body        = rgbToArray("rgb(50, 149, 191)"),
 		tr.body2       = rgbToArray("rgb(205, 103, 54)");//rgbToArray("rgb(255, 149, 111)"),
 
-        const colorSets = [ 
-			{ // 0
-				// use default set above
-			},
-			{ // Leading
-				body : rgbToArray("rgb(50, 149, 191)"),
-                given : rgbToArray("rgb(139, 105, 20)"),
-                forceColor : rgbToArray("rgb(131, 56, 236)"),
-                estimatedForce:  rgbToArray("rgb(211, 87, 254)"),
-                proof       : rgbToArray("rgb(0, 133, 0)"),
-            },
-			{ 
-                proof : rgbToArray("rgb(124, 57, 201)"),
-                given : rgbToArray("rgb(29, 126, 182)"),
-                sunColor    : rgbToArray("rgb(222, 200, 0)"),
-				body: rgbToArray("rgb(0, 0, 222)"),
-				estimatedForce:  rgbToArray("rgb(0, 133, 0)"),
-            },
-			{ 
-                proof : rgbToArray("rgb(124, 57, 201)"),
-                body : rgbToArray("rgb(29, 136, 182)"),
-				given: rgbToArray("rgb(0, 0, 222)"),
-				estimatedForce:  rgbToArray("rgb(0, 133, 0)"),
-            },
-			{
-				proof : rgbToArray("rgb(124, 57, 201)"),
-                forceColor : rgbToArray("rgb(139, 105, 20)"),
-                body : rgbToArray("rgb(29, 136, 182)"),
-				given: rgbToArray("rgb(0, 0, 222)"),
-				estimatedForce:  rgbToArray("rgb(0, 133, 0)"),
-            },
-			{ 
-				given : rgbToArray("rgb(69, 174, 162)"),
-				forceColor : rgbToArray("rgb(0, 133, 0)"),
-				estimatedForce:  rgbToArray("rgb(124, 57, 201)"),
-				sunColor    : rgbToArray("rgb(222, 200, 0)"),
-			},
-        ];    
 
 		function setCommonColors() {
 			tr.hidden  = [0, 0, 0, 0];
@@ -139,41 +101,7 @@
 		setProp1andProp2Colors();
 		setL20andL21Colors();
 		setProp41Colors();
-        
-        const prevBtn = document.getElementsByClassName("prev")[0];
-        const nextBtn = document.getElementsByClassName("next")[0];
-        const idxElem = document.getElementById("colorSetIdx");
-
-        let colorSetIdx = localStorage.getItem('COLORSET'); 
-        if(!colorSetIdx) colorSetIdx = 0; 
-        idxElem.innerText = colorSetIdx; 
-
-		//=======================================
-        // //\\ Color-Set Buttons
-        //=======================================
-        prevBtn.onclick = () => {
-            colorSetIdx--;
-            if(colorSetIdx < 0) colorSetIdx = colorSets.length - 1; 
-            localStorage.setItem('COLORSET', colorSetIdx);
-            window.location.reload();
-        }
-        nextBtn.onclick = () => {
-            colorSetIdx++;
-            if(colorSetIdx >= colorSets.length) colorSetIdx = 0; 
-            localStorage.setItem('COLORSET', colorSetIdx);
-            window.location.reload();
-        }
-                  
-        console.log('Color Set: ' + colorSetIdx);
-		for(let key in colorSets[colorSetIdx]) {
-			value = colorSets[colorSetIdx][key];
-			tr[key] = value;
-		}
 		setCommonColors();
-        //=======================================
-        // \\// Color-Set Buttons
-        //=======================================
-
 
 		sf.default_tp_stroke_width = 10;
 		///for default points (and draggers???)
