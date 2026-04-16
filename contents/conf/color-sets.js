@@ -84,13 +84,20 @@
 				body: rgbToArray("rgb(0, 0, 222)"),
 				estimatedForce:  rgbToArray("rgb(0, 133, 0)"),
             },
-			{ // 2 faveorite so far
+			{ // 2 or 3 favorite so far
                 proof : rgbToArray("rgb(124, 57, 201)"),
                 body : rgbToArray("rgb(29, 136, 182)"),
 				given: rgbToArray("rgb(0, 0, 222)"),
 				estimatedForce:  rgbToArray("rgb(0, 133, 0)"),
             },
-			{ // 3
+			{ // 2 or 3 favorite so far
+				proof : rgbToArray("rgb(124, 57, 201)"),
+                forceColor : rgbToArray("rgb(139, 105, 20)"),
+                body : rgbToArray("rgb(29, 136, 182)"),
+				given: rgbToArray("rgb(0, 0, 222)"),
+				estimatedForce:  rgbToArray("rgb(0, 133, 0)"),
+            },
+			{ // 4
 				given : rgbToArray("rgb(69, 174, 162)"),
 				forceColor : rgbToArray("rgb(0, 133, 0)"),
 				estimatedForce:  rgbToArray("rgb(124, 57, 201)"),
