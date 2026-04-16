@@ -130,6 +130,12 @@
 			// allow ellipse to be circle, rather than abort at last ellipse
 			a = Math.max(a, b);
 
+            //Ensure a always slightly larger than b, to avoid cuckoo P10 graph
+            //-Doesn't work well for P11 (eg. line PS and PH can't get close
+            // enough to each other, point E "wobbles" when point P dragged)
+            if (sconf.sappId === "b1sec2prop10")
+			    a = Math.max(a, b + 0.0001);
+
             sconf.ellipseA = a;
             sconf.ellipseFocus = Math.sqrt(a*a - b*b);
             sconf.eccentricity = sconf.ellipseFocus / a;
