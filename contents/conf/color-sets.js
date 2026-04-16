@@ -77,27 +77,34 @@
 			{ // 0
 				// use default set above
 			},
-			{ // 1
+			{ // Leading
+				body : rgbToArray("rgb(50, 149, 191)"),
+                given : rgbToArray("rgb(139, 105, 20)"),
+                forceColor : rgbToArray("rgb(131, 56, 236)"),
+                estimatedForce:  rgbToArray("rgb(211, 87, 254)"),
+                proof       : rgbToArray("rgb(0, 133, 0)"),
+            },
+			{ 
                 proof : rgbToArray("rgb(124, 57, 201)"),
                 given : rgbToArray("rgb(29, 126, 182)"),
                 sunColor    : rgbToArray("rgb(222, 200, 0)"),
 				body: rgbToArray("rgb(0, 0, 222)"),
 				estimatedForce:  rgbToArray("rgb(0, 133, 0)"),
             },
-			{ // 2 or 3 favorite so far
+			{ 
                 proof : rgbToArray("rgb(124, 57, 201)"),
                 body : rgbToArray("rgb(29, 136, 182)"),
 				given: rgbToArray("rgb(0, 0, 222)"),
 				estimatedForce:  rgbToArray("rgb(0, 133, 0)"),
             },
-			{ // 2 or 3 favorite so far
+			{
 				proof : rgbToArray("rgb(124, 57, 201)"),
                 forceColor : rgbToArray("rgb(139, 105, 20)"),
                 body : rgbToArray("rgb(29, 136, 182)"),
 				given: rgbToArray("rgb(0, 0, 222)"),
 				estimatedForce:  rgbToArray("rgb(0, 133, 0)"),
             },
-			{ // 4
+			{ 
 				given : rgbToArray("rgb(69, 174, 162)"),
 				forceColor : rgbToArray("rgb(0, 133, 0)"),
 				estimatedForce:  rgbToArray("rgb(124, 57, 201)"),
