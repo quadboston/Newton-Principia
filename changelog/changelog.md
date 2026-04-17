@@ -1,6 +1,16 @@
 # Change Log
 
-## 2026-4-? (Version, 0.9)
+## 2026-4-17 (Chartreuse Version, 0.9)
+### Changed
+* Colors are modified and more closely adhere to these groupings:
+	* orbit and body
+	* sun
+	* other components given in the claim or problem
+	* components used in the limit to calculate force
+	* actual force
+	* other components added for the proof or corollaries
+	* supplemental components not found in the original diagrams
+
 ### Improved
 * General
     * zoom persists across tabs

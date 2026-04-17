@@ -239,15 +239,8 @@ div.bsl-approot svg.bsl--svgscene .undisplay,
 
 .hidden {
     visibility : hidden;
-};
-
-a:link{
-    color:var(--color-main);
 }
 
-a:visited{
-    color:var(--color-main);    
-}
 
 /*====================================*/
 /* \\// main-legend                   */

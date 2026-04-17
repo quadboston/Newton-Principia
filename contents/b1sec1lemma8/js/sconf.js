@@ -54,16 +54,14 @@
             given,
             proof,
             hidden,
-            result,
             givenArea,
             proofArea
         } = topicColors_repo;
 
         var topicColors_elected = { 
             //:basic topics
-            proof,
-            given,
-            result,
+            //proof,
+            //given,
             hidden,
 
             //given (claim)

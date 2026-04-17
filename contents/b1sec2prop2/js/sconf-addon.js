@@ -1,5 +1,5 @@
 (function(){
-const { sconf, nspaste, capture, toreg, ssF, ssD, sDomF,} =
+const { sconf, nspaste, capture, ssF, ssD,} =
       window.b$l.apptree({});
     ssF.init_conf_addon = init_conf_addon;
     ssD.P2_topicColors_elected = topicColors_elected;
@@ -122,37 +122,36 @@ function init_conf_addon (){
 
 function topicColors_elected(tpel){
     const {
-        force,
-        forceMove,
+        forceColor,
         diagram,
         path,
     } = tpel;
 
     areaDescriptionAccelerated = [
-        force[0], force[1], force[2]
+        forceColor[0], forceColor[1], forceColor[2]
     ];
 
     return {
         areaDescriptionAccelerated,
-        "Paracc"            : force,  //Point C''
-        "Caracc"            : force,  //Point C'
-        "CCaracc"           : forceMove,  //Line C to C'
+        "Paracc"            : forceColor,  //Point C''
+        "Caracc"            : forceColor,  //Point C'
+        "CCaracc"           : forceColor,  //Line C to C'
         "CParacc"           : diagram,  //Line C to C''
-        "cCaracc"           : forceMove,  //Line c to C'
-        "CaraccParacc"      : forceMove,  //Line C' to C''
-        "BParacc"           : forceMove,  //Line B to C''
+        "cCaracc"           : forceColor,  //Line c to C'
+        "CaraccParacc"      : forceColor,  //Line C' to C''
+        "BParacc"           : forceColor,  //Line B to C''
         "BCaracc"           : path,     //Line B to C'
         "SCaracc"           : diagram,  //Line S C'
 
         "SBCaracc"          : areaDescriptionAccelerated,
         // triangle SBC area description accelerated
 
-        "Varacc"            : forceMove,    //Point V'
-        "BVaracc"           : forceMove,
+        "Varacc"            : forceColor,    //Point V'
+        "BVaracc"           : forceColor,
             // force at B deviated toward V;        Line B to V'
             // area description accelerated
 
-            "VVaracc"           : forceMove,
+            "VVaracc"           : forceColor,
             // force vector at V displaced to V';   Line V to V'
             // area description accelerated
     };

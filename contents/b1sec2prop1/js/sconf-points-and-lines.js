@@ -1,6 +1,6 @@
 (function(){
-const { sn, eachprop, mapp, nspaste, haz, has, haf, haff,
-        fconf, sconf, toreg, rg, ssF, ssD, sDomF, amode, stdMod,
+const { sn, eachprop, has, haf, 
+        fconf, sconf, toreg, rg, ssD, sDomF, stdMod,
         topicColors_repo, topicColors_repo_camel2col, originalPoints,
 } = window.b$l.apptree({ stdModExportList : { sconf_points8lines, }, });
 const decor = sn( 'decor', stdMod );
@@ -17,13 +17,12 @@ return;
 //-------------------------------------------------------
 function sconf_points8lines (){
     let {
-        force,
         freeMove,
-        forceMove,
+        forceColor,
 
         path,
         time,
-        sagittaeChords,
+        corollaryColor,
         speed,
 
         trianglePurpleTextAreaColor,
@@ -33,26 +32,27 @@ function sconf_points8lines (){
         tangent,
 
         diagram,
+		sunColor,
     } = topicColors_repo;
 
     {   const harden = col => ([col[0],col[1],col[2],1,1]);
         //0.5 is good for areas, bad for lines,
         //so, lines shold have color pattern [x,x,x,1,1]
-        forceMove = harden(forceMove);
+        forceColor = harden(forceColor);
         path = harden(path);
         freeMove = harden(freeMove);
         speed = harden(speed);
         time = harden(time);
-        force = harden(force);
+        forceColor = harden(forceColor);
         perpendicular = harden(perpendicular);
+		sunColor = harden(sunColor);
     }
 
     ///topic names elected
     var tpel = {
         diagram,
         speed,
-        force,
-        forceMove,
+        forceColor,
         time,                       //Time slider
         dt                  : time, //Delta time slider
         path,
@@ -77,7 +77,7 @@ function sconf_points8lines (){
         "kepler-triangle-odd"   : topicColors_repo["kepler-triangle-odd"],
         "kepler-triangle-even"  : topicColors_repo["kepler-triangle-even"],
 
-        "sagitta-chords"    : sagittaeChords,
+        "sagitta-chords"    : corollaryColor,
 
         "SBc"               : triangleGreen,
         "SCd"               : triangleGreen,
@@ -97,8 +97,8 @@ function sconf_points8lines (){
         "DE"                : path,
         "EF"                : path,
 
-        "ABCV"              : forceMove,
-        "DEFZ"              : forceMove,
+        "ABCV"              : forceColor,
+        "DEFZ"              : forceColor,
 
         "Sc"                : diagram,
         "Sd"                : diagram,
@@ -110,19 +110,19 @@ function sconf_points8lines (){
         //  to force and sagitta,
         //  the pcolor which one can try to set on line segment Cc config
         //  may be overriden by elected topic color:
-        "Cc"                : forceMove,
+        "Cc"                : forceColor,
 
-        "Dd"                : forceMove,
-        "Ee"                : forceMove,
-        "Ff"                : forceMove,
-        "force-0-applied"   : forceMove,
-        "force-1-applied"   : forceMove,
-        "force-2-applied"   : forceMove,
-        "force-3-applied"   : forceMove,
-        "force-4-applied"   : forceMove,
+        "Dd"                : forceColor,
+        "Ee"                : forceColor,
+        "Ff"                : forceColor,
+        "force-0-applied"   : forceColor,
+        "force-1-applied"   : forceColor,
+        "force-2-applied"   : forceColor,
+        "force-3-applied"   : forceColor,
+        "force-4-applied"   : forceColor,
 
-        "force-center"      : force,
-        "S"                 : force,
+        "force-center"      : forceColor,
+        "S"                 : sunColor,
 
         "SA"                : path,
         "SB"                : path,
@@ -131,16 +131,16 @@ function sconf_points8lines (){
         "SE"                : path,
         "SF"                : path,
 
-        "BU"                : forceMove,
-        "EW"                : forceMove,
-        "AC"                : sagittaeChords,
+        "BU"                : forceColor,
+        "EW"                : forceColor,
+        "AC"                : corollaryColor,
         "Av"                : speed,
-        "DF"                : sagittaeChords,
+        "DF"                : corollaryColor,
 
-        force,
-        "Z"                 : force,
-        "V"                 : force,
-        "BV"                : forceMove,
+        force : forceColor,
+        "Z"                 : forceColor,
+        "V"                 : forceColor,
+        "BV"                : forceColor,
 
         //perpendicular
         "SP"                : perpendicular,
@@ -173,14 +173,9 @@ function sconf_points8lines (){
         'logic_phase--corollary' : 'logic_phase--none';
     var theor1proof = fconf.sappId === 'b1sec2prop2' ?
         'logic_phase--none' : 'logic_phase--proof';
-    var theor2proof = fconf.sappId === 'b1sec2prop2' ?
-        'logic_phase--proof' : 'logic_phase--none';
     var lemmaModes = fconf.sappId === 'b1sec2prop2' ?
         'logic_phase--proof logic_phase--corollary' :
         'logic_phase--proof';
-    var cssMove8Mode = 'tp-force-_move ' +
-        fconf.sappId === 'b1sec2prop2' ?
-            'logic_phase--corollary' : 'logic_phase--proof logic_phase--corollary';
 
     //******************************
     // //\\ points config
@@ -229,7 +224,7 @@ function sconf_points8lines (){
         },
     };
     ///makes proof points disappear after a while
-    eachprop( CDEF_conf, (fs, kName) => {
+    eachprop( CDEF_conf, (fs) => {
         fs.decEnd = sconf.numberOfManyBases*4 *
                     sconf.FIRST_POINT_LABELS_DISPLAY_LIMIT;
     });
@@ -541,16 +536,16 @@ function sconf_points8lines (){
             //for specaial width at hover
             'vectorTipIx' : 1,
             'tipFraction' : 0.2,
-            'pcolor' : tpel.forceMove,
-            'tipFill' : tpel.forceMove,
+            'pcolor' : tpel.forceColor,
+            'tipFill' : tpel.forceColor,
         },
         { nam : ['E', 'W'],  //saggitae at E
             //decStart : rg.F.decStart,
             cssClass : 'hover-width ' + theor1corollary,
             'vectorTipIx' : 1,
             'tipFraction' : 0.4,
-            'pcolor' :  tpel.forceMove,
-            'tipFill' :  tpel.forceMove,
+            'pcolor' :  tpel.forceColor,
+            'tipFill' :  tpel.forceColor,
         },
         //------------------------------------
         // \\// cor4 prop1
@@ -653,9 +648,6 @@ function sconf_points8lines (){
         Object.keys( p2_elected ).forEach( camelId => {
             //if( camelId === 'SBCaracc' ) return;
             var tpLowKey = sDomF.toCssIdentifier( camelId );
-            let fc = topicColors_repo_camel2col[ camelId ] =
-                    topicColors_repo[ tpLowKey ] =
-                    tpel[ camelId ];
                 //this thing only affects difference between strokable
                 //and areas like this:
         });

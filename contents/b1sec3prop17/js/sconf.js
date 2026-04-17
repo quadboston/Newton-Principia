@@ -158,14 +158,16 @@
             given,
             body,
             orbit,
+			body2,
+			orbit2,
             proof,
-			resultOnlyVisibleWhenHighlighted,
-			givenOnlyVisibleWhenHighlighted,
-            result,
-            force,
-            shadow,
+			supplementHover,
+			givenHover,
+            forceColor,
             hidden,
-            attention,
+			corollaryColor,
+			corollaryHover,
+			sunColor
         } = topicColors_repo;
 
 		const ALL_EXCEPT_PROBLEM_TAB = 
@@ -175,18 +177,12 @@
         {
             given,
             proof,
-            result,
             hidden,
             body,
-            orbit               : result,
-            'orbit-sample'      : given,
+            orbit,
+            'orbit-sample'      : orbit2,
             trace               : [...given, 0.5], // show only faint line for full sample orbit
-            shadow,
-            force               : force,
-
-            // table colours
-            e                   : result,
-            conic               : result
+            force               : forceColor,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -195,7 +191,7 @@
         var originalPoints = {};
         Object.assign( originalPoints, {
             S : {
-                pcolor : result,
+                pcolor : sunColor,
                 letterAngle : -115,
                 letterRotRadius : 20,
             },
@@ -216,33 +212,33 @@
             B : {
                 letterRotRadius : 20,
 				cssClass: 'subessay--solution',
-                pcolor : result,
+                pcolor : body,
             },
             C : { //center symmetry of orbit
-                pcolor : result,
+                pcolor : proof,
 				cssClass: 'subessay--solution',
                 letterAngle : -45,
             },
 
             H : {
-                pcolor : result,
+                pcolor : proof,
 				cssClass: ALL_EXCEPT_PROBLEM_TAB,
                 letterAngle : -90,
             },
             D : {
-                pcolor : result,
+                pcolor : corollaryColor,
 				cssClass: 'subessay--corollary1 subessay--corollary2',
                 letterRotRadius : 20,
             },
-            R : { //speed of the body (dragger)
-                pcolor : body,
+            R : { //velocity of the body (dragger)
+                pcolor : given,
                 letterAngle : 135, // degrees CCW from east
                 letterRotRadius : 25, //distance from point
                 draggableX  : true,
                 draggableY  : true,
             },
             Q : {
-                pcolor : result,
+                pcolor : body,
 				cssClass : 'subessay--solution',
                 letterAngle : 225,
                 letterRotRadius : 20,
@@ -256,7 +252,7 @@
             //-------------------------------------------
             p : {
 				caption : '𝑝',
-                pcolor : given,
+                pcolor : body2,
                 letterAngle : 120,
             },
             point_r : { // dragger r
@@ -269,7 +265,7 @@
             },
             f : { //force dragger
                 caption : '',
-                pcolor : force,
+                pcolor : forceColor,
                 letterAngle : 90,
                 letterRotRadius : 17,
                 draggableX  : true,
@@ -278,7 +274,7 @@
             },
             q : {
 				caption : '𝑞',
-                pcolor : given,
+                pcolor : body2,
 				cssClass : 'subessay--solution',
                 letterAngle : -65,
                 letterRotRadius : 20,
@@ -289,7 +285,6 @@
             
             //not shown as points, but used in calculations to draw lines
 			A : {
-                pcolor : result,
 				cssClass : 'hidden',
                 letterRotRadius : 20,
                 letterAngle : -90,
@@ -340,7 +335,7 @@
             //-------------------------------------------
             // //\\ op (PR brown conic)
             //-------------------------------------------                        
-            { SP : { pcolor : body},},   
+            { SP : { pcolor : given},},   
             { SK : {
 				pcolor : proof,
 				cssClass: 'subessay--solution subessay--corollary1',
@@ -350,15 +345,15 @@
 				cssClass: 'subessay--solution subessay--corollary1',
 			}, },
             { PK : {
-				pcolor : attention,
+				pcolor : proof,
 				cssClass: 'subessay--solution subessay--corollary1',
 			}, },
             { 'L,LL' : { 
-				pcolor : resultOnlyVisibleWhenHighlighted,
+				pcolor : supplementHover,
                captionShiftNorm : 22, lposYSugar : 3
 			}, },
             { CB : {
-				pcolor : result,
+				pcolor : proof,
 				cssClass: 'subessay--solution',
 			}, },   
             { BH : {
@@ -366,7 +361,7 @@
 				cssClass: 'subessay--solution',
 			}, },
             { PR : { 
-                pcolor : body,
+                pcolor : given,
                 captionShiftNorm : -18,
                 vectorTipIx : 1
 			}, },
@@ -374,15 +369,15 @@
             //not visible, because behind overlapping lines  
             //but may be highlighted in text links                      
             { CS : {
-				pcolor : result,
+				pcolor : proof,
 				cssClass: 'subessay--solution',
 			}, },
             { DS : { 
-				pcolor : proof,
+				pcolor : corollaryHover,
 				cssClass: 'subessay--corollary1 subessay--corollary2',
 			}, },
             { DH : {
-				pcolor : result,
+				pcolor :corollaryHover,
 				cssClass: 'subessay--corollary1 subessay--corollary2',
 			}, },
             { CH : {
@@ -393,12 +388,12 @@
             // perpendiculars referenced in the Solution
             { 'SY' : { 
 				// perpendicular from S to PR
-                pcolor : resultOnlyVisibleWhenHighlighted,
+                pcolor : supplementHover,
                 captionShiftNorm : -28 
             }, }, 
             { 'S,Ys' : { 
 				// perpendicular from S to pr
-                pcolor : givenOnlyVisibleWhenHighlighted,
+                pcolor : supplementHover,
                 captionShiftNorm : -28 
             }, },
             //-------------------------------------------
@@ -414,13 +409,13 @@
                 captionShiftNorm : -18}, 
             },
             { 'p,f' : { 
-                pcolor : force,
+                pcolor : forceColor,
                 'stroke-width' : 1.1, 
                 captionShiftNorm : -18,
                 vectorTipIx : 1 }, 
             },
             { 'l,ll' : { 
-                pcolor : givenOnlyVisibleWhenHighlighted,
+                pcolor : givenHover,
                 captionShiftNorm : 44, 
                 lposYSugar : -5, }, 
             },

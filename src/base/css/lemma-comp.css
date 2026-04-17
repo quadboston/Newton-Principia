@@ -231,7 +231,7 @@ Styles for the mobile tabs
 .english {
     font-family : var(--text-tab-font);
     font-size : 18px;
-    background-color: #FCF6EC;
+    background-color: #FFFAF8;/*#FCF6EC;*/
     margin-top: 1rem;
     box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.3);
 }

@@ -1,4 +1,3 @@
-
 ( function() {
     const { nspaste, fconf, sconf, topicColors_repo, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
@@ -137,12 +136,12 @@
             body,
             orbit,
             proof,
-            force,
-            result,
+            forceColor,
             hidden,
             estimatedForce,
             curvature,
-            context,
+			sunColor,
+			proofHover
         } = topicColors_repo;
 
 
@@ -150,15 +149,14 @@
         {
             estimatedForce,
             given,
-            proof,
-            result,
+            //proof,
             hidden,
-            context,
             curvature,
             body,
             orbit,
-            force,
+            forceColor,
             tangentCircle : curvature,
+			force : forceColor,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -180,20 +178,20 @@
                 doPaintPname : false,
             },
 
-            C : {
-                pcolor : given,
-                pos: posC,
-                letterAngle : 120,
-                letterRotRadius : 35,
-            },
-
             Z : {
-                pcolor : body,
+                pcolor : proof,
                 undisplayAlways : true,
                 doPaintPname : false,
             },
             // \\// no visibility cssClass
 
+            C : {
+                pcolor : sunColor,
+                pos: posC,
+                letterAngle : 120,
+                letterRotRadius : 35,
+            },
+			
             B : {
                 pcolor : proof,
                 letterAngle : 90,
@@ -320,10 +318,10 @@
             { 'B,BB' : { pcolor : proof,
 					 cssClass: 'subessay--corollary2',
 			 }, },
-            { 'PZ' : { pcolor : body,
+            { 'PZ' : { pcolor : proof,
 					 cssClass: 'subessay--solution',
 			}, },
-            { 'ZR' : { pcolor : body,
+            { 'ZR' : { pcolor : proof,
 					 cssClass: 'subessay--solution',
 			}, },
             { CA : { pcolor : proof,
@@ -332,50 +330,45 @@
             { CB : { pcolor : proof,
                      cssClass: 'subessay--solution',
             }, },
-            { PC : { pcolor : proof,
-                cssClass: 
-				'logic_phase--proof subessay--corollary1 logic_phase--scholium',
-            }, },
 
             // //\\ proof
-            { 'PV' : { pcolor : proof,
+			{ 'CV' : { pcolor : proof,
                          cssClass: 'subessay--another-solution',
             }, },
-            { 'PR' : { pcolor : body,
+            { 'PR' : { pcolor : proof,
                        cssClass: 'subessay--solution',
             }, },
-            { 'QR' : { pcolor : proof,
+            { 'QR' : { pcolor : estimatedForce,
                        cssClass: 'subessay--solution',
             }, },
-            { 'QT' : { pcolor : proof,
+            { 'QT' : { pcolor : estimatedForce,
                        cssClass: 'logic_phase--proof',
             }, },
-            { 'PT' : { pcolor : proof,
+            { 'PT' : { pcolor : proofHover,
                        cssClass: 'logic_phase--proof',
             }, },
             { DK : { pcolor : proof,
                      cssClass: 'logic_phase--proof',
             }, },
-            { GP : { pcolor : proof,
+            { GP : { pcolor : proofHover,
                      cssClass: 'logic_phase--proof',
             }, },
             { Qv : { pcolor : proof,
                      cssClass: 'logic_phase--proof',
             }, },
-            { Pv : { pcolor : proof,
+            { Pv : { pcolor : proofHover,
                      cssClass: 'logic_phase--proof',
             }, },
-            { Tv : { pcolor : proof,
+            { Tv : { pcolor : proofHover,
                      cssClass: 'logic_phase--proof',
             }, },
-
-            { vG : { pcolor : proof,                 
+            { vC : { pcolor : proofHover,                 
                      cssClass: 'logic_phase--proof',
             }, },
-            { PF : { pcolor : proof,
+			{ CG : { pcolor : proof,                 
                      cssClass: 'logic_phase--proof',
             }, },
-            { DC : { pcolor : proof,
+            { DC : { pcolor : proofHover,
                      cssClass: 'logic_phase--proof',
             }, },
             { CF : { pcolor : proof,
@@ -384,13 +377,13 @@
             // \\// proof
 
             //Book's "another solution"
-            { Tu : { pcolor : proof,
+            { Tu : { pcolor : proofHover,
                      cssClass: 'subessay--another-solution',
             }, },
-            { 'uV' : { pcolor : proof,
+            { 'uV' : { pcolor : proofHover,
                          cssClass: 'subessay--another-solution',
             }, },
-            { uP : { pcolor : proof,
+            { uP : { pcolor : proofHover,
                      cssClass: 'subessay--another-solution',
             }, },
             { PQ : { pcolor : proof,
@@ -398,6 +391,13 @@
             }, },
             { 'P,tCircleCenter' : { pcolor : curvature,
                      cssClass: 'subessay--another-solution',
+            }, },
+			{ PC : { pcolor : estimatedForce,
+                cssClass: 
+				'logic_phase--proof subessay--corollary1 logic_phase--scholium',
+            }, },
+			{ PF : { pcolor : proof,
+                     cssClass: 'logic_phase--proof',
             }, },
         ];
 

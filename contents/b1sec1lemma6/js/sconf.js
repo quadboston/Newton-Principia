@@ -101,7 +101,6 @@
         //: topic group colors
         var given   = topicColors_repo.given;        
         var proof   = topicColors_repo.proof;
-        var result  = topicColors_repo.result;
         var hidden  = topicColors_repo.hidden;
 
         var topicColors_elected =
@@ -109,7 +108,6 @@
             //:basic topics
             proof,
             given,
-            result,
             hidden,
 
             //:given

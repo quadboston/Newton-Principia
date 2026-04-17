@@ -136,15 +136,15 @@
         //-----------------------------------
         const {
             given,
+			givenHover,
             orbit,
             body,
             proof,
-            force,
-            result,
+            forceColor,
             hidden,
             estimatedForce,
             curvature,
-            context,
+            sunColor,
         } = topicColors_repo;
 
 
@@ -153,14 +153,11 @@
             estimatedForce,
             given,
             proof,
-            result,
             hidden,
-            context,
-            curvature,
-            curvatureCircle : curvature,    //Actually uses "rg.C.pcolor" see "model-upcreate.js" section "curvature circle"
+            curvatureCircle : curvature,
             body,
             orbit,
-            force,
+			force : forceColor,
             "arc-QP" : body
         };
         //-----------------------------------
@@ -177,7 +174,7 @@
             },
             S : {
                 pos: S,
-                pcolor : given,
+                pcolor : sunColor,
                 letterAngle : -90,
             },
             P : {
@@ -186,12 +183,12 @@
                 draggableX  : true,
             },
             T : {
-                pcolor : proof,
+                pcolor : estimatedForce,
                 letterAngle : 180,
 				cssClass:  'subessay--solution',
             },
             R : {
-                pcolor : proof,
+                pcolor : estimatedForce,
                 letterAngle : 45,
  				cssClass:  'subessay--solution',
            },
@@ -217,7 +214,7 @@
             },
             V : {
                 pos: V,
-                pcolor : curvature,
+                pcolor : proof,
                 letterAngle : -45,
 				cssClass:'subessay--another-solution',
             },
@@ -226,7 +223,7 @@
             C : {
                 pos : C,
                 caption : 'Rc',
-                pcolor : curvature,
+                pcolor : proof,
                 letterAngle : -45,
                 undisplayAlways : true,
                 doPaintPname : false,
@@ -238,20 +235,20 @@
         [
             { 'PV' : { pcolor : proof,
 				cssClass:'subessay--another-solution',}, },
-            { 'SP' : { pcolor : given }, },
-            { 'PY' : { pcolor : body,}, },
-            { 'PR' : { pcolor : body,
+            { 'PY' : { pcolor : given }, },
+            { 'PR' : { pcolor : givenHover,
 				cssClass:'subessay--another-solution',}, },
             { 'SY' : { pcolor : proof,
 				cssClass:'subessay--another-solution',}, },
-            { 'QR' : { pcolor : proof,
+            { 'QR' : { pcolor : estimatedForce,
 				cssClass:'subessay--solution',}, },
             { 'SQ' : { pcolor : given,
 				cssClass:  'subessay--claim subessay--solution',},},
-            { 'QT' : { pcolor : proof,
+            { 'QT' : { pcolor : estimatedForce,
 				 cssClass:'subessay--solution',}, },
             { 'PT' : { pcolor : proof,
 				cssClass:'subessay--another-solution',}, },
+			{ 'SP' : { pcolor : estimatedForce }, },
         ];
 
         ns.paste( sconf, {

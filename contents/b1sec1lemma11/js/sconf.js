@@ -90,17 +90,15 @@
         const {
             given,
             proof,
-            result,
             hidden,
-			resultOnlyVisibleWhenHighlighted,
-			givenOnlyVisibleWhenHighlighted,
+			supplementHover,
+			givenHover,
         } = topicColors_repo;
 
         var topicColors_elected =
         {
             given,
             proof,
-            result,
             hidden,
             'curve-AB'  : given,
             'arc-AB'    : given,
@@ -111,7 +109,7 @@
             'BD-bd'     : proof,
             'claimRatio': proof,
             'ratio'     : proof,
-            'circleJA'  : givenOnlyVisibleWhenHighlighted,
+            'circleJA'  : givenHover,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -228,7 +226,7 @@
 				cssClass: 'logic_phase--proof', }, },
             { 'AJ' : { pcolor : given,
 				cssClass: 'logic_phase--claim logic_phase--proof', }, },
-            { 'bM' : { pcolor : resultOnlyVisibleWhenHighlighted,
+            { 'bM' : { pcolor : supplementHover,
 				cssClass: 'logic_phase--corollary',}, },
         ];
 

@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, fconf, sconf, topicColors_repo, userOptions } =
+    var { ns, fconf, sconf, topicColors_repo } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -99,10 +99,8 @@
         //================================================================      
         
         //: topic group colors
-        var context = [0, 0, 0];
         var given   = topicColors_repo.given;        
         var proof   = topicColors_repo.proof;
-        var result  = topicColors_repo.result;
         var hidden  = topicColors_repo.hidden;
 
         var topicColors_elected =
@@ -110,7 +108,6 @@
             //:basic topics
             proof,
             given,
-            result,
             hidden,
 
             //claim

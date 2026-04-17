@@ -119,7 +119,7 @@
                 //      not a sagittae,
                 //----------------------------------
                 var wwpname = fkey+'-applied';
-                let pcolor = sDomF.getFixedColor( 'forceMove' )
+                let pcolor = sDomF.getFixedColor( 'forceColor' )
                 toreg( wwpname )
                     ({ undisplay : true })
 
@@ -135,7 +135,7 @@
                     {
                         cssClass:'tostroke tp-' + wwpname,
                         'stroke-width': 3,
-                        tpclass : 'forceMove',
+                        tpclass : 'forceColor',
                     }
                 );
                 //----------------------------------
