@@ -7,7 +7,7 @@
     fapp.buildDateString = "2026-03-25"; //build date
     // \\// updated automatically. Don't edit these strings.
 
-    fapp.versionColor = 'Magenta'; //color for version display
+    fapp.versionColor = 'Chartreuse'; //color for version display
 }) ();
 
 
