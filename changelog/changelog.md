@@ -8,8 +8,8 @@
 	* other components given in the claim or problem
 	* components used in the limit to calculate force
 	* actual force
-	* components added for the proof or corollaries
-	*  supplemental components not found in the original diagrams
+	* other components added for the proof or corollaries
+	* supplemental components not found in the original diagrams
 
 ### Improved
 * General
