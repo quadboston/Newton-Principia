@@ -66,13 +66,7 @@
                 }
                 
                 //Clamp as needed
-                if (Dt > sconf.DT_SLIDER_MAX) {
-                    Dt = sconf.DT_SLIDER_MAX;
-                    //TEMP Should the following be switched to 0?
-                } else if (Dt < sData.DT_ACTUAL_FORCE)  {
-                    Dt = sData.DT_ACTUAL_FORCE;
-                }
-                ssD.Dt = Dt;
+                ssD.Dt = Math.max(Math.min(Dt, sconf.DT_SLIDER_MAX), 0);
 
             } else {
                 if( Qqix === Pqix ) return;

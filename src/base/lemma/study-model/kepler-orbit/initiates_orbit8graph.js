@@ -72,7 +72,7 @@
             ssD.timeRange = timeE - timeS;
         }
         ssD.Dq = sconf.Dq0;
-        ssD.Dt = keepThisDt || sn( ssD, 'Dt', sconf.Dt0 );
+        ssD.Dt = keepThisDt ?? sn( ssD, 'Dt', sconf.Dt0 );
         stdMod.builds_force_plusQ_minusQ_and_related(sData.ULTIM_MAX);
         stdMod.builds_force_plusQ_minusQ_and_related(sData.ULTIM_ACTUAL);
         stdMod.builds_force_plusQ_minusQ_and_related();

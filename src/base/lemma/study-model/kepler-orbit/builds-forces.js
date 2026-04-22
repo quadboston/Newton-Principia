@@ -8,10 +8,6 @@
     sData.ULTIM_MAX = 2;
     sData.ULTIM_ACTUAL = 1;
     sData.ULTIM_ESTIMATED = 0;
-
-    //TEMP May not need to create a constant for this, may be able to adjust Dt
-    //after the "switch( ulitmacy ){" in the below function.
-    sData.DT_ACTUAL_FORCE = 0.0001;
     return;
 
 
@@ -46,16 +42,15 @@
                 var Dq = ssD.Dq;
                 break;
             case sData.ULTIM_ACTUAL:
-                //TEMP
-                // var Dt = 0.000001;
-                // var Dt = 0.0001;
-                var Dt = sData.DT_ACTUAL_FORCE;
+                var Dt = 0;
                 var Dq = sconf.DQ_SLIDER_MIN;
                 break;
         }
-        //TEMP
-        // if (Dt < sData.DT_ACTUAL_FORCE)
-        //     Dt = sData.DT_ACTUAL_FORCE;
+
+        //Adjust the following as required.  If too small the curves on the
+        //graph become noisy.
+        Dt = Math.max(Dt, 0.0001);
+
         for( let qix=0; qix<=Q_STEPS; qix++ ) {
             const bP = qIndexToOrbit[ qix ]; //body point data
             MAKE_RANGE && ( bP.invalid = false );

@@ -17,7 +17,6 @@
                 { src: sm + 'state-capturer.js' },
                 { src: sm + 'model-upcreate.js' },
                 { src: sm + 'media-upcreate.js' },
-                { src: sm + 'completes-sliders-creation.js' },
                 { src: sm + 'main-legend.js' },
             ],
             "contents-list" :
