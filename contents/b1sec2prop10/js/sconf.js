@@ -201,27 +201,27 @@
             // //\\ proof
             D : {
                 pcolor : proof,
-                letterAngle : 70,
+                letterAngle : 130,
                 cssClass: 'logic_phase--proof',
             },
 
             K : {
                 pcolor : proof,
-                letterAngle : 70,
+                letterAngle : -45,
                 cssClass: 'logic_phase--proof',
             },
 
             G : {
                 pcolor : proof,
-                letterAngle : 90,
-                letterRotRadius : 25,
+                letterAngle : 224,
+                letterRotRadius : 40,
                 cssClass: 'logic_phase--proof',
             },
 
             T : {
-                pcolor : proof,
-                letterAngle : 180,
-                letterRotRadius : 15,
+                pcolor : estimatedForce,
+                letterAngle : -55,
+                letterRotRadius : 32,
                 cssClass: 'logic_phase--proof',
             },
 
@@ -235,7 +235,7 @@
                 caption : '𝑣',
                 pcolor : proof,
                 letterAngle : -45,
-                letterRotRadius : 15,
+                letterRotRadius : 22,
                 cssClass: 'logic_phase--proof',
             },
 
@@ -288,8 +288,8 @@
             },   
 
             Q : {
-                pcolor : proof,
-                letterAngle : 180,
+                pcolor : estimatedForce,
+                letterAngle : 250,
                 letterRotRadius : 25,
                 draggableX  : true,
                 draggableY  : true,

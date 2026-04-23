@@ -184,7 +184,7 @@
             },
             T : {
                 pcolor : estimatedForce,
-                letterAngle : 180,
+                letterAngle : 264,
 				cssClass:  'subessay--solution',
             },
             R : {
@@ -193,7 +193,7 @@
  				cssClass:  'subessay--solution',
            },
             Q : {
-                pcolor : given,
+                pcolor : estimatedForce,
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
