@@ -86,8 +86,8 @@
                      //--------------------------------------------
                      // //\\ making low boundary of difference-rect
                      //--------------------------------------------
-                     rg.e.pos[0] = (posDx - xoff) / scale;
-                     rg.e.pos[1] = insPy;
+                     rg.E.pos[0] = (posDx - xoff) / scale;
+                     rg.E.pos[1] = insPy;
                      //--------------------------------------------
                      // \\// making low boundary of difference-rect
                      //--------------------------------------------
@@ -144,7 +144,7 @@
 		});
 		const circumscribedFeatures = 
 			['f','l','m','n','o','la','mb','nc','od',
-				'Aa','aK','lB','mC','nD','oE'];
+				'Aa','aK','lb','mc','nd','oE'];
 		circumscribedFeatures.forEach(function(item){
 			rg[item].undisplay = !showCircumscribed;
 		});

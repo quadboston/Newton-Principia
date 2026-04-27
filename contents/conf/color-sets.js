@@ -79,6 +79,9 @@
 			tr.orbit = tr.body;
 			tr.orbit2 = tr.body2;
 			tr.corollaryColor = tr.proof;
+			// Hover colors are only visibile when hovering over 
+			// corresponding text. Used when they overlap with 
+			// other colors which take priority
 			tr.corollaryHover = [...tr.corollaryColor, 0, 1];
 			tr.speed = tr.curvature = tr.supplementColor;
 			tr.supplementHover = 
@@ -176,23 +179,23 @@
 
 
 		function setL2throughL4Colors() {
-			tr.difference  = [150, 50, 0, 0, 0.64];
+			tr.difference  = rgbToArray("rgb(150, 50, 0)", 0, 0.64);
 			tr.figure      = rgbToArray("rgb(0, 150, 0)");
 
-			tr["figure-area"]              = [0, 150, 0, 0.32, 0.64],
-			tr["figure-area-txt"]          = [0, 150, 0, 0.7, 1],
+			tr["figure-area"] = rgbToArray("rgb(0, 150, 0)", 0.32, 0.64),
+			tr["figure-area-txt"]          = rgbToArray("rgb(0, 150, 0)", 0.7, 1),
 
-			tr["circumscribed-rectangles"] = [0, 80, 150, 0.32, 0.64],
-			tr["circ-txt"]                 = [0, 80, 150, 0.7, 1],
+			tr["circumscribed-rectangles"] = rgbToArray("rgb(0, 80, 150)", 0.32, 0.64),
+			tr["circ-txt"]                 = rgbToArray("rgb(102, 131, 179)"),
 
-			tr["inscribed-rectangles"]     = [150, 0, 150, 0.32, 0.64],
-			tr["insc-txt"]                 = [150, 0, 150, 0.7, 1],
+			tr["inscribed-rectangles"]     = rgbToArray("rgb(150, 0, 150)", 0.32, 0.64),
+			tr["insc-txt"]                 = rgbToArray("rgb(173, 94, 178)"),
 
-			tr.widths                      = [150, 0, 150, 0, 0.64],
+			tr.widths                      = rgbToArray("rgb(150, 0, 150)", 0, 0.64),
 
-			tr.widestRectangular           = [0, 0, 150, 0.28, 0.49],
-			tr.widestRectangularHiddenStart= [0, 0, 150, 0.0, 0.49],
-			tr["widt-txt"]                 = [0, 0, 150, 0.7, 1];
+			tr.widestRectangular           = rgbToArray("rgb(0, 0, 150)", 0.28, 0.49),
+			tr.widestRectangularHiddenStart= rgbToArray("rgb(0, 0, 150)", 0.0, 0.49),
+			tr["widt-txt"]                 = rgbToArray("rgb(0, 0, 150)")
 		}
 
 		function setL20andL21Colors() {
@@ -253,7 +256,7 @@
 		}
 	}
 
-	function rgbToArray(rgbString, alpha) {
+	function rgbToArray(rgbString, alpha, alphaWhenHighlighted) {
 		const matches = rgbString.match(/\d+/g);
 		if (!matches || matches.length !== 3) {
 			throw new Error("Input must be a string in the format" +
@@ -262,6 +265,9 @@
 		const rgb = matches.map(Number);
 		if (alpha !== undefined) {
 			rgb.push(alpha);
+		}
+		if (alphaWhenHighlighted !== undefined) {
+			rgb.push(alphaWhenHighlighted);
 		}
 		return rgb;
 	}
