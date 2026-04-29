@@ -26,7 +26,7 @@ function sconf_points8lines (){
         speed,
 
         trianglePurpleTextAreaColor,
-        triangleGreen,
+        proofArea,
 
 		supplementColor,
 
@@ -77,10 +77,10 @@ function sconf_points8lines (){
 
         "sagitta-chords"    : corollaryColor,
 
-        "SBc"               : triangleGreen,
-        "SCd"               : triangleGreen,
-        "SDe"               : triangleGreen,
-        "SEf"               : triangleGreen,
+        "SBc"               : proofArea,
+        "SCd"               : proofArea,
+        "SDe"               : proofArea,
+        "SEf"               : proofArea,
 
         "A"                 : path,
         "B"                 : path,

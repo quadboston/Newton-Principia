@@ -203,7 +203,9 @@
 			tr.trianglePurpleTextAreaColor = tr.path;
 			tr["kepler-triangle-odd"]  = rgbToArray("rgb(102, 102, 255)", 0.35, 0.7),
 			tr["kepler-triangle-even"] = rgbToArray("rgb(153, 153, 255)", 0.35, 0.7),
-			tr.triangleGreen           = rgbToArray("rgb(0, 150, 0)", 0.25, 0.64);
+
+			// should we use this instead of proofColor?
+			//tr.proofAreaColor           = [...tr.proofColor.slice(0, 3), 0.25, 0.64];
 
 			//P2
 			tr.areaDescriptionAccelerated = rgbToArray("rgb(120, 90, 82)", 1); //Description of areas triangle P2 proof tab
