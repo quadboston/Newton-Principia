@@ -91,7 +91,6 @@
 			tr.supplementHover
 				= [...tr.supplementColor, 0, 1];
 
-			tr.sagitta         = 
 			tr.displacement    = 
 			tr.dtime     = tr.estimatedForce = tr.estimatedForceColor;
 			tr.invalid = tr.invalidColor;
@@ -200,7 +199,6 @@
 		function setProp1andProp2Colors() {
 			//P1 (Shared with P2)
 			tr.path            = tr.body;//rgbToArray("rgb(0, 0, 150)");
-			tr.sagittaeChords  = tr.sagitta;
 
 			tr.trianglePurpleTextAreaColor = tr.path;
 			tr["kepler-triangle-odd"]  = rgbToArray("rgb(102, 102, 255)", 0.35, 0.7),
