@@ -23,6 +23,8 @@
                 if (qix != null) {
                     rg.P.qix = qix;
                     stdMod.model8media_upcreate();
+                    //TEMP
+                    console.log("qix P =", qix);
                 }
             }
         }

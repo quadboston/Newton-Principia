@@ -8,6 +8,8 @@
     sData.ULTIM_MAX = 2;
     sData.ULTIM_ACTUAL = 1;
     sData.ULTIM_ESTIMATED = 0;
+    //TEMP
+    sData.DtSubstituteActualForce = 0.0001;
     return;
 
 
@@ -49,7 +51,8 @@
 
         //Adjust the following as required.  If too small the curves on the
         //graph become noisy.
-        Dt = Math.max(Dt, 0.0001);
+        //TEMP
+        // Dt = Math.max(Dt, 0.0001);
 
         for( let qix=0; qix<=Q_STEPS; qix++ ) {
             const bP = qIndexToOrbit[ qix ]; //body point data
@@ -111,10 +114,46 @@
             }
 
             if( plusQ !== null ){
-                const force = stdMod.calculateForce({
-                    parq: plusQ,
-                    bP
-                });
+                //TEMP Testing using actual force if Q close enough to P, and
+                //the estimated force code can have issues such as noise
+                // const useActualForceTemp = (Dt < sData.DtSubstituteActualForce ||
+                //     ulitmacy === sData.ULTIM_ACTUAL);
+                const substituteActual = Dt < sData.DtSubstituteActualForce;
+                const useActualForceTemp = (substituteActual ||
+                    ulitmacy === sData.ULTIM_ACTUAL);
+                if (qix === 0 && ulitmacy === sData.ULTIM_ESTIMATED) {
+                    console.log(`************Dt =`, Dt);
+                    // switch (ulitmacy) {
+                    //     case sData.ULTIM_MAX:
+                    //         console.log("ULTIM_MAX");
+                    //         break;
+                    //     case sData.ULTIM_ESTIMATED:
+                    //         console.log("ULTIM_ESTIMATED");
+                    //         break;
+                    //     case sData.ULTIM_ACTUAL:
+                    //         console.log("ULTIM_ACTUAL");
+                    //         break;
+                    // }
+                    if (substituteActual) {
+                        console.warn("substituteActual =", true);
+                    } else {
+                        console.log("substituteActual =", false);
+                    }
+                }
+
+                let force = 0;
+                if (useActualForceTemp) {
+                    //Use actual force
+                    force = stdMod.calculateActualForceTemp({bP});
+                } else {
+                    //Use estimated force
+                    force = stdMod.calculateForce({
+                        parq: plusQ,
+                        bP
+                    });
+                }
+                //TEMP//
+
                 switch (ulitmacy) {
                     case sData.ULTIM_ESTIMATED:
                         bP.estimatedForce = force;

@@ -115,7 +115,8 @@
         //-------------------------------------------
 
         //to be studied in given proposition:
-        sconf.force_law_function = bp => 1/(bp.R*bp.r2*(bp.sinOmega**3));
+        //TEMP
+        // sconf.force_law_function = bp => 1/(bp.R*bp.r2*(bp.sinOmega**3));
 
         //intervals of dt or dq to construct an arc for estimated force
         //Sets initial distance of point Q from P
