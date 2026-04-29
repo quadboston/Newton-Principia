@@ -1,5 +1,5 @@
 ( function() {
-    var { fconf, ssF, sDomF, toreg, rg, } =
+    var { ssF, sDomF, toreg, rg, } =
         window.b$l.apptree({ stdModExportList : { allPathRacks_2_unseenSVGs, }, });
     return;
 
@@ -144,52 +144,6 @@
         //---------------------------------------------------------
         // \\// path to spatial-model-forces
         //---------------------------------------------------------
-
-
-        //-------------------------------------------------
-        // //\\ paints free path points
-        //-------------------------------------------------
-        var theor1proof = fconf.sappId === 'b1sec2prop1' ?
-            'logic_phase--proof' : 'logic_phase--none';
-        freePath.forEach( (pt, pix) => {
-            var pkey = 'freepath-' + pix;
-            toreg( pkey )({ undisplay : true })();
-            rg8pos_2_svg(
-                pkey,
-                  {
-                    cssClass: 'tofill tostroke ' + theor1proof,
-                    tpclass : 'free-path',
-                  }
-            );
-        });
-        //-------------------------------------------------
-        // \\// paints free path points
-        //-------------------------------------------------
-
-
-
-        //-------------------------------------------------
-        // //\\ free line segment
-        //-------------------------------------------------
-        var freePathRacks = rg.freePathRacks.freePathRacks;
-        freePathRacks.forEach( (frack, pix) => {
-            if( pix >= freePathRacks.length ) return;
-            var wwpname = 'freePathSegment-' + pix;
-            toreg( wwpname )({ undisplay : true })();
-            pivots_2_svgLineInRg(
-                wwpname,
-                !'wwPivots',
-                {
-                    //stroke:'green',
-                    cssClass:'tofill tostroke ' + theor1proof,
-                    tpclass : 'free-path',
-                    'stroke-width':4
-                }
-            );
-        });
-        //-------------------------------------------------
-        // \\// free line segment
-        //-------------------------------------------------
 
 
 
