@@ -28,8 +28,7 @@ function sconf_points8lines (){
         trianglePurpleTextAreaColor,
         triangleGreen,
 
-        perpendicular,
-        tangent,
+		supplementColor,
 
 		sunColor,
 		invalidColor,
@@ -44,7 +43,7 @@ function sconf_points8lines (){
         speed = harden(speed);
         time = harden(time);
         forceColor = harden(forceColor);
-        perpendicular = harden(perpendicular);
+        supplementColor = harden(supplementColor);
 		sunColor = harden(sunColor);
     }
 
@@ -143,11 +142,11 @@ function sconf_points8lines (){
         "BV"                : forceColor,
 
         //perpendicular
-        "SP"                : perpendicular,
-        "P"                 : perpendicular,
+        "SP"                : supplementColor,
+        "P"                 : supplementColor,
         //tangent
-        "T"                 : tangent,
-        "TP"                : tangent,
+        "T"                 : supplementColor,
+        "TP"                : supplementColor,
 
         "free-path"         : invalidColor,
         "c"                 : proofColor,
