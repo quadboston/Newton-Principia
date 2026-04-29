@@ -17,7 +17,7 @@ return;
 //-------------------------------------------------------
 function sconf_points8lines (){
     let {
-        freeMove,
+        proofColor,
         forceColor,
 
         path,
@@ -31,8 +31,8 @@ function sconf_points8lines (){
         perpendicular,
         tangent,
 
-        proofColor,
 		sunColor,
+		invalidColor,
     } = topicColors_repo;
 
     {   const harden = col => ([col[0],col[1],col[2],1,1]);
@@ -40,12 +40,11 @@ function sconf_points8lines (){
         //so, lines shold have color pattern [x,x,x,1,1]
         forceColor = harden(forceColor);
         path = harden(path);
-        freeMove = harden(freeMove);
+        proofColor = harden(proofColor);
         speed = harden(speed);
         time = harden(time);
         forceColor = harden(forceColor);
         perpendicular = harden(perpendicular);
-		proofColor = harden(proofColor);
 		sunColor = harden(sunColor);
     }
 
@@ -150,17 +149,17 @@ function sconf_points8lines (){
         "T"                 : tangent,
         "TP"                : tangent,
 
-        "free-path"         : freeMove,
-        "c"                 : freeMove,
-        "d"                 : freeMove,
-        "e"                 : freeMove,
-        "f"                 : freeMove,
+        "free-path"         : invalidColor,
+        "c"                 : proofColor,
+        "d"                 : proofColor,
+        "e"                 : proofColor,
+        "f"                 : proofColor,
 
-        "Bc"                : freeMove,
-        "Cd"                : freeMove,
-        "De"                : freeMove,
-        "Ef"                : freeMove,
-        "free-triangle"     : freeMove,
+        "Bc"                : proofColor,
+        "Cd"                : proofColor,
+        "De"                : proofColor,
+        "Ef"                : proofColor,
+        "free-triangle"     : invalidColor,
     };
     var p2_elected = haf( ssD, 'P2_topicColors_elected' )(tpel);
     if( p2_elected ) {
