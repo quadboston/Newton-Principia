@@ -89,7 +89,7 @@
         var row = $$.c('tr')
             .addClass('tostroke')
             .to(tbc)();
-        makeCl( row, 'vp', 'velocity * perpendicular', 'corollary' );
+        makeCl( row, 'vp', 'velocity × perpendicular', 'corollary' );
         //-----------------------------------------------------
         // \\// corollary 1
         //=====================================================
