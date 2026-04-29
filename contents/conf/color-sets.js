@@ -64,21 +64,22 @@
 		tr.highlight = rgbToArray("rgb(234, 234, 234)");
 
 		tr.sunColor    = rgbToArray("rgb(202, 131, 0)"); // center of force (S or C in propositions)
-		tr.given       = rgbToArray("rgb(139, 105, 20)");
-		tr.proof       = rgbToArray("rgb(0, 133, 0)");
+		tr.givenColor       = rgbToArray("rgb(139, 105, 20)");
+		tr.proofColor       = rgbToArray("rgb(0, 133, 0)");
 		tr.forceColor       = rgbToArray("rgb(131, 56, 236)");
-        tr.estimatedForce  = rgbToArray("rgb(211, 87, 254)");
-		tr.invalid     = rgbToArray("rgb(255, 0, 0)");  //alert, invalid user actions
+        tr.estimatedForceColor  = rgbToArray("rgb(211, 87, 254)");
+		tr.invalidColor     = rgbToArray("rgb(255, 0, 0)");  //alert, invalid user actions
 		tr.supplementColor = rgbToArray("rgb(99, 99, 99)");
-		tr.body        = rgbToArray("rgb(50, 149, 191)"),
-		tr.body2       = rgbToArray("rgb(205, 103, 54)");//rgbToArray("rgb(255, 149, 111)"),
+		tr.bodyColor        = rgbToArray("rgb(50, 149, 191)"),
+		tr.body2Color       = rgbToArray("rgb(205, 103, 54)");//rgbToArray("rgb(255, 149, 111)"),
 
 
-		function setCommonColors() {
+		function setDerivativeColors() {
 			tr.hidden  = [0, 0, 0, 0];
-			tr.orbit = tr.body;
-			tr.orbit2 = tr.body2;
-			tr.corollaryColor = tr.proof;
+			tr.orbit = tr.body = tr.bodyColor;
+			tr.orbit2 = tr.body2 = tr.body2Color;
+			tr.corollaryColor = tr.proof = tr.proofColor;
+			tr.given = tr.givenColor;
 			tr.corollaryHover = [...tr.corollaryColor, 0, 1];
 			tr.speed = tr.curvature = tr.supplementColor;
 			tr.supplementHover = 
@@ -92,16 +93,17 @@
 
 			tr.sagitta         = 
 			tr.displacement    = 
-			tr.dtime     = tr.estimatedForce;
+			tr.dtime     = tr.estimatedForce = tr.estimatedForceColor;
+			tr.invalid = tr.invalidColor;
 
 			tr.force = tr.forceColor; // need to track down and eliminate
 		}
 
+		setDerivativeColors();
 		setL2throughL4Colors();
 		setProp1andProp2Colors();
 		setL20andL21Colors();
 		setProp41Colors();
-		setCommonColors();
 
 		sf.default_tp_stroke_width = 10;
 		///for default points (and draggers???)
@@ -198,7 +200,7 @@
 		function setProp1andProp2Colors() {
 			//P1 (Shared with P2)
 			tr.freeMove        = rgbToArray("rgb(0, 150, 0)");
-			tr.diagram         = rgbToArray("rgb(150, 0, 90)");
+			tr.diagram         = tr.proof;//rgbToArray("rgb(150, 0, 90)");
 			tr.path            = tr.body;//rgbToArray("rgb(0, 0, 150)");
 			tr.sagittaeChords  = tr.sagitta;
 
