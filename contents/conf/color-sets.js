@@ -195,16 +195,6 @@
 			tr["widt-txt"]                 = [0, 0, 150, 0.7, 1];
 		}
 
-		function setL20andL21Colors() {
-			tr.static              = rgbToArray("rgb(0, 200, 255)");
-			tr.staticHalfOpacity   = [0, 200, 255, 0.5];
-			tr.core                = rgbToArray("rgb(255, 150, 0)");
-			tr.coreHalfOpacity     = [255, 150, 0, 0.5];
-			tr.aux                 = rgbToArray("rgb(255, 0, 255)");
-			tr.constructors        = rgbToArray("rgb(0, 0, 255)");
-			tr.ellipse             = rgbToArray("rgb(0, 150, 0)");
-		}
-
 		function setProp1andProp2Colors() {
 			//P1 (Shared with P2)
 			tr.freeMove        = rgbToArray("rgb(0, 150, 0)");
@@ -213,15 +203,25 @@
 			tr.sagittaeChords  = tr.sagitta;
 
 			tr.trianglePurpleTextAreaColor = tr.path;
-			tr["kepler-triangle-odd"]  = [102, 102, 255, 0.35, 0.7],
-			tr["kepler-triangle-even"] = [153, 153, 255, 0.35, 0.7],
-			tr.triangleGreen           = [0, 150, 0, 0.25, 0.64];
+			tr["kepler-triangle-odd"]  = rgbToArray("rgb(102, 102, 255)", 0.35, 0.7),
+			tr["kepler-triangle-even"] = rgbToArray("rgb(153, 153, 255)", 0.35, 0.7),
+			tr.triangleGreen           = rgbToArray("rgb(0, 150, 0)", 0.25, 0.64);
 
-			tr.perpendicular   = [150, 80, 0];
-			tr.tangent         = [0, 150, 0];
-		
+			tr.perpendicular   = rgbToArray("rgb(150, 80, 0)");
+			tr.tangent         = rgbToArray("rgb(0, 150, 0)");
+
 			//P2
 			tr.areaDescriptionAccelerated = rgbToArray("rgb(120, 90, 82)", 1); //Description of areas triangle P2 proof tab
+		}
+
+		function setL20andL21Colors() {
+			tr.static              = rgbToArray("rgb(0, 200, 255)");
+			tr.staticHalfOpacity   = [0, 200, 255, 0.5];
+			tr.core                = rgbToArray("rgb(255, 150, 0)");
+			tr.coreHalfOpacity     = [255, 150, 0, 0.5];
+			tr.aux                 = rgbToArray("rgb(255, 0, 255)");
+			tr.constructors        = rgbToArray("rgb(0, 0, 255)");
+			tr.ellipse             = rgbToArray("rgb(0, 150, 0)");
 		}
 
 		function setProp41Colors() {
@@ -253,7 +253,7 @@
 		}
 	}
 
-	function rgbToArray(rgbString, alpha) {
+	function rgbToArray(rgbString, alpha, alphaWhenHighlighted) {
 		const matches = rgbString.match(/\d+/g);
 		if (!matches || matches.length !== 3) {
 			throw new Error("Input must be a string in the format" +
@@ -262,6 +262,9 @@
 		const rgb = matches.map(Number);
 		if (alpha !== undefined) {
 			rgb.push(alpha);
+		}
+		if (alphaWhenHighlighted !== undefined) {
+			rgb.push(alphaWhenHighlighted);
 		}
 		return rgb;
 	}
