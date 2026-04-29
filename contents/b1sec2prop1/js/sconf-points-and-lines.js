@@ -45,6 +45,7 @@ function sconf_points8lines (){
         time = harden(time);
         forceColor = harden(forceColor);
         perpendicular = harden(perpendicular);
+		proofColor = harden(proofColor);
 		sunColor = harden(sunColor);
     }
 
@@ -110,11 +111,11 @@ function sconf_points8lines (){
         //  to force and sagitta,
         //  the pcolor which one can try to set on line segment Cc config
         //  may be overriden by elected topic color:
-        "Cc"                : forceColor,
+        "Cc"                : proofColor,
 
-        "Dd"                : forceColor,
-        "Ee"                : forceColor,
-        "Ff"                : forceColor,
+        "Dd"                : proofColor,
+        "Ee"                : proofColor,
+        "Ff"                : proofColor,
         "force-0-applied"   : forceColor,
         "force-1-applied"   : forceColor,
         "force-2-applied"   : forceColor,
