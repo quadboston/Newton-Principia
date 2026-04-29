@@ -1,5 +1,5 @@
 ( function() {
-    var { sn, $$, eachprop, fconf, sconf, ssF, ssD, sDomF, toreg, rg, amode, } =
+    var { fconf, ssF, sDomF, toreg, rg, } =
         window.b$l.apptree({ stdModExportList : { allPathRacks_2_unseenSVGs, }, });
     return;
 
@@ -11,12 +11,9 @@
         var rg8pos_2_svg    = ssF.rgPos2rgMedia;
         var paintTriangle   = ssF.paintTriangle;
 
-        var S               = rg.S.pos;
-        var force           = rg.force.pos;
         var path            = rg.path.pos;
         var pathRacks       = rg.pathRacks.pathRacks;
         var freePath        = rg.freePath.pos;
-        var speeds          = rg.speeds.vect;
         //=======================================================
         // //\\ spawns path to
         //      path "rgPoints", Kepler-triangles, free-triangles
@@ -219,4 +216,3 @@
         //-------------------------------------------------
     }
 })();
-

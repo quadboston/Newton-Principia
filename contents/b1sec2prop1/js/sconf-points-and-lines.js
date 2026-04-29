@@ -31,7 +31,6 @@ function sconf_points8lines (){
 		supplementColor,
 
 		sunColor,
-		invalidColor,
     } = topicColors_repo;
 
     {   const harden = col => ([col[0],col[1],col[2],1,1]);
@@ -148,7 +147,6 @@ function sconf_points8lines (){
         "T"                 : supplementColor,
         "TP"                : supplementColor,
 
-        "free-path"         : invalidColor,
         "c"                 : proofColor,
         "d"                 : proofColor,
         "e"                 : proofColor,
@@ -158,7 +156,6 @@ function sconf_points8lines (){
         "Cd"                : proofColor,
         "De"                : proofColor,
         "Ef"                : proofColor,
-        "free-triangle"     : invalidColor,
     };
     var p2_elected = haf( ssD, 'P2_topicColors_elected' )(tpel);
     if( p2_elected ) {
