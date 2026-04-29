@@ -200,7 +200,6 @@
 		function setProp1andProp2Colors() {
 			//P1 (Shared with P2)
 			tr.freeMove        = rgbToArray("rgb(0, 150, 0)");
-			tr.diagram         = tr.proof;//rgbToArray("rgb(150, 0, 90)");
 			tr.path            = tr.body;//rgbToArray("rgb(0, 0, 150)");
 			tr.sagittaeChords  = tr.sagitta;
 

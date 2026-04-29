@@ -123,7 +123,7 @@ function init_conf_addon (){
 function topicColors_elected(tpel){
     const {
         forceColor,
-        diagram,
+        proofColor,
         path,
     } = tpel;
 
@@ -136,12 +136,12 @@ function topicColors_elected(tpel){
         "Paracc"            : forceColor,  //Point C''
         "Caracc"            : forceColor,  //Point C'
         "CCaracc"           : forceColor,  //Line C to C'
-        "CParacc"           : diagram,  //Line C to C''
+        "CParacc"           : proofColor,  //Line C to C''
         "cCaracc"           : forceColor,  //Line c to C'
         "CaraccParacc"      : forceColor,  //Line C' to C''
         "BParacc"           : forceColor,  //Line B to C''
         "BCaracc"           : path,     //Line B to C'
-        "SCaracc"           : diagram,  //Line S C'
+        "SCaracc"           : proofColor,  //Line S C'
 
         "SBCaracc"          : areaDescriptionAccelerated,
         // triangle SBC area description accelerated

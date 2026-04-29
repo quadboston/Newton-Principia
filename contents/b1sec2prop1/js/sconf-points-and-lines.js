@@ -31,7 +31,7 @@ function sconf_points8lines (){
         perpendicular,
         tangent,
 
-        diagram,
+        proofColor,
 		sunColor,
     } = topicColors_repo;
 
@@ -50,7 +50,7 @@ function sconf_points8lines (){
 
     ///topic names elected
     var tpel = {
-        diagram,
+        proofColor,
         speed,
         forceColor,
         time,                       //Time slider
@@ -100,10 +100,10 @@ function sconf_points8lines (){
         "ABCV"              : forceColor,
         "DEFZ"              : forceColor,
 
-        "Sc"                : diagram,
-        "Sd"                : diagram,
-        "Se"                : diagram,
-        "Sf"                : diagram,
+        "Sc"                : proofColor,
+        "Sd"                : proofColor,
+        "Se"                : proofColor,
+        "Sf"                : proofColor,
 
         //NOTE:
         //  this goes to color of displacement which is parallel
