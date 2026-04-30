@@ -156,6 +156,8 @@ function sconf_points8lines (){
         "Cd"                : proofColor,
         "De"                : proofColor,
         "Ef"                : proofColor,
+
+		"v"		: supplementColor,
     };
     var p2_elected = haf( ssD, 'P2_topicColors_elected' )(tpel);
     if( p2_elected ) {
@@ -210,13 +212,16 @@ function sconf_points8lines (){
         //"rg" [ 'B', 'C', 'D', 'E', 'F' ].pos <-- path[ ix + 1 ]
         C   : {
                 decStart : 6,
+				letterAngle : 80,
         },
-        D   : { decStart : 10, },
+        D   : { decStart : 10, 
+				letterAngle : 80,
+		},
         E   : { decStart : 14,
-                letterAngle : 45,
+                letterAngle : 90,
         },
         F   : { decStart : 18,
-                letterAngle : 90,
+                letterAngle : 99,
         },
     };
     ///makes proof points disappear after a while
@@ -270,18 +275,21 @@ function sconf_points8lines (){
             cssClass : fconf.sappId === 'b1sec2prop2' ?
                 'logic_phase--proof logic_phase--corollary' :
                 'subessay--cor-3 logic_phase--proof',
+			letterAngle : 30,
         },
         d   : {
             caption : '𝑑',
             decStart : LOGIC ? 9 : decor.D.decStart,
             decEnd : decor.F.decStart+2,
             cssClass : lemmaModes,
+			letterAngle : 80,
         },
         e   : {
             caption : '𝑒',
             decStart : LOGIC ? 13 : decor.E.decStart,
-                decEnd : decor.F.decStart+2,
-                cssClass : lemmaModes,
+            decEnd : decor.F.decStart+2,
+            cssClass : lemmaModes,
+			letterAngle : 80,
         },
         f   : {
             caption : '𝑓',
@@ -290,6 +298,7 @@ function sconf_points8lines (){
             cssClass : fconf.sappId === 'b1sec2prop2' ?
                 'logic_phase--proof logic_phase--corollary' :
                 'subessay--cor-3 logic_phase--proof',
+			letterAngle : 90,
         },
     }
     // \\// c,d,e,f
@@ -297,13 +306,15 @@ function sconf_points8lines (){
     var forceTip_conf = {
         //double sagitta layed down from point B
         V   : { decStart : -2, decEnd : 1111111,
-                cssClass : 'logic_phase--corollary'
+                cssClass : 'logic_phase--corollary',
+				letterAngle : 135,
               },
         //double sagitta layed down from point E
         Z   : {
                 decStart : decor.F.decStart,
                 decEnd : decor.F.decEnd,
                 cssClass : theor1corollary,
+				letterAngle : -160,
               },
     };
 
@@ -315,6 +326,7 @@ function sconf_points8lines (){
               },
         v   : {
                 //pos      : sconf.B.concat(),
+				caption: '𝘷𝘦𝘭𝘰𝘤𝘪𝘵𝘺',
                 decStart : -2, //always visible
                 draggableX : true, draggableY : true,
               },
