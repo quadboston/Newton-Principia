@@ -109,31 +109,27 @@
         }
 
 
-        //=====================================
-        // //\\ patch for quick slider creation
-        //      see //modern approach ... abandoned
-        //=====================================
         var originalPoints =
         {
             A : {
                 pcolor      : predT.figure,
-                letterAngle : -45,
+                letterAngle : -90,
             },
             B : {
                 pcolor      : predT.figure,
-                letterAngle : -45,
+                letterAngle : -90,
             },
             C : {
                 pcolor      : predT.figure,
-                letterAngle : -45,
+                letterAngle : -90,
             },
             D : {
                 pcolor      : predT.figure,
-                letterAngle : -45,
+                letterAngle : -90,
             },
             E : {
                 pcolor      : predT.figure,
-                letterAngle : -45,
+                letterAngle : -90,
             },
 			F : {
                 pcolor      : predT["widt-txt"],
@@ -141,23 +137,23 @@
             },
             K : {
                 pcolor      : predT["insc-txt"],
-                letterAngle : -145,
+                letterAngle : 180,
                 letterRotRadius : 40,
             },
             L : {
                 pcolor      : predT["insc-txt"],
-                letterAngle : -145,
+                letterAngle : 180,
             },
             M : {
                 pcolor      : predT["insc-txt"],
-                letterAngle : -145,
+                letterAngle : 180,
                 letterRotRadius : 40,
             },
 
             a : {
 				caption: '𝑎',
                 pcolor      : predT.figure,
-                letterAngle : 45,
+                letterAngle : 180,
             },
 			b : {
 				caption: '𝑏',
@@ -182,7 +178,7 @@
             l : {
 				caption: '𝑙',
                 pcolor      : predT["circ-txt"],
-                letterAngle : 135,
+                letterAngle : 105,
             },
             m : {
 				caption: '𝑚',
@@ -305,7 +301,6 @@
             topicColors_elected : predT,
             originalPoints,
             linesArray,
-            //lines,
             originX_onPicture : modorInPicX,
             originY_onPicture : modorInPicY + pictureActiveArea,
             pictureWidth,
@@ -314,10 +309,5 @@
             //default_tp_stroke_width : 12,
             handleRadius : 55,
         });
-        //=====================================
-        // \\// patch for quick slider creation
-        //=====================================
     };
-
-
 }) ();
