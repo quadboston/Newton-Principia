@@ -1,13 +1,12 @@
 ( function () {
     var {
         ///standard levels of application
-        sn, $$, svgNS, fapp, fconf, sconf, sDomF, stdMod, }
+        sn, svgNS, fapp, sconf, sDomF, stdMod, }
         = window.b$l.apptree({ setModule, });
     var stdL2               = sn('stdL2', fapp );
     var gui                 = sn('gui', stdL2 );
     var guicon              = sn('guiConstruct', gui );
     var guiup               = sn('guiUpdate',gui);
-    var appstate            = sn('appstate', stdL2 );
 
     var study               = sn('study', stdL2 );
     var sdata               = sn('sdata', study );
@@ -91,10 +90,6 @@
     {
         const ctrlPts = dr.ctrlPts;
         const cp = ctrlPts.untransformed;
-        var scale = 1/sconf.originalMod2inn_scale;
-        var offsetX = sconf.originX_onPicture;
-        var offsetY = sconf.originY_onPicture;
-        var flipY1 = sconf.MONITOR_Y_FLIP;
 
         //Only create and add points for the control points that are enabled.
         const offset = ctrlPts.DRAGGABLE_END_POINTS ? 0 : 1;
@@ -271,4 +266,3 @@
     //==================================================
     
 }) ();
-
