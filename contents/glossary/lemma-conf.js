@@ -14,7 +14,6 @@
                 { src: sm + 'init-model-parameters.js' },
                 { src: sm + 'model-upcreate.js' },
                 { src: sm + 'media-upcreate.js' },
-                // { src: sm + 'main-legend.js' },
                 { src: sm + 'amode8captures.js' },
             ],
             "contents-list" :
