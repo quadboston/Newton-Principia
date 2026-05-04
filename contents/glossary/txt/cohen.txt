@@ -1,0 +1,226 @@
+*::*claim|english
+{
+  "default" : "1",
+  "menuCaption" : "Text",
+  "logic_phaseCaption" : "Problem 5"
+}
+*..*
+Let a ¦body P¦body¦¦ revolve in an ¦orbit¦ellipse¦¦; it is required to find the law
+of the centripetal
+¦force¦¦ tending toward the ¦C¦center of the ellipse¦¦.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 459.</div>
+
+
+
+
+*::*proof|english
+{
+  "menuCaption" : "Text",
+  "subessayCaption" : "[<i>First solution</i>]",
+  "subessay" : "solution",
+  "logic_phaseCaption" : "Solutions"
+}
+*..*
+Let ¦CA¦¦ and ¦CB¦¦ be the semiaxes of the ¦orbit¦ellipse¦¦, ¦GP¦¦ and ¦DK¦¦ other conjugate diameters, 
+¦PF¦¦ and ¦QT¦¦ perpendiculars to those diameters, ¦Qv¦Q𝑣¦¦ an ordinate to diameter ¦GP¦¦; 
+then, if parallelogram ¦Qv Pv PR QR¦Q𝑣PR¦¦ is completed, the rectangle ¦Pv¦P𝑣¦¦ × ¦vC CG¦𝑣G¦¦ will (from the Conics*) be to ¦Qv¦Q𝑣¦¦²
+as ¦PC¦¦² to ¦DC¦CD¦¦², and
+(because
+triangles ¦Qv QT Tv¦Q𝑣T¦¦ and ¦PC CF PF¦PCF¦¦ are similar)
+¦Qv¦Q𝑣¦¦² is to ¦QT¦¦² as ¦PC¦¦² to ¦PF¦¦², and,
+when these ratios are combined, the rectangle ¦Pv¦P𝑣¦¦ × ¦vC CG¦𝑣G¦¦ is to ¦QT¦¦² as ¦PC¦¦² to
+¦DC¦CD¦¦² and ¦PC¦¦² to ¦PF¦¦²; that is, ¦vC CG¦𝑣G¦¦ is
+to 
+
+<!-- QT² / P𝑣 -->
+<math><mfrac><mrow><msup><mi>
+¦QT¦¦</mi><mn>
+2</mn></msup></mrow><mrow><mi>
+¦Pv¦P𝑣¦¦ </mi></mrow></mfrac></math>
+
+as ¦PC¦¦² to 
+
+<!-- CD² × PF² / PC² -->
+<math><mfrac><mrow><msup><mi>
+¦DC¦CD¦¦</mi><mn>
+2</mn></msup><mo>
+×</mo><msup><mi>
+¦PF¦¦</mi><mn>
+2</mn></msup></mrow><mrow><msup><mi>
+¦PC¦¦</mi><mn>
+2</mn></msup></mrow></mfrac></math>.
+
+<br><br>
+Write
+¦QR¦¦ for ¦Pv¦P𝑣¦¦  and (by lem. 12) ¦CB¦BC¦¦ × ¦CA¦¦ for ¦DC¦CD¦¦ × ¦PF¦¦, and also (points ¦P¦¦
+and ¦Q¦¦ coming together) 2¦PC¦¦ for ¦vC CG¦𝑣G¦¦, and, multiplying the extremes and
+means together, 
+
+<!-- QT² × PC² / QR -->
+<math><mfrac><mrow><msup><mi>
+¦QT¦¦</mi><mn>
+2</mn></msup><mo>
+×</mo><msup><mi>
+¦PC¦¦</mi><mn>
+2</mn></msup></mrow><mrow><mi>
+¦QR¦¦ </mi></mrow></mfrac></math>
+
+will become equal to 
+
+<!-- 2BC² × CA² / PC -->
+<math><mfrac><mrow><mn>
+2</mn><msup><mi>
+¦CB¦BC¦¦</mi><mn>
+2</mn></msup><mo>
+×</mo><msup><mi>
+¦CA¦¦</mi><mn>
+2</mn></msup></mrow><mrow><mi>
+¦PC¦¦ </mi></mrow></mfrac></math>.
+
+Therefore
+(<a href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary5">by prop. 6, corol. 5</a>), 
+the centripetal ¦force¦¦ is as 
+
+<!-- 2BC² × CA² / PC -->
+<math><mfrac><mrow><mn>
+2</mn><msup><mi>
+¦CB¦BC¦¦</mi><mn>
+2</mn></msup><mo>
+×</mo><msup><mi>
+¦CA¦¦</mi><mn>
+2</mn></msup></mrow><mrow><mi>
+¦PC¦¦ </mi></mrow></mfrac></math>
+
+inversely, that
+is (because 2¦CB¦BC¦¦² × ¦CA¦¦² is given), as 
+
+<!-- 1 / PC -->
+<math><mfrac><mrow><mn>
+1</mn></mrow><mrow><mi>
+¦PC¦¦</mi></mrow></mfrac></math>
+
+inversely, that is, as the distance ¦PC¦¦
+directly. &nbsp;&nbsp; Q.E.I.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 459.</div>
+<br>
+* <a href="https://archive.org/details/treatiseonconics00apolrich/page/22/mode/2up/page/19">Apollonius's <i>Conics</i> I.21, second part</a>
+
+
+
+
+*::*proof|english
+{
+  "menuCaption" : "Text",
+  "subessayCaption" : "<i>Another solution</i>",
+  "subessay" : "another-solution",
+  "logic_phaseCaption" : "Solutions"
+}
+*..*
+On the straight line ¦GP¦PG¦¦ take a point ¦u¦𝑢¦¦ on the other side of point ¦T¦¦,
+so that ¦Tu¦T𝑢¦¦ is equal to ¦Tv¦T𝑣¦¦; then take ¦uV¦𝑢V¦¦ such that it is to ¦vC CG¦𝑣G¦¦ as
+¦DC¦¦² is to
+¦PC¦¦². And since (from the Conics*) ¦Qv¦Q𝑣¦¦² is to ¦Pv¦P𝑣¦¦ × ¦vC CG¦𝑣G¦¦ as
+¦DC¦¦² to ¦PC¦¦², ¦Qv¦Q𝑣¦¦²
+will be equal to ¦Pv¦P𝑣¦¦ × ¦uV¦𝑢V¦¦. Add the rectangle ¦uP¦𝑢P¦¦ × ¦Pv¦P𝑣¦¦ to both sides, and the
+square of the chord of arc ¦PQ¦¦ will come out equal to the rectangle ¦PC CV¦VP¦¦ × ¦Pv¦P𝑣¦¦;
+and therefore ¦tangentCircle¦a circle¦¦ that touches
+the conic section at ¦P¦¦ and passes through
+point ¦Q¦¦ will also pass through point ¦V¦¦. Let points ¦P¦¦ and ¦Q¦¦ come together,
+and the ratio of ¦uV¦𝑢V¦¦ to ¦vC CG¦𝑣G¦¦, which is the same as the ratio of ¦DC¦¦² to ¦PC¦¦²,
+will become the ratio of ¦PC CV¦PV¦¦ to ¦GP¦PG¦¦ or ¦PC CV¦PV¦¦ to 2¦PC¦¦;
+and therefore ¦PC CV¦PV¦¦ will
+be equal to 
+
+<!-- 2DC² / PC -->
+<math><mfrac><mrow><mn>
+2</mn><msup><mi>
+¦DC¦¦</mi><mn>
+2</mn></msup></mrow><mrow><mi>
+¦PC¦¦</mi></mrow></mfrac></math>.
+
+Accordingly, the ¦force¦¦ under the action of which body ¦P¦¦
+revolves in the ellipse will 
+(<a href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary3">by prop. 6, corol. 3</a>) 
+be as 
+
+<!-- 2DC² / PC -->
+<math><mfrac><mrow><mn>
+2</mn><msup><mi>
+¦DC¦¦</mi><mn>
+2</mn></msup></mrow><mrow><mi>
+¦PC¦¦</mi></mrow></mfrac></math>
+
+ × ¦PF¦¦² inversely,
+that is (because 2¦DC¦¦² × ¦PF¦¦² is given), as ¦PC¦¦ directly. Q.E.I.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 460.</div>
+<br>
+* <a href="https://archive.org/details/treatiseonconics00apolrich/page/22/mode/2up/page/19">Apollonius's <i>Conics</i> I.21, second part</a>
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 1",
+  "subessay" : "corollary1",
+  "logic_phaseCaption" : "Corollaries"
+}
+*..*
+Therefore, the ¦force¦¦ is as ¦PC¦the distance¦¦ of ¦P¦the body¦¦ from
+¦C¦the center¦¦ of the ¦orbit¦ellipse¦¦; and, conversely,
+if the ¦force¦¦ is as the ¦PC¦distance¦¦, the
+body will move in an ellipse having ¦C¦its center¦¦ in the center of ¦force¦forces¦¦, or
+perhaps it will move in a circle, into which an ellipse can be changed.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 460.</div>
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 2",
+  "subessay" : "corollary2"
+}
+*..*
+And the periodic times of the revolutions made in all ellipses universally around the same center will be equal. For in similar ellipses
+those times are equal (by prop. 4, corols. 3 and 8), while in ellipses having a
+common ¦A,AA¦major axis¦¦ they are to one another as the total areas of the ellipses
+directly and the particles of the areas described in the same time inversely;
+that is, as the ¦B,BB¦minor axes¦¦ directly and the velocities of bodies in their principal 
+vertices inversely; that is, as those ¦B,BB¦minor axes¦¦ directly and the ordinates
+to the same point of the common axis inversely; and therefore (because of
+the equality of the direct and inverse ratios) in the ratio of equality.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 460.</div>
+
+
+
+
+*::*scholium|english
+{
+  "menuCaption" : "Text",
+  "logic_phaseCaption" : "Scholium"
+}
+*..*
+If the ¦C¦center¦¦ of the ellipse goes off to infinity, so that the ellipse turns into
+a parabola, the body will move in this parabola, and the ¦force¦¦, now tending
+toward an infinitely distant ¦C¦center¦¦, will prove to be uniform. This is Galileo's
+theorem. And if (by changing the inclination of the cutting plane to the
+cone) the parabolic section of the cone turns into a hyperbola, the body will
+move in the perimeter of the hyperbola, with the centripetal ¦force¦¦ turned
+into a centrifugal ¦force¦¦. And just as in a circle or an ellipse, if the ¦force¦forces¦¦
+tend toward a figure's ¦C¦center¦¦ located in the abscissa, and if the ordinates are
+increased or decreased in any given ratio or even if the angle of the inclination
+of the ordinates to the abscissa is changed, these ¦force¦forces¦¦ are always increased
+or decreased in the ratio of the ¦PC¦distances¦¦ from the ¦C¦center¦¦, provided that the
+periodic times remain equal; so also in all figures universally, if the ordinates
+are increased or decreased in any given ratio or the angle of inclination of
+the ordinates is changed in any way while the periodic time remains the
+same, the ¦force¦forces¦¦ tending toward any ¦C¦center¦¦ located in the abscissa are, for
+each individual ordinate, increased or decreased in the ratio of the distances
+from the ¦C¦center¦¦.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 460.</div>

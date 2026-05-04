@@ -128,6 +128,11 @@
             book : 'Book 1',
             caption : 'Sec. 8, Proposition 41',
         },
+		
+		{   sappId : 'glossary',
+            book : 'Book 1',
+            caption : 'Glossary',
+        },
     ];
 }) ();
 
