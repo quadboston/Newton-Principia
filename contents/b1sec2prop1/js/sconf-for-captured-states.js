@@ -167,7 +167,7 @@ function makesProfessorsCaptureFootnotes (){
                 "curtime": 3.00,
             },
 
-                "A": {
+            "A": {
                 "pos": [
                     2.4846663769760875,
                     -0.010267216433785486
@@ -208,7 +208,13 @@ function makesProfessorsCaptureFootnotes (){
             },
             "slider_sltime": {
                 "curtime": 2.9897076114077104 * sconf.initialTimieStep
-            }
+            },
+            "A": {
+                "pos": [
+                    2.4846663769760875,
+                    -0.010267216433785486
+                ]
+            },
         },
         "corollary-4" : {
             "rgslid_dt": {
@@ -238,6 +244,12 @@ function makesProfessorsCaptureFootnotes (){
                     ]
                 ]
             },
+            "A": {
+                "pos": [
+                    2.4846663769760875,
+                    -0.010267216433785486
+                ]
+            },
         },
 
         "corollary-3" : {
@@ -254,7 +266,13 @@ function makesProfessorsCaptureFootnotes (){
             },
             "slider_sltime": {
                 "curtime": 5.1 * sconf.initialTimieStep
-            }
+            },
+            "A": {
+                "pos": [
+                    2.4846663769760875,
+                    -0.010267216433785486
+                ]
+            },
         },
 
         "__amode2rgstate" :
@@ -487,6 +505,7 @@ function makesProfessorsCaptureFootnotes (){
                 }
             ],
         ]
+        
     });
 }
 })();
