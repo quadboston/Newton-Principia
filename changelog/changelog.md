@@ -1,5 +1,10 @@
 # Change Log
 
+## 2026-5-? (Chartreuse Version, 0.9.1)
+### Improved
+* Prop 1
+	* corollary diagrams display correctly on refresh
+
 ## 2026-4-17 (Chartreuse Version, 0.9)
 ### Changed
 * Colors are modified and more closely adhere to these groupings:
