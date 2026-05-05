@@ -213,14 +213,7 @@ function makesProfessorsCaptureFootnotes (){
             "slider_sltime": {
                 "curtime": 5.3 * sconf.initialTimieStep,
             },
-            "speeds": {
-                "vect": [
-                    [
-                        0.29155658394042205/sconf.initialTimieStep,
-                        0.9565535836329252/sconf.initialTimieStep
-                    ]
-                ]
-            },
+            "speeds": speedVector,
             "A": positionA,
         },
 
