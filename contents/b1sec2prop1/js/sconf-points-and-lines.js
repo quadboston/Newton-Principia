@@ -550,12 +550,9 @@ function sconf_points8lines (){
         //------------------------------------
         // \\// cor4 prop1
         //------------------------------------
-        { nam : ['B', 'V'],                                                 // BV
-            cssClass : 'hover-width ' + theor1corollary,
-        },
-        { nam : ['A', 'C'], cssClass : theor1corollary,
-        },                 // AC
-        { nam : ['D', 'F'], cssClass : theor1corollary },                 // DF
+        { nam : ['B', 'V'], cssClass : 'hover-width ' + theor1corollary}, // BV
+        { nam : ['A', 'C'], cssClass : theor1corollary},	// AC
+        { nam : ['D', 'F'], cssClass : theor1corollary },	// DF
     ];
 
     if( fconf.sappId === 'b1sec2prop2' ){

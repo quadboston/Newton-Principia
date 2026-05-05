@@ -4,6 +4,9 @@
 			setsCommonT1andT2capture,
             makesProfessorsCaptureFootnotes,
 		}});
+		Object.assign( sconf, {
+			initialTimieStep : 0.75,
+		});
 		const positionA = {
 			"pos": [
 				2.4846663769760875,
@@ -64,14 +67,7 @@ function makesProfessorsCaptureFootnotes (){
             "rgslid_dt": {
                 "val": sconf.initialTimieStep
             },
-            "speeds": {
-                "vect": [
-                    [
-                        0.2618140190615299 / sconf.initialTimieStep,
-                        0.9651183447758357 / sconf.initialTimieStep
-                    ]
-                ]
-            },
+            "speeds": speedVector,
             "A": positionA,
 
             "slider_sltime": {
@@ -142,14 +138,7 @@ function makesProfessorsCaptureFootnotes (){
             "rgslid_dt": {
                 "val": sconf.initialTimieStep
             },
-            "speeds": {
-                "vect": [
-                    [
-                        0.2618140190615299 / sconf.initialTimieStep,
-                        0.9651183447758357 / sconf.initialTimieStep
-                    ]
-                ]
-            },
+            "speeds": speedVector,
             "force" : {
                 'lawPower' : sconf.force[0][0],
                 'lawConstant' : sconf.force[0][1]
@@ -198,14 +187,7 @@ function makesProfessorsCaptureFootnotes (){
             "rgslid_dt": {
                 "val": sconf.initialTimieStep
             },
-            "speeds": {
-                "vect": [
-                    [
-                        0.2618140190615299/sconf.initialTimieStep,
-                        0.9651183447758357/sconf.initialTimieStep
-                    ]
-                ]
-            },
+            "speeds": speedVector,
             "slider_sltime": {
                 "curtime": 2.9897076114077104 * sconf.initialTimieStep
             },
@@ -246,14 +228,7 @@ function makesProfessorsCaptureFootnotes (){
             "rgslid_dt": {
                 "val": sconf.initialTimieStep
             },
-            "speeds": {
-                "vect": [
-                    [
-                        0.2618140190615299/sconf.initialTimieStep,
-                        0.9651183447758357/sconf.initialTimieStep
-                    ]
-                ]
-            },
+            "speeds": speedVector,
             "slider_sltime": {
                 "curtime": 5.1 * sconf.initialTimieStep
             },
