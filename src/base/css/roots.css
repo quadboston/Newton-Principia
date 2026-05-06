@@ -12,6 +12,8 @@
     --color-light: white;
     --border-radius: 20px;
     --border-color: #AFAFAF;
+	--circumscribed-perimeter: #0000ff;
+	--inscribed-perimeter: #ad54a5;
     --exegesisBackgroundColor : 'white';
     --FOCUS_COLOR : #888888;
     --FOCUS_OFF_COLOR : #888888;

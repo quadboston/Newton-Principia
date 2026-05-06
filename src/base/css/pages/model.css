@@ -25,7 +25,7 @@
 }
   
 .circumscribed {
-    stroke: var(--color-main);
+    stroke: var(--circumscribed-perimeter);
     fill: transparent;
     color: var(--color-main); 
 }  
@@ -36,7 +36,7 @@
 }
   
 .inscribed {
-    stroke: var(--color-main);
+    stroke: var(--inscribed-perimeter);
     fill: transparent;
     color: var(--color-main); 
 }

@@ -217,82 +217,82 @@
             },
 
             { aK : {
-                        pcolor : predT["circ-txt"],
+                        // pcolor : predT["circ-txt"],
                    },
             },
             { AK : {
-                        pcolor : predT.given,
+                        // pcolor : predT.given,
                    },
             },
             // //\\ top rect sides
             //lower
             { cL : {
-                        pcolor : predT["insc-txt"],
+                        // pcolor : predT["insc-txt"],
                    },
             },
             { dM : {
-                        pcolor : predT["insc-txt"],
+                        // pcolor : predT["insc-txt"],
                    },
             },
             //circ, right rect sides
             { lb : {
-                        pcolor : predT["circ-txt"],
+                        // pcolor : predT["circ-txt"],
                    },
             },
             { mc : {
-                        pcolor : predT["circ-txt"],
+                        // pcolor : predT["circ-txt"],
 				   },
             },
             { nd : {
-                        pcolor : predT["circ-txt"],
+                        // pcolor : predT["circ-txt"],
                    },
             },
             { oE : {
-                        pcolor : predT["circ-txt"],
+                        // pcolor : predT["circ-txt"],
                    },
             },
 
             //upper
             { od : {
-                        pcolor : predT["circ-txt"],
+                        // pcolor : predT["circ-txt"],
                    },
             },
             { nc : {
-                        pcolor : predT["circ-txt"],
+                        // pcolor : predT["circ-txt"],
                    },
             },
             { mb : {
-                        pcolor : predT["circ-txt"],
+                        // pcolor : predT["circ-txt"],
                    },
             },
             { la : {
-                        pcolor : predT["circ-txt"],
+                        // pcolor : predT["circ-txt"],
                    },
             },
             // \\// top rect sides
 
             { Bb : {
-                        pcolor : predT["insc-txt"],
+                        // pcolor : predT["insc-txt"],
                    },
             },
             { Cc : {
-                        pcolor : predT["insc-txt"],
+                        // pcolor : predT["insc-txt"],
                    },
             },
             { Dd : {
-                        pcolor : predT["insc-txt"],
+                        // pcolor : predT["insc-txt"],
                    },
             },
             { AF : {
-                        pcolor : predT.given,
+                        // pcolor : predT.given,
                    },
             },
             { Kb : {
-                        pcolor : predT["insc-txt"],
+                        // pcolor : predT["insc-txt"],
                    },
             },
             { Aa : {
-                        pcolor : predT.figure,
+                        // pcolor : predT.figure,
                    },
             },
         ];
