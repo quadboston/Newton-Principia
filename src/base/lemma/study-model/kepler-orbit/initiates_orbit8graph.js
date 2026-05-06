@@ -38,11 +38,9 @@
         if( rg.S.draggableX || rg.S.draggableY ) {
             stdMod.creates_S_slider();
         }
-        if(sconf.sappId === "b1sec2prop10" || sconf.sappId === "b1sec3prop11") {
-            if( rg.A && (rg.A.draggableX || rg.A.draggableY) ) {
-                stdMod.creates_A_slider();
-            }
-        }
+		if( rg.A && (rg.A.draggableX || rg.A.draggableY) ) {
+			stdMod.creates_A_slider();
+		}
 
 		function createGraph_FW_lemma({ digramParentDom$ }, customXLegend){
 			const graphFW = {};
