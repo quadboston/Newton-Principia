@@ -86,6 +86,11 @@
         rg.v.pos[0] = wwR[0];
         rg.v.pos[1] = wwR[1];
 
+		// put q across from Q
+		rg.q.pos[0] = 2 * rg.v.pos[0] - rg.Q.pos[0];
+		rg.q.pos[1] = 2 * rg.v.pos[1] - rg.Q.pos[1];
+
+
         //getting V
         var DCsq_PCsq = mat.unitVector( DK ).v2 / mat.unitVector( PG ).v2;
         var wwu = mat.pointPlusTVector(

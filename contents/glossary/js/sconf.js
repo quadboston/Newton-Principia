@@ -69,7 +69,7 @@
         //=============================================
 
 
-        //:diagram sandbox spatial parameters
+        //diagram sandbox spatial parameters
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
         var mod2inn_scale = 360;
@@ -84,7 +84,7 @@
         sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
         sconf.CURVE_REVOLVES = true; //true for cyclic orbit
         sconf.DQ_SLIDER_MAX = null;
-        sconf.DT_SLIDER_MAX = 0.48;
+        sconf.DT_SLIDER_MAX = 99;
         sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
         var Q_STEPS = 1500;
         var DATA_GRAPH_STEPS = 500;
@@ -168,6 +168,7 @@
         {
             C : {
                 pcolor : proof,
+				caption: "",
                 pos: posC,
                 letterAngle : -99,
                 letterRotRadius : 35,
@@ -202,7 +203,7 @@
             D : {
                 pcolor : proof,
                 letterAngle : 70,
-				cssClass: 'subessay--solution',
+                cssClass: 'subessay--solution',
             },
 
             K : {
@@ -287,8 +288,9 @@
             A : {
                 pcolor : proof,
                 draggableX  : true,
-				cssClass: 'logic_phase--proof',
-                conditionalDrag : 'logic_phase--proof',
+                draggableY  : false,
+				cssClass: 'subessay--ordinate',
+                conditionalDrag : 'subessay--ordinate',
             },
 
             P : {
@@ -306,9 +308,17 @@
                 letterRotRadius : 40,
                 draggableX  : true,
                 draggableY  : true,
-				cssClass: 'subessay--solution subessay--goal',
-                conditionalDrag : 'subessay--solution subessay--goal',
-            },
+                cssClass: 'subessay--ordinate',
+                conditionalDrag : 'subessay--ordinate',
+            }, 
+
+            q : { // will be put across from Q
+                pcolor : proof,
+				caption: '',
+				undisplayAlways : true,
+                cssClass: 'subessay--ordinate',
+            },         
+
             //---------------------------------------
             // \\// draggable points
             //---------------------------------------
@@ -377,8 +387,8 @@
             { 'QR' : { pcolor : estimatedForceColor,
 				cssClass: 'subessay--solution subessay--goal',
 			 }, },
-            { 'QT' : { pcolor : estimatedForceColor,
-				cssClass: 'subessay--solution subessay--goal',
+            { 'QT' : { pcolor : proof,
+                     cssClass: 'subessay--',
 			 },},
 
             { CK : { pcolor : proof,
@@ -387,9 +397,21 @@
             { CG : { pcolor : proof,
 				cssClass: 'subessay--solution',
 			}, },
-            { Qv : { pcolor : proof,
-				cssClass: 'subessay--solution',
-			 },},
+			{ DK : { pcolor : proof,
+                    cssClass: 'subessay--conjugatediameter',
+             }, },
+
+			{ GP : { pcolor : proof,
+                     cssClass: 'subessay--ordinate subessay--diameter subessay--conjugatediameter',
+            }, },
+
+            { Qv : { pcolor : estimatedForceColor,
+                     cssClass: 'subessay--ordinate',
+            }, },
+			{ qv : { pcolor : proofHover,
+                     cssClass: 'subessay--ordinate',
+            }, },
+
             { Pv : { pcolor : proofHover,
 				cssClass: 'subessay--solution',
 			 },},

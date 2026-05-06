@@ -1,0 +1,41 @@
+*::*claim|english
+{
+	"default" : "1",
+	"menuCaption" : "Text",
+	"subessay" : "conjugatediameter",
+    "subessayCaption" : "conjugate diameter (ellipse)",
+	"logic_phaseCaption" : "Glossary"
+}
+*..*
+Let a ¦body P¦body¦¦ revolve in an ¦orbit¦ellipse¦¦; it is required to find the law
+of the centripetal
+¦force¦¦ tending toward the ¦C¦center of the ellipse¦¦.
+
+
+*::*claim|english
+{
+	"menuCaption" : "Text",
+	"subessay" : "diameter",
+    "subessayCaption" : "diameter (ellipse)",
+	"logic_phaseCaption" : "Glossary"
+}
+*..*
+Let a ¦body P¦body¦¦ revolve in an ¦orbit¦ellipse¦¦; it is required to find the law
+of the centripetal
+¦force¦¦ tending toward the ¦C¦center of the ellipse¦¦.
+
+
+*::*claim|english
+{
+	"menuCaption" : "Text",
+	"subessay" : "ordinate",
+	"subessayCaption" : "ordinate",
+	"logic_phaseCaption" : "Glossary"
+}
+*..*
+An ¦Qv¦<em>ordinate</em>¦¦ is half of a ¦qv Qv¦chord¦¦ that is bisected by a conic's ¦GP¦diameter¦¦.
+The ¦Qv¦ordinate¦¦ spans from that ¦GP¦diameter¦¦ to the ¦orbit¦conic¦¦.
+<br><br>
+Change the ¦Qv¦ordinate¦¦ with ¦Q¦¦.<br>
+Change the ¦GP¦diameter¦¦ with ¦P¦¦.<br>
+Change the ellipse's eccentricity with ¦A¦¦.<br>

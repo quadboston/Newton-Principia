@@ -18,10 +18,8 @@
             ],
             "contents-list" :
             [
-                'txt/cohen.txt',
+                'txt/glossary.txt',
             ],
         };
     }
-
 }) ();
-
