@@ -114,6 +114,7 @@ const { ns, sn, haz, haff, $$, eachprop,
 
         //=============================================
         // //\\ upcreates lines after points
+        // todo: why this being done a second time?
         if( linesArray ) {
             linesArray.forEach( (lineConf) => {
                 var lname   = Object.keys( lineConf )[0];

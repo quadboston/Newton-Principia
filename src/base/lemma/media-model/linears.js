@@ -291,7 +291,11 @@
                                ( cssClass ? ' ' + cssClass : '' ),
             'stroke-width'  : ns.sn( 'stroke-width', lineAttr, strokeWidth ),
                               // most model lines
-            stroke          : ns.sn( 'stroke',   lineAttr, 'black' ),
+
+            // if no lineAttr, third param is applied to object, but not to actual svg elem 
+            // (todo: what is the purpose of this then?)
+            stroke          : ns.sn( 'stroke',   lineAttr, 'yellow' ), 
+            
             //cssClass        : ns.sn( 'cssClass', lineAttr, 'tofill tostroke' ),
             //tpclass         : ns.sn( 'stroke', lineAttr, 'black' ),
             caption         : caption || haz( lineAttr, 'caption' ),

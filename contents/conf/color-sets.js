@@ -188,7 +188,7 @@
 			tr["circumscribed-rectangles"] = rgbToArray("rgb(0, 80, 150)", 0.32, 0.64),
 			tr["circ-txt"]                 = rgbToArray("rgb(102, 131, 179)"),
 
-			tr["inscribed-rectangles"]     = rgbToArray("rgb(150, 0, 150)", 0.32, 0.64),
+			tr["inscribed-rectangles"]     = rgbToArray("rgb(150, 0, 150)", 0.32, 0.64), // opacity affects fill and stroke
 			tr["insc-txt"]                 = rgbToArray("rgb(173, 94, 178)"),
 
 			tr.widths                      = rgbToArray("rgb(150, 0, 150)", 0, 0.64),

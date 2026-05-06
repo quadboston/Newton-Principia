@@ -266,7 +266,7 @@
                    },
             },
             { la : {
-                        // pcolor : predT["circ-txt"],
+                        pcolor : [0,0,0,0],
                    },
             },
             // \\// top rect sides
@@ -288,7 +288,7 @@
                    },
             },
             { Kb : {
-                        // pcolor : predT["insc-txt"],
+                        pcolor : [0,0,0,0],
                    },
             },
             { Aa : {
@@ -309,5 +309,10 @@
             //default_tp_stroke_width : 12,
             handleRadius : 55,
         });
+
+        // if no color specified, default value gets added during this nspaste
+        // However, the value attached (see linears.js:294) to this object is not the colour displayed
+        // the actual stroke color is specified in svg.js:170
+        console.log(sconf.linesArray[9]); 
     };
 }) ();

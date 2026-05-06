@@ -167,7 +167,7 @@
             type    : 'polyline',
             points  : pivotsStr,
             style   : arg.style,
-            stroke  : arg.stroke || 'rgba( 0,0,0, 1 )', 
+            stroke  : arg.stroke || 'rgba( 255,0,0, 1 )', // this is where colour is actually set
                 //must be transparent bs stroke or fill are often exclusive
 
             fill    : arg.fill || 'transparent',

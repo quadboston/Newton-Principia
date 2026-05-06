@@ -36,9 +36,13 @@
 }
   
 .inscribed {
-    stroke: var(--inscribed-perimeter);
-    fill: transparent;
-    color: var(--color-main); 
+    /* this is only place stroke color is set */
+    /* fill color is defined in color-sets.js */
+    stroke: var(--inscribed-perimeter); 
+
+    /* these aren't doing anything - todo remove? */
+    /* fill: transparent; 
+    color: var(--color-main);  */
 }
 
 .inscribed.label {
@@ -94,6 +98,9 @@ svg text {
 /* //\\ subapplication (lemma 2, 3 specific) fix;
         removes hidden rects from topic engine
 */
+/* todo: visbility attr always stays hidden, 
+    elems get shown by setting style="visibility: visible"
+    should only use one or the other */
 .inscribed.rect.tofill.topicid-inscribed-rectangles[visibility="hidden"],
 .circumscribed.rect.tofill.topicid-circumscribed-rectangles[visibility="hidden"] {
     visibility:hidden;
