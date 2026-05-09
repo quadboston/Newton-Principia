@@ -222,11 +222,7 @@
                 letterRotRadius : 40,
                 draggableX  : true,
                 draggableY  : true,
-
-                //scenario needs peer review:
-                //conditionalDrag : 'logic_phase--proof logic_phase--corollary',
-                conditionalDrag : 'logic_phase--proof',
-
+                conditionalDrag : 'subessay--solution',
             },
             QtimeDecor : {
                 undisplayAlways : true,
@@ -387,4 +383,3 @@
         //***************************************************************
     }
 }) ();
-
