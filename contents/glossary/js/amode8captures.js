@@ -9,7 +9,6 @@
             amode2rgstate,
         },
     });
-    return;
 
 
     ///runs inside "subessay launch" which in turn runs after

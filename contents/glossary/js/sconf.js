@@ -1,6 +1,6 @@
 ( function() {
-    var { ns, fconf, sconf, topicColors_repo, } = 
-        window.b$l.apptree({  ssFExportList : { init_conf } });
+    const { ns, fconf, sconf, topicColors_repo, amode} = 
+        window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
 
@@ -9,6 +9,7 @@
     //====================================================
     function init_conf()
     {
+		
         //***************************************************************
         // //\\ geometrical scales
         //***************************************************************
@@ -160,7 +161,7 @@
         //-----------------------------------
         // \\// topic group colors,
         //-----------------------------------
-
+        const { logic_phase, aspect, subessay } = amode;
         //---------------------------------------------------
         // //\\ points to approximate and draw original curve
         //---------------------------------------------------
@@ -319,6 +320,13 @@
                 cssClass: 'subessay--ordinate',
             },         
 
+            A : {
+                pcolor : proof,
+                draggableX  : true,
+                draggableY  : false,
+				cssClass: 'subessay--ordinate subessay--diameter subessay--conjugatediameter',
+                //conditionalDrag : 'subessay--ordinate subessay--diameter subessay--conjugatediameter',
+            },
             //---------------------------------------
             // \\// draggable points
             //---------------------------------------
@@ -458,5 +466,9 @@
             defaultLineWidth,
             handleRadius,
         });
+
+
+
+	//linesArray[GP].pColor = rg.C.pColor = subessay === 'diameter' ? estimatedForce : proof;
     }
 }) ();

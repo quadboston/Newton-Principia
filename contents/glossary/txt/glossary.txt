@@ -3,14 +3,15 @@
 	"default" : "1",
 	"menuCaption" : "Text",
 	"subessay" : "conjugatediameter",
-    "subessayCaption" : "conjugate diameter (ellipse)",
+    "subessayCaption" : "conjugate diameters (ellipse)",
 	"logic_phaseCaption" : "Glossary"
 }
 *..*
-Let a ¦body P¦body¦¦ revolve in an ¦orbit¦ellipse¦¦; it is required to find the law
-of the centripetal
-¦force¦¦ tending toward the ¦C¦center of the ellipse¦¦.
-
+¦GP DK¦<em>Conjugate diameters</em>¦¦ of a ¦orbit¦conic¦¦
+are a pair of diameters that bisect each other.
+<br><br>
+Move the ¦GP¦diameters¦¦ with ¦P¦¦.<br>
+Change the ellipse's eccentricity with ¦A¦¦.<br>
 
 *::*claim|english
 {
@@ -20,9 +21,11 @@ of the centripetal
 	"logic_phaseCaption" : "Glossary"
 }
 *..*
-Let a ¦body P¦body¦¦ revolve in an ¦orbit¦ellipse¦¦; it is required to find the law
-of the centripetal
-¦force¦¦ tending toward the ¦C¦center of the ellipse¦¦.
+A ¦GP¦<em>diameter</em>¦¦ of a ¦orbit¦conic¦¦ is any chord that bisects a family of parallel chords.
+For an ¦orbit¦ellipse¦¦, this simplifies to any chord passing through the ellipse's ¦C¦center¦¦.
+<br><br>
+Move the ¦GP¦diameter¦¦ with ¦P¦¦.<br>
+Change the ellipse's eccentricity with ¦A¦¦.<br>
 
 
 *::*claim|english
@@ -36,6 +39,6 @@ of the centripetal
 An ¦Qv¦<em>ordinate</em>¦¦ is half of a ¦qv Qv¦chord¦¦ that is bisected by a conic's ¦GP¦diameter¦¦.
 The ¦Qv¦ordinate¦¦ spans from that ¦GP¦diameter¦¦ to the ¦orbit¦conic¦¦.
 <br><br>
-Change the ¦Qv¦ordinate¦¦ with ¦Q¦¦.<br>
-Change the ¦GP¦diameter¦¦ with ¦P¦¦.<br>
+Move the ¦Qv¦ordinate¦¦ with ¦Q¦¦.<br>
+Move the ¦GP¦diameter¦¦ with ¦P¦¦.<br>
 Change the ellipse's eccentricity with ¦A¦¦.<br>
