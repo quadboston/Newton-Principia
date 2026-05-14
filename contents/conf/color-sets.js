@@ -187,9 +187,11 @@
 
 			tr["circumscribed-rectangles"] = rgbToArray("rgb(0, 80, 150)", 0.32, 0.64),
 			tr["circ-txt"]                 = rgbToArray("rgb(102, 131, 179)"),
+			tr["circ-outline"]                 = rgbToArray("rgb(102, 131, 179)", 0.8, 1.0),
 
 			tr["inscribed-rectangles"]     = rgbToArray("rgb(150, 0, 150)", 0.32, 0.64),
-			tr["insc-txt"]                 = rgbToArray("rgb(173, 94, 178)"),
+			tr["insc-txt"]                 = rgbToArray("rgb(112, 57, 107)"),
+			tr["insc-outline"]                 = rgbToArray("rgb(112, 57, 107)", 0.8, 1.0),
 
 			tr.widths                      = rgbToArray("rgb(150, 0, 150)", 0, 0.64),
 

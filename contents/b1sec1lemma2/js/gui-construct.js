@@ -1,7 +1,7 @@
 ( function () {
     var {
         ///standard levels of application
-        sn, svgNS, fapp, sconf, sDomF, stdMod, }
+        sn, svgNS, fapp, sconf, sDomF, stdMod, topicColors_repo}
         = window.b$l.apptree({ setModule, });
     var stdL2               = sn('stdL2', fapp );
     var gui                 = sn('gui', stdL2 );
@@ -32,7 +32,13 @@
     function constructsRects_tillExtraOffset_parlessDom(dr)
     {
         //this is just an empty list
+        const cArr = topicColors_repo["circ-outline"];
+        const circColor = `rgb(${cArr[0]}, ${cArr[1]}, ${cArr[2]}, ${cArr[3]})`;
+        const iArr = topicColors_repo["insc-outline"];
+        const inscColor = `rgb(${iArr[0]}, ${iArr[1]}, ${iArr[2]}, ${iArr[3]})`;
+        console.log(inscColor);
         makes_rects( dr.circRects, "tp-circumscribed-rectangles circumscribed");
+        makes_rects_outlines( dr.circRects_outline, circColor);
 
         {
             //Add the figure name if needed
@@ -45,6 +51,7 @@
             }
             classStyle += " inscribed";
             makes_rects(dr.InscrRects, classStyle, classPrefixSingle);
+            makes_rects_outlines(dr.InscrRects_outline, inscColor);
         }
 
         makes_rects( dr.differenceRects, "tp-difference difference");
@@ -72,6 +79,24 @@
                 classSingle = classPrefixSingle + i.toString() + " ";
             //A polygon (rather than "rect") so it can be transformed
             list.push( makeSType( "polygon", classSingle + classStyle ) );
+        }
+    }
+
+    // creates duplicate of rectangles with no fill, just stroke
+    // so the stroke looks the same as those specified in sconf
+    // and so the strokes' opacity can be set independently of fill opacity
+    function makes_rects_outlines( listWrap, color )
+    {
+        let BASE_MAX_NUM = sconf.BASE_MAX_NUM;
+        let list = listWrap.list;
+        let len = BASE_MAX_NUM+listWrap.offset;
+        for (var i=0; i<len; i++){
+            //Create stroke duplicate with no fill
+            let strokeRect = makeSType( "polygon", "rect tostroke" );
+            strokeRect.setAttributeNS(null, 'fill', 'none');
+            strokeRect.setAttributeNS(null, 'stroke', color);
+            strokeRect.setAttributeNS(null, 'stroke-width', '5px');
+            list.push( strokeRect );
         }
     }
     //======================================================

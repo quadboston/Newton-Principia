@@ -248,7 +248,7 @@
                    },
             },
             { oE : {
-                        pcolor : predT["circ-txt"],
+                        pcolor : [0,0,0,0], 
                    },
             },
 
