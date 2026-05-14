@@ -8,8 +8,6 @@
     sData.ULTIM_MAX = 2;
     sData.ULTIM_ACTUAL = 1;
     sData.ULTIM_ESTIMATED = 0;
-    //TEMP
-    sData.DtSubstituteActualForce = 0.0001;
     return;
 
 
@@ -48,12 +46,6 @@
                 var Dq = sconf.DQ_SLIDER_MIN;
                 break;
         }
-
-        //Adjust the following as required.  If too small the curves on the
-        //graph become noisy.
-        //TEMP
-        // Dt = Math.max(Dt, 0.0001);
-
         for( let qix=0; qix<=Q_STEPS; qix++ ) {
             const bP = qIndexToOrbit[ qix ]; //body point data
             MAKE_RANGE && ( bP.invalid = false );
@@ -71,7 +63,15 @@
                     bP.plusQ = plusQ;
                     const force = stdMod.calculateForce({
                         parq: plusQ,
-                        bP
+                        bP,
+                        //todo
+                        //The following substitution is only setup to work when
+                        //time is the free variable.  At the time of writing
+                        //this no models use q as the free variable, therefore
+                        //this needs to be updated when a model is switched to
+                        //use q.
+                        // DtCheckForSubstitution: Dt,
+                        ulitmacy,
                     });
                     switch (ulitmacy) {
                         case sData.ULTIM_ESTIMATED:
@@ -88,7 +88,7 @@
             // \\// q is free variable
             //**********************************************
 
-            
+
             //**********************************************
             // //\\ t is a free variable
             //**********************************************
@@ -114,46 +114,12 @@
             }
 
             if( plusQ !== null ){
-                //TEMP Testing using actual force if Q close enough to P, and
-                //the estimated force code can have issues such as noise
-                // const useActualForceTemp = (Dt < sData.DtSubstituteActualForce ||
-                //     ulitmacy === sData.ULTIM_ACTUAL);
-                const substituteActual = Dt < sData.DtSubstituteActualForce;
-                const useActualForceTemp = (substituteActual ||
-                    ulitmacy === sData.ULTIM_ACTUAL);
-                if (qix === 0 && ulitmacy === sData.ULTIM_ESTIMATED) {
-                    console.log(`************Dt =`, Dt);
-                    // switch (ulitmacy) {
-                    //     case sData.ULTIM_MAX:
-                    //         console.log("ULTIM_MAX");
-                    //         break;
-                    //     case sData.ULTIM_ESTIMATED:
-                    //         console.log("ULTIM_ESTIMATED");
-                    //         break;
-                    //     case sData.ULTIM_ACTUAL:
-                    //         console.log("ULTIM_ACTUAL");
-                    //         break;
-                    // }
-                    if (substituteActual) {
-                        console.warn("substituteActual =", true);
-                    } else {
-                        console.log("substituteActual =", false);
-                    }
-                }
-
-                let force = 0;
-                if (useActualForceTemp) {
-                    //Use actual force
-                    force = stdMod.calculateActualForceTemp({bP});
-                } else {
-                    //Use estimated force
-                    force = stdMod.calculateForce({
-                        parq: plusQ,
-                        bP
-                    });
-                }
-                //TEMP//
-
+                const force = stdMod.calculateForce({
+                    parq: plusQ,
+                    bP,
+                    DtCheckForSubstitution: Dt,
+                    ulitmacy,
+                });
                 switch (ulitmacy) {
                     case sData.ULTIM_ESTIMATED:
                         bP.estimatedForce = force;
@@ -163,7 +129,7 @@
                         break;
                 }
             }
-            
+
             if( plusQ !== null ){
                 bP.rrplus = q2xy( plusQ );
                 let minusT = bodyTime - Dt;
@@ -204,7 +170,7 @@
         const CURVE_REVOLVES = sconf.CURVE_REVOLVES;
         const qIndexToOrbit = ssD.qIndexToOrbit;
         const timeRange = ssD.timeRange;
-        
+
         //Adjust time as needed, and ensure within bounds.
         const timeFind = CURVE_REVOLVES ? (timeRange + time) % timeRange : time;
         if (timeFind < 0 || timeFind > timeRange)
@@ -284,7 +250,7 @@
 
                 const time = tS + (tE - tS) * factor;
                 const q    = qS + (qE - qS) * factor;
-                
+
                 //Calculate and check value
                 const Q = convertTimeToQ(time);
                 if (Q === null) {

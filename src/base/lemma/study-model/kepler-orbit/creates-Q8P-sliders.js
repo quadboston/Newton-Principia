@@ -4,9 +4,9 @@
 ( function() {
     var { sn, ssD, sData, stdMod, sconf, rg, } = window.b$l.apptree({ 
         stdModExportList : {
-            creates_Q8P_sliders, 
+            creates_Q8P_sliders,
             creates_A_slider,
-            creates__gets_orbit_closest_point, 
+            creates__gets_orbit_closest_point,
         },});
     const qIndexToOrbit = sn( 'qIndexToOrbit', ssD, [] );
     return;
@@ -23,8 +23,6 @@
                 if (qix != null) {
                     rg.P.qix = qix;
                     stdMod.model8media_upcreate();
-                    //TEMP
-                    console.log("qix P =", qix);
                 }
             }
         }
@@ -66,7 +64,7 @@
                         Dt -= ssD.timeRange;
                     }
                 }
-                
+
                 //Clamp as needed
                 ssD.Dt = Math.max(Math.min(Dt, sconf.DT_SLIDER_MAX), 0);
 

@@ -120,14 +120,6 @@
         // \\// curve shape parameters
         //-------------------------------------------
 
-        //the law to be studied in given lemma:
-        //fe: for 1/r^2, the assigment is
-        //    sconf.force_law_function = bP => 1/(bP.r2);
-        //null means that program will calculated the law
-        //based on dt -> 0:
-        //TEMP
-        // sconf.force_law_function = null;
-
         //intervals of dt or dq to construct an arc for estimated force
         //Sets initial distance of point Q from P
         if( FT ){
