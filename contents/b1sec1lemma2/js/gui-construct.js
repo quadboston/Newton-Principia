@@ -36,7 +36,6 @@
         const circColor = `rgb(${cArr[0]}, ${cArr[1]}, ${cArr[2]}, ${cArr[3]})`;
         const iArr = topicColors_repo["insc-outline"];
         const inscColor = `rgb(${iArr[0]}, ${iArr[1]}, ${iArr[2]}, ${iArr[3]})`;
-        console.log(inscColor);
         makes_rects( dr.circRects, "tp-circumscribed-rectangles circumscribed");
         makes_rects_outlines( dr.circRects_outline, circColor);
 

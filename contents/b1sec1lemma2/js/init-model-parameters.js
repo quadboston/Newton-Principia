@@ -56,22 +56,11 @@
             });
         }
 
-        // construct rects first so it they appear behind the points and labels
+        // construct rects and bases first so it they appear behind the points and labels
         Object.values(dataregs).forEach((dr) => {
             guicon.constructsWidestRect?.(dr);
             guicon.constructsRects_tillExtraOffset_parlessDom(dr);
-            
-            //numberless:
-            guicon.constructsCurve8Area(dr); //do on top of ancestors
-
-            guicon.constructBasePts_domParless(dr, dr.basePts);
-            
-            guicon.constructTransformPoints(dr);
-            stdMod.recalculateAndStoreTransforms(dr);
-            guicon.constructsControlPoints(dr);
-        });
-        Object.values(dataregs).forEach((dr) => {
-            ssF.continue_create_8_prepopulate_svg(dr);
+            ssF.continue_create_8_prepopulate_svg(dr); //base lines
         });
 
         //----------------------------------------------
@@ -84,6 +73,17 @@
         //it will not call stdMod.media_upcreate___before_basic because this
         //function does not exist in engine core:
         ssF.media_upcreate_generic();
+
+        Object.values(dataregs).forEach((dr) => {            
+            //numberless:
+            guicon.constructsCurve8Area(dr); //do on top of ancestors
+
+            guicon.constructBasePts_domParless(dr, dr.basePts);
+            
+            guicon.constructTransformPoints(dr);
+            stdMod.recalculateAndStoreTransforms(dr);
+            guicon.constructsControlPoints(dr);
+        });
 
         //*************************************************************
         //this completes media_upcreate_generic and media_upcreate

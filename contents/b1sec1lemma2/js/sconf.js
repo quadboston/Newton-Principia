@@ -293,6 +293,7 @@
             },
             { Aa : {
                         pcolor : predT.figure,
+                        'stroke-width' : 1.5
                    },
             },
         ];
