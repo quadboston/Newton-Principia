@@ -141,8 +141,8 @@
             hidden,
             estimatedForceColor,
             curvature,
-            sunColor,
-			dtime,
+			sunColor,
+			proofLight,
         } = topicColors_repo;
 
 
@@ -156,7 +156,6 @@
             body,
             orbit,
             force : forceColor,
-			dtime,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -412,11 +411,10 @@
 			{ GP : { pcolor : proof,
                      cssClass: 'subessay--ordinate subessay--diameter subessay--conjugatediameter',
             }, },
-
-            { Qv : { pcolor : estimatedForceColor,
+			{ qv : { pcolor : proofLight,
                      cssClass: 'subessay--ordinate',
             }, },
-			{ qv : { pcolor : proofHover,
+			{ Qv : { pcolor : estimatedForceColor,
                      cssClass: 'subessay--ordinate',
             }, },
 
@@ -466,9 +464,5 @@
             defaultLineWidth,
             handleRadius,
         });
-
-
-
-	//linesArray[GP].pColor = rg.C.pColor = subessay === 'diameter' ? estimatedForce : proof;
     }
 }) ();

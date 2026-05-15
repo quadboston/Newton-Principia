@@ -91,6 +91,7 @@
 					[...tr.supplementColor, 0, 1];
 			tr.proofArea   = [...tr.proof, 1];
 			tr.proofHover  = [...tr.proof, 0, 1];
+			tr.proofLight  = [...tr.proof, 0.12, 1];
 			tr.givenArea   = [...tr.given, 1];
 			tr.givenHover = [...tr.given, 0, 1];
 			tr.supplementHover
