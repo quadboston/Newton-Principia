@@ -195,11 +195,11 @@
 				undisplayAlways : true,
             },
             A : {
-                pcolor : orbit,
+                pcolor : proof,
                 letterAngle : -120,
                 draggableX  : true,
-				cssClass: 'logic_phase--proof logic_phase--comment',
-                conditionalDrag : 'logic_phase--proof logic_phase--comment',
+				cssClass: 'logic_phase--proof',
+                conditionalDrag : 'logic_phase--proof',
             },            
             AA : { // opposite A
                 undisplayAlways : true,
