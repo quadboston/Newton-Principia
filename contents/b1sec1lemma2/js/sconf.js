@@ -217,11 +217,11 @@
             },
 
             { aK : {
-                        pcolor : predT["circ-txt"],
+                        pcolor : predT.figure,
                    },
             },
             { AK : {
-                        pcolor : predT.given,
+                        pcolor : predT.figure,
                    },
             },
             // //\\ top rect sides
