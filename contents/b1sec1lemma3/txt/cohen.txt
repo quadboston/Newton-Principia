@@ -43,12 +43,12 @@
 *..*
 
 Cᴏʀᴏʟʟᴀʀʏ 1. Hence the ultimate sum of
-the vanishing parallelograms coincides with the curvilinear ¦figure Aa¦A𝑎𝑐E¦¦ in its every
+the vanishing parallelograms coincides with the curvilinear ¦figure-area¦figure¦¦ in its every
 part.
 <br><br>
 
 Cᴏʀᴏʟʟᴀʀʏ 2. And, all the more, the rectilinear figure that is comprehended 
-by the chords of the vanishing arcs 𝑎𝑏, 𝑏𝑐, 𝑐𝑑, ... coincides ultimately with the curvilinear ¦figure Aa¦A𝑎𝑐E¦¦.
+by the chords of the vanishing arcs 𝑎𝑏, 𝑏𝑐, 𝑐𝑑, ... coincides ultimately with the curvilinear ¦figure-area¦figure¦¦.
 <br><br>
 
 Cᴏʀᴏʟʟᴀʀʏ 3. And it is the same for the circumscribed rectilinear figure
