@@ -138,7 +138,7 @@
 		const showInscribed = !!view.isInscribed;
 		const showCircumscribed = !!view.isCircumscribed;
 		const onlyFigure = !showInscribed && !showCircumscribed;
-		const inscribedFeatures = ['K','L','M','Kb','cL','dM'];
+		const inscribedFeatures = ['K','L','M','Kb','cL','dM','Bb','Cc','Dd'];
 		inscribedFeatures.forEach(function(item){
 			rg[item].undisplay = !showInscribed;
 		});
