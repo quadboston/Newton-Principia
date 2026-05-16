@@ -202,6 +202,7 @@ function sconf_points8lines (){
                 // \\// templates
               },
         B   : { decStart : -2, decEnd : 1111111111,
+				letterAngle : -45,
               },
     };
     Object.assign( decor, firstSteps_conf );
@@ -212,7 +213,8 @@ function sconf_points8lines (){
         //"rg" [ 'B', 'C', 'D', 'E', 'F' ].pos <-- path[ ix + 1 ]
         C   : {
                 decStart : 6,
-				letterAngle : 80,
+				letterAngle : 62,
+				letterRotRadius : 21,
         },
         D   : { decStart : 10, 
 				letterAngle : 80,
@@ -243,6 +245,7 @@ function sconf_points8lines (){
                 caption : "C'",
                 decStart : decor.C.decStart,
                 decEnd : decor.C.decStart,
+				letterAngle : 66,
                 cssClass : 'logic_phase--corollary',
             },
             //will be repositioned by algo
@@ -256,6 +259,7 @@ function sconf_points8lines (){
                 caption : "V'",
                 decStart : decor.C.decStart,
                 decEnd : decor.C.decStart,
+				letterAngle : 50,
                 cssClass : 'logic_phase--corollary',
             },
         };
@@ -307,7 +311,8 @@ function sconf_points8lines (){
         //double sagitta layed down from point B
         V   : { decStart : -2, decEnd : 1111111,
                 cssClass : 'logic_phase--corollary',
-				letterAngle : 135,
+				letterAngle : -50,
+				letterRotRadius : 35,
               },
         //double sagitta layed down from point E
         Z   : {
