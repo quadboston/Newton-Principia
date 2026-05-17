@@ -1,5 +1,5 @@
 (function(){
-const { sn, haz, nspaste, mat, fconf, sconf, rg, amode, } =
+const { nspaste, fconf, rg, } =
         window.b$l.apptree({ stdModExportList : { traj2decs__II } });
 return;
 
@@ -52,11 +52,6 @@ function traj2decs__II (){
     if( fconf.sappId === 'b1sec2prop2' ){
         //top of the accelerated kepler-triangle
         nspaste( rg.Caracc.pos, rg.pathAracc.pos[ 2 ] );
-
-        //"legacy"(non-accelerated) perpendicular form C to radii,
-        //rg.Paracc.pos is perpendiculare base-point,
-        nspaste( rg.Paracc.pos, mat.dropPerpendicular( rg.C.pos, rg.S.pos, rg.B.pos ) );
-
         //=== normal-to-radii-displacement - added to position "V"
         rg.Varacc.pos[0] =
                 rg.Caracc.pos[0]-rg.C.pos[0]+ //normal displaysment

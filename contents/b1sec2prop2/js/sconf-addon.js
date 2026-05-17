@@ -133,13 +133,10 @@ function topicColors_elected(tpel){
 
     return {
         areaDescriptionAccelerated,
-        "Paracc"            : forceColor,  //Point C''
         "Caracc"            : forceColor,  //Point C'
         "CCaracc"           : forceColor,  //Line C to C'
         "CParacc"           : proofColor,  //Line C to C''
         "cCaracc"           : forceColor,  //Line c to C'
-        "CaraccParacc"      : forceColor,  //Line C' to C''
-        "BParacc"           : forceColor,  //Line B to C''
         "BCaracc"           : path,     //Line B to C'
         "SCaracc"           : proofColor,  //Line S C'
 

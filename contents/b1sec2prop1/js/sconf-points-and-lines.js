@@ -249,12 +249,6 @@ function sconf_points8lines (){
                 cssClass : 'logic_phase--corollary',
             },
             //will be repositioned by algo
-            Paracc : {
-                caption : "C''",
-                decStart : decor.C.decStart,
-                decEnd : decor.C.decStart,
-                cssClass : 'logic_phase--corollary',
-            },
             Varacc : {
                 caption : "V'",
                 decStart : decor.C.decStart,
@@ -577,11 +571,8 @@ function sconf_points8lines (){
                 //equal to path
                 'stroke-width': 4,
             },
-            { nam : ['B','Paracc'], cssClass : theor2corollary, },
-            { nam : ['C','Paracc'], cssClass : theor2corollary, },
             { nam : ['V','Varacc'], cssClass : theor2corollary, },
             { nam : ['B','Varacc'], cssClass : theor2corollary, },
-            { nam : ['Caracc','Paracc'], cssClass : theor2corollary, },
         ]);
     }
 
