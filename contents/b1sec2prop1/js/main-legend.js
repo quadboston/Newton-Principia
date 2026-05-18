@@ -1,6 +1,6 @@
 ( function() {
     var {
-        $$, has, sDomF, stdMod, rg, toreg,
+        $$, sDomF, stdMod, rg, toreg,
     } = window.b$l.apptree({
         stdModExportList : {
             upcreate_mainLegend,
@@ -17,7 +17,7 @@
     ///from full-app/dom/...
     function create_digital_legend (){
         var mlegend = toreg( 'main-legend' )();
-        doCreateTables( mlegend );
+        createTables( mlegend );
     }
 
     //=========================================
@@ -26,34 +26,25 @@
     //      slider;
     //=========================================
     function upcreate_mainLegend (){
-        var ww = clustersToUpdate;
         var wwc = clustersToUpdate_corollary;
-        ww.step.innerHTML = rg.displayPathStep.value + '';
         var stepIx = rg.stepIx.value;
 
+		// for corollary 1:
         var speed = rg.speeds.vect[stepIx-1];
         if( speed ) {
             var vx = speed[0].toFixed(3);
             var vy = speed[1].toFixed(3);
-            var vabs = Math.sqrt( vx*vx + vy*vy ).toFixed(3);
+            var velocity = Math.sqrt( vx*vx + vy*vy ).toFixed(3);
         }
-        wwc.speed.innerHTML = vabs;
-        //------------------------
-        // //\\ perpendicular
-        //------------------------
-        {
-            let p = rg.P.p.abs;
-            wwc.SP.innerHTML = p.toFixed(3);
-            wwc.vp.innerHTML = (p*vabs).toFixed(2);
-        }
-        //------------------------
-        // \\// perpendicular
-        //------------------------
+        wwc.speed.innerHTML = velocity;
+        let perpendicular = rg.P.p.abs;
+        wwc.SP.innerHTML = perpendicular.toFixed(3);
+        wwc.vp.innerHTML = (perpendicular*velocity).toFixed(2);
     }
     //=========================================
     // \\// updates values during simulation
     //=========================================
-    function doCreateTables(mlegend ){
+    function createTables(mlegend ){
         mlegend.tb = mlegend.tb || {};
         var tb = mlegend.tb.proof = $$
             .c('table')
@@ -64,7 +55,6 @@
         var row = $$.c('tr')
             .addClass('tostroke')
             .to(tb)();
-        makeCl( row, 'step', 'path step' );
 
         //-----------------------------------------------------
         // //\\ corollary 1
@@ -89,7 +79,7 @@
         var row = $$.c('tr')
             .addClass('tostroke')
             .to(tbc)();
-        makeCl( row, 'vp', 'velocity * perpendicular', 'corollary' );
+        makeCl( row, 'vp', 'velocity × perpendicular', 'corollary' );
         //-----------------------------------------------------
         // \\// corollary 1
         //=====================================================
@@ -132,4 +122,3 @@
         return c$;
     }
 })();
-

@@ -1,4 +1,3 @@
-
 ( function() {
     var { ns, fconf, sData, sconf, topicColors_repo,} = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
@@ -24,16 +23,6 @@
         //***************************************************************
         // \\// geometical scales
         //***************************************************************
-
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        sconf.enableStudylab = false;
-        //true enables framework zoom
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
-
 
         //***************************************************************
         // //\\ decorational parameters
@@ -161,6 +150,7 @@
             force,
             invalid,
             infoColor,
+			supplementColor,
             estimatedForce,
             curvature,
             displacement,
@@ -195,7 +185,6 @@
             posA,
             [ 527,248 ],
             [ 485,203 ],
-            //P,
             [ 396, 148 ],
             [300, 130], //near Q
             [217,132],
@@ -228,7 +217,7 @@
         }
         curvePivots = curvePivots.map( pivot => ({
             pos         : pivot,
-            pcolor      : infoColor,
+            pcolor      : supplementColor,
             letterAngle : 45,
             draggableX  : true,
             draggableY  : true,
@@ -428,7 +417,6 @@
             Dt0,
             Q_STEPS,
             DATA_GRAPH_STEPS,
-
             mediaBgImage : "diagram.png",
             topicColors_elected,
             originalPoints,
@@ -438,7 +426,6 @@
             pictureWidth,
             pictureHeight,
             mod2inn_scale,
-
             default_tp_stroke_width,
             defaultLineWidth,
             handleRadius,

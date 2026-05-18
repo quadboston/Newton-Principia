@@ -1,8 +1,7 @@
 (function(){
 const {
-    sn, haff, has, eachprop, nspaste, capture, toreg,
-    stdMod, fconf, sconf, ssF, ssD, sDomF,
-    topicColors_repo, topicColors_repo_camel2col, originalPoints,
+    sn, haff, has,
+    stdMod, fconf, sconf, ssF,
 } = window.b$l.apptree({ ssFExportList : { init_conf } });
 const linesArray = sn( 'linesArray', sconf, [] );
 return;
@@ -12,7 +11,6 @@ function init_conf (){
     //----------------------------------
     // //\\ scenario
     //----------------------------------
-    sconf.enableStudylab = false;
     //hideProofSlider = true, //false,
     sconf.enableCapture = true;
     //enableDataFunctionsRepository : true,
@@ -78,8 +76,7 @@ function init_conf (){
     //----------------------------------------------------
     // //\\  prepares sconf data holder
     //----------------------------------------------------
-    let legacyTimeStep = 0.75; //for case we do change initialTimieStep
-    let initialTimieStep = 0.75;
+    let initialTimieStep = sconf.initialTimieStep;
     let dtMin = 0.08;
     let stepsRange = 14;
     let timeRange = stepsRange*initialTimieStep;
@@ -136,7 +133,6 @@ function init_conf (){
             [   -2,                      //=n
                 1.95 / initialTimieStep / initialTimieStep //=k
             ],
-
             [ -1, 0 ],
             [ 0, 0 ],
             [ 1, 0 ],

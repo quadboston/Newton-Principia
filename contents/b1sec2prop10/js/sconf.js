@@ -24,15 +24,6 @@
         // \\// geometical scales
         //***************************************************************
 
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        sconf.enableStudylab            = false;
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
-
-
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
@@ -300,9 +291,8 @@
             A : {
                 pcolor : proof,
                 draggableX  : true,
-                draggableY  : true,
-				cssClass: 'subessay--solution',
-                conditionalDrag : 'subessay--solution',
+				cssClass: 'logic_phase--proof',
+                conditionalDrag : 'logic_phase--proof',
             },
             //---------------------------------------
             // \\// draggable points
