@@ -133,22 +133,22 @@ function topicColors_elected(tpel){
 
     return {
         areaDescriptionAccelerated,
-        "Caracc"            : forceColor,  //Point C'
-        "CCaracc"           : forceColor,  //Line C to C'
-        "CParacc"           : proofColor,  //Line C to C''
-        "cCaracc"           : forceColor,  //Line c to C'
-        "BCaracc"           : path,     //Line B to C'
-        "SCaracc"           : proofColor,  //Line S C'
+        "Cprime"            : forceColor,  //Point C'
+        "CCprime"           : forceColor,  //Line C to C'
+        "CPprime"           : proofColor,  //Line C to C''
+        "cCprime"           : forceColor,  //Line c to C'
+        "BCprime"           : path,     //Line B to C'
+        "SCprime"           : proofColor,  //Line S C'
 
-        "SBCaracc"          : areaDescriptionAccelerated,
+        "SBCprime"          : areaDescriptionAccelerated,
         // triangle SBC area description accelerated
 
-        "Varacc"            : forceColor,    //Point V'
-        "BVaracc"           : forceColor,
+        "Vprime"            : forceColor,    //Point V'
+        "BVprime"           : forceColor,
             // force at B deviated toward V;        Line B to V'
             // area description accelerated
 
-            "VVaracc"           : forceColor,
+            "VVprime"           : forceColor,
             // force vector at V displaced to V';   Line V to V'
             // area description accelerated
     };

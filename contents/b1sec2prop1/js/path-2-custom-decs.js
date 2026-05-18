@@ -51,12 +51,12 @@ function traj2decs__II (){
 
     if( fconf.sappId === 'b1sec2prop2' ){
         //top of the accelerated kepler-triangle
-        nspaste( rg.Caracc.pos, rg.pathAracc.pos[ 2 ] );
+        nspaste( rg.Cprime.pos, rg.pathAracc.pos[ 2 ] );
         //=== normal-to-radii-displacement - added to position "V"
-        rg.Varacc.pos[0] =
-                rg.Caracc.pos[0]-rg.C.pos[0]+ //normal displaysment
+        rg.Vprime.pos[0] =
+                rg.Cprime.pos[0]-rg.C.pos[0]+ //normal displaysment
                 rg.V.pos[0];                  //position "V"
-        rg.Varacc.pos[1] = rg.Caracc.pos[1]-rg.C.pos[1]+rg.V.pos[1];
+        rg.Vprime.pos[1] = rg.Cprime.pos[1]-rg.C.pos[1]+rg.V.pos[1];
     }
 }
 })();

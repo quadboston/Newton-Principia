@@ -240,8 +240,8 @@ function sconf_points8lines (){
     // //\\ theor 2 coroll. path decor
     //----------------------------------------------------
     if( fconf.sappId === 'b1sec2prop2' ){
-        var aracc_conf = {
-            Caracc : {
+        var prime_conf = {
+            Cprime : {
                 caption : "C′",
                 decStart : decor.C.decStart,
                 decEnd : decor.C.decStart,
@@ -249,7 +249,7 @@ function sconf_points8lines (){
                 cssClass : 'logic_phase--corollary',
             },
             //will be repositioned by algo
-            Varacc : {
+            Vprime : {
                 caption : "V′",
                 decStart : decor.C.decStart,
                 decEnd : decor.C.decStart,
@@ -258,7 +258,7 @@ function sconf_points8lines (){
             },
         };
     } else {
-        aracc_conf = {};
+        prime_conf = {};
     }
     //----------------------------------------------------
     // \\// theor 2 coroll. path decor
@@ -383,7 +383,7 @@ function sconf_points8lines (){
     Object.assign( decor, mixedSteps_conf );
     Object.assign( decor, middleSteps_conf );
     Object.assign( decor, forceTip_conf );
-    Object.assign( decor, aracc_conf );
+    Object.assign( decor, prime_conf );
 
     ///unifies with originalPoints
     Object.keys( decor ).forEach( propKey => {
@@ -564,15 +564,15 @@ function sconf_points8lines (){
 
     if( fconf.sappId === 'b1sec2prop2' ){
         linesConf = linesConf.concat( [
-            { nam : ['c','Caracc'], cssClass : theor2corollary, },
-            { nam : ['C','Caracc'], cssClass : theor2corollary, },
-            { nam : ['S','Caracc'], cssClass : theor2corollary, },
-            { nam : ['B','Caracc'], cssClass : theor2corollary,
+            { nam : ['c','Cprime'], cssClass : theor2corollary, },
+            { nam : ['C','Cprime'], cssClass : theor2corollary, },
+            { nam : ['S','Cprime'], cssClass : theor2corollary, },
+            { nam : ['B','Cprime'], cssClass : theor2corollary,
                 //equal to path
                 'stroke-width': 4,
             },
-            { nam : ['V','Varacc'], cssClass : theor2corollary, },
-            { nam : ['B','Varacc'], cssClass : theor2corollary, },
+            { nam : ['V','Vprime'], cssClass : theor2corollary, },
+            { nam : ['B','Vprime'], cssClass : theor2corollary, },
         ]);
     }
 
@@ -647,7 +647,7 @@ function sconf_points8lines (){
         ////we are working in prop 2,
         ////above condition is a flag
         Object.keys( p2_elected ).forEach( camelId => {
-            //if( camelId === 'SBCaracc' ) return;
+            //if( camelId === 'SBCprime' ) return;
             var tpLowKey = sDomF.toCssIdentifier( camelId );
                 //this thing only affects difference between strokable
                 //and areas like this:

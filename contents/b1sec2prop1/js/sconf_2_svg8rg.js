@@ -143,7 +143,7 @@
 
     function acceleratingArea_2_rg (){
         [
-            ['S', 'B', 'Caracc',],  //SBCaracc
+            ['S', 'B', 'Cprime',],  //SBCprime
         ].forEach( pNames => {
             var pName = pNames.join( '');
             var rgElem = shapesConf[ pName ] = toreg( pName )();
