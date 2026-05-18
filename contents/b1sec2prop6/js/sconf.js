@@ -1,4 +1,3 @@
-
 ( function() {
     var { ns, fconf, sData, sconf, topicColors_repo,} = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
@@ -161,6 +160,7 @@
             force,
             invalid,
             infoColor,
+			supplementColor,
             estimatedForce,
             curvature,
             displacement,
@@ -228,7 +228,7 @@
         }
         curvePivots = curvePivots.map( pivot => ({
             pos         : pivot,
-            pcolor      : infoColor,
+            pcolor      : supplementColor,
             letterAngle : 45,
             draggableX  : true,
             draggableY  : true,
@@ -428,7 +428,6 @@
             Dt0,
             Q_STEPS,
             DATA_GRAPH_STEPS,
-
             mediaBgImage : "diagram.png",
             topicColors_elected,
             originalPoints,
@@ -438,7 +437,6 @@
             pictureWidth,
             pictureHeight,
             mod2inn_scale,
-
             default_tp_stroke_width,
             defaultLineWidth,
             handleRadius,
