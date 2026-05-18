@@ -15,7 +15,7 @@
     /// and two paths calculations.
     ///    On path is with pure centripetal force.
     ///    Other path is for significant tangential force which
-    ///    is labeled with postfix "aracc".
+    ///    is labeled with postfix "prime".
     ///
     ///=================================================================
     function solvesTrajectoryMath__O()

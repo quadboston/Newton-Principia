@@ -51,17 +51,17 @@ whether it moves uniformly straight forward, together with the body, the
 *..*
 Cᴏʀᴏʟʟᴀʀʏ 1.
 In nonresisting spaces or mediums, if the areas are not
-proportional to the times, the ¦BVaracc¦forces do not tend¦¦ toward the ¦S¦point¦¦ where the
-radii meet but ¦VVaracc¦deviate¦¦ forward [or in consequentia] from it, that is, in the
-direction toward which the motion takes place, provided that the ¦SBCaracc¦description
+proportional to the times, the ¦BVprime¦forces do not tend¦¦ toward the ¦S¦point¦¦ where the
+radii meet but ¦VVprime¦deviate¦¦ forward [or in consequentia] from it, that is, in the
+direction toward which the motion takes place, provided that the ¦SBCprime¦description
 of the areas¦¦ is accelerated; but if it is retarded, they deviate backward [or in
 antecedentia, i.e., in a direction contrary to that in which the motion takes
 place].
 <br><br>
 Cᴏʀᴏʟʟᴀʀʏ 2.
-In resisting mediums also, if the ¦SBCaracc¦description
+In resisting mediums also, if the ¦SBCprime¦description
 of areas¦¦ is
-accelerated, the ¦BVaracc¦directions of the forces¦¦ ¦VVaracc¦deviate¦¦ from the point where the radii
+accelerated, the ¦BVprime¦directions of the forces¦¦ ¦VVprime¦deviate¦¦ from the point where the radii
 meet in the direction toward which the motion takes place.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 447.</div>

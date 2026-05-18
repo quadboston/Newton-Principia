@@ -1,5 +1,5 @@
 ( function() {
-    var { sn, $$, eachprop, fconf, sconf, ssF, ssD, sDomF, toreg, rg, amode, } =
+    var { ssF, sDomF, toreg, rg, } =
         window.b$l.apptree({ stdModExportList : { allPathRacks_2_unseenSVGs, }, });
     return;
 
@@ -11,12 +11,9 @@
         var rg8pos_2_svg    = ssF.rgPos2rgMedia;
         var paintTriangle   = ssF.paintTriangle;
 
-        var S               = rg.S.pos;
-        var force           = rg.force.pos;
         var path            = rg.path.pos;
         var pathRacks       = rg.pathRacks.pathRacks;
         var freePath        = rg.freePath.pos;
-        var speeds          = rg.speeds.vect;
         //=======================================================
         // //\\ spawns path to
         //      path "rgPoints", Kepler-triangles, free-triangles
@@ -149,52 +146,6 @@
         //---------------------------------------------------------
 
 
-        //-------------------------------------------------
-        // //\\ paints free path points
-        //-------------------------------------------------
-        var theor1proof = fconf.sappId === 'b1sec2prop1' ?
-            'logic_phase--proof' : 'logic_phase--none';
-        freePath.forEach( (pt, pix) => {
-            var pkey = 'freepath-' + pix;
-            toreg( pkey )({ undisplay : true })();
-            rg8pos_2_svg(
-                pkey,
-                  {
-                    cssClass: 'tofill tostroke ' + theor1proof,
-                    tpclass : 'free-path',
-                  }
-            );
-        });
-        //-------------------------------------------------
-        // \\// paints free path points
-        //-------------------------------------------------
-
-
-
-        //-------------------------------------------------
-        // //\\ free line segment
-        //-------------------------------------------------
-        var freePathRacks = rg.freePathRacks.freePathRacks;
-        freePathRacks.forEach( (frack, pix) => {
-            if( pix >= freePathRacks.length ) return;
-            var wwpname = 'freePathSegment-' + pix;
-            toreg( wwpname )({ undisplay : true })();
-            pivots_2_svgLineInRg(
-                wwpname,
-                !'wwPivots',
-                {
-                    //stroke:'green',
-                    cssClass:'tofill tostroke ' + theor1proof,
-                    tpclass : 'free-path',
-                    'stroke-width':4
-                }
-            );
-        });
-        //-------------------------------------------------
-        // \\// free line segment
-        //-------------------------------------------------
-
-
 
         //-------------------------------------------------
         // //\\ real path line segment,
@@ -219,4 +170,3 @@
         //-------------------------------------------------
     }
 })();
-

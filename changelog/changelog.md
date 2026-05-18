@@ -2,8 +2,16 @@
 
 ## 2026-5-? (Chartreuse Version, 0.9.1)
 ### Improved
-* Prop 1
-	* corollary diagrams display correctly on refresh
+* Propositions 1 and 2:
+	* velocity vector labeled
+	* path step no longer displayed
+	* better label positions
+
+* Proposition 1 Corollaries:
+	* diagrams display correctly on refresh
+
+* Proposition 2 Corollaries:
+	* point C'' removed
 
 ## 2026-4-17 (Chartreuse Version, 0.9)
 ### Changed
