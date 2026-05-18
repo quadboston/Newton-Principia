@@ -242,7 +242,7 @@ function sconf_points8lines (){
     if( fconf.sappId === 'b1sec2prop2' ){
         var aracc_conf = {
             Caracc : {
-                caption : "C'",
+                caption : "C′",
                 decStart : decor.C.decStart,
                 decEnd : decor.C.decStart,
 				letterAngle : 66,
@@ -250,7 +250,7 @@ function sconf_points8lines (){
             },
             //will be repositioned by algo
             Varacc : {
-                caption : "V'",
+                caption : "V′",
                 decStart : decor.C.decStart,
                 decEnd : decor.C.decStart,
 				letterAngle : 50,
