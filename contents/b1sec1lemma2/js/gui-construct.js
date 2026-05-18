@@ -146,7 +146,7 @@
             const bplist = dr.basePts.list;
             const DRAGGABLE_BASE_POINTS = sconf.DRAGGABLE_BASE_POINTS;
             for (var i=0, len=DRAGGABLE_BASE_POINTS; i <= len; i++)
-                resetPoint(bplist[i], !isIn && !isCir);
+                resetPoint(bplist[i], false);
             // \\//  dehollowfies basePts
         }
 
