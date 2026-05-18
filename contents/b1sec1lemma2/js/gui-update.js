@@ -196,8 +196,10 @@
             //Only update rects that are visible
             if (view.isInscribed)
                 assignRectValues( dr, dr.InscrRects.list[i], x, insY, width, );
+                assignRectValues( dr, dr.InscrRects_outline.list[i], x, insY, width, );
             if (view.isCircumscribed) {
                 assignRectValues( dr, dr.circRects.list[i], x, cirY, width, );
+                assignRectValues( dr, dr.circRects_outline.list[i], x, cirY, width, );
                 assignRectValues( dr, dr.differenceRects.list[i], x, cirY, 
 						width, insY-cirY );
             }
@@ -254,6 +256,8 @@
 
         setsVisibleRange(dr.InscrRects, view.isInscribed && !hidden);
         setsVisibleRange(dr.circRects, view.isCircumscribed && !hidden);
+        setsVisibleRange(dr.InscrRects_outline, view.isInscribed && !hidden);
+        setsVisibleRange(dr.circRects_outline, view.isCircumscribed && !hidden);
         setsVisibleRange(dr.differenceRects, view.isCircumscribed && !hidden);
     }
     //======================================

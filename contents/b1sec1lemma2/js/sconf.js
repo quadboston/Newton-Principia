@@ -109,240 +109,199 @@
         }
 
 
-        //=====================================
-        // //\\ patch for quick slider creation
-        //      see //modern approach ... abandoned
-        //=====================================
         var originalPoints =
         {
-            B : {
-                pcolor      : predT.given,
-                letterAngle : -45,
+            A : {
+                pcolor      : predT.figure,
+                letterAngle : -90,
             },
-
+            B : {
+                pcolor      : predT.figure,
+                letterAngle : -90,
+            },
+            C : {
+                pcolor      : predT.figure,
+                letterAngle : -90,
+            },
+            D : {
+                pcolor      : predT.figure,
+                letterAngle : -90,
+            },
+            E : {
+                pcolor      : predT.figure,
+                letterAngle : -90,
+            },
+			F : {
+                pcolor      : predT["widt-txt"],
+                letterAngle : 45,
+            },
             K : {
-                pcolor      : predT.given,
-                letterAngle : -145,
+                pcolor      : predT["insc-txt"],
+                letterAngle : 180,
                 letterRotRadius : 40,
             },
-
             L : {
-                pcolor      : predT.given,
-                letterAngle : -145,
+                pcolor      : predT["insc-txt"],
+                letterAngle : 180,
             },
-
             M : {
-                pcolor      : predT.given,
-                letterAngle : -145,
+                pcolor      : predT["insc-txt"],
+                letterAngle : 180,
                 letterRotRadius : 40,
             },
 
             a : {
 				caption: '𝑎',
-                pcolor      : predT.given,
-                letterAngle : 45,
+                pcolor      : predT.figure,
+                letterAngle : 180,
             },
-
-            A : {
-                pcolor      : predT.given,
-                letterAngle : -45,
-            },
-
-            F : {
-                pcolor      : predT.given,
-                letterAngle : 45,
-            },
-
-            f : {
-				caption: '𝑓',
-                pcolor      : predT.given,
-                letterAngle : 90,
-            },
-
-            C : {
-                pcolor      : predT.given,
-                letterAngle : -45,
-            },
-
-            D : {
-                pcolor      : predT.given,
-                letterAngle : -45,
-            },
-
-            E : {
-                pcolor      : predT.given,
-                letterAngle : -45,
-            },
-
-            l : {
-				caption: '𝑙',
-                pcolor      : predT.given,
-                letterAngle : 135,
-            },
-
-            b : {
+			b : {
 				caption: '𝑏',
-                pcolor      : predT.given,
+                pcolor      : predT.figure,
                 letterAngle : 45,
             },
-
-            //invisible point
             c : {
 				caption: '𝑐',
-                pcolor      : predT.given,
+                pcolor      : predT.figure,
                 letterAngle : 45,
             },
-
             d : {
 				caption: '𝑑',
-                pcolor      : predT.given,
+                pcolor      : predT.figure,
                 letterAngle : 45,
+            },
+            f : {
+				caption: '𝑓',
+                pcolor      : predT["widt-txt"],
+                letterAngle : 90,
+            },
+            l : {
+				caption: '𝑙',
+                pcolor      : predT["circ-txt"],
+                letterAngle : 105,
             },
             m : {
 				caption: '𝑚',
-                pcolor      : predT.given,
+                pcolor      : predT["circ-txt"],
                 letterAngle : 45,
             },
-
             n : {
 				caption: '𝑛',
-                pcolor      : predT.given,
+                pcolor      : predT["circ-txt"],
                 letterAngle : 45,
             },
-
             o : {
 				caption: '𝑜',
-                pcolor      : predT.given,
+                pcolor      : predT["circ-txt"],
                 letterAngle : 45,
-            },
-
-            e : {
-				caption: '𝑒',
-                pcolor      : predT.given,
-                letterAngle : 45,
-                hideCaption  : true,
             },
         };
 
-        //AB, BC, CD
         var linesArray =
         [
             { AB : {
-                        pcolor : predT.given,
+                        pcolor : predT.figure,
                    },
             },
             { BC : {
-                        pcolor : predT.given,
+                        pcolor : predT.figure,
                    },
             },
             { CD : {
-                        pcolor : predT.given,
+                        pcolor : predT.figure,
                    },
             },
             { AE : {
-                        pcolor : predT.given,
+                        pcolor : predT.figure,
                    },
             },
-            { Aa : {
-                        pcolor : predT.given,
-                   },
-            },
+
             { aK : {
-                        pcolor : predT.given,
+                        pcolor : predT.figure,
                    },
             },
             { AK : {
-                        pcolor : predT.given,
-                   },
-            },
-            { LB : {
-                        pcolor : predT.given,
-                   },
-            },
-            { MC : {
-                        pcolor : predT.given,
+                        pcolor : predT.figure,
                    },
             },
             // //\\ top rect sides
             //lower
             { cL : {
-                        pcolor : predT.given,
+                        pcolor : predT["insc-txt"],
                    },
             },
             { dM : {
-                        pcolor : predT.given,
+                        pcolor : predT["insc-txt"],
                    },
             },
             //circ, right rect sides
-            { lB : {
-                        pcolor : predT.given,
+            { lb : {
+                        pcolor : predT["circ-txt"],
                    },
             },
-            { mC : {
-                        pcolor : predT.given,
-                   },
+            { mc : {
+                        pcolor : predT["circ-txt"],
+				   },
             },
-            { nD : {
-                        pcolor : predT.given,
+            { nd : {
+                        pcolor : predT["circ-txt"],
                    },
             },
             { oE : {
-                        pcolor : predT.given,
+                        pcolor : [0,0,0,0], 
                    },
             },
-
 
             //upper
             { od : {
-                        pcolor : predT.given,
+                        pcolor : predT["circ-txt"],
                    },
             },
             { nc : {
-                        pcolor : predT.given,
+                        pcolor : predT["circ-txt"],
                    },
             },
             { mb : {
-                        pcolor : predT.given,
+                        pcolor : predT["circ-txt"],
                    },
             },
             { la : {
-                        pcolor : predT.given,
+                        pcolor : predT["circ-txt"],
                    },
             },
             // \\// top rect sides
 
-
             { Bb : {
-                        pcolor : predT.given,
+                        pcolor : predT["insc-txt"],
                    },
             },
             { Cc : {
-                        pcolor : predT.given,
+                        pcolor : predT["insc-txt"],
                    },
             },
             { Dd : {
-                        pcolor : predT.given,
+                        pcolor : predT["insc-txt"],
                    },
             },
             { AF : {
                         pcolor : predT.given,
                    },
             },
-
             { Kb : {
-                        pcolor : predT.given,
-                        //undisplayAlways : true,
-                        //undisplay : true,
+                        pcolor : predT["insc-txt"],
                    },
             },
-
+            { Aa : {
+                        pcolor : predT.figure,
+                        'stroke-width' : 1.5
+                   },
+            },
         ];
         
         nspaste( sconf, {
             topicColors_elected : predT,
             originalPoints,
             linesArray,
-            //lines,
             originX_onPicture : modorInPicX,
             originY_onPicture : modorInPicY + pictureActiveArea,
             pictureWidth,
@@ -351,12 +310,5 @@
             //default_tp_stroke_width : 12,
             handleRadius : 55,
         });
-        //=====================================
-        // \\// patch for quick slider creation
-        //=====================================
     };
-
-
 }) ();
-
-

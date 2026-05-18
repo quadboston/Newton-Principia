@@ -1,13 +1,12 @@
 ( function () {
     var {
         ///standard levels of application
-        sn, $$, svgNS, fapp, fconf, sconf, sDomF, stdMod, }
+        sn, svgNS, fapp, sconf, sDomF, stdMod, topicColors_repo}
         = window.b$l.apptree({ setModule, });
     var stdL2               = sn('stdL2', fapp );
     var gui                 = sn('gui', stdL2 );
     var guicon              = sn('guiConstruct', gui );
     var guiup               = sn('guiUpdate',gui);
-    var appstate            = sn('appstate', stdL2 );
 
     var study               = sn('study', stdL2 );
     var sdata               = sn('sdata', study );
@@ -33,7 +32,12 @@
     function constructsRects_tillExtraOffset_parlessDom(dr)
     {
         //this is just an empty list
+        const cArr = topicColors_repo["circ-outline"];
+        const circColor = `rgb(${cArr[0]}, ${cArr[1]}, ${cArr[2]}, ${cArr[3]})`;
+        const iArr = topicColors_repo["insc-outline"];
+        const inscColor = `rgb(${iArr[0]}, ${iArr[1]}, ${iArr[2]}, ${iArr[3]})`;
         makes_rects( dr.circRects, "tp-circumscribed-rectangles circumscribed");
+        makes_rects_outlines( dr.circRects_outline, circColor);
 
         {
             //Add the figure name if needed
@@ -46,6 +50,7 @@
             }
             classStyle += " inscribed";
             makes_rects(dr.InscrRects, classStyle, classPrefixSingle);
+            makes_rects_outlines(dr.InscrRects_outline, inscColor);
         }
 
         makes_rects( dr.differenceRects, "tp-difference difference");
@@ -75,6 +80,24 @@
             list.push( makeSType( "polygon", classSingle + classStyle ) );
         }
     }
+
+    // creates duplicate of rectangles with no fill, just stroke
+    // so the stroke looks the same as those specified in sconf
+    // and so the strokes' opacity can be set independently of fill opacity
+    function makes_rects_outlines( listWrap, color )
+    {
+        let BASE_MAX_NUM = sconf.BASE_MAX_NUM;
+        let list = listWrap.list;
+        let len = BASE_MAX_NUM+listWrap.offset;
+        for (var i=0; i<len; i++){
+            //Create stroke duplicate with no fill
+            let strokeRect = makeSType( "polygon", "rect tostroke" );
+            strokeRect.setAttributeNS(null, 'fill', 'none');
+            strokeRect.setAttributeNS(null, 'stroke', color);
+            strokeRect.setAttributeNS(null, 'stroke-width', '5px');
+            list.push( strokeRect );
+        }
+    }
     //======================================================
     // \\// rects
     //======================================================
@@ -91,10 +114,6 @@
     {
         const ctrlPts = dr.ctrlPts;
         const cp = ctrlPts.untransformed;
-        var scale = 1/sconf.originalMod2inn_scale;
-        var offsetX = sconf.originX_onPicture;
-        var offsetY = sconf.originY_onPicture;
-        var flipY1 = sconf.MONITOR_Y_FLIP;
 
         //Only create and add points for the control points that are enabled.
         const offset = ctrlPts.DRAGGABLE_END_POINTS ? 0 : 1;
@@ -127,7 +146,7 @@
             const bplist = dr.basePts.list;
             const DRAGGABLE_BASE_POINTS = sconf.DRAGGABLE_BASE_POINTS;
             for (var i=0, len=DRAGGABLE_BASE_POINTS; i <= len; i++)
-                resetPoint(bplist[i], !isIn && !isCir);
+                resetPoint(bplist[i], false);
             // \\//  dehollowfies basePts
         }
 
@@ -271,4 +290,3 @@
     //==================================================
     
 }) ();
-
