@@ -64,21 +64,22 @@
 		tr.highlight = rgbToArray("rgb(234, 234, 234)");
 
 		tr.sunColor    = rgbToArray("rgb(202, 131, 0)"); // center of force (S or C in propositions)
-		tr.given       = rgbToArray("rgb(139, 105, 20)");
-		tr.proof       = rgbToArray("rgb(0, 133, 0)");
+		tr.givenColor       = rgbToArray("rgb(139, 105, 20)");
+		tr.proofColor       = rgbToArray("rgb(0, 133, 0)");
 		tr.forceColor       = rgbToArray("rgb(131, 56, 236)");
-        tr.estimatedForce  = rgbToArray("rgb(211, 87, 254)");
-		tr.invalid     = rgbToArray("rgb(255, 0, 0)");  //alert, invalid user actions
+        tr.estimatedForceColor  = rgbToArray("rgb(211, 87, 254)");
+		tr.invalidColor     = rgbToArray("rgb(255, 0, 0)");  //alert, invalid user actions
 		tr.supplementColor = rgbToArray("rgb(99, 99, 99)");
-		tr.body        = rgbToArray("rgb(50, 149, 191)"),
-		tr.body2       = rgbToArray("rgb(205, 103, 54)");//rgbToArray("rgb(255, 149, 111)"),
+		tr.bodyColor        = rgbToArray("rgb(50, 149, 191)"),
+		tr.body2Color       = rgbToArray("rgb(205, 103, 54)");//rgbToArray("rgb(255, 149, 111)"),
 
 
-		function setCommonColors() {
+		function setDerivedColors() {
 			tr.hidden  = [0, 0, 0, 0];
-			tr.orbit = tr.body;
-			tr.orbit2 = tr.body2;
-			tr.corollaryColor = tr.proof;
+			tr.orbit = tr.body = tr.bodyColor;
+			tr.orbit2 = tr.body2 = tr.body2Color;
+			tr.corollaryColor = tr.proof = tr.proofColor;
+			tr.given = tr.givenColor;
 			// Hover colors are only visibile when hovering over 
 			// corresponding text. Used when they overlap with 
 			// other colors which take priority
@@ -93,18 +94,18 @@
 			tr.supplementHover
 				= [...tr.supplementColor, 0, 1];
 
-			tr.sagitta         = 
 			tr.displacement    = 
-			tr.dtime     = tr.estimatedForce;
+			tr.dtime     = tr.estimatedForce = tr.estimatedForceColor;
+			tr.invalid = tr.invalidColor;
 
 			tr.force = tr.forceColor; // need to track down and eliminate
 		}
 
+		setDerivedColors();
 		setL2throughL4Colors();
 		setProp1andProp2Colors();
 		setL20andL21Colors();
 		setProp41Colors();
-		setCommonColors();
 
 		sf.default_tp_stroke_width = 10;
 		///for default points (and draggers???)
@@ -200,6 +201,21 @@
 			tr["widt-txt"]                 = rgbToArray("rgb(0, 0, 150)")
 		}
 
+		function setProp1andProp2Colors() {
+			//P1 (Shared with P2)
+			tr.path            = tr.body;//rgbToArray("rgb(0, 0, 150)");
+
+			tr.trianglePurpleTextAreaColor = tr.path;
+			tr["kepler-triangle-odd"]  = rgbToArray("rgb(102, 102, 255)", 0.35, 0.7),
+			tr["kepler-triangle-even"] = rgbToArray("rgb(153, 153, 255)", 0.35, 0.7),
+
+			// should we use this instead of proofColor?
+			//tr.proofAreaColor           = [...tr.proofColor.slice(0, 3), 0.25, 0.64];
+		
+			//P2
+			tr.areaDescriptionAccelerated = rgbToArray("rgb(120, 90, 82)", 1); //Description of areas triangle P2 proof tab
+		}
+
 		function setL20andL21Colors() {
 			tr.static              = rgbToArray("rgb(0, 200, 255)");
 			tr.staticHalfOpacity   = [0, 200, 255, 0.5];
@@ -208,25 +224,6 @@
 			tr.aux                 = rgbToArray("rgb(255, 0, 255)");
 			tr.constructors        = rgbToArray("rgb(0, 0, 255)");
 			tr.ellipse             = rgbToArray("rgb(0, 150, 0)");
-		}
-
-		function setProp1andProp2Colors() {
-			//P1 (Shared with P2)
-			tr.freeMove        = rgbToArray("rgb(0, 150, 0)");
-			tr.diagram         = rgbToArray("rgb(150, 0, 90)");
-			tr.path            = tr.body;//rgbToArray("rgb(0, 0, 150)");
-			tr.sagittaeChords  = tr.sagitta;
-
-			tr.trianglePurpleTextAreaColor = tr.path;
-			tr["kepler-triangle-odd"]  = [102, 102, 255, 0.35, 0.7],
-			tr["kepler-triangle-even"] = [153, 153, 255, 0.35, 0.7],
-			tr.triangleGreen           = [0, 150, 0, 0.25, 0.64];
-
-			tr.perpendicular   = [150, 80, 0];
-			tr.tangent         = [0, 150, 0];
-		
-			//P2
-			tr.areaDescriptionAccelerated = rgbToArray("rgb(120, 90, 82)", 1); //Description of areas triangle P2 proof tab
 		}
 
 		function setProp41Colors() {
