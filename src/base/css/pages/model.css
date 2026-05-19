@@ -24,21 +24,9 @@
     display: flex !important; 
 }
   
-.circumscribed {
-    stroke: var(--color-main);
-    fill: transparent;
-    color: var(--color-main); 
-}  
-  
 /* apparently for letter-labels for lemma 2 */
 .circumscribed.label {
     fill: var(--color-main);
-}
-  
-.inscribed {
-    stroke: var(--color-main);
-    fill: transparent;
-    color: var(--color-main); 
 }
 
 .inscribed.label {

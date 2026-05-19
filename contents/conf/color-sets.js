@@ -74,12 +74,15 @@
 		tr.body2Color       = rgbToArray("rgb(205, 103, 54)");//rgbToArray("rgb(255, 149, 111)"),
 
 
-		function setDerivativeColors() {
+		function setDerivedColors() {
 			tr.hidden  = [0, 0, 0, 0];
 			tr.orbit = tr.body = tr.bodyColor;
 			tr.orbit2 = tr.body2 = tr.body2Color;
 			tr.corollaryColor = tr.proof = tr.proofColor;
 			tr.given = tr.givenColor;
+			// Hover colors are only visibile when hovering over 
+			// corresponding text. Used when they overlap with 
+			// other colors which take priority
 			tr.corollaryHover = [...tr.corollaryColor, 0, 1];
 			tr.speed = tr.curvature = tr.supplementColor;
 			tr.supplementHover = 
@@ -98,7 +101,7 @@
 			tr.force = tr.forceColor; // need to track down and eliminate
 		}
 
-		setDerivativeColors();
+		setDerivedColors();
 		setL2throughL4Colors();
 		setProp1andProp2Colors();
 		setL20andL21Colors();
@@ -177,23 +180,25 @@
 
 
 		function setL2throughL4Colors() {
-			tr.difference  = [150, 50, 0, 0, 0.64];
+			tr.difference  = rgbToArray("rgb(150, 50, 0)", 0, 0.64);
 			tr.figure      = rgbToArray("rgb(0, 150, 0)");
 
-			tr["figure-area"]              = [0, 150, 0, 0.32, 0.64],
-			tr["figure-area-txt"]          = [0, 150, 0, 0.7, 1],
+			tr["figure-area"] = rgbToArray("rgb(0, 150, 0)", 0.32, 0.64),
+			tr["figure-area-txt"]          = rgbToArray("rgb(0, 150, 0)"),
 
-			tr["circumscribed-rectangles"] = [0, 80, 150, 0.32, 0.64],
-			tr["circ-txt"]                 = [0, 80, 150, 0.7, 1],
+			tr["circumscribed-rectangles"] = rgbToArray("rgb(0, 80, 150)", 0.32, 0.64),
+			tr["circ-txt"]                 = rgbToArray("rgb(102, 131, 179)"),
+			tr["circ-outline"]             = rgbToArray("rgb(102, 131, 179)", 1.0, 1.0),
 
-			tr["inscribed-rectangles"]     = [150, 0, 150, 0.32, 0.64],
-			tr["insc-txt"]                 = [150, 0, 150, 0.7, 1],
+			tr["inscribed-rectangles"]     = rgbToArray("rgb(150, 0, 150)", 0.32, 0.64),
+			tr["insc-txt"]                 = rgbToArray("rgb(112, 57, 107)"),
+			tr["insc-outline"]             = rgbToArray("rgb(112, 57, 107)", 1.0, 1.0),
 
-			tr.widths                      = [150, 0, 150, 0, 0.64],
+			tr.widths                      = rgbToArray("rgb(150, 0, 150)", 0, 0.64),
 
-			tr.widestRectangular           = [0, 0, 150, 0.28, 0.49],
-			tr.widestRectangularHiddenStart= [0, 0, 150, 0.0, 0.49],
-			tr["widt-txt"]                 = [0, 0, 150, 0.7, 1];
+			tr.widestRectangular           = rgbToArray("rgb(0, 0, 150)", 0.28, 0.49),
+			tr.widestRectangularHiddenStart= rgbToArray("rgb(0, 0, 150)", 0.0, 0.49),
+			tr["widt-txt"]                 = rgbToArray("rgb(0, 0, 150)")
 		}
 
 		function setProp1andProp2Colors() {
@@ -206,7 +211,7 @@
 
 			// should we use this instead of proofColor?
 			//tr.proofAreaColor           = [...tr.proofColor.slice(0, 3), 0.25, 0.64];
-
+		
 			//P2
 			tr.areaDescriptionAccelerated = rgbToArray("rgb(120, 90, 82)", 1); //Description of areas triangle P2 proof tab
 		}

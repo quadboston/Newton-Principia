@@ -2,6 +2,10 @@
 
 ## 2026-5-? (Chartreuse Version, 0.9.1)
 ### Improved
+* Lemmas 2 and 3:
+	* rectangles beyond the first 4 drawn like the first 4
+	* points consistently opaque
+
 * Propositions 1 and 2:
 	* velocity vector labeled
 	* path step no longer displayed

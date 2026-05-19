@@ -7,7 +7,7 @@
 }
 *..*
         If in any figure ¦figure-area¦A𝑎𝑐E¦¦,
-        comprehended by the straight lines ¦aK AK¦A𝑎¦¦ and ¦base¦AE¦¦ and the ¦curve¦curve 𝑎𝑐E¦¦,
+        comprehended by the straight lines ¦Aa¦A𝑎¦¦ and ¦base¦AE¦¦ and the ¦curve¦curve 𝑎𝑐E¦¦,
         any number of parallelograms ¦inscribed-rectangles insc-txt¦A𝑏, B𝑐, C𝑑¦¦,&nbsp;.&nbsp;.&nbsp;.
         are inscribed upon equal bases ¦AB¦¦, ¦BC¦¦, ¦CD¦¦,&nbsp;.&nbsp;.&nbsp;.
 

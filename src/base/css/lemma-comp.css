@@ -54,6 +54,7 @@
 
 .checkbox-wrap label {
     position: relative; 
+    opacity: 0.7 !important;
 }
 
 .checkbox-wrap label::after {
