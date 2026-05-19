@@ -69,13 +69,14 @@
 		tr.forceColor       = rgbToArray("rgb(131, 56, 236)");
         tr.estimatedForceColor  = rgbToArray("rgb(211, 87, 254)");
 		tr.invalidColor     = rgbToArray("rgb(255, 0, 0)");  //alert, invalid user actions
-		tr.supplementColor = rgbToArray("rgb(99, 99, 99)");
+		tr.infoColor = rgbToArray("rgb(98, 109, 126)");
 		tr.bodyColor        = rgbToArray("rgb(50, 149, 191)"),
 		tr.body2Color       = rgbToArray("rgb(205, 103, 54)");//rgbToArray("rgb(255, 149, 111)"),
 
 
 		function setDerivedColors() {
 			tr.hidden  = [0, 0, 0, 0];
+			tr.supplementColor = tr.infoColor;
 			tr.orbit = tr.body = tr.bodyColor;
 			tr.orbit2 = tr.body2 = tr.body2Color;
 			tr.corollaryColor = tr.proof = tr.proofColor;
