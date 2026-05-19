@@ -111,33 +111,6 @@ const { ns, sn, haz, haff, $$, eachprop,
             //dragWraps.forEach
             stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
         }
-
-        //=============================================
-        // //\\ upcreates lines after points
-        if( linesArray ) {
-            linesArray.forEach( (lineConf) => {
-                var lname   = Object.keys( lineConf )[0];
-                lineAttr    = lineConf[ lname ];
-                if( lineAttr.zOrderAfter ) {
-                    ssF.str2line( lname, null, lineAttr );
-                }
-            });
-        } else {
-            ns.eachprop( sconf.lines, (lineAttr,lname) => {
-                if( lineAttr.zOrderAfter ) {
-                    ssF.str2line( lname, null, lineAttr );
-                }
-            });
-        }
-        // \\// upcreates lines after points
-        //=============================================
-
-        /*
-        if( !ssF.mediaModelInitialized ) {
-            ccc( 'generic media, preemptive create_digital_legend' );
-            haff( stdMod, 'create_digital_legend' );
-        }
-        */
         
         //**************************************************
         // //\\ note, former lemmas
