@@ -218,10 +218,12 @@
 
             { aK : {
                         pcolor : predT.figure,
-                   },
+ 						'stroke-width' : 1.5,
+                  },
             },
             { AK : {
                         pcolor : predT.figure,
+						'stroke-width' : 1.5
                    },
             },
             // //\\ top rect sides
