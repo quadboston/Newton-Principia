@@ -64,9 +64,9 @@
 		tr.highlight = rgbToArray("rgb(234, 234, 234)");
 
 		tr.sunColor    = rgbToArray("rgb(202, 131, 0)"); // center of force (S or C in propositions)
-		tr.givenColor       = rgbToArray("rgb(139, 105, 20)");
+		tr.givenColor       = rgbToArray("rgb(106, 49, 249)");
 		tr.proofColor       = rgbToArray("rgb(0, 133, 0)");
-		tr.forceColor       = rgbToArray("rgb(131, 56, 236)");
+		tr.forceColor       = rgbToArray("rgb(139, 105, 20)");
         tr.estimatedForceColor  = rgbToArray("rgb(211, 87, 254)");
 		tr.invalidColor     = rgbToArray("rgb(255, 0, 0)");  //alert, invalid user actions
 		tr.infoColor = rgbToArray("rgb(98, 109, 126)");
@@ -206,9 +206,8 @@
 			//P1 (Shared with P2)
 			tr.path            = tr.body;
 			tr.trianglePurpleTextAreaColor = tr.path;
-			tr["kepler-triangle-odd"]  = rgbToArray("rgb(102, 102, 255)", 0.35, 0.7),
-			tr["kepler-triangle-even"] = rgbToArray("rgb(153, 153, 255)", 0.35, 0.7),
-
+			tr["kepler-triangle-odd"]  = [...tr.givenColor.slice(0, 3), 0.35, 0.7],
+			tr["kepler-triangle-even"] = rgbToArray("rgb(120, 74, 237)", 0.35, 0.7),
 			// should we use this instead of proofColor?
 			//tr.proofAreaColor           = [...tr.proofColor.slice(0, 3), 0.25, 0.64];
 		

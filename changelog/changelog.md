@@ -1,11 +1,15 @@
 # Change Log
 
-## 2026-5-27 (Chartreuse Version, 0.9.2)
+## 2026-6-3 (0.9.3)
+### Changed
+* Modified colors
+
+## 2026-5-27 (0.9.2)
 ### Improved
 * Propositions 6, 7, 10, 11, 12, and 13:
 	* Q's range extends to P; actual and estimated plots converge
 
-## 2026-5-20 (Chartreuse Version, 0.9.1)
+## 2026-5-20 (0.9.1)
 ### Improved
 * Lemmas 2 and 3:
 	* rectangles beyond the first 4 drawn like the first 4
@@ -56,7 +60,7 @@
 * Proposition 12
 	* smoother eccentricity adjustment
 
-## 2026-3-12 (Indigo Version, 0.7.1)
+## 2026-3-12 (0.7.1)
 ### Improved
 * Proposition 13:
 	* fixed bug preventing proposition 13 from loading
