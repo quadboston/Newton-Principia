@@ -121,7 +121,7 @@
             given,
             body,
             orbit,
-            time,
+            tk,
             distance,
             proof,
             forceColor,
@@ -150,7 +150,7 @@
         const Zgraph = bodyHiddenStart;
         const vgraph = forceTransparentStart;
         const ro = distance;
-        const Tkernel = time;
+        const Tkernel = tk;
 
 
         var topicColors_elected =
