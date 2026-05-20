@@ -182,7 +182,7 @@
 
 		function setL2throughL4Colors() {
 			tr.difference  = rgbToArray("rgb(150, 50, 0)", 0, 0.64);
-			tr.figure      = rgbToArray("rgb(0, 150, 0)");
+			tr.figureColor      = rgbToArray("rgb(0, 150, 0)");
 
 			tr["figure-area"] = rgbToArray("rgb(0, 150, 0)", 0.32, 0.64),
 			tr["figure-area-txt"]          = rgbToArray("rgb(0, 150, 0)"),
