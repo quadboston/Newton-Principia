@@ -286,7 +286,7 @@
                    },
             },
             { AF : {
-                        pcolor : predT.given,
+                        pcolor : predT.figureColor,
                    },
             },
             { Kb : {
