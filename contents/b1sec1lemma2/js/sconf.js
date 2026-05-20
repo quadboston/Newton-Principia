@@ -70,7 +70,7 @@
         const {
             given,
             difference,
-            figure,
+            figureColor,
 
             widestRectangular,
             widestRectangularHiddenStart,
@@ -81,13 +81,13 @@
         {
             given,
             difference,
-            figure,
+            figureColor,
             //For a line along the base of the figure.  Used for the bottom of
             //the figure, because line "AE" doesn't extend the entire width
             //when there are many bases.
-            "base"  : figure,
+            "base"  : figureColor,
 
-            "curve" : figure,
+            "curve" : figureColor,
 
             "figure-area"               : topicColors_repo["figure-area"],
             "figure-area-txt"           : topicColors_repo["figure-area-txt"],
@@ -112,23 +112,23 @@
         var originalPoints =
         {
             A : {
-                pcolor      : predT.figure,
+                pcolor      : predT.figureColor,
                 letterAngle : -90,
             },
             B : {
-                pcolor      : predT.figure,
+                pcolor      : predT.figureColor,
                 letterAngle : -90,
             },
             C : {
-                pcolor      : predT.figure,
+                pcolor      : predT.figureColor,
                 letterAngle : -90,
             },
             D : {
-                pcolor      : predT.figure,
+                pcolor      : predT.figureColor,
                 letterAngle : -90,
             },
             E : {
-                pcolor      : predT.figure,
+                pcolor      : predT.figureColor,
                 letterAngle : -90,
             },
 			F : {
@@ -152,22 +152,22 @@
 
             a : {
 				caption: '𝑎',
-                pcolor      : predT.figure,
+                pcolor      : predT.figureColor,
                 letterAngle : 180,
             },
 			b : {
 				caption: '𝑏',
-                pcolor      : predT.figure,
+                pcolor      : predT.figureColor,
                 letterAngle : 45,
             },
             c : {
 				caption: '𝑐',
-                pcolor      : predT.figure,
+                pcolor      : predT.figureColor,
                 letterAngle : 45,
             },
             d : {
 				caption: '𝑑',
-                pcolor      : predT.figure,
+                pcolor      : predT.figureColor,
                 letterAngle : 45,
             },
             f : {
@@ -200,29 +200,29 @@
         var linesArray =
         [
             { AB : {
-                        pcolor : predT.figure,
+                        pcolor : predT.figureColor,
                    },
             },
             { BC : {
-                        pcolor : predT.figure,
+                        pcolor : predT.figureColor,
                    },
             },
             { CD : {
-                        pcolor : predT.figure,
+                        pcolor : predT.figureColor,
                    },
             },
             { AE : {
-                        pcolor : predT.figure,
+                        pcolor : predT.figureColor,
                    },
             },
 
             { aK : {
-                        pcolor : predT.figure,
+                        pcolor : predT.figureColor,
  						'stroke-width' : 1.5,
                   },
             },
             { AK : {
-                        pcolor : predT.figure,
+                        pcolor : predT.figureColor,
 						'stroke-width' : 1.5
                    },
             },
@@ -286,7 +286,7 @@
                    },
             },
             { AF : {
-                        pcolor : predT.given,
+                        pcolor : predT.figureColor,
                    },
             },
             { Kb : {
@@ -294,7 +294,7 @@
                    },
             },
             { Aa : {
-                        pcolor : predT.figure,
+                        pcolor : predT.figureColor,
                         'stroke-width' : 1.5
                    },
             },

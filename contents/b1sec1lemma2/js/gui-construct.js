@@ -1,7 +1,7 @@
 ( function () {
     var {
         ///standard levels of application
-        sn, svgNS, fapp, sconf, sDomF, stdMod, topicColors_repo}
+        sn, svgNS, fapp, sconf, stdMod, topicColors_repo}
         = window.b$l.apptree({ setModule, });
     var stdL2               = sn('stdL2', fapp );
     var gui                 = sn('gui', stdL2 );
@@ -138,7 +138,7 @@
         if( onCurve ) {
             var cpList = dr.ctrlPts.list;
             for (var i=0, len=cpList.length; i < len; i++)
-                resetPoint(cpList[i], !isFig);
+                resetPoint(cpList[i]);
         }
 
         if( onBase && dr.BASE_PT_DRAGGERS_ENABLED) {
@@ -146,7 +146,7 @@
             const bplist = dr.basePts.list;
             const DRAGGABLE_BASE_POINTS = sconf.DRAGGABLE_BASE_POINTS;
             for (var i=0, len=DRAGGABLE_BASE_POINTS; i <= len; i++)
-                resetPoint(bplist[i], false);
+                resetPoint(bplist[i]);
             // \\//  dehollowfies basePts
         }
 
@@ -154,17 +154,17 @@
         if( onCurve ) {
             const tpList = Object.values(dr.transforms.pts);
             for (var i=0, len=tpList.length; i < len; i++)
-                resetPoint(tpList[i], !isFig);
+                resetPoint(tpList[i]);
         }
 
-
-        function resetPoint(pt, isTransparent) {
+        function resetPoint(pt) {
             const pdom = pt.dom;
-            pdom.style.fill = isTransparent ? 'transparent' :
-                //.todm patch
-                'rgba(255,255,255,1)'; //makes the point hollow
-            pdom.style.stroke = isTransparent ? 'transparent' :
-                sDomF.getFixedColor( 'figure' );
+            pdom.style.fill = 'rgba(255,255,255,1)'; //makes the point hollow
+			 const ptColor = 
+			 	pt.type === "base" || pt.index == 0 || pt.index == 3 ?
+				topicColors_repo.figureColor :
+				topicColors_repo.supplementColor ;
+			pdom.style.stroke = 'rgba(' + ptColor.join() + ')';
         }
     }
 

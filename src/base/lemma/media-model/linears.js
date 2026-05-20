@@ -290,10 +290,6 @@
             cssClass        : 'tostroke thickable' +
                                ( cssClass ? ' ' + cssClass : '' ),
             'stroke-width'  : ns.sn( 'stroke-width', lineAttr, strokeWidth ),
-                              // most model lines
-            stroke          : ns.sn( 'stroke',   lineAttr, 'black' ),
-            //cssClass        : ns.sn( 'cssClass', lineAttr, 'tofill tostroke' ),
-            //tpclass         : ns.sn( 'stroke', lineAttr, 'black' ),
             caption         : caption || haz( lineAttr, 'caption' ),
         };
         ///todm: this code is extremely non-automated:

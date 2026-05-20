@@ -82,6 +82,9 @@ svg text {
 /* //\\ subapplication (lemma 2, 3 specific) fix;
         removes hidden rects from topic engine
 */
+/* todo: visbility attr always stays hidden, 
+    elems get shown by setting style="visibility: visible"
+    should only use one or the other */
 .inscribed.rect.tofill.topicid-inscribed-rectangles[visibility="hidden"],
 .circumscribed.rect.tofill.topicid-circumscribed-rectangles[visibility="hidden"] {
     visibility:hidden;
