@@ -204,9 +204,7 @@
 
 		function setProp1andProp2Colors() {
 			//P1 (Shared with P2)
-			tr.path            = tr.body;//rgbToArray("rgb(0, 0, 150)");
-            tr.time            = tr.infoColor;
-
+			tr.path            = tr.body;
 			tr.trianglePurpleTextAreaColor = tr.path;
 			tr["kepler-triangle-odd"]  = rgbToArray("rgb(102, 102, 255)", 0.35, 0.7),
 			tr["kepler-triangle-even"] = rgbToArray("rgb(153, 153, 255)", 0.35, 0.7),
