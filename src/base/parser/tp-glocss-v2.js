@@ -29,7 +29,10 @@
 ${Rtp} {
     opacity: ${tpOpacityLow_str};
     fill-opacity: ${fillOpacity};
-    stroke-opacity: ${strokeOpacity};
+
+    /* this sets stroke-opacity: 1, but has no effect on L2,3,4 rects because
+       the opacity value of the whole object is to that specified in color-sets.js */
+    stroke-opacity: ${strokeOpacity}; 
 }
 
 ${Rtp}.tofill {
