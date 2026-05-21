@@ -406,7 +406,7 @@
         //todm ... instead the solution of updating them at "down" event
         //         will be more elagant and cause less fuss,
 
-        if( amodel2app_8_extraWork ) {
+        if( fconf.sappId === 'b1sec1lemma7' || amodel2app_8_extraWork ) {
             // runs from init-sapp.js on page load
             // we need to run again here when switching tabs to update model
             ssF.in_subessay_launch____amode2lemma( amodel2app_8_extraWork );
