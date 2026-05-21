@@ -1,6 +1,6 @@
 # Change Log
 
-## 2026-5-? (Chartreuse Version, 0.9.1)
+## 2026-5-20 (Chartreuse Version, 0.9.1)
 ### Improved
 * Lemmas 2 and 3:
 	* rectangles beyond the first 4 drawn like the first 4
