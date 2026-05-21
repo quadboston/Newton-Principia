@@ -19,17 +19,13 @@ function sconf_points8lines (){
     let {
         proofColor,
         forceColor,
-
         path,
-        time,
+        infoColor,
         corollaryColor,
         speed,
-
         trianglePurpleTextAreaColor,
         proofArea,
-
 		supplementColor,
-
 		sunColor,
     } = topicColors_repo;
 
@@ -40,7 +36,7 @@ function sconf_points8lines (){
         path = harden(path);
         proofColor = harden(proofColor);
         speed = harden(speed);
-        time = harden(time);
+        infoColor = harden(infoColor);
         forceColor = harden(forceColor);
         supplementColor = harden(supplementColor);
 		sunColor = harden(sunColor);
@@ -51,8 +47,8 @@ function sconf_points8lines (){
         proofColor,
         speed,
         forceColor,
-        time,                       //Time slider
-        dt                  : time, //Delta time slider
+        time : infoColor,                       //Time slider
+        dt                  : infoColor, //Delta time slider
         path,
         "path-change"       : path,
 
