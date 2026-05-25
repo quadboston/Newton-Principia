@@ -204,8 +204,7 @@
 
 		function setProp1andProp2Colors() {
 			//P1 (Shared with P2)
-			tr.path            = tr.body;//rgbToArray("rgb(0, 0, 150)");
-
+			tr.path            = tr.body;
 			tr.trianglePurpleTextAreaColor = tr.path;
 			tr["kepler-triangle-odd"]  = rgbToArray("rgb(102, 102, 255)", 0.35, 0.7),
 			tr["kepler-triangle-even"] = rgbToArray("rgb(153, 153, 255)", 0.35, 0.7),
@@ -229,14 +228,14 @@
 
 		function setProp41Colors() {
 			//Note that Fi for P12 is shadow (see its sconf.js ~line 635)
-			tr.time = rgbToArray("rgb(0, 150, 200)");
+			tr.prop41timeColor = rgbToArray("rgb(0, 150, 200)");
 			tr.fi = [0, 0, 150, 0.1, 0.3];
 			tr.Fkernel = [0, 0, 150];
 
 			tr.bodyHiddenStart = [...tr.body.slice(0, 3), 0.01, 1];
 			tr.forceTransparentStart = [...tr.forceColor.slice(0, 3), 0.1, 1];
 			tr.VSarea = [...tr.forceColor.slice(0, 3), 0.3, 0.7];
-			tr.timeHiddenStart = [...tr.time.slice(0, 3), 0.01, 0.7];
+			tr.timeHiddenStart = [...tr.prop41timeColor.slice(0, 3), 0.01, 0.7];
 
 			//Is vgpoint still needed?  Seems to be after "Drop point, A"
 			//in Elements under developer tools
