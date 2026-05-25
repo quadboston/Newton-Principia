@@ -25,15 +25,6 @@
         // \\// geometical scales
         //***************************************************************
 
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        sconf.enableStudylab = false;
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
-
-
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
@@ -73,7 +64,7 @@
         //=============================================
         // //\\ points reused in config
         //=============================================
-        var Cxy = [409, 408 ];
+        var posC = [409, 408 ];
         //=============================================
         // \\// points reused in config
         //=============================================
@@ -84,8 +75,8 @@
         //vital to set to non-0 value
         var mod2inn_scale = 360;
 
-        var originX_onPicture = Cxy[0]; //for model's axis x
-        var originY_onPicture = Cxy[1]; //for model's axis y
+        var originX_onPicture = posC[0]; //for model's axis x
+        var originY_onPicture = posC[1]; //for model's axis y
         sconf.diagramOrigin = [ 0, 0 ];
 
         //-------------------------------------------
@@ -144,14 +135,13 @@
             body,
             orbit,
             proof,
-            resultOnlyVisibleWhenHighlighted,
-            force,
-            result,
+            supplementHover,
+			proofHover,
+            forceColor,
             hidden,
             estimatedForce,
             curvature,
-            context,
-            displacement,
+            sunColor,
         } = topicColors_repo;
 
 
@@ -160,13 +150,11 @@
             estimatedForce,
             given,
             proof,
-            result,
             hidden,
-            context,
             curvature,
             body,
             orbit,
-            force,
+            force : forceColor,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -179,7 +167,7 @@
         {
             C : {
                 pcolor : proof,
-                pos: Cxy,
+                pos: posC,
                 letterAngle : -120,
                 letterRotRadius : 35,
 				cssClass: 'logic_phase--proof',
@@ -276,13 +264,11 @@
 
             // latus rectum
             L : {
-                pcolor : orbit,
                 cssClass : 'hidden',
                 letterAngle : -45,
                 letterRotRadius : 20,
             },
             LL : {
-                pcolor : orbit,
                 cssClass : 'hidden',
                 doPaintPname : false,
             },
@@ -292,18 +278,16 @@
             // //\\ draggable points
             //---------------------------------------
             S : {
-                pcolor : given,
+                pcolor : sunColor,
                 letterAngle : -115,
                 letterRotRadius : 35,
             },            
 
             A : {
                 pcolor : proof,
-				cssClass: 'subessay--solution',
                 draggableX  : true,
-                draggableY  : true,
-				cssClass: 'subessay--solution',
-                conditionalDrag : 'subessay--solution',
+				cssClass: 'logic_phase--proof',
+                conditionalDrag : 'logic_phase--proof',
             },
 
             P : {
@@ -334,16 +318,16 @@
             { Qx : { pcolor : proof,
 				cssClass: 'subessay--solution',
 			 },},
-			{ xP : { pcolor : proof,
+			{ xP : { pcolor : proofHover,
 				cssClass: 'subessay--solution',
 			 },},
-            { EP : { pcolor : proof, 
+            { EP : { pcolor : proofHover, 
 				cssClass: 'logic_phase--proof',
 			},},
-            { ES : { pcolor : proof, 
+            { ES : { pcolor : proofHover, 
 				cssClass: 'logic_phase--proof',
 			},},
-            { EI : { pcolor : proof,
+            { EI : { pcolor : proofHover,
 				cssClass: 'subessay--solution',
 			 },},
             { EC : { pcolor : proof, 
@@ -361,39 +345,39 @@
             { CH : { pcolor : proof,
 				cssClass: 'subessay--solution',
 			 },},
-            { PI : { pcolor : proof,
+            { PI : { pcolor : proofHover,
+				cssClass: 'subessay--solution',
+			 },},
+			{ 'PT' : { pcolor : proofHover,
 				cssClass: 'subessay--solution',
 			 },},
 
-            { 'SP' : { pcolor : proof, 
+            { 'SP' : { pcolor : estimatedForce, 
 				cssClass: 'logic_phase--proof',
 			},},
 
             { 'L,LL' : { 
-			    pcolor : resultOnlyVisibleWhenHighlighted,
+			    pcolor : supplementHover,
                 captionShiftNorm : 22, lposYSugar : 3
 			}, },
 
-            { 'P,Zminus' : { pcolor : body,
+            { 'P,Zminus' : { pcolor : proof,
 				cssClass: 'logic_phase--proof',
 			 }, },
-            { 'PZ' : { pcolor : body,
+            { 'PZ' : { pcolor : proof,
 				cssClass: 'logic_phase--proof',
 			 }, },
-            { 'ZR' : { pcolor : body,
+            { 'ZR' : { pcolor : proof,
 				cssClass: 'logic_phase--proof',
 			 }, },
 
-            { 'PR' : { pcolor : body,
+            { 'PR' : { pcolor : proof,
 				cssClass: 'logic_phase--proof',
 			 }, },
-            { 'QR' : { pcolor : displacement,
+            { 'QR' : { pcolor : estimatedForce,
 				cssClass: 'subessay--solution',
 			 }, },
-            { 'QT' : { pcolor : proof,
-				cssClass: 'subessay--solution',
-			 },},
-            { 'PT' : { pcolor : proof,
+            { 'QT' : { pcolor : estimatedForce,
 				cssClass: 'subessay--solution',
 			 },},
 

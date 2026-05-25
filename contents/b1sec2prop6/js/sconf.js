@@ -1,4 +1,3 @@
-
 ( function() {
     var { ns, fconf, sData, sconf, topicColors_repo,} = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
@@ -24,16 +23,6 @@
         //***************************************************************
         // \\// geometical scales
         //***************************************************************
-
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        sconf.enableStudylab = false;
-        //true enables framework zoom
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
-
 
         //***************************************************************
         // //\\ decorational parameters
@@ -149,19 +138,16 @@
             given,
             body,
             orbit,
-            time,
             dtime,
             proof,
             force,
             invalid,
-            hidden,
-            info,
+            infoColor,
+			supplementColor,
             estimatedForce,
-            sagitta,
             curvature,
-            context,
-            chord,
             displacement,
+			sunColor
         } = topicColors_repo;
 
 
@@ -170,20 +156,15 @@
             estimatedForce,
             given,
             proof,
-            hidden,
-            context,
             curvature,
             dtime,
-            time,
             curvatureCircle : curvature,
             body,
             orbit,
-            timearc : proof,
+            timearc : orbit,
             APQ     : orbit,
             force,
             invalid,
-            sagitta,
-            chord,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -197,7 +178,6 @@
             posA,
             [ 527,248 ],
             [ 485,203 ],
-            //P,
             [ 396, 148 ],
             [300, 130], //near Q
             [217,132],
@@ -230,7 +210,7 @@
         }
         curvePivots = curvePivots.map( pivot => ({
             pos         : pivot,
-            pcolor      : given,
+            pcolor      : supplementColor,
             letterAngle : 45,
             draggableX  : true,
             draggableY  : true,
@@ -254,13 +234,13 @@
         Object.assign( originalPoints, {
             A : {
                 pos: posA,
-                pcolor : given,
+                pcolor : orbit,
 				cssClass: 'logic_phase--corollary',
             },
 
             S : {
                 pos: posS,
-                pcolor : given,
+                pcolor : sunColor,
                 letterAngle : -90,
                 draggableX  : true,
                 draggableY  : true,
@@ -275,7 +255,7 @@
             },
 
             Q : {
-                pcolor : proof,
+                pcolor : estimatedForce,
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
@@ -285,7 +265,7 @@
                 undisplayAlways : true,
                 //pos: will be as Q, 
                 cssClass : 'tp-dtime',
-                pcolor : dtime, //proof,
+                pcolor : dtime,
                 fontSize : 20,
                 letterAngle : 225,
                 letterShift : [10,0],
@@ -294,13 +274,12 @@
 
             T : {
                 pos: [0,0],
-                pcolor : proof,
+                pcolor : estimatedForce,
                 letterAngle : 180,
 				cssClass: 'subessay--corollary1 subessay--corollary5',
             },
 
             R : {
-                //pos: Q,
                 pcolor : displacement,
                 letterAngle : 45,
 				cssClass: 'logic_phase--corollary',
@@ -308,7 +287,7 @@
 
             Z : {
                 pos: [111111,111111],
-                pcolor : body,
+                pcolor : proof,
                 letterAngle : 45,
 				cssClass: 'subessay--corollary1',
             },
@@ -316,7 +295,7 @@
             // Q's counterpart at other end of arc
             rrminus : {
                 caption : '',
-                pcolor : proof,
+                pcolor : given,
                 letterAngle : 225,
                 letterRotRadius : 40,
 				cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
@@ -324,7 +303,7 @@
 
             sagitta : {
                 caption : 'I',
-                pcolor : sagitta,
+                pcolor : estimatedForce,
                 letterAngle : 270,
                 letterRotRadius : 35,
                 //initial setting does not work well bs poor code design
@@ -332,14 +311,14 @@
             },
 
             Y : {
-                pcolor : proof,
+                pcolor : estimatedForce,
                 letterAngle : 80,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
             },
 
             V : {
                 pos: posS,
-                pcolor : curvature,
+                pcolor : estimatedForce,
                 letterAngle : -45,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
             },
@@ -373,7 +352,7 @@
                 pos : [20, 20],
                 caption: "In the limit, the sagitta will pass through the center of forces",
                 fontSize : '25',
-                pcolor : info,
+                pcolor : infoColor,
                 letterAngle : 0,
                 unscalable  : true,
             }
@@ -385,21 +364,21 @@
 
         var linesArray =
         [
-            { 'PV' : { pcolor : curvature,
+            { 'PV' : { pcolor : estimatedForce,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
 			 }, },
-            { 'SP' : { pcolor : given,
+            { 'SP' : { pcolor : estimatedForce,
 			 }, },
-            { 'PY' : { pcolor : body,
+            { 'PY' : { pcolor : orbit,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
 			 }, },
-            { 'PZ' : { pcolor : body,
+            { 'PZ' : { pcolor : proof,
 				cssClass: 'subessay--corollary1 subessay--corollary3',
 			 }, },
-            { 'PR' : { pcolor : body,
+            { 'PR' : { pcolor : proof,
 				cssClass: 'logic_phase--corollary',
 			 }, },
-            { 'SY' : { pcolor : proof,
+            { 'SY' : { pcolor : estimatedForce,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
 			 }, },
             { 'QR' : { pcolor : displacement,
@@ -409,16 +388,16 @@
             { 'SQ' : { pcolor : proof,
 				cssClass: 'subessay--corollary1',
 			 }, },
-            { 'QT' : { pcolor : displacement,
+            { 'QT' : { pcolor : estimatedForce,
 				cssClass: 'subessay--corollary1 subessay--corollary5',
 			 }, },
             { 'PC' : { pcolor : curvature,
 				cssClass: 'subessay--corollary3',
 			 }, },
-            { 'Q,rrminus' : { pcolor : proof,
+            { 'Q,rrminus' : { pcolor : given,
 				cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
 			 }, },
-            { 'P,sagitta' : { pcolor : sagitta,
+            { 'P,sagitta' : { pcolor : estimatedForce,
 				cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
 			 }, },
             { 'S,nonSolvablePoint' : { pcolor : invalid,
@@ -431,7 +410,6 @@
             Dt0,
             Q_STEPS,
             DATA_GRAPH_STEPS,
-
             mediaBgImage : "diagram.png",
             topicColors_elected,
             originalPoints,
@@ -441,7 +419,6 @@
             pictureWidth,
             pictureHeight,
             mod2inn_scale,
-
             default_tp_stroke_width,
             defaultLineWidth,
             handleRadius,

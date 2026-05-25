@@ -68,6 +68,20 @@
                 //Clamp as needed
                 ssD.Dt = Math.max(Math.min(Dt, sconf.DT_SLIDER_MAX), 0);
 
+                //todo
+                //Temporarily keeping Dt check for P9, to prevent Q from being
+                //able to move anywhere along the orbit
+                if(sconf.sappId === "b1sec2prop9" &&
+                    (Dt < 0.05 ||
+                    sconf.DT_SLIDER_MAX <= Dt) ) return;
+
+                // Store PSQ to be used optionally in model-upcreate to maintain constant angle
+                const posPorb = qIndexToOrbit[ Pqix ].rr;
+                const posQorb = qIndexToOrbit[ Qqix ].rr;
+                const focusS = rg.S.pos;
+                const angleSP = Math.atan2( posPorb[1] - focusS[1], posPorb[0] - focusS[0] );
+                const angleSQ = Math.atan2( posQorb[1] - focusS[1], posQorb[0] - focusS[0] );
+                ssD.anglePSQ = angleSQ - angleSP;
             } else {
                 if( Qqix === Pqix ) return;
                 const q = qIndexToOrbit[ Qqix ].q;

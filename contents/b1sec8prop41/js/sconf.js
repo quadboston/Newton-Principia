@@ -1,7 +1,7 @@
 
 ( function() {
-    var { sn, mat, eachprop, nspaste, userOptions, topicColors_repo, fconf, sconf,
-        rg, stdMod, } = window.b$l.apptree({ ssFExportList : { init_conf } });
+    var { sn, eachprop, nspaste, topicColors_repo, fconf, sconf, } 
+		= window.b$l.apptree({ ssFExportList : { init_conf } });
     var op = sn( 'orbitParameters', sconf );
     return;
 
@@ -19,14 +19,6 @@
         //----------------------------------
         // \\// study model parameters
         //----------------------------------
-
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        sconf.enableStudylab            = false;
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
 
         //----------------------------------
         // //\\ paper diagram parameters
@@ -132,9 +124,8 @@
             time,
             distance,
             proof,
-            force,
+            forceColor,
             invalid,
-            result,
             shadow,
             hidden,
 
@@ -166,18 +157,17 @@
         {
             given,
             proof,
-            result,
             hidden,
             body,
             orbit,
 
             shadow,
-            force,
+            force : forceColor,
             fi,
             Zgraph,
             Z2graph     : body,
             vgraph,
-            v2graph     : force,
+            v2graph     : forceColor,
             vback       : vgraph,
             vgpoint,
             Fkernel,
@@ -223,7 +213,7 @@
         ];
         curvePivots = curvePivots.map( (pivot,ix) => ({
             pos         : pivot,
-            pcolor      : force,
+            pcolor      : forceColor,
             letterAngle : 45,
             draggableX  : true,
             draggableY  : true,
@@ -317,13 +307,13 @@
 
             B : {
                 caption : 'B',
-                pcolor : force,
+                pcolor : forceColor,
                 letterAngle : -45,
             },
 
             F : {
                 caption : 'F, ~dv²/dρ',
-                pcolor : force,
+                pcolor : forceColor,
                 letterAngle : -45,
                 cssClass : 'tostroke',
             },
@@ -510,7 +500,7 @@
             },
 
             { DF : {
-                    pcolor : force,
+                    pcolor : forceColor,
                 },
             },
         ];
@@ -533,4 +523,3 @@
         });
     }
 }) ();
-

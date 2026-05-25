@@ -172,7 +172,9 @@
         } else if( aspect !== 'model' ) {
             sDomF.detected_user_interaction_effect( 'doUndetected' );
             captured = "L-equal-d";
-            rg.media_scale.value = 1;
+            if(!rg.media_scale.value) {
+                rg.media_scale.value = 1;
+            }
             ssF.scaleValue2app( rg.media_scale.value, stdMod );
 
             ns.paste( rg.curveStart.pos, [ -0.2, 0 ] );

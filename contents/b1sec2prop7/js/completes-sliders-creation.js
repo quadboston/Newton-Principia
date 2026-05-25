@@ -16,7 +16,7 @@
              rg.S.pos[1] = newPos[1];
 
             //does this for decorational purposes
-            stdMod.rebuilds_orbit( ssD.Dt );
+            stdMod.rebuilds_orbit();
             //this permits an orbitrary move
             return true;
         }

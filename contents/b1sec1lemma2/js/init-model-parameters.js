@@ -56,9 +56,11 @@
             });
         }
 
-        // dom z-order patch
+        // construct rects and bases first so it they appear behind the points and labels
         Object.values(dataregs).forEach((dr) => {
-            ssF.continue_create_8_prepopulate_svg(dr);
+            guicon.constructsWidestRect?.(dr);
+            guicon.constructsRects_tillExtraOffset_parlessDom(dr);
+            ssF.continue_create_8_prepopulate_svg(dr); //base lines
         });
 
         //----------------------------------------------
@@ -72,6 +74,17 @@
         //function does not exist in engine core:
         ssF.media_upcreate_generic();
 
+        Object.values(dataregs).forEach((dr) => {            
+            //numberless:
+            guicon.constructsCurve8Area(dr); //do on top of ancestors
+
+            guicon.constructBasePts_domParless(dr, dr.basePts);
+            
+            guicon.constructTransformPoints(dr);
+            stdMod.recalculateAndStoreTransforms(dr);
+            guicon.constructsControlPoints(dr);
+        });
+
         //*************************************************************
         //this completes media_upcreate_generic and media_upcreate
         //*************************************************************
@@ -84,19 +97,6 @@
         // \\// fits lemma to modern framework
         //----------------------------------------------
 
-        Object.values(dataregs).forEach((dr) => {
-            guicon.constructsWidestRect?.(dr);
-            guicon.constructsRects_tillExtraOffset_parlessDom(dr);
-            
-            //numberless:
-            guicon.constructsCurve8Area(dr); //do on top of ancestors
-
-            guicon.constructBasePts_domParless(dr, dr.basePts);
-            
-            guicon.constructTransformPoints(dr);
-            stdMod.recalculateAndStoreTransforms(dr);
-            guicon.constructsControlPoints(dr);
-        });
 
         stdMod.model_upcreate();
         //now, this call does

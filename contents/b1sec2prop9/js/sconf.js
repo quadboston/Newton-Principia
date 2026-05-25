@@ -25,15 +25,6 @@
         // \\// geometical scales
         //***************************************************************
 
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        sconf.enableStudylab            = false;
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
-
-
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
@@ -133,15 +124,15 @@
         //-----------------------------------
         const {
             given,
+			givenHover,
             orbit,
             body,
             proof,
-            force,
-            result,
+            forceColor,
             hidden,
             estimatedForce,
             curvature,
-            context,
+            sunColor,
         } = topicColors_repo;
 
 
@@ -150,14 +141,11 @@
             estimatedForce,
             given,
             proof,
-            result,
             hidden,
-            context,
-            curvature,
-            curvatureCircle : curvature,    //Actually uses "rg.C.pcolor" see "model-upcreate.js" section "curvature circle"
+            curvatureCircle : curvature,
             body,
             orbit,
-            force,
+			force : forceColor,
             "arc-QP" : body
         };
         //-----------------------------------
@@ -172,71 +160,58 @@
                 doPaintPname : false,
                 pos: C,
             },
-
             S : {
                 pos: S,
-                pcolor : given,
+                pcolor : sunColor,
                 letterAngle : -90,
-                //draggableX  : true,
-                //draggableY  : true,
             },
-
             P : {
                 pcolor : body,
                 letterAngle : 70,
                 draggableX  : true,
             },
-
             T : {
-                pcolor : proof,
-                letterAngle : 180,
+                pcolor : estimatedForce,
+                letterAngle : 264,
+				cssClass:  'subessay--solution',
             },
-
             R : {
-                pcolor : proof,
+                pcolor : estimatedForce,
                 letterAngle : 45,
-            },
-
+ 				cssClass:  'subessay--solution',
+           },
             Q : {
-                pcolor : given,
+                pcolor : estimatedForce,
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
                 draggableY  : fconf.sappId === 'b1sec2prop7',
+				cssClass:  'subessay--claim subessay--solution',
+				conditionalDrag: 'subessay--claim subessay--solution',
             },
-
             Z : {
                 pcolor : body,
                 letterAngle : 45,
                 undisplayAlways : true,
                 doPaintPname : false,
             },
-
-
-            Zminus : {
-                pcolor : body,
-                letterAngle : 45,
-                //undisplay : true,
-                undisplayAlways : true,
-                doPaintPname : false,
-            },
-
             Y : {
                 pcolor : proof,
                 letterAngle : -90,
+				cssClass:'subessay--another-solution',
             },
-
             V : {
                 pos: V,
-                pcolor : curvature,
+                pcolor : proof,
                 letterAngle : -45,
+				cssClass:'subessay--another-solution',
             },
 
             //center of instant curvature circle
             C : {
                 pos : C,
                 caption : 'Rc',
-                pcolor : curvature,
+                pcolor : proof,
                 letterAngle : -45,
                 undisplayAlways : true,
                 doPaintPname : false,
@@ -246,21 +221,22 @@
 
         var linesArray =
         [
-            { 'PV' : { pcolor : proof }, },
-
-            { 'SP' : { pcolor : given }, },
-
-            { 'PY' : { pcolor : body }, },
-            { 'P,Zminus' : { pcolor : body }, },
-            { 'PZ' : { pcolor : body }, },
-            { 'ZR' : { pcolor : body }, },
-
-            { 'PR' : { pcolor : body }, },
-            { 'SY' : { pcolor : proof }, },
-            { 'QR' : { pcolor : proof }, },
-            { 'SQ' : { pcolor : given }, },
-            { 'QT' : { pcolor : proof }, },
-            { 'PT' : { pcolor : proof }, },
+            { 'PV' : { pcolor : proof,
+				cssClass:'subessay--another-solution',}, },
+            { 'PY' : { pcolor : given }, },
+            { 'PR' : { pcolor : givenHover,
+				cssClass:'subessay--another-solution',}, },
+            { 'SY' : { pcolor : proof,
+				cssClass:'subessay--another-solution',}, },
+            { 'QR' : { pcolor : estimatedForce,
+				cssClass:'subessay--solution',}, },
+            { 'SQ' : { pcolor : given,
+				cssClass:  'subessay--claim subessay--solution',},},
+            { 'QT' : { pcolor : estimatedForce,
+				 cssClass:'subessay--solution',}, },
+            { 'PT' : { pcolor : proof,
+				cssClass:'subessay--another-solution',}, },
+			{ 'SP' : { pcolor : estimatedForce }, },
         ];
 
         ns.paste( sconf, {
@@ -285,4 +261,3 @@
         });
     }
 }) ();
-

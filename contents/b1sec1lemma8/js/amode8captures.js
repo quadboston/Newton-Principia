@@ -122,7 +122,9 @@
         nspaste(rg.R.pos, rg.R.originalPos);
         nspaste(rg.D.pos, rg.D.originalPos);
 
-        rg.media_scale.value = 1;
+        if(!rg.media_scale.value) {
+            rg.media_scale.value = 1;
+        }
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
 
         ns.paste( rg.curveStart.pos, [ -0.2, 0 ] ); //todm what is this?

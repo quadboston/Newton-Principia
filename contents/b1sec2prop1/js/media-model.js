@@ -10,8 +10,8 @@ var zorderFixed = false;
 //enables steps BC, CD, ... by clicks on B, C, ...
 var POINTS_BCDE_ARE_ACTIVE = false;
 const lemmaP2coroll =
-    ('Caracc Paracc Varacc CCaracc SCaracc BCaracc BParacc ' +
-     'CParacc VVaracc BVaracc CaraccParacc SBCaracc cCaracc').split(' ');
+    ('Cprime Vprime CCprime SCprime BCprime ' +
+     'CPprime VVprime BVprime SBCprime cCprime').split(' ');
 return;
 
 

@@ -153,14 +153,14 @@
                                class="checkbox figure"
                                onclick="window.b$l.fapp.stdL2.gui.showFig()"
                                checked>
-                        <label class="tp-figure tp-figure-area-txt" for="checkbox_4"></label>
+                        <label class="tp-figure-color tp-figure-area-txt" for="checkbox_4"></label>
                     </div>
                     <span class="number">
                         <!-- class="tp-figure-area-txt -->
-                        <span class="tp-figure tp-figure-area-txt tocolor tobold figAmt"
+                        <span class="tp-figure-color tp-figure-area-txt tocolor tobold figAmt"
                               id="figAmt">100.0</span>
                     </span>
-                    <span class="tp-figure tp-figure-area-txt tocolor tobold figAmt">figure</span>
+                    <span class="tp-figure-color tp-figure-area-txt tocolor tobold figAmt">figure</span>
                 </div>
                 <!--END figure-->
 

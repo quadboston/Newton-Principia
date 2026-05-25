@@ -102,8 +102,8 @@
                 //this possibly collides with white filling
                 //tpclass : 'path',
 
-                'fill' : sDomF.getFixedColor( 'forceMove' ),
-                'stroke' : sDomF.getFixedColor( 'forceMove' ),
+                'fill' : sDomF.getFixedColor( 'forceColor' ),
+                'stroke' : sDomF.getFixedColor( 'forceColor' ),
                 //'stroke-width' : 3,
                 r : 5,
             }

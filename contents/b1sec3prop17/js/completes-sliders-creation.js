@@ -50,7 +50,7 @@
         };
 
         rg.f.acceptPos = ( newPos, dragMove ) => {
-            var { logic_phase, aspect, subessay } = amode;
+            var { subessay } = amode;
             var newPos0 = dragMove[0] + sData.Lpos0_g;
             var newPos1 = -dragMove[1] + sData.Lpos1_g;
             let dShift = [ newPos0 - rg.p.pos[0], newPos1 - rg.p.pos[1] ];
@@ -143,7 +143,7 @@
         //=========================================================================
         rg.R.processOwnDownEvent = function() {
             const pp                    = rg.P.pos;
-            sData.vbpos                 = nspaste( [], rg.R.pos );
+            sData.Rpos                 = nspaste( [], rg.R.pos );
             var dShift                  = mat.sm( 1, rg.R.pos, -1, pp );
             sData.dShift                = Math.sqrt( 
                                             dShift[0]*dShift[0] + 
@@ -158,11 +158,11 @@
 
         rg.R.acceptPos = ( newPos, dragMove ) => {
             //console.log('moving R');
-            var { logic_phase, aspect, subessay } = amode;
+            var { subessay } = amode;
             const pp = rg.P.pos;
             let np = nspaste( [], [
-                dragMove[0] + sData.vbpos[0],
-                -dragMove[1] + sData.vbpos[1]
+                dragMove[0] + sData.Rpos[0],
+                -dragMove[1] + sData.Rpos[1]
             ]);
             var dShift = mat.sm( 1, np, -1, pp );
             var dS = Math.sqrt( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
@@ -249,7 +249,7 @@
 
         rg.point_r.acceptPos = ( newPos, dragMove ) => {
             //console.log('moving point_r');
-            var { logic_phase, aspect, subessay } = amode;
+            var { subessay } = amode;
             const pp = rg.p.pos;
             let np = nspaste( [], [
                 dragMove[0] + sData.pos_r[0],

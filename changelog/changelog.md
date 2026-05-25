@@ -1,5 +1,41 @@
 # Change Log
 
+## 2026-5-? (Chartreuse Version, 0.9.1)
+### Improved
+* Lemmas 2 and 3:
+	* rectangles beyond the first 4 drawn like the first 4
+	* points consistently opaque
+
+* Propositions 1 and 2:
+	* velocity vector labeled
+	* path step no longer displayed
+	* better label positions
+
+* Proposition 1 Corollaries:
+	* diagrams display correctly on refresh
+
+* Proposition 2 Corollaries:
+	* point C'' removed
+
+## 2026-4-17 (Chartreuse Version, 0.9)
+### Changed
+* Colors are modified and more closely adhere to these groupings:
+	* orbit and body
+	* sun
+	* other components given in the claim or problem
+	* components used in the limit to calculate force
+	* actual force
+	* other components added for the proof or corollaries
+	* supplemental components not found in the original diagrams
+
+### Improved
+* General
+    * zoom persists across tabs
+
+* Proposition 9
+    * given angle highlighted
+    * angles remain constant as P moves in accordance with the first solution
+
 ## 2026-3-25 (Magenta Version, 0.8)
 ### Improved
 * General

@@ -25,15 +25,6 @@
         // \\// geometical scales
         //***************************************************************
 
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        sconf.enableStudylab            = false;
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
-
-
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
@@ -142,15 +133,15 @@
             time,
             dtime,
             proof,
-            force,
+            forceColor,
             invalid,
             hidden,
             estimatedForce,
             curvature,
-            context,
             chord,
 			sunColor,
 			corollaryColor,
+			proofHover,
         } = topicColors_repo;
 
 
@@ -158,16 +149,16 @@
         {
             estimatedForce,
             body,
-            force,
+            forceColor,
             chord,
             invalid,
             proof,
             hidden,
-            context,
             curvature,
             dtime,
             time,
             curvatureCircle : curvature,
+			force : forceColor,
             orbit,
             APQ     : orbit,
         };
@@ -195,9 +186,6 @@
             A : {
                 pos: A,
                 pcolor : proof,
-                //letterAngle : -90,
-                //undisplayAlways : true,
-                //doPaintPname : false,
             },
 
             S : {
@@ -216,16 +204,12 @@
             },
 
             Q : {
-                pcolor : proof,
+                pcolor : estimatedForce,
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
                 draggableY  : true,
-
-                //scenario needs peer review:
-                //conditionalDrag : 'logic_phase--proof logic_phase--corollary',
-                conditionalDrag : 'logic_phase--proof',
-
+                conditionalDrag : 'subessay--solution',
             },
             QtimeDecor : {
                 undisplayAlways : true,
@@ -239,12 +223,12 @@
             },
 
             T : {
-                pcolor : proof,
+                pcolor : estimatedForce,
                 letterAngle : 180,
             },
 
             R : {
-                pcolor : proof,
+                pcolor : estimatedForce,
                 letterAngle : 45,
             },
 
@@ -325,9 +309,9 @@
 
         var linesArray =
         [
-            { 'PV' : { pcolor : proof }, },
+            { 'PV' : { pcolor : proofHover }, },
+			{ 'SV' : { pcolor : proof }, },
             { 'AV' : { pcolor : proof }, },
-            { 'SP' : { pcolor : proof }, },
             { 'AP' : { pcolor : proof }, },
 
             { 'PY' : { pcolor : proof }, },
@@ -338,14 +322,15 @@
             { 'PR' : { pcolor : proof }, },
             { 'ZQ' : { pcolor : body }, },
 
-            { 'RL' : { pcolor : proof }, },
+			{ 'RL' : { pcolor : proofHover }, },
+			{ 'QL' : { pcolor : proof }, },
 
             { 'SY' : { pcolor : proof }, },
-            { 'QR' : { pcolor : proof }, },
+            { 'QR' : { pcolor : estimatedForce }, },
             { 'QP' : { pcolor : proof }, },
             { 'SQ' : { pcolor : proof }, },
-            { 'QT' : { pcolor : proof }, },
-            { 'PT' : { pcolor : proof }, },
+            { 'QT' : { pcolor : estimatedForce }, },
+            { 'PT' : { pcolor : proofHover }, },
 
             { 'PC' : { pcolor : curvature }, },
 
@@ -356,6 +341,8 @@
             { 'Gcol2,S' : { pcolor : proof }, },
             { 'Gcol2,P' : { pcolor : proof }, },
             { 'S,nonSolvablePoint' : { pcolor : invalid }, },
+            
+            { 'SP' : { pcolor : estimatedForce }, },
         ];
 
         ns.paste( sconf, {
@@ -383,4 +370,3 @@
         //***************************************************************
     }
 }) ();
-

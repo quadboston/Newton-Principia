@@ -25,15 +25,6 @@
         // \\// geometical scales
         //***************************************************************
 
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        sconf.enableStudylab            = false;
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
-
-
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
@@ -134,15 +125,13 @@
             given,
             body,
             orbit,
-            resultOnlyVisibleWhenHighlighted,
+			supplementHover,
+			proofHover,
             proof,
-            force,
-            result,
-            estimatedForce,
-            shadow,
+			estimatedForce,
+            forceColor,
             hidden,
             curvature,
-            context,
 			sunColor,
         } = topicColors_repo;
 
@@ -151,15 +140,12 @@
             estimatedForce,
             given,
             proof,
-            result,
             hidden,
-            context,
             curvature,
             body,
             orbit               : orbit,
             orbitdq             : orbit,
-            shadow,
-            force,
+            force : forceColor,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -168,12 +154,10 @@
         var originalPoints = {};
         Object.assign( originalPoints, {
             L : {
-                pcolor : orbit,
 				doPaintPname : false,
  				undisplayAlways : true,
             },
             LL : {
-                pcolor : orbit,
                 doPaintPname : false,
 				undisplayAlways : true,
             },
@@ -252,16 +236,12 @@
 				cssClass: 'subessay--solution',
             },
             Zminus : { // only here for Prop 12 code?
-                pcolor : body,
-                letterAngle : 145,
-                letterRotRadius : 20,
                 doPaintPname : false,
  				undisplayAlways  : true,
             },
 
             // //\\ eccentricity slider
             Zeta : {
-                caption : 'eccentricity, e',
                 pos : [ pictureWidth * 0.5, pictureHeight * 0.92 ],
                 pcolor : orbit,
                 letterAngle : 90,
@@ -309,7 +289,6 @@
                 letterAngle : -90,
             },
             Z : {
-                pcolor : body,
                 letterAngle : 45,
                 undisplayAlways : true,
                 doPaintPname : false,
@@ -351,18 +330,18 @@
 
         });
 
-		const proofSolution = { pcolor : body,
+		const proofSolution = { pcolor : proof,
  				cssClass: 'subessay--solution', };
 
         var linesArray =
         [
-			{ QR : { pcolor : proof,
+			{ QR : { pcolor : estimatedForce,
  				cssClass: 'subessay--solution subessay--corollary2', }, },
-            { QT : { pcolor : proof,
+            { QT : { pcolor : estimatedForce,
  				cssClass: 'subessay--solution subessay--corollary2', }, },
-            { SP : { pcolor : body,
+            { SP : { pcolor : estimatedForce,
  				cssClass: 'subessay--solution logic_phase--corollary', }, },
-            { PM : { pcolor : body,
+            { PM : { pcolor : proof,
  				cssClass: 'subessay--solution', }, },
             { SM : proofSolution },
             { GP : proofSolution },
@@ -371,26 +350,26 @@
             { Pv :  proofSolution },
             { Qv :  proofSolution }, 
             { Qx :  proofSolution },  
-            { Px :  proofSolution },
-            { Tx :  proofSolution },
+            { Px :  { pcolor : proofHover }, },
+            { Tx :  { pcolor : proofHover }, },
             { SA :  proofSolution },
             { xv :  proofSolution },
 
             // tangent
             { 'PR' : { 
-                pcolor : body, 
+                pcolor : proof, 
                 'stroke-width' : 2, 
                 captionShiftNorm : -18,
 				cssClass: 'subessay--solution logic_phase--corollary', }, 
             },                
-            { 'P,Zminus' : { pcolor : body,
+            { 'P,Zminus' : { pcolor : proof,
  				cssClass: 'subessay--solution', }, },
 
             // base line
             { 'A,AA' : { pcolor : orbit,
  				cssClass: 'subessay--solution', }, },
 
-            { 'L,LL' : { pcolor : resultOnlyVisibleWhenHighlighted,
+            { 'L,LL' : { pcolor : supplementHover,
                captionShiftNorm : 22, lposYSugar : 3 }, },
         ];
 

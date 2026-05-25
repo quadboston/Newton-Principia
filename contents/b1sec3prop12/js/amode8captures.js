@@ -11,7 +11,9 @@
         sDomF.resetModelPos();
 
         toreg( 'media_scale' )();
-        rg.media_scale.value = 1;
+        if(!rg.media_scale.value) {
+            rg.media_scale.value = 1;
+        }
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
 
         //=============================================================
@@ -30,7 +32,7 @@
         // \\// model
         //=============================================================
 
-        stdMod.rebuilds_orbit(ssD.Dt);
+        stdMod.rebuilds_orbit();
         //comment out to remove Book's diagram after timeout
         sDomF.detected_user_interaction_effect( 'doUndetected' );
         return captured;
