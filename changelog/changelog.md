@@ -1,5 +1,10 @@
 # Change Log
 
+## 2026-5-27 (Chartreuse Version, 0.9.2)
+### Improved
+* Propositions 6, 7, 10, 11, 12, and 13:
+	* Q's range extends to P; actual and estimated plots converge
+
 ## 2026-5-20 (Chartreuse Version, 0.9.1)
 ### Improved
 * Lemmas 2 and 3:
