@@ -48,7 +48,7 @@
                     let best = null;
                     let bestDiff = Infinity;
                     const Q = Porb.rrplus;
-					const sagittaOnSP_Tolerance = 0.0005;
+					const sagittaOnSP_Tolerance = 0.0006;
 
                     for (let i = rg.P.qix; i > 0; i--) {
                         const Qp = ssD.qIndexToOrbit[i]?.rr;
@@ -100,7 +100,6 @@
                 rg.Q.pos[0] = rrplus[0];
                 rg.Q.pos[1] = rrplus[1];
 
-                rg.QtimeDecor.caption = ''; // todo: remove? seems unused
                 rg.QtimeDecor.pos = Porb.rrplus;
                 const chord = rg.chord = [ rrplus[0] - rrminus[0], rrplus[1] - rrminus[1], ];
                 rg.chord2 = chord[0]*chord[0]+chord[1]*chord[1];
