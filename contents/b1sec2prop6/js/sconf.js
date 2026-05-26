@@ -261,16 +261,6 @@
                 draggableX  : true,
                 draggableY  : true,
             },
-            QtimeDecor : {
-                undisplayAlways : true,
-                //pos: will be as Q, 
-                cssClass : 'tp-dtime',
-                pcolor : dtime,
-                fontSize : 20,
-                letterAngle : 225,
-                letterShift : [10,0],
-                letterRotRadius : 40,
-            },
 
             T : {
                 pos: [0,0],
@@ -296,8 +286,6 @@
             rrminus : {
                 caption : '',
                 pcolor : given,
-                letterAngle : 225,
-                letterRotRadius : 40,
 				cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
             },
 

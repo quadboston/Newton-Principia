@@ -9,8 +9,6 @@
     return;
 
 
-    
-
     function builds_body_4_home8lemma()
     {
         //===================================
@@ -148,7 +146,7 @@
             .css('right', '10px')
             .css('color', fapp.versionColor)
             .css('font-size', '10px')
-            .html('Version 0.' + fapp.version);
+            .html('Version ' + fapp.version);
         //==================================================
         // \\// application version label
         //==================================================
