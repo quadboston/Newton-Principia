@@ -401,12 +401,13 @@
     ///param = false on initial page load, true on tab switch
     function menu2lemma( amodel2app_8_extraWork )
     {
+        var res = wrkwin.start8finish_media8Ess8Legend_resize__upcreate;
+
         //we need to run "media" updater because we need to update
         //archived, "sleeping", d8d past values,
         //todm ... instead the solution of updating them at "down" event
         //         will be more elagant and cause less fuss,
-
-        if( fconf.sappId === 'b1sec1lemma7' || amodel2app_8_extraWork ) {
+        if( amodel2app_8_extraWork ) {
             // runs from init-sapp.js on page load
             // we need to run again here when switching tabs to update model
             ssF.in_subessay_launch____amode2lemma( amodel2app_8_extraWork );
@@ -417,23 +418,23 @@
             wrkwin.loadPosPartitionHandle();
 
             //.todm code proliferation ... model runs twice?
-            var res = wrkwin.start8finish_media8Ess8Legend_resize__upcreate;
             res( null, !!'doDividorSynch');
 
-            //**********************************************************************************
-            //todo patch: this is a vital patch, without it to appear legend needs
-            //second resize event, the reason for the bug is unknown,
-            //only needed for L7, P1 corollaries 
-            if(fconf.sappId === 'b1sec1lemma7' || fconf.sappId === 'b1sec2prop1') {
-                setTimeout(
-                    function() {
-                        res( null, !!'doDividorSynch' );
-                    },
-                    100
-                );
-            }
-            //**********************************************************************************
         }
+        
+        //**********************************************************************************
+        //todo patch: this is a vital patch, without it to appear legend needs
+        //second resize event, the reason for the bug is unknown,
+        //only needed for L7, P1 corollaries 
+        if(fconf.sappId === 'b1sec1lemma7' || fconf.sappId === 'b1sec2prop1') {
+            setTimeout(
+                function() {
+                    res( null, !!'doDividorSynch' );
+                },
+                100
+            );
+        }
+        //**********************************************************************************
     }
 
     //reveals subessay in menu and in text
