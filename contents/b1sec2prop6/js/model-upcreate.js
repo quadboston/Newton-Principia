@@ -48,7 +48,7 @@
                     let best = null;
                     let bestDiff = Infinity;
                     const Q = Porb.rrplus;
-					const sagittaOnSP_Tolerance = 0.0005;
+					const sagittaOnSP_Tolerance = 0.0006;
 
                     for (let i = rg.P.qix; i > 0; i--) {
                         const Qp = ssD.qIndexToOrbit[i]?.rr;
@@ -57,7 +57,6 @@
                         // intersection I(Q') of SP and QQ'
                         const I = lineIntersection(rg.S.pos, rg.P.pos, Q, Qp);
                         if (!I) {
-                            console.log(I);
                             continue; 
                         }
 
@@ -100,8 +99,6 @@
                 rg.Q.pos[0] = rrplus[0];
                 rg.Q.pos[1] = rrplus[1];
 
-                rg.QtimeDecor.caption = ''; // todo: remove? seems unused
-                rg.QtimeDecor.pos = Porb.rrplus;
                 const chord = rg.chord = [ rrplus[0] - rrminus[0], rrplus[1] - rrminus[1], ];
                 rg.chord2 = chord[0]*chord[0]+chord[1]*chord[1];
                 
@@ -300,7 +297,6 @@
                 'Q,rrminus'             : rg[ 'Q,rrminus' ].undisplay,
                 'P,sagitta'             : rg[ 'P,sagitta' ].undisplay,
                 'Q'                     : rg.Q.undisplay,
-                'QtimeDecor'            : rg.QtimeDecor.undisplay,
                 'APQ'                   : rg.APQ.undisplay,
                 'Q.hideD8Dpoint'        : rg.Q.hideD8Dpoint,
                 'R'                     : rg.R.undisplay,

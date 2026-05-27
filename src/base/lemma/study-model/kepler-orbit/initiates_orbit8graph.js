@@ -74,7 +74,7 @@
         const prevDq = ssD.Dq;
         const prevDt = ssD.Dt;
         ssD.Dq = prevDq !== undefined ? prevDq : sconf.Dq0;
-        ssD.Dt = prevDt || sn( ssD, 'Dt', sconf.Dt0 );
+        ssD.Dt = prevDt !== undefined ? prevDt : sconf.Dt0;
         stdMod.builds_force_plusQ_minusQ_and_related(sData.ULTIM_MAX);
         stdMod.builds_force_plusQ_minusQ_and_related(sData.ULTIM_ACTUAL);
         stdMod.builds_force_plusQ_minusQ_and_related();

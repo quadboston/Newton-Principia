@@ -21,10 +21,8 @@
     {
         const Q_STEPS = sconf.Q_STEPS;
         const DATA_GRAPH_STEPS = sconf.DATA_GRAPH_STEPS;
-        const force_law_function = sconf.force_law_function;
         const IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX =
             sconf.IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX;
-        const ESTIMATED_SCALE_FACTOR = sconf.ESTIMATED_SCALE_FACTOR || 1;
         const dataPeriod = Math.max( 1, Math.floor( Q_STEPS/DATA_GRAPH_STEPS ) );
 
         stdMod.graphFW_lemma.graphArray = graphArray;
@@ -38,12 +36,8 @@
         for( let qix=gstart; qix<=gend; qix++ ){
             const bP = qIndexToOrbit[ qix ];
             const estimatedForce = bP.estimatedForce;
-            if( force_law_function ){
-                var actualForce = force_law_function(bP);
-            } else {
-                var actualForce = bP.actualForce;
-            }
-            bP.actualForce = actualForce;
+            const actualForce = bP.actualForce;
+
             if( !(qix%dataPeriod) || qix===Q_STEPS ){
                 actualForceMax = Math.max(Math.abs(actualForce), actualForceMax);
                 estimatedForceMax = Math.max(Math.abs(estimatedForce), estimatedForceMax);
@@ -67,7 +61,7 @@
         // //\\ resets graphArray
         //------------------------------------------
         const estimatedForceScale = (IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX ?
-            actualForceMax * ESTIMATED_SCALE_FACTOR : estimatedForceMax);
+            actualForceMax : estimatedForceMax);
         var arrLen = graphArray.length;
         for( var gix = 0; gix<arrLen; gix++ ){
             const ga = graphArray[ gix ];

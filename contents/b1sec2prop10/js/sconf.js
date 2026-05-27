@@ -88,7 +88,6 @@
         var DATA_GRAPH_STEPS = 500;
         sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
         sconf.IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX = true;
-        sconf.ESTIMATED_SCALE_FACTOR = 0.5;
         //-------------------------------------------
         // \\// calculation algo parameters
         //-------------------------------------------
@@ -103,9 +102,6 @@
         //-------------------------------------------
         // \\// curve shape parameters
         //-------------------------------------------
-
-        //to be studied in given proposition:
-        sconf.force_law_function = bp => 1/(bp.R*bp.r2*(bp.sinOmega**3));
 
         //intervals of dt or dq to construct an arc for estimated force
         //Sets initial distance of point Q from P

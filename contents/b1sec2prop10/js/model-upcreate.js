@@ -25,12 +25,9 @@
 
         // **api-input---plane-curve-derivatives
         var {
-            RC,
-            R,
             uu,
             nn,
         } = Porb;
-        var Rc = R; //curvature radius
 
         //================================================
         // //\\ arc, sagittae and related
@@ -60,7 +57,7 @@
         //================================================
         // \\// arc, sagittae and related
         //================================================
-        
+
 
         //================================================
         // //\\ decorations
@@ -118,16 +115,34 @@
         //=============================================================
         // //\\ tan. cir.
         //=============================================================
-        var tangentDiameterPoint = mat.linesCross(
-            nn,  //direction-1
+        //Calculate and set the parameters for the circle that touches the conic
+        //section at P and passes through point Q.  Note if P and Q are used to
+        //calculate the circle, when Q is at P it can't be calculated correctly.
+        //Therefore use V instead of Q, as the circle also passes through V.
+
+        //The distance from P to center, and V to center are both the radius.
+        //Therefore triangle P, V, center will be isosceles, meaning triangle P,
+        //midpoint of P and V, center will be a right angle triangle.  Therefore
+        //the center will be at the intersection of the following two lines...
+        //-Starting at P in the direction perpendicular to the tangent at P
+        //-Starting at the midpoint of P and V in the direction perpendicular
+        // to PV
+
+        const P = rg.P.pos;
+        const V = rg.V.pos;
+        const midpointPV = [(P[0] + V[0]) / 2, (P[1] + V[1]) / 2];
+        const negativeReciprocalPV = [-(V[1] - P[1]), V[0] - P[0]];
+
+        const center = mat.linesCross(
+            nn,  //direction-1 (perpendicular to tangent at P)
             rg.P.pos,  //start-1
-            [-rg.Q.pos[1] + rg.P.pos[1],
-              rg.Q.pos[0] - rg.P.pos[0],
-            ], //direction-2'
-            rg.Q.pos  //start-2'
+            negativeReciprocalPV, //direction-2'
+            midpointPV  //start-2'
         )
-        rg.tCircleCenter.pos[0] = (tangentDiameterPoint[0]+rg.P.pos[0])/2;
-        rg.tCircleCenter.pos[1] = (tangentDiameterPoint[1]+rg.P.pos[1])/2;
+
+        //Set circle parameters
+        rg.tCircleCenter.pos[0] = center[0];
+        rg.tCircleCenter.pos[1] = center[1];
         var rgTCir = rg.tangentCircle;
         rgTCir.tangentCircleRadiusVector = [
             rg.P.pos[0] - rg.tCircleCenter.pos[0],
