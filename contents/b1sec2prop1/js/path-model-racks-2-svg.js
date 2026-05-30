@@ -146,7 +146,7 @@
         //---------------------------------------------------------
 
 
-
+		//TODO: check if following block helpful
         //-------------------------------------------------
         // //\\ real path line segment,
         //      apparently, segment after applying the force
@@ -160,7 +160,7 @@
                 !'wwPivots',
                 {
                     cssClass:'tostroke',
-                    tpclass : 'path',
+                    tpclass : 'bodyColor',
                     'stroke-width':4
                 }
             );

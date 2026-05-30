@@ -124,7 +124,7 @@ function topicColors_elected(tpel){
     const {
         forceColor,
         proofColor,
-        path,
+        bodyColor,
     } = tpel;
 
     areaDescriptionAccelerated = [
@@ -137,7 +137,7 @@ function topicColors_elected(tpel){
         "CCprime"           : forceColor,  //Line C to C'
         "CPprime"           : proofColor,  //Line C to C''
         "cCprime"           : forceColor,  //Line c to C'
-        "BCprime"           : path,     //Line B to C'
+        "BCprime"           : bodyColor,     //Line B to C'
         "SCprime"           : proofColor,  //Line S C'
 
         "SBCprime"          : areaDescriptionAccelerated,

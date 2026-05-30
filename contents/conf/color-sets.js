@@ -204,8 +204,6 @@
 
 		function setProp1andProp2Colors() {
 			//P1 (Shared with P2)
-			tr.path            = tr.body;
-			tr.trianglePurpleTextAreaColor = tr.path;
 			tr["kepler-triangle-odd"]  = [...tr.givenColor.slice(0, 3), 0.35, 0.7],
 			tr["kepler-triangle-even"] = rgbToArray("rgb(120, 74, 237)", 0.35, 0.7),
 			// should we use this instead of proofColor?

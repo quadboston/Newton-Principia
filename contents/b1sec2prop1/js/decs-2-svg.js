@@ -22,6 +22,7 @@
         rgPos2rgMedia = ssF.rgPos2rgMedia;
     }
 
+	// TODO: check if following block helpful
     ///ssF.rgPos2rgMedia = pos2pointy; //modifies svg-dom
     function SAvV_model__2__svg()
     {
@@ -53,7 +54,7 @@
             'A',
             {
                 'fill' : 'white', //? fake prop, no effect
-                'stroke' : sDomF.getFixedColor( 'path' ),
+                'stroke' : sDomF.getFixedColor( 'bodyColor' ),
                 'stroke-width' : 1,  //static case, overrided by tp
                 r : 6,
                 cssClass : 'tofill tostroke',
@@ -121,7 +122,7 @@
             {
                 stroke:'black',
                 'stroke-width':1,
-                tpclass : 'path',
+                tpclass : 'bodyColor',
              }
         );
         //-------------------------------------------------
