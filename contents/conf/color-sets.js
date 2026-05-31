@@ -85,7 +85,7 @@
 			// corresponding text. Used when they overlap with 
 			// other colors which take priority
 			tr.corollaryHover = [...tr.corollaryColor, 0, 1];
-			tr.speed = tr.curvature = tr.supplementColor;
+			tr.curvature = tr.supplementColor;
 			tr.supplementHover = 
 					[...tr.supplementColor, 0, 1];
 			tr.proofArea   = [...tr.proof, 1];
@@ -220,7 +220,7 @@
 			tr.coreHalfOpacity     = [255, 150, 0, 0.5];
 			tr.aux                 = rgbToArray("rgb(255, 0, 255)");
 			tr.constructors        = rgbToArray("rgb(0, 0, 255)");
-			tr.ellipse             = rgbToArray("rgb(0, 150, 0)");
+			tr.ellipse             = tr.bodyColor;
 		}
 
 		function setProp41Colors() {

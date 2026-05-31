@@ -23,7 +23,6 @@ function sconf_points8lines (){
         forceColor,
         infoColor,
         corollaryColor,
-        speed,
         proofArea,
 		supplementColor,
 		sunColor,
@@ -35,7 +34,6 @@ function sconf_points8lines (){
         forceColor = harden(forceColor);
         bodyColor = harden(bodyColor);
         proofColor = harden(proofColor);
-        speed = harden(speed);
         infoColor = harden(infoColor);
         forceColor = harden(forceColor);
         supplementColor = harden(supplementColor);
@@ -45,7 +43,6 @@ function sconf_points8lines (){
     ///topic names elected
     var tpel = {
         proofColor,
-        speed,
         forceColor,
         time : infoColor,                       //Time slider
         dt                  : infoColor, //Delta time slider
@@ -127,7 +124,7 @@ function sconf_points8lines (){
         "BU"                : forceColor,
         "EW"                : forceColor,
         "AC"                : corollaryColor,
-        "Av"                : speed,
+        "Av"                : supplementColor,
         "DF"                : corollaryColor,
 
         force : forceColor,
@@ -419,12 +416,10 @@ function sconf_points8lines (){
 
         { nam : ['A', 'v'],
           decStart : -2,
-          cssClass : 'tp-speed',
+          cssClass : 'tp-supplementColor',
           vectorTipIx : 1,
           tipFraction : 0.15,
           'stroke-width' : 5,
-          //pcolor : tpel.speed,
-          //tipFill : tpel.speed,
         },
         { nam : ['A', 'B'], },  // AB
         ////todm possibly redundant, isn't pathSegment-' + pix enough?

@@ -79,7 +79,7 @@
                 //tpclass : 'path',
 
                 'fill' : 'white',
-                'stroke' : sDomF.getFixedColor( 'speed' ),
+                'stroke' : sDomF.getFixedColor( 'supplementColor' ),
                 'stroke-width' : 1,
                 r : 6,
             }
