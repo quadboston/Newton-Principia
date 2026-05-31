@@ -210,7 +210,7 @@
 			//tr.proofAreaColor           = [...tr.proofColor.slice(0, 3), 0.25, 0.64];
 		
 			//P2
-			tr.areaDescriptionAccelerated = rgbToArray("rgb(120, 90, 82)", 1); //Description of areas triangle P2 proof tab
+			tr.deviationAreaColor = rgbToArray("rgb(159, 60, 20)"); //Description of areas triangle P2 proof tab
 		}
 
 		function setL20andL21Colors() {

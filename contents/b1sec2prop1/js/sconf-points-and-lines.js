@@ -26,7 +26,9 @@ function sconf_points8lines (){
         proofArea,
 		supplementColor,
 		sunColor,
+		deviationAreaColor,
     } = topicColors_repo;
+	let deviationColor;
 
     {   const harden = col => ([col[0],col[1],col[2],1,1]);
         //0.5 is good for areas, bad for lines,
@@ -38,6 +40,7 @@ function sconf_points8lines (){
         forceColor = harden(forceColor);
         supplementColor = harden(supplementColor);
 		sunColor = harden(sunColor);
+		deviationColor = harden(deviationAreaColor);
     }
 
     ///topic names elected
@@ -47,6 +50,8 @@ function sconf_points8lines (){
         time : infoColor,                       //Time slider
         dt                  : infoColor, //Delta time slider
         bodyColor,
+		deviationColor,
+		deviationAreaColor,
 
         //The following sets the color of the text in
         //the text area for these triangles.  If
