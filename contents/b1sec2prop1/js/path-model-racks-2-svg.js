@@ -102,9 +102,7 @@
                     fill:'transparent',
                     tpclass : 'force-_move hidden',
                 } );
-                //paints tip of the force in red
                 rg8pos_2_svg( ffkey1, {
-                    //fill:'red',
                     cssClass:'tofill',
                     tpclass : 'force-_move hidden',
                     r : 6, //this is circle's radius
