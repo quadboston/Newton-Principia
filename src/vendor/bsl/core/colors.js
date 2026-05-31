@@ -3,28 +3,13 @@
 
     //reg. ex for string aka rgba(4,4,4,0.1) to array
     ns.hslo_2_rgba_low8high = hslo_2_rgba_low8high;
-    ns.rgbStr2digitsArray = rgbStr2digitsArray;
 
-
-    ///decreases or increases LIGHTNESS
-    ///Input: darknessFactor: the smaller, the darker
-    ns.darkefyColor = function( hsl, darknessFactor )
-    {
-        var darkefied = Math.min( 100, hsl[2]*darknessFactor);
-        return [ hsl[0], hsl[1], darkefied ];
-    };
 
     //api:arg = [r,g,b,a ]
     ns.rgbaArr2hsla = function( arg ) {
         var hsl = ns.rgb2hsl( arg[0],arg[1],arg[2] );
         return [ 355.99*hsl[0], 99.999*hsl[1], 99.999*hsl[2], arg[3], arg[4] ];
     };
-
-    ///not tested
-    ns.rgba2colors = function( arg ) {
-        var hsl = ns.rgbaArr2hsla( arg );
-        return ns.pars2colors( hsl[0], hsl[1], hsl[2], arg[3], arg[4] );
-    }
 
     //was: function getRandomColor()
     ns.pars2colors = function( HUE, SATURATION, LIGHTNESS, OPACITY )
@@ -211,27 +196,11 @@
     return;
 
 
-
-
-
-
-    ///======================================================================
-    /// builds array of zebra-colors
-    ///     input: zebraNumber
-    ///                 range from 2 to integer N,
-    ///                 is a number of color-wheel segments for neighbour
-    ///                 colors for providing zebra-N effect,
-    ///                 "classic"-binary-zebra obtains with N=2,
-    ///     output: zebraNcolorsArray with lenght >= maxColors,
-    ///======================================================================
-
-
     ///creates twin-colors: argument lowOpacity goes to rgba_low,
     ///        highOpacity goes to rgba_high,
     function hslo_2_rgba_low8high( hue, sat, light, lowOpacity, highOpacity )
     {
         highOpacity = typeof highOpacity === 'undefined' ? 1 : highOpacity;
-        //ns.pars2colors = function( HUE, SATURATION, LIGHTNESS, OPACITY )
         var corRack     = ns.pars2colors( hue, sat, light, lowOpacity );
         let rgb         = corRack.rgb;
         let rgba_low    = corRack.rgba;
@@ -239,23 +208,4 @@
         let rgba_high   = corRack.rgba;
         return { rgb, rgba_low, rgba_high, lowOpacity, highOpacity }; 
     }
-
-    ///Inputs:      rgbStr, aka #FFFFFF or FFFFFF,
-    ///         optionals:
-    ///             normalize, if truthy, then r,g,b are divided to 255,  
-    function rgbStr2digitsArray( rgbStr, normalize )
-    {
-        rgbStr = rgbStr.replace('#','');
-        var r = parseInt( rgbStr.substring(0,2), 16 );
-        var g = parseInt( rgbStr.substring(2,4), 16 );
-        var b = parseInt( rgbStr.substring(4,6), 16 );
-        if( normalize ) {
-            r = Math.min( r/255, 1 );
-            g = Math.min( g/255, 1 );
-            b = Math.min( b/255, 1 );
-        }
-        return [ r, g, b ];
-    }
-
 }) ();
-

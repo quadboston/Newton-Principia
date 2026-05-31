@@ -1,15 +1,12 @@
 
 ( function() {
     var {
-        ns, sn, $$,
-        haz, haf, haff,
-        eachprop,
+        ns, $$,
+        haz, haff,
         globalCss,
         fconf,
-        sconf,
         exegs, actionsList_coded, actionsList_default,
-        ssF, ssD, amode,
-        rg,
+        ssF, amode,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -17,23 +14,13 @@
             doDebugMessage,
             doInitTopicScenarioCss,
             executesMessageAction,
-            restylifyUserConsole,
         },
     });
     var eventFlow_locked = false;
-    var doInitCssDone = false;
 
     //for ctype ::#
     var previousMessage = '';
     return;
-
-
-
-
-
-
-
-
 
 
     function doInitTopicScenarioCss()
@@ -73,6 +60,8 @@
     ){
         // todo: this function never seems to run. remove?
         console.log('executesTopicScenario');
+						console.error("search for code C slotted for removal, and keep");
+
 
         if( eventFlow_locked ) {
             //basic-console-output  //bbbbbbbbbbbbbb
@@ -97,7 +86,6 @@
             );
             return;
         }
-        var pullsEvent      = haz( scenarioState, 'eventId2eventBlock' );
         var eventBlock      = haz( scenarioState.eventId2eventBlock, eventId );
         ///undeclared event is simply ignored:
         if( !eventBlock )   return false;
@@ -225,9 +213,6 @@
         if( ctype === ':' || ctype === ':-' ) {
             fbFrame_dom.innerHTML = '';
         }
-        var doScroll = ctype === ':-' || ctype === '::-' ?
-                       () => {} :
-                       () => { fbFrame_dom.scrollTop = fbFrame_dom.scrollHeight; }
 
         //adds ecommand to feedback frame 
         ecommand            = '<div class="dialog-prompt">' + ecommand + '</div>';
@@ -239,29 +224,4 @@
         //removed because of emulated by user-options.
         //ssF.updateFrameWorkAnchors_2_basicSiteFeatures( newMessage_dom );
     }
-
-
-    ///overrides user console global-css style,
-    ///     for example for { subessay } = amode;
-    function restylifyUserConsole({
-        subessay,
-        style,
-        logic_phase,   //optional, if missed taken from state
-        aspect,     //optional, if missed taken from state
-    }){
-        logic_phase = logic_phase || amode.logic_phase;
-        aspect = aspect || amode.aspect;
-        cssPath = '.original-text' +
-                  '.' + logic_phase +
-                  '.' + aspect +
-                  '.subessay-' + subessay +
-                  ' .model-user-feedback';
-        var fbFrame_dom = document.querySelector( cssPath );
-        eachprop( style, (prop,propname) => {
-            fbFrame_dom.style[ propname ] = prop;
-        });
-    }
-
-
 }) ();
-

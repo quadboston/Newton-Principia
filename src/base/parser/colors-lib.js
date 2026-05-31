@@ -53,6 +53,7 @@
                 //// todm: don in colors.js ... do replace this ...
                 ////***********************************************
                 ////with TP_OPACITY_LOW
+				console.error("search for code A slotted for removal, and keep");
                 var rem = tcount%2;
                 var zebra = rem ? (tcount-rem)/2 :
                             tcount/2 + Math.floor( allTopicsCount / 2 );
@@ -170,6 +171,7 @@
             );
             var result = { rgb, rgba_low, rgba_high, lowOpacity, highOpacity };
         } else {
+			console.error("search for code B slotted for removal, and keep");
             var hsl_lh = ns.rgbaArr2hsla( colorArray );
             var result = ns.hslo_2_rgba_low8high(
                 //hue
