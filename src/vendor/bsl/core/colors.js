@@ -10,7 +10,6 @@
         '((?:\\d|\\.)+)\\s*\\)',
         'i'
     );
-    ns.builds_zebraNColors_array = builds_zebraNColors_array;
     ns.hslo_2_rgba_low8high = hslo_2_rgba_low8high;
     ns.rgbStr2digitsArray = rgbStr2digitsArray;
 
@@ -288,52 +287,7 @@
     ///                 "classic"-binary-zebra obtains with N=2,
     ///     output: zebraNcolorsArray with lenght >= maxColors,
     ///======================================================================
-    function builds_zebraNColors_array({ //with low8high signature
-        maxColors,
-        SATUR,
-        LIGHT,
-        OPACITY,
-        zebraNumber,
-        monoColorHue, //optional, makes zebra via lightness, not via colors
-    }) {
-        zebraNumber     = zebraNumber || 2;
-        var zCols       = [];
-        var moldsMax    = Math.ceil( maxColors / zebraNumber );
-        var zebraJump   = 359.999 / zebraNumber;
-        var moldStep    = zebraJump / moldsMax;
-        var count = 0;
 
-        for( var modlIx=0; modlIx < moldsMax; modlIx++ )
-        {
-            if( count === maxColors) break;
-            for( var remIx = 0; remIx < zebraNumber; remIx++ )
-            {
-                if( count === maxColors) break;
-                var hue = monoColorHue ? monoColorHue : zebraJump * remIx + moldStep * modlIx;
-                //ccc( count, modlIx, 'rem='+remIx, hue )
-
-                //was a protection: hue = hue % 360;    //othewise "grey colors" may appear
-
-                //returns high opacity = 1:
-                var lh = hslo_2_rgba_low8high(
-                    hue,
-                    SATUR,
-
-                    //monoColorHue ? LIGHT / ( remIx + 1 ) : LIGHT,
-                    monoColorHue ? (99-LIGHT) * remIx / zebraNumber + LIGHT : LIGHT,
-
-                    //is opacity always in use?
-                    //monoColorHue ? OPACITY / ( remIx + 1 ) : OPACITY,
-
-                    OPACITY,
-                );
-                zCols.push( lh );
-                count++;
-            }
-        }
-        //ccc( 'compl=' + count );
-        return zCols;
-    }
 
     ///creates twin-colors: argument lowOpacity goes to rgba_low,
     ///        highOpacity goes to rgba_high,

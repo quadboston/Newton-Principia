@@ -19,8 +19,6 @@
         rgPos2rgMedia = ssF.rgPos2rgMedia;
     }
 
-	// TODO: check if following block helpful
-    ///ssF.rgPos2rgMedia = pos2pointy; //modifies svg-dom
     function SAvV_model__2__svg()
     {
         //==========================================
