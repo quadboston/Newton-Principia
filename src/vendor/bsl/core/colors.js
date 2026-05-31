@@ -2,49 +2,9 @@
 	var ns	= window.b$l;
 
     //reg. ex for string aka rgba(4,4,4,0.1) to array
-    var rgba2arr_re = new RegExp( 
-        '^rgba\\(\\s*' +
-        '(\\d+)\\s*,\\s*' +
-        '(\\d+)\\s*,\\s*' +
-        '(\\d+)\\s*,\\s*' +
-        '((?:\\d|\\.)+)\\s*\\)',
-        'i'
-    );
     ns.hslo_2_rgba_low8high = hslo_2_rgba_low8high;
     ns.rgbStr2digitsArray = rgbStr2digitsArray;
 
-
-    ns.rgba2arr = function( rgbastr )
-    {
-        var cmatch = rgbastr.match( rgba2arr_re );
-        var rr = parseInt(cmatch[1]);
-        var gg = parseInt(cmatch[2]);
-        var bb = parseInt(cmatch[3]);
-        var aa = parseFloat(cmatch[4]);
-        return [ rr,gg,bb,aa ];
-    };
-
-
-    // //\\ some proofreading 
-    var str2rgb_re = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
-    ns.rgbstr2hsl = function( rgbstr )
-    {
-        var cmatch = rgbstr.match( str2rgb_re );
-        var rr = parseInt(cmatch[1], 16);
-        var gg = parseInt(cmatch[2], 16);
-        var bb = parseInt(cmatch[3], 16);
-        //c onsole.log( rr, gg, bb );
-        var hsl = ns.rgb2hsl( rr, gg, bb );
-        return [ hsl[0] * 360, hsl[1] * 100, hsl[2] * 100 ];
-    };
-
-    ns.rgbstr2colors = function( rgbstr, opacity )
-    {
-        var hsl = ns.rgbstr2hsl;
-        //c onsole.log( hsl );
-        return ns.pars2colors( hsl[0], hsl[1], hsl[2], opacity );
-    };
-    // \\// some proofreading 
 
     ///decreases or increases LIGHTNESS
     ///Input: darknessFactor: the smaller, the darker
@@ -53,29 +13,6 @@
         var darkefied = Math.min( 100, hsl[2]*darknessFactor);
         return [ hsl[0], hsl[1], darkefied ];
     };
-
-
-
-    ///Input:
-    ///         rgbArray - is normalized (aka [ 1, 0.3, 0 ]) or based256 (aka [255,75,0]),
-    ///         based256 - optional
-    ///Output:  { string:'#...', normalized:[...] };
-    ns.rgb2str8norm = function( rgbArray, based256 )
-    {
-        var colors = { string:'#', normalized:[] };
-        rgbArray.forEach( function( co, ix ) {
-            var co256 = based256 ? co : Math.min( 255, Math.floor(co*256) );
-            var coNorm = based256 ? co/256 : co;
-            //c cc( 'input ' + co + ' co256=' + co256 + ' coNorm=' + coNorm  );
-            colors.normalized[ix] = coNorm;
-            var extra = '00' + co256.toString(16);
-            var extra = extra.substring(extra.length-2,extra.length);
-            //c cc( 'extra ' + extra )
-            colors.string += extra;
-        });
-        return colors;
-    };
-    ns.rgb_2_str8norm = ns.rgb2str8norm;
 
     //api:arg = [r,g,b,a ]
     ns.rgbaArr2hsla = function( arg ) {

@@ -13,7 +13,6 @@
 
         var path            = rg.path.pos;
         var pathRacks       = rg.pathRacks.pathRacks;
-        var freePath        = rg.freePath.pos;
         //=======================================================
         // //\\ spawns path to
         //      path "rgPoints", Kepler-triangles, free-triangles
@@ -144,7 +143,6 @@
         //---------------------------------------------------------
 
 
-		//TODO: check if following block helpful
         //-------------------------------------------------
         // //\\ real path line segment,
         //      apparently, segment after applying the force
@@ -155,7 +153,7 @@
             toreg( wwpname )({ undisplay : true })();
             pivots_2_svgLineInRg(
                 wwpname,
-                !'wwPivots',
+                false,
                 {
                     cssClass:'tostroke',
                     tpclass : 'bodyColor',
