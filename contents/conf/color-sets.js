@@ -63,10 +63,11 @@
 		// background color used to highlight text and table rows on hover
 		tr.highlight = rgbToArray("rgb(234, 234, 234)");
 
-		tr.sunColor    = rgbToArray("rgb(202, 131, 0)"); // center of force (S or C in propositions)
+		// sun/center of force (S or C in propositions)
+		tr.sunColor    = rgbToArray("rgb(202, 151, 0)"); 
 		tr.givenColor       = rgbToArray("rgb(106, 49, 249)");
 		tr.proofColor       = rgbToArray("rgb(0, 133, 0)");
-		tr.forceColor       = rgbToArray("rgb(139, 105, 20)");
+		tr.forceColor       = rgbToArray("rgb(159, 40, 24)");
         tr.estimatedForceColor  = rgbToArray("rgb(211, 87, 254)");
 		tr.invalidColor     = rgbToArray("rgb(255, 0, 0)");  //alert, invalid user actions
 		tr.infoColor = rgbToArray("rgb(98, 109, 126)");
@@ -200,7 +201,7 @@
 			tr["kepler-triangle-even"] = rgbToArray("rgb(120, 74, 237)", 0.35, 0.7);
 		
 			//Prop 2 corollaries
-			tr.deviationAreaColor = rgbToArray("rgb(159, 60, 20)"); //Description of areas triangle P2 proof tab
+			tr.deviationAreaColor = rgbToArray("rgb(169, 85, 90)"); //Description of areas triangle P2 proof tab
 		}
 
 		function setL20andL21Colors() {

@@ -638,16 +638,6 @@ function sconf_points8lines (){
         //compensates missing of "extend-confib" in engine core
         topicColors_repo_camel2col[ tpCamel ] = fck; //based on Camel Id
     });
-    if( has( ssD, 'P2_topicColors_elected' ) ) { // TODO: remove?
-        ////we are working in prop 2,
-        ////above condition is a flag
-        Object.keys( p2_elected ).forEach( camelId => {
-            //if( camelId === 'SBCprime' ) return;
-            var tpLowKey = sDomF.toCssIdentifier( camelId );
-                //this thing only affects difference between strokable
-                //and areas like this:
-        });
-    }
     //==================================================
     // \\// equalizes topicColors_elected, topicColors_repo, and
     //==================================================
