@@ -1,8 +1,6 @@
 ( function() {
     var {
-        sn, $$, nssvg, eachprop, has, haz, haff, nspaste,
-        sconf, ssF, ssD, sDomF, toreg, rg,
-        amode, stdMod,
+        ssF, sDomF, rg,
     } = window.b$l.apptree({
         stdModExportList :
         {
@@ -12,7 +10,6 @@
     });
     var pivots_2_svgLineInRg;
     var rgPos2rgMedia;
-    var handleR = 5;
     return;
 
 
@@ -22,6 +19,7 @@
         rgPos2rgMedia = ssF.rgPos2rgMedia;
     }
 
+	// TODO: check if following block helpful
     ///ssF.rgPos2rgMedia = pos2pointy; //modifies svg-dom
     function SAvV_model__2__svg()
     {
@@ -41,51 +39,6 @@
         //==========================================
         // \\// S to media
         //==========================================
-
-        //-------------------------------------------------
-        // //\\ updates point A
-        //      Will be overriddeyput this el-definition last to
-        //      override all other graphics
-        //
-        //      but, white core will be put even over this point
-        //-------------------------------------------------
-        rgPos2rgMedia(
-            'A',
-            {
-                'fill' : 'white', //? fake prop, no effect
-                'stroke' : sDomF.getFixedColor( 'path' ),
-                'stroke-width' : 1,  //static case, overrided by tp
-                r : 6,
-                cssClass : 'tofill tostroke',
-            }
-        );
-        //-------------------------------------------------
-        // \\// updates point A
-        //-------------------------------------------------
-
-        //-------------------------------------------------
-        // //\\ creates point B to slide
-        //      put this el-definition last to
-        //      override all other graphics
-        //-------------------------------------------------
-        rgPos2rgMedia(
-            'v',
-            {
-                //this possibly collides with white filling
-                //cssClass : 'tostroke',
-
-                //this possibly collides with white filling
-                //tpclass : 'path',
-
-                'fill' : 'white',
-                'stroke' : sDomF.getFixedColor( 'speed' ),
-                'stroke-width' : 1,
-                r : 6,
-            }
-        );
-        //-------------------------------------------------
-        // \\// creates point B to slide
-        //-------------------------------------------------
 
         //-------------------------------------------------
         // //\\ updates medpos and svg el for point V to slide
@@ -121,7 +74,7 @@
             {
                 stroke:'black',
                 'stroke-width':1,
-                tpclass : 'path',
+                tpclass : 'bodyColor',
              }
         );
         //-------------------------------------------------

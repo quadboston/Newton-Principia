@@ -2,10 +2,10 @@
     var ns          = window.b$l        = window.b$l        || {};
     var fapp        = ns.fapp           = ns.fapp           || {};
 
-    fapp.version = '0.9.1'; //application version
+    fapp.version = '0.9.3'; //application version
 
 	// //\\ updated automatically. Don't edit this string.
-    fapp.buildDateString = "2026-05-20"; //build date
+    fapp.buildDateString = "2026-05-27"; //build date
     // \\// updated automatically. Don't edit this string.
 
     fapp.versionColor = 'Chartreuse'; //color for version display

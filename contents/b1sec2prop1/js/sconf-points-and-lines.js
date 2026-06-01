@@ -17,40 +17,41 @@ return;
 //-------------------------------------------------------
 function sconf_points8lines (){
     let {
+		givenColor,
         proofColor,
+		bodyColor,
         forceColor,
-        path,
         infoColor,
         corollaryColor,
-        speed,
-        trianglePurpleTextAreaColor,
         proofArea,
 		supplementColor,
 		sunColor,
+		deviationAreaColor,
     } = topicColors_repo;
+	let deviationColor;
 
     {   const harden = col => ([col[0],col[1],col[2],1,1]);
         //0.5 is good for areas, bad for lines,
         //so, lines shold have color pattern [x,x,x,1,1]
         forceColor = harden(forceColor);
-        path = harden(path);
+        bodyColor = harden(bodyColor);
         proofColor = harden(proofColor);
-        speed = harden(speed);
         infoColor = harden(infoColor);
         forceColor = harden(forceColor);
         supplementColor = harden(supplementColor);
 		sunColor = harden(sunColor);
+		deviationColor = harden(deviationAreaColor);
     }
 
     ///topic names elected
     var tpel = {
         proofColor,
-        speed,
         forceColor,
         time : infoColor,                       //Time slider
         dt                  : infoColor, //Delta time slider
-        path,
-        "path-change"       : path,
+        bodyColor,
+		deviationColor,
+		deviationAreaColor,
 
         //The following sets the color of the text in
         //the text area for these triangles.  If
@@ -62,11 +63,11 @@ function sconf_points8lines (){
         //(for more see "colors-lib.js" section
         //"generates pseudo-random zebra colors" in function
         //lowtpid__2__glocss8anchorRack).
-        "SBC"               : trianglePurpleTextAreaColor,
-        "SCD"               : trianglePurpleTextAreaColor,
-        "SDE"               : trianglePurpleTextAreaColor,
-        "SEF"               : trianglePurpleTextAreaColor,
-        "SAB"               : trianglePurpleTextAreaColor,
+        "SBC"               : givenColor,
+        "SCD"               : givenColor,
+        "SDE"               : givenColor,
+        "SEF"               : givenColor,
+        "SAB"               : givenColor,
 
         "kepler-triangle-odd"   : topicColors_repo["kepler-triangle-odd"],
         "kepler-triangle-even"  : topicColors_repo["kepler-triangle-even"],
@@ -78,18 +79,18 @@ function sconf_points8lines (){
         "SDe"               : proofArea,
         "SEf"               : proofArea,
 
-        "A"                 : path,
-        "B"                 : path,
-        "C"                 : path,
-        "D"                 : path,
-        "E"                 : path,
-        "F"                 : path,
+        "A"                 : bodyColor,
+        "B"                 : bodyColor,
+        "C"                 : bodyColor,
+        "D"                 : bodyColor,
+        "E"                 : bodyColor,
+        "F"                 : bodyColor,
 
-        "AB"                : path,
-        "BC"                : path,
-        "CD"                : path,
-        "DE"                : path,
-        "EF"                : path,
+        "AB"                : bodyColor,
+        "BC"                : bodyColor,
+        "CD"                : bodyColor,
+        "DE"                : bodyColor,
+        "EF"                : bodyColor,
 
         "ABCV"              : forceColor,
         "DEFZ"              : forceColor,
@@ -118,17 +119,17 @@ function sconf_points8lines (){
         "force-center"      : forceColor,
         "S"                 : sunColor,
 
-        "SA"                : path,
-        "SB"                : path,
-        "SC"                : path,
-        "SD"                : path,
-        "SE"                : path,
-        "SF"                : path,
+        "SA"                : givenColor,
+        "SB"                : givenColor,
+        "SC"                : givenColor,
+        "SD"                : givenColor,
+        "SE"                : givenColor,
+        "SF"                : givenColor,
 
         "BU"                : forceColor,
         "EW"                : forceColor,
         "AC"                : corollaryColor,
-        "Av"                : speed,
+        "Av"                : supplementColor,
         "DF"                : corollaryColor,
 
         force : forceColor,
@@ -420,12 +421,10 @@ function sconf_points8lines (){
 
         { nam : ['A', 'v'],
           decStart : -2,
-          cssClass : 'tp-speed',
+          cssClass : 'tp-supplementColor',
           vectorTipIx : 1,
           tipFraction : 0.15,
           'stroke-width' : 5,
-          //pcolor : tpel.speed,
-          //tipFill : tpel.speed,
         },
         { nam : ['A', 'B'], },  // AB
         ////todm possibly redundant, isn't pathSegment-' + pix enough?
@@ -639,16 +638,6 @@ function sconf_points8lines (){
         //compensates missing of "extend-confib" in engine core
         topicColors_repo_camel2col[ tpCamel ] = fck; //based on Camel Id
     });
-    if( has( ssD, 'P2_topicColors_elected' ) ) {
-        ////we are working in prop 2,
-        ////above condition is a flag
-        Object.keys( p2_elected ).forEach( camelId => {
-            //if( camelId === 'SBCprime' ) return;
-            var tpLowKey = sDomF.toCssIdentifier( camelId );
-                //this thing only affects difference between strokable
-                //and areas like this:
-        });
-    }
     //==================================================
     // \\// equalizes topicColors_elected, topicColors_repo, and
     //==================================================

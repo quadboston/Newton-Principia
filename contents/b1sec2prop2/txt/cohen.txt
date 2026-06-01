@@ -6,9 +6,9 @@
   "logic_phaseCaption" : "Theorem 2"
 }
 *..*
-Every body that moves in some ¦path¦curved line¦¦ described in a plane and, by a radius
+Every body that moves in some ¦bodyColor¦curved line¦¦ described in a plane and, by a radius
 drawn to a ¦S¦point¦¦, either unmoving or moving uniformly forward with a rectilinear
-motion, describes ¦SAB kepler-triangle-odd kepler-triangle-even¦areas¦¦ around that ¦S¦point¦¦ proportional to the times, is urged by a
+motion, describes ¦kepler-triangle-odd kepler-triangle-even¦areas¦¦ around that ¦S¦point¦¦ proportional to the times, is urged by a
 ¦forceColor¦centripetal force¦¦ tending toward that same ¦S¦point¦¦.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 446.</div>
@@ -34,9 +34,9 @@ in place ¦C¦¦, the force acts along a line parallel to ¦Dd¦dD¦¦, that is,
 point ¦S¦¦. Q.E.D.
 <br><br>
 Cᴀsᴇ 2. And, by corol. 5 of the laws, it makes no difference whether
-the surface on which the body describes a ¦path¦curvilinear figure¦¦ is at rest or
+the surface on which the body describes a ¦bodyColor¦curvilinear figure¦¦ is at rest or
 whether it moves uniformly straight forward, together with the body, the
-¦path¦figure described¦¦, and the point ¦S¦¦.
+¦bodyColor¦figure described¦¦, and the point ¦S¦¦.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 446.</div>
 

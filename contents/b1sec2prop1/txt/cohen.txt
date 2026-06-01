@@ -6,7 +6,7 @@
   "logic_phaseCaption" : "Theorem 1"
 }
 *..*
-The ¦SAB kepler-triangle-odd kepler-triangle-even¦areas¦¦ which bodies made to move in ¦path¦orbits¦¦ describe by radii drawn to an unmoving
+The ¦kepler-triangle-odd kepler-triangle-even¦areas¦¦ which bodies made to move in ¦bodyColor¦orbits¦¦ describe by radii drawn to an unmoving
 ¦S¦center¦¦ of forces lie in unmoving planes and are proportional to the times.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 444.</div>
@@ -63,7 +63,7 @@ the areas are to each other as the times of description.
 
 Now <span class="captured-reference id-more-triangles">let the number
 of triangles be increased and their width decreased</span> indefinitely, and their
-ultimate perimeter ¦AB BC CD DE EF path¦ADF¦¦ will (by 
+ultimate perimeter ¦bodyColor¦ADF¦¦ will (by 
 <a href="?conf=sappId=b1sec1lemma3,logic_phaseId=corollary,aspectId=english,subessayId=cor-4">
 by lem. 3, corol. 4</a>) be a curved line; and
 thus the ¦forceColor¦centripetal force¦¦ by which the body is continually drawn back from

@@ -122,35 +122,28 @@ function init_conf_addon (){
 
 function topicColors_elected(tpel){
     const {
-        forceColor,
         proofColor,
-        path,
+		deviationColor,
+		deviationAreaColor,
     } = tpel;
-
-    areaDescriptionAccelerated = [
-        forceColor[0], forceColor[1], forceColor[2]
-    ];
-
     return {
-        areaDescriptionAccelerated,
-        "Cprime"            : forceColor,  //Point C'
-        "CCprime"           : forceColor,  //Line C to C'
+        "Cprime"            : deviationColor,  //Point C'
+        "CCprime"           : deviationColor,  //Line C to C'
         "CPprime"           : proofColor,  //Line C to C''
-        "cCprime"           : forceColor,  //Line c to C'
-        "BCprime"           : path,     //Line B to C'
-        "SCprime"           : proofColor,  //Line S C'
+        "cCprime"           : deviationColor,  //Line c to C'
+        "BCprime"           : deviationColor,     //Line B to C'
+        "SCprime"           : deviationColor,  //Line S C'
 
-        "SBCprime"          : areaDescriptionAccelerated,
         // triangle SBC area description accelerated
+		"SBCprime"          : deviationAreaColor,
 
-        "Vprime"            : forceColor,    //Point V'
-        "BVprime"           : forceColor,
-            // force at B deviated toward V;        Line B to V'
-            // area description accelerated
-
-            "VVprime"           : forceColor,
-            // force vector at V displaced to V';   Line V to V'
-            // area description accelerated
+        "Vprime"            : deviationColor,    //Point V'
+		// force at B deviated toward V;        Line B to V'
+        // area description accelerated
+        "BVprime"           : deviationColor,
+		// force vector at V displaced to V';   Line V to V'
+		// area description accelerated
+		"VVprime"           : deviationColor,
     };
 }
 })();
