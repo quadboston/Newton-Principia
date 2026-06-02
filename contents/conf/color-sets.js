@@ -67,7 +67,7 @@
 		tr.sunColor    = rgbToArray("rgb(202, 151, 0)"); 
 		tr.givenColor       = rgbToArray("rgb(106, 49, 249)");
 		tr.proofColor       = rgbToArray("rgb(0, 133, 0)");
-		tr.forceColor       = rgbToArray("rgb(159, 40, 24)");
+		tr.forceColor       = rgbToArray("rgb(149, 70, 24)");
         tr.estimatedForceColor  = rgbToArray("rgb(211, 87, 254)");
 		tr.invalidColor     = rgbToArray("rgb(255, 0, 0)");  //alert, invalid user actions
 		tr.infoColor = rgbToArray("rgb(98, 109, 126)");
