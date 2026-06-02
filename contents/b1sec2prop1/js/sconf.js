@@ -11,9 +11,7 @@ function init_conf (){
     //----------------------------------
     // //\\ scenario
     //----------------------------------
-    //hideProofSlider = true, //false,
     sconf.enableCapture = true;
-    //enableDataFunctionsRepository : true,
     //----------------------------------
     // \\// scenario
     //----------------------------------

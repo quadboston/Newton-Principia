@@ -13,7 +13,6 @@
 
         var path            = rg.path.pos;
         var pathRacks       = rg.pathRacks.pathRacks;
-        var freePath        = rg.freePath.pos;
         //=======================================================
         // //\\ spawns path to
         //      path "rgPoints", Kepler-triangles, free-triangles
@@ -102,9 +101,7 @@
                     fill:'transparent',
                     tpclass : 'force-_move hidden',
                 } );
-                //paints tip of the force in red
                 rg8pos_2_svg( ffkey1, {
-                    //fill:'red',
                     cssClass:'tofill',
                     tpclass : 'force-_move hidden',
                     r : 6, //this is circle's radius
@@ -146,7 +143,6 @@
         //---------------------------------------------------------
 
 
-
         //-------------------------------------------------
         // //\\ real path line segment,
         //      apparently, segment after applying the force
@@ -157,10 +153,10 @@
             toreg( wwpname )({ undisplay : true })();
             pivots_2_svgLineInRg(
                 wwpname,
-                !'wwPivots',
+                false,
                 {
                     cssClass:'tostroke',
-                    tpclass : 'path',
+                    tpclass : 'bodyColor',
                     'stroke-width':4
                 }
             );

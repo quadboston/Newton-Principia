@@ -63,7 +63,6 @@
 
 
         //todm: must be appMode
-        //sDomN.captionHTML$ = $$.c('h1'); //todm remove?
 
         //==================================================
         // //\\ page master menu

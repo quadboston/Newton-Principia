@@ -1,7 +1,7 @@
 ( function() {
     var {
         sn, $$, eachprop, haz,
-        fconf, sconf,
+        sconf,
         sDomN, sDomF, ssF, ssD, exegs,
         amode, userOptions
     } = window.b$l.apptree({
@@ -12,10 +12,7 @@
         },
     });
     ssD.subessayClickDisabled = false;
-    var collectedDelayedLinks = sn( 'collectedDelayedLinks', ssD, [] );
     return;
-
-
 
 
     ///builds
@@ -31,8 +28,8 @@
     */
     function exegs__2__dom_indexedLinks_indexedTopics()
     {
-        eachprop( exegs, ( logic_phaseAspects, mcat_id ) => {
-            eachprop( logic_phaseAspects, ( exAspect, scat_id ) => {
+        eachprop( exegs, ( logic_phaseAspects ) => {
+            eachprop( logic_phaseAspects, ( exAspect ) => {
                 exAspect.subexegs.forEach( ( subexeg, exegId ) => {
                     subexeg.cssCls = ' subessay-menuitem-id-' + exegId;
                     //====================================================
@@ -95,7 +92,7 @@
                     ///   they are non-unJSONED-active Fragment text units
                     ///rawActiveFrag and rawActFrValue are obtained from Book
                     ///with help by ACTION_SPLITTER = /¿/
-                    subexeg.activeFrags.forEach( function( rawActiveFrag, tix ) {
+                    subexeg.activeFrags.forEach( function( rawActiveFrag ) {
                         if( typeof( rawActiveFrag ) === 'object' ) {
                             eachprop( rawActiveFrag, (rawActFrValue) => {
                                 ssF.fragment__collectsRawTpLinks( rawActFrValue );
@@ -126,7 +123,7 @@
                         .cls( 'subessay-menu-container highlight-text-disabled' )
                         .to( sDomN.essaionsRoot$ )
                         ;
-                    exAspect.subexegs.forEach( ( subexeg, exegId ) => {
+                    exAspect.subexegs.forEach( ( subexeg ) => {
                         subexeg.subessayMenuItem$.to( subessayMenuContainer$ );
                         $$.c('span')
                             .addClass( subexeg.cssCls )
@@ -135,7 +132,7 @@
                     });
                 }
                 ///puts bodies to the bottom
-                exAspect.subexegs.forEach( ( subexeg, exegId ) => {
+                exAspect.subexegs.forEach( ( subexeg ) => {
                     subexeg.domEl$.to( sDomN.essaionsRoot$ );
                 });
                 //************************************************************
@@ -162,11 +159,5 @@
         //virtual subessay click
         subexeg.subessayMenuItem$.removeClass( 'user-untouched' ); //vestige?
         sDomF.menu2lemma( !!'amodel2app_8_extraWork' );
-        sDomF.tellActivityEngine_that_userStartedSubessay();
     }
-
-
-
 }) ();
-
-

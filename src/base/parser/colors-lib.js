@@ -53,6 +53,7 @@
                 //// todm: don in colors.js ... do replace this ...
                 ////***********************************************
                 ////with TP_OPACITY_LOW
+				// TODO: only used for Prop 7? why?
                 var rem = tcount%2;
                 var zebra = rem ? (tcount-rem)/2 :
                             tcount/2 + Math.floor( allTopicsCount / 2 );
@@ -169,25 +170,6 @@
                 colorArray[0], colorArray[1], colorArray[2], highOpacity
             );
             var result = { rgb, rgba_low, rgba_high, lowOpacity, highOpacity };
-        } else {
-            var hsl_lh = ns.rgbaArr2hsla( colorArray );
-            var result = ns.hslo_2_rgba_low8high(
-                //hue
-                hsl_lh[ 0 ],
-
-                //satur,
-                //for grey or black color: we set satur to 0 manually
-                hsl_lh[1] === 0 ? 0 : sconf.DEFAULT_TP_SATUR,
-
-                //light
-                sconf.default_tp_lightness,
-
-                //opacityLow,
-                lowOpacity,
-
-                //opacityHigh,
-                highOpacity,
-            );
         }
         return result;
     }

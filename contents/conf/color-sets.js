@@ -63,10 +63,11 @@
 		// background color used to highlight text and table rows on hover
 		tr.highlight = rgbToArray("rgb(234, 234, 234)");
 
-		tr.sunColor    = rgbToArray("rgb(202, 131, 0)"); // center of force (S or C in propositions)
-		tr.givenColor       = rgbToArray("rgb(139, 105, 20)");
+		// sun/center of force (S or C in propositions)
+		tr.sunColor    = rgbToArray("rgb(202, 151, 0)"); 
+		tr.givenColor       = rgbToArray("rgb(106, 49, 249)");
 		tr.proofColor       = rgbToArray("rgb(0, 133, 0)");
-		tr.forceColor       = rgbToArray("rgb(131, 56, 236)");
+		tr.forceColor       = rgbToArray("rgb(149, 70, 24)");
         tr.estimatedForceColor  = rgbToArray("rgb(211, 87, 254)");
 		tr.invalidColor     = rgbToArray("rgb(255, 0, 0)");  //alert, invalid user actions
 		tr.infoColor = rgbToArray("rgb(98, 109, 126)");
@@ -85,7 +86,7 @@
 			// corresponding text. Used when they overlap with 
 			// other colors which take priority
 			tr.corollaryHover = [...tr.corollaryColor, 0, 1];
-			tr.speed = tr.curvature = tr.supplementColor;
+			tr.curvature = tr.supplementColor;
 			tr.supplementHover = 
 					[...tr.supplementColor, 0, 1];
 			tr.proofArea   = [...tr.proof, 1];
@@ -107,13 +108,6 @@
 		setProp1andProp2Colors();
 		setL20andL21Colors();
 		setProp41Colors();
-
-		sf.default_tp_stroke_width = 10;
-		///for default points (and draggers???)
-		///in module points.js
-		sf.handleRadius = 8;
-		sf.standardSvgSize = 1000;
-		sf.PATH_WIDTH = '2';
 
 		Object.assign( sf, {
 			//***************************************************
@@ -184,36 +178,30 @@
 			tr.difference  = rgbToArray("rgb(150, 50, 0)", 0, 0.64);
 			tr.figureColor      = rgbToArray("rgb(0, 150, 0)");
 
-			tr["figure-area"] = rgbToArray("rgb(0, 150, 0)", 0.32, 0.64),
-			tr["figure-area-txt"]          = rgbToArray("rgb(0, 150, 0)"),
+			tr["figure-area"] = rgbToArray("rgb(0, 150, 0)", 0.32, 0.64);
+			tr["figure-area-txt"]          = rgbToArray("rgb(0, 150, 0)");
 
-			tr["circumscribed-rectangles"] = rgbToArray("rgb(0, 80, 150)", 0.32, 0.64),
-			tr["circ-txt"]                 = rgbToArray("rgb(102, 131, 179)"),
-			tr["circ-outline"]             = rgbToArray("rgb(102, 131, 179)", 1.0, 1.0),
+			tr["circumscribed-rectangles"] = rgbToArray("rgb(0, 80, 150)", 0.32, 0.64);
+			tr["circ-txt"]                 = rgbToArray("rgb(102, 131, 179)");
+			tr["circ-outline"]             = rgbToArray("rgb(102, 131, 179)", 1.0, 1.0);
 
-			tr["inscribed-rectangles"]     = rgbToArray("rgb(150, 0, 150)", 0.32, 0.64),
-			tr["insc-txt"]                 = rgbToArray("rgb(112, 57, 107)"),
-			tr["insc-outline"]             = rgbToArray("rgb(112, 57, 107)", 1.0, 1.0),
+			tr["inscribed-rectangles"]     = rgbToArray("rgb(150, 0, 150)", 0.32, 0.64);
+			tr["insc-txt"]                 = rgbToArray("rgb(112, 57, 107)");
+			tr["insc-outline"]             = rgbToArray("rgb(112, 57, 107)", 1.0, 1.0);
 
-			tr.widths                      = rgbToArray("rgb(150, 0, 150)", 0, 0.64),
-
-			tr.widestRectangular           = rgbToArray("rgb(0, 0, 150)", 0.28, 0.49),
-			tr.widestRectangularHiddenStart= rgbToArray("rgb(0, 0, 150)", 0.0, 0.49),
+			tr.widths                      = rgbToArray("rgb(150, 0, 150)", 0, 0.64);
+			tr.widestRectangular           = rgbToArray("rgb(0, 0, 150)", 0.28, 0.49);
+			tr.widestRectangularHiddenStart= rgbToArray("rgb(0, 0, 150)", 0.0, 0.49);
 			tr["widt-txt"]                 = rgbToArray("rgb(0, 0, 150)")
 		}
 
 		function setProp1andProp2Colors() {
-			//P1 (Shared with P2)
-			tr.path            = tr.body;
-			tr.trianglePurpleTextAreaColor = tr.path;
-			tr["kepler-triangle-odd"]  = rgbToArray("rgb(102, 102, 255)", 0.35, 0.7),
-			tr["kepler-triangle-even"] = rgbToArray("rgb(153, 153, 255)", 0.35, 0.7),
-
-			// should we use this instead of proofColor?
-			//tr.proofAreaColor           = [...tr.proofColor.slice(0, 3), 0.25, 0.64];
+			//Prop 1 (Shared with Prop 2)
+			tr["kepler-triangle-odd"]  = [...tr.givenColor.slice(0, 3), 0.35, 0.7];
+			tr["kepler-triangle-even"] = rgbToArray("rgb(120, 74, 237)", 0.35, 0.7);
 		
-			//P2
-			tr.areaDescriptionAccelerated = rgbToArray("rgb(120, 90, 82)", 1); //Description of areas triangle P2 proof tab
+			//Prop 2 corollaries
+			tr.deviationAreaColor = rgbToArray("rgb(169, 85, 90)"); //Description of areas triangle P2 proof tab
 		}
 
 		function setL20andL21Colors() {
@@ -223,7 +211,7 @@
 			tr.coreHalfOpacity     = [255, 150, 0, 0.5];
 			tr.aux                 = rgbToArray("rgb(255, 0, 255)");
 			tr.constructors        = rgbToArray("rgb(0, 0, 255)");
-			tr.ellipse             = rgbToArray("rgb(0, 150, 0)");
+			tr.ellipse             = tr.bodyColor;
 		}
 
 		function setProp41Colors() {
