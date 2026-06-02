@@ -11,7 +11,6 @@
     ///****************************************************
     function model_upcreate()
     {
-        //console.log('model_upcreate');
         stdMod.builds_force_plusQ_minusQ_and_related();
         const q2xy = stdMod.q2xy;
         var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
@@ -24,12 +23,11 @@
         rg.Q.pos[0] = Qpos[0];
         rg.Q.pos[1] = Qpos[1];
 
-        //TEMP Don't forget to comment out later
         // for debugging
-        const angleSP = Math.atan2( rr0[1] - rrc[1], rr0[0] - rrc[0] );
-        const angleSQ = Math.atan2( Qpos[1] - rrc[1], Qpos[0] - rrc[0] );
-        const anglePSQ = angleSQ - angleSP;
-        console.log( 'Angle PSQ: ' + (anglePSQ * 180 / Math.PI).toFixed(2) + ' degrees' );
+        // const angleSP = Math.atan2( rr0[1] - rrc[1], rr0[0] - rrc[0] );
+        // const angleSQ = Math.atan2( Qpos[1] - rrc[1], Qpos[0] - rrc[0] );
+        // const anglePSQ = angleSQ - angleSP;
+        // console.log( 'Angle PSQ: ' + (anglePSQ * 180 / Math.PI).toFixed(2) + ' degrees' );
 
         // **api-input---plane-curve-derivatives
         var {

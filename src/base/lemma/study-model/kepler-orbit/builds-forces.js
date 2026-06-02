@@ -43,7 +43,7 @@
                 break;
             case sData.ULTIM_ACTUAL:
                 var Dt = 0;
-                var Dq = sconf.DQ_SLIDER_MIN;
+                var Dq = 0;
                 break;
         }
         for( let qix=0; qix<=Q_STEPS; qix++ ) {

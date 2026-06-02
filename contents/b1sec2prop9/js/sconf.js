@@ -87,15 +87,10 @@
         //-------------------------------------------
         const FT = sconf.TIME_IS_FREE_VARIABLE = false; //vs q is free variable
         sconf.CURVE_REVOLVES = false; //true for cyclic orbit
-        //TEMP The following value may need to be adjusted.
         sconf.DQ_SLIDER_MAX = FT ? null : 0.69;
-        //TEMP Should the following line be removed?
-        sconf.DQ_SLIDER_MIN = FT ? null : 0.0001;
         sconf.DT_SLIDER_MAX = FT ? 0.32 : null;
         var Q_STEPS = 1000;
         var DATA_GRAPH_STEPS = 200;
-        //TEMP Added the following line to test adjusting how the curves on the
-        //graph are scaled.
         sconf.IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX = true;
         //-------------------------------------------
         // \\// calculation algo parameters

@@ -2,7 +2,7 @@
 ///for dq and body in
 ///models in propopositions 6-17 in Principia
 ( function() {
-    var { sn, ssD, sData, stdMod, sconf, rg, } = window.b$l.apptree({ 
+    var { sn, ssD, stdMod, sconf, rg, } = window.b$l.apptree({
         stdModExportList : {
             creates_Q8P_sliders,
             creates_A_slider,
@@ -72,14 +72,15 @@
                 const qP = qIndexToOrbit[ Pqix ].q;
                 let Dq = qQ - qP;
                 if( sconf.CURVE_REVOLVES ){
-                    //TEMP The following needs further adjustments
-                    if( Dq<0 ) {
-                        ////the point P crossed start of the coninc,
-                        ////usually point A and point q(Q) became less than q(P),
-                        ////this line adjusts Da by using "cycled a change",
-                        ////where q period is sconf.curveQRange,
-                        Dq = (Dq + sconf.curveQRange ) % sconf.curveQRange;
-                    }
+                    //todo
+                    console.error(
+                        `At the time of writing this no models "revolve" ` +
+                        `when q is the free variable, therefore this code ` +
+                        `needs to be updated if that changes.  It will ` +
+                        `likely need to be setup similar to the code when ` +
+                        `time is the free variable, by wrapping Dq around ` +
+                        `when needed.`
+                    );
                 }
 
                 //Clamp as needed
