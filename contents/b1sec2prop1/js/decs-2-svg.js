@@ -19,8 +19,6 @@
         rgPos2rgMedia = ssF.rgPos2rgMedia;
     }
 
-	// TODO: check if following block helpful
-    ///ssF.rgPos2rgMedia = pos2pointy; //modifies svg-dom
     function SAvV_model__2__svg()
     {
         //==========================================
@@ -63,22 +61,6 @@
         );
         //-------------------------------------------------
         // \\// updates medpos and svg el for point V to slide
-        //-------------------------------------------------
-
-        //-------------------------------------------------
-        // //\\ paints first radius
-        //-------------------------------------------------
-        pivots_2_svgLineInRg(
-            'radiusToFirstPoint',
-            [ rg.S, rg.A ], //pivots,
-            {
-                stroke:'black',
-                'stroke-width':1,
-                tpclass : 'bodyColor',
-             }
-        );
-        //-------------------------------------------------
-        // \\// paints first radius
         //-------------------------------------------------
     }
 })();

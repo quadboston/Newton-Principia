@@ -2,93 +2,14 @@
 	var ns	= window.b$l;
 
     //reg. ex for string aka rgba(4,4,4,0.1) to array
-    var rgba2arr_re = new RegExp( 
-        '^rgba\\(\\s*' +
-        '(\\d+)\\s*,\\s*' +
-        '(\\d+)\\s*,\\s*' +
-        '(\\d+)\\s*,\\s*' +
-        '((?:\\d|\\.)+)\\s*\\)',
-        'i'
-    );
-    ns.builds_zebraNColors_array = builds_zebraNColors_array;
     ns.hslo_2_rgba_low8high = hslo_2_rgba_low8high;
-    ns.rgbStr2digitsArray = rgbStr2digitsArray;
 
-
-    ns.rgba2arr = function( rgbastr )
-    {
-        var cmatch = rgbastr.match( rgba2arr_re );
-        var rr = parseInt(cmatch[1]);
-        var gg = parseInt(cmatch[2]);
-        var bb = parseInt(cmatch[3]);
-        var aa = parseFloat(cmatch[4]);
-        return [ rr,gg,bb,aa ];
-    };
-
-
-    // //\\ some proofreading 
-    var str2rgb_re = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
-    ns.rgbstr2hsl = function( rgbstr )
-    {
-        var cmatch = rgbstr.match( str2rgb_re );
-        var rr = parseInt(cmatch[1], 16);
-        var gg = parseInt(cmatch[2], 16);
-        var bb = parseInt(cmatch[3], 16);
-        //c onsole.log( rr, gg, bb );
-        var hsl = ns.rgb2hsl( rr, gg, bb );
-        return [ hsl[0] * 360, hsl[1] * 100, hsl[2] * 100 ];
-    };
-
-    ns.rgbstr2colors = function( rgbstr, opacity )
-    {
-        var hsl = ns.rgbstr2hsl;
-        //c onsole.log( hsl );
-        return ns.pars2colors( hsl[0], hsl[1], hsl[2], opacity );
-    };
-    // \\// some proofreading 
-
-    ///decreases or increases LIGHTNESS
-    ///Input: darknessFactor: the smaller, the darker
-    ns.darkefyColor = function( hsl, darknessFactor )
-    {
-        var darkefied = Math.min( 100, hsl[2]*darknessFactor);
-        return [ hsl[0], hsl[1], darkefied ];
-    };
-
-
-
-    ///Input:
-    ///         rgbArray - is normalized (aka [ 1, 0.3, 0 ]) or based256 (aka [255,75,0]),
-    ///         based256 - optional
-    ///Output:  { string:'#...', normalized:[...] };
-    ns.rgb2str8norm = function( rgbArray, based256 )
-    {
-        var colors = { string:'#', normalized:[] };
-        rgbArray.forEach( function( co, ix ) {
-            var co256 = based256 ? co : Math.min( 255, Math.floor(co*256) );
-            var coNorm = based256 ? co/256 : co;
-            //c cc( 'input ' + co + ' co256=' + co256 + ' coNorm=' + coNorm  );
-            colors.normalized[ix] = coNorm;
-            var extra = '00' + co256.toString(16);
-            var extra = extra.substring(extra.length-2,extra.length);
-            //c cc( 'extra ' + extra )
-            colors.string += extra;
-        });
-        return colors;
-    };
-    ns.rgb_2_str8norm = ns.rgb2str8norm;
 
     //api:arg = [r,g,b,a ]
     ns.rgbaArr2hsla = function( arg ) {
         var hsl = ns.rgb2hsl( arg[0],arg[1],arg[2] );
         return [ 355.99*hsl[0], 99.999*hsl[1], 99.999*hsl[2], arg[3], arg[4] ];
     };
-
-    ///not tested
-    ns.rgba2colors = function( arg ) {
-        var hsl = ns.rgbaArr2hsla( arg );
-        return ns.pars2colors( hsl[0], hsl[1], hsl[2], arg[3], arg[4] );
-    }
 
     //was: function getRandomColor()
     ns.pars2colors = function( HUE, SATURATION, LIGHTNESS, OPACITY )
@@ -275,72 +196,11 @@
     return;
 
 
-
-
-
-
-    ///======================================================================
-    /// builds array of zebra-colors
-    ///     input: zebraNumber
-    ///                 range from 2 to integer N,
-    ///                 is a number of color-wheel segments for neighbour
-    ///                 colors for providing zebra-N effect,
-    ///                 "classic"-binary-zebra obtains with N=2,
-    ///     output: zebraNcolorsArray with lenght >= maxColors,
-    ///======================================================================
-    function builds_zebraNColors_array({ //with low8high signature
-        maxColors,
-        SATUR,
-        LIGHT,
-        OPACITY,
-        zebraNumber,
-        monoColorHue, //optional, makes zebra via lightness, not via colors
-    }) {
-        zebraNumber     = zebraNumber || 2;
-        var zCols       = [];
-        var moldsMax    = Math.ceil( maxColors / zebraNumber );
-        var zebraJump   = 359.999 / zebraNumber;
-        var moldStep    = zebraJump / moldsMax;
-        var count = 0;
-
-        for( var modlIx=0; modlIx < moldsMax; modlIx++ )
-        {
-            if( count === maxColors) break;
-            for( var remIx = 0; remIx < zebraNumber; remIx++ )
-            {
-                if( count === maxColors) break;
-                var hue = monoColorHue ? monoColorHue : zebraJump * remIx + moldStep * modlIx;
-                //ccc( count, modlIx, 'rem='+remIx, hue )
-
-                //was a protection: hue = hue % 360;    //othewise "grey colors" may appear
-
-                //returns high opacity = 1:
-                var lh = hslo_2_rgba_low8high(
-                    hue,
-                    SATUR,
-
-                    //monoColorHue ? LIGHT / ( remIx + 1 ) : LIGHT,
-                    monoColorHue ? (99-LIGHT) * remIx / zebraNumber + LIGHT : LIGHT,
-
-                    //is opacity always in use?
-                    //monoColorHue ? OPACITY / ( remIx + 1 ) : OPACITY,
-
-                    OPACITY,
-                );
-                zCols.push( lh );
-                count++;
-            }
-        }
-        //ccc( 'compl=' + count );
-        return zCols;
-    }
-
     ///creates twin-colors: argument lowOpacity goes to rgba_low,
     ///        highOpacity goes to rgba_high,
     function hslo_2_rgba_low8high( hue, sat, light, lowOpacity, highOpacity )
     {
         highOpacity = typeof highOpacity === 'undefined' ? 1 : highOpacity;
-        //ns.pars2colors = function( HUE, SATURATION, LIGHTNESS, OPACITY )
         var corRack     = ns.pars2colors( hue, sat, light, lowOpacity );
         let rgb         = corRack.rgb;
         let rgba_low    = corRack.rgba;
@@ -348,23 +208,4 @@
         let rgba_high   = corRack.rgba;
         return { rgb, rgba_low, rgba_high, lowOpacity, highOpacity }; 
     }
-
-    ///Inputs:      rgbStr, aka #FFFFFF or FFFFFF,
-    ///         optionals:
-    ///             normalize, if truthy, then r,g,b are divided to 255,  
-    function rgbStr2digitsArray( rgbStr, normalize )
-    {
-        rgbStr = rgbStr.replace('#','');
-        var r = parseInt( rgbStr.substring(0,2), 16 );
-        var g = parseInt( rgbStr.substring(2,4), 16 );
-        var b = parseInt( rgbStr.substring(4,6), 16 );
-        if( normalize ) {
-            r = Math.min( r/255, 1 );
-            g = Math.min( g/255, 1 );
-            b = Math.min( b/255, 1 );
-        }
-        return [ r, g, b ];
-    }
-
 }) ();
-

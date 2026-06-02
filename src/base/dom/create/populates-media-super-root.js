@@ -1,7 +1,6 @@
 ( function() {
     var {
-        ns, $$, cssp, eachprop, has,
-        sn, haff,
+        ns, $$, cssp, has,
         fapp, fconf, sconf,
         fmethods,
         sDomF, sDomN,
@@ -19,18 +18,11 @@
     return;
 
 
-
-
-
-
-
-
     //=========================================================
     /// create LemmaDom
     //=========================================================
     function populate_mediaSuperRoot( bgImagesAreLoaded_cb )
     {
-
         //--------------------------
         // //\\ top media controls
         //--------------------------
@@ -42,8 +34,6 @@
             .addClass( 'help-box' )
             .to( topMediaControls$() )
             ;
-
-
 
         //..........................
         // //\\ change-tools button
@@ -196,7 +186,6 @@
     }
 
 
-
     function cre__medRootDetails( bgImagesAreLoaded_cb )
     {
         createsMediaRoot( bgImagesAreLoaded_cb );
@@ -208,7 +197,6 @@
         //..............................
         // //\\ study image and submodel
         //..............................
-        var images = {};
         //top mode CSS: bsl-approot logic_phase--claim aspect--video
         var imgCss = 'bsl-bg-image';
 
@@ -221,7 +209,7 @@
         //todo img load scenarios: remove timeout from load/resize ...
         ns.eachprop( exegs, ( theor, tkey ) => {
             ns.eachprop( theor, ( exAspect, akey ) => {
-                exAspect.subexegs.forEach( ( subexeg, exegId ) => {
+                exAspect.subexegs.forEach( (  ) => {
                     ///============================================================
                     /// does images and CSS-visibility-machine for root of subexeg,
                     ///      meaningly: only for first subexeg,
@@ -277,6 +265,4 @@
         //.disabled ... effect is too strong
         //std Mod.mmedia$.e( 'mouseover', sDomF.detected_user_interaction_effect );
     }
-
 }) ();
-

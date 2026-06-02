@@ -11,11 +11,10 @@
 
 ( function() {
     var {
-        ns, sn, $$, haff,
-        eachprop, haz,
+        ns, $$, haff,
+        haz,
         sconf, fconf,
-        fapp, sapp,
-        fmethods,
+        fapp, 
         ssF,
         sDomF, sDomN,
         stdMod, amode,
@@ -31,8 +30,6 @@
           addsChosenCSSCls_to_subessay8menuSubitem;
     sDomF.build_menu_top_leafs_placeholders =
           build_menu_top_leafs_placeholders;
-    sDomF.tellActivityEngine_that_userStartedSubessay =
-          tellActivityEngine_that_userStartedSubessay;
     return;
 
 
@@ -146,11 +143,9 @@
     {
         var scat_id     = leafRk.scat_id;   //sub category: logic_phase or aspect
         var mcat_id     = leafRk.mcat_id;   //main category: logic_phase or aspect
-        var mitemIx     = leafRk.ix;
         var caption     = leafRk.caption;
         var studylab    = leafRk.studylab;
         var teaf$       = leafRk.teaf$;
-        var decorOfShuttle$ = leafRk.decorOfShuttle$;
 
         //--------------------------
         // //\\ fluid-html part
@@ -187,7 +182,7 @@
             .dct( 'litem litem-'+leafRk.ix, teaf$ )
             .e('mouseover', ()=>{ decor$.addClass( 'hovered' ) })
             .e('mouseleave', ()=>{ decor$.removeClass( 'hovered' ) })
-            .e('click', function( event ) {
+            .e('click', function( ) {
                 //console.log(leafRk.mcat_id + ' ' + leafRk.scat_id);
                 let update = updateURL(leafRk.mcat_id, leafRk.scat_id)
                 if( update && (mcat_id !== 'logic_phase' || !fconf.logic_phaseTab_nonClickable) ) {
@@ -451,36 +446,4 @@
             subexeg.subessayMenuItem$.addClass( 'subexeg-toggler-chosen' );
         }
     }
-
-
-    function tellActivityEngine_that_userStartedSubessay()
-    {
-        ////real human acted on app,
-        ////because of this, human activity state-machines are being
-        ////informed in this block,
-        eachprop( exegs[ amode.logic_phase ][ amode.aspect ].subessay2subexeg,
-                  (subessayRack, sname) => {
-
-            ///this is flag of presense of activity-script for this subessay
-            if( haz( subessayRack, 'stateId2state' ) ) {
-
-                if( amode.subessay === sname ) {
-                    return;
-                }
-                //sibling activities begin aware that current activity is started
-                ssF.executesTopicScenario( 'sibling-activity-start', sname );
-            }
-        });
-
-        var subessayRack =
-            exegs[ amode.logic_phase ][ amode.aspect ].subessay2subexeg[ amode.subessay ];
-        if( haz( subessayRack, 'stateId2state' ) ) {
-            ////adds state "start" to avoid entering the state machine in ambiguous state
-            ////in plain words, every "user click" is "start over"
-            subessayRack.scenario_stateId = 'start';
-            ssF.executesTopicScenario( 'start' );
-        }
-    }
-
 }) ();
-

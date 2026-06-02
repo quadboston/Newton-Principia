@@ -124,7 +124,7 @@
                 subessayRack.scenario_stateId = 'start';
                 //user activity in every subessay becomes aware about
                 //beginning of the lesson
-                ssF.executesTopicScenario( 'lesson-start', sname );
+                // ssF.executesTopicScenario( 'lesson-start', sname );
             }
         });
         //=======================================================
