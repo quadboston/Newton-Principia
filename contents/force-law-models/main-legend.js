@@ -26,7 +26,7 @@ function create_digital_legend_for_logic_phase( logic_phase )
 	var clustersCount   = legendScriptParsed[0].length;
 
 	ssF.createLogic_phaseLegend({
-		tableCaption    : '',
+		tableCaption    : 'Δt',
 		noTableTitle    : true,
 		stdMod_given    : stdMod,
 		logic_phase,

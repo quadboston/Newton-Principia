@@ -128,7 +128,8 @@
             estimatedForce,
             curvature,
 			sunColor,
-			proofHover
+			proofHover,
+			dtime,
         } = topicColors_repo;
 
 
@@ -144,6 +145,7 @@
             forceColor,
             tangentCircle : curvature,
 			force : forceColor,
+			dtime,
         };
         //-----------------------------------
         // \\// topic group colors,

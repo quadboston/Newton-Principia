@@ -149,6 +149,7 @@
             hidden,
             curvature,
 			sunColor,
+			dtime,
         } = topicColors_repo;
 
         var topicColors_elected =
@@ -162,6 +163,7 @@
             orbit               : orbit,
             orbitdq             : orbit,
             force: forceColor,
+			dtime,
         };
         //-----------------------------------
         // \\// topic group colors,

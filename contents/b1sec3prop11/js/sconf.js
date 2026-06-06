@@ -141,6 +141,7 @@
             estimatedForce,
             curvature,
             sunColor,
+			dtime,
         } = topicColors_repo;
 
 
@@ -154,6 +155,7 @@
             body,
             orbit,
             force : forceColor,
+			dtime,
         };
         //-----------------------------------
         // \\// topic group colors,
