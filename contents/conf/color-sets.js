@@ -70,7 +70,7 @@
 		tr.forceColor       = rgbToArray("rgb(149, 70, 24)");
         tr.estimatedForceColor  = rgbToArray("rgb(211, 87, 254)");
 		tr.invalidColor     = rgbToArray("rgb(255, 0, 0)");  //alert, invalid user actions
-		tr.infoColor = rgbToArray("rgb(98, 109, 126)");
+		tr.infoColor = rgbToArray("rgb(108, 129, 146)");
 		tr.bodyColor        = rgbToArray("rgb(50, 149, 191)"),
 		tr.body2Color       = rgbToArray("rgb(205, 103, 54)");//rgbToArray("rgb(255, 149, 111)"),
 

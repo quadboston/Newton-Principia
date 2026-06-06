@@ -1,8 +1,9 @@
 # Change Log
 
-## 2026-6-3 (0.9.3)
+## 2026-6-6 (0.9.3)
 ### Changed
-* Modified colors
+* Modified color palette so that propositions 1 and 2 are more consistent with other models
+* Propositions 9 - 13 show Δt
 
 ## 2026-5-27 (0.9.2)
 ### Improved
