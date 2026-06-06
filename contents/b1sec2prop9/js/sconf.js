@@ -1,4 +1,3 @@
-
 ( function() {
     var { ns, fconf, sconf, topicColors_repo, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
@@ -133,6 +132,7 @@
             estimatedForce,
             curvature,
             sunColor,
+			dtime,
         } = topicColors_repo;
 
 
@@ -146,7 +146,8 @@
             body,
             orbit,
 			force : forceColor,
-            "arc-QP" : body
+            "arc-QP" : body,
+			dtime,
         };
         //-----------------------------------
         // \\// topic group colors,

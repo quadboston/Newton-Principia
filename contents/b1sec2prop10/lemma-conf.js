@@ -4,19 +4,19 @@
 
     function lemmaConfig()
     {
-        var sm = '../js/'; //study model path
         return {
             codesList :
             [
                 //todm: automate this list
-                { src: sm + 'sconf.js' },
-                { src: sm + 'config-functions.js' },
-                { src: sm + 'init-model-parameters.js' },
-                { src: sm + 'model-upcreate.js' },
-                { src: sm + 'media-upcreate.js' },
-                { src: sm + 'main-legend.js' },
-                { src: sm + 'amode8captures.js' },
-                { src: sm + 'graph-customization.js' },
+                { src: 'sconf.js' },
+                { src: 'config-functions.js' },
+                { src: 'init-model-parameters.js' },
+                { src: 'model-upcreate.js' },
+                { src: 'media-upcreate.js' },
+                { src: 'main-legend.js' },
+                { src: 'amode8captures.js' },
+                { src: 'graph-customization.js' },
+				{ src: '../../force-law-models/main-legend.js' },
             ],
             "contents-list" :
             [
@@ -25,6 +25,4 @@
             ],
         };
     }
-
 }) ();
-

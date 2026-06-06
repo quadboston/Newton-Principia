@@ -28,7 +28,7 @@ of the ¦orbit¦ellipse¦¦ in ¦E¦¦ and the ordinate ¦Qv¦Q𝑣¦¦ in ¦x¦
 line ¦HI¦¦ is drawn parallel to ¦EC¦¦ from the other focus ¦H¦¦ of the ¦orbit¦ellipse¦¦, ¦ES¦¦
 and ¦EI¦¦ are equal because ¦CS¦¦ and ¦CH¦¦ are equal; so that ¦EP¦¦ is the half-sum
 of ¦SP¦PS¦¦ and ¦PI¦¦, that is (because ¦HI¦¦ and ¦PR¦¦ are parallel and angles ¦PI PR¦IPR¦¦ and
-¦PH P,Zminus¦HPZ¦¦ are equal), the half-sum of ¦SP¦PS¦¦ and ¦PH¦¦ (which taken together equal
+¦PH PZ¦HPZ¦¦ are equal), the half-sum of ¦SP¦PS¦¦ and ¦PH¦¦ (which taken together equal
 the whole axis 2¦AC¦¦). Drop ¦QT¦¦ perpendicular to ¦SP¦¦, and if ¦L,LL¦L¦¦ denotes the
 principal ¦L,LL¦latus rectum¦¦ of the ¦orbit¦ellipse¦¦ 
 

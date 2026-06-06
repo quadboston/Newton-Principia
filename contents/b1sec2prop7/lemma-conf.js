@@ -2,32 +2,29 @@
     window.b$l.apptree({}).fapp.lemmaConfig = lemmaConfig;    
     return;
 
+	
     function lemmaConfig()
     {
-        var sm = '../js/'; //study model path
         return {
             codesList :
             [
                 //todm: automate this list
-                { src: sm + 'sconf.js' },
-                { src: sm + 'init-model-parameters.js' },
-                { src: sm + 'model-upcreate.js' },
-                { src: sm + 'completes-sliders-creation.js' },
-                { src: sm + 'media-upcreate.js' },
-                { src: sm + 'main-legend.js' },
-                { src: sm + 'amode8captures.js' },
-                { src: sm + 'state-capturer.js' },
-                { src: sm + 'config-functions.js' },
+                { src: 'sconf.js' },
+                { src: 'init-model-parameters.js' },
+                { src: 'model-upcreate.js' },
+                { src: 'completes-sliders-creation.js' },
+                { src: 'media-upcreate.js' },
+                { src: 'main-legend.js' },
+                { src: 'amode8captures.js' },
+                { src: 'state-capturer.js' },
+                { src: 'config-functions.js' },
+				{ src: '../../force-law-models/main-legend.js' },
             ],
             "contents-list" :
             [
                 'txt/latin.txt',
                 'txt/cohen.txt',
             ],
-            //optional additional reference html
-            referencesForAllLemmaEssays : '',
         };
     }
-
 }) ();
-
