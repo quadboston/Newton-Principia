@@ -133,6 +133,7 @@
             estimatedForce,
             curvature,
             sunColor,
+			dtime,
         } = topicColors_repo;
 
 
@@ -146,7 +147,8 @@
             body,
             orbit,
 			force : forceColor,
-            "arc-QP" : body
+            "arc-QP" : body,
+			dtime,
         };
         //-----------------------------------
         // \\// topic group colors,
