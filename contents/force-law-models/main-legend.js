@@ -3,7 +3,6 @@ function create_Δt_legend()
 	var { ssF, stdMod, } = window.b$l.apptree({stdModExportList : {}});
 	this.ssF = ssF;
 	this.stdMod = stdMod;
-
 	create_digital_legend_for_logic_phase( 'claim' );
 	create_digital_legend_for_logic_phase( 'proof' );
 	create_digital_legend_for_logic_phase( 'corollary' );
