@@ -362,15 +362,11 @@
 			}, },
 
             { 'P,Zminus' : { pcolor : proof,
-				cssClass: 'logic_phase--proof',
+				cssClass: 'subessay--solution',
 			 }, },
             { 'PZ' : { pcolor : proof,
-				cssClass: 'logic_phase--proof',
+				cssClass: 'subessay--solution',
 			 }, },
-            { 'ZR' : { pcolor : proof,
-				cssClass: 'logic_phase--proof',
-			 }, },
-
             { 'PR' : { pcolor : proof,
 				cssClass: 'logic_phase--proof',
 			 }, },
