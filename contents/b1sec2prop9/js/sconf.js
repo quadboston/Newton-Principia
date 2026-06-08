@@ -226,7 +226,7 @@
 				cssClass:'subessay--another-solution',}, },
             { 'PY' : { pcolor : given }, },
             { 'PR' : { pcolor : givenHover,
-				cssClass:'subessay--another-solution',}, },
+				cssClass:'subessay--solution',}, },
             { 'SY' : { pcolor : proof,
 				cssClass:'subessay--another-solution',}, },
             { 'QR' : { pcolor : estimatedForce,

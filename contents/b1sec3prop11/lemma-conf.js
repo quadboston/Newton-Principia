@@ -16,7 +16,6 @@
                 { src: 'state-capturer.js' },
                 { src: 'model-upcreate.js' },
                 { src: 'media-upcreate.js' },
-                { src: 'main-legend.js' },
 				{ src: '../../force-law-models/main-legend.js' },
             ],
             "contents-list" :
