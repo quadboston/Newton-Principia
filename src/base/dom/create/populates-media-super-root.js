@@ -8,10 +8,7 @@
         ssF,
         stdMod, rg,
         exegs, rgtools,
-    } = window.b$l.apptree({
-    });
-
-
+    } = window.b$l.apptree({});
     fmethods.populate_mediaSuperRoot = populate_mediaSuperRoot;
     fmethods.cre__medRootDetails = cre__medRootDetails;
     var actuallyLoaded = 0;

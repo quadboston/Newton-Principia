@@ -1,4 +1,3 @@
-
 ( function() {
     var { ns, fconf, sconf, topicColors_repo, } = 
         window.b$l.apptree({  ssFExportList : { init_conf } });
@@ -142,6 +141,7 @@
             estimatedForce,
             curvature,
             sunColor,
+			dtime,
         } = topicColors_repo;
 
 
@@ -155,6 +155,7 @@
             body,
             orbit,
             force : forceColor,
+			dtime,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -362,15 +363,11 @@
 			}, },
 
             { 'P,Zminus' : { pcolor : proof,
-				cssClass: 'logic_phase--proof',
+				cssClass: 'subessay--solution',
 			 }, },
             { 'PZ' : { pcolor : proof,
-				cssClass: 'logic_phase--proof',
+				cssClass: 'subessay--solution',
 			 }, },
-            { 'ZR' : { pcolor : proof,
-				cssClass: 'logic_phase--proof',
-			 }, },
-
             { 'PR' : { pcolor : proof,
 				cssClass: 'logic_phase--proof',
 			 }, },

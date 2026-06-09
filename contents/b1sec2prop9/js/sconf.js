@@ -1,4 +1,3 @@
-
 ( function() {
     var { ns, fconf, sconf, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
@@ -133,6 +132,7 @@
             estimatedForce,
             curvature,
             sunColor,
+			dtime,
         } = topicColors_repo;
 
 
@@ -146,7 +146,8 @@
             body,
             orbit,
 			force : forceColor,
-            "arc-QP" : body
+            "arc-QP" : body,
+			dtime,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -225,7 +226,7 @@
 				cssClass:'subessay--another-solution',}, },
             { 'PY' : { pcolor : given }, },
             { 'PR' : { pcolor : givenHover,
-				cssClass:'subessay--another-solution',}, },
+				cssClass:'subessay--solution',}, },
             { 'SY' : { pcolor : proof,
 				cssClass:'subessay--another-solution',}, },
             { 'QR' : { pcolor : estimatedForce,
