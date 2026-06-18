@@ -1,5 +1,5 @@
 ( function() {
-    window.b$l.apptree({}).fapp.lemmaConfig = lemmaConfig;    
+    window.b$l.apptree({}).fapp.lemmaConfig = lemmaConfig;
     return;
 
 
@@ -16,7 +16,8 @@
                 { src: 'media-upcreate.js' },
                 { src: 'amode8captures.js' },
                 { src: 'state-capturer.js' },
-				{ src: '../../force-law-models/main-legend.js' },
+                //todo Data table temporarily hidden as Δt currently shows NaN
+				// { src: '../../force-law-models/main-legend.js' },
             ],
             "contents-list" :
             [

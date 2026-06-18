@@ -1,5 +1,11 @@
 # Change Log
 
+## 2026-6-18 (0.9.4)
+### Improved
+* Proposition 9:
+	* Q's range extends to P; actual and estimated plots converge
+	* fixed bug where Q, when being dragged clockwise, could stick, then jump
+
 ## 2026-6-6 (0.9.3)
 ### Changed
 * Modified color palette so that propositions 1 and 2 are more consistent with other models

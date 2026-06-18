@@ -2,7 +2,7 @@
 ///for dq and body in
 ///models in propopositions 6-17 in Principia
 ( function() {
-    var { sn, ssD, sData, stdMod, sconf, rg, } = window.b$l.apptree({ 
+    var { sn, ssD, stdMod, sconf, rg, } = window.b$l.apptree({
         stdModExportList : {
             creates_Q8P_sliders,
             creates_A_slider,
@@ -29,7 +29,6 @@
 
         /// point Q slider
         rg.Q.acceptPos = newPos => {
-            //console.log('moving Q');
             const Pqix = rg.P.qix;
             const Qqix = stdMod.gets_orbit_closest_point( newPos );
             if( sconf.TIME_IS_FREE_VARIABLE ){
@@ -68,35 +67,24 @@
                 //Clamp as needed
                 ssD.Dt = Math.max(Math.min(Dt, sconf.DT_SLIDER_MAX), 0);
 
-                //todo
-                //Temporarily keeping Dt check for P9, to prevent Q from being
-                //able to move anywhere along the orbit
-                if(sconf.sappId === "b1sec2prop9" &&
-                    (Dt < 0.05 ||
-                    sconf.DT_SLIDER_MAX <= Dt) ) return;
-
-                // Store PSQ to be used optionally in model-upcreate to maintain constant angle
-                const posPorb = qIndexToOrbit[ Pqix ].rr;
-                const posQorb = qIndexToOrbit[ Qqix ].rr;
-                const focusS = rg.S.pos;
-                const angleSP = Math.atan2( posPorb[1] - focusS[1], posPorb[0] - focusS[0] );
-                const angleSQ = Math.atan2( posQorb[1] - focusS[1], posQorb[0] - focusS[0] );
-                ssD.anglePSQ = angleSQ - angleSP;
             } else {
-                if( Qqix === Pqix ) return;
-                const q = qIndexToOrbit[ Qqix ].q;
-                let Dq = q - qIndexToOrbit[ Pqix ].q;
+                const qQ = qIndexToOrbit[ Qqix ].q;
+                const qP = qIndexToOrbit[ Pqix ].q;
+                let Dq = qQ - qP;
                 if( sconf.CURVE_REVOLVES ){
-                    if( Dq<0 ) {
-                        ////the point P crossed start of the coninc,
-                        ////usually point A and point q(Q) became less than q(P),
-                        ////this line adjusts Da by using "cycled a change",
-                        ////where q period is sconf.curveQRange,
-                        Dq = (Dq + sconf.curveQRange ) % sconf.curveQRange;
-                    }
+                    //todo
+                    console.error(
+                        `At the time of writing this no models "revolve" ` +
+                        `when q is the free variable, therefore this code ` +
+                        `needs to be updated if that changes.  It will ` +
+                        `likely need to be setup similar to the code when ` +
+                        `time is the free variable, by wrapping Dq around ` +
+                        `when needed.`
+                    );
                 }
-                if( Dq <=0  || Dq >= sconf.DQ_SLIDER_MAX ) return;
-                ssD.Dq = Dq;
+
+                //Clamp as needed
+                ssD.Dq = Math.max(Math.min(Dq, sconf.DQ_SLIDER_MAX), 0);
             }
             //:Dt or Dq changed
             stdMod.builds_force_plusQ_minusQ_and_related();

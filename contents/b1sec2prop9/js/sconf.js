@@ -1,5 +1,5 @@
 ( function() {
-    var { ns, fconf, sconf, topicColors_repo, } = 
+    var { ns, fconf, sconf, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -32,7 +32,7 @@
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
-        
+
         fconf.DRAGGER_TOLERANCE = 15; // distance where crosshair appears
 
         //--------------------------------------
@@ -84,17 +84,17 @@
         //-------------------------------------------
         // //\\ calculation algo parameters
         //-------------------------------------------
-        const FT = sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
+        const FT = sconf.TIME_IS_FREE_VARIABLE = false; //vs q is free variable
         sconf.CURVE_REVOLVES = false; //true for cyclic orbit
         sconf.DQ_SLIDER_MAX = FT ? null : 0.69;
-        sconf.DQ_SLIDER_MIN = FT ? null : 0.0001;
         sconf.DT_SLIDER_MAX = FT ? 0.32 : null;
         var Q_STEPS = 1000;
         var DATA_GRAPH_STEPS = 200;
+        sconf.IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX = true;
         //-------------------------------------------
         // \\// calculation algo parameters
         //-------------------------------------------
-        
+
         //-------------------------------------------
         // //\\ curve shape parameters
         //-------------------------------------------
@@ -109,9 +109,9 @@
         //intervals of dt or dq to construct an arc for estimated force
         //Sets initial distance of point Q from P
         if( FT ){
-            sconf.Dt0 = 0.3;
+            sconf.Dt0 = 0.25;
         } else {
-            sconf.Dq0 = 0.4;
+            sconf.Dq0 = 0.25;
         }
 
         //pos of P
