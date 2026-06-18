@@ -22,10 +22,10 @@ it is required to find the law of the centripetal
   "logic_phaseCaption" : "Solutions"
 }
 *..*
-Let ¦S¦¦ be a focus of the ¦orbit¦ellipse¦¦. Draw ¦SP¦¦ cutting both the diameter ¦DK¦¦
+Let ¦S¦¦ be a focus of the ¦orbit¦ellipse¦¦. Draw ¦SP¦¦ cutting both the diameter ¦CD CK¦DK¦¦
 of the ¦orbit¦ellipse¦¦ in ¦E¦¦ and the ordinate ¦Qv¦Q𝑣¦¦ in ¦x¦𝑥¦¦, and complete the parallelogram
 ¦Qx xP PR QR¦Q𝑥PR¦¦. It is evident that ¦EP¦¦ is equal to the semiaxis major ¦AC¦¦ because when
-line ¦HI¦¦ is drawn parallel to ¦EC¦¦ from the other focus ¦H¦¦ of the ¦orbit¦ellipse¦¦, ¦ES¦¦
+line ¦HI¦¦ is drawn parallel to ¦CE¦EC¦¦ from the other focus ¦H¦¦ of the ¦orbit¦ellipse¦¦, ¦ES¦¦
 and ¦EI¦¦ are equal because ¦CS¦¦ and ¦CH¦¦ are equal; so that ¦EP¦¦ is the half-sum
 of ¦SP¦PS¦¦ and ¦PI¦¦, that is (because ¦HI¦¦ and ¦PR¦¦ are parallel and angles ¦PI PR¦IPR¦¦ and
 ¦PH PZ¦HPZ¦¦ are equal), the half-sum of ¦SP¦PS¦¦ and ¦PH¦¦ (which taken together equal
@@ -48,20 +48,20 @@ as ¦QR¦¦ to ¦Pv¦P𝑣¦¦, that is, as ¦EP¦PE¦¦ or ¦AC¦¦ to ¦PC¦¦
 ¦L,LL¦L¦¦ × ¦Pv¦P𝑣¦¦ will be to ¦vG¦G𝑣¦¦ × ¦Pv¦𝑣P¦¦ as
 ¦L,LL¦L¦¦ to ¦vG¦G𝑣¦¦; and
  ¦vG¦G𝑣¦¦ × ¦Pv¦𝑣P¦¦ will be to ¦Qv¦Q𝑣¦¦²
- as ¦PC¦¦² to ¦DC¦CD¦¦²; and
+ as ¦PC¦¦² to ¦CD¦¦²; and
 (<a href="?conf=sappId=b1sec1lemma7,logic_phaseId=corollary,aspectId=english">by lem. 7, corol. 2</a>)
 the ratio of ¦Qv¦Q𝑣¦¦² to ¦Qx¦Q𝑥¦¦²,
 with the points ¦Q¦¦ and ¦P¦¦ coming together, is the
 ratio of equality; and ¦Qx¦Q𝑥¦¦² or ¦Qv¦Q𝑣¦¦² is to ¦QT¦¦² as ¦EP¦¦² to ¦PF¦¦²,
 that is, as ¦AC¦CA¦¦² to
-¦PF¦¦² or (by lem. 12) as ¦DC¦CD¦¦² to ¦BC¦CB¦¦².
+¦PF¦¦² or (by lem. 12) as ¦CD¦¦² to ¦BC¦CB¦¦².
 And when all these ratios are combined, ¦L,LL¦L¦¦ × ¦QR¦¦ will be to ¦QT¦¦²
  as ¦AC¦¦ × ¦L,LL¦L¦¦ × ¦PC¦¦²
- × ¦DC¦CD¦¦²
+ × ¦CD¦¦²
 , or as 2¦BC¦CB¦¦²
  × ¦PC¦¦²
- × ¦DC¦CD¦¦²
-to ¦PC¦¦ × ¦vG¦G𝑣¦¦ × ¦DC¦CD¦¦²
+ × ¦CD¦¦²
+to ¦PC¦¦ × ¦vG¦G𝑣¦¦ × ¦CD¦¦²
  × ¦BC¦CB¦¦²
 , or as 2¦PC¦¦ to ¦vG¦G𝑣¦¦. But with the points ¦Q¦¦ and ¦P¦¦
 coming together, 2¦PC¦¦ and ¦vG¦G𝑣¦¦ are equal. Therefore, ¦L,LL¦L¦¦ × ¦QR¦¦ and ¦QT¦¦², which
@@ -107,8 +107,8 @@ The ¦force¦¦ which tends toward ¦C¦the center¦¦ of ¦orbit¦the ellipse¦
 href="?conf=sappId=b1sec2prop10,logic_phaseId=corollary,aspectId=english,subessayId=corollary1">by 
 prop. 10, corol. 1</a>)
 as the distance ¦PC¦CP¦¦
-of the body from the ¦C¦center C¦¦ of the ¦orbit¦ellipse¦¦; hence, if ¦EC¦CE¦¦ is drawn parallel to
-the tangent ¦PR¦¦ of the ¦orbit¦ellipse¦¦ and if ¦EC¦CE¦¦ and ¦SP¦PS¦¦ meet at ¦E¦¦, then the force by
+of the body from the ¦C¦center C¦¦ of the ¦orbit¦ellipse¦¦; hence, if ¦CE¦¦ is drawn parallel to
+the tangent ¦PR¦¦ of the ¦orbit¦ellipse¦¦ and if ¦CE¦¦ and ¦SP¦PS¦¦ meet at ¦E¦¦, then the force by
 which the same ¦P¦body P¦¦ can revolve around any other ¦S¦point S¦¦ of the ¦orbit¦ellipse¦¦
 will
 (<a 
