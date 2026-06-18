@@ -1,22 +1,111 @@
 ///notations are from Prop6, cor. 5,
 ( function() {
-    var { mat, stdMod, sData, } = window.b$l.apptree({
-        stdModExportList : { calculateForce, }, });
+    var { mat, stdMod, sconf, ssD, sData, } = window.b$l.apptree({
+        stdModExportList : {
+            calculateForce,
+            calculateDqSubstituteActualForce,
+        }, });
+    ssD.DT_SUBSTITUTE_ACTUAL_FORCE = 0.0001;
     return;
+
+
+    function calculateDqSubstituteActualForce() {
+        //Convert DT_SUBSTITUTE_ACTUAL_FORCE to an equivalent Dq value
+
+        //For every possible position along the orbit (point P positions), the
+        //point where the substitution for each of them must occur can be
+        //calculated.  This is done by adding DT_SUBSTITUTE_ACTUAL_FORCE to the
+        //time at each point P position.  The delta between the q values at both
+        //those points can then be calculated.
+
+        //When dragging point P, Dq and the curves on the graph stay the same.
+        //Also note the delta q values calculated for the substitution, are
+        //usually different for each possible position of point P.  This means
+        //if the substitution must occur for even one possible position of point
+        //P, it must occur for all of them.  Therefore the equivalent Dq
+        //substitution value will be the maximum delta q value.
+
+        //Only run this function if q is the free variable
+        if (sconf.TIME_IS_FREE_VARIABLE)
+            return;
+
+        const Q_STEPS = sconf.Q_STEPS;
+        const qIndexToOrbit = ssD.qIndexToOrbit;
+
+        //Start at 0 because shouldn't be negative (distance between Q and P
+        //must be 0 or greater)
+        let delta_q_max = 0;
+
+        for(let qix=0; qix<=Q_STEPS; qix++) {
+            const bP = qIndexToOrbit[ qix ]; //body point data
+            const timeP = bP.timeAtQ;
+
+            const timeOffset = timeP + ssD.DT_SUBSTITUTE_ACTUAL_FORCE;
+            const qOffset = stdMod.convertTimeToQ(timeOffset);
+
+            if (qOffset != null) {
+                const qP = bP.q;
+                const delta_q = qOffset - qP;
+                delta_q_max = Math.max(delta_q_max, delta_q);
+            }
+        }
+
+        ssD.DqSubstituteActualForce = delta_q_max;
+
+
+        //todo
+        //Add models here that have been checked
+        switch(sconf.sappId) {
+            case "b1sec2prop9":
+                return;
+        }
+        console.warn(
+            "At the time of writing this, most models don't use q as the " +
+            "free variable.  Therefore if a model is switched to use it, the " +
+            "force substitution that occurs when Q is close to P, needs to " +
+            "be checked to ensure it works correctly."
+        );
+        //This can be checked by moving Q close to, and at P, for different
+        //arrangements (eg. drag point A to adjust the orbit, S to adjust the
+        //center of forces etc.).  Then check for issues such as the following:
+        //-Errors in the console
+        //-NaN data points for the estimated force curve
+        //-Jagged/noisy estimated force curve
+    }
 
 
     function calculateForce({
         parq, //orbit argument
         bP,   //orbit point P rack
-        DtCheckForSubstitution,
+        Dt,
+        Dq,
         ulitmacy,
     }) {
         //When Q is close to P, the estimated force calculation can have issues
         //such as noise.  Therefore if close enough substitute actual force to
         //prevent issues.
-        const substituteActualForce = (DtCheckForSubstitution < 0.0001);
+
+        let substituteActualForce = false;
+        if (!sconf.TIME_IS_FREE_VARIABLE) {
+            //"<=" not "<", because if both values are 0, the substitution
+            //should still occur
+            substituteActualForce = (Dq <= ssD.DqSubstituteActualForce);
+        } else {
+            substituteActualForce = (Dt <= ssD.DT_SUBSTITUTE_ACTUAL_FORCE);
+        }
 
         const isUlitmacyForActualForce = (ulitmacy === sData.ULTIM_ACTUAL);
+
+        // //Can be enabled temporarily for testing if needed
+        // if (bP.qix === 0 && !isUlitmacyForActualForce) {
+        //     const message = `substituteActualForce = ${substituteActualForce}`;
+        //     if (substituteActualForce) {
+        //         console.warn(message);
+        //     } else {
+        //         console.log(message);
+        //     }
+        // }
+
         return (isUlitmacyForActualForce || substituteActualForce) ?
             calculateActualForce({bP}) :
             calculateEstimatedForce({parq, bP});

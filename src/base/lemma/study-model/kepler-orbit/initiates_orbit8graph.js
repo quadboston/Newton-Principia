@@ -9,21 +9,21 @@
     const qIndexToOrbit = sn( 'qIndexToOrbit', ssD, [] );
     return;
 
-    
+
     function initiates_kepler_config() {
         sconf.pointDecoration.r = sconf.handleRadius;
         sconf.ro0SquaredDivide2 = sconf.ro0*sconf.ro0 / 2;
-    }    
-    
+    }
+
     function initiates_orbit8graph() {
         initiates_kepler_config();
         stdMod.graphFW_lemma = createGraph_FW_lemma({
                digramParentDom$:stdMod.legendRoot$ }, stdMod.customXLegend);
         stdMod.creates_createOrUpdateOrbit();
         stdMod.rebuilds_orbit(); // qIndexToOrbit populated here
-        
+
         stdMod.creates__gets_orbit_closest_point();
-        
+
         //:sets parameters of P
         rg.P.qix = Math.floor( sconf.parQ / sconf.delta_q_between_steps );
         var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
@@ -33,7 +33,7 @@
         rg.P.dragPriority = 10;
         rg.Q.dragPriority = 100;
         // \\// scenario: coincided P and Q: Q splits first
-        
+
         stdMod.creates_Q8P_sliders();
         if( rg.S.draggableX || rg.S.draggableY ) {
             stdMod.creates_S_slider();
@@ -54,7 +54,7 @@
 			return graphFW;
 		}
     }
-    
+
     function rebuilds_orbit() {
         const Q_STEPS = sconf.Q_STEPS;
 
@@ -66,11 +66,13 @@
         stdMod.recreates_q2xy();
         stdMod.buildsOrbit();
         stdMod.createOrUpdateOrbit();
-        if (sconf.TIME_IS_FREE_VARIABLE) {
-            const timeS = qIndexToOrbit[0].timeAtQ;
-            const timeE = qIndexToOrbit[Q_STEPS].timeAtQ;
-            ssD.timeRange = timeE - timeS;
-        }
+        const timeS = qIndexToOrbit[0].timeAtQ;
+        const timeE = qIndexToOrbit[Q_STEPS].timeAtQ;
+        //The following is needed for some models when q is the free variable
+        ssD.timeRange = timeE - timeS;
+
+        stdMod.calculateDqSubstituteActualForce();
+
         const prevDq = ssD.Dq;
         const prevDt = ssD.Dt;
         ssD.Dq = prevDq !== undefined ? prevDq : sconf.Dq0;
