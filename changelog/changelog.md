@@ -1,5 +1,10 @@
 # Change Log
 
+## 2026-6-18 (0.9.4)
+### Improved
+* Lemmas 6, 7:
+	* fixed bug where B jumped upon initial drag
+
 ## 2026-6-6 (0.9.3)
 ### Changed
 * Modified color palette so that propositions 1 and 2 are more consistent with other models
