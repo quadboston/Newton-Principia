@@ -2,6 +2,9 @@
 
 ## 2026-6-18 (0.9.4)
 ### Improved
+* Lemmas 6, 7:
+	* fixed bug where B jumped upon initial drag
+
 * Proposition 9:
 	* Q's range extends to P; actual and estimated plots converge
 	* fixed bug where Q, when being dragged clockwise, could stick, then jump

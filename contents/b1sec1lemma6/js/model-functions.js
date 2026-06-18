@@ -102,6 +102,59 @@
         ssD.repoConf.forEach( fun => {
             fun.fun = fun.fun.bind( fun );
         });
+        ssD.getUnrotatedParameterX = getUnrotatedParameterX;
+    }
+
+    /**
+     * Convert a rotated X coordinate back to the curve's unrotated parameter X
+     * Used to prevent point B from jumping on drag start
+     *
+     * Params:
+     * - rotatedX: accepted new x pos relative to mouse position
+     * - estimateX: current rg.B.unrotatedParameterX value
+     */
+    function getUnrotatedParameterX( rotatedX, estimateX ) {
+        var cfun = ssD.repoConf[ssD.repoConf.customFunction].fun;
+        var minX = sconf.NON_ZERO_A_PREVENTOR;
+        var maxX = rg.curveEnd.pos[0];
+        var targetX = rotatedX;
+
+        if( targetX <= minX ) {
+            return minX;
+        }
+        if( targetX >= cfun( maxX )[0] ) {
+            return maxX;
+        }
+
+        var left = Math.max( minX, estimateX - 0.2 );
+        var right = Math.min( maxX, estimateX + 0.2 );
+        var leftVal = cfun( left )[0] - targetX;
+        var rightVal = cfun( right )[0] - targetX;
+        if( leftVal * rightVal > 0 ) {
+            left = minX;
+            right = maxX;
+            leftVal = cfun( left )[0] - targetX;
+            rightVal = cfun( right )[0] - targetX;
+        }
+        if( leftVal * rightVal > 0 ) {
+            var cos = (rg.curveRotationAngle && rg.curveRotationAngle.cos) || 1;
+            return Math.max( minX, Math.min( maxX, targetX / cos ) );
+        }
+        for( var ix = 0; ix < 30; ix++ ) {
+            var mid = 0.5 * ( left + right );
+            var midVal = cfun( mid )[0] - targetX;
+            if( Math.abs( midVal ) < 1e-7 ) {
+                return mid;
+            }
+            if( leftVal * midVal <= 0 ) {
+                right = mid;
+                rightVal = midVal;
+            } else {
+                left = mid;
+                leftVal = midVal;
+            }
+        }
+        return 0.5 * ( left + right );
     }
     //=================================================
     // \\// configures curve
