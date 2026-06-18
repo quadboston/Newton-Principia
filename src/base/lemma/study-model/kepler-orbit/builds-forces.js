@@ -2,7 +2,10 @@
 ///which is calculated from time t and curve parameter q
 ( function() {
     var { sn, stdMod, sconf, ssD, sData, rg, } = window.b$l.apptree({
-        stdModExportList : { builds_force_plusQ_minusQ_and_related, }, });
+        stdModExportList : {
+            builds_force_plusQ_minusQ_and_related,
+            convertTimeToQ,
+        }, });
     sn( 'qIndexToOrbit', ssD, [] );
     sn( 'graphArray', stdMod, [] );
     sData.ULTIM_MAX = 2;
@@ -43,7 +46,7 @@
                 break;
             case sData.ULTIM_ACTUAL:
                 var Dt = 0;
-                var Dq = sconf.DQ_SLIDER_MIN;
+                var Dq = 0;
                 break;
         }
         for( let qix=0; qix<=Q_STEPS; qix++ ) {
@@ -64,13 +67,7 @@
                     const force = stdMod.calculateForce({
                         parq: plusQ,
                         bP,
-                        //todo
-                        //The following substitution is only setup to work when
-                        //time is the free variable.  At the time of writing
-                        //this no models use q as the free variable, therefore
-                        //this needs to be updated when a model is switched to
-                        //use q.
-                        // DtCheckForSubstitution: Dt,
+                        Dq,
                         ulitmacy,
                     });
                     switch (ulitmacy) {
@@ -117,7 +114,7 @@
                 const force = stdMod.calculateForce({
                     parq: plusQ,
                     bP,
-                    DtCheckForSubstitution: Dt,
+                    Dt,
                     ulitmacy,
                 });
                 switch (ulitmacy) {
