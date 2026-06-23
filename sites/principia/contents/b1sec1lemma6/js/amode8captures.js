@@ -1,0 +1,190 @@
+(function(){
+const {
+        sn, paste, capture, nspaste,
+        fconf, sconf, sDomF, ssD, ssF, globalCss, sData,
+        stdMod, amode, toreg, rg,
+    } = window.b$l.atree({ ssFList: {
+        amode2rgstate,
+}});
+///diff and Euclid tangents are equal
+const ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] = {
+    "angle": 0.10579,
+    "sin": 0.105602,
+    "cos": 0.99440
+};
+//this is Books origin, authentic N. drawing,
+//curveRotationAngle = 0,
+const ANGLE_AUTH = ssD.authenticOriginal_curveRotationAngle = {
+    "angle": 0,
+    "sin": 0,
+    "cos": 1
+};
+setCapture();
+return;
+
+
+function setCapture(){
+    paste( capture,
+    {
+        "reset-to-origin" : {
+                curveRotationAngle : Object.assign( ANGLE_AUTH ),
+                "media-mover": {
+                    "achievedtop": {
+                        "achieved": [
+                            140,
+                            61
+                        ]
+                    }
+                },
+                "B": {
+                        "unrotatedParameterX": 0.7745228215767634
+                }
+        },
+
+
+        "L-equal-d" :  {
+                curveRotationAngle : Object.assign( ANGLE_EQUALS ),
+                "B": {
+                        "unrotatedParameterX": 0.7745228215767634
+                }
+        },
+
+        "closer": {
+                "curveRotationAngle": Object.assign( ANGLE_AUTH ),
+                "B": {
+                        "unrotatedParameterX": 0.5658328716632559
+                }
+        },
+
+        "true-convergence-1": {
+                "curveRotationAngle": {
+                    "angle": 0.10579977792284677,
+                    "sin": 0.10560250842053673,
+                    "cos": 0.9944084222367038
+                },
+                "B": {
+                        "unrotatedParameterX": 0.5232929802797621
+                }
+        },
+
+        "meet": {
+                "curveRotationAngle": {
+                    "angle": 0.10579977792284677,
+                    "sin": 0.10560250842053673,
+                    "cos": 0.9944084222367038
+                },
+                "B": {
+                        "unrotatedParameterX": 0.001
+                }
+        },
+    });
+}
+
+function amode2rgstate( captured ){
+    var { logic_phase, aspect, subessay } = amode;
+    //----------------------------------
+    // //\\ common values
+    //----------------------------------
+    rg.A.undisplay              = false;
+    rg.B.undisplay              = false;
+    rg.AB.undisplay             = false;
+    rg[ 'arc-AB' ].undisplay    = false;
+
+    //idle?:
+    nspaste( rg.curveStart.pos, ssD.curveStartInitialPos );
+
+    nspaste( rg.curveEnd.pos, ssD.curveEndInitialPos );
+    ssD.repoConf.customFunction = 0;
+    rg.B.unrotatedParameterX = 1;
+    //----------------------------------
+    // \\// common values
+    //----------------------------------
+    sData[ 'proof-pop-up' ].dom$.css( 'display', 'none' );
+
+    //*****************************************************************************
+    // //\\ lemma 6
+    //*****************************************************************************
+    rg.L.doPaintPname = false;
+    captured = "reset-to-origin";
+    if( logic_phase === 'claim' ) {
+            captured = 'L-equal-d';
+    }
+    //nspaste( rg.curveStart.pos, [ -0.2, 0 ] );
+    nspaste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ] );
+    [
+        'curve-AB',
+        'left-curve-AB',
+        'arc-AB',
+        'AD',
+        'D',
+        'C',
+    ].forEach( gname => { rg[ gname ].undisplay = false; });
+    if(
+        logic_phase === 'proof' || logic_phase === 'claim'
+    ) {
+        [
+            'curve-AB',
+            'AD',
+        ].forEach( gname => { rg[ gname ].undisplay = false; });
+        rg.L.hideD8Dpoint   = false;
+    }
+
+    //below we do add points and lines which are absent in N. proof
+    if(
+        logic_phase === 'proof'
+    ) {
+        rg.L.hideCaption = true;
+        [
+            'AL',
+            'Ad',
+            'L',
+        ].forEach( gname => { rg[ gname ].undisplay = false; });
+    }
+
+    if(
+        ( logic_phase === 'proof' || logic_phase === 'claim' ) && aspect === 'model'
+    ) {
+        [
+            'arc-Ab',
+            'Ab',
+            'b',
+            'd',
+            'Ad',
+            'r',
+            'rd',
+            'dr',
+        ].forEach( gname => { rg[ gname ].undisplay = false; });
+
+        ///this still needs user action to replace Book's letters with
+        ///pop up app. letters
+        if( logic_phase === 'proof' ) {
+            rg.curveRotationAngle.angle = ANGLE_AUTH;
+            sDomF.shows_book_picture( !'show' );
+            rg.L.undisplay = false;
+            rg.L.hideCaption = false;
+            rg.L.doPaintPname = true;
+
+            ///shows differential tangent row in data table
+            globalCss.update( `
+                .main-legend.proof tr:nth-child(4)
+                {
+                    display : table-row;
+                }`,
+                'table-patch',
+            );
+
+        } else {
+            rg.L.undisplay = true;
+            rg.L.hideCaption = true;
+            rg.L.doPaintPname = false;
+        }
+    }
+    //*****************************************************************************
+    // \\// lemma 6
+    //*****************************************************************************
+
+    rg[ 'left-curve-AB' ].undisplay = aspect === 'model';
+    rg['A,DLeft'].undisplay = aspect === 'model';
+    return captured;
+}
+})();

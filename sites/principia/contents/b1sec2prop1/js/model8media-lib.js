@@ -1,0 +1,49 @@
+(function(){
+    var {
+        sn, haff, haz, nspaste, mat, nssvg,
+        sconf, sDomF, ssF, ssD, toreg, rg,
+        amode,
+    } = window.b$l.atree({
+        stdModList :
+        {
+            doesPosition_PTandTheirLine,
+            protects_curTime_ranges,
+        },
+    });
+    return;
+
+
+    ///returns protected time
+    function protects_curTime_ranges( ctime ){
+        let sl = rg['sl-rgid-time'];
+        ctime = ( ctime || ctime === 0 ) ? ctime : sl.curtime;
+        ctime = Math.min( ctime, sconf.timeRange * 0.999999 );
+        sl.curtime = ctime = Math.max(
+            ctime,
+            sconf.unitlessMinTime * rg['sl-rgid-dt'].val
+        );
+        return ctime;
+    }
+
+    ///points P and T do depend on time, so cannot be updated
+    ///in tr2decs subroutine
+    function doesPosition_PTandTheirLine (){
+        var st      = rg.stepIx.value;
+        var path    = rg.path.pos;
+        //Constrain the step value as follows.  Previously
+        //"if( st >= path.length -1 ) return;" was run however this caused an issue.
+        //The positions for the “perpendicular” and “rectilinear tangent” lines
+        //in P1 “Corollary 1”, didn't get updated when the time
+        //slider was at its maximum and the delta time slider was dragged to the left.
+        st = Math.min(st, path.length -1);
+
+        //perpendicular to unseen lines looks awkward
+        //st -= rg.substepIx < 2 ? 1 : 0;
+        var pos0    = path[ st-1 ];
+        var pos1    = path[ st ];
+        nspaste( rg.P.pos, mat.dropPerpendicular( rg.S.pos, pos0, pos1 ) );
+        nspaste( rg.T.pos, pos0 );
+        //rg.P.p is unit vector interface
+        rg.P.p = mat.p1_to_p2( rg.S.pos, rg.P.pos );
+    }
+})();

@@ -1,19 +1,34 @@
 #!/usr/bin/env php
 <?php
+    /*
 
+     Clones production fragments and files required
+     for production to the new folder
+        "$version-$siteid-prod$archive_postfix"
+     and zips it up.
+     Used after production fragments had been created,
+     and as a part II of deployment scenario.
+        // //\\ creates prod folder and populates it,
+        //      prod folder name is:
+        //      "$version-$siteid-prod$archive_postfix",
+        //      todm this cloning is hard coded for principia,
+        //      it shoul be variable instead,
+    */
     //=====================================================
     // //\\ makes helpers
     //=====================================================
-    function cli ( $command,
-                   $action_descr,
-                   $do_print_output = FALSE,
-                   $get_output = FALSE,
-                   $do_not_print_command = FALSE
-    ) {
+    function cli (
+        $command,
+        $action_descr,
+        $do_print_output = FALSE,
+        $get_output = FALSE,
+        $do_not_print_command = FALSE
+    ){
     	$res = array();
         $ret = exec( $command, $res, $retcode );
         if( $retcode . '' !== '0' ) {
-            printf( "\n$action_descr:\nproblems in command:\n$command\noutput=" ); 
+            printf( "\n$action_descr:\nproblems in command:" .
+                    "\n$command\noutput=" );
             print_r( $res );
             printf( "\n" );
             exit;
@@ -49,12 +64,6 @@
     // \\// makes helpers
     //=====================================================
 
-
-
-
-
-
-
     //=====================================================
     // //\\ does gets zippee name from cmd
     //=====================================================
@@ -63,7 +72,10 @@
         //too risky: $path_to_dir = '../../../vendor';
         exit( "missed version-project-folder and subsite ... terminating\n" );
     } else {
+        //this is a path to the root of an entire project suite,
+        //this is FW (main) root
         $path_to_dir = $argv[1];
+        echo "root dir: " . $path_to_dir;
         if( !is_dir( $path_to_dir ) )
         {
             exit( 'file ' . $path_to_dir . " does not exist\n" );
@@ -75,10 +87,6 @@
     // \\// does gets zippee name from cmd
     //=====================================================
 
-
-
-
-
     //=====================================================
     // //\\ validates path to zippee
     //=====================================================
@@ -87,20 +95,11 @@
     {
         exit( "\nproblems with target folder, path to it=\n$path_to_dir\n" );
     }
-    $folder_to_zip = $parsed[ 4 ];
-    print_r( "zipping folder\n$folder_to_zip\n" );
+    $folder_to_zip = $parsed[ 4 ]; //pathless name
+    print_r( "\nwe are zipping folder\n$folder_to_zip\n" );
     //=====================================================
     // \\// validates path to zippee
     //=====================================================
-
-
-
-
-
-
-
-
-
 
     //***********************************************************
     // //\\ goes inside zippee
@@ -108,7 +107,8 @@
     //***********************************************************
     $ww = chdir( $path_to_dir );
     if( $ww === FALSE ) {
-        exit( "\nCannot change directory to " . $path_to_dir . " ... Job aborted.\n" );
+        exit( "\nCannot change directory to " . $path_to_dir .
+              " ... Job aborted.\n" );
     }
     $zippee_full_path = exec( 'pwd' );
     //printf( "\ncurrent dir = $zippee_full_path\n" );
@@ -116,14 +116,10 @@
     // \\// goes inside zippee
     //***********************************************************
 
-
-
-
-
     //=====================================================
     // //\\ gets version
     //=====================================================
-    $path_to_version_file = "version.js";
+    $path_to_version_file = "changelog/local-version.js"; //"version.js";
     $list = glob( $path_to_version_file );
     if( count($list) < 1 ) exit( "version file \"$path_to_version_file\" is missed\n" );
 
@@ -131,7 +127,7 @@
     if( $js_text === FALSE ) exit( "js_text is missed\n" );
 
     //see $versionPattern below
-    $version_re = '#' . 
+    $version_re = '#' .
                         '\s*' .
                     'fapp.version' .
                         '\s*' .
@@ -146,8 +142,8 @@
                     'application version' .
                   '#';
     $matches = array();
-    //http://php.net/manual/en/function.preg-match.php    
-    $test = preg_match( 
+    //http://php.net/manual/en/function.preg-match.php
+    $test = preg_match(
             $version_re,
             $js_text,
             $matches
@@ -165,7 +161,7 @@
     $next_version = $version + 1;
     //echo "new version = $next_version\n";
     $versionPattern = "\n    fapp.version =  $next_version; //application version";
-    $new_content = preg_replace( 
+    $new_content = preg_replace(
             $version_re,
             $versionPattern,
             $js_text
@@ -176,10 +172,6 @@
     // \\// gets version
     //=====================================================
 
-
-
-
-
     //=====================================================
     // //\\ gets additional optional name
     //      from command line from user
@@ -188,7 +180,7 @@
     $postfix_len        = strlen( $archive_postfix );
     $archive_postfix    = $archive_postfix ? '-' .
                           $archive_postfix : '';
-    $archive_postfix    = preg_replace( 
+    $archive_postfix    = preg_replace(
                             '#\s+#',
                             '-',
                             $archive_postfix );
@@ -199,47 +191,40 @@
     //=====================================================
 
 
-
-
-
-
-
-
     //VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
     // //\\// begins making changes in file system
     //        exit;
     //VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 
     //=====================================================
-    // //\\ creates prod folder and populates it
+    // //\\ creates prod folder and populates it,
+    //      prod folder name is:
+    //      "$version-$siteid-prod$archive_postfix",
+    //      todm this cloning is hard coded for principia,
+    //      it shoul be variable instead,
     //=====================================================
     chdir( '..' );
-
-    //$name_of_copy = "$version-$folder_to_zip$archive_postfix";
     $name_of_copy = "$version-$siteid-prod$archive_postfix";
     //printf( 'name_of_copy=' . $name_of_copy . "\n" );
 
     cli( "rm -rf $name_of_copy", "removing former copy is exists", FALSE, FALSE, TRUE );
     cli( "mkdir $name_of_copy", "creating placeholder", FALSE, FALSE, TRUE );
 
-    cli( "mv $folder_to_zip/index.prod.html $name_of_copy", "cloning..", FALSE, FALSE, TRUE );
-    cli( "cp $folder_to_zip/sites/$siteid/favicon.ico $name_of_copy", "cloning..", FALSE, FALSE, TRUE );
+    cli( "mv $folder_to_zip/index.html $name_of_copy", "cloning..", FALSE, FALSE, TRUE );
     cli( "cp -R $folder_to_zip/engine-img $name_of_copy", "cloning..", FALSE, FALSE, TRUE );
     cli( "mv $folder_to_zip/prod $name_of_copy", "cloning..", FALSE, FALSE, TRUE );
+
+    //copying siteid with text contents
     cli( "mkdir $name_of_copy/sites", "creating placeholder", FALSE, FALSE, TRUE );
     cli( "mkdir $name_of_copy/sites/$siteid", "creating placeholder", FALSE, FALSE, TRUE );
+    // //\\ not all entities in siteid will be copied
+    cli( "cp $folder_to_zip/sites/$siteid/favicon.ico $name_of_copy", "cloning..", FALSE, FALSE, TRUE );
     cli( "cp -R $folder_to_zip/sites/$siteid/contents $name_of_copy/sites/$siteid", "cloning..", FALSE, FALSE, TRUE );
+    // \\// not all entities in siteid will be copied
 
-
-    //--------------------------------------------------------------
-    // //\\ plugins can be redundant, so in the future,
-    //--------------------------------------------------------------
-    // create "mechanizm" to selectively clone their children
-    cli( "mkdir $name_of_copy/src", "creating placeholder", FALSE, FALSE, TRUE );
-    cli( "cp -R $folder_to_zip/src/plugins $name_of_copy/src", "cloning..", FALSE, FALSE, TRUE );
-    //--------------------------------------------------------------
-    // \\// plugins can be redundant, so in the future,
-    //--------------------------------------------------------------
+    //clones vendor/mathjax files
+    cli( "mkdir $name_of_copy/vendor", "creating placeholder", FALSE, FALSE, TRUE );
+    cli( "cp -R $folder_to_zip/vendor/mathjax $name_of_copy/vendor", "cloning..", FALSE, FALSE, TRUE );
 
     $command = 'zip -rq ' . $name_of_copy . '.zip ' . $name_of_copy;
 
@@ -250,13 +235,8 @@
     cli( $command, 'zipping up the copy' );
     //cli( "rm -rf $name_of_copy", "removing zippee copy" );
     //=====================================================
-    // \\// creates prod folder and populates it
+    // \\// creates prod folder and populates it,
     //=====================================================
-
-
-
-
-
 
     //=====================================================
     // //\\ updates version-container file
@@ -272,8 +252,6 @@
     // \\// updates version-container file
     //=====================================================
 
-
-
     //=====================================================
     // //\\ waits for user attention
     //=====================================================
@@ -284,5 +262,3 @@
     //=====================================================
     // \\// waits for user attention
     //=====================================================
-
-

@@ -1,0 +1,379 @@
+
+*::*scholium|latin
+{
+}
+*..*
+
+
+*::*scholium|addendum
+{
+}
+*..*
+
+*::*claim|addendum
+{
+}
+*..*
+
+
+*::*corollary|latin
+{
+  "subessayCaption" : "Corollary 3",
+  "subessay" : "corollary3"
+}
+*..*
+
+*::*corollary|addendum
+{
+  "subessayCaption" : "Corollary 1",
+  "subessay" : "corollary1"
+}
+*..*
+
+<a target="_blank" href="?conf=sappId=addd-fw#Cframework">Vector Calculus</a>.
+<br><br>
+
+Combinations of axes are defined as usual: <br>
+
+¦DS¦d<sub>+</sub>¦¦ = a + c, <br>
+G = χ¦DH¦d<sub>-</sub>¦¦ = a - c, <br><br>
+
+χ = 1 for ellipse, -1 for hyperbola.
+<br><br>
+
+Hence:
+<br><br>
+
+¦DS¦d<sub>+</sub>¦¦ ¦DH¦d<sub>-</sub>¦¦ = χ(a² - c²) = b² = a L / 2 =
+
+(d<sub>+</sub> + χd<sub>-</sub>) L / 4,
+
+<br><br>
+
+( 4d<sub>+</sub> - χ L ) / L = d<sub>+</sub> / d<sub>-</sub> <br><br>
+
+or in Principia context <br><br>
+
+( 4 DS - χ L ) / L = DS / DH. <br><br>
+
+When L grows from 0 to 4 DS, then, for χ = 1, solution does exist and DH grows from 0 to oo,
+and ellipse changes to a parabola.
+<br><br>
+
+After that, χ must be -1 and conic transforms to a hyperbola.
+
+
+<br><br>
+<div book-reference-id="kvk"></div>
+
+
+
+
+
+
+*::*corollary|addendum
+{
+  "subessayCaption" : "Corollary 2",
+  "subessay" : "corollary2"
+}
+*..*
+
+<a target="_blank" href="?conf=sappId=addd-fw#Cframework">Vector Calculus</a>.
+<br><br>
+
+For ¦p,f¦f¦¦ = 𝛾 /¦SP¦r¦¦²,
+<br><br>
+
+
+𝛾  = ( ¦SP¦r¦¦ ¦P,vb¦v¦¦ )² / L = ( ¦SP¦r¦¦ ¦p,vSample¦v<sub>or</sub>¦¦ )² / (2¦SP¦r¦¦ ) =
+¦SP¦r¦¦ ¦p,vSample¦v²<sub>or</sub>¦¦ / 2.
+<br><br>
+
+L = 2 ¦SP¦r¦¦ ¦P,vb¦v¦¦² / ¦p,vSample¦v²<sub>or</sub>¦¦.
+<br><br>
+
+
+*::*corollary|addendum
+{
+  "subessayCaption" : "Corollary 3",
+  "subessay" : "corollary3"
+}
+*..*
+
+*::*proof|addendum
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "Vector Calculus interpretation",
+  "subessay" : "calculus-interpretation"
+}
+*..*
+
+Following points 1),2),3) do paraphrase proposition 17.
+<br><br>
+
+1. Given ¦borbit-sample¦orbit¦¦ for ¦p¦given body¦¦ is conic. Its ¦Sp¦𝗿ₛ¦¦,
+¦p,vSample¦𝘃ₛ¦¦, ¦l,ll¦Lₛ¦¦ are known.
+(Hence already proven propositions do imply: the ¦p,f¦force¦¦ is as 1 /r².)
+<br><br>
+
+For orbit to be calculated for the same given body located at ¦SP¦𝗿¦¦ with speed ¦P,vb¦𝘃¦¦:
+<br>
+2. Hypothesis: ¦borbit¦calculated orbit¦¦ will be a conic.
+<br><br>
+
+From 1) and 2), already proven propositions do imply
+<br><br>
+
+3. (rₛvₛ𝛺ₛ)²/Lₛ = (rv𝛺)²/L
+<br><br>
+
+So, the only unproven hypothesis is 2). It needs proof via integration (or curve quadrature in Book's language.) Proposistion 17 does not prove 2).
+<br><br>
+
+One can add this additional hypothesis:
+<br>
+4) for two different bodies and the same force field, the proportion "3)" still holds.
+<br><br>
+This enables knowing ¦borbit-sample¦an orbit for comet¦¦ to calculate
+the ¦borbit¦orbit for the Earth¦¦, for example.
+<br><br>
+
+
+In modern form, if the force law constant 𝛾  is fixed:
+<br><br>
+
+¦p,f¦f¦¦ = 𝛾 /r²
+<br><br>
+
+then it is 𝛾  = (v r 𝛺)²/L, and for the other orbit known v,r,𝛺, one can always find L and an entire orbit.
+<br><br>
+
+In the Book, instead of pair r, 𝛺, the value '¦SY¦¦' = r𝛺  is used which does not change reasoning.
+<br><br>
+
+
+
+
+*::*proof|addendum
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "Comparing proof steps",
+  "subessay" : "comparing-proof-steps"
+}
+*..*
+
+
+
+
+                                        <div style="text-align:center;">
+                                        <table class="essay-normal essay-columns" style="display:inline-block; text-align:left;">
+
+
+                                        <tr><td>
+Analytic geometry comments
+                                        </td><td>
+Analytic geometry
+                                        </td><td>
+Principia
+                                        </td><td>
+Greek comments
+                                        </td></tr>
+
+
+
+
+                                        <tr><td>
+L - is principal latus rectum, <br>
+ellipse/hyperbola shape χ = signum(1-e) <br>
+e - excentricity, <br>
+𝗿₊ is in inner conic area.
+                                        </td><td>
+r₊ =
+                                        </td><td>
+SP
+                                        </td><td>
+                                        </td></tr>
+
+
+                                        <tr><td>
+                                        </td><td>
+r₋ =
+                                        </td><td>
+PH
+                                        </td><td>
+                                        </td></tr>
+
+
+
+                                        <tr><td>
+                                        </td><td>
+𝗿₊ - 𝗿₋ = 2¦CS¦𝗰¦¦
+                                        </td><td>
+                                        </td><td>
+                                        </td></tr>
+
+
+
+                                        <tr><td>
+Cosine theorem
+                                        </td><td>
+r²₊-2𝗿₊𝗿₋ + r²₋ = (2c)² =
+                                        </td><td>
+SP² - 2 PH . KP + PH² = SH²
+                                        </td><td>
+? Eu.B2.P13
+                                        </td></tr>
+
+
+
+
+                                        <tr><td>
+Conics property
+                                        </td><td>
+= (2c)² = 4(a² - χb²) =
+                                        </td><td>
+= 4 CH² = 4 BH² - 4χ BC² =
+                                        </td><td>
+Pythagorean theorem
+                                        </td></tr>
+
+
+
+
+
+                                        <tr><td>
+Conics properties:<br>
+4b² = L 2a, 2a = χr₊ + r₋.
+                                        </td><td>
+= (r₊ + χr₋)² - χL2a =
+= r²₊ + χr₋r₊ + r²₋ - χL2a =
+
+                                        </td><td>
+SP² + 2χ SP . PH + PH² - χ L ( χ SP + PH )
+                                        </td><td>
+                                        </td></tr>
+
+
+                                        <tr><td>
+After swapping sides, cacelling, and<br>
+recalling 𝗿₊𝗿₋ = r₋𝗿₊𝗲₋:
+                                        </td><td>
+L 2a = 2r₋(χ𝗿₊𝗲₋ + r₊). <br>
+                                        </td><td>
+                                        </td><td>
+                                        </td></tr>
+
+
+
+                                        <tr><td>
+Recalling 𝗿₊𝗲₋ = KP:
+                                        </td><td>
+L (χr₊ + r₋) = 2r₋(χ𝗿₊𝗲₋ + r₊), <br>
+                                        </td><td>
+L (χ SP + PH ) = 2 PH .( χ KP + SP ) <br>
+                                        </td><td>
+                                        </td></tr>
+
+
+
+                                        <tr><td>
+                                        </td><td>
+(χr₊ + r₋) / r₋ = (2χ𝗿₊𝗲₋ + 2r₊) / L = <br>
+=
+<a target="_blank" href="?conf=sappId=addd-conics,logic_phaseId=proof,aspectId=addendum,subessayId=shoulder-lemma#conics">
+4Ω²r₊
+</a>
+
+/ L = E⁻², <br>
+where
+[𝗲₊𝘂]𝗸 = Ω = sin(ω) and
+                                        </td><td>
+(χ SP + PH ) / PH = ( 2 χ KP + 2 SP ) / L =  E⁻² <br>
+
+                                        </td><td>
+                                        </td></tr>
+
+
+
+                                        <tr><td>
+                                        </td><td>
+                                        </td><td>
+                                        </td><td>
+                                        </td></tr>
+
+
+
+                                        <tr><td>
+Notably, in the right part,  <br>
+"geometrical excentricity" E <br>
+defines conics shape, χ = signum(1-E),  <br>
+like the commonly used excentricity e.
+                                        </td><td>
+<br>
+(1-e²) = L/r₊(1-E²) <br>
+                                        </td><td>
+                                        </td><td>
+                                        </td></tr>
+
+
+                                        <tr><td>
+                                        </td><td>
+However in analytic geometry  <br>
+scenario, we can ignore <br>
+E self-dependence <br>
+on χ, ignore all above equations, <br>
+and find conics data<br>
+e, φ, a, b, c, directly from Ω, L, and r₊.
+<br><br>
+
+                                        </td><td>
+At this point, Principia <br>
+defines the shape <br>
+by analysing the sum 2χ KP + 2 SP by <br>
+starting from the case χ = 1.
+                                        </td><td>
+                                        </td></tr>
+
+
+
+                                        <tr><td>
+                                        </td><td>
+e² = η²Ω⁻² - 2η + 1,<br>
+η = L/(2r₊), <br>
+η = 1 - e cos(φ)<br>
+sign φ = -σ sign( cos(ω)/sin(ω) )<br>
+σ - cocnic's branch,
+σ = 1 for |φ| ⩾ φ<sub>crit</sub>,
+-1 otherwise,<br>
+Ω = sin(ω).<br>
+                                        </td><td>
+                                        </td><td>
+                                        </td></tr>
+
+
+
+                                        </table>
+                                        </div>
+
+
+<br><br>
+<div book-reference-id="kvk"></div>
+
+<div class="model-user-feedback"></div>
+
+
+*::*proof|addendum
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "Test your understanding",
+  "subessay" : "self-test"
+}
+*..*
+
+
+<b>Reiteration.</b> A force ¦p,f¦f¦¦ = 𝛾 /r² acts on ¦p¦given body¦¦ in position ¦Sp¦𝗿ₛ¦¦ with speed ¦p,vSample¦𝘃ₛ¦¦ and latus ¦l,ll¦Lₛ¦¦ of its ¦borbit-sample¦orbit¦¦ is known.
+Calculate an ¦borbit¦orbit¦¦, if this body would start at position ¦SP¦𝗿¦¦ with speed ¦P,vb¦𝘃¦¦.
+<br><br>
+
+<div class="model-user-feedback"></div>
+

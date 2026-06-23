@@ -1,0 +1,140 @@
+///adds Q and P sliders for
+///for dq and body in
+///models in propopositions 6-17 in Principia
+(function(){
+const { sn, flagdo, ssD,stdMod, sconf, rg, ssF } =
+        window.b$l.atree({ ssFList: {
+            creates__gets_orbit_closest_point,
+            creates_Q8P_sliders,
+}});
+const qix2orb = sn( 'qix2orb', ssD, [] );
+const graphArray = sn( 'graphArray', stdMod, [] );
+return;
+
+
+function creates_Q8P_sliders( rgOrb ){
+    /// point P slider
+    rg.P.acceptPos = newPos => {
+        rg.P.qix = stdMod.gets_orbit_closest_point(
+            newPos, !!'fromGraph' );
+        stdMod.model8media_upcreate();
+    }
+
+    /// point Q slider
+    rg.Q.acceptPos = newPos => {
+        const qix = rg.P.qix;
+        var Qqix = stdMod.gets_orbit_closest_point( newPos );
+        if( Qqix === qix ) return;
+        if( sconf.TIME_IS_FREE_VARIABLE ){
+            let tt = qix2orb[ Qqix ].timeAtQ;
+            let Dt = tt - qix2orb[ qix ].timeAtQ;
+            if( sconf.CURVE_REVOLVES ){
+                if( Dt<0 ) {
+                    ////the point P crossed start of the coninc,
+                    ////usually point A and point t(Q) became less than t(P),
+                    ////this line adjusts Dt by using "cycled t change",
+                    ////where time period is ssD.trange,
+                    Dt = (Dt + ssD.trange) % ssD.trange;
+                }
+            }
+            if( Dt < ssD.tgrid_step * (sconf.SAGITTA_ACCURACY_LIMIT+1) ||
+                sconf.DT_SLIDER_MAX <= Dt ) return;
+            ssD.Dt = Dt;
+        } else {
+            const q = qix2orb[ Qqix ].q;
+            let Dq = q - qix2orb[ qix ].q;
+            if( sconf.CURVE_REVOLVES ){
+                if( Dq<0 ) {
+                    ////the point P crossed start of the coninc,
+                    ////usually point A and point q(Q) became less than q(P),
+                    ////this line adjusts Da by using "cycled a change",
+                    ////where q period is sconf.curveQRange,
+                    Dq = (Dq + sconf.curveQRange ) % sconf.curveQRange;
+                }
+            }
+            if( Dq <=0  || Dq >= sconf.DQ_SLIDER_MAX ) return;
+            ssD.Dq = Dq;
+        }
+        //:Dt or Dq changed
+        ssF.builds_dq8sagit8displace( {rgOrb} );
+        ssF.builds_orbit_data_graph( rgOrb );
+        stdMod.model8media_upcreate();
+        return; //avoids repetition
+    }
+}
+
+function creates__gets_orbit_closest_point() {
+    //the more, the better: slider accuracy:
+    const SEARCH_POINTS = 50;
+    //:alternative orbit arrays to be used:
+    const q2o = qix2orb;
+    const ga = graphArray;
+
+    stdMod.gets_orbit_closest_point = gets_orbit_closest_point;
+    return;
+
+
+    ///doing two searches, first sparce
+    ///and the second - precise,
+    ///if argument fromGraph is truthed, then
+    ///first sparce search done via valid graph points and
+    ///then via exact orbit points,
+    function gets_orbit_closest_point(
+        r, //distance to this point
+
+        //optional, using valid graph points and leave
+        fromGraph
+    ){
+        fromGraph = !sn( 'solvable_orbit', flagdo, true )
+            ? false : fromGraph;
+        const arr = fromGraph ? ga : q2o;
+        const len = arr.length;
+        const STEP = fromGraph ? 1 :
+            Math.max( 1, Math.floor( len / SEARCH_POINTS ));
+        const point = arr[0];
+        const pos = point.rr;
+        const x = r[0]-pos[0];
+        const y = r[1]-pos[1];
+        let min = x*x + y*y;
+        let qix_min = null;
+        ///should be from 0: let qix=0;
+        for( let qix=STEP; qix<len; qix+=STEP ){
+            const point = arr[qix];
+            const pos = point.rr;
+            const x = r[0]-pos[0];
+            const y = r[1]-pos[1];
+            const d2 = x*x + y*y;
+            if( qix_min === null || min>d2 ){
+                min = d2;
+                qix_min = fromGraph ? point.qix : qix;
+            }
+        }
+        if( fromGraph ) return qix_min;
+
+
+        const FINE_SEARCH_POINTS = 20;
+        const fstart = qix_min-FINE_SEARCH_POINTS;
+        const fend = qix_min+FINE_SEARCH_POINTS;
+        ///refines the search
+        for( let qix=fstart; qix<=fend; qix++ ){
+            const point = q2o[qix];
+            if(
+                //we prefer sort out by "!" than
+                //by limits 0 and array.length
+                !point
+                ||
+                point.invalid
+            ) continue;
+            const pos = point.rr;
+            const x = r[0]-pos[0];
+            const y = r[1]-pos[1];
+            const d2 = x*x + y*y;
+            if( min>d2 ){
+                min = d2;
+                qix_min = qix;
+            }
+        }
+        return qix_min;
+    }
+}
+})();

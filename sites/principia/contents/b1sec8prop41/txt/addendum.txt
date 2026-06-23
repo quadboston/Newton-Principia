@@ -1,0 +1,332 @@
+*::*claim|addendum
+{
+  "menuCaption" : "Addendum"
+}
+*..*
+
+Lemma 41 contains two very major hypotheses.
+<br><br>
+1) Experimental and mental spaces are coincided.<br>
+2) Ratios can be added, divided, multiplied.
+<br><br>
+
+Newton thoroughly avoids introducing metaphysical hypotheses, but makes huge ones other place in math.
+<br><br>
+
+Indeed, about item 1):
+
+
+¦XCY fi borbit¦Left part of the diagram¦¦
+
+contains ¦borbit¦orbit¦¦ which is in experimental space. Right part of the diagram is what modern physisist conseders
+¦VSarea D𝑐𝑥E/force Tkernel Fkernel Tarea fiArea D𝑏𝑧E¦math arguments and graphs¦¦ - mental. Newton places them intevowen on the same diagram. Does he think that what we think really exist in experimental space?
+<br><br>
+
+
+*::*proof|addendum
+{
+  "menuCaption" : "Addendum",
+  "video" :
+  {
+    "annotation" : "Video Help on Claim",
+    "xx corrupts button caption" : "Comparing Newton's and modern solution.",
+    "tooltip" : "Video. Comparing Newton's and modern solution.",
+    "to-aspect" : true,
+    "isNotExternal" : false,
+    "URL" : "./contents/videos/addendum-prop-41.mp4",
+
+    "xxto model help" :  true,
+    "xxURL" : "http://sciencehike.com/original/NewtonPrincipia/content-guide/B1S1L02Claim.mp4"
+  }
+}
+*..*
+
+
+<b><a target="_blank" href="?conf=sappId=addd-fw#Cframework">Vector Calculus</a></b>
+<br><br>
+
+Notations:
+<br>
+
+
+                                        <div style="text-align:center;">
+                                        <table class="essay-no-border essay-minimal-td" style="display:inline-block; text-align:left;">
+                                        <tr><td>
+    ρ
+                                        </td><td>
+     = |¦CI¦𝗿¦¦|, &nbsp;
+                                        </td><td>
+    distance,
+                                        </td></tr>
+                                        <tr><td>
+    φ,
+                                        </td><td>
+                                        </td><td>
+    polar angle, anticlockwise,
+                                        </td></tr>
+                                        <tr><td>
+    ¦IZ¦v<sub>⟂</sub>¦¦
+                                        </td><td>
+    = ¦IZ¦vsin(ω)¦¦ = ρ φ˙,&nbsp
+                                        </td><td>
+    ¦IZ¦rotational speed component¦¦,
+                                        </td></tr>
+                                        <tr><td>
+    v²
+                                        </td><td>
+    = ρ˙² + ¦IZ¦v<sub>⟂</sub>¦¦²
+                                        </td><td>
+    speed absolute value components,
+                                        </td></tr>
+                                        <tr><td>
+    M
+                                        </td><td>
+     = ¦IZ¦v<sub>⟂</sub>¦¦ ¦CI¦ρ¦¦
+                                        </td><td>
+    angular momentum,
+                                        </td></tr>
+
+
+                                        <tr><td>
+    ¦force¦f(ρ<!--  -->)¦¦
+                                        </td><td>
+    = |𝗳(ρ<!--  -->)|
+                                        </td><td>
+    attractive force,
+                                        </td></tr>
+
+                                        </table>
+                                        </div>
+<br>
+
+
+Preservation laws:
+<br>
+    <div style="text-align:center;">
+        <div style="text-align:left; display:inline-block;">
+            v² + 2U = 2E     &nbsp; &nbsp; &nbsp; energy, (E) <br>
+            ¦CI CD¦ρ¦¦²φ˙ = M         &nbsp; &nbsp; &nbsp; angular momentum,  (M<!--  -->)<br>
+        </div>
+    </div>
+<br>
+
+
+For known U(ρ) and E, v(ρ) is known, and equations for ¦CI¦distance¦¦
+ρ(t) and angle φ(ρ) are:
+    <div style="text-align:center;">
+        <div style="text-align:left; display:inline-block;">
+            ρ˙² = v² - (M / ρ)², &nbsp; &nbsp; &nbsp; from (E) <br>
+            dφ/dρ = φ˙/ρ˙ = M /¦CI CD¦ρ¦¦²/ρ˙, &nbsp; &nbsp; &nbsp; from (M<!--  -->) <br>
+            or<br>
+            <br>
+            d¦Tarea¦t¦¦ = - ¦Tkernel¦T¦¦ dρ,   &nbsp; &nbsp; &nbsp; (e) <br>
+            dφ = - v<sub>⟂</sub> / ρ  T dρ,   &nbsp; &nbsp; &nbsp; (m) <br>
+            where<br>
+            ¦Tkernel¦T¦¦ = ( v² - v<sub>⟂</sub>² )<sup> -½</sup>
+        </div>
+    </div>
+<br>
+
+Newton considers the case that there exist a ¦CA¦ρ<sub>*</sub>¦¦ that v(¦CA¦ρ<sub>*</sub>¦¦)=0,
+hence, E=U(¦CA¦ρ<sub>*</sub>¦¦).
+( For example, this can be gravitational force U(ρ) = -γ / ρ with E ‹ 0. )
+In this case, we chose potential energy reference point as U(¦CA¦ρ<sub>*</sub>¦¦) and, doing so makes E = 0.
+Consequently,
+
+    <div style="text-align:center;">
+        <div style="text-align:left; display:inline-block;">
+            v² = -U(ρ) = <sub> ρ </sub> ∫ <sup>¦CA¦ρ<sub>*</sub>¦¦</sup> &nbsp;f(ρ)dρ
+        </div>
+    </div>
+<br>
+
+In Principia, function ¦VSarea¦U¦¦(ρ) is represented clearly as
+¦VSarea¦area-function of ρ¦¦, and v²+U = const.
+And this holds for all motions with ¦VM¦v<sub>⟂o</sub>¦¦ that
+¦VM¦v<sub>⟂o</sub>¦¦ ‹ ¦V,v¦v<sub>o</sub>¦¦, and is an implicitly stated energy conservation law.
+Therefore, to represent U(ρ), we take the motion with v<sub>⟂</sub> = 0, which is simply a fall from
+point ¦CA¦ρ<sub>*</sub>¦¦ and which is also chosen in Principia "for another body<!--  --> must fall."
+<br><br>
+
+Now when we see how v²(ρ) function can be calculated, we rewrite solutions (e) and (m) as:
+
+    <div style="text-align:center;">
+        <div style="text-align:left; display:inline-block;">
+            ¦Tarea¦t¦¦ = <sub> ρ </sub>∫<sup> ρ<sub>o</sub> </sup> &nbsp; ¦Tkernel¦T¦¦dρ,
+            &nbsp; &nbsp; &nbsp; (eᵢ) <br>
+            φ = <sub> ρ </sub>∫<sup> ρ<sub>o</sub> </sup> &nbsp; v<sub>⟂</sub> / ρ ¦Tkernel¦T¦¦dρ.
+            &nbsp; &nbsp; &nbsp; (mᵢ) <br>
+        </div>
+    </div>
+
+<br>
+
+
+                                        <div style="text-align:center;">
+                                        <table class="essay-normal essay-minimal-td" style="display:inline-block; text-align:left;">
+
+                                        <tr><td colspan=3
+                                             style="text-align:center; background-color:#F9F9F9;">
+Notations
+                                        </td></tr>
+                                        <tr><td>
+Association
+                                        </td><td>
+Vector Calculus
+                                        </td><td>
+Principia
+                                        </td></tr>
+
+                                        <tr><td>
+<br>
+                                        </td></tr>
+
+
+                                        <tr><td>
+distance
+                                        </td><td>
+ρ
+                                        </td><td>
+A
+                                        </td></tr>
+                                        <tr><td>
+rotation speed
+                                        </td><td>
+v<sub>⟂</sub>
+                                        </td><td>
+¦IZ Zgraph¦Z¦¦
+                                        </td></tr>
+                                        <tr><td>
+angular momentum
+                                        </td><td>
+M
+                                        </td><td>
+¦VM¦Q¦¦
+                                        </td></tr>
+                                        <tr><td>
+¦v2graph VSarea¦kinetic energy¦¦
+                                        </td><td>
+v²
+                                        </td><td>
+ABFD
+                                        </td></tr>
+                                        <tr><td>
+¦Tkernel¦dt/dρ¦¦
+                                        </td><td>
+¦Tkernel¦T¦¦
+                                        </td><td>
+= 1 / √( ABFD - Z² ) ~ ¦Tkernel¦'curve abz'¦¦
+                                        </td></tr>
+                                        <tr><td>
+¦force¦force¦¦
+                                        </td><td>
+¦force¦f(ρ<!--  -->)¦¦
+                                        </td><td>
+¦force¦'curve BF'¦¦
+                                        </td></tr>
+                                        <tr><td>
+initial distance
+                                        </td><td>
+R = ρ<sub>o</sub> =
+                                        </td><td>
+CV
+                                        </td></tr>
+
+
+                                        <tr><td>
+<br><br>
+                                        </td></tr>
+
+                                        <tr><td>
+¦Tarea¦time¦¦
+                                        </td><td>
+¦Tarea¦t MR²/2¦¦
+                                        </td><td>
+= ¦Tarea¦VD𝑏𝑎¦¦ = <sub> CD </sub>∫<sup> CV </sup>ΛdA &nbsp; &nbsp; &nbsp; &nbsp; (eₚ)
+                                        </td></tr>
+
+                                        <tr><td>
+¦Tkernel¦dt/dρ¦¦
+                                        </td><td>
+¦Tkernel¦Λ¦¦ = ¦Tkernel¦MR²/2 T¦¦
+                                        </td><td>
+=  Q '¦CV¦CX¦¦'² / 2 T
+                                        </td></tr>
+
+                                        <tr><td>
+<br><br>
+                                        </td></tr>
+
+                                        <tr><td>
+angle
+                                        </td><td>
+¦fi¦φR²/2¦¦ = <sub> ρ </sub>∫<sup> R </sup> ¦Fkernel¦Φ¦¦dρ
+                                        </td><td>
+= ¦fi¦VCX¦¦ = ¦fiArea¦VD𝑐𝑎¦¦ =
+
+<sub> CD </sub>∫<sup> CV </sup> &nbsp;¦Fkernel¦Φ¦¦dA. &nbsp; &nbsp; &nbsp; (mₚ)
+                                        </td></tr>
+                                        <tr><td>
+dφ/dρ
+                                        </td><td>
+¦Fkernel¦Φ¦¦ = ¦Fkernel¦Λ/ρ¦¦
+                                        </td><td>
+= Q '¦CV¦CX¦¦'² / (2A²) T
+                                        </td></tr>
+
+                                        </table>
+                                        </div>
+<br><br>
+
+
+Notes:
+<br><br>
+
+Newton's diagram is so good that, one can draw ¦v2graph Z2graph¦potential well¦¦ between turning points of ¦borbit¦orbit¦¦.
+
+The upper cover of this ¦v2graph Z2graph¦well¦¦ is "kineic energy ¦v2graph¦v²¦¦ and the bottom boundary is "rotation energy" ¦Z2graph¦v<sub>⟂</sub>²¦¦.
+<br><br>
+
+For some values of ¦V,v¦v<sub>o</sub>¦¦, this ¦v2graph Z2graph¦well¦¦ has upper and lower boundary points ρ which are "turning" points of the ¦borbit¦orbit¦¦.
+<br><br>
+
+One can see, that Newton's diagram fits impressively accurate to numerical diagram which we produced by estimating Newton's initial values and making numerical calculation of second degree differential equation by computer.
+
+
+<br><br>
+<div book-reference-id="kvk"></div>
+
+
+
+
+*::*corollary|addendum
+{
+  "subessayCaption" : "Corollary 1",
+  "subessay" : "corollary1"
+}
+*..*
+
+
+
+*::*corollary|addendum
+{
+  "subessayCaption" : "Corollary 2",
+  "subessay" : "corollary2"
+}
+*..*
+
+"... its sine to the radius as KN to IK, that is, as Z to the
+square root of the area ABFD."
+<br><br>
+
+<a target="_blank" href="?conf=sappId=addd-fw#Cframework">Vector Calculus</a>:
+<br><br>
+
+sin(ω) = ¦IZ Zgraph¦v<sub>⟂</sub>¦¦ / ¦vgraph¦v¦¦
+<br><br>
+
+The term "sine" is used as in modern mathematics.
+
+<br><br><br>
+
+

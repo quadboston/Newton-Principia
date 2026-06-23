@@ -4,7 +4,8 @@
 #***********************************************************************
 #API
 
-#the only requirement: PWD must be positioned to this script root
+#the only requirement: PWD must be positioned to the "root"
+#of this script folder, aka "root"/deploy/this-script.sh
 PWD=`pwd`
 
 SITEID="$1"
@@ -54,6 +55,8 @@ fi
 
 #***********************************************************************
 #:executes
+#fully qualified local file system path: $PHP_DEPLOYER
+#fully qualified local file system path: $WEB_LANDING_PATH
 cmd="php $PHP_DEPLOYER $WEB_LANDING_PATH $SITEID $UGLIFY"
 eval $cmd #works but not without "node fix" for uglifying
 #***********************************************************************

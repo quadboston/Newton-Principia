@@ -1,0 +1,140 @@
+
+*::*claim|english
+{
+  "logic_phaseCaption" : "Problem 2",
+  "default" : "1",
+  "menuCaption" : "Text"
+}
+*..*
+¦borbit¦orbit¦¦¦
+
+Let a ¦body¦¦ revolve in the ¦borbit¦circumference of a circle¦¦; it is required to find the law
+of the ¦force¦centripetal force¦¦ tending toward any ¦S¦given point¦¦.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 455.</div>
+
+
+
+
+*::*proof|english
+{
+  "menuCaption" : "Text",
+  "subessayCaption" : "[<i>First solution</i>]",
+  "subessay" : "solution",
+  "logic_phaseCaption" : "Solutions"
+}
+*..*
+Let ¦borbit¦VQPA¦¦ be the ¦borbit¦circumference of the circle¦¦, ¦S¦¦ the given
+point toward which the ¦force¦¦
+tends as to its center, ¦P¦P the body¦¦
+revolving in the circumference, ¦Q¦Q the place¦¦ to which it will move
+next, and ¦PR PZ P,Zminus¦PRZ the tangent¦¦ of
+the circle at the ¦P¦previous place¦¦.
+Through ¦S¦point S¦¦ draw ¦PV¦chord PV¦¦;
+and when the ¦AV¦diameter VA¦¦ of
+the circle has been drawn, join
+¦AP¦¦; and to ¦SP¦¦ drop perpendicular
+¦QT¦¦, which when ¦ZQ¦produced¦¦ meets the ¦PR PZ P,Zminus¦tangent PR¦¦ at ¦Z¦¦;
+and finally through
+point ¦Q¦¦ draw ¦RL¦LR¦¦ parallel to ¦SP¦¦ and meeting both the circle at ¦L¦¦ and the
+tangent ¦PZ¦¦ at ¦R¦¦.<br><br>
+
+Then because the triangles ¦ZQ QR ZR¦ZQR¦¦,
+¦ZQ QT PZ PT¦ZTP¦¦, and ¦PV AP AV¦VPA¦¦ are
+similar,
+¦PR¦RP¦¦² (that is, ¦QR¦¦ x ¦RL¦¦) will be to ¦QT¦QT¦¦² as ¦AV¦AV²¦¦ to ¦PV¦PV²¦¦.
+And therefore ¦QR¦¦ x ¦RL¦¦ x ¦PV¦¦² / ¦AV¦¦² is equal to ¦QT¦¦².
+Multiply these equals by ¦SP¦¦²&nbsp;/&nbsp;¦QR¦¦ and, the points ¦P¦¦ and ¦Q¦¦ coming together, write ¦PV¦¦ for ¦RL¦¦.
+Thus ¦SP¦¦² x ¦PV¦¦³ / ¦AV¦¦² will become equal to ¦SP¦¦² x ¦QT¦¦² / ¦QR¦¦.
+Therefore (by prop. 6, corols. 1 and 5), the ¦force¦centripetal force¦¦ is inversely as
+¦SP¦SP²¦¦ x ¦PV¦PV³¦¦ / ¦AV¦¦², that is (because ¦AV¦¦² is given), inversely as the square of the
+distance or altitude ¦SP¦¦ and the cube of the ¦PV¦chord¦¦ jointly. &nbsp;&nbsp; Q.E.I.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 455.</div>
+
+
+
+
+*::*proof|english
+{
+  "menuCaption" : "Text",
+  "subessayCaption" : "<i>Another solution</i>",
+  "subessay" : "another-solution",
+  "logic_phaseCaption" : "Solutions"
+}
+*..*
+Draw ¦SY¦¦ perpendicular to the tangent ¦PR¦¦ produced; then, because triangles ¦SY PY SP¦SYP¦¦ and ¦PV AP AV¦VPA¦¦
+are similar, ¦AV¦¦ will be to ¦PV¦¦ as ¦SP¦¦ to ¦SY¦¦, and thus
+¦SP¦¦ x ¦PV¦¦ / ¦AV¦¦ will be equal to ¦SY¦¦, and
+¦SP¦¦² x ¦PV¦¦³ / ¦AV¦¦² will be equal to ¦SY¦¦² x ¦PV¦¦.
+And therefore (by prop. 6, corols. 3 and 5), the ¦force¦centripetal force¦¦ is inversely
+as ¦SP¦¦² x ¦PV¦¦³ / ¦AV¦¦², that is, because ¦AV¦¦ is given, inversely as
+¦SP¦SP²¦¦ x ¦PV¦PV³¦¦. &nbsp;&nbsp; Q.E.I.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 456.</div>
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 1",
+  "subessay" : "corollary1",
+  "logic_phaseCaption" : "Corollaries"
+}
+*..*
+Hence, if the given point ¦S¦¦ to which the ¦force¦centripetal force¦¦
+always tends is located in the circumference of this circle, say at ¦V¦¦, the
+¦force¦centripetal force¦¦ will be inversely as the fifth power of the altitude ¦SP¦¦.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 456.</div>
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 2",
+  "subessay" : "corollary2"
+}
+*..*
+The ¦force¦force¦¦ by which body
+¦P¦¦ revolves in the circle ¦borbit¦APTV¦¦ around the
+¦S¦center of forces S¦¦ is to the force by which the
+¦P¦same body P¦¦ can revolve in the same circle
+and in the same periodic time around any
+other center of ¦Rcol2¦forces R¦¦ as
+¦Rcol2,P¦RP¦¦² x ¦SP¦¦ to the cube of the
+¦Gcol2,S¦straight line SG¦¦, which is drawn
+from the ¦S¦first center of forces S¦¦ to the
+¦Gcol2,P¦tangent of the orbit PG¦¦ and is parallel to the ¦Rcol2,P¦distance of the body¦¦ from ¦Rcol2¦the second center of forces¦¦.
+For by the construction of this proposition the ¦force¦first force¦¦ is
+to the second force as ¦Rcol2,P¦RP¦¦² x ¦P,Tcol2¦PT¦¦³ to ¦SP¦¦² x ¦PV¦¦³,
+that is, as ¦SP¦¦ x ¦Rcol2,P¦RP¦¦² to ¦SP¦¦³ x ¦PV¦¦³ / ¦P,Tcol2¦PT¦¦³,
+or (because the triangles ¦Gcol2,S SP Gcol2,P¦PSG¦¦ and
+¦Rcol2,Tcol2 Rcol2,P PV Tcol2,V¦TPV¦¦ are similar) to ¦Gcol2,S¦SG³¦¦.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 456.</div>
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 3",
+  "subessay" : "corollary3"
+}
+*..*
+
+The ¦force¦force¦¦ by which ¦P¦body P¦¦ revolves in any ¦borbit¦¦ around
+the ¦S¦center of forces S¦¦ is to the force by which the same ¦P¦body P¦¦ can revolve
+in the same orbit and in the same periodic time around any other
+¦Rcol2¦center of forces R¦¦ as the solid ¦SP¦¦ x ¦Rcol2,P¦RP¦¦² - contained under ¦SP¦the distance of the body¦¦
+from the first ¦S¦center of forces S¦¦ and the square of ¦Rcol2,P¦its distance from the second
+center of forces R¦¦ - to the cube of the ¦Gcol2,S¦straight line SG¦¦, which is drawn from
+the ¦S¦first center of forces S¦¦ to the ¦Gcol2,P¦tangent of the orbit PG¦¦ and is parallel to
+the ¦Rcol2,P¦distance RP¦¦ of the body from the second center of forces. For the forces
+in this orbit at any ¦P¦point of it P¦¦ are the same as in a circle of the same
+curvature.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 456.</div>

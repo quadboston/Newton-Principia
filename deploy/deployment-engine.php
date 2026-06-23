@@ -1,11 +1,10 @@
 <?php
-
     //***************************************************************
     /*
         Builds index.prod.html and its associates from
         index.src.html and from src
-        
-        usage: php deployment-engine.php path-to-index.src.html [addgit]
+
+        usage: php deployment-engine.php path-to-index.html [addgit]
 
         parameters:
             1. The only parameter it needs is a
@@ -13,19 +12,12 @@
                index.src.html
                If this path validation fails, the build does not start.
             2. addgit is optional. It must be exactly like this string.
-        
+
         See configuration at "//\\ does configuration" below
         and comments about uglify install at
         "// //\\ uglify"
     */
     //**********************************************************
-
-
-
-
-
-
-
 
     //=====================================================
     // //\\ validatates command line
@@ -68,11 +60,6 @@
     // \\// validatates command line
     //=====================================================
 
-
-
-
-
-
     //=====================================================
     // //\\ does position in project folder
     //=====================================================
@@ -87,21 +74,16 @@
     // \\// does position in project folder
     //=====================================================
 
-
-
-
-
-
     //=====================================================
     // //\\ constructs helpers
     //=====================================================
     ///cli
-    function cli ( $command, $action_descr, $do_print_output = FALSE, $get_output = FALSE ) 
+    function cli ( $command, $action_descr, $do_print_output = FALSE, $get_output = FALSE )
     {
     	$res = array();
         $ret = exec( $command, $res, $retcode );
         if( $retcode . '' !== '0' ) {
-            echo "$action_descr: problems in command: $command\noutput="; 
+            echo "$action_descr: problems in command: $command\noutput=";
             print_r( $res );
             echo "\n";
             exit(1);
@@ -137,11 +119,6 @@
     // \\// constructs helpers
     //=====================================================
 
-
-
-
-
-
     //=====================================================
     // //\\ does configuration
     //=====================================================
@@ -169,7 +146,7 @@
     //https://www.npmjs.com/package/uglify-es
     //npm install uglify-es -g
     //:was
-    //$path_to_uglifier = 
+    //$path_to_uglifier =
     //'/home/stan/Downloads/nodejs/node-v6.9.1-linux-x64/lib/node_modules/bower/lib/node_modules/uglify-js/bin/uglifyjs';
 
     $path_to_uglifier = 'uglifyjs';
@@ -180,20 +157,6 @@
     // \\// does configuration
     //=====================================================
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //---------------------------------
     // //\\ purges up prod_folder
     //---------------------------------
@@ -202,43 +165,20 @@
     // \\// purges up prod_folder
     //---------------------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
     //=============================
     // //\\ spawns to party-folders
     //=============================
     //.reg ex for deployment-fragment
-    $links_tpl_re = 
+    $links_tpl_re =
         '#' .
         '<!-- //\\\\\\\\ replace with prod script -->' .
         '(.+)' .
         '<!-- \\\\\\\\// replace with prod script -->' .
         '#s';
     $landing_text = file_get_contents( $tpl_landing_file );
-    
-    // //\\ gets addendum landing file text if
-    //addendum file pattern name does exist
-    $addendum_file = preg_replace( 
-            '/index\\.src\\.html$/',
-            'addendum.src.html', //replacer
-            $tpl_landing_file
-    );
-    $addendum_text = file_get_contents( $addendum_file );
-    // \\// gets addendum landing file text if
-    
     $matches = array();
-    //http://php.net/manual/en/function.preg-match.php    
-    $test = preg_match( 
+    //http://php.net/manual/en/function.preg-match.php
+    $test = preg_match(
             $links_tpl_re,
             $landing_text,
             $matches
@@ -246,7 +186,6 @@
     $assembled_file = '';
     $assembled_css_file = '';
     $link_indent = '';
-
 
     ///====================================
     /// deployment-fragment found
@@ -256,13 +195,13 @@
         $scripts = preg_split( $split_regex, $matches[1] );
         //print_r( $scripts );
         foreach( $scripts as $key => $val ) {
-                
+
             //====================================================================
             //. matches <script string to be minified ...
             $script_extract_regex = '#^(\s*)<(script|link)[^<]+(src|href)=(\'|")([^\'"]+)(\'|")#';
             //====================================================================
             $link_match = array();
-            $stest = preg_match( 
+            $stest = preg_match(
                     $script_extract_regex,
                     $val,
                     $link_match
@@ -297,7 +236,6 @@
     // \\// spawns to party-folders
     //=============================
 
-
     //==========================================
     // //\\ writes app.min.js and css.js to disk
     //==========================================
@@ -327,16 +265,12 @@
     // \\// writes app.min.js and css.js to disk
     //==========================================
 
-
-
-
-    
     //========================================
     // //\\ makes index.prod.html and saves it
     //========================================
     function spawn_landing_file( $content, $regex, $links, $folderto, $fileto )
     {
-        $new_content = preg_replace( 
+        $new_content = preg_replace(
                 $regex,
                 $links,
                 $content
@@ -359,30 +293,13 @@
     } else {
         $production_css_link =  "\n";
     }
-    
-    //patch:
-    //if addendum does exist, then don't put index
-    if( !$addendum_text ){
-        spawn_landing_file( $landing_text,
-                            $links_tpl_re,
-                            $production_css_link .
-                            $link_indent .
-                            '<script src="' . $prod_min_engine . '"></script>',
-                            'index.prod.html', '' );
-    }
-    ///adds addendum to production if its src does exist
-    if( !!$addendum_text ) {
-        spawn_landing_file( $addendum_text,
+    spawn_landing_file( $landing_text,
                         $links_tpl_re,
                         $production_css_link .
                         $link_indent .
                         '<script src="' . $prod_min_engine . '"></script>',
-                        'addendum.prod.html', '' );
-    }
+                        'index.prod.html', '' );
     //========================================
     // \\// makes index.prod.html and saves it
     //========================================
-
     //echo "spawning done\n";
-
-

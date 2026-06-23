@@ -1,0 +1,109 @@
+*::*claim|english
+{
+  "default" : "1",
+  "menuCaption" : "Text",
+  "logic_phaseCaption" : "Problem 6"
+}
+*..*
+Let a ¦body P¦body¦¦ revolve in an ¦borbit¦ellipse¦¦;
+it is required to find the law of the centripetal
+¦force¦¦ tending toward a ¦S¦focus¦¦ of the ellipse.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 462.</div>
+
+
+
+
+*::*proof|english
+{
+  "menuCaption" : "Text",
+  "subessayCaption" : "[<i>First solution</i>]",
+  "subessay" : "solution",
+  "logic_phaseCaption" : "Solutions"
+}
+*..*
+Let ¦S¦¦ be a focus of the ¦borbit¦ellipse¦¦. Draw ¦SP¦¦ cutting both the diameter ¦DK¦¦
+of the ¦borbit¦ellipse¦¦ in ¦E¦¦ and the ordinate ¦Qv¦Q𝑣¦¦ in ¦x¦𝑥¦¦, and complete the parallelogram
+¦Qx PR¦Q𝑥PR¦¦. It is evident that ¦EP¦¦ is equal to the semiaxis major ¦AO¦AC¦¦ because when
+line ¦HI¦¦ is drawn parallel to ¦EO¦EC¦¦ from the other focus ¦H¦¦ of the ¦borbit¦ellipse¦¦, ¦ES¦¦
+and ¦EI¦¦ are equal because ¦OS¦CS¦¦ and ¦OH¦CH¦¦ are equal; so that ¦EP¦¦ is the half-sum
+of ¦SP¦PS¦¦ and ¦PI¦¦, that is (because ¦HI¦¦ and ¦PR¦¦ are parallel and angles ¦PI PR¦IPR¦¦ and
+¦PH P,Zminus¦HPZ¦¦ are equal), the half-sum of ¦SP¦PS¦¦ and ¦PH¦¦ (which taken together equal
+the whole axis 2¦AO¦AC¦¦). Drop ¦QT¦¦ perpendicular to ¦SP¦¦, and if L denotes the
+principal latus rectum of the ellipse (or 2¦BO¦BC¦¦²&nbsp;/&nbsp;¦AO¦AC¦¦), L × ¦QR¦¦ will
+be to L × ¦Pv¦P𝑣¦¦
+as ¦QR¦¦ to ¦Pv¦P𝑣¦¦, that is, as ¦EP¦PE¦¦ or ¦AO¦AC¦¦ to ¦PO¦PC¦¦; and
+L × ¦Pv¦P𝑣¦¦ will be to ¦vG¦G𝑣¦¦ × ¦Pv¦𝑣P¦¦ as
+L to ¦vG¦G𝑣¦¦; and
+ ¦vG¦G𝑣¦¦ × ¦Pv¦vP¦¦ will be to ¦Qv¦Q𝑣¦¦²
+ as ¦PC¦¦² to ¦DO¦CD¦¦²; and
+(<a target="_blank" href="?conf=sappId=b1sec1lemma7,logic_phaseId=corollary,aspectId=english">by lem. 7, corol. 2</a>)
+the ratio of ¦Qv¦Q𝑣¦¦² to ¦Qx¦Q𝑥¦¦²,
+with the points ¦Q¦¦ and ¦P¦¦ coming together, is the
+ratio of equality; and ¦Qx¦Q𝑥¦¦² or ¦Qv¦Q𝑣¦¦² is to ¦QT¦¦² as ¦EP¦¦² to ¦PF¦¦²,
+that is, as ¦AO¦CA¦¦² to
+¦PF¦¦² or (by lem. 12) as ¦DO¦CD¦¦² to ¦BO¦CB¦¦².
+And when all these ratios are combined, L × ¦QR¦¦ will be to ¦QT¦¦²
+ as ¦AO¦AC¦¦ × L × ¦PO¦PC¦¦²
+ × ¦DO¦CD¦¦²
+, or as 2¦BO¦CB¦¦²
+ × ¦PO¦PC¦¦²
+ × ¦DO¦CD¦¦²
+to ¦PO¦PC¦¦ × ¦vG¦G𝑣¦¦ × ¦DO¦CD¦¦²
+ × ¦BO¦CB¦¦²
+, or as 2¦PO¦PC¦¦ to ¦vG¦G𝑣¦¦. But with the points ¦Q¦¦ and ¦P¦¦
+coming together, 2¦PO¦PC¦¦ and ¦vG¦G𝑣¦¦ are equal. Therefore, L × ¦QR¦¦ and ¦QT¦¦², which
+are proportional to these, are also equal. Multiply these equals by ¦SP¦¦²&nbsp;/&nbsp;¦QR¦¦, and
+L × ¦SP¦¦²
+ will become equal to ¦SP¦¦² × ¦QT¦¦²&nbsp;/&nbsp;¦QR¦¦. Therefore
+(<a target="_blank" href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary1">by prop. 6, corols, 1 and 5
+</a>)
+ the ¦force¦centripetal force¦¦ is inversely as L × ¦SP¦¦², that is, inversely as the
+square of the distance ¦SP¦¦. &nbsp;&nbsp; Q.E.I.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 462.</div>
+
+
+
+
+*::*proof|english
+{
+  "menuCaption" : "Text",
+  "subessayCaption" : "<i>Another solution</i>",
+  "subessay" : "another-solution",
+  "logic_phaseCaption" : "Solutions"
+}
+*..*
+The ¦force¦¦ which tends toward ¦O¦the center¦¦ of ¦borbit¦the ellipse¦¦, and by which
+¦P¦body P¦¦ can revolve in ¦borbit¦that ellipse¦¦, is
+(<a target="_blank"
+href="?conf=sappId=b1sec2prop10,logic_phaseId=corollary,aspectId=english,subessayId=corollary1">by
+prop. 10, corol. 1</a>)
+as the distance ¦PO¦CP¦¦
+of the body from the ¦O¦center C¦¦ of the ellipse; hence, if ¦EO¦CE¦¦ is drawn parallel to
+the tangent ¦PR¦¦ of the ellipse and if ¦EO¦CE¦¦ and ¦SP¦PS¦¦ meet at ¦E¦¦, then the force by
+which the same ¦P¦body P¦¦ can revolve around any other ¦S¦point S¦¦ of the ellipse
+will
+(<a target="_blank"
+href="?conf=sappId=b1sec2prop7,logic_phaseId=corollary,aspectId=english,subessayId=corollary3">by
+prop. 7, corol. 3</a>)
+be as ¦EP¦PE¦¦³&nbsp;/&nbsp;¦SP¦¦²; that is, if point ¦S¦¦ is a ¦S¦focus of the ellipse¦¦,
+and therefore ¦EP¦PE¦¦ is given, this force will be inversely as ¦SP¦¦². &nbsp;&nbsp; Q.E.I.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 463.</div>
+
+
+
+
+*::*comment|english
+{
+  "menuCaption" : "Text",
+  "logic_phaseCaption" : "Newton's Comment"
+}
+*..*
+This solution could be extended to the parabola and the hyperbola as
+concisely as in <a target="_blank" href="?conf=sappId=b1sec2prop10">prop. 10</a>, but because of the importance of this problem and
+its use in what follows, it will not be too troublesome to confirm each of
+these other cases by a separate demonstration.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 463.</div>

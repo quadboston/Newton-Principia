@@ -1,0 +1,45 @@
+(function(){
+
+const { nspaste, haff, haz,
+        sconf, sapp, ssF, rg, stdMod, amode } =
+        window.b$l.atree({});
+stdMod.astate_2_rg8model8media = astate_2_rg8model8media;
+stdMod.astate_2_rg8model = astate_2_rg8model;
+return;
+
+
+///seems wrong approach, should be model upcreate
+function astate_2_rg8model8media( astate4rg, ){
+    astate_2_rg8model( astate4rg );
+    haff( stdMod, 'sliders_value2pos' );
+    //haff is for lemmas from the past: l1, l2, ...
+    haff( stdMod, 'media_upcreate' ); //todm swap to ...generic
+}
+
+///poor name, should be capture_2_rg8modelUpcreate
+///possibly has nothing to do with amode toggler:
+function astate_2_rg8model( astate, dontRun_model_upcreate ){
+    if( astate ) {
+        nspaste( rg, astate );
+        delete rg.subessay; //should not be there
+        ///patch: changes non-rg property: media center:
+        ///todm: legalize;
+        var mcenter = haz( astate, 'media-mover' );
+        if( mcenter ) {
+            var mcenterA = haz( mcenter, 'achievedtop' );
+            if( mcenterA ) {
+                var mcenterAA = haz( mcenterA, 'achievedtop' );
+                if( mcenterAA ) {
+                    sconf.medposOfModOrigin_x = mcenterAA[0];
+                    sconf.medposOfModOrigin_y = mcenterAA[1];
+                }
+            }
+        }
+        var subessay = haz( astate, 'subessay' );
+        if( subessay ) {
+            amode.subessay = subessay;
+        }
+    }
+    !dontRun_model_upcreate && haff( stdMod, 'model_upcreate' );
+}
+})();

@@ -1,0 +1,104 @@
+( function() {
+var { ns, tpelect, fconf, sconf } =
+window.b$l.atree({ ssFList : { init_conf } });
+return;
+
+
+    ///====================================================
+    /// inits and sets config pars
+    ///====================================================
+    function init_conf()
+    {
+        //-------------------------------------------------
+        // //\\ modifying fconf
+        //-------------------------------------------------
+        fconf.ESSAY_FRACTION_IN_WORKPANE            = 0.9;
+        fconf.appDecor.helpButtonCaption            = '';
+
+        //todm: this disables functionality ... not only CSS:
+        fconf.appDecor.helpBox_opacity0             = true;
+        fconf.appDecor.idleHelpButtonTooltip        = '';
+
+        //setting this to "false" does hide slider
+        //decoration spinning arrows
+        fconf.NAVIGATION_DECORATIONS_ALWAYS_VISIBLE = false;
+
+
+        //todm: the site css runs before this module,
+        //      so some settings are skipped here,
+        //      patch:
+        ns.globalCss.update(
+            `
+                .top-media-controls .help-box {
+                    opacity : 0;
+                }
+            `,
+            'help-box-patch'
+        );
+        //-------------------------------------------------
+        // \\// modifying fconf
+        //-------------------------------------------------
+
+
+        //====================================================
+        // //\\ subapp regim switches
+        //====================================================
+        sconf.mediaMover_isDisabled   = true;
+        sconf.enableStudylab            = false;
+        sconf.enableTools               = false;
+        sconf.GENERIC_SLIDERS_COUNT     = 0;
+        sconf.SLIDERS_LEGEND_HEIGHT     = 0;
+        sconf.default_tp_lightness = 30;
+        //====================================================
+        // \\// subapp regim switches
+        //====================================================
+
+
+        //for real picture if diagram's picture is supplied or
+        //for graphical-media work-area if not supplied:
+        var medWidth = 839;
+        var medHeight = 563;
+
+        var medposOfModOrigin_x = 140;
+        var medposOfModOrigin_y = 61;
+
+        //-----------------------------------
+        // //\\ topic group colors,
+        //      todm: possibly proliferation
+        //-----------------------------------
+        //-----------------------------------
+        // \\// topic group colors,
+        //-----------------------------------
+
+        var originalPoints =
+        {
+        };
+
+        ///alternatively to this, you can set own colors for originalPoints
+        ///by your own
+        ns.eachprop( originalPoints, (point,rgid) => {
+            point.pcolor = ns.haz( point, 'pcolor' ) || tpelect[ rgid ];
+        });
+
+        //model's spacial unit in pixels of the picture:
+        var mod2med = 1;
+
+        var lines =
+        {
+        };
+
+        ns.paste( sconf, {
+            mediaBgImage : "main-picture.png",
+            originalPoints,
+            lines,
+            medposOfModOrigin_x,
+            medposOfModOrigin_y,
+            medWidth,
+            medHeight,
+            mod2med,
+
+            default_tp_stroke_width : 12,
+        });
+    }
+}) ();
+

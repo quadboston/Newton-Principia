@@ -1,0 +1,217 @@
+
+*::*claim|addendum
+
+Minor precaution: word "bisects" in English in "which bisects the chord" or in Latin
+<br><br>
+
+"S arcum quemvis jamjam nascentem tempore quam minimo describat, S sagitta arcus duci intelligatur, quae chordam bisecet,"
+<br><br>
+
+does not mean that the cord is based on two equal subchord legs on both sides of the point.
+Length of subchords is based on equal times. (See excentric circular motion f.e.)
+<br><br>
+
+In simple words, "one cannot construct the chord" simply from curve's shape without "taking time into account".
+
+
+
+
+*::*proof|addendum
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "model for non-similar curves"
+}
+*..*
+<b>In <a target="_blank" href="?conf=sappId=addd-fw#Cframework">Vector Calculus</a> framework</b>
+<br><br>
+
+Force
+<br><br>
+
+    <div style="text-align:center;">
+        ¦force¦𝗿˙˙¦¦ = ¦P,sagitta sagitta¦𝕻¦¦˙˙ = <br>
+        2 lim( ¦P,sagitta sagitta¦𝕻¦¦ / (¦dtime¦Δt¦¦)² ) <br>
+        ¦dtime¦Δt¦¦ → 0.
+    </div>
+
+where ¦P,sagitta sagitta¦sagitta 𝕻 ¦¦
+
+<a target="_blank" href="?conf=sappId=b1sec2prop1,logic_phaseId=corollary,aspectId=model,subessayId=0#sagitta">
+is defined here</a>,
+<br><br>
+
+
+
+
+
+
+
+
+*::*corollary|addendum
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "Corollary 1",
+  "subessay" : "corollary1"
+}
+*..*
+
+<b>In <a target="_blank" href="?conf=sappId=addd-fw#Cframework">Vector Calculus</a> framework.</b>
+<br><br>
+
+Force
+    <div style="text-align:center;">
+        ¦force¦𝗮 = 𝗿˙˙¦¦ = M²/4 d²¦P,sagitta sagitta¦𝕻¦¦/dS² &nbsp;&nbsp;&nbsp;&nbsp;(*) <br>
+    </div>
+
+where ¦P,sagitta sagitta¦sagitta 𝕻 ¦¦
+
+<a target="_blank" href="?conf=sappId=b1sec2prop1,logic_phaseId=corollary,aspectId=model,subessayId=0#sagitta">
+is defined here</a>,
+
+M/2 is "Kepler constant" for constant sectorial speed:
+    <div style="text-align:center;">
+        S˙ = 1/2[<b>rₒvₒ</b>]<sub>𝗸</sub> = M/2, <br>
+        where 𝗸 = <a target="_blank" href="?conf=sappId=addd-prel-curveXX,logic_phaseId=proof,aspectId=curve,subessayId=calculus-xx">[𝗶𝗷].</a>
+    </div>
+<br><br><br>
+
+
+<b>From <><>CXX2E</b>
+<br><br>
+
+(*) gives:
+    <div style="text-align:center;">
+        ¦force¦𝗮¦¦ = M²/2 lim( ¦P,sagitta sagitta¦𝕻¦¦ / Δ²<sub>S</sub> ) when Δ<sub>S</sub> → 0,<br>
+        ¦force¦a¦¦ = 2M² lim( f<sub>QR</sub> ) at δ → 0, &nbsp;&nbsp;&nbsp;(**)<br>
+        ¦fQR¦f<sub>QR</sub>¦¦ = ¦QR¦QR¦¦ / (¦SP¦¦ x ¦QT¦¦ )²
+    </div>
+
+where
+    <div style="text-align:center;">
+        Δ<sub>S</sub> is an area of triangle ¦SQ QP SP¦SQP¦¦, Δ<sub>S</sub> =
+            (¦SP¦¦ x ¦QT¦¦) / 2, <br>
+        Δ<sub>S</sub> = ΔS + o(δ³), where δ = Δt, <br>
+        ¦QR¦QR¦¦ = ¦P,sagitta sagitta¦𝔓¦¦ + o(δ²).
+    </div>
+<br><br>
+
+Hence in Book notations for (**), the specific coefficient is 2M².
+
+<br><br>
+
+To simulate this method numerically, we can chose two functions:
+
+We can consider 2 ultimate mathematical functions:
+
+By the Book's numerical method: fₚ = lim QR / SP² x QT²,
+By the modern numerical method: fₛ = dr²/dt² = 𝜎 (M/r)²/ρ⟂,
+https://landkey.net/z/bs/nl9/demo/addk/addendum.html?conf=sappId=addd-kepler-task
+
+QR ~= ½fₛ(∆t)², (Taylor sequence)
+fₛ ~= 2 QR/(∆t)²,
+∆S/∆t = ½M (Kepler's area law),
+fₛ ~= 2 QR/(∆S)²(½M)² ~= ½M² QR/(SP² x QT²/4),
+fₛ = 2M² fₚ
+
+Proportionality coefficient is 2M².
+
+
+<!--
+http://localhost/np/prj-a/adk/index.html?conf=sappId=b1sec2prop1,logic_phaseId=corollary,aspectId=model,subessayId=0#sagitta
+
+https://landkey.net/z/bs/nl9/demo/addk/index.html?conf=sappId=b1sec2prop6
+
+https://landkey.net/z/bs/nl9/demo/addk/index.html?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=addendum,subessayId=corollary1
+-->
+
+
+
+
+<div book-reference-id="kvk"></div>
+
+
+
+
+
+
+*::*corollary|addendum
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "Corollary 3",
+  "subessay" : "corollary3"
+}
+*..*
+
+<b>From <><>CXX2E:</b><br><br>
+
+For counter-clockwise curvature orientation b<sub>𝗸</sub> = 1,
+<a target="_blank" href="?conf=sappId=addd-kepler-task">recalling (f') and (k')</a>
+correspondingly:
+    <div style="text-align:center;">
+        ¦force¦𝑓¦¦ = v² κ/𝛺,<br>
+        v² = M² / (¦SP¦r¦¦²sin²(ω)) =   M² / ¦SY¦¦² <br>
+        <br><br>
+
+        κ/𝛺 = 2 / (2¦PC¦R¦¦ sin(ω) ) = 2 / ¦PV¦¦, <br>
+        ¦force¦𝑓¦¦ = 2M² / (¦SY¦¦² ¦PV¦¦) <br>
+        ¦force¦𝗳 = -𝗲𝑓¦¦ <br>
+    </div>
+
+<br><br>
+<div book-reference-id="kvk"></div>
+
+
+
+
+
+
+*::*corollary|addendum
+{
+  "menuCaption" : "Addendum",
+  "subessayCaption" : "Corollary 5",
+  "subessay" : "corollary5"
+}
+*..*
+
+This Corollary paraphrases Corollary 1.
+
+<!--
+
+<b>Proof from corollary 3</b>
+<br>
+    In corollary 3:
+    <div style="text-align:center;">
+       ¦force¦𝑓¦¦ = 2M² / (¦SY¦¦² ¦PV¦¦) <br>
+    </div>
+<br>
+
+We can replace ¦PV¦¦ in above formulae from similarity of triangles
+
+Do edit this
+|PV QP VQ|VPQ||
+with real pipe.
+
+ to ¦QP QR PR¦QRP¦¦ :
+
+    <div style="text-align:center;">
+       PV / QP = QP / QR
+    </div>
+
+But QP is ultimately proportional to QT:
+
+    <div style="text-align:center;">
+        QP/QT =ᵘ 1 / sin( ¦SP QP¦SPQ¦¦ ). <br>
+        hence <br>
+        PV =ᵘ QT² / sin²(..) / QR <br>
+        ¦force¦𝑓¦¦ =ᵘ 2M² / (¦SY¦¦²/sin²(...) ¦QT¦¦ / QR) <br>
+        ¦force¦𝑓¦¦ =ᵘ 2M² / (¦SP¦¦² ¦QT¦¦² / ¦QR¦¦) <br>
+    </div>
+∎
+
+-->
+
+
+<br><br>
+<div book-reference-id="kvk"></div>
+
+

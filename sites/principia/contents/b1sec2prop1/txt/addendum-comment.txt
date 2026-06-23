@@ -1,0 +1,223 @@
+
+
+
+*::*claim|model
+{
+  "menuCaption" : "Addendum"
+}
+*..*
+
+<b>In <a target="_blank"
+         href="&#63;conf=sappId=addd-fw#Cframework">Vector Calculus:</a></b><br><br>
+
+        <div style="text-align:center;">
+            <a target="_blank" href="?conf=sappId=addd-prel-curveXX,logic_phaseId=proof,aspectId=curve,subessayId=areas#area-speed">
+                <b>S˙˙</b> = 1/2[<b>ra</b>], and <br>
+            </a>
+
+            <a target="_blank" href="?conf=sappId=addd-prel-curveXX,logic_phaseId=proof,aspectId=curve,subessayId=areas#theorem-ii">
+                <b>r</b>||<b>a</b> ⇒ S˙ = const
+            </a>
+        </div>
+<br>
+
+
+
+
+*::*proof|model
+{
+  "menuCaption" : "Addendum"
+}
+*..*
+
+
+¦force¦force :¦¦¦¦
+¦dt¦time step :¦¦¦¦
+¦force cssbold¦f¦¦¦¦
+¦force cssbold¦p¦¦¦¦
+
+¦time cssbold¦t¦¦¦¦
+
+¦Av¦initial speed :¦¦¦¦
+
+¦path-change BC path cssbold¦r¦¦¦¦
+
+<b>In <a target="_blank"
+         href="&#63;conf=sappId=addd-fw#Cframework">Vector Calculus:</a></b><br><br>
+
+        <div style="text-align:center;">
+            <a target="_blank" href="?conf=sappId=addd-prel-curveXX,logic_phaseId=proof,aspectId=curve,subessayId=areas#area-speed">
+                <b>S˙˙</b> = 1/2[<b>ra</b>], and <br>
+            </a>
+
+            <a target="_blank" href="?conf=sappId=addd-prel-curveXX,logic_phaseId=proof,aspectId=curve,subessayId=areas#theorem-ii">
+                <b>r</b>||<b>a</b> ⇒ S˙ = const
+            </a>
+        </div>
+<br>
+
+
+<b>Calculational Model</b><br><br>
+
+    The model used in web simulation, follows Newton's proof exactly.
+
+    <span class="captured-reference id-1-0">When body arrives from point A to point B</span>,
+
+    it circumscribes a ¦SAB¦"kepler-triangle-area"¦¦. <br><br>
+
+    Logical steps describing motion ¦BC¦BC¦¦ are:<br><br>
+
+        <span class="captured-reference id-1-1">proof step 1. </span>
+
+        if speed would not change, then
+           body will move ¦free-path¦freely¦¦ from point B to point c,
+           making motion ¦Bc¦𝗿<sub>Bc</sub>¦¦ = ¦Av¦v<sub>AB</sub>¦¦ ¦dt¦∆t¦¦.
+
+           The area of ¦free-triangle SBc¦"free-movement-triangle-area"¦¦ is equal
+           to area of former ¦SAB¦"kepler-triangle"¦¦,<br><br>
+
+
+        <span class="captured-reference id-1-2">proof step 2.</span>
+        the ¦force¦force 𝗳¦¦ adds an impulse 𝗽 to the speed:
+          <div style="text-align:center;">
+            <div style="display:inline-block; text-align:left;">
+              𝗽 = 𝗳 ∆τ &nbsp;&nbsp;  <br>
+              𝘃<sub>BC</sub> = ¦Av¦𝘃<sub>AB</sub>¦¦ + 𝗽, <br>
+              ∆𝘃 = 𝘃<sub>C</sub> - ¦Av¦𝘃<sub>A</sub>¦¦ = 𝗽, <br>
+              where <br>
+              𝘃<sub>C</sub> = 𝘃<sub>BC</sub> <br>
+              ¦Av¦𝘃<sub>A</sub>¦¦ = 𝘃<sub>AB</sub> and<br>
+              ∆t is a time interval from A to B and<br>
+              from B to C and<br>
+              τ = 2¦time¦t¦¦. <br><br>
+          </div>
+         </div>
+            Because of speed change, ¦BC AB¦motion from A to C¦¦ becomes: <br>
+
+         <div style="text-align:center;">
+            <div style="display:inline-block; text-align:left;">
+              ¦BC AB¦∆𝗿¦¦ = ¦BC AB¦𝗿<sub>AC</sub>¦¦ = ¦AB Bc¦𝗿<sub>1</sub>¦¦ +
+              ¦Cc force-0-applied¦𝗿<sub>2</sub>¦¦ <br>
+              ¦AB Bc¦𝗿<sub>1</sub>¦¦ = ¦AB Bc¦𝗿<sub>Ac</sub>¦¦ =
+                                       ¦Av¦𝘃<sub>A</sub>¦¦∆τ, <br>
+              ¦Cc force-0-applied¦𝗿<sub>2</sub>¦¦ = ¦Cc force-0-applied¦𝗿<sub>cC</sub>¦¦ = ∆𝘃 / 2 ∆τ, <br>
+              Summands 𝗿<sub>1,2</sub> correspondingly are: <br>
+              ¦BC AB¦∆𝗿¦¦ = ¦Av¦𝘃<sub>A</sub>¦¦∆τ + ¦Cc force-0-applied¦1/2 𝗳(∆τ)²¦¦ &nbsp;&nbsp;&nbsp; (**)
+              <br><br>
+          </div>
+         </div>
+
+         ¦SBc¦"free-movement-triangle-area"¦¦
+         is equal to new ¦SBC¦"kepler-triangle-area"¦¦,
+         <br><br>
+
+        <span class="captured-reference id-1-3">proof step 4.</span>
+        previous and new ¦kepler-triangle-odd kepler-triangle-even SBC¦"kepler-triangle-area"¦¦ are equal.<br><br>
+
+
+        Each of next motions, CD, DE, ... repeats steps 1, 2, 3, 4.<br><br><br>
+
+
+        Formulas (*) and (**) are the only ones
+        used in calculational model. We estimated the default parameters
+        which fit Newton's original diagram:
+
+
+        \[ \\
+        \text{force :}          \; f = 3.9 / r^2 , \\
+        \text{time step :}      \; \Delta t = 1 ,\\
+        \text{initial speed :}  \; v_{0} = 1.
+        \]
+
+        Newton's computer brand was not estimated.
+
+To make speed and intial move distinct, we use these system simulation parameters, which also fit Book's lemma diagram:
+
+        \[ \\
+        \text{force :}          \; f = 3.47 / r^2 , \\
+        \text{time step :}      \; \Delta t = 0.75 ,\\
+        \text{initial speed :}  \; v_{0} = 1.33
+        \]
+
+<br>
+
+<br><br>
+<div book-reference-id="kvk"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*::*corollary|model
+{
+  "menuCaption" : "Addendum"
+}
+*..*
+
+<b>In <a target="_blank" title="go to description"
+         href="&#63;conf=sappId=addd-fw#Cframework">Vector Calculus</a></b><br><br>
+
+<span class="captured-reference id-corollary-1">T.1. Corollary 1. </span>
+        ¦SP¦r<sub>⟂</sub>¦¦v = const. <a target="_blank"  title="go to content"
+                href="?conf=sappId=addd-prel-curveXX,logic_phaseId=proof,aspectId=curve,subessayId=areas#area-speed-vp">
+            Proof.
+            </a>
+<br><br>
+
+
+
+<span class="captured-reference id-corollary-2">T.1. Corollary 2. </span>
+
+<a target="_blank"  title="go to content"
+   href="?conf=sappId=addd-prel-curveXX,logic_phaseId=proof,aspectId=curve,subessayId=calculus-xx#taylor-expansion-2">
+From polynomial expansion at t₀ = ¦B¦¦ and ∆t = δ:
+</a>
+<br><br>
+    <div style="text-align:center;">
+            ¦BC¦𝝙⁺¦¦ = ¦BC¦𝗿(t₀+δ) - 𝗿(t₀)¦¦ = 𝘃₀δ + 𝗮₀δ²/2 + 𝗼(δ²), <br>
+            ¦AB¦𝝙⁻¦¦ = ¦AB¦𝗿(t₀-δ) - 𝗿(t₀)¦¦. <br>
+   </div>
+<a name="sagitta" id="sagitta"></a>
+Sagitta 𝕻  bisecting "main" diagonal 𝕯  are correspondingly:
+    <div style="text-align:center;">
+        ¦BU¦𝕻¦¦ = (¦BC¦𝝙⁺¦¦ + ¦AB¦𝝙⁻¦¦)/2 =
+                𝗮₀/2δ² + 𝗼<sub>2</sub>(δ²), <br>
+
+         ¦AC¦𝕯¦¦ = ¦BC¦𝝙⁺¦¦ - ¦AB¦𝝙⁻¦¦,
+    </div>
+
+and
+
+    <div style="text-align:center;">
+        ¦BU¦𝕻¦¦ / δ² → 𝗮₀/2, &nbsp; &nbsp; &nbsp; (sagg)  <br>
+        ¦BU¦𝔓¦¦ / ¦AC¦𝔇²¦¦ → a₀/8v₀², <br>
+        when δ → 0.
+    </div>
+<br><br>
+
+
+
+
+
+
+<span class="captured-reference id-corollary-3">T.1. Corollary 3. </span>
+
+From (sagg):
+<br><br>
+    <div style="text-align:center;">
+        ¦EW¦𝔓<sub>e</sub>¦¦ / ¦BU¦𝔓<sub>b</sub>¦¦ =
+            ( ¦EW¦𝔓<sub>e</sub>¦¦ / δ² ) / ( ¦BU¦𝔓<sub>b</sub>¦¦ / δ² ) →
+            a<sub>e</sub>/a<sub>b</sub>, <br>
+        when δ → 0.
+   </div>
+<br><br>

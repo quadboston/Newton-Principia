@@ -1,0 +1,226 @@
+(function(){
+    const { sn, $$, eachprop, fconf, sconf, ssF, ssD,
+            sDomF, toreg, rg, amode, } =
+          window.b$l.atree({ stdModList :
+              { allPathRacks_2_unseenSVGs, }
+    });
+    return;
+
+
+    ///this fun. completes the split model and media code,
+    function allPathRacks_2_unseenSVGs (){
+        var pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
+        var rgxpoint2updatedSvg    = ssF.rgxpoint2updatedSvg;
+        var paintTriangle   = ssF.paintTriangle;
+
+        var S               = rg.S.pos;
+        var force           = rg.force.pos;
+        var path            = rg.path.pos;
+        var pathRacks       = rg.pathRacks.pathRacks;
+        var freePath        = rg.freePath.pos;
+        var speeds          = rg.speeds.vect;
+        //=======================================================
+        // //\\ spawns path to
+        //      path "rgPoints", Kepler-triangles, free-triangles
+        //=======================================================
+        path.forEach( (pt, pix) => {
+
+            //---------------------------------------------------------
+            // //\\ spawns path-points to media,
+            //      path[0] apparently used nowhere
+            //---------------------------------------------------------
+            var pkey = 'path-' + pix;
+            pathRacks[ pix ].undisplay = true;
+            rgxpoint2updatedSvg(
+                pkey,
+                  {
+                    'fill' : 'transparent',
+                    r : 1,
+                  }
+            );
+            //---------------------------------------------------------
+            // \\// spawns path-points to media,
+            //---------------------------------------------------------
+
+            //---------------------------------------------------------
+            // //\\ placifies keplerTriangles
+            //---------------------------------------------------------
+            if( pix > 0 ) {
+                const kix           = pix-1;
+                const pkey          = 'kepltr-' + kix;
+
+                //Add the following classes as required so that the
+                //those triangles can be highlighted.
+                let cssCls = '';
+                switch (pix) {
+                    case 1: cssCls += 'tp-_s_a_b'; break;
+                    case 2: cssCls += 'tp-_s_b_c'; break;
+                    case 3: cssCls += 'tp-_s_c_d'; break;
+                    case 4: cssCls += 'tp-_s_d_e'; break;
+                    case 5: cssCls += 'tp-_s_e_f'; break;
+                }
+                //Set the following class to either odd or even, to set
+                //the color and for highlighting.
+                const tpclass = pix % 2 ?
+                      'kepler-triangle-odd' :
+                      'kepler-triangle-even';
+
+                //sets up model vertices for triangle
+                // paints Kepler's triangles rg[pkey] along the path:
+                // /media-model/linears.js::ssF.paintTriangle()
+                // based on "triang = rg[ pkey ]"
+                paintTriangle(
+                    pkey,       //triangleId
+                    cssCls,
+                    tpclass,
+                    '', //rgba( 100,100,255,0.2)'
+                    //for svgarg.fill = defaultFill
+                );
+            }
+            //---------------------------------------------------------
+            // \\// placifies keplerTriangles
+            //---------------------------------------------------------
+        });
+
+
+
+        //---------------------------------------------------------
+        // //\\ path to spatial-model-forces
+        //      and media-forces
+        //---------------------------------------------------------
+        path.forEach( (pt, pix) => {
+
+            //forces master-index offset is pi = 1 and
+            //identified with key 'kepltr-' + (pi-1)
+            if( pix > 0 ) {
+
+                //*****************************************
+                // //\\ paints forces attached to B, C, ...
+                //*****************************************
+                var kix = pix-1;
+                var fkey = 'force-' + kix;
+                var fview = toreg( fkey )();
+                var ffkey0 = fkey+'-0';
+                var ffkey1 = fkey+'-1';
+                toreg( ffkey0 )({ undisplay : true })();
+                toreg( ffkey1 )({ undisplay : true })();
+
+                rgxpoint2updatedSvg( ffkey0, {
+                    fill:'transparent',
+                    tpclass : 'force-_move hidden',
+                } );
+                //paints tip of the force in red
+                rgxpoint2updatedSvg( ffkey1, {
+                    //fill:'red',
+                    cssClass:'tofill',
+                    tpclass : 'force-_move hidden',
+                    r : 6, //this is circle's radius
+                });
+
+                //----------------------------------
+                // //\\ makes red line segments for force
+                //      attached to points C, D, E, ...
+                //      not a sagittae,
+                //----------------------------------
+                var wwpname = fkey+'-applied';
+                let pcolor = sDomF.rgid0arrc_2_rgba( 'forceMove' )
+                toreg( wwpname )
+                    ({ undisplay : true })
+
+                    ////patch for purpose of drawing a vector tip
+                    ( 'vectorTipIx', 1 )
+                    ( 'tipFraction', 0.4 )
+                    ( 'pcolor', pcolor )
+                    ( 'tipFill', pcolor )
+                    ();
+                let forceShape = pivots_2_svgLineInRg(
+                    wwpname,
+                    fview.pivots,
+                    {
+                        cssClass:'tostroke tp-' + wwpname,
+                        'stroke-width': 3,
+                        tpclass : 'forceMove',
+                    }
+                );
+                //----------------------------------
+                // \\// makes red line segments for force
+                // \\// paints forces attached to B, C, ...
+                //*****************************************
+            }
+        });
+        //---------------------------------------------------------
+        // \\// path to spatial-model-forces
+        //---------------------------------------------------------
+
+
+        //-------------------------------------------------
+        // //\\ paints free path points
+        //-------------------------------------------------
+        var theor1proof = fconf.sappId === 'b1sec2prop1' ?
+            'logic_phase--proof' : 'logic_phase--none';
+        freePath.forEach( (pt, pix) => {
+            var pkey = 'freepath-' + pix;
+            toreg( pkey )({ undisplay : true })();
+            rgxpoint2updatedSvg(
+                pkey,
+                  {
+                    cssClass: 'tofill tostroke ' + theor1proof,
+                    tpclass : 'free-path',
+                  }
+            );
+        });
+        //-------------------------------------------------
+        // \\// paints free path points
+        //-------------------------------------------------
+
+
+
+        //-------------------------------------------------
+        // //\\ free line segment
+        //-------------------------------------------------
+        var freePathRacks = rg.freePathRacks.freePathRacks;
+        freePathRacks.forEach( (frack, pix) => {
+            if( pix >= freePathRacks.length ) return;
+            var wwpname = 'freePathSegment-' + pix;
+            toreg( wwpname )({ undisplay : true })();
+            pivots_2_svgLineInRg(
+                wwpname,
+                !'wwPivots',
+                {
+                    //stroke:'green',
+                    cssClass:'tofill tostroke ' + theor1proof,
+                    tpclass : 'free-path',
+                    'stroke-width':4
+                }
+            );
+        });
+        //-------------------------------------------------
+        // \\// free line segment
+        //-------------------------------------------------
+
+
+
+        //-------------------------------------------------
+        // //\\ real path line segment,
+        //      apparently, segment after applying the force
+        //-------------------------------------------------
+        pathRacks.forEach( (prack, pix) => {
+            if( pix === pathRacks.length - 1 ) return;
+            var wwpname = 'pathSegment-' + pix;
+            toreg( wwpname )({ undisplay : true })();
+            pivots_2_svgLineInRg(
+                wwpname,
+                !'wwPivots',
+                {
+                    cssClass:'tostroke',
+                    tpclass : 'path',
+                    'stroke-width':4
+                }
+            );
+        });
+        //-------------------------------------------------
+        // \\// real path line segment
+        //-------------------------------------------------
+    }
+})();
+

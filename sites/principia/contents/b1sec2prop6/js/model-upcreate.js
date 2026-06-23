@@ -1,0 +1,183 @@
+(function(){
+const {
+        sn, $$, nsmethods, nssvg, mcurve, integral, flagdo, nspaste,
+        mat, has, ssF, ssD, amode, stdMod, sconf, rg, toreg,
+    } = window.b$l.atree({ stdModList : {
+        model_upcreate,
+}});
+return;
+
+
+///****************************************************
+/// model scenario
+/// is required; to skip define as ()=>{};
+///****************************************************
+function model_upcreate (){
+    const sectSpeed0 = ssD.sectSpeed0;
+    const solvable_orbit = sn( 'solvable_orbit', flagdo, true );
+    const Porb = ssD.qix2orb[ rg.P.qix ];
+    var {
+        RC,
+        R,
+        curvatureChordSecondPoint,
+        projectionOfCenterOnTangent,
+        uu,
+        rr,
+    } = Porb;
+    rg.P.q = Porb.q;
+    rg.P.pos[0] = rr[0];
+    rg.P.pos[1] = rr[1];
+    const rr0 = rg.P.pos;
+    const rrc = rg.S.pos;
+    const Rc = R; //curvature radius
+
+    if( solvable_orbit ){
+        const rrplus = Porb.rrplus;
+        const rrminus = rg.rrminus.pos = Porb.rrminus;
+        rg.Q.q = Porb.plusQ;
+        rg.Q.q_minus = Porb.minusQ;
+        rg.Q.pos[0] = rrplus[0];
+        rg.Q.pos[1] = rrplus[1];
+        rg.QtimeDecor.caption = 'Δt=' + (2*ssD.Dt).toFixed(5);
+        rg.QtimeDecor.pos = Porb.rrplus;
+        let sagV = Porb.sagittaVector;
+        rg.sagitta.pos = [sagV[0]+rr[0],sagV[1]+rr[1]];
+        const chord = rg.chord = [ rrplus[0] - rrminus[0],
+                        rrplus[1] - rrminus[1], ];
+        rg.chord2 = chord[0]*chord[0]+chord[1]*chord[1];
+
+        //R = parallel-projection of Q to tangent
+        var RR = mat.linesCross(
+            uu, rr0, //direction, start
+            [rr0[0]-rrc[0], rr0[1]-rrc[1]], rg.Q.pos, //direction, start
+        );
+        rg.R.pos[0] = RR[0];
+        rg.R.pos[1] = RR[1];
+        //T = perp. from Q to radius-vector
+        const TT = mat.dropPerpendicular( rg.Q.pos, rrc, rr0 )
+        rg.T.pos[0] = TT[0];
+        rg.T.pos[1] = TT[1];
+    }
+
+    //================================================
+    // //\\ curvature circle
+    //================================================
+    rg.C.pos[0] = RC[0];
+    rg.C.pos[1] = RC[1];
+    rg.V.pos[0] = curvatureChordSecondPoint[0];
+    rg.V.pos[1] = curvatureChordSecondPoint[1];
+    rg.Y.pos[0] = projectionOfCenterOnTangent[0];
+    rg.Y.pos[1] = projectionOfCenterOnTangent[1];
+    {
+        const RCmedpos = ssF.modpos2medpos( RC, );
+        const RRmedpos = sconf.mod2med * Rc;
+        //todo nearly bug: why create svg and set cls every time?
+        const CCName = 'curvatureCircle';
+        var rgCC = rg[CCName];
+        rgCC.svgel = nssvg.u({
+            svgel   : rgCC.svgel,
+            parent  : stdMod.medScene,
+            type    : 'circle',
+            stroke  : rg.C.pcolor,
+            fill    : 'transparent',
+            'stroke-width' : '1',
+            cx : RCmedpos[0],
+            cy : RCmedpos[1],
+            r : RRmedpos,
+        });
+        $$.$( rgCC.svgel ).addClass(
+            'tp-' + nsmethods.camelName2cssName( CCName ) +
+            ' tostroke'
+        );
+        //todm: should be done via cssClass
+        rgCC.svgel.style.display =
+            rgCC.undisplay ? 'none' : 'block';
+    }
+    //================================================
+    // \\// curvature circle
+    //================================================
+
+    //================================================
+    // //\\ decorations
+    // //\\ graph
+    //------------------------------------------------
+    //if( solvable ) {
+        //t/const mask = [];
+        //t/mask[1]=0;
+        rg.borbit.graphFW_lemma.wraps_draw_graph({
+            //t/mask,
+            printAxisXDigits : true,
+        });
+    //}
+    //------------------------------------------------
+    // \\// graph
+    //------------------------------------------------
+
+    //------------------------------------------------
+    // //\\ PZ
+    //------------------------------------------------
+    var wwZ = mat.dropLine(
+        -0.6,     //q
+        rg.P.pos, //A
+        rg.Y.pos, //B
+    );
+    rg.Z.pos[0] = wwZ[0];
+    rg.Z.pos[1] = wwZ[1];
+    //------------------------------------------------
+    // \\// PZ
+    // \\// decorations
+    //================================================
+
+    //================================================
+    // //\\ hides/shows split points
+    //      todm can? be automated? via cssClass
+    //================================================
+    {
+        //sconf.originalPoints.foldPoints;
+        //original placeholders:
+        let fp_original_placeholders = rg.foldPoints.cpivots;
+        let foldps = ssD.foldPoints;
+        let flen = foldps.length;
+        let pastlen = ssD.pastFoldPointsLen;
+        if( has( ssD, 'pastFoldPointsLen' ) ) {
+            //todm for( let i=foldps.length; i<flen; i++ ) {
+            for( let i=0; i<pastlen; i++ ) {
+                rg.foldPoints.cpivots[i].rgShape.undisplay = true;
+                //fp_original_placeholders[i].rgX.undisplay = true;
+            }
+        }
+        ////otherwise, cannot display all separation points;
+        ////therfore, displays nothing,
+        if( foldps.length <= fp_original_placeholders.length ) {
+                for( let i=0; i<flen; i++ ){
+                let fp = foldps[i];
+                let rgShape = fp_original_placeholders[i].rgShape;
+                rgShape.pos = fp;
+                rgShape.undisplay = false;
+            };
+            ssD.pastFoldPointsLen = flen;
+        }
+    }
+    {
+                        rg.foldPoints.cpivots[i].undisplay = true;
+
+        ///single fold point decorations
+        let nsp = rg.nonSolvablePoint;
+        let nsl = rg[ 'S,nonSolvablePoint' ];
+        let len = ssD.foldPoints.length;
+        if( len ) {
+            ////displays last fold point
+            nsp.pos[0] = ssD.foldPoints[len-1][0];
+            nsp.pos[1] = ssD.foldPoints[len-1][1];
+            nsp.undisplay = false;
+            nsl.undisplay = false;
+        } else {
+            nsp.undisplay = true;
+            nsl.undisplay = true;
+        }
+    }
+    //================================================
+    // \\// hides/shows split points
+    //================================================
+}
+})();

@@ -1,0 +1,148 @@
+*::*claim|english
+{
+  "default" : "1",
+  "menuCaption" : "Text",
+  "logic_phaseCaption" : "Problem 5"
+}
+*..*
+Let a ¦body P¦body¦¦ revolve in an ellipse; it is required to find the law
+of the centripetal
+¦force¦¦ tending toward the ¦O¦center of the ellipse¦¦
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 459.</div>
+
+
+
+
+*::*proof|english
+{
+  "menuCaption" : "Text",
+  "subessayCaption" : "[<i>First solution</i>]",
+  "subessay" : "solution",
+  "logic_phaseCaption" : "Solutions"
+}
+*..*
+Let ¦AO¦CA¦¦ and ¦BO¦CB¦¦ be the semiaxes of the ¦borbit¦ellipse¦¦, ¦GP¦¦ and ¦DK¦¦ other conjugate diameters,
+¦PF¦¦ and ¦QT¦¦ perpendiculars to those diameters, ¦Qv¦Q𝑣¦¦ an ordinate to diameter ¦GP¦¦;
+then, if parallelogram ¦Qv PR¦Q𝑣PR¦¦ is completed, the rectangle ¦Pv¦P𝑣¦¦ x ¦vG¦𝑣G¦¦ will (from the Conics) be to ¦Qv¦Q𝑣¦¦²
+
+as ¦PO¦PC¦¦² to ¦DO¦CD¦¦², and
+
+(because
+triangles ¦Qv QT Tv¦Q𝑣T¦¦ and ¦PO FO PF¦PCF¦¦ are similar)
+¦Qv¦Q𝑣¦¦² is to ¦QT¦¦² as ¦PO¦PC¦¦² to ¦PF¦¦², and,
+
+when these ratios are combined, the rectangle ¦Pv¦P𝑣¦¦ x ¦vG¦𝑣G¦¦ is to QT² as ¦PO¦PC¦¦² to
+¦DO¦CD¦¦² and ¦PO¦PC¦¦² to ¦PF¦¦²; that is, ¦vG¦𝑣G¦¦ is
+to ¦QT¦¦²&nbsp;/&nbsp;¦Pv¦P𝑣¦¦ as ¦PO¦PC¦¦² to ¦DO¦CD¦¦² x ¦PF¦¦²&nbsp;/&nbsp;¦PO¦PC¦¦².
+<br><br>
+
+Write
+¦QR¦¦ for ¦Pv¦P𝑣¦¦  and (by lem. 12) ¦BO¦BC¦¦ x ¦AO¦CA¦¦ for ¦DO¦CD¦¦ x ¦PF¦¦, and also (points ¦P¦¦
+and ¦Q¦¦ coming together) 2¦PO¦PC¦¦ for ¦vG¦𝑣G¦¦, and, multiplying the extremes and
+means together, ¦QT¦¦² x ¦PO¦PC¦¦²&nbsp;/&nbsp;¦QR¦¦ will become equal to 2¦BO¦BC¦¦² x ¦AO¦CA¦¦² /&nbsp;¦PO¦PC¦¦. Therefore
+
+(<a target="_blank" href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary5">by prop. 6, corol. 5</a>), the centripetal ¦force¦¦ is as 2¦BO¦BC¦¦² x ¦AO¦CA¦¦² / ¦PO¦PC¦¦ inversely, that
+
+is (because 2¦BO¦BC¦¦² x ¦AO¦CA¦¦² is given), as 1/¦PO¦PC¦¦ inversely, that is, as the distance ¦PO¦PC¦¦
+directly. Q.E.I.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 459.</div>
+
+
+
+
+*::*proof|english
+{
+  "menuCaption" : "Text",
+  "subessayCaption" : "<i>Another solution</i>",
+  "subessay" : "another-solution",
+  "logic_phaseCaption" : "Solutions"
+}
+*..*
+On the straight line ¦GP¦PG¦¦ take a point ¦u¦𝑢¦¦ on the other side of point ¦T¦¦,
+so that ¦Tu¦T𝑢¦¦ is equal to ¦Tv¦T𝑣¦¦; then take ¦u,VV¦𝑢V¦¦ such that it is to ¦vG¦𝑣G¦¦ as
+¦DO¦DC¦¦² is to
+¦PO¦PC¦¦². And since (from the Conics) ¦Qv¦Q𝑣¦¦² is to ¦Pv¦P𝑣¦¦ x ¦vG¦𝑣G¦¦ as
+¦DO¦DC¦¦² to ¦PO¦PC¦¦², ¦Qv¦Q𝑣¦¦²
+will be equal to ¦Pv¦P𝑣¦¦ X ¦u,VV¦𝑢V¦¦. Add the rectangle ¦uP¦𝑢P¦¦ x ¦Pv¦P𝑣¦¦ to both sides, and the
+
+square of the chord of arc ¦PQ¦¦ will come out equal to the rectangle ¦P,VV¦VP¦¦ x ¦Pv¦P𝑣¦¦;
+and therefore ¦curvatureCircle¦a circle¦¦ that touches
+the conic section at ¦P¦¦ and passes through
+point ¦Q¦¦ will also pass through point ¦VV¦V¦¦. Let points ¦P¦¦ and ¦Q¦¦ come together,
+and the ratio of ¦u,VV¦𝑢V¦¦ to ¦vG¦𝑣G¦¦, which is the same as the ratio of ¦DO¦DC¦¦² to ¦PO¦PC¦¦²,
+
+will become the ratio of ¦P,VV¦PV¦¦ to ¦GP¦PG¦¦ or ¦P,VV¦PV¦¦ to 2¦PO¦PC¦¦;
+and therefore ¦P,VV¦PV¦¦ will
+be equal to 2¦DO¦DC¦¦²/¦PO¦PC¦¦. Accordingly, the ¦force¦¦ under the action of which body ¦P¦¦
+revolves in the ellipse will (<a target="_blank" href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary3">by prop. 6, corol. 3</a>) be as 2¦DO¦DC¦¦² / ¦PO¦PC¦¦ x ¦PF¦¦² inversely,
+that is (because 2¦DO¦DC¦¦² x ¦PF¦¦² is given), as ¦PO¦PC¦¦ directly. Q.E.I.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 459.</div>
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 1",
+  "subessay" : "corollary1",
+  "logic_phaseCaption" : "Corollaries"
+}
+*..*
+Therefore, the ¦force¦¦ is as ¦SP¦the distance¦¦ of ¦P¦the body¦¦ from
+¦O¦the center¦¦ of the ¦borbit¦ellipse¦¦; and, conversely,
+if the ¦force¦¦ is as the ¦SP¦distance¦¦, the
+body will move in an ellipse having ¦O¦its center¦¦ in the center of ¦forces¦¦, or
+perhaps it will move in a circle, into which an ellipse can be changed.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 460.</div>
+
+
+
+
+*::*corollary|english
+{
+  "subessayCaption" : "Corollary 2",
+  "subessay" : "corollary2"
+}
+*..*
+And the periodic times of the revolutions made in all ellipses universally around the same center will be equal. For in similar ellipses
+those times are equal (by prop. 4, corols. 3 and 8), while in ellipses having a
+common major axis they are to one another as the total areas of the ellipses
+directly and the particles of the areas described in the same time inversely;
+that is, as the minor axes directly and the velocities of bodies in their principal vertices inversely; that is, as those minor axes directly and the ordinates
+to the same point of the common axis inversely; and therefore (because of
+the equality of the direct and inverse ratios) in the ratio of equality.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 460.</div>
+
+
+
+
+*::*scholium|english
+{
+  "menuCaption" : "Text",
+  "logic_phaseCaption" : "Scholium"
+}
+*..*
+If the center of the ellipse goes off to infinity, so that the ellipse turns into
+a parabola, the body will move in this parabola, and the ¦force¦¦, now tending
+toward an infinitely distant center, will prove to be uniform. This is Galileo's
+theorem. And if (by changing the inclination of the cutting plane to the
+cone) the parabolic section of the cone turns into a hyperbola, the body will
+move in the perimeter of the hyperbola, with the centripetal ¦force¦¦ turned
+into a centrifugal ¦force¦¦. And just as in a circle or an ellipse, if the ¦forces¦¦
+tend toward a figure's center located in the abscissa, and if the ordinates are
+increased or decreased in any given ratio or even if the angle of the inclination
+of the ordinates to the abscissa is changed, these ¦forces¦¦ are always increased
+or decreased in the ratio of the distances from the center, provided that the
+periodic times remain equal; so also in all figures universally, if the ordinates
+are increased or decreased in any given ratio or the angle of inclination of
+the ordinates is changed in any way while the periodic time remains the
+same, the ¦forces¦¦ tending toward any center located in the abscissa are, for
+each individual ordinate, increased or decreased in the ratio of the distances
+from the center.
+<br><br>
+<div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 460.</div>

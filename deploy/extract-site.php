@@ -2,6 +2,15 @@
 <?php
 
     //*****************************************************
+    //usually runs from suite root:
+    //aka cd ../../.. PACKAGE_ROOT=`pwd`
+    //deploy/extract-site.php $PACKAGE_ROOT $SITEID
+
+    //possibly for /sites/site_id
+    //what is the difference from productify scenario?
+    //does this only dev environment for specific
+    //sites/site_id
+
     //zips up all except git files
     //development helper: not a part of deployer
     //advances NNNN.version
@@ -15,12 +24,12 @@
     //=====================================================
     // //\\ makes helpers
     //=====================================================
-    function cli ( $command, $action_descr, $do_print_output = FALSE, $get_output = FALSE ) 
+    function cli ( $command, $action_descr, $do_print_output = FALSE, $get_output = FALSE )
     {
     	$res = array();
         $ret = exec( $command, $res, $retcode );
         if( $retcode . '' !== '0' ) {
-            printf( "\n$action_descr:\nproblems in command:\n$command\noutput=" ); 
+            printf( "\n$action_descr:\nproblems in command:\n$command\noutput=" );
             print_r( $res );
             printf( "\n" );
             exit;
@@ -64,6 +73,7 @@
         //too risky: $path_to_dir = '../../../vendor';
         exit( "missed version-project-folder and subsite ... terminating\n" );
     } else {
+        //this is a path to the root of an entire project suite
         $path_to_dir = $argv[1];
         if( !is_dir( $path_to_dir ) )
         {
@@ -132,7 +142,7 @@
     if( $js_text === FALSE ) exit( "js_text is missed\n" );
 
     //see $versionPattern below
-    $version_re = '#' . 
+    $version_re = '#' .
                         '\s*' .
                     'fapp.version' .
                         '\s*' .
@@ -147,8 +157,8 @@
                     'application version' .
                   '#';
     $matches = array();
-    //http://php.net/manual/en/function.preg-match.php    
-    $test = preg_match( 
+    //http://php.net/manual/en/function.preg-match.php
+    $test = preg_match(
             $version_re,
             $js_text,
             $matches
@@ -163,7 +173,7 @@
     $next_version = $version + 1;
     //echo "new version = $next_version\n";
     $versionPattern = "\n    fapp.version =  $next_version; //application version";
-    $new_content = preg_replace( 
+    $new_content = preg_replace(
             $version_re,
             $versionPattern,
             $js_text
@@ -185,7 +195,7 @@
     $postfix_len        = strlen( $archive_postfix );
     $archive_postfix    = $archive_postfix ? '-' .
                           $archive_postfix : '';
-    $archive_postfix    = preg_replace( 
+    $archive_postfix    = preg_replace(
                             '#\s+#',
                             '-',
                             $archive_postfix );
@@ -219,13 +229,14 @@
     //printf( 'name_of_copy=' . $name_of_copy . "\n" );
     cli( "mkdir $name_of_copy", "creating placeholder" );
 
-    cli( "cp -R $folder_to_zip/src $name_of_copy", "cloning.." );
     cli( "cp -R $folder_to_zip/deploy $name_of_copy", "cloning.." );
     cli( "cp -R $folder_to_zip/engine-img $name_of_copy", "cloning.." );
     cli( "cp -R $folder_to_zip/version.js $name_of_copy", "cloning.." );
     cli( "cp -R $folder_to_zip/LICENSE $name_of_copy", "cloning.." );
     cli( "mkdir $name_of_copy/sites", "creating placeholder" );
     cli( "cp -R $folder_to_zip/sites/$siteid $name_of_copy/sites", "cloning.." );
+
+    cli( "cp -R $folder_to_zip/sites/src $name_of_copy/sites", "cloning.." );
 
     $command = 'zip -rq ' . $name_of_copy . '.zip ' . $name_of_copy;
     //.excludes .git from zip

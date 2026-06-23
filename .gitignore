@@ -5,7 +5,6 @@
 /index.prod.html
 /addendum.prod.html
 /prod
-/sites
 contents/b1sec2prop7-progress
 src/plugins/balls3d
 src/plugins/flame
@@ -15,4 +14,5 @@ src/plugins/gas-particles
 src/plugins/phys-ideal-gas
 src/plugins/dynoribbon
 src/plugins/vend
+/vendor/plugins
 .vscode
