@@ -413,7 +413,7 @@
                 vectorTipIx : 1 }, 
             },
             { 'l,ll' : { 
-                pcolor : givenHover,
+                pcolor : supplementHover,
                 captionShiftNorm : 44, 
                 lposYSugar : -5, }, 
             },
