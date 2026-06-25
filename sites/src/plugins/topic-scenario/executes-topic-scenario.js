@@ -247,7 +247,7 @@
         //ssF.updateFrameWorkAnchors_2_basicSiteFeatures( newMessage_dom );
 
         if( noMathJax ) return;
-
+        ccc( 'MathJax is requested in topics, involving it...' );
         ///we put new message in MathJax queue:
         ssF.BodyMathJax_2_HTML(
             newMessage_dom,

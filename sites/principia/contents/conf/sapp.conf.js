@@ -21,6 +21,12 @@ function doesConfigLemma (){
     //====================================================
     // //\\ user scenarios
     //====================================================
+    //for css animation in seconds:
+    //good for dev environment:
+    sf.LANDING_SPALSH_DELAY = '0.2',
+    //nice but "slow" transition:
+    //sf.LANDING_SPALSH_DELAY = '1',
+
     sf.SUBESSAY_TAB_RESETS_zoom_to_1 = false;
     //in selected lemma, can cancel
     //picture which is enabled in UserOptions:
@@ -42,6 +48,10 @@ function doesConfigLemma (){
     //====================================================
     // \\// user scenarios
     //====================================================
+
+    //do set it to null in lemmas sconf.js if
+    //there is no such image exists
+    sf.mediaBgImage = "diagram.png";
 
     //=======================================
     // //\\ topic colors repo

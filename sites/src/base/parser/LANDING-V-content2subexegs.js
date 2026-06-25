@@ -28,6 +28,7 @@
         var allEssays__str = "";
         var lemmaConfig = fconf.sappId2lemmaDef[ fconf.sappId ];
         contentsList_2_essaions_2_exegs( lemmaConfig );
+        ccc( 'LANDING_V___lo is done' );
         return;
 
         ///This ajax-load takes contents-files, concatenates them, and calls
@@ -403,6 +404,7 @@
             //ssF.LANDING_V___loads_professorList8cont_8_buildsSubexegs(
             //    function() {
             //-----------
+            ccc( 'cb__LANDING_VI is called');
             cb__LANDING_VI();
             return;
 
@@ -553,7 +555,6 @@
             return true;
         }
     }
-
     ///todm: should be named rgid0arrc_2_rgba
     ///converts these two things
     ///

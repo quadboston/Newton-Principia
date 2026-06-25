@@ -53,7 +53,7 @@ function init_conf (){
     //      look at conf/conf.js or especally at conf/lemma.conf.js:
     //      //t/sf.text_nonhover_width   = 0.01;
     //***************************************************************
-    sf.mediaBgImage = "../../b1sec1lemma6/img/b1s1l6-diagram-3rded-b.png";
+    sf.mediaBgImage = "b1s1l6-diagram-3rded-b.png";
     sconf.TP_OPACITY_LOW_POINT = 1;
     sconf.TP_OPACITY_LOW = 1; // applied to points, lines, and table data
     //making size to better fit lemma's diagram

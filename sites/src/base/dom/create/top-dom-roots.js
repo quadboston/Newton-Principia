@@ -4,7 +4,8 @@ const {
         stdMod, amode, rg,
       } = window.b$l.atree();
 sDomF.shows_book_picture = shows_book_picture;
-sDomF.creates_mainWorkspace_domRoots = creates_mainWorkspace_domRoots;
+sDomF.creates_mainWorkspace_domRoots =
+    creates_mainWorkspace_domRoots;
 return;
 
 

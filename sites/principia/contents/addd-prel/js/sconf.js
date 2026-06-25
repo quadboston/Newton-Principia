@@ -88,7 +88,6 @@ return;
         };
 
         ns.paste( sconf, {
-            mediaBgImage : "main-picture.png",
             originalPoints,
             lines,
             medposOfModOrigin_x,

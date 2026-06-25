@@ -47,6 +47,7 @@ function init_conf (){
     //      look at conf/conf.js or especally at conf/lemma.conf.js:
     //      //t/sf.text_nonhover_width   = 0.01;
     //***************************************************************
+    //see comment in  sapp.comf.js
     sf.mediaBgImage = "diagram.png";
     sf.allLettersAreHidden = true;
     sf.default_tp_lightness = 30;

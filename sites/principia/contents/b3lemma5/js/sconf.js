@@ -125,7 +125,6 @@ function init_conf(){
     //      look at conf/conf.js or especally at conf/lemma.conf.js:
     //      //t/sf.text_nonhover_width   = 0.01;
     //***************************************************************
-    sf.mediaBgImage = "diagram.png";
     sf.default_tp_lightness = 30; //todm no effect
     sf.default_tp_stroke_opacity = 2;
     sf.defaultLineWidth = 2;

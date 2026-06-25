@@ -94,6 +94,7 @@
                 singleMessageText,
             );
         //Frag. step III. Html and global-css-visib-of-active-category.
+        ccc( '*** in topics: calls exegs__2__tpAn8dom8css8mjax() ' );
         ssF.builtFrags_2_dom8mj(
             messageDomEl,
             ready_for_html_act8stat_fragments_texts_rack[ 'static' ],

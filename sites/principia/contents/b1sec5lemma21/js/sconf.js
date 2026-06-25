@@ -518,9 +518,6 @@ function init_conf(){
     Object.assign( to_sconf, {
         originalPoints,
         linesArray,
-        mediaBgImage : "diagram.png",
-        //mediaBgImage : "diagram3.png", //bigger diagram
-
         //----------------------------------
         // //\\ model-view parameters
         //----------------------------------

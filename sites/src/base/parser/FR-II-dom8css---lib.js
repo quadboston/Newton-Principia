@@ -249,8 +249,9 @@ function fragment__collectsRawTpLinks(
     //return { collectedTpLinks, collectedDelayedLinks };
 }
 
-function BodyMathJax_2_HTML( domEl, no_domEl_pretransformation, cbAfterMathJax )
-{
+function BodyMathJax_2_HTML(
+    domEl, no_domEl_pretransformation, cbAfterMathJax
+){
     {
         //skips text block without MathJax
         let iH = domEl.innerHTML;
@@ -259,6 +260,8 @@ function BodyMathJax_2_HTML( domEl, no_domEl_pretransformation, cbAfterMathJax )
     }
     var count = 0;
     mathJax_2_HTML();
+    return;
+
     ///===============================================
     /// waits for MathJax and fires it up over domEl
     ///===============================================
@@ -494,7 +497,10 @@ function builtFrags_2_dom8mj(
     //updateFrameWorkAnchors_2_basicSiteFeatures();
 
     //does delayed anchors
-    !dontDoMathJax && ssF.BodyMathJax_2_HTML( bFrag.dom$() );
+    if( !dontDoMathJax ){
+        ccc('MathJax requested; no cb: calling BodyMathJax_2_HTML');
+        ssF.BodyMathJax_2_HTML( bFrag.dom$() );
+    }
     //do later: ssF.puts_delayed_tp_anch_in_syblings( bFrag.dom$() );
 }
 

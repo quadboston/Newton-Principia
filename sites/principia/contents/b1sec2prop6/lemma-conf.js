@@ -3,7 +3,6 @@
     window.b$l.atree().fapp.lemmaConfig = {
         codesList: [
             { src: sm + 'sconf.js' },
-            { src: sm + 'init-model-parameters.js' },
             { src: sm + 'model-upcreate.js' },
             { src: sm + 'completes-sliders-creation.js' },
             { src: sm + 'main-legend.js' },

@@ -1,10 +1,11 @@
 (function(){
 const {
         nspaste, hafa, haff, fconf, sf, tprepo, tpelect, stripp,
-        CONST,  ssF, rg, stdMod,  ssD, gshapes,
+        bezier, CONST,  ssF, rg, stdMod,  ssD, gshapes,
       } = window.b$l.atree({ ssFList: {
         init_conf
 }});
+const el = tpelect;
 const { POINT, LINE, ANGLE, CURVE, SHAPE } = CONST;
 return;
 
@@ -25,8 +26,6 @@ function init_conf (){
     let medsizeScale = medsize / sf.medsize_standard
 
     let S = [117, 322 ];
-    let P = [453, 177];
-    let Y = [263,66];
     let A = [540, 338];
 
     sf.medposOfModOrigin_x = S[0]; //for model's axis x
@@ -45,7 +44,6 @@ function init_conf (){
     //      look at conf/conf.js or especally at conf/lemma.conf.js:
     //      //t/sf.text_nonhover_width   = 0.01;
     //***************************************************************
-    sf.mediaBgImage = "diagram.png";
     sf.default_tp_lightness = 30;
     //***************************************************************
     // \\// GUI cosmetics
@@ -126,67 +124,39 @@ function init_conf (){
 
     //*************************************
     // //\\ elected colors,
+    //      does import topic colors to elected colors
+    //      from conf/lemma.conf.js
     //*************************************
-    ///does import topic colors from conf/lemma.conf.js
-    const {
-        force,
-        estimatedForce,
-        fQR,
-        //displacement
-        curvature,
-        curvatureCircle,
-        sagitta,
-        distanceToCenter,
+    [
+        'force',
+        'estimatedForce',
+        'fQR',
+        'curvature',
+        'curvatureCircle',
+        'sagitta',
+        'distanceToCenter',
 
-        borbit,
-        body,
-        distance,
-        chord,
+        'borbit',
+        'body',
+        'distance',
+        'chord',
 
-        time,
-        dtime,
+        'time',
+        'dtime',
 
-        given,
-        proof,
-        result,
+        'given',
+        'proof',
+        'result',
 
-        hidden,
-        context,
-        invalid,
-        shadow,
-    } = tprepo;
-
-    ///does export topic colors
-    nspaste( tpelect, { //need deep copy
-        force,
-        estimatedForce,
-        fQR,
-        //t/displacement
-        curvature,
-        curvatureCircle,
-        sagitta,
-        distanceToCenter,
-
-        borbit,
-        body,
-        distance,
-        chord,
-
-        time,
-        dtime,
-
-        given,
-        proof,
-        result,
-
-        hidden,
-        context,
-        invalid,
-        shadow,
-
-        timearc : time,
-        APQ     : borbit,
+        'hidden',
+        'context',
+        'invalid',
+        'shadow',
+    ].forEach( rgn => {
+        tpelect[rgn] = nspaste( tprepo[rgn] );
     });
+    tpelect.timearc = nspaste( tprepo.time );
+    tpelect.APQ = nspaste( tprepo.borbit );
     //*************************************
     // \\// elected colors,
     //*************************************
@@ -200,46 +170,57 @@ function init_conf (){
         cpivots: (new Array(200)).fill({}).map( fp => ({
             pcolor: [255,255,255,1],
             doPaintPname: false,
-            singleTpClass: 'fold-point',
+            //singleTpClass: 'fold-point',
         })),
         //todm implement: this will remove code from
         //amode8captures,
         //flagcss: 'solvable_orbit',
         //flagcss: 'solvable_orbit-not-',
+        //but this implementation is tricky and needs thoughs,
     },
     {
         kind: CURVE,
         rgn: 'borbit',
         cpivots: [
-                A,
-                [ 527,248 ],
-                [ 485,203 ],
-                //P,
-                [ 396, 148 ],
-                [300, 130], //near Q
-                //for gaps test: [217,472],
-                [217,132],
-
-                [51,238 ],
-                [51,238 ],
-                [22,315],
-            ].map( medpos => ({
-                pos         : medpos,
-                pcolor      : given,
-                letterAngle : 45,
-                draggableX  : true,
-                draggableY  : true,
-                doPaintPname : false,
-            })),
+            [540,341],
+            [535,218],
+            [485,179],
+            [396,113],
+            [300,127],
+            [217,45],
+            [51,211],
+            [44,216],
+            [22,314],
+        ].map( medpos => ({
+            pos         : medpos,
+            pcolor      : el.given,
+            letterAngle : 45,
+            draggableX  : true,
+            draggableY  : true,
+            doPaintPname : false,
+        })),
         initShapes: (gshape, rgn)=>{
-            //todm this should happen eaarlier, in expand-conf.js
-            stdMod.init_lemma__p6patch();
-            //does not create dynamic
-            //rgShape.recreates__bodyq2xy(conf),
-            //and does not create prametrized function
-            //rgShape.bodyq2xy
-            rg[rgn].bodyq2xy = ssD.bezio.fun;
+            let cps = gshape.cpivots;
+            let pivots_modelPos = cps.map( (cp,cpix) => {
+                const rgPivot = rg[ rgn + '-' + cpix ];
+                //sets up besier curve parameter:
+                rgPivot.q = cpix / (cps.length-1);
+                //model's rgPivot.pos is already done in "extender",
+                //this shoudl be
+                //return rgPivot.pos;
+                //but not yet programmed in other code,
+                return [ rgPivot.pos[0], rgPivot.pos[1] ];
+            });
+            //generates framework:
+            const bezio = ssD.bezio =
+                bezier.preparesOptimizedBezier( pivots_modelPos );
+            bezio.pivotsPos = pivots_modelPos;
+            ssD.initialPivots = nspaste( [], pivots_modelPos );
+            //fixes small pivots and curve displacements,
+            //todm why do they exist in the first place?
+            stdMod.bp2cp();
 
+            rg[rgn].bodyq2xy = ssD.bezio.fun;
             stdMod.init__orbit8graph( rgn );
             stdMod.init__curve_pivots_sliders();
             rg.P.q = sf.rgPq;
@@ -292,80 +273,80 @@ function init_conf (){
     {
         kind: LINE,
         rgn: 'P,sagitta',
-        pcolor : sagitta,
+        pcolor : el.sagitta,
         vectorTipIx : 1,
         flagcss: 'solvable_orbit',
     },
     {
         rgn: 'Q,rrminus',
-        pcolor : proof,
+        pcolor : el.proof,
         flagcss: 'solvable_orbit',
     },
     {
-        rgn:'SP', pcolor : distanceToCenter
+        rgn:'SP', pcolor : el.distanceToCenter
     },
     {
         rgn:'PV',
-        pcolor : curvature,
+        pcolor : el.curvature,
         cssClass: 'subessay--corollary3 subessay--corollary5',
     },
     {
         rgn: 'PR',
-        pcolor : body,
+        pcolor : el.body,
         cssClass: 'subessay--corollary1',
     },
     {
         rgn: 'SY',
-        pcolor : proof,
+        pcolor : el.proof,
         cssClass: 'subessay--corollary5 subessay--corollary3',
     },
     {
         rgn: 'QR',
-        pcolor : fQR,
+        pcolor : el.fQR,
         cssClass:
             'subessay--corollary3 subessay--corollary1 ' +
             'logic_phase-not-addendum',
     },
     {
         rgn: 'QP',
-        pcolor: proof,
+        pcolor: el.proof,
         cssClass: 'subessay--none',
     },
     {
         rgn: 'SQ',
-        pcolor: proof,
+        pcolor: el.proof,
         cssClass: 'subessay--corollary1',
     },
     {
         rgn: 'QT',
-        pcolor : fQR,
+        pcolor : el.fQR,
         cssClass: 'subessay--corollary1 subessay--corollary5',
     },
     {
         rgn: 'PC',
-        pcolor : curvature,
+        pcolor : el.curvature,
         cssClass: 'subessay--corollary3',
     },
     {
         rgn: 'PY',
-        pcolor : body,
+        pcolor : el.body,
         cssClass: 'subessay--corollary3 subessay--corollary5',
     },
     {
         rgn: 'PZ',
-        pcolor : body,
+        pcolor : el.body,
         cssClass:
             'subessay--corollary1 ' +
             'subessay--corollary3 subessay--corollary5',
     },
     {
         rgn: 'P,rrminus',
-        pcolor : proof,
+        pcolor : el.proof,
         cssClass: 'subessay--none',
     },
     {
         rgn: 'S,nonSolvablePoint',
-        pcolor: invalid,
+        pcolor: el.invalid,
         undisplayAlways: true,
     },
     );
@@ -380,7 +361,7 @@ function init_conf (){
     {
         kind: POINT,
         rgn: 'Q',
-        pcolor : proof,
+        pcolor : el.proof,
         letterAngle : 225,
         letterRotRadius : 40,
         draggableX  : true,
@@ -393,7 +374,7 @@ function init_conf (){
      {
         rgn: 'S',
         pos: S,
-        pcolor : force,
+        pcolor : el.force,
         letterAngle : -90,
         draggableX  : true,
         draggableY  : true,
@@ -401,8 +382,7 @@ function init_conf (){
      },
      {
         rgn: 'P',
-        pos: P,
-        pcolor : body,
+        pcolor : el.body,
         letterAngle : 70,
         draggableX  : true,
         draggableY  : true,
@@ -411,7 +391,7 @@ function init_conf (){
      {
         rgn: 'rrminus',
         caption: 'Q-',
-        pcolor: proof,
+        pcolor: el.proof,
         letterAngle: 225,
         letterRotRadius: 40,
         flagcss: 'solvable_orbit',
@@ -420,7 +400,7 @@ function init_conf (){
      {
         rgn: 'sagitta',
         caption : 'I',
-        pcolor : sagitta,
+        pcolor : el.sagitta,
         letterAngle : 270,
         letterRotRadius : 35,
         doPaintPname : false,
@@ -429,7 +409,7 @@ function init_conf (){
         rgn: 'QtimeDecor',
         undisplayAlways : true,
         cssClass : 'tp-dtime',
-        pcolor : dtime, //proof,
+        pcolor : el.dtime,
         fontSize : 20,
         letterAngle : 225,
         letterShift : [10,0],
@@ -439,7 +419,7 @@ function init_conf (){
      },
      {
          rgn: 'R',
-         pcolor : fQR,
+         pcolor : el.fQR,
          letterAngle : 45,
          cssClass:
             'subessay--corollary1 subessay--corollary3 ' +
@@ -448,21 +428,21 @@ function init_conf (){
       {
         rgn: 'T',
         pos: [0,0],
-        pcolor : proof,
+        pcolor : el.proof,
         letterAngle : 180,
         cssClass: 'subessay--corollary1 subessay--corollary5',
       },
       {
          rgn: 'Z',
          pos: [111111,111111],
-         pcolor : body,
+         pcolor : el.body,
          letterAngle : 45,
          cssClass: 'subessay--corollary1',
       },
       {
          rgn: 'V',
          pos: S,
-         pcolor : curvature,
+         pcolor : el.curvature,
          letterAngle : -45,
          cssClass: 'subessay--corollary3 subessay--corollary5',
       },
@@ -471,20 +451,20 @@ function init_conf (){
          rgn: 'C',
          pos: [0,0], //will be calculated
          caption : 'Rc',
-         pcolor : curvature,
+         pcolor : el.curvature,
          letterAngle : -45,
          cssClass: 'subessay--corollary3',
       },
       {
          rgn: 'Y',
-         pcolor : proof,
+         pcolor : el.proof,
          letterAngle : 80,
          cssClass: 'subessay--corollary3 subessay--corollary5',
       },
       {
          rgn: 'A',
          pos: A,
-         pcolor : given,
+         pcolor : el.given,
          cssClass: 'logic_phase--dummy',
       },
       {
@@ -494,7 +474,7 @@ function init_conf (){
                    'tangent passes through center of force.',
          fontSize : '25',
          undisplayAlways : true,
-         pcolor : invalid,
+         pcolor : el.invalid,
          letterAngle : 0,
       }
     ]);

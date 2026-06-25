@@ -405,8 +405,6 @@ function init_conf (){
 
     ns.paste( sconf, {
         sForSagitta_valQ,
-
-        mediaBgImage : "diagram.png",
         originalPoints,
         linesArray,
         medposOfModOrigin_x,

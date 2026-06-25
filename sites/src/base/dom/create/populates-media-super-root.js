@@ -9,11 +9,9 @@
         ssF,
         stdMod, rg,
         exegs, rgtools,
-    } = window.b$l.atree({
-    });
-
+    } = window.b$l.atree();
+    fmethods.createsMediaRoot = createsMediaRoot;
     fmethods.populate_mediaSuperRoot = populate_mediaSuperRoot;
-    fmethods.cre__medRootDetails = cre__medRootDetails;
     var actuallyLoaded = 0;
     return;
 
@@ -21,8 +19,7 @@
     //=========================================================
     /// create LemmaDom
     //=========================================================
-    function populate_mediaSuperRoot( bgImagesAreLoaded_cb )
-    {
+    function populate_mediaSuperRoot( bgImagesAreLoaded_cb ){
         //--------------------------
         // //\\ top media controls
         //--------------------------
@@ -256,13 +253,7 @@
 
     }
 
-    function cre__medRootDetails( bgImagesAreLoaded_cb )
-    {
-        createsMediaRoot( bgImagesAreLoaded_cb );
-    }
-
-    function createsMediaRoot( bgImagesAreLoaded_cb )
-    {
+    function createsMediaRoot( bgImagesAreLoaded_cb ){
         //..............................
         // //\\ study image and s ubmodel
         //..............................

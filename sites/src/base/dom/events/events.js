@@ -69,6 +69,7 @@
         haf( rootWnd, "start8finish_media8Ess8Legend_resize__upcreate" )(
             null, !!'doDividorSynch'
         );
+        ccc( 'fullResize() done' );
     }
 
 

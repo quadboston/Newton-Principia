@@ -39,7 +39,6 @@ function init_conf(){
     //      conf/lemma.conf.js:
     //      //t/sf.text_nonhover_width   = 0.01;
     //*****************************************************
-    sf.mediaBgImage = "diagram.png";
     sf.default_tp_lightness = 30;
     sf.LETTER_FONT_SIZE_PER_1000 = 20;
     sf.pointDecoration.r = 5;

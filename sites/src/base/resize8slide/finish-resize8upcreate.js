@@ -61,6 +61,7 @@ function start8finish_media8Ess8Legend_resize__upcreate(
     }
     fmethods.resizeHappened();
     haff( stdMod, 'model8media_upcreate' );
+    ccc( 'finished start8finish_med...resize__upcreate' );
 }
 ///========================================================
 /// \\// restricts and sets super root and text pane sizes,

@@ -20,7 +20,7 @@
     ///Frag. step III. Html and global-css-visib-of-active-category.
     function exegs__2__tpAn8dom8css8mjax()
     {
-
+        ccc( '*** calls in exegs__2__tpAn8dom8css8mjax() ' );
         eachprop( exegs, ( logic_phaseAspects, mcat_id ) => {
             eachprop( logic_phaseAspects, ( exAspect, scat_id ) => {
                 exAspect.subexegs.forEach( ( subexeg ) => {
@@ -44,6 +44,7 @@
                     subexeg.built_act8stat_fragments_texts.forEach( function( bFrag, fix ) {
                         ///converts frags-texts into html
                         eachprop( bFrag.htmlReadyFragText_racks, ( htmlReadyRack, fid ) => {
+                            ccc( 'calls builtFrags_2_dom8mj()' );
                             ssF.builtFrags_2_dom8mj(
                                 subexeg.domEl, htmlReadyRack, fid, sconf.dontDoMathJax );
                         });

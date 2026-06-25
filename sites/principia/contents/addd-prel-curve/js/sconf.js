@@ -207,7 +207,6 @@
         ///*********************************************
         ///var lines = {};
         ns.paste( sconf, {
-            mediaBgImage : "main-picture.png",
             originalPoints,
             linesArray,
             //lines,

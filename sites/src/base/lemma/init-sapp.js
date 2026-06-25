@@ -69,7 +69,6 @@ function init_sapp (){
     if( haz(sconf.allLettersAreHidden) ){
         rg.allLettersAreHidden = true;
     }
-    //haff( stdMod, 'init_lemma__p6patch' );
     sconf.shapesArray.forEach( gshape => {
         gshape.initShapes(gshape, gshape.rgn);
     });

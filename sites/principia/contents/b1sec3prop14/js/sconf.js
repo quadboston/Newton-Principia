@@ -41,7 +41,6 @@ function init_conf(){
     //      conf/lemma.conf.js:
     //      //t/sf.text_nonhover_width   = 0.01;
     //*****************************************************
-    sf.mediaBgImage = "diagram.png";
     sf.default_tp_lightness = 30;
     //*****************************************************
     // \\// GUI cosmetics

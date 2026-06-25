@@ -42,4 +42,4 @@ window.b$l.methods.loadScripts = function( scriptList, lastCb ){
             lastCb && lastCb();
         }
     }
-}
+}; //THIS SEMICOLUMN IS VITAL, PROD. CRASHESH WITHOUT IT.

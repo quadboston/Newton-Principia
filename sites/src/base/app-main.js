@@ -10,8 +10,8 @@
 
 const {
     ns, sn, $$, cssp, eachprop, nspaste, haff, has, haz, nsmethods,
-    html, userOptions, fapp, sapp, fconf, sconf, engCssMs, fmethods,
-    sDomF, sDomN, tpelect, srg_modules, amode,
+    html, userOptions, fapp, sapp, fconf, sf, sconf, engCssMs,
+    fmethods, sDomF, sDomN, tpelect, srg_modules, amode,
     //:nearly a patch
     stdMod, ssD, ssF, rootWnd, lowrgid_2_glocss8anchorRack,
 } = window.b$l.atree({});
@@ -30,7 +30,11 @@ $$  .style()
         //duplicate with css file ... dom-roots.css
         //"    height : 100vh \n" +
         "    opacity :1; \n" +
-        "    transition  :opacity 1s ease-in-out; \n" +
+        //"    transition  :opacity 1s ease-in-out; \n" +
+        //"    transition  :opacity 0.01s ease-in-out; \n" +
+        "    transition  :opacity " +
+            sf.LANDING_SPALSH_DELAY +
+            "s ease-in-out; \n" +
         "} \n"
     );
 //======================================================
@@ -259,9 +263,11 @@ function IVc__cb__initiates_lemma8ancestor_JSModules (){
     fmethods.populate_mediaSuperRoot();
     sDomF.cre_medParent8svg8legendIIslider();
     ///loads Book
+    ccc( 'ssF.LANDING_V... is called' );
     ssF.LANDING_V___loads_professorList8cont_8_buildsSubexegs(
         cb__LANDING_VI
     );
+    ccc( 'IVc__cb_ is ended' );
 }
 
 function cb__LANDING_VI (){
@@ -299,34 +305,50 @@ function cb__LANDING_VI (){
     ////perhaps this is a cause of random failed load bug: ...
     ////the body which follows below can be put in
     ////cb for image-loader-ajax
-    fmethods.cre__medRootDetails(
+    fmethods.createsMediaRoot(
         ///this callback goes to final event of
         ///loading all media-bg-images:
         () => {
             VI__exegs2frags_8_initApp();
             FINISH__landing();
             ns.doScrollToHash();
+            ccc( 'FINISH, doScrollToHash done' );
 
-            ///.this is a patch: the cause and real solution
-            ///is not known;
-            ///.and it still does not work for l2,3
-            ///
-            ///.this timeout is vital: it allows to hovering-arrows
-            ///to get to their
-            ///.place: othewise, the img.style.top for
-            ///draggee is wrong which
-            ///.moves arrows to the top edge of media which is wrong
-            ///.the value of timeout seems also vital for l9
-            //setTimeout( fmethods.full Resize, 50 );
-            //50 is enough for l9
-            setTimeout( fmethods.fullResize, 500 );
+            switch (fconf.sappId) {
+                //case 'b1sec1lemma2':
+                case 'b1sec1lemma4':
+                case 'b1sec1lemma6':
+                    ccc( 'no time out is set' );
+                    break;
+                default:
+                    //all panes should be already resized,
+                    //why do we bother below with resize and its TimeOut
+                    //again
+
+                    ///.this is a patch: the cause and real solution
+                    ///is not known;
+                    ///.and it still does not work for l2,3
+                    ///
+                    ///.this timeout is vital: it allows to hovering-arrows
+                    ///to get to their
+                    ///.place: othewise, the img.style.top for
+                    ///draggee is wrong which
+                    ///.moves arrows to the top edge of media which is wrong
+                    ///.the value of timeout seems also vital for l9
+                    //setTimeout( fmethods.full Resize, 50 );
+                    //50 is enough for l9
+
+                    //setTimeout( fmethods.fullResize, 500 );
+                    setTimeout( fmethods.fullResize, 2500 );
+                    ccc( 'time out is set' );
+            }
         }
     );
+    ccc( 'cb__LANDING_VI done' );
 }
 
 //does: exegs__2__frags_dom_css_mjax_tpanch_initapp_menu_evs_capture
 function VI__exegs2frags_8_initApp (){
-    //c cc( 'VI__exegs2frags_8_initApp');
     ssF.exegs_2_frags(); //to active-areas
     ssF.frags__2__dom_css_mjax_tpanchors();
 
@@ -369,6 +391,9 @@ function VI__exegs2frags_8_initApp (){
     //this resize should fix any graphic misfits
     //.todm code proliferation with "setStates_when_entering..." for upcreate ...
     //.includes sapp.up-create();
+
+    // with out this diagram does not show up immediately and
+    // flickers happens
     rootWnd.start8finish_media8Ess8Legend_resize__upcreate(
         null, !!'doDividorSynch');
 

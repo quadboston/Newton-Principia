@@ -46,6 +46,8 @@ function full_conf(){
         SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM : false,
 
         timeToShowOriginalDiagram  : 3600000, //ms
+        //for development for speed:
+        //timeToShowOriginalDiagram  : 1, //ms
 
         doDisplayPageTopNavigatMenu : true,
         lemmaHasHomeButton          : true,

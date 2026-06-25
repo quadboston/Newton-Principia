@@ -71,11 +71,10 @@ function model_upcreate (){
     {
         const RCmedpos = ssF.modpos2medpos( RC, );
         const RRmedpos = sconf.mod2med * Rc;
-        //todo nearly bug: why create svg and set cls every time?
-        const CCName = 'curvatureCircle';
-        var rgCC = rg[CCName];
-        rgCC.svgel = nssvg.u({
-            svgel   : rgCC.svgel,
+        var rgC = rg.curvatureCircle;
+        nssvg.u({
+            rgX : rgC,
+            svgel   : rgC.svgel,
             parent  : stdMod.medScene,
             type    : 'circle',
             stroke  : rg.C.pcolor,
@@ -85,13 +84,8 @@ function model_upcreate (){
             cy : RCmedpos[1],
             r : RRmedpos,
         });
-        $$.$( rgCC.svgel ).addClass(
-            'tp-' + nsmethods.camelName2cssName( CCName ) +
-            ' tostroke'
-        );
-        //todm: should be done via cssClass
-        rgCC.svgel.style.display =
-            rgCC.undisplay ? 'none' : 'block';
+        rgC.svgel$.addClass( nsmethods.stripsExtraSpace(
+            'tostroke ' + rgC.cssClass ));
     }
     //================================================
     // \\// curvature circle
@@ -143,7 +137,7 @@ function model_upcreate (){
             //todm for( let i=foldps.length; i<flen; i++ ) {
             for( let i=0; i<pastlen; i++ ) {
                 rg.foldPoints.cpivots[i].rgShape.undisplay = true;
-                //fp_original_placeholders[i].rgX.undisplay = true;
+                fp_original_placeholders[i].rgX.undisplay = true;
             }
         }
         ////otherwise, cannot display all separation points;

@@ -42,7 +42,6 @@ function init_conf (){
     //***************************************************************
     // //\\ GUI cosmetics
     //***************************************************************
-    sf.mediaBgImage = "diagram.png";
     sf.allLettersAreHidden = true;
     //sf.default_tp_lightness = 30;
 

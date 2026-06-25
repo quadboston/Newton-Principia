@@ -85,7 +85,6 @@ function init_conf(){
     };
 
     ns.paste( sconf, {
-        mediaBgImage : "main-picture.png",
         lines,
         medposOfModOrigin_x,
         medposOfModOrigin_y,

@@ -258,8 +258,7 @@ function doExpandConfig (){
         if( doAddHidee ){
             gclass += ' hidee';
         }
-        gs.cssClass = rgX.cssClass =
-            stripsExtraSpace(gclass);
+        gs.cssClass = rgX.cssClass = stripsExtraSpace(gclass);
         rgX.fontSize = sf.estimatesSizeScale * (
             has( gs, 'fontSize' ) ?
             gs.fontSize : sf.LETTER_FONT_SIZE_PER_1000 );
@@ -267,7 +266,6 @@ function doExpandConfig (){
         // \\// transfers properties from line-options to rg-lines:
         //---------------------------------------------------------
     }
-
     //----------------------------------
     // \\// expands lines placeholders
     //----------------------------------
