@@ -16,8 +16,7 @@
                 { src: 'media-upcreate.js' },
                 { src: 'amode8captures.js' },
                 { src: 'state-capturer.js' },
-                //todo Data table temporarily hidden as Δt currently shows NaN
-				// { src: '../../force-law-models/main-legend.js' },
+				{ src: '../../force-law-models/main-legend.js' },
             ],
             "contents-list" :
             [

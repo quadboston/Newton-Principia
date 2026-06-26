@@ -31,6 +31,9 @@
         rg.Q.acceptPos = newPos => {
             const Pqix = rg.P.qix;
             const Qqix = stdMod.gets_orbit_closest_point( newPos );
+            //TEMP
+			// console.log("**********rg.Q.acceptPos")
+            // console.log("Qqix =", Qqix);
             if( sconf.TIME_IS_FREE_VARIABLE ){
                 const timeQ = qIndexToOrbit[ Qqix ].timeAtQ;
                 const timeP = qIndexToOrbit[ Pqix ].timeAtQ;
@@ -70,6 +73,8 @@
             } else {
                 const qQ = qIndexToOrbit[ Qqix ].q;
                 const qP = qIndexToOrbit[ Pqix ].q;
+                //TEMP
+                // console.log("qP =", qP);
                 let Dq = qQ - qP;
                 if( sconf.CURVE_REVOLVES ){
                     //todo
@@ -84,6 +89,9 @@
                 }
 
                 //Clamp as needed
+                //TEMP Alternate for testing
+                // ssD.Dq = Dq;
+                // console.log("ssD.Dq =", ssD.Dq);
                 ssD.Dq = Math.max(Math.min(Dq, sconf.DQ_SLIDER_MAX), 0);
             }
             //:Dt or Dq changed
