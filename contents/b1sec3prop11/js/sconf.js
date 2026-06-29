@@ -207,13 +207,13 @@
 
             K : {
                 pcolor : proof,
-                letterAngle : 70,
+                letterAngle : 90,
 				cssClass: 'subessay--solution',
             },
 
             G : {
                 pcolor : proof,
-                letterAngle : 70,
+                letterAngle : 90,
 				cssClass: 'subessay--solution',
             },
 
@@ -237,7 +237,7 @@
 
             Z : {
                 pcolor : proof,
-                letterAngle : 45,
+                letterAngle : -45,
                 cssClass: 'subessay--solution',
             },
 
