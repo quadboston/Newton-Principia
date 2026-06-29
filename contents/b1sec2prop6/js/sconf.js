@@ -10,7 +10,7 @@
     function init_conf()
     {
         //***************************************************************
-        // //\\ geometical scales
+        // //\\ geometrical scales
         //***************************************************************
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
@@ -21,7 +21,7 @@
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize;
         //***************************************************************
-        // \\// geometical scales
+        // \\// geometrical scales
         //***************************************************************
 
         //***************************************************************
@@ -43,7 +43,6 @@
         default_tp_stroke_width = Math.floor( 8 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
         handleRadius            = Math.floor( 3.5 * controlsScale ),
-        //console.log(handleRadius);
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius; // todo: this doesn't seem to do anything...
 
@@ -235,6 +234,8 @@
             A : {
                 pos: posA,
                 pcolor : orbit,
+				draggableX  : true,
+                draggableY  : true,
 				cssClass: 'logic_phase--corollary',
             },
 
@@ -329,11 +330,10 @@
                 letterAngle : 0,
             },
             errorMessage : { // nonSolvablePoint message shown at to of canvas
+				// caption assigned in model-upcreate by const set in builds-orbit.js
                 pos : [20, 20],
-                caption: "error state", // value get overwritten in model-upcreate by const set in builds-orbit.js
                 fontSize : '25',
                 pcolor : invalid,
-                letterAngle : 0,
                 unscalable  : true,
             },
             infoMessage : {
