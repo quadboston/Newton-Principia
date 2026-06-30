@@ -114,7 +114,7 @@ given, inversely as ¦SP¦¦². &nbsp;&nbsp; Q.E.I.
 *::*comment|english
 {
   "menuCaption" : "Text",
-  "logic_phaseCaption" : "Newton's Comment"
+  "logic_phaseCaption" : "Comment"
 }
 *..*
 It is shown in the same way that if this centripetal ¦force¦¦ is turned into a

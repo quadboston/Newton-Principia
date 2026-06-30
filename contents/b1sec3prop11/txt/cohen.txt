@@ -134,7 +134,7 @@ and therefore ¦EP¦PE¦¦ is given, this force will be inversely as ¦SP¦¦².
 *::*comment|english
 {
   "menuCaption" : "Text",
-  "logic_phaseCaption" : "Newton's Comment"
+  "logic_phaseCaption" : "Comment"
 }
 *..*
 This solution could be extended to the parabola and the hyperbola as
