@@ -111,7 +111,7 @@ If the velocity with which the body departs from its place ¦P¦¦ is
 such that the line-element ¦PR¦¦ can be described by it in some minimally
 small particle of time, and if the centripetal ¦force¦¦ is able to move the same
 body through space ¦QR¦¦ in that same time, this body will move in some 
-¦orbit¦conic¦¦ whose principal ¦L,LL¦latus rectum¦¦ is the quantity 
+¦orbit¦conic¦¦ whose ¦L,LL¦principal latus rectum¦¦ is the quantity 
 
 <!-- QT² / QR -->
 <math><mfrac><mrow><msup><mi>
