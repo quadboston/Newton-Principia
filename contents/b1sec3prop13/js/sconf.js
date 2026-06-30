@@ -128,7 +128,7 @@
 			supplementHover,
 			proofHover,
             proof,
-			estimatedForce,
+			estimatedForceColor,
             forceColor,
             hidden,
             curvature,
@@ -138,7 +138,7 @@
 
         var topicColors_elected =
         {
-            estimatedForce,
+            estimatedForceColor,
             given,
             proof,
             hidden,
@@ -183,12 +183,12 @@
  				cssClass: 'subessay--solution',
             },
             T : {
-                pcolor : proof,
+                pcolor : estimatedForceColor,
                 letterRotRadius : 20,
  				cssClass: 'subessay--solution subessay--corollary2',
             },
             R : {
-                pcolor : proof,
+                pcolor : estimatedForceColor,
                 letterAngle : 135,
                 letterRotRadius : 25,
  				cssClass: 'subessay--solution logic_phase--corollary',
@@ -218,7 +218,7 @@
                 draggableY  : true,
             },
             Q : {
-                pcolor : proof,
+                pcolor : estimatedForceColor,
                 letterAngle : -90,
                 letterRotRadius : 25,
                 draggableX  : true,
@@ -337,11 +337,11 @@
 
         var linesArray =
         [
-			{ QR : { pcolor : estimatedForce,
+			{ QR : { pcolor : estimatedForceColor,
  				cssClass: 'subessay--solution subessay--corollary2', }, },
-            { QT : { pcolor : estimatedForce,
+            { QT : { pcolor : estimatedForceColor,
  				cssClass: 'subessay--solution subessay--corollary2', }, },
-            { SP : { pcolor : estimatedForce,
+            { SP : { pcolor : estimatedForceColor,
  				cssClass: 'subessay--solution logic_phase--corollary', }, },
             { PM : { pcolor : proof,
  				cssClass: 'subessay--solution', }, },

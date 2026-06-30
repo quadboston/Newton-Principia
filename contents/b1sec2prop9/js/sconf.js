@@ -129,7 +129,7 @@
             proof,
             forceColor,
             hidden,
-            estimatedForce,
+            estimatedForceColor,
             curvature,
             sunColor,
 			dtime,
@@ -138,7 +138,7 @@
 
         var topicColors_elected =
         {
-            estimatedForce,
+            estimatedForceColor,
             given,
             proof,
             hidden,
@@ -172,17 +172,17 @@
                 draggableX  : true,
             },
             T : {
-                pcolor : estimatedForce,
+                pcolor : estimatedForceColor,
                 letterAngle : 264,
 				cssClass:  'subessay--solution',
             },
             R : {
-                pcolor : estimatedForce,
+                pcolor : estimatedForceColor,
                 letterAngle : 45,
  				cssClass:  'subessay--solution',
            },
             Q : {
-                pcolor : estimatedForce,
+                pcolor : estimatedForceColor,
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
@@ -229,15 +229,15 @@
 				cssClass:'subessay--solution',}, },
             { 'SY' : { pcolor : proof,
 				cssClass:'subessay--another-solution',}, },
-            { 'QR' : { pcolor : estimatedForce,
+            { 'QR' : { pcolor : estimatedForceColor,
 				cssClass:'subessay--solution',}, },
             { 'SQ' : { pcolor : given,
 				cssClass:  'subessay--claim subessay--solution',},},
-            { 'QT' : { pcolor : estimatedForce,
+            { 'QT' : { pcolor : estimatedForceColor,
 				 cssClass:'subessay--solution',}, },
             { 'PT' : { pcolor : proof,
 				cssClass:'subessay--another-solution',}, },
-			{ 'SP' : { pcolor : estimatedForce }, },
+			{ 'SP' : { pcolor : estimatedForceColor }, },
         ];
 
         ns.paste( sconf, {

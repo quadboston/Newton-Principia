@@ -136,7 +136,7 @@
             forceColor,
             invalid,
             hidden,
-            estimatedForce,
+            estimatedForceColor,
             curvature,
             chord,
 			sunColor,
@@ -147,7 +147,7 @@
 
         var topicColors_elected =
         {
-            estimatedForce,
+            estimatedForceColor,
             body,
             forceColor,
             chord,
@@ -204,7 +204,7 @@
             },
 
             Q : {
-                pcolor : estimatedForce,
+                pcolor : estimatedForceColor,
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
@@ -223,12 +223,12 @@
             },
 
             T : {
-                pcolor : estimatedForce,
+                pcolor : estimatedForceColor,
                 letterAngle : 180,
             },
 
             R : {
-                pcolor : estimatedForce,
+                pcolor : estimatedForceColor,
                 letterAngle : 45,
             },
 
@@ -326,10 +326,10 @@
 			{ 'QL' : { pcolor : proof }, },
 
             { 'SY' : { pcolor : proof }, },
-            { 'QR' : { pcolor : estimatedForce }, },
+            { 'QR' : { pcolor : estimatedForceColor }, },
             { 'QP' : { pcolor : proof }, },
             { 'SQ' : { pcolor : proof }, },
-            { 'QT' : { pcolor : estimatedForce }, },
+            { 'QT' : { pcolor : estimatedForceColor }, },
             { 'PT' : { pcolor : proofHover }, },
 
             { 'PC' : { pcolor : curvature }, },
@@ -342,7 +342,7 @@
             { 'Gcol2,P' : { pcolor : proof }, },
             { 'S,nonSolvablePoint' : { pcolor : invalid }, },
             
-            { 'SP' : { pcolor : estimatedForce }, },
+            { 'SP' : { pcolor : estimatedForceColor }, },
         ];
 
         ns.paste( sconf, {

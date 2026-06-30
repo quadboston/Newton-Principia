@@ -10,7 +10,7 @@
     function init_conf()
     {
         //***************************************************************
-        // //\\ geometical scales
+        // //\\ geometrical scales
         //***************************************************************
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
@@ -21,7 +21,7 @@
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
         //***************************************************************
-        // \\// geometical scales
+        // \\// geometrical scales
         //***************************************************************
 
         //***************************************************************
@@ -138,7 +138,7 @@
 			proofHover,
             forceColor,
             hidden,
-            estimatedForce,
+            estimatedForceColor,
             curvature,
             sunColor,
 			dtime,
@@ -147,7 +147,7 @@
 
         var topicColors_elected =
         {
-            estimatedForce,
+            estimatedForceColor,
             given,
             proof,
             hidden,
@@ -218,13 +218,13 @@
             },
 
             T : {
-                pcolor : proof,
+                pcolor : estimatedForceColor,
                 letterAngle : 180,
 				cssClass: 'subessay--solution',
             },
 
             R : {
-                pcolor : proof,
+                pcolor : estimatedForceColor,
                 letterAngle : 45,
 				cssClass: 'logic_phase--proof',
             },
@@ -301,7 +301,7 @@
 
             Q : {
                 //pos: set in amode8captures
-                pcolor : proof,
+                pcolor : estimatedForceColor,
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
@@ -353,7 +353,7 @@
 				cssClass: 'subessay--solution',
 			 },},
 
-            { 'SP' : { pcolor : estimatedForce, 
+            { 'SP' : { pcolor : estimatedForceColor, 
 				cssClass: 'logic_phase--proof',
 			},},
 
@@ -371,10 +371,10 @@
             { 'PR' : { pcolor : proof,
 				cssClass: 'logic_phase--proof',
 			 }, },
-            { 'QR' : { pcolor : estimatedForce,
+            { 'QR' : { pcolor : estimatedForceColor,
 				cssClass: 'subessay--solution',
 			 }, },
-            { 'QT' : { pcolor : estimatedForce,
+            { 'QT' : { pcolor : estimatedForceColor,
 				cssClass: 'subessay--solution',
 			 },},
 

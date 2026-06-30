@@ -143,7 +143,7 @@
             orbit,
             supplementHover,
 			proofHover,
-			estimatedForce,
+			estimatedForceColor,
             proof,
             forceColor,
             hidden,
@@ -154,7 +154,7 @@
 
         var topicColors_elected =
         {
-            estimatedForce,
+            estimatedForceColor,
             given,
             proof,
             hidden,
@@ -224,7 +224,7 @@
 				cssClass: 'subessay--solution',
             },
             Q : {
-                pcolor : estimatedForce,
+                pcolor : estimatedForceColor,
                 letterAngle : 225,
                 draggableX  : true,
                 draggableY  : true,
@@ -276,7 +276,7 @@
 				cssClass: 'subessay--solution',
             },
             R : {
-                pcolor : estimatedForce,
+                pcolor : estimatedForceColor,
                 letterAngle : 120,
                 letterRotRadius : 22,
 				cssClass: 'subessay--solution',
@@ -293,7 +293,7 @@
 				cssClass: 'subessay--solution',
             },
             T : {
-                pcolor : estimatedForce,
+                pcolor : estimatedForceColor,
                 letterRotRadius : 20,
 				cssClass: 'subessay--solution',
             },
@@ -315,7 +315,7 @@
 						'stroke-width' : 2, 
                 		captionShiftNorm : -18,
 						cssClass: 'subessay--solution',}, },
-            { 'SP' : { pcolor : estimatedForce,
+            { 'SP' : { pcolor : estimatedForceColor,
 						cssClass: 'logic_phase--proof',}, },
             { 'B,BB' : { pcolor : proof,
 						cssClass: 'subessay--solution',}, },
@@ -333,7 +333,7 @@
 						cssClass: 'subessay--solution',}, },
             { Qv : { pcolor : proof,
 						cssClass: 'subessay--solution',}, },
-            { QR : { pcolor : estimatedForce,
+            { QR : { pcolor : estimatedForceColor,
 						cssClass: 'subessay--solution',}, },
             { Qx : { pcolor : proof,
 						cssClass: 'subessay--solution',}, },
@@ -357,7 +357,7 @@
             { PH : { pcolor : proof,
 						cssClass: 'subessay--solution',}, },
             
-            { QT : { pcolor : estimatedForce,
+            { QT : { pcolor : estimatedForceColor,
 						cssClass: 'subessay--solution',}, },
             { PT : { pcolor : proofHover,
 						cssClass: 'subessay--solution',}, },
