@@ -125,7 +125,7 @@
             proof,
             forceColor,
             hidden,
-            estimatedForce,
+            estimatedForceColor,
             curvature,
 			sunColor,
 			proofHover,
@@ -135,7 +135,7 @@
 
         var topicColors_elected =
         {
-            estimatedForce,
+            estimatedForceColor,
             given,
             //proof,
             hidden,
@@ -208,14 +208,14 @@
             },
 
             T : {
-                pcolor : estimatedForce,
+                pcolor : estimatedForceColor,
                 letterAngle : -55,
                 letterRotRadius : 32,
                 cssClass: 'logic_phase--proof',
             },
 
             R : {
-                pcolor : proof,
+                pcolor : estimatedForceColor,
                 letterAngle : 45,
                 cssClass: 'subessay--solution',
             },
@@ -277,7 +277,7 @@
             },   
 
             Q : {
-                pcolor : estimatedForce,
+                pcolor : estimatedForceColor,
                 letterAngle : 250,
                 letterRotRadius : 25,
                 draggableX  : true,
@@ -326,10 +326,10 @@
             { 'PR' : { pcolor : proof,
                        cssClass: 'subessay--solution',
             }, },
-            { 'QR' : { pcolor : estimatedForce,
+            { 'QR' : { pcolor : estimatedForceColor,
                        cssClass: 'subessay--solution',
             }, },
-            { 'QT' : { pcolor : estimatedForce,
+            { 'QT' : { pcolor : estimatedForceColor,
                        cssClass: 'logic_phase--proof',
             }, },
             { 'PT' : { pcolor : proofHover,
@@ -380,7 +380,7 @@
             { 'P,tCircleCenter' : { pcolor : curvature,
                      cssClass: 'subessay--another-solution',
             }, },
-			{ PC : { pcolor : estimatedForce,
+			{ PC : { pcolor : estimatedForceColor,
                 cssClass: 
 				'logic_phase--proof subessay--corollary1 logic_phase--scholium',
             }, },

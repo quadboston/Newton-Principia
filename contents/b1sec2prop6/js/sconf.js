@@ -143,7 +143,7 @@
             invalid,
             infoColor,
 			supplementColor,
-            estimatedForce,
+            estimatedForceColor,
             curvature,
             displacement,
 			sunColor
@@ -152,7 +152,7 @@
 
         var topicColors_elected =
         {
-            estimatedForce,
+            estimatedForceColor,
             given,
             proof,
             curvature,
@@ -256,7 +256,7 @@
             },
 
             Q : {
-                pcolor : estimatedForce,
+                pcolor : estimatedForceColor,
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
@@ -265,7 +265,7 @@
 
             T : {
                 pos: [0,0],
-                pcolor : estimatedForce,
+                pcolor : estimatedForceColor,
                 letterAngle : 180,
 				cssClass: 'subessay--corollary1 subessay--corollary5',
             },
@@ -292,7 +292,7 @@
 
             sagitta : {
                 caption : 'I',
-                pcolor : estimatedForce,
+                pcolor : estimatedForceColor,
                 letterAngle : 270,
                 letterRotRadius : 35,
                 //initial setting does not work well bs poor code design
@@ -300,14 +300,14 @@
             },
 
             Y : {
-                pcolor : estimatedForce,
+                pcolor : estimatedForceColor,
                 letterAngle : 80,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
             },
 
             V : {
                 pos: posS,
-                pcolor : estimatedForce,
+                pcolor : estimatedForceColor,
                 letterAngle : -45,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
             },
@@ -352,10 +352,10 @@
 
         var linesArray =
         [
-            { 'PV' : { pcolor : estimatedForce,
+            { 'PV' : { pcolor : estimatedForceColor,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
 			 }, },
-            { 'SP' : { pcolor : estimatedForce,
+            { 'SP' : { pcolor : estimatedForceColor,
 			 }, },
             { 'PY' : { pcolor : orbit,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
@@ -366,7 +366,7 @@
             { 'PR' : { pcolor : proof,
 				cssClass: 'logic_phase--corollary',
 			 }, },
-            { 'SY' : { pcolor : estimatedForce,
+            { 'SY' : { pcolor : estimatedForceColor,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
 			 }, },
             { 'QR' : { pcolor : displacement,
@@ -376,7 +376,7 @@
             { 'SQ' : { pcolor : proof,
 				cssClass: 'subessay--corollary1',
 			 }, },
-            { 'QT' : { pcolor : estimatedForce,
+            { 'QT' : { pcolor : estimatedForceColor,
 				cssClass: 'subessay--corollary1 subessay--corollary5',
 			 }, },
             { 'PC' : { pcolor : curvature,
@@ -385,7 +385,7 @@
             { 'Q,rrminus' : { pcolor : given,
 				cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
 			 }, },
-            { 'P,sagitta' : { pcolor : estimatedForce,
+            { 'P,sagitta' : { pcolor : estimatedForceColor,
 				cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
 			 }, },
             { 'S,nonSolvablePoint' : { pcolor : invalid,
