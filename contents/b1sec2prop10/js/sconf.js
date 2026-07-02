@@ -211,13 +211,13 @@
                 pcolor : estimatedForceColor,
                 letterAngle : -55,
                 letterRotRadius : 32,
-                cssClass: 'logic_phase--proof',
+                cssClass: 'subessay--goal logic_phase--proof',
             },
 
             R : {
                 pcolor : estimatedForceColor,
                 letterAngle : 45,
-                cssClass: 'subessay--solution',
+                cssClass: 'subessay--goal subessay--solution',
             },
 
             v : {
@@ -225,7 +225,7 @@
                 pcolor : proof,
                 letterAngle : -45,
                 letterRotRadius : 22,
-                cssClass: 'logic_phase--proof',
+                cssClass: 'subessay--goal logic_phase--proof',
             },
 
             F : {
@@ -278,12 +278,12 @@
 
             Q : {
                 pcolor : estimatedForceColor,
-                letterAngle : 250,
-                letterRotRadius : 25,
+                letterAngle : 260,
+                letterRotRadius : 35,
                 draggableX  : true,
                 draggableY  : true,
-                cssClass: 'logic_phase--proof',
-                conditionalDrag : 'logic_phase--proof',
+                cssClass: 'subessay--goal logic_phase--proof',
+                conditionalDrag : 'subessay--goal logic_phase--proof',
             },         
 
             A : {
@@ -324,13 +324,13 @@
                          cssClass: 'subessay--another-solution',
             }, },
             { 'PR' : { pcolor : proof,
-                       cssClass: 'subessay--solution',
+                       cssClass: 'subessay--goal subessay--solution',
             }, },
             { 'QR' : { pcolor : estimatedForceColor,
-                       cssClass: 'subessay--solution',
+                       cssClass: 'subessay--goal subessay--solution',
             }, },
             { 'QT' : { pcolor : estimatedForceColor,
-                       cssClass: 'logic_phase--proof',
+                       cssClass: 'subessay--goal logic_phase--proof',
             }, },
             { 'PT' : { pcolor : proofHover,
                        cssClass: 'logic_phase--proof',
@@ -342,7 +342,7 @@
                      cssClass: 'logic_phase--proof',
             }, },
             { Qv : { pcolor : proof,
-                     cssClass: 'logic_phase--proof',
+                     cssClass: 'subessay--goal logic_phase--proof',
             }, },
             { Pv : { pcolor : proofHover,
                      cssClass: 'logic_phase--proof',
@@ -382,8 +382,12 @@
             }, },
 			{ PC : { pcolor : estimatedForceColor,
                 cssClass: 
-				'logic_phase--proof subessay--corollary1 logic_phase--scholium',
+				'subessay--goal logic_phase--proof subessay--corollary1 logic_phase--scholium',
             }, },
+			{ 'QC' : { pcolor : proof, 
+				cssClass: 'subessay--goal',
+			},},
+
 			{ PF : { pcolor : proof,
                      cssClass: 'logic_phase--proof',
             }, },
