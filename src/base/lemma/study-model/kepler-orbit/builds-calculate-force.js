@@ -41,7 +41,7 @@
             const timeP = bP.timeAtQ;
 
             const timeOffset = timeP + ssD.DT_SUBSTITUTE_ACTUAL_FORCE;
-            const qOffset = stdMod.convertTimeToQ(timeOffset);
+            const qOffset = stdMod.convertTimeTo_q(timeOffset);
 
             if (qOffset != null) {
                 const qP = bP.q;

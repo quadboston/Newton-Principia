@@ -4,9 +4,8 @@
     var { sn, stdMod, sconf, ssD, sData, rg, } = window.b$l.apptree({
         stdModExportList : {
             builds_force_plusQ_minusQ_and_related,
-            convertTimeToQ,
-            //TEMP
-            convert_q_to_time,
+            convertTimeTo_q,
+            calculateTimeBetweenQAndP,
         }, });
     sn( 'qIndexToOrbit', ssD, [] );
     sn( 'graphArray', stdMod, [] );
@@ -45,9 +44,6 @@
             case sData.ULTIM_ESTIMATED:
                 var Dt = ssD.Dt;
                 var Dq = ssD.Dq;
-                //TEMP
-                // console.log("builds_force_plusQ_minusQ_and_related ssD.Dq =",
-                //     ssD.Dq);
                 break;
             case sData.ULTIM_ACTUAL:
                 var Dt = 0;
@@ -62,28 +58,13 @@
             //**********************************************
             if( !sconf.TIME_IS_FREE_VARIABLE ){
                 var plusQ = bP.q + Dq;
-                //TEMP
-                // if (qix === 837) {
-                //     console.log("qix === 837");
-                //     console.log("bP.q =", bP.q);
-                //     console.log("Dq =", Dq);
-                //     console.log("plusQ =", plusQ);
-                // }
                 //"<" not "<=" to ensure point Q can reach the end of the orbit
                 if( sconf.orbit_q_end < plusQ ){
                     if( MAKE_RANGE && !CURVE_REVOLVES ){
                         ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
                         bP.invalid = true
                     }
-                    //TEMP
-                    // if (qix === 837) {
-                    //     console.log("plusQ NOT updated");
-                    // }
                 } else {
-                    //TEMP
-                    // if (qix === 837) {
-                    //     console.log("plusQ updated");
-                    // }
                     bP.plusQ = plusQ;
                     const force = stdMod.calculateForce({
                         parq: plusQ,
@@ -113,7 +94,7 @@
             const bodyTime = bP.timeAtQ; //body time
             {
                 const plusT = bodyTime + Dt;
-                var plusQ = convertTimeToQ(plusT);
+                var plusQ = convertTimeTo_q(plusT);
 
                 if (plusQ === null) {
                     if (MAKE_RANGE && !CURVE_REVOLVES) {
@@ -151,7 +132,7 @@
             if( plusQ !== null ){
                 bP.rrplus = q2xy( plusQ );
                 let minusT = bodyTime - Dt;
-                var minusQ = convertTimeToQ(minusT);
+                var minusQ = convertTimeTo_q(minusT);
 
                 if (minusQ === null) {
                     if( MAKE_RANGE && !CURVE_REVOLVES && Q_MINUS_EXISTS ){
@@ -175,14 +156,12 @@
         //**********************************************
 
         //Can be enabled temporarily for testing if needed
-        // check_q_and_time_conversions();
+        // check_qAndTimeConversions();
     }
 
 
 
-    //TEMP Should the following be renamed to eg.
-    //"convert_time_to_q"?
-    function convertTimeToQ(time) {
+    function convertTimeTo_q(time) {
         //Use the bisection method to find the qix interval containing the
         //input time, then interpolate and output the q value using that
         //interval.
@@ -236,15 +215,7 @@
     }
 
 
-
-    //TEMP
-    function calculateTimeBetweenQandP() {
-        //TEMP Possible function to be called by the data table instead of
-        //"ssD.Dt".
-    }
-
-
-    function convert_q_to_time(q, clampToMinAndMaxTime = false) {
+    function convert_qToTime(q, clampToMinAndMaxTime = false) {
         //Find the qix interval containing the input q, then interpolate and
         //output the time value using that interval.  Optionally if out of
         //bounds, clamp time to be from 0 to the maximum rather than null.
@@ -255,6 +226,16 @@
         const orbit_q_start = sconf.orbit_q_start;
         const orbit_q_end = sconf.orbit_q_end;
         const timeRange = ssD.timeRange;
+
+        if (sconf.CURVE_REVOLVES) {
+            //todo
+            console.error(
+                `At the time of writing this no models "revolve" when q is ` +
+                `the free variable, therefore this code needs to be updated ` +
+                `if that changes.  Eg. it will likely need to be setup to ` +
+                `adjust q as needed, similar to convertTimeTo_q.`
+            );
+        }
 
         //Ensure q within bounds, clamp if needed
         if (q < orbit_q_start) {
@@ -292,10 +273,38 @@
     }
 
 
+    function calculateTimeBetweenQAndP() {
+        if( !sconf.TIME_IS_FREE_VARIABLE ){
+            const bP = ssD.qIndexToOrbit[ rg.P.qix ];
+            const qQ = bP.plusQ;
+            const timeQ = convert_qToTime(qQ, true);
+            const timeP = bP.timeAtQ;
 
-    function check_q_and_time_conversions() {
-        //Simple automated test intended to help check if convertTimeToQ and
-        //convert_q_to_time calculate values correctly.  It could be improved
+            //When Q is at P, sometimes timeQ has a slight bit of error.  This
+            //means Dt can be slightly negative, therefore clamp it to 0.
+            let Dt = timeQ - timeP;
+            if (Dt < 0)
+                Dt = 0;
+
+            if (sconf.CURVE_REVOLVES) {
+                //todo
+                console.error(
+                    `At the time of writing this no models "revolve" when q ` +
+                    `is the free variable, therefore this code needs to be ` +
+                    `updated if that changes.  Eg. ensure Dt wraps around ` +
+                    `correctly when negative.`
+                );
+            }
+            return Dt;
+        }
+
+        return ssD.Dt;
+    }
+
+
+    function check_qAndTimeConversions() {
+        //Simple automated test intended to help check if convertTimeTo_q and
+        //convert_qToTime calculate values correctly.  It could be improved
         //for example:
         // -Could include end of interval.  Note when CURVE_REVOLVES = true
         //  the end of the last interval can return the first value rather than
@@ -304,8 +313,8 @@
         //  Note behavior is different depending on value of CURVE_REVOLVES.
         const qIndexToOrbit = ssD.qIndexToOrbit;
 
-        const counts_time_to_q = { passed: 0, tests: 0, };
-        const counts_q_to_time = { passed: 0, tests: 0, };
+        const countsTimeTo_q = { passed: 0, tests: 0, };
+        const counts_qToTime = { passed: 0, tests: 0, };
 
         const qixMax = (qIndexToOrbit.length - 1);
         const checksPerInterval = 5;
@@ -327,15 +336,15 @@
                 const q    = qS + (qE - qS) * factor;
 
                 //Calculate values and update counts
-                const qCalculated = convertTimeToQ(time);
-                updateCounts(counts_time_to_q, qCalculated, q);
-                const timeCalculated = convert_q_to_time(q);
-                updateCounts(counts_q_to_time, timeCalculated, time);
+                const qCalculated = convertTimeTo_q(time);
+                updateCounts(countsTimeTo_q, qCalculated, q);
+                const timeCalculated = convert_qToTime(q);
+                updateCounts(counts_qToTime, timeCalculated, time);
             }
         }
 
-        showMessage(counts_time_to_q, "convertTimeToQ");
-        showMessage(counts_q_to_time, "convert_q_to_time");
+        showMessage(countsTimeTo_q, "convertTimeTo_q");
+        showMessage(counts_qToTime, "convert_qToTime");
 
 
         function updateCounts(counts, valueCalculated, valueActual) {
