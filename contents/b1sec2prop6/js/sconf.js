@@ -10,7 +10,7 @@
     function init_conf()
     {
         //***************************************************************
-        // //\\ geometical scales
+        // //\\ geometrical scales
         //***************************************************************
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
@@ -21,7 +21,7 @@
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize;
         //***************************************************************
-        // \\// geometical scales
+        // \\// geometrical scales
         //***************************************************************
 
         //***************************************************************
@@ -43,7 +43,6 @@
         default_tp_stroke_width = Math.floor( 8 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
         handleRadius            = Math.floor( 3.5 * controlsScale ),
-        //console.log(handleRadius);
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius; // todo: this doesn't seem to do anything...
 
@@ -144,7 +143,7 @@
             invalid,
             infoColor,
 			supplementColor,
-            estimatedForce,
+            estimatedForceColor,
             curvature,
             displacement,
 			sunColor
@@ -153,7 +152,7 @@
 
         var topicColors_elected =
         {
-            estimatedForce,
+            estimatedForceColor,
             given,
             proof,
             curvature,
@@ -235,6 +234,8 @@
             A : {
                 pos: posA,
                 pcolor : orbit,
+				draggableX  : true,
+                draggableY  : true,
 				cssClass: 'logic_phase--corollary',
             },
 
@@ -255,7 +256,7 @@
             },
 
             Q : {
-                pcolor : estimatedForce,
+                pcolor : estimatedForceColor,
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
@@ -264,7 +265,7 @@
 
             T : {
                 pos: [0,0],
-                pcolor : estimatedForce,
+                pcolor : estimatedForceColor,
                 letterAngle : 180,
 				cssClass: 'subessay--corollary1 subessay--corollary5',
             },
@@ -291,7 +292,7 @@
 
             sagitta : {
                 caption : 'I',
-                pcolor : estimatedForce,
+                pcolor : estimatedForceColor,
                 letterAngle : 270,
                 letterRotRadius : 35,
                 //initial setting does not work well bs poor code design
@@ -299,14 +300,14 @@
             },
 
             Y : {
-                pcolor : estimatedForce,
+                pcolor : estimatedForceColor,
                 letterAngle : 80,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
             },
 
             V : {
                 pos: posS,
-                pcolor : estimatedForce,
+                pcolor : estimatedForceColor,
                 letterAngle : -45,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
             },
@@ -329,11 +330,10 @@
                 letterAngle : 0,
             },
             errorMessage : { // nonSolvablePoint message shown at to of canvas
+				// caption assigned in model-upcreate by const set in builds-orbit.js
                 pos : [20, 20],
-                caption: "error state", // value get overwritten in model-upcreate by const set in builds-orbit.js
                 fontSize : '25',
                 pcolor : invalid,
-                letterAngle : 0,
                 unscalable  : true,
             },
             infoMessage : {
@@ -352,10 +352,10 @@
 
         var linesArray =
         [
-            { 'PV' : { pcolor : estimatedForce,
+            { 'PV' : { pcolor : estimatedForceColor,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
 			 }, },
-            { 'SP' : { pcolor : estimatedForce,
+            { 'SP' : { pcolor : estimatedForceColor,
 			 }, },
             { 'PY' : { pcolor : orbit,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
@@ -366,7 +366,7 @@
             { 'PR' : { pcolor : proof,
 				cssClass: 'logic_phase--corollary',
 			 }, },
-            { 'SY' : { pcolor : estimatedForce,
+            { 'SY' : { pcolor : estimatedForceColor,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
 			 }, },
             { 'QR' : { pcolor : displacement,
@@ -376,7 +376,7 @@
             { 'SQ' : { pcolor : proof,
 				cssClass: 'subessay--corollary1',
 			 }, },
-            { 'QT' : { pcolor : estimatedForce,
+            { 'QT' : { pcolor : estimatedForceColor,
 				cssClass: 'subessay--corollary1 subessay--corollary5',
 			 }, },
             { 'PC' : { pcolor : curvature,
@@ -385,7 +385,7 @@
             { 'Q,rrminus' : { pcolor : given,
 				cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
 			 }, },
-            { 'P,sagitta' : { pcolor : estimatedForce,
+            { 'P,sagitta' : { pcolor : estimatedForceColor,
 				cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
 			 }, },
             { 'S,nonSolvablePoint' : { pcolor : invalid,

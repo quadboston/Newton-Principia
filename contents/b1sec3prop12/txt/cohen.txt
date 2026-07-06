@@ -31,7 +31,7 @@ to ¦EC¦¦ from the other ¦H¦focus H¦¦ of the ¦orbit¦hyperbola¦¦, ¦ES�
 so that ¦EP¦¦ is the half-difference of ¦SP¦PS¦¦ and ¦PE EI¦PI¦¦, that
 is (because ¦HI¦IH¦¦ and ¦PR¦¦ are parallel and the angles ¦PR PE EI ¦IPR¦¦ and ¦PH P,Zminus¦HPZ¦¦ are equal),
 of ¦SP¦PS¦¦ and ¦PH¦¦, the difference of which equals the whole axis 2¦CA¦AC¦¦. Drop
-¦QT¦¦ perpendicular to ¦SP¦¦. Then, if ¦L,LL¦L¦¦ denotes the principal ¦L,LL¦latus rectum¦¦ of
+¦QT¦¦ perpendicular to ¦SP¦¦. Then, if ¦L,LL¦L¦¦ denotes the ¦L,LL¦principal latus rectum¦¦ of
 the ¦orbit¦hyperbola¦¦
 
 <!-- (or 2BC² / AC), -->
@@ -114,7 +114,7 @@ given, inversely as ¦SP¦¦². &nbsp;&nbsp; Q.E.I.
 *::*comment|english
 {
   "menuCaption" : "Text",
-  "logic_phaseCaption" : "Newton's Comment"
+  "logic_phaseCaption" : "Comment"
 }
 *..*
 It is shown in the same way that if this centripetal ¦force¦¦ is turned into a

@@ -180,17 +180,23 @@ div.bsl-approot svg.bsl--svgscene .undisplay,
 
 /*todm: should be automated */
 .logic_phase--claim .main-legend.proof,
-.logic_phase--corollary .main-legend.proof {
+.logic_phase--corollary .main-legend.proof,
+.logic_phase--comment .main-legend.proof,
+.logic_phase--scholium .main-legend.proof {
     display:none;
 }
 /* visibility per model-mode */
 .logic_phase--corollary .main-legend.claim,
-.logic_phase--proof .main-legend.claim {
+.logic_phase--proof .main-legend.claim,
+.logic_phase--comment .main-legend.claim,
+.logic_phase--scholium .main-legend.claim {
     display:none;
 }
 /* visibility per model-mode */
 .logic_phase--claim .main-legend.corollary,
 .logic_phase--proof .main-legend.corollary,
+.logic_phase--comment .main-legend.corollary,
+.logic_phase--scholium .main-legend.corollary,
 .main-legend.corollary_2, .main-legend.corollary_3 {
     display:none;
 }

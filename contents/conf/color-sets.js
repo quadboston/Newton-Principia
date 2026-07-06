@@ -97,7 +97,7 @@
 				= [...tr.supplementColor, 0, 1];
 
 			tr.displacement    = 
-			tr.dtime     = tr.estimatedForce = tr.estimatedForceColor;
+			tr.dtime = tr.estimatedForceColor;
 			tr.invalid = tr.invalidColor;
 
 			tr.force = tr.forceColor; // need to track down and eliminate

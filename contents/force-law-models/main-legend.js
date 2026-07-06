@@ -4,9 +4,7 @@
     return;
 
 
-	function create_digital_legend()
-	{
-		create_digital_legend_for_logic_phase( 'claim' );
+	function create_digital_legend() {
 		create_digital_legend_for_logic_phase( 'proof' );
 		create_digital_legend_for_logic_phase( 'corollary' );
 	}
@@ -20,15 +18,12 @@
 		////see: function dataSourceParsed1__2__makesBodyCluster({
 		////
 		////**********************************************************************************
-
 		var legendScriptParsed = [
 			[['dtime<_>data-monospace', 'Δt',
 				'(stdMod.calculateTimeBetweenQAndP()*2).toFixed(4)']]
 		];
-
 		var rowsCount       = legendScriptParsed.length;
 		var clustersCount   = legendScriptParsed[0].length;
-
 		ssF.createLogic_phaseLegend({
 			tableCaption    : 'Δt',
 			noTableTitle    : true,
@@ -40,7 +35,7 @@
 			updatesDataInCell,
 		});
 
-		function makesBodyCluster({ rowIx, clusterIx, }){
+		function makesBodyCluster({ rowIx, clusterIx, }) {
 			return ssF.dataSourceParsed1__2__makesBodyCluster({
 				rowIx,
 				clusterIx,
@@ -48,8 +43,7 @@
 			})
 		}
 
-		function updatesDataInCell({ rowIx, clusterIx, })
-		{
+		function updatesDataInCell({ rowIx, clusterIx, }) {
 			return ssF.dataSourceParsed1__2__updatesDataInCell({
 				rowIx,
 				clusterIx,
