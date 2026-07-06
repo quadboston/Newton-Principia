@@ -2,8 +2,8 @@
     var { ssF, stdMod, } = window.b$l.apptree({ stdModExportList : {
         create_digital_legend, }, });
     return;
-	
-	
+
+
 	function create_digital_legend() {
 		create_digital_legend_for_logic_phase( 'proof' );
 		create_digital_legend_for_logic_phase( 'corollary' );
@@ -19,7 +19,8 @@
 		////
 		////**********************************************************************************
 		var legendScriptParsed = [
-			[['dtime<_>data-monospace', 'Δt', '(ssD.Dt*2).toFixed(4)']]
+			[['dtime<_>data-monospace', 'Δt',
+				'(stdMod.calculateTimeBetweenQAndP()*2).toFixed(4)']]
 		];
 		var rowsCount       = legendScriptParsed.length;
 		var clustersCount   = legendScriptParsed[0].length;
