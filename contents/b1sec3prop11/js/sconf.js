@@ -169,7 +169,7 @@
             C : {
                 pcolor : proof,
                 pos: posC,
-                letterAngle : -120,
+                letterAngle : -99,
                 letterRotRadius : 35,
 				cssClass: 'logic_phase--proof',
             },
@@ -220,13 +220,13 @@
             T : {
                 pcolor : estimatedForceColor,
                 letterAngle : 180,
-				cssClass: 'subessay--solution',
+				cssClass: 'subessay--solution subessay--goal',
             },
 
             R : {
                 pcolor : estimatedForceColor,
                 letterAngle : 45,
-				cssClass: 'logic_phase--proof',
+				cssClass: 'subessay--goal logic_phase--proof',
             },
 
             Zminus : {
@@ -260,7 +260,7 @@
                 pcolor : proof,
                 letterAngle : 100,
                 letterRotRadius : 20,
-				cssClass: 'subessay--solution',
+				cssClass: 'subessay--solution subessay--goal',
             },
 
             // latus rectum
@@ -302,12 +302,12 @@
             Q : {
                 //pos: set in amode8captures
                 pcolor : estimatedForceColor,
-                letterAngle : 225,
+                letterAngle : 200,
                 letterRotRadius : 40,
                 draggableX  : true,
                 draggableY  : true,
-				cssClass: 'subessay--solution',
-                conditionalDrag : 'subessay--solution',
+				cssClass: 'subessay--solution subessay--goal',
+                conditionalDrag : 'subessay--solution subessay--goal',
             },
             //---------------------------------------
             // \\// draggable points
@@ -317,7 +317,7 @@
         var linesArray =
         [
             { Qx : { pcolor : proof,
-				cssClass: 'subessay--solution',
+				cssClass: 'subessay--solution subessay--goal',
 			 },},
 			{ xP : { pcolor : proofHover,
 				cssClass: 'subessay--solution',
@@ -343,7 +343,7 @@
             { CS : { pcolor : proof,
 				cssClass: 'subessay--solution',
 			 },},
-            { CH : { pcolor : proof,
+            { CH : { pcolor : proofHover,
 				cssClass: 'subessay--solution',
 			 },},
             { PI : { pcolor : proofHover,
@@ -354,7 +354,10 @@
 			 },},
 
             { 'SP' : { pcolor : estimatedForceColor, 
-				cssClass: 'logic_phase--proof',
+				cssClass: 'subessay--goal logic_phase--proof',
+			},},
+			{ 'SQ' : { pcolor : proof, 
+				cssClass: 'subessay--goal',
 			},},
 
             { 'L,LL' : { 
@@ -369,32 +372,32 @@
 				cssClass: 'subessay--solution',
 			 }, },
             { 'PR' : { pcolor : proof,
-				cssClass: 'logic_phase--proof',
+				cssClass: 'subessay--goal logic_phase--proof',
 			 }, },
             { 'QR' : { pcolor : estimatedForceColor,
-				cssClass: 'subessay--solution',
+				cssClass: 'subessay--solution subessay--goal',
 			 }, },
             { 'QT' : { pcolor : estimatedForceColor,
-				cssClass: 'subessay--solution',
+				cssClass: 'subessay--solution subessay--goal',
 			 },},
 
             { CK : { pcolor : proof,
 				cssClass: 'subessay--solution',
 			 },},
-            { GP : { pcolor : proof,
+            { CG : { pcolor : proof,
 				cssClass: 'subessay--solution',
 			}, },
             { Qv : { pcolor : proof,
 				cssClass: 'subessay--solution',
 			 },},
-            { Pv : { pcolor : proof,
+            { Pv : { pcolor : proofHover,
 				cssClass: 'subessay--solution',
 			 },},
             { Tv : { pcolor : proof,
 				cssClass: 'subessay--solution',
 			 },},
 
-            { vG : { pcolor : proof,
+            { vG : { pcolor : proofHover,
 				cssClass: 'subessay--solution',
 			 },},
             { PF : { pcolor : proof,

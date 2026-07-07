@@ -1,5 +1,14 @@
 # Change Log
 
+## 2026-7-?? (0.9.5)
+### Improved
+* Proposition 9:
+	* fixed bug where incorrect Δt was displayed
+
+### Added
+* Propositions 10, 11:
+	* submenu and diagram corresponding to application of proposition 6, corollary 5
+
 ## 2026-6-18 (0.9.4)
 ### Improved
 * Lemmas 6, 7:
@@ -11,8 +20,11 @@
 
 ## 2026-6-6 (0.9.3)
 ### Changed
-* Modified color palette so that propositions 1 and 2 are more consistent with other models
-* Propositions 9 - 13 show Δt
+* General:
+	* modified color palette so that propositions 1 and 2 are more consistent with other models
+
+* Propositions 9 - 13:
+	* Δt shown
 
 ## 2026-5-27 (0.9.2)
 ### Improved
