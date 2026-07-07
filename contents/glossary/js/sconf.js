@@ -203,19 +203,19 @@
             D : {
                 pcolor : proof,
                 letterAngle : 70,
-                cssClass: 'subessay--solution',
+                cssClass: 'subessay--latus-rectum',
             },
 
             K : {
+				caption : '',
                 pcolor : proof,
-                letterAngle : 90,
-				cssClass: 'subessay--solution',
+				cssClass: 'subessay--latus-rectum',
             },
 
             G : {
                 pcolor : proof,
                 letterAngle : 90,
-				cssClass: 'subessay--solution',
+				cssClass: 'subessay--latus-rectum',
             },
 
             T : {
@@ -403,11 +403,11 @@
 				cssClass: 'subessay--solution',
 			}, },
 			{ DK : { pcolor : proof,
-                    cssClass: 'subessay--conjugatediameter',
+                    cssClass: 'subessay--conjugatediameter subessay--latus-rectum',
              }, },
 
 			{ GP : { pcolor : proof,
-                     cssClass: 'subessay--ordinate subessay--diameter subessay--conjugatediameter',
+                     cssClass: 'subessay--latus-rectum subessay--ordinate subessay--diameter subessay--conjugatediameter',
             }, },
 			{ qv : { pcolor : proofLight,
                      cssClass: 'subessay--ordinate',

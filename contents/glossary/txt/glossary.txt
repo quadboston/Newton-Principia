@@ -13,6 +13,7 @@ are a pair of diameters where each diameter bisects all chords that are parallel
 Move the ¦GP¦diameters¦¦ with ¦P¦¦.<br>
 Change the ellipse's eccentricity with ¦A¦¦.<br>
 
+
 *::*claim|english
 {
 	"menuCaption" : "Text",
@@ -23,6 +24,25 @@ Change the ellipse's eccentricity with ¦A¦¦.<br>
 *..*
 A ¦GP¦<em>diameter</em>¦¦ of a ¦orbit¦conic¦¦ is any chord that bisects a family of parallel chords.
 For an ¦orbit¦ellipse¦¦, this simplifies to any chord passing through the ellipse's ¦C¦center¦¦.
+<br><br>
+Move the ¦GP¦diameter¦¦ with ¦P¦¦.<br>
+Change the ellipse's eccentricity with ¦A¦¦.<br>
+
+
+*::*claim|english
+{
+	"menuCaption" : "Text",
+	"subessay" : "latus-rectum",
+    "subessayCaption" : "latus rectum",
+	"logic_phaseCaption" : "Glossary"
+}
+*..*
+In Newton's time, a <em>latus rectum</em> was the third proportional to a specified pair of conjugate diameters.
+If the specified conjugate diameters are PG and DK in this diagram, the latus rectum to diameter PG is a quantity L such that PG : DK :: DK : L.
+When Newton specifies the <em>principal latus rectum</em>, he is indicating that the conjugate diameters are the major
+and minor axes. In this case, the latus rectum is the magnitude of a chord that passes through a focus and is parallel to the minor axis.
+<br>
+Today's definition of latus rectum refers to that chord.
 <br><br>
 Move the ¦GP¦diameter¦¦ with ¦P¦¦.<br>
 Change the ellipse's eccentricity with ¦A¦¦.<br>
