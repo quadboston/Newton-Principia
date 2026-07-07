@@ -195,8 +195,10 @@
             },
 
             AA : {
-                undisplayAlways : true,
+                //undisplayAlways : true,
+				pcolor : proof,
                 doPaintPname : false,
+				cssClass: 'subessay--latus-rectum',
             },
 
             D : {
@@ -279,7 +281,9 @@
             // //\\ draggable points
             //---------------------------------------
             S : {
-				cssClass: 'subessay--',
+				caption : '',
+				pcolor : proof,
+				cssClass: 'subessay--latus-rectum',
             },            
 
             P : {
@@ -321,6 +325,9 @@
 
         var linesArray =
         [
+			{ 'A,AA' : { pcolor : proof,
+					 cssClass: 'subessay--latus-rectum',
+			}, },
             { Qx : { pcolor : proof,
 				cssClass: 'subessay--solution subessay--goal',
 			 },},

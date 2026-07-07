@@ -47,7 +47,7 @@ For any given ¦P¦¦, this magnitude is constant regardless of ¦Q¦¦.
 refer to their individual entries.)
 <br><br>
 When Newton specifies the <em>principal latus rectum</em>, 
-he is indicating the latus rectum associated with the ¦A¦intersection¦¦ of the ¦orbit¦conic¦¦ with its ¦A,AA¦axis¦¦. 
+he is indicating the latus rectum associated with the ¦AA¦intersection¦¦ of the ¦orbit¦conic¦¦ with its ¦A,AA¦axis¦¦. 
 In this case, the latus rectum has the same magnitude as a ¦L,LL¦chord¦¦ that passes 
 through a ¦S¦focus¦¦ and is perpendicular to the ¦A,AA¦axis¦¦. 
 For parabolas, this holds for every latus rectum, not just the principal one. 
