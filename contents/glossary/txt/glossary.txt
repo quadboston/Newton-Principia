@@ -37,15 +37,22 @@ Change the ellipse's eccentricity with ¦A¦¦.<br>
 	"logic_phaseCaption" : "Glossary"
 }
 *..*
-In Newton's time, a <em>latus rectum</em> was the third proportional to a specified pair of conjugate diameters.
-If the specified conjugate diameters are PG and DK in this diagram, the latus rectum to diameter PG is a quantity L such that PG : DK :: DK : L.
-When Newton specifies the <em>principal latus rectum</em>, he is indicating that the conjugate diameters are the major
-and minor axes. In this case, the latus rectum is the magnitude of a chord that passes through a focus and is parallel to the minor axis.
-<br>
-Today's definition of latus rectum refers to that chord.
+In Newton’s time, the <em>latus rectum</em> of a ¦orbit¦conic¦¦ was a 
+magnitude associated with a particular ¦P¦point¦¦ on the conic, 
+equal to the square of an <em>¦Qv¦ordinate¦¦</em> to a <em>¦GP¦diameter¦¦</em> 
+at that point divided by the <em>¦Pv¦abscissa¦¦</em> 
+to that ordinate. In this diagram, the latus rectum is equal to ¦Qv¦¦² / ¦Pv¦¦. 
+For any given ¦P¦¦, this magnitude is constant regardless of ¦Q¦¦. 
+(All words in italics have drifted in meaning since Newton’s time; 
+refer to their individual entries.)
 <br><br>
-Move the ¦GP¦diameter¦¦ with ¦P¦¦.<br>
-Change the ellipse's eccentricity with ¦A¦¦.<br>
+When Newton specifies the <em>principal latus rectum</em>, 
+he is indicating the latus rectum associated with the ¦A¦intersection¦¦ of the ¦orbit¦conic¦¦ with its ¦A,AA¦axis¦¦. 
+In this case, the latus rectum has the same magnitude as a ¦L,LL¦chord¦¦ that passes 
+through a ¦S¦focus¦¦ and is perpendicular to the ¦A,AA¦axis¦¦. 
+For parabolas, this holds for every latus rectum, not just the principal one. 
+Today, <em>latus rectum</em> is defined as the chord through a focus 
+perpendicular to the ¦A,AA¦axis¦¦, for all three conic types.
 
 
 *::*claim|english
