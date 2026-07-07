@@ -8,7 +8,7 @@
 }
 *..*
 ¦GP DK¦<em>Conjugate diameters</em>¦¦ of a ¦orbit¦conic¦¦
-are a pair of diameters that bisect each other.
+are a pair of diameters where each diameter bisects all chords that are parallel to the other diameter.
 <br><br>
 Move the ¦GP¦diameters¦¦ with ¦P¦¦.<br>
 Change the ellipse's eccentricity with ¦A¦¦.<br>

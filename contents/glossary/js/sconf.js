@@ -172,7 +172,7 @@
                 pos: posC,
                 letterAngle : -99,
                 letterRotRadius : 35,
-				cssClass: 'logic_phase--claim',
+				cssClass: 'subessay--diameter',
             },
             E : {
                 pcolor : proof,
