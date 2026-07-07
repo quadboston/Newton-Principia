@@ -9,7 +9,6 @@
     //====================================================
     function init_conf()
     {
-		
         //***************************************************************
         // //\\ geometrical scales
         //***************************************************************
@@ -203,19 +202,19 @@
             D : {
                 pcolor : proof,
                 letterAngle : 70,
-                cssClass: 'subessay--latus-rectum',
+                cssClass: 'subessay--',
             },
 
             K : {
 				caption : '',
                 pcolor : proof,
-				cssClass: 'subessay--latus-rectum',
+				cssClass: 'subessay--',
             },
 
             G : {
                 pcolor : proof,
                 letterAngle : 90,
-				cssClass: 'subessay--latus-rectum',
+				cssClass: 'subessay--',
             },
 
             T : {
@@ -247,7 +246,7 @@
                 pcolor : proof,
                 letterAngle : -45,
                 letterRotRadius : 15,
-				cssClass: 'subessay--solution',
+				cssClass: 'subessay--latus-rectum',
             },
 
             F : {
@@ -283,14 +282,6 @@
 				cssClass: 'subessay--',
             },            
 
-            A : {
-                pcolor : proof,
-                draggableX  : true,
-                draggableY  : false,
-				cssClass: 'subessay--ordinate',
-                conditionalDrag : 'subessay--ordinate',
-            },
-
             P : {
                 //pos: set by sconf.parQ
                 pcolor : body,
@@ -306,8 +297,8 @@
                 letterRotRadius : 40,
                 draggableX  : true,
                 draggableY  : true,
-                cssClass: 'subessay--ordinate',
-                conditionalDrag : 'subessay--ordinate',
+                cssClass: 'subessay--latus-rectum subessay--ordinate',
+                conditionalDrag : 'subessay--latus-rectum subessay--ordinate',
             }, 
 
             q : { // will be put across from Q
@@ -321,8 +312,7 @@
                 pcolor : proof,
                 draggableX  : true,
                 draggableY  : false,
-				cssClass: 'subessay--ordinate subessay--diameter subessay--conjugatediameter',
-                //conditionalDrag : 'subessay--ordinate subessay--diameter subessay--conjugatediameter',
+				cssClass: 'logic_phase--claim',
             },
             //---------------------------------------
             // \\// draggable points
@@ -413,11 +403,11 @@
                      cssClass: 'subessay--ordinate',
             }, },
 			{ Qv : { pcolor : estimatedForceColor,
-                     cssClass: 'subessay--ordinate',
+                     cssClass: 'subessay--latus-rectum subessay--ordinate',
             }, },
 
             { Pv : { pcolor : proofHover,
-				cssClass: 'subessay--solution',
+				cssClass: 'subessay--latus-rectum',
 			 },},
             { Tv : { pcolor : proof,
 				cssClass: 'subessay--solution',
