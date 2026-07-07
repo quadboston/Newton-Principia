@@ -172,7 +172,7 @@
                 pos: posC,
                 letterAngle : -99,
                 letterRotRadius : 35,
-				cssClass: 'logic_phase--proof',
+				cssClass: 'logic_phase--claim',
             },
             E : {
                 pcolor : proof,
@@ -280,9 +280,7 @@
             // //\\ draggable points
             //---------------------------------------
             S : {
-                pcolor : sunColor,
-                letterAngle : -115,
-                letterRotRadius : 35,
+				cssClass: 'subessay--',
             },            
 
             A : {
