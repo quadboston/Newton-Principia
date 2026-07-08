@@ -6,7 +6,7 @@
   "logic_phaseCaption" : "<i>Conics</i> I. 21"
 }
 *..*
-Apollonius’s <i>Conics</i> I.21 proves that when an ellipse's diameter ¦GP¦¦ has 2 ordinates ¦CD¦¦ and ¦Qv¦¦, then
-¦CD¦¦²&nbsp;:&nbsp;¦Qv¦¦² = ¦CG¦GC¦¦ × ¦PC¦¦ : ¦CG vC¦vG¦¦ × ¦Pv¦¦.
+Part of Apollonius’s <i>Conics</i> I.21 proves that when an ellipse's diameter ¦GP¦¦ has 2 ordinates ¦CD¦¦ and ¦Qv¦¦, then
+¦CD¦¦²&nbsp;:&nbsp;¦Qv¦Q𝑣¦¦² = ¦CG¦GC¦¦&nbsp×&nbsp¦PC¦¦&nbsp:&nbsp¦Pv¦P𝑣¦¦&nbsp×&nbsp¦CG vC¦𝑣G¦¦.
 <br><br>
-For more, see Densmore's <i>Newton's Principia The Central Argument</i> page 211, and Cohen's <i>A Guide to Newton's Principia</i> page 330.
+For more, see Densmore's <i>Newton's Principia: The Central Argument</i> page 211, and Cohen's <i>A Guide to Newton's Principia</i> page 330.
