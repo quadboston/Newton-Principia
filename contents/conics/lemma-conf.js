@@ -1,0 +1,25 @@
+( function() {
+    window.b$l.apptree({}).fapp.lemmaConfig = lemmaConfig;    
+    return;
+
+    function lemmaConfig()
+    {
+        var sm = '../../glossary/js/'; //study model path
+        return {
+            codesList :
+            [
+                //todm: automate this list
+                { src: sm + 'sconf.js' },
+                { src: sm + 'config-functions.js' },
+                { src: sm + 'init-model-parameters.js' },
+                { src: sm + 'model-upcreate.js' },
+                { src: sm + 'media-upcreate.js' },
+                { src: sm + 'amode8captures.js' },
+            ],
+            "contents-list" :
+            [
+                'txt/conics.txt',
+            ],
+        };
+    }
+}) ();
