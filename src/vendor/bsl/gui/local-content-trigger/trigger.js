@@ -20,11 +20,6 @@
         //================================
         //can be either like const IMAGE_PATH = '../../local-content-trigger';
 
-        let crHTML = document.createElement( 'div' );
-        crHTML.innerHTML = '<div class="show-picture-credit">' +
-                            creditsHTML() + '</div>';
-        document.body.appendChild( crHTML );
-
         ///distributes images
         var divs = document.querySelectorAll( '.trigger-option' ).forEach( div =>
         {
@@ -52,32 +47,5 @@
             let p = this.parentNode;
             p.className = p.className === 'isopen' ? 'isclosed' : 'isopen';
         }
-
-        function creditsHTML()
-        {
-            return `
-                <div class="isclosed" style="font-size:9px;">
-                    <div class="trigger-option">
-                        Image credits
-                    </div>
-                    <div class="trigger-content">
-                        <pre>
-    open_book.png:
-        Downloaded from: http://www.clker.com/clipart-open-book.html
-        Shared by: OCAL 26-Mar-08
-        Profile: http://www.clker.com/profile-1068.html
-        Web site: http://www.openclipart.org
-    closed_book.png
-        Drawn by: CrazyTerabyte / Denilson Figueiredo de Sá
-        Homepage: http://my.opera.com/CrazyTerabyte/blog/
-        Profile: http://openclipart.org/user-detail/CrazyTerabyte
-        Downloaded from: http://openclipart.org/detail/9358/book-by-crazyterabyte
-        Created: 2007-12-03 18:49:27
-        Description: A simple SVG book based on a drawing made on Gimp by Sam Switzer.
-                        </pre>
-                    </div>
-                </div>
-         `;
-        }        
     }
 }
