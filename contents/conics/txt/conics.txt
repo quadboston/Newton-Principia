@@ -1,75 +1,12 @@
 *::*claim|english
 {
-	"default" : "1",
-	"menuCaption" : "Text",
-	"subessay" : "conjugatediameter",
-    "subessayCaption" : "conjugate diameters (ellipse)",
-	"logic_phaseCaption" : "Glossary"
+  "menuCaption" : "Text",
+  "subessayCaption" : "Conics",
+  "subessay" : "conics",
+  "logic_phaseCaption" : "<i>Conics</i> I. 21"
 }
 *..*
-¦GP DK¦<em>Conjugate diameters</em>¦¦ of a ¦orbit¦conic¦¦
-are a pair of diameters where each diameter bisects all chords that are parallel to the other diameter.
+Apollonius’s <i>Conics</i> I.21 proves that when an ellipse's diameter ¦GP¦¦ has 2 ordinates ¦CD¦¦ and ¦Qv¦¦, then
+¦CD¦¦²&nbsp;:&nbsp;¦Qv¦¦² = ¦CG¦GC¦¦ × ¦PC¦¦ : ¦CG vC¦vG¦¦ × ¦Pv¦¦.
 <br><br>
-Move the ¦GP¦diameters¦¦ with ¦P¦¦.<br>
-Change the ellipse's eccentricity with ¦A¦¦.
-
-
-*::*claim|english
-{
-	"menuCaption" : "Text",
-	"subessay" : "diameter",
-    "subessayCaption" : "diameter (ellipse)",
-	"logic_phaseCaption" : "Glossary"
-}
-*..*
-A ¦GP¦<em>diameter</em>¦¦ of a ¦orbit¦conic¦¦ is any chord that bisects a family of parallel chords.
-For an ¦orbit¦ellipse¦¦, this simplifies to any chord passing through the ellipse's ¦C¦center¦¦.
-<br><br>
-Move the ¦GP¦diameter¦¦ with ¦P¦¦.<br>
-Change the ellipse's eccentricity with ¦A¦¦.
-
-
-*::*claim|english
-{
-	"menuCaption" : "Text",
-	"subessay" : "latus-rectum",
-    "subessayCaption" : "latus rectum",
-	"logic_phaseCaption" : "Glossary"
-}
-*..*
-In Newton’s time, the <em>latus rectum</em> of a ¦orbit¦conic¦¦ was a 
-magnitude associated with a particular ¦P¦point¦¦ on the conic, 
-equal to the square of an <em>¦Qv¦ordinate¦¦</em> to a <em>¦GP¦diameter¦¦</em> 
-at that ¦P¦point¦¦ divided by the <em>¦Pv¦abscissa¦¦</em> 
-to that ¦Qv¦ordinate¦¦. In this diagram, the latus rectum is equal to ¦Qv¦¦² / ¦Pv¦¦. 
-For any given ¦P¦¦, this magnitude is constant regardless of ¦Q¦¦. 
-(All words in italics have drifted in meaning since Newton’s time; 
-refer to their individual entries.)
-<br><br>
-When Newton specifies the <em>principal latus rectum</em>, 
-he is indicating the latus rectum associated with the ¦AA¦intersection¦¦ of the ¦orbit¦conic¦¦ with its ¦A,AA¦principal axis¦¦. 
-In this case, the latus rectum has the same magnitude as a ¦L,LL¦chord¦¦ that passes 
-through a ¦S¦focus¦¦ and is perpendicular to the ¦A,AA¦principal axis¦¦. 
-For parabolas, this holds for every latus rectum, not just the principal one. 
-Today, <em>latus rectum</em> is defined as the ¦L,LL¦chord¦¦ through a ¦S¦focus¦¦ 
-perpendicular to the ¦A,AA¦principal axis¦¦, for all three conic types.
-<br><br>
-Move the ¦Qv¦ordinate¦¦ with ¦Q¦¦.<br>
-Move the ¦P¦point¦¦ with ¦P¦¦.<br>
-Change the ellipse's eccentricity with ¦A¦¦.
-
-
-*::*claim|english
-{
-	"menuCaption" : "Text",
-	"subessay" : "ordinate",
-	"subessayCaption" : "ordinate",
-	"logic_phaseCaption" : "Glossary"
-}
-*..*
-An ¦Qemphasis,v¦<em>ordinate</em>¦¦ is half of a ¦qv Qemphasis,v¦chord¦¦ that is bisected by a conic's ¦GP¦diameter¦¦.
-The ¦Qemphasis,v¦ordinate¦¦ spans from that ¦GP¦diameter¦¦ to the ¦orbit¦conic¦¦.
-<br><br>
-Move the ¦Qemphasis,v¦ordinate¦¦ with ¦Q¦¦.<br>
-Move the ¦GP¦diameter¦¦ with ¦P¦¦.<br>
-Change the ellipse's eccentricity with ¦A¦¦.
+For more, see Densmore's <i>Newton's Principia The Central Argument</i> page 211, and Cohen's <i>A Guide to Newton's Principia</i> page 330.

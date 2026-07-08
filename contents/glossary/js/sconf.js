@@ -167,11 +167,10 @@
         {
             C : {
                 pcolor : proofColor,
-				caption: "",
                 pos: posC,
                 letterAngle : -99,
                 letterRotRadius : 35,
-				cssClass: 'subessay--diameter',
+				cssClass: 'subessay--diameter subessay--conics',
             },
             E : {
                 pcolor : proofColor,
@@ -204,25 +203,26 @@
             D : {
                 pcolor : proofColor,
                 letterAngle : 70,
-                cssClass: 'subessay--',
+                cssClass: 'subessay--conics',
             },
 
             K : {
 				caption : '',
                 pcolor : proofColor,
-				cssClass: 'subessay--',
+				undisplayAlways : true,
+				// cssClass: 'subessay--conics',
             },
 
             G : {
                 pcolor : proofColor,
                 letterAngle : 90,
-				cssClass: 'subessay--',
+				cssClass: 'subessay--conics',
             },
 
             T : {
                 pcolor : estimatedForceColor,
                 letterAngle : 180,
-				cssClass: 'subessay--solution subessay--goal',
+				cssClass: 'subessay--solution',
             },
 
             R : {
@@ -248,7 +248,7 @@
                 pcolor : proofColor,
                 letterAngle : -45,
                 letterRotRadius : 15,
-				cssClass: 'subessay--latus-rectum',
+				cssClass: 'subessay--latus-rectum subessay--conics',
             },
 
             F : {
@@ -408,14 +408,14 @@
 				cssClass: 'subessay--solution',
 			 },},
             { CG : { pcolor : proofColor,
-				cssClass: 'subessay--solution',
+				cssClass: 'subessay--conics',
 			}, },
 			{ DK : { pcolor : proofColor,
                     cssClass: 'subessay--conjugatediameter',
              }, },
 
 			{ GP : { pcolor : proofColor,
-                     cssClass: 'subessay--latus-rectum subessay--ordinate subessay--diameter subessay--conjugatediameter',
+                     cssClass: 'subessay--latus-rectum subessay--ordinate subessay--diameter subessay--conjugatediameter subessay--conics',
             }, },
 			{ qv : { pcolor : proofLight,
                      cssClass: 'subessay--ordinate',
@@ -428,7 +428,7 @@
             }, },
 
             { Pv : { pcolor : proofHover,
-				cssClass: 'subessay--latus-rectum',
+				cssClass: 'subessay--latus-rectum subessay--conics',
 			 },},
             { Tv : { pcolor : proofColor,
 				cssClass: 'subessay--solution',
@@ -444,13 +444,13 @@
 				cssClass: 'subessay--solution',
 			 },},
             { CD : { pcolor : proofColor,
-				cssClass: 'subessay--solution',
+				cssClass: 'subessay--conics',
 			 },},
             { BC : { pcolor : proofColor,
 				cssClass: 'subessay--solution',
 			 },},
             { PC : { pcolor : proofColor,
-				cssClass: 'logic_phase--proof',
+				cssClass: 'subessay--conics',
 			}, },
         ];
 
