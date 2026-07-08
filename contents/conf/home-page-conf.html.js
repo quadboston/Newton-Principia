@@ -291,7 +291,7 @@
                     class="lemma-item-title ${chosen}">&nbsp;&nbsp;&nbsp;${sappItem.caption}
                     </a>
                 </li>`;
-            if(isHomepage && sappItem.sappId === "b1sec2prop2") {
+            if(isHomepage && sappItem.sappId === "b1sec2prop6") {
                 coreText += `</ul></div></div><div class="column" style="padding-top: 3rem"><div><ul>`;
             }
         });
