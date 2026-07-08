@@ -296,13 +296,24 @@
 
             Q : {
                 //pos: set in amode8captures
-                pcolor : estimatedForceColor,
-                letterAngle : 200,
-                letterRotRadius : 40,
+                pcolor : proofColor,
+                letterAngle : 250,
+                letterRotRadius : 25,
                 draggableX  : true,
                 draggableY  : true,
-                cssClass: 'subessay--latus-rectum subessay--ordinate',
-                conditionalDrag : 'subessay--latus-rectum subessay--ordinate',
+                cssClass: 'subessay--latus-rectum subessay--conics',
+                conditionalDrag : 'subessay--latus-rectum subessay--conics',
+            }, 
+
+			Qemphasis : {
+                 pcolor : estimatedForceColor,
+ 				caption: 'Q',
+                 letterAngle : 250,
+                 letterRotRadius : 25,
+                 draggableX  : true,
+                 draggableY  : true,
+                cssClass: 'subessay--ordinate',
+                conditionalDrag : 'subessay--ordinate',
             }, 
 
             q : { // will be put across from Q
@@ -409,8 +420,11 @@
 			{ qv : { pcolor : proofLight,
                      cssClass: 'subessay--ordinate',
             }, },
-			{ Qv : { pcolor : estimatedForceColor,
-                     cssClass: 'subessay--latus-rectum subessay--ordinate',
+			{ Qv : { pcolor : proofColor,
+                     cssClass: 'subessay--latus-rectum subessay--conics',
+            }, },
+			{ 'Qemphasis,v' : { pcolor : estimatedForceColor,
+                     cssClass: 'subessay--ordinate',
             }, },
 
             { Pv : { pcolor : proofHover,

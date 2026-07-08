@@ -47,7 +47,7 @@ For any given ¦P¦¦, this magnitude is constant regardless of ¦Q¦¦.
 refer to their individual entries.)
 <br><br>
 When Newton specifies the <em>principal latus rectum</em>, 
-he is indicating the latus rectum associated with the ¦AA¦intersection¦¦ of the ¦orbit¦conic¦¦ with its ¦A,AA¦axis¦¦. 
+he is indicating the latus rectum associated with the ¦AA¦intersection¦¦ of the ¦orbit¦conic¦¦ with its ¦A,AA¦principal axis¦¦. 
 In this case, the latus rectum has the same magnitude as a ¦L,LL¦chord¦¦ that passes 
 through a ¦S¦focus¦¦ and is perpendicular to the ¦A,AA¦principal axis¦¦. 
 For parabolas, this holds for every latus rectum, not just the principal one. 
@@ -67,9 +67,9 @@ Change the ellipse's eccentricity with ¦A¦¦.
 	"logic_phaseCaption" : "Glossary"
 }
 *..*
-An ¦Qv¦<em>ordinate</em>¦¦ is half of a ¦qv Qv¦chord¦¦ that is bisected by a conic's ¦GP¦diameter¦¦.
-The ¦Qv¦ordinate¦¦ spans from that ¦GP¦diameter¦¦ to the ¦orbit¦conic¦¦.
+An ¦Qemphasis,v¦<em>ordinate</em>¦¦ is half of a ¦qv Qemphasis,v¦chord¦¦ that is bisected by a conic's ¦GP¦diameter¦¦.
+The ¦Qemphasis,v¦ordinate¦¦ spans from that ¦GP¦diameter¦¦ to the ¦orbit¦conic¦¦.
 <br><br>
-Move the ¦Qv¦ordinate¦¦ with ¦Q¦¦.<br>
+Move the ¦Qemphasis,v¦ordinate¦¦ with ¦Q¦¦.<br>
 Move the ¦GP¦diameter¦¦ with ¦P¦¦.<br>
 Change the ellipse's eccentricity with ¦A¦¦.

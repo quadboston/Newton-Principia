@@ -20,8 +20,8 @@
         var rr0 = rg.P.pos;
         var rrc = rg.S.pos;
         var Qpos = q2xy( Porb.plusQ );
-        rg.Q.pos[0] = Qpos[0];
-        rg.Q.pos[1] = Qpos[1];
+        rg.Q.pos[0] = rg.Qemphasis.pos[0] = Qpos[0];
+        rg.Q.pos[1] = rg.Qemphasis.pos[1] = Qpos[1];
         
         // **api-input---plane-curve-derivatives
         var {
