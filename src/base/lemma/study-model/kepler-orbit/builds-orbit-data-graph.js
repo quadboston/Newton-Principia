@@ -50,6 +50,11 @@
             }
             bP.gix = Math.max(0,graphArray.length-1);
         }
+        //TEMP For test purposes
+        // console.log("**********");
+        // console.log("estimatedForceMax =", estimatedForceMax);
+        // console.log("actualForceMax =", actualForceMax);
+        //TEMP//
 
         //Sometimes solvable is true at this point but just barely.  When this
         //is the case it's possible graphArray can still be empty, meaning no

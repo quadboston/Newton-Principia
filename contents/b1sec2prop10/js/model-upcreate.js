@@ -67,6 +67,19 @@
         {
             let graphArg = {
             }
+
+
+            //TEMP Test constraining the bounds of the graph as follows
+            graphArg.xMin = 0;
+            //TEMP If too small, when point A is moved to the right, the curves
+            //can easily leave the graph
+            graphArg.xMax = 1.6; //1.4;
+
+            graphArg.yMin = 0;
+            //TEMP A bit of space above the curves, when Q furthest from P
+            graphArg.yMax = 1.3;
+
+
             stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
         }
         //------------------------------------------------
