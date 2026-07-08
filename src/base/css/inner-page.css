@@ -297,6 +297,6 @@ img.isclosed {
 }
 .scrollable-content {
     /* menu content scrolls when page is too short */
-    max-height: 80vh; 
+    max-height: 90vh; 
     overflow-y: auto;
 } 

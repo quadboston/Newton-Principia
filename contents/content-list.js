@@ -131,7 +131,7 @@
 		
 		{   sappId : 'conics',
             book : 'Appendix',
-            caption : 'Conics',
+            caption : '<em>Conics</em> reference',
         },
 
 		{   sappId : 'glossary',
