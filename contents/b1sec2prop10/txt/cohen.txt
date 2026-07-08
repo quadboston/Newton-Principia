@@ -95,7 +95,9 @@ The force on ¦P¦¦
 *..*
 Let ¦CA¦¦ and ¦CB¦¦ be the semiaxes of the ¦orbit¦ellipse¦¦, ¦GP¦¦ and ¦DK¦¦ other conjugate diameters, 
 ¦PF¦¦ and ¦QT¦¦ perpendiculars to those diameters, ¦Qv¦Q𝑣¦¦ an ordinate to diameter ¦GP¦¦; 
-then, if parallelogram ¦Qv Pv PR QR¦Q𝑣PR¦¦ is completed, the rectangle ¦Pv¦P𝑣¦¦ × ¦vC CG¦𝑣G¦¦ will (from the Conics) be to ¦Qv¦Q𝑣¦¦²
+then, if parallelogram ¦Qv Pv PR QR¦Q𝑣PR¦¦ is completed, the rectangle ¦Pv¦P𝑣¦¦ × ¦vC CG¦𝑣G¦¦ will 
+(from the <a href="?conf=sappId=conics,logic_phaseId=claim,aspectId=english,subessayId=conics"> Conics</a>)
+ be to ¦Qv¦Q𝑣¦¦²
 as ¦PC¦¦² to ¦DC¦CD¦¦², and
 (because
 triangles ¦Qv QT Tv¦Q𝑣T¦¦ and ¦PC CF PF¦PCF¦¦ are similar)
