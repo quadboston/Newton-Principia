@@ -263,14 +263,6 @@ b {
     //\\\\ originally from site.css.js
 ************************************************/
 
-body .show-picture-credit {
-    display : none;
-} 
-              
-body.contents .show-picture-credit {
-    display : block;
-}               
-
 .bsl-bg-image {
     position : absolute;
     width   : 100%;
