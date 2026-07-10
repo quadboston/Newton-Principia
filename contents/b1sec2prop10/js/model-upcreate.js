@@ -71,13 +71,19 @@
 
             //TEMP Test constraining the bounds of the graph as follows
             graphArg.xMin = 0;
-            //TEMP If too small, when point A is moved to the right, the curves
-            //can easily leave the graph
-            graphArg.xMax = 1.6; //1.4;
+            // //TEMP If too small, when point A is moved to the right, the curves
+            // //can easily leave the graph
+            // graphArg.xMax = 1.6; //1.4;
+            // console.log("ssD.xMaxCurrentForGraphTemp =",
+            //     ssD.xMaxCurrentForGraphTemp);
+            //TEMP Is 1.1 too low, would it be easier to compare arrangements if
+            //this was larger?
+            const xMaxLowest = 1.1;
+            graphArg.xMax = Math.max(xMaxLowest, ssD.xMaxCurrentForGraphTemp);
 
             graphArg.yMin = 0;
             //TEMP A bit of space above the curves, when Q furthest from P
-            graphArg.yMax = 1.3;
+            graphArg.yMax = 1.5;//1.3;
 
 
             stdMod.graphFW_lemma.drawGraph_wrap(graphArg);

@@ -32,6 +32,8 @@
         const gend = ssD.qix_graph_end;
         let estimatedForceMax = 0;
         let actualForceMax = 0;
+        //TEMP
+        let xMax = 0;
         //var fullPath = qIndexToOrbit[ gend ].pathAtQ;
         for( let qix=gstart; qix<=gend; qix++ ){
             const bP = qIndexToOrbit[ qix ];
@@ -47,14 +49,13 @@
                     x : sData.PLOT_BY_PATH ? bP.pathAtQ : bP.r,
                 };
                 graphArray.push( graphColumn );
+                //TEMP
+                xMax = Math.max(xMax, graphColumn.x);
             }
             bP.gix = Math.max(0,graphArray.length-1);
         }
-        //TEMP For test purposes
-        // console.log("**********");
-        // console.log("estimatedForceMax =", estimatedForceMax);
-        // console.log("actualForceMax =", actualForceMax);
-        //TEMP//
+        //TEMP
+        ssD.xMaxCurrentForGraphTemp = xMax;
 
         //Sometimes solvable is true at this point but just barely.  When this
         //is the case it's possible graphArray can still be empty, meaning no
@@ -65,8 +66,23 @@
         //------------------------------------------
         // //\\ resets graphArray
         //------------------------------------------
-        const estimatedForceScale = (IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX ?
+        //TEMP
+        // const estimatedForceScale = (IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX ?
+        let estimatedForceScale = (IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX ?
             actualForceMax : estimatedForceMax);
+        //TEMP For test purposes
+        if (sconf.sappId === "b1sec2prop10") {
+            // console.log("**********");
+            // console.log("estimatedForceScale =", estimatedForceScale);
+            // console.log("estimatedForceMax =", estimatedForceMax);
+            // console.log("actualForceMax =", actualForceMax);
+
+            //Testing fixed scale factor (max actual force when A is in its
+            //default position)
+            actualForceMax = 0.656350585627137;
+            estimatedForceScale = actualForceMax;
+        }
+        //TEMP//
         var arrLen = graphArray.length;
         for( var gix = 0; gix<arrLen; gix++ ){
             const ga = graphArray[ gix ];
