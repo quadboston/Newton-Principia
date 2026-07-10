@@ -17,32 +17,30 @@
         //  speed cannot be 0 )
         fun,
 
-        //param q
-        q,
+        q, //param q, not to be confused with point Q
 
         //optional: chosen point of reference for polar system of coodinates
         //by default rcenter = [0,0]
         rrc,
 
         //optional: "delta q", numerical differentiation step
-        DDD,
+        delta_q,
     }){
-        DDD         = DDD || 0.0001;
+        delta_q         = delta_q || 0.0001;
 
-        //note: protects values against being oo,
+        //note: protects values against being ∞,
         //      can do 1e-300,
         const INFINITY_PROTECTOR = 1e-200;
 
-        var DDD1    = 1/DDD;
-        var DDD2    = 0.5 * DDD1;
-        var DDDA    = DDD1 * DDD1;
         //radius-vector in respect to coord. syst. origin:
         var rr      = fun( q );
         var rOrAbs  = Math.sqrt( rr[0]*rr[0] + rr[1]*rr[1] );
-        var rplus   = fun( q + DDD );
-        var rminus  = fun( q - DDD );
+        var rplus   = fun( q + delta_q );
+        var rminus  = fun( q - delta_q );
         //speed along q
-        var vv      = [ (rplus[0] - rminus[0])*DDD2, (rplus[1] - rminus[1])*DDD2, ];
+        var vv
+			= [ (rplus[0] - rminus[0])/(2*delta_q),
+				 (rplus[1] - rminus[1])/(2*delta_q), ];
         var v2      = vv[0]*vv[0] + vv[1]*vv[1];
         var v       = Math.sqrt( v2 );
         //unit speed
@@ -54,7 +52,7 @@
         //from rmin to rmax
         var sagitta2x= (rplus[0]-rr[0])+(rminus[0]-rr[0]);
         var sagitta2y= (rplus[1]-rr[1])+(rminus[1]-rr[1]);
-        var aa      = [ sagitta2x*DDDA, sagitta2y*DDDA ];
+        var aa      = [ sagitta2x/(delta_q**2), sagitta2y/(delta_q**2) ];
         var a2      = aa[0]*aa[0] + aa[1]*aa[1];
         var a       = Math.sqrt( a2 );
 
@@ -79,10 +77,6 @@
         //curvature circle center
         var RC = [ RR[0]+rr[0], RR[1]+rr[1], ];
 
-
-
-
-
         //*********************************************************
         // //\\// adjusts radius vector to offset rrc: rrr = rr-rrc
         //        if offset rrc is supplied
@@ -92,8 +86,6 @@
         var r       = Math.sqrt( r2 );
         r           = r<INFINITY_PROTECTOR ? INFINITY_PROTECTOR : r;
         var ee      = [ rrr[0]/r, rrr[1]/r, ];
-
-
 
         //:angle between norm n and radius vector rrr
 
@@ -124,7 +116,6 @@
         var ww = [ ee[0]*ww*2, ee[1]*ww*2 ];
         //      this is a point V:
         var curvatureChordSecondPoint = [ ww[0]+rr[0], ww[1]+rr[1] ];
-
 
         //: gets projection of rrr to tangent
         //  radius vector rrr projection on tangent: 
@@ -198,5 +189,3 @@
     }
 
 }) ();
-
-
