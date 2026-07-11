@@ -72,9 +72,9 @@
         
         // point Q
         var {
-            rr, 
+            planetXY, 
         } = deltaT_2_arc();
-        nspaste( rg.Q.pos, rr );
+        nspaste( rg.Q.pos, planetXY );
 
         // dragger R
         {
@@ -108,7 +108,7 @@
             ////sample orbit
             let pointAt = rg[ 'approximated-curve-sample' ].t2xy;
             var {
-                rr,
+                planetXY,
                 uu,
                 ee,
                 projectionOfCenterOnTangent,
@@ -123,7 +123,7 @@
             // only set position of p once, it does not move
             if( amode.subessay !== subessay ) {
                 subessay = amode.subessay;
-                nspaste( rg.p.pos, rr );
+                nspaste( rg.p.pos, planetXY );
             }
 
             //sample speed vector
@@ -137,13 +137,13 @@
             }
             //sample's decorational dt arc
             var {
-                rr,
+                planetXY,
             } = mcurve.planeCurveDerivatives({
                 pointAt,
                 q : rg.p.q + sop.sagittaDelta_q_initial,
                 sunXY,
             });
-            nspaste( rg.q.pos, rr );
+            nspaste( rg.q.pos, planetXY );
             rg.p.abs = mat.unitVector( rg.p.pos ).abs;
         }
 
@@ -202,7 +202,7 @@
         for( var it = 0; it <= INTEGRATION_STEPS; it++ ) {
             var {
                 v, //=ds_by_dfi
-                rr,
+                planetXY,
             } = mcurve.planeCurveDerivatives({
                 pointAt,
                 q,
@@ -215,7 +215,7 @@
             q += intervalQ;
         }
         return {
-            rr,
+            planetXY,
             sagittaDeltaQ : q - rg.P.q,
         };
     }

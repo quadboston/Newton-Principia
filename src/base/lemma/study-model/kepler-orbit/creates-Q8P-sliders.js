@@ -178,7 +178,7 @@
             for( let qix=qS; qix<qE; qix++){
                 const point = qIndexToOrbit[qix];
                 if(!point) continue;
-                const pos = point.rr;
+                const pos = point.planetXY;
                 const x = r[0]-pos[0];
                 const y = r[1]-pos[1];
                 const d2 = x*x + y*y;

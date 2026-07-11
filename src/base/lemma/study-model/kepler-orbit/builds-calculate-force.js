@@ -118,7 +118,7 @@
 		if (stdMod.calculateActualForce) {
 			return stdMod.calculateActualForce({bP});
 		}
-        const P = bP.rr;
+        const P = bP.planetXY;
         const S = bP.sunXY;
         const V = bP.curvatureChordSecondPoint;
         const Y = bP.projectionOfCenterOnTangent;
@@ -146,7 +146,7 @@
         ///displacement = QR, area = QT*SP,
         const q2xy = stdMod.q2xy;
         const Q = q2xy( parq );
-        const P = bP.rr;
+        const P = bP.planetXY;
         const S = bP.sunXY;
         const R = mat.linesCross(
             bP.uu, P, //direction, start

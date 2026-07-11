@@ -15,8 +15,8 @@
         const q2xy = stdMod.q2xy;
         var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
         var parQ = Porb.q;
-        rg.P.pos[0] = Porb.rr[0];
-        rg.P.pos[1] = Porb.rr[1];
+        rg.P.pos[0] = Porb.planetXY[0];
+        rg.P.pos[1] = Porb.planetXY[1];
         var rr0 = rg.P.pos;
         var rrc = rg.S.pos;
         var Qpos = q2xy( Porb.plusQ );

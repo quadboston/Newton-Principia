@@ -17,11 +17,11 @@
         var {
             RC, R, curvatureChordSecondPoint, projectionOfCenterOnTangent,
             uu,
-            rr,
+            planetXY,
         } = Porb;
         rg.P.q = Porb.q;
-        rg.P.pos[0] = rr[0];
-        rg.P.pos[1] = rr[1];
+        rg.P.pos[0] = planetXY[0];
+        rg.P.pos[1] = planetXY[1];
         const rr0 = rg.P.pos;
         const sunXY = rg.S.pos;
         const Rc = R; //curvature radius

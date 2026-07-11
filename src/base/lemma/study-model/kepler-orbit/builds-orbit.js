@@ -43,7 +43,7 @@
             });
             bP.qix = qix;
             var {
-                rr,
+                planetXY,
                 ds_dq, //|d𝗿/dq|
                 r2,
                 staticSectorialSpeed_rrrOnUU,
@@ -51,14 +51,14 @@
             } = bP;
 
             if (sconf.CURVE_REVOLVES)
-                bP.angleIncrement = calculateAngleIncrement(rr, qix);
+                bP.angleIncrement = calculateAngleIncrement(planetXY, qix);
 
             // Kepler's motion: rvₜcos(w) = M
             // f = M²/(Rr²cos³(w))
             sinAbs = Math.abs( sinOmega );
             if( NON_SOLVABLE_THRESHOLD > sinAbs ) {
                 solvable = false;
-                foldPoints.push( [ rr[0], rr[1] ] );
+                foldPoints.push( [ planetXY[0], planetXY[1] ] );
                 bP.solvablePoint = solvable;
             }
             
@@ -101,7 +101,7 @@
             const ORBIT_STEP = Q_STEPS/orbitXYToDraw_LIMIT;
             for( let oix=0; oix<=orbitXYToDraw_LIMIT; oix++ ){
                 let qix = Math.floor( oix * ORBIT_STEP );
-                orbitXYToDraw[ oix ] = qIndexToOrbit[qix].rr;
+                orbitXYToDraw[ oix ] = qIndexToOrbit[qix].planetXY;
             }
         }
         // \\// one or many shapes
