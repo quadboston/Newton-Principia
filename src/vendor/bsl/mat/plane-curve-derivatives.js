@@ -15,13 +15,13 @@
         //  outputs: position = 2d-vector = rr
         //requirement: drr/dt = vv != 0 (whne q is a time, then
         //  speed cannot be 0 )
-        fun,
+        pointAt,
 
         q, //param q, not to be confused with point Q
 
         //optional: chosen point of reference for polar system of coodinates
         //by default rcenter = [0,0]
-        rrc,
+        sunXY,
 
         //optional: "delta q", numerical differentiation step
         delta_q,
@@ -33,10 +33,10 @@
         const INFINITY_PROTECTOR = 1e-200;
 
         //radius-vector in respect to coord. syst. origin:
-        var rr      = fun( q );
+        var rr      = pointAt( q );
         var rOrAbs  = Math.sqrt( rr[0]*rr[0] + rr[1]*rr[1] );
-        var rplus   = fun( q + delta_q );
-        var rminus  = fun( q - delta_q );
+        var rplus   = pointAt( q + delta_q );
+        var rminus  = pointAt( q - delta_q );
         //speed along q
         var vv
 			= [ (rplus[0] - rminus[0])/(2*delta_q),
@@ -78,9 +78,9 @@
         var RC = [ RR[0]+rr[0], RR[1]+rr[1], ];
 
         //*********************************************************
-        // //\\// adjusts radius vector to offset rrc: rrr = rr-rrc
-        //        if offset rrc is supplied
-        var rrr     = rrc ? [ rr[0]-rrc[0], rr[1]-rrc[1] ] : rr;
+        // //\\// adjusts radius vector to offset sunXY: rrr = rr-sunXY
+        //        if offset sunXY is supplied
+        var rrr     = sunXY ? [ rr[0]-sunXY[0], rr[1]-sunXY[1] ] : rr;
         //*********************************************************
         var r2      = rrr[0]*rrr[0] + rrr[1]*rrr[1];
         var r       = Math.sqrt( r2 );
@@ -146,12 +146,12 @@
         //****************************************************
         return {
             q,
-            rrc, //force center if supplied
+            sunXY, //force center if supplied
             // **api-output---plane-curve-derivatives
             rr, //body pos in respect to coord system origin
             rOrAbs,
   
-            //in respect to chosen polar center rrc, if rrc presented
+            //in respect to chosen polar center sunXY, if sunXY presented
             rrr,
             r2,
             r,  //abs value of offset radius
@@ -179,9 +179,9 @@
             //sectspeed_ru=momentum0 = [𝗿𝘂] = [𝗿𝘃]/v; for v=ds/dq or v=ds/dt
             staticSectorialSpeed_rrrOnUU, //=algebraic momentum0
 
-            angleRV,    //in respect to center rrc
-            sinOmega,   //in respect to center rrc
-            cosOmega,   //in respect to center rrc
+            angleRV,    //in respect to sunXY
+            sinOmega,   //in respect to sunXY
+            cosOmega,   //in respect to sunXY
 
             //sagitta2 : [sagitta2x, sagitta2y],
             //for Kepler's motion, f = 1/R vₜ² / sin(w)

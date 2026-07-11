@@ -116,7 +116,7 @@
         bP    //orbit point P rack
     }) {
         const P = bP.rr;
-        const S = bP.rrc;
+        const S = bP.sunXY;
         const V = bP.curvatureChordSecondPoint;
         const Y = bP.projectionOfCenterOnTangent;
 
@@ -144,7 +144,7 @@
         const q2xy = stdMod.q2xy;
         const Q = q2xy( parq );
         const P = bP.rr;
-        const S = bP.rrc;
+        const S = bP.sunXY;
         const R = mat.linesCross(
             bP.uu, P, //direction, start
             [P[0]-S[0], P[1]-S[1]], Q, //direction, start

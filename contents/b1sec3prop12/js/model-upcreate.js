@@ -19,7 +19,7 @@
         rg.P.pos[0] = Porb.rr[0];
         rg.P.pos[1] = Porb.rr[1];
         var rr0 = rg.P.pos;
-        var rrc = rg.S.pos;
+        var sunXY = rg.S.pos;
         var Qpos = q2xy( Porb.plusQ );
         rg.Q.pos[0] = Qpos[0];
         rg.Q.pos[1] = Qpos[1];
@@ -42,12 +42,12 @@
         nspaste( rg.R.pos,
             mat.linesCross(
                 uu, rr0, //direction, start
-                [rr0[0]-rrc[0], rr0[1]-rrc[1]], rg.Q.pos, //direction, start
+                [rr0[0]-sunXY[0], rr0[1]-sunXY[1]], rg.Q.pos, //direction, start
             )
         );
 
         //T = perp. from Q to radius-vector
-        nspaste( rg.T.pos, mat.dropPerpendicular( rg.Q.pos, rrc, rr0 ) );
+        nspaste( rg.T.pos, mat.dropPerpendicular( rg.Q.pos, sunXY, rr0 ) );
 
         nspaste( rg.Z.pos,
             mat.linesCross(

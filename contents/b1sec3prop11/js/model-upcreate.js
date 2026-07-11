@@ -18,7 +18,7 @@
         rg.P.pos[0] = Porb.rr[0];
         rg.P.pos[1] = Porb.rr[1];
         var rr0 = rg.P.pos;
-        var rrc = rg.S.pos;
+        var sunXY = rg.S.pos;
         var Qpos = q2xy( Porb.plusQ );
         rg.Q.pos[0] = Qpos[0];
         rg.Q.pos[1] = Qpos[1];
@@ -46,13 +46,13 @@
         //R = parallel-projection of Q to tangent
         var wwR = mat.linesCross(
             uu, rr0, //direction, start
-            [rr0[0]-rrc[0], rr0[1]-rrc[1]], rg.Q.pos, //direction, start
+            [rr0[0]-sunXY[0], rr0[1]-sunXY[1]], rg.Q.pos, //direction, start
         );
         rg.R.pos[0] = wwR[0];
         rg.R.pos[1] = wwR[1];
 
         //T = perp. from Q to radius-vector
-        var wwT = mat.dropPerpendicular( rg.Q.pos, rrc, rr0 )
+        var wwT = mat.dropPerpendicular( rg.Q.pos, sunXY, rr0 )
         rg.T.pos[0] = wwT[0];
         rg.T.pos[1] = wwT[1];
 

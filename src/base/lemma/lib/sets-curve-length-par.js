@@ -37,7 +37,7 @@
         //=============================================
         //start state
         var pathState = mcurve.planeCurveDerivatives({
-            fun : appCurve.q2xy,
+            pointAt : appCurve.q2xy,
             q : 0,
         });
         pathState.s = 0;
@@ -60,7 +60,7 @@
             var q = qix*STEP_Q;
             var ss = qix2pstate[ qix-1 ];
             var sstate = mcurve.planeCurveDerivatives({
-                fun : appCurve.q2xy,
+                pointAt : appCurve.q2xy,
                 q,
             });
             var rrBefore = ss.rr;
