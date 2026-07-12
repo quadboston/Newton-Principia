@@ -1,6 +1,6 @@
 ( function() {
-    var { sn, $$, nsmethods, nspaste, nssvg, mcurve, integral, mat, has, fconf,
-        ssF, sData, ssD, stdMod, amode, sconf, rg, toreg, }
+    var { nspaste, integral, mat, fconf,
+        ssD, stdMod, amode, rg, }
             = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
     return;
 
@@ -174,4 +174,3 @@
         //=============================================================
     }
 }) ();
-

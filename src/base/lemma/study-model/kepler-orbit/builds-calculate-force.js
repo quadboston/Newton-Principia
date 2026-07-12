@@ -115,6 +115,9 @@
     function calculateActualForce({
         bP    //orbit point P rack
     }) {
+		if (stdMod.calculateActualForce) {
+			return stdMod.calculateActualForce({bP});
+		}
         const P = bP.rr;
         const S = bP.sunXY;
         const V = bP.curvatureChordSecondPoint;

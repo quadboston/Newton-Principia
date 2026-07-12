@@ -1,5 +1,5 @@
 ( function() {
-    var { mat, stdMod, sconf, } 
+    var { stdMod, sconf, } 
         = window.b$l.apptree({ stdModExportList : { recreates_q2xy, }, });
     return;
 
@@ -12,6 +12,7 @@
         const B     = sconf.ellipseB;
         const fi0   = sconf.orbit_q_start;
         stdMod.q2xy = q2xy;
+		stdMod.calculateActualForce = function(bP){ return 1 };
         return;
         
         function q2xy( q )
@@ -24,4 +25,3 @@
         }
     }
 }) ();
-
