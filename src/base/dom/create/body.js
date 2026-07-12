@@ -221,14 +221,10 @@
 
             fapp.homePage$.removeClass( 'is-hidden' );
             sDomN.returnToLemmaButton$.removeClass( 'non-displayed' );
-            sDomN.homeButton$.addClass( 'non-displayed' );
             
             fapp.fappRoot$.css( 'overflow', 'visible' );
             document.body.style.overflow = 'visible';
             $$.$( document.body ).addClass( 'contents' );
-            //todm patch
-            haz( sDomN , 'simSScene$' ) &&
-                sDomN.simSScene$.css( 'display', 'none' );
 
         } else {
             //(I) this erases css of front-page-pane

@@ -78,9 +78,6 @@
 .appid-home-pane .return-to-lemma-button {
     display:none;
 }
-.return-to-lemma-button {
-    display:inline-block;
-}
 
 .return-to-lemma-button,
 .home-button {
@@ -98,6 +95,9 @@
 }
 
 .return-to-lemma-button {
+    display             : block;
+    position            : absolute !important;
+    margin-top          : 6px;
     width               : 190px;
     color               : white;
     background-color    : #303946;
