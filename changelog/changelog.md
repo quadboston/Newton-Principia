@@ -9,6 +9,9 @@
 * Propositions 10, 11:
 	* submenu and diagram corresponding to application of proposition 6, corollary 5
 
+* Interactive glossary:
+	* entries for conjugate diameters (ellipse), diameter (ellipse), latus rectum, ordinate
+
 ## 2026-6-18 (0.9.4)
 ### Improved
 * Lemmas 6, 7:
