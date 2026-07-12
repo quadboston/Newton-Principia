@@ -92,6 +92,9 @@
             stdMod.model8media_upcreate();
             return; //avoids repetition
         }
+		if (rg.Qemphasis) {
+			rg.Qemphasis.acceptPos = rg.Q.acceptPos;
+		}
     }
 
     //=====================================================================
@@ -188,4 +191,3 @@
         }
    }
 }) ();
-

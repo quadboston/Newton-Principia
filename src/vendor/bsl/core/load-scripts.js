@@ -6,13 +6,6 @@
     return;
 
 
-
-
-
-
-
-
-
     //===============================================================================
     // //\\ microAPI to load list of contents for html-element-scripts
     //
@@ -54,7 +47,6 @@
             //asynchronously-loaded-script-although-when-it-is-not-bebcbd6da5ea
             scrip.src = scriptItem.src;
         });
-        return; //rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
 
         function checkCompletion()
         {
@@ -66,6 +58,4 @@
     //===============================================================================
     // \\// microAPI to load list of contents for html-element-scripts
     //===============================================================================
-
 }) ();
-

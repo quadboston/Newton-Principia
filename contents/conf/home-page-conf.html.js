@@ -4,7 +4,7 @@
         fapp, fconf, sapp, sconf, html, stdMod,
     } = window.b$l.apptree({
     });
-    sapp.buildsListOfLemmas = buildListOfLemmas;
+    sapp.buildListOfLemmas = buildListOfLemmas;
     html.builds_homePane = builds_homePane;
     return;
 
@@ -273,15 +273,14 @@
                 book = sappItem.book;
                 let cls = '';
                 let cls2 = book === "Book 1" ? ' class="column"' : '';
-                coreText += '<div' + cls2 + '><div' + cls  + `><ul>`;
 
                 ////add title "Book ... " when list switches to the next book ...
                 coreText += `
-                    <li><div class="content-book-title">
+                    <div class="content-book-title">
                             <span class="book-title">${book}</span>
-                        </div>
-                    </li>
+                    </div>
                 `;
+				coreText += '<div' + cls2 + '><div' + cls  + `><ul>`;
             }
             let chosen = sappItem.sappId === fconf.sappId ? ' chosen' : '';
             //when navigating to a new page, vertical tab persists, horizontal tab reset to claim
@@ -291,12 +290,11 @@
                     class="lemma-item-title ${chosen}">&nbsp;&nbsp;&nbsp;${sappItem.caption}
                     </a>
                 </li>`;
-            if(isHomepage && sappItem.sappId === "b1sec2prop2") {
-                coreText += `</ul></div></div><div class="column" style="padding-top: 3rem"><div><ul>`;
+            if(isHomepage && sappItem.sappId === "b1sec2prop7") {
+                coreText += `</ul></div></div><div class="column"><div><ul>`;
             }
         });
         coreText += '\n</ul></div></div>';
         return coreText;
     }
 }) ();
-
