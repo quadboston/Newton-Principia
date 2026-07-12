@@ -78,12 +78,12 @@
             //     ssD.xMaxCurrentForGraphTemp);
             //TEMP Is 1.1 too low, would it be easier to compare arrangements if
             //this was larger?
-            const xMaxLowest = 1.1;
+            const xMaxLowest = 2.3;
             graphArg.xMax = Math.max(xMaxLowest, ssD.xMaxCurrentForGraphTemp);
 
             graphArg.yMin = 0;
             //TEMP A bit of space above the curves, when Q furthest from P
-            graphArg.yMax = 1.5;//1.3;
+            graphArg.yMax = 2.75;//1.3;
 
 
             stdMod.graphFW_lemma.drawGraph_wrap(graphArg);

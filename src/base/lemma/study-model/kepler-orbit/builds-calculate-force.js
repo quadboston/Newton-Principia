@@ -116,7 +116,7 @@
         bP    //orbit point P rack
     }) {
 		if (stdMod.calculateActualForce) {
-			return stdMod.calculateActualForce({bP});
+			return stdMod.calculateActualForce(bP);
 		}
         const P = bP.planetXY;
         const S = bP.sunXY;
@@ -165,7 +165,8 @@
         const force = QR/(area*area);
 
         const sign = calculateSign(bP, [QR0, QR1]);
-        return sign * force;
+        return (stdMod.estimatedForceScale ?  stdMod.estimatedForceScale() : 1)
+			* sign * force;
     }
 
 
@@ -175,4 +176,3 @@
         return Math.sign(rrr[0]*direction[0] + rrr[1]*direction[1]);
     }
 }) ();
-
