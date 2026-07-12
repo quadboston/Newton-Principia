@@ -93,8 +93,12 @@ The force on ¦P¦¦
   "logic_phaseCaption" : "Solutions"
 }
 *..*
-Let ¦CA¦¦ and ¦CB¦¦ be the semiaxes of the ¦orbit¦ellipse¦¦, ¦GP¦¦ and ¦DK¦¦ other conjugate diameters, 
-¦PF¦¦ and ¦QT¦¦ perpendiculars to those diameters, ¦Qv¦Q𝑣¦¦ an ordinate to diameter ¦GP¦¦; 
+Let ¦CA¦¦ and ¦CB¦¦ be the semiaxes of the ¦orbit¦ellipse¦¦, ¦GP¦¦ and ¦DK¦¦ other 
+<a href="?conf=sappId=glossary,logic_phaseId=claim,aspectId=english,subessayId=conjugatediameter">conjugate</a>
+<a href="?conf=sappId=glossary,logic_phaseId=claim,aspectId=english,subessayId=diameter">diameters</a>, 
+¦PF¦¦ and ¦QT¦¦ perpendiculars to those diameters, ¦Qv¦Q𝑣¦¦ an 
+<a href="?conf=sappId=glossary,logic_phaseId=claim,aspectId=english,subessayId=ordinate">ordinate</a>
+to diameter ¦GP¦¦; 
 then, if parallelogram ¦Qv Pv PR QR¦Q𝑣PR¦¦ is completed, the rectangle ¦Pv¦P𝑣¦¦ × ¦vC CG¦𝑣G¦¦ will 
 (from the <a href="?conf=sappId=conics,logic_phaseId=claim,aspectId=english,subessayId=conics"> Conics</a>)
  be to ¦Qv¦Q𝑣¦¦²

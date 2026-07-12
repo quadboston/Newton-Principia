@@ -7,7 +7,7 @@
 	"logic_phaseCaption" : "Glossary"
 }
 *..*
-¦GP DK¦<em>Conjugate diameters</em>¦¦ of a ¦orbit¦conic¦¦
+In Newton’s time, ¦GP DK¦<em>conjugate diameters</em>¦¦ of a ¦orbit¦conic¦¦
 are a pair of diameters where each diameter bisects all chords that are parallel to the other diameter.
 <br><br>
 Move the ¦GP¦diameters¦¦ with ¦P¦¦.<br>
@@ -22,7 +22,7 @@ Change the ellipse's eccentricity with ¦A¦¦.
 	"logic_phaseCaption" : "Glossary"
 }
 *..*
-A ¦GP¦<em>diameter</em>¦¦ of a ¦orbit¦conic¦¦ is any chord that bisects a family of parallel chords.
+In Newton’s time, a ¦GP¦<em>diameter</em>¦¦ of a ¦orbit¦conic¦¦ is any chord that bisects a family of parallel chords.
 For an ¦orbit¦ellipse¦¦, this simplifies to any chord passing through the ellipse's ¦C¦center¦¦.
 <br><br>
 Move the ¦GP¦diameter¦¦ with ¦P¦¦.<br>
@@ -67,7 +67,7 @@ Change the ellipse's eccentricity with ¦A¦¦.
 	"logic_phaseCaption" : "Glossary"
 }
 *..*
-An ¦Qemphasis,v¦<em>ordinate</em>¦¦ is half of a ¦qv Qemphasis,v¦chord¦¦ that is bisected by a conic's ¦GP¦diameter¦¦.
+In Newton’s time, an ¦Qemphasis,v¦<em>ordinate</em>¦¦ is half of a ¦qv Qemphasis,v¦chord¦¦ that is bisected by a conic's ¦GP¦diameter¦¦.
 The ¦Qemphasis,v¦ordinate¦¦ spans from that ¦GP¦diameter¦¦ to the ¦orbit¦conic¦¦.
 <br><br>
 Move the ¦Qemphasis,v¦ordinate¦¦ with ¦Q¦¦.<br>
