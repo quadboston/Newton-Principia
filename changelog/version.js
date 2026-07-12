@@ -1,11 +1,11 @@
 ( function() {
     var ns          = window.b$l        = window.b$l        || {};
     var fapp        = ns.fapp           = ns.fapp           || {};
-    fapp.version = '0.9.4'; //application version
+    fapp.version = '0.9.5'; //application version
 	fapp.versionColor = 'Chartreuse'; //color for version display
 
 	// //\\ updated automatically. Don't edit this string.
-    fapp.buildDateString = "2026-06-18"; //build date
+    fapp.buildDateString = "2026-07-12"; //build date
     // \\// updated automatically. Don't edit this string.
  }) ();
 

@@ -1,6 +1,6 @@
 # Change Log
 
-## 2026-7-?? (0.9.5)
+## 2026-7-12 (0.9.5)
 ### Improved
 * Proposition 9:
 	* fixed bug where incorrect Δt was displayed
