@@ -220,14 +220,14 @@
             fapp.fappRoot$.css( 'overflow', 'visible' );
             document.body.style.overflow = 'visible';
             $$.$( document.body ).addClass( 'contents' );
-
+            sDomN.homeButton$.addClass( 'non-visible' );
         } else {
             //(I) this erases css of front-page-pane
             ns.globalCss.clearStyleTag('home');
             
             fapp.homePage$.addClass( 'is-hidden' );
             sDomN.returnToLemmaButton$.addClass( 'non-displayed' );
-            sDomN.homeButton$.removeClass('non-displayed');
+            sDomN.homeButton$.removeClass('non-visible');
             
             document.body.style.overflow = 'hidden';
             $$.$(document.body).removeClass('contents');
