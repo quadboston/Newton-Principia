@@ -185,7 +185,28 @@
                 // splits anchor-configuration to smaller tokens, each
                 // token for separate topic or for reserved-command,
                 // raw_tpIDs - are "commands",
-                anchorRack.raw_tpIDs = tplinkConf.split( SPACE_reg );
+                //-------------------------------------------------------
+                // //\\ extracts an optional *href*URL command
+                //      must happen BEFORE split( SPACE_reg ), because
+                //      SPACE_reg also splits on "/" and would shred
+                //      any URL. Notation example:
+                //          ¦P *href*https://example.com/page¦caption¦¦
+                //      "P" still drives the mouseover-highlight of
+                //      object P exactly as before; the extra token
+                //      just additionally makes "caption" a real link.
+                //-------------------------------------------------------
+                var ANCH_HREF_CAT_rg = /\*href\*(\S+)/;
+                var hrefMatch = tplinkConf.match( ANCH_HREF_CAT_rg );
+                if( hrefMatch ) {
+                    anchorRack.href = hrefMatch[1];
+                    //strips the *href*URL token out so it is not also
+                    //mistaken for a topic-id by the split below
+                    tplinkConf = tplinkConf.replace( ANCH_HREF_CAT_rg, '' ).trim();
+                }
+                //-------------------------------------------------------
+                // \\// extracts an optional *href*URL command
+                //-------------------------------------------------------
+                anchorRack.raw_tpIDs = tplinkConf.split( SPACE_reg ).filter( Boolean );
                 //if( anchorRack.raw_tpIDs.length > 1 )
                 //    ccc(tplinkConf);
                 var ANCH_COLOR_CAT_rg = /\*anch-color\*(.+)/;
@@ -368,7 +389,33 @@
             //          the same config, same anchorConfig.
             //          So, different targets will be "killed", and
             //          there will be only one target.
-            var repl = '<a class="tl-' + rack.tplink_ix + dix + '">'+ scaption +
+
+            //-------------------------------------------------------
+            // //\\ optional real hyperlink, set via *href*URL command
+            //      in the anchor-config, e.g. ¦P *href*URL¦caption¦¦
+            //      the tl-NNN mouseover-highlight class/behavior keeps
+            //      working exactly as before; this just additionally
+            //      turns the caption into a clickable link.
+            //-------------------------------------------------------
+            var hrefAttr = '';
+            if( rack.href ) {
+                //minimal escaping so a stray '"' in the URL can't
+                //break out of the attribute
+                var safeHref = rack.href.replace( /"/g, '&quot;' );
+                //inline cursor:pointer guarantees the pointer-hand
+                //shows up even if site css sets cursor:default on
+                //.tl-N anchors (likely, since they weren't real links
+                //before). "has-href" class is an extra hook in case
+                //css wants to style real links differently (e.g. an
+                //underline or icon) beyond just the cursor.
+                dix += ' has-href';
+                hrefAttr = ' href="' + safeHref + '" style="cursor:pointer"';
+            }
+            //-------------------------------------------------------
+            // \\// optional real hyperlink
+            //-------------------------------------------------------
+
+            var repl = '<a class="tl-' + rack.tplink_ix + dix + '"' + hrefAttr + '>'+ scaption +
                        '</a>' + (remainder || '' );
             return repl;
         }
@@ -414,6 +461,30 @@
         );
         //-------------------------------------------------------
         // \\// sets css-machinery for reverse-action
+        //-------------------------------------------------------
+
+        //-------------------------------------------------------
+        // //\\ sets global css for real-link topic-anchors
+        //      (anchors that also carry *href*URL, marked with
+        //      the "has-href" class in replWithAnchor above).
+        //      no underline at rest, underline on hover/focus,
+        //      so readers can tell which highlighted terms are
+        //      also clickable links, vs. highlight-only ones.
+        //      fixed (non-fid) key: only needs to be set once.
+        //-------------------------------------------------------
+        globalCss.updateIfKeyDifferent( `
+                .${cssp}-text-widget a.has-href {
+                    text-decoration : none;
+                }
+                .${cssp}-text-widget a.has-href:hover,
+                .${cssp}-text-widget a.has-href:focus-visible {
+                    text-decoration : underline;
+                }
+            `,
+            'has-href-style',
+        );
+        //-------------------------------------------------------
+        // \\// sets global css for real-link topic-anchors
         //-------------------------------------------------------
 
         //-----------------------------------------------------------------------
@@ -480,5 +551,3 @@
     }
 
 }) ();
-
-

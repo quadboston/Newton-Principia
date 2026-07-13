@@ -101,7 +101,8 @@ and ¦EI¦¦ are equal because ¦CS¦¦ and ¦CH¦¦ are equal; so that ¦EP¦¦
 of ¦SP¦PS¦¦ and ¦PI¦¦, that is (because ¦HI¦¦ and ¦PR¦¦ are parallel and angles ¦PI PR¦IPR¦¦ and
 ¦PH PZ¦HPZ¦¦ are equal), the half-sum of ¦SP¦PS¦¦ and ¦PH¦¦ (which taken together equal
 the whole axis 2¦AC¦¦). Drop ¦QT¦¦ perpendicular to ¦SP¦¦, and if ¦L,LL¦L¦¦ denotes the
-¦L,LL¦principal latus rectum¦¦ of the ¦orbit¦ellipse¦¦ 
+<a href="?conf=sappId=glossary,logic_phaseId=claim,aspectId=english,subessayId=latus-rectum">¦L,LL¦principal latus rectum¦¦</a>
+of the ¦orbit¦ellipse¦¦ 
 
 <!-- (or 2BC² / AC) -->
 <math><mrow>
