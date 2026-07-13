@@ -1,7 +1,7 @@
 ( function() {
     var ns          = window.b$l        = window.b$l        || {};
     var fapp        = ns.fapp           = ns.fapp           || {};
-    fapp.version = '0.9.5'; //application version
+    fapp.version = '0.9.6'; //application version
 	fapp.versionColor = 'Chartreuse'; //color for version display
 
 	// //\\ updated automatically. Don't edit this string.

@@ -1,5 +1,10 @@
 # Change Log
 
+## 2026-7-?? (0.9.6)
+### Added
+* Proposition 10:
+	* video of talk explaining first solution
+
 ## 2026-7-12 (0.9.5)
 ### Improved
 * Proposition 9:
