@@ -14,6 +14,8 @@ Move the ¦GP¦diameters¦¦ with ¦P¦¦.<br>
 Change the ellipse's eccentricity with ¦A¦¦.
 
 
+
+
 *::*claim|english
 {
 	"menuCaption" : "Text",
@@ -29,6 +31,8 @@ Move the ¦GP¦diameter¦¦ with ¦P¦¦.<br>
 Change the ellipse's eccentricity with ¦A¦¦.
 
 
+
+
 *::*claim|english
 {
 	"menuCaption" : "Text",
@@ -37,26 +41,19 @@ Change the ellipse's eccentricity with ¦A¦¦.
 	"logic_phaseCaption" : "Glossary"
 }
 *..*
-In Newton’s time, the <em>latus rectum</em> of a ¦orbit¦conic¦¦ was a 
-magnitude associated with a particular ¦P¦point¦¦ on the conic, 
-equal to the square of an <em>¦Qv¦ordinate¦¦</em> to a <em>¦GP¦diameter¦¦</em> 
-at that ¦P¦point¦¦ divided by the <em>¦Pv¦abscissa¦¦</em> 
-to that ¦Qv¦ordinate¦¦. In this diagram, the latus rectum is equal to ¦Qv¦¦² / ¦Pv¦¦. 
-For any given ¦P¦¦, this magnitude is constant regardless of ¦Q¦¦. 
-(All words in italics have drifted in meaning since Newton’s time; 
-refer to their individual entries.)
-<br><br>
-When Newton specifies the <em>principal latus rectum</em>, 
-he is indicating the latus rectum associated with the ¦AA¦intersection¦¦ of the ¦orbit¦conic¦¦ with its ¦A,AA¦principal axis¦¦. 
-In this case, the latus rectum has the same magnitude as a ¦L,LL¦chord¦¦ that passes 
-through a ¦S¦focus¦¦ and is perpendicular to the ¦A,AA¦principal axis¦¦. 
-For parabolas, this holds for every latus rectum, not just the principal one. 
-Today, <em>latus rectum</em> is defined as the ¦L,LL¦chord¦¦ through a ¦S¦focus¦¦ 
-perpendicular to the ¦A,AA¦principal axis¦¦, for all three conic types.
-<br><br>
-Move the ¦Qv¦ordinate¦¦ with ¦Q¦¦.<br>
-Move the ¦P¦point¦¦ with ¦P¦¦.<br>
+In Newton’s time, a <em>latus rectum</em> was a magnitude corresponding
+ to a particular ¦P¦point¦¦ on a conic. For ¦orbit¦ellipses¦¦ and hyperbolas, that magnitude 
+ varied by point; for parabolas, that magnitude was the same for all points 
+ and could be referred to as the latus rectum of the parabola. 
+ When Newton refers to the <em>¦L,LL¦principal latus rectum¦¦</em>, 
+ he’s referring to the latus rectum corresponding to the 
+¦AA¦<em>principal vertex</em>¦¦  of the conic (what we now call simply 
+ a <em>vertex</em>). For all conics, the ¦L,LL¦principal latus rectum¦¦ has the 
+ same magnitude as today’s meaning of latus rectum, which is a chord 
+ passing through a ¦S¦focus¦¦ perpendicular to the ¦A,AA¦axis¦¦.<br><br>
 Change the ellipse's eccentricity with ¦A¦¦.
+
+
 
 
 *::*claim|english
