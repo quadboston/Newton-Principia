@@ -170,7 +170,7 @@
                 pos: posC,
                 letterAngle : -99,
                 letterRotRadius : 35,
-				cssClass: 'subessay--diameter subessay--conics',
+				cssClass: 'subessay--diameter subessay--latus-rectum subessay--conics',
             },
             E : {
                 pcolor : proofColor,
@@ -190,7 +190,7 @@
             B : {
                 pcolor : proofColor,
                 letterAngle : 90,
-				cssClass: 'subessay--solution',
+				cssClass: 'subessay--latus-rectum',
             },
 
             AA : {
@@ -203,18 +203,18 @@
             D : {
                 pcolor : proofColor,
                 letterAngle : 70,
-                cssClass: 'subessay--conics',
+                cssClass: 'subessay--conics subessay--latus-rectum',
             },
 
             K : {
                 pcolor : proofColor,
-				cssClass: 'subessay--',
+				cssClass: 'subessay--latus-rectum',
             },
 
             G : {
                 pcolor : proofColor,
                 letterAngle : 90,
-				cssClass: 'subessay--conics',
+				cssClass: 'subessay--conics subessay--latus-rectum',
             },
 
             T : {
@@ -412,11 +412,10 @@
 				cssClass: 'subessay--conics',
 			}, },
 			{ DK : { pcolor : proofColor,
-                    cssClass: 'subessay--conjugatediameter',
+                    cssClass: 'subessay--conjugatediameter subessay--latus-rectum',
              }, },
 
 			{ GP : { pcolor : proofColor,
-                     cssClass: 'subessay--ordinate subessay--diameter subessay--conjugatediameter subessay--conics',
             }, },
 			{ qv : { pcolor : proofLight,
                      cssClass: 'subessay--ordinate',
@@ -442,16 +441,16 @@
 				cssClass: 'subessay--solution',
 			 },},
             { AC : { pcolor : proofColor,
-				cssClass: 'subessay--solution',
+				cssClass: 'subessay--latus-rectum',
 			 },},
             { CD : { pcolor : proofColor,
-				cssClass: 'subessay--conics',
+				cssClass: 'subessay--conics subessay--latus-rectum',
 			 },},
             { BC : { pcolor : proofColor,
-				cssClass: 'subessay--solution',
+				cssClass: 'subessay--latus-rectum',
 			 },},
             { PC : { pcolor : proofColor,
-				cssClass: 'subessay--conics',
+				cssClass: 'subessay--conics subessay--latus-rectum',
 			}, },
         ];
 
