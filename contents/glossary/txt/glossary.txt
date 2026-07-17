@@ -41,16 +41,69 @@ Change the ellipse's eccentricity with ¦A¦¦.
 	"logic_phaseCaption" : "Glossary"
 }
 *..*
-In Newton’s time, a <em>latus rectum</em> was a magnitude corresponding
- to a particular ¦P¦point¦¦ on a conic. For ¦orbit¦ellipses¦¦ and hyperbolas, that magnitude 
- varied by point; for parabolas, that magnitude was the same for all points 
- and could be referred to as the latus rectum of the parabola. 
- When Newton refers to the <em>¦L,LL¦principal latus rectum¦¦</em>, 
- he’s referring to the latus rectum corresponding to the 
-¦AA¦<em>principal vertex</em>¦¦  of the conic (what we now call simply 
- a <em>vertex</em>). For all conics, the ¦L,LL¦principal latus rectum¦¦ has the 
- same magnitude as today’s meaning of latus rectum, which is a chord 
- passing through a ¦S¦focus¦¦ perpendicular to the ¦A,AA¦axis¦¦.<br><br>
+ In Newton’s time, a <em>latus rectum</em> was a magnitude corresponding to a particular ¦P¦point¦¦ on a conic.
+ <br><br>
+For ¦orbit¦ellipses¦¦ and hyperbolas, the ¦P¦point¦¦ determines a ¦GP DK¦pair of conjugate diameters¦¦. 
+In this diagram, the conjugate diameters for point ¦P¦¦ are ¦GP¦PG¦¦ and ¦DK¦¦, 
+and the magnitude of the latus rectum, designated by 
+<math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>L</mi> <mi>p</mi> </msub> </math>, 
+is given by the ratio 
+<span style="white-space: nowrap;">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mrow>
+    <mi>¦GP¦PG¦¦</mi>
+    <mo>&#160;:&#160;</mo>
+    <mi>¦DK¦¦</mi>
+    <mo>=</mo>
+    <mi>¦DK¦¦</mi>
+    <mo>&#160;:&#160;</mo>
+    <msub>
+      <mi>L</mi>
+      <mi>p</mi>
+    </msub>
+  </mrow>
+</math><mtext>.</mtext></span>
+Equivalently, 
+<span style="white-space: nowrap;">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mrow>
+    <msub>
+      <mi>L</mi>
+      <mi>p</mi>
+    </msub>
+    <mo>=</mo>
+    <mfrac>
+      <msup>
+    	<mi>¦DK¦¦</mi>
+        <mn>2</mn>
+      </msup>
+      <mi>¦GP¦PG¦¦</mi>
+    </mfrac>
+    <mo>=</mo>
+    <mfrac>
+      <mrow>
+        <mn>2</mn>
+        <msup>
+          <mi>¦BC¦¦</mi>
+          <mn>2</mn>
+        </msup>
+      </mrow>
+      <mrow>
+      	<mi>¦AC¦¦</mi>
+      </mrow>
+    </mfrac>
+  </mrow>
+</math><mtext>.</mtext></span>
+ <br><br>
+For parabolas, the latus rectum for a particular point is 4 times the distance from that point to the focus.
+ <br><br>
+When Newton refers to the <em>¦L,LL¦principal latus rectum¦¦</em>, 
+he’s referring to the latus rectum corresponding to a 
+¦AA¦<em>principal vertex</em>¦¦ of the conic (what we now call simply a <em>vertex</em>). 
+For all conics, the ¦L,LL¦principal latus rectum¦¦ has the same magnitude as today’s meaning of latus rectum, 
+which is a ¦L,LL¦chord¦¦ passing through a ¦S¦focus¦¦ perpendicular to the ¦A,AA¦axis¦¦.
+<br><br>
+Move the ¦GP DK¦diameters¦¦ with ¦P¦¦.<br>
 Change the ellipse's eccentricity with ¦A¦¦.
 
 
