@@ -386,11 +386,11 @@
                 captionShiftNorm : 22, lposYSugar : 3
 			}, },
 
-            { 'P,Zminus' : { pcolor : proofColor,
-				cssClass: 'subessay--solution',
+            { 'P,Zminus' : { pcolor : proofHover,
+				cssClass: 'subessay--diameter',
 			 }, },
-            { 'PZ' : { pcolor : proofColor,
-				cssClass: 'subessay--solution',
+            { 'PZ' : { pcolor : proofHover,
+				cssClass: 'subessay--diameter',
 			 }, },
             { 'PR' : { pcolor : proofColor,
 				cssClass: 'subessay--goal logic_phase--proof',
