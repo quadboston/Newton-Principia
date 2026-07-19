@@ -68,6 +68,15 @@
         // \\// arc, sagittae and related
         //================================================
 
+        var wwZ = mat.dropLine(
+            -0.45,
+            rg.P.pos,
+            null,
+            null,
+            uu,
+        );
+        rg.Z.pos[0] = wwZ[0];
+        rg.Z.pos[1] = wwZ[1];
 
         //conjugate diameters
         nspaste( rg.G.pos, q2xy( parQ + Math.PI ) );

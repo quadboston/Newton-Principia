@@ -247,6 +247,10 @@
     display : inline;
 }
 
+.active-static a[href]:hover {
+    text-decoration: underline;
+}
+
 /* ///?hidden? delayed anchor */
 .bsl-text-widget .delayed-far,
 .bsl-text-widget .delayed-anchor {

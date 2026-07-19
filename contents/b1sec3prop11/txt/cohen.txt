@@ -94,14 +94,17 @@ The force on ¦P¦¦
 }
 *..*
 Let ¦S¦¦ be a focus of the ¦orbit¦ellipse¦¦. Draw ¦SP¦¦ cutting both the diameter ¦CD CK¦DK¦¦
-of the ¦orbit¦ellipse¦¦ in ¦E¦¦ and the ordinate ¦Qv¦Q𝑣¦¦ in ¦x¦𝑥¦¦, and complete the parallelogram
+of the ¦orbit¦ellipse¦¦ in ¦E¦¦ and the 
+<a href="?conf=sappId=glossary,logic_phaseId=claim,aspectId=english,subessayId=ordinate">ordinate</a>
+¦Qv¦Q𝑣¦¦ in ¦x¦𝑥¦¦, and complete the parallelogram
 ¦Qx xP PR QR¦Q𝑥PR¦¦. It is evident that ¦EP¦¦ is equal to the semiaxis major ¦AC¦¦ because when
 line ¦HI¦¦ is drawn parallel to ¦CE¦EC¦¦ from the other focus ¦H¦¦ of the ¦orbit¦ellipse¦¦, ¦ES¦¦
 and ¦EI¦¦ are equal because ¦CS¦¦ and ¦CH¦¦ are equal; so that ¦EP¦¦ is the half-sum
 of ¦SP¦PS¦¦ and ¦PI¦¦, that is (because ¦HI¦¦ and ¦PR¦¦ are parallel and angles ¦PI PR¦IPR¦¦ and
 ¦PH PZ¦HPZ¦¦ are equal), the half-sum of ¦SP¦PS¦¦ and ¦PH¦¦ (which taken together equal
 the whole axis 2¦AC¦¦). Drop ¦QT¦¦ perpendicular to ¦SP¦¦, and if ¦L,LL¦L¦¦ denotes the
-¦L,LL¦principal latus rectum¦¦ of the ¦orbit¦ellipse¦¦ 
+¦L,LL *href*?conf=sappId=glossary,logic_phaseId=claim,aspectId=english,subessayId=latus-rectum¦principal latus rectum¦¦
+of the ¦orbit¦ellipse¦¦ 
 
 <!-- (or 2BC² / AC) -->
 <math><mrow>

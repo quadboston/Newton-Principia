@@ -14,6 +14,8 @@ Move the ¦GP¦diameters¦¦ with ¦P¦¦.<br>
 Change the ellipse's eccentricity with ¦A¦¦.
 
 
+
+
 *::*claim|english
 {
 	"menuCaption" : "Text",
@@ -22,11 +24,16 @@ Change the ellipse's eccentricity with ¦A¦¦.
 	"logic_phaseCaption" : "Glossary"
 }
 *..*
-In Newton’s time, a ¦GP¦<em>diameter</em>¦¦ of a ¦orbit¦conic¦¦ is any chord that bisects a family of parallel chords.
-For an ¦orbit¦ellipse¦¦, this simplifies to any chord passing through the ellipse's ¦C¦center¦¦.
+In Newton’s time, a ¦GP¦<em>diameter</em>¦¦ of a ¦orbit¦conic¦¦ is any line that bisects a series of parallel chords. 
+The parallel chords will also be parallel to the ¦PZ P,Zminus¦tangents¦¦ where the diameter meets the conic.
+<br><br>
+For an ¦orbit¦ellipse¦¦ or hyperbola, this simplifies to any chord passing through the conic's ¦C¦center¦¦.
+For a parabola, this simplifies to any line tangent to the parabola’s axis of symmetry.
 <br><br>
 Move the ¦GP¦diameter¦¦ with ¦P¦¦.<br>
 Change the ellipse's eccentricity with ¦A¦¦.
+
+
 
 
 *::*claim|english
@@ -37,26 +44,72 @@ Change the ellipse's eccentricity with ¦A¦¦.
 	"logic_phaseCaption" : "Glossary"
 }
 *..*
-In Newton’s time, the <em>latus rectum</em> of a ¦orbit¦conic¦¦ was a 
-magnitude associated with a particular ¦P¦point¦¦ on the conic, 
-equal to the square of an <em>¦Qv¦ordinate¦¦</em> to a <em>¦GP¦diameter¦¦</em> 
-at that ¦P¦point¦¦ divided by the <em>¦Pv¦abscissa¦¦</em> 
-to that ¦Qv¦ordinate¦¦. In this diagram, the latus rectum is equal to ¦Qv¦¦² / ¦Pv¦¦. 
-For any given ¦P¦¦, this magnitude is constant regardless of ¦Q¦¦. 
-(All words in italics have drifted in meaning since Newton’s time; 
-refer to their individual entries.)
+ In Newton’s time, a <em>latus rectum</em> was a magnitude corresponding to a particular ¦P¦point¦¦ on a conic.
+ <br><br>
+For ¦orbit¦ellipses¦¦ and hyperbolas, the ¦P¦point¦¦ determines a ¦GP DK¦pair of conjugate diameters¦¦. 
+In this diagram, the conjugate diameters for point ¦P¦¦ are ¦GP¦PG¦¦ and ¦DK¦¦, 
+and the magnitude of the latus rectum, designated by 
+<math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>L</mi> <mi>p</mi> </msub> </math>, 
+is given by the ratio 
+<span style="white-space: nowrap;">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mrow>
+    <mi>¦GP¦PG¦¦</mi>
+    <mo>&#160;:&#160;</mo>
+    <mi>¦DK¦¦</mi>
+    <mo>=</mo>
+    <mi>¦DK¦¦</mi>
+    <mo>&#160;:&#160;</mo>
+    <msub>
+      <mi>L</mi>
+      <mi>p</mi>
+    </msub>
+  </mrow>
+</math><mtext>.</mtext></span>
+Equivalently, 
+<span style="white-space: nowrap;">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mrow>
+    <msub>
+      <mi>L</mi>
+      <mi>p</mi>
+    </msub>
+    <mo>=</mo>
+    <mfrac>
+      <msup>
+    	<mi>¦DK¦¦</mi>
+        <mn>2</mn>
+      </msup>
+      <mi>¦GP¦PG¦¦</mi>
+    </mfrac>
+    <mo>=</mo>
+    <mfrac>
+      <mrow>
+        <mn>2</mn>
+        <msup>
+          <mi>¦CD¦DC¦¦</mi>
+          <mn>2</mn>
+        </msup>
+      </mrow>
+      <mrow>
+      	<mi>¦PC¦¦</mi>
+      </mrow>
+    </mfrac>
+  </mrow>
+</math><mtext>.</mtext></span>
+ <br><br>
+For parabolas, the latus rectum for a particular point is 4 times the distance from that point to the focus.
+ <br><br>
+When Newton refers to the <em>¦L,LL¦principal latus rectum¦¦</em>, 
+he’s referring to the latus rectum corresponding to a 
+¦AA¦<em>principal vertex</em>¦¦ of the conic (what we now call simply a <em>vertex</em>). 
+For all conics, the ¦L,LL¦principal latus rectum¦¦ has the same magnitude as today’s meaning of latus rectum, 
+which is a ¦L,LL¦chord¦¦ passing through a ¦S¦focus¦¦ perpendicular to the ¦A,AA¦axis¦¦.
 <br><br>
-When Newton specifies the <em>principal latus rectum</em>, 
-he is indicating the latus rectum associated with the ¦AA¦intersection¦¦ of the ¦orbit¦conic¦¦ with its ¦A,AA¦principal axis¦¦. 
-In this case, the latus rectum has the same magnitude as a ¦L,LL¦chord¦¦ that passes 
-through a ¦S¦focus¦¦ and is perpendicular to the ¦A,AA¦principal axis¦¦. 
-For parabolas, this holds for every latus rectum, not just the principal one. 
-Today, <em>latus rectum</em> is defined as the ¦L,LL¦chord¦¦ through a ¦S¦focus¦¦ 
-perpendicular to the ¦A,AA¦principal axis¦¦, for all three conic types.
-<br><br>
-Move the ¦Qv¦ordinate¦¦ with ¦Q¦¦.<br>
-Move the ¦P¦point¦¦ with ¦P¦¦.<br>
+Move the ¦GP DK¦diameters¦¦ with ¦P¦¦.<br>
 Change the ellipse's eccentricity with ¦A¦¦.
+
+
 
 
 *::*claim|english
