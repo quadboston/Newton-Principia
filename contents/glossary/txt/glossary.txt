@@ -95,7 +95,7 @@ Change the ellipse's eccentricity with ¦A¦¦.
 In Newton’s time, a ¦GP¦<em>diameter</em>¦¦ of a ¦orbit¦conic¦¦ is any line that bisects a family of parallel chords. 
 The parallel chords will also be parallel to the ¦PZ P,Zminus¦tangent¦¦ where the diameter meets the conic.
 <br><br>
-For a ¦orbit¦parabola¦¦, this simplifies to any line parallel to the parabola’s ¦SA¦axis of symmetry¦¦.
+For a ¦orbit¦parabola¦¦, this simplifies to any line parallel to the parabola’s ¦A,AA¦axis of symmetry¦¦.
 <br><br>
 Move the ¦GP¦diameter¦¦ with ¦P¦¦.<br>
 Change the ellipse's eccentricity with ¦A¦¦.

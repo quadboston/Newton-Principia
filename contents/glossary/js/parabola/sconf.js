@@ -291,18 +291,17 @@
 
         var linesArray =
         [
-
             { GP : showProofColor },
 
-
             // tangent
-   
             { PZ : { pcolor : proofColor,
  				cssClass: 'subessay--diameter-parabola', }, },
 			{ 'P,Zminus' : { pcolor : proofColor,
  				cssClass: 'subessay--diameter-parabola', }, },
-			{ SA :  showProofColor },
 
+            // base line
+            { 'A,AA' : { pcolor : proofColor,
+ 				cssClass: 'subessay--diameter-parabola', }, },
         ];
 
         ns.paste( sconf, {

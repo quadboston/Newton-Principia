@@ -218,7 +218,6 @@
             AA : {
                 undisplayAlways : true,
                 doPaintPname : false,
-                pcolor : bodyColor,
             },
             G : {
                 pcolor : proofColor,
@@ -343,7 +342,8 @@
             { Qx :  proofSolution },  
             { Px :  { pcolor : proofHover }, },
             { Tx :  { pcolor : proofHover }, },
-            { SA :  proofSolution },
+            { SA : {  pcolor : proofHover,
+ 				cssClass: 'subessay--solution', }, },
             { xv :  proofSolution },
 
             // tangent
@@ -357,7 +357,7 @@
  				cssClass: 'subessay--solution', }, },
 
             // base line
-            { 'A,AA' : { pcolor : bodyColor,
+            { 'A,AA' : { pcolor : proofColor,
  				cssClass: 'subessay--solution', }, },
 
             { 'L,LL' : { pcolor : supplementHover,
