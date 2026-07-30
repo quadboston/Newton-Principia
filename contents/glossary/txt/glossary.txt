@@ -54,11 +54,10 @@ Change the ellipse's eccentricity with ¦A¦¦.
 	"logic_phaseCaption" : "Glossary"
 }
 *..*
-In Newton’s time, a ¦GP¦<em>diameter</em>¦¦ of a ¦orbit¦conic¦¦ is any line that bisects a series of parallel chords. 
+In Newton’s time, a ¦GP¦<em>diameter</em>¦¦ of a ¦orbit¦conic¦¦ is any line that bisects a family of parallel chords. 
 The parallel chords will also be parallel to the ¦PZ P,Zminus¦tangents¦¦ where the diameter meets the conic.
 <br><br>
 For an ¦orbit¦ellipse¦¦ or hyperbola, this simplifies to any chord passing through the conic's ¦C¦center¦¦.
-For a parabola, this simplifies to any line tangent to the parabola’s axis of symmetry.
 <br><br>
 Move the ¦GP¦diameter¦¦ with ¦P¦¦.<br>
 Change the ellipse's eccentricity with ¦A¦¦.
@@ -74,11 +73,10 @@ Change the ellipse's eccentricity with ¦A¦¦.
 	"logic_phaseCaption" : "Glossary"
 }
 *..*
-In Newton’s time, a ¦GP¦<em>diameter</em>¦¦ of a ¦orbit¦conic¦¦ is any line that bisects a series of parallel chords. 
+In Newton’s time, a ¦GP¦<em>diameter</em>¦¦ of a ¦orbit¦conic¦¦ is any line that bisects a family of parallel chords. 
 The parallel chords will also be parallel to the ¦PZ P,Zminus¦tangents¦¦ where the diameter meets the conic.
 <br><br>
 For an ellipse or ¦orbit¦hyperbola¦¦, this simplifies to any chord passing through the conic's ¦C¦center¦¦.
-For a parabola, this simplifies to any line tangent to the parabola’s axis of symmetry.
 <br><br>
 Move the ¦GP¦diameter¦¦ with ¦P¦¦.<br>
 Change the ellipse's eccentricity with ¦A¦¦.
@@ -94,11 +92,10 @@ Change the ellipse's eccentricity with ¦A¦¦.
 	"logic_phaseCaption" : "Glossary"
 }
 *..*
-In Newton’s time, a ¦GP¦<em>diameter</em>¦¦ of a ¦orbit¦conic¦¦ is any line that bisects a series of parallel chords. 
+In Newton’s time, a ¦GP¦<em>diameter</em>¦¦ of a ¦orbit¦conic¦¦ is any line that bisects a family of parallel chords. 
 The parallel chords will also be parallel to the ¦PZ P,Zminus¦tangent¦¦ where the diameter meets the conic.
 <br><br>
-For an ellipse or ¦orbit¦hyperbola¦¦, this simplifies to any chord passing through the conic's ¦C¦center¦¦.
-For a parabola, this simplifies to any line tangent to the parabola’s axis of symmetry.
+For a ¦orbit¦parabola¦¦, this simplifies to any line parallel to the parabola’s ¦SA¦axis of symmetry¦¦.
 <br><br>
 Move the ¦GP¦diameter¦¦ with ¦P¦¦.<br>
 Change the ellipse's eccentricity with ¦A¦¦.

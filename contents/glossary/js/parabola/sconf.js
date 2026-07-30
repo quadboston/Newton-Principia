@@ -208,9 +208,8 @@
 				cssClass: 'subessay--solution',
             },
             S : {
-                pcolor : sunColor,
-                letterAngle : -90,
-                letterRotRadius : 25,
+                undisplayAlways : true,
+                doPaintPname : false,
             },
             P : {
                 pcolor : body,
@@ -312,7 +311,7 @@
  				cssClass: 'subessay--diameter-parabola', }, },
 			{ 'P,Zminus' : { pcolor : proofColor,
  				cssClass: 'subessay--diameter-parabola', }, },
-
+			{ SA :  showProofColor },
 
         ];
 
