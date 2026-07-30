@@ -357,7 +357,7 @@
  				cssClass: 'subessay--solution', }, },
 
             // base line
-            { 'A,AA' : { pcolor : proofColor,
+            { 'S,AA' : { pcolor : proofColor,
  				cssClass: 'subessay--solution', }, },
 
             { 'L,LL' : { pcolor : supplementHover,
