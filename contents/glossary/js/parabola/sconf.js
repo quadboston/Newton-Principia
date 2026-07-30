@@ -242,43 +242,6 @@
  				undisplayAlways  : true,
             },
 
-            // //\\ eccentricity slider
-            Zeta : {
-                pos : [ pictureWidth * 0.5, pictureHeight * 0.92 ],
-                pcolor : orbit,
-                letterAngle : 90,
-                letterRotRadius : 20,
-                draggableX  : false,
-                undisplayAlways  : true,
-                doPaintPname : false,
-                unscalable  : true,
-            },
-
-            ZetaCaption : {
-                pos : [ pictureWidth * 0.5, pictureHeight * 0.97 ],
-                pcolor : orbit,
-                undisplayAlways : true,
-                letterAngle : 90,
-                letterRotRadius : 20,
-                doPaintPname : false,
-                unscalable  : true,
-            },
-
-            ZetaStart : {
-                pos : [ pictureWidth * 0.1, pictureHeight * 0.92 ],
-                pcolor : orbit,
-                undisplayAlways : true,
-                doPaintPname : false,
-                unscalable  : true,
-            },
-
-            ZetaEnd : {
-                pos : [ pictureWidth * 0.9, pictureHeight * 0.92 ],
-                pcolor : orbit,
-                undisplayAlways : true,
-                doPaintPname : false,
-                unscalable  : true,
-            },
 
             // not used but calculated in model-upcreate for P12
             // todo: if splitting P12 from P13 model-upcreate, can delete
@@ -334,45 +297,23 @@
 
 		const proofSolution = { pcolor : proofColor,
  				cssClass: 'subessay--solution', };
+		const showProofColor = { pcolor : proofColor,
+ 				cssClass: 'subessay--diameter-parabola', };
 
         var linesArray =
         [
-			{ QR : { pcolor : estimatedForceColor,
- 				cssClass: 'subessay--solution subessay--corollary2', }, },
-            { QT : { pcolor : estimatedForceColor,
- 				cssClass: 'subessay--solution subessay--corollary2', }, },
-            { SP : { pcolor : estimatedForceColor,
- 				cssClass: 'subessay--solution logic_phase--corollary', }, },
-            { PM : { pcolor : proofColor,
- 				cssClass: 'subessay--solution', }, },
-            { SM : proofSolution },
-            { GP : proofSolution },
-            { NS : proofSolution },
-            { NP :  proofSolution },
-            { Pv :  proofSolution },
-            { Qv :  proofSolution }, 
-            { Qx :  proofSolution },  
-            { Px :  { pcolor : proofHover }, },
-            { Tx :  { pcolor : proofHover }, },
-            { SA :  proofSolution },
-            { xv :  proofSolution },
+
+            { GP : showProofColor },
+
 
             // tangent
-            { 'PR' : { 
-                pcolor : proofColor, 
-                'stroke-width' : 2, 
-                captionShiftNorm : -18,
-				cssClass: 'subessay--solution logic_phase--corollary', }, 
-            },                
-            { 'P,Zminus' : { pcolor : proofColor,
- 				cssClass: 'subessay--solution', }, },
+   
+            { PZ : { pcolor : proofColor,
+ 				cssClass: 'subessay--diameter-parabola', }, },
+			{ 'P,Zminus' : { pcolor : proofColor,
+ 				cssClass: 'subessay--diameter-parabola', }, },
 
-            // base line
-            { 'A,AA' : { pcolor : orbit,
- 				cssClass: 'subessay--solution', }, },
 
-            { 'L,LL' : { pcolor : supplementHover,
-               captionShiftNorm : 22, lposYSugar : 3 }, },
         ];
 
         ns.paste( sconf, {
