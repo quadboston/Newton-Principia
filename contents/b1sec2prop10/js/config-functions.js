@@ -1,5 +1,5 @@
 ( function() {
-    var { stdMod, sconf} 
+    var { stdMod, sconf}
         = window.b$l.apptree({ stdModExportList : { recreates_q2xy, }, });
     return;
 
@@ -11,16 +11,10 @@
         const A     = sconf.ellipseA;
         const B     = sconf.ellipseB;
         const fi0   = sconf.orbit_q_start;
-		const scale = 2 * B * B * A * A;
         stdMod.q2xy = q2xy;
-		stdMod.calculateActualForce = function(bP) { 
-			return bP.r;
-		};
-		stdMod.estimatedForceScale = function() {
-				return scale;
-		}
+        stdMod.forceCorrectionScale = forceCorrectionScale;
         return;
-        
+
         function q2xy( q )
         {
             q += fi0;
@@ -28,6 +22,10 @@
                 A * Math.cos( q ) + center[0],
                 B * Math.sin( q ) + center[1],
             ];
+        }
+
+        function forceCorrectionScale() {
+            return 2 * B * B * A * A;
         }
     }
 }) ();
