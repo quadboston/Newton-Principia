@@ -122,32 +122,22 @@
         // //\\ topic group colors
         //-----------------------------------
         const {
-            given,
-            body,
-            orbit,
+            bodyColor,
 			supplementHover,
 			proofHover,
             proofColor,
 			estimatedForceColor,
             forceColor,
-            hidden,
-            curvature,
 			sunColor,
-			dtime,
         } = topicColors_repo;
 
         var topicColors_elected =
         {
             estimatedForceColor,
-            given,
             proofColor,
-            hidden,
-            curvature,
-            body,
-            orbit               : orbit,
-            orbitdq             : orbit,
+            bodyColor,
+            orbit               : bodyColor,
             force : forceColor,
-			dtime,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -165,7 +155,7 @@
             },
 
             A : {
-                pcolor : orbit,
+                pcolor : bodyColor,
 				letterRotRadius : 28,
                 letterAngle : -124,
  				cssClass: 'subessay--solution',
@@ -212,7 +202,7 @@
                 doPaintPname : false,
             },
             P : {
-                pcolor : body,
+                pcolor : bodyColor,
                 letterAngle : 120,
                 draggableY  : true,
             },
@@ -228,7 +218,7 @@
             AA : {
                 undisplayAlways : true,
                 doPaintPname : false,
-                pcolor : orbit,
+                pcolor : bodyColor,
             },
             G : {
                 pcolor : proofColor,
@@ -245,7 +235,7 @@
             // not used but calculated in model-upcreate for P12
             // todo: if splitting P12 from P13 model-upcreate, can delete
             C : { //center symmetry of orbit
-                pcolor : orbit,
+                pcolor : bodyColor,
                 letterAngle : -45,
             },
             H : {
@@ -275,13 +265,13 @@
             },
             B : {
                 letterRotRadius : 20,
-                pcolor : orbit,
+                pcolor : bodyColor,
             },             
             BB : { // opposite B
                 letterAngle : 90,
                 undisplayAlways : true,
                 doPaintPname : false,
-                pcolor : orbit,
+                pcolor : bodyColor,
             },
             E : {
                 pcolor : proofColor,
