@@ -190,8 +190,6 @@
                 pcolor : proofColor,
                 letterAngle : -120,
                 draggableX  : true,
-				cssClass: 'logic_phase--proof',
-                conditionalDrag : 'logic_phase--proof',
             },            
             AA : { // opposite A
                 undisplayAlways : true,
