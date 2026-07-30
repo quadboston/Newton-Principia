@@ -97,7 +97,7 @@
 		const sqBC = squaredDistance( rg.B, rg.C );
 		const sqDiameterConstant = sqAC - sqBC;
 		const SqDC = squaredDistance( rg.P, rg.C ) - sqDiameterConstant;
-		const DC = Math.sqrt( SqDC );
+		const DC = Math.sqrt(Math.abs(SqDC ));
         let D = mat.sm( rg.C.pos, -DC, uu );
         nspaste( rg.D.pos, D );    
         let K = mat.sm( rg.C.pos,  DC, uu );
