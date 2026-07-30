@@ -230,44 +230,6 @@
  				undisplayAlways  : true,
             },
 
-            // //\\ eccentricity slider
-            Zeta : {
-                pos : [ pictureWidth * 0.5, pictureHeight * 0.92 ],
-                pcolor : bodyColor,
-                letterAngle : 90,
-                letterRotRadius : 20,
-                draggableX  : false,
-                undisplayAlways  : true,
-                doPaintPname : false,
-                unscalable  : true,
-            },
-
-            ZetaCaption : {
-                pos : [ pictureWidth * 0.5, pictureHeight * 0.97 ],
-                pcolor : bodyColor,
-                undisplayAlways : true,
-                letterAngle : 90,
-                letterRotRadius : 20,
-                doPaintPname : false,
-                unscalable  : true,
-            },
-
-            ZetaStart : {
-                pos : [ pictureWidth * 0.1, pictureHeight * 0.92 ],
-                pcolor : bodyColor,
-                undisplayAlways : true,
-                doPaintPname : false,
-                unscalable  : true,
-            },
-
-            ZetaEnd : {
-                pos : [ pictureWidth * 0.9, pictureHeight * 0.92 ],
-                pcolor : bodyColor,
-                undisplayAlways : true,
-                doPaintPname : false,
-                unscalable  : true,
-            },
-
             // not used but calculated in model-upcreate for P12
             // todo: if splitting P12 from P13 model-upcreate, can delete
             C : { //center symmetry of orbit

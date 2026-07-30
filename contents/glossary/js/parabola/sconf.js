@@ -158,7 +158,8 @@
                 pcolor : bodyColor,
 				letterRotRadius : 28,
                 letterAngle : -124,
- 				cssClass: 'subessay--solution',
+				doPaintPname : false,
+				cssClass: 'subessay--latus-rectum-parabola',
             },
             M : {
                 pcolor : proofColor,
@@ -188,7 +189,7 @@
                 pcolor : proofColor,
                 letterAngle : -45,
                 letterRotRadius : 15,
- 				cssClass: 'subessay--solution',
+ 				cssClass: 'subessay--latus-rectum-parabola',
            },            
             x : {
                 caption : "𝑥",
@@ -198,8 +199,10 @@
 				cssClass: 'subessay--solution',
             },
             S : {
-                undisplayAlways : true,
+                //undisplayAlways : true,
+				pcolor : proofColor,
                 doPaintPname : false,
+				cssClass: 'subessay--latus-rectum-parabola',
             },
             P : {
                 pcolor : bodyColor,
@@ -207,13 +210,13 @@
                 draggableY  : true,
             },
             Q : {
-                pcolor : estimatedForceColor,
+                pcolor : proofColor,
                 letterAngle : -90,
                 letterRotRadius : 25,
                 draggableX  : true,
                 draggableY  : true,
-				cssClass: 'subessay--solution subessay--corollary2',
-                conditionalDrag: 'subessay--solution subessay--corollary2',
+				cssClass: 'subessay--latus-rectum-parabola',
+                conditionalDrag: 'subessay--latus-rectum-parabola',
             },
             AA : {
                 undisplayAlways : true,
@@ -284,24 +287,26 @@
 
         });
 
-		const proofSolution = { pcolor : proofColor,
- 				cssClass: 'subessay--solution', };
-		const showProofColor = { pcolor : proofColor,
+		const showForParabola = { pcolor : proofColor,
  				cssClass: 'subessay--diameter-parabola', };
+		const showForLatus = { pcolor : proofColor,
+ 				cssClass: 'subessay--latus-rectum-parabola', };
 
         var linesArray =
         [
-            { GP : showProofColor },
+            { GP : {pcolor : proofColor} },
+			{ Pv :  showForLatus },
+			{ Qv :  showForLatus }, 
 
             // tangent
-            { PZ : { pcolor : proofColor,
- 				cssClass: 'subessay--diameter-parabola', }, },
-			{ 'P,Zminus' : { pcolor : proofColor,
- 				cssClass: 'subessay--diameter-parabola', }, },
+            { PZ : showForParabola },
+			{ 'P,Zminus' : showForParabola },
 
             // base line
-            { 'A,AA' : { pcolor : proofColor,
- 				cssClass: 'subessay--diameter-parabola', }, },
+            { 'A,AA' : {pcolor : proofColor} },
+
+            { 'L,LL' : { pcolor : supplementHover,
+               captionShiftNorm : 22, lposYSugar : 3 }, },
         ];
 
         ns.paste( sconf, {
