@@ -29,7 +29,7 @@
         stdMod.creates_createOrUpdateOrbit();
         if (stdMod.calculateMaxGraphValues)
             stdMod.calculateMaxGraphValues();
-        stdMod.rebuilds_orbit(false,doGraph); // qIndexToOrbit populated here
+        stdMod.rebuilds_orbit(false, doGraph); // qIndexToOrbit populated here
 
         stdMod.creates__gets_orbit_closest_point();
 

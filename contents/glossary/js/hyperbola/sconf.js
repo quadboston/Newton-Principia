@@ -208,7 +208,7 @@
             C : { //center symmetry of orbit
                 pcolor : proofColor,
                 letterAngle : -45,
-				//cssClass: 'subessay--diameter subessay--latus-rectum subessay--conics',
+				cssClass: 'subessay--diameter-hyperbola subessay--conjugatediameter-hyperbola',
             },
             Zminus : {
                 caption : 'Z',
@@ -235,6 +235,7 @@
                 pcolor : proofColor,
                 letterRotRadius : 20,
                 letterAngle : -45,
+				cssClass: 'subessay--diameter-hyperbola subessay--conjugatediameter-hyperbola',
             },
             D : {
                 pcolor : proofColor,
@@ -282,7 +283,7 @@
             H : {
                 pcolor : proofColor,
                 letterAngle : -90,
-				cssClass: 'subessay--solution',
+				cssClass: 'subessay--iii48-hyperbola',
             },
             I : {
                 pcolor : proofColor,
@@ -313,7 +314,7 @@
                 		captionShiftNorm : -18,
 						cssClass: 'subessay--solution',}, },
             { 'SP' : { pcolor : estimatedForceColor,
-						cssClass: 'logic_phase--proof',}, },
+						cssClass: 'subessay--iii48-hyperbola',}, },
             { 'B,BB' : { pcolor : proofColor,
 						cssClass: 'subessay--solution',}, },
 
@@ -322,7 +323,8 @@
 						cssClass: 'subessay--solution',}, },
             { CB : { pcolor : proofColor,
 						cssClass: 'subessay--solution',}, },
-            { GP : { pcolor : proofColor,}, },
+            { GP : { pcolor : proofColor,
+						cssClass: 'subessay--diameter-hyperbola subessay--conjugatediameter-hyperbola',}, },
             { DK : { pcolor : proofColor,
                     cssClass: 'subessay--conjugatediameter-hyperbola subessay--latus-rectum',},},
             { PF : { pcolor : proofColor,
@@ -351,7 +353,7 @@
             { CH : { pcolor : proofColor,
 						cssClass: 'subessay--solution',}, },
             { PH : { pcolor : proofColor,
-						cssClass: 'subessay--solution',}, },
+						cssClass: 'subessay--iii48-hyperbola',}, },
             
             { QT : { pcolor : estimatedForceColor,
 						cssClass: 'subessay--solution',}, },

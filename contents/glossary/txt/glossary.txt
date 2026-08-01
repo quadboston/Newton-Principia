@@ -23,7 +23,6 @@ Change the ellipse's eccentricity with ¦A¦¦.
 
 *::*claim|english
 {
-	"default" : "1",
 	"menuCaption" : "Text",
 	"subessay" : "conjugatediameter-hyperbola",
     "subessayCaption" : "conjugate diameters (hyperbola)",

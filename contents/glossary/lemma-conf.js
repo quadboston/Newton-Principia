@@ -17,7 +17,6 @@
 					{ src: sm + 'media-upcreate.js' },
 					{ src: sm + 'completes-sliders-creation.js' },
 					{ src: sm + 'state-capturer.js' },
-					{ src: '../../force-law-models/main-legend.js' },
 				],
 				"contents-list" :
 				[
@@ -36,7 +35,6 @@
 					{ src: sm + 'media-upcreate.js' },
 					{ src: sm + 'completes-sliders-creation.js' },
 					{ src: sm + 'state-capturer.js' },
-					{ src: '../../force-law-models/main-legend.js' },
 				],
 				"contents-list" : [
 					'txt/glossary.txt',
@@ -54,7 +52,6 @@
 					{ src: sm + 'model-upcreate.js' },
 					{ src: sm + 'media-upcreate.js' },
 					{ src: sm + 'amode8captures.js' },
-					{ src: '../../force-law-models/main-legend.js' },
 				],
 				"contents-list" :
 				[

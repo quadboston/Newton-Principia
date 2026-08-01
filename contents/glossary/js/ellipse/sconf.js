@@ -170,7 +170,7 @@
                 pos: posC,
                 letterAngle : -99,
                 letterRotRadius : 35,
-				cssClass: 'subessay--conjugatediameter subessay--diameter subessay--latus-rectum subessay--conics',
+				cssClass: 'subessay--conjugatediameter subessay--diameter subessay--latus-rectum subessay--i21-ellipse',
             },
             E : {
                 pcolor : proofColor,
@@ -203,7 +203,7 @@
             D : {
                 pcolor : proofColor,
                 letterAngle : 70,
-                cssClass: 'subessay--conics subessay--latus-rectum',
+                cssClass: 'subessay--i21-ellipse subessay--latus-rectum',
             },
 
             K : {
@@ -214,7 +214,7 @@
             G : {
                 pcolor : proofColor,
                 letterAngle : 90,
-				cssClass: 'subessay--conics subessay--latus-rectum',
+				cssClass: 'subessay--i21-ellipse subessay--latus-rectum',
             },
 
             T : {
@@ -246,7 +246,7 @@
                 pcolor : proofColor,
                 letterAngle : -45,
                 letterRotRadius : 15,
-				cssClass: 'subessay--conics',
+				cssClass: 'subessay--i21-ellipse',
             },
 
             F : {
@@ -299,8 +299,8 @@
                 letterRotRadius : 25,
                 draggableX  : true,
                 draggableY  : true,
-                cssClass: 'subessay--conics',
-                conditionalDrag : 'subessay--conics',
+                cssClass: 'subessay--i21-ellipse',
+                conditionalDrag : 'subessay--i21-ellipse',
             }, 
 
 			Qemphasis : {
@@ -406,10 +406,10 @@
 				cssClass: 'subessay--solution',
 			 },},
 			{ vC : { pcolor : proofHover,                 
-                     cssClass: 'subessay--conics',
+                     cssClass: 'subessay--i21-ellipse',
             }, },
             { CG : { pcolor : proofColor,
-				cssClass: 'subessay--conics',
+				cssClass: 'subessay--i21-ellipse',
 			}, },
 			{ DK : { pcolor : proofColor,
                     cssClass: 'subessay--conjugatediameter subessay--latus-rectum',
@@ -421,14 +421,14 @@
                      cssClass: 'subessay--ordinate',
             }, },
 			{ Qv : { pcolor : proofColor,
-                     cssClass: 'subessay--conics',
+                     cssClass: 'subessay--i21-ellipse',
             }, },
 			{ 'Qemphasis,v' : { pcolor : estimatedForceColor,
                      cssClass: 'subessay--ordinate',
             }, },
 
             { Pv : { pcolor : proofHover,
-				cssClass: 'subessay--latus-rectum subessay--conics',
+				cssClass: 'subessay--latus-rectum subessay--i21-ellipse',
 			 },},
             { Tv : { pcolor : proofColor,
 				cssClass: 'subessay--solution',
@@ -444,13 +444,13 @@
 				cssClass: 'subessay--latus-rectum',
 			 },},
             { CD : { pcolor : proofColor,
-				cssClass: 'subessay--conics subessay--latus-rectum',
+				cssClass: 'subessay--i21-ellipse subessay--latus-rectum',
 			 },},
             { BC : { pcolor : proofColor,
 				cssClass: 'subessay--latus-rectum',
 			 },},
             { PC : { pcolor : proofColor,
-				cssClass: 'subessay--conics subessay--latus-rectum',
+				cssClass: 'subessay--i21-ellipse subessay--latus-rectum',
 			}, },
         ];
 

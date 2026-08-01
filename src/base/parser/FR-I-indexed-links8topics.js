@@ -150,7 +150,7 @@
     }
 
 	function isReloadNeeded(url, subessayId) {
-		if (!url.includes('glossary')) {
+		if (!url.includes('glossary') && !url.includes('conics')) {
 			return false; // No reload needed if not in glossary
 		}
 		const atHyperbola = url.includes('hyperbola');
