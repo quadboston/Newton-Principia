@@ -25,6 +25,10 @@
             sconf.IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX;
         const dataPeriod = Math.max( 1, Math.floor( Q_STEPS/DATA_GRAPH_STEPS ) );
 
+		if (!stdMod.graphFW_lemma) {
+			// graph not needed for this model, so skip
+			return;
+		}
         stdMod.graphFW_lemma.graphArray = graphArray;
         graphArray.length = 0;
         ///prepares averages and placeholder for data graphs
