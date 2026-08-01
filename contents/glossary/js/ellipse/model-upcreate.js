@@ -56,11 +56,12 @@
         rg.T.pos[0] = wwT[0];
         rg.T.pos[1] = wwT[1];
 
-        var Z = mat.linesCross(
-            uu,
-            rg.P.pos,
-            [ rg.Q.pos[0]-rg.T.pos[0], rg.Q.pos[1]-rg.T.pos[1], ],
-            rg.T.pos,
+        var Z = mat.dropLine(
+                0.7,
+                rg.P.pos,
+                null,
+                null,
+                uu,
         );
         rg.Zminus.pos[0] = Z[0];
         rg.Zminus.pos[1] = Z[1];
@@ -69,7 +70,7 @@
         //================================================
 
         var wwZ = mat.dropLine(
-            -0.45,
+            -0.7,
             rg.P.pos,
             null,
             null,
