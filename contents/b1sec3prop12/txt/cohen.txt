@@ -2,6 +2,7 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
+  "subessayCaption" : "[<i>Problem</i>]",
   "logic_phaseCaption" : "Problem 7"
 }
 *..*

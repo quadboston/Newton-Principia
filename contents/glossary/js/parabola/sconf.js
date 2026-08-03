@@ -202,7 +202,7 @@
                 //undisplayAlways : true,
 				pcolor : proofColor,
                 doPaintPname : false,
-				cssClass: 'subessay--latus-rectum-parabola',
+				cssClass: 'subessay--latus-rectum-parabola subessay--iii48-parabola',
             },
             P : {
                 pcolor : bodyColor,
@@ -289,6 +289,8 @@
 
 		const showForParabola = { pcolor : proofColor,
  				cssClass: 'subessay--diameter-parabola', };
+		const showForiii48 = { pcolor : proofColor,
+ 				cssClass: 'subessay--iii48-parabola', };
 		const showForLatus = { pcolor : proofColor,
  				cssClass: 'subessay--latus-rectum-parabola', };
 
@@ -296,11 +298,14 @@
         [
             { GP : {pcolor : proofColor} },
 			{ Pv :  showForLatus },
-			{ Qv :  showForLatus }, 
+			{ Qv :  showForLatus },
+ 			{ SP :  showForiii48 }, 
 
             // tangent
-            { PZ : showForParabola },
-			{ 'P,Zminus' : showForParabola },
+            { PZ : { pcolor : proofColor,
+ 				cssClass: 'subessay--diameter-parabola subessay--iii48-parabola', }, },
+			{ 'P,Zminus' : { pcolor : proofColor,
+ 				cssClass: 'subessay--diameter-parabola subessay--iii48-parabola', }, },
 
             // base line
             { 'A,AA' : {pcolor : proofColor} },

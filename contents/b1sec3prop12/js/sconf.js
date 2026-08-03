@@ -138,30 +138,20 @@
         // //\\ topic group colors
         //-----------------------------------
         const {
-            given,
-            body,
-            orbit,
+            bodyColor,
             supplementHover,
 			proofHover,
 			estimatedForceColor,
             proofColor,
             forceColor,
-            hidden,
-            curvature,
 			sunColor,
 			dtime,
         } = topicColors_repo;
 
         var topicColors_elected =
         {
-            estimatedForceColor,
-            given,
-            proofColor,
-            hidden,
-            curvature,
-            body,
-            orbit               : orbit,
-            orbitdq             : orbit,
+			estimatedForceColor,
+            orbit: bodyColor,
             force: forceColor,
 			dtime,
         };
@@ -178,7 +168,7 @@
 				letterRotRadius : 26,
             },
             P : {
-                pcolor : body,
+                pcolor : bodyColor,
                 letterAngle : 120,
                 draggableY  : true,
             },

@@ -92,21 +92,16 @@
         //nspaste( rg.K.pos, mat.dropLine(  2.13, rg.C.pos, rg.P.pos, null, uu) );
         
         //conjugate diameters and tangents
-        if (fconf.sappId === "b1sec3prop13" || fconf.sappId === "glossary") {
-            nspaste( rg.G.pos, mat.dropLine(
-                null, rg.P.pos, rg.C.pos, null, null, 999 ) );
-            nspaste( rg.M.pos, mat.linesCross(
-                    uu,
-                    rg.P.pos,
-                    [ 1, 0 ],
-                    rg.O.pos,
-                )
-            );
-            nspaste( rg.N.pos, mat.dropPerpendicular( rg.O.pos, rg.M.pos, rg.P.pos ) );
-        } else {
-            nspaste( rg.G.pos, mat.dropLine( -1, rg.C.pos, rg.P.pos, ) );
-        	nspaste( rg.F.pos, mat.dropPerpendicular( rg.P.pos, rg.D.pos, rg.K.pos ) );
-        }
+		nspaste( rg.G.pos, mat.dropLine(
+			null, rg.P.pos, rg.C.pos, null, null, 999 ) );
+		nspaste( rg.M.pos, mat.linesCross(
+				uu,
+				rg.P.pos,
+				[ 1, 0 ],
+				rg.O.pos,
+			)
+		);
+		nspaste( rg.N.pos, mat.dropPerpendicular( rg.O.pos, rg.M.pos, rg.P.pos ) );
 
         //vuFV
         //v = parallel-projection of Q to tangent

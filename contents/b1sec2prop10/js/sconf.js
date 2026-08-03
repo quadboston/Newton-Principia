@@ -119,32 +119,24 @@
         //      todm: possibly proliferation
         //-----------------------------------
         const {
-            given,
-            body,
-            orbit,
-            proof,
+            bodyColor,
+            proofColor,
             forceColor,
-            hidden,
             estimatedForceColor,
-            curvature,
+            infoColor,
 			sunColor,
 			proofHover,
 			dtime,
         } = topicColors_repo;
 
-
         var topicColors_elected =
         {
-            estimatedForceColor,
-            given,
-            //proof,
-            hidden,
-            curvature,
-            body,
-            orbit,
-            forceColor,
-            tangentCircle : curvature,
-			force : forceColor,
+			estimatedForceColor,
+			body: bodyColor,
+            orbit: bodyColor,
+            force: forceColor,
+            tangentCircle: infoColor,
+			force: forceColor,
 			dtime,
         };
         //-----------------------------------
@@ -168,7 +160,7 @@
             },
 
             Z : {
-                pcolor : proof,
+                pcolor : proofColor,
                 undisplayAlways : true,
                 doPaintPname : false,
             },
@@ -182,26 +174,26 @@
             },
 			
             B : {
-                pcolor : proof,
+                pcolor : proofColor,
                 letterAngle : 90,
 				cssClass: 'subessay--solution',
             },
 
             // //\\ proof
             D : {
-                pcolor : proof,
+                pcolor : proofColor,
                 letterAngle : 130,
                 cssClass: 'logic_phase--proof',
             },
 
             K : {
-                pcolor : proof,
+                pcolor : proofColor,
                 letterAngle : -45,
                 cssClass: 'logic_phase--proof',
             },
 
             G : {
-                pcolor : proof,
+                pcolor : proofColor,
                 letterAngle : 224,
                 letterRotRadius : 40,
                 cssClass: 'logic_phase--proof',
@@ -222,20 +214,20 @@
 
             v : {
                 caption : '𝑣',
-                pcolor : proof,
+                pcolor : proofColor,
                 letterAngle : -45,
                 letterRotRadius : 22,
                 cssClass: 'subessay--goal logic_phase--proof',
             },
 
             F : {
-                pcolor : proof,
+                pcolor : proofColor,
                 letterAngle : -135,
                 cssClass: 'logic_phase--proof',
             },
 
             V : {
-                pcolor : proof,
+                pcolor : proofColor,
                 letterAngle : -45,
                 cssClass: 'subessay--another-solution',
             },
@@ -245,7 +237,7 @@
             //Book's "another solution"
             u : {
                 caption : '𝑢',
-                pcolor : proof,
+                pcolor : proofColor,
                 letterAngle : -45,
                 letterRotRadius : 15,
                 cssClass: 'subessay--another-solution',
@@ -254,7 +246,7 @@
             tCircleCenter : {
                 pos : posC,
                 caption : "",
-                pcolor : curvature,
+                pcolor : infoColor,
                 letterAngle : -45,
                 cssClass: 'subessay--another-solution',
             },
@@ -270,7 +262,7 @@
             // //\\ draggable points
             //---------------------------------------
             P : {
-                pcolor : body,
+                pcolor : bodyColor,
                 letterAngle : 70,
                 draggableX  : true,
                 draggableY  : true,
@@ -287,7 +279,7 @@
             },         
 
             A : {
-                pcolor : proof,
+                pcolor : proofColor,
                 draggableX  : true,
 				cssClass: 'logic_phase--proof',
                 conditionalDrag : 'logic_phase--proof',
@@ -300,30 +292,30 @@
 
         var linesArray =
         [
-            { 'A,AA' : { pcolor : proof,
+            { 'A,AA' : { pcolor : proofColor,
 					 cssClass: 'subessay--corollary2',
 			}, },
-            { 'B,BB' : { pcolor : proof,
+            { 'B,BB' : { pcolor : proofColor,
 					 cssClass: 'subessay--corollary2',
 			 }, },
-            { 'PZ' : { pcolor : proof,
+            { 'PZ' : { pcolor : proofColor,
 					 cssClass: 'subessay--solution',
 			}, },
-            { 'ZR' : { pcolor : proof,
+            { 'ZR' : { pcolor : proofColor,
 					 cssClass: 'subessay--solution',
 			}, },
-            { CA : { pcolor : proof,
+            { CA : { pcolor : proofColor,
                      cssClass: 'subessay--solution',
             }, },
-            { CB : { pcolor : proof,
+            { CB : { pcolor : proofColor,
                      cssClass: 'subessay--solution',
             }, },
 
             // //\\ proof
-			{ 'CV' : { pcolor : proof,
+			{ 'CV' : { pcolor : proofColor,
                          cssClass: 'subessay--another-solution',
             }, },
-            { 'PR' : { pcolor : proof,
+            { 'PR' : { pcolor : proofColor,
                        cssClass: 'subessay--goal subessay--solution',
             }, },
             { 'QR' : { pcolor : estimatedForceColor,
@@ -335,13 +327,13 @@
             { 'PT' : { pcolor : proofHover,
                        cssClass: 'logic_phase--proof',
             }, },
-            { DK : { pcolor : proof,
+            { DK : { pcolor : proofColor,
                      cssClass: 'logic_phase--proof',
             }, },
             { GP : { pcolor : proofHover,
                      cssClass: 'logic_phase--proof',
             }, },
-            { Qv : { pcolor : proof,
+            { Qv : { pcolor : proofColor,
                      cssClass: 'subessay--goal logic_phase--proof',
             }, },
             { Pv : { pcolor : proofHover,
@@ -353,13 +345,13 @@
             { vC : { pcolor : proofHover,                 
                      cssClass: 'logic_phase--proof',
             }, },
-			{ CG : { pcolor : proof,                 
+			{ CG : { pcolor : proofColor,                 
                      cssClass: 'logic_phase--proof',
             }, },
             { DC : { pcolor : proofHover,
                      cssClass: 'logic_phase--proof',
             }, },
-            { CF : { pcolor : proof,
+            { CF : { pcolor : proofColor,
                      cssClass: 'logic_phase--proof',
             }, },
             // \\// proof
@@ -374,21 +366,21 @@
             { uP : { pcolor : proofHover,
                      cssClass: 'subessay--another-solution',
             }, },
-            { PQ : { pcolor : proof,
+            { PQ : { pcolor : proofColor,
                      cssClass: 'subessay--another-solution',
             }, },
-            { 'P,tCircleCenter' : { pcolor : curvature,
+            { 'P,tCircleCenter' : { pcolor : infoColor,
                      cssClass: 'subessay--another-solution',
             }, },
 			{ PC : { pcolor : estimatedForceColor,
                 cssClass: 
 				'subessay--goal logic_phase--proof subessay--corollary1 logic_phase--scholium',
             }, },
-			{ 'QC' : { pcolor : proof, 
+			{ 'QC' : { pcolor : proofColor, 
 				cssClass: 'subessay--goal',
 			},},
 
-			{ PF : { pcolor : proof,
+			{ PF : { pcolor : proofColor,
                      cssClass: 'logic_phase--proof',
             }, },
         ];

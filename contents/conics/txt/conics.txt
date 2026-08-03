@@ -19,9 +19,9 @@ For more, see
 *::*claim|english
 {
   "menuCaption" : "Text",
-  "subessayCaption" : "<i>Conics</i> III.48",
+  "subessayCaption" : "<i>Conics</i> III.48 (hyperbola)",
   "subessay" : "iii48-hyperbola"
 }
 *..*
-Apollonius’s <i>Conics</i> III..48 proves that the ¦PH SP¦focal distances¦¦ of ¦P¦¦
-make ¦PH SP PZ¦equal angles¦¦ with the ¦PZ P,Zminus¦tangent¦¦ at that ¦P¦point¦¦.
+Apollonius’s <i>Conics</i> III..48 proves that the ¦PH SP¦lines¦¦ from any point ¦P¦¦
+on an ellipse or ¦orbit¦hyperbola¦¦ to its ¦S H¦foci¦¦ make ¦PH SP PZ¦equal angles¦¦ with the ¦PZ P,Zminus¦tangent¦¦ at that ¦P¦point¦¦.
