@@ -347,6 +347,25 @@
 				cssClass: 'subessay--solution',
 			 },},
 
+			// vv lines that would otherwise be missing in some configurations
+			{ 'ST' : { pcolor : proofColor,
+				cssClass: 'subessay--goal subessay--solution',
+				'stroke-width' : 1.3,
+			 },},
+			{ 'Sx' : { pcolor : proofColor,
+				cssClass: 'subessay--goal',
+				'stroke-width' : 1.3,
+			 },},
+			{ 'SE' : { pcolor : proofColor,
+				cssClass: 'subessay--another-solution',
+				'stroke-width' : 1.3,
+			 },},
+			{ 'IT' : { pcolor : proofColor,
+				cssClass: 'subessay--solution',
+				'stroke-width' : 1.3,
+			 },},
+			// ^^ lines that would otherwise be missing in some configurations
+
             { 'SP' : { pcolor : estimatedForceColor, 
 				cssClass: 'subessay--goal logic_phase--proof',
 			},},

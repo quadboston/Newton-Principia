@@ -296,6 +296,10 @@
 
         var linesArray =
         [
+			{ ST : { pcolor : proofColor,	// Q can bring T below S 
+				'stroke-width' : 1.1, 
+				cssClass: 'subessay--goal subessay--solution',}, },
+
             // hyperbola
             { 'P,Zminus' : { pcolor : proofColor,
 						cssClass: 'subessay--solution',}, },
@@ -318,7 +322,7 @@
 			{ CG : { pcolor : proofColor,
 						cssClass: 'subessay--solution',}, },
 			{ CP : { pcolor : proofColor,
-						cssClass: 'subessay--solution',}, },
+						cssClass: 'logic_phase--proof',}, },
             { CK : { pcolor : proofColor,
 						cssClass: 'subessay--solution',}, },
             { PF : { pcolor : proofColor,
@@ -364,9 +368,6 @@
             { CD : { pcolor : proofColor,
 						'stroke-width' : 1.5, 
 						cssClass: 'subessay--solution',}, },
-			{ ST : { pcolor : estimatedForceColor,	// Q can bring T below S 
-				'stroke-width' : 1.1, 
-				cssClass: 'subessay--solution',}, },
 
             { 'L,LL' : { pcolor : supplementHover,
                captionShiftNorm : 22, lposYSugar : 3 }, },
