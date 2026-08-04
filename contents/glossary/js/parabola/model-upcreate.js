@@ -50,11 +50,12 @@
         nspaste( rg.T.pos, mat.dropPerpendicular( rg.Q.pos, sunXY, rr0 ) );
 
         nspaste( rg.Z.pos,
-            mat.linesCross(
-                uu,
+            mat.dropLine(
+                4,
                 rg.P.pos,
-                [ rg.Q.pos[0]-rg.T.pos[0], rg.Q.pos[1]-rg.T.pos[1], ],
-                rg.T.pos,
+                null,
+                null,
+                uu,
             )
         );
         //================================================
@@ -66,7 +67,7 @@
         //------------------------------------------------
         nspaste( rg.Zminus.pos,
             mat.dropLine(
-                -1.3,
+                -4,
                 rg.P.pos,
                 null,
                 null,
