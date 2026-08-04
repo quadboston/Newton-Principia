@@ -95,6 +95,8 @@
         //conjugate diameters and tangents
 		nspaste( rg.G.pos, mat.dropLine(
 			null, rg.P.pos, rg.C.pos, null, null, 999 ) );
+		nspaste( rg.g.pos, mat.dropLine(
+			null, rg.P.pos, rg.C.pos, null, null, -999 ) );
 		nspaste( rg.M.pos, mat.linesCross(
 				uu,
 				rg.P.pos,

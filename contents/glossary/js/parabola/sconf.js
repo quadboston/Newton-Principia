@@ -165,7 +165,7 @@
                 pcolor : proofColor,
 				letterRotRadius : 25,
                 letterAngle : -90,
- 				cssClass: 'subessay--solution',
+ 				cssClass: 'subessay--iii48-parabola',
             },
             N : {
                 pcolor : proofColor,
@@ -199,10 +199,14 @@
 				cssClass: 'subessay--solution',
             },
             S : {
-                //undisplayAlways : true,
+				pcolor : proofColor,
+				letterAngle : -90,
+				cssClass: 'subessay--iii48-parabola',
+            },
+			S0 : {
 				pcolor : proofColor,
                 doPaintPname : false,
-				cssClass: 'subessay--latus-rectum-parabola subessay--iii48-parabola',
+				cssClass: 'subessay--latus-rectum-parabola',
             },
             P : {
                 pcolor : bodyColor,
@@ -227,6 +231,9 @@
                 pcolor : proofColor,
                 letterRotRadius : 20,
                 letterAngle : -45,
+				cssClass: 'subessay--solution',
+            },
+			g : {
 				cssClass: 'subessay--solution',
             },
             Zminus : { // only here for Prop 12 code?
@@ -297,13 +304,16 @@
         var linesArray =
         [
             { GP : {pcolor : proofColor} },
+			{ gP : {pcolor : proofHover} },
 			{ Pv :  showForLatus },
 			{ Qv :  showForLatus },
- 			{ SP :  showForiii48 }, 
+ 			{ MP :  showForiii48 }, 
+			{ SM :  showForiii48 }, 
+			{ SP :  showForiii48 }, 
 
             // tangent
             { PZ : { pcolor : proofColor,
- 				cssClass: 'subessay--diameter-parabola subessay--iii48-parabola', }, },
+ 				cssClass: 'subessay--diameter-parabola', }, },
 			{ 'P,Zminus' : { pcolor : proofColor,
  				cssClass: 'subessay--diameter-parabola subessay--iii48-parabola', }, },
 
