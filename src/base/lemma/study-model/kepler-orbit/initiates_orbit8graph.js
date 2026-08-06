@@ -20,6 +20,9 @@
         stdMod.graphFW_lemma = createGraph_FW_lemma({
                digramParentDom$:stdMod.legendRoot$ }, stdMod.customXLegend);
         stdMod.creates_createOrUpdateOrbit();
+        //TEMP
+        if (stdMod.calculateMaxGraphValues)
+            stdMod.calculateMaxGraphValues();
         stdMod.rebuilds_orbit(); // qIndexToOrbit populated here
 
         stdMod.creates__gets_orbit_closest_point();
@@ -53,7 +56,8 @@
 		}
     }
 
-    function rebuilds_orbit() {
+    //TEMP
+    function rebuilds_orbit(setMaxGraphValues) {
         const Q_STEPS = sconf.Q_STEPS;
 
         if (stdMod.recalculateOrbitStartAndEnd)
@@ -78,7 +82,8 @@
         stdMod.builds_force_plusQ_minusQ_and_related(sData.ULTIM_MAX);
         stdMod.builds_force_plusQ_minusQ_and_related(sData.ULTIM_ACTUAL);
         stdMod.builds_force_plusQ_minusQ_and_related();
-        stdMod.builds_orbit_data_graph();
+        //TEMP
+        stdMod.builds_orbit_data_graph(setMaxGraphValues);
 
         //Adjust point P if out of bounds
         const qixMin = ssD.qix_graph_start;

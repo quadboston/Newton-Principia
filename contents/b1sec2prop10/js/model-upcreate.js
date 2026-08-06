@@ -69,21 +69,53 @@
             }
 
 
-            //TEMP Test constraining the bounds of the graph as follows
+            //TEMP
+            //The bounds of the graph switch between a fixed and variable max.
+            //The x and y axes always need to maintain a fixed ratio, otherwise
+            //the slope of the force curves appears to change, even though the
+            //actual slope (rise / run) stays the same.
+            //
+            //A reliable way to do this is to calculate all possible values that
+            //could be used from the perspective of a chosen axis (eg. x axis).
+            //Note this must include any possible values for the other axis as
+            //well, converted using the fixed ratio.  Then use the maximum of
+            //those possible values for the chosen axis (eg. x axis), and that
+            //maximum with the fixed ratio to calculate the maximum for the
+            //other axis (eg. y axis).  This ensures both force curves will
+            //always be fully visible on the graph, and eg. can't leave the top
+            //of the graph.
+
             graphArg.xMin = 0;
-            // //TEMP If too small, when point A is moved to the right, the curves
-            // //can easily leave the graph
-            // graphArg.xMax = 1.6; //1.4;
-            // console.log("ssD.xMaxCurrentForGraphTemp =",
-            //     ssD.xMaxCurrentForGraphTemp);
-            //TEMP Is 1.1 too low, would it be easier to compare arrangements if
-            //this was larger?
-            const xMaxLowest = 2.3;
-            graphArg.xMax = Math.max(xMaxLowest, ssD.xMaxCurrentForGraphTemp);
+
+            //TEMP
+            console.log("ssD.xMaxFixedGraphAxis =", ssD.xMaxFixedGraphAxis);
+            //TEMP Rather than multiply by 1.3 here, it may be better to set
+            //that in the "calculateMaxGraphValues" function.
+            const xMaxLowest = ssD.xMaxFixedGraphAxis * 1.3;
+            const yMaxLowest = ssD.MEF * 1.3;
+            const ratio = yMaxLowest / xMaxLowest;
+
+            const xMaxCurrentX = ssD.xMaxCurrentGraphAxis;
+
+            //TEMP Finalize the variable names for the following.
+            const xMaxGivenY = ssD.estimatedForceLargestMaxCurrent / ratio;
+            // const xMaxCurrentY = ssD.estimatedForceLargestMaxCurrent / ratio;
+            //
+            //xMaxGivenY
+            //xMaxUsingY
+            //xMaxFromY
+
+
+            graphArg.xMax = Math.max(xMaxLowest, xMaxCurrentX, xMaxGivenY);
+
+            // graphArg.xMax = Math.max(xMaxLowest,
+            //                         ssD.xMaxCurrentGraphAxis,
+            //                         xMaxGivenCurrentY);
+
 
             graphArg.yMin = 0;
-            //TEMP A bit of space above the curves, when Q furthest from P
-            graphArg.yMax = 2.75;//1.3;
+            //TEMP
+            graphArg.yMax = graphArg.xMax * ratio / ssD.MAF;
 
 
             stdMod.graphFW_lemma.drawGraph_wrap(graphArg);

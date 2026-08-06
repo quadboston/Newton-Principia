@@ -1,6 +1,8 @@
 ( function() {
-    var { stdMod, sconf}
-        = window.b$l.apptree({ stdModExportList : { recreates_q2xy, }, });
+    var { stdMod, sconf, } = window.b$l.apptree({ stdModExportList : {
+        recreates_q2xy,
+        calculateMaxGraphValues,
+    }, });
     return;
 
 
@@ -27,5 +29,12 @@
         function forceCorrectionScale() {
             return 2 * B * B * A * A;
         }
+    }
+
+
+    function calculateMaxGraphValues() {
+        //TEMP For now just calculate maximum forces, however further
+        //adjustments will likely be needed.
+        stdMod.rebuilds_orbit(true);
     }
 }) ();
