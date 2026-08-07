@@ -1,0 +1,53 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [release]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run concatenate script
+        working-directory: deploy
+        run: |
+          chmod +x ./concatenate.sh
+          ./concatenate.sh
+
+      - name: Move output into Newton-Principia/ folder
+        run: |
+          mkdir -p Newton-Principia
+          mv index.prod.html Newton-Principia/index.html
+          mv prod Newton-Principia/prod
+
+      - name: Write CNAME for custom domain
+        run: echo "sciencehike.com" > CNAME
+
+      - name: Prepare Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
