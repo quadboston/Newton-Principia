@@ -227,7 +227,7 @@
             var coreText = 
                 `
                 <div class="feedback">
-                    <span class="feedback-label"><a href="javascript:decryptEmail('ZmVlZGJhY2tAc2NpZW5jZWhpa2UuY29t');">Feedback</a></span> welcome, as well as donations:
+                    <span class="feedback-label"><a href="javascript:decryptEmail('Y29udGFjdEBzY2llbmNlaGlrZS5jb20=');">Feedback</a></span> welcome, as well as donations:
                 
                     &nbsp;<a href='https://ko-fi.com/L4L618688P' target='_blank'><img height='24' style='border:0px;height:24px;' 
                     src='https://storage.ko-fi.com/cdn/kofi1.png?v=6' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
