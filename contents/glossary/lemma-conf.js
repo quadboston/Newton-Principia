@@ -4,17 +4,27 @@
 
     function lemmaConfig()
     {
-        var sm = '../js/'; //study model path
+        var sm = 'hyperbola/';
         return {
             codesList :
             [
                 //todm: automate this list
-                { src: sm + 'sconf.js' },
+                // { src: sm + 'sconf.js' },
+                // { src: sm + 'config-functions.js' },
+                // { src: sm + 'init-model-parameters.js' },
+                // { src: sm + 'model-upcreate.js' },
+                // { src: sm + 'media-upcreate.js' },
+                // { src: sm + 'amode8captures.js' },
+				{ src: sm + 'sconf.js' },
                 { src: sm + 'config-functions.js' },
                 { src: sm + 'init-model-parameters.js' },
+                { src: sm + 'amode8captures.js' },
                 { src: sm + 'model-upcreate.js' },
                 { src: sm + 'media-upcreate.js' },
-                { src: sm + 'amode8captures.js' },
+                { src: sm + 'completes-sliders-creation.js' },
+                { src: sm + 'state-capturer.js' },
+
+				{ src: '../../force-law-models/main-legend.js' },
             ],
             "contents-list" :
             [

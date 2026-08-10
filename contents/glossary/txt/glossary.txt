@@ -3,12 +3,13 @@
 	"default" : "1",
 	"menuCaption" : "Text",
 	"subessay" : "conjugatediameter",
-    "subessayCaption" : "conjugate diameters (ellipse)",
+    "subessayCaption" : "conjugate diameters (hyperbola)",
 	"logic_phaseCaption" : "Glossary"
 }
 *..*
-In Newton’s time, ¦GP DK¦<em>conjugate diameters</em>¦¦ of a ¦orbit¦conic¦¦
-are a pair of diameters where each diameter bisects all chords that are parallel to the other diameter.
+In Newton’s time, a ¦GP DK¦<em>conjugate diameter pair</em>¦¦ of a ¦orbit¦hyperbola¦¦
+include a ¦GP¦diameter¦¦ between the branches of one ¦orbit¦hyperbola¦¦, and a ¦DK¦diameter¦¦ between the branches of
+that hyperbola's conjugate, such that each diameter bisects all chords parallel to its conjugate diameter.
 <br><br>
 Move the ¦GP¦diameters¦¦ with ¦P¦¦.<br>
 Change the ellipse's eccentricity with ¦A¦¦.
@@ -28,6 +29,26 @@ In Newton’s time, a ¦GP¦<em>diameter</em>¦¦ of a ¦orbit¦conic¦¦ is a
 The parallel chords will also be parallel to the ¦PZ P,Zminus¦tangents¦¦ where the diameter meets the conic.
 <br><br>
 For an ¦orbit¦ellipse¦¦ or hyperbola, this simplifies to any chord passing through the conic's ¦C¦center¦¦.
+For a parabola, this simplifies to any line tangent to the parabola’s axis of symmetry.
+<br><br>
+Move the ¦GP¦diameter¦¦ with ¦P¦¦.<br>
+Change the ellipse's eccentricity with ¦A¦¦.
+
+
+
+
+*::*claim|english
+{
+	"menuCaption" : "Text",
+	"subessay" : "diameter-hyperbola",
+    "subessayCaption" : "diameter (hyperbola)",
+	"logic_phaseCaption" : "Glossary"
+}
+*..*
+In Newton’s time, a ¦GP¦<em>diameter</em>¦¦ of a ¦orbit¦conic¦¦ is any line that bisects a series of parallel chords. 
+The parallel chords will also be parallel to the ¦PZ P,Zminus¦tangents¦¦ where the diameter meets the conic.
+<br><br>
+For an ellipse or ¦orbit¦hyperbola¦¦, this simplifies to any chord passing through the conic's ¦C¦center¦¦.
 For a parabola, this simplifies to any line tangent to the parabola’s axis of symmetry.
 <br><br>
 Move the ¦GP¦diameter¦¦ with ¦P¦¦.<br>
