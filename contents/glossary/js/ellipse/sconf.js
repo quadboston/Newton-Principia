@@ -170,7 +170,7 @@
                 pos: posC,
                 letterAngle : -99,
                 letterRotRadius : 35,
-				cssClass: 'subessay--diameter subessay--latus-rectum subessay--conics',
+				cssClass: 'subessay--conjugatediameter subessay--diameter subessay--latus-rectum subessay--conics',
             },
             E : {
                 pcolor : proofColor,

@@ -7,11 +7,15 @@
 	"logic_phaseCaption" : "Glossary"
 }
 *..*
-In Newton’s time, a ¦GP DK¦<em>conjugate diameter pair</em>¦¦ of a ¦orbit¦hyperbola¦¦
-include a ¦GP¦diameter¦¦ between the branches of one ¦orbit¦hyperbola¦¦, and a ¦DK¦diameter¦¦ between the branches of
-that hyperbola's conjugate, such that each diameter bisects all chords parallel to its conjugate diameter.
+In Newton’s time, the ¦GP DK¦<em>conjugate diameters</em>¦¦ 
+of an ¦orbit¦ellipse¦¦ are a pair of diameters where each diameter 
+bisects all chords that are parallel to the other diameter.
+One ¦GP¦diameter¦¦ can be specified for an 
+arbitrary point ¦P¦¦ on the ¦orbit¦ellipse¦¦.
+Both ¦GP¦it¦¦ and its ¦DK¦conjugate¦¦ will pass through the ¦C¦center¦¦,
+and its ¦DK¦conjugate¦¦ will be parallel to the ¦PZ P,Zminus¦tangent¦¦ at ¦P¦¦.
 <br><br>
-Move the ¦GP¦diameters¦¦ with ¦P¦¦.<br>
+Move the ¦GP DK¦diameters¦¦ with ¦P¦¦.<br>
 Change the ellipse's eccentricity with ¦A¦¦.
 
 
@@ -26,9 +30,15 @@ Change the ellipse's eccentricity with ¦A¦¦.
 	"logic_phaseCaption" : "Glossary"
 }
 *..*
-In Newton’s time, a ¦GP DK¦<em>conjugate diameter pair</em>¦¦ of a ¦orbit¦hyperbola¦¦
-include a ¦GP¦diameter¦¦ between the branches of one ¦orbit¦hyperbola¦¦, and a ¦DK¦diameter¦¦ between the branches of
-that hyperbola's conjugate, such that each diameter bisects all chords parallel to its conjugate diameter.
+In Newton’s time, a ¦GP DK¦<em>conjugate diameter pair</em>¦¦ 
+of a ¦orbit¦hyperbola¦¦ include a ¦GP¦diameter¦¦ between the branches of one 
+¦orbit¦hyperbola¦¦, and a ¦DK¦diameter¦¦ between the branches of
+that hyperbola's conjugate, such that each diameter bisects 
+all chords parallel to its conjugate diameter.
+One ¦GP¦diameter¦¦ can be specified for an 
+arbitrary point ¦P¦¦ on the ¦orbit¦hyperbola¦¦.
+Both ¦GP¦it¦¦ and its ¦DK¦conjugate¦¦ will pass through the ¦C¦center¦¦,
+and its ¦DK¦conjugate¦¦ will be parallel to the ¦PZ P,Zminus¦tangent¦¦ at ¦P¦¦.
 <br><br>
 Move the ¦GP¦diameters¦¦ with ¦P¦¦.<br>
 Change the ellipse's eccentricity with ¦A¦¦.
