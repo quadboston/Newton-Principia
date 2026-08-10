@@ -24,7 +24,7 @@ const {
             //duplicate with css file ... dom-roots.css
             //"    height : 100vh \n" +
             "    opacity :1; \n" +
-            "    transition  :opacity 1s ease-in-out; \n" +
+            "    transition  :opacity 0.4s ease-in-out; \n" +
             "} \n"
         );
     //======================================================

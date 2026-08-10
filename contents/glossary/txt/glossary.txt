@@ -3,6 +3,25 @@
 	"default" : "1",
 	"menuCaption" : "Text",
 	"subessay" : "conjugatediameter",
+    "subessayCaption" : "conjugate diameters (ellipse)",
+	"logic_phaseCaption" : "Glossary"
+}
+*..*
+In Newton’s time, a ¦GP DK¦<em>conjugate diameter pair</em>¦¦ of a ¦orbit¦hyperbola¦¦
+include a ¦GP¦diameter¦¦ between the branches of one ¦orbit¦hyperbola¦¦, and a ¦DK¦diameter¦¦ between the branches of
+that hyperbola's conjugate, such that each diameter bisects all chords parallel to its conjugate diameter.
+<br><br>
+Move the ¦GP¦diameters¦¦ with ¦P¦¦.<br>
+Change the ellipse's eccentricity with ¦A¦¦.
+
+
+
+
+*::*claim|english
+{
+	"default" : "1",
+	"menuCaption" : "Text",
+	"subessay" : "conjugatediameter-hyperbola",
     "subessayCaption" : "conjugate diameters (hyperbola)",
 	"logic_phaseCaption" : "Glossary"
 }

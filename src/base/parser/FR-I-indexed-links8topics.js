@@ -58,20 +58,27 @@
                           )
                           .e( 'click', () => {
                                 if( ssD.subessayClickDisabled ) return;
-                                virtualSubessayClick( subexeg );
+                                //virtualSubessayClick( subexeg );<<<
                                 var url = window.location.href;
                                 var subessayId = subexeg.essayHeader.subessay;
+								const needsReload = isReloadNeeded(url, subessayId);
+								if( !needsReload ) {
+									virtualSubessayClick( subexeg );
+								}
                                 const match = url.includes('subessayId=');
                                 if (match) {
                                     url = url.replace(/subessayId=[^,]*/, `subessayId=${subessayId}`);
                                 } else {
                                     url += `,subessayId=${subessayId}`;
                                 }
-                                // Update the browser URL without reload
-                                window.history.replaceState({}, "", url);
+								if (needsReload) {
+									window.location.href = url;
+								} else {
+									// Update the browser URL without reload
+									window.history.replaceState({}, "", url);
+								}
                           })
                           ;
-
                     }
                     subexeg.domEl$ = $$
                       .c('div')
@@ -141,6 +148,15 @@
             });
         });
     }
+
+	function isReloadNeeded(url, subessayId) {
+		if (!url.includes('glossary')) {
+			return false; // No reload needed if not in glossary
+		}
+		const hyperbolaInURL = url.includes('hyperbola');
+		const hyperbolaInSubessayId = subessayId.includes('hyperbola');
+		return hyperbolaInURL ^ hyperbolaInSubessayId; // XOR: true if only one is true
+	}
 
     ///emulates user-click and first-user-click
     function virtualSubessayClick( subexeg )
