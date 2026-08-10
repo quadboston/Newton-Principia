@@ -94,15 +94,18 @@ The force on ¦P¦¦
 Let ¦CA¦¦ and ¦CB¦¦ be the semiaxes of the ¦orbit¦hyperbola¦¦, ¦CP CG¦PG¦¦ and ¦CK CD¦KD¦¦ other
 conjugate diameters, ¦PF¦¦ a perpendicular to the diameter ¦CK CD¦KD¦¦, and ¦Qv¦Q𝑣¦¦ an
 ordinate to the diameter ¦CP CG¦GP¦¦. Draw ¦SP¦¦ cutting diameter ¦CK CD¦DK¦¦ in ¦E¦¦ and ordinate 
-¦Qv¦Q𝑣¦¦ in ¦x¦𝑥¦¦, and complete the parallelogram ¦QR PR Px Qx¦QRP𝑥¦¦. It is evident that ¦PE¦EP¦¦ is
+¦Qv¦Q𝑣¦¦ in ¦x¦𝑥¦¦, and complete the parallelogram ¦QR PR Px Qx¦QRP𝑥¦¦.
+<br><br>
+It is evident that ¦PE¦EP¦¦ is
 equal to the transverse semiaxis ¦CA¦AC¦¦, because when line ¦HI¦¦ is drawn parallel
 to ¦EC¦¦ from the other ¦H¦focus H¦¦ of the ¦orbit¦hyperbola¦¦, ¦ES¦¦ and ¦EI¦¦ are equal because
 ¦CS¦¦ and ¦CH¦¦ are equal;
 so that ¦PE¦EP¦¦ is the half-difference of ¦SP¦PS¦¦ and ¦PE EI¦PI¦¦, that
 is (because ¦HI¦IH¦¦ and ¦PR¦¦ are parallel and the angles ¦PR PE EI ¦IPR¦¦ and ¦PH P,Zminus¦HPZ¦¦ are equal),
 of ¦SP¦PS¦¦ and ¦PH¦¦, the difference of which equals the whole axis 2¦CA¦AC¦¦. Drop
-¦QT¦¦ perpendicular to ¦SP¦¦. Then, if ¦L,LL¦L¦¦ denotes the ¦L,LL¦principal latus rectum¦¦ of
-the ¦orbit¦hyperbola¦¦
+¦QT¦¦ perpendicular to ¦SP¦¦. Then, if ¦L,LL¦L¦¦ denotes the 
+¦L,LL *href*?conf=sappId=glossary,logic_phaseId=claim,aspectId=english,subessayId=latus-rectum¦principal latus rectum¦¦
+of the ¦orbit¦hyperbola¦¦
 
 <!-- (or 2BC² / AC), -->
 <math><mrow>
@@ -114,19 +117,19 @@ or&nbsp;</mtext><mfrac><mrow><mn>
 ¦CA¦AC¦¦</mi></mrow></mfrac></mrow>
 <mo stretchy="true">)</mo><mo linebreak="nobreak">,</mo></mrow></math>
 
-¦L,LL¦L¦¦ × ¦QR¦¦ will be to ¦L,LL¦L¦¦ × ¦Pv¦P𝑣¦¦ as ¦QR¦¦ to ¦Pv¦P𝑣¦¦, or ¦Px¦P𝑥¦¦
+¦L,LL¦L¦¦&nbsp;×&nbsp;¦QR¦¦ will be to ¦L,LL¦L¦¦&nbsp;×&nbsp;¦Pv¦P𝑣¦¦ as ¦QR¦¦ to ¦Pv¦P𝑣¦¦, or ¦Px¦P𝑥¦¦
 to ¦Pv¦P𝑣¦¦, that is (because the triangles ¦Px Pv xv¦P𝑥𝑣¦¦ and ¦PE EC PC¦PEC¦¦ are similar), as ¦PE¦¦ to ¦PC¦¦,
-or ¦CA¦AC¦¦ to ¦PC¦¦. ¦L,LL¦L¦¦ × ¦Pv¦P𝑣¦¦ will also be to ¦CG CP Pv¦G𝑣¦¦ × ¦Pv¦P𝑣¦¦ as ¦L,LL¦L¦¦ to ¦CG CP Pv¦G𝑣¦¦; and (from the
-nature of conics) the rectangle ¦CG CP Pv¦G𝑣¦¦ × ¦Pv¦𝑣P¦¦ will be to ¦Qv¦Q𝑣¦¦² as ¦PC¦¦² to ¦CD¦¦²; and
+or ¦CA¦AC¦¦ to ¦PC¦¦. ¦L,LL¦L¦¦&nbsp;×&nbsp;¦Pv¦P𝑣¦¦ will also be to ¦CG CP Pv¦G𝑣¦¦&nbsp;×&nbsp;¦Pv¦P𝑣¦¦ as ¦L,LL¦L¦¦ to ¦CG CP Pv¦G𝑣¦¦; and (from the
+nature of conics) the rectangle ¦CG CP Pv¦G𝑣¦¦&nbsp;×&nbsp;¦Pv¦𝑣P¦¦ will be to ¦Qv¦Q𝑣¦¦² as ¦PC¦¦² to ¦CD¦¦²; and
 (by
 <a href="?conf=sappId=b1sec1lemma7,logic_phaseId=corollary,aspectId=english">
 by lem. 7, corol. 2</a>)
 the ratio of ¦Qv¦Q𝑣¦¦² to ¦Qx¦Q𝑥¦¦², the points ¦Q¦¦ and ¦P¦¦ coming
 together, comes to be the ratio of equality; and ¦Qx¦Q𝑥¦¦² or ¦Qv¦Q𝑣¦¦² is to ¦AT¦¦² as ¦PE¦EP¦¦²
 to ¦PF¦¦², that is, as ¦CA¦¦² to ¦PF¦¦², or (by lem. 12) as ¦CD¦¦² to ¦CB¦¦²; and if all these
-ratios are combined, ¦L,LL¦L¦¦ × ¦QR¦¦ will be to ¦QT¦¦² as ¦CA¦AC¦¦ × ¦L,LL¦L¦¦ × ¦PC¦¦² × ¦CD¦¦² or
-2¦CB¦¦² × ¦PC¦¦² × ¦CD¦¦² to ¦PC¦¦ × ¦CG CP Pv¦G𝑣¦¦ × ¦CD¦¦² × ¦CB¦¦², or as 2¦PC¦¦ to ¦CG CP Pv¦G𝑣¦¦. But, the points
-¦P¦¦ and ¦Q¦¦ coming together, 2¦PC¦¦ and ¦CG CP Pv¦G𝑣¦¦ are equal. Therefore, ¦L,LL¦L¦¦ × ¦QR¦¦ and
+ratios are combined, ¦L,LL¦L¦¦&nbsp;×&nbsp;¦QR¦¦ will be to ¦QT¦¦² as ¦CA¦AC¦¦&nbsp;×&nbsp;¦L,LL¦L¦¦&nbsp;×&nbsp;¦PC¦¦²&nbsp;×&nbsp;¦CD¦¦² or
+2¦CB¦¦²&nbsp;×&nbsp;¦PC¦¦²&nbsp;×&nbsp;¦CD¦¦² to ¦PC¦¦&nbsp;×&nbsp;¦CG CP Pv¦G𝑣¦¦&nbsp;×&nbsp;¦CD¦¦²&nbsp;×&nbsp;¦CB¦¦², or as 2¦PC¦¦ to ¦CG CP Pv¦G𝑣¦¦. But, the points
+¦P¦¦ and ¦Q¦¦ coming together, 2¦PC¦¦ and ¦CG CP Pv¦G𝑣¦¦ are equal. Therefore, ¦L,LL¦L¦¦&nbsp;×&nbsp;¦QR¦¦ and
 ¦QT¦¦², which are proportional to these, are also equal. Multiply these equals by
 
 <!-- SP² / QR -->
@@ -134,7 +137,7 @@ ratios are combined, ¦L,LL¦L¦¦ × ¦QR¦¦ will be to ¦QT¦¦² as ¦CA¦AC
 ¦SP¦¦</mi><mn>2</mn></msup></mrow><mi>
 ¦QR¦¦</mi></mfrac></math>,
 
-and ¦L,LL¦L¦¦ × ¦SP¦¦² will become equal to
+and ¦L,LL¦L¦¦&nbsp;×&nbsp;¦SP¦¦² will become equal to
 
 <!-- SP² × QT² / QR -->
 <math><mfrac><mrow><msup><mi>
@@ -144,7 +147,7 @@ and ¦L,LL¦L¦¦ × ¦SP¦¦² will become equal to
 
 Therefore 
 (by <a href="?conf=sappId=b1sec2prop6,logic_phaseId=corollary,aspectId=english,subessayId=corollary1">prop. 6, corols. 1 and 5</a>),
-the centripetal ¦force¦¦ is inversely as ¦L,LL¦L¦¦ × ¦SP¦¦², that is, inversely
+the centripetal ¦force¦¦ is inversely as ¦L,LL¦L¦¦&nbsp;×&nbsp;¦SP¦¦², that is, inversely
 as the square of the distance ¦SP¦¦. &nbsp;&nbsp; Q.E.I.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 463.</div>
