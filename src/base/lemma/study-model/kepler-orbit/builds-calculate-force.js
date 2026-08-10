@@ -106,17 +106,26 @@
         //     }
         // }
 
-        return (isUlitmacyForActualForce || substituteActualForce) ?
+        let force = (isUlitmacyForActualForce || substituteActualForce) ?
             calculateActualForce({bP}) :
             calculateEstimatedForce({parq, bP});
+
+        //The functions above that calculate force are proportional to the exact
+        //solution.  This means when comparing one orbit to another orbit, the
+        //forces they calculate for one orbit can end up getting scaled relative
+        //to another orbit.  The following corrects this, and ensures forces can
+        //be compared correctly across orbits.
+        if (stdMod.forceCorrectionScale)
+            force *= stdMod.forceCorrectionScale();
+        return force;
     }
 
 
     function calculateActualForce({
         bP    //orbit point P rack
     }) {
-        const P = bP.rr;
-        const S = bP.rrc;
+        const P = bP.planetXY;
+        const S = bP.sunXY;
         const V = bP.curvatureChordSecondPoint;
         const Y = bP.projectionOfCenterOnTangent;
 
@@ -143,8 +152,8 @@
         ///displacement = QR, area = QT*SP,
         const q2xy = stdMod.q2xy;
         const Q = q2xy( parq );
-        const P = bP.rr;
-        const S = bP.rrc;
+        const P = bP.planetXY;
+        const S = bP.sunXY;
         const R = mat.linesCross(
             bP.uu, P, //direction, start
             [P[0]-S[0], P[1]-S[1]], Q, //direction, start
@@ -172,4 +181,3 @@
         return Math.sign(rrr[0]*direction[0] + rrr[1]*direction[1]);
     }
 }) ();
-

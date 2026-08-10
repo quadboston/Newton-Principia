@@ -1,6 +1,6 @@
 ( function() {
-    var { sn, $$, nsmethods, nspaste, nssvg, mcurve, integral, mat, has, fconf,
-        ssF, sData, ssD, stdMod, amode, sconf, rg, toreg, }
+    var { nspaste, integral, mat, fconf,
+        ssD, stdMod, amode, rg, }
             = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
     return;
 
@@ -15,10 +15,10 @@
         const q2xy = stdMod.q2xy;
         var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
         var parQ = Porb.q;
-        rg.P.pos[0] = Porb.rr[0];
-        rg.P.pos[1] = Porb.rr[1];
+        rg.P.pos[0] = Porb.planetXY[0];
+        rg.P.pos[1] = Porb.planetXY[1];
         var rr0 = rg.P.pos;
-        var rrc = rg.S.pos;
+        var sunXY = rg.S.pos;
         var Qpos = q2xy( Porb.plusQ );
         rg.Q.pos[0] = Qpos[0];
         rg.Q.pos[1] = Qpos[1];
@@ -35,13 +35,13 @@
         //R = parallel-projection of Q to tangent
         var wwR = mat.linesCross(
             uu, rr0, //direction, start
-            [rr0[0]-rrc[0], rr0[1]-rrc[1]], rg.Q.pos, //direction, start
+            [rr0[0]-sunXY[0], rr0[1]-sunXY[1]], rg.Q.pos, //direction, start
         );
         rg.R.pos[0] = wwR[0];
         rg.R.pos[1] = wwR[1];
 
         //T = perp. from Q to radius-vector
-        var wwT = mat.dropPerpendicular( rg.Q.pos, rrc, rr0 )
+        var wwT = mat.dropPerpendicular( rg.Q.pos, sunXY, rr0 )
         rg.T.pos[0] = wwT[0];
         rg.T.pos[1] = wwT[1];
 
@@ -67,6 +67,37 @@
         {
             let graphArg = {
             }
+
+
+            //The bounds of the graph switch between a fixed and variable max.
+            //The x and y axes always need to maintain a fixed ratio relative to
+            //each other, otherwise the slope of the force curves appears to
+            //change, even though the actual slope (rise / run) stays the same.
+            //
+            //A reliable way to do this is to calculate all possible values that
+            //could be used from the perspective of a chosen axis (eg. x axis).
+            //Note this must include any possible values for the other axis as
+            //well, converted using the fixed ratio.  Then use the maximum of
+            //those possible values for the chosen axis (eg. x axis), and that
+            //maximum with the fixed ratio to calculate the maximum for the
+            //other axis (eg. y axis).  This ensures both force curves will
+            //always be fully visible on the graph, and eg. can't leave the top
+            //of the graph.
+
+            const ratio = ssD.MEF / ssD.xMaxFixedGraphAxis;
+
+            graphArg.xMin = 0;
+            //Set the lowest possible xMax, to be the xMax when the page loads
+            //plus a gap on the top and right sides of the graph.
+            const xMaxLowest = ssD.xMaxFixedGraphAxis * 1.3;
+            const xMaxCurrentX = ssD.xMaxCurrentGraphAxis;
+            const xMaxFromY = ssD.estimatedForceLargestMaxCurrent / ratio;
+            graphArg.xMax = Math.max(xMaxLowest, xMaxCurrentX, xMaxFromY);
+
+            graphArg.yMin = 0;
+            graphArg.yMax = graphArg.xMax * ratio / ssD.MAF;
+
+
             stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
         }
         //------------------------------------------------
@@ -155,4 +186,3 @@
         //=============================================================
     }
 }) ();
-

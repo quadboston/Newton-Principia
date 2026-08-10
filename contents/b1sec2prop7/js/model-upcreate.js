@@ -17,13 +17,13 @@
         var {
             RC, R, curvatureChordSecondPoint, projectionOfCenterOnTangent,
             uu,
-            rr,
+            planetXY,
         } = Porb;
         rg.P.q = Porb.q;
-        rg.P.pos[0] = rr[0];
-        rg.P.pos[1] = rr[1];
+        rg.P.pos[0] = planetXY[0];
+        rg.P.pos[1] = planetXY[1];
         const rr0 = rg.P.pos;
-        const rrc = rg.S.pos;
+        const sunXY = rg.S.pos;
         const Rc = R; //curvature radius
 
         if(solvable){
@@ -41,12 +41,12 @@
             //R = parallel-projection of Q to tangent
             var RR = mat.linesCross(
                 uu, rr0, //direction, start
-                [rr0[0]-rrc[0], rr0[1]-rrc[1]], rg.Q.pos, //direction, start
+                [rr0[0]-sunXY[0], rr0[1]-sunXY[1]], rg.Q.pos, //direction, start
             );
             rg.R.pos[0] = RR[0];
             rg.R.pos[1] = RR[1];
             //T = perp. from Q to radius-vector
-            var TT = mat.dropPerpendicular( rg.Q.pos, rrc, rr0 )
+            var TT = mat.dropPerpendicular( rg.Q.pos, sunXY, rr0 )
             rg.T.pos[0] = TT[0];
             rg.T.pos[1] = TT[1];
 
@@ -175,9 +175,9 @@
         // //\\ corollary 2,3
         //------------------------------------------------
         var curveP = mcurve.planeCurveDerivatives({
-            fun : q2xy,
+            pointAt : q2xy,
             q : rg.P.q,
-            rrc : rg.Rcol2.pos,
+            sunXY : rg.Rcol2.pos,
         });
         var {
             curvatureChordSecondPoint,
