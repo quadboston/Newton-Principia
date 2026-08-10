@@ -93,9 +93,14 @@
         //================================================
 
         ////hyperbola or ellipse
-        let D = mat.sm( rg.C.pos, -1, uu );
+		const sqAC = squaredDistance( rg.A, rg.C );
+		const sqBC = squaredDistance( rg.B, rg.C );
+		const sqDiameterConstant = sqAC - sqBC;
+		const SqDC = squaredDistance( rg.P, rg.C ) - sqDiameterConstant;
+		const DC = Math.sqrt( SqDC );
+        let D = mat.sm( rg.C.pos, -DC, uu );
         nspaste( rg.D.pos, D );    
-        let K = mat.sm( rg.C.pos,  1, uu );
+        let K = mat.sm( rg.C.pos,  DC, uu );
         nspaste( rg.K.pos, K );    
         //is this a numerical glitch in the Book?:
         //nspaste( rg.K.pos, mat.dropLine(  2.13, rg.C.pos, rg.P.pos, null, uu) );
@@ -169,4 +174,9 @@
         //=============================================================
     }
 
+	function squaredDistance(xy1, xy2) {
+		var dx = xy1.pos[0] - xy2.pos[0];
+		var dy = xy1.pos[1] - xy2.pos[1];
+		return dx*dx + dy*dy;
+	}
 }) ();
