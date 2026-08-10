@@ -69,11 +69,10 @@
             }
 
 
-            //TEMP
             //The bounds of the graph switch between a fixed and variable max.
-            //The x and y axes always need to maintain a fixed ratio, otherwise
-            //the slope of the force curves appears to change, even though the
-            //actual slope (rise / run) stays the same.
+            //The x and y axes always need to maintain a fixed ratio relative to
+            //each other, otherwise the slope of the force curves appears to
+            //change, even though the actual slope (rise / run) stays the same.
             //
             //A reliable way to do this is to calculate all possible values that
             //could be used from the perspective of a chosen axis (eg. x axis).
@@ -85,36 +84,17 @@
             //always be fully visible on the graph, and eg. can't leave the top
             //of the graph.
 
+            const ratio = ssD.MEF / ssD.xMaxFixedGraphAxis;
+
             graphArg.xMin = 0;
-
-            //TEMP
-            console.log("ssD.xMaxFixedGraphAxis =", ssD.xMaxFixedGraphAxis);
-            //TEMP Rather than multiply by 1.3 here, it may be better to set
-            //that in the "calculateMaxGraphValues" function.
+            //Set the lowest possible xMax, to be the xMax when the page loads
+            //plus a gap on the top and right sides of the graph.
             const xMaxLowest = ssD.xMaxFixedGraphAxis * 1.3;
-            const yMaxLowest = ssD.MEF * 1.3;
-            const ratio = yMaxLowest / xMaxLowest;
-
             const xMaxCurrentX = ssD.xMaxCurrentGraphAxis;
-
-            //TEMP Finalize the variable names for the following.
-            const xMaxGivenY = ssD.estimatedForceLargestMaxCurrent / ratio;
-            // const xMaxCurrentY = ssD.estimatedForceLargestMaxCurrent / ratio;
-            //
-            //xMaxGivenY
-            //xMaxUsingY
-            //xMaxFromY
-
-
-            graphArg.xMax = Math.max(xMaxLowest, xMaxCurrentX, xMaxGivenY);
-
-            // graphArg.xMax = Math.max(xMaxLowest,
-            //                         ssD.xMaxCurrentGraphAxis,
-            //                         xMaxGivenCurrentY);
-
+            const xMaxFromY = ssD.estimatedForceLargestMaxCurrent / ratio;
+            graphArg.xMax = Math.max(xMaxLowest, xMaxCurrentX, xMaxFromY);
 
             graphArg.yMin = 0;
-            //TEMP
             graphArg.yMax = graphArg.xMax * ratio / ssD.MAF;
 
 

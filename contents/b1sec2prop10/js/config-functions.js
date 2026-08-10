@@ -33,8 +33,7 @@
 
 
     function calculateMaxGraphValues() {
-        //TEMP For now just calculate maximum forces, however further
-        //adjustments will likely be needed.
+        //No adjustments needed, just calculate maximum forces.
         stdMod.rebuilds_orbit(true);
     }
 }) ();

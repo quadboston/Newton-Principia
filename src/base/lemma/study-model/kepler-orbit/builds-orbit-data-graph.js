@@ -33,9 +33,7 @@
         let actualForceMax = 0;
         let estimatedForceMax = 0;
         let estimatedForceLargestMax = 0;
-        //TEMP
         let xMaxGraphAxis = 0;
-        //TEMP
         if (setMaxGraphValues) {
             ssD.MAF = 0;
             ssD.MEF = 0;
@@ -51,7 +49,6 @@
             if( !(qix%dataPeriod) || qix===Q_STEPS ){
                 actualForceMax = Math.max(Math.abs(actualForce), actualForceMax);
                 estimatedForceMax = Math.max(Math.abs(estimatedForce), estimatedForceMax);
-                //TEMP
                 estimatedForceLargestMax = Math.max(
                     Math.abs(estimatedForceLargest), estimatedForceLargestMax);
                 if (setMaxGraphValues) {
@@ -72,7 +69,6 @@
             }
             bP.gix = Math.max(0,graphArray.length-1);
         }
-        //TEMP
         if (setMaxGraphValues) {
             ssD.xMaxFixedGraphAxis = xMaxGraphAxis;
         }
@@ -115,7 +111,14 @@
                 estimatedForce,
             ];
         }
-        //TEMP The following should probably be renamed
+        //todo The following variables should probably be renamed, as well as
+        //other similar ones related to the graph.  There are starting to be so
+        //many that store data eg. on page load, when the orbit is adjusted for
+        //the highest forces etc.  One possibility could be to store them in an
+        //object similar to what's shown below, however likely with further
+        //adjustments.
+        //ssD.maxGraphValues.initial.estimatedForceMax
+        //ssD.maxGraphValues.current.estimatedForceMax
         ssD.estimatedForceLargestMaxCurrent = estimatedForceLargestMax;
 
         ///this is a common graph lines, but this mask can be
