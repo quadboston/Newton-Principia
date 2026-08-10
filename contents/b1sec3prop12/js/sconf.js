@@ -228,8 +228,8 @@
                 letterAngle : 225,
                 draggableX  : true,
                 draggableY  : true,
-				cssClass: 'subessay--solution',
-				conditionalDrag: 'subessay--solution',
+				cssClass: 'subessay--solution subessay--goal',
+				conditionalDrag: 'subessay--solution subessay--goal',
             },
 
             // triangle
@@ -273,13 +273,13 @@
                 pcolor : proofColor,
                 letterAngle : -45,
                 letterRotRadius : 20,
-				cssClass: 'subessay--solution',
+				cssClass: 'subessay--goal subessay--solution',
             },
             R : {
                 pcolor : estimatedForceColor,
                 letterAngle : 120,
                 letterRotRadius : 22,
-				cssClass: 'subessay--solution',
+				cssClass: 'subessay--solution subessay--goal',
             },
             
             H : {
@@ -295,7 +295,7 @@
             T : {
                 pcolor : estimatedForceColor,
                 letterRotRadius : 20,
-				cssClass: 'subessay--solution',
+				cssClass: 'subessay--solution subessay--goal',
             },
 
             L : {
@@ -314,9 +314,9 @@
             { 'PR' : { pcolor : proofColor, 
 						'stroke-width' : 2, 
                 		captionShiftNorm : -18,
-						cssClass: 'subessay--solution',}, },
+						cssClass: 'subessay--goal subessay--solution',}, },
             { 'SP' : { pcolor : estimatedForceColor,
-						cssClass: 'logic_phase--proof',}, },
+						cssClass: 'subessay--goal logic_phase--proof',}, },
             { 'B,BB' : { pcolor : proofColor,
 						cssClass: 'subessay--solution',}, },
 
@@ -336,9 +336,9 @@
             { Qv : { pcolor : proofColor,
 						cssClass: 'subessay--solution',}, },
             { QR : { pcolor : estimatedForceColor,
-						cssClass: 'subessay--solution',}, },
+						cssClass: 'subessay--goal subessay--solution',}, },
             { Qx : { pcolor : proofColor,
-						cssClass: 'subessay--solution',}, },
+						cssClass: 'subessay--solution subessay--goal',}, },
             { Px : { pcolor : proofHover,
 						cssClass: 'subessay--solution',}, },
             
@@ -360,7 +360,7 @@
 						cssClass: 'subessay--solution',}, },
             
             { QT : { pcolor : estimatedForceColor,
-						cssClass: 'subessay--solution',}, },
+						cssClass: 'subessay--goal subessay--solution',}, },
             { PT : { pcolor : proofHover,
 						cssClass: 'subessay--solution',}, },
             { AT : { pcolor : proofColor,

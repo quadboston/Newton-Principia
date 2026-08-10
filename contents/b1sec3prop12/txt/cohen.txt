@@ -13,6 +13,76 @@ centripetal ¦force¦¦ tending toward the ¦S¦focus¦¦ of the ¦orbit¦figure
 
 
 
+*::*claim|english
+{
+  "menuCaption" : "Text",
+  "subessayCaption" : "[<i>Applying prop. 6, corol. 5</i>]",
+  "subessay" : "goal",
+  "logic_phaseCaption" : "Problem 6"
+}
+*..*
+The force on ¦P¦¦ is <br>inversely
+<math>
+  <mo>∝</mo>
+  <munder>
+    <mo>lim</mo>
+    <mrow>
+      <mi>¦Q¦¦</mi>
+      <mo>→</mo>
+      <mi>¦P¦¦</mi>
+    </mrow>
+  </munder>
+  <mfrac>
+    <mrow>
+      <msup>
+        <mi>¦SP¦¦</mi>
+        <mn>2</mn>
+      </msup>
+      <mo>×</mo>
+      <msup>
+        <mi>¦QT¦¦</mi>
+        <mn>2</mn>
+      </msup>
+    </mrow>
+    <mrow>
+      <mi>¦QR¦¦</mi>
+    </mrow>
+  </mfrac>
+</math>
+<br>
+Or,<br>
+The force on ¦P¦¦
+<math>
+  <mo>∝</mo>
+  <munder>
+    <mo>lim</mo>
+    <mrow>
+      <mi>¦Q¦¦</mi>
+      <mo>→</mo>
+      <mi>¦P¦¦</mi>
+    </mrow>
+  </munder>
+  <mfrac>
+    <mrow>
+      <mi>¦QR¦¦</mi>
+    </mrow>
+    <mrow>
+      <msup>
+        <mi>¦SP¦¦</mi>
+        <mn>2</mn>
+      </msup>
+      <mo>×</mo>
+      <msup>
+        <mi>¦QT¦¦</mi>
+        <mn>2</mn>
+      </msup>
+    </mrow>
+  </mfrac>
+</math>
+
+
+
+
 *::*proof|english
 {
   "menuCaption" : "Text",
