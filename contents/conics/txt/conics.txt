@@ -1,9 +1,9 @@
 *::*claim|english
 {
   "menuCaption" : "Text",
-  "subessayCaption" : "Conics",
-  "subessay" : "conics",
-  "logic_phaseCaption" : "<i>Conics</i> I. 21"
+  "subessayCaption" : "<i>Conics</i> I.21",
+  "subessay" : "i21-ellipse",
+  "logic_phaseCaption" : "<i>Conics</i> excerpts"
 }
 *..*
 Part of Apollonius’s <i>Conics</i> I.21 proves that when an ellipse's diameter ¦GP¦¦ has 2 ordinates ¦CD¦¦ and ¦Qv¦¦, then
@@ -12,3 +12,16 @@ Part of Apollonius’s <i>Conics</i> I.21 proves that when an ellipse's diameter
 For more, see 
 <div book-reference-id="Densmore" style="margin-bottom: 0.3em;">Page 211</div>
 <div book-reference-id="Bernard-Cohen-guide">Page 330</div>
+
+
+
+
+*::*claim|english
+{
+  "menuCaption" : "Text",
+  "subessayCaption" : "<i>Conics</i> III.48",
+  "subessay" : "iii48-hyperbola"
+}
+*..*
+Apollonius’s <i>Conics</i> III..48 proves that the ¦PH SP¦focal distances¦¦ of ¦P¦¦
+make ¦PH SP PZ¦equal angles¦¦ with the ¦PZ P,Zminus¦tangent¦¦ at that ¦P¦point¦¦.

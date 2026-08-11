@@ -46,7 +46,7 @@
         rg.T.pos[1] = wwT[1];
 
         var Z = mat.dropLine(
-            0.6,
+            0.7,
             rg.P.pos,
             null,
             null,
