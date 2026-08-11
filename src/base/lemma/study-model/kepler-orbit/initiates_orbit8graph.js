@@ -1,7 +1,8 @@
 ( function() {
     var { sn, nspaste, rg, stdMod, sconf, ssD, sData, }
         = window.b$l.apptree({ stdModExportList : {
-            initiates_orbit8graph,
+            initiates_orbit,
+			initiates_orbit8graph,
             rebuilds_orbit,
             initiates_kepler_config,
         },
@@ -15,14 +16,20 @@
         sconf.ro0SquaredDivide2 = sconf.ro0*sconf.ro0 / 2;
     }
 
-    function initiates_orbit8graph() {
+	function initiates_orbit() {
+		initiates_orbit8graph(false);
+	}
+
+    function initiates_orbit8graph(doGraph = true) {
         initiates_kepler_config();
-        stdMod.graphFW_lemma = createGraph_FW_lemma({
-               digramParentDom$:stdMod.legendRoot$ }, stdMod.customXLegend);
+		if (doGraph) {
+			stdMod.graphFW_lemma = createGraph_FW_lemma({
+				digramParentDom$:stdMod.legendRoot$ }, stdMod.customXLegend);
+		}
         stdMod.creates_createOrUpdateOrbit();
         if (stdMod.calculateMaxGraphValues)
             stdMod.calculateMaxGraphValues();
-        stdMod.rebuilds_orbit(); // qIndexToOrbit populated here
+        stdMod.rebuilds_orbit(false,doGraph); // qIndexToOrbit populated here
 
         stdMod.creates__gets_orbit_closest_point();
 
@@ -55,7 +62,7 @@
 		}
     }
 
-    function rebuilds_orbit(setMaxGraphValues) {
+    function rebuilds_orbit(setMaxGraphValues, doGraph = true) {
         const Q_STEPS = sconf.Q_STEPS;
 
         if (stdMod.recalculateOrbitStartAndEnd)
@@ -80,7 +87,10 @@
         stdMod.builds_force_plusQ_minusQ_and_related(sData.ULTIM_MAX);
         stdMod.builds_force_plusQ_minusQ_and_related(sData.ULTIM_ACTUAL);
         stdMod.builds_force_plusQ_minusQ_and_related();
-        stdMod.builds_orbit_data_graph(setMaxGraphValues);
+		if (doGraph) {
+			stdMod.builds_orbit_data_graph(setMaxGraphValues);
+		}
+        // stdMod.builds_orbit_data_graph();
 
         //Adjust point P if out of bounds
         const qixMin = ssD.qix_graph_start;

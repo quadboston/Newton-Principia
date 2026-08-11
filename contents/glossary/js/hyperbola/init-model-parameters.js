@@ -1,17 +1,11 @@
 ( function() {
-    var { stdMod, toreg, } = window.b$l.apptree({
+    var { stdMod, } = window.b$l.apptree({
         stdModExportList : { init_model_parameters, }, });
     return;
 
 
-    ///****************************************************
-    /// model initiation
-    ///****************************************************
-    function init_model_parameters()
-    {
-        stdMod.initiates_orbit8graph();
+    function init_model_parameters() {
+        stdMod.initiates_orbit();
         stdMod.creates_Zeta_slider();
     }
-
 }) ();
-

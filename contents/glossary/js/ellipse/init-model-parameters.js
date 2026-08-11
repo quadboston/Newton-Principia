@@ -4,14 +4,11 @@
     return;
 
 
-    ///****************************************************
-    /// model initiation
-    ///****************************************************
     function init_model_parameters()
     {
         rg.S.pos[0] = -sconf.ellipseFocus;
         rg.S.pos[1] = 0;
-        stdMod.initiates_orbit8graph();
+        stdMod.initiates_orbit();
 
         //body moves backward on x,
         toreg( 'vt' )( 'val', 1 );

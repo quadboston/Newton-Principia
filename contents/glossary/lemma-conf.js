@@ -5,7 +5,7 @@
     function lemmaConfig()
     {
 		if (window.location.href.includes('hyperbola')) {
-			var sm = 'hyperbola/';
+			const sm = 'hyperbola/';
 			return {
 				codesList :
 				[
@@ -25,15 +25,22 @@
 				],
 			};
 		} else if (window.location.href.includes('parabola')) {
+			const sm = 'hyperbola/';
 			return {          
 				codesList : [
 					{ src: 'parabola/sconf.js' },
 					{ src: 'parabola/model-upcreate.js' },
+					{ src: sm + 'config-functions.js' },
+					{ src: sm + 'init-model-parameters.js' },
+					{ src: sm + 'amode8captures.js' },
+					{ src: sm + 'media-upcreate.js' },
+					{ src: sm + 'completes-sliders-creation.js' },
+					{ src: sm + 'state-capturer.js' },
+					{ src: '../../force-law-models/main-legend.js' },
 				],
 				"contents-list" : [
 					'txt/glossary.txt',
 				],
-				sappCodeReference : 'b1sec3prop12',  
 			};
 		} else {
 			var sm = 'ellipse/';
