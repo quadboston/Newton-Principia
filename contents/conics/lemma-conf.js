@@ -23,6 +23,23 @@
 					'txt/conics.txt',
 				],
 			};
+		} else if (window.location.href.includes('parabola')) {
+			const sm = '../../glossary/js/hyperbola/';
+			return {          
+				codesList : [
+					{ src: '../../glossary/js/parabola/sconf.js' },
+					{ src: '../../glossary/js/parabola/model-upcreate.js' },
+					{ src: sm + 'config-functions.js' },
+					{ src: sm + 'init-model-parameters.js' },
+					{ src: sm + 'amode8captures.js' },
+					{ src: sm + 'media-upcreate.js' },
+					{ src: sm + 'completes-sliders-creation.js' },
+					{ src: sm + 'state-capturer.js' },
+				],
+				"contents-list" : [
+					'txt/conics.txt',
+				],
+			};
 		} else {
 			var sm = '../../glossary/js/ellipse/'; //study model path
 			return {

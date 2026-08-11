@@ -173,7 +173,7 @@
         Object.assign( originalPoints, {
             // hyperbola
             S : {
-                pcolor : sunColor,
+                pcolor : proofColor,
                 letterAngle : -90,
 				letterRotRadius : 26,
             },
@@ -313,7 +313,7 @@
 						'stroke-width' : 2, 
                 		captionShiftNorm : -18,
 						cssClass: 'subessay--solution',}, },
-            { 'SP' : { pcolor : estimatedForceColor,
+            { 'SP' : { pcolor : proofColor,
 						cssClass: 'subessay--iii48-hyperbola',}, },
             { 'B,BB' : { pcolor : proofColor,
 						cssClass: 'subessay--solution',}, },

@@ -30,7 +30,7 @@
         var foldPoints = [];
         ssD.nonSolvablePointCaption = "The orbit's tangent cannot pass through center of force";
         
-        //there is no prebilt orbit points, they are built and
+        //there are no prebuilt orbit points, they are built and
         //embedded into svg in other place,
         ///they are recalculated here
         ///with other step here for derivative params,

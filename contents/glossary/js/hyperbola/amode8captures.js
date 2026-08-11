@@ -25,8 +25,10 @@
         stdMod.establishesEccentricity( op.initialEccentricity )
         // \\// "draws" conics
 
-        rg.S.pos[0] = 0;
-        rg.S.pos[1] = 0;
+        rg.S.pos[0] = rg.S.pos[1] = 0;
+		if (rg.S0) {
+			rg.S0.pos[0] = rg.S0.pos[1] = 0;
+		}
 
         //=============================================================
         // \\// model
