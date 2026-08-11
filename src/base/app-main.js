@@ -328,17 +328,10 @@ const {
         ns.haff( sapp, 'finish_sapp_UI' );
         nsmethods.establishesContentTriggers();
         sapp.isInitialized = true;
-        fmethods.setupEvents();
 
-        ///.this is a patch: the cause and real solution is not known;
-        ///.and it still does not work for l2,3
-        ///
-        ///.this timeout is vital: it allows to hovering-arrows to get to their
-        ///.place: othewise, the img.style.top for draggee is wrong which
-        ///.moves arrows to the top edge of media which is wrong
-        ///.the value of timeout seems also vital for l9
-        //setTimeout( fmethods.full Resize, 50 ); 50 is enough for l9
-        setTimeout( fmethods.fullResize, 500 );
+        fmethods.setupEvents(); // sets up resize event
+        fmethods.fullResize(); // initial element sizing for page layout
+        
         fmethods.setupCapturerEvents();
     }
 
