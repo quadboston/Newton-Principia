@@ -54,11 +54,10 @@ Change the ellipse's eccentricity with ¦A¦¦.
 	"logic_phaseCaption" : "Glossary"
 }
 *..*
-In Newton’s time, a ¦GP¦<em>diameter</em>¦¦ of a ¦orbit¦conic¦¦ is any line that bisects a series of parallel chords. 
+In Newton’s time, a ¦GP¦<em>diameter</em>¦¦ of a ¦orbit¦conic¦¦ is any line that bisects a family of parallel chords. 
 The parallel chords will also be parallel to the ¦PZ P,Zminus¦tangents¦¦ where the diameter meets the conic.
 <br><br>
 For an ¦orbit¦ellipse¦¦ or hyperbola, this simplifies to any chord passing through the conic's ¦C¦center¦¦.
-For a parabola, this simplifies to any line tangent to the parabola’s axis of symmetry.
 <br><br>
 Move the ¦GP¦diameter¦¦ with ¦P¦¦.<br>
 Change the ellipse's eccentricity with ¦A¦¦.
@@ -74,11 +73,29 @@ Change the ellipse's eccentricity with ¦A¦¦.
 	"logic_phaseCaption" : "Glossary"
 }
 *..*
-In Newton’s time, a ¦GP¦<em>diameter</em>¦¦ of a ¦orbit¦conic¦¦ is any line that bisects a series of parallel chords. 
+In Newton’s time, a ¦GP¦<em>diameter</em>¦¦ of a ¦orbit¦conic¦¦ is any line that bisects a family of parallel chords. 
 The parallel chords will also be parallel to the ¦PZ P,Zminus¦tangents¦¦ where the diameter meets the conic.
 <br><br>
 For an ellipse or ¦orbit¦hyperbola¦¦, this simplifies to any chord passing through the conic's ¦C¦center¦¦.
-For a parabola, this simplifies to any line tangent to the parabola’s axis of symmetry.
+<br><br>
+Move the ¦GP¦diameter¦¦ with ¦P¦¦.<br>
+Change the ellipse's eccentricity with ¦A¦¦.
+
+
+
+
+*::*claim|english
+{
+	"menuCaption" : "Text",
+	"subessay" : "diameter-parabola",
+    "subessayCaption" : "diameter (parabola)",
+	"logic_phaseCaption" : "Glossary"
+}
+*..*
+In Newton’s time, a ¦GP¦<em>diameter</em>¦¦ of a ¦orbit¦conic¦¦ is any line that bisects a family of parallel chords. 
+The parallel chords will also be parallel to the ¦PZ P,Zminus¦tangent¦¦ where the diameter meets the conic.
+<br><br>
+For a ¦orbit¦parabola¦¦, this simplifies to any line parallel to the parabola’s ¦A,AA¦axis of symmetry¦¦.
 <br><br>
 Move the ¦GP¦diameter¦¦ with ¦P¦¦.<br>
 Change the ellipse's eccentricity with ¦A¦¦.
@@ -90,7 +107,7 @@ Change the ellipse's eccentricity with ¦A¦¦.
 {
 	"menuCaption" : "Text",
 	"subessay" : "latus-rectum",
-    "subessayCaption" : "latus rectum",
+    "subessayCaption" : "latus rectum (ellipse and hyperbola)",
 	"logic_phaseCaption" : "Glossary"
 }
 *..*
@@ -148,8 +165,6 @@ Equivalently,
   </mrow>
 </math><mtext>.</mtext></span>
  <br><br>
-For parabolas, the latus rectum for a particular point is 4 times the distance from that point to the focus.
- <br><br>
 When Newton refers to the <em>¦L,LL¦principal latus rectum¦¦</em>, 
 he’s referring to the latus rectum corresponding to a 
 ¦AA¦<em>principal vertex</em>¦¦ of the conic (what we now call simply a <em>vertex</em>). 
@@ -158,6 +173,69 @@ which is a ¦L,LL¦chord¦¦ passing through a ¦S¦focus¦¦ perpendicular to t
 <br><br>
 Move the ¦GP DK¦diameters¦¦ with ¦P¦¦.<br>
 Change the ellipse's eccentricity with ¦A¦¦.
+
+
+
+
+*::*claim|english
+{
+	"menuCaption" : "Text",
+	"subessay" : "latus-rectum-parabola",
+    "subessayCaption" : "latus rectum (parabola)",
+	"logic_phaseCaption" : "Glossary"
+}
+*..*
+ In Newton’s time, a <em>latus rectum</em> was a magnitude corresponding to a particular ¦P¦point¦¦ on a conic.
+ <br><br>
+That point determines a ¦GP¦diameter¦¦ on a ¦orbit¦parabola¦¦. Apollonius defined the latus rectum 
+for a particular ¦P¦point¦¦ on a ¦orbit¦parabola¦¦ as satisfying the relationship that the square of an ¦Qv¦ordinate¦¦ to the ¦GP¦diameter¦¦ equals the latus rectum
+times the ¦Pv¦portion¦¦ of the ¦GP¦diameter¦¦ up to the ¦Qv¦ordinate¦¦.
+In this diagram, the latus rectum
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <msub>
+    <mi>L</mi>
+    <mi>p</mi>
+  </msub>
+</math>
+for point ¦P¦¦ satisfies the equation 
+
+<!--  Q𝑣² = Lp x P𝑣 -->
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mrow>
+    <msup>
+      <mi>¦Qv¦Q𝑣¦¦</mi>
+      <mn>2</mn>
+    </msup>
+    <mo linebreak="nobreak">=</mo>
+    <msub><mi>L</mi><mi>p</mi></msub>
+    <mo linebreak="nobreak">&#215;</mo>
+    <mi>¦Pv¦P𝑣¦¦</mi>
+  </mrow>
+</math>.
+Equivalently,
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow><msub><mi>L</mi><mi>p</mi></msub><mo>=</mo>
+<mfrac>
+    <mrow>
+       <msup>
+	       <mi>¦Qv¦Q𝑣¦¦</mi>
+	       <mn>2</mn>
+	   </msup>
+    </mrow>
+<mrow><mi>¦Pv¦P𝑣¦¦</mi></mrow></mfrac></mrow></math>.
+For any given  ¦P¦¦, this value is independent of the location of  ¦Q¦¦ .
+ <br><br>
+ In Lemma 13, Newton asserts the latus rectum for any ¦P¦point¦¦ on a ¦orbit¦parabola¦¦
+is 4 times the distance from that ¦P¦point¦¦ to the ¦S¦focus¦¦.
+ <br><br>
+When Newton refers to the <em>¦L,LL¦principal latus rectum¦¦</em>, 
+he’s referring to the latus rectum corresponding to the
+¦A¦<em>principal vertex</em>¦¦ (which we now call simply the <em>vertex</em>). 
+For all conics, the ¦L,LL¦principal latus rectum¦¦ has the same magnitude as today’s meaning of latus rectum, 
+which is a ¦L,LL¦chord¦¦ passing through a ¦S¦focus¦¦ perpendicular to the ¦A,AA¦axis¦¦.
+<br><br>
+Move the ¦GP¦diameter¦¦ and ¦Qv¦ordinate¦¦ with ¦P¦¦.<br>
+Move just the ¦Qv¦ordinate¦¦ with ¦Q¦¦.
 
 
 

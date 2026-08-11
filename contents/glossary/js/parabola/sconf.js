@@ -135,6 +135,7 @@
         {
             estimatedForceColor,
             proofColor,
+            bodyColor,
             orbit               : bodyColor,
             force : forceColor,
         };
@@ -157,7 +158,8 @@
                 pcolor : bodyColor,
 				letterRotRadius : 28,
                 letterAngle : -124,
- 				cssClass: 'subessay--solution',
+				doPaintPname : false,
+				cssClass: 'subessay--latus-rectum-parabola',
             },
             M : {
                 pcolor : proofColor,
@@ -187,7 +189,7 @@
                 pcolor : proofColor,
                 letterAngle : -45,
                 letterRotRadius : 15,
- 				cssClass: 'subessay--solution',
+ 				cssClass: 'subessay--latus-rectum-parabola',
            },            
             x : {
                 caption : "𝑥",
@@ -197,9 +199,10 @@
 				cssClass: 'subessay--solution',
             },
             S : {
-                pcolor : sunColor,
-                letterAngle : -90,
-                letterRotRadius : 25,
+                //undisplayAlways : true,
+				pcolor : proofColor,
+                doPaintPname : false,
+				cssClass: 'subessay--latus-rectum-parabola',
             },
             P : {
                 pcolor : bodyColor,
@@ -207,17 +210,18 @@
                 draggableY  : true,
             },
             Q : {
-                pcolor : estimatedForceColor,
+                pcolor : proofColor,
                 letterAngle : -90,
                 letterRotRadius : 25,
                 draggableX  : true,
                 draggableY  : true,
-				cssClass: 'subessay--solution subessay--corollary2',
-                conditionalDrag: 'subessay--solution subessay--corollary2',
+				cssClass: 'subessay--latus-rectum-parabola',
+                conditionalDrag: 'subessay--latus-rectum-parabola',
             },
             AA : {
                 undisplayAlways : true,
                 doPaintPname : false,
+                pcolor : bodyColor,
             },
             G : {
                 pcolor : proofColor,
@@ -229,6 +233,7 @@
                 doPaintPname : false,
  				undisplayAlways  : true,
             },
+
 
             // not used but calculated in model-upcreate for P12
             // todo: if splitting P12 from P13 model-upcreate, can delete
@@ -282,45 +287,23 @@
 
         });
 
-		const proofSolution = { pcolor : proofColor,
- 				cssClass: 'subessay--solution', };
+		const showForParabola = { pcolor : proofColor,
+ 				cssClass: 'subessay--diameter-parabola', };
+		const showForLatus = { pcolor : proofColor,
+ 				cssClass: 'subessay--latus-rectum-parabola', };
 
         var linesArray =
         [
-			{ QR : { pcolor : estimatedForceColor,
- 				cssClass: 'subessay--solution subessay--corollary2', }, },
-            { QT : { pcolor : estimatedForceColor,
- 				cssClass: 'subessay--solution subessay--corollary2', }, },
-            { SP : { pcolor : estimatedForceColor,
- 				cssClass: 'subessay--solution logic_phase--corollary', }, },
-            { PM : { pcolor : proofColor,
- 				cssClass: 'subessay--solution', }, },
-            { SM : proofSolution },
-            { GP : proofSolution },
-            { NS : proofSolution },
-            { NP :  proofSolution },
-            { Pv :  proofSolution },
-            { Qv :  proofSolution }, 
-            { Qx :  proofSolution },  
-            { Px :  { pcolor : proofHover }, },
-            { Tx :  { pcolor : proofHover }, },
-            { SA : {  pcolor : proofHover,
- 				cssClass: 'subessay--solution', }, },
-            { xv :  proofSolution },
+            { GP : {pcolor : proofColor} },
+			{ Pv :  showForLatus },
+			{ Qv :  showForLatus }, 
 
             // tangent
-            { 'PR' : { 
-                pcolor : proofColor, 
-                'stroke-width' : 2, 
-                captionShiftNorm : -18,
-				cssClass: 'subessay--solution logic_phase--corollary', }, 
-            },                
-            { 'P,Zminus' : { pcolor : proofColor,
- 				cssClass: 'subessay--solution', }, },
+            { PZ : showForParabola },
+			{ 'P,Zminus' : showForParabola },
 
             // base line
-            { 'S,AA' : { pcolor : proofColor,
- 				cssClass: 'subessay--solution', }, },
+            { 'A,AA' : {pcolor : proofColor} },
 
             { 'L,LL' : { pcolor : supplementHover,
                captionShiftNorm : 22, lposYSugar : 3 }, },

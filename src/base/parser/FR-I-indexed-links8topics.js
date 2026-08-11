@@ -153,9 +153,16 @@
 		if (!url.includes('glossary')) {
 			return false; // No reload needed if not in glossary
 		}
-		const hyperbolaInURL = url.includes('hyperbola');
-		const hyperbolaInSubessayId = subessayId.includes('hyperbola');
-		return hyperbolaInURL ^ hyperbolaInSubessayId; // XOR: true if only one is true
+		const atHyperbola = url.includes('hyperbola');
+		const goingToHyperbola = subessayId.includes('hyperbola');
+		const atParabola = url.includes('parabola');
+		const goingToParabola = subessayId.includes('parabola');
+		const atEllipse = !atHyperbola && !atParabola;
+		const goingToEllipse = !goingToHyperbola && !goingToParabola;
+		return !(atHyperbola && goingToHyperbola) &&
+			   !(atParabola && goingToParabola) &&
+			   !(atEllipse && goingToEllipse);
+		//return atHyperbola ^ goingToHyperbola; // XOR: true if only one is true
 	}
 
     ///emulates user-click and first-user-click
