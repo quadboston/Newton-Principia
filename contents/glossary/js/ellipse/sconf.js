@@ -170,7 +170,7 @@
                 pos: posC,
                 letterAngle : -99,
                 letterRotRadius : 35,
-				cssClass: 'subessay--diameter subessay--latus-rectum subessay--conics',
+				cssClass: 'subessay--conjugatediameter subessay--diameter subessay--latus-rectum subessay--conics',
             },
             E : {
                 pcolor : proofColor,
@@ -386,11 +386,11 @@
                 captionShiftNorm : 22, lposYSugar : 3
 			}, },
 
-            { 'P,Zminus' : { pcolor : proofHover,
-				cssClass: 'subessay--diameter',
+            { 'P,Zminus' : { pcolor : proofColor,
+				cssClass: 'subessay--conjugatediameter subessay--diameter',
 			 }, },
-            { 'PZ' : { pcolor : proofHover,
-				cssClass: 'subessay--diameter',
+            { 'PZ' : { pcolor : proofColor,
+				cssClass: 'subessay--conjugatediameter subessay--diameter',
 			 }, },
             { 'PR' : { pcolor : proofColor,
 				cssClass: 'subessay--goal logic_phase--proof',

@@ -4,7 +4,7 @@
 
     function lemmaConfig()
     {
-        var sm = '../../glossary/js/'; //study model path
+        var sm = '../../glossary/js/ellipse/'; //study model path
         return {
             codesList :
             [

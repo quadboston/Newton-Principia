@@ -244,10 +244,11 @@
                         //if topicId keyName is missed, then an empty object created
                         //ccc( 'FR II, set low_tpID into lowtpid_2_glocss8anchorRack' );
                         if( !has( lowtpid_2_glocss8anchorRack, low_tpID ) ){
-                            ////todm: add this warning to GUI:
-                            ccc( 'Helper: text topic "'+low_tpID +'" ' +
-                                 'is missed in js-code. '
-                            );
+                            if (!window.location.href.includes('glossary')) {
+								ccc( 'Helper: text topic "'+low_tpID +'" ' +
+									'is missed in js-code. '
+								);
+							}
                             //for this keyName, 'fixed-colors'
                             //is a flag and is = 'undefined',
                             //don't forget lowtpid_2_glocss8anchorRack is in topics.lowtpid_2_glocss8anchorRack
