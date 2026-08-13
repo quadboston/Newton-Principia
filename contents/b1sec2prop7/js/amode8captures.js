@@ -34,7 +34,6 @@
         rg[ 'S,nonSolvablePoint' ].undisplay = true;
         rg[ 'nonSolvablePoint' ].undisplay = true;
 
-
         rg.SQ.undisplay                 = true;
         rg.curvatureCircle.undisplay    = true;
         rg.PC.undisplay                 = true;
@@ -172,7 +171,6 @@
             );
         } else if (subessay === 'corollary3') {
             showOnly(
-                'A',
                 'Gcol2',
                 'P',
                 'Rcol2',
@@ -184,6 +182,4 @@
             );
         }
     }
-
 }) ();
-

@@ -13,7 +13,23 @@
 
 *::*proof|latin
 {
-  "menuCaption" : "Latin"
+  "menuCaption" : "Latin",
+  "subessayCaption" : "[<i>First solution</i>]",
+  "subessay" : "solution"
+}
+*..*
+<img src="contents/b1sec3prop12/img/latin.png" style="width:100%">
+<br><br>
+<div book-reference-id="latin-on-e-rara"></div>
+
+
+
+
+*::*proof|latin
+{
+  "menuCaption" : "Latin",
+  "subessayCaption" : "<i>Another solution</i>",
+  "subessay" : "another-solution"
 }
 *..*
 <img src="contents/b1sec3prop12/img/latin.png" style="width:100%">
