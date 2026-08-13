@@ -18,7 +18,7 @@
 * Proposition 12
 	* submenu and diagram corresponding to application of proposition 6, corollary 5
 * Glossary
-	* entries for conjugate diameters (hyperbole), diameter (hyperbole), diameter (parabola), latus rectum (parabola)
+	* entries for conjugate diameters (hyperbola), diameter (hyperbola), diameter (parabola), latus rectum (parabola)
 * *Conics* reference
 	* entry for III.48 (ellipse, __hyperbola__)
 
