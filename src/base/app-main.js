@@ -20,11 +20,7 @@ const {
                 "opacity :0; \n" +
             "} \n" +
             "html body { \n" +
-
-            //duplicate with css file ... dom-roots.css
-            //"    height : 100vh \n" +
             "    opacity :1; \n" +
-            "    transition  :opacity 0.4s ease-in-out; \n" +
             "} \n"
         );
     //======================================================

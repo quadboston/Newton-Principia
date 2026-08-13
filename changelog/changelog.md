@@ -1,14 +1,26 @@
 # Change Log
 
+## 2026-8-¿15? (0.9.7)
+### Improved
+* General
+	* models load faster
+### Added
+* Proposition 13
+	* submenu and diagram corresponding to application of proposition 6, corollary 5
+* *Conics* reference
+	* entry for III.48 (parabola)
+
 ## 2026-8-1 (0.9.6)
 ### Improved
 * Proposition 10
 	* graph assumes constant BC regardless of AC
 ### Added
+* Proposition 12
+	* submenu and diagram corresponding to application of proposition 6, corollary 5
 * Glossary
 	* entries for conjugate diameters (hyperbole), diameter (hyperbole), diameter (parabola), latus rectum (parabola)
 * *Conics* reference
-	* entry for III.48
+	* entry for III.48 (ellipse, __hyperbola__)
 
 ## 2026-7-12 (0.9.5)
 ### Improved
