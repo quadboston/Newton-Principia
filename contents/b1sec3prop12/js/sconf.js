@@ -232,7 +232,7 @@
             D : {
                 pcolor : proofColor,
                 letterRotRadius : 25,
-                letterAngle : 135,
+                letterAngle : 125,
 				cssClass: 'subessay--solution',
             },
             K : {
@@ -242,8 +242,8 @@
             },
             F : {
                 pcolor : proofColor,
-                letterRotRadius : 20,
-                letterAngle : 135,
+                letterRotRadius : 24,
+                letterAngle : 175,
 				cssClass: 'subessay--solution',
             },
             v : {
