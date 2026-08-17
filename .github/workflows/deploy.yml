@@ -32,6 +32,7 @@ jobs:
           mkdir -p Newton-Principia
           mv index.prod.html Newton-Principia/index.html
           mv prod Newton-Principia/prod
+          cp -r contents Newton-Principia/contents
 
       - name: Write CNAME for custom domain
         run: echo "sciencehike.com" > CNAME
