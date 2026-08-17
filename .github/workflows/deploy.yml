@@ -30,6 +30,7 @@ jobs:
       - name: Move output into Newton-Principia/ folder
         run: |
           mkdir -p Newton-Principia
+          rsync -a --exclude='.git' --exclude='.github' --exclude='deploy' --exclude='Newton-Principia' ./ Newton-Principia/
           mv index.prod.html Newton-Principia/index.html
           mv prod Newton-Principia/prod
 
