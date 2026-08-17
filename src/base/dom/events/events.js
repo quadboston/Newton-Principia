@@ -59,16 +59,7 @@
 
     function fullResize()
     {
-        //.todm not the best architecture
-        //.apparently
-            //.application part
-            //.solves draggee-point-arrows-misplacement
-            //.after resize
-        //!!'doDividorSynch'
-        ///this statement is inside of this routine: sapp.up-create();
-        haf( wrkwin, "start8finish_media8Ess8Legend_resize__upcreate" )(
-            null, !!'doDividorSynch'
-        );
+        wrkwin.start8finish_media8Ess8Legend_resize__upcreate(null, !!'doDividorSynch');
     }
 
 
