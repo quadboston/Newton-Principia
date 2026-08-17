@@ -149,9 +149,7 @@
 				rg.H.pos[0] = sconf.ellipseFocus;
 			}
 
-            //Don't reset distance between Q and P
-            stdMod.rebuilds_orbit(ssD.Dt); // draws ellipse
-
+            stdMod.rebuilds_orbit(); // draws ellipse
             stdMod.model8media_upcreate(); // repositions points
         };
     };

@@ -69,7 +69,7 @@
 
     function calculateMaxGraphValues() {
         //Calculate initial value on page load
-        stdMod.rebuilds_orbit(null, false);
+        stdMod.rebuilds_orbit(false);
         //TEMP Should the following be moved to eg. "builds-orbit-data-graph.js"
         ssD.estimatedForceMaxInitial = ssD.estimatedForceMaxCurrent;
 
@@ -78,7 +78,7 @@
         //therefore temporarily adjust it and calculate the maximum forces.
         const eccentricityStored = sconf.eccentricity;
         setEccentricityAndRelated(sconf.eccentricityMax);
-        stdMod.rebuilds_orbit(null, true);
+        stdMod.rebuilds_orbit(true);
 
         //Reset eccentricity
         setEccentricityAndRelated(eccentricityStored);

@@ -1,8 +1,6 @@
 ( function() {
-    var { mat, stdMod, sconf, } = window.b$l.apptree({ stdModExportList : {
-            recreates_q2xy,
-            calculateMaxGraphValues,
-        }, });
+    var { mat, stdMod, sconf, } = window.b$l.apptree({
+        stdModExportList : { recreates_q2xy, }, });
     return;
 
 
@@ -38,11 +36,5 @@
             return q_radius - q0; // this is the original q before offset
         }
     }
-
-
-    function calculateMaxGraphValues() {
-        //No adjustments needed, just calculate maximum forces.
-        stdMod.rebuilds_orbit(null, true);
-    };
 }) ();
 

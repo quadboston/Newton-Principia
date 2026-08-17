@@ -31,9 +31,7 @@
             newEccentricity = Math.max(eMin, Math.min(eMax, newEccentricity));
 
             stdMod.establishesEccentricity(newEccentricity, false);
-
-            //Don't reset distance between Q and P
-            stdMod.rebuilds_orbit(ssD.Dt);
+            stdMod.rebuilds_orbit();
 
             return true;
         };
