@@ -33,6 +33,9 @@ jobs:
           mv index.prod.html Newton-Principia/index.html
           mv prod Newton-Principia/prod
           cp -r contents Newton-Principia/contents
+          cp -r contents Newton-Principia/engine-img
+          cp -r contents Newton-Principia/src
+          cp -r contents Newton-Principia/changelog
 
       - name: Write CNAME for custom domain
         run: echo "sciencehike.com" > CNAME
