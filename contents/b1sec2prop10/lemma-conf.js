@@ -21,6 +21,7 @@
             [
                 'txt/latin.txt',
                 'txt/cohen.txt',
+				'txt/video.txt',
             ],
         };
     }

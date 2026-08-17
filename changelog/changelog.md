@@ -1,10 +1,12 @@
 # Change Log
 
-## 2026-8-¿15? (0.9.7)
+## 2026-8-17 (0.9.7)
 ### Improved
 * General
 	* models load faster
 ### Added
+* Proposition 10
+	* video: 1st solution talk
 * Proposition 13
 	* submenu and diagram corresponding to application of proposition 6, corollary 5
 * *Conics* reference
