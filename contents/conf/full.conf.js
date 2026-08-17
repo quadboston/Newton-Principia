@@ -1,7 +1,7 @@
 // //\\// site-wide conf
 (function() {
     var {
-        ns, url2conf,userOptions,
+        ns, url2conf,
         fconf,
     } = window.b$l.apptree({
     });
@@ -23,7 +23,6 @@
     //====================================================
     to_fconf =
     {
-        
         DRAG_HANDLE_HALFHOTSPOT : 15, // size of spinner
         hideSingleItemContentMenus : true, //todm fails to work at once
         SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM : false,
@@ -58,9 +57,7 @@
         MODEL_MIN_WIDTH: 300, //when dragging
         RIGHT_WORKAREA_MARGIN: 0.015, //fraction
 
-
-        ESSAY_FRACTION_IN_WORKPANE : 0.5, //0.33,  //default
-        //ESSAY_FRACTION_IN_WORKPANE : 0.9, //for preliminaries
+        ESSAY_FRACTION_IN_WORKPANE : 0.33,  //default
 
         //at this value or lower, device is given mobile layout,
         //resulting in vertically stacked text-model-data areas
@@ -142,15 +139,10 @@
             putTextDescriptionIntoTopNavigationArrows : false,
         },
     };
-
-    
     //====================================================
     // \\// put configuration parameters here
     //====================================================
 
-
     ///spawns config to its final place
     Object.assign( fconf, to_fconf );
-
 }) ();
-
