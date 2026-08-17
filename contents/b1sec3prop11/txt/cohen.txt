@@ -2,6 +2,7 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
+  "subessayCaption" : "[<i>Problem</i>]",
   "logic_phaseCaption" : "Problem 6"
 }
 *..*
@@ -14,6 +15,76 @@ it is required to find the law of the centripetal
 
 
 
+*::*claim|english
+{
+  "menuCaption" : "Text",
+  "subessayCaption" : "[<i>Applying prop. 6, corol. 5</i>]",
+  "subessay" : "goal",
+  "logic_phaseCaption" : "Problem 6"
+}
+*..*
+The force on ¦P¦¦ is <br>inversely
+<math>
+  <mo>∝</mo>
+  <munder>
+    <mo>lim</mo>
+    <mrow>
+      <mi>¦Q¦¦</mi>
+      <mo>→</mo>
+      <mi>¦P¦¦</mi>
+    </mrow>
+  </munder>
+  <mfrac>
+    <mrow>
+      <msup>
+        <mi>¦SP¦¦</mi>
+        <mn>2</mn>
+      </msup>
+      <mo>×</mo>
+      <msup>
+        <mi>¦QT¦¦</mi>
+        <mn>2</mn>
+      </msup>
+    </mrow>
+    <mrow>
+      <mi>¦QR¦¦</mi>
+    </mrow>
+  </mfrac>
+</math>
+<br>
+Or,<br>
+The force on ¦P¦¦
+<math>
+  <mo>∝</mo>
+  <munder>
+    <mo>lim</mo>
+    <mrow>
+      <mi>¦Q¦¦</mi>
+      <mo>→</mo>
+      <mi>¦P¦¦</mi>
+    </mrow>
+  </munder>
+  <mfrac>
+    <mrow>
+      <mi>¦QR¦¦</mi>
+    </mrow>
+    <mrow>
+      <msup>
+        <mi>¦SP¦¦</mi>
+        <mn>2</mn>
+      </msup>
+      <mo>×</mo>
+      <msup>
+        <mi>¦QT¦¦</mi>
+        <mn>2</mn>
+      </msup>
+    </mrow>
+  </mfrac>
+</math>
+
+
+
+
 *::*proof|english
 {
   "menuCaption" : "Text",
@@ -22,15 +93,18 @@ it is required to find the law of the centripetal
   "logic_phaseCaption" : "Solutions"
 }
 *..*
-Let ¦S¦¦ be a focus of the ¦orbit¦ellipse¦¦. Draw ¦SP¦¦ cutting both the diameter ¦DK¦¦
-of the ¦orbit¦ellipse¦¦ in ¦E¦¦ and the ordinate ¦Qv¦Q𝑣¦¦ in ¦x¦𝑥¦¦, and complete the parallelogram
+Let ¦S¦¦ be a focus of the ¦orbit¦ellipse¦¦. Draw ¦SP¦¦ cutting both the diameter ¦CD CK¦DK¦¦
+of the ¦orbit¦ellipse¦¦ in ¦E¦¦ and the 
+<a href="?conf=sappId=glossary,logic_phaseId=claim,aspectId=english,subessayId=ordinate">ordinate</a>
+¦Qv¦Q𝑣¦¦ in ¦x¦𝑥¦¦, and complete the parallelogram
 ¦Qx xP PR QR¦Q𝑥PR¦¦. It is evident that ¦EP¦¦ is equal to the semiaxis major ¦AC¦¦ because when
-line ¦HI¦¦ is drawn parallel to ¦EC¦¦ from the other focus ¦H¦¦ of the ¦orbit¦ellipse¦¦, ¦ES¦¦
+line ¦HI¦¦ is drawn parallel to ¦CE¦EC¦¦ from the other focus ¦H¦¦ of the ¦orbit¦ellipse¦¦, ¦ES¦¦
 and ¦EI¦¦ are equal because ¦CS¦¦ and ¦CH¦¦ are equal; so that ¦EP¦¦ is the half-sum
 of ¦SP¦PS¦¦ and ¦PI¦¦, that is (because ¦HI¦¦ and ¦PR¦¦ are parallel and angles ¦PI PR¦IPR¦¦ and
-¦PH P,Zminus¦HPZ¦¦ are equal), the half-sum of ¦SP¦PS¦¦ and ¦PH¦¦ (which taken together equal
+¦PH PZ¦HPZ¦¦ are equal), the half-sum of ¦SP¦PS¦¦ and ¦PH¦¦ (which taken together equal
 the whole axis 2¦AC¦¦). Drop ¦QT¦¦ perpendicular to ¦SP¦¦, and if ¦L,LL¦L¦¦ denotes the
-principal ¦L,LL¦latus rectum¦¦ of the ¦orbit¦ellipse¦¦ 
+¦L,LL *href*?conf=sappId=glossary,logic_phaseId=claim,aspectId=english,subessayId=latus-rectum¦principal latus rectum¦¦
+of the ¦orbit¦ellipse¦¦ 
 
 <!-- (or 2BC² / AC) -->
 <math><mrow>
@@ -48,20 +122,20 @@ as ¦QR¦¦ to ¦Pv¦P𝑣¦¦, that is, as ¦EP¦PE¦¦ or ¦AC¦¦ to ¦PC¦¦
 ¦L,LL¦L¦¦ × ¦Pv¦P𝑣¦¦ will be to ¦vG¦G𝑣¦¦ × ¦Pv¦𝑣P¦¦ as
 ¦L,LL¦L¦¦ to ¦vG¦G𝑣¦¦; and
  ¦vG¦G𝑣¦¦ × ¦Pv¦𝑣P¦¦ will be to ¦Qv¦Q𝑣¦¦²
- as ¦PC¦¦² to ¦DC¦CD¦¦²; and
+ as ¦PC¦¦² to ¦CD¦¦²; and
 (<a href="?conf=sappId=b1sec1lemma7,logic_phaseId=corollary,aspectId=english">by lem. 7, corol. 2</a>)
 the ratio of ¦Qv¦Q𝑣¦¦² to ¦Qx¦Q𝑥¦¦²,
 with the points ¦Q¦¦ and ¦P¦¦ coming together, is the
 ratio of equality; and ¦Qx¦Q𝑥¦¦² or ¦Qv¦Q𝑣¦¦² is to ¦QT¦¦² as ¦EP¦¦² to ¦PF¦¦²,
 that is, as ¦AC¦CA¦¦² to
-¦PF¦¦² or (by lem. 12) as ¦DC¦CD¦¦² to ¦BC¦CB¦¦².
+¦PF¦¦² or (by lem. 12) as ¦CD¦¦² to ¦BC¦CB¦¦².
 And when all these ratios are combined, ¦L,LL¦L¦¦ × ¦QR¦¦ will be to ¦QT¦¦²
  as ¦AC¦¦ × ¦L,LL¦L¦¦ × ¦PC¦¦²
- × ¦DC¦CD¦¦²
+ × ¦CD¦¦²
 , or as 2¦BC¦CB¦¦²
  × ¦PC¦¦²
- × ¦DC¦CD¦¦²
-to ¦PC¦¦ × ¦vG¦G𝑣¦¦ × ¦DC¦CD¦¦²
+ × ¦CD¦¦²
+to ¦PC¦¦ × ¦vG¦G𝑣¦¦ × ¦CD¦¦²
  × ¦BC¦CB¦¦²
 , or as 2¦PC¦¦ to ¦vG¦G𝑣¦¦. But with the points ¦Q¦¦ and ¦P¦¦
 coming together, 2¦PC¦¦ and ¦vG¦G𝑣¦¦ are equal. Therefore, ¦L,LL¦L¦¦ × ¦QR¦¦ and ¦QT¦¦², which
@@ -107,8 +181,8 @@ The ¦force¦¦ which tends toward ¦C¦the center¦¦ of ¦orbit¦the ellipse¦
 href="?conf=sappId=b1sec2prop10,logic_phaseId=corollary,aspectId=english,subessayId=corollary1">by 
 prop. 10, corol. 1</a>)
 as the distance ¦PC¦CP¦¦
-of the body from the ¦C¦center C¦¦ of the ¦orbit¦ellipse¦¦; hence, if ¦EC¦CE¦¦ is drawn parallel to
-the tangent ¦PR¦¦ of the ¦orbit¦ellipse¦¦ and if ¦EC¦CE¦¦ and ¦SP¦PS¦¦ meet at ¦E¦¦, then the force by
+of the body from the ¦C¦center C¦¦ of the ¦orbit¦ellipse¦¦; hence, if ¦CE¦¦ is drawn parallel to
+the tangent ¦PR¦¦ of the ¦orbit¦ellipse¦¦ and if ¦CE¦¦ and ¦SP¦PS¦¦ meet at ¦E¦¦, then the force by
 which the same ¦P¦body P¦¦ can revolve around any other ¦S¦point S¦¦ of the ¦orbit¦ellipse¦¦
 will
 (<a 
@@ -134,7 +208,7 @@ and therefore ¦EP¦PE¦¦ is given, this force will be inversely as ¦SP¦¦².
 *::*comment|english
 {
   "menuCaption" : "Text",
-  "logic_phaseCaption" : "Newton's Comment"
+  "logic_phaseCaption" : "Comment"
 }
 *..*
 This solution could be extended to the parabola and the hyperbola as

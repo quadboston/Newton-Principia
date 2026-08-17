@@ -1,5 +1,5 @@
 ( function() {
-    var { sconf, paste, fconf, rg, topicColors_repo } =
+    var { sconf, paste, fconf, topicColors_repo } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -13,15 +13,6 @@
         //----------------------------------
         // \\// study model parameters
         //----------------------------------
-
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        sconf.enableStudylab            = false;
-        //sconf.rgShapesVisible           = true;
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
 
         //----------------------------------
         // //\\ paper diagram parameters

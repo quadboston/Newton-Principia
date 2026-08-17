@@ -1,6 +1,8 @@
 ( function() {
-    var { mat, stdMod, sconf, } 
-        = window.b$l.apptree({ stdModExportList : { recreates_q2xy, }, });
+    var { stdMod, sconf, } = window.b$l.apptree({ stdModExportList : {
+        recreates_q2xy,
+        calculateMaxGraphValues,
+    }, });
     return;
 
 
@@ -12,8 +14,9 @@
         const B     = sconf.ellipseB;
         const fi0   = sconf.orbit_q_start;
         stdMod.q2xy = q2xy;
+        stdMod.forceCorrectionScale = forceCorrectionScale;
         return;
-        
+
         function q2xy( q )
         {
             q += fi0;
@@ -22,6 +25,15 @@
                 B * Math.sin( q ) + center[1],
             ];
         }
+
+        function forceCorrectionScale() {
+            return 2 * B * B * A * A;
+        }
+    }
+
+
+    function calculateMaxGraphValues() {
+        //No adjustments needed, just calculate maximum forces.
+        stdMod.rebuilds_orbit(true);
     }
 }) ();
-

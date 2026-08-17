@@ -27,15 +27,15 @@
         const op        = sconf.orbitParameters;
         var cosAxis     = Math.cos( op.mainAxisAngle );
         var sinAxis     = Math.sin( op.mainAxisAngle );
-        const fun       = rg[ 'approximated-curve' ].t2xy; //returns [x, y], defined in makes-orbit.js
+        const pointAt       = rg[ 'approximated-curve' ].t2xy; //returns [x, y], defined in makes-orbit.js
         const q         = rg.P.q; //PparQ (position of P,Q,R on conic), gets set to initial, then updated with sliders Pv and f
         
-        const rr0       = fun( q ); // rg.P.pos
-        const rrc       = rg.S.pos; // rg.S.pos is [0,0] as defined in amode8captures.js
+        const rr0       = pointAt( q ); // rg.P.pos
+        const sunXY       = rg.S.pos; // rg.S.pos is [0,0] as defined in amode8captures.js
         //nspaste( rg.P.pos, rr0 ); // rg.P.pos does not move   
 
         // **api-input---plane-curve-derivatives
-        var diff = mcurve.planeCurveDerivatives({ fun, q, rrc, });
+        var diff = mcurve.planeCurveDerivatives({ pointAt, q, sunXY, });
         var {
             projectionOfCenterOnTangent,
             uu,
@@ -51,13 +51,13 @@
         rg.H.pos[0]     = 2*rg.C.pos[0];
         rg.H.pos[1]     = 2*rg.C.pos[1];
         
-        nspaste( rg.A.pos, fun( Math.PI ) );
+        nspaste( rg.A.pos, pointAt( Math.PI ) );
         
         ////hyperbola or ellipse  
         if( amode.subessay === 'corollary1' || amode.subessay === 'corollary2'  ) {
             nspaste( rg.D.pos, rg.P.pos );
         } else {
-            nspaste( rg.D.pos, fun( 0 ) );
+            nspaste( rg.D.pos, pointAt( 0 ) );
         } 
 
         nspaste( rg.K.pos, mat.dropPerpendicular( rg.S.pos, rg.H.pos, rg.P.pos ) );
@@ -72,9 +72,9 @@
         
         // point Q
         var {
-            rr, 
+            planetXY, 
         } = deltaT_2_arc();
-        nspaste( rg.Q.pos, rr );
+        nspaste( rg.Q.pos, planetXY );
 
         // dragger R
         {
@@ -106,24 +106,24 @@
         //=============================================================
         {
             ////sample orbit
-            let fun = rg[ 'approximated-curve-sample' ].t2xy;
+            let pointAt = rg[ 'approximated-curve-sample' ].t2xy;
             var {
-                rr,
+                planetXY,
                 uu,
                 ee,
                 projectionOfCenterOnTangent,
                 sinOmega,
                 cosOmega,
             } = mcurve.planeCurveDerivatives({
-                fun,
+                pointAt,
                 q   : rg.p.q,
-                rrc,
+                sunXY,
             });
             
             // only set position of p once, it does not move
             if( amode.subessay !== subessay ) {
                 subessay = amode.subessay;
-                nspaste( rg.p.pos, rr );
+                nspaste( rg.p.pos, planetXY );
             }
 
             //sample speed vector
@@ -137,13 +137,13 @@
             }
             //sample's decorational dt arc
             var {
-                rr,
+                planetXY,
             } = mcurve.planeCurveDerivatives({
-                fun,
+                pointAt,
                 q : rg.p.q + sop.sagittaDelta_q_initial,
-                rrc,
+                sunXY,
             });
-            nspaste( rg.q.pos, rr );
+            nspaste( rg.q.pos, planetXY );
             rg.p.abs = mat.unitVector( rg.p.pos ).abs;
         }
 
@@ -184,17 +184,17 @@
         const INTEGRATION_STEPS = 1000;
 
         op          = sconf.orbitParameters;
-        const rrc   = rg.S.pos;
-        const fun   = rg[ 'approximated-curve' ].t2xy;
+        const sunXY   = rg.S.pos;
+        const pointAt   = rg[ 'approximated-curve' ].t2xy;
         var q       = rg.P.q;
         var {
             v,
             sinOmega,
             cosOmega,
         } = mcurve.planeCurveDerivatives({
-            fun,
+            pointAt,
             q,
-            rrc,
+            sunXY,
         });
         var udir = op.cosOmega * cosOmega + op.om * sinOmega;
         //path step
@@ -202,11 +202,11 @@
         for( var it = 0; it <= INTEGRATION_STEPS; it++ ) {
             var {
                 v, //=ds_by_dfi
-                rr,
+                planetXY,
             } = mcurve.planeCurveDerivatives({
-                fun,
+                pointAt,
                 q,
-                rrc,
+                sunXY,
             });
             //assumes central force, i.e. constant sectorial speed
             //var Kepler_v_instant = op.Kepler_v * sectorialSpeed0 / staticSectorialSpeed_rrrOnUU;
@@ -215,9 +215,8 @@
             q += intervalQ;
         }
         return {
-            rr,
+            planetXY,
             sagittaDeltaQ : q - rg.P.q,
         };
     }
-
 }) ();

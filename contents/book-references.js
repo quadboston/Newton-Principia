@@ -5,7 +5,6 @@
     });
 
 
-
     ssD.bookReferences =
     {
         ////no unescaped special chars between backticks `...`
@@ -31,11 +30,6 @@
                 </div>
             </div>
         `,
-        /*
-        'latin---inline-style' : `
-            font-size: 11px;
-        `,
-        */
 
         Donahue : `
             <div class="isclosed">
@@ -50,16 +44,25 @@
                 </div>
             </div>
         `,
-        /*
-        'Donahue---inline-style' : `
-            font-size: 11px;
+
+        Densmore : `
+            <div class="isclosed">
+                <div class="trigger-option">
+                    Newton's <i>Principia</i>: The Centeral Argument
+                </div>
+                <div class="trigger-content">
+                    Dana Densmore and William H. Donahue (2003, 2010).<br>
+                    <a href="https://www.greenlion.com/books/NewtonPrincipia.html">
+                    <i>Newton’s Principia: The Central Argument</i> (3rd ed.)</a><br>
+                    Green Lion Press.<br>
+                </div>
+            </div>
         `,
-        */
 
         'Bernard-Cohen-Anne-Whitman' : `
             <div class="isclosed">
                 <div class="trigger-option">
-                    The <i>Principia</i>, Cohen translation
+                    The <i>Principia</i>, Cohen and Whitman translation
                 </div>
                 <div class="trigger-content">
                     Cohen, I. B., Whitman, A., & Budenz, J. (1999).<br>
@@ -70,22 +73,19 @@
             </div>
             `,
 
-
-        'Bernard-Cohen-Anne-Whitman-without-Guide' : `
+			'Bernard-Cohen-guide' : `
             <div class="isclosed">
                 <div class="trigger-option">
-                    <a href="https://www.jstor.org/stable/10.1525/j.ctt9qh28z">
-                       NEWTON, THE <i>PRINCIPIA</i></a>
+                    A Guide to Newton's <i>Principia</i>
                 </div>
                 <div class="trigger-content">
-                    <i>Mathematical Principles of Natural Philosophy</i><br>
-                    A New Translation<br>
-                    I. Bernard Cohen and Anne Whitman<br>
+                    Cohen, I. B., Whitman, A., & Budenz, J. (1999).<br>
+                    <a href="https://www.jstor.org/stable/10.1525/j.ctt9qh28z">
+                    <i>The Principia: Mathematical Principles of Natural Philosophy</i> (1st ed.)</a>.<br>
+                    University of California Press.<br>
                 </div>
             </div>
             `,
 
     }
-
 }) ();
-

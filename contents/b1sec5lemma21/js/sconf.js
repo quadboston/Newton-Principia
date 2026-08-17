@@ -1,5 +1,5 @@
 ( function() {
-    var { eachprop, mat, fapp, fconf, sconf, topicColors_repo, } = 
+    var { mat, fapp, fconf, sconf, topicColors_repo, } = 
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -10,7 +10,6 @@
         // //\\ subapp regim switches
         //====================================================
         sconf.insertDelayedBatch        = true;
-        sconf.enableStudylab            = false;
         //for some standard sliders
         sconf.hideProofSlider           = true; //todo
         //sconf.rgShapesVisible         = true;
@@ -139,10 +138,8 @@
             var O = pp.O;
             var M = pp.M;
             var N = pp.N;
-            var A = pp.A;
             var BC = [ B[0] - C[0], B[1] - C[1] ];
             mod2inn_scale = mat.unitVector(BC).abs;
-            var wwb = ( B[0] - O[0] ) / ( B[0] - C[0] ); //0.6
             //a = 1 - wwb;
             a = 0.435;
 
@@ -177,7 +174,6 @@
             //c cc( 'alpha fraction=' + (alpha/Math.PI).toFixed(3) );
         })();
 
-        let pointRadius = handleRadius;
         let pop = pointsOnPicture;
         var originalPoints =
         {

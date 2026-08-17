@@ -16,10 +16,10 @@
         const sinAxis   = Math.sin( op.mainAxisAngle );
         const q2xy = stdMod.q2xy;
         var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
-        rg.P.pos[0] = Porb.rr[0];
-        rg.P.pos[1] = Porb.rr[1];
+        rg.P.pos[0] = Porb.planetXY[0];
+        rg.P.pos[1] = Porb.planetXY[1];
         var rr0 = rg.P.pos;
-        var rrc = rg.S.pos;
+        var sunXY = rg.S.pos;
         var Qpos = q2xy( Porb.plusQ );
         rg.Q.pos[0] = Qpos[0];
         rg.Q.pos[1] = Qpos[1];
@@ -42,19 +42,20 @@
         nspaste( rg.R.pos,
             mat.linesCross(
                 uu, rr0, //direction, start
-                [rr0[0]-rrc[0], rr0[1]-rrc[1]], rg.Q.pos, //direction, start
+                [rr0[0]-sunXY[0], rr0[1]-sunXY[1]], rg.Q.pos, //direction, start
             )
         );
 
         //T = perp. from Q to radius-vector
-        nspaste( rg.T.pos, mat.dropPerpendicular( rg.Q.pos, rrc, rr0 ) );
+        nspaste( rg.T.pos, mat.dropPerpendicular( rg.Q.pos, sunXY, rr0 ) );
 
-        nspaste( rg.Zminus.pos,
-            mat.linesCross(
-                uu,
+		nspaste( rg.Z.pos,
+            mat.dropLine(
+                1.3,
                 rg.P.pos,
-                [ rg.Q.pos[0]-rg.T.pos[0], rg.Q.pos[1]-rg.T.pos[1], ],
-                rg.T.pos,
+                null,
+                null,
+                uu,
             )
         );
         //================================================
@@ -100,7 +101,7 @@
         //------------------------------------------------
         // //\\ PZminus
         //------------------------------------------------
-        nspaste( rg.Z.pos,
+        nspaste( rg.Zminus.pos,
             mat.dropLine(
                 -1.3,
                 rg.P.pos,
@@ -115,15 +116,20 @@
         //================================================
 
         ////hyperbola or ellipse
-        let D = mat.sm( rg.C.pos, -1, uu );
+		const sqAC = squaredDistance( rg.A, rg.C );
+		const sqBC = squaredDistance( rg.B, rg.C );
+		const sqDiameterConstant = sqAC - sqBC;
+		const SqDC = squaredDistance( rg.P, rg.C ) - sqDiameterConstant;
+		const DC = Math.sqrt(Math.abs(SqDC ));
+        let D = mat.sm( rg.C.pos, -DC, uu );
         nspaste( rg.D.pos, D );    
-        let K = mat.sm( rg.C.pos,  1, uu );
+        let K = mat.sm( rg.C.pos,  DC, uu );
         nspaste( rg.K.pos, K );    
         //is this a numerical glitch in the Book?:
         //nspaste( rg.K.pos, mat.dropLine(  2.13, rg.C.pos, rg.P.pos, null, uu) );
         
         //conjugate diameters and tangents
-        if( "b1sec3prop13" === fconf.sappId ) {
+        if (fconf.sappId === "b1sec3prop13" || fconf.sappId === "glossary") {
             nspaste( rg.G.pos, mat.dropLine(
                 null, rg.P.pos, rg.C.pos, null, null, 0.4 * op.latus ) );
             nspaste( rg.M.pos, mat.linesCross(
@@ -191,4 +197,9 @@
         //=============================================================
     }
 
+	function squaredDistance(xy1, xy2) {
+		var dx = xy1.pos[0] - xy2.pos[0];
+		var dy = xy1.pos[1] - xy2.pos[1];
+		return dx*dx + dy*dy;
+	}
 }) ();

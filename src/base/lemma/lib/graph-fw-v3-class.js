@@ -224,7 +224,7 @@
 	function setColorThreadArray() {
 		let colorThreadArray = [
 			sDomF.getFixedColor( 'force' ),
-			sDomF.getFixedColor( 'estimatedForce' ),
+			sDomF.getFixedColor( 'estimatedForceColor' ),
 		];
 		return colorThreadArray;
 	}
@@ -275,9 +275,9 @@
 							'>Actual</tspan>' +
 							'<tspan> and </tspan>' +
 
-							'<tspan class="tp-estimatedForce tofill tobold hover-width"' +
+							'<tspan class="tofill tobold hover-width"' +
 							//overrides tp machinery
-							' style="fill:'+n2c( 'estimatedForce' ) + '; stroke:' + n2c( 'estimatedForce' ) + ';"' +
+							' style="fill:'+n2c( 'estimatedForceColor' ) + '; stroke:' + n2c( 'estimatedForceColor' ) + ';"' +
 							'>Estimated' +
 							'</tspan>' +
 

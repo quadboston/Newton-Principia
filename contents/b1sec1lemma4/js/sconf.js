@@ -1,5 +1,5 @@
 ( function () {
-    var { sn, nspaste, fapp, fconf, sconf, ssF, stdMod, topicColors_repo, } = 
+    var { sn, nspaste, fapp, sconf, ssF, topicColors_repo, } = 
 	    window.b$l.apptree({ ssFExportList : { init_conf, }, });
     
     var stdL2       = sn('stdL2', fapp );
@@ -98,7 +98,7 @@
         //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
         const {
             given,
-            figure,
+            figureColor,
             widths,
         } = topicColors_repo;
 
@@ -106,7 +106,7 @@
         const predT =
         {
             given,
-            figure,
+            figureColor,
 
             //For a line along the base of the figure.  Used so parallelogram
             //widths can be highlighted, and uses line "AE" and "PT" for the
@@ -114,11 +114,11 @@
             "base"  : widths,
 
             //The figure curves (so they can be highlighted separately)
-            'acE'   : figure,
-            'prT'   : figure,
+            'acE'   : figureColor,
+            'prT'   : figureColor,
 
             //For highlighting the data table
-            'figuresRatio'  : figure,
+            'figuresRatio'  : figureColor,
             'parallelogramsRatio'   : topicColors_repo["inscribed-rectangles"],
 
             //Individual parallelograms (for highlighting)
@@ -173,26 +173,26 @@
         {
             a : {
 				caption: '𝑎',
-                pcolor      : predT.given,
+                pcolor      : predT.figureColor,
                 letterAngle : 45,
                 fontSize : labelFontSize
             },
 
             A : {
-                pcolor      : predT.given,
+                pcolor      : predT.figureColor,
                 letterAngle : -45,
                 fontSize : labelFontSize
             },
 
             E : {
-                pcolor      : predT.given,
+                pcolor      : predT.figureColor,
                 letterAngle : -45,
                 fontSize : labelFontSize
             },
 
             c : {
 				caption: '𝑐',
-                pcolor      : predT.given,
+                pcolor      : predT.figureColor,
                 letterAngle : 45,
                 fontSize : labelFontSize
             },
@@ -200,26 +200,26 @@
 
             p : {
 				caption: '𝑝',
-                pcolor      : predT.given,
+                pcolor      : predT.figureColor,
                 letterAngle : 45,
                 fontSize : labelFontSize
             },
 
             P : {
-                pcolor      : predT.given,
+                pcolor      : predT.figureColor,
                 letterAngle : -45,
                 fontSize : labelFontSize
             },
 
             T : {
-                pcolor      : predT.given,
+                pcolor      : predT.figureColor,
                 letterAngle : -45,
                 fontSize : labelFontSize
             },
 
             r : {
 				caption: '𝑟',
-                pcolor      : predT.given,
+                pcolor      : predT.figureColor,
                 letterAngle : 45,
                 fontSize : labelFontSize
             },
@@ -228,20 +228,20 @@
         var linesArray =
         [
             { AE : {
-                        pcolor : predT.figure,
+                        pcolor : predT.figureColor,
                    },
             },
             { Aa : {
-                        pcolor : predT.figure,
+                        pcolor : predT.figureColor,
                    },
             },
 
             { PT : {
-                        pcolor : predT.figure,
+                        pcolor : predT.figureColor,
                    },
             },
             { Pp : {
-                        pcolor : predT.figure,
+                        pcolor : predT.figureColor,
                    },
             },
         ];
@@ -266,8 +266,4 @@
 
         //fapp.stdL2.setupL2data();
     };
-
-
 }) ();
-
-

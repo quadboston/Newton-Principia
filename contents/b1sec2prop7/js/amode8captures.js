@@ -19,7 +19,9 @@
         //----------------------------------
         rg.curvatureCircle.undisplay = false;
         var media_scale = toreg( 'media_scale' )();
-        rg.media_scale.value = 1;
+        if(!rg.media_scale.value) {
+            rg.media_scale.value = 1;
+        }
         ssF.scaleValue2app( rg.media_scale.value );
 
         //interval of t to construct an arc for
@@ -79,7 +81,7 @@
         modifyDecorationVisibility();
 
         ssD.stashedVisibility = null;
-        stdMod.rebuilds_orbit(ssD.Dt);
+        stdMod.rebuilds_orbit();
         sDomF.detected_user_interaction_effect( 'doShowDiagram' );
         return captured;
     }
@@ -117,10 +119,12 @@
                 'PT',
                 'PV',
                 'PZ',
+				'QL',
                 'QR',
                 'QT',
                 'RL',
                 'SP',
+				'SV',
                 'ZQ',
                 'ZR',
             );
@@ -138,6 +142,7 @@
                 'PY',
                 'PZ',
                 'SP',
+				'SV',
                 'SY'
             );
         } else if (subessay === 'corollary1') {
@@ -162,6 +167,7 @@
                 'Rcol2,P',
                 'Rcol2,Tcol2',
                 'SP',
+				'SV',
                 'Tcol2,V',
             );
         } else if (subessay === 'corollary3') {

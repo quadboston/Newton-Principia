@@ -1,6 +1,6 @@
 ( function() {
-    var { sn, $$, nsmethods, nspaste, nssvg, mcurve, integral, mat, has, fconf,
-        ssF, sData, ssD, stdMod, amode, sconf, rg, toreg, }
+    var { nspaste, integral, mat, fconf,
+        ssD, stdMod, amode, rg, }
             = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
     return;
 
@@ -15,22 +15,19 @@
         const q2xy = stdMod.q2xy;
         var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
         var parQ = Porb.q;
-        rg.P.pos[0] = Porb.rr[0];
-        rg.P.pos[1] = Porb.rr[1];
+        rg.P.pos[0] = Porb.planetXY[0];
+        rg.P.pos[1] = Porb.planetXY[1];
         var rr0 = rg.P.pos;
-        var rrc = rg.S.pos;
+        var sunXY = rg.S.pos;
         var Qpos = q2xy( Porb.plusQ );
         rg.Q.pos[0] = Qpos[0];
         rg.Q.pos[1] = Qpos[1];
 
         // **api-input---plane-curve-derivatives
         var {
-            RC,
-            R,
             uu,
             nn,
         } = Porb;
-        var Rc = R; //curvature radius
 
         //================================================
         // //\\ arc, sagittae and related
@@ -38,18 +35,18 @@
         //R = parallel-projection of Q to tangent
         var wwR = mat.linesCross(
             uu, rr0, //direction, start
-            [rr0[0]-rrc[0], rr0[1]-rrc[1]], rg.Q.pos, //direction, start
+            [rr0[0]-sunXY[0], rr0[1]-sunXY[1]], rg.Q.pos, //direction, start
         );
         rg.R.pos[0] = wwR[0];
         rg.R.pos[1] = wwR[1];
 
         //T = perp. from Q to radius-vector
-        var wwT = mat.dropPerpendicular( rg.Q.pos, rrc, rr0 )
+        var wwT = mat.dropPerpendicular( rg.Q.pos, sunXY, rr0 )
         rg.T.pos[0] = wwT[0];
         rg.T.pos[1] = wwT[1];
 
         var Z = mat.dropLine(
-            0.6,
+            0.7,
             rg.P.pos,
             null,
             null,
@@ -60,7 +57,7 @@
         //================================================
         // \\// arc, sagittae and related
         //================================================
-        
+
 
         //================================================
         // //\\ decorations
@@ -70,6 +67,37 @@
         {
             let graphArg = {
             }
+
+
+            //The bounds of the graph switch between a fixed and variable max.
+            //The x and y axes always need to maintain a fixed ratio relative to
+            //each other, otherwise the slope of the force curves appears to
+            //change, even though the actual slope (rise / run) stays the same.
+            //
+            //A reliable way to do this is to calculate all possible values that
+            //could be used from the perspective of a chosen axis (eg. x axis).
+            //Note this must include any possible values for the other axis as
+            //well, converted using the fixed ratio.  Then use the maximum of
+            //those possible values for the chosen axis (eg. x axis), and that
+            //maximum with the fixed ratio to calculate the maximum for the
+            //other axis (eg. y axis).  This ensures both force curves will
+            //always be fully visible on the graph, and eg. can't leave the top
+            //of the graph.
+
+            const ratio = ssD.MEF / ssD.xMaxFixedGraphAxis;
+
+            graphArg.xMin = 0;
+            //Set the lowest possible xMax, to be the xMax when the page loads
+            //plus a gap on the top and right sides of the graph.
+            const xMaxLowest = ssD.xMaxFixedGraphAxis * 1.3;
+            const xMaxCurrentX = ssD.xMaxCurrentGraphAxis;
+            const xMaxFromY = ssD.estimatedForceLargestMaxCurrent / ratio;
+            graphArg.xMax = Math.max(xMaxLowest, xMaxCurrentX, xMaxFromY);
+
+            graphArg.yMin = 0;
+            graphArg.yMax = graphArg.xMax * ratio / ssD.MAF;
+
+
             stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
         }
         //------------------------------------------------
@@ -118,16 +146,34 @@
         //=============================================================
         // //\\ tan. cir.
         //=============================================================
-        var tangentDiameterPoint = mat.linesCross(
-            nn,  //direction-1
+        //Calculate and set the parameters for the circle that touches the conic
+        //section at P and passes through point Q.  Note if P and Q are used to
+        //calculate the circle, when Q is at P it can't be calculated correctly.
+        //Therefore use V instead of Q, as the circle also passes through V.
+
+        //The distance from P to center, and V to center are both the radius.
+        //Therefore triangle P, V, center will be isosceles, meaning triangle P,
+        //midpoint of P and V, center will be a right angle triangle.  Therefore
+        //the center will be at the intersection of the following two lines...
+        //-Starting at P in the direction perpendicular to the tangent at P
+        //-Starting at the midpoint of P and V in the direction perpendicular
+        // to PV
+
+        const P = rg.P.pos;
+        const V = rg.V.pos;
+        const midpointPV = [(P[0] + V[0]) / 2, (P[1] + V[1]) / 2];
+        const negativeReciprocalPV = [-(V[1] - P[1]), V[0] - P[0]];
+
+        const center = mat.linesCross(
+            nn,  //direction-1 (perpendicular to tangent at P)
             rg.P.pos,  //start-1
-            [-rg.Q.pos[1] + rg.P.pos[1],
-              rg.Q.pos[0] - rg.P.pos[0],
-            ], //direction-2'
-            rg.Q.pos  //start-2'
+            negativeReciprocalPV, //direction-2'
+            midpointPV  //start-2'
         )
-        rg.tCircleCenter.pos[0] = (tangentDiameterPoint[0]+rg.P.pos[0])/2;
-        rg.tCircleCenter.pos[1] = (tangentDiameterPoint[1]+rg.P.pos[1])/2;
+
+        //Set circle parameters
+        rg.tCircleCenter.pos[0] = center[0];
+        rg.tCircleCenter.pos[1] = center[1];
         var rgTCir = rg.tangentCircle;
         rgTCir.tangentCircleRadiusVector = [
             rg.P.pos[0] - rg.tCircleCenter.pos[0],
@@ -140,4 +186,3 @@
         //=============================================================
     }
 }) ();
-

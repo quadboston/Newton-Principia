@@ -11,11 +11,10 @@
 
 ( function() {
     var {
-        ns, sn, $$, haff,
-        eachprop, haz,
+        ns, $$, haff,
+        haz,
         sconf, fconf,
-        fapp, sapp,
-        fmethods,
+        fapp, 
         ssF,
         sDomF, sDomN,
         stdMod, amode,
@@ -31,8 +30,6 @@
           addsChosenCSSCls_to_subessay8menuSubitem;
     sDomF.build_menu_top_leafs_placeholders =
           build_menu_top_leafs_placeholders;
-    sDomF.tellActivityEngine_that_userStartedSubessay =
-          tellActivityEngine_that_userStartedSubessay;
     return;
 
 
@@ -146,11 +143,9 @@
     {
         var scat_id     = leafRk.scat_id;   //sub category: logic_phase or aspect
         var mcat_id     = leafRk.mcat_id;   //main category: logic_phase or aspect
-        var mitemIx     = leafRk.ix;
         var caption     = leafRk.caption;
         var studylab    = leafRk.studylab;
         var teaf$       = leafRk.teaf$;
-        var decorOfShuttle$ = leafRk.decorOfShuttle$;
 
         //--------------------------
         // //\\ fluid-html part
@@ -187,7 +182,7 @@
             .dct( 'litem litem-'+leafRk.ix, teaf$ )
             .e('mouseover', ()=>{ decor$.addClass( 'hovered' ) })
             .e('mouseleave', ()=>{ decor$.removeClass( 'hovered' ) })
-            .e('click', function( event ) {
+            .e('click', function( ) {
                 //console.log(leafRk.mcat_id + ' ' + leafRk.scat_id);
                 let update = updateURL(leafRk.mcat_id, leafRk.scat_id)
                 if( update && (mcat_id !== 'logic_phase' || !fconf.logic_phaseTab_nonClickable) ) {
@@ -401,11 +396,12 @@
     ///param = false on initial page load, true on tab switch
     function menu2lemma( amodel2app_8_extraWork )
     {
+        var res = wrkwin.start8finish_media8Ess8Legend_resize__upcreate;
+
         //we need to run "media" updater because we need to update
         //archived, "sleeping", d8d past values,
         //todm ... instead the solution of updating them at "down" event
         //         will be more elagant and cause less fuss,
-
         if( amodel2app_8_extraWork ) {
             // runs from init-sapp.js on page load
             // we need to run again here when switching tabs to update model
@@ -417,23 +413,23 @@
             wrkwin.loadPosPartitionHandle();
 
             //.todm code proliferation ... model runs twice?
-            var res = wrkwin.start8finish_media8Ess8Legend_resize__upcreate;
             res( null, !!'doDividorSynch');
 
-            //**********************************************************************************
-            //todo patch: this is a vital patch, without it to appear legend needs
-            //second resize event, the reason for the bug is unknown,
-            //only needed for L7, P1 corollaries 
-            if(fconf.sappId === 'b1sec1lemma7' || fconf.sappId === 'b1sec2prop1') {
-                setTimeout(
-                    function() {
-                        res( null, !!'doDividorSynch' );
-                    },
-                    100
-                );
-            }
-            //**********************************************************************************
         }
+        
+        //**********************************************************************************
+        //todo patch: this is a vital patch, without it to appear legend needs
+        //second resize event, the reason for the bug is unknown,
+        //only needed for L7, P1 corollaries 
+        if(fconf.sappId === 'b1sec1lemma7' || fconf.sappId === 'b1sec2prop1') {
+            setTimeout(
+                function() {
+                    res( null, !!'doDividorSynch' );
+                },
+                100
+            );
+        }
+        //**********************************************************************************
     }
 
     //reveals subessay in menu and in text
@@ -450,36 +446,4 @@
             subexeg.subessayMenuItem$.addClass( 'subexeg-toggler-chosen' );
         }
     }
-
-
-    function tellActivityEngine_that_userStartedSubessay()
-    {
-        ////real human acted on app,
-        ////because of this, human activity state-machines are being
-        ////informed in this block,
-        eachprop( exegs[ amode.logic_phase ][ amode.aspect ].subessay2subexeg,
-                  (subessayRack, sname) => {
-
-            ///this is flag of presense of activity-script for this subessay
-            if( haz( subessayRack, 'stateId2state' ) ) {
-
-                if( amode.subessay === sname ) {
-                    return;
-                }
-                //sibling activities begin aware that current activity is started
-                ssF.executesTopicScenario( 'sibling-activity-start', sname );
-            }
-        });
-
-        var subessayRack =
-            exegs[ amode.logic_phase ][ amode.aspect ].subessay2subexeg[ amode.subessay ];
-        if( haz( subessayRack, 'stateId2state' ) ) {
-            ////adds state "start" to avoid entering the state machine in ambiguous state
-            ////in plain words, every "user click" is "start over"
-            subessayRack.scenario_stateId = 'start';
-            ssF.executesTopicScenario( 'start' );
-        }
-    }
-
 }) ();
-

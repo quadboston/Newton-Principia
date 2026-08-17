@@ -35,7 +35,7 @@
             .to( sDomN.simSScene$ )
             .e( 'click', ( ev ) => {
                 clickCallback && clickCallback( ev );
-                !noTopicScenario && ssF.executesTopicScenario( scenarioEventOnClick );
+                // !noTopicScenario && ssF.executesTopicScenario( scenarioEventOnClick );
             })
             .ch( $$.c( 'div' )
                    .css( 'position', 'relative' )

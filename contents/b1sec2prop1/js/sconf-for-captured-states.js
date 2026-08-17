@@ -1,10 +1,28 @@
 (function(){
     const { nspaste, capture, sconf, } =
-        window.b$l.apptree({ ssFExportList : {
-            setsCommonT1andT2capture,
+		window.b$l.apptree({ ssFExportList : {
+			setsCommonT1andT2capture,
             makesProfessorsCaptureFootnotes,
-    }});
-    return;
+		}});
+		Object.assign( sconf, {
+			initialTimieStep : 0.75,
+		});
+		const positionA = {
+			"pos": [
+				2.4846663769760875,
+				-0.010267216433785486
+			]
+		};
+		const speedVector = {
+			"vect": [
+				[
+					0.2618140190615299 / sconf.initialTimieStep,
+					0.9651183447758357 / sconf.initialTimieStep
+				]
+			]
+		};
+		return;
+
 
 
 function setsCommonT1andT2capture (){
@@ -49,20 +67,8 @@ function makesProfessorsCaptureFootnotes (){
             "rgslid_dt": {
                 "val": sconf.initialTimieStep
             },
-            "speeds": {
-                "vect": [
-                    [
-                        0.2618140190615299 / sconf.initialTimieStep,
-                        0.9651183447758357 / sconf.initialTimieStep
-                    ]
-                ]
-            },
-            "A": {
-                "pos": [
-                    2.4846663769760875,
-                    -0.010267216433785486
-                ]
-            },
+            "speeds": speedVector,
+            "A": positionA,
 
             "slider_sltime": {
                 //"curtime": 1.75000001 * sconf.initialTimieStep
@@ -125,26 +131,14 @@ function makesProfessorsCaptureFootnotes (){
         ///see also __amode2rgstate,
         ///the very first generic statement
         "initial-state" : {
-            "A": {
-                "pos": [
-                    2.4846663769760875,
-                    -0.010267216433785486
-                ]
-            },
+            "A": positionA,
             "slider_sltime": {
                 "curtime": 5.01 * sconf.initialTimieStep
             },
             "rgslid_dt": {
                 "val": sconf.initialTimieStep
             },
-            "speeds": {
-                "vect": [
-                    [
-                        0.2618140190615299 / sconf.initialTimieStep,
-                        0.9651183447758357 / sconf.initialTimieStep
-                    ]
-                ]
-            },
+            "speeds": speedVector,
             "force" : {
                 'lawPower' : sconf.force[0][0],
                 'lawConstant' : sconf.force[0][1]
@@ -167,12 +161,7 @@ function makesProfessorsCaptureFootnotes (){
                 "curtime": 3.00,
             },
 
-                "A": {
-                "pos": [
-                    2.4846663769760875,
-                    -0.010267216433785486
-                ]
-            },
+            "A": positionA,
             //---------------------------
             // //\\ perpendicular
             //---------------------------
@@ -198,17 +187,11 @@ function makesProfessorsCaptureFootnotes (){
             "rgslid_dt": {
                 "val": sconf.initialTimieStep
             },
-            "speeds": {
-                "vect": [
-                    [
-                        0.2618140190615299/sconf.initialTimieStep,
-                        0.9651183447758357/sconf.initialTimieStep
-                    ]
-                ]
-            },
+            "speeds": speedVector,
             "slider_sltime": {
                 "curtime": 2.9897076114077104 * sconf.initialTimieStep
-            }
+            },
+            "A": positionA,
         },
         "corollary-4" : {
             "rgslid_dt": {
@@ -230,31 +213,19 @@ function makesProfessorsCaptureFootnotes (){
             "slider_sltime": {
                 "curtime": 5.3 * sconf.initialTimieStep,
             },
-            "speeds": {
-                "vect": [
-                    [
-                        0.29155658394042205/sconf.initialTimieStep,
-                        0.9565535836329252/sconf.initialTimieStep
-                    ]
-                ]
-            },
+            "speeds": speedVector,
+            "A": positionA,
         },
 
         "corollary-3" : {
             "rgslid_dt": {
                 "val": sconf.initialTimieStep
             },
-            "speeds": {
-                "vect": [
-                    [
-                        0.2618140190615299/sconf.initialTimieStep,
-                        0.9651183447758357/sconf.initialTimieStep
-                    ]
-                ]
-            },
+            "speeds": speedVector,
             "slider_sltime": {
                 "curtime": 5.1 * sconf.initialTimieStep
-            }
+            },
+            "A": positionA,
         },
 
         "__amode2rgstate" :
@@ -487,6 +458,7 @@ function makesProfessorsCaptureFootnotes (){
                 }
             ],
         ]
+        
     });
 }
 })();

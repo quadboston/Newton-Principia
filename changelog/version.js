@@ -1,14 +1,13 @@
 ( function() {
     var ns          = window.b$l        = window.b$l        || {};
     var fapp        = ns.fapp           = ns.fapp           || {};
+    fapp.version = '0.9.6'; //application version
+	fapp.versionColor = 'Chartreuse'; //color for version display
 
-    // //\\ updated automatically. Don't edit these strings.
-    fapp.version = 8; //application version
-    fapp.buildDateString = "2026-03-25"; //build date
-    // \\// updated automatically. Don't edit these strings.
-
-    fapp.versionColor = 'Magenta'; //color for version display
-}) ();
+	// //\\ updated automatically. Don't edit this string.
+    fapp.buildDateString = "2026-08-01"; //build date
+    // \\// updated automatically. Don't edit this string.
+ }) ();
 
 
 function decryptEmail(encoded) {

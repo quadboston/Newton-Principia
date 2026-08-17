@@ -1,7 +1,7 @@
 
 ( function() {
-    var { sn, mat, eachprop, nspaste, userOptions, topicColors_repo, fconf, sconf,
-        rg, stdMod, } = window.b$l.apptree({ ssFExportList : { init_conf } });
+    var { sn, eachprop, nspaste, topicColors_repo, fconf, sconf, } 
+		= window.b$l.apptree({ ssFExportList : { init_conf } });
     var op = sn( 'orbitParameters', sconf );
     return;
 
@@ -20,51 +20,36 @@
         // \\// study model parameters
         //----------------------------------
 
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        sconf.enableStudylab            = false;
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
-
         //----------------------------------
         // //\\ paper diagram parameters
         //----------------------------------
-        if( fconf.sappId === 'b1sec8prop41' ) {
-            switch ( fconf.sappId ) {
-            case "b1sec8prop41" :
+		//for real picture if diagram's picture is supplied or
+		//for graphical-media work-area if not supplied:
+		var pictureWidth = 912;
+		var pictureHeight = 603;
+		var C = [ 376,
+					587
+				];
+		sconf.Fi_distance = 1.8;
+		sconf.insertDelayedBatch = true;
+		sconf.dRo = 0.075; //dr - infinitesimal interval
 
-                    //for real picture if diagram's picture is supplied or
-                    //for graphical-media work-area if not supplied:
-                    var pictureWidth = 912;
-                    var pictureHeight = 603;
-                    var C = [ 376,
-                              587
-                            ];
-                    sconf.Fi_distance = 1.8;
-                    sconf.insertDelayedBatch = true;
-                    sconf.dRo = 0.075; //dr - infinitesimal interval
+		var V = [C[0], 100];
 
-                    var V = [C[0], 100];
+		//model's spacial unit expressed in pixels of the picture:
+		//vital to set to non-0 value
+		var mod2inn_scale = C[1] - V[1];
 
-                    //model's spacial unit expressed in pixels of the picture:
-                    //vital to set to non-0 value
-                    var mod2inn_scale = C[1] - V[1];
+		var A = [C[0], 39];
+		var B = [464,  A[1]];
+		var forceStart = [ B[0]*1.03, -100 ];
+		var D = [C[0], 270];
+		var E = [C[0], 304];
+		var R = [41, 234];
+		var k = [246, 491];
 
-                    var A = [C[0], 39];
-                    var B = [464,  A[1]];
-                    var forceStart = [ B[0]*1.03, -100 ];
-                    var D = [C[0], 270];
-                    var E = [C[0], 304];
-                    var R = [41, 234];
-                    var k = [246, 491];
-
-                    //decorations
-                    sconf.angleOfR = Math.PI * 0.245;
-                  break;
-            }
-        }
+		//decorations
+		sconf.angleOfR = Math.PI * 0.245;
         //----------------------------------
         // \\// paper diagram parameters
         //----------------------------------
@@ -129,12 +114,11 @@
             given,
             body,
             orbit,
-            time,
+            prop41timeColor,
             distance,
             proof,
-            force,
+            forceColor,
             invalid,
-            result,
             shadow,
             hidden,
 
@@ -159,25 +143,24 @@
         const Zgraph = bodyHiddenStart;
         const vgraph = forceTransparentStart;
         const ro = distance;
-        const Tkernel = time;
+        const Tkernel = prop41timeColor;
 
 
         var topicColors_elected =
         {
             given,
             proof,
-            result,
             hidden,
             body,
             orbit,
 
             shadow,
-            force,
+            force : forceColor,
             fi,
             Zgraph,
             Z2graph     : body,
             vgraph,
-            v2graph     : force,
+            v2graph     : forceColor,
             vback       : vgraph,
             vgpoint,
             Fkernel,
@@ -223,7 +206,7 @@
         ];
         curvePivots = curvePivots.map( (pivot,ix) => ({
             pos         : pivot,
-            pcolor      : force,
+            pcolor      : forceColor,
             letterAngle : 45,
             draggableX  : true,
             draggableY  : true,
@@ -317,13 +300,13 @@
 
             B : {
                 caption : 'B',
-                pcolor : force,
+                pcolor : forceColor,
                 letterAngle : -45,
             },
 
             F : {
                 caption : 'F, ~dv²/dρ',
-                pcolor : force,
+                pcolor : forceColor,
                 letterAngle : -45,
                 cssClass : 'tostroke',
             },
@@ -510,7 +493,7 @@
             },
 
             { DF : {
-                    pcolor : force,
+                    pcolor : forceColor,
                 },
             },
         ];
@@ -533,4 +516,3 @@
         });
     }
 }) ();
-

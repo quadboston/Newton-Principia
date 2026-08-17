@@ -35,7 +35,7 @@
         const lowname = stdMod.generateCurveName?.(dr);
         const classCurve = lowname ? `tp-${lowname} ` : "";
         dr.curve_middle$ = $$.cNS( 'polyline' )
-            .aNS( 'class', classCurve + "tp-figure tp-curve figure" +
+            .aNS( 'class', classCurve + "tp-figure-color tp-curve figure" +
                 ` outline-cls tostroke` )
             .to(svg);
 
@@ -55,7 +55,7 @@
         //====================================================================
         //creates "shallow axis line" (line that extends entire base of figure)
         dr.baseAxis = $$.cNS( 'line' )
-            .aNS( 'class', "tp-figure tp-base figure outline-cls tostroke" )
+            .aNS( 'class', "tp-figure-color tp-base figure outline-cls tostroke" )
             .to(svg)
             ();
         //====================================================================

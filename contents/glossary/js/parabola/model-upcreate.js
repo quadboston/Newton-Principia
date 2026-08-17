@@ -1,0 +1,166 @@
+( function() {
+    var { nspaste, mat, fconf, ssD, stdMod, sconf, rg, 
+    } = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
+    return;
+
+
+    ///****************************************************
+    /// model scenario
+    /// is required; to skip define as ()=>{};
+    ///****************************************************
+    function model_upcreate()
+    {
+        stdMod.builds_force_plusQ_minusQ_and_related();
+        const op        = sconf.orbitParameters;
+        const cosAxis   = Math.cos( op.mainAxisAngle );
+        const sinAxis   = Math.sin( op.mainAxisAngle );
+        const q2xy = stdMod.q2xy;
+        var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
+        rg.P.pos[0] = Porb.planetXY[0];
+        rg.P.pos[1] = Porb.planetXY[1];
+        var rr0 = rg.P.pos;
+        var sunXY = rg.S.pos;
+        var Qpos = q2xy( Porb.plusQ );
+        rg.Q.pos[0] = Qpos[0];
+        rg.Q.pos[1] = Qpos[1];
+
+        var {
+            uu,
+        } = Porb;
+
+        //"caustics"
+        const axisC     = op.conicSignum === -1 ? -op.C : op.C;
+        rg.C.pos[0]     = cosAxis * axisC;
+        rg.C.pos[1]     = sinAxis * axisC;
+        rg.H.pos[0]     = 2*rg.C.pos[0];
+        rg.H.pos[1]     = 2*rg.C.pos[1];
+
+        //================================================
+        // //\\ arc, sagittae and related
+        //================================================
+        //R = parallel-projection of Q to tangent
+        nspaste( rg.R.pos,
+            mat.linesCross(
+                uu, rr0, //direction, start
+                [rr0[0]-sunXY[0], rr0[1]-sunXY[1]], rg.Q.pos, //direction, start
+            )
+        );
+
+        //T = perp. from Q to radius-vector
+        nspaste( rg.T.pos, mat.dropPerpendicular( rg.Q.pos, sunXY, rr0 ) );
+
+        nspaste( rg.Z.pos,
+            mat.dropLine(
+                4,
+                rg.P.pos,
+                null,
+                null,
+                uu,
+            )
+        );
+        //================================================
+        // \\// arc, sagittae and related
+        //================================================
+
+        //------------------------------------------------
+        // //\\ PZminus
+        //------------------------------------------------
+        nspaste( rg.Zminus.pos,
+            mat.dropLine(
+                -4,
+                rg.P.pos,
+                null,
+                null,
+                uu,
+            )
+        );
+        //------------------------------------------------
+        // \\// PZminus
+        // \\// decorations
+        //================================================
+
+        ////hyperbola or ellipse
+		const sqAC = squaredDistance( rg.A, rg.C );
+		const sqBC = squaredDistance( rg.B, rg.C );
+		const sqDiameterConstant = sqAC - sqBC;
+		const SqDC = squaredDistance( rg.P, rg.C ) - sqDiameterConstant;
+		const DC = Math.sqrt(Math.abs(SqDC ));
+        let D = mat.sm( rg.C.pos, -DC, uu );
+        nspaste( rg.D.pos, D );    
+        let K = mat.sm( rg.C.pos,  DC, uu );
+        nspaste( rg.K.pos, K );    
+        //is this a numerical glitch in the Book?:
+        //nspaste( rg.K.pos, mat.dropLine(  2.13, rg.C.pos, rg.P.pos, null, uu) );
+        
+        //conjugate diameters and tangents
+		nspaste( rg.G.pos, mat.dropLine(
+			null, rg.P.pos, rg.C.pos, null, null, 999 ) );
+		nspaste( rg.g.pos, mat.dropLine(
+			null, rg.P.pos, rg.C.pos, null, null, -999 ) );
+		nspaste( rg.M.pos, mat.linesCross(
+				uu,
+				rg.P.pos,
+				[ 1, 0 ],
+				rg.O.pos,
+			)
+		);
+		nspaste( rg.N.pos, mat.dropPerpendicular( rg.O.pos, rg.M.pos, rg.P.pos ) );
+
+        //vuFV
+        //v = parallel-projection of Q to tangent
+        var DK = [ rg.K.pos[0]-rg.D.pos[0], rg.K.pos[1]-rg.D.pos[1] ];
+        var PG = [ rg.P.pos[0]-rg.G.pos[0], rg.P.pos[1]-rg.G.pos[1] ];
+        nspaste( rg.v.pos,
+            mat.linesCross(
+                uu, rg.Q.pos, //direction, start
+                PG, rg.P.pos, //direction, start
+            )
+        );
+
+        nspaste( rg.A.pos, q2xy( Math.PI ) );
+        nspaste( rg.AA.pos, q2xy( 0 ) );
+        {
+            let posBx = op.conicSignum === -1 ? -op.C : op.C;
+            let posB = [posBx, op.B,];
+            let ww = mat.rotatesVect( posB, op.mainAxisAngle, );
+            nspaste( rg.B.pos, ww );
+            posB = [posBx, -op.B,];
+            ww = mat.rotatesVect( posB, op.mainAxisAngle, );
+            nspaste( rg.BB.pos, ww );
+        }
+
+        //point x
+        nspaste( rg.x.pos, mat.lineSegmentsCross(
+            rg.T.pos, rg.P.pos,
+            rg.Q.pos, rg.v.pos,
+        ));
+        //point E
+        nspaste( rg.E.pos, mat.lineSegmentsCross(
+            rg.D.pos, rg.K.pos,
+            rg.S.pos, rg.P.pos,
+        ));
+        //point I
+        nspaste( rg.I.pos, mat.linesCross(
+            DK, rg.H.pos, //direction, start
+            mat.sm( rg.S.pos, -1, rg.P.pos ), rg.S.pos, //direction, start
+        ));
+
+
+        //=============================================================
+        // //\\ latus
+        //=============================================================
+        rg.L.pos[0]  = -sinAxis * op.latus;
+        rg.L.pos[1]  =  cosAxis * op.latus;
+        rg.LL.pos[0] =  sinAxis * op.latus;
+        rg.LL.pos[1] = -cosAxis * op.latus;
+        //=============================================================
+        // \\// latus
+        //=============================================================
+    }
+
+	function squaredDistance(xy1, xy2) {
+		var dx = xy1.pos[0] - xy2.pos[0];
+		var dy = xy1.pos[1] - xy2.pos[1];
+		return dx*dx + dy*dy;
+	}
+}) ();

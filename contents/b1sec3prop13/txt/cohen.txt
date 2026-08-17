@@ -2,6 +2,7 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
+  "subessayCaption" : "[<i>Problem</i>]",
   "logic_phaseCaption" : "Problem 8"
 }
 *..*
@@ -9,6 +10,76 @@ Let a ¦P¦body¦¦ move in the perimeter of a ¦orbit¦parabola¦¦; it is requ
 the centripetal ¦force¦¦ tending toward a ¦S¦focus¦¦ of the ¦orbit¦figure¦¦.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 466.</div>
+
+
+
+
+*::*claim|english
+{
+  "menuCaption" : "Text",
+  "subessayCaption" : "[<i>Applying prop. 6, corol. 5</i>]",
+  "subessay" : "goal",
+  "logic_phaseCaption" : "Problem 6"
+}
+*..*
+The force on ¦P¦¦ is <br>inversely
+<math>
+  <mo>∝</mo>
+  <munder>
+    <mo>lim</mo>
+    <mrow>
+      <mi>¦Q¦¦</mi>
+      <mo>→</mo>
+      <mi>¦P¦¦</mi>
+    </mrow>
+  </munder>
+  <mfrac>
+    <mrow>
+      <msup>
+        <mi>¦SP¦¦</mi>
+        <mn>2</mn>
+      </msup>
+      <mo>×</mo>
+      <msup>
+        <mi>¦QT¦¦</mi>
+        <mn>2</mn>
+      </msup>
+    </mrow>
+    <mrow>
+      <mi>¦QR¦¦</mi>
+    </mrow>
+  </mfrac>
+</math>
+<br>
+Or,<br>
+The force on ¦P¦¦
+<math>
+  <mo>∝</mo>
+  <munder>
+    <mo>lim</mo>
+    <mrow>
+      <mi>¦Q¦¦</mi>
+      <mo>→</mo>
+      <mi>¦P¦¦</mi>
+    </mrow>
+  </munder>
+  <mfrac>
+    <mrow>
+      <mi>¦QR¦¦</mi>
+    </mrow>
+    <mrow>
+      <msup>
+        <mi>¦SP¦¦</mi>
+        <mn>2</mn>
+      </msup>
+      <mo>×</mo>
+      <msup>
+        <mi>¦QT¦¦</mi>
+        <mn>2</mn>
+      </msup>
+    </mrow>
+  </mfrac>
+</math>
 
 
 
@@ -111,7 +182,7 @@ If the velocity with which the body departs from its place ¦P¦¦ is
 such that the line-element ¦PR¦¦ can be described by it in some minimally
 small particle of time, and if the centripetal ¦force¦¦ is able to move the same
 body through space ¦QR¦¦ in that same time, this body will move in some 
-¦orbit¦conic¦¦ whose principal ¦L,LL¦latus rectum¦¦ is the quantity 
+¦orbit¦conic¦¦ whose ¦L,LL¦principal latus rectum¦¦ is the quantity 
 
 <!-- QT² / QR -->
 <math><mfrac><mrow><msup><mi>

@@ -25,15 +25,6 @@
         // \\// geometical scales
         //***************************************************************
 
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        sconf.enableStudylab            = false;
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
-
-
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
@@ -106,7 +97,6 @@
         var Q_STEPS = 1000;
         var DATA_GRAPH_STEPS = 500;
         sconf.IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX = true;
-        sconf.ESTIMATED_SCALE_FACTOR = 4;
         sconf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
         //-------------------------------------------
         // \\// calculation algo parameters
@@ -121,9 +111,6 @@
         //-------------------------------------------
         // \\// curve shape parameters
         //-------------------------------------------
-
-        //to be studied in given proposition:
-        sconf.force_law_function = bp => 1/(bp.r2*(2*prop7R*bp.sinOmega)**3);
 
         //intervals of dt or dq to construct an arc for estimated force
         //Sets initial distance of point Q from P
@@ -146,32 +133,32 @@
             time,
             dtime,
             proof,
-            force,
+            forceColor,
             invalid,
             hidden,
-            estimatedForce,
+            estimatedForceColor,
             curvature,
-            context,
             chord,
 			sunColor,
 			corollaryColor,
+			proofHover,
         } = topicColors_repo;
 
 
         var topicColors_elected =
         {
-            estimatedForce,
+            estimatedForceColor,
             body,
-            force,
+            forceColor,
             chord,
             invalid,
             proof,
             hidden,
-            context,
             curvature,
             dtime,
             time,
             curvatureCircle : curvature,
+			force : forceColor,
             orbit,
             APQ     : orbit,
         };
@@ -199,9 +186,6 @@
             A : {
                 pos: A,
                 pcolor : proof,
-                //letterAngle : -90,
-                //undisplayAlways : true,
-                //doPaintPname : false,
             },
 
             S : {
@@ -220,16 +204,12 @@
             },
 
             Q : {
-                pcolor : proof,
+                pcolor : estimatedForceColor,
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
                 draggableY  : true,
-
-                //scenario needs peer review:
-                //conditionalDrag : 'logic_phase--proof logic_phase--corollary',
-                conditionalDrag : 'logic_phase--proof',
-
+                conditionalDrag : 'subessay--solution',
             },
             QtimeDecor : {
                 undisplayAlways : true,
@@ -243,12 +223,12 @@
             },
 
             T : {
-                pcolor : proof,
+                pcolor : estimatedForceColor,
                 letterAngle : 180,
             },
 
             R : {
-                pcolor : proof,
+                pcolor : estimatedForceColor,
                 letterAngle : 45,
             },
 
@@ -329,9 +309,9 @@
 
         var linesArray =
         [
-            { 'PV' : { pcolor : proof }, },
+            { 'PV' : { pcolor : proofHover }, },
+			{ 'SV' : { pcolor : proof }, },
             { 'AV' : { pcolor : proof }, },
-            { 'SP' : { pcolor : proof }, },
             { 'AP' : { pcolor : proof }, },
 
             { 'PY' : { pcolor : proof }, },
@@ -342,14 +322,15 @@
             { 'PR' : { pcolor : proof }, },
             { 'ZQ' : { pcolor : body }, },
 
-            { 'RL' : { pcolor : proof }, },
+			{ 'RL' : { pcolor : proofHover }, },
+			{ 'QL' : { pcolor : proof }, },
 
             { 'SY' : { pcolor : proof }, },
-            { 'QR' : { pcolor : proof }, },
+            { 'QR' : { pcolor : estimatedForceColor }, },
             { 'QP' : { pcolor : proof }, },
             { 'SQ' : { pcolor : proof }, },
-            { 'QT' : { pcolor : proof }, },
-            { 'PT' : { pcolor : proof }, },
+            { 'QT' : { pcolor : estimatedForceColor }, },
+            { 'PT' : { pcolor : proofHover }, },
 
             { 'PC' : { pcolor : curvature }, },
 
@@ -360,6 +341,8 @@
             { 'Gcol2,S' : { pcolor : proof }, },
             { 'Gcol2,P' : { pcolor : proof }, },
             { 'S,nonSolvablePoint' : { pcolor : invalid }, },
+            
+            { 'SP' : { pcolor : estimatedForceColor }, },
         ];
 
         ns.paste( sconf, {
@@ -387,4 +370,3 @@
         //***************************************************************
     }
 }) ();
-

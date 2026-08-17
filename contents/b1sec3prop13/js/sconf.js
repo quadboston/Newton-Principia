@@ -25,15 +25,6 @@
         // \\// geometical scales
         //***************************************************************
 
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        sconf.enableStudylab            = false;
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
-
-
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
@@ -97,7 +88,6 @@
         var DATA_GRAPH_STEPS = 500;
         //Scale estimated force curve by actual force max
         sconf.IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX = true;
-        sconf.ESTIMATED_SCALE_FACTOR = 1;
         //-------------------------------------------
         // \\// calculation algo parameters
         //-------------------------------------------
@@ -132,35 +122,22 @@
         // //\\ topic group colors
         //-----------------------------------
         const {
-            given,
-            body,
-            orbit,
-            resultOnlyVisibleWhenHighlighted,
-            proof,
-            force,
-            result,
-            estimatedForce,
-            shadow,
-            hidden,
-            curvature,
-            context,
+            bodyColor,
+			supplementHover,
+			proofHover,
+            proofColor,
+			estimatedForceColor,
+            forceColor,
 			sunColor,
+			dtime,
         } = topicColors_repo;
 
         var topicColors_elected =
         {
-            estimatedForce,
-            given,
-            proof,
-            result,
-            hidden,
-            context,
-            curvature,
-            body,
-            orbit               : orbit,
-            orbitdq             : orbit,
-            shadow,
-            force,
+			estimatedForceColor,
+            orbit: bodyColor,
+            force: forceColor,
+			dtime,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -169,58 +146,56 @@
         var originalPoints = {};
         Object.assign( originalPoints, {
             L : {
-                pcolor : orbit,
 				doPaintPname : false,
  				undisplayAlways : true,
             },
             LL : {
-                pcolor : orbit,
                 doPaintPname : false,
 				undisplayAlways : true,
             },
 
             A : {
-                pcolor : orbit,
+                pcolor : bodyColor,
 				letterRotRadius : 28,
                 letterAngle : -124,
  				cssClass: 'subessay--solution',
             },
             M : {
-                pcolor : proof,
+                pcolor : proofColor,
 				letterRotRadius : 25,
                 letterAngle : -90,
  				cssClass: 'subessay--solution',
             },
             N : {
-                pcolor : proof,
+                pcolor : proofColor,
                 letterRotRadius : 25,
                 letterAngle : 125,
  				cssClass: 'subessay--solution',
             },
             T : {
-                pcolor : proof,
+                pcolor : estimatedForceColor,
                 letterRotRadius : 20,
- 				cssClass: 'subessay--solution subessay--corollary2',
+ 				cssClass: 'subessay--goal subessay--solution subessay--corollary2',
             },
             R : {
-                pcolor : proof,
+                pcolor : estimatedForceColor,
                 letterAngle : 135,
                 letterRotRadius : 25,
- 				cssClass: 'subessay--solution logic_phase--corollary',
+ 				cssClass: 'subessay--goal subessay--solution logic_phase--corollary',
             },
             v : {
                 caption : '𝑣',
-                pcolor : proof,
+                pcolor : proofColor,
                 letterAngle : -45,
                 letterRotRadius : 15,
  				cssClass: 'subessay--solution',
            },            
             x : {
                 caption : "𝑥",
-                pcolor : proof,
+                pcolor : proofColor,
                 letterAngle : -45,
                 letterRotRadius : 20,
-				cssClass: 'subessay--solution',
+				cssClass: 'subessay--goal subessay--solution',
             },
             S : {
                 pcolor : sunColor,
@@ -228,89 +203,45 @@
                 letterRotRadius : 25,
             },
             P : {
-                pcolor : body,
+                pcolor : bodyColor,
                 letterAngle : 120,
                 draggableY  : true,
             },
             Q : {
-                pcolor : proof,
+                pcolor : estimatedForceColor,
                 letterAngle : -90,
                 letterRotRadius : 25,
                 draggableX  : true,
                 draggableY  : true,
-				cssClass: 'subessay--solution subessay--corollary2',
-                conditionalDrag: 'subessay--solution subessay--corollary2',
+				cssClass: 'subessay--goal subessay--solution subessay--corollary2',
+                conditionalDrag: 'subessay--goal subessay--solution subessay--corollary2',
             },
             AA : {
                 undisplayAlways : true,
                 doPaintPname : false,
-                pcolor : orbit,
             },
             G : {
-                pcolor : proof,
+                pcolor : proofColor,
                 letterRotRadius : 20,
                 letterAngle : -45,
 				cssClass: 'subessay--solution',
             },
             Zminus : { // only here for Prop 12 code?
-                pcolor : body,
-                letterAngle : 145,
-                letterRotRadius : 20,
                 doPaintPname : false,
  				undisplayAlways  : true,
-            },
-
-            // //\\ eccentricity slider
-            Zeta : {
-                caption : 'eccentricity, e',
-                pos : [ pictureWidth * 0.5, pictureHeight * 0.92 ],
-                pcolor : orbit,
-                letterAngle : 90,
-                letterRotRadius : 20,
-                draggableX  : false,
-                undisplayAlways  : true,
-                doPaintPname : false,
-                unscalable  : true,
-            },
-
-            ZetaCaption : {
-                pos : [ pictureWidth * 0.5, pictureHeight * 0.97 ],
-                pcolor : orbit,
-                undisplayAlways : true,
-                letterAngle : 90,
-                letterRotRadius : 20,
-                doPaintPname : false,
-                unscalable  : true,
-            },
-
-            ZetaStart : {
-                pos : [ pictureWidth * 0.1, pictureHeight * 0.92 ],
-                pcolor : orbit,
-                undisplayAlways : true,
-                doPaintPname : false,
-                unscalable  : true,
-            },
-
-            ZetaEnd : {
-                pos : [ pictureWidth * 0.9, pictureHeight * 0.92 ],
-                pcolor : orbit,
-                undisplayAlways : true,
-                doPaintPname : false,
-                unscalable  : true,
             },
 
             // not used but calculated in model-upcreate for P12
             // todo: if splitting P12 from P13 model-upcreate, can delete
             C : { //center symmetry of orbit
-                pcolor : orbit,
+                pcolor : bodyColor,
                 letterAngle : -45,
             },
             H : {
-                pcolor : proof,
+                pcolor : proofColor,
                 letterAngle : -90,
             },
             Z : {
-                pcolor : body,
                 letterAngle : 45,
                 undisplayAlways : true,
                 doPaintPname : false,
@@ -322,48 +253,47 @@
 				undisplayAlways : true,
             },
             D : {
-                pcolor : proof,
+                pcolor : proofColor,
                 letterRotRadius : 20,
                 //letterAngle : 135,
             },
             K : {
-                pcolor : proof,
+                pcolor : proofColor,
                 letterRotRadius : 20,
                 letterAngle : -60,
             },
             B : {
                 letterRotRadius : 20,
-                pcolor : orbit,
+                pcolor : bodyColor,
             },             
             BB : { // opposite B
                 letterAngle : 90,
                 undisplayAlways : true,
                 doPaintPname : false,
-                pcolor : orbit,
+                pcolor : bodyColor,
             },
             E : {
-                pcolor : proof,
+                pcolor : proofColor,
                 letterRotRadius : 20,
             }, 
             I : {
-                pcolor : proof,
+                pcolor : proofColor,
                 letterRotRadius : 20,
             },
-
         });
 
-		const proofSolution = { pcolor : body,
+		const proofSolution = { pcolor : proofColor,
  				cssClass: 'subessay--solution', };
 
         var linesArray =
         [
-			{ QR : { pcolor : proof,
- 				cssClass: 'subessay--solution subessay--corollary2', }, },
-            { QT : { pcolor : proof,
- 				cssClass: 'subessay--solution subessay--corollary2', }, },
-            { SP : { pcolor : body,
- 				cssClass: 'subessay--solution logic_phase--corollary', }, },
-            { PM : { pcolor : body,
+			{ QR : { pcolor : estimatedForceColor,
+ 				cssClass: 'subessay--goal subessay--solution subessay--corollary2', }, },
+            { QT : { pcolor : estimatedForceColor,
+ 				cssClass: 'subessay--goal subessay--solution subessay--corollary2', }, },
+            // { SP : { pcolor : estimatedForceColor,
+ 			// 	cssClass: 'subessay--goal subessay--solution logic_phase--corollary', }, },
+            { PM : { pcolor : proofColor,
  				cssClass: 'subessay--solution', }, },
             { SM : proofSolution },
             { GP : proofSolution },
@@ -371,27 +301,35 @@
             { NP :  proofSolution },
             { Pv :  proofSolution },
             { Qv :  proofSolution }, 
-            { Qx :  proofSolution },  
-            { Px :  proofSolution },
-            { Tx :  proofSolution },
-            { SA :  proofSolution },
+            { Qx :  { pcolor : proofColor,
+ 				cssClass: 'subessay--goal subessay--solution', } },  
+            { Px :  { pcolor : proofColor, 
+                'stroke-width' : 1.2,  
+				cssClass: 'subessay--goal subessay--solution', }, },
+            { Tx :  { pcolor : proofColor, 
+                'stroke-width' : 1.2,  
+				cssClass: 'subessay--goal subessay--solution', }, },
+            { SA : {  pcolor : proofHover,
+ 				cssClass: 'subessay--solution', }, },
             { xv :  proofSolution },
+			            { SP : { pcolor : estimatedForceColor,
+ 				cssClass: 'subessay--goal subessay--solution logic_phase--corollary', }, },
 
             // tangent
             { 'PR' : { 
-                pcolor : body, 
+                pcolor : proofColor, 
                 'stroke-width' : 2, 
                 captionShiftNorm : -18,
-				cssClass: 'subessay--solution logic_phase--corollary', }, 
+				cssClass: 'subessay--goal subessay--solution logic_phase--corollary', }, 
             },                
-            { 'P,Zminus' : { pcolor : body,
+            { 'P,Zminus' : { pcolor : proofColor,
  				cssClass: 'subessay--solution', }, },
 
             // base line
-            { 'A,AA' : { pcolor : orbit,
+            { 'S,AA' : { pcolor : proofColor,
  				cssClass: 'subessay--solution', }, },
 
-            { 'L,LL' : { pcolor : resultOnlyVisibleWhenHighlighted,
+            { 'L,LL' : { pcolor : supplementHover,
                captionShiftNorm : 22, lposYSugar : 3 }, },
         ];
 

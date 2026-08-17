@@ -9,8 +9,13 @@
     //=========================================================================
     function creates_S_slider() {
         rg.S.acceptPos = newPos => {
+             //Update pos here, otherwise graph is rebuilt using old pos, which
+             //leads to issues (eg. estimated force won't converge on actual).
+             rg.S.pos[0] = newPos[0];
+             rg.S.pos[1] = newPos[1];
+
             //does this for decorational purposes
-            stdMod.rebuilds_orbit( ssD.Dt );
+            stdMod.rebuilds_orbit();
             //this permits an orbitrary move
 
             updatePointPPos();
@@ -71,7 +76,7 @@
                 pos[1] += dpos1*c2p;
                 bezio.updatesPivot( pos, cpix );
 
-                stdMod.rebuilds_orbit( ssD.Dt );
+                stdMod.rebuilds_orbit();
                 updatePointPPos();
 
                 ///updates curve pivots every time:

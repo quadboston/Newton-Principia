@@ -11,7 +11,6 @@
         // //\\ subapp regim switches
         //====================================================
         sconf.insertDelayedBatch        = true;
-        sconf.enableStudylab            = false;
         //for some standard sliders
         sconf.hideProofSlider           = true; //todo
         //sconf.rgShapesVisible         = true;

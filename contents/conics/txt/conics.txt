@@ -1,0 +1,56 @@
+*::*claim|english
+{
+  "menuCaption" : "Text",
+  "subessayCaption" : "<i>Conics</i> I.21",
+  "subessay" : "i21-ellipse",
+  "logic_phaseCaption" : "<i>Conics</i> excerpts"
+}
+*..*
+Part of Apollonius’s <i>Conics</i> I.21 proves that when an ellipse's diameter ¦GP¦¦ has 2 ordinates ¦CD¦¦ and ¦Qv¦¦, then
+¦CD¦¦²&nbsp;:&nbsp;¦Qv¦Q𝑣¦¦² = ¦CG¦GC¦¦&nbsp×&nbsp¦PC¦¦&nbsp:&nbsp¦Pv¦P𝑣¦¦&nbsp×&nbsp¦CG vC¦𝑣G¦¦.
+<br><br>
+For more, see 
+<div book-reference-id="Densmore" style="margin-bottom: 0.3em;">Page 211</div>
+<div book-reference-id="Bernard-Cohen-guide">Page 330</div>
+
+
+
+
+*::*claim|english
+{
+  "menuCaption" : "Text",
+  "subessayCaption" : "<i>Conics</i> III.48 (hyperbola)",
+  "subessay" : "iii48-hyperbola"
+}
+*..*
+Apollonius’s <i>Conics</i> III.48 proves that the ¦PH SP¦lines¦¦ from any point ¦P¦¦
+on an ellipse or ¦orbit¦hyperbola¦¦ to its ¦S H¦foci¦¦ make ¦PH SP PZ¦equal angles¦¦ with the ¦PZ P,Zminus¦tangent¦¦ at that ¦P¦point¦¦.
+
+
+
+
+*::*claim|english
+{
+  "menuCaption" : "Text",
+  "subessayCaption" : "<i>Conics</i> III.48 (parabola)",
+  "subessay" : "iii48-parabola"
+}
+*..*
+Although Apollonius’s <i>Conics</i> III..48 only covers
+ellipses and hyperbolas, one can conceive of it being
+extended to ¦orbit¦parabolas¦¦ and being used by Newton in 
+Proposition 13 to determine that sides ¦SM¦¦ and ¦SP¦¦ are 
+equal. (Alternatively, Newton may have known that
+equality due to 
+<a href="https://archive.org/details/AHistoryOfGreekMathematicsVolumeII/page/119/mode/2up">
+Pappus's lemma which proves the focus-derectrix relation</a>.)
+<br><br>
+By considering the second focus to be at infinity on the concave
+side of the ¦orbit¦parabola¦¦, the ¦GP SP¦lines¦¦ from any point ¦P¦¦ to its 
+¦S¦foci¦¦ make ¦GP SP MP P,Zminus¦equal angles¦¦ with the 
+¦MP P,Zminus¦tangent¦¦ at that ¦P¦point¦¦.
+<br><br>
+Alternatively, by considering the second focus to be at infinity on the convex
+side of the ¦orbit¦parabola¦¦, the ¦gP SP¦lines¦¦ from any point ¦P¦¦ to its 
+¦S¦foci¦¦ again make ¦gP SP MP¦equal angles¦¦ with the 
+¦MP P,Zminus¦tangent¦¦ at that ¦P¦point¦¦.

@@ -31,8 +31,8 @@ the compulsion of the centripetal ¦p,f¦force¦¦. Therefore the straight line 
 touch this ¦orbit¦conic¦¦ at ¦P¦¦. Let some straight line ¦p,point_r¦pr¦¦ likewise touch the orbit ¦orbit-sample¦pq¦¦
 at ¦p¦¦, and if ¦S,Ys SY¦perpendiculars¦¦ are understood to be dropped from ¦S¦¦ to
 ¦p,point_r PR¦these tangents¦¦,
-the principal ¦L,LL¦latus rectum of the conic¦¦ will (by prop. 16, corol. 1)
-be to the principal ¦l,ll¦latus rectum of the orbit¦¦ in a ratio compounded of the
+the ¦L,LL¦principal latus rectum of the conic¦¦ will (by prop. 16, corol. 1)
+be to the ¦l,ll¦principal latus rectum of the orbit¦¦ in a ratio compounded of the
 squares of the ¦S,Ys SY¦perpendiculars¦¦ and the squares of the ¦p,point_r PR¦velocities¦¦ and thus is 
 given. Let L be the ¦L,LL¦latus rectum of the conic¦¦. The focus ¦S¦¦ of the ¦orbit¦conic¦¦ is
 also given. Let angle ¦PR PH¦RPH¦¦ be the complement of angle ¦PR SP¦RPS¦¦ to two right

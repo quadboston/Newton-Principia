@@ -1,19 +1,13 @@
 ( function() {
     var {
-        //**************************************************
-        // this module has "eval" statement which may
-        // need common objects, so don't be greedy to
-        // list them here:
-        //============================================================
-        sn, $$, nspaste, eachprop, has, haz, hazz, haff,
-        fapp, fconf, sconf, ssF, ssD, sDomN, sDomF, exegs, rg,
+        nspaste, eachprop, has, haz, hazz, haff,
+        fconf, sconf, ssF, ssD, rg,
         stdMod, amode,
         //**************************************************
     } = window.b$l.apptree({
         ssFExportList :
         {
             in_subessay_launch____amode2lemma,
-            doMinimizeTextMenus,
         },
     });
     return;
@@ -31,9 +25,6 @@
         // called again on tab switch from lemma-master-menu.js
         // console.log('in_subessay_launch____amode2lemma');
 
-        //if( amodel2app_8_extraWork ) {
-            //doMinimizeTextMenus(); // gets rid of "text" tab if there is no "video"
-        //}
         var { logic_phase, aspect, subessay } = amode;
         // //\\ patch. works for
         //      hiding/unhiding optional svg-elements
@@ -54,7 +45,7 @@
         //      uses sconf.rgShapesVisible if defined in lemma,
         //      if not, uses existing sconf.rgShapesVisible.
         //------------------------------------------------
-        eachprop( rg, (prop,propname) => {
+        eachprop( rg, (prop) => {
 
             //we don't implement this now because of
             //damage to other legacy lemmas,
@@ -84,7 +75,7 @@
         ///
         ///      "__amode2rgstate" can come from JS-module
         ///------------------------------------------------------------------
-        ssD.__amode2rgstate.forEach( (cblock,ix) => {
+        ssD.__amode2rgstate.forEach( (cblock) => {
             ///aka: "true", or "( logic_phase === 'claim' || ...
             var cond = cblock[0];
             if( eval( cond ) ) {
@@ -106,7 +97,7 @@
         ///------------------------------------------------------------------
 
         ///enables or disables conditional drag point if preset in sconf.js,
-        eachprop( rg, (shape, pname) => {
+        eachprop( rg, (shape) => {
             if( has( shape, 'conditionalDrag' ) ){
                 let dohide = true;
                 //options which do activate drag
@@ -123,7 +114,6 @@
                             ( aname === 'sappId' && fconf.sappId === match[1] )
                         ) {
                             dohide = false;
-                            //c cc( pname, match[1] );
                         }
                     }
                 })
@@ -172,49 +162,6 @@
             //patch-function,
             //todom: must be ported to normal app-launch-subessay scenario
             haff( stdMod, 'subessayLaunch_definedInLemma_after_model_upcreate' );
-        }
-    }
-
-    ///modifies only global CSS if configuration is specified doing so,
-    //apparently removes astray aspect-menu button,
-    function doMinimizeTextMenus()
-    {
-        if( haz( fconf, 'attach_menu_to_essaion_root' ) ){
-
-            var hideSingles     = haz( fconf, 'hideSingleItemContentMenus' );
-            var overrideAspect  = has( fconf, 'showAspectMenu' );
-            var hideTheor       = false;
-            var hideAspect      = false;
-
-            if( hideSingles ) {
-                var hideTheor = Object.keys( exegs ).length === 1;
-            }
-            if( overrideAspect ) {
-                var hideAspect = !fconf.showAspectMenu;
-            } else if( hideSingles ) {
-                var hideAspect = Object.keys( exegs[ amode.logic_phase ] ).length === 1;
-            }
-
-            var textMenuStyle$ = haz( sDomN, 'textMenuStyle$' );
-            if( !textMenuStyle$ ) {
-                textMenuStyle$ = sDomN.textMenuStyle$ = $$.c( 'style' ).to( document.head );
-            }
-            var html = '';
-            if( hideTheor ){
-                html += `
-                    .leftside-menuholder .menu-teaf.logic_phase {
-                        display : none;
-                    }
-                `;
-            }
-            if( hideAspect ){
-                html += `
-                    .leftside-menuholder .left-side-menu-rotator {
-                        display : none;
-                    }
-                `;
-            }
-            textMenuStyle$.html( html );
         }
     }
 })();

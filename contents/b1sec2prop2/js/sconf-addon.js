@@ -1,5 +1,5 @@
 (function(){
-const { sconf, nspaste, capture, toreg, ssF, ssD, sDomF,} =
+const { sconf, nspaste, capture, ssF, ssD,} =
       window.b$l.apptree({});
     ssF.init_conf_addon = init_conf_addon;
     ssD.P2_topicColors_elected = topicColors_elected;
@@ -122,39 +122,28 @@ function init_conf_addon (){
 
 function topicColors_elected(tpel){
     const {
-        force,
-        forceMove,
-        diagram,
-        path,
+        proofColor,
+		deviationColor,
+		deviationAreaColor,
     } = tpel;
-
-    areaDescriptionAccelerated = [
-        force[0], force[1], force[2]
-    ];
-
     return {
-        areaDescriptionAccelerated,
-        "Paracc"            : force,  //Point C''
-        "Caracc"            : force,  //Point C'
-        "CCaracc"           : forceMove,  //Line C to C'
-        "CParacc"           : diagram,  //Line C to C''
-        "cCaracc"           : forceMove,  //Line c to C'
-        "CaraccParacc"      : forceMove,  //Line C' to C''
-        "BParacc"           : forceMove,  //Line B to C''
-        "BCaracc"           : path,     //Line B to C'
-        "SCaracc"           : diagram,  //Line S C'
+        "Cprime"            : deviationColor,  //Point C'
+        "CCprime"           : deviationColor,  //Line C to C'
+        "CPprime"           : proofColor,  //Line C to C''
+        "cCprime"           : deviationColor,  //Line c to C'
+        "BCprime"           : deviationColor,     //Line B to C'
+        "SCprime"           : deviationColor,  //Line S C'
 
-        "SBCaracc"          : areaDescriptionAccelerated,
         // triangle SBC area description accelerated
+		"SBCprime"          : deviationAreaColor,
 
-        "Varacc"            : forceMove,    //Point V'
-        "BVaracc"           : forceMove,
-            // force at B deviated toward V;        Line B to V'
-            // area description accelerated
-
-            "VVaracc"           : forceMove,
-            // force vector at V displaced to V';   Line V to V'
-            // area description accelerated
+        "Vprime"            : deviationColor,    //Point V'
+		// force at B deviated toward V;        Line B to V'
+        // area description accelerated
+        "BVprime"           : deviationColor,
+		// force vector at V displaced to V';   Line V to V'
+		// area description accelerated
+		"VVprime"           : deviationColor,
     };
 }
 })();

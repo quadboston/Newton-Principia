@@ -63,130 +63,52 @@
 		// background color used to highlight text and table rows on hover
 		tr.highlight = rgbToArray("rgb(234, 234, 234)");
 
-		//usually as a condition of a claim,
-		//condition of the theorem,
-		//given parameters of the claim or proof
-		tr.given       = rgbToArray("rgb(0, 113, 0)");
-		tr.givenArea   = [...tr.given, 1];
-		tr.givenOnlyVisibleWhenHighlighted
-			= [...tr.given, 0, 1],
+		// sun/center of force (S or C in propositions)
+		tr.sunColor    = rgbToArray("rgb(202, 151, 0)"); 
+		tr.givenColor       = rgbToArray("rgb(106, 49, 249)");
+		tr.proofColor       = rgbToArray("rgb(0, 133, 0)");
+		tr.forceColor       = rgbToArray("rgb(149, 70, 24)");
+        tr.estimatedForceColor  = rgbToArray("rgb(211, 87, 254)");
+		tr.invalidColor     = rgbToArray("rgb(255, 0, 0)");  //alert, invalid user actions
+		tr.infoColor = rgbToArray("rgb(108, 129, 146)");
+		tr.bodyColor        = rgbToArray("rgb(50, 149, 191)"),
+		tr.body2Color       = rgbToArray("rgb(205, 103, 54)");//rgbToArray("rgb(255, 149, 111)"),
 
-		//relates to moving body, to an orbit
-		tr.body    = rgbToArray("rgb(0, 150, 0)");
-		tr.orbit   = tr.body;
 
-		tr.orbitareaSample         = [0, 150, 0,  0.05]; //P12
-		tr.orbitarea               = [0, 150, 0,  0.1, 0.5]; //P14 (P12 sconf)
-		tr.orbitareaHiddenStart    = [0, 150, 0,  0.001, 0.5]; //P12
-		tr.instanttriangle         = [0, 150, 200, 0.2, 0.5 ]; //P14 (P12 sconf)
-		tr.instanttriangleHiddenStart  = [0, 150, 200, 0.001, 0.5 ] //P12
+		function setDerivedColors() {
+			tr.hidden  = [0, 0, 0, 0];
+			tr.supplementColor = tr.infoColor;
+			tr.orbit = tr.body = tr.bodyColor;
+			tr.orbit2 = tr.body2 = tr.body2Color;
+			tr.corollaryColor = tr.proof = tr.proofColor;
+			tr.given = tr.givenColor;
+			// Hover colors are only visibile when hovering over 
+			// corresponding text. Used when they overlap with 
+			// other colors which take priority
+			tr.corollaryHover = [...tr.corollaryColor, 0, 1];
+			tr.curvature = tr.supplementColor;
+			tr.supplementHover = 
+					[...tr.supplementColor, 0, 1];
+			tr.proofArea   = [...tr.proof, 1];
+			tr.proofHover  = [...tr.proof, 0, 1];
+			tr.proofLight  = [...tr.proof, 0.12, 1];
+			tr.givenArea   = [...tr.given, 1];
+			tr.givenHover = [...tr.given, 0, 1];
+			tr.supplementHover
+				= [...tr.supplementColor, 0, 1];
 
-    	tr.info = rgbToArray("rgb(98, 109, 126)"); // info text (Prop6, etc)
+			tr.displacement    = 
+			tr.dtime = tr.estimatedForceColor;
+			tr.invalid = tr.invalidColor;
 
-		tr.time      = rgbToArray("rgb(0, 150, 200)");
-		tr.dtime     = tr.time;
-		tr.distance  = rgbToArray("rgb(60, 20, 0)");
+			tr.force = tr.forceColor; // need to track down and eliminate
+		}
 
-		//logical steps of the proof, auxilary constructs
-		//of a proof
-		tr.proof       = rgbToArray("rgb(0, 0, 255)");
-		tr.proofArea   = [...tr.proof, 1];
-		tr.result      = rgbToArray("rgb(100, 0, 0)");
-		tr.resultOnlyVisibleWhenHighlighted
-			= [...tr.result, 0, 1];
-
-		//alert, invalid user actions
-		tr.invalid = rgbToArray("rgb(250, 0, 0)");
-		//force, energy
-		tr.force   = rgbToArray("rgb(200, 150, 0)");
-		//conclusion of the proof
-
-		tr.forceMove       = tr.force;
-		tr.speed           = rgbToArray("rgb(90, 90, 90)");
-
-		//neutral elements
-		tr.shadow  = rgbToArray("rgb(50, 50, 50)");
-		tr.hidden  = [0, 0, 0, 0];
-
-		tr.context = rgbToArray("rgb(0, 0, 0)");
-
-		tr.estimatedForce  = rgbToArray("rgb(200, 0, 200)");
-		tr.sagitta         = tr.estimatedForce;
-		tr.displacement    = tr.estimatedForce;
-		tr.curvature       = rgbToArray("rgb(200, 40, 200)");
-		tr.chord           = rgbToArray("rgb(0, 0, 255)");
-		tr.attention       = rgbToArray("rgb(200, 200, 0)");
-
-		//From L20, L21
-		tr.static              = rgbToArray("rgb(0, 200, 255)");
-		tr.staticHalfOpacity   = [0, 200, 255, 0.5];
-		tr.core                = rgbToArray("rgb(255, 150, 0)");
-		tr.coreHalfOpacity     = [255, 150, 0, 0.5];
-		tr.aux                 = rgbToArray("rgb(255, 0, 255)");
-		tr.constructors        = rgbToArray("rgb(0, 0, 255)");
-		tr.ellipse             = rgbToArray("rgb(0, 150, 0)");
-
-		//From L2, L3, L4
-		tr.difference  = [150, 50, 0, 0, 0.64];
-		tr.figure      = rgbToArray("rgb(0, 150, 0)");
-
-		tr["figure-area"]              = [0, 150, 0, 0.32, 0.64],
-		tr["figure-area-txt"]          = [0, 150, 0, 0.7, 1],
-
-		tr["circumscribed-rectangles"] = [0, 80, 150, 0.32, 0.64],
-		tr["circ-txt"]                 = [0, 80, 150, 0.7, 1],
-
-		tr["inscribed-rectangles"]     = [150, 0, 150, 0.32, 0.64],
-		tr["insc-txt"]                 = [150, 0, 150, 0.7, 1],
-
-		tr.widths                      = [150, 0, 150, 0, 0.64],
-
-		tr.widestRectangular           = [0, 0, 150, 0.28, 0.49],
-		tr.widestRectangularHiddenStart= [0, 0, 150, 0.0, 0.49],
-		tr["widt-txt"]                 = [0, 0, 150, 0.7, 1],
-
-		//P1 (Shared with P2)
-		tr.freeMove        = rgbToArray("rgb(0, 150, 0)");
-		tr.diagram         = rgbToArray("rgb(150, 0, 90)");
-		tr.path            = rgbToArray("rgb(0, 0, 150)");
-		tr.sagittaeChords  = tr.sagitta;
-
-		tr.trianglePurpleTextAreaColor = tr.path;
-		tr["kepler-triangle-odd"]  = [102, 102, 255, 0.35, 0.7],
-		tr["kepler-triangle-even"] = [153, 153, 255, 0.35, 0.7],
-		tr.triangleGreen           = [0, 150, 0, 0.25, 0.64];
-
-		tr.perpendicular   = [150, 80, 0];
-		tr.tangent         = [0, 150, 0];
-
-		//P41
-		//Note that Fi for P12 is shadow (see its sconf.js ~line 635)
-		tr.fi      = [0, 0, 150, 0.1, 0.3];
-		tr.Fkernel = [0, 0, 150];
-
-		tr.bodyHiddenStart         = [...tr.body.slice(0,3), 0.01, 1];
-		tr.forceTransparentStart   = [...tr.force.slice(0,3), 0.1, 1];
-		tr.VSarea                  = [...tr.force.slice(0,3), 0.3, 0.7];
-		tr.timeHiddenStart         = [...tr.time.slice(0,3), 0.01, 0.7];
-
-		//Is vgpoint still needed?  Seems to be after "Drop point, A"
-		//in Elements under developer tools
-		//however may not be visible.
-		tr.vgpoint = [0, 150, 0, 0.01, 1]; //todm: last two pars have no effect
-
-		tr.XCY     = [0, 0, 150, 0.03, 0.5];
-
-		tr.D𝑐𝑥E    = [0, 0, 150, 0.01, 0.5];
-
-		tr.D𝑏𝑧E    = [110, 90, 0, 0.01, 0.5];
-		tr.VIC     = [110, 90, 0, 0.01, 0.5];
-		tr.ICK     = [110, 90, 0, 0.01, 0.5];
-
-		tr.sunColor = tr.given,
-		tr.corollaryColor = tr.proof;
-		//=======================================
-		// \\// topic colors repo
-		//=======================================
+		setDerivedColors();
+		setL2throughL4Colors();
+		setProp1andProp2Colors();
+		setL20andL21Colors();
+		setProp41Colors();
 
 		Object.assign( sf, {
 			//***************************************************
@@ -251,9 +173,78 @@
 			// \\// anchor control
 			//---------------------------------------------------------------
 		});
+
+
+		function setL2throughL4Colors() {
+			tr.difference  = rgbToArray("rgb(150, 50, 0)", 0, 0.64);
+			tr.figureColor      = rgbToArray("rgb(0, 150, 0)");
+
+			tr["figure-area"] = rgbToArray("rgb(0, 150, 0)", 0.32, 0.64);
+			tr["figure-area-txt"]          = rgbToArray("rgb(0, 150, 0)");
+
+			tr["circumscribed-rectangles"] = rgbToArray("rgb(0, 80, 150)", 0.32, 0.64);
+			tr["circ-txt"]                 = rgbToArray("rgb(102, 131, 179)");
+			tr["circ-outline"]             = rgbToArray("rgb(102, 131, 179)", 1.0, 1.0);
+
+			tr["inscribed-rectangles"]     = rgbToArray("rgb(150, 0, 150)", 0.32, 0.64);
+			tr["insc-txt"]                 = rgbToArray("rgb(112, 57, 107)");
+			tr["insc-outline"]             = rgbToArray("rgb(112, 57, 107)", 1.0, 1.0);
+
+			tr.widths                      = rgbToArray("rgb(150, 0, 150)", 0, 0.64);
+			tr.widestRectangular           = rgbToArray("rgb(0, 0, 150)", 0.28, 0.49);
+			tr.widestRectangularHiddenStart= rgbToArray("rgb(0, 0, 150)", 0.0, 0.49);
+			tr["widt-txt"]                 = rgbToArray("rgb(0, 0, 150)")
+		}
+
+		function setProp1andProp2Colors() {
+			//Prop 1 (Shared with Prop 2)
+			tr["kepler-triangle-odd"]  = [...tr.givenColor.slice(0, 3), 0.35, 0.7];
+			tr["kepler-triangle-even"] = rgbToArray("rgb(120, 74, 237)", 0.35, 0.7);
+		
+			//Prop 2 corollaries
+			tr.deviationAreaColor = rgbToArray("rgb(169, 85, 90)"); //Description of areas triangle P2 proof tab
+		}
+
+		function setL20andL21Colors() {
+			tr.static              = rgbToArray("rgb(0, 200, 255)");
+			tr.staticHalfOpacity   = [0, 200, 255, 0.5];
+			tr.core                = rgbToArray("rgb(255, 150, 0)");
+			tr.coreHalfOpacity     = [255, 150, 0, 0.5];
+			tr.aux                 = rgbToArray("rgb(255, 0, 255)");
+			tr.constructors        = rgbToArray("rgb(0, 0, 255)");
+			tr.ellipse             = tr.bodyColor;
+		}
+
+		function setProp41Colors() {
+			//Note that Fi for P12 is shadow (see its sconf.js ~line 635)
+			tr.prop41timeColor = rgbToArray("rgb(0, 150, 200)");
+			tr.fi = [0, 0, 150, 0.1, 0.3];
+			tr.Fkernel = [0, 0, 150];
+
+			tr.bodyHiddenStart = [...tr.body.slice(0, 3), 0.01, 1];
+			tr.forceTransparentStart = [...tr.forceColor.slice(0, 3), 0.1, 1];
+			tr.VSarea = [...tr.forceColor.slice(0, 3), 0.3, 0.7];
+			tr.timeHiddenStart = [...tr.prop41timeColor.slice(0, 3), 0.01, 0.7];
+
+			//Is vgpoint still needed?  Seems to be after "Drop point, A"
+			//in Elements under developer tools
+			//however may not be visible.
+			tr.vgpoint = [0, 150, 0, 0.01, 1]; //todm: last two pars have no effect
+
+			tr.XCY = [0, 0, 150, 0.03, 0.5];
+
+			tr.D𝑐𝑥E = [0, 0, 150, 0.01, 0.5];
+
+			tr.D𝑏𝑧E = [110, 90, 0, 0.01, 0.5];
+			tr.VIC = [110, 90, 0, 0.01, 0.5];
+			tr.ICK = [110, 90, 0, 0.01, 0.5];
+
+			tr.shadow  = rgbToArray("rgb(50, 50, 50)"); // Prop 41 only
+			tr.distance  = rgbToArray("rgb(60, 20, 0)");
+		}
 	}
 
-	function rgbToArray(rgbString, alpha) {
+	function rgbToArray(rgbString, alpha, alphaWhenHighlighted) {
 		const matches = rgbString.match(/\d+/g);
 		if (!matches || matches.length !== 3) {
 			throw new Error("Input must be a string in the format" +
@@ -262,6 +253,9 @@
 		const rgb = matches.map(Number);
 		if (alpha !== undefined) {
 			rgb.push(alpha);
+		}
+		if (alphaWhenHighlighted !== undefined) {
+			rgb.push(alphaWhenHighlighted);
 		}
 		return rgb;
 	}

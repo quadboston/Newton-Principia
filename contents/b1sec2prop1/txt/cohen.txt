@@ -6,7 +6,7 @@
   "logic_phaseCaption" : "Theorem 1"
 }
 *..*
-The ¦SAB kepler-triangle-odd kepler-triangle-even¦areas¦¦ which bodies made to move in ¦path¦orbits¦¦ describe by radii drawn to an unmoving
+The ¦kepler-triangle-odd kepler-triangle-even¦areas¦¦ which bodies made to move in ¦bodyColor¦orbits¦¦ describe by radii drawn to an unmoving
 ¦S¦center¦¦ of forces lie in unmoving planes and are proportional to the times.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 444.</div>
@@ -30,7 +30,7 @@ be described.
 <br><br>
 
 But <span class="captured-reference id-1-2">when the body comes to ¦B¦¦</span>,
-let a ¦force forceMove¦centripetal force¦¦ act with
+let a ¦force forceColor¦centripetal force¦¦ act with
 a single but great impulse and make the body deviate from the straight line
 ¦Bc¦B𝑐¦¦ and proceed in the straight line ¦BC¦¦.
 <br><br>
@@ -46,7 +46,7 @@ will be equal to triangle ¦SBc¦SB𝑐¦¦ and thus also to triangle ¦SAB¦¦.
 <br><br>
 
 By a similar
-argument, if the ¦forceMove¦centripetal force¦¦ acts successively at 
+argument, if the ¦forceColor¦centripetal force¦¦ acts successively at 
 <span class="captured-reference id-1-C">¦C¦¦</span>,
 <span class="captured-reference id-1-D">¦D¦¦</span>, 
 <span class="captured-reference id-1-E">¦E¦¦</span>,&nbsp;.&nbsp;.&nbsp;.&nbsp;, making
@@ -63,10 +63,10 @@ the areas are to each other as the times of description.
 
 Now <span class="captured-reference id-more-triangles">let the number
 of triangles be increased and their width decreased</span> indefinitely, and their
-ultimate perimeter ¦AB BC CD DE EF path¦ADF¦¦ will (by 
+ultimate perimeter ¦bodyColor¦ADF¦¦ will (by 
 <a href="?conf=sappId=b1sec1lemma3,logic_phaseId=corollary,aspectId=english,subessayId=cor-4">
 by lem. 3, corol. 4</a>) be a curved line; and
-thus the ¦forceMove¦centripetal force¦¦ by which the body is continually drawn back from
+thus the ¦forceColor¦centripetal force¦¦ by which the body is continually drawn back from
 the tangent of this curve will act uninterruptedly, while any areas described,
 ¦SAB SBC SCD¦SADS¦¦ and ¦SAB SBC SCD SDE SEF¦SAFS¦¦, which are always proportional to the times of description,
 will be proportional to those times in this case.

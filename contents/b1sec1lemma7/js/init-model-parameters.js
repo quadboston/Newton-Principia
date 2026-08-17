@@ -38,7 +38,9 @@
             pname : 'B',
             acceptPos : ( newPos ) =>
             {
-                var newPosX = newPos[0];
+                var newPosX = ssD.getUnrotatedParameterX( 
+                    newPos[0], rg.B.unrotatedParameterX 
+                );
 
                 //prevents B from getting too close to A to avoid rounding errors
                 if( newPosX < sconf.NON_ZERO_A_PREVENTOR ) {

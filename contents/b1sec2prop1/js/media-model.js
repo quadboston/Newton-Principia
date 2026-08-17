@@ -10,8 +10,8 @@ var zorderFixed = false;
 //enables steps BC, CD, ... by clicks on B, C, ...
 var POINTS_BCDE_ARE_ACTIVE = false;
 const lemmaP2coroll =
-    ('Caracc Paracc Varacc CCaracc SCaracc BCaracc BParacc ' +
-     'CParacc VVaracc BVaracc CaraccParacc SBCaracc cCaracc').split(' ');
+    ('Cprime Vprime CCprime SCprime BCprime ' +
+     'CPprime VVprime BVprime SBCprime cCprime').split(' ');
 return;
 
 
@@ -157,7 +157,7 @@ function media_upcreate___before_basic (){
             if( has(rgX, 'svgel' )){
                 rgX.svgel.setAttribute( 'r', pointsAreOn ? '6' : '4' );
                 rgX.svgel.style[ 'fill' ] = pointsAreOn ?
-                '#cccccc' : sDomF.getFixedColor( 'path' );
+                '#cccccc' : sDomF.getFixedColor( 'bodyColor' );// TODO: check
             //} else {
                 //todo why is this?
                 //c cc( rgX.pname + ' svg is missed in media-model.js' );

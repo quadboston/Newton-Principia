@@ -24,7 +24,7 @@ const {
             //duplicate with css file ... dom-roots.css
             //"    height : 100vh \n" +
             "    opacity :1; \n" +
-            "    transition  :opacity 1s ease-in-out; \n" +
+            "    transition  :opacity 0.4s ease-in-out; \n" +
             "} \n"
         );
     //======================================================
@@ -52,8 +52,8 @@ const {
         ssF.spawns_lemsDefArr(); // contents/content-list.js to fconf
         fapp.setUIConstants();
 		fapp.setColors();
-        fapp.lemmaDef       = fconf.sappId2lemmaDef[ fconf.sappId ];
-        document.title      = fapp.lemmaDef.caption;
+        fapp.lemmaDef = fconf.sappId2lemmaDef[ fconf.sappId ];
+        document.title = fconf.sappId == 'conics' ? '𝘊𝘰𝘯𝘪𝘤𝘴 reference'  : fapp.lemmaDef.caption;
         fconf.sappIdUnCamel = nsmethods.toCssIdentifier( fconf.sappId );
         //=========================
         // \\// sets ids and titles

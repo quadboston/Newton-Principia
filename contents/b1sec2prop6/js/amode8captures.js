@@ -32,7 +32,9 @@
 
 
         if( logic_phase === 'claim' || logic_phase === 'proof' ){
-            rg.media_scale.value = 1;
+            if(!rg.media_scale.value) {
+                rg.media_scale.value = 1;
+            }
             ssF.scaleValue2app( rg.media_scale.value, );
             rg.curvatureCircle.undisplay = true;
         } else if( logic_phase === 'corollary' && subessay === 'corollary1' ){
@@ -44,7 +46,9 @@
             rg.curvatureCircle.undisplay = false;
             rg.APQ.undisplay = true;
         } else {
-            rg.media_scale.value = 1;
+            if(!rg.media_scale.value) {
+                rg.media_scale.value = 1;
+            }
             ssF.scaleValue2app( rg.media_scale.value, );
         }
 

@@ -2,7 +2,11 @@
 ///which is calculated from time t and curve parameter q
 ( function() {
     var { sn, stdMod, sconf, ssD, sData, rg, } = window.b$l.apptree({
-        stdModExportList : { builds_force_plusQ_minusQ_and_related, }, });
+        stdModExportList : {
+            builds_force_plusQ_minusQ_and_related,
+            convertTimeTo_q,
+            calculateTimeBetweenQAndP,
+        }, });
     sn( 'qIndexToOrbit', ssD, [] );
     sn( 'graphArray', stdMod, [] );
     sData.ULTIM_MAX = 2;
@@ -42,8 +46,8 @@
                 var Dq = ssD.Dq;
                 break;
             case sData.ULTIM_ACTUAL:
-                var Dt = 0.0001;
-                var Dq = sconf.DQ_SLIDER_MIN;
+                var Dt = 0;
+                var Dq = 0;
                 break;
         }
         for( let qix=0; qix<=Q_STEPS; qix++ ) {
@@ -54,7 +58,8 @@
             //**********************************************
             if( !sconf.TIME_IS_FREE_VARIABLE ){
                 var plusQ = bP.q + Dq;
-                if( sconf.orbit_q_end <= plusQ ){
+                //"<" not "<=" to ensure point Q can reach the end of the orbit
+                if( sconf.orbit_q_end < plusQ ){
                     if( MAKE_RANGE && !CURVE_REVOLVES ){
                         ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
                         bP.invalid = true
@@ -63,7 +68,9 @@
                     bP.plusQ = plusQ;
                     const force = stdMod.calculateForce({
                         parq: plusQ,
-                        bP
+                        bP,
+                        Dq,
+                        ulitmacy,
                     });
                     switch (ulitmacy) {
                         case sData.ULTIM_MAX:
@@ -84,14 +91,14 @@
             // \\// q is free variable
             //**********************************************
 
-            
+
             //**********************************************
             // //\\ t is a free variable
             //**********************************************
             const bodyTime = bP.timeAtQ; //body time
             {
                 const plusT = bodyTime + Dt;
-                var plusQ = convertTimeToQ(plusT);
+                var plusQ = convertTimeTo_q(plusT);
 
                 if (plusQ === null) {
                     if (MAKE_RANGE && !CURVE_REVOLVES) {
@@ -112,7 +119,9 @@
             if( plusQ !== null ){
                 const force = stdMod.calculateForce({
                     parq: plusQ,
-                    bP
+                    bP,
+                    Dt,
+                    ulitmacy,
                 });
                 switch (ulitmacy) {
                     case sData.ULTIM_MAX:
@@ -127,11 +136,11 @@
                         break;
                 }
             }
-            
+
             if( plusQ !== null ){
                 bP.rrplus = q2xy( plusQ );
                 let minusT = bodyTime - Dt;
-                var minusQ = convertTimeToQ(minusT);
+                var minusQ = convertTimeTo_q(minusT);
 
                 if (minusQ === null) {
                     if( MAKE_RANGE && !CURVE_REVOLVES && Q_MINUS_EXISTS ){
@@ -155,12 +164,12 @@
         //**********************************************
 
         //Can be enabled temporarily for testing if needed
-        // checkConvertTimeToQ();
+        // check_qAndTimeConversions();
     }
 
 
 
-    function convertTimeToQ(time) {
+    function convertTimeTo_q(time) {
         //Use the bisection method to find the qix interval containing the
         //input time, then interpolate and output the q value using that
         //interval.
@@ -168,7 +177,7 @@
         const CURVE_REVOLVES = sconf.CURVE_REVOLVES;
         const qIndexToOrbit = ssD.qIndexToOrbit;
         const timeRange = ssD.timeRange;
-        
+
         //Adjust time as needed, and ensure within bounds.
         const timeFind = CURVE_REVOLVES ? (timeRange + time) % timeRange : time;
         if (timeFind < 0 || timeFind > timeRange)
@@ -214,20 +223,106 @@
     }
 
 
+    function convert_qToTime(q, clampToMinAndMaxTime = false) {
+        //Find the qix interval containing the input q, then interpolate and
+        //output the time value using that interval.  Optionally if out of
+        //bounds, clamp time to be from 0 to the maximum rather than null.
 
-    function checkConvertTimeToQ() {
-        //Simple automated test intended to help check if convertTimeToQ
-        //calculates values correctly.  It could be improved for example:
+        const Q_STEPS = sconf.Q_STEPS;
+        const qIndexToOrbit = ssD.qIndexToOrbit;
+        const delta_q_between_steps = sconf.delta_q_between_steps;
+        const orbit_q_start = sconf.orbit_q_start;
+        const orbit_q_end = sconf.orbit_q_end;
+        const timeRange = ssD.timeRange;
+
+        if (sconf.CURVE_REVOLVES) {
+            //todo
+            console.error(
+                `At the time of writing this no models "revolve" when q is ` +
+                `the free variable, therefore this code needs to be updated ` +
+                `if that changes.  Eg. it will likely need to be setup to ` +
+                `adjust q as needed, similar to convertTimeTo_q.`
+            );
+        }
+
+        //Ensure q within bounds, clamp if needed
+        if (q < orbit_q_start) {
+            return clampToMinAndMaxTime ? 0 : null;
+        } else if (q > orbit_q_end) {
+            return clampToMinAndMaxTime ? timeRange : null;
+        }
+
+
+        //Calculate qix for q
+        const qix = (q - orbit_q_start) / delta_q_between_steps;
+
+        if (qix === Q_STEPS) {
+            //Exactly at orbit end point (no remainder)
+            return qIndexToOrbit[Q_STEPS].timeAtQ;
+        } else if (qix < 0) {
+            //Before start of orbit, clamp if needed
+            return clampToMinAndMaxTime ? 0 : null;
+        } else if (qix > Q_STEPS) {
+            //After end of orbit, clamp if needed
+            return clampToMinAndMaxTime ? timeRange : null;
+        }
+
+        //Lower bound of interval that contains q
+        const qixL = Math.floor(qix);
+
+        //Calculate time value
+        //Must use dq_dt from PEnd not PStart to be consistent with
+        //how qIndexToOrbit data is setup in "builds-orbit.js"
+        const PStart = qIndexToOrbit[ qixL ];
+        const PEnd = qIndexToOrbit[ qixL + 1 ];
+        const q_reminder = q - PStart.q;
+        const time = PStart.timeAtQ + q_reminder / PEnd.dq_dt;
+        return time;
+    }
+
+
+    function calculateTimeBetweenQAndP() {
+        if( !sconf.TIME_IS_FREE_VARIABLE ){
+            const bP = ssD.qIndexToOrbit[ rg.P.qix ];
+            const qQ = bP.plusQ;
+            const timeQ = convert_qToTime(qQ, true);
+            const timeP = bP.timeAtQ;
+
+            //When Q is at P, sometimes timeQ has a slight bit of error.  This
+            //means Dt can be slightly negative, therefore clamp it to 0.
+            let Dt = timeQ - timeP;
+            if (Dt < 0)
+                Dt = 0;
+
+            if (sconf.CURVE_REVOLVES) {
+                //todo
+                console.error(
+                    `At the time of writing this no models "revolve" when q ` +
+                    `is the free variable, therefore this code needs to be ` +
+                    `updated if that changes.  Eg. ensure Dt wraps around ` +
+                    `correctly when negative.`
+                );
+            }
+            return Dt;
+        }
+
+        return ssD.Dt;
+    }
+
+
+    function check_qAndTimeConversions() {
+        //Simple automated test intended to help check if convertTimeTo_q and
+        //convert_qToTime calculate values correctly.  It could be improved
+        //for example:
         // -Could include end of interval.  Note when CURVE_REVOLVES = true
-        //  the end of the last interval can return the fist q value rather
-        //  than the max.  That is to say 0 rather then eg. 2PI (depending on
-        //  the model).
-        // -Could check time values outside range 0 to the maximum (timeRange).
+        //  the end of the last interval can return the first value rather than
+        //  the max.
+        // -Could check values outside range start to end (eg. 0 to timeRange).
         //  Note behavior is different depending on value of CURVE_REVOLVES.
         const qIndexToOrbit = ssD.qIndexToOrbit;
 
-        let countPassed = 0;
-        let countTests = 0;
+        const countsTimeTo_q = { passed: 0, tests: 0, };
+        const counts_qToTime = { passed: 0, tests: 0, };
 
         const qixMax = (qIndexToOrbit.length - 1);
         const checksPerInterval = 5;
@@ -245,28 +340,40 @@
             //Check values within interval (including start, excluding end)
             for(let i = 0; i < checksPerInterval; i++) {
                 const factor = i / checksPerInterval;
-
                 const time = tS + (tE - tS) * factor;
                 const q    = qS + (qE - qS) * factor;
-                
-                //Calculate and check value
-                const Q = convertTimeToQ(time);
-                if (Q === null) {
-                    //Failed, shouldn't be null
-                } else if (Math.abs(Q - q) < 1e-9) {
-                    //Passed, within error tolerance
-                    countPassed++;
-                }
-                countTests++;
+
+                //Calculate values and update counts
+                const qCalculated = convertTimeTo_q(time);
+                updateCounts(countsTimeTo_q, qCalculated, q);
+                const timeCalculated = convert_qToTime(q);
+                updateCounts(counts_qToTime, timeCalculated, time);
             }
         }
 
-        const message = `Simple test for function convertTimeToQ ` +
-            `${countPassed}/${countTests} tests passed.`;
-        if (countPassed === countTests) {
-            console.log(message);
-        } else {
-            console.error(message);
+        showMessage(countsTimeTo_q, "convertTimeTo_q");
+        showMessage(counts_qToTime, "convert_qToTime");
+
+
+        function updateCounts(counts, valueCalculated, valueActual) {
+            //Check value and update counts
+            if (valueCalculated === null) {
+                //Failed, shouldn't be null
+            } else if (Math.abs(valueCalculated - valueActual) < 1e-9) {
+                //Passed, within error tolerance
+                counts.passed++;
+            }
+            counts.tests++;
+        }
+
+        function showMessage(counts, nameFunction) {
+            const message = `Simple test for function ${nameFunction} ` +
+                `${counts.passed}/${counts.tests} tests passed.`;
+            if (counts.passed === counts.tests) {
+                console.log(message);
+            } else {
+                console.error(message);
+            }
         }
     }
 }) ();

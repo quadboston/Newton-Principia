@@ -1,5 +1,5 @@
 ( function() {
-    var { rg, stdMod, } = window.b$l.apptree({ stdModExportList : {
+    var { stdMod, } = window.b$l.apptree({ stdModExportList : {
             media_upcreate___part_of_medupcr_basic,
         }, });
     return;
@@ -16,6 +16,4 @@
     //=========================================================
     // \\// lemma custom addons
     //=========================================================
-
 }) ();
-

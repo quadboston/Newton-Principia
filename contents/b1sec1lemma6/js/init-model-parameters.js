@@ -66,8 +66,9 @@
             pname : 'B',
             acceptPos : ( newPos ) =>
             {
-                var ach = rg.B.achieved;
-                var new_unrotatedParameterX = newPos[0];
+                var new_unrotatedParameterX = ssD.getUnrotatedParameterX( 
+                    newPos[0], rg.B.unrotatedParameterX 
+                );
                 var cfun = ssD.repoConf[ssD.repoConf.customFunction].fun;
                 var cpos = cfun( new_unrotatedParameterX );
 

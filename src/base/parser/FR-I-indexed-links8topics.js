@@ -1,7 +1,7 @@
 ( function() {
     var {
         sn, $$, eachprop, haz,
-        fconf, sconf,
+        sconf,
         sDomN, sDomF, ssF, ssD, exegs,
         amode, userOptions
     } = window.b$l.apptree({
@@ -12,10 +12,7 @@
         },
     });
     ssD.subessayClickDisabled = false;
-    var collectedDelayedLinks = sn( 'collectedDelayedLinks', ssD, [] );
     return;
-
-
 
 
     ///builds
@@ -31,8 +28,8 @@
     */
     function exegs__2__dom_indexedLinks_indexedTopics()
     {
-        eachprop( exegs, ( logic_phaseAspects, mcat_id ) => {
-            eachprop( logic_phaseAspects, ( exAspect, scat_id ) => {
+        eachprop( exegs, ( logic_phaseAspects ) => {
+            eachprop( logic_phaseAspects, ( exAspect ) => {
                 exAspect.subexegs.forEach( ( subexeg, exegId ) => {
                     subexeg.cssCls = ' subessay-menuitem-id-' + exegId;
                     //====================================================
@@ -61,20 +58,27 @@
                           )
                           .e( 'click', () => {
                                 if( ssD.subessayClickDisabled ) return;
-                                virtualSubessayClick( subexeg );
+                                //virtualSubessayClick( subexeg );<<<
                                 var url = window.location.href;
                                 var subessayId = subexeg.essayHeader.subessay;
+								const needsReload = isReloadNeeded(url, subessayId);
+								if( !needsReload ) {
+									virtualSubessayClick( subexeg );
+								}
                                 const match = url.includes('subessayId=');
                                 if (match) {
                                     url = url.replace(/subessayId=[^,]*/, `subessayId=${subessayId}`);
                                 } else {
                                     url += `,subessayId=${subessayId}`;
                                 }
-                                // Update the browser URL without reload
-                                window.history.replaceState({}, "", url);
+								if (needsReload) {
+									window.location.href = url;
+								} else {
+									// Update the browser URL without reload
+									window.history.replaceState({}, "", url);
+								}
                           })
                           ;
-
                     }
                     subexeg.domEl$ = $$
                       .c('div')
@@ -95,7 +99,7 @@
                     ///   they are non-unJSONED-active Fragment text units
                     ///rawActiveFrag and rawActFrValue are obtained from Book
                     ///with help by ACTION_SPLITTER = /¿/
-                    subexeg.activeFrags.forEach( function( rawActiveFrag, tix ) {
+                    subexeg.activeFrags.forEach( function( rawActiveFrag ) {
                         if( typeof( rawActiveFrag ) === 'object' ) {
                             eachprop( rawActiveFrag, (rawActFrValue) => {
                                 ssF.fragment__collectsRawTpLinks( rawActFrValue );
@@ -126,7 +130,7 @@
                         .cls( 'subessay-menu-container highlight-text-disabled' )
                         .to( sDomN.essaionsRoot$ )
                         ;
-                    exAspect.subexegs.forEach( ( subexeg, exegId ) => {
+                    exAspect.subexegs.forEach( ( subexeg ) => {
                         subexeg.subessayMenuItem$.to( subessayMenuContainer$ );
                         $$.c('span')
                             .addClass( subexeg.cssCls )
@@ -135,7 +139,7 @@
                     });
                 }
                 ///puts bodies to the bottom
-                exAspect.subexegs.forEach( ( subexeg, exegId ) => {
+                exAspect.subexegs.forEach( ( subexeg ) => {
                     subexeg.domEl$.to( sDomN.essaionsRoot$ );
                 });
                 //************************************************************
@@ -144,6 +148,22 @@
             });
         });
     }
+
+	function isReloadNeeded(url, subessayId) {
+		if (!url.includes('glossary') && !url.includes('conics')) {
+			return false; // No reload needed if not in glossary
+		}
+		const atHyperbola = url.includes('hyperbola');
+		const goingToHyperbola = subessayId.includes('hyperbola');
+		const atParabola = url.includes('parabola');
+		const goingToParabola = subessayId.includes('parabola');
+		const atEllipse = !atHyperbola && !atParabola;
+		const goingToEllipse = !goingToHyperbola && !goingToParabola;
+		return !(atHyperbola && goingToHyperbola) &&
+			   !(atParabola && goingToParabola) &&
+			   !(atEllipse && goingToEllipse);
+		//return atHyperbola ^ goingToHyperbola; // XOR: true if only one is true
+	}
 
     ///emulates user-click and first-user-click
     function virtualSubessayClick( subexeg )
@@ -162,11 +182,5 @@
         //virtual subessay click
         subexeg.subessayMenuItem$.removeClass( 'user-untouched' ); //vestige?
         sDomF.menu2lemma( !!'amodel2app_8_extraWork' );
-        sDomF.tellActivityEngine_that_userStartedSubessay();
     }
-
-
-
 }) ();
-
-

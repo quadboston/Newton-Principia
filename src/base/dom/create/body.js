@@ -9,8 +9,6 @@
     return;
 
 
-    
-
     function builds_body_4_home8lemma()
     {
         //===================================
@@ -65,7 +63,6 @@
 
 
         //todm: must be appMode
-        //sDomN.captionHTML$ = $$.c('h1'); //todm remove?
 
         //==================================================
         // //\\ page master menu
@@ -148,7 +145,7 @@
             .css('right', '10px')
             .css('color', fapp.versionColor)
             .css('font-size', '10px')
-            .html('Version 0.' + fapp.version);
+            .html('Version ' + fapp.version);
         //==================================================
         // \\// application version label
         //==================================================
@@ -166,27 +163,22 @@
                 <div class="trigger-content content-list">
                    <div class='scrollable-content'> <!-- only scrolls when page is short -->
         `;//rid content-book-title, content-book-title left-home- button
-        coreText += `
+        coreText += `<br>
                 <div>
-                    <ul style="margin-bottom:0; margin-top:0;">
-                        <li><div class="lemma-item-title go-to-front-page"
-                                     onclick="window.b$l.sapp.dnative.landingPage8Options_click();"
-                                     title="Go to front page and preferences."
-                               >🏠 🛠
-                              </div><!-- ⚙ -->
-                        </li>
-                    </ul>
-                </div>
+					<div class="lemma-item-title go-to-front-page"
+						style="margin-bottom:0; margin-top:0; margin-left:1em; display:inline-block; padding: 0.4em 5em; box-sizing:border-box; text-align:center;"
+						onclick="window.b$l.sapp.dnative.landingPage8Options_click();"
+						title="Go to home page"
+					>🏠</div>
+                </div><br>
         `;
-        coreText += sapp.buildsListOfLemmas(false) +
+        coreText += sapp.buildListOfLemmas(false) +
         `
                    </div>
                 </div>
             </div>
         `;
         fapp.fappRoot$.e( 'click', function( event ) {
-            //ccc( 'event.target=',event.target);
-            //ccc( 'event.currentTarget=',event.currentTarget, 'this, el=', this );
             stepUp( event.target )
         });
         return coreText;
@@ -224,22 +216,18 @@
 
             fapp.homePage$.removeClass( 'is-hidden' );
             sDomN.returnToLemmaButton$.removeClass( 'non-displayed' );
-            sDomN.homeButton$.addClass( 'non-displayed' );
             
             fapp.fappRoot$.css( 'overflow', 'visible' );
             document.body.style.overflow = 'visible';
             $$.$( document.body ).addClass( 'contents' );
-            //todm patch
-            haz( sDomN , 'simSScene$' ) &&
-                sDomN.simSScene$.css( 'display', 'none' );
-
+            sDomN.homeButton$.addClass( 'non-visible' );
         } else {
             //(I) this erases css of front-page-pane
             ns.globalCss.clearStyleTag('home');
             
             fapp.homePage$.addClass( 'is-hidden' );
             sDomN.returnToLemmaButton$.addClass( 'non-displayed' );
-            sDomN.homeButton$.removeClass('non-displayed');
+            sDomN.homeButton$.removeClass('non-visible');
             
             document.body.style.overflow = 'hidden';
             $$.$(document.body).removeClass('contents');

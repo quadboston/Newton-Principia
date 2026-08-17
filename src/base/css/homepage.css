@@ -28,6 +28,11 @@
     display : none;
 }
 
+/* use this to hide elements without affecting page layout */
+.non-visible {
+    opacity : 0;
+}
+
 .bsl-home-pane h1, .bsl-home-pane h2 {
     color: var(--color-white);
 }

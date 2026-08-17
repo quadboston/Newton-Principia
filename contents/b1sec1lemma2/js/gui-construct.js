@@ -1,13 +1,12 @@
 ( function () {
     var {
         ///standard levels of application
-        sn, $$, svgNS, fapp, fconf, sconf, sDomF, stdMod, }
+        sn, svgNS, fapp, sconf, stdMod, topicColors_repo}
         = window.b$l.apptree({ setModule, });
     var stdL2               = sn('stdL2', fapp );
     var gui                 = sn('gui', stdL2 );
     var guicon              = sn('guiConstruct', gui );
     var guiup               = sn('guiUpdate',gui);
-    var appstate            = sn('appstate', stdL2 );
 
     var study               = sn('study', stdL2 );
     var sdata               = sn('sdata', study );
@@ -33,7 +32,12 @@
     function constructsRects_tillExtraOffset_parlessDom(dr)
     {
         //this is just an empty list
+        const cArr = topicColors_repo["circ-outline"];
+        const circColor = `rgb(${cArr[0]}, ${cArr[1]}, ${cArr[2]}, ${cArr[3]})`;
+        const iArr = topicColors_repo["insc-outline"];
+        const inscColor = `rgb(${iArr[0]}, ${iArr[1]}, ${iArr[2]}, ${iArr[3]})`;
         makes_rects( dr.circRects, "tp-circumscribed-rectangles circumscribed");
+        makes_rects_outlines( dr.circRects_outline, circColor);
 
         {
             //Add the figure name if needed
@@ -46,6 +50,7 @@
             }
             classStyle += " inscribed";
             makes_rects(dr.InscrRects, classStyle, classPrefixSingle);
+            makes_rects_outlines(dr.InscrRects_outline, inscColor);
         }
 
         makes_rects( dr.differenceRects, "tp-difference difference");
@@ -75,6 +80,24 @@
             list.push( makeSType( "polygon", classSingle + classStyle ) );
         }
     }
+
+    // creates duplicate of rectangles with no fill, just stroke
+    // so the stroke looks the same as those specified in sconf
+    // and so the strokes' opacity can be set independently of fill opacity
+    function makes_rects_outlines( listWrap, color )
+    {
+        let BASE_MAX_NUM = sconf.BASE_MAX_NUM;
+        let list = listWrap.list;
+        let len = BASE_MAX_NUM+listWrap.offset;
+        for (var i=0; i<len; i++){
+            //Create stroke duplicate with no fill
+            let strokeRect = makeSType( "polygon", "rect tostroke" );
+            strokeRect.setAttributeNS(null, 'fill', 'none');
+            strokeRect.setAttributeNS(null, 'stroke', color);
+            strokeRect.setAttributeNS(null, 'stroke-width', '5px');
+            list.push( strokeRect );
+        }
+    }
     //======================================================
     // \\// rects
     //======================================================
@@ -91,10 +114,6 @@
     {
         const ctrlPts = dr.ctrlPts;
         const cp = ctrlPts.untransformed;
-        var scale = 1/sconf.originalMod2inn_scale;
-        var offsetX = sconf.originX_onPicture;
-        var offsetY = sconf.originY_onPicture;
-        var flipY1 = sconf.MONITOR_Y_FLIP;
 
         //Only create and add points for the control points that are enabled.
         const offset = ctrlPts.DRAGGABLE_END_POINTS ? 0 : 1;
@@ -119,7 +138,7 @@
         if( onCurve ) {
             var cpList = dr.ctrlPts.list;
             for (var i=0, len=cpList.length; i < len; i++)
-                resetPoint(cpList[i], !isFig);
+                resetPoint(cpList[i]);
         }
 
         if( onBase && dr.BASE_PT_DRAGGERS_ENABLED) {
@@ -127,7 +146,7 @@
             const bplist = dr.basePts.list;
             const DRAGGABLE_BASE_POINTS = sconf.DRAGGABLE_BASE_POINTS;
             for (var i=0, len=DRAGGABLE_BASE_POINTS; i <= len; i++)
-                resetPoint(bplist[i], !isIn && !isCir);
+                resetPoint(bplist[i]);
             // \\//  dehollowfies basePts
         }
 
@@ -135,17 +154,17 @@
         if( onCurve ) {
             const tpList = Object.values(dr.transforms.pts);
             for (var i=0, len=tpList.length; i < len; i++)
-                resetPoint(tpList[i], !isFig);
+                resetPoint(tpList[i]);
         }
 
-
-        function resetPoint(pt, isTransparent) {
+        function resetPoint(pt) {
             const pdom = pt.dom;
-            pdom.style.fill = isTransparent ? 'transparent' :
-                //.todm patch
-                'rgba(255,255,255,1)'; //makes the point hollow
-            pdom.style.stroke = isTransparent ? 'transparent' :
-                sDomF.getFixedColor( 'figure' );
+            pdom.style.fill = 'rgba(255,255,255,1)'; //makes the point hollow
+			 const ptColor = 
+			 	pt.type === "base" || pt.index == 0 || pt.index == 3 ?
+				topicColors_repo.figureColor :
+				topicColors_repo.supplementColor ;
+			pdom.style.stroke = 'rgba(' + ptColor.join() + ')';
         }
     }
 
@@ -271,4 +290,3 @@
     //==================================================
     
 }) ();
-

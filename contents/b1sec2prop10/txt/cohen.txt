@@ -2,6 +2,7 @@
 {
   "default" : "1",
   "menuCaption" : "Text",
+  "subessayCaption" : "[<i>Problem</i>]",
   "logic_phaseCaption" : "Problem 5"
 }
 *..*
@@ -14,6 +15,76 @@ of the centripetal
 
 
 
+*::*claim|english
+{
+  "menuCaption" : "Text",
+  "subessayCaption" : "[<i>Applying prop. 6, corol. 5</i>]",
+  "subessay" : "goal",
+  "logic_phaseCaption" : "Problem 6"
+}
+*..*
+The force on ¦P¦¦ is <br>inversely
+<math>
+  <mo>∝</mo>
+  <munder>
+    <mo>lim</mo>
+    <mrow>
+      <mi>¦Q¦¦</mi>
+      <mo>→</mo>
+      <mi>¦P¦¦</mi>
+    </mrow>
+  </munder>
+  <mfrac>
+    <mrow>
+      <msup>
+        <mi>¦PC¦¦</mi>
+        <mn>2</mn>
+      </msup>
+      <mo>×</mo>
+      <msup>
+        <mi>¦QT¦¦</mi>
+        <mn>2</mn>
+      </msup>
+    </mrow>
+    <mrow>
+      <mi>¦QR¦¦</mi>
+    </mrow>
+  </mfrac>
+</math>
+<br>
+Or,<br>
+The force on ¦P¦¦
+<math>
+  <mo>∝</mo>
+  <munder>
+    <mo>lim</mo>
+    <mrow>
+      <mi>¦Q¦¦</mi>
+      <mo>→</mo>
+      <mi>¦P¦¦</mi>
+    </mrow>
+  </munder>
+  <mfrac>
+    <mrow>
+      <mi>¦QR¦¦</mi>
+    </mrow>
+    <mrow>
+      <msup>
+        <mi>¦PC¦¦</mi>
+        <mn>2</mn>
+      </msup>
+      <mo>×</mo>
+      <msup>
+        <mi>¦QT¦¦</mi>
+        <mn>2</mn>
+      </msup>
+    </mrow>
+  </mfrac>
+</math>
+
+
+
+
 *::*proof|english
 {
   "menuCaption" : "Text",
@@ -22,15 +93,21 @@ of the centripetal
   "logic_phaseCaption" : "Solutions"
 }
 *..*
-Let ¦CA¦¦ and ¦CB¦¦ be the semiaxes of the ¦orbit¦ellipse¦¦, ¦GP¦¦ and ¦DK¦¦ other conjugate diameters, 
-¦PF¦¦ and ¦QT¦¦ perpendiculars to those diameters, ¦Qv¦Q𝑣¦¦ an ordinate to diameter ¦GP¦¦; 
-then, if parallelogram ¦Qv Pv PR QR¦Q𝑣PR¦¦ is completed, the rectangle ¦Pv¦P𝑣¦¦ × ¦vG¦𝑣G¦¦ will (from the Conics) be to ¦Qv¦Q𝑣¦¦²
+Let ¦CA¦¦ and ¦CB¦¦ be the semiaxes of the ¦orbit¦ellipse¦¦, ¦GP¦¦ and ¦DK¦¦ other 
+<a href="?conf=sappId=glossary,logic_phaseId=claim,aspectId=english,subessayId=conjugatediameter">conjugate</a>
+<a href="?conf=sappId=glossary,logic_phaseId=claim,aspectId=english,subessayId=diameter">diameters</a>, 
+¦PF¦¦ and ¦QT¦¦ perpendiculars to those diameters, ¦Qv¦Q𝑣¦¦ an 
+<a href="?conf=sappId=glossary,logic_phaseId=claim,aspectId=english,subessayId=ordinate">ordinate</a>
+to diameter ¦GP¦¦; 
+then, if parallelogram ¦Qv Pv PR QR¦Q𝑣PR¦¦ is completed, the rectangle ¦Pv¦P𝑣¦¦ × ¦vC CG¦𝑣G¦¦ will 
+(from the <a href="?conf=sappId=conics,logic_phaseId=claim,aspectId=english,subessayId=conics"> Conics</a>)
+ be to ¦Qv¦Q𝑣¦¦²
 as ¦PC¦¦² to ¦DC¦CD¦¦², and
 (because
 triangles ¦Qv QT Tv¦Q𝑣T¦¦ and ¦PC CF PF¦PCF¦¦ are similar)
 ¦Qv¦Q𝑣¦¦² is to ¦QT¦¦² as ¦PC¦¦² to ¦PF¦¦², and,
-when these ratios are combined, the rectangle ¦Pv¦P𝑣¦¦ × ¦vG¦𝑣G¦¦ is to ¦QT¦¦² as ¦PC¦¦² to
-¦DC¦CD¦¦² and ¦PC¦¦² to ¦PF¦¦²; that is, ¦vG¦𝑣G¦¦ is
+when these ratios are combined, the rectangle ¦Pv¦P𝑣¦¦ × ¦vC CG¦𝑣G¦¦ is to ¦QT¦¦² as ¦PC¦¦² to
+¦DC¦CD¦¦² and ¦PC¦¦² to ¦PF¦¦²; that is, ¦vC CG¦𝑣G¦¦ is
 to 
 
 <!-- QT² / P𝑣 -->
@@ -54,7 +131,7 @@ as ¦PC¦¦² to
 <br><br>
 Write
 ¦QR¦¦ for ¦Pv¦P𝑣¦¦  and (by lem. 12) ¦CB¦BC¦¦ × ¦CA¦¦ for ¦DC¦CD¦¦ × ¦PF¦¦, and also (points ¦P¦¦
-and ¦Q¦¦ coming together) 2¦PC¦¦ for ¦vG¦𝑣G¦¦, and, multiplying the extremes and
+and ¦Q¦¦ coming together) 2¦PC¦¦ for ¦vC CG¦𝑣G¦¦, and, multiplying the extremes and
 means together, 
 
 <!-- QT² × PC² / QR -->
@@ -117,18 +194,18 @@ directly. &nbsp;&nbsp; Q.E.I.
 }
 *..*
 On the straight line ¦GP¦PG¦¦ take a point ¦u¦𝑢¦¦ on the other side of point ¦T¦¦,
-so that ¦Tu¦T𝑢¦¦ is equal to ¦Tv¦T𝑣¦¦; then take ¦uV¦𝑢V¦¦ such that it is to ¦vG¦𝑣G¦¦ as
+so that ¦Tu¦T𝑢¦¦ is equal to ¦Tv¦T𝑣¦¦; then take ¦uV¦𝑢V¦¦ such that it is to ¦vC CG¦𝑣G¦¦ as
 ¦DC¦¦² is to
-¦PC¦¦². And since (from the Conics) ¦Qv¦Q𝑣¦¦² is to ¦Pv¦P𝑣¦¦ × ¦vG¦𝑣G¦¦ as
+¦PC¦¦². And since (from the Conics) ¦Qv¦Q𝑣¦¦² is to ¦Pv¦P𝑣¦¦ × ¦vC CG¦𝑣G¦¦ as
 ¦DC¦¦² to ¦PC¦¦², ¦Qv¦Q𝑣¦¦²
 will be equal to ¦Pv¦P𝑣¦¦ × ¦uV¦𝑢V¦¦. Add the rectangle ¦uP¦𝑢P¦¦ × ¦Pv¦P𝑣¦¦ to both sides, and the
-square of the chord of arc ¦PQ¦¦ will come out equal to the rectangle ¦PV¦VP¦¦ × ¦Pv¦P𝑣¦¦;
+square of the chord of arc ¦PQ¦¦ will come out equal to the rectangle ¦PC CV¦VP¦¦ × ¦Pv¦P𝑣¦¦;
 and therefore ¦tangentCircle¦a circle¦¦ that touches
 the conic section at ¦P¦¦ and passes through
 point ¦Q¦¦ will also pass through point ¦V¦¦. Let points ¦P¦¦ and ¦Q¦¦ come together,
-and the ratio of ¦uV¦𝑢V¦¦ to ¦vG¦𝑣G¦¦, which is the same as the ratio of ¦DC¦¦² to ¦PC¦¦²,
-will become the ratio of ¦PV¦¦ to ¦GP¦PG¦¦ or ¦PV¦¦ to 2¦PC¦¦;
-and therefore ¦PV¦¦ will
+and the ratio of ¦uV¦𝑢V¦¦ to ¦vC CG¦𝑣G¦¦, which is the same as the ratio of ¦DC¦¦² to ¦PC¦¦²,
+will become the ratio of ¦PC CV¦PV¦¦ to ¦GP¦PG¦¦ or ¦PC CV¦PV¦¦ to 2¦PC¦¦;
+and therefore ¦PC CV¦PV¦¦ will
 be equal to 
 
 <!-- 2DC² / PC -->

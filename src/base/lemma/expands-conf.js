@@ -2,10 +2,10 @@
 //"unifies" and normalizes them,
 (function(){
     const {
-        sn, haz, has, eachprop, own, nsmethods, nspaste,
+        sn, haz, has, eachprop, own, 
         rg, fconf, sf, ssF, sDomF, topicColors_repo,
         topicColors_repo_camel2col,
-        originalPoints, toreg, stdMod,
+        toreg,
     } = window.b$l.apptree({ ssFExportList : { doExpandConfig } });
     const LETTER_ROTATION_RADIUS_PER_1000 = 30;
     const LETTER_CENTER_X_PER_FONT_SIZE = 0.2;
@@ -38,7 +38,6 @@ function doExpandConfig (){
         mod2inn_scale,
     } = sf;
     //secures omitted settings
-    const formulas = sn( 'SHOW_FORMULAS', sf, [] );
     //-----------------------------------------------------------
     // //\\ transition from poor name in legacy code
     //      , removing "pictureWidth", ...
@@ -268,7 +267,6 @@ function doExpandConfig (){
             //      this must be clearly written in code,
             op.own          = own;
             var pictureP    = op.own( 'pos' );  //=media pos
-            var modelP      = op.own( 'mpos' );
 
             //at the moment for missing flag, doPaintPname === true,
 
@@ -457,12 +455,6 @@ function doExpandConfig (){
         Math.max( 1,  sf.hover_width/2 ) );
     sn( 'text_nonhover_width', sf,
         Math.max( 1,  sf.text_hover_width/2 ) );
-
-    if( !has( sf, 'enableStudylab' ) ) {
-        ////this way, the legacy lemmas are preserved,
-        ////new lemmas must set this in own "sf",
-        sf.enableStudylab = true;
-    }
     //----------------------------------
     // \\// prepares sf data holder
     //----------------------------------------------------

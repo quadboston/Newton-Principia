@@ -10,39 +10,37 @@
     function planeCurveDerivatives({
         // **api-input---plane-curve-derivatives
 
-        //2d curve function: q|-> rr,
+        //2d curve function: q|-> planetXY,
         //  inputs: parameter q
-        //  outputs: position = 2d-vector = rr
+        //  outputs: position = 2d-vector = planetXY
         //requirement: drr/dt = vv != 0 (whne q is a time, then
         //  speed cannot be 0 )
-        fun,
+        pointAt,
 
-        //param q
-        q,
+        q, //param q, not to be confused with point Q
 
         //optional: chosen point of reference for polar system of coodinates
         //by default rcenter = [0,0]
-        rrc,
+        sunXY,
 
         //optional: "delta q", numerical differentiation step
-        DDD,
+        delta_q,
     }){
-        DDD         = DDD || 0.0001;
+        delta_q         = delta_q || 0.0001;
 
-        //note: protects values against being oo,
+        //note: protects values against being ∞,
         //      can do 1e-300,
         const INFINITY_PROTECTOR = 1e-200;
 
-        var DDD1    = 1/DDD;
-        var DDD2    = 0.5 * DDD1;
-        var DDDA    = DDD1 * DDD1;
         //radius-vector in respect to coord. syst. origin:
-        var rr      = fun( q );
-        var rOrAbs  = Math.sqrt( rr[0]*rr[0] + rr[1]*rr[1] );
-        var rplus   = fun( q + DDD );
-        var rminus  = fun( q - DDD );
+        var planetXY      = pointAt( q );
+        var rOrAbs  = Math.sqrt( planetXY[0]*planetXY[0] + planetXY[1]*planetXY[1] );
+        var rplus   = pointAt( q + delta_q );
+        var rminus  = pointAt( q - delta_q );
         //speed along q
-        var vv      = [ (rplus[0] - rminus[0])*DDD2, (rplus[1] - rminus[1])*DDD2, ];
+        var vv
+			= [ (rplus[0] - rminus[0])/(2*delta_q),
+				 (rplus[1] - rminus[1])/(2*delta_q), ];
         var v2      = vv[0]*vv[0] + vv[1]*vv[1];
         var v       = Math.sqrt( v2 );
         //unit speed
@@ -52,9 +50,9 @@
         //is exaclty an acceleration,
         //this sagitta is a sagitta of chord taken
         //from rmin to rmax
-        var sagitta2x= (rplus[0]-rr[0])+(rminus[0]-rr[0]);
-        var sagitta2y= (rplus[1]-rr[1])+(rminus[1]-rr[1]);
-        var aa      = [ sagitta2x*DDDA, sagitta2y*DDDA ];
+        var sagitta2x= (rplus[0]-planetXY[0])+(rminus[0]-planetXY[0]);
+        var sagitta2y= (rplus[1]-planetXY[1])+(rminus[1]-planetXY[1]);
+        var aa      = [ sagitta2x/(delta_q**2), sagitta2y/(delta_q**2) ];
         var a2      = aa[0]*aa[0] + aa[1]*aa[1];
         var a       = Math.sqrt( a2 );
 
@@ -77,23 +75,17 @@
         //vector from body to curvature circle center
         var RR = [ nn[0]*R, nn[1]*R ];
         //curvature circle center
-        var RC = [ RR[0]+rr[0], RR[1]+rr[1], ];
-
-
-
-
+        var RC = [ RR[0]+planetXY[0], RR[1]+planetXY[1], ];
 
         //*********************************************************
-        // //\\// adjusts radius vector to offset rrc: rrr = rr-rrc
-        //        if offset rrc is supplied
-        var rrr     = rrc ? [ rr[0]-rrc[0], rr[1]-rrc[1] ] : rr;
+        // //\\// adjusts radius vector to offset sunXY: rrr = planetXY-sunXY
+        //        if offset sunXY is supplied
+        var rrr     = sunXY ? [ planetXY[0]-sunXY[0], planetXY[1]-sunXY[1] ] : planetXY;
         //*********************************************************
         var r2      = rrr[0]*rrr[0] + rrr[1]*rrr[1];
         var r       = Math.sqrt( r2 );
         r           = r<INFINITY_PROTECTOR ? INFINITY_PROTECTOR : r;
         var ee      = [ rrr[0]/r, rrr[1]/r, ];
-
-
 
         //:angle between norm n and radius vector rrr
 
@@ -123,8 +115,7 @@
         //      projection-of-diameter-of-curvature-to-radius-vector,
         var ww = [ ee[0]*ww*2, ee[1]*ww*2 ];
         //      this is a point V:
-        var curvatureChordSecondPoint = [ ww[0]+rr[0], ww[1]+rr[1] ];
-
+        var curvatureChordSecondPoint = [ ww[0]+planetXY[0], ww[1]+planetXY[1] ];
 
         //: gets projection of rrr to tangent
         //  radius vector rrr projection on tangent: 
@@ -132,7 +123,7 @@
         // radius vector component along tangent:
         var ww = [ uu[0]*ww, uu[1]*ww ];
         //this is point V in Newton's Prop6, Theor 5:
-        var projectionOfCenterOnTangent = [ ww[0]+rr[0], ww[1]+rr[1] ];
+        var projectionOfCenterOnTangent = [ ww[0]+planetXY[0], ww[1]+planetXY[1] ];
 
         //------------------------------------------------
         // //\\ "static" Sectorial Speed as = [rrr,uu]
@@ -155,12 +146,12 @@
         //****************************************************
         return {
             q,
-            rrc, //force center if supplied
+            sunXY, //force center if supplied
             // **api-output---plane-curve-derivatives
-            rr, //body pos in respect to coord system origin
+            planetXY, //body pos in respect to coord system origin
             rOrAbs,
   
-            //in respect to chosen polar center rrc, if rrc presented
+            //in respect to chosen polar center sunXY, if sunXY presented
             rrr,
             r2,
             r,  //abs value of offset radius
@@ -188,9 +179,9 @@
             //sectspeed_ru=momentum0 = [𝗿𝘂] = [𝗿𝘃]/v; for v=ds/dq or v=ds/dt
             staticSectorialSpeed_rrrOnUU, //=algebraic momentum0
 
-            angleRV,    //in respect to center rrc
-            sinOmega,   //in respect to center rrc
-            cosOmega,   //in respect to center rrc
+            angleRV,    //in respect to sunXY
+            sinOmega,   //in respect to sunXY
+            cosOmega,   //in respect to sunXY
 
             //sagitta2 : [sagitta2x, sagitta2y],
             //for Kepler's motion, f = 1/R vₜ² / sin(w)
@@ -198,5 +189,3 @@
     }
 
 }) ();
-
-

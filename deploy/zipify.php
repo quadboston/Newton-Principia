@@ -4,7 +4,6 @@
     //*****************************************************
     //zips up all except git files
     //development helper: not a part of deployer
-    //advances NNNN.version
     //for intermediate backup between git commits
     //
     //dependency: PHP
@@ -53,9 +52,6 @@
 
 
 
-
-
-
     //=====================================================
     // //\\ does gets zippee name from cmd
     //=====================================================
@@ -87,7 +83,6 @@
 
 
 
-
     //=====================================================
     // //\\ validates path to zippee
     //=====================================================
@@ -104,12 +99,6 @@
     //=====================================================
     // \\// validates path to zippee
     //=====================================================
-
-
-
-
-
-
 
 
 
@@ -132,7 +121,6 @@
 
 
 
-
     //=====================================================
     // //\\ gets version
     //=====================================================
@@ -150,7 +138,7 @@
                         '\s*' .
                     '=' .
                         '\s*' .
-                    '(\d+(?:\.\d+)?)' . // Matches integers or decimals
+                    ' ([^\s;]+)' . // Matches integers or decimals
                         '\s*' .
                     ';' .
                         '\s*' .
@@ -167,24 +155,12 @@
     );
     if( !$matches ) exit( 'invalid version string in file ' .
                           $list[0] . '.' );
-    $version = (float)$matches[1];
-    if( (!$version && $version !== 0) || $version . '' !== $matches[1] )
-    {
-        exit( 'invalid version "' . $matches[1] . "\"\n" );
-    }
-    $next_version = $version + 1;
-    //echo "new version = $next_version\n";
-    $versionPattern = "\n    fapp.version = $next_version; //application version";
-    $new_content = preg_replace( 
-            $version_re,
-            $versionPattern,
-            $js_text
-    );
+	$version = $matches[1];
+	$new_content = $js_text;
     //echo $new_content;
     //=====================================================
     // \\// gets version
     //=====================================================
-
 
 
 
@@ -209,7 +185,6 @@
 
 
 
-
     //=====================================================
     // //\\ gets additional optional name
     //      from command line from user
@@ -227,10 +202,6 @@
     //=====================================================
     // \\// gets additional optional name
     //=====================================================
-
-
-
-
 
 
 
@@ -293,7 +264,7 @@
     //cli( "cp -R $folder_to_zip $name_of_copy",
     //     "cloning the zippee to new name" );
     $command = 'zip -rq ' . $name_of_copy . '.zip ' . $name_of_copy;
-    printf( $command . "\n" );
+    printf( $command);
 
     /*
     if( !$add_git_repo ) {
@@ -317,8 +288,6 @@
 
 
 
-
-
     //=====================================================
     // //\\ updates version-container file
     //=====================================================
@@ -331,19 +300,5 @@
     // \\// updates version-container file
     //=====================================================
 
-
-
-    //=====================================================
-    // //\\ waits for user attention
-    //=====================================================
-    printf( "\nsite\n$zippee_full_path" );
+    printf( "\nzipped file at $zippee_full_path" );
     printf( "\nzipped ver. = $version" );
-    printf( "\nnew    ver. = $next_version\n" );
-
-    $w = readline( 'done, press key ' );
-    echo "\n";
-    //=====================================================
-    // \\// waits for user attention
-    //=====================================================
-
-

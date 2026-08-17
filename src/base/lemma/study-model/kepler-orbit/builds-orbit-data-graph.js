@@ -19,21 +19,24 @@
 
     function builds_orbit_data_graph(setMaxGraphValues)
     {
+		if (!stdMod.graphFW_lemma) {
+			// graph not needed for this model, so skip
+			return;
+		}
         const Q_STEPS = sconf.Q_STEPS;
         const DATA_GRAPH_STEPS = sconf.DATA_GRAPH_STEPS;
-        //TEMP
-        // const force_law_function = sconf.force_law_function;
+        const IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX =
+            sconf.IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX;
         const dataPeriod = Math.max( 1, Math.floor( Q_STEPS/DATA_GRAPH_STEPS ) );
-
         stdMod.graphFW_lemma.graphArray = graphArray;
         graphArray.length = 0;
         ///prepares averages and placeholder for data graphs
         const gstart = ssD.qix_graph_start;
         const gend = ssD.qix_graph_end;
-        let estimatedForceMax = 0;
-        //TEMP May be able to remove the following, it may get replaced by MAF
         let actualForceMax = 0;
-        //TEMP
+        let estimatedForceMax = 0;
+        let estimatedForceLargestMax = 0;
+        let xMaxGraphAxis = 0;
         if (setMaxGraphValues) {
             ssD.MAF = 0;
             ssD.MEF = 0;
@@ -44,18 +47,13 @@
             const bP = qIndexToOrbit[ qix ];
             const actualForce = bP.actualForce;
             const estimatedForce = bP.estimatedForce;
-            //TEMP
-            // if( force_law_function ){
-            //     var actualForce = force_law_function(bP);
-            // } else {
-            //     var actualForce = bP.actualForce;
-            // }
-            // var actualForce = bP.actualForce;
-            // bP.actualForce = actualForce;
+            const estimatedForceLargest = bP.estimatedForceLargest;
+
             if( !(qix%dataPeriod) || qix===Q_STEPS ){
                 actualForceMax = Math.max(Math.abs(actualForce), actualForceMax);
                 estimatedForceMax = Math.max(Math.abs(estimatedForce), estimatedForceMax);
-                //TEMP
+                estimatedForceLargestMax = Math.max(
+                    Math.abs(estimatedForceLargest), estimatedForceLargestMax);
                 if (setMaxGraphValues) {
                     ssD.MAF = Math.max(Math.abs(actualForce), ssD.MAF);
                     const forceE = bP.estimatedForceLargest;
@@ -67,14 +65,17 @@
                     rr : bP.rr,
                     x : sData.PLOT_BY_PATH ? bP.pathAtQ : bP.r,
                 };
-                if (setMaxGraphValues) {
-                    const x = graphColumn.x;
-                    ssD.xMaxFixedGraphAxis = Math.max(x, ssD.xMaxFixedGraphAxis);
-                }
                 graphArray.push( graphColumn );
+
+                const x = graphColumn.x;
+                xMaxGraphAxis = Math.max(x, xMaxGraphAxis);
             }
             bP.gix = Math.max(0,graphArray.length-1);
         }
+        if (setMaxGraphValues) {
+            ssD.xMaxFixedGraphAxis = xMaxGraphAxis;
+        }
+        ssD.xMaxCurrentGraphAxis = xMaxGraphAxis;
 
         //Sometimes solvable is true at this point but just barely.  When this
         //is the case it's possible graphArray can still be empty, meaning no
@@ -85,6 +86,8 @@
         //------------------------------------------
         // //\\ resets graphArray
         //------------------------------------------
+        const estimatedForceScale = (IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX ?
+            actualForceMax : estimatedForceMax);
         //TEMP
         console.log("resets graphArray");
         let output = `SP, Actual Force\n`;
@@ -94,9 +97,22 @@
             const qix = ga.qix;
             const bP = qIndexToOrbit[ qix ];
             bP.gix = gix;
+
+            //todo Once all the graphs are adjusted update the following
+            let actualForce = Math.abs(bP.actualForce);
+            let estimatedForce = Math.abs(bP.estimatedForce);
+            if (ssD.MAF) {
+                //For graphs that have been adjusted
+                actualForce /= ssD.MAF;
+                estimatedForce /= ssD.MAF;
+            } else {
+                //For graphs that have not been adjusted yet, to ensure they
+                //stay the same and don't get broken.
+                actualForce /= actualForceMax;
+                estimatedForce /= estimatedForceScale;
+            }
+
             //TEMP
-            const actualForce = Math.abs(bP.actualForce) / ssD.MAF;
-            const estimatedForce = Math.abs(bP.estimatedForce) / ssD.MAF;
             output += `${bP.r}, ${actualForce}\n`;
             ga.y = [
                 actualForce,
@@ -109,7 +125,17 @@
         console.log("estimatedForceMax =", estimatedForceMax);
         // console.log("output =", output);
         //TEMP//
+        //todo The following variables should probably be renamed, as well as
+        //other similar ones related to the graph.  There are starting to be so
+        //many that store data eg. on page load, when the orbit is adjusted for
+        //the highest forces etc.  One possibility could be to store them in an
+        //object similar to what's shown below, however likely with further
+        //adjustments.
+        //ssD.maxGraphValues.initial.estimatedForceMax (for when the page loads)
+        //ssD.maxGraphValues.current.estimatedForceMax (for current values)
+        ssD.estimatedForceLargestMaxCurrent = estimatedForceLargestMax;
         ssD.estimatedForceMaxCurrent = estimatedForceMax;
+
         ///this is a common graph lines, but this mask can be
         ///overriden in model_upcreate()
         stdMod.graphFW_lemma.graphArrayMask = 

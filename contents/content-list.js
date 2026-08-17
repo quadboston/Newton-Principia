@@ -128,6 +128,15 @@
             book : 'Book 1',
             caption : 'Sec. 8, Proposition 41',
         },
+		
+		{   sappId : 'conics',
+            book : 'Appendix',
+            caption : '<em>Conics</em> reference',
+        },
+
+		{   sappId : 'glossary',
+            book : 'Appendix',
+            caption : 'Glossary',
+        },
     ];
 }) ();
-

@@ -78,9 +78,6 @@
 .appid-home-pane .return-to-lemma-button {
     display:none;
 }
-.return-to-lemma-button {
-    display:inline-block;
-}
 
 .return-to-lemma-button,
 .home-button {
@@ -98,6 +95,9 @@
 }
 
 .return-to-lemma-button {
+    display             : block;
+    position            : absolute !important;
+    margin-top          : 6px;
     width               : 190px;
     color               : white;
     background-color    : #303946;
@@ -247,6 +247,10 @@
     display : inline;
 }
 
+.active-static a[href]:hover {
+    text-decoration: underline;
+}
+
 /* ///?hidden? delayed anchor */
 .bsl-text-widget .delayed-far,
 .bsl-text-widget .delayed-anchor {
@@ -297,6 +301,6 @@ img.isclosed {
 }
 .scrollable-content {
     /* menu content scrolls when page is too short */
-    max-height: 80vh; 
+    max-height: 90vh; 
     overflow-y: auto;
 } 
