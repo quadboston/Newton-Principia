@@ -36,6 +36,7 @@
         let actualForceMax = 0;
         let estimatedForceMax = 0;
         let estimatedForceLargestMax = 0;
+        let xMinGraphAxis = Infinity;
         let xMaxGraphAxis = 0;
         if (setMaxGraphValues) {
             ssD.MAF = 0;
@@ -68,11 +69,13 @@
                 graphArray.push( graphColumn );
 
                 const x = graphColumn.x;
+                xMinGraphAxis = Math.min(x, xMinGraphAxis);
                 xMaxGraphAxis = Math.max(x, xMaxGraphAxis);
             }
             bP.gix = Math.max(0,graphArray.length-1);
         }
         if (setMaxGraphValues) {
+            ssD.xMinFixedGraphAxis = xMinGraphAxis;
             ssD.xMaxFixedGraphAxis = xMaxGraphAxis;
         }
         ssD.xMaxCurrentGraphAxis = xMaxGraphAxis;

@@ -83,12 +83,21 @@
                 //Ensure x max is fixed to the correct value
                 graphArg.xMax = sconf.DISTANCE_ORBIT_ENDS_TO_S;
 
+                graphArg.yMin = 0;
                 //Largest possible y value for all curves, for all arrangements
                 graphArg.yMax = ssD.MEF / ssD.MAF;
 
 
             } else if (fconf.sappId === 'b1sec3prop13') {
-                //Use variable axes, therefore no adjustments needed.
+                //The bounds of the graph are mostly fixed as follows.  The
+                //exception being the y max which is variable, which allows the
+                //student to see how big it grows.
+
+                //Ensure x min and max are fixed to the correct values
+                graphArg.xMin = ssD.xMinFixedGraphAxis;
+                graphArg.xMax = sconf.DISTANCE_ORBIT_ENDS_TO_S;
+
+                graphArg.yMin = 0;
             }
 
 
