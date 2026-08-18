@@ -44,11 +44,7 @@ fi
 
 #:executes
 cmd="php $PHP_DEPLOYER_PATH_ABS $PROJECT_FILE_PATH_ABS $UGLIFY"
+echo "Running: $cmd"
+eval $cmd
+echo "PHP exit code: $?"
 eval $cmd #works but not without "node fix" for uglifying
-
-printf "\n"
-read -p "done, press key ..." -n1 -s #-n1 : one char; -s : no echo
-printf "\n\n"
-
-
-
