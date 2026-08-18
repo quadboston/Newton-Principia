@@ -69,8 +69,8 @@
 
     function calculateMaxGraphValues() {
         //Calculate initial value on page load
-        stdMod.rebuilds_orbit(false);
-        //TEMP Should the following be moved to eg. "builds-orbit-data-graph.js"
+        stdMod.rebuilds_orbit();
+        //todo Should probably move the following to builds-orbit-data-graph.js
         ssD.estimatedForceMaxInitial = ssD.estimatedForceMaxCurrent;
 
 

@@ -27,11 +27,6 @@
 				digramParentDom$:stdMod.legendRoot$ }, stdMod.customXLegend);
 		}
         stdMod.creates_createOrUpdateOrbit();
-        //TEMP Perhaps all models should run this function, not just the ones
-        //that have it.  That's to say that eventually all models should
-        //probably have it.
-        //TEMP Maybe add a short comment explaining what MAF and MEF are?  There
-        //may be a better spot eg. in "builds-orbit-data-graph.js".
         if (stdMod.calculateMaxGraphValues)
             stdMod.calculateMaxGraphValues();
         stdMod.rebuilds_orbit(); // qIndexToOrbit populated here
@@ -67,7 +62,7 @@
 		}
     }
 
-    function rebuilds_orbit(setMaxGraphValues) {
+    function rebuilds_orbit(setMaxGraphValues = false) {
         const Q_STEPS = sconf.Q_STEPS;
 
         if (stdMod.recalculateOrbitStartAndEnd)
@@ -93,8 +88,6 @@
         stdMod.builds_force_plusQ_minusQ_and_related(sData.ULTIM_ACTUAL);
         stdMod.builds_force_plusQ_minusQ_and_related();
         stdMod.builds_orbit_data_graph(setMaxGraphValues);
-        //TEMP
-        console.log(`ssD.MAF = ${ssD.MAF}  ssD.MEF = ${ssD.MEF}`);
 
         //Adjust point P if out of bounds
         const qixMin = ssD.qix_graph_start;

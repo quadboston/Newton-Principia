@@ -17,7 +17,7 @@
     }
 
 
-    function builds_orbit_data_graph(setMaxGraphValues)
+    function builds_orbit_data_graph(setMaxGraphValues = false)
     {
 		if (!stdMod.graphFW_lemma) {
 			// graph not needed for this model, so skip
@@ -88,9 +88,6 @@
         //------------------------------------------
         const estimatedForceScale = (IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX ?
             actualForceMax : estimatedForceMax);
-        //TEMP
-        console.log("resets graphArray");
-        let output = `SP, Actual Force\n`;
         var arrLen = graphArray.length;
         for( var gix = 0; gix<arrLen; gix++ ){
             const ga = graphArray[ gix ];
@@ -112,19 +109,11 @@
                 estimatedForce /= estimatedForceScale;
             }
 
-            //TEMP
-            output += `${bP.r}, ${actualForce}\n`;
             ga.y = [
                 actualForce,
                 estimatedForce,
             ];
         }
-        //TEMP
-        console.log("**********");
-        console.log("actualForceMax =", actualForceMax);
-        console.log("estimatedForceMax =", estimatedForceMax);
-        // console.log("output =", output);
-        //TEMP//
         //todo The following variables should probably be renamed, as well as
         //other similar ones related to the graph.  There are starting to be so
         //many that store data eg. on page load, when the orbit is adjusted for
