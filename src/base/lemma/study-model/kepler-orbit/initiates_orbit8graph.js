@@ -62,7 +62,7 @@
 		}
     }
 
-    function rebuilds_orbit(setMaxGraphValues) {
+    function rebuilds_orbit(setMaxGraphValues = false) {
         const Q_STEPS = sconf.Q_STEPS;
 
         if (stdMod.recalculateOrbitStartAndEnd)
@@ -87,7 +87,7 @@
         stdMod.builds_force_plusQ_minusQ_and_related(sData.ULTIM_MAX);
         stdMod.builds_force_plusQ_minusQ_and_related(sData.ULTIM_ACTUAL);
         stdMod.builds_force_plusQ_minusQ_and_related();
-		stdMod.builds_orbit_data_graph(setMaxGraphValues);
+        stdMod.builds_orbit_data_graph(setMaxGraphValues);
 
         //Adjust point P if out of bounds
         const qixMin = ssD.qix_graph_start;

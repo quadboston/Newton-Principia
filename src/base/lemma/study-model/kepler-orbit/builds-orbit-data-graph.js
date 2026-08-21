@@ -17,7 +17,7 @@
     }
 
 
-    function builds_orbit_data_graph(setMaxGraphValues)
+    function builds_orbit_data_graph(setMaxGraphValues = false)
     {
 		if (!stdMod.graphFW_lemma) {
 			// graph not needed for this model, so skip
@@ -36,6 +36,7 @@
         let actualForceMax = 0;
         let estimatedForceMax = 0;
         let estimatedForceLargestMax = 0;
+        let xMinGraphAxis = Infinity;
         let xMaxGraphAxis = 0;
         if (setMaxGraphValues) {
             ssD.MAF = 0;
@@ -68,11 +69,13 @@
                 graphArray.push( graphColumn );
 
                 const x = graphColumn.x;
+                xMinGraphAxis = Math.min(x, xMinGraphAxis);
                 xMaxGraphAxis = Math.max(x, xMaxGraphAxis);
             }
             bP.gix = Math.max(0,graphArray.length-1);
         }
         if (setMaxGraphValues) {
+            ssD.xMinFixedGraphAxis = xMinGraphAxis;
             ssD.xMaxFixedGraphAxis = xMaxGraphAxis;
         }
         ssD.xMaxCurrentGraphAxis = xMaxGraphAxis;
@@ -120,9 +123,10 @@
         //the highest forces etc.  One possibility could be to store them in an
         //object similar to what's shown below, however likely with further
         //adjustments.
-        //ssD.maxGraphValues.initial.estimatedForceMax
-        //ssD.maxGraphValues.current.estimatedForceMax
+        //ssD.maxGraphValues.initial.estimatedForceMax (for when the page loads)
+        //ssD.maxGraphValues.current.estimatedForceMax (for current values)
         ssD.estimatedForceLargestMaxCurrent = estimatedForceLargestMax;
+        ssD.estimatedForceMaxCurrent = estimatedForceMax;
 
         ///this is a common graph lines, but this mask can be
         ///overriden in model_upcreate()
