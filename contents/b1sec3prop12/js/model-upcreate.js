@@ -98,6 +98,9 @@
                 graphArg.xMax = sconf.DISTANCE_ORBIT_ENDS_TO_S;
 
                 graphArg.yMin = 0;
+                //yMax varies between MAF and MEF.  It's automatically set to
+                //the current maximum y value for all curves.  When Q is at P it
+                //equals MAF, and when Q is furthest from P it equals MEF.
             }
 
 
