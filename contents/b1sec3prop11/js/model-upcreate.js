@@ -79,21 +79,65 @@
             }
 
 
-            //The bounds of the graph are mostly fixed as follows.  The
-            //exception being the y axis which switches between a fixed and
-            //variable y max.  This allows most of the arrangements to be
-            //compared under conditions where the axes are fixed, without the
-            //curves appearing really zoomed in.  When variable the curves are
-            //fully visible for arrangements where the y axis grows.
+            //TEMP
+            // //The bounds of the graph are mostly fixed as follows.  The
+            // //exception being the y axis which switches between a fixed and
+            // //variable y max.  This allows most of the arrangements to be
+            // //compared under conditions where the axes are fixed, without the
+            // //curves appearing really zoomed in.  When variable the curves are
+            // //fully visible for arrangements where the y axis grows.
+
+            // graphArg.xMin = 0;
+            // //Ensure x max is fixed to the correct value
+            // //TEMP
+            // // graphArg.xMax = ssD.xMaxFixedGraphAxis;
+
+            // graphArg.yMin = 0;
+            // //TEMP
+            // // const yMaxFixed = ssD.estimatedForceMaxInitial / ssD.MAF;
+            // const yMaxFixed = 3.5;
+            // const yMaxVariable = ssD.estimatedForceMaxCurrent / ssD.MAF;
+            // // graphArg.yMax = Math.max(yMaxFixed, yMaxVariable);
+            // //TEMP
+            // const yMaxCap = 50;
+            // graphArg.yMax = Math.min(Math.max(yMaxFixed, yMaxVariable), yMaxCap);
+
+
+
+            //TEMP
+            const ratio = ssD.estimatedForceMaxStoredTemp / ssD.xMaxFixedGraphAxis;
+            // const ratio = 5;//ssD.MEF / ssD.xMaxFixedGraphAxis;
 
             graphArg.xMin = 0;
-            //Ensure x max is fixed to the correct value
-            graphArg.xMax = ssD.xMaxFixedGraphAxis;
+            //Set the lowest possible xMax, to be the xMax when the page loads
+            //plus a gap on the top and right sides of the graph.
+            const xMaxLowest = ssD.xMaxFixedGraphAxis;// * 1.3;
+            const xMaxCurrentX = ssD.xMaxCurrentGraphAxis;
+            // const xMaxFromY = ssD.estimatedForceLargestMaxCurrent / ratio;
+            const xMaxFromY = ssD.estimatedForceMaxCurrent / ratio;
+            const xMaxFromYCap = ssD.MAF / ratio * 20;//* 10;//* 50;
+            // // graphArg.xMax = Math.max(xMaxLowest, xMaxCurrentX, xMaxFromY);
+            graphArg.xMax = Math.min(Math.max(xMaxLowest, xMaxCurrentX,
+                xMaxFromY), xMaxFromYCap);
 
             graphArg.yMin = 0;
-            const yMaxFixed = ssD.estimatedForceMaxInitial / ssD.MAF;
-            const yMaxVariable = ssD.estimatedForceMaxCurrent / ssD.MAF;
-            graphArg.yMax = Math.max(yMaxFixed, yMaxVariable);
+            // graphArg.yMax = 4.0;
+            graphArg.yMax = graphArg.xMax * ratio / ssD.MAF;
+
+
+            //TEMP
+            // graphArg.xMax = Math.max(xMaxLowest, xMaxCurrentX);
+            // graphArg.yMax = Math.min(50, Math.max(
+            //     ssD.estimatedForceMaxCurrent / ssD.MAF,
+            //     ssD.estimatedForceMaxStoredTemp / ssD.MAF));
+
+
+
+            // //TEMP
+            // graphArg.xMax = Math.max(xMaxLowest, xMaxCurrentX);
+            // // graphArg.xMax = Math.max(xMaxLowest, (xMaxCurrentX + xMaxFromY)/2);
+            // // graphArg.xMax = Math.max(xMaxLowest, xMaxCurrentX*1.2);
+            // graphArg.yMax = graphArg.xMax * ratio / ssD.MAF;
 
 
             stdMod.graphFW_lemma.drawGraph_wrap(graphArg);

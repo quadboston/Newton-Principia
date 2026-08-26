@@ -59,6 +59,8 @@
                     ssD.MAF = Math.max(Math.abs(actualForce), ssD.MAF);
                     const forceE = bP.estimatedForceLargest;
                     ssD.MEF = Math.max(Math.abs(forceE), ssD.MEF);
+                    //TEMP
+                    ssD.estimatedForceMaxStoredTemp = estimatedForceMax;
                 }
 
                 let graphColumn = {

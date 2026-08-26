@@ -2,7 +2,7 @@
 ///for dq and body in
 ///models in propopositions 6-17 in Principia
 ( function() {
-    var { sn, ssD, stdMod, sconf, rg, } = window.b$l.apptree({
+    var { sn, fconf, ssD, stdMod, sconf, rg, } = window.b$l.apptree({
         stdModExportList : {
             creates_Q8P_sliders,
             creates_A_slider,
@@ -131,8 +131,9 @@
 			// allow ellipse to be circle, rather than abort at last ellipse
 			a = Math.max(a, b);
 
+            //TEMP
             //Constrain a if needed, to ensure eccentricity isn't above the max
-            if (eccentricityMax != null) {
+            if (eccentricityMax != null && fconf.sappId !== 'b1sec3prop11') {
                 const lambdaMax = Math.sqrt(Math.abs(1 - eccentricityMax**2));
                 const aMax = b / lambdaMax;
                 a = Math.min(a, aMax);
