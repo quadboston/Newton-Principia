@@ -73,9 +73,16 @@
         // //\\ phase 1. detects parameters
         //========================================
         var winW        = window.innerWidth * (1-fconf.RIGHT_WORKAREA_MARGIN);
+
+        // patch: hard coding height so it doesn't shift causing gap below
+        // partition on page load.
+        // note: will need to e adjusted if nav bar layout changes
+        let navBarHeight = 76; 
+        //let navBarHeight = sDomN.pageNavTopBar$.box().height;
+
         var SSceneH     = window.innerHeight -
                           ( fconf.doDisplayPageTopNavigatMenu ?
-                            sDomN.pageNavTopBar$.box().height : 0
+                            navBarHeight : 0
                           );
         ///-------------------------------------------
         ///slider group patch for lemmas 2, 3, 4
