@@ -383,7 +383,6 @@
             Q_STEPS,
             DATA_GRAPH_STEPS,
 
-            mediaBgImage : "diagram.png",
             topicColors_elected,
             originalPoints,
             linesArray,
