@@ -10,10 +10,11 @@
 				codesList :
 				[
 					{ src: sm + 'sconf.js' },
+					{ src: '../../b1sec3prop12/js/model-upcreate.js' },
+					{ src: '../../b1sec3prop12/js/model-customizer.js' },
 					{ src: sm + 'config-functions.js' },
 					{ src: sm + 'init-model-parameters.js' },
 					{ src: sm + 'amode8captures.js' },
-					{ src: sm + 'model-upcreate.js' },
 					{ src: sm + 'media-upcreate.js' },
 					{ src: sm + 'completes-sliders-creation.js' },
 					{ src: sm + 'state-capturer.js' },
@@ -28,7 +29,8 @@
 			return {          
 				codesList : [
 					{ src: '../../glossary/js/parabola/sconf.js' },
-					{ src: '../../glossary/js/parabola/model-upcreate.js' },
+					{ src: '../../b1sec3prop12/js/model-upcreate.js' },
+					{ src: '../../b1sec3prop13/js/model-customizer.js' },
 					{ src: sm + 'config-functions.js' },
 					{ src: sm + 'init-model-parameters.js' },
 					{ src: sm + 'amode8captures.js' },

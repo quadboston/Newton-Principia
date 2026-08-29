@@ -1,5 +1,5 @@
 ( function() {
-    var { nspaste, mat, fconf, ssD, stdMod, sconf, rg, 
+    var { nspaste, mat, ssD, stdMod, sconf, rg, 
     } = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
     return;
 
@@ -18,8 +18,6 @@
         var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
         rg.P.pos[0] = Porb.planetXY[0];
         rg.P.pos[1] = Porb.planetXY[1];
-        var rr0 = rg.P.pos;
-        var sunXY = rg.S.pos;
         var Qpos = q2xy( Porb.plusQ );
         rg.Q.pos[0] = Qpos[0];
         rg.Q.pos[1] = Qpos[1];
@@ -41,13 +39,13 @@
         //R = parallel-projection of Q to tangent
         nspaste( rg.R.pos,
             mat.linesCross(
-                uu, rr0, //direction, start
-                [rr0[0]-sunXY[0], rr0[1]-sunXY[1]], rg.Q.pos, //direction, start
+                uu, rg.P.pos, //direction, start
+                [rg.P.pos[0]-rg.S.pos[0], rg.P.pos[1]-rg.S.pos[1]], rg.Q.pos, //direction, start
             )
         );
 
         //T = perp. from Q to radius-vector
-        nspaste( rg.T.pos, mat.dropPerpendicular( rg.Q.pos, sunXY, rr0 ) );
+        nspaste( rg.T.pos, mat.dropPerpendicular( rg.Q.pos, rg.S.pos, rg.P.pos ) );
 
 		nspaste( rg.Z.pos,
             mat.dropLine(
@@ -62,23 +60,7 @@
         // \\// arc, sagittae and related
         //================================================
 
-
-        //================================================
-        // //\\ decorations
-        // //\\ graph
-        //------------------------------------------------
-        {
-            let graphArg = {
-            }
-            stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
-        }
-        //------------------------------------------------
-        // \\// graph
-        //------------------------------------------------
-
-        //------------------------------------------------
-        // //\\ PZminus
-        //------------------------------------------------
+        // Zminus
         nspaste( rg.Zminus.pos,
             mat.dropLine(
                 -1.3,
@@ -88,52 +70,6 @@
                 uu,
             )
         );
-        //------------------------------------------------
-        // \\// PZminus
-        // \\// decorations
-        //================================================
-
-        ////hyperbola or ellipse
-		const sqAC = squaredDistance( rg.A, rg.C );
-		const sqBC = squaredDistance( rg.B, rg.C );
-		const sqDiameterConstant = sqAC - sqBC;
-		const SqDC = squaredDistance( rg.P, rg.C ) - sqDiameterConstant;
-		const DC = Math.sqrt(Math.abs(SqDC ));
-        let D = mat.sm( rg.C.pos, -DC, uu );
-        nspaste( rg.D.pos, D );    
-        let K = mat.sm( rg.C.pos,  DC, uu );
-        nspaste( rg.K.pos, K );    
-        //is this a numerical glitch in the Book?:
-        //nspaste( rg.K.pos, mat.dropLine(  2.13, rg.C.pos, rg.P.pos, null, uu) );
-        
-        //conjugate diameters and tangents
-        if (fconf.sappId === "b1sec3prop13" || fconf.sappId === "glossary") {
-            nspaste( rg.G.pos, mat.dropLine(
-                null, rg.P.pos, rg.C.pos, null, null, 0.4 * op.latus ) );
-            nspaste( rg.M.pos, mat.linesCross(
-                    uu,
-                    rg.P.pos,
-                    [ 1, 0 ],
-                    rg.O.pos,
-                )
-            );
-            nspaste( rg.N.pos, mat.dropPerpendicular( rg.O.pos, rg.M.pos, rg.P.pos ) );
-        } else {
-            nspaste( rg.G.pos, mat.dropLine( -1, rg.C.pos, rg.P.pos, ) );
-        	nspaste( rg.F.pos, mat.dropPerpendicular( rg.P.pos, rg.D.pos, rg.K.pos ) );
-        }
-
-        //vuFV
-        //v = parallel-projection of Q to tangent
-        var DK = [ rg.K.pos[0]-rg.D.pos[0], rg.K.pos[1]-rg.D.pos[1] ];
-        var PG = [ rg.P.pos[0]-rg.G.pos[0], rg.P.pos[1]-rg.G.pos[1] ];
-        nspaste( rg.v.pos,
-            mat.linesCross(
-                uu, rg.Q.pos, //direction, start
-                PG, rg.P.pos, //direction, start
-            )
-        );
-
         nspaste( rg.A.pos, q2xy( Math.PI ) );
         nspaste( rg.AA.pos, q2xy( 0 ) );
         {
@@ -145,6 +81,33 @@
             ww = mat.rotatesVect( posB, op.mainAxisAngle, );
             nspaste( rg.BB.pos, ww );
         }
+
+        ////hyperbola or ellipse
+		const sqAC = mat.squaredDistance( rg.A, rg.C );
+		const sqBC = mat.squaredDistance( rg.B, rg.C );
+		const sqDiameterConstant = sqAC - sqBC;
+		const SqDC = mat.squaredDistance( rg.P, rg.C ) - sqDiameterConstant;
+		const DC = Math.sqrt(Math.abs(SqDC ));
+        let D = mat.sm( rg.C.pos, -DC, uu );
+        nspaste( rg.D.pos, D );    
+        let K = mat.sm( rg.C.pos,  DC, uu );
+        nspaste( rg.K.pos, K );    
+        //is this a numerical glitch in the Book?:
+        //nspaste( rg.K.pos, mat.dropLine(  2.13, rg.C.pos, rg.P.pos, null, uu) );
+        
+        //conjugate diameters and tangents
+		stdMod.customizePoints(rg, op, uu);
+
+        //vuFV
+        //v = parallel-projection of Q to tangent
+        var DK = [ rg.K.pos[0]-rg.D.pos[0], rg.K.pos[1]-rg.D.pos[1] ];
+        var PG = [ rg.P.pos[0]-rg.G.pos[0], rg.P.pos[1]-rg.G.pos[1] ];
+        nspaste( rg.v.pos,
+            mat.linesCross(
+                uu, rg.Q.pos, //direction, start
+                PG, rg.P.pos, //direction, start
+            )
+        );
 
         //point x
         nspaste( rg.x.pos, mat.lineSegmentsCross(
@@ -161,23 +124,16 @@
             DK, rg.H.pos, //direction, start
             mat.sm( rg.S.pos, -1, rg.P.pos ), rg.S.pos, //direction, start
         ));
-
-
-        //=============================================================
-        // //\\ latus
-        //=============================================================
+        // latus rectum
         rg.L.pos[0]  = -sinAxis * op.latus;
         rg.L.pos[1]  =  cosAxis * op.latus;
         rg.LL.pos[0] =  sinAxis * op.latus;
         rg.LL.pos[1] = -cosAxis * op.latus;
-        //=============================================================
-        // \\// latus
-        //=============================================================
+
+		// graph
+		if (stdMod.graphFW_lemma) {
+			stdMod.graphFW_lemma.drawGraph_wrap({});
+		}
     }
 
-	function squaredDistance(xy1, xy2) {
-		var dx = xy1.pos[0] - xy2.pos[0];
-		var dy = xy1.pos[1] - xy2.pos[1];
-		return dx*dx + dy*dy;
-	}
 }) ();
