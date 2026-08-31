@@ -1,6 +1,6 @@
 ( function() {
-    var { ns, $$, fmethods, haff, haz, has, nspaste, eachprop, wrkwin, fconf,
-        sconf, ssD, ssF, sDomN, dividorFractions, stdMod, amode, }
+    var { ns,  fmethods, haff, haz, has, nspaste, wrkwin, fconf,
+        sconf, ssF, sDomN, dividorFractions, stdMod, }
         = window.b$l.apptree({ sDomNExportList : {
             bgImgOffset : 0,    //fake initial value before resize ran
             bgImgW : 1000,      //fake initial value before resize ran
@@ -76,7 +76,7 @@
 
         // patch: hard coding height so it doesn't shift causing gap below
         // partition on page load.
-        // note: will need to e adjusted if nav bar layout changes
+        // note: will need to be adjusted if nav bar layout changes
         let navBarHeight = 76; 
         //let navBarHeight = sDomN.pageNavTopBar$.box().height;
 
@@ -519,4 +519,3 @@
         return stdMod.bgImgW * sconf.BASES_SLIDER_WIDTH_FACTOR;
     }
 }) ();
-
