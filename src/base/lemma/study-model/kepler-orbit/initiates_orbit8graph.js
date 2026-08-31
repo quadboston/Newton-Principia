@@ -41,6 +41,9 @@
         // //\\ scenario: coincided P and Q: Q splits first
         rg.P.dragPriority = 10;
         rg.Q.dragPriority = 100;
+		if ( rg.Qemphasis ) {
+			rg.Qemphasis.dragPriority = 100;
+		}
         // \\// scenario: coincided P and Q: Q splits first
 
         stdMod.creates_Q8P_sliders();
