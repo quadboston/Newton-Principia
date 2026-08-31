@@ -17,7 +17,6 @@
 					{ src: sm + 'amode8captures.js' },
 					{ src: sm + 'media-upcreate.js' },
 					{ src: sm + 'completes-sliders-creation.js' },
-					{ src: sm + 'state-capturer.js' },
 				],
 				"contents-list" :
 				[
@@ -36,7 +35,6 @@
 					{ src: sm + 'amode8captures.js' },
 					{ src: sm + 'media-upcreate.js' },
 					{ src: sm + 'completes-sliders-creation.js' },
-					{ src: sm + 'state-capturer.js' },
 				],
 				"contents-list" : [
 					'txt/conics.txt',
