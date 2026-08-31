@@ -11,7 +11,7 @@
     function init_conf()
     {
         //***************************************************************
-        // //\\ geometical scales
+        // //\\ geometrical scales
         //***************************************************************
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
@@ -22,12 +22,13 @@
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize;
         //***************************************************************
-        // \\// geometical scales
+        // \\// geometrical scales
         //***************************************************************
 
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
+		sconf.omitGraph = true;
         sconf.rgShapesVisible = true;
 
         //making size to better fit lemma's diagram
@@ -202,11 +203,6 @@
 				pcolor : proofColor,
 				letterAngle : -90,
 				cssClass: 'subessay--iii48-parabola',
-            },
-			S0 : {
-				pcolor : proofColor,
-                doPaintPname : false,
-				cssClass: 'subessay--latus-rectum-parabola',
             },
             P : {
                 pcolor : bodyColor,

@@ -28,6 +28,8 @@
         // //\\ decorational parameters
         //***************************************************************
         //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
+		sconf.omitGraph = true;
+		sconf.extendZ = 0.7;
         sconf.rgShapesVisible = true;
 
         //making size to better fit lemma's diagram

@@ -1,7 +1,6 @@
 ( function() {
     var { sn, nspaste, rg, stdMod, sconf, ssD, sData, }
         = window.b$l.apptree({ stdModExportList : {
-            initiates_orbit,
 			initiates_orbit8graph,
             rebuilds_orbit,
             initiates_kepler_config,
@@ -16,13 +15,9 @@
         sconf.ro0SquaredDivide2 = sconf.ro0*sconf.ro0 / 2;
     }
 
-	function initiates_orbit() {
-		initiates_orbit8graph(false);
-	}
-
-    function initiates_orbit8graph(doGraph = true) {
+    function initiates_orbit8graph() {
         initiates_kepler_config();
-		if (doGraph) {
+		if (!sconf.omitGraph) {
 			stdMod.graphFW_lemma = createGraph_FW_lemma({
 				digramParentDom$:stdMod.legendRoot$ }, stdMod.customXLegend);
 		}

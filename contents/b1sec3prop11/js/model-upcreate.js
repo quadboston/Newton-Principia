@@ -22,13 +22,14 @@
         var Qpos = q2xy( Porb.plusQ );
         rg.Q.pos[0] = Qpos[0];
         rg.Q.pos[1] = Qpos[1];
+		if (rg.Qemphasis) {
+			rg.Qemphasis.pos[0] = Qpos[0];
+			rg.Qemphasis.pos[1] = Qpos[1];
+		}
         
         // **api-input---plane-curve-derivatives
         var {
-            RC,
-            R,
             uu,
-            nn,
         } = Porb;
 
         // latus rectum
@@ -69,25 +70,8 @@
         // \\// arc, sagittae and related
         //================================================
 
-
-        //================================================
-        // //\\ decorations
-        // //\\ graph
-        //------------------------------------------------
-        {
-            let graphArg = {
-            }
-            stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
-        }
-        //------------------------------------------------
-        // \\// graph
-        //------------------------------------------------
-
-        //------------------------------------------------
-        // //\\ PZ
-        //------------------------------------------------
         var wwZ = mat.dropLine(
-            -0.45,
+            -sconf.extendZ,
             rg.P.pos,
             null,
             null,
@@ -95,10 +79,6 @@
         );
         rg.Z.pos[0] = wwZ[0];
         rg.Z.pos[1] = wwZ[1];
-        //------------------------------------------------
-        // \\// PZ
-        // \\// decorations
-        //================================================
 
         //conjugate diameters
         nspaste( rg.G.pos, q2xy( parQ + Math.PI ) );
@@ -117,18 +97,15 @@
         rg.v.pos[0] = wwR[0];
         rg.v.pos[1] = wwR[1];
 
-        //getting V
-        var DCsq_PCsq = mat.unitVector( DK ).v2 / mat.unitVector( PG ).v2;
-        var wwu = mat.pointPlusTVector(
-            DCsq_PCsq, //t,
-            rg.v.pos, //A,
-            rg.G.pos, //B,
-        );
+		// put q across from Q
+		rg.q.pos[0] = 2 * rg.v.pos[0] - rg.Q.pos[0];
+		rg.q.pos[1] = 2 * rg.v.pos[1] - rg.Q.pos[1];
 
         //extra points
         nspaste( rg.F.pos, mat.dropPerpendicular( rg.P.pos, rg.D.pos, rg.K.pos ) );
         nspaste( rg.A.pos, q2xy( 0 ) );
         nspaste( rg.B.pos, q2xy( Math.PI/2 ) );
+		nspaste( rg.AA.pos, q2xy( Math.PI ) );
 
         //point x
         nspaste( rg.x.pos, mat.lineSegmentsCross(
@@ -145,5 +122,10 @@
             mat.sm( rg.K.pos, -1, rg.D.pos ), rg.H.pos, //direction, start
             mat.sm( rg.S.pos, -1, rg.P.pos ), rg.S.pos, //direction, start
         ));
+
+		// graph
+		if (stdMod.graphFW_lemma) {
+			stdMod.graphFW_lemma.drawGraph_wrap({});
+		}
     }
-}) ();
+})();
