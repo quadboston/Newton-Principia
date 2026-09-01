@@ -130,6 +130,9 @@
         ssD.estimatedForceLargestMaxCurrent = estimatedForceLargestMax;
         ssD.estimatedForceMaxCurrent = estimatedForceMax;
 
+        //TEMP
+        ssD.actualForceMaxCurrent = actualForceMax;
+
         ///this is a common graph lines, but this mask can be
         ///overriden in model_upcreate()
         stdMod.graphFW_lemma.graphArrayMask = 

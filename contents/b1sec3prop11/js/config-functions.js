@@ -72,6 +72,9 @@
         stdMod.rebuilds_orbit();
         //todo Should probably move the following to builds-orbit-data-graph.js
         ssD.estimatedForceMaxInitial = ssD.estimatedForceMaxCurrent;
+        //TEMP
+        ssD.actualForceMaxInitial = ssD.actualForceMaxCurrent;
+        ssD.xMaxInitialGraphAxis = ssD.xMaxCurrentGraphAxis;
 
 
         //The highest forces for this model occur when eccentricity is max,
