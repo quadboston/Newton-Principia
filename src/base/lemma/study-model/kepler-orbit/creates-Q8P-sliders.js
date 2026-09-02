@@ -133,7 +133,7 @@
 
             //TEMP
             //Constrain a if needed, to ensure eccentricity isn't above the max
-            if (eccentricityMax != null && fconf.sappId !== 'b1sec3prop11') {
+            if (eccentricityMax != null) {//} && fconf.sappId !== 'b1sec3prop11') {
                 const lambdaMax = Math.sqrt(Math.abs(1 - eccentricityMax**2));
                 const aMax = b / lambdaMax;
                 a = Math.min(a, aMax);

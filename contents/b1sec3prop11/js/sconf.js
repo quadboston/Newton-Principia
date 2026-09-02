@@ -99,7 +99,7 @@
         //-------------------------------------------
         sconf.eccentricity  = 0.59498295;
         //TEMP
-        sconf.eccentricityMax = 0.65;//0.66;
+        sconf.eccentricityMax = 0.88;//0.66;
         sconf.ellipseA  = 1.07;
         sconf.ellipseAOriginal  = sconf.ellipseA;
         sconf.ellipseB  =
