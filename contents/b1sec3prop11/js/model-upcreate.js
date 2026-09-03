@@ -77,6 +77,155 @@
         {
             let graphArg = {
             }
+
+
+            //TEMP
+            // //The bounds of the graph are mostly fixed as follows.  The
+            // //exception being the y axis which switches between a fixed and
+            // //variable y max.  This allows most of the arrangements to be
+            // //compared under conditions where the axes are fixed, without the
+            // //curves appearing really zoomed in.  When variable the curves are
+            // //fully visible for arrangements where the y axis grows.
+
+            // graphArg.xMin = 0;
+            // //Ensure x max is fixed to the correct value
+            // //TEMP
+            // // graphArg.xMax = ssD.xMaxFixedGraphAxis;
+
+            // graphArg.yMin = 0;
+            // //TEMP
+            // // const yMaxFixed = ssD.estimatedForceMaxInitial / ssD.MAF;
+            // const yMaxFixed = 3.5;
+            // const yMaxVariable = ssD.estimatedForceMaxCurrent / ssD.MAF;
+            // // graphArg.yMax = Math.max(yMaxFixed, yMaxVariable);
+            // //TEMP
+            // const yMaxCap = 50;
+            // graphArg.yMax = Math.min(Math.max(yMaxFixed, yMaxVariable), yMaxCap);
+
+
+
+            // //TEMP
+            // const ratio = ssD.estimatedForceMaxStoredTemp / ssD.xMaxFixedGraphAxis;
+            // // const ratio = 5;//ssD.MEF / ssD.xMaxFixedGraphAxis;
+
+            // graphArg.xMin = 0;
+            // //Set the lowest possible xMax, to be the xMax when the page loads
+            // //plus a gap on the top and right sides of the graph.
+            // const xMaxLowest = ssD.xMaxFixedGraphAxis;// * 1.3;
+            // const xMaxCurrentX = ssD.xMaxCurrentGraphAxis;
+            // // const xMaxFromY = ssD.estimatedForceLargestMaxCurrent / ratio;
+            // const xMaxFromY = ssD.estimatedForceMaxCurrent / ratio;
+            // const xMaxFromYCap = ssD.MAF / ratio * 20;//* 10;//* 50;
+            // // // graphArg.xMax = Math.max(xMaxLowest, xMaxCurrentX, xMaxFromY);
+            // //TEMP Space on top and right sides
+            // // graphArg.xMax = Math.min(Math.max(xMaxLowest, xMaxCurrentX,
+            // //     xMaxFromY), xMaxFromYCap);
+
+
+
+            // //TEMP No gap on right or top
+            // graphArg.xMin = 0;
+
+            // const ratio = ssD.estimatedForceMaxInitial / ssD.xMaxInitialGraphAxis;
+            // const xMaxLowest = ssD.xMaxInitialGraphAxis;
+            // const xMaxCurrentX = ssD.xMaxCurrentGraphAxis;
+            // const xMaxFromY = ssD.estimatedForceMaxCurrent / ratio;
+            // const xMaxFromYCap = ssD.MAF / ratio * 20;//* 10;//* 50;
+            // graphArg.xMax = Math.min(Math.max(xMaxLowest, xMaxCurrentX,
+            //     xMaxFromY), xMaxFromYCap);
+
+
+
+            // //TEMP
+            // graphArg.xMin = 0;
+
+            // const ratio = ssD.actualForceMaxInitial / ssD.xMaxInitialGraphAxis;
+            // const xMaxLowest = ssD.xMaxInitialGraphAxis;
+            // const xMaxCurrentX = ssD.xMaxCurrentGraphAxis;
+            // const xMaxFromY = ssD.estimatedForceMaxCurrent / ratio;
+            // const xMaxFromYCap = ssD.MAF / ratio * 20;//* 10;//* 50;
+            // graphArg.xMax = Math.min(Math.max(xMaxLowest, xMaxCurrentX,
+            //     xMaxFromY), xMaxFromYCap);
+
+
+            // //TEMP
+            // graphArg.xMin = 0;
+
+            // // const ratio = 10 / 1.9 * ssD.MAF;
+            // const ratio = 10 / 1.9 / 4 * ssD.MAF;
+            // const xMaxLowest = 1.2;
+            // const xMaxCurrentX = ssD.xMaxCurrentGraphAxis;
+            // const xMaxFromY = ssD.estimatedForceMaxCurrent / ratio;
+            // const xMaxFromYCap = ssD.MAF / ratio * 20;//* 10;//* 50;
+            // graphArg.xMax = Math.min(Math.max(xMaxLowest, xMaxCurrentX,
+            //     xMaxFromY), xMaxFromYCap);
+
+
+            //TEMP
+            graphArg.xMin = 0;
+
+
+            //TEMP
+            //***************************************************************\\
+            //*************Adjust the following graph parameters*************\\
+            //***************************************************************\\
+            const ratio = .25 * 0.8744          ;//* 5.3170;
+            const yMaxHighest = 5 * 0.9 * 0.5   ;//* 5.3170;
+
+            //Lowest possible xMax value (when the graph axes start to grow)
+            const xMaxLowest =  1.71;
+            //***************************************************************//
+            //***************************************************************//
+            //***************************************************************//
+
+            const ratio2Temp = ratio * ssD.MAF;
+
+
+            const xMaxCurrentX = ssD.xMaxCurrentGraphAxis;
+            const xMaxFromY = ssD.estimatedForceMaxCurrent / ratio2Temp;
+            const xMaxFromYCap = ssD.MAF / ratio2Temp * yMaxHighest;
+            graphArg.xMax = Math.min(Math.max(xMaxLowest, xMaxCurrentX,
+                xMaxFromY), xMaxFromYCap);
+
+            // //TEMP Always show entire actual force curve
+            // const xMaxFromYAF = ssD.actualForceMaxCurrent / ratio;
+            // graphArg.xMax = Math.max(graphArg.xMax, xMaxCurrentX, xMaxFromYAF);
+
+
+
+            graphArg.yMin = 0;
+            graphArg.yMax = graphArg.xMax * ratio2Temp / ssD.MAF;
+
+
+            //TEMP
+            // graphArg.xMax = xMaxCurrentX;
+            // graphArg.yMax = Math.min(ssD.estimatedForceMaxCurrent / ssD.MAF, yMaxHighest);
+
+
+            //TEMP
+            // graphArg.xMax = Math.max(xMaxLowest, xMaxCurrentX);
+            // graphArg.yMax = Math.min(50, Math.max(
+            //     ssD.estimatedForceMaxCurrent / ssD.MAF,
+            //     ssD.estimatedForceMaxStoredTemp / ssD.MAF));
+
+
+
+            // //TEMP
+            // graphArg.xMax = Math.max(xMaxLowest, xMaxCurrentX);
+            // // graphArg.xMax = Math.max(xMaxLowest, (xMaxCurrentX + xMaxFromY)/2);
+            // // graphArg.xMax = Math.max(xMaxLowest, xMaxCurrentX*1.2);
+            // graphArg.yMax = graphArg.xMax * ratio / ssD.MAF;
+
+            //TEMP
+            console.log("**********");
+            const percentQPMax = (ssD.Dt/sconf.DT_SLIDER_MAX*100).toFixed(2);
+            console.log(`sconf.Dt0 = ${ssD.Dt} (${percentQPMax}%)`);
+            console.log("sconf.ellipseA =", sconf.ellipseA);
+
+            const percentWidthMax = (xMaxCurrentX/graphArg.xMax*100).toFixed(2);
+            console.log(`width = ${percentWidthMax}%`);
+
+
             stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
         }
         //------------------------------------------------

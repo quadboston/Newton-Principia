@@ -2,7 +2,7 @@
 ///for dq and body in
 ///models in propopositions 6-17 in Principia
 ( function() {
-    var { sn, ssD, stdMod, sconf, rg, } = window.b$l.apptree({
+    var { sn, fconf, ssD, stdMod, sconf, rg, } = window.b$l.apptree({
         stdModExportList : {
             creates_Q8P_sliders,
             creates_A_slider,
@@ -112,6 +112,8 @@
             sp[1] = stashedPos[1];
         };
         rg.A.acceptPos = newPos => {
+            const eccentricityMax = sconf.eccentricityMax;
+
             // lock Y
             newPos = [ newPos[0], stashedPos[1] ];
 
@@ -129,6 +131,14 @@
 			// allow ellipse to be circle, rather than abort at last ellipse
 			a = Math.max(a, b);
 
+            //TEMP
+            //Constrain a if needed, to ensure eccentricity isn't above the max
+            if (eccentricityMax != null) {//} && fconf.sappId !== 'b1sec3prop11') {
+                const lambdaMax = Math.sqrt(Math.abs(1 - eccentricityMax**2));
+                const aMax = b / lambdaMax;
+                a = Math.min(a, aMax);
+            }
+
             sconf.ellipseA = a;
             sconf.ellipseFocus = Math.sqrt(a*a - b*b);
             sconf.eccentricity = sconf.ellipseFocus / a;
@@ -140,8 +150,8 @@
 				rg.H.pos[0] = sconf.ellipseFocus;
 			}
 
-			stdMod.rebuilds_orbit(); // draws ellipse
-			stdMod.model8media_upcreate(); // repositions points
+            stdMod.rebuilds_orbit(); // draws ellipse
+            stdMod.model8media_upcreate(); // repositions points
         };
     };
     //=====================================================================
