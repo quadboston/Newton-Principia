@@ -169,8 +169,8 @@
             //***************************************************************\\
             //*************Adjust the following graph parameters*************\\
             //***************************************************************\\
-            const ratio = .25;
-            const yMaxHighest = 5;
+            const ratio = .25 * 0.8744          ;//* 5.3170;
+            const yMaxHighest = 5 * 0.9 * 0.5   ;//* 5.3170;
 
             //Lowest possible xMax value (when the graph axes start to grow)
             const xMaxLowest =  1.71;

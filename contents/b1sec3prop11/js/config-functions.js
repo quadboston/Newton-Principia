@@ -80,6 +80,8 @@
         //The highest forces for this model occur when eccentricity is max,
         //therefore temporarily adjust it and calculate the maximum forces.
         const eccentricityStored = sconf.eccentricity;
+        //TEMP
+        // setEccentricityAndRelated(0.65);
         setEccentricityAndRelated(sconf.eccentricityMax);
         stdMod.rebuilds_orbit(true);
 
