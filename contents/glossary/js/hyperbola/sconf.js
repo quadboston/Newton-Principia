@@ -149,7 +149,6 @@
             forceColor,
             hidden,
             curvature,
-			sunColor,
 			dtime,
         } = topicColors_repo;
 
@@ -177,6 +176,7 @@
                 pcolor : proofColor,
                 letterAngle : -90,
 				letterRotRadius : 26,
+				cssClass: 'subessay--iii48-hyperbola',
             },
             P : {
                 pcolor : body,
