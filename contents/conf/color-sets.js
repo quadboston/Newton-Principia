@@ -89,11 +89,11 @@
 			tr.curvature = tr.supplementColor;
 			tr.supplementHover = 
 					[...tr.supplementColor, 0, 1];
-			tr.proofArea   = [...tr.proof, 1];
-			tr.proofHover  = [...tr.proof, 0, 1];
-			tr.proofLight  = [...tr.proof, 0.12, 1];
-			tr.givenArea   = [...tr.given, 1];
-			tr.givenHover = [...tr.given, 0, 1];
+			tr.proofArea   = [...tr.proofColor, 1];
+			tr.proofHover  = [...tr.proofColor, 0, 1];
+			tr.proofLight  = [...tr.proofColor, 0.12, 1];
+			tr.givenArea   = [...tr.givenColor, 1];
+			tr.givenHover = [...tr.givenColor, 0, 1];
 			tr.supplementHover
 				= [...tr.supplementColor, 0, 1];
 
@@ -221,7 +221,7 @@
 			tr.fi = [0, 0, 150, 0.1, 0.3];
 			tr.Fkernel = [0, 0, 150];
 
-			tr.bodyHiddenStart = [...tr.body.slice(0, 3), 0.01, 1];
+			tr.bodyHiddenStart = [...tr.bodyColor.slice(0, 3), 0.01, 1];
 			tr.forceTransparentStart = [...tr.forceColor.slice(0, 3), 0.1, 1];
 			tr.VSarea = [...tr.forceColor.slice(0, 3), 0.3, 0.7];
 			tr.timeHiddenStart = [...tr.prop41timeColor.slice(0, 3), 0.01, 0.7];

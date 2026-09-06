@@ -19,7 +19,7 @@
 		////
 		////**********************************************************************************
 		var legendScriptParsed = [
-			[['dtime<_>data-monospace', 'Δt',
+			[['estimatedForceColor<_>data-monospace', 'Δt',
 				'(stdMod.calculateTimeBetweenQAndP()*2).toFixed(4)']]
 		];
 		var rowsCount       = legendScriptParsed.length;
