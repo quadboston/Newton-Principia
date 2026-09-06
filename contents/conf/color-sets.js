@@ -76,32 +76,33 @@
 
 
 		function setDerivedColors() {
-			tr.hidden  = [0, 0, 0, 0];
-			tr.supplementColor = tr.infoColor;
-			tr.orbit = tr.body = tr.bodyColor;
-			tr.orbit2 = tr.body2 = tr.body2Color;
-			tr.corollaryColor = tr.proof = tr.proofColor;
-			tr.given = tr.givenColor;
 			// Hover colors are only visibile when hovering over 
 			// corresponding text. Used when they overlap with 
 			// other colors which take priority
-			tr.corollaryHover = [...tr.corollaryColor, 0, 1];
-			tr.curvature = tr.supplementColor;
-			tr.supplementHover = 
-					[...tr.supplementColor, 0, 1];
+			tr.curvature = tr.infoColor;
+			tr.infoHover = [...tr.infoColor, 0, 1];
 			tr.proofArea   = [...tr.proofColor, 1];
 			tr.proofHover  = [...tr.proofColor, 0, 1];
 			tr.proofLight  = [...tr.proofColor, 0.12, 1];
 			tr.givenArea   = [...tr.givenColor, 1];
 			tr.givenHover = [...tr.givenColor, 0, 1];
-			tr.supplementHover
-				= [...tr.supplementColor, 0, 1];
 
-			tr.displacement    = 
-			tr.dtime = tr.estimatedForceColor;
+			setColorsUpForRemoval();
+		}
+
+		function setColorsUpForRemoval() {
+			tr.hidden  = [0, 0, 0, 0];
+			tr.curvature = tr.infoColor;
+			tr.supplementColor = tr.infoColor;
+			tr.orbit = tr.body = tr.bodyColor;
+			tr.orbit2 = tr.body2 = tr.body2Color;
+			tr.corollaryColor = tr.proof = tr.proofColor;
+			tr.given = tr.givenColor;
+			tr.corollaryHover = [...tr.corollaryColor, 0, 1];
+			tr.displacement    = tr.dtime = tr.estimatedForceColor;
 			tr.invalid = tr.invalidColor;
-
-			tr.force = tr.forceColor; // need to track down and eliminate
+			tr.force = tr.forceColor;
+			tr.supplementHover = tr.infoHover;
 		}
 
 		setDerivedColors();
