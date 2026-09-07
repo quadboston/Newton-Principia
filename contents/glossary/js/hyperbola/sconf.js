@@ -139,31 +139,28 @@
         // //\\ topic group colors
         //-----------------------------------
         const {
-            given,
-            body,
-            orbit,
-            supplementHover,
+            givenColor,
+            bodyColor,
+            infoHover,
 			proofHover,
 			estimatedForceColor,
             proofColor,
             forceColor,
             hidden,
             curvature,
-			dtime,
         } = topicColors_repo;
 
         var topicColors_elected =
         {
             estimatedForceColor,
-            given,
+            givenColor,
             proofColor,
             hidden,
             curvature,
-            body,
-            orbit               : orbit,
-            orbitdq             : orbit,
+            bodyColor,
+            orbit               : bodyColor,
+            orbitdq             : bodyColor,
             force: forceColor,
-			dtime,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -179,7 +176,7 @@
 				cssClass: 'subessay--iii48-hyperbola',
             },
             P : {
-                pcolor : body,
+                pcolor : bodyColor,
                 letterAngle : 120,
                 draggableY  : true,
             },
@@ -375,7 +372,7 @@
             { CD : { pcolor : proofColor,
 						cssClass: 'subessay--solution',}, },
 
-            { 'L,LL' : { pcolor : supplementHover,
+            { 'L,LL' : { pcolor : infoHover,
                captionShiftNorm : 22, lposYSugar : 3 }, },
 
         ];

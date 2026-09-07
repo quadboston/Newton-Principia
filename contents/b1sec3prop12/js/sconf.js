@@ -139,13 +139,12 @@
         //-----------------------------------
         const {
             bodyColor,
-            supplementHover,
+            infoHover,
 			proofHover,
 			estimatedForceColor,
             proofColor,
             forceColor,
 			sunColor,
-			dtime,
         } = topicColors_repo;
 
         var topicColors_elected =
@@ -153,7 +152,6 @@
 			estimatedForceColor,
             orbit: bodyColor,
             force: forceColor,
-			dtime,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -369,7 +367,7 @@
 						'stroke-width' : 1.5, 
 						cssClass: 'subessay--solution',}, },
 
-            { 'L,LL' : { pcolor : supplementHover,
+            { 'L,LL' : { pcolor : infoHover,
                captionShiftNorm : 22, lposYSugar : 3 }, },
 
         ];

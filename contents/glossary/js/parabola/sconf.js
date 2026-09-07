@@ -124,12 +124,11 @@
         //-----------------------------------
         const {
             bodyColor,
-			supplementHover,
+			infoHover,
 			proofHover,
             proofColor,
 			estimatedForceColor,
             forceColor,
-			sunColor,
         } = topicColors_repo;
 
         var topicColors_elected =
@@ -202,7 +201,7 @@
             S : {
 				pcolor : proofColor,
 				letterAngle : -90,
-				cssClass: 'subessay--iii48-parabola',
+				cssClass: 'subessay--iii48-parabola subessay--latus-rectum-parabola',
             },
             P : {
                 pcolor : bodyColor,
@@ -290,8 +289,6 @@
 
         });
 
-		const showForParabola = { pcolor : proofColor,
- 				cssClass: 'subessay--diameter-parabola', };
 		const showForiii48 = { pcolor : proofColor,
  				cssClass: 'subessay--iii48-parabola', };
 		const showForLatus = { pcolor : proofColor,
@@ -316,7 +313,7 @@
             // base line
             { 'A,AA' : {pcolor : proofColor} },
 
-            { 'L,LL' : { pcolor : supplementHover,
+            { 'L,LL' : { pcolor : infoHover,
                captionShiftNorm : 22, lposYSugar : 3 }, },
         ];
 

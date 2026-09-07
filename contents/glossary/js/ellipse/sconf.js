@@ -112,8 +112,6 @@
             // gets ellipse parameters
             let ellB2 = sconf.ellipseB*sconf.ellipseB;
             let ellA2 = sconf.ellipseA*sconf.ellipseA;
-            let excentris2 = 1 - ellA2/ellB2;
-            let excentris = Math.sqrt( excentris2 );
             sconf.ellipseFocus = Math.sqrt( ellA2 - ellB2 );
         }
         //-------------------------------------------
@@ -132,30 +130,22 @@
         //      todm: possibly proliferation
         //-----------------------------------
         const {
-            given,
-            body,
-            orbit,
+            bodyColor,
             proofColor,
-            supplementHover,
 			proofHover,
             forceColor,
             hidden,
             estimatedForceColor,
-            curvature,
-			sunColor,
-			proofLight,
+            proofLight,
         } = topicColors_repo;
 
 
         var topicColors_elected =
         {
             estimatedForceColor,
-            given,
             proofColor,
             hidden,
-            curvature,
-            body,
-            orbit,
+            orbit: bodyColor,
             force : forceColor,
         };
         //-----------------------------------
@@ -288,7 +278,7 @@
 
             P : {
                 //pos: set by sconf.parQ
-                pcolor : body,
+                pcolor : bodyColor,
                 letterAngle : 70,
                 draggableX  : true,
                 draggableY  : true,

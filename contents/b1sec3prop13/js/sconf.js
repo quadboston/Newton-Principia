@@ -123,7 +123,7 @@
         //-----------------------------------
         const {
             bodyColor,
-			supplementHover,
+			infoHover,
 			proofHover,
             proofColor,
 			estimatedForceColor,
@@ -329,7 +329,7 @@
             { 'S,AA' : { pcolor : proofColor,
  				cssClass: 'subessay--solution', }, },
 
-            { 'L,LL' : { pcolor : supplementHover,
+            { 'L,LL' : { pcolor : infoHover,
                captionShiftNorm : 22, lposYSugar : 3 }, },
         ];
 
