@@ -111,8 +111,6 @@
             // gets ellipse parameters
             let ellB2 = sconf.ellipseB*sconf.ellipseB;
             let ellA2 = sconf.ellipseA*sconf.ellipseA;
-            let excentris2 = 1 - ellA2/ellB2;
-            let excentris = Math.sqrt( excentris2 );
             sconf.ellipseFocus = Math.sqrt( ellA2 - ellB2 );
         }
         //-------------------------------------------
@@ -133,7 +131,7 @@
         const {
             bodyColor,
 			proofColor,
-            supplementHover,
+            infoHover,
 			proofHover,
             forceColor,
             hidden,
@@ -382,7 +380,7 @@
 			},},
 
             { 'L,LL' : { 
-			    pcolor : supplementHover,
+			    pcolor : infoHover,
                 captionShiftNorm : 22, lposYSugar : 3
 			}, },
 
