@@ -31,6 +31,7 @@
         tableCaption,
         noTableTitle,
         cellsVisibilityCondition,
+        tableVisibilityCondition,
         makesCaptionCluster,
         makesBodyCluster,
         updatesDataInCell,
@@ -298,6 +299,24 @@
         ///================================================
         function visibilizeTable()
         {
+            //--------------------------------------------
+            // //\\ hides/shows whole table
+            //      uses visibility (not display:none) so the
+            //      table keeps its layout box size even while
+            //      hidden -- the resize/legend-sizing pass
+            //      (preparesDesktop() in finish-resize8upcreate.js)
+            //      measures legendRoot$ BEFORE this function runs
+            //      on a subessay switch, so a display:none-driven
+            //      size collapse gets read as stale zero-size and
+            //      mis-computes the legend layout (wideScreen_flag)
+            //--------------------------------------------
+            if( tableVisibilityCondition ) {
+                tb.style.visibility = tableVisibilityCondition() ? 'visible' : 'hidden';
+            }
+            //--------------------------------------------
+            // \\// hides/shows whole table
+            //--------------------------------------------
+
             //--------------------------------------------
             // //\\ hides all cells
             //--------------------------------------------

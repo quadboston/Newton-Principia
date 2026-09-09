@@ -35,6 +35,7 @@
 					{ src: sm + 'media-upcreate.js' },
 					{ src: sm + 'completes-sliders-creation.js' },
 					{ src: sm + 'state-capturer.js' },
+					{ src: 'parabola/main-legend.js' },
 				],
 				"contents-list" : [
 					'txt/glossary.txt',
