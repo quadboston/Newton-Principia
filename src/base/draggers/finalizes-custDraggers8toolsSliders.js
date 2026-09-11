@@ -4,22 +4,16 @@
 // functions, for example.
 ( function() {
     var {
-        ns, sn, has, haz, eachprop, d8dp,
-        sapp, sconf, fconf, fmethods,
-        ssF, sDomN, sDomF,
-        stdMod, amode,
+        ns, haz, d8dp,
+        sconf, fconf, fmethods,
+        ssF, sDomF,
+        stdMod,
     } = window.b$l.apptree({
         modName:'studyModel_2_ss',
     });
     sDomF.createsFW__8__executes_dragWr_gens_list =
           createsFW__8__executes_dragWr_gens_list;
     return;
-
-
-
-
-
-
 
 
     //==========================================
@@ -118,7 +112,7 @@
         var testMediaY = testMedpos[1];
 
         var unfoundDragger = null;
-        dragWraps.forEach( function( dragWrap, dix ) {
+        dragWraps.forEach( function( dragWrap ) {
             var dragPoint   = dragWrap.pointWrap;
             if( ns.haz( dragPoint, 'unfound' ) ) {
                 unfoundDragger = dragWrap;
@@ -160,6 +154,4 @@
     // \\// finds draggee
     //====================
 
-
 }) ();
-
