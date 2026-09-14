@@ -154,7 +154,9 @@
 
 			ANCHOR_OPACITY_LOW : '0.7',
 			ANCHOR_OPACITY_HIGH : '1',
-			ANCHOR_DEFAULT_COLOR : 'rgba( 150, 0, 150, 1 )',
+
+			// todo: test if ANCHOR_DEFAULT_COLOR is needed
+			ANCHOR_DEFAULT_COLOR : 'rgba( 0, 255, 255, 1 )',//'rgba( 150, 0, 150, 1 )',
 
 			//affects only anchor colors in Book text,
 			TP_OPACITY_FROM_fixed_colors : true,

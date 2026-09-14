@@ -98,7 +98,7 @@
         //================================================================      
         
         //: topic group colors
-        var given   = topicColors_repo.given;        
+        var givenColor   = topicColors_repo.givenColor;        
         var proof   = topicColors_repo.proof;
         var hidden  = topicColors_repo.hidden;
 
@@ -106,14 +106,14 @@
         {
             //:basic topics
             proof,
-            given,
+            givenColor,
             hidden,
 
             //:given
-            "curve-AB"      : given,
-            "left-curve-AB" : given, //extends curve left of A
-            'angleBAD'      : given,
-            "arc-AB"        : given, //curve-AB plus extension past B
+            "curve-AB"      : givenColor,
+            "left-curve-AB" : givenColor, //extends curve left of A
+            'angleBAD'      : givenColor,
+            "arc-AB"        : givenColor, //curve-AB plus extension past B
         };
 
         var originalPoints =
@@ -122,22 +122,22 @@
                 //assigment by reference to pos is safe: no parasite links, pos is recalculated later
                 pos         : A,
                 letterAngle : 90,
-                pcolor      : given,
+                pcolor      : givenColor,
             },
             B : {
                 pos: B,
                 letterAngle : 0,
-                pcolor      : given,
+                pcolor      : givenColor,
             },            
             C : {
                 letterAngle : 45,
                 letterRotRadius : 13,
-                pcolor      : given,
+                pcolor      : givenColor,
             },
             D : {
                 pos: D,
                 letterAngle : 90,
-                pcolor      : given,
+                pcolor      : givenColor,
                 draggableX  : true, // this adds mouseover animation, does not affect behaviour
                 draggableY  : false,
             },
@@ -148,7 +148,7 @@
 			R : {
 				pos: R,
 				letterAngle : 135,
-				pcolor      : given,
+				pcolor      : givenColor,
 			},
 			curveStart  : {
 				pos : [ A[0]-80, 0 ],
@@ -159,7 +159,7 @@
 			r : {
 				pos: r,
 				letterAngle : 135,
-				pcolor      : given,
+				pcolor      : givenColor,
 			},
 			d : {
 				pos         : d,
@@ -169,7 +169,7 @@
 			DLeft : {
                 pos         : DLeft,
 				letterAngle : 90,
-				pcolor      : given,
+				pcolor      : givenColor,
 				doPaintPname : false,
 			},
 			curveLeftEnd : {
@@ -179,10 +179,10 @@
         
         var linesArray =
         [            
-            { 'AB' : { pcolor : given } },
-            { 'AD' : { pcolor : given } },
+            { 'AB' : { pcolor : givenColor } },
+            { 'AD' : { pcolor : givenColor } },
             { 'AL' : { pcolor : proof } }, // rectilinear angle
-            { 'A,DLeft'  : { pcolor : given, 'stroke-width' : 2, } }, //extends AD to the left
+            { 'A,DLeft'  : { pcolor : givenColor, 'stroke-width' : 2, } }, //extends AD to the left
         ];
 
         //----------------------------------
