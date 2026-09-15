@@ -7,7 +7,7 @@
         }, });
     return;
 
-    
+
     ///parameters are enclosed in closure for performance
     function recreates_q2xy()
     {
@@ -16,8 +16,9 @@
         const fi0 = sconf.orbit_q_start;
         const center = sconf.diagramOrigin;
         stdMod.q2xy = q2xy;
+        stdMod.forceCorrectionScale = forceCorrectionScale;
         return;
-        
+
         function q2xy( q )
         {
             q += fi0;
@@ -26,8 +27,12 @@
                 ellipseB * Math.sin( q ) + center[1],
             ];
         }
-    }    
-    
+
+        function forceCorrectionScale() {
+            return 2 * ellipseB ** 2 / ellipseA;
+        }
+    }
+
     function recreatesPosCorrector()
     {
         const dor = sconf.diagramOrigin;
@@ -36,7 +41,7 @@
         const fi0 = sconf.curveParFi0;
         stdMod.correctApproxMousePosToExact = correctApproxMousePosToExact;
         return;
-        
+
         ///pos to "virtual" andle
         function pos2t( newPos )
         {
