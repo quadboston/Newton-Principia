@@ -31,7 +31,7 @@
             newEccentricity = Math.max(eMin, Math.min(eMax, newEccentricity));
 
             stdMod.establishesEccentricity(newEccentricity, false);
-            stdMod.rebuilds_orbit(false);
+            stdMod.rebuilds_orbit();
 
             return true;
         };
