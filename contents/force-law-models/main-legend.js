@@ -20,7 +20,7 @@
 		////**********************************************************************************
 		var legendScriptParsed = [
 			[['dtime<_>data-monospace', 'Δt',
-				'(stdMod.calculateTimeBetweenQAndP()*2).toFixed(4)']]
+				'(stdMod.calculateTimeBetweenQAndP()*2).toFixed(4) * (4.91 * mat.unitVector([rg.C.pos[0]-rg.A.pos[0], rg.C.pos[1]-rg.A.pos[1]]).abs - 3.15)']]
 		];
 		var rowsCount       = legendScriptParsed.length;
 		var clustersCount   = legendScriptParsed[0].length;
