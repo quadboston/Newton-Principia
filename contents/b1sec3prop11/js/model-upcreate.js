@@ -216,14 +216,14 @@
             // // graphArg.xMax = Math.max(xMaxLowest, xMaxCurrentX*1.2);
             // graphArg.yMax = graphArg.xMax * ratio / ssD.MAF;
 
-            //TEMP
-            console.log("**********");
-            const percentQPMax = (ssD.Dt/sconf.DT_SLIDER_MAX*100).toFixed(2);
-            console.log(`sconf.Dt0 = ${ssD.Dt} (${percentQPMax}%)`);
-            console.log("sconf.ellipseA =", sconf.ellipseA);
+            // //TEMP
+            // console.log("**********");
+            // const percentQPMax = (ssD.Dt/sconf.DT_SLIDER_MAX*100).toFixed(2);
+            // console.log(`sconf.Dt0 = ${ssD.Dt} (${percentQPMax}%)`);
+            // console.log("sconf.ellipseA =", sconf.ellipseA);
 
-            const percentWidthMax = (xMaxCurrentX/graphArg.xMax*100).toFixed(2);
-            console.log(`width = ${percentWidthMax}%`);
+            // const percentWidthMax = (xMaxCurrentX/graphArg.xMax*100).toFixed(2);
+            // console.log(`width = ${percentWidthMax}%`);
 
 
             stdMod.graphFW_lemma.drawGraph_wrap(graphArg);

@@ -85,7 +85,7 @@
         sconf.CURVE_REVOLVES = true; //true for cyclic orbit
         sconf.DQ_SLIDER_MAX = null;
         //TEMP
-        sconf.DT_SLIDER_MAX = 0.52;//0.325;
+        sconf.DT_SLIDER_MAX = 0.52 * 2.0527;//0.325;
         sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
         var Q_STEPS = 1500;
         var DATA_GRAPH_STEPS = 500;
@@ -123,7 +123,8 @@
 
         //intervals of dt or dq to construct an arc for estimated force
         //Sets initial distance of point Q from P
-        sconf.Dt0 = 0.26;
+        //TEMP
+        sconf.Dt0 = 0.26 * 2.0527;
 
         //pos of P
         sconf.parQ = 0.250 * Math.PI;
