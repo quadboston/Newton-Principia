@@ -122,32 +122,24 @@
         //      todm: possibly proliferation
         //-----------------------------------
         const {
-            given,
+            givenColor,
 			givenHover,
-            orbit,
-            body,
-            proof,
+            bodyColor,
+            proofColor,
             forceColor,
-            hidden,
             estimatedForceColor,
-            curvature,
+            infoColor,
             sunColor,
-			dtime,
         } = topicColors_repo;
 
 
         var topicColors_elected =
         {
-            estimatedForceColor,
-            given,
-            proof,
-            hidden,
-            curvatureCircle : curvature,
-            body,
-            orbit,
+            curvatureCircle : infoColor,
+            body: bodyColor,
+            orbit : bodyColor,
 			force : forceColor,
-            "arc-QP" : body,
-			dtime,
+            "arc-QP" : bodyColor,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -167,7 +159,7 @@
                 letterAngle : -90,
             },
             P : {
-                pcolor : body,
+                pcolor : bodyColor,
                 letterAngle : 70,
                 draggableX  : true,
             },
@@ -191,19 +183,19 @@
 				conditionalDrag: 'subessay--claim subessay--solution',
             },
             Z : {
-                pcolor : body,
+                pcolor : bodyColor,
                 letterAngle : 45,
                 undisplayAlways : true,
                 doPaintPname : false,
             },
             Y : {
-                pcolor : proof,
+                pcolor : proofColor,
                 letterAngle : -90,
 				cssClass:'subessay--another-solution',
             },
             V : {
                 pos: V,
-                pcolor : proof,
+                pcolor : proofColor,
                 letterAngle : -45,
 				cssClass:'subessay--another-solution',
             },
@@ -212,7 +204,7 @@
             C : {
                 pos : C,
                 caption : 'Rc',
-                pcolor : proof,
+                pcolor : proofColor,
                 letterAngle : -45,
                 undisplayAlways : true,
                 doPaintPname : false,
@@ -222,20 +214,20 @@
 
         var linesArray =
         [
-            { 'PV' : { pcolor : proof,
+            { 'PV' : { pcolor : proofColor,
 				cssClass:'subessay--another-solution',}, },
-            { 'PY' : { pcolor : given }, },
+            { 'PY' : { pcolor : givenColor }, },
             { 'PR' : { pcolor : givenHover,
 				cssClass:'subessay--solution',}, },
-            { 'SY' : { pcolor : proof,
+            { 'SY' : { pcolor : proofColor,
 				cssClass:'subessay--another-solution',}, },
             { 'QR' : { pcolor : estimatedForceColor,
 				cssClass:'subessay--solution',}, },
-            { 'SQ' : { pcolor : given,
+            { 'SQ' : { pcolor : givenColor,
 				cssClass:  'subessay--claim subessay--solution',},},
             { 'QT' : { pcolor : estimatedForceColor,
 				 cssClass:'subessay--solution',}, },
-            { 'PT' : { pcolor : proof,
+            { 'PT' : { pcolor : proofColor,
 				cssClass:'subessay--another-solution',}, },
 			{ 'SP' : { pcolor : estimatedForceColor }, },
         ];
