@@ -1,9 +1,13 @@
 ( function() {
     var { mat, rg, ssD, stdMod, sconf, } = window.b$l.apptree({
-        stdModExportList : { recreates_q2xy, recreatesPosCorrector, }, });
+        stdModExportList : {
+            recreates_q2xy,
+            recreatesPosCorrector,
+            calculateMaxGraphValues,
+        }, });
     return;
 
-    
+
     ///parameters are enclosed in closure for performance
     function recreates_q2xy()
     {
@@ -12,8 +16,9 @@
         const fi0 = sconf.orbit_q_start;
         const center = sconf.diagramOrigin;
         stdMod.q2xy = q2xy;
+        stdMod.forceCorrectionScale = forceCorrectionScale;
         return;
-        
+
         function q2xy( q )
         {
             q += fi0;
@@ -22,8 +27,12 @@
                 ellipseB * Math.sin( q ) + center[1],
             ];
         }
-    }    
-    
+
+        function forceCorrectionScale() {
+            return 2 * ellipseB ** 2 / ellipseA;
+        }
+    }
+
     function recreatesPosCorrector()
     {
         const dor = sconf.diagramOrigin;
@@ -32,7 +41,7 @@
         const fi0 = sconf.curveParFi0;
         stdMod.correctApproxMousePosToExact = correctApproxMousePosToExact;
         return;
-        
+
         ///pos to "virtual" andle
         function pos2t( newPos )
         {
@@ -60,6 +69,45 @@
             pos[1] = newP[1];
             return pos;
         }
-    }    
+    }
+
+
+    function calculateMaxGraphValues() {
+        //Calculate initial value on page load
+        stdMod.rebuilds_orbit();
+        //todo Should probably move the following to builds-orbit-data-graph.js
+        ssD.estimatedForceMaxInitial = ssD.estimatedForceMaxCurrent;
+        //TEMP
+        ssD.actualForceMaxInitial = ssD.actualForceMaxCurrent;
+        ssD.xMaxInitialGraphAxis = ssD.xMaxCurrentGraphAxis;
+
+
+        //The highest forces for this model occur when eccentricity is max,
+        //therefore temporarily adjust it and calculate the maximum forces.
+        const eccentricityStored = sconf.eccentricity;
+        //TEMP
+        // setEccentricityAndRelated(0.65);
+        setEccentricityAndRelated(sconf.eccentricityMax);
+        stdMod.rebuilds_orbit(true);
+
+        //Reset eccentricity
+        setEccentricityAndRelated(eccentricityStored);
+
+
+        function setEccentricityAndRelated(eccentricity) {
+            //Set eccentricity and related values needed for above calculations
+            sconf.eccentricity = eccentricity;
+
+            const lambda = Math.sqrt(Math.abs(1 - sconf.eccentricity**2));
+            const b = sconf.ellipseB;
+            sconf.ellipseA = b / lambda;
+
+            const a = sconf.ellipseA;
+            sconf.ellipseFocus = Math.sqrt(a*a - b*b);
+
+            rg.S.pos[0] = -sconf.ellipseFocus;
+            rg.H.pos[0] = sconf.ellipseFocus;
+        }
+    }
 }) ();
 

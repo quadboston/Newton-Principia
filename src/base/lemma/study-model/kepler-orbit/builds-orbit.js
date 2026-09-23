@@ -1,5 +1,5 @@
 ( function() {
-    var { sn, has, mcurve, stdMod, rg, sconf, ssD, }
+    var { sn, has, mcurve, stdMod, rg, sconf, ssD, sData, }
         = window.b$l.apptree({ stdModExportList : { buildsOrbit, }, });
     var NON_SOLVABLE_THRESHOLD = 0.05;
 
@@ -67,14 +67,23 @@
             //------------------------------------------
             //meaning: dq_dt = dq/dt
             if( 0 === qix ) {
-                momentum0 = staticSectorialSpeed_rrrOnUU;
-                var ds_dt = 1;
+                //TEMP
+                // momentum0 = staticSectorialSpeed_rrrOnUU;
+                // var ds_dt = 1;
+
+                //TEMP
+                var ds_dt = calculateVTemp(bP);
+                // console.log("buildsOrbit ds_dt =", ds_dt);
+                momentum0 = staticSectorialSpeed_rrrOnUU * ds_dt;
+
                 var timeAtQ = bP.timeAtQ = 0;
                 var pathAtQ = bP.pathAtQ = 0;
-                var dq_dt = ds_dt/ds_dq;
+                //TEMP
+                var dq_dt = ds_dt/ds_dq;//  /5.7;// / 0.4518;// / 2.5945;//5.7;
             } else {
                 var ds_dt = momentum0 / staticSectorialSpeed_rrrOnUU;
-                var dq_dt = ds_dt/ds_dq;
+                //TEMP
+                var dq_dt = ds_dt/ds_dq;//  /5.7;// / 0.4518;// / 2.5945;//5.7;
                 var pathAtQ = bP.pathAtQ = pathAtQ + delta_q_between_steps * ds_dq;
                 var timeAtQ = bP.timeAtQ = timeAtQ + delta_q_between_steps / dq_dt;
             }
@@ -83,6 +92,11 @@
             // \\// preparing time array
             //------------------------------------------
         }
+        //TEMP
+        // const T = qIndexToOrbit[Q_STEPS].timeAtQ - qIndexToOrbit[0].timeAtQ;
+        // console.log("buildsOrbit T =", T);
+        // const A = sconf.ellipseA;
+        // console.log("buildsOrbit A^3 / T^2 =", A**3 / T**2);
 
         // //\\ one or many shapes
         if( !has( sconf, 'RESHAPABLE_ORBIT' ) ){
@@ -148,6 +162,64 @@
         //error always results in the maximum increment, rather than ambiguity
         //between 0 vs the maximum increment.
         return Math.round(angle * incrementsPerRadian);
+    }
+
+
+
+    function calculateVTemp(bP) {
+        //TEMP This function needs some improvements
+        // s1 = s0 + v0*t + 1/2*a*t^2
+        // x1 = x0 + vx0*t + 1/2*ax*t^2
+        // x1 - x0 = vx0*t + 1/2*ax*t^2
+
+
+        //st1 = st0 + vt0*t + 1/2*at*t^2
+        //st1 - st0 = vt0*t + 1/2*at*t^2
+        //(st1 - st0) - 1/2*at*t^2 = vt0*t
+        //(st1 - st0) / t - 1/2*at*t = vt0
+        //(st1 - st0) / t - at * t / 2 = vt0
+
+
+        //sn1 = sn0 + vn0*t + 1/2*an*t^2
+        //vn0 = 0
+        //sn1 - sn0 = 1/2*an*t^2
+        //2 * (sn1 - sn0) = an*t^2
+        //2 * (sn1 - sn0) / an = t^2
+        //Math.sqrt(2 * (sn1 - sn0) / an) = t
+
+        const q2xy = stdMod.q2xy;
+        const delta_q = 0.00001;
+
+
+        const actualForce = Math.abs(stdMod.calculateForce({
+            bP, ulitmacy: sData.ULTIM_ACTUAL
+        }));
+
+        var sunXY = rg.S.pos;
+
+        const SP = [bP.planetXY[0]- sunXY[0], bP.planetXY[1]- sunXY[1]];
+        const magnitudeSP = Math.sqrt(SP[0]**2 + SP[1]**2);
+        const nSP0 = [SP[0] / magnitudeSP, SP[1] / magnitudeSP];
+
+        const F = [-nSP0[0] * actualForce, -nSP0[1] * actualForce];
+
+
+        const pos0 = bP.planetXY;
+        const pos1 = q2xy(bP.q + delta_q);
+
+        const sn0 = pos0[0] * bP.nn[0] + pos0[1] * bP.nn[1];
+        const sn1 = pos1[0] * bP.nn[0] + pos1[1] * bP.nn[1];
+        const an = F[0] * bP.nn[0] + F[1] * bP.nn[1];
+
+        const st0 = pos0[0] * bP.uu[0] + pos0[1] * bP.uu[1];
+        const st1 = pos1[0] * bP.uu[0] + pos1[1] * bP.uu[1];
+        const at = F[0] * bP.uu[0] + F[1] * bP.uu[1];
+
+        const t = Math.sqrt(2 * (sn1 - sn0) / an);
+        const ds_dt = (st1 - st0) / t - at * t / 2;
+        return ds_dt;
+        // const vt0 = (st1 - st0) / t - at * t / 2;
+        // return vt0;
     }
 }) ();
 
