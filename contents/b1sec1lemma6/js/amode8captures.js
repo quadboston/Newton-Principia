@@ -100,17 +100,13 @@
 
     function amode2rgstate( captured )
     {
-        var { logic_phase, aspect, subessay } = amode;
+        var { logic_phase, aspect } = amode;
 
         sDomF.resetModelPos();
 
         //----------------------------------
         // //\\ common values
         //----------------------------------
-        rg.A.undisplay              = false;
-        rg.B.undisplay              = false;
-        rg.AB.undisplay             = false;
-        rg[ 'arc-AB' ].undisplay    = false;
 
         //idle?:
         ns.paste( rg.curveStart.pos, ssD.curveStartInitialPos );
@@ -118,66 +114,26 @@
         ns.paste( rg.curveEnd.pos, ssD.curveEndInitialPos );
         ssD.repoConf.customFunction = 0;
         rg.B.unrotatedParameterX = 1;
-        var media_scale = toreg( 'media_scale' )();
+        toreg( 'media_scale' );
         //----------------------------------
         // \\// common values
         //----------------------------------
 
         sData[ 'proof-pop-up' ].dom$.css( 'display', 'none' );
 
-        rg.L.doPaintPname = false;
         captured = "reset-to-origin";
         if( logic_phase === 'claim' ) {
                 captured = 'L-equal-d';
-        }
-        //ns.paste( rg.curveStart.pos, [ -0.2, 0 ] );
-        ns.paste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ] );
-        [
-            'curve-AB',
-            'left-curve-AB',
-            'arc-AB',
-            'AD',
-            'D',
-            'C',
-        ].forEach( gname => { rg[ gname ].undisplay = false; });
-        if( logic_phase === 'proof' || logic_phase === 'claim' ) {
-            sDomF.detected_user_interaction_effect( 'doUndetected' );
-            [
-                'curve-AB',
-                'AD',
-            ].forEach( gname => { rg[ gname ].undisplay = false; });
-        }
-
-        //below we do add points and lines which are absent in N. proof
-        if( logic_phase === 'proof') {
-            rg.L.hideCaption = true;
-            [
-                'AL',
-                'L',
-            ].forEach( gname => { rg[ gname ].undisplay = false; });
         }
 
         if(
             ( logic_phase === 'proof' || logic_phase === 'claim' ) && aspect === 'model'
         ) {
-            [
-                'arc-Ab',
-                'Ab',
-                'b',
-                'd',
-                'r',
-                'rd',
-                'dr',
-            ].forEach( gname => { rg[ gname ].undisplay = false; });
-
             ///this still needs user action to replace Book's letters with
             ///pop up app. letters
             if( logic_phase === 'proof' ) {
                 rg.curveRotationAngle.angle = ANGLE_AUTH;
                 sDomF.detected_user_interaction_effect( !'doUndetected' );
-                rg.L.undisplay = false;
-                rg.L.hideCaption = false;
-                rg.L.doPaintPname = true;
 
                 ///shows differential tangent row in data table
                 globalCss.update( `
@@ -188,17 +144,9 @@
                     'table-patch',
                 );
 
-            } else {
-                rg.L.undisplay = true;
-                rg.L.hideCaption = true;
-                rg.L.doPaintPname = false;
             }
         }
-
-        rg[ 'left-curve-AB' ].undisplay = aspect === 'model';
-        rg['A,DLeft'].undisplay = aspect === 'model';
         return captured;
     }
 
 }) ();
-

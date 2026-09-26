@@ -7,14 +7,6 @@
 
     function init_conf()
     {
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        sconf.rgShapesVisible           = false; // shows hidden objects not shown on normal page or addendum
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
-
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
         var pictureWidth = 839;
@@ -87,11 +79,9 @@
         var D = [474, modorInPicY];
         var DLeft = [50, modorInPicY];
 
-        //: *** used only if BONUS || rgShapesVisible
         var r = [modorInPicX, 531];
         var R = [modorInPicX, 302];
         var d = [778, modorInPicY];
-        //var M = [50, modorInPicY];
 
         //================================================================
         // \\// original positions
@@ -141,34 +131,50 @@
             },
             L : { // rectilinear angle slider
                 pcolor      : infoColor,
+				cssClass: 'logic_phase--proof',
+				conditionalDrag : 'logic_phase--proof',
+				doPaintPname : false,
             },
 			R : {
 				pos: R,
 				letterAngle : 135,
 				pcolor      : givenColor,
+				undisplayAlways : true,
+				doPaintPname : false,
 			},
 			curveStart  : {
 				pos : [ A[0]-80, 0 ],
+				undisplayAlways : true,
+				doPaintPname : false,
 			},
 			curveEnd : {
 				pos : [B[0]+50,0],
+				undisplayAlways : true,
+				doPaintPname : false,
 			},
 			r : {
 				pos: r,
 				letterAngle : 135,
 				pcolor      : givenColor,
+				undisplayAlways : true,
+				doPaintPname : false,
 			},
 			d : {
 				pos         : d,
+				undisplayAlways : true,
+				doPaintPname : false,
 			},
 			DLeft : {
                 pos         : DLeft,
 				letterAngle : 90,
 				pcolor      : givenColor,
+				undisplayAlways : true,
 				doPaintPname : false,
 			},
 			curveLeftEnd : {
 				pos : [250,100],
+				undisplayAlways : true,
+				doPaintPname : false,
 			},
         };
         
@@ -176,7 +182,8 @@
         [            
             { 'AB' : { pcolor : givenColor } },
             { 'AD' : { pcolor : givenColor } },
-            { 'AL' : { pcolor : infoColor } }, // rectilinear angle
+            { 'AL' : { pcolor : infoColor,
+						cssClass: 'logic_phase--proof',} }, // rectilinear angle
             { 'A,DLeft'  : { pcolor : givenColor, 'stroke-width' : 2, } }, //extends AD to the left
         ];
 
@@ -193,11 +200,6 @@
         [
             //extending the curve to the left is quite a work bs
             //we need to change hard-coded tangent
-            // [86,75],
-            // [135,64],
-            // [100,75],
-            // [10,151],
-
             [148,62],
             [161,64],
             [202,75],
