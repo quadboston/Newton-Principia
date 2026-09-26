@@ -53,14 +53,11 @@
         const {
             givenColor,
             proofColor,
-            hidden,
             givenArea,
             proofArea
         } = topicColors_repo;
 
         var topicColors_elected = { 
-            hidden,
-
             //given (claim)
             "curve-AB"      : givenColor, // ACB and curve segment after B
             "left-curve-AB" : givenColor, // curve segment before A
@@ -193,12 +190,6 @@
             { 'A,DLeft'  : { pcolor : givenColor, 'stroke-width' : 2, } }, // to left of A            
             { 'RD' : { pcolor : givenColor } },
             { 'BR' : { pcolor : givenColor } },
-
-            // questionable                       
-            { 'Ad' : { pcolor : hidden } }, // todo: Ad dup
-            { 'Ar' : { pcolor : hidden } }, // todo: this line should not exist
-            { "rd" : { pcolor : hidden } }, // todo: this line should not exist
-            { "rb" : { pcolor : hidden } }, // todo: this doesn't seem to exist
         ];
 
         //----------------------------------

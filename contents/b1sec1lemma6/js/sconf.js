@@ -100,14 +100,12 @@
         //: topic group colors
         var givenColor   = topicColors_repo.givenColor;        
         var infoColor   = topicColors_repo.infoColor;
-        var hidden  = topicColors_repo.hidden;
 
         var topicColors_elected =
         {
             //:basic topics
             infoColor,
             givenColor,
-            hidden,
 
             //:given
             "curve-AB"      : givenColor,
