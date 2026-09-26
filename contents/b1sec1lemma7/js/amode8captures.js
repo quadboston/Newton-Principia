@@ -70,17 +70,6 @@
             },
 
             "colollary-1": {
-                    "BF" : { "undisplay" : false }, //show in svg
-                    "AF" : { "undisplay" : false },
-                    "F"  : { "undisplay" : false },
-
-                    "BG" : { "undisplay" : true },
-                    "AE" : { "undisplay" : true },
-                    "BE" : { "undisplay" : true },
-                    "AG" : { "undisplay" : true },
-                    "G"  : { "undisplay" : true },
-                    "E"  : { "undisplay" : true },
-
                     "curveRotationAngle": {
                         "angle": 0.10579977792284677,
                         "sin": 0.10560250842053673,
@@ -93,17 +82,6 @@
 
 
             "colollary-2": {
-                    "BF" : { "undisplay" : false },
-                    "AF" : { "undisplay" : false },
-                    "F"  : { "undisplay" : false },
-
-                    "BG" : { "undisplay" : false },
-                    "AE" : { "undisplay" : false },
-                    "BE" : { "undisplay" : false },
-                    "AG" : { "undisplay" : false },
-                    "E"  : { "undisplay" : false },
-                    "G"  : { "undisplay" : false },
-
                     "curveRotationAngle": {
                         "angle": 0.10579977792284677,
                         "sin": 0.10560250842053673,
@@ -132,16 +110,8 @@
     function amode2rgstate( captured )
     {
         var { logic_phase, aspect, subessay } = amode;
-
         sDomF.resetModelPos();
-
-        //----------------------------------
-        // //\\ common values
-        //----------------------------------
-        rg.A.undisplay              = false;
-        rg.B.undisplay              = false;
-        rg.AB.undisplay             = false;
-        rg[ 'arc-AB' ].undisplay    = false;
+		rg[ 'arc-Ab' ].undisplay    = logic_phase !== 'given';
 
         //idle?:
         ns.paste( rg.curveStart.pos, ssD.curveStartInitialPos );
@@ -149,21 +119,12 @@
         ns.paste( rg.curveEnd.pos, ssD.curveEndInitialPos );
         ssD.repoConf.customFunction = 0;
         rg.B.unrotatedParameterX = 1;
-        var media_scale = toreg( 'media_scale' )();
+        toreg( 'media_scale' );
         //----------------------------------
         // \\// common values
         //----------------------------------
 
         if( logic_phase === 'corollary' ) {
-            [
-                'curve-AB',
-                'left-curve-AB',
-                'arc-AB',
-                'AD',
-                'BD',
-                'D',
-                'C',
-            ].forEach( gname => { rg[ gname ].undisplay = false; });
             if( subessay === 'cor-1' ) {
                 captured = "colollary-1";
             } else if( subessay === 'cor-2' || subessay === 'cor-3' ) {
@@ -179,32 +140,10 @@
 
             ns.paste( rg.curveStart.pos, [ -0.2, 0 ] );
             ns.paste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ] );
-            [
-                'C',
-                'D',
-                'BD',
-                'AD',
-                'curve-AB',
-            ].forEach( gname => { rg[ gname ].undisplay = false; });
 
             if( logic_phase === 'proof' ) {
-                sDomF.detected_user_interaction_effect( 'doUndetected' );
-                [
-                    'c',
-                    'd',
-                    //'r',
-                    'Ad',
-                    'rd',
-                    'bd',
-
-                    'b',
-                    'Ab',
-                    'arc-Ab',
-
-                    //'AL',
-                    //'L',
-                ].forEach( gname => { rg[ gname ].undisplay = false; });
-            }
+				rg[ 'arc-Ab' ].undisplay = false;
+			}
         }
         
         nspaste( rg.B.pos, rg.B.originalPos );
@@ -212,10 +151,7 @@
         nspaste(rg.D.pos, rg.D.originalPos);
         rg.B.unrotatedParameterX = rg.B.originalPos[0];
 
-        rg[ 'left-curve-AB' ].undisplay = aspect === 'model';
-        rg['A,DLeft'].undisplay = aspect === 'model';
         return captured;
     }
 
 }) ();
-

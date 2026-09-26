@@ -7,15 +7,6 @@
 
     function init_conf()
     {
-
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        sconf.rgShapesVisible           = false;
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
-
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
         var pictureWidth = 839;
@@ -32,7 +23,6 @@
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;        
         
         fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
-        
         sconf.TP_OPACITY_LOW_POINT = sconf.TP_OPACITY_LOW = 0.85;
 
         //--------------------------------------
@@ -157,19 +147,23 @@
                 pos         : DLeft,
                 letterAngle : 90,
                 pcolor      : givenColor,
-                doPaintPname : false,
+				undisplayAlways : true,
+				doPaintPname : false,
             },
             E : {
                 letterAngle : 90,
                 pcolor      : proofColor,
+				cssClass: 'subessay--cor-2 subessay--cor-3',
             },
             F : {
                 letterAngle : 90,
                 pcolor      : proofColor,
+				cssClass: 'logic_phase--corollary',
             },
             G : {
                 letterAngle : 90,
                 pcolor      : proofColor,
+				cssClass: 'subessay--cor-2 subessay--cor-3',
             },
 
             b : {
@@ -177,18 +171,21 @@
                 pos: b,
                 letterAngle : 0,
                 pcolor      : proofColor,
+				cssClass: 'logic_phase--proof',
             },
             c : {
 				caption: "𝑐",
                 letterAngle : 45,
                 letterRotRadius : 20,
                 pcolor      : proofColor,
+				cssClass: 'logic_phase--proof',
             },  
             d : {
 				caption: "𝑑",
                 pos         : d,
                 letterAngle : 90,
                 pcolor      : proofColor,
+				cssClass: 'logic_phase--proof',
             },
 
 
@@ -196,21 +193,31 @@
                 pos: r,
                 letterAngle : 135,
                 pcolor      : givenColor,
+				undisplayAlways : true,
+				doPaintPname : false,
             },
             R : {
                 pos: R,
                 letterAngle : 135,
                 pcolor      : givenColor,
+				undisplayAlways : true,
+				doPaintPname : false,
             },
 
             curveStart  : {
                 pos : [ A[0]-80, 0 ],
+				undisplayAlways : true,
+				doPaintPname : false,
             },
             curveEnd : {
                 pos : [B[0]+50,0],
+				undisplayAlways : true,
+				doPaintPname : false,
             },
             curveLeftEnd : {
                 pos : [250,100],
+				undisplayAlways : true,
+				doPaintPname : false,
             },
         };
 
@@ -218,20 +225,27 @@
         [            
             { "rd" : { pcolor : hidden } }, // used for calcs
 
-            { 'Ad' : { pcolor : proofColor } },
-            { 'Ab' : { pcolor : proofColor } },
-
-            { 'bd' : { pcolor : proofColor } },
+            { 'Ad' : { pcolor : proofColor, 
+						cssClass: 'logic_phase--proof' } },
+            { 'Ab' : { pcolor : proofColor, 
+						cssClass: 'logic_phase--proof' } },
+            { 'bd' : { pcolor : proofColor, 
+						cssClass: 'logic_phase--proof' } },
             { 'BD' : { pcolor : givenColor } },  //lemma 7, coroll 1
-            { 'BF' : { pcolor : proofColor } },
-            { 'AF' : { pcolor : proofColor } },
-            { 'AG' : { pcolor : proofColor } },
-            { 'AE' : { pcolor : givenColor } },
-            { 'BG' : { pcolor : proofColor } },
-            { 'AE' : { pcolor : givenColor } },
-            { 'BE' : { pcolor : proofColor } },
-            { 'AB' : { pcolor : givenColor } },
-            { 'AD' : { pcolor : givenColor } },
+            { 'BF' : { pcolor : proofColor, 
+						cssClass: 'logic_phase--corollary' } },
+            { 'AF' : { pcolor : proofColor, 
+						cssClass: 'logic_phase--corollary' } },
+            { 'AG' : { pcolor : proofColor, 
+						cssClass: 'subessay--cor-2 subessay--cor-3'} },
+            { 'AE' : { pcolor : proofColor, 
+						cssClass: 'subessay--cor-2 subessay--cor-3'} },
+            { 'BG' : { pcolor : proofColor, 
+				cssClass: 'subessay--cor-2 subessay--cor-3'} },
+            { 'BE' : { pcolor : proofColor, 
+				cssClass: 'subessay--cor-2 subessay--cor-3'} },
+            { 'AB' : { pcolor : givenColor, } },
+            { 'AD' : { pcolor : givenColor, } },
 
             { 'A,DLeft'  : { pcolor : givenColor, 'stroke-width' : 2, } },
         ]
