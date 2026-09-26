@@ -103,7 +103,7 @@
             "curve-AB"      : givenColor, //arc-AB plus extension past B
             "left-curve-AB" : givenColor, //extends curve ACB to the left of A
             "arc-AB"        : givenColor, 
-            "claimRatio"    : givenColor, //data table
+            "givenData"    : givenColor, //data table
 
             //proof
             "curve-Ab"      : proofColor, // todo: unused?
@@ -111,7 +111,7 @@
             "proofRatio"    : proofColor, //data table
 
             //corollaries            
-            'BF-data' : givenColor, // used to style BF in data table (sometimes we don't want it linked to model BF line for mouseover highlighting)
+            'proofData' : proofColor, // used to style BF in data table (sometimes we don't want it linked to model BF line for mouseover highlighting)
         };
 
         var originalPoints =
