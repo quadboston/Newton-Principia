@@ -99,13 +99,13 @@
         
         //: topic group colors
         var givenColor   = topicColors_repo.givenColor;        
-        var proof   = topicColors_repo.proof;
+        var infoColor   = topicColors_repo.infoColor;
         var hidden  = topicColors_repo.hidden;
 
         var topicColors_elected =
         {
             //:basic topics
-            proof,
+            infoColor,
             givenColor,
             hidden,
 
@@ -142,8 +142,7 @@
                 draggableY  : false,
             },
             L : { // rectilinear angle slider
-                letterAngle : -45,
-                pcolor      : proof,
+                pcolor      : infoColor,
             },
 			R : {
 				pos: R,
@@ -163,8 +162,6 @@
 			},
 			d : {
 				pos         : d,
-				letterAngle : 90,
-				pcolor      : proof,
 			},
 			DLeft : {
                 pos         : DLeft,
@@ -181,7 +178,7 @@
         [            
             { 'AB' : { pcolor : givenColor } },
             { 'AD' : { pcolor : givenColor } },
-            { 'AL' : { pcolor : proof } }, // rectilinear angle
+            { 'AL' : { pcolor : infoColor } }, // rectilinear angle
             { 'A,DLeft'  : { pcolor : givenColor, 'stroke-width' : 2, } }, //extends AD to the left
         ];
 
