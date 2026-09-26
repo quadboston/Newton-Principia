@@ -21,7 +21,6 @@
         // //\\ subapp regim switches
         //====================================================
         sconf.enableStudylab            = false; // true to include options as in Book 3 Lemma 5
-        sconf.rgShapesVisible           = false; // false to show only relevant lines, points, labels
         //====================================================
         // \\// subapp regim switches
         //====================================================
@@ -129,11 +128,13 @@
                 letterAngle : 45,
                 letterRotRadius : 18,
                 pcolor      : proofColor,
+				cssClass: 'logic_phase--proof',
             },
             b : {
 				caption: "𝑏",
                 letterAngle : 0,
                 pcolor      : proofColor,
+				cssClass: 'logic_phase--proof',
             },
 
             ///modified point r, closer to d
@@ -142,6 +143,7 @@
                 pcolor      : proofColor,
                 letterAngle : -45,
                 letterRotRadius : 30,
+				cssClass: 'logic_phase--proof',
             },
 
             ///modified point r, closer to d
@@ -151,22 +153,30 @@
                 pcolor      : proofColor,
                 letterAngle : -90,
                 letterRotRadius : 30,
+				cssClass: 'logic_phase--proof',
             },
             
             curveStart  : {
                 pos : [ A[0]-80, 0 ],
+				undisplayAlways : true,
+				doPaintPname : false,
             },
             curveEnd : {
                 pos : [B[0]+50,0],
+				undisplayAlways : true,
+				doPaintPname : false,
             },
             curveLeftEnd : {
                 pos : [250,100],
+				undisplayAlways : true,
+				doPaintPname : false,
             },
             DLeft : {
                 pos         : DLeft,
                 letterAngle : 90,
                 pcolor      : givenColor,
-                doPaintPname : false,
+				undisplayAlways : true,
+				doPaintPname : false,
             },
 
         };
@@ -176,12 +186,17 @@
             //** this defines render order */
 
             // proof (shown in blue) 
-            { 'Ab' : { pcolor : proofColor } },  
+            { 'Ab' : { pcolor : proofColor,
+				cssClass: 'logic_phase--proof', } },  
 
-            { 'A,d' : { pcolor : proofColor } }, // Ad  
-            { 'A,r' : { pcolor : proofColor } }, // Ar   
-            { 'r,d' : { pcolor : proofColor } }, // rd
-            { 'r,b' : { pcolor : proofColor } }, //rb
+            { 'A,d' : { pcolor : proofColor,
+				cssClass: 'logic_phase--proof', } }, // Ad  
+            { 'A,r' : { pcolor : proofColor,
+						cssClass: 'logic_phase--proof', } }, // Ar   
+            { 'r,d' : { pcolor : proofColor,
+				cssClass: 'logic_phase--proof', } }, // rd
+            { 'r,b' : { pcolor : proofColor,
+				cssClass: 'logic_phase--proof', } }, //rb
 
             // claim (shown in green)            
             { 'AB' : { pcolor : givenColor } },
@@ -207,13 +222,13 @@
 
         originalPoints.t1 = {
                 pos: ww1,
-                letterAngle : 90,
-                pcolor      : givenColor,
+				undisplayAlways : true,
+				doPaintPname : false,
         };
         originalPoints.t2 = {
                 pos: ww2,
-                letterAngle : 90,
-                pcolor      : givenColor,
+				undisplayAlways : true,
+				doPaintPname : false,
         };
 
         var givenCurve_pivots = [

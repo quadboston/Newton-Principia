@@ -86,21 +86,13 @@
 
     function amode2rgstate( captured )
     {
-        var { logic_phase, aspect, subessay } = amode;
+        var { logic_phase, aspect } = amode;
 
         sDomF.resetModelPos();
 
         //----------------------------------
         // //\\ common values
         //----------------------------------
-        rg.A.undisplay              = false;
-        rg.B.undisplay              = false;
-        rg.AB.undisplay             = false;
-        rg[ 'arc-AB' ].undisplay    = false;
-        rg['area-RAB'].undisplay    = false;
-        rg['area-RAD'].undisplay    = false;
-        rg['area-RACB'].undisplay    = false;
-
         //idle?:
         ns.paste( rg.curveStart.pos, ssD.curveStartInitialPos );
 
@@ -130,48 +122,12 @@
         ns.paste( rg.curveStart.pos, [ -0.2, 0 ] ); //todm what is this?
         ns.paste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ] );
 
-        [
-            //'dr-decorpoint',
-        ].forEach( gname => { rg[ gname ].undisplay = true; });
-
-        [
-            'D',
-            'R',
-            'C',
-            'AR',
-            'AD',
-            'BR',
-            'RD',
-            'curve-AB',
-        ].forEach( gname => { rg[ gname ].undisplay = false; });
-
-        if( logic_phase === 'claim' ) {
-            [
-                'c',
-                'r',
-                'd',
-                'A,d',
-                'A,r',
-                'r,b',
-                'r,d',
-            ].forEach( gname => { rg[ gname ].undisplay = true; });
-        } else if( logic_phase === 'proof' ) {
-            [
-                'c',
-                'b',
-                'Ab',
-                'r',
-                'd',
-                'A,d',
-                'A,r',
-                'r,b',
-                'r,d',
-                'arc-Ab',
-                'area-rAb',
-                'area-rAd',
-                'area-rAcb'
-            ].forEach( gname => { rg[ gname ].undisplay = false; });
-        }
+		[
+			'arc-Ab',
+			'area-rAb',
+			'area-rAd',
+			'area-rAcb'
+		].forEach( gname => { rg[ gname ].undisplay = logic_phase !== 'proof'; });
        
         rg[ 'left-curve-AB' ].undisplay = aspect === 'model';
         rg['A,DLeft'].undisplay = aspect === 'model';
@@ -179,4 +135,3 @@
     }
 
 }) ();
-
