@@ -152,6 +152,7 @@
 			estimatedForceColor,
             orbit: bodyColor,
             force: forceColor,
+			time: estimatedForceColor,
         };
         //-----------------------------------
         // \\// topic group colors,

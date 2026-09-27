@@ -126,7 +126,6 @@
             infoColor,
 			sunColor,
 			proofHover,
-			dtime,
         } = topicColors_repo;
 
         var topicColors_elected =
@@ -137,7 +136,7 @@
             force: forceColor,
             tangentCircle: infoColor,
 			force: forceColor,
-			dtime,
+			time: estimatedForceColor,
         };
         //-----------------------------------
         // \\// topic group colors,

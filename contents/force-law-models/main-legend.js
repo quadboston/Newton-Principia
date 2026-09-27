@@ -5,6 +5,7 @@
 
 
 	function create_digital_legend() {
+		create_digital_legend_for_logic_phase( 'claim' );
 		create_digital_legend_for_logic_phase( 'proof' );
 		create_digital_legend_for_logic_phase( 'corollary' );
 	}
@@ -19,7 +20,7 @@
 		////
 		////**********************************************************************************
 		var legendScriptParsed = [
-			[['estimatedForceColor<_>data-monospace', 'Δt',
+			[['time<_>data-monospace', 'Δt',
 				'(stdMod.calculateTimeBetweenQAndP()*2).toFixed(4)']]
 		];
 		var rowsCount       = legendScriptParsed.length;

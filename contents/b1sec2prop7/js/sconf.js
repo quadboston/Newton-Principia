@@ -150,6 +150,7 @@
             invalidColor,
             proofColor,
             hidden,
+			time: estimatedForceColor,
             curvatureCircle : infoColor,
 			force : forceColor,
 			orbit: bodyColor,
@@ -208,11 +209,6 @@
                 undisplayAlways : true,
                 //pos: will be as Q, 
                 cssClass : 'tp-dtime',
-                pcolor : estimatedForceColor,
-                fontSize : 30,
-                letterAngle : 225,
-                letterShift : [30,0],
-                letterRotRadius : 180,
             },
 
             T : {
@@ -231,9 +227,6 @@
             },
 
             Zminus : {
-                pcolor : bodyColor,
-                letterAngle : 45,
-                //undisplay : true,
                 undisplayAlways : true,
                 doPaintPname : false,
             },

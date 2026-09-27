@@ -6,10 +6,10 @@
 }
 *..*
 If in a nonresisting space a ¦P¦body¦¦ revolves in any ¦orbit¦¦ about an immobile ¦S¦center¦¦
-and describes any just-nascent ¦timearc¦arc¦¦ in a minimally small ¦dtime¦time¦¦, and if the ¦P,sagitta¦sagitta¦¦ of
+and describes any just-nascent ¦timearc¦arc¦¦ in a minimally small ¦time¦¦, and if the ¦P,sagitta¦sagitta¦¦ of
 the ¦timearc¦arc¦¦ is understood to be drawn so as to bisect the ¦Q,rrminus¦chord¦¦ and, when produced,
 to pass through the ¦S¦center of forces¦¦, the ¦force¦centripetal force¦¦ in the middle of the ¦timearc¦arc¦¦
-will be as the ¦P,sagitta¦the sagitta¦¦ directly and as the ¦dtime¦time¦¦ twice [i.e., as the square of the ¦dtime¦time¦¦]
+will be as the ¦P,sagitta¦the sagitta¦¦ directly and as the ¦time¦¦ twice [i.e., as the square of the ¦time¦¦]
 inversely.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 453.</div>
@@ -22,17 +22,17 @@ inversely.
   "logic_phaseCaption" : "Proof"
 }
 *..*
-For the ¦P,sagitta¦sagitta¦¦ in a given ¦dtime¦time¦¦ is as the ¦force¦¦ (by 
+For the ¦P,sagitta¦sagitta¦¦ in a given ¦time¦¦ is as the ¦force¦¦ (by 
 <a href="?conf=sappId=b1sec2prop1,logic_phaseId=corollary,aspectId=english,subessayId=cor-4">prop. 1, corol. 4</a>),
 and
-if the ¦dtime¦time¦¦ is increased in any ratio, then—because the ¦timearc¦arc¦¦ is increased in the
+if the ¦time¦¦ is increased in any ratio, then—because the ¦timearc¦arc¦¦ is increased in the
 same ratio—the ¦P,sagitta¦the sagitta¦¦ is increased in that ratio squared (by 
 <a href="?conf=sappId=b1sec1lemma11,logic_phaseId=corollary,aspectId=english,subessayId=cor-2">lem. 11, corols. 2
 and 3</a>).
-and therefore is as the ¦force¦¦ once and the ¦dtime¦time¦¦ twice [i.e., as the ¦force¦¦
-and the square of the ¦dtime¦time¦¦ jointly]. Take away from both sides the squared
-ratio of the ¦dtime¦time¦¦, and the ¦force¦¦ will become as the ¦P,sagitta¦sagitta¦¦ directly and as the
-¦dtime¦time¦¦ twice [or as the square of the ¦dtime¦time¦¦] inversely. &nbsp;&nbsp; Q.E.D.<br>
+and therefore is as the ¦force¦¦ once and the ¦time¦¦ twice [i.e., as the ¦force¦¦
+and the square of the ¦time¦¦ jointly]. Take away from both sides the squared
+ratio of the ¦time¦¦, and the ¦force¦¦ will become as the ¦P,sagitta¦sagitta¦¦ directly and as the
+¦time¦¦ twice [or as the square of the ¦time¦¦] inversely. &nbsp;&nbsp; Q.E.D.<br>
 &emsp; This proposition is also easily proved by 
 (<a href="?conf=sappId=b1sec1lemma10,logic_phaseId=corollary,aspectId=english,subessayId=cor-4">lem. 10, corol. 4</a>).
 <br><br>
@@ -66,8 +66,8 @@ from any other point ¦Q¦¦ of the ¦APQ¦curve¦¦, and
 provided that the magnitude of that solid is always taken as that which it
 has ultimately when the points ¦P¦¦ and ¦Q¦¦ come together. For ¦QR¦¦ is equal to
 the ¦P,sagitta¦sagitta¦¦ of an arc that is ¦timearc¦twice the length of arc QP¦¦, with ¦P¦¦ being in the
-middle; and twice the triangle ¦SQ QP SP¦SQP¦¦ (or ¦SP¦¦ × ¦QT¦¦) is proportional to the ¦dtime¦time¦¦
-in which ¦timearc¦twice that arc¦¦ is described and therefore can stand for the ¦dtime¦time¦¦.
+middle; and twice the triangle ¦SQ QP SP¦SQP¦¦ (or ¦SP¦¦ × ¦QT¦¦) is proportional to the ¦time¦¦
+in which ¦timearc¦twice that arc¦¦ is described and therefore can stand for the ¦time¦¦.
 <br><br>
 <div book-reference-id="Bernard-Cohen-Anne-Whitman">Page 454.</div>
 

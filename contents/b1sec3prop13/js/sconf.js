@@ -129,7 +129,6 @@
 			estimatedForceColor,
             forceColor,
 			sunColor,
-			dtime,
         } = topicColors_repo;
 
         var topicColors_elected =
@@ -137,7 +136,7 @@
 			estimatedForceColor,
             orbit: bodyColor,
             force: forceColor,
-			dtime,
+			time: estimatedForceColor,
         };
         //-----------------------------------
         // \\// topic group colors,

@@ -137,7 +137,6 @@
             hidden,
             estimatedForceColor,
             sunColor,
-			dtime,
         } = topicColors_repo;
 
 
@@ -148,7 +147,7 @@
             body: bodyColor,
             orbit: bodyColor,
             force: forceColor,
-			dtime,
+			time: estimatedForceColor,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -257,9 +256,8 @@
             },
 
             q : { // will be put across from Q
-                pcolor : proofColor,
-				caption: '',
 				undisplayAlways : true,
+				doPaintPname : false,
                 cssClass: 'subessay--ordinate',
             },         
 

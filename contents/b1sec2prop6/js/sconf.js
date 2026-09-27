@@ -153,6 +153,7 @@
             proofColor,
             curvature,
             curvatureCircle : curvature,
+			time: estimatedForceColor,
             orbit: bodyColor,
             timearc : bodyColor,
             APQ     : bodyColor,

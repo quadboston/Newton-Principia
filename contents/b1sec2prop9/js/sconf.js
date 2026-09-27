@@ -140,6 +140,7 @@
             orbit : bodyColor,
 			force : forceColor,
             "arc-QP" : bodyColor,
+			time: estimatedForceColor,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -184,7 +185,6 @@
             },
             Z : {
                 pcolor : bodyColor,
-                letterAngle : 45,
                 undisplayAlways : true,
                 doPaintPname : false,
             },
@@ -205,7 +205,6 @@
                 pos : C,
                 caption : 'Rc',
                 pcolor : proofColor,
-                letterAngle : -45,
                 undisplayAlways : true,
                 doPaintPname : false,
             },
