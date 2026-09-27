@@ -20,10 +20,6 @@
         // toreg( 'sForSagitta' )( 'val', sconf.sForSagitta_valQ );
         // nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy( sconf.PparT ));
 
-        //won't work in study model
-        //because is overriden in in_subessay_launch____amode2lemma by
-        //sconf.rgShapesVisible
-
         rg.tangentCircle.undisplay = subessay !== 'another-solution';
 
         sDomF.detected_user_interaction_effect( 'doUndetected' );

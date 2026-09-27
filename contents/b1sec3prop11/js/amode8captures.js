@@ -24,11 +24,6 @@
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
         rg.S.pos[0] = -sconf.ellipseFocus;
         rg.S.pos[1] = 0;
-
-        //won't work in study model
-        //because is overriden in in_subessay_launch____amode2lemma by
-        //sconf.rgShapesVisible
-
         rg.H.pos[0] = sconf.ellipseFocus;
         rg.H.pos[1] = 0;
 

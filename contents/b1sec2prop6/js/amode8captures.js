@@ -19,11 +19,7 @@
         //----------------------------------
         rg[ 'sagitta' ].undisplay = true;
         rg.curvatureCircle.undisplay = false;
-        toreg( 'media_scale' )();
-
-        //won't work in study model
-        //because is overriden in in_subessay_launch____amode2lemma by
-        //sconf.rgShapesVisible
+        toreg( 'media_scale' );
 
         rg.APQ.undisplay = false;
         //----------------------------------

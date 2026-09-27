@@ -29,7 +29,6 @@
         // //\\ decorational parameters
         //***************************************************************
 		sconf.omitGraph = true;
-        sconf.rgShapesVisible = true;
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;

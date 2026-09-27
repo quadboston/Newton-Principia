@@ -104,13 +104,6 @@
         // \\// page-wide
         //--------------------
 
-        rgShapesVisible : true, //initial visibility of rg elements with pname
-                                //when subessay relaunches
-
-
-
-
-
         //app decorations
         appDecor :
         {

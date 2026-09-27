@@ -27,10 +27,6 @@
         //interval of t to construct an arc for
         //Newton's sagitta
         //toreg( 'sForSagitta' )( 'val', 0.310 );
-
-        //won't work in study model
-        //because is overriden in in_subessay_launch____amode2lemma by
-        //sconf.rgShapesVisible
         rg[ 'S,nonSolvablePoint' ].undisplay = true;
         rg[ 'nonSolvablePoint' ].undisplay = true;
 

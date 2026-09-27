@@ -39,32 +39,11 @@
         );
         // \\// patch. works for
         
-        //------------------------------------------------
-        // //\\ sets "undefined" flag
-        //      for registry rg members with defined pname,
-        //      uses sconf.rgShapesVisible if defined in lemma,
-        //      if not, uses existing sconf.rgShapesVisible.
-        //------------------------------------------------
         eachprop( rg, (prop) => {
-
-            //we don't implement this now because of
-            //damage to other legacy lemmas,
-            //general solution should be
-            //if( hazz( prop, 'pname' ) && !has( prop, propname ) ) {
-            //,or in case of 'undisplay'
-            //if( hazz( prop, 'pname' ) && !has( prop, 'undisplay' ) ) {
-
             if( hazz( prop, 'pname' ) ) {
-                prop.undisplay = !(
-                    has( sconf, 'rgShapesVisible' ) ?
-                        sconf.rgShapesVisible :
-                        fconf.rgShapesVisible
-                );
+                prop.undisplay = false;
             }
         });
-        //------------------------------------------------
-        // \\// sets "undefined" flag
-        //------------------------------------------------
 
         var captured = null;
         ///------------------------------------------------------------------
