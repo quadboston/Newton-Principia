@@ -135,6 +135,7 @@
 
         var topicColors_elected =
         {
+			estimatedForceColor,
             curvatureCircle : infoColor,
             body: bodyColor,
             orbit : bodyColor,
