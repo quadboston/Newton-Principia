@@ -96,9 +96,6 @@
             var finalTp = haz( pt, 'notp' ) ? 'notp' : 'tp';
             var wwClass = cssClass + finalTp + '-' +  tpclass;
             pt.svgel.setAttributeNS( null, 'class', wwClass );
-            //if( pName === 'fret-0-0' ) {
-            //    ccc( 'makes point ' + pName + ' cssclass=' + wwClass );
-            //}
 
             ///this thing is static yet
             /*
@@ -164,12 +161,6 @@
                 has( rgX, 'move_2_updates' ) || has( rgX, 'doWhiteKernel' )
             )
         ){
-            /*
-            if( rgX.pname === 'fret-0-0' ) {
-                ccc( 'sets kernel ' + rgX.pname + ' rgX.noKernel ', rgX.noKernel
-                );
-            }
-            */
             var fakeName = pname+'-kernel';
             var wp = rg[pname].pos;
             var rgXX = rg[ fakeName ];

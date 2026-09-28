@@ -1,4 +1,4 @@
-//todm: apparently vital to merge this module with proper s ubmodel
+//todm: apparently vital to merge this module with proper submodel
 
 ( function() {
     var {
@@ -64,9 +64,6 @@
 
         stdMod.customDraggers_list.push(
             ( function( medD8D ) {
-                //if( rgX.pname === 'fret-0-0' ) {
-                //    ccc( 'executes rgX_2_dragWrap for ' + rgX.pname );
-                //}
                 ///does this make medpos? - no.
                 sDomF.rgX_2_dragWrap({
                     medD8D,

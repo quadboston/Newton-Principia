@@ -316,11 +316,6 @@
             //pointWrap.dragWrap = dragWrap;
             //**********************************************
 
-
-            //if( pointWrap.pname === 'fret-0-0' ) {
-            //    ccc( 'dragWrap is created for ' + pointWrap.pname );
-            //}
-
             //nonefy is needed
             update_decPoint &&
                 update_decPoint( decPoint, dragSurface, pointWrap,
@@ -657,8 +652,4 @@
         }
     }
 
-
 }) ();
-
-
-
