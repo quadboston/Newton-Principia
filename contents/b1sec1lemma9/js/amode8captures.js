@@ -1,6 +1,6 @@
 ( function() {
     var {
-        amode, rg,
+        amode, rg, sDomF,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -49,6 +49,8 @@
 			"Afd",
 			"Age",
 		].forEach( gname => { rg[ gname ].undisplay = logic_phase === 'claim'; });
+        // every tab starts with the book's diagram behind the model
+        sDomF.detected_user_interaction_effect( 'doUndetected' );
         return captured;
     }
 

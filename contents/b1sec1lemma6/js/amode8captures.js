@@ -133,7 +133,6 @@
             ///pop up app. letters
             if( logic_phase === 'proof' ) {
                 rg.curveRotationAngle.angle = ANGLE_AUTH;
-                sDomF.detected_user_interaction_effect( !'doUndetected' );
 
                 ///shows differential tangent row in data table
                 globalCss.update( `
@@ -146,6 +145,8 @@
 
             }
         }
+        // every tab starts with the book's diagram behind the model
+        sDomF.detected_user_interaction_effect( 'doUndetected' );
         return captured;
     }
 

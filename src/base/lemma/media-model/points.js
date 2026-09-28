@@ -263,30 +263,11 @@
             }
             //make tp - boldable all points labels:
             $$$svg.addClass( 'tobold' );
-            /*
-            fails:
-            if( has( rgX, 'hideCaption' ) ) {
-                var undisp = rgX.hideCaption;
-            } else {
-                var undisp =
-                (
-                    !haz( rgX, 'displayAlways' ) &&
-                    ( haz( rg, 'allLettersAreHidden' ) || haz( rgX, 'undisplay' ) )
-                )
-            }
-            */
 
         } else {
             ////bug fix: June 3, 2021
             var wwSvg = haz( rgX, 'pnameLabelsvg' );
             $$.$( wwSvg ).toggleClass( 'undisplay', true );
-            /*
-            rgX.hideCaption ||
-            (
-                !haz( rgX, 'displayAlways' ) &&
-                ( haz( rg, 'allLettersAreHidden' ) || haz( rgX, 'undisplay' ) )
-            )
-            */
         }
     }
 

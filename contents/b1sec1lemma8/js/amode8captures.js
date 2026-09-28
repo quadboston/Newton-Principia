@@ -99,7 +99,7 @@
         ns.paste( rg.curveEnd.pos, ssD.curveEndInitialPos );
         ssD.repoConf.customFunction = 0;
         rg.B.unrotatedParameterX = 1;
-        var media_scale = toreg( 'media_scale' )();
+        toreg( 'media_scale' );
         //----------------------------------
         // \\// common values
         //----------------------------------

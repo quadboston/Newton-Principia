@@ -131,7 +131,6 @@
                 captured = "colollary-2";
             }
         } else if( aspect !== 'model' ) {
-            sDomF.detected_user_interaction_effect( 'doUndetected' );
             captured = "L-equal-d";
             if(!rg.media_scale.value) {
                 rg.media_scale.value = 1;
@@ -151,6 +150,8 @@
         nspaste(rg.D.pos, rg.D.originalPos);
         rg.B.unrotatedParameterX = rg.B.originalPos[0];
 
+        // every tab starts with the book's diagram behind the model
+        sDomF.detected_user_interaction_effect( 'doUndetected' );
         return captured;
     }
 

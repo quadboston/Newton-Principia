@@ -18,6 +18,7 @@
                 { src:'media-upcreate.js' },
                 { src:'state-capturer.js' },
                 { src:'main-legend.js' },
+                { src:'amode8captures.js' },
             ],
             "contents-list" :
             [

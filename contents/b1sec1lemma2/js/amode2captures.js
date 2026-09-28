@@ -1,5 +1,5 @@
 ( function() {
-    var { nspaste, capture, ssF, } = window.b$l.apptree({
+    var { nspaste, capture, ssF, sDomF, } = window.b$l.apptree({
         ssFExportList : { amode2rgstate, }, });
     setCapture();
     return;
@@ -18,6 +18,8 @@
     function amode2rgstate( captured )
     {
         ssF.media_upcreate_generic();
+        // every tab starts with the book's diagram behind the model
+        sDomF.detected_user_interaction_effect( 'doUndetected' );
         return captured;
     }
 

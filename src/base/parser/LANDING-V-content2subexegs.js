@@ -519,9 +519,10 @@
                      fconf.engineImg + '/empty.png' :
                         fconf.pathToContentSite + '/contents/' +
                         fconf.sappId + '/img/' + imgId;
-				if (imgId === '*empty*') {
-					fconf.timeToShowOriginalDiagram_effective = 1;
-				}
+				// a later section's image replaces an earlier empty one,
+				// so the timeout must follow the image finally chosen
+				fconf.timeToShowOriginalDiagram_effective =
+					imgId === '*empty*' ? 1 : fconf.timeToShowOriginalDiagram;
                 // \\// establishes image source file name
             }
             // \\// bg images

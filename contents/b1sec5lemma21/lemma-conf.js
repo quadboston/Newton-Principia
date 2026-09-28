@@ -17,6 +17,7 @@
                 { src:'media-upcreate.js' },
                 { src:'completes-sliders-creation.js' },
                 { src:'main-legend.js' },
+                { src:'amode8captures.js' },
             ],
             "contents-list" :
             [

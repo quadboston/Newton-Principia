@@ -19,7 +19,7 @@
         //----------------------------------
         // //\\ common values
         //----------------------------------
-        var media_scale = toreg( 'media_scale' )();
+        toreg( 'media_scale' );
         if(!rg.media_scale.value) {
             rg.media_scale.value = 1;
         }
@@ -36,7 +36,6 @@
 
 
         if( subessay === 'corollary2' || subessay === 'corollary3' ){
-            sDomF.detected_user_interaction_effect( !'doUndetected' );
             nspaste( rg.A.pos, q2xy(
                 -0.5, //chosen value for A
             ));
@@ -67,7 +66,6 @@
                 ////placing S to the circle
                 nspaste( rg.S.pos, [-0.9997779468574, -0.0210731450212] );
             }
-            sDomF.detected_user_interaction_effect( subessay !== 'corollary1' );
         }
 
         modifyDecorationVisibility( subessay );
