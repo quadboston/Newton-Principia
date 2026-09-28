@@ -9,16 +9,12 @@
     ///"init model parameters"
     function amode2rgstate( captured )
     {
-        const { logic_phase, aspect, subessay } = amode;
+        const { subessay } = amode;
         toreg( 'media_scale' )();
         if(!rg.media_scale.value) {
             rg.media_scale.value = 1;
         }
         ssF.scaleValue2app( rg.media_scale.value, stdMod );
-
-        //todo sort out why this is commented out,
-        // toreg( 'sForSagitta' )( 'val', sconf.sForSagitta_valQ );
-        // nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy( sconf.PparT ));
 
         rg.tangentCircle.undisplay = subessay !== 'another-solution';
 

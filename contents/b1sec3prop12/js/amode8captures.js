@@ -1,5 +1,5 @@
 ( function() {
-    var { nspaste, toreg, mat, sDomF, ssD, ssF, stdMod, rg, sconf, }
+    var { toreg, sDomF, ssF, stdMod, rg, sconf, }
         = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     return;
 

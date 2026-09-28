@@ -2,7 +2,7 @@
     var {
         toreg,
         sDomF, ssF,
-        stdMod, amode, rg, sconf,
+        stdMod, rg, sconf,
     } = window.b$l.apptree({
         ssFExportList :
         {
@@ -16,7 +16,6 @@
     ///"init model parameters"
     function amode2rgstate( captured )
     {
-		const { logic_phase, aspect, subessay } = amode;
         toreg( 'media_scale' )();
         if(!rg.media_scale.value) {
             rg.media_scale.value = 1;
