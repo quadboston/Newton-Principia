@@ -1,5 +1,5 @@
 ( function() {
-    var { sDomF, ssD, ssF,
+    var { sDomF, ssF,
         sconf, amode, toreg, stdMod, rg, }
         = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     foldPointsRemovedFromTp = false;
@@ -9,8 +9,12 @@
     function amode2rgstate( captured )
     {
         var { logic_phase, subessay } = amode;
-        
-        sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
+
+        ////shows shapes hidden for a non-Kepler orbit;
+        ////model_upcreate() hides them again if still non-Kepler
+        stdMod.restoresStashedVisibility();
+
+        sconf.originalPoints.foldPoints.forEach( (fp) => {
             fp.rgX.undisplay = true;
         });
 
@@ -18,39 +22,18 @@
         // //\\ common values
         //----------------------------------
         rg[ 'sagitta' ].undisplay = true;
-        rg.curvatureCircle.undisplay = false;
         toreg( 'media_scale' );
-
-        rg.APQ.undisplay = false;
         //----------------------------------
         // \\// common values
         //----------------------------------
 
+		if(!rg.media_scale.value) {
+			rg.media_scale.value = 1;
+		}
+		ssF.scaleValue2app( rg.media_scale.value, );
 
-        if( logic_phase === 'claim' || logic_phase === 'proof' ){
-            if(!rg.media_scale.value) {
-                rg.media_scale.value = 1;
-            }
-            ssF.scaleValue2app( rg.media_scale.value, );
-            rg.curvatureCircle.undisplay = true;
-        } else if( logic_phase === 'corollary' && subessay === 'corollary1' ){
-            rg.curvatureCircle.undisplay = true;
-        } else if( logic_phase === 'corollary' && subessay === 'corollary3' ){
-            rg.APQ.undisplay = false;
-            rg.timearc.undisplay = true;
-        } else if( logic_phase === 'corollary' && subessay === 'corollary5' ){
-            rg.curvatureCircle.undisplay = false;
-            rg.APQ.undisplay = true;
-        } else {
-            if(!rg.media_scale.value) {
-                rg.media_scale.value = 1;
-            }
-            ssF.scaleValue2app( rg.media_scale.value, );
-        }
-
-        ////this refreshes scnenario of
-        ////non-Kepler shapes visibility
-        ssD.stashedVisibility = null;
+		rg.curvatureCircle.undisplay = 
+			!(logic_phase === 'corollary' && subessay === 'corollary3');
 
         stdMod.rebuilds_orbit();
         sDomF.detected_user_interaction_effect( 'doShowDiagram' );
