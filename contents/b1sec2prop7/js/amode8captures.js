@@ -1,5 +1,5 @@
 ( function() {
-    var { nspaste, amode, toreg, stdMod, rg, sDomF, ssD, ssF, }
+    var { nspaste, amode, toreg, stdMod, rg, ssD, }
         = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     return;
 
@@ -19,11 +19,6 @@
         //----------------------------------
         // //\\ common values
         //----------------------------------
-        toreg( 'media_scale' );
-        if(!rg.media_scale.value) {
-            rg.media_scale.value = 1;
-        }
-        ssF.scaleValue2app( rg.media_scale.value );
 
         //interval of t to construct an arc for
         //Newton's sagitta
@@ -72,7 +67,6 @@
 
         ssD.stashedVisibility = null;
         stdMod.rebuilds_orbit();
-        sDomF.detected_user_interaction_effect( 'doShowDiagram' );
         return captured;
     }
 

@@ -48,8 +48,6 @@
         rg.Ae.pcolor = sDomF.getFixedColor( 'given' )
         rg.e.pcolor = sDomF.getFixedColor( 'given' )
 
-        // every tab starts with the book's diagram behind the model
-        sDomF.detected_user_interaction_effect( 'doUndetected' );
         return captured;
     }
 }) ();

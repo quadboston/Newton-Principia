@@ -1,6 +1,6 @@
 ( function() {
-    var { sDomF, ssF,
-        sconf, amode, toreg, stdMod, rg, }
+    var {
+        sconf, amode, stdMod, rg, }
         = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     foldPointsRemovedFromTp = false;
     return;
@@ -22,21 +22,14 @@
         // //\\ common values
         //----------------------------------
         rg[ 'sagitta' ].undisplay = true;
-        toreg( 'media_scale' );
         //----------------------------------
         // \\// common values
         //----------------------------------
-
-		if(!rg.media_scale.value) {
-			rg.media_scale.value = 1;
-		}
-		ssF.scaleValue2app( rg.media_scale.value, );
 
 		rg.curvatureCircle.undisplay = 
 			!(logic_phase === 'corollary' && subessay === 'corollary3');
 
         stdMod.rebuilds_orbit();
-        sDomF.detected_user_interaction_effect( 'doShowDiagram' );
         return captured;
     }
 

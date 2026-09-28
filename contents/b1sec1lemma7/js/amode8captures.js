@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, paste, capture, nspaste, sDomF, ssD, ssF, stdMod, amode, toreg, rg,
+        ns, paste, capture, nspaste, sDomF, ssD, amode, rg,
     } = window.b$l.apptree({
         ssFExportList : {
             amode2rgstate,
@@ -114,7 +114,6 @@
         ns.paste( rg.curveEnd.pos, ssD.curveEndInitialPos );
         ssD.repoConf.customFunction = 0;
         rg.B.unrotatedParameterX = 1;
-        toreg( 'media_scale' );
         //----------------------------------
         // \\// common values
         //----------------------------------
@@ -127,10 +126,6 @@
             }
         } else if( aspect !== 'model' ) {
             captured = "L-equal-d";
-            if(!rg.media_scale.value) {
-                rg.media_scale.value = 1;
-            }
-            ssF.scaleValue2app( rg.media_scale.value, stdMod );
 
             ns.paste( rg.curveStart.pos, [ -0.2, 0 ] );
             ns.paste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ] );
@@ -145,8 +140,6 @@
         nspaste(rg.D.pos, rg.D.originalPos);
         rg.B.unrotatedParameterX = rg.B.originalPos[0];
 
-        // every tab starts with the book's diagram behind the model
-        sDomF.detected_user_interaction_effect( 'doUndetected' );
         return captured;
     }
 

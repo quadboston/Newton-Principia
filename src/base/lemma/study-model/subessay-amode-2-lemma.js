@@ -1,7 +1,7 @@
 ( function() {
     var {
         nspaste, eachprop, has, haz, haff,
-        fconf, ssF, ssD, rg,
+        fconf, ssF, ssD, rg, sDomF,
         stdMod, amode,
         //**************************************************
     } = window.b$l.apptree({
@@ -98,6 +98,11 @@
             //ssF.amode2rgstate();
             //and remove " captured " fully
             captured = ssF.amode2rgstate( captured );
+        }
+
+        // every tab starts with the book's diagram behind the model
+        if( haz( stdMod.imgRk, 'hasImage' ) ) {
+            sDomF.detected_user_interaction_effect( 'doUndetected' );
         }
 
         //reminder: captured here is the last satisfied captured,

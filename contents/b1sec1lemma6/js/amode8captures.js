@@ -2,7 +2,7 @@
     var {
         ns, paste, capture,
         sDomF, ssD, globalCss, sData,
-        amode, toreg, rg,
+        amode, rg,
     } = window.b$l.apptree({
         ssFExportList : {
             amode2rgstate,
@@ -113,7 +113,6 @@
         ns.paste( rg.curveEnd.pos, ssD.curveEndInitialPos );
         ssD.repoConf.customFunction = 0;
         rg.B.unrotatedParameterX = 1;
-        toreg( 'media_scale' );
         //----------------------------------
         // \\// common values
         //----------------------------------
@@ -144,8 +143,6 @@
 
             }
         }
-        // every tab starts with the book's diagram behind the model
-        sDomF.detected_user_interaction_effect( 'doUndetected' );
         return captured;
     }
 

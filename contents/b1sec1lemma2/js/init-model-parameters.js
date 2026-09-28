@@ -107,8 +107,6 @@
         //createsBaseSlider();
 
         gui.buildSlider();
-        
-        sDomF.detected_user_interaction_effect( 'doUndetected' );
     }
 
     /*

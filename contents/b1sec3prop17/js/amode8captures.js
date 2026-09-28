@@ -1,6 +1,6 @@
 ( function() {
-    var { 
-        nspaste, toreg, mat, sDomF, ssF, stdMod, amode, rg, sconf, 
+    var {
+        nspaste, mat, sDomF, stdMod, amode, rg, sconf,
     } = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     return;
 
@@ -15,12 +15,6 @@
         var { logic_phase, aspect, subessay } = amode;
 
         sDomF.resetModelPos();
-
-        toreg( 'media_scale' )();
-        if(!rg.media_scale.value) {
-            rg.media_scale.value = 1;
-        }
-        ssF.scaleValue2app( rg.media_scale.value, stdMod );
 
 		rg.point_r.hideD8Dpoint =
 			// for this corollary, p's velocity is determined by the force
@@ -116,8 +110,6 @@
         // \\// model
         //=============================================================
 
-        //comment out to remove Book's diagram after timeout
-        sDomF.detected_user_interaction_effect( 'doUndetected' );
         return captured;
     }
 }) ();

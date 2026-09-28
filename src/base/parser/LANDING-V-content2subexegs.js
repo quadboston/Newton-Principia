@@ -498,6 +498,7 @@
                     rg.detected_user_interaction_effect_DONE = true;
                     //ccc( 'Remodel: Landing V: ' + rg.detected_user_interaction_effect_DONE );
                     stdMod.imgRk.srcParsed = fconf.engineImg + '/empty.png';
+                    stdMod.imgRk.hasImage = false;
                     return;
                 }
                 if( haz( stdMod.imgRk, 'imgFoundInText' ) ) return;
@@ -519,6 +520,7 @@
                      fconf.engineImg + '/empty.png' :
                         fconf.pathToContentSite + '/contents/' +
                         fconf.sappId + '/img/' + imgId;
+                stdMod.imgRk.hasImage = imgId !== '*empty*';
 				// a later section's image replaces an earlier empty one,
 				// so the timeout must follow the image finally chosen
 				fconf.timeToShowOriginalDiagram_effective =
