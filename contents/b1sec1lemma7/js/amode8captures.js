@@ -7,12 +7,15 @@
         },
     });
 
+    // curve rotation at which the differential and Euclid tangents are equal
+    const EQUAL_TANGENTS_ANGLE = 0.10579977792284677;
+
     ///diff and Euclid tangents are equal
-    var ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] = 
+    var ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] =
     {
-        "angle": 0.10579977792284677,
-        "sin": 0.10560250842053673,
-        "cos": 0.9944084222367038
+        "angle": EQUAL_TANGENTS_ANGLE,
+        "sin": Math.sin( EQUAL_TANGENTS_ANGLE ),
+        "cos": Math.cos( EQUAL_TANGENTS_ANGLE ),
     };
 
     //this is Books origin, authentic N. drawing,
@@ -23,6 +26,13 @@
         "sin": 0,
         "cos": 1
     };
+
+    // B's starting position on the curve
+    const B_PARAM_BOOK = 0.7745228215767634;
+
+    // model origin in the picture; must match modorInPicX, modorInPicY
+    // in sconf.js, which are not set yet when this module runs
+    const MODEL_ORIGIN_IN_PIC = [ 140, 61 ];
 
     setCapture();
     return;
@@ -36,14 +46,11 @@
                     curveRotationAngle : Object.assign( ANGLE_AUTH ),
                     "media-mover": {
                         "achieved": {
-                            "achieved": [
-                                140,
-                                61
-                            ]
+                            "achieved": MODEL_ORIGIN_IN_PIC
                         }
                     },
                     "B": {
-                            "unrotatedParameterX": 0.7745228215767634
+                            "unrotatedParameterX": B_PARAM_BOOK
                     }
             },
 
@@ -51,7 +58,7 @@
             "L-equal-d" :  {
                     curveRotationAngle : Object.assign( ANGLE_EQUALS ),
                     "B": {
-                           "unrotatedParameterX": 0.7745228215767634
+                           "unrotatedParameterX": B_PARAM_BOOK
                     }
             },
 
@@ -70,34 +77,22 @@
             },
 
             "colollary-1": {
-                    "curveRotationAngle": {
-                        "angle": 0.10579977792284677,
-                        "sin": 0.10560250842053673,
-                        "cos": 0.9944084222367038
-                    },
+                    "curveRotationAngle": ANGLE_EQUALS,
                     "B": {
-                            "unrotatedParameterX": 0.7745228215767634
+                            "unrotatedParameterX": B_PARAM_BOOK
                     }
             },
 
 
             "colollary-2": {
-                    "curveRotationAngle": {
-                        "angle": 0.10579977792284677,
-                        "sin": 0.10560250842053673,
-                        "cos": 0.9944084222367038
-                    },
+                    "curveRotationAngle": ANGLE_EQUALS,
                     "B": {
-                            "unrotatedParameterX": 0.7745228215767634
+                            "unrotatedParameterX": B_PARAM_BOOK
                     }
             },
 
             "meet": {
-                    "curveRotationAngle": {
-                        "angle": 0.10579977792284677,
-                        "sin": 0.10560250842053673,
-                        "cos": 0.9944084222367038
-                    },
+                    "curveRotationAngle": ANGLE_EQUALS,
                     "B": {
                             "unrotatedParameterX": 0.001
                     }

@@ -24,6 +24,13 @@
         "cos": 1
     };
 
+    // B's starting position on the curve
+    const B_PARAM_BOOK = 0.7745228215767634;
+
+    // model origin in the picture; must match modorInPicX, modorInPicY
+    // in sconf.js, which are not set yet when this module runs
+    const MODEL_ORIGIN_IN_PIC = [ 140, 61 ];
+
     setCapture();
     return;
 
@@ -36,14 +43,11 @@
                     curveRotationAngle : Object.assign( ANGLE_AUTH ),
                     "media-mover": {
                         "achieved": {
-                            "achieved": [
-                                140,
-                                61
-                            ]
+                            "achieved": MODEL_ORIGIN_IN_PIC
                         }
                     },
                     "B": {
-                            "unrotatedParameterX": 0.7745228215767634
+                            "unrotatedParameterX": B_PARAM_BOOK
                     }
             },
 
@@ -51,7 +55,7 @@
             "L-equal-d" :  {
                     curveRotationAngle : Object.assign( ANGLE_EQUALS ),
                     "B": {
-                           "unrotatedParameterX": 0.7745228215767634
+                           "unrotatedParameterX": B_PARAM_BOOK
                     }
             },
 
