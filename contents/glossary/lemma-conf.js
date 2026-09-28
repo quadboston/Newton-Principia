@@ -32,7 +32,6 @@
 		codeList.push({ src: sm + 'init-model-parameters.js' });
 		codeList.push({ src: sm + 'amode8captures.js' });
 		codeList.push({ src: sm + 'model-upcreate.js' });
-		codeList.push({ src: sm + 'media-upcreate.js' });
 		return {		 
 			codesList : codeList, 
 			"contents-list" :

@@ -13,7 +13,6 @@
                 { src: 'init-model-parameters.js' },
                 { src: 'model-upcreate.js' },
                 { src: 'completes-sliders-creation.js' },
-                { src: 'media-upcreate.js' },
                 { src: 'amode8captures.js' },
                 { src: 'config-functions.js' },
 				{ src: '../../force-law-models/main-legend.js' },

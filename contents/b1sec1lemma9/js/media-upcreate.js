@@ -23,10 +23,6 @@
     {
         // console.log('media-upcreate');
 
-        //vital for letters/picture conflict
-        //see: model-point-dragger.js ... haz( sconf, 'dragHidesPictures' )
-        rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
-
         //:study-pars
         var modCurvPivots   = ssD.curvePivots;    //curve params
         var tC              = ssD.tC;             //point C curve param = vanish param

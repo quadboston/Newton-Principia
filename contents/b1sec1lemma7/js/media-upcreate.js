@@ -44,10 +44,6 @@
         // \\// manages legend CSS-visibility
         //=================================================
 
-        //vital for letters/picture conflict
-        //see: model-point-dragger.js ... haz( sconf, 'dragHidesPictures' )
-        rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
-
         //: analytical derivative dy/dx
         var cfun = ssD.repoConf[ssD.repoConf.customFunction];
 

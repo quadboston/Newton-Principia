@@ -17,6 +17,14 @@
 
     function initiates_orbit8graph() {
         initiates_kepler_config();
+        // default media step for orbit models; a lemma that defines
+        // its own media_upcreate___part_of_medupcr_basic keeps it
+        if( !stdMod.media_upcreate___part_of_medupcr_basic ) {
+            stdMod.media_upcreate___part_of_medupcr_basic = () => {
+                // enables curve move when dragging an entire diagram
+                stdMod.createOrUpdateOrbit({});
+            };
+        }
 		if (!sconf.omitGraph) {
 			stdMod.graphFW_lemma = createGraph_FW_lemma({
 				digramParentDom$:stdMod.legendRoot$ }, stdMod.customXLegend);

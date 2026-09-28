@@ -17,8 +17,6 @@
     //=========================================================
     function media_upcreate___part_of_medupcr_basic()
     {
-        //this is a "policy" ... should be in the state manager if any ...
-        rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
 		paintCurveFromAto(rg.b);
 		paintCurveFromAto(rg.B);
         paintCircle();

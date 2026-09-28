@@ -12,7 +12,6 @@
                 { src: 'amode8captures.js' },
                 { src: 'model-upcreate.js' },
 				{ src: 'model-customizer.js' },
-                { src: 'media-upcreate.js' },
                 { src: 'completes-sliders-creation.js' },
 				{ src: '../../force-law-models/main-legend.js' },
             ],
