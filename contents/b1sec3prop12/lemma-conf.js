@@ -13,7 +13,7 @@
                 { src: 'model-upcreate.js' },
 				{ src: 'model-customizer.js' },
                 { src: 'completes-sliders-creation.js' },
-				{ src: '../../force-law-models/main-legend.js' },
+				{ src: '../../kepler-orbit-models/main-legend.js' },
             ],
             "contents-list" : [
                 'txt/latin.txt',

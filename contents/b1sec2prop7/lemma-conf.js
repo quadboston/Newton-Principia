@@ -15,7 +15,7 @@
                 { src: 'completes-sliders-creation.js' },
                 { src: 'amode8captures.js' },
                 { src: 'config-functions.js' },
-				{ src: '../../force-law-models/main-legend.js' },
+				{ src: '../../kepler-orbit-models/main-legend.js' },
             ],
             "contents-list" :
             [
