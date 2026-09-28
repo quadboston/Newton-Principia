@@ -4,7 +4,7 @@
 }
 *..*
 
-        Si in figura quavis ¦figure¦AacE¦¦
+        Si in figura quavis ¦figure-area¦AacE¦¦
         rectis ¦Aa¦¦, ¦base¦AE¦¦, &amp; ¦curve¦curva acE¦¦ comprehensa,
         inscribantur parallelogramma quotcunq; ¦inscribed-rectangles insc-txt¦Ab, Bc, Cd¦¦,
         &amp;c. sub basibus ¦AB¦¦, ¦BC¦¦, ¦CD¦¦, &amp;c. æqualibus,
@@ -16,7 +16,7 @@
 
         dico quod ultimæ rationes, quas habent ad se invicem figura ¦inscribed-rectangles insc-txt¦inscripta AKbLcMdD¦¦,
         ¦circumscribed-rectangles circ-txt¦circumscripta AalbmcndoE¦¦,
-        &amp; ¦figure¦curvilinea AabcdE¦¦,
+        &amp; ¦figure-area¦curvilinea AabcdE¦¦,
         sunt rationes æqualitatis.
 
         <br><br><div book-reference-id="latin-on-e-rara"></div>
@@ -38,6 +38,6 @@
 
             Sed hoc rectangulum, eo quod latitudo ejus ¦AB¦¦ in infinitum minuitur, sit minus quovis dato.
             Ergo per Lemma I, figura ¦inscribed-rectangles insc-txt¦inscripta¦¦ &amp; ¦circumscribed-rectangles circ-txt¦circumscripta¦¦ &amp;
-            multo magis ¦figure¦figura curvilinea¦¦ intermedia fiunt ultimo æquales. Q.E.D.
+            multo magis ¦figure-area¦figura curvilinea¦¦ intermedia fiunt ultimo æquales. Q.E.D.
         
             <br><br><div book-reference-id="latin-on-e-rara"></div>
