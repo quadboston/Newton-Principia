@@ -181,7 +181,6 @@
                 draggableX  : true,
                 draggableY  : fconf.sappId === 'b1sec2prop7',
 				cssClass:  'subessay--claim subessay--solution',
-				conditionalDrag: 'subessay--claim subessay--solution',
             },
             Z : {
                 pcolor : bodyColor,
