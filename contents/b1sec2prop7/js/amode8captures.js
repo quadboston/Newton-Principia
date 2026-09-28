@@ -1,6 +1,6 @@
 ( function() {
-    var { nspaste, amode, toreg, stdMod, rg, sDomF, ssD, ssF, 
-        sconf, } = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
+    var { nspaste, amode, toreg, stdMod, rg, sDomF, ssD, ssF, }
+        = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     return;
 
 
@@ -8,16 +8,17 @@
     ///"init model parameters"
     function amode2rgstate( captured )
     {
-        var { logic_phase, aspect, subessay } = amode;
+        const { logic_phase, aspect } = amode;
+        // Latin tabs have no subessays; they show what the Text tab
+        // shows for the first subessay of the same logic_phase
+        const subessay = aspect === 'latin' ?
+            { proof : 'solution', corollary : 'corollary1' }[ logic_phase ] :
+            amode.subessay;
         const q2xy = stdMod.q2xy;
-        sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
-            fp.rgX.undisplay = true;
-        });
 
         //----------------------------------
         // //\\ common values
         //----------------------------------
-        rg.curvatureCircle.undisplay = false;
         var media_scale = toreg( 'media_scale' )();
         if(!rg.media_scale.value) {
             rg.media_scale.value = 1;
@@ -27,12 +28,8 @@
         //interval of t to construct an arc for
         //Newton's sagitta
         //toreg( 'sForSagitta' )( 'val', 0.310 );
-        rg[ 'S,nonSolvablePoint' ].undisplay = true;
-        rg[ 'nonSolvablePoint' ].undisplay = true;
 
-        rg.SQ.undisplay                 = true;
-        rg.curvatureCircle.undisplay    = true;
-        rg.PC.undisplay                 = true;
+        rg.Q.hideD8Dpoint = subessay !== 'solution';
         //----------------------------------
         // \\// common values
         //----------------------------------
@@ -73,7 +70,7 @@
             sDomF.detected_user_interaction_effect( subessay !== 'corollary1' );
         }
 
-        modifyDecorationVisibility();
+        modifyDecorationVisibility( subessay );
 
         ssD.stashedVisibility = null;
         stdMod.rebuilds_orbit();
@@ -90,8 +87,8 @@
     /**
      * Show or hide components according to whether they are used
      */
-    function modifyDecorationVisibility() {
-        const { logic_phase, aspect, subessay } = amode;
+    function modifyDecorationVisibility( subessay ) {
+        const { logic_phase } = amode;
         if (logic_phase === 'claim') {
             showOnly(
                 'S',

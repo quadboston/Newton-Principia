@@ -202,7 +202,6 @@
                 letterRotRadius : 40,
                 draggableX  : true,
                 draggableY  : true,
-                conditionalDrag : 'subessay--solution',
             },
             QtimeDecor : {
                 undisplayAlways : true,
