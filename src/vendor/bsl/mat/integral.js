@@ -141,7 +141,6 @@
             // these props are specific to
             // specific lemma,
             var rgX = point;
-            //ccc( rgX)
             //***********************************
 
             var posX    = rgX.pos[0];
@@ -230,8 +229,6 @@
                     */
                     // \\// debug
 
-                    //ccc( pixDeb + ' x='+rgX.integ.f.x.toFixed(4) +
-                    //              ' z=' + rgX.integ.g.x.toFixed(4) );
                     gStartIx = gix;
                     break;
                 }

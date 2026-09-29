@@ -38,7 +38,6 @@
             var scrip = document.createElement('script');
             scrip.onload = function() {
                 completionCount++;
-                //ccc( completionCount + ' loaded ' + scriptItem.src );
                 scriptItem.cb && scriptItem.cb( loadedItem );
                 checkCompletion();
             }

@@ -385,7 +385,6 @@
             //todo do resolve this construct in CSS ... it may be make
             //extra specifity and removing this set will change this specifity and
             //damage the application
-            //c cc( fconf.dragPointDecoratorClasses );
             return;
 
 

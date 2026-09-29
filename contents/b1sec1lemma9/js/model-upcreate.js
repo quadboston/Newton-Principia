@@ -287,7 +287,6 @@
             ////edge cases, returns extremum of t
             var result = -bb / ( 2 * aa );
         } else {
-            //c cc( 'two real roots: x0y=' + x0y + ' t1,t2=', roots );
             //'pivots=', modCurvPivots,
             //'aa=' + aa + ',' + bb + ',' + cc );
             //.here the home-cooking begins

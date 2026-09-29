@@ -113,10 +113,6 @@
                     arg.surfMove[0] * css2model,
                     arg.surfMove[1] * css2model,
                 ];
-                //ccc(
-                //     ' css move='+ arg.surfMove[1].toFixed() +
-                //     ' diagram-model move=' + scaledMove[1].toFixed(5)
-                //)
                 //**rgX must have move_2_updates,
                 //  for some rgX, move_2_updates is added when composing
                 //  from draggable point set in ?sconf,

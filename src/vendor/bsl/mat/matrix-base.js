@@ -188,7 +188,6 @@
                     normSeed[ mIx ] = 0;
                 }
             }
-            //ccc( 'minIx=' + minIx + ' uMin=' + uMin );
             var norm1 = [
                 unit[1]*normSeed[2] - unit[2]*normSeed[1],
                 -unit[0]*normSeed[2] - unit[2]*normSeed[0],
@@ -201,7 +200,6 @@
                 unit[0]*norm1[1] - unit[1]*norm1[0],
             ];
             var ret = { abs, orts : [ norm1, norm2, ], unit };
-            //ccc( 'ret=', ret );
         }
         return ret;
     }
@@ -232,7 +230,6 @@
         us, //direction-2'
         vs  //start-2'
     ) {
-        //ccc( 'u=', u, 'v=',v, 'us=', us, 'vs=', vs);
         const inverse = mat.inverse2x2([
             [u[0], -us[0]],
             [u[1], -us[1]]]);
@@ -249,8 +246,6 @@
 
         //to check the job, compare r and rs, they must be equal
         //var rs = [y*us[0]+vs[0], y*us[1]+vs[1]];
-        //ccc( 'solution1=', r );
-        //ccc( 'solution2=', rs );
 
         return r;
     }

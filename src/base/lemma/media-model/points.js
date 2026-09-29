@@ -49,7 +49,6 @@
         if( !dressed ) {
 
             ////long, initial version of pos2pointy
-            //c cc( 'dressing' + pName );
             var tpclass = nsmethods.toCssIdentifier(
                           ( haz( attrs, 'tpclass' ) ) || pName
             );

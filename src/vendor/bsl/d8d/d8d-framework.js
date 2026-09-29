@@ -195,7 +195,6 @@
                 uP && uP( dragWrap.decPoint, dragSurface, dragWrap.pointWrap,
                           //'nonenify'
                 );
-                //c cc( 'all dec end: ', dragWrap.decPoint );
             });
         }
 
@@ -360,7 +359,6 @@
                     */
                     arg
                 );
-                //ccc( 'doProcessWrap: allowed' );
                 if( arg.down_move_up === 'up' ) {
                     const decPoint = haz( selectedElement_flag, 'decPoint' );
                     if( decPoint ) {
@@ -400,7 +398,6 @@
             function update_decPoint_inn2outparent(dummy1, dummy2, dummy3, nonenify)
             {
                 var dompos   = inn2outparent.call( pointWrap );
-                //c cc( pointWrap.rgId, pointWrap.pos, dompos );
                 //console.log(dompos);
                 decPoint.style.left = dompos[0] + 'px'; // this is just pos of decoration          
                 decPoint.style.top  = dompos[1] + 'px'; // not the actual draggable element
@@ -604,7 +601,6 @@
 
         function throttledFunction( arg, dragType )
         {
-            //ccc( Date.now() + ' inner drag: dragType=' + dragType );
             if( dragType !== 'moving' ) {
                 ///runs stashed version of "move" function if any
                 if( timeout !== null ) {
@@ -644,7 +640,6 @@
 
         function clear8run( doClearTimeout )
         {
-            //ccc( Date.now() + ' clears and runs' );
             doClearTimeout && clearTimeout( timeout );
             timeout = null;
             timeStart = null;

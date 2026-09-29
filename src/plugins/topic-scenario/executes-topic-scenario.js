@@ -52,7 +52,6 @@
     ///aka: var wwMessage = 'a u t o p   '+eventBlock.autopilotEventId; 
     function doDebugMessage( wwMessage )
     {
-        //ccc( wwMessage );
         if( ns.haz( ns.conf, 'deb' ) ) {
             ns.d( wwMessage );
         }

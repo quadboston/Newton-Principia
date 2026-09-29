@@ -92,7 +92,6 @@
         //var dd = mat.calculate_divided_differences( xy ).calculate_polynomial;
         //var Sx = sconf.p name2point.S.pos[0];
         //var rr = dd( Sx );
-        //ccc( 'compare: xexp='+Sx + ' yexp=' + sconf.p name2point.R.pos[1] + ' res=' + rr);
 
 
         ///calculates_derivative_at_point_zero

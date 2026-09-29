@@ -174,7 +174,6 @@
                     //vital
                     //ns.d('desk: fw' + frameworkId + ' eid' + eventId + ' owes drag');
                 //} else {
-                //    ccc( 'other clicks are permitted in raw d8d' );
                     //vital
                     //ns.d('desk: fw' + frameworkId + ' eid' + eventId + ' skips drag');
                 }
@@ -220,7 +219,6 @@
                             point_on_dragSurf, childEvent, [0,0] );
             //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 			if( forbidden ) {
-                //ccc( 'down annihilated at lower level, fwId=' + frameworkId );
                 return true;
             }
 			startPoint = point_on_dragSurf;
@@ -394,7 +392,6 @@
         //==============================================================
         function stopsAftershocks( rootEvent )
         {
-            //ccc( 'aftershocks stopping' );
             rootEvent.preventDefault();
             //very good:
             //  javascript.info/bubbling-and-capturing

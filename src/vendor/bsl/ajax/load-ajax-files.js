@@ -94,13 +94,11 @@
                            xml.response : xml.responseText,
                     fileItem : fileItem,
                 };
-                //ccc( 'success: ', loadedItem );
                 loadedFiles.push( loadedItem );
                 if( has( fileItem, 'id' ) ) {
                     loadedFilesById[ fileItem.id ] = loadedItem;
                 }
                 completionCount++;
-                //ccc( completionCount + ' loaded ' + fileItem.src );
                 fileItem.cb && fileItem.cb( loadedItem );
                 checkCompletion( fileItem );
             }

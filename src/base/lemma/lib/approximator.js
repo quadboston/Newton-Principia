@@ -171,7 +171,6 @@
             var medpoints = curvePoints.map( cp => {
                 return ssF.mod2inn( cp, );
             });
-            //ccc( curvePoints, medpoints );
             var polylineSvg = rgX.polylineSvg = nssvg.polyline({
                 pivots  : medpoints, 
                 svgel   : rgX.polylineSvg,
