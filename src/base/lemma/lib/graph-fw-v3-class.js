@@ -30,7 +30,7 @@
         //===========================================
         //exports painter
         graphFW__self.drawGraph_wrap = drawGraph_wrap;
-        graphFW__self.showPHGraph = showPHGraph;
+        graphFW__self.showGraph = showGraph;
         ///creates fw-dom-container
         let {container$, graph_dimX, graph_dimY} =
             setGraphContainerAttributes( digramParentDom$ );
@@ -106,7 +106,7 @@
                 yMin,
                 yMax,
             });
-            graphFW__self.fw.gmedia$.addClass( 'ph-graph' );
+            graphFW__self.fw.gmedia$.addClass( 'graph-fw-media' );
             //==================================================
             // \\// calls low tier api
             //==================================================
@@ -159,7 +159,7 @@
         //==================================================
         // //\\ shows/hides graph container
         //==================================================
-        function showPHGraph( doShow )
+        function showGraph( doShow )
         {
             if( doShow ) {
                 graphFW__self.container$.removeClass( 'hidden' );
@@ -188,7 +188,7 @@
         if( GLOBAL_CSS_APPENDED ) return;
         GLOBAL_CSS_APPENDED = true;
         globalCss.update( `
-            .chem-equiibr-graph-container {
+            .graph-fw-container {
                 position: relative;
                 width   : 95%;
                 left    : 2%;
@@ -197,12 +197,12 @@
                 transition : top 1s ease-in-out;
             }
 
-            .chem-equiibr-graph-container.hidden {
+            .graph-fw-container.hidden {
                 top     : -200%;
             }
 
             .comment-inside-of-style-element___php-media,
-            .ph-graph {
+            .graph-fw-media {
                 position: relative;
                 border  : 2px solid black;
                 width   : 100%;
@@ -210,7 +210,7 @@
                 top     : 0%;
                 background-color : rgba( 255,255,255,1 );
             },
-            'chem-equilibr-graph-style'
+            'graph-fw-style'
         `);
     }
 
@@ -231,7 +231,7 @@
 
 	function setGraphContainerAttributes( digramParentDom$ ) {
 		container$ = $$.div()
-		.addClass( 'chem-equiibr-graph-container' )
+		.addClass( 'graph-fw-container' )
 		.to( $$.div().to( digramParentDom$ )
 				.addClass( 'lost-diagram-parent' )
 				//.css( 'position', 'absolute' )
