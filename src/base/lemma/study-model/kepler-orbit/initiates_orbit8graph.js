@@ -26,8 +26,10 @@
             };
         }
 		if (!sconf.omitGraph) {
-			stdMod.graphFW_lemma = createGraph_FW_lemma({
-				digramParentDom$:stdMod.legendRoot$ }, stdMod.customXLegend);
+			stdMod.graph = stdMod.createsGraph({
+				parentDom$ : stdMod.legendRoot$,
+				customXLegend : stdMod.customXLegend,
+			});
 		}
         stdMod.creates_createOrUpdateOrbit();
         if (stdMod.calculateMaxGraphValues)
@@ -55,16 +57,6 @@
         }
 		if( rg.A && (rg.A.draggableX || rg.A.draggableY) ) {
 			stdMod.creates_A_slider();
-		}
-
-		function createGraph_FW_lemma({ digramParentDom$ }, customXLegend){
-			const graphFW = {};
-			stdMod.createsGraphFW_class({
-				graphFW,
-				digramParentDom$,
-				customXLegend,
-			});
-			return graphFW;
 		}
     }
 

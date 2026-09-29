@@ -177,7 +177,7 @@
                 //printAxisYDigits : true,
             }
 
-            let ga = stdMod.graphFW_lemma.graphArray;
+            let ga = stdMod.graph.graphArray;
             let len = ga.length;
             let sumAbs = 0;
             var yMax = 0;
@@ -198,7 +198,7 @@
             graphArg.yMax = Math.max( yMax, averageY*1.5 );
             graphArg.yMin = 0;
 
-            stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
+            stdMod.graph.drawsGraph(graphArg);
         }
         //------------------------------------------------
         // \\// graph

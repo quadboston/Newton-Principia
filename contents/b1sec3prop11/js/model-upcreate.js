@@ -124,8 +124,8 @@
         ));
 
 		// graph
-		if (stdMod.graphFW_lemma) {
-			stdMod.graphFW_lemma.drawGraph_wrap({});
+		if (stdMod.graph) {
+			stdMod.graph.drawsGraph({});
 		}
     }
 })();

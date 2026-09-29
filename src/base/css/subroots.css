@@ -172,8 +172,8 @@ div.bsl-approot svg.bsl--svgscene .undisplay,
     font-family: var(--font-condensed);
 }  
 
-/* graphs in P6, P7, etc ...weird name */
-.lost-diagram-parent {
+/* graphs in P6, P7, etc */
+.graph-parent {
     padding-bottom: 1rem; /* so there's space between graph and data table */
     margin: auto;
 }

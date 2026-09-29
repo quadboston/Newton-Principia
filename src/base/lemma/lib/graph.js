@@ -1,58 +1,55 @@
-// Contains two graph framework creators which
-// are wraps over (possibly low level) fw creator in bsl
-// The seacond one is more object oriented, lets create
-// any number of instances,
-//
-// These creators, however dependent via createsLowTireGlobalCSS.
+// Creates a lemma graph: a wrapper over the bsl chart
+// (nsmethods.createsGraphFramework) which adds the lemma's
+// legends, plot colors, and CSS.
+// Any number of graphs can be created.
 
 ( function() {
     var { $$, sDomF, nsmethods, haz, globalCss, stdMod, }
-        = window.b$l.apptree({ stdModExportList : { createsGraphFW_class, }, });
+        = window.b$l.apptree({ stdModExportList : { createsGraph, }, });
     var GLOBAL_CSS_APPENDED = false;
     return;
-    
-    
+
+
     //**************************************************
     //**************************************************
-    // //\\ instantiable graph rack
+    // //\\ instantiable graph
     //**************************************************
     //**************************************************
-    function createsGraphFW_class({
-        graphFW,
-        digramParentDom$,
+    function createsGraph({
+        parentDom$,
         customXLegend,
     }){
-        var graphFW__self = graphFW;
-        var colorThreadArray = graphFW__self.colorThreadArray = setColorThreadArray();
+        const graph = {};
+        var colorThreadArray = graph.colorThreadArray = defaultPlotColors();
 
         //===========================================
-        // //\\ fills wrap-object
+        // //\\ fills graph object
         //===========================================
         //exports painter
-        graphFW__self.drawGraph_wrap = drawGraph_wrap;
-        graphFW__self.showGraph = showGraph;
-        ///creates fw-dom-container
-        let {container$, graph_dimX, graph_dimY} =
-            setGraphContainerAttributes( digramParentDom$ );
+        graph.drawsGraph = drawsGraph;
+        graph.setsGraphVisible = setsGraphVisible;
+        ///creates graph dom container
+        const {container$, graph_dimX, graph_dimY} =
+            createsGraphContainer( parentDom$ );
         ///creates low tier api
-        graphFW__self.fw = nsmethods.createsGraphFramework({
+        graph.chart = nsmethods.createsGraphFramework({
             parent : container$,
             dimX : graph_dimX,
             dimY : graph_dimY,
         });
         //===========================================
-        // \\// fills wrap-object
+        // \\// fills graph object
         //===========================================
 
-        createsLowTireGlobalCSS();
-        return; //no, this must be supplied: graphFW__self;
+        appendsGraphCSS();
+        return graph;
 
 
 
         //===================================================
         // //\\ top tier painter which wraps low tier painter
         //===================================================
-        function drawGraph_wrap({
+        function drawsGraph({
             drawDecimalY,
             drawDecimalX,
             printAxisXDigits,
@@ -64,29 +61,30 @@
         }){
             drawDecimalY = typeof drawDecimalY === 'undefined' ? true : drawDecimalY;
             drawDecimalX = typeof drawDecimalX === 'undefined' ? true : drawDecimalX;
-            
-            //first array mast be enabled
-            let graphArrayMask = haz( graphFW__self, 'graphArrayMask' );
 
-			var { legendText, legendX } = customXLegend ? 
+            //first array mast be enabled
+            let graphArrayMask = haz( graph, 'graphArrayMask' );
+
+			var { legendText, legendX } = customXLegend ?
 				customXLegend() :
 				{ legendText: 'Distance from force (SP)', legendX : -560 };
-            var { textColor, textColor, axisYLegend, axisXLegend, } = setGraphAxes(graphFW, legendText, legendX);
+            const { textColor, axisYLegend, axisXLegend, } =
+                graphAxisLegends( legendText, legendX );
             //==================================================
             // //\\ calls api
             // //\\ calls low tier api
             //==================================================
-            graphFW__self.fw.drawGraph({
+            graph.chart.drawGraph({
                 //first array mast be enabled
                 graphArrayMask,
 
-                graphArray : graphFW__self.graphArray,
+                graphArray : graph.graphArray,
                 colorThreadArray,
                 style : {
                    //'stroke-width' : 2, //destroys tp-machine
                 },
-                axisX : graphAxisX( textColor ),
-                axisY : graphAxisY( textColor ),
+                axisX : axisXStyle( textColor ),
+                axisY : axisYStyle( textColor ),
                 drawDecimalY,
                 drawDecimalX,
                 doSideAxes : true,
@@ -94,43 +92,43 @@
                 printAxisDigits : true,
                     printAxisXDigits,
                     printAxisYDigits,
-                
+
                 axisYLegend,
                 axisXLegend,
                 plotsCount_overrider : 1000,
                 doPaintGridOnlyOnce : false,
-                doDrawToolline : doDrawToolline(),
+                doDrawToolline : toollineConfig(),
 				brightenGrid : 0.3,
                 xMin,
                 xMax,
                 yMin,
                 yMax,
             });
-            graphFW__self.fw.gmedia$.addClass( 'graph-fw-media' );
+            graph.chart.gmedia$.addClass( 'graph-media' );
             //==================================================
             // \\// calls low tier api
             //==================================================
 
-        	setsGraphTpClasses(graphFW__self.fw);
+        	setsGraphTpClasses(graph.chart);
         }
         //===================================================
         // \\// top tier painter which wraps low tier painter
         //===================================================
 
 
-		function doDrawToolline()
+		function toollineConfig()
         {
             return {
                 toollineStyle : {
                     'stroke-width' : 2,
                 },
                 abscissaIxValue : stdMod.qIndexFromPointPToGraphIndex(),
-                numberMarks : false, 
+                numberMarks : false,
             };
         }
 
         ///horizontal axis x pars, font, etc,
-        function graphAxisX( textColor )
+        function axisXStyle( textColor )
         {
             return {
                 'font-size'     : '18px',
@@ -143,7 +141,7 @@
             };
         }
 
-        function graphAxisY( textColor )
+        function axisYStyle( textColor )
         {
             return {
                 'font-size'     : '20px',
@@ -159,13 +157,13 @@
         //==================================================
         // //\\ shows/hides graph container
         //==================================================
-        function showGraph( doShow )
+        function setsGraphVisible( isVisible )
         {
-            if( doShow ) {
-                graphFW__self.container$.removeClass( 'hidden' );
+            if( isVisible ) {
+                container$.removeClass( 'hidden' );
             } else {
-                graphFW__self.container$.addClass( 'hidden' );
-            } 
+                container$.addClass( 'hidden' );
+            }
         }
         //==================================================
         // \\// shows/hides graph container
@@ -174,21 +172,21 @@
     }
     //===================================================
     // \\// top tier painter which wraps low tier painter
-    // \\// instantiable graph rack
+    // \\// instantiable graph
     //**************************************************
     //**************************************************
 
-    
-    
+
+
     ///===========================================
-    /// creates low tier global CSS
+    /// appends graph CSS, once for all graphs
     ///===========================================
-    function createsLowTireGlobalCSS()
+    function appendsGraphCSS()
     {
         if( GLOBAL_CSS_APPENDED ) return;
         GLOBAL_CSS_APPENDED = true;
         globalCss.update( `
-            .graph-fw-container {
+            .graph-container {
                 position: relative;
                 width   : 95%;
                 left    : 2%;
@@ -197,21 +195,21 @@
                 transition : top 1s ease-in-out;
             }
 
-            .graph-fw-container.hidden {
+            .graph-container.hidden {
                 top     : -200%;
             }
 
-            .comment-inside-of-style-element___php-media,
-            .graph-fw-media {
+            .graph-media {
                 position: relative;
                 border  : 2px solid black;
                 width   : 100%;
                 left    : 0%;
                 top     : 0%;
                 background-color : rgba( 255,255,255,1 );
-            },
-            'graph-fw-style'
-        `);
+            }
+        `,
+            'graph-style'
+        );
     }
 
 	///this thing is not dynamic (missed in design),
@@ -220,8 +218,8 @@
 	///
 	//this is just an example how to reset colors dynamically
 	//in model_upcreate():
-	//stdMod.graphFW_lemma.colorThreadArray[0] = sDomF.getFixedColor( 'force' );
-	function setColorThreadArray() {
+	//stdMod.graph.colorThreadArray[0] = sDomF.getFixedColor( 'force' );
+	function defaultPlotColors() {
 		let colorThreadArray = [
 			sDomF.getFixedColor( 'force' ),
 			sDomF.getFixedColor( 'estimatedForceColor' ),
@@ -229,11 +227,11 @@
 		return colorThreadArray;
 	}
 
-	function setGraphContainerAttributes( digramParentDom$ ) {
-		container$ = $$.div()
-		.addClass( 'graph-fw-container' )
-		.to( $$.div().to( digramParentDom$ )
-				.addClass( 'lost-diagram-parent' )
+	function createsGraphContainer( parentDom$ ) {
+		const container$ = $$.div()
+		.addClass( 'graph-container' )
+		.to( $$.div().to( parentDom$ )
+				.addClass( 'graph-parent' )
 				//.css( 'position', 'absolute' )
 
 				//:this data sets outer dimensions of the graph
@@ -243,15 +241,15 @@
 				.css( 'left', '0' )
 				.css( 'z-index', '111111' )
 		);
-		//creates low tire api
-		graph_dimX = 1000;  //innerWidth
-		graph_dimY = 580;   //innerHeight
+		//creates low tier api
+		const graph_dimX = 1000;  //innerWidth
+		const graph_dimY = 580;   //innerHeight
 		return {container$, graph_dimX, graph_dimY}
 	}
 
-	function setGraphAxes(graphFW, legendText, legendX) {
-		let n2c = sDomF.getFixedColor; //name to color
-		
+	function graphAxisLegends(legendText, legendX) {
+		const getFixedColor = sDomF.getFixedColor;
+
 		//==================================================
 		// //\\ calls api
 		//==================================================
@@ -271,13 +269,13 @@
 			{	// chart title
 				text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
 							//overrides tp machinery
-							' style="fill:'+n2c( 'force' ) + '; stroke:'+n2c( 'force' ) + ';"' +
+							' style="fill:'+getFixedColor( 'force' ) + '; stroke:'+getFixedColor( 'force' ) + ';"' +
 							'>Actual</tspan>' +
 							'<tspan> and </tspan>' +
 
 							'<tspan class="tofill tobold hover-width"' +
 							//overrides tp machinery
-							' style="fill:'+n2c( 'estimatedForceColor' ) + '; stroke:' + n2c( 'estimatedForceColor' ) + ';"' +
+							' style="fill:'+getFixedColor( 'estimatedForceColor' ) + '; stroke:' + getFixedColor( 'estimatedForceColor' ) + ';"' +
 							'>Estimated' +
 							'</tspan>' +
 
@@ -303,17 +301,17 @@
 				},
 			},
 		];
-		return { textColor, textColor, axisYLegend, axisXLegend, };
+		return { textColor, axisYLegend, axisXLegend, };
 	}
 
 	/**
-	 * Makes a particular graph plot highlight along with its 
+	 * Makes a particular graph plot highlight along with its
 	 * corresponding text.
 	 */
 	///this thing fails if not to synch it with mask,
 	///the unmasked indices must be the same as here:
-	function setsGraphTpClasses(fw) {
-		fw.plotIx2plotSvg.forEach( (pl,pix) => {
+	function setsGraphTpClasses(chart) {
+		chart.plotIx2plotSvg.forEach( (pl,pix) => {
 			switch(pix) {
 				case 0: pl && $$.$(pl).addClass( 'tp-force tostroke' ); break;
 			}
