@@ -1,8 +1,28 @@
 ( function() {
-    var { ns, sn, $$, nsmethods, nspaste, nssvg, mcurve, integral, mat, bezier,
-        ssF, ssD, sDomN, stdMod, sconf, rg, toreg, } = window.b$l.apptree({
-        stdModExportList : { init_model_parameters, }, });
+    var { nspaste, bezier,
+        ssD, stdMod, sconf, rg, toreg, } = window.b$l.apptree({
+        stdModExportList : { init_model_parameters, pivotScale, }, });
     return;
+
+
+    // fine tuneup of a configured curve pivot: [ scaleX, scaleY ]
+    function pivotScale( cpix )
+    {
+        let scale = 1.2;
+        let scaleX = 1;
+        switch (cpix)
+        {
+            case 1 : scale = 1.4;
+                     scaleX = 1.02;
+            break;
+            case 4 : scale = 1.12;
+            break;
+            case 7 : scale = 1.38;
+                     scaleX = 1.1;
+            break;
+        }
+        return [ scaleX, scale ];
+    }
 
 
     function init_model_parameters()
@@ -16,23 +36,10 @@
                 return [ pos[0], pos[1] ];
             });
             pivotsPos = pivotsPos.map( (pos,cpix) => {
-                let scale = 1.2;
-                let scaleX = 1;
-                switch (cpix)
-                {
-                    case 1 : scale = 1.4;
-                             scaleX = 1.02;
-                    break;
-                    case 4 : scale = 1.12;
-                    break;
-                    case 7 : scale = 1.38;
-                             scaleX = 1.1;
-                    break;
-                }
+                const [ scaleX, scale ] = pivotScale( cpix );
                 rg[ 'curvePivots-' + cpix ].q = cpix / (pivotsPos.length-1);
                 return [ pos[0]*scaleX, pos[1]*scale ];
             }); //map
-            rg.P.q = sconf.rgPq;
 
             //bezier framework generates Optimized Bezier Framework:
             const bezio = ssD.bezio = bezier.preparesOptimizedBezier( pivotsPos );;
@@ -72,4 +79,3 @@
     }
 
 }) ();
-
