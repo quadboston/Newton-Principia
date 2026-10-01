@@ -29,6 +29,7 @@
         // //\\ decorational parameters
         //***************************************************************
         //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
+		sconf.enableStudylab=false;
 
         sconf.TP_OPACITY_FROM_fixed_colors = true;
         //making size to better fit lemma's diagram
@@ -72,7 +73,7 @@
         var A = [785, 441];
         var V = [64, 462 ];
         var C = [425, 452];//[ V[0] + ww1/2, V[1] + ww2/2, ];
-        var S = [207, 403];
+        var S = [225.2, 395.7];
         //=============================================
         // \\// points reused in config
         //=============================================
@@ -92,7 +93,7 @@
         const FT = sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
         sconf.CURVE_REVOLVES = true; //true for cyclic orbit
         sconf.DQ_SLIDER_MAX = FT ? null : 1.0;
-        sconf.DT_SLIDER_MAX = FT ? 0.50 : null;
+        sconf.DT_SLIDER_MAX = FT ? 0.9 : null;
         var Q_STEPS = 1000;
         var DATA_GRAPH_STEPS = 500;
         sconf.IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX = true;
@@ -114,7 +115,7 @@
         //intervals of dt or dq to construct an arc for estimated force
         //Sets initial distance of point Q from P
         if( FT ){
-            sconf.Dt0 = 0.168;
+            sconf.Dt0 = 0.6238291044;
         } else {
             sconf.Dq0 = 0.42;
         }
