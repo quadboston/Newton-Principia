@@ -85,7 +85,7 @@
         //-------------------------------------------
         sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
         sconf.CURVE_REVOLVES = false; //true for cyclic orbit
-        sconf.DT_SLIDER_MAX = 0.8;
+        sconf.DT_SLIDER_MAX = 0.6;
         var Q_STEPS = 500;
         var DATA_GRAPH_STEPS = 500;
         //Scale estimated force curve by actual force max
@@ -112,7 +112,7 @@
 
         //Min and max eccentricity values for Zeta slider
         op.eccentricityMin = 1.1;
-        op.eccentricityMax = 3.0;
+        op.eccentricityMax = 2.0;
         op.ZETA_MIN = Math.atan(op.eccentricityMin);
         op.ZETA_MAX = Math.atan(op.eccentricityMax);
 

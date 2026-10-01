@@ -1,5 +1,5 @@
 ( function() {
-    var { sn, has, mcurve, stdMod, rg, sconf, ssD, }
+    var { mat, sn, has, mcurve, stdMod, rg, sconf, ssD, sData, }
         = window.b$l.apptree({ stdModExportList : { buildsOrbit, }, });
     var NON_SOLVABLE_THRESHOLD = 0.05;
 
@@ -18,18 +18,18 @@
     {
         graphArray.length =0;
         qIndexToOrbit.length = 0;
-        
+
         const orbit_q_start = sconf.orbit_q_start;
         const q2xy = stdMod.q2xy;
         const Q_STEPS = sconf.Q_STEPS;
         const orbitXYToDraw_LIMIT = Math.min( 1000, Q_STEPS );
         const delta_q_between_steps = sconf.delta_q_between_steps;
         var momentum0; //at start of the path
-        
+
         var solvable = true;
         var foldPoints = [];
         ssD.nonSolvablePointCaption = "The orbit's tangent cannot pass through center of force";
-        
+
         //there are no prebuilt orbit points, they are built and
         //embedded into svg in other place,
         ///they are recalculated here
@@ -61,14 +61,18 @@
                 foldPoints.push( [ planetXY[0], planetXY[1] ] );
                 bP.solvablePoint = solvable;
             }
-            
+
             //------------------------------------------
             // //\\ preparing time array
             //------------------------------------------
             //meaning: dq_dt = dq/dt
+            //TEMP Should probably add a few comments explaining the following
+            //code, and make any adjustments as needed.  Eg. the part about
+            //momentum and sectorial speed.
             if( 0 === qix ) {
-                momentum0 = staticSectorialSpeed_rrrOnUU;
-                var ds_dt = 1;
+                var ds_dt = calculate_ds_dt(bP);
+                momentum0 = staticSectorialSpeed_rrrOnUU * ds_dt;
+
                 var timeAtQ = bP.timeAtQ = 0;
                 var pathAtQ = bP.pathAtQ = 0;
                 var dq_dt = ds_dt/ds_dq;
@@ -123,7 +127,7 @@
         // calculated increment sometimes the same as qix (if ANGLE_INCREMENTS =
         // Q_STEPS).  However that's not always true, and therefore would be
         // unreliable if used for this instead.
-        
+
         const Q_STEPS = sconf.Q_STEPS;
         const center = sconf.diagramOrigin;
         const x = posPoint[0] - center[0];
@@ -148,6 +152,59 @@
         //error always results in the maximum increment, rather than ambiguity
         //between 0 vs the maximum increment.
         return Math.round(angle * incrementsPerRadian);
+    }
+
+
+
+    function calculate_ds_dt(bP) {
+        //Calculate speed (ds/dt) of the body at the input point on the orbit
+
+        //Compare the body at the input point, to a point slightly further along
+        //the orbit, from the perspective of the input point's tangential and
+        //normal directions.  When the body is at the input point, its entire
+        //instantaneous velocity is in the tangential direction therefore:
+        //v0Tangential = speed
+        //v0Normal = 0
+
+        const q2xy = stdMod.q2xy;
+
+        //Positions
+        const pos0 = bP.planetXY;
+        //Point slightly further along the orbit.  Ensure much further than
+        //the delta_q numerical differentiation step to prevent problems.
+        const pos1 = q2xy(bP.q + bP.delta_q * 10);
+        const deltaPos = mat.p1_to_p2(pos0, pos1).vector;
+
+        //Calculate normal and tangential components
+        const deltaPosNormal = mat.scalarProduct(deltaPos, bP.nn);
+        const deltaPosTangential = mat.scalarProduct(deltaPos, bP.uu);
+
+
+        //Acceleration (dv/dt) for input point
+        const actualForce = stdMod.calculateForce({
+            bP,
+            ulitmacy: sData.ULTIM_ACTUAL
+        });
+        //Know F = m * a, assuming m = 1, then a = F
+        const a0 = mat.scaleV(actualForce, bP.ee);
+
+        //Calculate normal and tangential components
+        const a0Normal = mat.scalarProduct(a0, bP.nn);
+        const a0Tangential = mat.scalarProduct(a0, bP.uu);
+
+
+        //Normal direction
+        //Know deltaPosNormal = v0Normal*t + 1/2*a0Normal*t^2
+        //Sub v0Normal = 0 and rearrange for time.  Note that displacement only
+        //occurs due to acceleration.
+        const t = Math.sqrt(2 * deltaPosNormal / a0Normal);
+
+        //Tangential direction
+        //Know deltaPosTangential = v0Tangential*t + 1/2*a0Tangential*t^2
+        //Sub v0Tangential = speed, and rearrange
+        const speed = deltaPosTangential / t - a0Tangential * t / 2;
+        //Ensure always +ve as interested in magnitude only
+        return Math.abs(speed);
     }
 }) ();
 
