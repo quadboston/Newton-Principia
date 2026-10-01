@@ -154,9 +154,9 @@
             } else {
                 //Only switch cursor (from default) if media mover is enabled.
                 //'media-mover' refers to draggable canvas
-                //this changes cursor back to 'grab' after being 'crosshair'
+                //this changes cursor back to 'pointer' after being 'crosshair'
                 dragSurface.style.cursor = sconf.mediaMoverPointDisabled ?
-                    '' : 'grab';
+                    '' : 'pointer';
             }
         }
 

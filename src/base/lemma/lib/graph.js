@@ -284,7 +284,7 @@
 				x       : 310,
 				y       : 40,
 				style   : {
-							'font-size' : '30',
+							'font-size' : '30px',
 				},
 			},
 		];
@@ -295,7 +295,7 @@
 				x       : legendX,
 				y       : 25,
 				style   : {
-							'font-size' : '30',
+							'font-size' : '30px',
 							'stroke' : textColor,
 							'fill' : textColor,
 				},

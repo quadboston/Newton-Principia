@@ -119,7 +119,9 @@
 	};
 
 
-    ///returns aa - bb
+	///returns A * aa
+	//A is a scalar
+	//aa is a vector
 	mat.scaleV = function( A, aa )
 	{
 		var nn	= aa.length;

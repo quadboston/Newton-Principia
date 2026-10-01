@@ -95,15 +95,21 @@ The force on ¦P¦¦
 Let the construction be the same as in lem. 14, and let ¦P¦¦ be the body in
 the perimeter of the ¦orbit¦parabola¦¦; from the place ¦Q¦¦ into which the body moves
 next, draw ¦QR¦¦ parallel and ¦QT¦¦ perpendicular to ¦SP¦¦ and draw ¦Qv¦Q𝑣¦¦ parallel
-to the ¦PR P,Zminus¦tangent¦¦ and meeting both the diameter ¦GP¦PG¦¦ in ¦v¦𝑣¦¦ and
+to the ¦PR P,Zminus¦tangent¦¦ and meeting both the 
+<a href="?conf=sappId=glossary,logic_phaseId=claim,aspectId=english,subessayId=diameter-parabola">diameter</a>
+¦GP¦PG¦¦ in ¦v¦𝑣¦¦ and
 the distance ¦SP¦¦
-in ¦x¦𝑥¦¦. Now, because triangles ¦Px Pv xv¦P𝑥𝑣¦¦ and ¦SP PM SM¦SPM¦¦ are similar and
+in ¦x¦𝑥¦¦.
+<br><br>
+Now, because triangles ¦Px Pv xv¦P𝑥𝑣¦¦ and ¦SP PM SM¦SPM¦¦ are similar and
 the sides ¦SM¦¦
 and ¦SP¦¦ of the one are equal, the sides ¦Px¦P𝑥¦¦ or ¦QR¦¦ and ¦Pv¦P𝑣¦¦ of the other are
 equal. But from the 
 <a href="http://whistleralley.com/conics/conica/Rosenfeld/Books1-7new.pdf#page=14"><i>Conics</i></a>
 the square of the ordinate ¦Qv¦Q𝑣¦¦ is equal to the
-rectangle contained by the ¦L,LL¦latus rectum¦¦ and the segment ¦Pv¦P𝑣¦¦ of the diameter,
+rectangle contained by the 
+¦L,LL *href*?conf=sappId=glossary,logic_phaseId=claim,aspectId=english,subessayId=latus-rectum-parabola¦latus rectum¦¦
+and the segment ¦Pv¦P𝑣¦¦ of the diameter,
 that is 
 (by lem. 13), 
 equal to the rectangle 4¦SP¦PS¦¦&nbsp;×&nbsp;¦Pv¦P𝑣¦¦, or 4¦SP¦PS¦¦&nbsp;×&nbsp;¦QR¦¦, and, the

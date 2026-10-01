@@ -162,8 +162,8 @@
             if( ns.haz( arg.dragWrap, 'decPoint' )) {
                 $$.$( arg.dragWrap.decPoint ).css( 'display', 'none' );
             }
-            //vital to toggle grab from grabbing:
-            stdMod.simScene.style.cursor = 'grab';
+            //vital to toggle pointer from grabbing:
+            stdMod.simScene.style.cursor = 'pointer';
         }
 
         //already done on low level of d8d-framework

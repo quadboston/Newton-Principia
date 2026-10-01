@@ -20,6 +20,7 @@
 					{ src: 'parabola/sconf.js' },
 					{ src: '../../b1sec3prop13/js/model-customizer.js' },
 					{ src: sm + 'completes-sliders-creation.js' },
+					{ src: 'parabola/main-legend.js' },
 				];
 		} else {
 			sm = '../../b1sec3prop11/js/';
