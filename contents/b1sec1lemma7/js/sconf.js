@@ -7,15 +7,6 @@
 
     function init_conf()
     {
-
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        sconf.rgShapesVisible           = false;
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
-
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
         var pictureWidth = 839;
@@ -32,7 +23,6 @@
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;        
         
         fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
-        
         sconf.TP_OPACITY_LOW_POINT = sconf.TP_OPACITY_LOW = 0.85;
 
         //--------------------------------------
@@ -98,30 +88,30 @@
         //================================================================      
         
         //: topic group colors
-        var given   = topicColors_repo.given;        
-        var proof   = topicColors_repo.proof;
+        var givenColor   = topicColors_repo.givenColor;        
+        var proofColor   = topicColors_repo.proofColor;
         var hidden  = topicColors_repo.hidden;
 
         var topicColors_elected =
         {
             //:basic topics
-            proof,
-            given,
+            proofColor,
+            givenColor,
             hidden,
 
             //claim
-            "curve-AB"      : given, //arc-AB plus extension past B
-            "left-curve-AB" : given, //extends curve ACB to the left of A
-            "arc-AB"        : given, 
-            "claimRatio"    : given, //data table
+            "curve-AB"      : givenColor, //arc-AB plus extension past B
+            "left-curve-AB" : givenColor, //extends curve ACB to the left of A
+            "arc-AB"        : givenColor, 
+            "givenData"    : givenColor, //data table
 
             //proof
-            "curve-Ab"      : proof, // todo: unused?
-            "arc-Ab"        : proof, // this is the one rendered in proof
-            "proofRatio"    : proof, //data table
+            "curve-Ab"      : proofColor, // todo: unused?
+            "arc-Ab"        : proofColor, // this is the one rendered in proof
+            "proofRatio"    : proofColor, //data table
 
             //corollaries            
-            'BF-data' : given, // used to style BF in data table (sometimes we don't want it linked to model BF line for mouseover highlighting)
+            'proofData' : proofColor, // used to style BF in data table (sometimes we don't want it linked to model BF line for mouseover highlighting)
         };
 
         var originalPoints =
@@ -130,17 +120,17 @@
                 //assigment by reference to pos is safe: no parasite links, pos is recalculated later
                 pos         : A,
                 letterAngle : 90,
-                pcolor      : given,
+                pcolor      : givenColor,
             },           
             C : {
                 letterAngle : 45,
                 letterRotRadius : 13,
-                pcolor      : given,
+                pcolor      : givenColor,
             },
             D : {
                 pos: D,
                 letterAngle : 90,
-                pcolor      : given,                
+                pcolor      : givenColor,                
                 draggableX  : true, // this adds animation and allows dragging along x
                 draggableY  : false,
             },
@@ -148,7 +138,7 @@
             B : {
                 pos: B,
                 letterAngle : 0,
-                pcolor      : given,                
+                pcolor      : givenColor,                
                 draggableX  : true,
                 draggableY  : true,
             }, 
@@ -156,61 +146,78 @@
             DLeft : {
                 pos         : DLeft,
                 letterAngle : 90,
-                pcolor      : given,
-                doPaintPname : false,
+                pcolor      : givenColor,
+				undisplayAlways : true,
+				doPaintPname : false,
             },
             E : {
                 letterAngle : 90,
-                pcolor      : given,
+                pcolor      : proofColor,
+				cssClass: 'subessay--cor-2 subessay--cor-3',
             },
             F : {
                 letterAngle : 90,
-                pcolor      : given,
+                pcolor      : proofColor,
+				cssClass: 'logic_phase--corollary',
             },
             G : {
                 letterAngle : 90,
-                pcolor      : given,
+                pcolor      : proofColor,
+				cssClass: 'subessay--cor-2 subessay--cor-3',
             },
 
             b : {
 				caption: "𝑏",
                 pos: b,
                 letterAngle : 0,
-                pcolor      : proof,
+                pcolor      : proofColor,
+				cssClass: 'logic_phase--proof',
             },
             c : {
 				caption: "𝑐",
                 letterAngle : 45,
                 letterRotRadius : 20,
-                pcolor      : proof,
+                pcolor      : proofColor,
+				cssClass: 'logic_phase--proof',
             },  
             d : {
 				caption: "𝑑",
                 pos         : d,
                 letterAngle : 90,
-                pcolor      : proof,
+                pcolor      : proofColor,
+				cssClass: 'logic_phase--proof',
             },
 
 
             r : { //hidden but used to calc pos of b
                 pos: r,
                 letterAngle : 135,
-                pcolor      : given,
+                pcolor      : givenColor,
+				undisplayAlways : true,
+				doPaintPname : false,
             },
             R : {
                 pos: R,
                 letterAngle : 135,
-                pcolor      : given,
+                pcolor      : givenColor,
+				undisplayAlways : true,
+				doPaintPname : false,
             },
 
             curveStart  : {
                 pos : [ A[0]-80, 0 ],
+				undisplayAlways : true,
+				doPaintPname : false,
             },
             curveEnd : {
                 pos : [B[0]+50,0],
+				undisplayAlways : true,
+				doPaintPname : false,
             },
             curveLeftEnd : {
                 pos : [250,100],
+				undisplayAlways : true,
+				doPaintPname : false,
             },
         };
 
@@ -218,22 +225,29 @@
         [            
             { "rd" : { pcolor : hidden } }, // used for calcs
 
-            { 'Ad' : { pcolor : proof } },
-            { 'Ab' : { pcolor : proof } },
+            { 'Ad' : { pcolor : proofColor, 
+						cssClass: 'logic_phase--proof' } },
+            { 'Ab' : { pcolor : proofColor, 
+						cssClass: 'logic_phase--proof' } },
+            { 'bd' : { pcolor : proofColor, 
+						cssClass: 'logic_phase--proof' } },
+            { 'BD' : { pcolor : givenColor } },  //lemma 7, coroll 1
+            { 'BF' : { pcolor : proofColor, 
+						cssClass: 'logic_phase--corollary' } },
+            { 'AF' : { pcolor : proofColor, 
+						cssClass: 'logic_phase--corollary' } },
+            { 'AG' : { pcolor : proofColor, 
+						cssClass: 'subessay--cor-2 subessay--cor-3'} },
+            { 'AE' : { pcolor : proofColor, 
+						cssClass: 'subessay--cor-2 subessay--cor-3'} },
+            { 'BG' : { pcolor : proofColor, 
+				cssClass: 'subessay--cor-2 subessay--cor-3'} },
+            { 'BE' : { pcolor : proofColor, 
+				cssClass: 'subessay--cor-2 subessay--cor-3'} },
+            { 'AB' : { pcolor : givenColor, } },
+            { 'AD' : { pcolor : givenColor, } },
 
-            { 'bd' : { pcolor : proof } },
-            { 'BD' : { pcolor : given } },  //lemma 7, coroll 1
-            { 'BF' : { pcolor : given } },
-            { 'AF' : { pcolor : given } },
-            { 'AG' : { pcolor : given } },
-            { 'AE' : { pcolor : given } },
-            { 'BG' : { pcolor : given } },
-            { 'AE' : { pcolor : given } },
-            { 'BE' : { pcolor : given } },
-            { 'AB' : { pcolor : given } },
-            { 'AD' : { pcolor : given } },
-
-            { 'A,DLeft'  : { pcolor : given, 'stroke-width' : 2, } },
+            { 'A,DLeft'  : { pcolor : givenColor, 'stroke-width' : 2, } },
         ]
 
 

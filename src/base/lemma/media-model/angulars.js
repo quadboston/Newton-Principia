@@ -199,7 +199,6 @@
             var pnameLabelsvg$ = rgX.pnameLabelsvg$ =
                 haz( rgX, 'pnameLabelsvg$' ) || $$.$( rgX.pnameLabelsvg );
             pnameLabelsvg$.toggleClass( 'undisplay', ns.haz( rg[rgX.pname], 'undisplay' ) );
-            //ccc( tpClassName );
             pnameLabelsvg$.addClass( tpcls );
         }
         return rgX;

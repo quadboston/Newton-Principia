@@ -12,7 +12,7 @@
     function init_conf()
     {
         //***************************************************************
-        // //\\ geometical scales
+        // //\\ geometrical scales
         //***************************************************************
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
@@ -23,14 +23,14 @@
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize;
         //***************************************************************
-        // \\// geometical scales
+        // \\// geometrical scales
         //***************************************************************
 
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
         //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
-        sconf.rgShapesVisible = true;
+		sconf.omitGraph = true;
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
@@ -138,31 +138,28 @@
         // //\\ topic group colors
         //-----------------------------------
         const {
-            given,
-            body,
-            orbit,
-            supplementHover,
+            givenColor,
+            bodyColor,
+            infoHover,
 			proofHover,
 			estimatedForceColor,
             proofColor,
             forceColor,
             hidden,
             curvature,
-			dtime,
         } = topicColors_repo;
 
         var topicColors_elected =
         {
             estimatedForceColor,
-            given,
+            givenColor,
             proofColor,
             hidden,
             curvature,
-            body,
-            orbit               : orbit,
-            orbitdq             : orbit,
+            bodyColor,
+            orbit               : bodyColor,
+            orbitdq             : bodyColor,
             force: forceColor,
-			dtime,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -178,7 +175,7 @@
 				cssClass: 'subessay--iii48-hyperbola',
             },
             P : {
-                pcolor : body,
+                pcolor : bodyColor,
                 letterAngle : 120,
                 draggableY  : true,
             },
@@ -374,7 +371,7 @@
             { CD : { pcolor : proofColor,
 						cssClass: 'subessay--solution',}, },
 
-            { 'L,LL' : { pcolor : supplementHover,
+            { 'L,LL' : { pcolor : infoHover,
                captionShiftNorm : 22, lposYSugar : 3 }, },
 
         ];

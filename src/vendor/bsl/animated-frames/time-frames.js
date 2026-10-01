@@ -139,7 +139,6 @@
         var lifeElapsed             = now - lifeStart;
         var lifeIntervalElapsed     = now - lifeIntervalStart;
 
-        //ccc( 'lifeIntervalElapsed='+lifeIntervalElapsed.toFixed() );
         if( typeof lifeMax === 'undefined' || lifeElapsed < lifeMax ) {
             if( typeof lifeIntervalMax === 'undefined' ||
                 lifeIntervalMax <= lifeIntervalElapsed

@@ -28,7 +28,7 @@
         // //\\ decorational parameters
         //***************************************************************
         //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
-        sconf.rgShapesVisible = true;
+		sconf.extendZ = 0.45,
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
@@ -112,8 +112,6 @@
             // gets ellipse parameters
             let ellB2 = sconf.ellipseB*sconf.ellipseB;
             let ellA2 = sconf.ellipseA*sconf.ellipseA;
-            let excentris2 = 1 - ellA2/ellB2;
-            let excentris = Math.sqrt( excentris2 );
             sconf.ellipseFocus = Math.sqrt( ellA2 - ellB2 );
         }
         //-------------------------------------------
@@ -134,13 +132,12 @@
         const {
             bodyColor,
 			proofColor,
-            supplementHover,
+            infoHover,
 			proofHover,
             forceColor,
             hidden,
             estimatedForceColor,
             sunColor,
-			dtime,
         } = topicColors_repo;
 
 
@@ -151,7 +148,7 @@
             body: bodyColor,
             orbit: bodyColor,
             force: forceColor,
-			dtime,
+			time: estimatedForceColor,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -258,6 +255,12 @@
                 letterRotRadius : 20,
 				cssClass: 'subessay--solution subessay--goal',
             },
+
+            q : { // will be put across from Q
+				undisplayAlways : true,
+				doPaintPname : false,
+                cssClass: 'subessay--ordinate',
+            },         
 
             // latus rectum
             L : {
@@ -376,7 +379,7 @@
 			},},
 
             { 'L,LL' : { 
-			    pcolor : supplementHover,
+			    pcolor : infoHover,
                 captionShiftNorm : 22, lposYSugar : 3
 			}, },
 

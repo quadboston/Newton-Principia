@@ -11,7 +11,7 @@
     function init_conf()
     {
         //***************************************************************
-        // //\\ geometical scales
+        // //\\ geometrical scales
         //***************************************************************
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
@@ -22,13 +22,12 @@
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize;
         //***************************************************************
-        // \\// geometical scales
+        // \\// geometrical scales
         //***************************************************************
 
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
-        sconf.rgShapesVisible = true;
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
@@ -123,13 +122,12 @@
         //-----------------------------------
         const {
             bodyColor,
-			supplementHover,
+			infoHover,
 			proofHover,
             proofColor,
 			estimatedForceColor,
             forceColor,
 			sunColor,
-			dtime,
         } = topicColors_repo;
 
         var topicColors_elected =
@@ -137,7 +135,7 @@
 			estimatedForceColor,
             orbit: bodyColor,
             force: forceColor,
-			dtime,
+			time: estimatedForceColor,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -329,7 +327,7 @@
             { 'S,AA' : { pcolor : proofColor,
  				cssClass: 'subessay--solution', }, },
 
-            { 'L,LL' : { pcolor : supplementHover,
+            { 'L,LL' : { pcolor : infoHover,
                captionShiftNorm : 22, lposYSugar : 3 }, },
         ];
 

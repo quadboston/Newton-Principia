@@ -76,32 +76,33 @@
 
 
 		function setDerivedColors() {
+			// Hover colors are only visibile when hovering over 
+			// corresponding text. Used when they overlap with 
+			// other colors which take priority
+			tr.curvature = tr.infoColor;
+			tr.infoHover = [...tr.infoColor, 0, 1];
+			tr.proofArea   = [...tr.proofColor, 1];
+			tr.proofHover  = [...tr.proofColor, 0, 1];
+			tr.proofLight  = [...tr.proofColor, 0.12, 1];
+			tr.givenArea   = [...tr.givenColor, 1];
+			tr.givenHover = [...tr.givenColor, 0, 1];
+
+			setColorsUpForRemoval();
+		}
+
+		function setColorsUpForRemoval() {
 			tr.hidden  = [0, 0, 0, 0];
+			tr.curvature = tr.infoColor;
 			tr.supplementColor = tr.infoColor;
 			tr.orbit = tr.body = tr.bodyColor;
 			tr.orbit2 = tr.body2 = tr.body2Color;
 			tr.corollaryColor = tr.proof = tr.proofColor;
 			tr.given = tr.givenColor;
-			// Hover colors are only visibile when hovering over 
-			// corresponding text. Used when they overlap with 
-			// other colors which take priority
 			tr.corollaryHover = [...tr.corollaryColor, 0, 1];
-			tr.curvature = tr.supplementColor;
-			tr.supplementHover = 
-					[...tr.supplementColor, 0, 1];
-			tr.proofArea   = [...tr.proof, 1];
-			tr.proofHover  = [...tr.proof, 0, 1];
-			tr.proofLight  = [...tr.proof, 0.12, 1];
-			tr.givenArea   = [...tr.given, 1];
-			tr.givenHover = [...tr.given, 0, 1];
-			tr.supplementHover
-				= [...tr.supplementColor, 0, 1];
-
-			tr.displacement    = 
-			tr.dtime = tr.estimatedForceColor;
+			tr.displacement    = tr.dtime = tr.estimatedForceColor;
 			tr.invalid = tr.invalidColor;
-
-			tr.force = tr.forceColor; // need to track down and eliminate
+			tr.force = tr.forceColor;
+			tr.supplementHover = tr.infoHover;
 		}
 
 		setDerivedColors();
@@ -154,7 +155,9 @@
 
 			ANCHOR_OPACITY_LOW : '0.7',
 			ANCHOR_OPACITY_HIGH : '1',
-			ANCHOR_DEFAULT_COLOR : 'rgba( 150, 0, 150, 1 )',
+
+			// todo: test if ANCHOR_DEFAULT_COLOR is needed
+			ANCHOR_DEFAULT_COLOR : 'rgba( 0, 255, 255, 1 )',//'rgba( 150, 0, 150, 1 )',
 
 			//affects only anchor colors in Book text,
 			TP_OPACITY_FROM_fixed_colors : true,
@@ -221,7 +224,7 @@
 			tr.fi = [0, 0, 150, 0.1, 0.3];
 			tr.Fkernel = [0, 0, 150];
 
-			tr.bodyHiddenStart = [...tr.body.slice(0, 3), 0.01, 1];
+			tr.bodyHiddenStart = [...tr.bodyColor.slice(0, 3), 0.01, 1];
 			tr.forceTransparentStart = [...tr.forceColor.slice(0, 3), 0.1, 1];
 			tr.VSarea = [...tr.forceColor.slice(0, 3), 0.3, 0.7];
 			tr.timeHiddenStart = [...tr.prop41timeColor.slice(0, 3), 0.01, 0.7];

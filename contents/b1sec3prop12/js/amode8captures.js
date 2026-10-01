@@ -1,5 +1,5 @@
 ( function() {
-    var { nspaste, toreg, mat, sDomF, ssD, ssF, stdMod, rg, sconf, }
+    var { sDomF, stdMod, rg, sconf, }
         = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     return;
 
@@ -9,12 +9,6 @@
     function amode2rgstate( captured )
     {
         sDomF.resetModelPos();
-
-        toreg( 'media_scale' )();
-        if(!rg.media_scale.value) {
-            rg.media_scale.value = 1;
-        }
-        ssF.scaleValue2app( rg.media_scale.value, stdMod );
 
         //=============================================================
         // //\\ model
@@ -33,8 +27,6 @@
         //=============================================================
 
         stdMod.rebuilds_orbit();
-        //comment out to remove Book's diagram after timeout
-        sDomF.detected_user_interaction_effect( 'doUndetected' );
         return captured;
     }
 

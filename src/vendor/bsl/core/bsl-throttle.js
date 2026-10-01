@@ -42,10 +42,8 @@
                 }
 
             } else {
-                //ccc( throttleDebCount + ' ** =' + elapsed );
 
                 if( !wait || elapsed > wait || doCallNow ) {
-                    //c cc( throttleDebCount + ' fired by elapsed =' + elapsed );
 
                     //this must be here,
                     //if( timeout !== null ) clearTimeout( timeout );
@@ -69,7 +67,6 @@
                 //.this statement prevents program from extension of the term
                 //.in contrary to bouncer which extends the term
                 if( timeout !== null ) {
-                    //c cc( throttleDebCount + ' waiting =' + elapsed );
                     return;
                 }
             }
@@ -77,7 +74,6 @@
             //// do bounce or throttle
             timeout = setTimeout( 
                 function() {
-                    //c cc( throttleDebCount + ' fired by tout: wait=' + wait );
 	                fun( arg );
 	                timeout = null;
                     timeStart = null;

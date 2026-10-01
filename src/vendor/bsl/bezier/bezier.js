@@ -304,7 +304,6 @@
         var c = Qsy - Qsx;
 
         var solution = mat.squarePolyRoot( a, b, c );
-        //c cc( a, b, c, solution )
         if( solution.length === 1 ) {
             var t = solution[0];
             if( t < 0 || t > 1 ) { solution = []; }

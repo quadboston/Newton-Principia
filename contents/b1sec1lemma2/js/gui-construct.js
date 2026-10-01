@@ -163,7 +163,7 @@
 			 const ptColor = 
 			 	pt.type === "base" || pt.index == 0 || pt.index == 3 ?
 				topicColors_repo.figureColor :
-				topicColors_repo.supplementColor ;
+				topicColors_repo.infoColor ;
 			pdom.style.stroke = 'rgba(' + ptColor.join() + ')';
         }
     }

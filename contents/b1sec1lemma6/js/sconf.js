@@ -7,14 +7,6 @@
 
     function init_conf()
     {
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        sconf.rgShapesVisible           = false; // shows hidden objects not shown on normal page or addendum
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
-
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
         var pictureWidth = 839;
@@ -87,33 +79,29 @@
         var D = [474, modorInPicY];
         var DLeft = [50, modorInPicY];
 
-        //: *** used only if BONUS || rgShapesVisible
         var r = [modorInPicX, 531];
         var R = [modorInPicX, 302];
         var d = [778, modorInPicY];
-        //var M = [50, modorInPicY];
 
         //================================================================
         // \\// original positions
         //================================================================      
         
         //: topic group colors
-        var given   = topicColors_repo.given;        
-        var proof   = topicColors_repo.proof;
-        var hidden  = topicColors_repo.hidden;
+        var givenColor   = topicColors_repo.givenColor;        
+        var infoColor   = topicColors_repo.infoColor;
 
         var topicColors_elected =
         {
             //:basic topics
-            proof,
-            given,
-            hidden,
+            infoColor,
+            givenColor,
 
             //:given
-            "curve-AB"      : given,
-            "left-curve-AB" : given, //extends curve left of A
-            'angleBAD'      : given,
-            "arc-AB"        : given, //curve-AB plus extension past B
+            "curve-AB"      : givenColor,
+            "left-curve-AB" : givenColor, //extends curve left of A
+            'angleBAD'      : givenColor,
+            "arc-AB"        : givenColor, //curve-AB plus extension past B
         };
 
         var originalPoints =
@@ -122,67 +110,81 @@
                 //assigment by reference to pos is safe: no parasite links, pos is recalculated later
                 pos         : A,
                 letterAngle : 90,
-                pcolor      : given,
+                pcolor      : givenColor,
             },
             B : {
                 pos: B,
                 letterAngle : 0,
-                pcolor      : given,
+                pcolor      : givenColor,
             },            
             C : {
                 letterAngle : 45,
                 letterRotRadius : 13,
-                pcolor      : given,
+                pcolor      : givenColor,
             },
             D : {
                 pos: D,
                 letterAngle : 90,
-                pcolor      : given,
+                pcolor      : givenColor,
                 draggableX  : true, // this adds mouseover animation, does not affect behaviour
                 draggableY  : false,
             },
             L : { // rectilinear angle slider
-                letterAngle : -45,
-                pcolor      : proof,
+                pcolor      : infoColor,
+				cssClass: 'logic_phase--proof',
+				conditionalDrag : 'logic_phase--proof',
+				doPaintPname : false,
             },
 			R : {
 				pos: R,
 				letterAngle : 135,
-				pcolor      : given,
+				pcolor      : givenColor,
+				undisplayAlways : true,
+				doPaintPname : false,
 			},
 			curveStart  : {
 				pos : [ A[0]-80, 0 ],
+				undisplayAlways : true,
+				doPaintPname : false,
 			},
 			curveEnd : {
 				pos : [B[0]+50,0],
+				undisplayAlways : true,
+				doPaintPname : false,
 			},
 			r : {
 				pos: r,
 				letterAngle : 135,
-				pcolor      : given,
+				pcolor      : givenColor,
+				undisplayAlways : true,
+				doPaintPname : false,
 			},
 			d : {
 				pos         : d,
-				letterAngle : 90,
-				pcolor      : proof,
+				undisplayAlways : true,
+				doPaintPname : false,
 			},
 			DLeft : {
                 pos         : DLeft,
 				letterAngle : 90,
-				pcolor      : given,
+				pcolor      : givenColor,
+				undisplayAlways : true,
 				doPaintPname : false,
 			},
 			curveLeftEnd : {
 				pos : [250,100],
+				undisplayAlways : true,
+				doPaintPname : false,
 			},
         };
         
         var linesArray =
         [            
-            { 'AB' : { pcolor : given } },
-            { 'AD' : { pcolor : given } },
-            { 'AL' : { pcolor : proof } }, // rectilinear angle
-            { 'A,DLeft'  : { pcolor : given, 'stroke-width' : 2, } }, //extends AD to the left
+            { 'AB' : { pcolor : givenColor } },
+            { 'AD' : { pcolor : givenColor } },
+            { 'AL' : { pcolor : infoColor,
+						cssClass: 'logic_phase--proof',} }, // rectilinear angle
+            { 'A,DLeft'  : { pcolor : givenColor, 'stroke-width' : 2, } }, //extends AD to the left
         ];
 
         //----------------------------------
@@ -198,11 +200,6 @@
         [
             //extending the curve to the left is quite a work bs
             //we need to change hard-coded tangent
-            // [86,75],
-            // [135,64],
-            // [100,75],
-            // [10,151],
-
             [148,62],
             [161,64],
             [202,75],

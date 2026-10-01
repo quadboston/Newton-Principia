@@ -49,7 +49,6 @@
         if( !dressed ) {
 
             ////long, initial version of pos2pointy
-            //c cc( 'dressing' + pName );
             var tpclass = nsmethods.toCssIdentifier(
                           ( haz( attrs, 'tpclass' ) ) || pName
             );
@@ -96,9 +95,6 @@
             var finalTp = haz( pt, 'notp' ) ? 'notp' : 'tp';
             var wwClass = cssClass + finalTp + '-' +  tpclass;
             pt.svgel.setAttributeNS( null, 'class', wwClass );
-            //if( pName === 'fret-0-0' ) {
-            //    ccc( 'makes point ' + pName + ' cssclass=' + wwClass );
-            //}
 
             ///this thing is static yet
             /*
@@ -164,12 +160,6 @@
                 has( rgX, 'move_2_updates' ) || has( rgX, 'doWhiteKernel' )
             )
         ){
-            /*
-            if( rgX.pname === 'fret-0-0' ) {
-                ccc( 'sets kernel ' + rgX.pname + ' rgX.noKernel ', rgX.noKernel
-                );
-            }
-            */
             var fakeName = pname+'-kernel';
             var wp = rg[pname].pos;
             var rgXX = rg[ fakeName ];
@@ -272,30 +262,11 @@
             }
             //make tp - boldable all points labels:
             $$$svg.addClass( 'tobold' );
-            /*
-            fails:
-            if( has( rgX, 'hideCaption' ) ) {
-                var undisp = rgX.hideCaption;
-            } else {
-                var undisp =
-                (
-                    !haz( rgX, 'displayAlways' ) &&
-                    ( haz( rg, 'allLettersAreHidden' ) || haz( rgX, 'undisplay' ) )
-                )
-            }
-            */
 
         } else {
             ////bug fix: June 3, 2021
             var wwSvg = haz( rgX, 'pnameLabelsvg' );
             $$.$( wwSvg ).toggleClass( 'undisplay', true );
-            /*
-            rgX.hideCaption ||
-            (
-                !haz( rgX, 'displayAlways' ) &&
-                ( haz( rg, 'allLettersAreHidden' ) || haz( rgX, 'undisplay' ) )
-            )
-            */
         }
     }
 

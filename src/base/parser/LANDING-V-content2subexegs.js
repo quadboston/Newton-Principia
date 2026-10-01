@@ -385,7 +385,6 @@
             //todo do resolve this construct in CSS ... it may be make
             //extra specifity and removing this set will change this specifity and
             //damage the application
-            //c cc( fconf.dragPointDecoratorClasses );
             return;
 
 
@@ -498,6 +497,7 @@
                     rg.detected_user_interaction_effect_DONE = true;
                     //ccc( 'Remodel: Landing V: ' + rg.detected_user_interaction_effect_DONE );
                     stdMod.imgRk.srcParsed = fconf.engineImg + '/empty.png';
+                    stdMod.imgRk.hasImage = false;
                     return;
                 }
                 if( haz( stdMod.imgRk, 'imgFoundInText' ) ) return;
@@ -519,9 +519,11 @@
                      fconf.engineImg + '/empty.png' :
                         fconf.pathToContentSite + '/contents/' +
                         fconf.sappId + '/img/' + imgId;
-				if (imgId === '*empty*') {
-					fconf.timeToShowOriginalDiagram_effective = 1;
-				}
+                stdMod.imgRk.hasImage = imgId !== '*empty*';
+				// a later section's image replaces an earlier empty one,
+				// so the timeout must follow the image finally chosen
+				fconf.timeToShowOriginalDiagram_effective =
+					imgId === '*empty*' ? 1 : fconf.timeToShowOriginalDiagram;
                 // \\// establishes image source file name
             }
             // \\// bg images

@@ -12,7 +12,6 @@
         sconf.insertDelayedBatch        = true;
         //for some standard sliders
         sconf.hideProofSlider           = true; //todo
-        //sconf.rgShapesVisible         = true;
         //====================================================
         // \\// subapp regim switches
         //====================================================
@@ -160,7 +159,6 @@
             //beta = -Math.asin( BAA.unitVec[1] ); 
             beta = 0.863;
 
-            //c cc( 'beta fraction=' + (beta/Math.PI).toFixed(3) );
             //var CAA = mat.p1_to_p2( C, A );
             //alpha = -Math.asin( CAA.unitVec[1] ); 
             alpha = 0.528;
@@ -171,7 +169,6 @@
             to_sconf.gamma = gamma;
             to_sconf.initial_g = initial_g;
             to_sconf.initial_gN = -initial_Nunit.abs/mod2inn_scale;
-            //c cc( 'alpha fraction=' + (alpha/Math.PI).toFixed(3) );
         })();
 
         let pop = pointsOnPicture;

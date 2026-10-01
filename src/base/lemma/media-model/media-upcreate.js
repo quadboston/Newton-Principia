@@ -21,6 +21,9 @@ const { ns, sn, haz, haff, $$, eachprop,
         // called 3x on page load (more in L2, L3, L4...?)
 
         if( haz( stdMod, 'media_update_is_forbidden' ) ) return;
+        // letters stay hidden while the book's diagram is shown;
+        // a lemma's media_upcreate___before_basic may override this
+        rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
         haff( stdMod, 'media_upcreate___before_basic' );
 
         var subessayId = ns.getSubessayIdFromURL(); // returns 0 if none

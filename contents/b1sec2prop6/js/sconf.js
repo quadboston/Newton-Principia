@@ -28,7 +28,6 @@
         // //\\ decorational parameters
         //***************************************************************
         //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
-        sconf.rgShapesVisible = true;
 
         sconf.TP_OPACITY_FROM_fixed_colors = true;
         //making size to better fit lemma's diagram
@@ -134,35 +133,30 @@
         //      todm: possibly proliferation
         //-----------------------------------
         const {
-            given,
-            body,
-            orbit,
-            dtime,
-            proof,
-            force,
+            givenColor,
+            bodyColor,
+            proofColor,
+            forceColor,
             invalid,
             infoColor,
-			supplementColor,
             estimatedForceColor,
             curvature,
-            displacement,
-			sunColor
+            sunColor
         } = topicColors_repo;
 
 
         var topicColors_elected =
         {
             estimatedForceColor,
-            given,
-            proof,
+            givenColor,
+            proofColor,
             curvature,
-            dtime,
             curvatureCircle : curvature,
-            body,
-            orbit,
-            timearc : orbit,
-            APQ     : orbit,
-            force,
+			time: estimatedForceColor,
+            orbit: bodyColor,
+            timearc : bodyColor,
+            APQ     : bodyColor,
+            force: forceColor,
             invalid,
         };
         //-----------------------------------
@@ -209,14 +203,14 @@
         }
         curvePivots = curvePivots.map( pivot => ({
             pos         : pivot,
-            pcolor      : supplementColor,
+            pcolor      : infoColor,
             letterAngle : 45,
             draggableX  : true,
             draggableY  : true,
             doPaintPname : false,
         }));
 
-        var foldPoints  = (new Array(200)).fill({}).map( fp => ({
+        var foldPoints  = (new Array(200)).fill({}).map( () => ({
             pcolor      : invalid,
             doPaintPname : false,
         }));
@@ -233,7 +227,7 @@
         Object.assign( originalPoints, {
             A : {
                 pos: posA,
-                pcolor : orbit,
+                pcolor : bodyColor,
 				draggableX  : true,
                 draggableY  : true,
 				cssClass: 'logic_phase--corollary',
@@ -249,7 +243,7 @@
 
             P : {
                 pos: posP,
-                pcolor : body,
+                pcolor : bodyColor,
                 letterAngle : 70,
                 draggableX  : true,
                 draggableY  : true,
@@ -271,14 +265,14 @@
             },
 
             R : {
-                pcolor : displacement,
+                pcolor : estimatedForceColor,
                 letterAngle : 45,
 				cssClass: 'logic_phase--corollary',
             },
 
             Z : {
                 pos: [111111,111111],
-                pcolor : proof,
+                pcolor : proofColor,
                 letterAngle : 45,
 				cssClass: 'subessay--corollary1',
             },
@@ -286,7 +280,7 @@
             // Q's counterpart at other end of arc
             rrminus : {
                 caption : '',
-                pcolor : given,
+                pcolor : givenColor,
 				cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
             },
 
@@ -357,23 +351,23 @@
 			 }, },
             { 'SP' : { pcolor : estimatedForceColor,
 			 }, },
-            { 'PY' : { pcolor : orbit,
+            { 'PY' : { pcolor : bodyColor,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
 			 }, },
-            { 'PZ' : { pcolor : proof,
+            { 'PZ' : { pcolor : proofColor,
 				cssClass: 'subessay--corollary1 subessay--corollary3',
 			 }, },
-            { 'PR' : { pcolor : proof,
+            { 'PR' : { pcolor : proofColor,
 				cssClass: 'logic_phase--corollary',
 			 }, },
             { 'SY' : { pcolor : estimatedForceColor,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
 			 }, },
-            { 'QR' : { pcolor : displacement,
+            { 'QR' : { pcolor : estimatedForceColor,
 				cssClass: 'logic_phase--corollary',
 			 }, },
-            { 'QP' : { pcolor : proof }, },
-            { 'SQ' : { pcolor : proof,
+            { 'QP' : { pcolor : proofColor }, },
+            { 'SQ' : { pcolor : proofColor,
 				cssClass: 'subessay--corollary1',
 			 }, },
             { 'QT' : { pcolor : estimatedForceColor,
@@ -382,7 +376,7 @@
             { 'PC' : { pcolor : curvature,
 				cssClass: 'subessay--corollary3',
 			 }, },
-            { 'Q,rrminus' : { pcolor : given,
+            { 'Q,rrminus' : { pcolor : givenColor,
 				cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
 			 }, },
             { 'P,sagitta' : { pcolor : estimatedForceColor,

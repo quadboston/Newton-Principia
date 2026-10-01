@@ -102,7 +102,6 @@
         //stdMod.media_upcreate___before_basic_L2
         ssF.media_upcreate_generic(); //vital, perhaps for synch
         gui.buildSlider();
-        sDomF.detected_user_interaction_effect( 'doUndetected' );
     }
 
 

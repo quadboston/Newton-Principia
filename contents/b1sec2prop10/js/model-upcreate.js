@@ -98,7 +98,7 @@
             graphArg.yMax = graphArg.xMax * ratio / ssD.MAF;
 
 
-            stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
+            stdMod.graph.drawsGraph(graphArg);
         }
         //------------------------------------------------
         // \\// graph

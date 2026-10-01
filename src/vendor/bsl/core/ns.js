@@ -644,7 +644,6 @@
         ///------------------------------------------------------------
         ns.d = function( text )
         {
-            //ccc( Date.now().toString().substr( -6 ) + ' ' + text );
             if( !debWind ) return; //no window, no debug accumulation
             debWind.value +='\n' + text;
             debWind.scrollTop = debWind.scrollHeight;
@@ -1162,7 +1161,6 @@
         var search = 'a[name=' + hash + ']';
         //https://stackoverflow.com/questions/265774/programmatically-scroll-to-an-anchor-tag
         var found = document.querySelector( search );
-        //ccc( hash, search, 'found=' + found );
         if( !found ) return;
         found.scrollIntoView( true );
     }

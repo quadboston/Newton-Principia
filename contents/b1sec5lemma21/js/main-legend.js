@@ -15,7 +15,6 @@
     ///from full-app/dom/...
     function create_digital_legend()
     {
-        //c cc( 'starts create_digital_legend' );
         var mlegend = toreg( 'main-legend' )();
         doCreateTable_proof( mlegend );
     }

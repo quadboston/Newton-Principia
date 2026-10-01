@@ -1,6 +1,6 @@
 ( function() {
     var {
-        ns, paste, capture, nspaste, sDomF, ssD, ssF, stdMod, amode, toreg, rg,
+        ns, paste, capture, nspaste, sDomF, ssD, amode, rg,
     } = window.b$l.apptree({
         ssFExportList : {
             amode2rgstate,
@@ -24,6 +24,13 @@
         "cos": 1
     };
 
+    // B's starting position on the curve
+    const B_PARAM_BOOK = 0.7745228215767634;
+
+    // model origin in the picture; must match modorInPicX, modorInPicY
+    // in sconf.js, which are not set yet when this module runs
+    const MODEL_ORIGIN_IN_PIC = [ 140, 61 ];
+
     setCapture();
     return;
 
@@ -36,14 +43,11 @@
                     curveRotationAngle : Object.assign( ANGLE_AUTH ),
                     "media-mover": {
                         "achieved": {
-                            "achieved": [
-                                140,
-                                61
-                            ]
+                            "achieved": MODEL_ORIGIN_IN_PIC
                         }
                     },
                     "B": {
-                            "unrotatedParameterX": 0.7745228215767634
+                            "unrotatedParameterX": B_PARAM_BOOK
                     }
             },
 
@@ -51,7 +55,7 @@
             "L-equal-d" :  {
                     curveRotationAngle : Object.assign( ANGLE_EQUALS ),
                     "B": {
-                           "unrotatedParameterX": 0.7745228215767634
+                           "unrotatedParameterX": B_PARAM_BOOK
                     }
             },
 
@@ -86,33 +90,22 @@
 
     function amode2rgstate( captured )
     {
-        var { logic_phase, aspect, subessay } = amode;
+        var { logic_phase, aspect } = amode;
 
         sDomF.resetModelPos();
 
         //----------------------------------
         // //\\ common values
         //----------------------------------
-        rg.A.undisplay              = false;
-        rg.B.undisplay              = false;
-        rg.AB.undisplay             = false;
-        rg[ 'arc-AB' ].undisplay    = false;
-        rg['area-RAB'].undisplay    = false;
-        rg['area-RAD'].undisplay    = false;
-        rg['area-RACB'].undisplay    = false;
-
         //idle?:
         ns.paste( rg.curveStart.pos, ssD.curveStartInitialPos );
 
         ns.paste( rg.curveEnd.pos, ssD.curveEndInitialPos );
         ssD.repoConf.customFunction = 0;
         rg.B.unrotatedParameterX = 1;
-        var media_scale = toreg( 'media_scale' )();
         //----------------------------------
         // \\// common values
         //----------------------------------
-
-        sDomF.detected_user_interaction_effect( 'doUndetected' );
 
         captured = '';
 
@@ -122,56 +115,15 @@
         nspaste(rg.R.pos, rg.R.originalPos);
         nspaste(rg.D.pos, rg.D.originalPos);
 
-        if(!rg.media_scale.value) {
-            rg.media_scale.value = 1;
-        }
-        ssF.scaleValue2app( rg.media_scale.value, stdMod );
-
         ns.paste( rg.curveStart.pos, [ -0.2, 0 ] ); //todm what is this?
         ns.paste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ] );
 
-        [
-            //'dr-decorpoint',
-        ].forEach( gname => { rg[ gname ].undisplay = true; });
-
-        [
-            'D',
-            'R',
-            'C',
-            'AR',
-            'AD',
-            'BR',
-            'RD',
-            'curve-AB',
-        ].forEach( gname => { rg[ gname ].undisplay = false; });
-
-        if( logic_phase === 'claim' ) {
-            [
-                'c',
-                'r',
-                'd',
-                'A,d',
-                'A,r',
-                'r,b',
-                'r,d',
-            ].forEach( gname => { rg[ gname ].undisplay = true; });
-        } else if( logic_phase === 'proof' ) {
-            [
-                'c',
-                'b',
-                'Ab',
-                'r',
-                'd',
-                'A,d',
-                'A,r',
-                'r,b',
-                'r,d',
-                'arc-Ab',
-                'area-rAb',
-                'area-rAd',
-                'area-rAcb'
-            ].forEach( gname => { rg[ gname ].undisplay = false; });
-        }
+		[
+			'arc-Ab',
+			'area-rAb',
+			'area-rAd',
+			'area-rAcb'
+		].forEach( gname => { rg[ gname ].undisplay = logic_phase !== 'proof'; });
        
         rg[ 'left-curve-AB' ].undisplay = aspect === 'model';
         rg['A,DLeft'].undisplay = aspect === 'model';
@@ -179,4 +131,3 @@
     }
 
 }) ();
-

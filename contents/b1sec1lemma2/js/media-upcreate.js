@@ -27,7 +27,6 @@
     // //\\ view top-manager
     //======================================
     function media_upcreate___before_basic_L2() {
-        rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
         Object.values(dataregs).forEach(dr => {
             guiup.paints_curve8axes(dr);
             guiup.updatePtsRectsLabelsAreas(dr);

@@ -66,9 +66,6 @@
         /*
         var compareWithTriangularArea = endX * endY / 2;
         c cc( '****\nfull=' + (fullAreaBetweenBx8axisY*scale).toFixed(6) );
-        //c cc( 'endX=' + endX.toFixed(2) + ' crossX=' + tanCross[0].toFixed(2) +
-        //     ' crossY=' + tanCross[1].toFixed(2) );
-        //c cc( 'endY=' + endY.toFixed(2) );
         c cc( 'triangle=' + (compareWithTriangularArea*scale).toFixed(6) );
         */
         //---------------------------------------
@@ -78,15 +75,11 @@
 
         var areaUnderTangentLine_tanT = 0.5 * tanT * endX * endX;
         var areaBetweenTanT_8_curve     = fullAreaBetweenBx8axisY - areaUnderTangentLine_tanT;
-        //ccc('under_tanT=' + (areaUnderTangentLine_tanT*scale).toFixed(6),
-        //    'diff=1/12=' + (areaBetweenTanT_8_curve*scale).toFixed(6) // 1/12 );
 
         // //\\ under tan1
         var total = tanCross[0]*tanCross[1]/2;      //1/9 = 0.1111
         var delta = tanCross[0]*tanCross[0]/2*tanT; //1/9/2/2 = 1/36 
         var areaUnderTan1 = total - delta;          //1/12
-        //c cc( 'total=' + total.toFixed(6) + ' tan1= ' + tan1.toFixed(6) );
-        //c cc( '1/12 = areaUnderTan1=' + areaUnderTan1.toFixed(6) + ' rev= ' + ( 1/areaUnderTan1).toFixed(6) );
         // \\// under tan1
 
         var result =

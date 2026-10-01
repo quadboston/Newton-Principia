@@ -4,9 +4,7 @@
     return;
 
 
-    ///****************************************************
-    /// model initiation
-    ///****************************************************
+    // model initiation
     function init_model_parameters()
     {
         rg.S.pos[0] = -sconf.ellipseFocus;

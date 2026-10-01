@@ -131,7 +131,7 @@
         // //\\ decorations
         // //\\ graph
         //------------------------------------------------
-        //stdMod.graphFW_lemma.graphArrayMask[1] =
+        //stdMod.graph.graphArrayMask[1] =
         //       ssD.solvable && !ssD.doMaskSagitta;
 
         {
@@ -141,7 +141,7 @@
                 //printAxisXDigits : bonus,
                 //printAxisYDigits : true,
             }
-            stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
+            stdMod.graph.drawsGraph(graphArg);
         }
         //------------------------------------------------
         // \\// graph

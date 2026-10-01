@@ -14,9 +14,23 @@
     } = window.b$l.apptree({
         ssFExportList : {
             createLogic_phaseLegend,
+            updatesLegendTablesDisplay,
         },
     });
     return;
+
+
+    // shows or hides each legend table by its tableVisibilityCondition;
+    // the resize pass calls this before it measures the legend, so a
+    // hidden table takes no space
+    function updatesLegendTablesDisplay()
+    {
+        Object.values( ns.haz( rg, 'main-legend' ) || {} ).forEach( rgTeoTab => {
+            if( rgTeoTab && typeof rgTeoTab.updatesTableDisplay === 'function' ) {
+                rgTeoTab.updatesTableDisplay();
+            }
+        });
+    }
 
 
     //=========================================
@@ -66,6 +80,7 @@
         visibilizeTable();
 
         rgTeoTab.tableDom = tb;
+        rgTeoTab.updatesTableDisplay = updatesTableDisplay;
         return;
 
 
@@ -295,27 +310,26 @@
 
 
         ///================================================
+        /// hides/shows whole table; uses display so a hidden
+        /// table takes no space; the resize pass calls this
+        /// (via updatesLegendTablesDisplay) before measuring
+        /// the legend, so the measurement follows the table
+        ///================================================
+        function updatesTableDisplay()
+        {
+            if( tableVisibilityCondition ) {
+                // '' leaves display to CSS, which hides tables
+                // of other logic phases
+                tb.style.display = tableVisibilityCondition() ? '' : 'none';
+            }
+        }
+
+        ///================================================
         /// selectively makes table's cells visible
         ///================================================
         function visibilizeTable()
         {
-            //--------------------------------------------
-            // //\\ hides/shows whole table
-            //      uses visibility (not display:none) so the
-            //      table keeps its layout box size even while
-            //      hidden -- the resize/legend-sizing pass
-            //      (preparesDesktop() in finish-resize8upcreate.js)
-            //      measures legendRoot$ BEFORE this function runs
-            //      on a subessay switch, so a display:none-driven
-            //      size collapse gets read as stale zero-size and
-            //      mis-computes the legend layout (wideScreen_flag)
-            //--------------------------------------------
-            if( tableVisibilityCondition ) {
-                tb.style.visibility = tableVisibilityCondition() ? 'visible' : 'hidden';
-            }
-            //--------------------------------------------
-            // \\// hides/shows whole table
-            //--------------------------------------------
+            updatesTableDisplay();
 
             //--------------------------------------------
             // //\\ hides all cells

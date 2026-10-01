@@ -104,10 +104,6 @@
             var decorator = Update_decPoint( pointWrap )
             var achieved = { x:pointWrap.x, y:pointWrap.y };
 
-            ///small test-case
-            //if( pointWrap.spinnerClsId === "base-2" ) {
-            //    c cc('assigned achieved', achieved, " point wrap", pointWrap);
-            //}
             medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE({
                 pointWrap       : pointWrap,
                 doProcess       : doProcess,
@@ -197,7 +193,6 @@
                 if( !closest || closest.td > td ) {
                     closest = { td, dwrap };
                     //if( pointWrap.spinnerClsId === 'ctrl-'+1 ) {
-                    //    //c cc( 'selected' );
                 }
             }
             return closest;
@@ -345,4 +340,3 @@
         }
     }
 }) ();
-

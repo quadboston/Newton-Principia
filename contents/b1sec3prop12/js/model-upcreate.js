@@ -132,7 +132,7 @@
 
 
 		// graph
-		if (stdMod.graphFW_lemma) {
+		if (stdMod.graph) {
             let graphArg = {
             }
 
@@ -169,7 +169,7 @@
             }
 
 
-            stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
+            stdMod.graph.drawsGraph(graphArg);
 		}
     }
 }) ();

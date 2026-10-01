@@ -16,15 +16,6 @@
     {
         //console.log('sconf.js init_conf'); //called once on page load
         
-        //====================================================
-        // //\\ subapp regim switches
-        //====================================================
-        //setting to false removes S, SA, P, SP, eccentricity label and line (not dot)
-        sconf.rgShapesVisible           = true; 
-        //====================================================
-        // \\// subapp regim switches
-        //====================================================
-
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************        

@@ -134,7 +134,7 @@
         // //\\ graph
         //================================================
         {
-            const mask = stdMod.graphFW_lemma.graphArrayMask;
+            const mask = stdMod.graph.graphArrayMask;
             //Only plot estimated force curve if solvable, otherwise data is
             //invalid and can cause errors.
             mask[1] = solvable && sconf.TIME_IS_FREE_VARIABLE;
@@ -147,7 +147,7 @@
                 //printAxisXDigits : false,
                 //printAxisYDigits : true,
             };
-            stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
+            stdMod.graph.drawsGraph(graphArg);
         }
         //------------------------------------------------
         // \\// graph

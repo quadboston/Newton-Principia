@@ -47,6 +47,9 @@
         //stdMod.bgImgAsp = haz( sconf, 'bgImgAsp' ) ||
         //                  bgImg.naturalHeight / bgImg.naturalWidth;
         //-------------------------------------------------------------
+        // legend tables shown only in some subessays must be shown or
+        // hidden for the current one before the legend is measured
+        haff( ssF, 'updatesLegendTablesDisplay' );
         if(
             //isMobile
             ns.widthThresholds[ fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD ]()

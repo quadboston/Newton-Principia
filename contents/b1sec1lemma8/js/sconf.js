@@ -21,7 +21,6 @@
         // //\\ subapp regim switches
         //====================================================
         sconf.enableStudylab            = false; // true to include options as in Book 3 Lemma 5
-        sconf.rgShapesVisible           = false; // false to show only relevant lines, points, labels
         //====================================================
         // \\// subapp regim switches
         //====================================================
@@ -51,39 +50,33 @@
 
         //: svg model colors
         const {
-            given,
-            proof,
-            hidden,
+            givenColor,
+            proofColor,
             givenArea,
             proofArea
         } = topicColors_repo;
 
         var topicColors_elected = { 
-            //:basic topics
-            //proof,
-            //given,
-            hidden,
-
             //given (claim)
-            "curve-AB"      : given, // ACB and curve segment after B
-            "left-curve-AB" : given, // curve segment before A
-            "arc-AB"        : given, ////curve-AB plus extension past B
+            "curve-AB"      : givenColor, // ACB and curve segment after B
+            "left-curve-AB" : givenColor, // curve segment before A
+            "arc-AB"        : givenColor, ////curve-AB plus extension past B
 
             //proof
-            "arc-Ab"        : proof, // Acb
+            "arc-Ab"        : proofColor, // Acb
             
             // triangles
-            'RAB' : given, 
-            'RACB' : given, 
-            'RAD' : given, 
-            'RACB-RAB' : given, 
-            'RAD-RAB' : given, 
+            'RAB' : givenColor, 
+            'RACB' : givenColor, 
+            'RAD' : givenColor, 
+            'RACB-RAB' : givenColor, 
+            'RAD-RAB' : givenColor, 
             
-            'rAb' : proof, 
-            'rAcb' : proof, 
-            'rAd' : proof, 
-            'rAcb-rAb' : proof, 
-            'rAd-rAb' : proof, 
+            'rAb' : proofColor, 
+            'rAcb' : proofColor, 
+            'rAd' : proofColor, 
+            'rAcb-rAb' : proofColor, 
+            'rAd-rAb' : proofColor, 
 
             // areas
             'area-RAB' : givenArea,
@@ -105,28 +98,28 @@
                 //pos is recalculated later
                 pos         : A,
                 letterAngle : 90,
-                pcolor      : given,
+                pcolor      : givenColor,
             },
             B : {
                 pos: B,
                 letterAngle : 0,
-                pcolor      : given,
+                pcolor      : givenColor,
             },
             C : {
                 letterAngle : 45,
                 letterRotRadius : 13,
-                pcolor      : given,
+                pcolor      : givenColor,
             },
             D : {
                 pos: D,
                 letterAngle : 90,
-                pcolor      : given,                
+                pcolor      : givenColor,                
                 draggableX  : true, // this adds animation and allows dragging along x
                 draggableY  : false, // but not y
             },
             R : {
                 letterAngle : 135,
-                pcolor      : given,
+                pcolor      : givenColor,
                 draggableX  : true, // this adds mouseover animation, but does not affect behaviour...?
                 draggableY  : true,
             },            
@@ -134,45 +127,56 @@
 				caption: "𝑐",
                 letterAngle : 45,
                 letterRotRadius : 18,
-                pcolor      : proof,
+                pcolor      : proofColor,
+				cssClass: 'logic_phase--proof',
             },
             b : {
 				caption: "𝑏",
                 letterAngle : 0,
-                pcolor      : proof,
+                pcolor      : proofColor,
+				cssClass: 'logic_phase--proof',
             },
 
             ///modified point r, closer to d
             "r" : {
 				caption : "𝑟",
-                pcolor      : proof,
+                pcolor      : proofColor,
                 letterAngle : -45,
                 letterRotRadius : 30,
+				cssClass: 'logic_phase--proof',
             },
 
             ///modified point r, closer to d
             "d" : {
                 caption : "𝑑",
                 pos : D,
-                pcolor      : proof,
+                pcolor      : proofColor,
                 letterAngle : -90,
                 letterRotRadius : 30,
+				cssClass: 'logic_phase--proof',
             },
             
             curveStart  : {
                 pos : [ A[0]-80, 0 ],
+				undisplayAlways : true,
+				doPaintPname : false,
             },
             curveEnd : {
                 pos : [B[0]+50,0],
+				undisplayAlways : true,
+				doPaintPname : false,
             },
             curveLeftEnd : {
                 pos : [250,100],
+				undisplayAlways : true,
+				doPaintPname : false,
             },
             DLeft : {
                 pos         : DLeft,
                 letterAngle : 90,
-                pcolor      : given,
-                doPaintPname : false,
+                pcolor      : givenColor,
+				undisplayAlways : true,
+				doPaintPname : false,
             },
 
         };
@@ -182,26 +186,25 @@
             //** this defines render order */
 
             // proof (shown in blue) 
-            { 'Ab' : { pcolor : proof } },  
+            { 'Ab' : { pcolor : proofColor,
+				cssClass: 'logic_phase--proof', } },  
 
-            { 'A,d' : { pcolor : proof } }, // Ad  
-            { 'A,r' : { pcolor : proof } }, // Ar   
-            { 'r,d' : { pcolor : proof } }, // rd
-            { 'r,b' : { pcolor : proof } }, //rb
+            { 'A,d' : { pcolor : proofColor,
+				cssClass: 'logic_phase--proof', } }, // Ad  
+            { 'A,r' : { pcolor : proofColor,
+						cssClass: 'logic_phase--proof', } }, // Ar   
+            { 'r,d' : { pcolor : proofColor,
+				cssClass: 'logic_phase--proof', } }, // rd
+            { 'r,b' : { pcolor : proofColor,
+				cssClass: 'logic_phase--proof', } }, //rb
 
             // claim (shown in green)            
-            { 'AB' : { pcolor : given } },
-            { 'AR' : { pcolor : given } }, 
-            { 'AD' : { pcolor : given } }, 
-            { 'A,DLeft'  : { pcolor : given, 'stroke-width' : 2, } }, // to left of A            
-            { 'RD' : { pcolor : given } },
-            { 'BR' : { pcolor : given } },
-
-            // questionable                       
-            { 'Ad' : { pcolor : hidden } }, // todo: Ad dup
-            { 'Ar' : { pcolor : hidden } }, // todo: this line should not exist
-            { "rd" : { pcolor : hidden } }, // todo: this line should not exist
-            { "rb" : { pcolor : hidden } }, // todo: this doesn't seem to exist
+            { 'AB' : { pcolor : givenColor } },
+            { 'AR' : { pcolor : givenColor } }, 
+            { 'AD' : { pcolor : givenColor } }, 
+            { 'A,DLeft'  : { pcolor : givenColor, 'stroke-width' : 2, } }, // to left of A            
+            { 'RD' : { pcolor : givenColor } },
+            { 'BR' : { pcolor : givenColor } },
         ];
 
         //----------------------------------
@@ -219,13 +222,13 @@
 
         originalPoints.t1 = {
                 pos: ww1,
-                letterAngle : 90,
-                pcolor      : given,
+				undisplayAlways : true,
+				doPaintPname : false,
         };
         originalPoints.t2 = {
                 pos: ww2,
-                letterAngle : 90,
-                pcolor      : given,
+				undisplayAlways : true,
+				doPaintPname : false,
         };
 
         var givenCurve_pivots = [
@@ -271,4 +274,3 @@
         //--------------------------------------
     }
 }) ();
-

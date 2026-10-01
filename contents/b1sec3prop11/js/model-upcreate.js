@@ -22,13 +22,14 @@
         var Qpos = q2xy( Porb.plusQ );
         rg.Q.pos[0] = Qpos[0];
         rg.Q.pos[1] = Qpos[1];
+		if (rg.Qemphasis) {
+			rg.Qemphasis.pos[0] = Qpos[0];
+			rg.Qemphasis.pos[1] = Qpos[1];
+		}
         
         // **api-input---plane-curve-derivatives
         var {
-            RC,
-            R,
             uu,
-            nn,
         } = Porb;
 
         // latus rectum
@@ -69,12 +70,61 @@
         // \\// arc, sagittae and related
         //================================================
 
+        var wwZ = mat.dropLine(
+            -sconf.extendZ,
+            rg.P.pos,
+            null,
+            null,
+            uu,
+        );
+        rg.Z.pos[0] = wwZ[0];
+        rg.Z.pos[1] = wwZ[1];
 
-        //================================================
-        // //\\ decorations
-        // //\\ graph
-        //------------------------------------------------
-        {
+        //conjugate diameters
+        nspaste( rg.G.pos, q2xy( parQ + Math.PI ) );
+        nspaste( rg.D.pos, q2xy( parQ + Math.PI/2 ) );
+        nspaste( rg.K.pos, q2xy( parQ + 3/2*Math.PI ) );
+
+
+        //vuFV
+        //v = parallel-projection of Q to tangent
+        var DK = [ rg.K.pos[0]-rg.D.pos[0], rg.K.pos[1]-rg.D.pos[1] ];
+        var PG = [ rg.P.pos[0]-rg.G.pos[0], rg.P.pos[1]-rg.G.pos[1] ];
+        var wwR = mat.linesCross(
+            DK, rg.Q.pos, //direction, start
+            PG, rg.C.pos, //direction, start
+        );
+        rg.v.pos[0] = wwR[0];
+        rg.v.pos[1] = wwR[1];
+
+		// put q across from Q
+		rg.q.pos[0] = 2 * rg.v.pos[0] - rg.Q.pos[0];
+		rg.q.pos[1] = 2 * rg.v.pos[1] - rg.Q.pos[1];
+
+        //extra points
+        nspaste( rg.F.pos, mat.dropPerpendicular( rg.P.pos, rg.D.pos, rg.K.pos ) );
+        nspaste( rg.A.pos, q2xy( 0 ) );
+        nspaste( rg.B.pos, q2xy( Math.PI/2 ) );
+		nspaste( rg.AA.pos, q2xy( Math.PI ) );
+
+        //point x
+        nspaste( rg.x.pos, mat.lineSegmentsCross(
+            rg.T.pos, rg.P.pos,
+            rg.Q.pos, rg.v.pos,
+        ));
+        //point E
+        nspaste( rg.E.pos, mat.lineSegmentsCross(
+            rg.D.pos, rg.K.pos,
+            rg.S.pos, rg.P.pos,
+        ));
+        //point I
+        nspaste( rg.I.pos, mat.linesCross(
+            mat.sm( rg.K.pos, -1, rg.D.pos ), rg.H.pos, //direction, start
+            mat.sm( rg.S.pos, -1, rg.P.pos ), rg.S.pos, //direction, start
+        ));
+
+		// graph
+		if (stdMod.graph) {
             let graphArg = {
             }
 
@@ -226,73 +276,7 @@
             // console.log(`width = ${percentWidthMax}%`);
 
 
-            stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
-        }
-        //------------------------------------------------
-        // \\// graph
-        //------------------------------------------------
-
-        //------------------------------------------------
-        // //\\ PZ
-        //------------------------------------------------
-        var wwZ = mat.dropLine(
-            -0.45,
-            rg.P.pos,
-            null,
-            null,
-            uu,
-        );
-        rg.Z.pos[0] = wwZ[0];
-        rg.Z.pos[1] = wwZ[1];
-        //------------------------------------------------
-        // \\// PZ
-        // \\// decorations
-        //================================================
-
-        //conjugate diameters
-        nspaste( rg.G.pos, q2xy( parQ + Math.PI ) );
-        nspaste( rg.D.pos, q2xy( parQ + Math.PI/2 ) );
-        nspaste( rg.K.pos, q2xy( parQ + 3/2*Math.PI ) );
-
-
-        //vuFV
-        //v = parallel-projection of Q to tangent
-        var DK = [ rg.K.pos[0]-rg.D.pos[0], rg.K.pos[1]-rg.D.pos[1] ];
-        var PG = [ rg.P.pos[0]-rg.G.pos[0], rg.P.pos[1]-rg.G.pos[1] ];
-        var wwR = mat.linesCross(
-            DK, rg.Q.pos, //direction, start
-            PG, rg.C.pos, //direction, start
-        );
-        rg.v.pos[0] = wwR[0];
-        rg.v.pos[1] = wwR[1];
-
-        //getting V
-        var DCsq_PCsq = mat.unitVector( DK ).v2 / mat.unitVector( PG ).v2;
-        var wwu = mat.pointPlusTVector(
-            DCsq_PCsq, //t,
-            rg.v.pos, //A,
-            rg.G.pos, //B,
-        );
-
-        //extra points
-        nspaste( rg.F.pos, mat.dropPerpendicular( rg.P.pos, rg.D.pos, rg.K.pos ) );
-        nspaste( rg.A.pos, q2xy( 0 ) );
-        nspaste( rg.B.pos, q2xy( Math.PI/2 ) );
-
-        //point x
-        nspaste( rg.x.pos, mat.lineSegmentsCross(
-            rg.T.pos, rg.P.pos,
-            rg.Q.pos, rg.v.pos,
-        ));
-        //point E
-        nspaste( rg.E.pos, mat.lineSegmentsCross(
-            rg.D.pos, rg.K.pos,
-            rg.S.pos, rg.P.pos,
-        ));
-        //point I
-        nspaste( rg.I.pos, mat.linesCross(
-            mat.sm( rg.K.pos, -1, rg.D.pos ), rg.H.pos, //direction, start
-            mat.sm( rg.S.pos, -1, rg.P.pos ), rg.S.pos, //direction, start
-        ));
+			stdMod.graph.drawsGraph(graphArg);
+		}
     }
-}) ();
+})();

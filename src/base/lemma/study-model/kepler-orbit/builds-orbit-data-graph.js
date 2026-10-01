@@ -19,7 +19,7 @@
 
     function builds_orbit_data_graph(setMaxGraphValues = false)
     {
-		if (!stdMod.graphFW_lemma) {
+		if (!stdMod.graph) {
 			// graph not needed for this model, so skip
 			return;
 		}
@@ -28,7 +28,7 @@
         const IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX =
             sconf.IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX;
         const dataPeriod = Math.max( 1, Math.floor( Q_STEPS/DATA_GRAPH_STEPS ) );
-        stdMod.graphFW_lemma.graphArray = graphArray;
+        stdMod.graph.graphArray = graphArray;
         graphArray.length = 0;
         ///prepares averages and placeholder for data graphs
         const gstart = ssD.qix_graph_start;
@@ -135,7 +135,7 @@
 
         ///this is a common graph lines, but this mask can be
         ///overriden in model_upcreate()
-        stdMod.graphFW_lemma.graphArrayMask = 
+        stdMod.graph.graphArrayMask = 
             [ 
                 'force',
                 'estimatedForce',

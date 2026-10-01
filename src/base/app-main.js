@@ -160,13 +160,11 @@ const {
 
             function loadsJSScripts()
             {
-                //c cc( 'ancestor jsCodesList=', fapp.jsCodesList );
                 ///we complete paths for ancestor list if any
                 fapp.jsCodesList.forEach( function( codeItem ) {
                     codeItem.src = fconf.ancestorCode_fullpath + "/js/" + codeItem.src;
                 });
 
-                //c cc( 'descendant codes=', fapp.lemmaDef.codesList );
                 ///adds ancestors (if any) to descendants(if any) and accumulates
                 ///result in fapp.jsCodesList
                 fapp.lemmaDef.codesList.forEach( function( codeItem ) {
