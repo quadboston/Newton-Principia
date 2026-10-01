@@ -3,6 +3,8 @@
     var mat         = sn( 'mat' );
     mat.poly = poly;
 	mat.squaredDistance = squaredDistance;
+	mat.lengthOf = lengthOf;
+
     return;
 
 
@@ -28,4 +30,10 @@
 		const dy = p1.pos[1] - p2.pos[1];
 		return dx * dx + dy * dy;
 	}
+
+	function lengthOf(pt1, pt2) {
+		return Math.sqrt(mat.squaredDistance(pt1, pt2));;
+	}
+
+
 }) ();
