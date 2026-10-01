@@ -103,6 +103,10 @@
         // every tab starts with the book's diagram behind the model
         if( haz( stdMod.imgRk, 'hasImage' ) ) {
             sDomF.detected_user_interaction_effect( 'doUndetected' );
+        } else {
+            // without the book's diagram there is nothing for interaction
+            // to reveal, so letters show from the start
+            rg.detected_user_interaction_effect_DONE = true;
         }
 
         //reminder: captured here is the last satisfied captured,
