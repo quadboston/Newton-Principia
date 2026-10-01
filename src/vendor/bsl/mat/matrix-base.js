@@ -7,10 +7,6 @@
 	var ns	    = window.b$l;
     var mat     = ns.sn( 'mat' );
 
-
-
-
-
     /*
     //subtracts vectors
     function mn( A, B ) { return [ A[0] - B[0], A[1] - B[1] ]; }
@@ -31,7 +27,6 @@
     mat.scalarProduct       = scalarProduct;
     mat.angleBetweenLineSegments = angleBetweenLines; //todm remove aliasing
     return;
-
 
 
 
@@ -76,9 +71,6 @@
         }
         return ret;
     }
-
-
-
 
 
 
@@ -152,7 +144,6 @@
 
 
 
-
     ///Given 2d-vector in input, returns unit normal to it.
     ///Normal = anticlockwise-PI/2-turned-given-vector.
     ///If abs < 1e-100, then norm and unit are constructed arbitrarily,
@@ -217,19 +208,18 @@
 
 
 
-
-
     ///gets vector's abs value and it's direction for vector p2-p1
     function p1_to_p2(
         p1,
         p2,
-        doDenullify //makes vector non zero
     ){
         const vector = [ p2[0]-p1[0], p2[1]-p1[1] ];
         const res = unitVector( vector );
         res.vector = vector;
         return res;
     }
+
+
 
     //intersection of two lines to be found:
     //u,u' are (non necessarily unit) vectors, v,v' initial positions,
@@ -274,6 +264,8 @@
         return linesCross( u,A,us,AS );
     }
 
+
+
     ///drops perpendicular which starts at point S and is
     ///a perpendicular to line segment AB,
     ///input:   point S and two points A,B
@@ -292,6 +284,8 @@
 
         return linesCross( u,v,us,vs );
     }
+
+
 
     function dropPerpendicularDetails( S, A, B )
     {
@@ -386,6 +380,4 @@
         return { cos, sin, angle:Math.atan2( sin, cos ) };
     }
 
-
 }) ( window );
-

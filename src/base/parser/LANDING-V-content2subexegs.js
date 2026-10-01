@@ -519,6 +519,9 @@
                      fconf.engineImg + '/empty.png' :
                         fconf.pathToContentSite + '/contents/' +
                         fconf.sappId + '/img/' + imgId;
+				if (imgId === '*empty*') {
+					fconf.timeToShowOriginalDiagram_effective = 1;
+				}
                 // \\// establishes image source file name
             }
             // \\// bg images
