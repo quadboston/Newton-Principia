@@ -265,6 +265,7 @@
             },
             errorMessage : { // nonSolvablePoint message shown at to of canvas
                 pos : [20, 20],
+                showsWhileLettersHidden : true,
                 fontSize : '25',
                 pcolor : invalidColor,
                 letterAngle : 0,

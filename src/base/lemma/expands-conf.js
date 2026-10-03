@@ -376,6 +376,7 @@ function doExpandConfig (){
                 'notp',
                 'undisplayAlways',
                 'displayAlways',
+                'showsWhileLettersHidden',
                 //initialR is simply a point-disk radius
                 //before multiplication by initialR * sf.thickness,
                 'initialR',

@@ -252,7 +252,13 @@
                 rgX.hideCaption ||
                 (
                     !haz( rgX, 'displayAlways' ) &&
-                    ( haz( rg, 'allLettersAreHidden' ) || haz( rgX, 'undisplay' ) )
+                    (
+                        // messages, unlike letters, show before the user
+                        // interacts with the diagram
+                        ( haz( rg, 'allLettersAreHidden' ) &&
+                          !haz( rgX, 'showsWhileLettersHidden' ) ) ||
+                        haz( rgX, 'undisplay' )
+                    )
                 )
             );
 
