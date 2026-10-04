@@ -62,11 +62,9 @@
         //=============================================
         // //\\ points reused in config
         //=============================================
-        var V = [64, 462 ];
         RR = 360; //Math.sqrt( RR ) / 2;
-        var C = [510, 311 ]; //V[0] + ww1/2, V[1] + ww2/2, ];
-        //pos of point P
-        var S = C; //[0, 0 ]; //not set in amode8captures
+        var C = [510, 311 ];
+        var S = C;
         //=============================================
         // \\// points reused in config
         //=============================================
@@ -150,10 +148,6 @@
         // //\\ points to approximate and draw original curve
         //---------------------------------------------------
         var originalPoints = {
-            Or : {
-                doPaintPname : false,
-                pos: C,
-            },
             S : {
                 pos: S,
                 pcolor : sunColor,
@@ -179,13 +173,8 @@
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
-                draggableY  : fconf.sappId === 'b1sec2prop7',
+                draggableY  : true,
 				cssClass:  'subessay--claim subessay--solution',
-            },
-            Z : {
-                pcolor : bodyColor,
-                undisplayAlways : true,
-                doPaintPname : false,
             },
             Y : {
                 pcolor : proofColor,
@@ -193,19 +182,9 @@
 				cssClass:'subessay--another-solution',
             },
             V : {
-                pos: V,
                 pcolor : proofColor,
                 letterAngle : -45,
 				cssClass:'subessay--another-solution',
-            },
-
-            //center of instant curvature circle
-            C : {
-                pos : C,
-                caption : 'Rc',
-                pcolor : proofColor,
-                undisplayAlways : true,
-                doPaintPname : false,
             },
         };
 
