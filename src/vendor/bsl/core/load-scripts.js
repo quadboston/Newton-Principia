@@ -36,6 +36,9 @@
             //      Basics_of_HTTP/MIME_types#JavaScript_types
             type = scriptItem.type || 'text/javascript';
             var scrip = document.createElement('script');
+            // runs scripts in list order, so a lemma's own scripts can
+            // replace the exports of the lemma whose code it reuses
+            scrip.async = false;
             scrip.onload = function() {
                 completionCount++;
                 scriptItem.cb && scriptItem.cb( loadedItem );

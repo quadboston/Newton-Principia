@@ -211,6 +211,10 @@ const {
                         ns.url2conf( sconf );
                     }
                     ns.url2conf( fconf ); //overriding url-query one more time
+                    //URLs without tabs, such as links between essays,
+                    //open the tab the site's own links open
+                    sn( 'logic_phaseId', fconf, 'claim' );
+                    sn( 'aspectId', fconf, ns.getAspectId( fconf.sappId ) );
                     //==========================================================
                     // \\// init_conf for models
                     //==========================================================
