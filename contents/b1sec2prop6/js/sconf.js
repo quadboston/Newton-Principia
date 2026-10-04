@@ -226,7 +226,6 @@
 
         Object.assign( originalPoints, {
             A : {
-                pos: posA,
                 pcolor : bodyColor,
 				draggableX  : true,
                 draggableY  : true,
@@ -257,7 +256,6 @@
             },
 
             T : {
-                pos: [0,0],
                 pcolor : estimatedForceColor,
                 letterAngle : 180,
 				cssClass: 'subessay--corollary1 subessay--corollary5',
@@ -270,7 +268,6 @@
             },
 
             Z : {
-                pos: [111111,111111],
                 pcolor : proofColor,
                 letterAngle : 45,
 				cssClass: 'subessay--corollary1',
@@ -299,7 +296,6 @@
             },
 
             V : {
-                pos: posS,
                 pcolor : estimatedForceColor,
                 letterAngle : -45,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
