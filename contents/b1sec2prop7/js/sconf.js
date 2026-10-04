@@ -204,11 +204,6 @@
                 draggableX  : true,
                 draggableY  : true,
             },
-            QtimeDecor : {
-                undisplayAlways : true,
-                //pos: will be as Q, 
-                cssClass : 'tp-dtime',
-            },
 
             T : {
                 pcolor : estimatedForceColor,
