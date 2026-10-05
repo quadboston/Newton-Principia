@@ -186,7 +186,7 @@
             //any draggers).  Then they only reappear on mouse up after
             //clicking a dragger.
             if( movesAndFindsHandle && mouseMoveCount && (
-                !sconf.mediaMoverPointDisabled || !forbidden )) {
+                !sconf.diagramPannerDisabled || !forbidden )) {
                 //c cc( mouseMoveCount + ' removes' );
                 att.removeEventListener( 'mousemove', movesAndFindsHandle );
                 mouseMoveCount--;

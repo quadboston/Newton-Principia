@@ -45,7 +45,7 @@
         //other places for this property are:
         //  processDownEvent
         //  processUpEvent
-        if( !haz( sconf, 'mediaMoverPointDisabled' ) ){
+        if( !haz( sconf, 'diagramPannerDisabled' ) ){
             //vital for appearing of 'grab" right at the launch
             stdMod.simScene.style.cursor = 'grab';
         }

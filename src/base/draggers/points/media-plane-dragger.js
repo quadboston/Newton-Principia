@@ -12,18 +12,18 @@
 
     function setModule()
     {
-        sDomF.creates_mediaMover_in_rgX8dragWrapGenList =
-            creates_mediaMover_in_rgX8dragWrapGenList;
+        sDomF.creates_diagramPanner_in_rgX8dragWrapGenList =
+            creates_diagramPanner_in_rgX8dragWrapGenList;
         sDomF.resetModelPos = resetModelPos;
     }
 
 
     //===================================================
-    //interface for media-mover
+    //interface for diagram-panner
     //===================================================
-    function creates_mediaMover_in_rgX8dragWrapGenList()
+    function creates_diagramPanner_in_rgX8dragWrapGenList()
     {
-        var pname = 'media-mover';
+        var pname = 'diagram-panner';
         var pos = [ -11111, -11111 ]; //fake
         var rgX = sDomF.params__2__rgX8dragwrap_gen_list({
             pname,
@@ -41,13 +41,13 @@
             ]
         };
 
-        rgX.mediaMover  = true;
+        rgX.diagramPanner  = true;
         rgX.undisplay   = true;
         rgX.unfound     = true;
         rgX.pcolor      = 'transparent';
 
         ssF.pos2pointy(
-            'media-mover',
+            'diagram-panner',
             {
                 'fill' : 'transparent',
                 'stroke' : 'transparent',
@@ -60,7 +60,7 @@
     
     // reset model back to its original [x,y] position
     function resetModelPos() {
-        nspaste( rg[ "media-mover" ].achieved,
+        nspaste( rg[ "diagram-panner" ].achieved,
             {
                 "achieved": [
                     sconf.originX_onPicture, //492,
@@ -68,7 +68,7 @@
                 ]
             }
         );
-        var ach = rg[ "media-mover" ].achieved.achieved;
+        var ach = rg[ "diagram-panner" ].achieved.achieved;
         sconf.modorInPicX = ach[0];
         sconf.modorInPicY = ach[1];
     }
