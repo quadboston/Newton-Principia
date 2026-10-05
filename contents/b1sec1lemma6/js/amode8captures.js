@@ -46,7 +46,7 @@
         {
             "reset-to-origin" : {
                     curveRotationAngle : Object.assign( ANGLE_AUTH ),
-                    "media-mover": {
+                    "diagram-panner": {
                         "achieved": {
                             "achieved": MODEL_ORIGIN_IN_PIC
                         }

@@ -62,7 +62,7 @@ function init_conf_addon (){
             "rgslid_dt": {
             "val": sconf.initialTimieStep
     },
-    "media-mover": {
+    "diagram-panner": {
         "achieved": {
             "achieved": [
                 47,

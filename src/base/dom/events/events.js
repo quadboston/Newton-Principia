@@ -156,7 +156,7 @@
                 var mousePicY = svgP.y;
             }
 
-            mediaMover(oldScale, newScale, mousePicX, mousePicY); 
+            pansToKeepZoomCenter(oldScale, newScale, mousePicX, mousePicY); 
             stdMod.model8media_upcreate();
         };
 
@@ -227,7 +227,7 @@
             rg.media_scale.modPos_2_GUI();
 
             // use the original midpoint as zoom center
-            mediaMover(oldScale, newScale, pinchCenterPicX, pinchCenterPicY);
+            pansToKeepZoomCenter(oldScale, newScale, pinchCenterPicX, pinchCenterPicY);
 
             stdMod.model8media_upcreate();
         }
@@ -239,7 +239,7 @@
         }
 
         // moves model so zoom is around mouse
-        function mediaMover(oldScale, newScale, mousePicX, mousePicY) {
+        function pansToKeepZoomCenter(oldScale, newScale, mousePicX, mousePicY) {
 
             var originX = sconf.modorInPicX;
             var originY = sconf.modorInPicY;
@@ -258,7 +258,7 @@
             sconf.modorInPicY += dragMoveY;
 
             // necessary so drag to move starts at correct position
-            rg[ "media-mover" ].achieved.achieved = [
+            rg[ "diagram-panner" ].achieved.achieved = [
                 sconf.modorInPicX,
                 sconf.modorInPicY
             ];

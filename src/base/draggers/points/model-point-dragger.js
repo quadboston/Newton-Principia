@@ -79,7 +79,7 @@
     function move_2_updates(
         //see: pWrap.move_2_updates(
         //"fullMoveInsideMathModel",
-        //is in model units except for media-mover(-as-a-whole)
+        //is in model units except for diagram-panner(-as-a-whole)
         dragMove,  //possibly upside down along vertical axis
 
         //possibly in media units, not im model units,
@@ -88,7 +88,7 @@
         if( haz( sconf, 'dragHidesPictures' ) ){
             sDomF.detected_user_interaction_effect();
         }
-        if( ns.h( this, 'mediaMover' ) ) {
+        if( ns.h( this, 'diagramPanner' ) ) {
             //// non-ordinary case:
             //// dragging model as a whole "inside media"
             //sconf.originX_onPicture - original position remains intact
@@ -120,7 +120,7 @@
     ///must be in contex of pointWrap ( like this = rg.B )
     function processDownEvent( arg )
     {
-        if( ns.haz( this, 'mediaMover' ) ) {
+        if( ns.haz( this, 'diagramPanner' ) ) {
             //// non-ordinary case:
             this.hideD8Dpoint = false;
             $$.$( this.svgel ).toggleClass( 'undisplay', false );
@@ -150,7 +150,7 @@
 
     function processUpEvent( arg )
     {
-        if( ns.haz( this, 'mediaMover' ) ) {
+        if( ns.haz( this, 'diagramPanner' ) ) {
             this.achieved.achieved[ 0 ] = sconf.modorInPicX;
             this.achieved.achieved[ 1 ] = sconf.modorInPicY;
 

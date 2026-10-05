@@ -146,7 +146,7 @@ function makesProfessorsCaptureFootnotes (){
         },
 
         "corollary-1": {
-            "media-mover": {
+            "diagram-panner": {
                 "achieved": {
                     "achieved": [
                         47,

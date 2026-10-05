@@ -140,7 +140,7 @@
             //if( spinnerCandidate.pointWrap.pname === 'P' )
             //c cc( spinnerCandidate.pointWrap.pname, decPoint );
 
-            if( decPoint && spinnerCandidate.pointWrap.pname !== 'media-mover' ) {
+            if( decPoint && spinnerCandidate.pointWrap.pname !== 'diagram-panner' ) {
                 //console.log( decPoint  );
                 if( spinnerCandidate.pointWrap.hideD8Dpoint ) {
                     decPoint.style.display = 'none';
@@ -153,9 +153,9 @@
                 }
             } else {
                 //Only switch cursor (from default) if media mover is enabled.
-                //'media-mover' refers to draggable canvas
+                //'diagram-panner' refers to draggable canvas
                 //this changes cursor back to 'pointer' after being 'crosshair'
-                dragSurface.style.cursor = sconf.mediaMoverPointDisabled ?
+                dragSurface.style.cursor = sconf.diagramPannerDisabled ?
                     '' : 'pointer';
             }
         }

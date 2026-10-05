@@ -99,7 +99,7 @@
             case 'move':
 
                 //**rgX can be media mover engine
-                if( ns.haz( pWrap, 'mediaMover' ) ) {
+                if( ns.haz( pWrap, 'diagramPanner' ) ) {
                     var css2model = sDomF.out2inn();
                     var mouseOnSurf = sDomF.outparent2inn( arg.point_on_dragSurf );
                 } else if( haz(pWrap, 'unscalable' ) ){
@@ -120,7 +120,7 @@
                 pWrap.move_2_updates(
 
                     //"fullMoveInsideMathModel",
-                    //is in model units except for media-mover(-as-a-whole)
+                    //is in model units except for diagram-panner(-as-a-whole)
                     scaledMove, 
 
                     mouseOnSurf, //possibly in media units, not im model units,

@@ -41,7 +41,7 @@
 
                 ///patch: changes non-rg property: media center:
                 ///todm: legalize;
-                var mcenter = haz( astate, 'media-mover' );
+                var mcenter = haz( astate, 'diagram-panner' );
                 if( mcenter ) {
                     var mcenterA = haz( mcenter, 'achieved' );
                     if( mcenterA ) {
