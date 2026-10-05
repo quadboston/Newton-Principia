@@ -31,12 +31,6 @@
 
 
         if( subessay === 'corollary2' || subessay === 'corollary3' ){
-            nspaste( rg.A.pos, q2xy(
-                -0.5, //chosen value for A
-            ));
-            nspaste( rg.P.pos, q2xy(
-                0.5, //chosen value for P
-            ));
             var Ss = Math.PI * 1.2;
             var S = q2xy( Ss );
             rg.S.pos[0] = S[0]*0.4;
@@ -45,22 +39,14 @@
             var Rcol2_s = Math.PI * 0.75;
             var Rcol2 = q2xy( Rcol2_s );
             rg.Rcol2.pos[0] = Rcol2[0]*0.4;
-            rg.Rcol2.pos[1] = rg.P.pos[1]; //Rcol2[1]*0.4;
+            rg.Rcol2.pos[1] = q2xy( 0.5 )[1];
 
+        } else if( subessay === 'corollary1' ) {
+            // S on the circle
+            nspaste( rg.S.pos, [-0.9997779468574, -0.0210731450212] );
         } else {
-            nspaste( rg.A.pos,
-                [-0.6030729600066013, 0.13447833820836858] //Book's value
-            );
-            nspaste( rg.S.pos,
-                [-0.6030729600066013, 0.13447833820836858] //Book's value
-            );
-            nspaste( rg.P.pos, q2xy(
-                0.7262954797868 // Book's value for P
-            ));
-            if( subessay === 'corollary1' ) {
-                ////placing S to the circle
-                nspaste( rg.S.pos, [-0.9997779468574, -0.0210731450212] );
-            }
+            // S in the original diagram, set in sconf.js
+            nspaste( rg.S.pos, ssD.S_configuredPos );
         }
 
         modifyDecorationVisibility( subessay );

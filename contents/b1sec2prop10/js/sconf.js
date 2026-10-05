@@ -33,6 +33,7 @@
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
         
         fconf.DRAGGER_TOLERANCE = 17; // distance where crosshair appears
+        sconf.enableStudylab = false;
 
         //--------------------------------------
         // //\\ do override engine defaults,
@@ -105,13 +106,13 @@
         //intervals of dt or dq to construct an arc for estimated force
         //Sets initial distance of point Q from P
         if( FT ){
-            sconf.Dt0 = 0.36;
+            sconf.Dt0 = 0.376991165;
         } else {
             sconf.Dq0 = 0.42;
         }
 
         //pos of P
-        sconf.parQ = 0.255 * Math.PI;
+        sconf.parQ = 0.8011061267;
 
         //-----------------------------------
         // //\\ topic group colors,
@@ -242,10 +243,8 @@
             },
 
             tCircleCenter : {
-                pos : posC,
-                caption : "",
                 pcolor : infoColor,
-                letterAngle : -45,
+				doPaintPname : false,
                 cssClass: 'subessay--another-solution',
             },
 

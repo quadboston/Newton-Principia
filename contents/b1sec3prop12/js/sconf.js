@@ -35,6 +35,7 @@
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
         
         fconf.DRAGGER_TOLERANCE = 15; // distance where crosshair appears
+        sconf.enableStudylab = false;
 
         //--------------------------------------
         // //\\ do override engine defaults,
@@ -128,10 +129,10 @@
 
         //interval of dt to construct an arc for estimated force
         //Sets initial distance of point Q from P
-        sconf.Dt0 = 0.4;
+        sconf.Dt0 = 0.4916;
 
         //pos of P
-        sconf.parQ = 0.45;
+        sconf.parQ = 0.4461;
 
         //-----------------------------------
         // //\\ topic group colors

@@ -12,6 +12,7 @@
 					{ src: 'hyperbola/sconf.js' },
 					{ src: sm + 'model-customizer.js' },
 					{ src: sm + 'completes-sliders-creation.js' },
+					{ src: 'amode8captures.js' },
 				];
 		} else if (window.location.href.includes('parabola')) {
 			sm = '../../b1sec3prop12/js/';
@@ -20,6 +21,7 @@
 					{ src: 'parabola/sconf.js' },
 					{ src: '../../b1sec3prop13/js/model-customizer.js' },
 					{ src: sm + 'completes-sliders-creation.js' },
+					{ src: 'amode8captures.js' },
 					{ src: 'parabola/main-legend.js' },
 				];
 		} else {
@@ -31,7 +33,6 @@
 		}
 		codeList.push({ src: sm + 'config-functions.js' });
 		codeList.push({ src: sm + 'init-model-parameters.js' });
-		codeList.push({ src: sm + 'amode8captures.js' });
 		codeList.push({ src: sm + 'model-upcreate.js' });
 		return {		 
 			codesList : codeList, 

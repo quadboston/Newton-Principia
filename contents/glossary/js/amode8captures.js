@@ -1,5 +1,5 @@
 ( function() {
-    var { sDomF, stdMod, rg, sconf, }
+    var { sDomF, stdMod, sconf, }
         = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     return;
 
@@ -18,9 +18,6 @@
         // //\\ "draws" conics
         stdMod.establishesEccentricity( op.initialEccentricity )
         // \\// "draws" conics
-
-        rg.S.pos[0] = 0;
-        rg.S.pos[1] = 0;
 
         //=============================================================
         // \\// model

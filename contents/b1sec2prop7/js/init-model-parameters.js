@@ -8,6 +8,9 @@
     /// model initiation
     ///****************************************************
     function init_model_parameters() {
+        // S as configured in sconf.js, before any tab or drag moves it
+        ssD.S_configuredPos = rg.S.pos.slice();
+
         stdMod.initiates_orbit8graph();
 
         //body moves backward on x,

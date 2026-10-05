@@ -34,6 +34,7 @@
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
         
         fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
+        sconf.enableStudylab = false;
 
         //--------------------------------------
         // //\\ do override engine defaults,
@@ -88,7 +89,7 @@
         const FT = sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
         sconf.CURVE_REVOLVES = false; //true for cyclic orbit
         sconf.DQ_SLIDER_MAX = FT ? null : 0.69;
-        sconf.DT_SLIDER_MAX = FT ? 0.18 : null;
+        sconf.DT_SLIDER_MAX = FT ? 0.25 : null;
         sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
         var Q_STEPS = 1500;
         var DATA_GRAPH_STEPS = 200;
@@ -110,19 +111,18 @@
         //intervals of dt or dq to construct an arc for estimated force
         //Sets initial distance of point Q from P
         if( FT ){
-            var Dt0 = 0.168; //0.1;
+            var Dt0 = 0.2276;
         } else {
             sconf.Dq0 = 0.2;
         }
 
         //pos of P
-        sconf.parQ = 0.250;
+        sconf.parQ = 0.283;
 
         //=============================================
         // //\\ points reused in config
         //=============================================
         var posS = [originX_onPicture, originY_onPicture];
-        var posP = [453, 177];
         var posA = [540, 338];
         //=============================================
         // \\// points reused in config
@@ -169,16 +169,16 @@
         var curvePivots =
         [
             posA,
-            [ 527,248 ],
-            [ 485,203 ],
-            [ 396, 148 ],
-            [300, 130], //near Q
+            [ 523.3, 252 ],
+            [ 510.9, 193.2 ],
+            [ 385.6, 156.7 ],
+            [300, 137.2], //near Q
             [217,132],
-            [102,184],
+            [102, 180.1],
             [51,238 ],
+			[24.2, 315] 
         ];
         sconf.rgPq = 0.270;
-        curvePivots.push( [22,315] );
         //sconf.tForSagitta0 = 0.168;
         if( sconf.BESIER_PIVOTS === 5 ) {
             ////adjustements of initial positions
@@ -226,7 +226,6 @@
 
         Object.assign( originalPoints, {
             A : {
-                pos: posA,
                 pcolor : bodyColor,
 				draggableX  : true,
                 draggableY  : true,
@@ -242,7 +241,6 @@
             },
 
             P : {
-                pos: posP,
                 pcolor : bodyColor,
                 letterAngle : 70,
                 draggableX  : true,
@@ -258,7 +256,6 @@
             },
 
             T : {
-                pos: [0,0],
                 pcolor : estimatedForceColor,
                 letterAngle : 180,
 				cssClass: 'subessay--corollary1 subessay--corollary5',
@@ -271,7 +268,6 @@
             },
 
             Z : {
-                pos: [111111,111111],
                 pcolor : proofColor,
                 letterAngle : 45,
 				cssClass: 'subessay--corollary1',
@@ -300,7 +296,6 @@
             },
 
             V : {
-                pos: posS,
                 pcolor : estimatedForceColor,
                 letterAngle : -45,
 				cssClass: 'subessay--corollary3 subessay--corollary5',

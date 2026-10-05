@@ -119,7 +119,7 @@
 
         //intervals of dt or dq to construct an arc for estimated force
         //Sets initial distance of point Q from P
-        sconf.Dt0 = 0.39;
+        sconf.Dt0 = 1;
 
         //pos of P
         sconf.parQ = 0.250 * Math.PI;

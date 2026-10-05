@@ -34,6 +34,7 @@
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
         
         fconf.DRAGGER_TOLERANCE = 15; // distance where crosshair appears
+        sconf.enableStudylab = false;
 
         //--------------------------------------
         // //\\ do override engine defaults,
@@ -120,10 +121,10 @@
 
         //intervals of dt or dq to construct an arc for estimated force
         //Sets initial distance of point Q from P
-        sconf.Dt0 = 0.5337;
+        sconf.Dt0 = 0.5674218587;
 
         //pos of P
-        sconf.parQ = 0.250 * Math.PI;
+        sconf.parQ = 0.7853981634;
 
         //-----------------------------------
         // //\\ topic group colors,
@@ -299,7 +300,7 @@
             },
 
             Q : {
-                //pos: set in amode8captures
+                //pos: set by sconf.Dt0
                 pcolor : estimatedForceColor,
                 letterAngle : 200,
                 letterRotRadius : 40,
