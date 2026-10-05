@@ -34,6 +34,7 @@
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
         
         fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
+        sconf.enableStudylab = false;
 
         //--------------------------------------
         // //\\ do override engine defaults,
@@ -117,7 +118,6 @@
 
         //pos of P
         sconf.parQ = 0.283;
-		sconf.enableStudylab = false;
 
         //=============================================
         // //\\ points reused in config
