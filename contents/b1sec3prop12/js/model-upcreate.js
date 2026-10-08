@@ -149,8 +149,14 @@
                 graphArg.xMax = sconf.DISTANCE_ORBIT_ENDS_TO_S;
 
                 graphArg.yMin = 0;
-                //Largest possible y value for all curves, for all arrangements
-                graphArg.yMax = ssD.MEF / ssD.MAF;
+                //y max stays fixed while the curves fit under it, which covers
+                //the common arrangements; extreme ones, such as a large
+                //eccentricity with Q far from P, raise it to fit their curves
+                const Y_MAX_USUAL = 2;
+                const yPeak = Math.max(
+                    ssD.actualForceMaxCurrent, ssD.estimatedForceMaxCurrent
+                ) / ssD.MAF;
+                graphArg.yMax = Math.max(Y_MAX_USUAL, yPeak);
 
 
             } else if (fconf.sappId === 'b1sec3prop13') {
