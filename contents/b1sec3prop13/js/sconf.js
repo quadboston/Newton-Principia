@@ -33,6 +33,7 @@
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
         
         fconf.DRAGGER_TOLERANCE = 15; // distance where crosshair appears
+        sconf.enableStudylab = false;
 
         //--------------------------------------
         // //\\ do override engine defaults,
@@ -82,7 +83,7 @@
         //-------------------------------------------
         sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
         sconf.CURVE_REVOLVES = false; //true for cyclic orbit
-        sconf.DT_SLIDER_MAX = 1.84;
+        sconf.DT_SLIDER_MAX = 5;
         var Q_STEPS = 500;
         var DATA_GRAPH_STEPS = 500;
         //Scale estimated force curve by actual force max
@@ -112,7 +113,7 @@
 
         //interval of dt to construct an arc for estimated force
         //Sets initial distance of point Q from P
-        sconf.Dt0 = 1.06;
+        sconf.Dt0 = 3.695;
 
         //pos of P
         sconf.parQ = 0.33;
