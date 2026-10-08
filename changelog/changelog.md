@@ -1,5 +1,17 @@
 # Change Log
 
+## 2026-10-08 (0.9.8)
+### Improved
+* Proposition 11
+	* actual and estimated force use the same scale, and graph scales across a more limited range
+* Proposition 12
+	* graph scales across a more limited range
+	* eccentricity adjustment is smoother and adjustable with H as well as A
+* Proposition 13
+	* fixed bug resulting in model occasionally not loading
+* Glossary
+	* latus rectum (parabola) shows components of the related calculation
+
 ## 2026-8-17 (0.9.7)
 ### Improved
 * General

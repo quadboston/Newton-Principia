@@ -84,7 +84,7 @@
         //-------------------------------------------
         sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
         sconf.CURVE_REVOLVES = false; //true for cyclic orbit
-        sconf.DT_SLIDER_MAX = 0.6;
+        sconf.DT_SLIDER_MAX = 0.7;
         var Q_STEPS = 500;
         var DATA_GRAPH_STEPS = 500;
         //Scale estimated force curve by actual force max
@@ -273,7 +273,9 @@
             H : {
                 pcolor : proofColor,
                 letterAngle : -90,
+                draggableX  : true,
 				cssClass: 'subessay--solution',
+                conditionalDrag : 'subessay--solution',
             },
             I : {
                 pcolor : proofColor,

@@ -6,6 +6,7 @@
         $$,
     } = window.b$l.nstree();
     nsmethods.createsGraphFramework = createsGraphFramework;
+    let graphsCreated = 0;
     return;
 
 
@@ -20,6 +21,7 @@
             dimY,   //svg inner height in svg-ViewBox
     }){
         var graphFM_self = { gmedia$ : null, gridIsPainted : false };
+        const clipPathId = 'graph-plot-area-' + ( ++graphsCreated );
         creates_svgDomEl();
 
         //todm: way to go to speed up graphs
@@ -69,7 +71,6 @@
                 axisXLegend,
                 drawAllAxes,
                 plotsCount_overrider,
-                doTruncateOutOfRangeY,
                 doPaintGridOnlyOnce,
                 doDrawToolline,
                 brightenGrid,
@@ -233,9 +234,6 @@
                     if( graphArrayMask && !graphArrayMask[yix] ) return;
 
                     if( plotCurvesCount <= yix ) return;
-                    if( doTruncateOutOfRangeY && ( pointY < yMin || pointY > yMax ) ) {
-                        return;
-                    }
                     var mediaY = marginY + dimY_withMarg -
                                  ( pointY - yMin ) / rangeY * dimY_withMarg;
                     //makes holes in array:
@@ -294,6 +292,10 @@
             // //\\ draws svg-plots from polylines
             //======================================================
             let gMedia = graphFM_self.gmedia$();
+            //hides parts of plots outside xMin..xMax, yMin..yMax, such as
+            //values above a capped yMax
+            setsPlotAreaClip( gMedia, marginX, marginY,
+                              dimX_withMarg, dimY_withMarg );
             polylines.forEach( (pl,plix) => {
                 if( !pl ) return;
                 var effStyle = Object.assign( {}, style );
@@ -306,6 +308,7 @@
                     style   : effStyle,
 					'stroke-width' : 2,
                 });
+                svg.setAttribute( 'clip-path', 'url(#' + clipPathId + ')' );
                 if( !svg.parentNode ) {
                     //todo why parent is always lost?
                     //ccc( plix+' lost' );
@@ -356,6 +359,27 @@
             return;
         }
 
+
+
+        ///clip region for plots: the plot area, widened by half the
+        ///plot stroke so curves along an edge are not thinned
+        function setsPlotAreaClip( gMedia, marginX, marginY, width, height )
+        {
+            const SVG_NS = 'http://www.w3.org/2000/svg';
+            const HALF_STROKE = 1;
+            let clip = gMedia.querySelector( '#' + clipPathId );
+            if( !clip ) {
+                clip = document.createElementNS( SVG_NS, 'clipPath' );
+                clip.setAttribute( 'id', clipPathId );
+                clip.appendChild( document.createElementNS( SVG_NS, 'rect' ) );
+                gMedia.appendChild( clip );
+            }
+            const rect = clip.firstChild;
+            rect.setAttribute( 'x', marginX - HALF_STROKE );
+            rect.setAttribute( 'y', marginY - HALF_STROKE );
+            rect.setAttribute( 'width', width + 2 * HALF_STROKE );
+            rect.setAttribute( 'height', height + 2 * HALF_STROKE );
+        }
 
 
         //==================================================

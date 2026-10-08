@@ -130,46 +130,39 @@
         rg.LL.pos[0] =  sinAxis * op.latus;
         rg.LL.pos[1] = -cosAxis * op.latus;
 
-
 		// graph
 		if (stdMod.graph) {
-            let graphArg = {
-            }
+            createGraph();
+		}
 
 
-            if (fconf.sappId === 'b1sec3prop12') {
-                //The bounds of the graph are fixed as follows.  This allows
-                //different arrangements of curves to easily be compared to one
-                //another (eg. different eccentricities).  Note when the axes
-                //are variable, the curves are distorted when compared, which is
-                //misleading for this model.
+		function createGraph() {
+			//Fixed bounds allow different arrangements of curves to easily be
+			//compared to one another (eg. different eccentricities).  Note
+			//when the axes are variable, the curves are distorted when
+			//compared, which is misleading for these models.
+			const graphArg = {
+				xMin : 0,
+				xMax : sconf.DISTANCE_ORBIT_ENDS_TO_S,
+				yMin : 0,
+			};
 
-                graphArg.xMin = 0;
-                //Ensure x max is fixed to the correct value
-                graphArg.xMax = sconf.DISTANCE_ORBIT_ENDS_TO_S;
+			if (fconf.sappId === 'b1sec3prop12') {
+				//y max stays fixed while the curves fit under it, which covers
+				//the common arrangements; extreme ones, such as a large
+				//eccentricity with Q far from P, raise it to fit their curves
+				const Y_MAX_USUAL = 2;
+				const yPeak = Math.max(
+					ssD.actualForceMaxCurrent, ssD.estimatedForceMaxCurrent
+				) / ssD.MAF;
+				graphArg.yMax = Math.max(Y_MAX_USUAL, yPeak);
+			}
+			//In Prop 13, y max is left unset, so it is automatically set to
+			//the current maximum y value for all curves, which allows the
+			//student to see how big it grows.  When Q is at P it equals MAF,
+			//and when Q is furthest from P it equals MEF.
 
-                graphArg.yMin = 0;
-                //Largest possible y value for all curves, for all arrangements
-                graphArg.yMax = ssD.MEF / ssD.MAF;
-
-
-            } else if (fconf.sappId === 'b1sec3prop13') {
-                //The bounds of the graph are mostly fixed as follows.  The
-                //exception being the y max which is variable, which allows the
-                //student to see how big it grows.
-
-                //Ensure x min and max are fixed to the correct values
-                graphArg.xMin = ssD.xMinFixedGraphAxis;
-                graphArg.xMax = sconf.DISTANCE_ORBIT_ENDS_TO_S;
-
-                graphArg.yMin = 0;
-                //yMax varies between MAF and MEF.  It's automatically set to
-                //the current maximum y value for all curves.  When Q is at P it
-                //equals MAF, and when Q is furthest from P it equals MEF.
-            }
-
-
-            stdMod.graph.drawsGraph(graphArg);
+			stdMod.graph.drawsGraph(graphArg);
 		}
     }
 }) ();

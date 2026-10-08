@@ -316,9 +316,14 @@
         //**************************************************************
         amode[ mcat_id ]    = scat_id;
         var exAspect        = exegs[ amode.logic_phase ][ amode.aspect ];
-        //if no default, always selects only the first essay
+        //on page load, keeps the subessay already chosen (eg from the URL),
+        //so the first layout measures what is shown; otherwise selects the
+        //default, or the first essay if there is no default
         var subexeg0        = exAspect.subexegs[ 0 ];
-        var subexeg         = ns.haz( exAspect, "default" ) || subexeg0;
+        var chosenSubexeg   = !amodel2app_8_extraWork &&
+                              ns.haz( exAspect.subessay2subexeg, amode.subessay );
+        var subexeg         = chosenSubexeg || ns.haz( exAspect, "default" ) ||
+                              subexeg0;
         amode.subessay      = subexeg.essayHeader.subessay;
         //**************************************************************
         //**************************************************************
