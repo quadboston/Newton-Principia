@@ -10,28 +10,49 @@
         //=========================================================================
         // //\\ eccentricity slider
         //=========================================================================
+        //A and H both lie on the axis on the side opposite its direction;
+        //each sets the eccentricity that puts it under the pointer
         rg.A.acceptPos = newPos => {
             //A is the vertex q2xy( Math.PI ), at distance latus / ( 1 + e )
-            //from S along the axis, so the eccentricity that puts A under
-            //the pointer follows directly from the pointer's distance
+            const distance = distanceAlongAxis( newPos );
+            setsEccentricity( distance > 0 ?
+                op.latus / distance - 1 : op.eccentricityMax );
+            return true;
+        };
+
+        if( rg.H.draggableX ) {
+            //H is the other focus, at distance 2 * latus * e / ( e*e - 1 );
+            //a pixel of H changes the eccentricity far less than a pixel of A
+            rg.H.acceptPos = newPos => {
+                const distance = distanceAlongAxis( newPos );
+                const latus = op.latus;
+                setsEccentricity( distance > 0 ?
+                    ( latus + Math.sqrt( latus*latus + distance*distance ) )
+                        / distance :
+                    op.eccentricityMax );
+                return true;
+            };
+        }
+
+        function distanceAlongAxis( pos )
+        {
             const center = sconf.diagramOrigin;
             const axis = op.mainAxisAngle;
-            const distance = -(
-                ( newPos[0] - center[0] ) * Math.cos( axis ) +
-                ( newPos[1] - center[1] ) * Math.sin( axis )
+            return -(
+                ( pos[0] - center[0] ) * Math.cos( axis ) +
+                ( pos[1] - center[1] ) * Math.sin( axis )
             );
-            const eccentricity = distance > 0 ?
-                op.latus / distance - 1 : op.eccentricityMax;
+        }
 
+        function setsEccentricity( eccentricity )
+        {
             stdMod.establishesEccentricity(
                 Math.max( op.eccentricityMin,
                           Math.min( op.eccentricityMax, eccentricity ) ),
                 false,
             );
             stdMod.rebuilds_orbit();
-
-            return true;
-        };
+        }
         //=========================================================================
         // \\// eccentricity slider
         //=========================================================================

@@ -273,7 +273,9 @@
             H : {
                 pcolor : proofColor,
                 letterAngle : -90,
+                draggableX  : true,
 				cssClass: 'subessay--solution',
+                conditionalDrag : 'subessay--solution',
             },
             I : {
                 pcolor : proofColor,
