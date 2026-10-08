@@ -77,7 +77,6 @@
         var ownStart    = rr.ownStart;
         var duration    = rr.duration;
         var ownElapsed  = unixTime - ownStart;
-        //c cc( 'ownElapsed='+ownElapsed + ' elapsed='+elapsed + ' duration='+duration + ' unixTime='+unixTime );
 
         if( typeof duration === 'undefined' || ownElapsed <= duration ) {
             //==============================================

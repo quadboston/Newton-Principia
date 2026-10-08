@@ -27,14 +27,13 @@
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
-        //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
-        sconf.rgShapesVisible = true;
 
         sconf.TP_OPACITY_FROM_fixed_colors = true;
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
         
         fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
+        sconf.enableStudylab = false;
 
         //--------------------------------------
         // //\\ do override engine defaults,
@@ -89,7 +88,7 @@
         const FT = sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
         sconf.CURVE_REVOLVES = false; //true for cyclic orbit
         sconf.DQ_SLIDER_MAX = FT ? null : 0.69;
-        sconf.DT_SLIDER_MAX = FT ? 0.18 : null;
+        sconf.DT_SLIDER_MAX = FT ? 0.25 : null;
         sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
         var Q_STEPS = 1500;
         var DATA_GRAPH_STEPS = 200;
@@ -111,19 +110,18 @@
         //intervals of dt or dq to construct an arc for estimated force
         //Sets initial distance of point Q from P
         if( FT ){
-            var Dt0 = 0.168; //0.1;
+            var Dt0 = 0.2276;
         } else {
             sconf.Dq0 = 0.2;
         }
 
         //pos of P
-        sconf.parQ = 0.250;
+        sconf.parQ = 0.283;
 
         //=============================================
         // //\\ points reused in config
         //=============================================
         var posS = [originX_onPicture, originY_onPicture];
-        var posP = [453, 177];
         var posA = [540, 338];
         //=============================================
         // \\// points reused in config
@@ -134,35 +132,30 @@
         //      todm: possibly proliferation
         //-----------------------------------
         const {
-            given,
-            body,
-            orbit,
-            dtime,
-            proof,
-            force,
+            givenColor,
+            bodyColor,
+            proofColor,
+            forceColor,
             invalid,
             infoColor,
-			supplementColor,
             estimatedForceColor,
             curvature,
-            displacement,
-			sunColor
+            sunColor
         } = topicColors_repo;
 
 
         var topicColors_elected =
         {
             estimatedForceColor,
-            given,
-            proof,
+            givenColor,
+            proofColor,
             curvature,
-            dtime,
             curvatureCircle : curvature,
-            body,
-            orbit,
-            timearc : orbit,
-            APQ     : orbit,
-            force,
+			time: estimatedForceColor,
+            orbit: bodyColor,
+            timearc : bodyColor,
+            APQ     : bodyColor,
+            force: forceColor,
             invalid,
         };
         //-----------------------------------
@@ -175,16 +168,16 @@
         var curvePivots =
         [
             posA,
-            [ 527,248 ],
-            [ 485,203 ],
-            [ 396, 148 ],
-            [300, 130], //near Q
+            [ 523.3, 252 ],
+            [ 510.9, 193.2 ],
+            [ 385.6, 156.7 ],
+            [300, 137.2], //near Q
             [217,132],
-            [102,184],
+            [102, 180.1],
             [51,238 ],
+			[24.2, 315] 
         ];
         sconf.rgPq = 0.270;
-        curvePivots.push( [22,315] );
         //sconf.tForSagitta0 = 0.168;
         if( sconf.BESIER_PIVOTS === 5 ) {
             ////adjustements of initial positions
@@ -209,14 +202,14 @@
         }
         curvePivots = curvePivots.map( pivot => ({
             pos         : pivot,
-            pcolor      : supplementColor,
+            pcolor      : infoColor,
             letterAngle : 45,
             draggableX  : true,
             draggableY  : true,
             doPaintPname : false,
         }));
 
-        var foldPoints  = (new Array(200)).fill({}).map( fp => ({
+        var foldPoints  = (new Array(200)).fill({}).map( () => ({
             pcolor      : invalid,
             doPaintPname : false,
         }));
@@ -232,8 +225,7 @@
 
         Object.assign( originalPoints, {
             A : {
-                pos: posA,
-                pcolor : orbit,
+                pcolor : bodyColor,
 				draggableX  : true,
                 draggableY  : true,
 				cssClass: 'logic_phase--corollary',
@@ -248,8 +240,7 @@
             },
 
             P : {
-                pos: posP,
-                pcolor : body,
+                pcolor : bodyColor,
                 letterAngle : 70,
                 draggableX  : true,
                 draggableY  : true,
@@ -264,21 +255,19 @@
             },
 
             T : {
-                pos: [0,0],
                 pcolor : estimatedForceColor,
                 letterAngle : 180,
 				cssClass: 'subessay--corollary1 subessay--corollary5',
             },
 
             R : {
-                pcolor : displacement,
+                pcolor : estimatedForceColor,
                 letterAngle : 45,
 				cssClass: 'logic_phase--corollary',
             },
 
             Z : {
-                pos: [111111,111111],
-                pcolor : proof,
+                pcolor : proofColor,
                 letterAngle : 45,
 				cssClass: 'subessay--corollary1',
             },
@@ -286,7 +275,7 @@
             // Q's counterpart at other end of arc
             rrminus : {
                 caption : '',
-                pcolor : given,
+                pcolor : givenColor,
 				cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
             },
 
@@ -306,7 +295,6 @@
             },
 
             V : {
-                pos: posS,
                 pcolor : estimatedForceColor,
                 letterAngle : -45,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
@@ -357,23 +345,23 @@
 			 }, },
             { 'SP' : { pcolor : estimatedForceColor,
 			 }, },
-            { 'PY' : { pcolor : orbit,
+            { 'PY' : { pcolor : bodyColor,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
 			 }, },
-            { 'PZ' : { pcolor : proof,
+            { 'PZ' : { pcolor : proofColor,
 				cssClass: 'subessay--corollary1 subessay--corollary3',
 			 }, },
-            { 'PR' : { pcolor : proof,
+            { 'PR' : { pcolor : proofColor,
 				cssClass: 'logic_phase--corollary',
 			 }, },
             { 'SY' : { pcolor : estimatedForceColor,
 				cssClass: 'subessay--corollary3 subessay--corollary5',
 			 }, },
-            { 'QR' : { pcolor : displacement,
+            { 'QR' : { pcolor : estimatedForceColor,
 				cssClass: 'logic_phase--corollary',
 			 }, },
-            { 'QP' : { pcolor : proof }, },
-            { 'SQ' : { pcolor : proof,
+            { 'QP' : { pcolor : proofColor }, },
+            { 'SQ' : { pcolor : proofColor,
 				cssClass: 'subessay--corollary1',
 			 }, },
             { 'QT' : { pcolor : estimatedForceColor,
@@ -382,7 +370,7 @@
             { 'PC' : { pcolor : curvature,
 				cssClass: 'subessay--corollary3',
 			 }, },
-            { 'Q,rrminus' : { pcolor : given,
+            { 'Q,rrminus' : { pcolor : givenColor,
 				cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
 			 }, },
             { 'P,sagitta' : { pcolor : estimatedForceColor,

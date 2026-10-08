@@ -20,7 +20,7 @@
                 { src: 'state-capturer.js' },
                 { src: 'config-functions.js' },
                 { src: 'graph-customization.js' },
-				{ src: '../../force-law-models/main-legend.js' },
+				{ src: '../../kepler-orbit-models/main-legend.js' },
             ],
             "contents-list" :
             [

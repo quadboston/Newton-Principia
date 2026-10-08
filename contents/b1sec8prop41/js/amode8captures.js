@@ -1,7 +1,7 @@
 ( function() {
     var {
-        nspaste, toreg, 
-        sDomF, ssF, 
+        nspaste,
+        sDomF,
         stdMod, rg, sconf,
     } = window.b$l.apptree({
         ssFExportList :
@@ -18,10 +18,6 @@
     {
 
         sDomF.resetModelPos();
-
-        var media_scale         = toreg( 'media_scale' )();
-        rg.media_scale.value    = 1;
-        ssF.scaleValue2app( rg.media_scale.value, stdMod );
 
         {
             ////restores original pivots positions
@@ -47,9 +43,6 @@
         rg.vgpoint.undisplay = true;
         rg.Zgpoint.undisplay = true;
 
-        //comment out to remove Book's diagram after timeout
-        sDomF.detected_user_interaction_effect( 'doUndetected' );
-        //sDomF.detected_user_interaction_effect( );
         return captured;
     }
 

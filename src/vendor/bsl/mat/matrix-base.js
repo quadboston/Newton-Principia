@@ -7,10 +7,6 @@
 	var ns	    = window.b$l;
     var mat     = ns.sn( 'mat' );
 
-
-
-
-
     /*
     //subtracts vectors
     function mn( A, B ) { return [ A[0] - B[0], A[1] - B[1] ]; }
@@ -31,7 +27,6 @@
     mat.scalarProduct       = scalarProduct;
     mat.angleBetweenLineSegments = angleBetweenLines; //todm remove aliasing
     return;
-
 
 
 
@@ -76,9 +71,6 @@
         }
         return ret;
     }
-
-
-
 
 
 
@@ -152,7 +144,6 @@
 
 
 
-
     ///Given 2d-vector in input, returns unit normal to it.
     ///Normal = anticlockwise-PI/2-turned-given-vector.
     ///If abs < 1e-100, then norm and unit are constructed arbitrarily,
@@ -197,7 +188,6 @@
                     normSeed[ mIx ] = 0;
                 }
             }
-            //ccc( 'minIx=' + minIx + ' uMin=' + uMin );
             var norm1 = [
                 unit[1]*normSeed[2] - unit[2]*normSeed[1],
                 -unit[0]*normSeed[2] - unit[2]*normSeed[0],
@@ -210,12 +200,9 @@
                 unit[0]*norm1[1] - unit[1]*norm1[0],
             ];
             var ret = { abs, orts : [ norm1, norm2, ], unit };
-            //ccc( 'ret=', ret );
         }
         return ret;
     }
-
-
 
 
 
@@ -223,13 +210,14 @@
     function p1_to_p2(
         p1,
         p2,
-        doDenullify //makes vector non zero
     ){
         const vector = [ p2[0]-p1[0], p2[1]-p1[1] ];
         const res = unitVector( vector );
         res.vector = vector;
         return res;
     }
+
+
 
     //intersection of two lines to be found:
     //u,u' are (non necessarily unit) vectors, v,v' initial positions,
@@ -242,7 +230,6 @@
         us, //direction-2'
         vs  //start-2'
     ) {
-        //ccc( 'u=', u, 'v=',v, 'us=', us, 'vs=', vs);
         const inverse = mat.inverse2x2([
             [u[0], -us[0]],
             [u[1], -us[1]]]);
@@ -259,8 +246,6 @@
 
         //to check the job, compare r and rs, they must be equal
         //var rs = [y*us[0]+vs[0], y*us[1]+vs[1]];
-        //ccc( 'solution1=', r );
-        //ccc( 'solution2=', rs );
 
         return r;
     }
@@ -273,6 +258,8 @@
         var us = [ BS[0] - AS[0], BS[1] - AS[1] ];
         return linesCross( u,A,us,AS );
     }
+
+
 
     ///drops perpendicular which starts at point S and is
     ///a perpendicular to line segment AB,
@@ -292,6 +279,8 @@
 
         return linesCross( u,v,us,vs );
     }
+
+
 
     function dropPerpendicularDetails( S, A, B )
     {
@@ -386,6 +375,4 @@
         return { cos, sin, angle:Math.atan2( sin, cos ) };
     }
 
-
 }) ( window );
-

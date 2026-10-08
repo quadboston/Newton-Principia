@@ -99,9 +99,9 @@
                         var ast = {};
                         ///non-rg property: media center:
                         ///todm: legalize;
-                        var mcenter = ns.haz( rg, 'media-mover' );
+                        var mcenter = ns.haz( rg, 'diagram-panner' );
                         if( mcenter ) {
-                            ns.paste( ast, { 'media-mover' :
+                            ns.paste( ast, { 'diagram-panner' :
                                                 { achieved :  mcenter.achieved },
                                               subessay : amode.subessay,
                                            }

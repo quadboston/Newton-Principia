@@ -126,7 +126,6 @@
             var rangeX  = endX - startX;
             function emulatesMove( timestamp ){
                 var dataArg = startX + rangeX*(Math.min(timestamp, dur)) / dur;
-                //c cc( 'emulates: moves dataArg=' + dataArg );
                 slider.d8d_emulateAbsFractionX( dataArg, 'move' );
             }
             function completesMove()

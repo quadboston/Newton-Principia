@@ -21,7 +21,7 @@
         var SLIDERS_LEGEND_HEIGHT = 0;
 
         sconf.default_tp_lightness = 30;
-        sconf.mediaMoverPointDisabled = !false;
+        sconf.diagramPannerDisabled = !false;
         sconf.skipGenDragList = !false; //false is for media mover,
         
         

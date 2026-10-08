@@ -1,7 +1,10 @@
 ( function() {
     var { $$, nsmethods, nssvg, mat, has,
         ssF, ssD, stdMod, sconf, rg, toreg, } 
-        = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
+        = window.b$l.apptree({ stdModExportList : {
+            model_upcreate,
+            restoresStashedVisibility,
+        }, });
     return;
 
 
@@ -174,7 +177,7 @@
                 //printAxisYDigits : true,
             }
 
-            let ga = stdMod.graphFW_lemma.graphArray;
+            let ga = stdMod.graph.graphArray;
             let len = ga.length;
             let sumAbs = 0;
             var yMax = 0;
@@ -195,7 +198,7 @@
             graphArg.yMax = Math.max( yMax, averageY*1.5 );
             graphArg.yMin = 0;
 
-            stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
+            stdMod.graph.drawsGraph(graphArg);
         }
         //------------------------------------------------
         // \\// graph
@@ -273,20 +276,7 @@
         //      for non-Kepler curve
         //================================================
         if( solvable ) {
-            if( ssD.stashedVisibility ) {
-                ////restores visibility which has been stashed
-                ////when curve became non-Kepler
-                let sv = ssD.stashedVisibility;
-                Object.keys(ssD.stashedVisibility).forEach( okey => {
-                    let val = sv[ okey ];
-                    switch(okey) {
-                        case 'Q.hideD8Dpoint' : rg.Q.hideD8Dpoint = val;
-                        break;
-                        default : rg[ okey ].undisplay = val;
-                    }
-                });
-                ssD.stashedVisibility = null;
-            }
+            restoresStashedVisibility();
         } else if( !ssD.stashedVisibility ) {
             ////===========================================
             ////this block hides shapes when orbit splits
@@ -323,5 +313,22 @@
         // \\// hides/shows non-existing elements
         //      for non-Kepler curve
         //================================================
+    }
+
+    ///restores visibility which has been stashed
+    ///when curve became non-Kepler
+    function restoresStashedVisibility()
+    {
+        const sv = ssD.stashedVisibility;
+        if( !sv ) return;
+        Object.keys( sv ).forEach( okey => {
+            const val = sv[ okey ];
+            switch(okey) {
+                case 'Q.hideD8Dpoint' : rg.Q.hideD8Dpoint = val;
+                break;
+                default : rg[ okey ].undisplay = val;
+            }
+        });
+        ssD.stashedVisibility = null;
     }
 }) ();

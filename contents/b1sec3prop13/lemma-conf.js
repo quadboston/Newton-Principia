@@ -7,6 +7,7 @@
         return {          
             codesList : [
                 { src: 'sconf.js' },
+				{ src: 'model-customizer.js' },
             ],
             "contents-list" : [
                 'txt/latin.txt',

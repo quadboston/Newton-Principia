@@ -1,4 +1,4 @@
-//todm: apparently vital to merge this module with proper s ubmodel
+//todm: apparently vital to merge this module with proper submodel
 
 ( function() {
     var {
@@ -64,9 +64,6 @@
 
         stdMod.customDraggers_list.push(
             ( function( medD8D ) {
-                //if( rgX.pname === 'fret-0-0' ) {
-                //    ccc( 'executes rgX_2_dragWrap for ' + rgX.pname );
-                //}
                 ///does this make medpos? - no.
                 sDomF.rgX_2_dragWrap({
                     medD8D,
@@ -82,7 +79,7 @@
     function move_2_updates(
         //see: pWrap.move_2_updates(
         //"fullMoveInsideMathModel",
-        //is in model units except for media-mover(-as-a-whole)
+        //is in model units except for diagram-panner(-as-a-whole)
         dragMove,  //possibly upside down along vertical axis
 
         //possibly in media units, not im model units,
@@ -91,7 +88,7 @@
         if( haz( sconf, 'dragHidesPictures' ) ){
             sDomF.detected_user_interaction_effect();
         }
-        if( ns.h( this, 'mediaMover' ) ) {
+        if( ns.h( this, 'diagramPanner' ) ) {
             //// non-ordinary case:
             //// dragging model as a whole "inside media"
             //sconf.originX_onPicture - original position remains intact
@@ -123,7 +120,7 @@
     ///must be in contex of pointWrap ( like this = rg.B )
     function processDownEvent( arg )
     {
-        if( ns.haz( this, 'mediaMover' ) ) {
+        if( ns.haz( this, 'diagramPanner' ) ) {
             //// non-ordinary case:
             this.hideD8Dpoint = false;
             $$.$( this.svgel ).toggleClass( 'undisplay', false );
@@ -153,7 +150,7 @@
 
     function processUpEvent( arg )
     {
-        if( ns.haz( this, 'mediaMover' ) ) {
+        if( ns.haz( this, 'diagramPanner' ) ) {
             this.achieved.achieved[ 0 ] = sconf.modorInPicX;
             this.achieved.achieved[ 1 ] = sconf.modorInPicY;
 
@@ -165,8 +162,8 @@
             if( ns.haz( arg.dragWrap, 'decPoint' )) {
                 $$.$( arg.dragWrap.decPoint ).css( 'display', 'none' );
             }
-            //vital to toggle grab from grabbing:
-            stdMod.simScene.style.cursor = 'grab';
+            //vital to toggle pointer from grabbing:
+            stdMod.simScene.style.cursor = 'pointer';
         }
 
         //already done on low level of d8d-framework

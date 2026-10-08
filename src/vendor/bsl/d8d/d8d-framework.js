@@ -140,7 +140,7 @@
             //if( spinnerCandidate.pointWrap.pname === 'P' )
             //c cc( spinnerCandidate.pointWrap.pname, decPoint );
 
-            if( decPoint && spinnerCandidate.pointWrap.pname !== 'media-mover' ) {
+            if( decPoint && spinnerCandidate.pointWrap.pname !== 'diagram-panner' ) {
                 //console.log( decPoint  );
                 if( spinnerCandidate.pointWrap.hideD8Dpoint ) {
                     decPoint.style.display = 'none';
@@ -153,10 +153,10 @@
                 }
             } else {
                 //Only switch cursor (from default) if media mover is enabled.
-                //'media-mover' refers to draggable canvas
-                //this changes cursor back to 'grab' after being 'crosshair'
-                dragSurface.style.cursor = sconf.mediaMoverPointDisabled ?
-                    '' : 'grab';
+                //'diagram-panner' refers to draggable canvas
+                //this changes cursor back to 'pointer' after being 'crosshair'
+                dragSurface.style.cursor = sconf.diagramPannerDisabled ?
+                    '' : 'pointer';
             }
         }
 
@@ -195,7 +195,6 @@
                 uP && uP( dragWrap.decPoint, dragSurface, dragWrap.pointWrap,
                           //'nonenify'
                 );
-                //c cc( 'all dec end: ', dragWrap.decPoint );
             });
         }
 
@@ -316,11 +315,6 @@
             //pointWrap.dragWrap = dragWrap;
             //**********************************************
 
-
-            //if( pointWrap.pname === 'fret-0-0' ) {
-            //    ccc( 'dragWrap is created for ' + pointWrap.pname );
-            //}
-
             //nonefy is needed
             update_decPoint &&
                 update_decPoint( decPoint, dragSurface, pointWrap,
@@ -365,7 +359,6 @@
                     */
                     arg
                 );
-                //ccc( 'doProcessWrap: allowed' );
                 if( arg.down_move_up === 'up' ) {
                     const decPoint = haz( selectedElement_flag, 'decPoint' );
                     if( decPoint ) {
@@ -405,7 +398,6 @@
             function update_decPoint_inn2outparent(dummy1, dummy2, dummy3, nonenify)
             {
                 var dompos   = inn2outparent.call( pointWrap );
-                //c cc( pointWrap.rgId, pointWrap.pos, dompos );
                 //console.log(dompos);
                 decPoint.style.left = dompos[0] + 'px'; // this is just pos of decoration          
                 decPoint.style.top  = dompos[1] + 'px'; // not the actual draggable element
@@ -609,7 +601,6 @@
 
         function throttledFunction( arg, dragType )
         {
-            //ccc( Date.now() + ' inner drag: dragType=' + dragType );
             if( dragType !== 'moving' ) {
                 ///runs stashed version of "move" function if any
                 if( timeout !== null ) {
@@ -649,7 +640,6 @@
 
         function clear8run( doClearTimeout )
         {
-            //ccc( Date.now() + ' clears and runs' );
             doClearTimeout && clearTimeout( timeout );
             timeout = null;
             timeStart = null;
@@ -657,8 +647,4 @@
         }
     }
 
-
 }) ();
-
-
-

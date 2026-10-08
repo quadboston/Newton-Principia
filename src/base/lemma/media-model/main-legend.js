@@ -14,9 +14,23 @@
     } = window.b$l.apptree({
         ssFExportList : {
             createLogic_phaseLegend,
+            updatesLegendTablesDisplay,
         },
     });
     return;
+
+
+    // shows or hides each legend table by its tableVisibilityCondition;
+    // the resize pass calls this before it measures the legend, so a
+    // hidden table takes no space
+    function updatesLegendTablesDisplay()
+    {
+        Object.values( ns.haz( rg, 'main-legend' ) || {} ).forEach( rgTeoTab => {
+            if( rgTeoTab && typeof rgTeoTab.updatesTableDisplay === 'function' ) {
+                rgTeoTab.updatesTableDisplay();
+            }
+        });
+    }
 
 
     //=========================================
@@ -31,6 +45,7 @@
         tableCaption,
         noTableTitle,
         cellsVisibilityCondition,
+        tableVisibilityCondition,
         makesCaptionCluster,
         makesBodyCluster,
         updatesDataInCell,
@@ -65,6 +80,7 @@
         visibilizeTable();
 
         rgTeoTab.tableDom = tb;
+        rgTeoTab.updatesTableDisplay = updatesTableDisplay;
         return;
 
 
@@ -294,10 +310,27 @@
 
 
         ///================================================
+        /// hides/shows whole table; uses display so a hidden
+        /// table takes no space; the resize pass calls this
+        /// (via updatesLegendTablesDisplay) before measuring
+        /// the legend, so the measurement follows the table
+        ///================================================
+        function updatesTableDisplay()
+        {
+            if( tableVisibilityCondition ) {
+                // '' leaves display to CSS, which hides tables
+                // of other logic phases
+                tb.style.display = tableVisibilityCondition() ? '' : 'none';
+            }
+        }
+
+        ///================================================
         /// selectively makes table's cells visible
         ///================================================
         function visibilizeTable()
         {
+            updatesTableDisplay();
+
             //--------------------------------------------
             // //\\ hides all cells
             //--------------------------------------------

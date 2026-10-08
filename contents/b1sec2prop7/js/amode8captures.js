@@ -1,6 +1,6 @@
 ( function() {
-    var { nspaste, amode, toreg, stdMod, rg, sDomF, ssD, ssF, 
-        sconf, } = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
+    var { nspaste, amode, toreg, stdMod, rg, ssD, }
+        = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     return;
 
 
@@ -8,48 +8,29 @@
     ///"init model parameters"
     function amode2rgstate( captured )
     {
-        var { logic_phase, aspect, subessay } = amode;
+        const { logic_phase, aspect } = amode;
+        // Latin tabs have no subessays; they show what the Text tab
+        // shows for the first subessay of the same logic_phase
+        const subessay = aspect === 'latin' ?
+            { proof : 'solution', corollary : 'corollary1' }[ logic_phase ] :
+            amode.subessay;
         const q2xy = stdMod.q2xy;
-        sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
-            fp.rgX.undisplay = true;
-        });
 
         //----------------------------------
         // //\\ common values
         //----------------------------------
-        rg.curvatureCircle.undisplay = false;
-        var media_scale = toreg( 'media_scale' )();
-        if(!rg.media_scale.value) {
-            rg.media_scale.value = 1;
-        }
-        ssF.scaleValue2app( rg.media_scale.value );
 
         //interval of t to construct an arc for
         //Newton's sagitta
         //toreg( 'sForSagitta' )( 'val', 0.310 );
 
-        //won't work in study model
-        //because is overriden in in_subessay_launch____amode2lemma by
-        //sconf.rgShapesVisible
-        rg[ 'S,nonSolvablePoint' ].undisplay = true;
-        rg[ 'nonSolvablePoint' ].undisplay = true;
-
-        rg.SQ.undisplay                 = true;
-        rg.curvatureCircle.undisplay    = true;
-        rg.PC.undisplay                 = true;
+        rg.Q.hideD8Dpoint = subessay !== 'solution';
         //----------------------------------
         // \\// common values
         //----------------------------------
 
 
         if( subessay === 'corollary2' || subessay === 'corollary3' ){
-            sDomF.detected_user_interaction_effect( !'doUndetected' );
-            nspaste( rg.A.pos, q2xy(
-                -0.5, //chosen value for A
-            ));
-            nspaste( rg.P.pos, q2xy(
-                0.5, //chosen value for P
-            ));
             var Ss = Math.PI * 1.2;
             var S = q2xy( Ss );
             rg.S.pos[0] = S[0]*0.4;
@@ -58,30 +39,20 @@
             var Rcol2_s = Math.PI * 0.75;
             var Rcol2 = q2xy( Rcol2_s );
             rg.Rcol2.pos[0] = Rcol2[0]*0.4;
-            rg.Rcol2.pos[1] = rg.P.pos[1]; //Rcol2[1]*0.4;
+            rg.Rcol2.pos[1] = q2xy( 0.5 )[1];
 
+        } else if( subessay === 'corollary1' ) {
+            // S on the circle
+            nspaste( rg.S.pos, [-0.9997779468574, -0.0210731450212] );
         } else {
-            nspaste( rg.A.pos,
-                [-0.6030729600066013, 0.13447833820836858] //Book's value
-            );
-            nspaste( rg.S.pos,
-                [-0.6030729600066013, 0.13447833820836858] //Book's value
-            );
-            nspaste( rg.P.pos, q2xy(
-                0.7262954797868 // Book's value for P
-            ));
-            if( subessay === 'corollary1' ) {
-                ////placing S to the circle
-                nspaste( rg.S.pos, [-0.9997779468574, -0.0210731450212] );
-            }
-            sDomF.detected_user_interaction_effect( subessay !== 'corollary1' );
+            // S in the original diagram, set in sconf.js
+            nspaste( rg.S.pos, ssD.S_configuredPos );
         }
 
-        modifyDecorationVisibility();
+        modifyDecorationVisibility( subessay );
 
         ssD.stashedVisibility = null;
         stdMod.rebuilds_orbit();
-        sDomF.detected_user_interaction_effect( 'doShowDiagram' );
         return captured;
     }
 
@@ -94,8 +65,8 @@
     /**
      * Show or hide components according to whether they are used
      */
-    function modifyDecorationVisibility() {
-        const { logic_phase, aspect, subessay } = amode;
+    function modifyDecorationVisibility( subessay ) {
+        const { logic_phase } = amode;
         if (logic_phase === 'claim') {
             showOnly(
                 'S',

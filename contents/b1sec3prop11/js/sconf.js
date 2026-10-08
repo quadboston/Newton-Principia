@@ -27,13 +27,13 @@
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
-        //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
-        sconf.rgShapesVisible = true;
+		sconf.extendZ = 0.45,
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
         
         fconf.DRAGGER_TOLERANCE = 15; // distance where crosshair appears
+        sconf.enableStudylab = false;
 
         //--------------------------------------
         // //\\ do override engine defaults,
@@ -84,7 +84,7 @@
         sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
         sconf.CURVE_REVOLVES = true; //true for cyclic orbit
         sconf.DQ_SLIDER_MAX = null;
-        sconf.DT_SLIDER_MAX = 0.48;
+        sconf.DT_SLIDER_MAX = 1.0674;
         sconf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
         var Q_STEPS = 1500;
         var DATA_GRAPH_STEPS = 500;
@@ -97,6 +97,8 @@
         // //\\ curve shape parameters
         //-------------------------------------------
         sconf.eccentricity  = 0.59498295;
+        //TEMP
+        sconf.eccentricityMax = 0.88;//0.66;
         sconf.ellipseA  = 1.07;
         sconf.ellipseAOriginal  = sconf.ellipseA;
         sconf.ellipseB  =
@@ -110,8 +112,6 @@
             // gets ellipse parameters
             let ellB2 = sconf.ellipseB*sconf.ellipseB;
             let ellA2 = sconf.ellipseA*sconf.ellipseA;
-            let excentris2 = 1 - ellA2/ellB2;
-            let excentris = Math.sqrt( excentris2 );
             sconf.ellipseFocus = Math.sqrt( ellA2 - ellB2 );
         }
         //-------------------------------------------
@@ -120,10 +120,10 @@
 
         //intervals of dt or dq to construct an arc for estimated force
         //Sets initial distance of point Q from P
-        sconf.Dt0 = 0.39;
+        sconf.Dt0 = 0.5674218587;
 
         //pos of P
-        sconf.parQ = 0.250 * Math.PI;
+        sconf.parQ = 0.7853981634;
 
         //-----------------------------------
         // //\\ topic group colors,
@@ -132,13 +132,12 @@
         const {
             bodyColor,
 			proofColor,
-            supplementHover,
+            infoHover,
 			proofHover,
             forceColor,
             hidden,
             estimatedForceColor,
             sunColor,
-			dtime,
         } = topicColors_repo;
 
 
@@ -149,7 +148,7 @@
             body: bodyColor,
             orbit: bodyColor,
             force: forceColor,
-			dtime,
+			time: estimatedForceColor,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -257,6 +256,12 @@
 				cssClass: 'subessay--solution subessay--goal',
             },
 
+            q : { // will be put across from Q
+				undisplayAlways : true,
+				doPaintPname : false,
+                cssClass: 'subessay--ordinate',
+            },         
+
             // latus rectum
             L : {
                 cssClass : 'hidden',
@@ -294,7 +299,7 @@
             },
 
             Q : {
-                //pos: set in amode8captures
+                //pos: set by sconf.Dt0
                 pcolor : estimatedForceColor,
                 letterAngle : 200,
                 letterRotRadius : 40,
@@ -374,7 +379,7 @@
 			},},
 
             { 'L,LL' : { 
-			    pcolor : supplementHover,
+			    pcolor : infoHover,
                 captionShiftNorm : 22, lposYSugar : 3
 			}, },
 

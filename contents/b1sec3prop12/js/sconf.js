@@ -12,7 +12,7 @@
     function init_conf()
     {
         //***************************************************************
-        // //\\ geometical scales
+        // //\\ geometrical scales
         //***************************************************************
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
@@ -23,19 +23,18 @@
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize;
         //***************************************************************
-        // \\// geometical scales
+        // \\// geometrical scales
         //***************************************************************
 
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
-        //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
-        sconf.rgShapesVisible = true;
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
         
         fconf.DRAGGER_TOLERANCE = 15; // distance where crosshair appears
+        sconf.enableStudylab = false;
 
         //--------------------------------------
         // //\\ do override engine defaults,
@@ -85,7 +84,7 @@
         //-------------------------------------------
         sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
         sconf.CURVE_REVOLVES = false; //true for cyclic orbit
-        sconf.DT_SLIDER_MAX = 0.8;
+        sconf.DT_SLIDER_MAX = 0.7;
         var Q_STEPS = 500;
         var DATA_GRAPH_STEPS = 500;
         //Scale estimated force curve by actual force max
@@ -112,7 +111,7 @@
 
         //Min and max eccentricity values for Zeta slider
         op.eccentricityMin = 1.1;
-        op.eccentricityMax = 3.0;
+        op.eccentricityMax = 2.0;
         op.ZETA_MIN = Math.atan(op.eccentricityMin);
         op.ZETA_MAX = Math.atan(op.eccentricityMax);
 
@@ -129,23 +128,22 @@
 
         //interval of dt to construct an arc for estimated force
         //Sets initial distance of point Q from P
-        sconf.Dt0 = 0.4;
+        sconf.Dt0 = 0.4916;
 
         //pos of P
-        sconf.parQ = 0.45;
+        sconf.parQ = 0.4461;
 
         //-----------------------------------
         // //\\ topic group colors
         //-----------------------------------
         const {
             bodyColor,
-            supplementHover,
+            infoHover,
 			proofHover,
 			estimatedForceColor,
             proofColor,
             forceColor,
 			sunColor,
-			dtime,
         } = topicColors_repo;
 
         var topicColors_elected =
@@ -153,7 +151,7 @@
 			estimatedForceColor,
             orbit: bodyColor,
             force: forceColor,
-			dtime,
+			time: estimatedForceColor,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -275,7 +273,9 @@
             H : {
                 pcolor : proofColor,
                 letterAngle : -90,
+                draggableX  : true,
 				cssClass: 'subessay--solution',
+                conditionalDrag : 'subessay--solution',
             },
             I : {
                 pcolor : proofColor,
@@ -369,7 +369,7 @@
 						'stroke-width' : 1.5, 
 						cssClass: 'subessay--solution',}, },
 
-            { 'L,LL' : { pcolor : supplementHover,
+            { 'L,LL' : { pcolor : infoHover,
                captionShiftNorm : 22, lposYSugar : 3 }, },
 
         ];

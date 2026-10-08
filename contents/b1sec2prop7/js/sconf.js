@@ -28,14 +28,13 @@
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
-        //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
-        sconf.rgShapesVisible = true;
 
         sconf.TP_OPACITY_FROM_fixed_colors = true;
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
 
         fconf.DRAGGER_TOLERANCE = 20; // distance where crosshair appears
+        sconf.enableStudylab = false;
 
         //--------------------------------------
         // //\\ do override engine defaults,
@@ -73,7 +72,7 @@
         var A = [785, 441];
         var V = [64, 462 ];
         var C = [425, 452];//[ V[0] + ww1/2, V[1] + ww2/2, ];
-        var S = [207, 403];
+        var S = [225.2, 395.7];
         //=============================================
         // \\// points reused in config
         //=============================================
@@ -93,7 +92,7 @@
         const FT = sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
         sconf.CURVE_REVOLVES = true; //true for cyclic orbit
         sconf.DQ_SLIDER_MAX = FT ? null : 1.0;
-        sconf.DT_SLIDER_MAX = FT ? 0.50 : null;
+        sconf.DT_SLIDER_MAX = FT ? 0.9 : null;
         var Q_STEPS = 1000;
         var DATA_GRAPH_STEPS = 500;
         sconf.IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX = true;
@@ -115,7 +114,7 @@
         //intervals of dt or dq to construct an arc for estimated force
         //Sets initial distance of point Q from P
         if( FT ){
-            sconf.Dt0 = 0.168;
+            sconf.Dt0 = 0.6238291044;
         } else {
             sconf.Dq0 = 0.42;
         }
@@ -128,19 +127,15 @@
         //      todm: possibly proliferation
         //-----------------------------------
         const {
-            body,
-            orbit,
-            time,
-            dtime,
-            proof,
+            bodyColor,
+            proofColor,
             forceColor,
-            invalid,
+            invalidColor,
             hidden,
             estimatedForceColor,
-            curvature,
+			infoColor,
             chord,
 			sunColor,
-			corollaryColor,
 			proofHover,
         } = topicColors_repo;
 
@@ -148,19 +143,17 @@
         var topicColors_elected =
         {
             estimatedForceColor,
-            body,
+            bodyColor,
             forceColor,
             chord,
-            invalid,
-            proof,
+            invalidColor,
+            proofColor,
             hidden,
-            curvature,
-            dtime,
-            time,
-            curvatureCircle : curvature,
+			time: estimatedForceColor,
+            curvatureCircle : infoColor,
 			force : forceColor,
-            orbit,
-            APQ     : orbit,
+			orbit: bodyColor,
+            APQ     : bodyColor,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -169,8 +162,8 @@
         //---------------------------------------------------
         // //\\ points to approximate and draw original curve
         //---------------------------------------------------
-        var foldPoints  = (new Array(200)).fill({}).map( fp => ({
-            pcolor      : invalid,
+        var foldPoints  = (new Array(200)).fill({}).map( () => ({
+            pcolor      : invalidColor,
             doPaintPname : false,
         }));
 
@@ -185,7 +178,7 @@
         Object.assign( originalPoints, {
             A : {
                 pos: A,
-                pcolor : proof,
+                pcolor : proofColor,
             },
 
             S : {
@@ -197,7 +190,7 @@
             },
 
             P : {
-                pcolor : body,
+                pcolor : bodyColor,
                 letterAngle : 70,
                 draggableX  : true,
                 draggableY  : true,
@@ -209,17 +202,6 @@
                 letterRotRadius : 40,
                 draggableX  : true,
                 draggableY  : true,
-                conditionalDrag : 'subessay--solution',
-            },
-            QtimeDecor : {
-                undisplayAlways : true,
-                //pos: will be as Q, 
-                cssClass : 'tp-dtime',
-                pcolor : dtime, //proof,
-                fontSize : 30,
-                letterAngle : 225,
-                letterShift : [30,0],
-                letterRotRadius : 180,
             },
 
             T : {
@@ -233,31 +215,28 @@
             },
 
             Z : {
-                pcolor : proof,
+                pcolor : proofColor,
                 letterAngle : 45,
             },
 
             Zminus : {
-                pcolor : body,
-                letterAngle : 45,
-                //undisplay : true,
                 undisplayAlways : true,
                 doPaintPname : false,
             },
 
             Y : {
-                pcolor : proof,
+                pcolor : proofColor,
                 letterAngle : -90,
             },
 
             V : {
                 pos: V,
-                pcolor : proof,
+                pcolor : proofColor,
                 letterAngle : -45,
             },
 
             L : {
-                pcolor : proof,
+                pcolor : proofColor,
                 letterAngle : -45,
             },
 
@@ -265,7 +244,7 @@
             C : {
                 pos : C,
                 caption : 'Rc',
-                pcolor : curvature,
+                pcolor : infoColor,
                 letterAngle : -45,
                 undisplayAlways : true, // not respected?
             },
@@ -275,13 +254,14 @@
                 caption : '',
                 fontSize : '25',
                 undisplayAlways : true,
-                pcolor : invalid,
+                pcolor : invalidColor,
                 letterAngle : 0,
             },
             errorMessage : { // nonSolvablePoint message shown at to of canvas
                 pos : [20, 20],
+                showsWhileLettersHidden : true,
                 fontSize : '25',
-                pcolor : invalid,
+                pcolor : invalidColor,
                 letterAngle : 0,
                 unscalable  : true,
             },
@@ -289,7 +269,7 @@
             //corollary 2
             Tcol2 : {
                 caption : 'T',
-                pcolor : corollaryColor,
+                pcolor : proofColor,
                 letterAngle : -45,
             },
             Rcol2 : {
@@ -301,7 +281,7 @@
             },
             Gcol2 : {
                 caption : 'G',
-                pcolor : corollaryColor,
+                pcolor : proofColor,
                 letterAngle : -45,
             },
         });
@@ -310,37 +290,37 @@
         var linesArray =
         [
             { 'PV' : { pcolor : proofHover }, },
-			{ 'SV' : { pcolor : proof }, },
-            { 'AV' : { pcolor : proof }, },
-            { 'AP' : { pcolor : proof }, },
+			{ 'SV' : { pcolor : proofColor }, },
+            { 'AV' : { pcolor : proofColor }, },
+            { 'AP' : { pcolor : proofColor }, },
 
-            { 'PY' : { pcolor : proof }, },
-            { 'P,Zminus' : { pcolor : body }, },
-            { 'PZ' : { pcolor : proof }, },
-            { 'ZR' : { pcolor : proof }, },
+            { 'PY' : { pcolor : proofColor }, },
+            { 'P,Zminus' : { pcolor : bodyColor }, },
+            { 'PZ' : { pcolor : proofColor }, },
+            { 'ZR' : { pcolor : proofColor }, },
 
-            { 'PR' : { pcolor : proof }, },
-            { 'ZQ' : { pcolor : body }, },
+            { 'PR' : { pcolor : proofColor }, },
+            { 'ZQ' : { pcolor : bodyColor }, },
 
 			{ 'RL' : { pcolor : proofHover }, },
-			{ 'QL' : { pcolor : proof }, },
+			{ 'QL' : { pcolor : proofColor }, },
 
-            { 'SY' : { pcolor : proof }, },
+            { 'SY' : { pcolor : proofColor }, },
             { 'QR' : { pcolor : estimatedForceColor }, },
-            { 'QP' : { pcolor : proof }, },
-            { 'SQ' : { pcolor : proof }, },
+            { 'QP' : { pcolor : proofColor }, },
+            { 'SQ' : { pcolor : proofColor }, },
             { 'QT' : { pcolor : estimatedForceColor }, },
             { 'PT' : { pcolor : proofHover }, },
 
-            { 'PC' : { pcolor : curvature }, },
+            { 'PC' : { pcolor : infoColor }, },
 
             //corollary 2
-            { 'Rcol2,P' : { pcolor : proof }, },
-            { 'Rcol2,Tcol2' : { pcolor : proof }, },
-            { 'Tcol2,V' : { pcolor : proof }, },
-            { 'Gcol2,S' : { pcolor : proof }, },
-            { 'Gcol2,P' : { pcolor : proof }, },
-            { 'S,nonSolvablePoint' : { pcolor : invalid }, },
+            { 'Rcol2,P' : { pcolor : proofColor }, },
+            { 'Rcol2,Tcol2' : { pcolor : proofColor }, },
+            { 'Tcol2,V' : { pcolor : proofColor }, },
+            { 'Gcol2,S' : { pcolor : proofColor }, },
+            { 'Gcol2,P' : { pcolor : proofColor }, },
+            { 'S,nonSolvablePoint' : { pcolor : invalidColor }, },
             
             { 'SP' : { pcolor : estimatedForceColor }, },
         ];

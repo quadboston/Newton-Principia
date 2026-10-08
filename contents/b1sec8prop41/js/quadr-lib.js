@@ -97,7 +97,6 @@
                 iq > 6
             ) {
                 roMinusIx = roPlus0Top + iq - SAFE_MINUS_IX;
-                //ccc( 'min found='+ roMinusIx + ' iq='+iq );
                 break;
             }
             let T_Kernel = R2/2 * M / Math.sqrt( potentialWell );

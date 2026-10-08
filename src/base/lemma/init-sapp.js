@@ -35,8 +35,8 @@
         //======================================================
         // //\\ definitions
         //======================================================
-        !haz( sconf, 'mediaMoverPointDisabled' ) &&
-                sDomF.creates_mediaMover_in_rgX8dragWrapGenList();
+        !haz( sconf, 'diagramPannerDisabled' ) &&
+                sDomF.creates_diagramPanner_in_rgX8dragWrapGenList();
         //------------------------------------------------------------------
         // //\\ rerouts name "media_upcreate_generic"
         //------------------------------------------------------------------

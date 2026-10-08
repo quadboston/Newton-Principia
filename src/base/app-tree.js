@@ -94,7 +94,6 @@
 
         srg_modules[ modName + mCount.count ] = () => {
             if( setModule ) {
-                //c cc( '... running setModule() for ' + mCount.count );
                 setModule();
             }
             //todm: why this code is delayes to srg_modules?

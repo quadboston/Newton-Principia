@@ -12,11 +12,9 @@
                 { src: 'sconf.js' },
                 { src: 'init-model-parameters.js' },
                 { src: 'config-functions.js' },
-                { src: 'amode8captures.js' },
-                { src: 'state-capturer.js' },
                 { src: 'model-upcreate.js' },
-                { src: 'media-upcreate.js' },
-				{ src: '../../force-law-models/main-legend.js' },
+                { src: 'state-capturer.js' },
+				{ src: '../../kepler-orbit-models/main-legend.js' },
             ],
             "contents-list" :
             [

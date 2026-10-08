@@ -62,7 +62,7 @@ function init_conf_addon (){
             "rgslid_dt": {
             "val": sconf.initialTimieStep
     },
-    "media-mover": {
+    "diagram-panner": {
         "achieved": {
             "achieved": [
                 47,
@@ -84,13 +84,6 @@ function init_conf_addon (){
         "!ssF.mediaModelInitialized || amode.logic_phase === 'scholium' || amode.logic_phase === 'claim'",
         {
             "captured" : "initial-state",
-            "rg" :
-            {
-                ///proliferation: repetition with T1
-                'V-white-filler' : {
-                    "decStart" : -2,
-                },
-            }
         }
     ],
 

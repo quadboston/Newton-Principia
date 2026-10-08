@@ -9,9 +9,6 @@
     //fconf.basicSiteFeatures = true;
     url2conf( fconf );
 
-    //apparently, we can do '.' because "contents" is moved levels up
-    //when move-to-prod-folder.php builds production package folders,
-    //will be it better to explicitly set './'?
     fconf.pathToContentSite     = '.';
 
     fconf.pathToContentSiteImg  = 'contents/img';
@@ -103,13 +100,6 @@
         //--------------------
         // \\// page-wide
         //--------------------
-
-        rgShapesVisible : true, //initial visibility of rg elements with pname
-                                //when subessay relaunches
-
-
-
-
 
         //app decorations
         appDecor :

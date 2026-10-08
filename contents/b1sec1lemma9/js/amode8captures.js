@@ -12,49 +12,44 @@
 
     function amode2rgstate( captured )
     {
-        var { logic_phase, aspect } = amode;
-        if(
-            logic_phase === 'claim'
-        ) {
-            [
-                //points
-                'F',
-                'G',
-                'b',
-                'c',
-                'd',
-                'e',
-                'f',
-                'g',
-                'pivotPoint1',
-                
-                //lines
-                'Ae',
-                'Ab',
-                'Ac',
-                'Ad',
-                'Ag',
-                'db',
-                'ec',
-                'AG',
+        var { logic_phase } = amode;
+		[
+			//points
+			'F',
+			'G',
+			'b',
+			'c',
+			'd',
+			'e',
+			'f',
+			'g',
+			'pivotPoint1',
+			
+			//lines
+			'Ae',
+			'Ab',
+			'Ac',
+			'Ad',
+			'Ag',
+			'db',
+			'ec',
+			'AG',
 
-                //curves
-                "Abc",
-                'remoteCurve',
+			//curves
+			"Abc",
+			'remoteCurve',
 
-                //areas
-                "Abd",
-                "Ace",
-                "area-Abd",
-                "area-Ace",
+			//areas
+			"Abd",
+			"Ace",
+			"area-Abd",
+			"area-Ace",
 
-                //linear areas
-                "Afd",
-                "Age",
-            ].forEach( gname => { rg[ gname ].undisplay = true; });
-        }
+			//linear areas
+			"Afd",
+			"Age",
+		].forEach( gname => { rg[ gname ].undisplay = logic_phase === 'claim'; });
         return captured;
     }
 
 }) ();
-

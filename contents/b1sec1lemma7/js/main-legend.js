@@ -31,8 +31,8 @@
             [[ 'AD', 'AD', getVal('rg.AD.abs', '0.000') ]],
             [[ 'arc-AB', 'arc ACB', getVal('rg.AB.arcLen', '0.000') ]],
             [[ 'spacer', '', '' ]], //small space
-            [[ 'claimRatio', 'AD : AB', getLineRatio('AD', 'AB') ]],
-            [[ 'claimRatio', 'arc ACB : AB', getArcRatio('AB', 'AB') ]],
+            [[ 'givenData', 'AD : AB', getLineRatio('AD', 'AB') ]],
+            [[ 'givenData', 'arc ACB : AB', getArcRatio('AB', 'AB') ]],
         ]
     };
 
@@ -49,10 +49,10 @@
     // rows shown/hidden in media-upcreate.js, based on which cor is selected 
     lemma7Data.corollary = [
         //corollary 1
-        [[ 'BF-data', 'BF', 'rg.BF.abs' ], [ 'hidden', '', '' ]], // labelled "BF-data" to differentiate from line (so it doesn't get highlighted on AFBD mouseover)
+        [[ 'proofData', 'BF', 'rg.BF.abs' ], [ 'hidden', '', '' ]], // labelled "proofData" to differentiate from line (so it doesn't get highlighted on AFBD mouseover)
         [lemma7Data.claim[2][0], [ 'hidden', '', '' ]], //arc ACB 
         [[ 'spacer', '', '' ], [ 'hidden', '', '' ]],
-        [[ 'claimRatio', 'BF : arc ACB', getCor1Ratio() ], [ 'hidden', '', '' ]],
+        [[ 'givenData', 'BF : arc ACB', getCor1Ratio() ], [ 'hidden', '', '' ]],
 
         //corollary 2
         [lemma7Data.claim[1][0], [ 'hidden', '', '' ]], //AD
@@ -60,9 +60,9 @@
         [lemma7Data.claim[0][0], [ 'hidden', '', '' ]], //AB
         [lemma7Data.claim[2][0], [ 'hidden', '', '' ]], //arc ACB
         [[ 'spacer', '', '' ], [ 'hidden', '', '' ]],
-        [[ 'claimRatio', 'AE : AD', getLineRatio('AE', 'AD') ], [ 'hidden', '', '' ]],
-        [[ 'claimRatio', 'AB : AD', getLineRatio('AB', 'AD') ], [ 'hidden', '', '' ]],
-        [[ 'claimRatio', 'arc ACB : AD', getArcRatio('AB', 'AD') ], [ 'hidden', '', '' ]], 
+        [[ 'proofData', 'AE : AD', getLineRatio('AE', 'AD') ], [ 'hidden', '', '' ]],
+        [[ 'givenData', 'AB : AD', getLineRatio('AB', 'AD') ], [ 'hidden', '', '' ]],
+        [[ 'givenData', 'arc ACB : AD', getArcRatio('AB', 'AD') ], [ 'hidden', '', '' ]], 
         
         //corollary 3
         [lemma7Data.claim[0][0], [ 'hidden', '', '' ]], // AB

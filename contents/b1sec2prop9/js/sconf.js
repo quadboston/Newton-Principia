@@ -27,8 +27,6 @@
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
-        //fconf.ESSAY_FRACTION_IN_WORKPANE = 0.5;
-        sconf.rgShapesVisible = true;
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
@@ -63,11 +61,9 @@
         //=============================================
         // //\\ points reused in config
         //=============================================
-        var V = [64, 462 ];
         RR = 360; //Math.sqrt( RR ) / 2;
-        var C = [510, 311 ]; //V[0] + ww1/2, V[1] + ww2/2, ];
-        //pos of point P
-        var S = C; //[0, 0 ]; //not set in amode8captures
+        var C = [510, 311 ];
+        var S = C;
         //=============================================
         // \\// points reused in config
         //=============================================
@@ -122,32 +118,26 @@
         //      todm: possibly proliferation
         //-----------------------------------
         const {
-            given,
+            givenColor,
 			givenHover,
-            orbit,
-            body,
-            proof,
+            bodyColor,
+            proofColor,
             forceColor,
-            hidden,
             estimatedForceColor,
-            curvature,
+            infoColor,
             sunColor,
-			dtime,
         } = topicColors_repo;
 
 
         var topicColors_elected =
         {
-            estimatedForceColor,
-            given,
-            proof,
-            hidden,
-            curvatureCircle : curvature,
-            body,
-            orbit,
+			estimatedForceColor,
+            curvatureCircle : infoColor,
+            body: bodyColor,
+            orbit : bodyColor,
 			force : forceColor,
-            "arc-QP" : body,
-			dtime,
+            "arc-QP" : bodyColor,
+			time: estimatedForceColor,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -157,17 +147,13 @@
         // //\\ points to approximate and draw original curve
         //---------------------------------------------------
         var originalPoints = {
-            Or : {
-                doPaintPname : false,
-                pos: C,
-            },
             S : {
                 pos: S,
                 pcolor : sunColor,
                 letterAngle : -90,
             },
             P : {
-                pcolor : body,
+                pcolor : bodyColor,
                 letterAngle : 70,
                 draggableX  : true,
             },
@@ -186,56 +172,38 @@
                 letterAngle : 225,
                 letterRotRadius : 40,
                 draggableX  : true,
-                draggableY  : fconf.sappId === 'b1sec2prop7',
+                draggableY  : true,
 				cssClass:  'subessay--claim subessay--solution',
-				conditionalDrag: 'subessay--claim subessay--solution',
-            },
-            Z : {
-                pcolor : body,
-                letterAngle : 45,
-                undisplayAlways : true,
-                doPaintPname : false,
             },
             Y : {
-                pcolor : proof,
+                pcolor : proofColor,
                 letterAngle : -90,
 				cssClass:'subessay--another-solution',
             },
             V : {
-                pos: V,
-                pcolor : proof,
+                pcolor : proofColor,
                 letterAngle : -45,
 				cssClass:'subessay--another-solution',
-            },
-
-            //center of instant curvature circle
-            C : {
-                pos : C,
-                caption : 'Rc',
-                pcolor : proof,
-                letterAngle : -45,
-                undisplayAlways : true,
-                doPaintPname : false,
             },
         };
 
 
         var linesArray =
         [
-            { 'PV' : { pcolor : proof,
+            { 'PV' : { pcolor : proofColor,
 				cssClass:'subessay--another-solution',}, },
-            { 'PY' : { pcolor : given }, },
+            { 'PY' : { pcolor : givenColor }, },
             { 'PR' : { pcolor : givenHover,
 				cssClass:'subessay--solution',}, },
-            { 'SY' : { pcolor : proof,
+            { 'SY' : { pcolor : proofColor,
 				cssClass:'subessay--another-solution',}, },
             { 'QR' : { pcolor : estimatedForceColor,
 				cssClass:'subessay--solution',}, },
-            { 'SQ' : { pcolor : given,
+            { 'SQ' : { pcolor : givenColor,
 				cssClass:  'subessay--claim subessay--solution',},},
             { 'QT' : { pcolor : estimatedForceColor,
 				 cssClass:'subessay--solution',}, },
-            { 'PT' : { pcolor : proof,
+            { 'PT' : { pcolor : proofColor,
 				cssClass:'subessay--another-solution',}, },
 			{ 'SP' : { pcolor : estimatedForceColor }, },
         ];

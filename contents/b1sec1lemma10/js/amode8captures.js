@@ -26,8 +26,6 @@
             'Ag',
             'db',
             'ec',
-            //'df',
-            //'eg',
             'AG',
             'remoteCurve',
 

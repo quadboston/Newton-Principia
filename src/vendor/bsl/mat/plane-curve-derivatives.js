@@ -85,6 +85,8 @@
         var r2      = rrr[0]*rrr[0] + rrr[1]*rrr[1];
         var r       = Math.sqrt( r2 );
         r           = r<INFINITY_PROTECTOR ? INFINITY_PROTECTOR : r;
+        //TEMP ee should probably be eg. renamed or combined in an object with
+        //the above variables.
         var ee      = [ rrr[0]/r, rrr[1]/r, ];
 
         //:angle between norm n and radius vector rrr
@@ -185,6 +187,9 @@
 
             //sagitta2 : [sagitta2x, sagitta2y],
             //for Kepler's motion, f = 1/R vₜ² / sin(w)
+
+            //TEMP
+            delta_q,
         };
     }
 

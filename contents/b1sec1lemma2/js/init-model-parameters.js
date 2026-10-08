@@ -1,14 +1,13 @@
 // //\\// Main entrance into sub-application.
 
 (function() {
-    var { sn, haff, fapp, sapp, ssF, sDomF, sData, stdMod, }
+    var { sn, fapp, sapp, ssF, sDomF, stdMod, }
         = window.b$l.apptree({ setModule,
         stdModExportList : { init_model_parameters, }, });
     var stdL2       = sn('stdL2', fapp );
     var study       = sn('study', stdL2 );
     var gui         = sn('gui', stdL2 );
     var dataregs    = sn('dataregs', stdL2 );
-    var numModel    = sn('numModel', stdL2 );
     var guicon      = sn('guiConstruct', gui );
     return;
 
@@ -27,7 +26,7 @@
 
         {
             let pid = 'proof-pop-up';
-            let button = ssF.createButton({
+			let button = ssF.createButton({
                 caption                 :
                     'Newton\'s logic applies to monotonic curves',
                 buttonUniversalId       : pid,
@@ -102,44 +101,8 @@
         //now, this call does
         //stdMod.media_upcreate___before_basic_L2
         ssF.media_upcreate_generic(); //vital, perhaps for synch
-
-        //see:     ///modern approach ... abandoned
-        //createsBaseSlider();
-
         gui.buildSlider();
-        
-        sDomF.detected_user_interaction_effect( 'doUndetected' );
     }
-
-    /*
-    ///modern approach ... abandoned
-    ///unrem this: //todm remove: experiment:
-    function createsBaseSlider()
-    {
-        //====================================
-        // //\\ slider
-        //====================================
-        var pname = 'baseSlider';
-        sDomF.params__2__rgX8dragwrap_gen_list({
-            stdMod,
-            pname,
-            orientation : 'axis-x',
-            acceptPos : newPos =>
-            {
-                var drX = rg[ pname ];
-                drX.pos[0] = newPos[0];
-                newPos[1] = drX.pos[1];
-                return !!'move permitted';
-            },
-        });
-        c cc( rg.baseSlider );
-        sDomF.createsFW__8__executes_dragWr_gens_list( stdMod );
-        //====================================
-        // \\// slider
-        //====================================
-    }
-    */
-
 
 
     function finish_sapp_UI()
@@ -149,5 +112,3 @@
     }
 
 }) ();
-
-

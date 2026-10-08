@@ -1,8 +1,8 @@
 ( function() {
     var {
-        $$, fmethods, cssp,
+        $$,
         fapp, fconf, wrkwin, sDomN, sDomF,
-        stdMod, amode, rg,
+        stdMod, rg, sconf,
     } = window.b$l.apptree({
     });
 
@@ -66,14 +66,16 @@
     }
     function doesShowDiagram( doShowDiagram ) { 
         rg.detected_user_interaction_effect_DONE = !doShowDiagram;
-        stdMod.imgRk.dom$
-           [ doShowDiagram ? 'removeClass' : 'addClass' ]( 'in-study' );
+        // with the study lab enabled, the book's diagram stays visible
+        // for comparing the model with it
+        if( doShowDiagram || !sconf.enableStudylab ) {
+            stdMod.imgRk.dom$
+               [ doShowDiagram ? 'removeClass' : 'addClass' ]( 'in-study' );
+        }
         rg.allLettersAreHidden = doShowDiagram;
     }
     //===================================================================
     // \\// this makes effect of fading-out
     //===================================================================
 
-
 }) ();
-

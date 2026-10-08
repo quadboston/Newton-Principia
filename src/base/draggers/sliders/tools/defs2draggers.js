@@ -38,7 +38,6 @@
             pointWrap,
             doProcess,
         };
-        //ccc( 'does create ' + pointWrap.spinnerClsId + ' ' + pointWrap.pname);
         medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE( argc );
         return;
 

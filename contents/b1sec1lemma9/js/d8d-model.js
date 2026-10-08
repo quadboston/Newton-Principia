@@ -9,7 +9,6 @@
     //==========================================
     function initDragModel( medD8D )
     {
-        ccc( 'not too many models? initDragModel()' );
         var modCurvPivots   = ssD.curvePivots;
         var yflip           = sconf.MONITOR_Y_FLIP;
         var yRange          = sconf.APP_MODEL_Y_RANGE;
@@ -53,8 +52,6 @@
                                       );
                         newDy = Math.max( newDy, Ey*0.01 ); //todm make ranges in conf
                         ssD.claimRatio = newDy/Ey;
-                        //c cc( 'new: claimRatio=' + ssD.claimRatio + ' Dy=' +
-                        //      ( ssD.claimRatio * Ey ) );
                         stdMod.model8media_upcreate();
                     break;
                 }
@@ -146,8 +143,6 @@
                              var newCx = startCx + arg.surfMove[0] *
                                          sconf.inn2mod_scale * sDomF.out2inn();
                              newCx = Math.max( newCx, Cx_min );
-                             //c cc( 'start Ex=' + startCx + ' start tC=' + ach.achieved +
-                             //     ' arg.move[0]=' + arg.move[0] );
 
                              var newTC = ssF.x0y_2_t( newCx, 0 );
 
@@ -315,8 +310,6 @@
         var testMedpos = sDomF.outparent2inn( testPoint );
         var testMediaX = testMedpos[0];
         var testMediaY = testMedpos[1];
-        //c cc( '\n\n****', testPoint, testMediaX, testMediaY,
-        //' wwMed='+wwMed );
 
         dragWraps.forEach( function( dragWrap, dix ) {
             var dragPoint   = dragWrap.pointWrap;
@@ -324,17 +317,14 @@
             var tdY         = Math.abs( testMediaY - dragPoint.medpos[1] );
             var td          = Math.max( tdX, tdY );
             //Pif. metric: var td2     = tdX*tdX + tdY*tdY;
-            //c cc( 'test: td=' + td + ' dp=' + dragPoint.medpos[0] + ' ' + dragPoint.medpos[1] );
 
             //.td is a "rect-metric" for distance between testPoint and drag-point-candidate
             if( td <= DRAGGEE_HALF_SIZE ) {
-                //c cc( 'test:' + dragPoint.spinnerClsId + ' ' + td, dragPoint.medpos); 
                 if( !closestDragWrap || closestTd > td ||
                     (dragPoint.dragPriority || 0 ) > closestDragPriority ) {
                     closestDragWrap = dragWrap;
                     closestTd = td;
                     closestDragPriority = dragPoint.dragPriority || 0;
-                    //c cc( dragPoint.spinnerClsId + ' ' + td );
                }
             }
         });

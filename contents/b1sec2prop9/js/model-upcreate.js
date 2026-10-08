@@ -55,15 +55,6 @@
         var wwT = mat.dropPerpendicular( rg.Q.pos, sunXY, rr0 )
         rg.T.pos[0] = wwT[0];
         rg.T.pos[1] = wwT[1];
-
-        var Z = mat.linesCross(
-            uu,
-            rg.P.pos,
-            [ rg.Q.pos[0]-rg.T.pos[0], rg.Q.pos[1]-rg.T.pos[1], ],
-            rg.T.pos,
-        );
-        rg.Z.pos[0] = Z[0];
-        rg.Z.pos[1] = Z[1];
         //================================================
         // \\// arc, sagittae and related
         //================================================
@@ -71,8 +62,6 @@
         //================================================
         // //\\ curvature circle (Another solution tab)
         //================================================
-        rg.C.pos[0] = RC[0];
-        rg.C.pos[1] = RC[1];
         rg.V.pos[0] = curvatureChordSecondPoint[0];
         rg.V.pos[1] = curvatureChordSecondPoint[1];
         rg.Y.pos[0] = projectionOfCenterOnTangent[0];
@@ -88,7 +77,6 @@
             svgel   : rgCurvatureCircle.svgel,
             parent  : stdMod.mmedia,
             type    : 'circle',
-            stroke  : rg.C.pcolor,
             fill    : 'transparent',
             'stroke-width' : '1',
             cx : RCmedpos[0],
@@ -131,7 +119,7 @@
         // //\\ decorations
         // //\\ graph
         //------------------------------------------------
-        //stdMod.graphFW_lemma.graphArrayMask[1] =
+        //stdMod.graph.graphArrayMask[1] =
         //       ssD.solvable && !ssD.doMaskSagitta;
 
         {
@@ -141,7 +129,7 @@
                 //printAxisXDigits : bonus,
                 //printAxisYDigits : true,
             }
-            stdMod.graphFW_lemma.drawGraph_wrap(graphArg);
+            stdMod.graph.drawsGraph(graphArg);
         }
         //------------------------------------------------
         // \\// graph

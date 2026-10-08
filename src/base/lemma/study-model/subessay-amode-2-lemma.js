@@ -1,7 +1,7 @@
 ( function() {
     var {
-        nspaste, eachprop, has, haz, hazz, haff,
-        fconf, sconf, ssF, ssD, rg,
+        nspaste, eachprop, has, haz, haff,
+        fconf, ssF, ssD, rg, sDomF,
         stdMod, amode,
         //**************************************************
     } = window.b$l.apptree({
@@ -23,7 +23,6 @@
     {
         // called once on page load from init-sapp.js
         // called again on tab switch from lemma-master-menu.js
-        // console.log('in_subessay_launch____amode2lemma');
 
         var { logic_phase, aspect, subessay } = amode;
         // //\\ patch. works for
@@ -38,33 +37,6 @@
             'subessay--' + subessay
         );
         // \\// patch. works for
-        
-        //------------------------------------------------
-        // //\\ sets "undefined" flag
-        //      for registry rg members with defined pname,
-        //      uses sconf.rgShapesVisible if defined in lemma,
-        //      if not, uses existing sconf.rgShapesVisible.
-        //------------------------------------------------
-        eachprop( rg, (prop) => {
-
-            //we don't implement this now because of
-            //damage to other legacy lemmas,
-            //general solution should be
-            //if( hazz( prop, 'pname' ) && !has( prop, propname ) ) {
-            //,or in case of 'undisplay'
-            //if( hazz( prop, 'pname' ) && !has( prop, 'undisplay' ) ) {
-
-            if( hazz( prop, 'pname' ) ) {
-                prop.undisplay = !(
-                    has( sconf, 'rgShapesVisible' ) ?
-                        sconf.rgShapesVisible :
-                        fconf.rgShapesVisible
-                );
-            }
-        });
-        //------------------------------------------------
-        // \\// sets "undefined" flag
-        //------------------------------------------------
 
         var captured = null;
         ///------------------------------------------------------------------
@@ -128,31 +100,18 @@
             captured = ssF.amode2rgstate( captured );
         }
 
-        ///???for past-lemmas: lemma 1, lemma 2, ...
-        //haf( stdMod, 'astate_ 2_rg8model' )(
+        // every tab starts with the book's diagram behind the model
+        if( haz( stdMod.imgRk, 'hasImage' ) ) {
+            sDomF.detected_user_interaction_effect( 'doUndetected' );
+        } else {
+            // without the book's diagram there is nothing for interaction
+            // to reveal, so letters show from the start
+            rg.detected_user_interaction_effect_DONE = true;
+        }
 
         //reminder: captured here is the last satisfied captured,
         //the last after recent loop via code fragements above
         stdMod.astate_2_rg8model( captured && ssD.capture[ captured ] );
-
-        //=================================================================
-        // //\\ makes s ubmodel displayed
-        //=================================================================
-        //var rootCls = fapp.fappRoot$._cls();
-        //var smcls = /\b(s ubmodel\-\-\S+)\b/;
-        //var clsMatch = rootCls.match( smcls );
-        //var removeCls = ( clsMatch && clsMatch[1] ) || '';
-        //fapp.fappRoot$
-        //    .removeClass( removeCls )
-        /*
-        c cc( 'swapped:' +
-             '\nremoved=' + removeCls +
-             '\nadded=' + fapp.fappRoot$._cls().match( smcls )[1]
-        );
-        */
-        //=================================================================
-        // \\// makes s ubmodel displayed
-        //=================================================================
 
         var wwLaunch = haz( stdMod, 'subessayLaunch_definedInLemma_universal' );
         if( wwLaunch ) {

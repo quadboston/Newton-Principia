@@ -11,7 +11,7 @@
     function init_conf()
     {
         //***************************************************************
-        // //\\ geometical scales
+        // //\\ geometrical scales
         //***************************************************************
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
@@ -22,18 +22,18 @@
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize;
         //***************************************************************
-        // \\// geometical scales
+        // \\// geometrical scales
         //***************************************************************
 
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
-        sconf.rgShapesVisible = true;
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
         
         fconf.DRAGGER_TOLERANCE = 15; // distance where crosshair appears
+        sconf.enableStudylab = false;
 
         //--------------------------------------
         // //\\ do override engine defaults,
@@ -83,7 +83,7 @@
         //-------------------------------------------
         sconf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
         sconf.CURVE_REVOLVES = false; //true for cyclic orbit
-        sconf.DT_SLIDER_MAX = 1.84;
+        sconf.DT_SLIDER_MAX = 5;
         var Q_STEPS = 500;
         var DATA_GRAPH_STEPS = 500;
         //Scale estimated force curve by actual force max
@@ -113,7 +113,7 @@
 
         //interval of dt to construct an arc for estimated force
         //Sets initial distance of point Q from P
-        sconf.Dt0 = 1.06;
+        sconf.Dt0 = 3.695;
 
         //pos of P
         sconf.parQ = 0.33;
@@ -123,13 +123,12 @@
         //-----------------------------------
         const {
             bodyColor,
-			supplementHover,
+			infoHover,
 			proofHover,
             proofColor,
 			estimatedForceColor,
             forceColor,
 			sunColor,
-			dtime,
         } = topicColors_repo;
 
         var topicColors_elected =
@@ -137,7 +136,7 @@
 			estimatedForceColor,
             orbit: bodyColor,
             force: forceColor,
-			dtime,
+			time: estimatedForceColor,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -329,7 +328,7 @@
             { 'S,AA' : { pcolor : proofColor,
  				cssClass: 'subessay--solution', }, },
 
-            { 'L,LL' : { pcolor : supplementHover,
+            { 'L,LL' : { pcolor : infoHover,
                captionShiftNorm : 22, lposYSugar : 3 }, },
         ];
 

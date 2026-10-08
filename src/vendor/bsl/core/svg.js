@@ -103,12 +103,10 @@
                 ///good way to catch problems in app model logic
                 //if( typeof( val ) === 'string' && val.indexOf( 'NaN' ) > 0 ) {
                 //if( typeof( val ) === 'string' && key === 'points' ) {
-                    //ccc( Number.MIN_VALUE, Number.MAX_VALUE  );
                     //5e-324 1.7976931348623157e+308
                     //if( haz( arg, 'rgX' ) ) {
                     //    var wwPname = rgX.pname;
                     //}
-                    //ccc( wwPname, key, val );
                     //throw 'err. ' + key;
                 //}
                 //if( arg.type === 'text' && key==='class' ){

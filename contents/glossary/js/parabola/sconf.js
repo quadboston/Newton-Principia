@@ -11,7 +11,7 @@
     function init_conf()
     {
         //***************************************************************
-        // //\\ geometical scales
+        // //\\ geometrical scales
         //***************************************************************
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
@@ -22,13 +22,13 @@
         var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize;
         //***************************************************************
-        // \\// geometical scales
+        // \\// geometrical scales
         //***************************************************************
 
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
-        sconf.rgShapesVisible = true;
+		sconf.omitGraph = true;
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
@@ -123,12 +123,11 @@
         //-----------------------------------
         const {
             bodyColor,
-			supplementHover,
+			infoHover,
 			proofHover,
             proofColor,
 			estimatedForceColor,
             forceColor,
-			sunColor,
         } = topicColors_repo;
 
         var topicColors_elected =
@@ -201,12 +200,7 @@
             S : {
 				pcolor : proofColor,
 				letterAngle : -90,
-				cssClass: 'subessay--iii48-parabola',
-            },
-			S0 : {
-				pcolor : proofColor,
-                doPaintPname : false,
-				cssClass: 'subessay--latus-rectum-parabola',
+				cssClass: 'subessay--iii48-parabola subessay--latus-rectum-parabola',
             },
             P : {
                 pcolor : bodyColor,
@@ -294,8 +288,6 @@
 
         });
 
-		const showForParabola = { pcolor : proofColor,
- 				cssClass: 'subessay--diameter-parabola', };
 		const showForiii48 = { pcolor : proofColor,
  				cssClass: 'subessay--iii48-parabola', };
 		const showForLatus = { pcolor : proofColor,
@@ -320,7 +312,7 @@
             // base line
             { 'A,AA' : {pcolor : proofColor} },
 
-            { 'L,LL' : { pcolor : supplementHover,
+            { 'L,LL' : { pcolor : infoHover,
                captionShiftNorm : 22, lposYSugar : 3 }, },
         ];
 
@@ -328,7 +320,6 @@
             Q_STEPS,
             DATA_GRAPH_STEPS,
 
-            mediaBgImage : "diagram.png",
             topicColors_elected,
             originalPoints,
             linesArray,

@@ -1,7 +1,6 @@
 ( function() {
     var { sn, nspaste, rg, stdMod, sconf, ssD, sData, }
         = window.b$l.apptree({ stdModExportList : {
-            initiates_orbit,
 			initiates_orbit8graph,
             rebuilds_orbit,
             initiates_kepler_config,
@@ -16,15 +15,21 @@
         sconf.ro0SquaredDivide2 = sconf.ro0*sconf.ro0 / 2;
     }
 
-	function initiates_orbit() {
-		initiates_orbit8graph(false);
-	}
-
-    function initiates_orbit8graph(doGraph = true) {
+    function initiates_orbit8graph() {
         initiates_kepler_config();
-		if (doGraph) {
-			stdMod.graphFW_lemma = createGraph_FW_lemma({
-				digramParentDom$:stdMod.legendRoot$ }, stdMod.customXLegend);
+        // default media step for orbit models; a lemma that defines
+        // its own media_upcreate___part_of_medupcr_basic keeps it
+        if( !stdMod.media_upcreate___part_of_medupcr_basic ) {
+            stdMod.media_upcreate___part_of_medupcr_basic = () => {
+                // enables curve move when dragging an entire diagram
+                stdMod.createOrUpdateOrbit({});
+            };
+        }
+		if (!sconf.omitGraph) {
+			stdMod.graph = stdMod.createsGraph({
+				parentDom$ : stdMod.legendRoot$,
+				customXLegend : stdMod.customXLegend,
+			});
 		}
         stdMod.creates_createOrUpdateOrbit();
         if (stdMod.calculateMaxGraphValues)
@@ -41,6 +46,9 @@
         // //\\ scenario: coincided P and Q: Q splits first
         rg.P.dragPriority = 10;
         rg.Q.dragPriority = 100;
+		if ( rg.Qemphasis ) {
+			rg.Qemphasis.dragPriority = 100;
+		}
         // \\// scenario: coincided P and Q: Q splits first
 
         stdMod.creates_Q8P_sliders();
@@ -50,19 +58,9 @@
 		if( rg.A && (rg.A.draggableX || rg.A.draggableY) ) {
 			stdMod.creates_A_slider();
 		}
-
-		function createGraph_FW_lemma({ digramParentDom$ }, customXLegend){
-			const graphFW = {};
-			stdMod.createsGraphFW_class({
-				graphFW,
-				digramParentDom$,
-				customXLegend,
-			});
-			return graphFW;
-		}
     }
 
-    function rebuilds_orbit(setMaxGraphValues) {
+    function rebuilds_orbit(setMaxGraphValues = false) {
         const Q_STEPS = sconf.Q_STEPS;
 
         if (stdMod.recalculateOrbitStartAndEnd)
@@ -87,7 +85,7 @@
         stdMod.builds_force_plusQ_minusQ_and_related(sData.ULTIM_MAX);
         stdMod.builds_force_plusQ_minusQ_and_related(sData.ULTIM_ACTUAL);
         stdMod.builds_force_plusQ_minusQ_and_related();
-		stdMod.builds_orbit_data_graph(setMaxGraphValues);
+        stdMod.builds_orbit_data_graph(setMaxGraphValues);
 
         //Adjust point P if out of bounds
         const qixMin = ssD.qix_graph_start;

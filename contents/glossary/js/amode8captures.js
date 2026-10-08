@@ -1,5 +1,5 @@
 ( function() {
-    var { nspaste, toreg, mat, sDomF, ssD, ssF, stdMod, rg, sconf, }
+    var { sDomF, stdMod, sconf, }
         = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     return;
 
@@ -10,12 +10,6 @@
     {
         sDomF.resetModelPos();
 
-        toreg( 'media_scale' )();
-        if(!rg.media_scale.value) {
-            rg.media_scale.value = 1;
-        }
-        ssF.scaleValue2app( rg.media_scale.value, stdMod );
-
         //=============================================================
         // //\\ model
         //=============================================================
@@ -25,18 +19,12 @@
         stdMod.establishesEccentricity( op.initialEccentricity )
         // \\// "draws" conics
 
-        rg.S.pos[0] = rg.S.pos[1] = 0;
-		if (rg.S0) {
-			rg.S0.pos[0] = rg.S0.pos[1] = 0;
-		}
-
         //=============================================================
         // \\// model
         //=============================================================
 
-        stdMod.rebuilds_orbit(false);
-        //comment out to remove Book's diagram after timeout
-        sDomF.detected_user_interaction_effect( 'doUndetected' );
+        stdMod.rebuilds_orbit();
         return captured;
     }
+
 }) ();

@@ -151,8 +151,6 @@
         {
             var len = surface0attachee.getBoundingClientRect().width;
             var relMove = ( absFraction - absFracDone ) * len;
-            //ccc( 'emulation-layer in engine: len=' + len + ' absFracDone=' +
-            //absFracDone + ' absFraction=' + absFraction + ' relMove=' + relMove );
             return d8d_cb_middle2lowest( [ relMove, 0 ], mouseUpOrDown );
         }
 

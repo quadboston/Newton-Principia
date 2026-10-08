@@ -20,8 +20,6 @@ function media_upcreate___before_basic (){
     //rg.detected_user_interaction_effect_DONE came from subessay launch
     sDomF.detected_user_interaction_effect(
         !rg.detected_user_interaction_effect_DONE );
-    //this is a "policy" ... should be in the state manager if any ...
-    rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
 
     //***********************************************************
     //todo //patch
