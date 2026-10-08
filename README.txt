@@ -42,28 +42,20 @@ Style Guide
 
 Deployment.
 
-    usage:
+    Pushing to the release branch deploys the site: the GitHub Action in
+    .github/workflows/deploy.yml builds it and publishes it to GitHub Pages.
 
-        #this does concatenatenation;
-        #   assembles all JS and CSS files into two files to be run from index.prod.html
-        #   creates index.prod.html
+    The build can also be run locally:
+
+        #assembles all JS and CSS files into two files to be run from
+        #index.prod.html, and creates index.prod.html
         cd deploy
         ./concatenate.sh
 
-        #this does what ./concatenate.sh does with additional minification of js-code
-        cd deploy
-        ./uglify.sh
+    dependency: PHP
 
-    dependency: PHP and uglifyjs (uglify-es)
-    how to set up: see comments at top of file deployment-engine.php
-        1. briefly:
-            //https://www.npmjs.com/package/uglify-es
-            //npm install uglify-es -g
-        2. shell and php codes are simple, glance at them for
-           guidance how and what to do
-
-    zipup.sh is not a deployer( see its header), it is an additional tool to develop
-        between commits to git
+    deploy/zipup.sh is not a deployer (see its header); it is an additional
+        tool to develop between commits to git
 
 
 Jargon
