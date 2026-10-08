@@ -10,27 +10,24 @@
         //=========================================================================
         // //\\ eccentricity slider
         //=========================================================================
-        let lastTime = 0;
         rg.A.acceptPos = newPos => {
-            let now = performance.now();
-            let deltaTime = now - lastTime;
-            if(deltaTime < 60) return; // reduces jitter
-            lastTime = now;
+            //A is the vertex q2xy( Math.PI ), at distance latus / ( 1 + e )
+            //from S along the axis, so the eccentricity that puts A under
+            //the pointer follows directly from the pointer's distance
+            const center = sconf.diagramOrigin;
+            const axis = op.mainAxisAngle;
+            const distance = -(
+                ( newPos[0] - center[0] ) * Math.cos( axis ) +
+                ( newPos[1] - center[1] ) * Math.sin( axis )
+            );
+            const eccentricity = distance > 0 ?
+                op.latus / distance - 1 : op.eccentricityMax;
 
-            const eMin = op.eccentricityMin;
-            const eMax = op.eccentricityMax;
-            const delta = newPos[0] - rg.A.pos[0];   
-
-            if(Math.abs(delta) < 0.01) return; // to avoid jitter on Mac  
-
-            const k = 1; // proportionate change factor
-            const prevE = op.eccentricity;
-            let newEccentricity = prevE + delta * k;
-
-            // clamp to bounds
-            newEccentricity = Math.max(eMin, Math.min(eMax, newEccentricity));
-
-            stdMod.establishesEccentricity(newEccentricity, false);
+            stdMod.establishesEccentricity(
+                Math.max( op.eccentricityMin,
+                          Math.min( op.eccentricityMax, eccentricity ) ),
+                false,
+            );
             stdMod.rebuilds_orbit();
 
             return true;
