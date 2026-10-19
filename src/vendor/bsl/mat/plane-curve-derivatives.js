@@ -230,36 +230,51 @@
         const dataNew = planeCurveDerivativesNew({pointAt, q, sunXY});
         const dataOld = planeCurveDerivativesOld({pointAt, q, sunXY});
 
-        for (const [key, valueNew] of Object.entries(dataNew)) {
+        //Check all keys, both old and new, in case some are missing
+        const keysNew = Object.keys(dataNew);
+        const keysOld = Object.keys(dataOld);
+        const keys = [...keysOld];
+        keys.push(...keysNew.filter((key) => !keys.includes(key)));
+
+        for (const key of keys) {
+            // console.log(key);
+            //The followng variable has been removed, hide error messages for it
+            if (key === "rOrAbs")
+                continue;
+
+            const valueNew = dataNew[key];
             const valueOld = dataOld[key];
-            let message = "";
+            //Store all messages (rather than eg. in a single string to ensure a
+            //message doesn't get overwritten)
+            const messages = [];
 
             if (valueNew == null || valueOld == null)
-                message = "null value";
+                messages.push("null value");
 
             if (typeof valueNew != typeof valueOld)
-                message = "types differ";
+                messages.push("types differ");
 
-            switch (typeof valueNew) {
+            switch (typeof valueOld) {
                 case "object":
                     const lengthNew = valueNew.length;
                     const lengthOld = valueOld.length;
                     if (lengthNew != lengthOld)
-                        message = "lengths differ";
+                        messages.push("lengths differ");
                     for (let i = 0; i < Math.min(lengthNew, lengthOld); i++)
-                        message = compareValues(valueNew[i], valueOld[i], message);
+                        compareValues(valueNew[i], valueOld[i], messages);
                     break;
 
                 case "number":
-                    message = compareValues(valueNew, valueOld, message);
+                    compareValues(valueNew, valueOld, messages);
                     break;
 
                 default:
-                    message = "type not listed";
+                    messages.push("type not listed");
                     break;
             }
 
-            if (message != "") {
+            //Log all error messages
+            for (const message of messages) {
                 console.error(`Error: ${message}  ` +
                         `key = ${key}  ` +
                         `valueNew = ${valueNew}  ` +
@@ -272,11 +287,10 @@
         return dataNew;
 
 
-        function compareValues(valueNew, valueOld, message) {
+        function compareValues(valueNew, valueOld, messages) {
             const error = (valueNew - valueOld);
             if (error != 0)
-                return `not equal  error = ${error}`;
-            return message;
+                messages.push(`not equal  error = ${error}`);
         }
     }
 
