@@ -174,7 +174,6 @@
             // **api-output---plane-curve-derivatives
             posBody,
 
-            rrr: r.vector,
             r2:  r.v2,
             r,
             ee:  r.unitVec,

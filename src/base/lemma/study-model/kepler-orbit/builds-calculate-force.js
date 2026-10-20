@@ -177,7 +177,7 @@
 
     function calculateSign(bP, direction) {
         //Calculate by comparing directions of the following vectors
-        const rrr = bP.rrr; //vector from S to P
-        return Math.sign(rrr[0]*direction[0] + rrr[1]*direction[1]);
+        const r = bP.r; //from S to P
+        return Math.sign(r.vector[0]*direction[0] + r.vector[1]*direction[1]);
     }
 }) ();
