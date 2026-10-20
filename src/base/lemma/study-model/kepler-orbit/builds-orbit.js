@@ -24,7 +24,7 @@
         const Q_STEPS = sconf.Q_STEPS;
         const orbitXYToDraw_LIMIT = Math.min( 1000, Q_STEPS );
         const delta_q_between_steps = sconf.delta_q_between_steps;
-        var momentum0; //at start of the path
+        let h0 = 0; //at start of the path
 
         var solvable = true;
         var foldPoints = [];
@@ -45,7 +45,6 @@
             var {
                 planetXY,
                 ds_dq, //|d𝗿/dq|
-                r2,
                 staticSectorialSpeed_rrrOnUU,
                 sinOmega, //for Kepler's motion, f = 1/R vₜ² / sin(w)
             } = bP;
@@ -66,18 +65,23 @@
             // //\\ preparing time array
             //------------------------------------------
             //meaning: dq_dt = dq/dt
-            //TEMP Should probably add a few comments explaining the following
-            //code, and make any adjustments as needed.  Eg. the part about
-            //momentum and sectorial speed.
             if( 0 === qix ) {
                 var ds_dt = calculate_ds_dt(bP);
-                momentum0 = staticSectorialSpeed_rrrOnUU * ds_dt;
+                //Specific angular momentum for first point
+                //todo replace staticSectorialSpeed_rrrOnUU with new name
+                h0 = staticSectorialSpeed_rrrOnUU * ds_dt;
 
                 var timeAtQ = bP.timeAtQ = 0;
                 var pathAtQ = bP.pathAtQ = 0;
                 var dq_dt = ds_dt/ds_dq;
             } else {
-                var ds_dt = momentum0 / staticSectorialSpeed_rrrOnUU;
+                //Know specific angular momentum is constant
+                //h0 = h1 = ... = hn
+                //Know hPerSpeed * ds/dt = h
+                //Sub h = h0 and rearrange
+                //todo replace staticSectorialSpeed_rrrOnUU with new name
+                var ds_dt = h0 / staticSectorialSpeed_rrrOnUU;
+
                 var dq_dt = ds_dt/ds_dq;
                 var pathAtQ = bP.pathAtQ = pathAtQ + delta_q_between_steps * ds_dq;
                 var timeAtQ = bP.timeAtQ = timeAtQ + delta_q_between_steps / dq_dt;
