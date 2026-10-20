@@ -39,7 +39,7 @@
             var bP = qIndexToOrbit[ qix ] = mcurve.planeCurveDerivatives({
                 pointAt : q2xy,
                 q : orbit_q_start + qix * delta_q_between_steps,
-                sunXY : rg.S.pos,
+                posCenterOfForces : rg.S.pos,
             });
             bP.qix = qix;
             var {
