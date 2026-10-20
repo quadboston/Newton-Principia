@@ -176,7 +176,6 @@
 
             r2:  r.v2,
             r,
-            ee:  r.unitVec,
 
             vv: dr_dq,
             v2: ds_dq_squared,

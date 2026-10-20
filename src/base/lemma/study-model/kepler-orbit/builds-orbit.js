@@ -188,7 +188,7 @@
             ulitmacy: sData.ULTIM_ACTUAL
         });
         //Know F = m * a, assuming m = 1, then a = F
-        const a0 = mat.scaleV(actualForce, bP.ee);
+        const a0 = mat.scaleV(actualForce, bP.r.unitVec);
 
         //Calculate normal and tangential components
         const a0Normal = mat.scalarProduct(a0, bP.nn);

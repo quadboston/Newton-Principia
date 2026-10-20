@@ -44,7 +44,7 @@
         var {
             projectionOfCenterOnTangent,
             uu,
-            ee,
+            r,
             sinOmega,
             cosOmega,
         } = diff;
@@ -115,7 +115,7 @@
             var {
                 posBody,
                 uu,
-                ee,
+                r,
                 projectionOfCenterOnTangent,
                 sinOmega,
                 cosOmega,
@@ -165,7 +165,7 @@
             ////force and gamma
             let relativeGamma = op.Kepler_g / sop.Kepler_gInitial;
             var newLen = relativeGamma * sop.forceHandleInitial;
-            nspaste( rg.f.pos, mat.sm( rg.p.pos, -1*newLen, ee ));
+            nspaste( rg.f.pos, mat.sm( rg.p.pos, -1*newLen, r.unitVec ));
         }
 
         //perpendicular dropped from pr to S
