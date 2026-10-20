@@ -202,7 +202,7 @@
             curvatureChordSecondPoint,
             projectionOfCenterOnTangent,
 
-            staticSectorialSpeed_rrrOnUU: hPerSpeed,
+            hPerSpeed,
 
             angleRV,    //in respect to posCenterOfForces
             sinOmega,   //in respect to posCenterOfForces

@@ -208,8 +208,8 @@
                 q,
                 sunXY,
             });
-            //assumes central force, i.e. constant sectorial speed
-            //var Kepler_v_instant = op.Kepler_v * sectorialSpeed0 / staticSectorialSpeed_rrrOnUU;
+            //assumes central force, i.e. constant specific angular momentum
+            //var Kepler_v_instant = op.Kepler_v * h0 / hPerSpeed;
 
             var intervalQ = ds_by_dt / v; //dfi
             q += intervalQ;

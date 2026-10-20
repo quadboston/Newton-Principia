@@ -45,7 +45,7 @@
             var {
                 planetXY,
                 ds_dq, //|d𝗿/dq|
-                staticSectorialSpeed_rrrOnUU,
+                hPerSpeed,
                 sinOmega, //for Kepler's motion, f = 1/R vₜ² / sin(w)
             } = bP;
 
@@ -68,8 +68,7 @@
             if( 0 === qix ) {
                 var ds_dt = calculate_ds_dt(bP);
                 //Specific angular momentum for first point
-                //todo replace staticSectorialSpeed_rrrOnUU with new name
-                h0 = staticSectorialSpeed_rrrOnUU * ds_dt;
+                h0 = hPerSpeed * ds_dt;
 
                 var timeAtQ = bP.timeAtQ = 0;
                 var pathAtQ = bP.pathAtQ = 0;
@@ -79,8 +78,7 @@
                 //h0 = h1 = ... = hn
                 //Know hPerSpeed * ds/dt = h
                 //Sub h = h0 and rearrange
-                //todo replace staticSectorialSpeed_rrrOnUU with new name
-                var ds_dt = h0 / staticSectorialSpeed_rrrOnUU;
+                var ds_dt = h0 / hPerSpeed;
 
                 var dq_dt = ds_dt/ds_dq;
                 var pathAtQ = bP.pathAtQ = pathAtQ + delta_q_between_steps * ds_dq;
