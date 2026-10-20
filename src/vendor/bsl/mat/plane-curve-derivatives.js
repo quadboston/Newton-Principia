@@ -174,7 +174,6 @@
             // **api-output---plane-curve-derivatives
             posBody,
 
-            r2:  r.v2,
             r,
 
             vv: dr_dq,
