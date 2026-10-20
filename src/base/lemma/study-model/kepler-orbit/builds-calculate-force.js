@@ -124,7 +124,7 @@
     function calculateActualForce({
         bP    //orbit point P rack
     }) {
-        const P = bP.planetXY;
+        const P = bP.posBody;
         const S = bP.posCenterOfForces;
         const V = bP.curvatureChordSecondPoint;
         const Y = bP.projectionOfCenterOnTangent;
@@ -152,7 +152,7 @@
         ///displacement = QR, area = QT*SP,
         const q2xy = stdMod.q2xy;
         const Q = q2xy( parq );
-        const P = bP.planetXY;
+        const P = bP.posBody;
         const S = bP.posCenterOfForces;
         const R = mat.linesCross(
             bP.uu, P, //direction, start

@@ -1,6 +1,6 @@
 ( function() {
     var { $$, nsmethods, nssvg, mat, has, ssF, ssF, ssD, stdMod, amode, sconf,
-        rg, toreg, mcurve, } = window.b$l.apptree({ stdModExportList : { 
+        rg, toreg, mcurve, } = window.b$l.apptree({ stdModExportList : {
             model_upcreate, }, });
     return;
 
@@ -17,11 +17,11 @@
         var {
             RC, R, curvatureChordSecondPoint, projectionOfCenterOnTangent,
             uu,
-            planetXY,
+            posBody,
         } = Porb;
         rg.P.q = Porb.q;
-        rg.P.pos[0] = planetXY[0];
-        rg.P.pos[1] = planetXY[1];
+        rg.P.pos[0] = posBody[0];
+        rg.P.pos[1] = posBody[1];
         const rr0 = rg.P.pos;
         const posCenterOfForces = rg.S.pos;
         const Rc = R; //curvature radius
@@ -65,7 +65,7 @@
             //------------------------------------------------
             // \\// L
             //------------------------------------------------
-            
+
             var Z = mat.linesCross(
                 uu,
                 rg.P.pos,

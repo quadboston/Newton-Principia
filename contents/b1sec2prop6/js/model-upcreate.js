@@ -21,10 +21,10 @@
             var {
                 RC, R, curvatureChordSecondPoint, projectionOfCenterOnTangent,
                 uu,
-                planetXY, //rg.P.pos
+                posBody, //rg.P.pos
             } = Porb;
             rg.P.q = Porb.q;
-            rg.P.pos = planetXY;
+            rg.P.pos = posBody;
             const Rc = R; //curvature radius
 
             if( solvable ){
@@ -54,7 +54,7 @@
 					const sagittaOnSP_Tolerance = 0.0006;
 
                     for (let i = rg.P.qix; i > 0; i--) {
-                        const Qp = ssD.qIndexToOrbit[i]?.planetXY;
+                        const Qp = ssD.qIndexToOrbit[i]?.posBody;
                         if (!Qp) continue;
 
                         // intersection I(Q') of SP and QQ'

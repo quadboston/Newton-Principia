@@ -172,7 +172,7 @@
             q,
             posCenterOfForces,
             // **api-output---plane-curve-derivatives
-            planetXY: posBody,
+            posBody,
 
             rrr: r.vector,
             r2:  r.v2,
