@@ -66,7 +66,7 @@
                 let graphColumn = {
                     qix,
                     rr : bP.rr,
-                    x : sData.PLOT_BY_PATH ? bP.pathAtQ : bP.r,
+                    x : sData.PLOT_BY_PATH ? bP.pathAtQ : bP.r.abs,
                 };
                 graphArray.push( graphColumn );
 

@@ -176,7 +176,7 @@
 
             rrr: r.vector,
             r2:  r.v2,
-            r:   r.abs,
+            r,
             ee:  r.unitVec,
 
             vv: dr_dq,

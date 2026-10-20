@@ -166,7 +166,7 @@
         const QT0 = Q[0]-T[0];
         const QT1 = Q[1]-T[1];
         const QT = Math.sqrt( QT0*QT0 + QT1*QT1 );
-        const SP = bP.r;
+        const SP = bP.r.abs;
         const area = SP*QT;
         const force = QR/(area*area);
 
