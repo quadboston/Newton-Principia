@@ -39,25 +39,25 @@
             var bP = qIndexToOrbit[ qix ] = mcurve.planeCurveDerivatives({
                 pointAt : q2xy,
                 q : orbit_q_start + qix * delta_q_between_steps,
-                sunXY : rg.S.pos,
+                posCenterOfForces : rg.S.pos,
             });
             bP.qix = qix;
             var {
-                planetXY,
+                posBody,
                 ds_dq, //|d𝗿/dq|
-                staticSectorialSpeed_rrrOnUU,
+                hPerSpeed,
                 sinOmega, //for Kepler's motion, f = 1/R vₜ² / sin(w)
             } = bP;
 
             if (sconf.CURVE_REVOLVES)
-                bP.angleIncrement = calculateAngleIncrement(planetXY, qix);
+                bP.angleIncrement = calculateAngleIncrement(posBody, qix);
 
             // Kepler's motion: rvₜcos(w) = M
             // f = M²/(Rr²cos³(w))
             sinAbs = Math.abs( sinOmega );
             if( NON_SOLVABLE_THRESHOLD > sinAbs ) {
                 solvable = false;
-                foldPoints.push( [ planetXY[0], planetXY[1] ] );
+                foldPoints.push( [ posBody[0], posBody[1] ] );
                 bP.solvablePoint = solvable;
             }
 
@@ -68,8 +68,7 @@
             if( 0 === qix ) {
                 var ds_dt = calculate_ds_dt(bP);
                 //Specific angular momentum for first point
-                //todo replace staticSectorialSpeed_rrrOnUU with new name
-                h0 = staticSectorialSpeed_rrrOnUU * ds_dt;
+                h0 = hPerSpeed * ds_dt;
 
                 var timeAtQ = bP.timeAtQ = 0;
                 var pathAtQ = bP.pathAtQ = 0;
@@ -79,8 +78,7 @@
                 //h0 = h1 = ... = hn
                 //Know hPerSpeed * ds/dt = h
                 //Sub h = h0 and rearrange
-                //todo replace staticSectorialSpeed_rrrOnUU with new name
-                var ds_dt = h0 / staticSectorialSpeed_rrrOnUU;
+                var ds_dt = h0 / hPerSpeed;
 
                 var dq_dt = ds_dt/ds_dq;
                 var pathAtQ = bP.pathAtQ = pathAtQ + delta_q_between_steps * ds_dq;
@@ -109,7 +107,7 @@
             const ORBIT_STEP = Q_STEPS/orbitXYToDraw_LIMIT;
             for( let oix=0; oix<=orbitXYToDraw_LIMIT; oix++ ){
                 let qix = Math.floor( oix * ORBIT_STEP );
-                orbitXYToDraw[ oix ] = qIndexToOrbit[qix].planetXY;
+                orbitXYToDraw[ oix ] = qIndexToOrbit[qix].posBody;
             }
         }
         // \\// one or many shapes
@@ -173,7 +171,7 @@
         const q2xy = stdMod.q2xy;
 
         //Positions
-        const pos0 = bP.planetXY;
+        const pos0 = bP.posBody;
         //Point slightly further along the orbit.  Ensure much further than
         //the delta_q numerical differentiation step to prevent problems.
         const pos1 = q2xy(bP.q + bP.delta_q * 10);
@@ -190,7 +188,7 @@
             ulitmacy: sData.ULTIM_ACTUAL
         });
         //Know F = m * a, assuming m = 1, then a = F
-        const a0 = mat.scaleV(actualForce, bP.ee);
+        const a0 = mat.scaleV(actualForce, bP.r.unitVec);
 
         //Calculate normal and tangential components
         const a0Normal = mat.scalarProduct(a0, bP.nn);

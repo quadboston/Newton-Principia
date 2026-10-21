@@ -124,8 +124,8 @@
     function calculateActualForce({
         bP    //orbit point P rack
     }) {
-        const P = bP.planetXY;
-        const S = bP.sunXY;
+        const P = bP.posBody;
+        const S = bP.posCenterOfForces;
         const V = bP.curvatureChordSecondPoint;
         const Y = bP.projectionOfCenterOnTangent;
 
@@ -152,8 +152,8 @@
         ///displacement = QR, area = QT*SP,
         const q2xy = stdMod.q2xy;
         const Q = q2xy( parq );
-        const P = bP.planetXY;
-        const S = bP.sunXY;
+        const P = bP.posBody;
+        const S = bP.posCenterOfForces;
         const R = mat.linesCross(
             bP.uu, P, //direction, start
             [P[0]-S[0], P[1]-S[1]], Q, //direction, start
@@ -166,7 +166,7 @@
         const QT0 = Q[0]-T[0];
         const QT1 = Q[1]-T[1];
         const QT = Math.sqrt( QT0*QT0 + QT1*QT1 );
-        const SP = bP.r;
+        const SP = bP.r.abs;
         const area = SP*QT;
         const force = QR/(area*area);
 
@@ -177,7 +177,7 @@
 
     function calculateSign(bP, direction) {
         //Calculate by comparing directions of the following vectors
-        const rrr = bP.rrr; //vector from S to P
-        return Math.sign(rrr[0]*direction[0] + rrr[1]*direction[1]);
+        const r = bP.r; //from S to P
+        return Math.sign(r.vector[0]*direction[0] + r.vector[1]*direction[1]);
     }
 }) ();

@@ -1,5 +1,5 @@
 ( function() {
-    var { nspaste, mat, sconf, 
+    var { nspaste, mat, sconf,
         ssD, stdMod, rg, }
         = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
     return;
@@ -15,10 +15,10 @@
         const q2xy = stdMod.q2xy;
         var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
         var parQ = Porb.q;
-        rg.P.pos[0] = Porb.planetXY[0];
-        rg.P.pos[1] = Porb.planetXY[1];
+        rg.P.pos[0] = Porb.posBody[0];
+        rg.P.pos[1] = Porb.posBody[1];
         var rr0 = rg.P.pos;
-        var sunXY = rg.S.pos;
+        var posCenterOfForces = rg.S.pos;
         var Qpos = q2xy( Porb.plusQ );
         rg.Q.pos[0] = Qpos[0];
         rg.Q.pos[1] = Qpos[1];
@@ -26,7 +26,7 @@
 			rg.Qemphasis.pos[0] = Qpos[0];
 			rg.Qemphasis.pos[1] = Qpos[1];
 		}
-        
+
         // **api-input---plane-curve-derivatives
         var {
             uu,
@@ -47,13 +47,14 @@
         //R = parallel-projection of Q to tangent
         var wwR = mat.linesCross(
             uu, rr0, //direction, start
-            [rr0[0]-sunXY[0], rr0[1]-sunXY[1]], rg.Q.pos, //direction, start
+            [rr0[0]-posCenterOfForces[0],
+             rr0[1]-posCenterOfForces[1]], rg.Q.pos, //direction, start
         );
         rg.R.pos[0] = wwR[0];
         rg.R.pos[1] = wwR[1];
 
         //T = perp. from Q to radius-vector
-        var wwT = mat.dropPerpendicular( rg.Q.pos, sunXY, rr0 )
+        var wwT = mat.dropPerpendicular( rg.Q.pos, posCenterOfForces, rr0 );
         rg.T.pos[0] = wwT[0];
         rg.T.pos[1] = wwT[1];
 

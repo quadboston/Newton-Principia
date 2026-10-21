@@ -16,8 +16,8 @@
         const sinAxis   = Math.sin( op.mainAxisAngle );
         const q2xy = stdMod.q2xy;
         var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
-        rg.P.pos[0] = Porb.planetXY[0];
-        rg.P.pos[1] = Porb.planetXY[1];
+        rg.P.pos[0] = Porb.posBody[0];
+        rg.P.pos[1] = Porb.posBody[1];
         var Qpos = q2xy( Porb.plusQ );
         rg.Q.pos[0] = Qpos[0];
         rg.Q.pos[1] = Qpos[1];

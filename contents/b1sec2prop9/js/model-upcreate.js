@@ -15,17 +15,19 @@
         const q2xy = stdMod.q2xy;
         var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
 
-        rg.P.pos[0] = Porb.planetXY[0];
-        rg.P.pos[1] = Porb.planetXY[1];
+        rg.P.pos[0] = Porb.posBody[0];
+        rg.P.pos[1] = Porb.posBody[1];
         var rr0 = rg.P.pos;
-        var sunXY = rg.S.pos;
+        var posCenterOfForces = rg.S.pos;
         var Qpos = q2xy( Porb.plusQ );
         rg.Q.pos[0] = Qpos[0];
         rg.Q.pos[1] = Qpos[1];
 
         // for debugging
-        // const angleSP = Math.atan2( rr0[1] - sunXY[1], rr0[0] - sunXY[0] );
-        // const angleSQ = Math.atan2( Qpos[1] - sunXY[1], Qpos[0] - sunXY[0] );
+        // const angleSP = Math.atan2( rr0[1] - posCenterOfForces[1],
+        //                             rr0[0] - posCenterOfForces[0] );
+        // const angleSQ = Math.atan2( Qpos[1] - posCenterOfForces[1],
+        //                             Qpos[0] - posCenterOfForces[0] );
         // const anglePSQ = angleSQ - angleSP;
         // console.log( 'Angle PSQ: ' + (anglePSQ * 180 / Math.PI).toFixed(2) + ' degrees' );
 
@@ -46,13 +48,14 @@
         //R = parallel-projection of Q to tangent
         var wwR = mat.linesCross(
             uu, rr0, //direction, start
-            [rr0[0]-sunXY[0], rr0[1]-sunXY[1]], rg.Q.pos, //direction, start
+            [rr0[0]-posCenterOfForces[0],
+             rr0[1]-posCenterOfForces[1]], rg.Q.pos, //direction, start
         );
         rg.R.pos[0] = wwR[0];
         rg.R.pos[1] = wwR[1];
 
         //T = perp. from Q to radius-vector
-        var wwT = mat.dropPerpendicular( rg.Q.pos, sunXY, rr0 )
+        var wwT = mat.dropPerpendicular( rg.Q.pos, posCenterOfForces, rr0 );
         rg.T.pos[0] = wwT[0];
         rg.T.pos[1] = wwT[1];
         //================================================

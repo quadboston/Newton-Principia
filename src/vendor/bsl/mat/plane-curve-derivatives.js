@@ -18,11 +18,8 @@
         q, //param q, not to be confused with point Q
 
         //optional: chosen position for center of forces
-        sunXY = [0, 0],
+        posCenterOfForces = [0, 0],
     }){
-        //todo Remove when input sunXY renamed
-        const posCenterOfForces = sunXY;
-
         const delta_q = ssD.delta_q_finite_difference;
 
         //note: protects values against being ∞,
@@ -173,14 +170,11 @@
         //****************************************************
         return {
             q,
-            sunXY: posCenterOfForces,
+            posCenterOfForces,
             // **api-output---plane-curve-derivatives
-            planetXY: posBody,
+            posBody,
 
-            rrr: r.vector,
-            r2:  r.v2,
-            r:   r.abs,
-            ee:  r.unitVec,
+            r,
 
             vv: dr_dq,
             v2: ds_dq_squared,
@@ -202,7 +196,7 @@
             curvatureChordSecondPoint,
             projectionOfCenterOnTangent,
 
-            staticSectorialSpeed_rrrOnUU: hPerSpeed,
+            hPerSpeed,
 
             angleRV,    //in respect to posCenterOfForces
             sinOmega,   //in respect to posCenterOfForces
