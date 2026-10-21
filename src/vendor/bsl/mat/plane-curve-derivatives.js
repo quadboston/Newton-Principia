@@ -178,7 +178,6 @@
 
             dr_dq,
             ds_dq_squared,
-            v:  ds_dq,
             ds_dq,
             uu: uTangential,
 
