@@ -183,7 +183,7 @@
 
             d2r_dq2,
             d2s_dq2_squared,
-            a:  d2s_dq2,
+            d2s_dq2,
 
             c,
             nn: uNormal, //unit curvature vector
