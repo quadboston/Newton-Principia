@@ -155,7 +155,7 @@
         const P = bP.posBody;
         const S = bP.posCenterOfForces;
         const R = mat.linesCross(
-            bP.uu, P, //direction, start
+            bP.uTangential, P, //direction, start
             [P[0]-S[0], P[1]-S[1]], Q, //direction, start
         );
         const QR0 = Q[0]-R[0];

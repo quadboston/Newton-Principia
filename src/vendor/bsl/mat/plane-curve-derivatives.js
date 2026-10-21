@@ -179,7 +179,7 @@
             dr_dq,
             ds_dq_squared,
             ds_dq,
-            uu: uTangential,
+            uTangential,
 
             aa: d2r_dq2,
             a2: d2s_dq2_squared,

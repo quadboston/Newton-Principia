@@ -37,7 +37,7 @@
             R,
             curvatureChordSecondPoint,
             projectionOfCenterOnTangent,
-            uu,
+            uTangential,
             nn,
         } = Porb;
         var Rc = R; //curvature radius
@@ -47,7 +47,7 @@
         //================================================
         //R = parallel-projection of Q to tangent
         var wwR = mat.linesCross(
-            uu, rr0, //direction, start
+            uTangential, rr0, //direction, start
             [rr0[0]-posCenterOfForces[0],
              rr0[1]-posCenterOfForces[1]], rg.Q.pos, //direction, start
         );

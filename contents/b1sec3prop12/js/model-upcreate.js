@@ -23,7 +23,7 @@
         rg.Q.pos[1] = Qpos[1];
 
         var {
-            uu,
+            uTangential,
         } = Porb;
 
         //"caustics"
@@ -39,7 +39,7 @@
         //R = parallel-projection of Q to tangent
         nspaste( rg.R.pos,
             mat.linesCross(
-                uu, rg.P.pos, //direction, start
+                uTangential, rg.P.pos, //direction, start
                 [rg.P.pos[0]-rg.S.pos[0], rg.P.pos[1]-rg.S.pos[1]], rg.Q.pos, //direction, start
             )
         );
@@ -53,7 +53,7 @@
                 rg.P.pos,
                 null,
                 null,
-                uu,
+                uTangential,
             )
         );
         //================================================
@@ -67,7 +67,7 @@
                 rg.P.pos,
                 null,
                 null,
-                uu,
+                uTangential,
             )
         );
         nspaste( rg.A.pos, q2xy( Math.PI ) );
@@ -88,15 +88,16 @@
 		const sqDiameterConstant = sqAC - sqBC;
 		const SqDC = mat.squaredDistance( rg.P, rg.C ) - sqDiameterConstant;
 		const DC = Math.sqrt(Math.abs(SqDC ));
-        let D = mat.sm( rg.C.pos, -DC, uu );
-        nspaste( rg.D.pos, D );    
-        let K = mat.sm( rg.C.pos,  DC, uu );
-        nspaste( rg.K.pos, K );    
+        let D = mat.sm( rg.C.pos, -DC, uTangential );
+        nspaste( rg.D.pos, D );
+        let K = mat.sm( rg.C.pos,  DC, uTangential );
+        nspaste( rg.K.pos, K );
         //is this a numerical glitch in the Book?:
-        //nspaste( rg.K.pos, mat.dropLine(  2.13, rg.C.pos, rg.P.pos, null, uu) );
-        
+        //nspaste( rg.K.pos, mat.dropLine(  2.13, rg.C.pos, rg.P.pos, null,
+        //                                  uTangential) );
+
         //conjugate diameters and tangents
-		stdMod.customizePoints(rg, op, uu);
+		stdMod.customizePoints(rg, op, uTangential);
 
         //vuFV
         //v = parallel-projection of Q to tangent
@@ -104,7 +105,7 @@
         var PG = [ rg.P.pos[0]-rg.G.pos[0], rg.P.pos[1]-rg.G.pos[1] ];
         nspaste( rg.v.pos,
             mat.linesCross(
-                uu, rg.Q.pos, //direction, start
+                uTangential, rg.Q.pos, //direction, start
                 PG, rg.P.pos, //direction, start
             )
         );

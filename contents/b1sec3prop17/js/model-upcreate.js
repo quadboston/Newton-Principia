@@ -43,7 +43,7 @@
         });
         var {
             projectionOfCenterOnTangent,
-            uu,
+            uTangential,
             r,
             sinOmega,
             cosOmega,
@@ -87,7 +87,7 @@
             let udir = op.cosOmega * cosOmega + op.om * sinOmega;
             nspaste( 
                 rg.R.pos, 
-                mat.sm( op.Kepler_v*udir, uu, 1, rg.P.pos )
+                mat.sm( op.Kepler_v*udir, uTangential, 1, rg.P.pos )
             );
         }
 
@@ -114,7 +114,7 @@
             let pointAt = rg[ 'approximated-curve-sample' ].t2xy;
             var {
                 posBody,
-                uu,
+                uTangential,
                 r,
                 projectionOfCenterOnTangent,
                 sinOmega,
@@ -137,7 +137,7 @@
                 let udir = sop.cosOmega * cosOmega + sop.om * sinOmega;
                 nspaste(
                     rg.point_r.pos, 
-                    mat.sm( sop.Kepler_v*udir, uu, 1, rg.p.pos )
+                    mat.sm( sop.Kepler_v*udir, uTangential, 1, rg.p.pos )
                 );
             }
             //sample's decorational dt arc

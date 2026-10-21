@@ -179,7 +179,7 @@
 
         //Calculate normal and tangential components
         const deltaPosNormal = mat.scalarProduct(deltaPos, bP.nn);
-        const deltaPosTangential = mat.scalarProduct(deltaPos, bP.uu);
+        const deltaPosTangential = mat.scalarProduct(deltaPos, bP.uTangential);
 
 
         //Acceleration (dv/dt) for input point
@@ -192,7 +192,7 @@
 
         //Calculate normal and tangential components
         const a0Normal = mat.scalarProduct(a0, bP.nn);
-        const a0Tangential = mat.scalarProduct(a0, bP.uu);
+        const a0Tangential = mat.scalarProduct(a0, bP.uTangential);
 
 
         //Normal direction

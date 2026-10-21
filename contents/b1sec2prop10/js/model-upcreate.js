@@ -25,7 +25,7 @@
 
         // **api-input---plane-curve-derivatives
         var {
-            uu,
+            uTangential,
             nn,
         } = Porb;
 
@@ -34,7 +34,7 @@
         //================================================
         //R = parallel-projection of Q to tangent
         var wwR = mat.linesCross(
-            uu, rr0, //direction, start
+            uTangential, rr0, //direction, start
             [rr0[0]-posCenterOfForces[0],
              rr0[1]-posCenterOfForces[1]], rg.Q.pos, //direction, start
         );
@@ -51,7 +51,7 @@
             rg.P.pos,
             null,
             null,
-            uu,
+            uTangential,
         );
         rg.Z.pos[0] = Z[0];
         rg.Z.pos[1] = Z[1];
