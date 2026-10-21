@@ -182,7 +182,7 @@
             uTangential,
 
             d2r_dq2,
-            a2: d2s_dq2_squared,
+            d2s_dq2_squared,
             a:  d2s_dq2,
 
             c,
