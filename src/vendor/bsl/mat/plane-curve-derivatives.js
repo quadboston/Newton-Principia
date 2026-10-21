@@ -176,7 +176,7 @@
 
             r,
 
-            vv: dr_dq,
+            dr_dq,
             v2: ds_dq_squared,
             v:  ds_dq,
             ds_dq,
