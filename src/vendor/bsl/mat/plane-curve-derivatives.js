@@ -186,7 +186,7 @@
             d2s_dq2,
 
             c,
-            nn: uNormal, //unit curvature vector
+            uNormal, //unit curvature vector
             bk, //=[uTangential,uNormal]
             cc, //curvature vector
             R,  //curvature radius

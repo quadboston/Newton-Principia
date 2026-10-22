@@ -178,7 +178,7 @@
         const deltaPos = mat.p1_to_p2(pos0, pos1).vector;
 
         //Calculate normal and tangential components
-        const deltaPosNormal = mat.scalarProduct(deltaPos, bP.nn);
+        const deltaPosNormal = mat.scalarProduct(deltaPos, bP.uNormal);
         const deltaPosTangential = mat.scalarProduct(deltaPos, bP.uTangential);
 
 
@@ -191,7 +191,7 @@
         const a0 = mat.scaleV(actualForce, bP.r.unitVec);
 
         //Calculate normal and tangential components
-        const a0Normal = mat.scalarProduct(a0, bP.nn);
+        const a0Normal = mat.scalarProduct(a0, bP.uNormal);
         const a0Tangential = mat.scalarProduct(a0, bP.uTangential);
 
 
