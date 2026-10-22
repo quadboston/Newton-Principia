@@ -16,7 +16,7 @@
         const Porb = ssD.qIndexToOrbit[ rg.P.qix ];
         var {
             RC, R, curvatureChordSecondPoint, projectionOfCenterOnTangent,
-            uu,
+            uTangential,
             posBody,
         } = Porb;
         rg.P.q = Porb.q;
@@ -38,7 +38,7 @@
 
             //R = parallel-projection of Q to tangent
             var RR = mat.linesCross(
-                uu, rr0, //direction, start
+                uTangential, rr0, //direction, start
                 [rr0[0]-posCenterOfForces[0],
                  rr0[1]-posCenterOfForces[1]], rg.Q.pos, //direction, start
             );
@@ -67,7 +67,7 @@
             //------------------------------------------------
 
             var Z = mat.linesCross(
-                uu,
+                uTangential,
                 rg.P.pos,
                 [ rg.Q.pos[0]-rg.T.pos[0], rg.Q.pos[1]-rg.T.pos[1], ],
                 rg.T.pos,
@@ -161,7 +161,7 @@
             rg.P.pos,
             null,
             null,
-            uu,
+            uTangential,
         );
         rg.Zminus.pos[0] = wwZ[0];
         rg.Zminus.pos[1] = wwZ[1];
@@ -190,7 +190,7 @@
         var Gcol2 = mat.linesCross(
             [ rg.Rcol2.pos[0]-rg.P.pos[0], rg.Rcol2.pos[1]-rg.P.pos[1] ],  //direction-1
             rg.S.pos,  //start-1
-            uu, //direction-2'
+            uTangential, //direction-2'
             rg.P.pos  //start-2'
         );
         rg.Gcol2.pos[0] = Gcol2[0];

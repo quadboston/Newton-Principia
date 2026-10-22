@@ -4,11 +4,11 @@
     return;
 
 
-	function customizePoints(rg, op, uu) {
+	function customizePoints(rg, op, uTangential) {
 		nspaste( rg.G.pos, mat.dropLine(
 			null, rg.P.pos, rg.C.pos, null, null, 0.4 * op.latus ) );
 		nspaste( rg.M.pos, mat.linesCross(
-				uu,
+				uTangential,
 				rg.P.pos,
 				[ 1, 0 ],
 				rg.O.pos,

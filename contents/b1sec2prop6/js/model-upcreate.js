@@ -1,6 +1,6 @@
 ( function() {
     var { $$, nsmethods, nssvg, mat, has,
-        ssF, ssD, stdMod, sconf, rg, toreg, } 
+        ssF, ssD, stdMod, sconf, rg, toreg, }
         = window.b$l.apptree({ stdModExportList : {
             model_upcreate,
             restoresStashedVisibility,
@@ -20,7 +20,7 @@
         if (Porb) {
             var {
                 RC, R, curvatureChordSecondPoint, projectionOfCenterOnTangent,
-                uu,
+                uTangential,
                 posBody, //rg.P.pos
             } = Porb;
             rg.P.q = Porb.q;
@@ -74,20 +74,20 @@
                             bestDiff = d;
                             best = Qp;
                             if(bestDiff < sagittaOnSP_Tolerance) {
-                                // break out of for loop once we found a 
+                                // break out of for loop once we found a
                                 // point that's close enough
                                 break;
-                            } 
+                            }
                         }
                     }
 
                     //console.log(bestDiff.toFixed(3));
                     if(bestDiff > sagittaOnSP_Tolerance) {
                         Porb.rrminus[0] = rg.rrminus.pos[0];
-                        Porb.rrminus[1] = rg.rrminus.pos[1];             
-                    } else {             
+                        Porb.rrminus[1] = rg.rrminus.pos[1];
+                    } else {
                         Porb.rrminus[0] = rg.rrminus.pos[0] = best[0];
-                        Porb.rrminus[1] = rg.rrminus.pos[1] = best[1];               
+                        Porb.rrminus[1] = rg.rrminus.pos[1] = best[1];
                     }
 					rg.infoMessage.undisplay = 
 						bestDiff <= 2 * sagittaOnSP_Tolerance;
@@ -104,15 +104,15 @@
 
                 const chord = rg.chord = [ rrplus[0] - rrminus[0], rrplus[1] - rrminus[1], ];
                 rg.chord2 = chord[0]*chord[0]+chord[1]*chord[1];
-                
+
                 let Mx = (rrplus[0] + Porb.rrminus[0]) / 2;
                 let My = (rrplus[1] + Porb.rrminus[1]) / 2;
                 rg.sagitta.pos = [Mx, My]; //ensures we're showing the true M
 
-                ///R and T only used in corollaries                
+                ///R and T only used in corollaries
                 //R = parallel-projection of Q to tangent
                 var RR = mat.linesCross(
-                    uu, rg.P.pos, //direction, start
+                    uTangential, rg.P.pos, //direction, start
                     [rg.P.pos[0]-rg.S.pos[0], rg.P.pos[1]-rg.S.pos[1]], rg.Q.pos, //direction, start
                 );
                 rg.R.pos[0] = RR[0];

@@ -43,7 +43,7 @@
         });
         var {
             projectionOfCenterOnTangent,
-            uu,
+            uTangential,
             r,
             sinOmega,
             cosOmega,
@@ -87,7 +87,7 @@
             let udir = op.cosOmega * cosOmega + op.om * sinOmega;
             nspaste( 
                 rg.R.pos, 
-                mat.sm( op.Kepler_v*udir, uu, 1, rg.P.pos )
+                mat.sm( op.Kepler_v*udir, uTangential, 1, rg.P.pos )
             );
         }
 
@@ -114,7 +114,7 @@
             let pointAt = rg[ 'approximated-curve-sample' ].t2xy;
             var {
                 posBody,
-                uu,
+                uTangential,
                 r,
                 projectionOfCenterOnTangent,
                 sinOmega,
@@ -137,7 +137,7 @@
                 let udir = sop.cosOmega * cosOmega + sop.om * sinOmega;
                 nspaste(
                     rg.point_r.pos, 
-                    mat.sm( sop.Kepler_v*udir, uu, 1, rg.p.pos )
+                    mat.sm( sop.Kepler_v*udir, uTangential, 1, rg.p.pos )
                 );
             }
             //sample's decorational dt arc
@@ -193,7 +193,7 @@
         const pointAt = rg[ 'approximated-curve' ].t2xy;
         var q = rg.P.q;
         var {
-            v,
+            ds_dq,
             sinOmega,
             cosOmega,
         } = mcurve.planeCurveDerivatives({
@@ -206,7 +206,7 @@
         const ds_by_dt  = udir * op.delta_t / INTEGRATION_STEPS * op.Kepler_v;
         for( var it = 0; it <= INTEGRATION_STEPS; it++ ) {
             var {
-                v, //=ds_by_dfi
+                ds_dq, //=ds_by_dfi
                 posBody,
             } = mcurve.planeCurveDerivatives({
                 pointAt,
@@ -216,7 +216,7 @@
             //assumes central force, i.e. constant specific angular momentum
             //var Kepler_v_instant = op.Kepler_v * h0 / hPerSpeed;
 
-            var intervalQ = ds_by_dt / v; //dfi
+            var intervalQ = ds_by_dt / ds_dq; //dfi
             q += intervalQ;
         }
         return {

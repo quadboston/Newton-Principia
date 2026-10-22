@@ -176,15 +176,14 @@
 
             r,
 
-            vv: dr_dq,
-            v2: ds_dq_squared,
-            v:  ds_dq,
+            dr_dq,
+            ds_dq_squared,
             ds_dq,
-            uu: uTangential,
+            uTangential,
 
-            aa: d2r_dq2,
-            a2: d2s_dq2_squared,
-            a:  d2s_dq2,
+            d2r_dq2,
+            d2s_dq2_squared,
+            d2s_dq2,
 
             c,
             nn: uNormal, //unit curvature vector
