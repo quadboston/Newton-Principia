@@ -169,12 +169,13 @@
         //v0Normal = 0
 
         const q2xy = stdMod.q2xy;
+        const delta_q_finite_difference = ssD.delta_q_finite_difference;
 
         //Positions
         const pos0 = bP.posBody;
         //Point slightly further along the orbit.  Ensure much further than
-        //the delta_q numerical differentiation step to prevent problems.
-        const pos1 = q2xy(bP.q + bP.delta_q * 10);
+        //delta_q_finite_difference to prevent problems.
+        const pos1 = q2xy(bP.q + delta_q_finite_difference * 10);
         const deltaPos = mat.p1_to_p2(pos0, pos1).vector;
 
         //Calculate normal and tangential components
