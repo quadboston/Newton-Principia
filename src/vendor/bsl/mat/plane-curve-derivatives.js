@@ -186,7 +186,7 @@
             d2s_dq2,
 
             c,
-            nn: uNormal, //unit curvature vector
+            uNormal, //unit curvature vector
             bk, //=[uTangential,uNormal]
             cc, //curvature vector
             R,  //curvature radius
@@ -202,10 +202,6 @@
             cosOmega,   //in respect to posCenterOfForces
 
             //for Kepler's motion, f = 1/R vₜ² / sin(w)
-
-            //todo Replace any code that uses this output variable, with the new
-            //one stored in ssD.  Then remove this variable from the output.
-            delta_q,
         };
     }
 }) ();

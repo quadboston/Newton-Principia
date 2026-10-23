@@ -38,7 +38,6 @@
             curvatureChordSecondPoint,
             projectionOfCenterOnTangent,
             uTangential,
-            nn,
         } = Porb;
         var Rc = R; //curvature radius
 

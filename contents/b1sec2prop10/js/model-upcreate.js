@@ -26,7 +26,7 @@
         // **api-input---plane-curve-derivatives
         var {
             uTangential,
-            nn,
+            uNormal,
         } = Porb;
 
         //================================================
@@ -166,7 +166,7 @@
         const negativeReciprocalPV = [-(V[1] - P[1]), V[0] - P[0]];
 
         const center = mat.linesCross(
-            nn,  //direction-1 (perpendicular to tangent at P)
+            uNormal,  //direction-1 (perpendicular to tangent at P)
             rg.P.pos,  //start-1
             negativeReciprocalPV, //direction-2'
             midpointPV  //start-2'
