@@ -1,0 +1,17 @@
+{
+  "name": "newton-principia",
+  "private": true,
+  "description": "Development tooling only; the site itself has no Node build step.",
+  "scripts": {
+    "whitespace": "eslint --fix .",
+    "whitespace:check": "eslint .",
+    "whitespace:rebuild": "node tools/whitespace-rebuild.mjs",
+    "whitespace:verify": "node tools/whitespace-verify.mjs"
+  },
+  "devDependencies": {
+    "@eslint/compat": "2.1.1",
+    "@stylistic/eslint-plugin": "5.10.0",
+    "eslint": "10.13.0",
+    "espree": "11.2.0"
+  }
+}
