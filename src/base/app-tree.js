@@ -155,9 +155,9 @@
             //ario,
             arios,
             originalPoints,
-            rg    : sapp.rg,
-            topos : sapp.topos,
-            toreg : sapp.toreg,
+            rg: sapp.rg,
+            topos: sapp.topos,
+            toreg: sapp.toreg,
 
             rgtools, wrkwin, exegs, references,
 

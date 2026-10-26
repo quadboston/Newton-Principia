@@ -1,7 +1,7 @@
 (function () {
     const {
         sn, $$, nssvg, haz, sDomF, ssF, ssD, stdMod, sconf, } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             creates_createOrUpdateOrbit,
             formula2branches,
         },
@@ -34,13 +34,13 @@
 
         function createOrUpdateOrbitPolyline(svgel, curve_points) {
             const output = nssvg.polyline({
-                pivots  : curve_points.map(cp => ssF.mod2inn(cp, stdMod)),
-                svgel   : svgel,
-                parent  : stdMod.svgScene,
+                pivots: curve_points.map(cp => ssF.mod2inn(cp, stdMod)),
+                svgel: svgel,
+                parent: stdMod.svgScene,
 
                 //should be overridden by ##tp-machine
                 //stroke           : haz( arg, 'stroke' ),
-                'stroke-width' : sconf.PATH_WIDTH,
+                'stroke-width': sconf.PATH_WIDTH,
                 //fill             : haz( arg, 'fill' ),
             });
             const lowname = sDomF.toCssIdentifier('orbit');

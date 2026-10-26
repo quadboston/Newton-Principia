@@ -100,9 +100,9 @@
                         ///todm: legalize;
                         var mcenter = ns.haz(rg, 'diagram-panner');
                         if (mcenter) {
-                            ns.paste(ast, { 'diagram-panner' :
-                                                { achieved :  mcenter.achieved },
-                                              subessay : amode.subessay,
+                            ns.paste(ast, { 'diagram-panner':
+                                                { achieved: mcenter.achieved },
+                                              subessay: amode.subessay,
                                            }
                             );
                         }

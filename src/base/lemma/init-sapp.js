@@ -144,12 +144,12 @@
             sDomF.params__2__rgX8dragwrap_gen_list({
                 stdMod,
                 pname,
-                nospinner : haz(shape, 'nospinner'),
+                nospinner: haz(shape, 'nospinner'),
                 //todm
                 //orientation : drY&drX ? 'rotate' : ( drX ? 'axis-x' : 'axis-y' ),
 
-                pos : rg.pos, //todo not tested app wide, and why one needs pos?
-                acceptPos : haz(shape, 'acceptPos') || (newPos => {
+                pos: rg.pos, //todo not tested app wide, and why one needs pos?
+                acceptPos: haz(shape, 'acceptPos') || (newPos => {
                     if (drX) {
                         shape.pos[0] = newPos[0];
                     } else {

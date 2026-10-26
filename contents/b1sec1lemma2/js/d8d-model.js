@@ -19,17 +19,17 @@
         function createDragModel() {
             medD8D = stdMod.medD8D =
                 d8dp.crePointFW_BSLd8d1CHAMBER({
-                    findDraggee                         : findDraggee,
-                    dragSurface                         : sDomN.medRoot,
+                    findDraggee: findDraggee,
+                    dragSurface: sDomN.medRoot,
                     //DRAG_POINTS_THROTTLE_TIME           : false,
-                    detected_user_interaction_effect    :
+                    detected_user_interaction_effect:
                                     sDomF.detected_user_interaction_effect,
-                    processMouseDown                    : processMouseDown,
+                    processMouseDown: processMouseDown,
                     //Enabled the following so only the arrows for the dragger
                     //closest to the mouse will be shown.  Otherwise when
                     //draggers are close together, arrows are sometimes shown
                     //for a different dragger than the one which gets selected.
-                    doCreateDynamicSpinners : true,
+                    doCreateDynamicSpinners: true,
                 });
             Object.values(dataregs).forEach(dr => {
                 setDragPoints(dr);
@@ -98,16 +98,16 @@
             //Always add the arrows that appear when hovering the mouse
             var nospinner = false;
             var decorator = Update_decPoint(pointWrap)
-            var achieved = { x:pointWrap.x, y:pointWrap.y };
+            var achieved = { x: pointWrap.x, y: pointWrap.y };
 
             medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE({
-                pointWrap       : pointWrap,
-                doProcess       : doProcess,
+                pointWrap: pointWrap,
+                doProcess: doProcess,
                 //-------------------------
-                achieved        : achieved,
-                nospinner       : nospinner,
-                update_decPoint : decorator,
-                orientation     : orientation,
+                achieved: achieved,
+                nospinner: nospinner,
+                update_decPoint: decorator,
+                orientation: orientation,
             });
         }
 
@@ -117,7 +117,7 @@
             return (function (decPoint, dragSurface, pointWrap, nonenify) {
                 if (pw.x || pw.x === 0) {
                     var dompos = sDomF.inn2outparent.call(
-                        { medpos : [pw.x, pw.y] }
+                        { medpos: [pw.x, pw.y] }
                     );
                     decPoint.style.left = dompos[0] + 'px';
                     decPoint.style.top = dompos[1] + 'px';

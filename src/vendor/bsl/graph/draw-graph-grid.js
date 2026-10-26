@@ -52,41 +52,41 @@
         //------------------------------------------------------
         axisX = Object.assign(
             {
-                'font-size'     : '20px',
-                'font-weight'   : 'normal',
-                fontShiftX      : -12, //in media scale
-                fontShiftY      : +14,
-                decimalDigits   : 1,
-                stroke          : 'black', //optional
-                fill            : 'black', //optional
-                'stroke-width'  : '0.2',   //optional
+                'font-size': '20px',
+                'font-weight': 'normal',
+                fontShiftX: -12, //in media scale
+                fontShiftY: +14,
+                decimalDigits: 1,
+                stroke: 'black', //optional
+                fill: 'black', //optional
+                'stroke-width': '0.2',   //optional
             },
             axisX || {},
         );
         axisY = Object.assign(
             {
-                'font-size'     : '20px',
-                'font-weight'   : 'normal',
-                fontShiftX      : -45, //in media scale
-                fontShiftY      : +5,
-                decimalDigits   : 1,
-                stroke          : 'black', //optional
-                fill            : 'black', //optional
-                'stroke-width'  : '0.2',   //optional
+                'font-size': '20px',
+                'font-weight': 'normal',
+                fontShiftX: -45, //in media scale
+                fontShiftY: +5,
+                decimalDigits: 1,
+                stroke: 'black', //optional
+                fill: 'black', //optional
+                'stroke-width': '0.2',   //optional
             },
             axisY || {},
         );
 
         extraAxisY = Object.assign(
             {
-                'font-size'     : '15px',
-                'font-weight'   : 'normal',
-                fontShiftX      : -45, //in media scale
-                fontShiftY      : +5,
-                decimalDigits   : 3,
-                stroke          : 'black', //optional
-                fill            : 'black', //optional
-                'stroke-width'  : '0.1',   //optional
+                'font-size': '15px',
+                'font-weight': 'normal',
+                fontShiftX: -45, //in media scale
+                fontShiftY: +5,
+                decimalDigits: 3,
+                stroke: 'black', //optional
+                fill: 'black', //optional
+                'stroke-width': '0.1',   //optional
             },
             extraAxisY || {},
         );
@@ -96,18 +96,18 @@
 
         if (drawDecimalY && rangeY > 1e-100) {
             drawX0Ygrid({
-                gridAlongY : true,
-                axisA : axisY,
-                maxA : yMax,
-                minA : yMin,
-                maxB : xMax,
-                minB : xMin,
-                dimB : dimX_withMarg,
-                dimA : dimY_withMarg,
-                rangeA : rangeY,
-                subDecimal : true,
+                gridAlongY: true,
+                axisA: axisY,
+                maxA: yMax,
+                minA: yMin,
+                maxB: xMax,
+                minB: xMin,
+                dimB: dimX_withMarg,
+                dimA: dimY_withMarg,
+                rangeA: rangeY,
+                subDecimal: true,
 
-                drawAllAxesInGrid : drawAllAxes,    //flag and its params
+                drawAllAxesInGrid: drawAllAxes,    //flag and its params
                     plotsCount,
                     extraAxisY,
                     colorThreadArray,
@@ -115,16 +115,16 @@
         }
         if (drawDecimalX && rangeX > 1e-100) {
             drawX0Ygrid({
-                gridAlongY : false,
-                axisA : axisX,
-                maxA : xMax,
-                minA : xMin,
-                maxB : yMax,
-                minB : yMin,
-                dimB : dimY_withMarg,
-                dimA : dimX_withMarg,
-                rangeA : rangeX,
-                subDecimal : true,
+                gridAlongY: false,
+                axisA: axisX,
+                maxA: xMax,
+                minA: xMin,
+                maxB: yMax,
+                minB: yMin,
+                dimB: dimY_withMarg,
+                dimA: dimX_withMarg,
+                rangeA: rangeX,
+                subDecimal: true,
             });
         }
         return;
@@ -176,12 +176,12 @@
             decUnit        = decUnit > rangeA * 0.5 ? decUnit * 0.1 : decUnit;
             style.stroke = 'rgba( 0,0,0, ' + (brightenGrid.toFixed(3)) + ')';
 
-            drawGrid8Axes_aux({ prnAxisDigits : prnDigitalSymbols });
+            drawGrid8Axes_aux({ prnAxisDigits: prnDigitalSymbols });
             if (subDecimal) {
                 var decUnit  = decUnit * 0.1;
 
                 style.stroke = 'rgba( 0,0,0, ' + (0.2*brightenGrid.toFixed(3)) + ')';
-                drawGrid8Axes_aux({ drawSubdecimal : true });
+                drawGrid8Axes_aux({ drawSubdecimal: true });
             }
             return;
 
@@ -230,7 +230,7 @@
                     //======================================================
                     nssvg.polyline({
                         pivots,
-                        parent  : graphFM_self.gmedia$(),
+                        parent: graphFM_self.gmedia$(),
                         style,
                     });
                     //======================================================
@@ -277,16 +277,16 @@
                                         effectiveAxis.decimalDigits :
                                         EXTRA_AXIS_DIGITS;
                                 nssvg.printText({
-                                    text : gline.toFixed(decimalDigits),
+                                    text: gline.toFixed(decimalDigits),
                                     x,
                                     y,
-                                    parent  : graphFM_self.gmedia$(),
-                                    style   : {
-                                                'font-size'     : effectiveAxis['font-size'],
-                                                'font-weight'   : effectiveAxis['font-weight'],
-                                                'stroke-width'  : effectiveAxis['stroke-width'],
-                                                'stroke'        : fontStroke,
-                                                'fill'          : fontFill,
+                                    parent: graphFM_self.gmedia$(),
+                                    style: {
+                                                'font-size': effectiveAxis['font-size'],
+                                                'font-weight': effectiveAxis['font-weight'],
+                                                'stroke-width': effectiveAxis['stroke-width'],
+                                                'stroke': fontStroke,
+                                                'fill': fontFill,
                                     },
                                 });
                             }
@@ -342,8 +342,8 @@
         //======================================================
         nssvg.polyline({
             pivots,
-            parent  : graphFM_self.gmedia$(),
-            style : toollineStyle,
+            parent: graphFM_self.gmedia$(),
+            style: toollineStyle,
         });
         //======================================================
         // \\// prints toolline
@@ -358,12 +358,12 @@
                 numberMarks = graphElement.y.map((yEl, yix) => (
                     //number Marks api
                     {
-                        graphIx : yix,
-                        decimalDigits : 2,
-                        fontSize : 22,
-                        fontFill : colorThreadArray[yix],
-                        fontWeight : 'normal',
-                        strokeWidth : 0.1,
+                        graphIx: yix,
+                        decimalDigits: 2,
+                        fontSize: 22,
+                        fontFill: colorThreadArray[yix],
+                        fontWeight: 'normal',
+                        strokeWidth: 0.1,
                     }
                 ));
             }
@@ -377,16 +377,16 @@
                 var y = marginY + dimB - (nmVal - yMin) / rangeY * dimB;
 
                 nssvg.printText({
-                    text : nmVal.toFixed(decimalDigits),
+                    text: nmVal.toFixed(decimalDigits),
                     x,
                     y,
-                    parent  : graphFM_self.gmedia$(),
-                    style   : {
-                                'font-size'     : nm.fontSize,
-                                'font-weight'   : nm.fontWeight,
-                                'stroke-width'  : nm.strokeWidth,
-                                'stroke'        : nm.fontFill,
-                                'fill'          : nm.fontFill,
+                    parent: graphFM_self.gmedia$(),
+                    style: {
+                                'font-size': nm.fontSize,
+                                'font-weight': nm.fontWeight,
+                                'stroke-width': nm.strokeWidth,
+                                'stroke': nm.fontFill,
+                                'fill': nm.fontFill,
                     },
                 });
             });

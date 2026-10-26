@@ -1,9 +1,9 @@
 (function () {
     var { ns,  fmethods, haff, haz, has, nspaste, wrkwin, fconf,
         sconf, ssF, sDomN, dividorFractions, stdMod, }
-        = window.b$l.apptree({ sDomNExportList : {
-            bgImgOffset : 0,    //fake initial value before resize ran
-            bgImgW : 1000,      //fake initial value before resize ran
+        = window.b$l.apptree({ sDomNExportList: {
+            bgImgOffset: 0,    //fake initial value before resize ran
+            bgImgW: 1000,      //fake initial value before resize ran
         },
     });
     //allowed to be overriden

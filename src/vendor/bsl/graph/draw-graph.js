@@ -20,7 +20,7 @@
             dimX,   //svg inner width in svg-ViewBox
             dimY,   //svg inner height in svg-ViewBox
     }) {
-        var graphFM_self = { gmedia$ : null, gridIsPainted : false };
+        var graphFM_self = { gmedia$: null, gridIsPainted: false };
         const clipPathId = 'graph-plot-area-' + (++graphsCreated);
         creates_svgDomEl();
 
@@ -295,11 +295,11 @@
                 effStyle.stroke = colorThreadArray[plix];
                 let svg = plotIx2plotSvg[plix];
                 svg = plotIx2plotSvg[plix] = nssvg.polyline({
-                    svgel : svg,
-                    pivots  : pl,
-                    parent  : gMedia,
-                    style   : effStyle,
-                    'stroke-width' : 2,
+                    svgel: svg,
+                    pivots: pl,
+                    parent: gMedia,
+                    style: effStyle,
+                    'stroke-width': 2,
                 });
                 svg.setAttribute('clip-path', 'url(#' + clipPathId + ')');
                 if (!svg.parentNode) {
@@ -342,11 +342,11 @@
                     xMax,
                     xMin,
 
-                    dimB : dimY_withMarg,
-                    dimA : dimX_withMarg,
-                    toollineStyle : doDrawToolline.toollineStyle,
-                    abscissaIxValue : doDrawToolline.abscissaIxValue,
-                    numberMarks : doDrawToolline.numberMarks,
+                    dimB: dimY_withMarg,
+                    dimA: dimX_withMarg,
+                    toollineStyle: doDrawToolline.toollineStyle,
+                    abscissaIxValue: doDrawToolline.abscissaIxValue,
+                    numberMarks: doDrawToolline.numberMarks,
                 });
             }
             return;

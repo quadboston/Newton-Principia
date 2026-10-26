@@ -8,7 +8,7 @@
         sData,
         stdMod,
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             createButton,
         },
     });
@@ -24,7 +24,7 @@
             scenarioEventOnClick,   //aka 'graph-is-plotted'
     }) {
         var butt = ssD.lastPopupButton =
-            sData[buttonUniversalId] = { dom$ : $$.c('div')
+            sData[buttonUniversalId] = { dom$: $$.c('div')
             .addClass(buttonUniversalId)
             .csst(cssText)
             .to(sDomN.simSScene$)

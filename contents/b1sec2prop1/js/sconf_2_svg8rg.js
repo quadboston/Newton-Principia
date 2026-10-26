@@ -1,7 +1,7 @@
 (function () {
     const { sn, haff, hafff, haz, globalCss, nspaste,
             fconf, sconf, ssF, ssD, stdMod, amode, toreg, rg,
-    } = window.b$l.apptree({ stdModExportList : {
+    } = window.b$l.apptree({ stdModExportList: {
             shapeSconf_2_svg,
             sconf_2_shapes,
         },
@@ -53,8 +53,8 @@
             );
         rg.force.inarray = ['B', 'C', 'D', 'E', 'F'].map((pname, fix) => {
             return {
-                'lawPower' : sconf.force[0][0],
-                'lawConstant' : sconf.force[0][1],
+                'lawPower': sconf.force[0][0],
+                'lawConstant': sconf.force[0][1],
             };
         });
 

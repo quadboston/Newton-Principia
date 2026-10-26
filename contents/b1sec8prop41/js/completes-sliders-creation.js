@@ -4,7 +4,7 @@
         fconf, sData,
         amode, stdMod, sconf, rg,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             completesSlidersCreation,
             drop8pointE,
         },

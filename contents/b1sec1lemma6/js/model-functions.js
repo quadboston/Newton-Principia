@@ -2,7 +2,7 @@
     var {
         mat, sconf, fconf, ssD, amode, rg,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             createModelFunctions,
         },
     });
@@ -27,8 +27,8 @@
         ssD.repoConf = ssD.repoConf.concat(
         [
             {
-                fname : "Rotated curve",
-                fun : function (x) {
+                fname: "Rotated curve",
+                fun: function (x) {
                         //patch:
                         if (fconf.sappId === "b1sec1lemma6" &&
                             amode.aspect === 'model' && amode.logic_phase === 'proof'
@@ -50,23 +50,23 @@
                 },
             },
             {
-                fname : function () {
+                fname: function () {
                     return      'y(x) : (x-' + this.x0.toFixed(2) +
                                 ') + (y-' + this.y0.toFixed(2) +
                                 ') = ' + this.R.toFixed(2) + '<sup>2</sup>';
                 },
-                x0 : 0,
-                y0 : 0,
-                R  : 1,
-                branch : 1,  //1 for top, -1 for bottom
-                updateParams : function ({ x0, y0, R }) {
+                x0: 0,
+                y0: 0,
+                R: 1,
+                branch: 1,  //1 for top, -1 for bottom
+                updateParams: function ({ x0, y0, R }) {
                     this.x0 = x0;
                     this.y0 = y0;
                     this.R = R;
                     this.branch = 1;
                 },
                 ///draws branches of a circle of radius RR, one branch at the time,
-                fun : function (x) {
+                fun: function (x) {
                         var R = this.R;
                         var xx = x-this.x0;
                         return [x, this.y0+this.branch*Math.sqrt(R*R -xx*xx)];
@@ -74,8 +74,8 @@
             },
 
             {
-                fname : "Original left branch",
-                fun : function (x) {
+                fname: "Original left branch",
+                fun: function (x) {
 
                         //curvature break is too seen
                         //var sin = 0; //rg.curveRotationAngle.sin;

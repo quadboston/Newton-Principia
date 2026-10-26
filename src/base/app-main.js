@@ -97,7 +97,7 @@ const {
         var codesList;
         nsmethods.loadScripts(
             [
-                { src : fconf.lemmaCode_fullpath + "/lemma-conf.js" }
+                { src: fconf.lemmaCode_fullpath + "/lemma-conf.js" }
             ],
             landing_III_cb,
         );
@@ -120,7 +120,7 @@ const {
                 ////preloads referenced jscodes before own jscodes
                 nsmethods.loadScripts(
                     [
-                        { src : fconf.ancestorCode_fullpath + "/lemma-conf.js"
+                        { src: fconf.ancestorCode_fullpath + "/lemma-conf.js"
                         }
                     ],
                     function () {
@@ -164,7 +164,7 @@ const {
                 ///result in fapp.jsCodesList
                 fapp.lemmaDef.codesList.forEach(function (codeItem) {
                     fapp.jsCodesList.push({
-                        src : fconf.lemmaCode_fullpath + "/js/" + codeItem.src
+                        src: fconf.lemmaCode_fullpath + "/js/" + codeItem.src
                         });
                 });
                 //fapp.jsCodesList has ancestor and desc list merged and
@@ -236,7 +236,7 @@ const {
                                 var low_tpID = wwCase(camelId);
                                 lowtpid_2_glocss8anchorRack[low_tpID] = {
                                     //todo why tpcolarr
-                                    'tpcolarr' : colorArray,
+                                    'tpcolarr': colorArray,
                                     camelId,
                                     low_tpID,
                                 };

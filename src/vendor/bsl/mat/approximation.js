@@ -31,7 +31,7 @@
             P[level]  = PP;
         }
         // **api-outputs---divided-diff
-        return { coefficients:F, calculate_polynomial, derivativeAtZero };
+        return { coefficients: F, calculate_polynomial, derivativeAtZero };
 
         function Flow_2_Ftop(Flow) {
             var Ftop = [];

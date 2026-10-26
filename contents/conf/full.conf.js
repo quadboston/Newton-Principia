@@ -19,24 +19,24 @@
     // //\\ put configuration parameters here
     //====================================================
     to_fconf = {
-        DRAG_HANDLE_HALFHOTSPOT : 15, // size of spinner
-        hideSingleItemContentMenus : true, //todm fails to work at once
-        SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM : false,
+        DRAG_HANDLE_HALFHOTSPOT: 15, // size of spinner
+        hideSingleItemContentMenus: true, //todm fails to work at once
+        SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM: false,
 
-        timeToShowOriginalDiagram  : 3600000, //ms
+        timeToShowOriginalDiagram: 3600000, //ms
 
         //we adopt strategy when svg x-scale is unchanged and set as
         //sconf.mod2inn_scale, but y-scale can have additional factor,
         //mod2inn_scaleY, to be overriden in lemma's conf.js
-        mod2inn_scaleY              : 1,
+        mod2inn_scaleY: 1,
 
-        doDisplayPageTopNavigatMenu : true,
-        lemmaHasHomeButton          : true,
-        homeButtonName              : 'Contents',
-        logic_phaseTab_nonClickable    : false,
+        doDisplayPageTopNavigatMenu: true,
+        lemmaHasHomeButton: true,
+        homeButtonName: 'Contents',
+        logic_phaseTab_nonClickable: false,
 
         //:data
-        svgNS : ns.svgNS,
+        svgNS: ns.svgNS,
 
         //--------------------
         // //\\ page-wide
@@ -52,29 +52,29 @@
         MODEL_MIN_WIDTH: 300, //when dragging
         RIGHT_WORKAREA_MARGIN: 0.015, //fraction
 
-        ESSAY_FRACTION_IN_WORKPANE : 0.33,  //default
+        ESSAY_FRACTION_IN_WORKPANE: 0.33,  //default
 
         //at this value or lower, device is given mobile layout,
         //resulting in vertically stacked text-model-data areas
-        MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD : 790,
+        MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD: 790,
 
-        model_float_dir : 'right', //vs left
-        ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML : true,
-        attach_menu_to_essaion_root : true,
+        model_float_dir: 'right', //vs left
+        ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML: true,
+        attach_menu_to_essaion_root: true,
 
-        LEFT_SIDE_MENU_WIDTH : 40, //px
-        LEFT_SIDE_MENU_OFFSET_X : 20, //px
-        LEFT_SIDE_MENU_ITEM_LENGTH : 100, //px
+        LEFT_SIDE_MENU_WIDTH: 40, //px
+        LEFT_SIDE_MENU_OFFSET_X: 20, //px
+        LEFT_SIDE_MENU_ITEM_LENGTH: 100, //px
 
-        DRAG_POINTS_THROTTLE_TIME : 50, //ms
-        DRAGGER_TOLERANCE : 15, // distance from point that is draggable
+        DRAG_POINTS_THROTTLE_TIME: 50, //ms
+        DRAGGER_TOLERANCE: 15, // distance from point that is draggable
 
         //since ver 1931 was automated from contents
         //as of ver 2955 is created automatically in content2exegs.js
         //dragPointDecoratorClasses : [],
         //[ 'aspect--video', 'aspect--english', 'aspect--xixcentury' ],
 
-        LETTER_FONT_SIZE_PER_1000 : 32,
+        LETTER_FONT_SIZE_PER_1000: 32,
         //--------------------
         // \\// view
         //--------------------
@@ -90,23 +90,23 @@
         // //if( fconf.ORIGINAL_FIGURE_VISIBILITY_SLIDER_ENABLED ) {
         // //    sDomF.create_original_picture_vis_slider();
         // //}
-        ORIGINAL_FIGURE_VISIBILITY_SLIDER_ENABLED : false,
+        ORIGINAL_FIGURE_VISIBILITY_SLIDER_ENABLED: false,
 
-        ORIGINAL_FIGURE_VISIBILITY : 0.6,
-        ORIGINAL_FIGURE_VISIBILITY_ANIMATION_DURATION_MS : 3000,
+        ORIGINAL_FIGURE_VISIBILITY: 0.6,
+        ORIGINAL_FIGURE_VISIBILITY_ANIMATION_DURATION_MS: 3000,
         //--------------------
         // \\// page-wide
         //--------------------
 
         //app decorations
-        appDecor : {
-            backButtonCaption       : 'Back to the Lemmas',
-            landingImage            : 'landing-img.jpg',
-            homePageCaption         : 'Newton’s <span>Principia</span><br>' +
+        appDecor: {
+            backButtonCaption: 'Back to the Lemmas',
+            landingImage: 'landing-img.jpg',
+            homePageCaption: 'Newton’s <span>Principia</span><br>' +
                                       'Interactive Models',
-            homePageSubCaption      : 'The logic in Newton’s <span>Principia</span> can be hard to follow.<br>' +
+            homePageSubCaption: 'The logic in Newton’s <span>Principia</span> can be hard to follow.<br>' +
                                       'These models make it easier.<br>',
-            homePageSubtitle        : 'This site presents interactive models of lemmas and propositions from<br>' +
+            homePageSubtitle: 'This site presents interactive models of lemmas and propositions from<br>' +
                                       'Newton’s <span>Principia</span> that illustrate geometric limits.<br><br>' +
                                       'A supplement to resources such as<br>' +
                                       '* Joseph Gallant’s <span class="dd-label"><a href="https://www.worldscientific.com/worldscibooks/10.1142/13416#t=aboutBook">Newton’s Principia for the Modern Student</span></a><br>' +
@@ -116,13 +116,13 @@
                                             '<li>Joseph Gallant’s <i>Newton’s Principia for the Modern Student</i></li>' +
                                             '<li>Dana Densmore’ <i>Newton’s Principia for the Modern Student</i></li>' +
                                         '</ul>',*/
-            helpButtonCaption       : 'Hover over the diagram or text to interact',
+            helpButtonCaption: 'Hover over the diagram or text to interact',
 
             //todm: this disables functionality ... not only CSS:
-            helpBox_opacity0        : false,
-            idleHelpButtonTooltip   : 'Get Help',
+            helpBox_opacity0: false,
+            idleHelpButtonTooltip: 'Get Help',
 
-            putTextDescriptionIntoTopNavigationArrows : false,
+            putTextDescriptionIntoTopNavigationArrows: false,
         },
     };
     //====================================================

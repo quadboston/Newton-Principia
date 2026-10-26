@@ -2,7 +2,7 @@
     var {
         cssp, eachprop, globalCss, sconf, topics, topicColors_repo
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             v2_tplinks_2_highlightCss,
             v2_topics_2_unhighCss,
         },

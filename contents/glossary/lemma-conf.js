@@ -32,8 +32,8 @@
         codeList.push({ src: sm + 'init-model-parameters.js' });
         codeList.push({ src: sm + 'model-upcreate.js' });
         return {
-            codesList : codeList,
-            "contents-list" : [
+            codesList: codeList,
+            "contents-list": [
                 'txt/glossary.txt',
             ],
         }

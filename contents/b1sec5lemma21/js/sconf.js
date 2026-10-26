@@ -1,6 +1,6 @@
 (function () {
     var { mat, fapp, fconf, sconf, topicColors_repo, } =
-        window.b$l.apptree({ ssFExportList : { init_conf } });
+        window.b$l.apptree({ ssFExportList: { init_conf } });
     return;
 
 
@@ -77,36 +77,36 @@
 
         const topicColors_elected = {
             static,
-            "static-half"       : staticHalfOpacity,
+            "static-half": staticHalfOpacity,
             core,
-            "core-half"         : coreHalfOpacity,
+            "core-half": coreHalfOpacity,
             aux,
             constructors,
             ellipse,
 
-            "gamma"             : core,
-            "g-parameter"       : core,
-            "angle-alpha"       : staticHalfOpacity,
-            "angle-beta"        : staticHalfOpacity,
-            "angle-alpha-core"  : coreHalfOpacity,
-            "angle-beta-core"   : coreHalfOpacity,
+            "gamma": core,
+            "g-parameter": core,
+            "angle-alpha": staticHalfOpacity,
+            "angle-beta": staticHalfOpacity,
+            "angle-alpha-core": coreHalfOpacity,
+            "angle-beta-core": coreHalfOpacity,
         };
         const pt = topicColors_elected;
 
         var pointsOnPicture = {
-            C : [50, originY_onPicture], //550],
-            B : [838, originY_onPicture], //552],
-            M : [391-384+originX_onPicture, 634],
+            C: [50, originY_onPicture], //550],
+            B: [838, originY_onPicture], //552],
+            M: [391-384+originX_onPicture, 634],
 
             //:apparently inactive static points
-            N : [380-384+originX_onPicture, 476-553+originY_onPicture],
-            T : [411-384+originX_onPicture, 219-553+originY_onPicture],
-            P : [548-384+originX_onPicture, 77-553+originY_onPicture],
-            R : [734-384+originX_onPicture, 346-553+originY_onPicture],
+            N: [380-384+originX_onPicture, 476-553+originY_onPicture],
+            T: [411-384+originX_onPicture, 219-553+originY_onPicture],
+            P: [548-384+originX_onPicture, 77-553+originY_onPicture],
+            R: [734-384+originX_onPicture, 346-553+originY_onPicture],
 
-            O : [originX_onPicture, originY_onPicture],
-            H : [originX_onPicture, originY_onPicture],
-            A : [568, 244],
+            O: [originX_onPicture, originY_onPicture],
+            H: [originX_onPicture, originY_onPicture],
+            A: [568, 244],
         };
 
         ///bigger diagram
@@ -169,105 +169,105 @@
         let pop = pointsOnPicture;
         var originalPoints =
         {
-            C : {
+            C: {
                   pos: [0, 0], //fake pos
                   pcolor: pt.static,
                   cssClass: 'tp-static tp-_C',
-                  letterAngle : -90,
-                  letterRotRadius : 20,
+                  letterAngle: -90,
+                  letterRotRadius: 20,
             },
-            B : {
+            B: {
                   pos: pop.B,
                   pcolor: pt.static,
                   cssClass: 'tp-static',
-                  letterAngle : -90,
-                  letterRotRadius : 20,
+                  letterAngle: -90,
+                  letterRotRadius: 20,
             },
-            D : {
+            D: {
                   pcolor: pt["constructors"],
                   //cssClass: 'tp-g-parameter',
-                  letterAngle : 180,
-                  letterRotRadius : 20,
+                  letterAngle: 180,
+                  letterRotRadius: 20,
             },
-            O : {
+            O: {
                   pos: pop.O,
                   //pcolor: pt[ "g-parameter" ],
                   //cssClass: 'tp-static',
                   //cssClass : 'logic_phase--proof',
                   cssClass: 'aspect--model',
-                  letterAngle : 0,
-                  letterRotRadius : 20,
-                  doPaintPname:false,
+                  letterAngle: 0,
+                  letterRotRadius: 20,
+                  doPaintPname: false,
             },
-            P : {
+            P: {
                   cssClass: 'logic_phase--proof',
                   pcolor: pt.static,
-                  letterAngle : 0,
-                  letterRotRadius : 20,
+                  letterAngle: 0,
+                  letterRotRadius: 20,
             },
-            N : {
+            N: {
                   pos: pop.N,
                   pcolor: pt.static,
-                  letterAngle : -45,
-                  letterRotRadius : 20,
+                  letterAngle: -45,
+                  letterRotRadius: 20,
             },
-            n : {
+            n: {
                   cssClass: 'subessay--converse-proof',
                   pcolor: pt.core,
-                  letterAngle : -45,
-                  letterRotRadius : 20,
+                  letterAngle: -45,
+                  letterRotRadius: 20,
             },
-            p : {
+            p: {
                   cssClass: 'subessay--converse-proof',
                   pcolor: pt.constructors,
-                  letterAngle : 180,
-                  letterRotRadius : 20,
+                  letterAngle: 180,
+                  letterRotRadius: 20,
             },
-            T : {
+            T: {
                   cssClass: 'subessay--direct-proof',
                   pos: pop.T,
                   pcolor: pt.core,
-                  letterAngle : 0,
-                  letterRotRadius : 20,
+                  letterAngle: 0,
+                  letterRotRadius: 20,
             },
-            R : {
+            R: {
                   cssClass: 'subessay--direct-proof',
                   pos: pop.R,
                   pcolor: pt.core,
-                  letterAngle : 0,
-                  letterRotRadius : 20,
+                  letterAngle: 0,
+                  letterRotRadius: 20,
             },
             //============================================
             // //\\ sliders
             //============================================
-            A : {
-                  draggableX : true,
-                  draggableY : true,
+            A: {
+                  draggableX: true,
+                  draggableY: true,
                   pos: pop.A,
                   pcolor: pt.static,
                   style: {fill: '#ffffff'},
                   cssClass: 'tp-static',
-                  letterAngle : 0,
-                  letterRotRadius : 20,
+                  letterAngle: 0,
+                  letterRotRadius: 20,
             },
-            H : {
-                  draggableX : true,
+            H: {
+                  draggableX: true,
                   pos: pop.H,
                   //pcolor: pt[ "g-parameter" ],
                   pcolor: pt.static,
                   style: {fill: '#ffffff'},
                   cssClass: 'tp-static',
-                  letterAngle : 45,
-                  letterRotRadius : 20,
-                  doPaintPname:false,
+                  letterAngle: 45,
+                  letterRotRadius: 20,
+                  doPaintPname: false,
             },
-            M : {
-                  draggableY : true,
+            M: {
+                  draggableY: true,
                   pcolor: pt.core,
                   style: {fill: '#ffffff'},
                   cssClass: 'tp-static',
-                  letterAngle : 225,
-                  letterRotRadius : 25,
+                  letterAngle: 225,
+                  letterRotRadius: 25,
             },
             //============================================
             // \\// sliders
@@ -283,21 +283,21 @@
                 // \\// given static angles alpha, beta
                 //-------------------------------------------------
                 //'AABAangleA
-                'AB' : {
-                    pcolor : pt.static,
-                    cssClass : 'tp-angle-beta',
+                'AB': {
+                    pcolor: pt.static,
+                    cssClass: 'tp-angle-beta',
                 },
             },
             {
-                'BA' : {
-                    pcolor : pt.static,
+                'BA': {
+                    pcolor: pt.static,
                 },
             },
             {
                //'AABAangleAA'
-               'CB' : {
-                    pcolor : pt.static,
-                    cssClass : 'tp-angle-beta',
+               'CB': {
+                    pcolor: pt.static,
+                    cssClass: 'tp-angle-beta',
                },
             },
             //-------------------------------------------------
@@ -308,15 +308,15 @@
             // //\\ decorates draggers
             //-----------------------------------------------
             {
-                'MB' : {
-                    pcolor : pt["core"],
-                    cssClass : 'tp-constructors',
+                'MB': {
+                    pcolor: pt["core"],
+                    cssClass: 'tp-constructors',
                 },
             },
             {
-                'MC' : {
-                    pcolor : pt["core"],
-                    cssClass : 'tp-constructors',
+                'MC': {
+                    pcolor: pt["core"],
+                    cssClass: 'tp-constructors',
                 },
             },
             //-----------------------------------------------
@@ -327,116 +327,116 @@
             // //\\ base sides
             //-------------------------------------------------
             {
-                'BH' : {
-                    pcolor : pt.static,
+                'BH': {
+                    pcolor: pt.static,
                 },
             },
             {
-                'MH' : {
+                'MH': {
                     cssClass: 'subessay--direct-proof',
-                    pcolor : pt["core"],
+                    pcolor: pt["core"],
                 },
             },
             {
-                'MN' : {
-                    pcolor : pt["core"],
-                },
-            },
-
-            {
-                nN : {
-                    pcolor : pt.core,
-                    cssClass: 'subessay--converse-proof',
-                },
-            },
-            {
-                Cn : {
-                    pcolor : pt.aux,
-                    cssClass: 'subessay--converse-proof',
+                'MN': {
+                    pcolor: pt["core"],
                 },
             },
 
             {
-                Bn : {
-                    pcolor : pt.aux,
+                nN: {
+                    pcolor: pt.core,
+                    cssClass: 'subessay--converse-proof',
+                },
+            },
+            {
+                Cn: {
+                    pcolor: pt.aux,
                     cssClass: 'subessay--converse-proof',
                 },
             },
 
             {
-                Cp : {
-                    pcolor : pt.aux,
+                Bn: {
+                    pcolor: pt.aux,
                     cssClass: 'subessay--converse-proof',
                 },
             },
 
             {
-                Bp : {
-                    pcolor : pt.aux,
+                Cp: {
+                    pcolor: pt.aux,
                     cssClass: 'subessay--converse-proof',
                 },
             },
 
             {
-                'BC' : {
-                    pcolor : pt.static,
-                    cssClass:'tp-angle-alpha tp-angle-beta',
+                Bp: {
+                    pcolor: pt.aux,
+                    cssClass: 'subessay--converse-proof',
+                },
+            },
+
+            {
+                'BC': {
+                    pcolor: pt.static,
+                    cssClass: 'tp-angle-alpha tp-angle-beta',
                 },
             },
             {
-                'BN' : {
-                    pcolor : pt.static,
+                'BN': {
+                    pcolor: pt.static,
                 },
             },
             {
-                'CN' : {
-                    pcolor : pt.static,
+                'CN': {
+                    pcolor: pt.static,
                 },
             },
             {
-                'BD' : {
-                    pcolor : pt["constructors"],
+                'BD': {
+                    pcolor: pt["constructors"],
                 },
             },
             {
-                CR : {
+                CR: {
                     cssClass: 'subessay--direct-proof',
                     pcolor: pt["constructors"],
                 },
             },
             {
-                BT : {
+                BT: {
                       cssClass: 'subessay--direct-proof',
                       pcolor: pt["constructors"],
                 },
             },
             {
-                'CD' : {
-                    pcolor : pt["constructors"],
+                'CD': {
+                    pcolor: pt["constructors"],
                 },
             },
             {
-                'PT' : {
+                'PT': {
                     cssClass: 'subessay--direct-proof',
-                    pcolor : pt["core"],
+                    pcolor: pt["core"],
                 },
             },
             {
-                'PR' : {
+                'PR': {
                     cssClass: 'subessay--direct-proof',
-                    pcolor : pt["core"],
+                    pcolor: pt["core"],
                 },
             },
             {
-                'PC' : {
+                'PC': {
                     cssClass: 'logic_phase--proof',
-                    pcolor : pt["static"],
+                    pcolor: pt["static"],
                 },
             },
             {
-                'PB' : {
+                'PB': {
                     cssClass: 'logic_phase--proof',
-                    pcolor : pt["static"],
+                    pcolor: pt["static"],
                 },
             },
             //-------------------------------------------------
@@ -448,17 +448,17 @@
             //-------------------------------------------------
             //'AAABangleA',
             {
-                'AC' : //line AC
+                'AC': //line AC
                 {
-                    pcolor : pt["static"],
-                    cssClass:'tp-angle-alpha',
+                    pcolor: pt["static"],
+                    cssClass: 'tp-angle-alpha',
                 },
             },
             //AAABangleB
             {
-                'AB' : {
-                    pcolor : pt["static"],
-                    cssClass:'tp-angle-beta',
+                'AB': {
+                    pcolor: pt["static"],
+                    cssClass: 'tp-angle-beta',
                 },
             },
             //-------------------------------------------------
@@ -474,7 +474,7 @@
             topicColors_elected,
             originalPoints,
             linesArray,
-            mediaBgImage : "diagram.png",
+            mediaBgImage: "diagram.png",
             //mediaBgImage : "diagram3.png", //bigger diagram
 
             //----------------------------------
@@ -483,12 +483,12 @@
             originX_onPicture, //needed for common sliders
             originY_onPicture, //needed for common sliders
 
-            innerMediaHeight    : pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
-            innerMediaWidth     : pictureWidth,
+            innerMediaHeight: pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
+            innerMediaWidth: pictureWidth,
             pictureWidth,
             pictureHeight,
 
-            thickness           : 1,
+            thickness: 1,
             //----------------------------------
             // \\// model-view parameters
             //----------------------------------

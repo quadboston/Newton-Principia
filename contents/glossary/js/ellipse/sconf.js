@@ -1,6 +1,6 @@
 (function () {
     const { ns, fconf, sconf, topicColors_repo, amode} =
-        window.b$l.apptree({ ssFExportList : { init_conf } });
+        window.b$l.apptree({ ssFExportList: { init_conf } });
     return;
 
 
@@ -140,7 +140,7 @@
             proofColor,
             hidden,
             orbit: bodyColor,
-            force : forceColor,
+            force: forceColor,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -150,165 +150,165 @@
         // //\\ points to approximate and draw original curve
         //---------------------------------------------------
         var originalPoints = {
-            C : {
-                pcolor : proofColor,
+            C: {
+                pcolor: proofColor,
                 pos: posC,
-                letterAngle : -99,
-                letterRotRadius : 35,
+                letterAngle: -99,
+                letterRotRadius: 35,
                 cssClass: 'subessay--conjugatediameter subessay--diameter subessay--latus-rectum subessay--i21-ellipse',
             },
-            E : {
-                pcolor : proofColor,
-                letterAngle : 90,
+            E: {
+                pcolor: proofColor,
+                letterAngle: 90,
                 cssClass: 'logic_phase--proof',
             },
-            H : {
-                pcolor : proofColor,
-                letterAngle : -90,
+            H: {
+                pcolor: proofColor,
+                letterAngle: -90,
                 cssClass: 'subessay--solution',
             },
-            I : {
-                pcolor : proofColor,
-                letterAngle : 90,
+            I: {
+                pcolor: proofColor,
+                letterAngle: 90,
                 cssClass: 'subessay--solution',
             },
-            B : {
-                pcolor : proofColor,
-                letterAngle : 90,
+            B: {
+                pcolor: proofColor,
+                letterAngle: 90,
                 cssClass: 'subessay--latus-rectum',
             },
 
-            AA : {
+            AA: {
                 //undisplayAlways : true,
-                pcolor : proofColor,
-                doPaintPname : false,
+                pcolor: proofColor,
+                doPaintPname: false,
                 cssClass: 'subessay--latus-rectum',
             },
 
-            D : {
-                pcolor : proofColor,
-                letterAngle : 70,
+            D: {
+                pcolor: proofColor,
+                letterAngle: 70,
                 cssClass: 'subessay--i21-ellipse subessay--latus-rectum',
             },
 
-            K : {
-                pcolor : proofColor,
+            K: {
+                pcolor: proofColor,
                 cssClass: 'subessay--latus-rectum',
             },
 
-            G : {
-                pcolor : proofColor,
-                letterAngle : 90,
+            G: {
+                pcolor: proofColor,
+                letterAngle: 90,
                 cssClass: 'subessay--i21-ellipse subessay--latus-rectum',
             },
 
-            T : {
-                pcolor : estimatedForceColor,
-                letterAngle : 180,
+            T: {
+                pcolor: estimatedForceColor,
+                letterAngle: 180,
                 cssClass: 'subessay--solution',
             },
 
-            R : {
-                pcolor : estimatedForceColor,
-                letterAngle : 45,
+            R: {
+                pcolor: estimatedForceColor,
+                letterAngle: 45,
                 cssClass: 'subessay--goal logic_phase--proof',
             },
 
-            Zminus : {
-                undisplayAlways : true,
-                doPaintPname : false,
+            Zminus: {
+                undisplayAlways: true,
+                doPaintPname: false,
                 cssClass: 'subessay--solution',
             },
 
-            Z : {
-                pcolor : proofColor,
-                letterAngle : -45,
+            Z: {
+                pcolor: proofColor,
+                letterAngle: -45,
                 cssClass: 'subessay--solution',
             },
 
-            v : {
-                caption : '𝑣',
-                pcolor : proofColor,
-                letterAngle : -45,
-                letterRotRadius : 15,
+            v: {
+                caption: '𝑣',
+                pcolor: proofColor,
+                letterAngle: -45,
+                letterRotRadius: 15,
                 cssClass: 'subessay--i21-ellipse',
             },
 
-            F : {
-                pcolor : proofColor,
-                letterAngle : -135,
+            F: {
+                pcolor: proofColor,
+                letterAngle: -135,
                 cssClass: 'subessay--solution',
             },
 
-            x : {
-                caption : "𝑥",
-                pcolor : proofColor,
-                letterAngle : 100,
-                letterRotRadius : 20,
+            x: {
+                caption: "𝑥",
+                pcolor: proofColor,
+                letterAngle: 100,
+                letterRotRadius: 20,
                 cssClass: 'subessay--solution subessay--goal',
             },
 
             // latus rectum
-            L : {
-                cssClass : 'hidden',
-                letterAngle : -45,
-                letterRotRadius : 20,
+            L: {
+                cssClass: 'hidden',
+                letterAngle: -45,
+                letterRotRadius: 20,
             },
-            LL : {
-                cssClass : 'hidden',
-                doPaintPname : false,
+            LL: {
+                cssClass: 'hidden',
+                doPaintPname: false,
             },
 
             //---------------------------------------
             // //\\ draggable points
             //---------------------------------------
-            S : {
-                caption : '',
-                pcolor : proofColor,
+            S: {
+                caption: '',
+                pcolor: proofColor,
                 cssClass: 'subessay--latus-rectum',
             },
 
-            P : {
+            P: {
                 //pos: set by sconf.parQ
-                pcolor : bodyColor,
-                letterAngle : 70,
-                draggableX  : true,
-                draggableY  : true,
+                pcolor: bodyColor,
+                letterAngle: 70,
+                draggableX: true,
+                draggableY: true,
             },
 
-            Q : {
+            Q: {
                 //pos: set in amode8captures
-                pcolor : proofColor,
-                letterAngle : 250,
-                letterRotRadius : 25,
-                draggableX  : true,
-                draggableY  : true,
+                pcolor: proofColor,
+                letterAngle: 250,
+                letterRotRadius: 25,
+                draggableX: true,
+                draggableY: true,
                 cssClass: 'subessay--i21-ellipse',
-                conditionalDrag : 'subessay--i21-ellipse',
+                conditionalDrag: 'subessay--i21-ellipse',
             },
 
-            Qemphasis : {
-                 pcolor : estimatedForceColor,
+            Qemphasis: {
+                 pcolor: estimatedForceColor,
                 caption: 'Q',
-                 letterAngle : 250,
-                 letterRotRadius : 25,
-                 draggableX  : true,
-                 draggableY  : true,
+                 letterAngle: 250,
+                 letterRotRadius: 25,
+                 draggableX: true,
+                 draggableY: true,
                 cssClass: 'subessay--ordinate',
-                conditionalDrag : 'subessay--ordinate',
+                conditionalDrag: 'subessay--ordinate',
             },
 
-            q : { // will be put across from Q
-                pcolor : proofColor,
+            q: { // will be put across from Q
+                pcolor: proofColor,
                 caption: '',
-                undisplayAlways : true,
+                undisplayAlways: true,
                 cssClass: 'subessay--ordinate',
             },
 
-            A : {
-                pcolor : proofColor,
-                draggableX  : true,
-                draggableY  : false,
+            A: {
+                pcolor: proofColor,
+                draggableX: true,
+                draggableY: false,
                 cssClass: 'logic_phase--claim',
             },
             //---------------------------------------
@@ -317,122 +317,122 @@
         };
 
         var linesArray = [
-            { 'A,AA' : { pcolor : proofColor,
+            { 'A,AA': { pcolor: proofColor,
                      cssClass: 'subessay--latus-rectum',
             }, },
-            { Qx : { pcolor : proofColor,
+            { Qx: { pcolor: proofColor,
                 cssClass: 'subessay--solution subessay--goal',
              },},
-            { xP : { pcolor : proofHover,
+            { xP: { pcolor: proofHover,
                 cssClass: 'subessay--solution',
              },},
-            { EP : { pcolor : proofHover,
+            { EP: { pcolor: proofHover,
                 cssClass: 'logic_phase--proof',
             },},
-            { ES : { pcolor : proofHover,
+            { ES: { pcolor: proofHover,
                 cssClass: 'logic_phase--proof',
             },},
-            { EI : { pcolor : proofHover,
+            { EI: { pcolor: proofHover,
                 cssClass: 'subessay--solution',
              },},
-            { CE : { pcolor : proofColor,
+            { CE: { pcolor: proofColor,
                 cssClass: 'logic_phase--proof',
             },},
-            { PH : { pcolor : proofColor,
+            { PH: { pcolor: proofColor,
                 cssClass: 'subessay--solution',
              },},
-            { HI : { pcolor : proofColor,
+            { HI: { pcolor: proofColor,
                 cssClass: 'subessay--solution',
              },},
-            { CS : { pcolor : proofColor,
+            { CS: { pcolor: proofColor,
                 cssClass: 'subessay--solution',
              },},
-            { CH : { pcolor : proofHover,
+            { CH: { pcolor: proofHover,
                 cssClass: 'subessay--solution',
              },},
-            { PI : { pcolor : proofHover,
+            { PI: { pcolor: proofHover,
                 cssClass: 'subessay--solution',
              },},
-            { 'PT' : { pcolor : proofHover,
+            { 'PT': { pcolor: proofHover,
                 cssClass: 'subessay--solution',
              },},
 
-            { 'SP' : { pcolor : estimatedForceColor,
+            { 'SP': { pcolor: estimatedForceColor,
                 cssClass: 'subessay--goal logic_phase--proof',
             },},
-            { 'SQ' : { pcolor : proofColor,
+            { 'SQ': { pcolor: proofColor,
                 cssClass: 'subessay--goal',
             },},
 
-            { 'L,LL' : {
-                pcolor : proofHover,
-                captionShiftNorm : 22, lposYSugar : 3
+            { 'L,LL': {
+                pcolor: proofHover,
+                captionShiftNorm: 22, lposYSugar: 3
             }, },
 
-            { 'P,Zminus' : { pcolor : proofColor,
+            { 'P,Zminus': { pcolor: proofColor,
                 cssClass: 'subessay--conjugatediameter subessay--diameter',
              }, },
-            { 'PZ' : { pcolor : proofColor,
+            { 'PZ': { pcolor: proofColor,
                 cssClass: 'subessay--conjugatediameter subessay--diameter',
              }, },
-            { 'PR' : { pcolor : proofColor,
+            { 'PR': { pcolor: proofColor,
                 cssClass: 'subessay--goal logic_phase--proof',
              }, },
-            { 'QR' : { pcolor : estimatedForceColor,
+            { 'QR': { pcolor: estimatedForceColor,
                 cssClass: 'subessay--solution subessay--goal',
              }, },
-            { 'QT' : { pcolor : proofColor,
+            { 'QT': { pcolor: proofColor,
                      cssClass: 'subessay--',
              },},
 
-            { CK : { pcolor : proofColor,
+            { CK: { pcolor: proofColor,
                 cssClass: 'subessay--solution',
              },},
-            { vC : { pcolor : proofHover,
+            { vC: { pcolor: proofHover,
                      cssClass: 'subessay--i21-ellipse',
             }, },
-            { CG : { pcolor : proofColor,
+            { CG: { pcolor: proofColor,
                 cssClass: 'subessay--i21-ellipse',
             }, },
-            { DK : { pcolor : proofColor,
+            { DK: { pcolor: proofColor,
                     cssClass: 'subessay--conjugatediameter subessay--latus-rectum',
              }, },
 
-            { GP : { pcolor : proofColor,
+            { GP: { pcolor: proofColor,
             }, },
-            { qv : { pcolor : proofLight,
+            { qv: { pcolor: proofLight,
                      cssClass: 'subessay--ordinate',
             }, },
-            { Qv : { pcolor : proofColor,
+            { Qv: { pcolor: proofColor,
                      cssClass: 'subessay--i21-ellipse',
             }, },
-            { 'Qemphasis,v' : { pcolor : estimatedForceColor,
+            { 'Qemphasis,v': { pcolor: estimatedForceColor,
                      cssClass: 'subessay--ordinate',
             }, },
 
-            { Pv : { pcolor : proofHover,
+            { Pv: { pcolor: proofHover,
                 cssClass: 'subessay--latus-rectum subessay--i21-ellipse',
              },},
-            { Tv : { pcolor : proofColor,
+            { Tv: { pcolor: proofColor,
                 cssClass: 'subessay--solution',
              },},
 
-            { vG : { pcolor : proofHover,
+            { vG: { pcolor: proofHover,
                 cssClass: 'subessay--solution',
              },},
-            { PF : { pcolor : proofColor,
+            { PF: { pcolor: proofColor,
                 cssClass: 'subessay--solution',
              },},
-            { AC : { pcolor : proofColor,
+            { AC: { pcolor: proofColor,
                 cssClass: 'subessay--latus-rectum',
              },},
-            { CD : { pcolor : proofColor,
+            { CD: { pcolor: proofColor,
                 cssClass: 'subessay--i21-ellipse subessay--latus-rectum',
              },},
-            { BC : { pcolor : proofColor,
+            { BC: { pcolor: proofColor,
                 cssClass: 'subessay--latus-rectum',
              },},
-            { PC : { pcolor : proofColor,
+            { PC: { pcolor: proofColor,
                 cssClass: 'subessay--i21-ellipse subessay--latus-rectum',
             }, },
         ];

@@ -1,7 +1,7 @@
 // //\\// widget config
 (function () {
     var { mat, fapp, fconf, sconf, topicColors_repo, } =
-        window.b$l.apptree({ ssFExportList : { init_conf } });
+        window.b$l.apptree({ ssFExportList: { init_conf } });
     return;
 
 
@@ -80,101 +80,101 @@
             constructors,
             ellipse,
 
-            "key-triangle"          : core,
-            "key-parts"             : core,
-            "similar-triangle"      : static,
-            "PT"                    : core,
-            "base-figure"           : core,
-            "static-generator"      : constructors,
-            "given-parallelogram"   : static,
-            "generators"            : constructors,
-            "tangent"               : constructors,
-            "aux-dots"              : aux,
+            "key-triangle": core,
+            "key-parts": core,
+            "similar-triangle": static,
+            "PT": core,
+            "base-figure": core,
+            "static-generator": constructors,
+            "given-parallelogram": static,
+            "generators": constructors,
+            "tangent": constructors,
+            "aux-dots": aux,
         }
         const pt = topicColors_elected;
 
         var originalPoints = {
-            P : { pos: [996, 570],
+            P: { pos: [996, 570],
                   pcolor: pt.static,
                   cssClass: 'tp-key-triangle',
-                  letterAngle : 45,
-                  letterRotRadius : 20,
+                  letterAngle: 45,
+                  letterRotRadius: 20,
                 },
-            A : { pos: [623, 1232],
+            A: { pos: [623, 1232],
                   pcolor: pt.static,
                   cssClass: 'tp-base-figure',
-                  letterAngle : 45,
-                  letterRotRadius : 20,
+                  letterAngle: 45,
+                  letterRotRadius: 20,
                 },
-            B : { pos: [1497, 1230],
+            B: { pos: [1497, 1230],
                   pcolor: pt.static,
                   cssClass: 'tp-base-figure',
                   //style: {fill: '#ffffff'}, works
                 },
-            C : { pos: [509, 383],
+            C: { pos: [509, 383],
                   pcolor: pt.static,
                   cssClass: 'tp-base-figure',
-                  letterAngle : 45,
-                  letterRotRadius : 20,
+                  letterAngle: 45,
+                  letterRotRadius: 20,
                 },
 
             // //\\ aux points
-            G : {
-                   pcolor : pt.aux,
-                   cssClass : 'subessay--case1 subessay--case2',
-                   letterAngle : 45,
+            G: {
+                   pcolor: pt.aux,
+                   cssClass: 'subessay--case1 subessay--case2',
+                   letterAngle: 45,
                  },
-            I : {
-                   pcolor : pt.aux,
-                   cssClass : 'subessay--case1',
-                   letterAngle : -125,
-                   letterRotRadius : 20,
+            I: {
+                   pcolor: pt.aux,
+                   cssClass: 'subessay--case1',
+                   letterAngle: -125,
+                   letterRotRadius: 20,
                  },
-            H : {
-                   pcolor : pt.aux,
-                   cssClass : 'subessay--case1 subessay--case2',
-                   letterAngle : -90,
-                   letterRotRadius : 20,
+            H: {
+                   pcolor: pt.aux,
+                   cssClass: 'subessay--case1 subessay--case2',
+                   letterAngle: -90,
+                   letterRotRadius: 20,
                  },
-            E : {
-                   pcolor : pt.aux,
-                   cssClass : 'subessay--case1 subessay--case2',
-                   letterAngle : -125,
-                   letterRotRadius : 20,
+            E: {
+                   pcolor: pt.aux,
+                   cssClass: 'subessay--case1 subessay--case2',
+                   letterAngle: -125,
+                   letterRotRadius: 20,
                  },
-            K : {
-                   pcolor : pt.aux,
-                   cssClass : 'subessay--case1',
-                   letterAngle : 90,
-                   letterRotRadius : 20,
+            K: {
+                   pcolor: pt.aux,
+                   cssClass: 'subessay--case1',
+                   letterAngle: 90,
+                   letterRotRadius: 20,
                 },
-            F : {
-                   pcolor : pt.aux,
-                   cssClass : 'subessay--case1 subessay--case2',
-                   letterAngle : 0,
-                   letterRotRadius : 20,
+            F: {
+                   pcolor: pt.aux,
+                   cssClass: 'subessay--case1 subessay--case2',
+                   letterAngle: 0,
+                   letterRotRadius: 20,
                 },
-            t : { pos: [1511, 574],
-                  caption : '𝑡',
-                  pcolor : pt.aux,
-                  cssClass : 'subessay--corollary1 subessay--corollary2',
-                  letterAngle : 45,
-                  letterRotRadius : 20,
+            t: { pos: [1511, 574],
+                  caption: '𝑡',
+                  pcolor: pt.aux,
+                  cssClass: 'subessay--corollary1 subessay--corollary2',
+                  letterAngle: 45,
+                  letterRotRadius: 20,
                 },
-            r : { pos: [1028, 830],
-                  caption : '𝑟',
-                  pcolor : pt.aux,
-                  cssClass :  'subessay--corollary1 subessay--corollary2',
+            r: { pos: [1028, 830],
+                  caption: '𝑟',
+                  pcolor: pt.aux,
+                  cssClass: 'subessay--corollary1 subessay--corollary2',
                 },
-            q : { pos: [1028, 830],
-                  caption : '𝑞',
-                  pcolor : pt.aux,
-                  cssClass : 'subessay--corollary3',
+            q: { pos: [1028, 830],
+                  caption: '𝑞',
+                  pcolor: pt.aux,
+                  cssClass: 'subessay--corollary3',
                 },
-            d : { pos: [1028, 830],
-                    caption : '𝑑',
-                    pcolor : pt.aux,
-                    cssClass : 'subessay--corollary3',
+            d: { pos: [1028, 830],
+                    caption: '𝑑',
+                    pcolor: pt.aux,
+                    cssClass: 'subessay--corollary3',
                     initialR: pointRadius,
                 },
             // \\// aux points
@@ -182,79 +182,79 @@
             ///-------------------------------------------------
             ///builds center point first to be used in ellipse
             ///-------------------------------------------------
-            O : { pos: [originX_onPicture, originY_onPicture],
+            O: { pos: [originX_onPicture, originY_onPicture],
                   cssClass: 'aspect--model tp-base-figure',
-                  r : pointRadius,
-                  letterRotRadius : 20,
+                  r: pointRadius,
+                  letterRotRadius: 20,
                 },
 
             //derived points, should not be used in model
-            Q : { pos: [1077, 1231],
+            Q: { pos: [1077, 1231],
                   pcolor: pt.static,
                   cssClass: 'tp-base-figure',
-                  letterAngle : 45,
-                  letterRotRadius : 20,
+                  letterAngle: 45,
+                  letterRotRadius: 20,
                 },
-            D : { pos: [1410, 965],
+            D: { pos: [1410, 965],
                   pcolor: topicColors_elected['generators'],
                   cssClass: 'tp-generators',
-                  letterRotRadius : 20,
-                  draggableX : true,
-                  draggableY : true,
+                  letterRotRadius: 20,
+                  draggableX: true,
+                  draggableY: true,
                 },
-            R : { pos: [1010, 712],
+            R: { pos: [1010, 712],
                   pcolor: topicColors_elected['key-triangle'],
                   cssClass: 'tp-key-triangle',
-                  letterAngle : -10,
-                  letterRotRadius : 20,
+                  letterAngle: -10,
+                  letterRotRadius: 20,
                 },
-            S : { pos: [532, 561],
+            S: { pos: [532, 561],
                   pcolor: pt.static,
                   cssClass: 'tp-base-figure',
-                  letterAngle : 45,
-                  letterRotRadius : 20,
+                  letterAngle: 45,
+                  letterRotRadius: 20,
                 },
 
             //============================================
             // //\\ sliders
             //============================================
-            T : { pos: [1283, 572],
-                  draggableX : true,
+            T: { pos: [1283, 572],
+                  draggableX: true,
                   pcolor: topicColors_elected['key-triangle'],
                   style: {fill: '#ffffff'},
                   cssClass: 'tp-key-triangle',
-                  letterAngle : 45,
-                  letterRotRadius : 20,
+                  letterAngle: 45,
+                  letterRotRadius: 20,
                   //initialR: 8, //overrides handle radius if any
                 },
-            a : {
-                    caption : 'eccentricity',
-                    draggableX : true,
-                    draggableY : false,
+            a: {
+                    caption: 'eccentricity',
+                    draggableX: true,
+                    draggableY: false,
 
                     pos: [slider_aX, slider_aY],
-                    pcolor : topicColors_elected.ellipse,
+                    pcolor: topicColors_elected.ellipse,
 
-                    letterAngle : 166,
-                    letterRotRadius : 104,
+                    letterAngle: 166,
+                    letterRotRadius: 104,
                     //makes display independent on user action
-                    displayAlways : true,
-                    unscalable : true,
+                    displayAlways: true,
+                    unscalable: true,
                 },
             //rails
-            eStart : {
-                pos : [slider_a_start, slider_aY],
-                pcolor : topicColors_elected.ellipse,
-                undisplayAlways : true,
-                doPaintPname : false,
-                unscalable  : true,
+            eStart: {
+                pos: [slider_a_start, slider_aY],
+                pcolor: topicColors_elected.ellipse,
+                undisplayAlways: true,
+                doPaintPname: false,
+                unscalable: true,
             },
-            eEnd : {
-                pos : [slider_a_end, slider_aY],
-                pcolor : topicColors_elected.ellipse,
-                undisplayAlways : true,
-                doPaintPname : false,
-                unscalable  : true,
+            eEnd: {
+                pos: [slider_a_end, slider_aY],
+                pcolor: topicColors_elected.ellipse,
+                undisplayAlways: true,
+                doPaintPname: false,
+                unscalable: true,
             },
             //============================================
             // \\// sliders
@@ -265,86 +265,86 @@
         //----------------------------------
 
         var linesArray = [
-            { 'KS' : {
-                        pcolor : pt.aux,
-                        cssClass : 'subessay--case1',
+            { 'KS': {
+                        pcolor: pt.aux,
+                        cssClass: 'subessay--case1',
                     }
             },
-            { 'AE' : {
-                        pcolor : pt.aux,
-                        cssClass : 'subessay--case1 subessay--case2',
+            { 'AE': {
+                        pcolor: pt.aux,
+                        cssClass: 'subessay--case1 subessay--case2',
                     }
             },
-             { 'AC' : {
-                        pcolor : pt.aux,
+             { 'AC': {
+                        pcolor: pt.aux,
                     }
             },
            //-------------------------
            // //\\ base-figure
            //-------------------------
-           { 'CA' : {
-                        pcolor : pt.static,
-                        cssClass : 'tp-base-figure',
+           { 'CA': {
+                        pcolor: pt.static,
+                        cssClass: 'tp-base-figure',
                     }
            },
-           { 'BC' : {
-                        pcolor : pt.static,
-                        cssClass : 'tp-base-figure',
+           { 'BC': {
+                        pcolor: pt.static,
+                        cssClass: 'tp-base-figure',
                     }
            },
-           { 'BA' : {
-                        pcolor : pt.static,
-                        cssClass : 'tp-base-figure',
+           { 'BA': {
+                        pcolor: pt.static,
+                        cssClass: 'tp-base-figure',
                     }
            },
-           { 'PC' : {
-                        pcolor : pt.static,
-                        cssClass : 'subessay--case1',
+           { 'PC': {
+                        pcolor: pt.static,
+                        cssClass: 'subessay--case1',
                     }
            },
            //-------------------------
            // \\// base-figure
            //-------------------------
 
-           { 'PT' : {
-                        pcolor : topicColors_elected["key-triangle"],
-                        'stroke-width' : 10,
-                        cssClass : 'tp-key-triangle tp-key-parts',
+           { 'PT': {
+                        pcolor: topicColors_elected["key-triangle"],
+                        'stroke-width': 10,
+                        cssClass: 'tp-key-triangle tp-key-parts',
                     }
            },
-           { 'PR' : {
-                        pcolor : topicColors_elected["key-triangle"],
-                        'stroke-width' : 10,
-                        cssClass : 'tp-key-triangle tp-key-parts',
+           { 'PR': {
+                        pcolor: topicColors_elected["key-triangle"],
+                        'stroke-width': 10,
+                        cssClass: 'tp-key-triangle tp-key-parts',
                     }
            },
 
             //-------------------------
             // //\\ given parallelogram
             //-------------------------
-            { 'PQ' : {
-                        pcolor : pt.static,
-                        cssClass : 'tp-given-parallelogram',
+            { 'PQ': {
+                        pcolor: pt.static,
+                        cssClass: 'tp-given-parallelogram',
                     }
             },
-            { 'AS' : {
-                        pcolor : pt.static,
-                        cssClass : 'tp-given-parallelogram',
+            { 'AS': {
+                        pcolor: pt.static,
+                        cssClass: 'tp-given-parallelogram',
                     }
             },
-            { 'AQ' : {
-                        pcolor : pt.static,
-                        cssClass : 'tp-given-parallelogram',
+            { 'AQ': {
+                        pcolor: pt.static,
+                        cssClass: 'tp-given-parallelogram',
                     }
             },
-            { 'QA' : {
-                        pcolor : pt.static,
-                        cssClass : 'tp-given-parallelogram',
+            { 'QA': {
+                        pcolor: pt.static,
+                        cssClass: 'tp-given-parallelogram',
                     }
             },
-            { 'PS' : {
-                        pcolor : pt.static,
-                        cssClass : 'tp-given-parallelogram',
+            { 'PS': {
+                        pcolor: pt.static,
+                        cssClass: 'tp-given-parallelogram',
                     }
             },
             //-------------------------
@@ -354,24 +354,24 @@
             //------------------------
             // //\\ linear-generators
             //------------------------
-            { 'BT' : {
-                        pcolor : pt["constructors"],
-                        cssClass : 'tp-generators',
+            { 'BT': {
+                        pcolor: pt["constructors"],
+                        cssClass: 'tp-generators',
                     }
             },
-            { 'CR' : {
-                        pcolor : pt["constructors"],
-                        cssClass : 'tp-generators',
+            { 'CR': {
+                        pcolor: pt["constructors"],
+                        cssClass: 'tp-generators',
                     }
             },
-            { 'BD' : {
-                        pcolor : pt["constructors"],
-                        cssClass : 'tp-generators',
+            { 'BD': {
+                        pcolor: pt["constructors"],
+                        cssClass: 'tp-generators',
                     }
             },
-            { 'CD' : {
-                        pcolor : pt["constructors"],
-                        cssClass : 'tp-generators',
+            { 'CD': {
+                        pcolor: pt["constructors"],
+                        cssClass: 'tp-generators',
                     }
             },
             //------------------------
@@ -381,60 +381,60 @@
             //------------------------
             // //\\ aux-lines
             //------------------------
-            { 'DG' : {
-                        pcolor : pt.aux,
-                        cssClass : 'subessay--case1 subessay--case2',
+            { 'DG': {
+                        pcolor: pt.aux,
+                        cssClass: 'subessay--case1 subessay--case2',
                      }
             },
-            { 'IG' : {
-                        pcolor : pt.aux,
-                        cssClass : 'subessay--case1',
+            { 'IG': {
+                        pcolor: pt.aux,
+                        cssClass: 'subessay--case1',
                      }
             },
 
-            { 'DI' : {
-                        pcolor : pt.aux,
-                        cssClass : 'subessay--case1',
+            { 'DI': {
+                        pcolor: pt.aux,
+                        cssClass: 'subessay--case1',
                      }
             },
-            { 'DE' : {
-                        pcolor : pt.aux,
-                        cssClass : 'subessay--case1 subessay--case2',
+            { 'DE': {
+                        pcolor: pt.aux,
+                        cssClass: 'subessay--case1 subessay--case2',
                      }
             },
-            { 'DK' : {
-                        pcolor : pt.aux,
-                        cssClass : 'subessay--case1',
+            { 'DK': {
+                        pcolor: pt.aux,
+                        cssClass: 'subessay--case1',
                      }
             },
-            { 'Bt' : {
-                        pcolor : pt.aux,
-                        cssClass : 'subessay--corollary1 subessay--corollary2',
+            { 'Bt': {
+                        pcolor: pt.aux,
+                        cssClass: 'subessay--corollary1 subessay--corollary2',
                     }
             },
-            { 'CF' : {
-                        pcolor : pt.aux,
-                        cssClass : 'subessay--case1 subessay--case2',
+            { 'CF': {
+                        pcolor: pt.aux,
+                        cssClass: 'subessay--case1 subessay--case2',
                     }
             },
-            { 'HB' : {
-                        pcolor : pt.aux,
-                        cssClass : 'subessay--case1',
+            { 'HB': {
+                        pcolor: pt.aux,
+                        cssClass: 'subessay--case1',
                     }
             },
-            { 'DH' : {
-                        pcolor : pt.aux,
-                        cssClass : 'subessay--case1 subessay--case2',
+            { 'DH': {
+                        pcolor: pt.aux,
+                        cssClass: 'subessay--case1 subessay--case2',
                     }
             },
-            { 'DF' : {
-                        pcolor : pt.aux,
-                        cssClass : 'subessay--case1 subessay--case2',
+            { 'DF': {
+                        pcolor: pt.aux,
+                        cssClass: 'subessay--case1 subessay--case2',
                     }
             },
-            { 'IQ' : {
-                        pcolor : pt.aux,
-                        cssClass : 'subessay--case1',
+            { 'IQ': {
+                        pcolor: pt.aux,
+                        cssClass: 'subessay--case1',
                     }
             },
             //------------------------
@@ -444,24 +444,24 @@
             //------------------------
             // //\\ static triangle
             //------------------------
-            { 'Pr' : {
-                        pcolor : topicColors_elected["static-generator"],
-                        cssClass : 'tp-static-generator subessay--corollary1 subessay--corollary2',
+            { 'Pr': {
+                        pcolor: topicColors_elected["static-generator"],
+                        cssClass: 'tp-static-generator subessay--corollary1 subessay--corollary2',
                     }
             },
-            { 'Pt' : {
-                        pcolor : topicColors_elected["static-generator"],
-                        cssClass : 'tp-static-generator subessay--corollary1 subessay--corollary2',
+            { 'Pt': {
+                        pcolor: topicColors_elected["static-generator"],
+                        cssClass: 'tp-static-generator subessay--corollary1 subessay--corollary2',
                     }
             },
-            { 'Cd' : {
-                        pcolor : topicColors_elected["aux"],
-                        cssClass : 'subessay--corollary3',
+            { 'Cd': {
+                        pcolor: topicColors_elected["aux"],
+                        cssClass: 'subessay--corollary3',
                     }
             },
-            { 'Pq' : {
-                        pcolor : topicColors_elected["aux"],
-                        cssClass : 'subessay--corollary3',
+            { 'Pq': {
+                        pcolor: topicColors_elected["aux"],
+                        cssClass: 'subessay--corollary3',
                     }
             },
             //------------------------
@@ -472,28 +472,28 @@
             // //\\ similar triangles
             //      in circle case
             //------------------------
-            { 'BP' : {
-                        pcolor : topicColors_elected["similar-triangle"],
-                        cssClass : 'subessay--case1 subessay--case2',
+            { 'BP': {
+                        pcolor: topicColors_elected["similar-triangle"],
+                        cssClass: 'subessay--case1 subessay--case2',
                     }
             },
-            { 'BC' : {
-                        pcolor : topicColors_elected["similar-triangle"],
-                        cssClass : 'subessay--corollary1 subessay--corollary2',
+            { 'BC': {
+                        pcolor: topicColors_elected["similar-triangle"],
+                        cssClass: 'subessay--corollary1 subessay--corollary2',
                     }
             },
-            { 'CP' : {
-                        pcolor : topicColors_elected["similar-triangle"],
-                        cssClass : 'subessay--case1',
+            { 'CP': {
+                        pcolor: topicColors_elected["similar-triangle"],
+                        cssClass: 'subessay--case1',
                     }
            },
             //------------------------
             // \\// similar triangles
             //------------------------
 
-            { 'eStart,eEnd' : {
-                        pcolor : topicColors_elected["ellipse"],
-                        cssClass : 'ellipse',
+            { 'eStart,eEnd': {
+                        pcolor: topicColors_elected["ellipse"],
+                        cssClass: 'ellipse',
                     }
             },
 
@@ -524,23 +524,23 @@
             topicColors_elected,
             originalPoints,
             linesArray,
-            mediaBgImage : "l20.jpg",
+            mediaBgImage: "l20.jpg",
 
             //for e slider
-            eMax : 1.5,
+            eMax: 1.5,
 
             // //\\ this approximately fits Newton's diagram
             //focus : [250, 540],
-            focus : [263, 535],    //[266, 526],  //in media scale
-            q0 : -Math.PI*0.19,
-            excentricity : 0.8702,
+            focus: [263, 535],    //[266, 526],  //in media scale
+            q0: -Math.PI*0.19,
+            excentricity: 0.8702,
 
-            latus2 : 190.621, //in media scale
-            initialParT : 0.735, //parameter T on line Pt
-            initialparC : 0.58,
-            initialparP : -0.05,
-            initialparA : 5.17,
-            initialparB : -0.51,
+            latus2: 190.621, //in media scale
+            initialParT: 0.735, //parameter T on line Pt
+            initialparC: 0.58,
+            initialparP: -0.05,
+            initialparA: 5.17,
+            initialparB: -0.51,
             // \\// this approximately fits Newton's diagram
 
             /*
@@ -558,7 +558,7 @@
             //----------------------------------
             //100; //display in "percents" of Ae
             //LEGEND_NUMERICAL_SCALE : 100,
-            LEGEND_NUMERICAL_SCALE : 1,
+            LEGEND_NUMERICAL_SCALE: 1,
 
             pictureActiveArea,
             originX_onPicture,
@@ -566,7 +566,7 @@
             pictureHeight,
             pictureWidth,
 
-            thickness : 2,
+            thickness: 2,
             //----------------------------------
             // \\// model-view parameters
             //----------------------------------

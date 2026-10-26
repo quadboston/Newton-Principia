@@ -3,7 +3,7 @@
         sDomF,
         amode,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             subessayLaunch_definedInLemma_after_model_upcreate,
         },
     });

@@ -4,13 +4,13 @@
         fconf, sDomF,
         stdMod, amode, sconf,
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             scaleValue2app,
             mod2inn,
             inn2mod,
             mod2inn_original,
         },
-        sDomFExportList : {
+        sDomFExportList: {
             out2inn,
             outparent2inn,
             inn2outparent,

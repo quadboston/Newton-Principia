@@ -1,7 +1,7 @@
 (function () {
     var {
         sconf, amode, stdMod, rg, }
-        = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
+        = window.b$l.apptree({ ssFExportList: { amode2rgstate, }, });
     foldPointsRemovedFromTp = false;
     return;
 

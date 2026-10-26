@@ -25,12 +25,12 @@
         var rgX = sDomF.params__2__rgX8dragwrap_gen_list({
             pname,
             pos,
-            acceptPos : () => true,
-            orientation : 'rotate',
-            nospinner : true,
+            acceptPos: () => true,
+            orientation: 'rotate',
+            nospinner: true,
         });
         rgX.achieved = {
-            achieved : [
+            achieved: [
                 sconf.modorInPicX,
                 sconf.modorInPicY,
             ]
@@ -44,10 +44,10 @@
         ssF.pos2pointy(
             'diagram-panner',
             {
-                'fill' : 'transparent',
-                'stroke' : 'transparent',
-                'stroke-width' : 3,
-                r : 6,
+                'fill': 'transparent',
+                'stroke': 'transparent',
+                'stroke-width': 3,
+                r: 6,
             },
         );
     }

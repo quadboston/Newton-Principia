@@ -9,7 +9,7 @@
     const {
         ns, sn, haz, nspaste,
         sconf, sDomF, ssF, ssD, toreg, rg, amode,
-    } = window.b$l.apptree({ stdModExportList : {
+    } = window.b$l.apptree({ stdModExportList: {
             path2rgModelPlaceholders__I,
         },
     });
@@ -69,7 +69,7 @@
             //         ]
             //-------------------------------------------------------------------------
             var pkey = 'path-' + pix;
-            pathRacks[pix] = toreg(pkey)({ pos: pt, undisplay : true })();
+            pathRacks[pix] = toreg(pkey)({ pos: pt, undisplay: true })();
 
             //---------------------------------------------------------
             // //\\ placifies keplerTriangles
@@ -77,7 +77,7 @@
             if (pix > 0) {
                 var kix = pix-1;
                 var pkey = 'kepltr-' + kix;
-                var ktr = toreg(pkey)({ undisplay : true })();
+                var ktr = toreg(pkey)({ undisplay: true })();
                 //sets up model vertices for triangle
                 ktr.vertices = [path[pix-1], path[pix], S];
             }
@@ -95,7 +95,7 @@
                 //makes "model-points" for freeTriangles
                 //freeTriangles array master-index offset is pi = 2
                 var pkey = 'freetr-' + kix;
-                var ktr = toreg(pkey)({ undisplay : true })();
+                var ktr = toreg(pkey)({ undisplay: true })();
                 ktr.vertices = [path[pix-1], freePath[pix-2], S];
             }
             //---------------------------------------------------------
@@ -131,11 +131,11 @@
             ];
             var ffkey0 = fkey+'-0';
             var ffkey1 = fkey+'-1';
-            toreg(ffkey0)({ pos: pos0, undisplay : true })();
-            toreg(ffkey1)({ pos: pos1, undisplay : true })();
+            toreg(ffkey0)({ pos: pos0, undisplay: true })();
+            toreg(ffkey1)({ pos: pos1, undisplay: true })();
             fview.pivots = [rg[ffkey0], rg[ffkey1]];
             //makes red line segments for force
-            toreg(fkey+'-applied')({ undisplay : true })();
+            toreg(fkey+'-applied')({ undisplay: true })();
             //----------------------------------
             // \\// makes red line segments for force
             //----------------------------------
@@ -175,11 +175,11 @@
                 //we have to create "keys" to make pointies
                 var ffkey0 = fkey+'-0';
                 var ffkey1 = fkey+'-1';
-                toreg(ffkey0)({ pos: pos0, undisplay : true })();
-                toreg(ffkey1)({ pos: pos1, undisplay : true })();
+                toreg(ffkey0)({ pos: pos0, undisplay: true })();
+                toreg(ffkey1)({ pos: pos1, undisplay: true })();
 
                 fview.pivots = [rg[ffkey0], rg[ffkey1]];
-                toreg(fkey+'-applied')({ undisplay : true })();
+                toreg(fkey+'-applied')({ undisplay: true })();
             }
             //*****************************************
             // \\// paints forces attached to c, d, ...
@@ -208,7 +208,7 @@
         freePathRacks.forEach((frack, pix) => {
             if (pix >= freePathRacks.length) return;
             var wwPivots = [pathRacks[pix+1], frack];
-            var wwline = toreg('freePathSegment-' + pix)({ undisplay : true })();
+            var wwline = toreg('freePathSegment-' + pix)({ undisplay: true })();
             wwline.pivots = wwPivots;
         });
         //-------------------------------------------------
@@ -221,7 +221,7 @@
         pathRacks.forEach((prack, pix) => {
             if (pix === pathRacks.length - 1) return;
             var wwPivots = [prack, pathRacks[pix+1]];
-            var wwline = toreg('pathSegment-' + pix)({ undisplay : true })();
+            var wwline = toreg('pathSegment-' + pix)({ undisplay: true })();
             wwline.pivots = wwPivots;
         });
         //-------------------------------------------------

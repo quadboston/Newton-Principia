@@ -3,7 +3,7 @@
         sn, haz,
         sconf, ssF, sDomF, rg, toreg,
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             upcreate__pars2rgShape,
             declareGeomtric,
             putInFront,
@@ -53,9 +53,9 @@
                     (
                         'pointWrap',
                         {
-                           pos : pos,
-                           pcolor : sDomF.getFixedColor(pname), //todm remove
-                           doPaintPname : true, //todm remove
+                           pos: pos,
+                           pcolor: sDomF.getFixedColor(pname), //todm remove
+                           doPaintPname: true, //todm remove
                         }
                     )
                     ();

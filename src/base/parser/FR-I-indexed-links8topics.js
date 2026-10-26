@@ -5,7 +5,7 @@
         sDomN, sDomF, ssF, ssD, exegs,
         amode, userOptions
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             exegs__2__dom_indexedLinks_indexedTopics,
             virtualSubessayClick,
         },

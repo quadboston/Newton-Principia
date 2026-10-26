@@ -34,7 +34,7 @@
         pointWrap.dragDecorColor    = haz(rgX, 'dragDecorColor') || rgX.pcolor;
         var argc = //= see: **api-pointWrap_2_dragWrap
         {
-            pointWrap           : rgX,
+            pointWrap: rgX,
 
             /*
                 //see: **api-doProcessWrap
@@ -47,8 +47,8 @@
            */
             doProcess,
 
-            orientation         : orientation,
-            nospinner           : nospinner,
+            orientation: orientation,
+            nospinner: nospinner,
         };
         medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE(argc);
 

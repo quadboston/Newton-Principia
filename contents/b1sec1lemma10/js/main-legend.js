@@ -1,6 +1,6 @@
 (function () {
     var { $$, sconf, fconf, sDomF, ssD, stdMod, rg, toreg, }
-        = window.b$l.apptree({ ssFExportList : { upcreate_mainLegend, create_digital_legend, }, });
+        = window.b$l.apptree({ ssFExportList: { upcreate_mainLegend, create_digital_legend, }, });
     var clustersToUpdate = [];
     var clustersToUpdate_claim = [];
     var AbdAce_row$;

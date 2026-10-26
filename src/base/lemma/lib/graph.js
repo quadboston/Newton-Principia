@@ -5,7 +5,7 @@
 
 (function () {
     var { $$, sDomF, nsmethods, haz, globalCss, stdMod, }
-        = window.b$l.apptree({ stdModExportList : { createsGraph, }, });
+        = window.b$l.apptree({ stdModExportList: { createsGraph, }, });
     var GLOBAL_CSS_APPENDED = false;
     return;
 
@@ -33,9 +33,9 @@
             createsGraphContainer(parentDom$);
         ///creates low tier api
         graph.chart = nsmethods.createsGraphFramework({
-            parent : container$,
-            dimX : graph_dimX,
-            dimY : graph_dimY,
+            parent: container$,
+            dimX: graph_dimX,
+            dimY: graph_dimY,
         });
         //===========================================
         // \\// fills graph object
@@ -65,7 +65,7 @@
 
             var { legendText, legendX } = customXLegend ?
                 customXLegend() :
-                { legendText: 'Distance from force (SP)', legendX : -560 };
+                { legendText: 'Distance from force (SP)', legendX: -560 };
             const { textColor, axisYLegend, axisXLegend, } =
                 graphAxisLegends(legendText, legendX);
             //==================================================
@@ -76,27 +76,27 @@
                 //first array mast be enabled
                 graphArrayMask,
 
-                graphArray : graph.graphArray,
+                graphArray: graph.graphArray,
                 colorThreadArray,
-                style : {
+                style: {
                    //'stroke-width' : 2, //destroys tp-machine
                 },
-                axisX : axisXStyle(textColor),
-                axisY : axisYStyle(textColor),
+                axisX: axisXStyle(textColor),
+                axisY: axisYStyle(textColor),
                 drawDecimalY,
                 drawDecimalX,
-                doSideAxes : true,
+                doSideAxes: true,
 
-                printAxisDigits : true,
+                printAxisDigits: true,
                     printAxisXDigits,
                     printAxisYDigits,
 
                 axisYLegend,
                 axisXLegend,
-                plotsCount_overrider : 1000,
-                doPaintGridOnlyOnce : false,
-                doDrawToolline : toollineConfig(),
-                brightenGrid : 0.3,
+                plotsCount_overrider: 1000,
+                doPaintGridOnlyOnce: false,
+                doDrawToolline: toollineConfig(),
+                brightenGrid: 0.3,
                 xMin,
                 xMax,
                 yMin,
@@ -115,36 +115,36 @@
 
         function toollineConfig() {
             return {
-                toollineStyle : {
-                    'stroke-width' : 2,
+                toollineStyle: {
+                    'stroke-width': 2,
                 },
-                abscissaIxValue : stdMod.qIndexFromPointPToGraphIndex(),
-                numberMarks : false,
+                abscissaIxValue: stdMod.qIndexFromPointPToGraphIndex(),
+                numberMarks: false,
             };
         }
 
         ///horizontal axis x pars, font, etc,
         function axisXStyle(textColor) {
             return {
-                'font-size'     : '18px',
-                fontShiftX      : -12, //in media scale
-                fontShiftY      : +14,
-                decimalDigits   : 3,
-                stroke          : textColor,
-                fill            : textColor,
-                'stroke-width'  : '0.2',
+                'font-size': '18px',
+                fontShiftX: -12, //in media scale
+                fontShiftY: +14,
+                decimalDigits: 3,
+                stroke: textColor,
+                fill: textColor,
+                'stroke-width': '0.2',
             };
         }
 
         function axisYStyle(textColor) {
             return {
-                'font-size'     : '20px',
-                fontShiftX      : -45, //in media scale
-                fontShiftY      : +5,
-                decimalDigits   : 1,
-                stroke          : textColor,
-                fill            : textColor,
-                'stroke-width'  : '1',
+                'font-size': '20px',
+                fontShiftX: -45, //in media scale
+                fontShiftY: +5,
+                decimalDigits: 1,
+                stroke: textColor,
+                fill: textColor,
+                'stroke-width': '1',
             };
         }
 
@@ -247,16 +247,16 @@
         var axisYLegend = [
             {
                 //together, tobold hover-width and tostroke can be redundant
-                text    :   '<text><tspan class="tofill tobold hover-width"' +
+                text: '<text><tspan class="tofill tobold hover-width"' +
                             '>Force</tspan></text>',
-                x       : 40,
-                y       : 25,
-                style   : {
-                            'font-size' : 28 + 'px',
+                x: 40,
+                y: 25,
+                style: {
+                            'font-size': 28 + 'px',
                 },
             },
             {	// chart title
-                text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
+                text: '<text><tspan class="tp-force tofill tobold hover-width"' +
                             //overrides tp machinery
                             ' style="fill:'+getFixedColor('force') + '; stroke:'+getFixedColor('force') + ';"' +
                             '>Actual</tspan>' +
@@ -270,22 +270,22 @@
 
                             '<tspan> forces</tspan>' +
                             '</text>',
-                x       : 310,
-                y       : 40,
-                style   : {
-                            'font-size' : '30px',
+                x: 310,
+                y: 40,
+                style: {
+                            'font-size': '30px',
                 },
             },
         ];
         var axisXLegend = [
             {
-                text    : legendText,
-                x       : legendX,
-                y       : 25,
-                style   : {
-                            'font-size' : '30px',
-                            'stroke' : textColor,
-                            'fill' : textColor,
+                text: legendText,
+                x: legendX,
+                y: 25,
+                style: {
+                            'font-size': '30px',
+                            'stroke': textColor,
+                            'fill': textColor,
                 },
             },
         ];

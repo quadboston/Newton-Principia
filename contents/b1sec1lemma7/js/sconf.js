@@ -1,6 +1,6 @@
 (function () {
     var { ns, fconf, sconf, topicColors_repo } =
-    window.b$l.apptree({ ssFExportList : { init_conf } });
+    window.b$l.apptree({ ssFExportList: { init_conf } });
     return;
 
 
@@ -97,151 +97,151 @@
             hidden,
 
             //claim
-            "curve-AB"      : givenColor, //arc-AB plus extension past B
-            "left-curve-AB" : givenColor, //extends curve ACB to the left of A
-            "arc-AB"        : givenColor,
-            "givenData"    : givenColor, //data table
+            "curve-AB": givenColor, //arc-AB plus extension past B
+            "left-curve-AB": givenColor, //extends curve ACB to the left of A
+            "arc-AB": givenColor,
+            "givenData": givenColor, //data table
 
             //proof
-            "curve-Ab"      : proofColor, // todo: unused?
-            "arc-Ab"        : proofColor, // this is the one rendered in proof
-            "proofRatio"    : proofColor, //data table
+            "curve-Ab": proofColor, // todo: unused?
+            "arc-Ab": proofColor, // this is the one rendered in proof
+            "proofRatio": proofColor, //data table
 
             //corollaries
-            'proofData' : proofColor, // used to style BF in data table (sometimes we don't want it linked to model BF line for mouseover highlighting)
+            'proofData': proofColor, // used to style BF in data table (sometimes we don't want it linked to model BF line for mouseover highlighting)
         };
 
         var originalPoints = {
-            A : {
+            A: {
                 //assigment by reference to pos is safe: no parasite links, pos is recalculated later
-                pos         : A,
-                letterAngle : 90,
-                pcolor      : givenColor,
+                pos: A,
+                letterAngle: 90,
+                pcolor: givenColor,
             },
-            C : {
-                letterAngle : 45,
-                letterRotRadius : 13,
-                pcolor      : givenColor,
+            C: {
+                letterAngle: 45,
+                letterRotRadius: 13,
+                pcolor: givenColor,
             },
-            D : {
+            D: {
                 pos: D,
-                letterAngle : 90,
-                pcolor      : givenColor,
-                draggableX  : true, // this adds animation and allows dragging along x
-                draggableY  : false,
+                letterAngle: 90,
+                pcolor: givenColor,
+                draggableX: true, // this adds animation and allows dragging along x
+                draggableY: false,
             },
 
-            B : {
+            B: {
                 pos: B,
-                letterAngle : 0,
-                pcolor      : givenColor,
-                draggableX  : true,
-                draggableY  : true,
+                letterAngle: 0,
+                pcolor: givenColor,
+                draggableX: true,
+                draggableY: true,
             },
 
-            DLeft : {
-                pos         : DLeft,
-                letterAngle : 90,
-                pcolor      : givenColor,
-                undisplayAlways : true,
-                doPaintPname : false,
+            DLeft: {
+                pos: DLeft,
+                letterAngle: 90,
+                pcolor: givenColor,
+                undisplayAlways: true,
+                doPaintPname: false,
             },
-            E : {
-                letterAngle : 90,
-                pcolor      : proofColor,
+            E: {
+                letterAngle: 90,
+                pcolor: proofColor,
                 cssClass: 'subessay--cor-2 subessay--cor-3',
             },
-            F : {
-                letterAngle : 90,
-                pcolor      : proofColor,
+            F: {
+                letterAngle: 90,
+                pcolor: proofColor,
                 cssClass: 'logic_phase--corollary',
             },
-            G : {
-                letterAngle : 90,
-                pcolor      : proofColor,
+            G: {
+                letterAngle: 90,
+                pcolor: proofColor,
                 cssClass: 'subessay--cor-2 subessay--cor-3',
             },
 
-            b : {
+            b: {
                 caption: "𝑏",
                 pos: b,
-                letterAngle : 0,
-                pcolor      : proofColor,
+                letterAngle: 0,
+                pcolor: proofColor,
                 cssClass: 'logic_phase--proof',
             },
-            c : {
+            c: {
                 caption: "𝑐",
-                letterAngle : 45,
-                letterRotRadius : 20,
-                pcolor      : proofColor,
+                letterAngle: 45,
+                letterRotRadius: 20,
+                pcolor: proofColor,
                 cssClass: 'logic_phase--proof',
             },
-            d : {
+            d: {
                 caption: "𝑑",
-                pos         : d,
-                letterAngle : 90,
-                pcolor      : proofColor,
+                pos: d,
+                letterAngle: 90,
+                pcolor: proofColor,
                 cssClass: 'logic_phase--proof',
             },
 
-            r : { //hidden but used to calc pos of b
+            r: { //hidden but used to calc pos of b
                 pos: r,
-                letterAngle : 135,
-                pcolor      : givenColor,
-                undisplayAlways : true,
-                doPaintPname : false,
+                letterAngle: 135,
+                pcolor: givenColor,
+                undisplayAlways: true,
+                doPaintPname: false,
             },
-            R : {
+            R: {
                 pos: R,
-                letterAngle : 135,
-                pcolor      : givenColor,
-                undisplayAlways : true,
-                doPaintPname : false,
+                letterAngle: 135,
+                pcolor: givenColor,
+                undisplayAlways: true,
+                doPaintPname: false,
             },
 
-            curveStart  : {
-                pos : [A[0]-80, 0],
-                undisplayAlways : true,
-                doPaintPname : false,
+            curveStart: {
+                pos: [A[0]-80, 0],
+                undisplayAlways: true,
+                doPaintPname: false,
             },
-            curveEnd : {
-                pos : [B[0]+50, 0],
-                undisplayAlways : true,
-                doPaintPname : false,
+            curveEnd: {
+                pos: [B[0]+50, 0],
+                undisplayAlways: true,
+                doPaintPname: false,
             },
-            curveLeftEnd : {
-                pos : [250, 100],
-                undisplayAlways : true,
-                doPaintPname : false,
+            curveLeftEnd: {
+                pos: [250, 100],
+                undisplayAlways: true,
+                doPaintPname: false,
             },
         };
 
         var linesArray = [
-            { "rd" : { pcolor : hidden } }, // used for calcs
+            { "rd": { pcolor: hidden } }, // used for calcs
 
-            { 'Ad' : { pcolor : proofColor,
+            { 'Ad': { pcolor: proofColor,
                         cssClass: 'logic_phase--proof' } },
-            { 'Ab' : { pcolor : proofColor,
+            { 'Ab': { pcolor: proofColor,
                         cssClass: 'logic_phase--proof' } },
-            { 'bd' : { pcolor : proofColor,
+            { 'bd': { pcolor: proofColor,
                         cssClass: 'logic_phase--proof' } },
-            { 'BD' : { pcolor : givenColor } },  //lemma 7, coroll 1
-            { 'BF' : { pcolor : proofColor,
+            { 'BD': { pcolor: givenColor } },  //lemma 7, coroll 1
+            { 'BF': { pcolor: proofColor,
                         cssClass: 'logic_phase--corollary' } },
-            { 'AF' : { pcolor : proofColor,
+            { 'AF': { pcolor: proofColor,
                         cssClass: 'logic_phase--corollary' } },
-            { 'AG' : { pcolor : proofColor,
+            { 'AG': { pcolor: proofColor,
                         cssClass: 'subessay--cor-2 subessay--cor-3'} },
-            { 'AE' : { pcolor : proofColor,
+            { 'AE': { pcolor: proofColor,
                         cssClass: 'subessay--cor-2 subessay--cor-3'} },
-            { 'BG' : { pcolor : proofColor,
+            { 'BG': { pcolor: proofColor,
                 cssClass: 'subessay--cor-2 subessay--cor-3'} },
-            { 'BE' : { pcolor : proofColor,
+            { 'BE': { pcolor: proofColor,
                 cssClass: 'subessay--cor-2 subessay--cor-3'} },
-            { 'AB' : { pcolor : givenColor, } },
-            { 'AD' : { pcolor : givenColor, } },
+            { 'AB': { pcolor: givenColor, } },
+            { 'AD': { pcolor: givenColor, } },
 
-            { 'A,DLeft'  : { pcolor : givenColor, 'stroke-width' : 2, } },
+            { 'A,DLeft': { pcolor: givenColor, 'stroke-width': 2, } },
         ]
 
         //----------------------------------
@@ -289,7 +289,7 @@
 
         ns.paste(sconf, {
             //double back step ../../ is to reuse this path in code for lemma7
-            mediaBgImage : "../../b1sec1lemma6/img/b1s1l6-diagram-3rded-b.png",
+            mediaBgImage: "../../b1sec1lemma6/img/b1s1l6-diagram-3rded-b.png",
             givenCurve_pivots_inModel,
             topicColors_elected,
             originalPoints,

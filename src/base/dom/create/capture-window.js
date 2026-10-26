@@ -4,7 +4,7 @@
         ssF, sDomN, fapp,
         stdMod, amode,
     } = window.b$l.apptree({
-        sDomFExportList : {
+        sDomFExportList: {
             createsCaptureWindow,
         },
     });
@@ -16,7 +16,7 @@
         /// api: capturePoint - count of currently captured states
         ///      captured -
         ///      pix in code below - id of captured data in string form
-        var cap = fapp.captureWind = { capturePoint : 0, captured:{} };
+        var cap = fapp.captureWind = { capturePoint: 0, captured: {} };
 
         ///establishes capture
         fapp.captureState = function (captureData) {

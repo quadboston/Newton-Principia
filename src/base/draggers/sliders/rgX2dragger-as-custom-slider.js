@@ -4,7 +4,7 @@
         sDomF,
         stdMod,
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             rgXSlider__2__dragwrap_gen_list,
         },
     });

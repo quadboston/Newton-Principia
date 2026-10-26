@@ -5,7 +5,7 @@
         stdMod, amode,
     } = window.b$l.apptree({
         setModule,
-        ssFExportList : {
+        ssFExportList: {
             scaleValue2app,
             createSliderPlaceholder_media_scale,
         },
@@ -29,11 +29,11 @@
 
         ssF.sliderTemplate({
             magnit,
-            sliderCaption   : 'scale',
-            cssClsKey       : ' ' + magnit,
-            max_magnit      : haz(sconf, 'MAX_MAGNITUDE') || 100,
-            min_magnit      : 0.2,
-            SUGGESTED_COLOR : "#999999",
+            sliderCaption: 'scale',
+            cssClsKey: ' ' + magnit,
+            max_magnit: haz(sconf, 'MAX_MAGNITUDE') || 100,
+            min_magnit: 0.2,
+            SUGGESTED_COLOR: "#999999",
             magnitude2app,
         });
     }

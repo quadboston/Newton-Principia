@@ -2,7 +2,7 @@
     var {
         ns, sconf, fapp, rg, ssD,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             captureAState,
         },
     });
@@ -36,16 +36,16 @@
 
         // Q: interval from P, in time or in q
         const Qoffset = sconf.TIME_IS_FREE_VARIABLE ?
-            { 'sconf.Dt0' : round4(ssD.Dt) } :
-            { 'sconf.Dq0' : round4(ssD.Dq) };
+            { 'sconf.Dt0': round4(ssD.Dt) } :
+            { 'sconf.Dq0': round4(ssD.Dq) };
 
         fapp.captureState(
             ns.paste(
                 {
                     // keys name where each value goes in sconf.js
-                    sconf_values : {
-                        'var S' : model2picture(rg.S.pos),
-                        'sconf.parQ' : round4(parQ),
+                    sconf_values: {
+                        'var S': model2picture(rg.S.pos),
+                        'sconf.parQ': round4(parQ),
                         ...Qoffset,
                     },
                 },

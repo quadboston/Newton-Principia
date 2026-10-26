@@ -1,7 +1,7 @@
 (function () {
     var { nspaste, mat, sconf,
         ssD, stdMod, rg, }
-        = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
+        = window.b$l.apptree({ stdModExportList: { model_upcreate, }, });
     return;
 
 

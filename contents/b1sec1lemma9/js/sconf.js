@@ -1,6 +1,6 @@
 (function () {
     var { sconf, paste, fconf, topicColors_repo } =
-        window.b$l.apptree({ ssFExportList : { init_conf } });
+        window.b$l.apptree({ ssFExportList: { init_conf } });
     return;
 
 
@@ -95,132 +95,132 @@
             hidden,
 
             //:curves
-            "ABC"               : given,
-            "mainCurve"         : given,
-            "Abc"               : proof,
-            "remoteCurve"       : proof,
+            "ABC": given,
+            "mainCurve": given,
+            "Abc": proof,
+            "remoteCurve": proof,
 
             //:areas
-            "ABD"               : givenArea,
-            "ACE"               : givenArea,
-            "area-ABD"          : given,
-            "area-ACE"          : given,
-            "Abd"               : proofArea,
-            "Ace"               : proofArea,
-            "area-Abd"          : proof,
-            "area-Ace"          : proof,
+            "ABD": givenArea,
+            "ACE": givenArea,
+            "area-ABD": given,
+            "area-ACE": given,
+            "Abd": proofArea,
+            "Ace": proofArea,
+            "area-Abd": proof,
+            "area-Ace": proof,
             //:linear areas
-            "Afd"               : proofArea,
-            "Age"               : proofArea,
+            "Afd": proofArea,
+            "Age": proofArea,
 
-            "ABDPerACE"         : given,
-            "AD2PerAE2"         : given,
+            "ABDPerACE": given,
+            "AD2PerAE2": given,
 
-            "AbdPerAce"         : proof,
-            "Ad2PerAe2"         : proof,
+            "AbdPerAce": proof,
+            "Ad2PerAe2": proof,
         };
         //-----------------------------------
         // \\// topic group colors,
         //-----------------------------------
 
         var originalPoints = {
-            'A' : {
-                pos         : pointA,
-                pcolor      : given,
-                letterAngle : -90,
+            'A': {
+                pos: pointA,
+                pcolor: given,
+                letterAngle: -90,
             },
-            'e' : {
-                pos         : pointe,
-                pcolor      : proof,
-                letterAngle : 90,
-            },
-
-            'B' : {
-                pcolor      : given,
-                letterAngle : 0,
-            },
-            'C' : {
-                pcolor      : given,
-                letterAngle : -45,
-            },
-            'D' : {
-                pcolor      : given,
-                letterAngle : 215,
-            },
-            'E' : {
-                pcolor      : given,
-                letterAngle : 180,
-            },
-            'b' : {
-                pcolor      : proof,
-                letterAngle : 0,
-            },
-            'c' : {
-                pcolor      : proof,
-                letterAngle : -90,
-            },
-            'd' : {
-                pcolor      : proof,
-                letterAngle : 180,
+            'e': {
+                pos: pointe,
+                pcolor: proof,
+                letterAngle: 90,
             },
 
-            'F' : {
-                pcolor      : given,
-                letterAngle : 135,
+            'B': {
+                pcolor: given,
+                letterAngle: 0,
             },
-            'G' : {
-                pcolor      : given,
-                letterAngle : 45,
+            'C': {
+                pcolor: given,
+                letterAngle: -45,
             },
-            'f' : {
-                pcolor      : proof,
-                letterAngle : 90,
+            'D': {
+                pcolor: given,
+                letterAngle: 215,
             },
-            'g' : {
-                pcolor      : proof,
-                letterAngle : 90,
+            'E': {
+                pcolor: given,
+                letterAngle: 180,
+            },
+            'b': {
+                pcolor: proof,
+                letterAngle: 0,
+            },
+            'c': {
+                pcolor: proof,
+                letterAngle: -90,
+            },
+            'd': {
+                pcolor: proof,
+                letterAngle: 180,
             },
 
-            'pivotPoint1' : {
-                pcolor      : proof,
-                doPaintPname : false,
-                letterAngle : 90,
+            'F': {
+                pcolor: given,
+                letterAngle: 135,
+            },
+            'G': {
+                pcolor: given,
+                letterAngle: 45,
+            },
+            'f': {
+                pcolor: proof,
+                letterAngle: 90,
+            },
+            'g': {
+                pcolor: proof,
+                letterAngle: 90,
             },
 
-            'pivotPoint2' : {
-                pcolor      : given,
-                letterAngle : 90,
-                doPaintPname : false,
+            'pivotPoint1': {
+                pcolor: proof,
+                doPaintPname: false,
+                letterAngle: 90,
+            },
+
+            'pivotPoint2': {
+                pcolor: given,
+                letterAngle: 90,
+                doPaintPname: false,
             },
         };
 
         var linesArray = [
-            { 'Ab' : { pcolor : proof } },
-            { 'Ac' : { pcolor : proof } },
-            { 'Ad' : { pcolor : proof } },
-            { 'Ae' : { pcolor : proof, 'stroke-width' : 4 } },
+            { 'Ab': { pcolor: proof } },
+            { 'Ac': { pcolor: proof } },
+            { 'Ad': { pcolor: proof } },
+            { 'Ae': { pcolor: proof, 'stroke-width': 4 } },
 
-            { 'Ag' : { pcolor : proof, 'stroke-width' : 4, } },
+            { 'Ag': { pcolor: proof, 'stroke-width': 4, } },
 
-            { 'ec' : { pcolor : proof } },
-            { 'db' : { pcolor : proof } },
+            { 'ec': { pcolor: proof } },
+            { 'db': { pcolor: proof } },
 
-            { 'AB' : { pcolor : given } },
-            { 'AC' : { pcolor : given } },
-            { 'AD' : { pcolor : given } },
-            { 'AE' : { pcolor : given,
-                'stroke-width' : 1, } },
-            { 'AG' : { pcolor : given } },
-            { 'EC' : { pcolor : given } },
-            { 'DB' : { pcolor : given } },
+            { 'AB': { pcolor: given } },
+            { 'AC': { pcolor: given } },
+            { 'AD': { pcolor: given } },
+            { 'AE': { pcolor: given,
+                'stroke-width': 1, } },
+            { 'AG': { pcolor: given } },
+            { 'EC': { pcolor: given } },
+            { 'DB': { pcolor: given } },
         ];
 
         to_sconf = {
             //----------------------------------
             // //\\ scenario
             //----------------------------------
-            hideProofSlider : true, // false,
-            hideProofSliderCompletely : false,
+            hideProofSlider: true, // false,
+            hideProofSliderCompletely: false,
             //----------------------------------
             // \\// scenario
             //----------------------------------
@@ -228,7 +228,7 @@
             //----------------------------------
             // //\\ original lemma parameters
             //----------------------------------
-            curvePivots : [
+            curvePivots: [
                 [0, 0],
                 //The bezier middle pivot is constrained in "model-upcreate.js" beginning of "model_upcreate" function.
                 [440, APP_MODEL_Y_RANGE],
@@ -246,25 +246,25 @@
             //*************************************************
             APP_MODEL_Y_RANGE,
             //:ranges
-            angleA_min : 5.71,  //Degrees
-            pivot2x_max : APP_MODEL_Y_RANGE * 1.8,
-            pivot2y_min : APP_MODEL_Y_RANGE * 0.3,
-            pivot2y_max : APP_MODEL_Y_RANGE * 0.99,
+            angleA_min: 5.71,  //Degrees
+            pivot2x_max: APP_MODEL_Y_RANGE * 1.8,
+            pivot2y_min: APP_MODEL_Y_RANGE * 0.3,
+            pivot2y_max: APP_MODEL_Y_RANGE * 0.99,
 
             //bezier parameter t of point C on principal curve
-            tC : 0.48,  //This value ensures line EC not too high and upper bezier curve not cutoff.
+            tC: 0.48,  //This value ensures line EC not too high and upper bezier curve not cutoff.
 
-            claimRatio : 0.74081,
+            claimRatio: 0.74081,
             //range:
-            claimRatio_max : 0.9, //Dy_per_Ey
+            claimRatio_max: 0.9, //Dy_per_Ey
 
-            tiltAngle : 0.0, //controls EC-line tilt:
+            tiltAngle: 0.0, //controls EC-line tilt:
                              //in degrees;  0.0 is horizontal;  from perspective of point E (+ve when C y above E y);
             //:ranges
-            tiltAngle_min   : -15,
-            tiltAngle_max   : 40,
+            tiltAngle_min: -15,
+            tiltAngle_max: 40,
 
-            Cx_min          : 0.1,
+            Cx_min: 0.1,
             //*************************************************
             // \\// lemma model parameters
             //*************************************************
@@ -276,12 +276,12 @@
             // //\\ model-view parameters
             //----------------------------------
             //100; //display in "percents" of Ae
-            LEGEND_NUMERICAL_SCALE : 100,
+            LEGEND_NUMERICAL_SCALE: 100,
 
             modorInPicX,
             modorInPicY,
-            innerMediaHeight    : pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
-            innerMediaWidth     : pictureWidth,
+            innerMediaHeight: pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
+            innerMediaWidth: pictureWidth,
 
             //thickness           : 400,
             //----------------------------------
@@ -303,7 +303,7 @@
             paste(to_sconf,
             {
                 //double back step ../../ is to reuse this path in code for twin-lemma
-                mediaBgImage : "../../b1sec1lemma9/img/lemma9-original.png",
+                mediaBgImage: "../../b1sec1lemma9/img/lemma9-original.png",
 
                 linesArray,
                 topicColors_elected,

@@ -1,6 +1,6 @@
 (function () {
     var { sn, stdMod, sconf, rg, } = window.b$l.apptree({
-        stdModExportList : { creates_Zeta_slider, }, });
+        stdModExportList: { creates_Zeta_slider, }, });
     var op = sn('orbitParameters', sconf);
     return;
 

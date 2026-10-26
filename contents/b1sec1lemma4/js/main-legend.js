@@ -1,6 +1,6 @@
 (function () {
     var { ssF, stdMod, fapp } = window.b$l.apptree({
-        stdModExportList : { create_digital_legend, }, });
+        stdModExportList: { create_digital_legend, }, });
     return;
 
 
@@ -47,9 +47,9 @@
         var clustersCount   = legendScriptParsed[0].length;
 
         ssF.createLogic_phaseLegend({
-            tableCaption    : '',
-            noTableTitle    : true,
-            stdMod_given    : stdMod,
+            tableCaption: '',
+            noTableTitle: true,
+            stdMod_given: stdMod,
             logic_phase,
             rowsCount,
             clustersCount,

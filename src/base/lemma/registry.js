@@ -47,7 +47,7 @@
         rg[kname] = rg.hasOwnProperty(kname) ?
             rg[kname] :
             {
-                rgId : kname,
+                rgId: kname,
             }
         ;
         return (rg[kname].pos = val);
@@ -70,7 +70,7 @@
             ('mykey4'); //returns myval4
     */
     function toreg(id) {
-        rg[id] = rg.hasOwnProperty(id) ? rg[id] : { rgId : id, };
+        rg[id] = rg.hasOwnProperty(id) ? rg[id] : { rgId: id, };
         return updateMe;
 
         function updateMe(key, val) {

@@ -2,7 +2,7 @@
     var {
         ssF, sDomF, rg,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             SAvV_model__2__svg,
         },
         setModule,
@@ -50,10 +50,10 @@
                 //this possibly collides with white filling
                 //tpclass : 'path',
 
-                'fill' : sDomF.getFixedColor('forceColor'),
-                'stroke' : sDomF.getFixedColor('forceColor'),
+                'fill': sDomF.getFixedColor('forceColor'),
+                'stroke': sDomF.getFixedColor('forceColor'),
                 //'stroke-width' : 3,
-                r : 5,
+                r: 5,
             }
         );
         //-------------------------------------------------

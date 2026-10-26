@@ -1,7 +1,7 @@
 (function () {
     var {
         sn, mat, nspaste, sData, amode, stdMod, sconf, rg, ssF
-    } = window.b$l.apptree({ stdModExportList : { completesSlidersCreation, }});
+    } = window.b$l.apptree({ stdModExportList: { completesSlidersCreation, }});
     var conics = sn('conics', mat);
     var sop = sn('sampleOrbitParameters', sconf);
     return;
@@ -69,10 +69,10 @@
             }
 
             var { e, fi } = conics.innerPars2innerPars({
-                r : rg.p.abs,
-                lat : newLatus,
-                om  : sData.stashedOmega_g,
-                signCosOmega : sData.stashedCosOmega_g,
+                r: rg.p.abs,
+                lat: newLatus,
+                om: sData.stashedOmega_g,
+                signCosOmega: sData.stashedCosOmega_g,
                 Kepler_g,
             });
 
@@ -106,12 +106,12 @@
             let solvedLatus = sData.stashedLatus / incr;
             let p17c12 = (subessay === 'corollary1' || subessay === 'corollary2');
             var { e, fi } = conics.innerPars2innerPars({
-                r : (p17c12 ? rg.P.posInitialUnitVector.abs : rg.P.abs) *
+                r: (p17c12 ? rg.P.posInitialUnitVector.abs : rg.P.abs) *
                     1,  //We do enforce here only positive branch, no matter is this
                         //ellipse or hyperbola.
-                lat : solvedLatus,
-                om  : sData.stashedOmega,
-                signCosOmega : sData.stashedCosOmega,  // -1 for for cor.
+                lat: solvedLatus,
+                om: sData.stashedOmega,
+                signCosOmega: sData.stashedCosOmega,  // -1 for for cor.
             })
             if (p17c12) {
                 if (e > 1) {
@@ -207,9 +207,9 @@
 
             op.latus = sData.stashedLatus4slider * momentumIncrease * momentumIncrease;
             var { e, fi, } = conics.innerPars2innerPars({
-                r   : sData.stashedR, //rg.P.abs
-                om  : newSinOmega,
-                lat : op.latus,
+                r: sData.stashedR, //rg.P.abs
+                om: newSinOmega,
+                lat: op.latus,
                 signCosOmega,
             });
             rg.P.q = fi;
@@ -292,9 +292,9 @@
 
             let latus = sData.stashedLatus4slider_r * momentumIncrease * momentumIncrease;
             var { e, fi, } = conics.innerPars2innerPars({
-                r : sData.stashedR_r,
-                om : newSinOmega,
-                lat : latus,
+                r: sData.stashedR_r,
+                om: newSinOmega,
+                lat: latus,
                 signCosOmega,
             });
 

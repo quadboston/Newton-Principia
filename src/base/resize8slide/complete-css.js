@@ -1,6 +1,6 @@
 (function () {
     var { sn, $$, haz, has, fmethods, eachprop, fconf, sconf, sDomN, wrkwin,
-        stdMod, } = window.b$l.apptree({ ssFExportList : { }, });
+        stdMod, } = window.b$l.apptree({ ssFExportList: { }, });
     wrkwin.buildsMobile     = buildsMobile;
     wrkwin.buildsNonMobile  = buildsNonMobile;
     return;

@@ -3,7 +3,7 @@
 ///models in propopositions 6-17 in Principia
 (function () {
     var { sn, fconf, ssD, stdMod, sconf, rg, } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             creates_Q8P_sliders,
             creates_A_slider,
             creates__gets_orbit_closest_point,

@@ -4,7 +4,7 @@
         sconf, ssF, sDomF, lowtpid_2_glocss8anchorRack, rg, toreg,
         stdMod,
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             pivots_2_svgLineInRg,
             str2line,
             namesArr_2_svgpoly,
@@ -97,15 +97,15 @@
             }
 
             var argsvg = {
-                svgel   : ns.haz(line, 'svgel'),
+                svgel: ns.haz(line, 'svgel'),
 
-                parent  : stdMod.mmedia,
+                parent: stdMod.mmedia,
                 //todm everywhere in this module:
                 //parent  : stdMod.mmedia,
 
-                pivots      : pivotsMedPos,
-                'stroke-width' : line.finalStrokeWidth.toFixed(4),
-                'stroke-linecap' : 'round'
+                pivots: pivotsMedPos,
+                'stroke-width': line.finalStrokeWidth.toFixed(4),
+                'stroke-linecap': 'round'
             }
             ///shapes without pName presribed in Topics do
             ///paint colors in own atributes
@@ -122,15 +122,15 @@
         } else {
             ////shorter part of optimization
             sv.updatePolyline({
-                pivots      : pivotsMedPos,
-                svgel       : line.svgel,
+                pivots: pivotsMedPos,
+                svgel: line.svgel,
 
                 //todm apparent bug: rid of this line
                 //'stroke-width' : line.finalStrokeWidth,
 
                 //todm: this line is added to fix a bug: do
                 //proofcheck does it break the legacy code:
-                strokeWidth : line.finalStrokeWidth.toFixed(4),
+                strokeWidth: line.finalStrokeWidth.toFixed(4),
             });
         }
         if (vectorTipIx || vectorTipIx === 0) {
@@ -173,16 +173,16 @@
 
             if (!line.pointIsAlreadyDressed) {
                 line.pnameLabelsvg = ns.svg.printText({
-                text            : caption,
-                    stroke          : stroke, //line.pcolor,
-                    fill            : stroke, //line.pcolor,
-                    "stroke-width"  : haz(lineAttr, "stroke-width") || 1,
-                    svgel           : line.pnameLabelsvg,
-                    parent          : stdMod.mmedia,
-                    style           : {
-                        'font-size' : fontSize.toFixed() + 'px',
-                        'line-height' : '1',
-                        'font-size' : line.fontSize + 'px',
+                text: caption,
+                    stroke: stroke, //line.pcolor,
+                    fill: stroke, //line.pcolor,
+                    "stroke-width": haz(lineAttr, "stroke-width") || 1,
+                    svgel: line.pnameLabelsvg,
+                    parent: stdMod.mmedia,
+                    style: {
+                        'font-size': fontSize.toFixed() + 'px',
+                        'line-height': '1',
+                        'font-size': line.fontSize + 'px',
                     },
                 });
                 line.pnameLabelsvg$ = $$.$(line.pnameLabelsvg)
@@ -241,8 +241,8 @@
             [vecTipStart[0] + norm[0]*tipHeight, vecTipStart[1] + norm[1]*tipHeight],
         ];
         line.vectorArrowSvg = sv.polyline({
-            svgel   : ns.haz(line, 'vectorArrowSvg'),
-            parent  : stdMod.mmedia,
+            svgel: ns.haz(line, 'vectorArrowSvg'),
+            parent: stdMod.mmedia,
             pivots,
             //'stroke-width' : strokeWidth * sconf.thickness,
         });
@@ -285,10 +285,10 @@
             strokeWidth = 1;
         }
         var lineAttrPassed = {
-            cssClass        : 'tostroke thickable' +
+            cssClass: 'tostroke thickable' +
                                (cssClass ? ' ' + cssClass : ''),
-            'stroke-width'  : ns.sn('stroke-width', lineAttr, strokeWidth),
-            caption         : caption || haz(lineAttr, 'caption'),
+            'stroke-width': ns.sn('stroke-width', lineAttr, strokeWidth),
+            caption: caption || haz(lineAttr, 'caption'),
         };
         ///todm: this code is extremely non-automated:
         if (has(lineAttr, 'captionShiftNorm')) {
@@ -326,9 +326,9 @@
                             tostroke ? 'tostroke ' : ''
                         );
         var attr = {
-            cssClass        : tostroke + 'thickable' +
+            cssClass: tostroke + 'thickable' +
                               (cssClass ? ' ' + cssClass : ''),
-           'stroke-width'  : 2,
+           'stroke-width': 2,
         };
         var tpclass = sDomF.toCssIdentifier(
                       (ns.haz(attr, 'tpclass')) || pName
@@ -347,11 +347,11 @@
         poly.poly_2_updatedPolyPos8undisplay = poly_2_updatedPolyPos8undisplay;
         poly.finalCssClass = cssClass + 'tp-' + tpclass;
         poly.svgel = sv.polyline({
-            svgel   : ns.haz(poly, 'svgel'),
+            svgel: ns.haz(poly, 'svgel'),
             stroke,
-            parent  : stdMod.mmedia,
+            parent: stdMod.mmedia,
             pivots,
-            'stroke-width' : strokeWidth * sconf.thickness,
+            'stroke-width': strokeWidth * sconf.thickness,
         });
         poly.svgel$ = $$.$(poly.svgel)
             .toggleClass('undisplay', ns.haz(poly, 'undisplay'))
@@ -384,7 +384,7 @@
             pivots.push(pivots[0]);
         }
         poly.svgel = sv.polyline({
-            svgel   : poly.svgel,
+            svgel: poly.svgel,
             pivots,
         });
         poly.svgel$.toggleClass('undisplay', ns.haz(poly, 'undisplay'));
@@ -406,9 +406,9 @@
         if (!dressed) {
             triang.mmedia = stdMod.mmedia;
             var svgarg = {
-                pivots  : vertices,
-                svgel   : triang.svgel,
-                parent  : triang.mmedia,
+                pivots: vertices,
+                svgel: triang.svgel,
+                parent: triang.mmedia,
             };
             if (defaultFill) {
                 svgarg.fill = defaultFill;
@@ -425,9 +425,9 @@
 
         } else {
             sv.updatePolyline({
-                    pivots : vertices,
-                    svgel : triang.svgel,
-                    fill : defaultFill,
+                    pivots: vertices,
+                    svgel: triang.svgel,
+                    fill: defaultFill,
                     //strokeWidth, //stroke-width
             });
         }

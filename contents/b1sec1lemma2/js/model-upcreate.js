@@ -1,5 +1,5 @@
 (function () {
-    var { sn, fapp, sconf, stdMod, } = window.b$l.apptree({ stdModExportList :
+    var { sn, fapp, sconf, stdMod, } = window.b$l.apptree({ stdModExportList:
         { model_upcreate, },
     });
 
@@ -52,7 +52,7 @@
         var maxY = p[0][1];
         let len = p.length;
         let dir = p[1][1] > p[0][1] ? 1 : 0;
-        changes.push({ix, dir, pstart:p[ix], mp_start_ix:ix });
+        changes.push({ix, dir, pstart: p[ix], mp_start_ix: ix });
         var stashedChan = changes[0];
         for (ix = 1; ix<len; ix++) {
             let y = p[ix][1];
@@ -62,10 +62,10 @@
             if (newDir !== dir) {
                 dir = newDir;
                 let ch = {
-                    ix:ix-1, //micropoints turning index
-                    mp_start_ix : ix-1,
+                    ix: ix-1, //micropoints turning index
+                    mp_start_ix: ix-1,
                     dir,
-                    pstart:p[ix-1]
+                    pstart: p[ix-1]
                 };
                 changes.push(ch);
                 //updates previous interval
@@ -118,10 +118,10 @@
                 minY,
                 maxY,
                 complimentaryAreaBar, //area size
-                mp_start_ix : chon.mp_start_ix,
-                mp_end_ix : chon.mp_end_ix,
-                x_start : chon.pstart[0],
-                x_end : chon.pend[0],
+                mp_start_ix: chon.mp_start_ix,
+                mp_end_ix: chon.mp_end_ix,
+                x_start: chon.pstart[0],
+                x_end: chon.pend[0],
             };
         }
         //part II: flag: fP.deltaOnLeft

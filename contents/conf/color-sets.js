@@ -128,7 +128,7 @@
             //0 - is complete darkness.
 
             //topics:
-            DEFAULT_TP_SATUR : 99,
+            DEFAULT_TP_SATUR: 99,
 
             //---------------------------------------------------
             // //\\ tp color opacity
@@ -136,30 +136,30 @@
             //affects only ssF.lowtpid__2__glocss8anchorRack and
             //ssF.colorArray_2_rgba
             //does not affect text anchor colors, but does affect both model and table together
-            TP_OPACITY_LOW : 0.5, // applied to 'topicColors_elected' in page's sconf.js
+            TP_OPACITY_LOW: 0.5, // applied to 'topicColors_elected' in page's sconf.js
 
             //0.6-makes opacity points do look "non-solid"
             //applied to 'originalPoints' and 'linesArray' in page's sconf.js
-            TP_OPACITY_LOW_POINT : 1,
-            TP_OPACITY_HIGH : 1,
+            TP_OPACITY_LOW_POINT: 1,
+            TP_OPACITY_HIGH: 1,
 
             // //\\ remove when lemmas
             //      will be standartized
-            AREA_HIGHLIGHT_OPACITY : 0.7,
-            AREA_DEFAULT_OPACITY : 0.3,
+            AREA_HIGHLIGHT_OPACITY: 0.7,
+            AREA_DEFAULT_OPACITY: 0.3,
             // \\// remove when lemmas
 
-            SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY : 0.6,
-            default_tp_stroke_opacity   : 0.5, //2, todotodo bug everywhere
+            SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY: 0.6,
+            default_tp_stroke_opacity: 0.5, //2, todotodo bug everywhere
 
-            ANCHOR_OPACITY_LOW : '0.7',
-            ANCHOR_OPACITY_HIGH : '1',
+            ANCHOR_OPACITY_LOW: '0.7',
+            ANCHOR_OPACITY_HIGH: '1',
 
             // todo: test if ANCHOR_DEFAULT_COLOR is needed
-            ANCHOR_DEFAULT_COLOR : 'rgba( 0, 255, 255, 1 )', //'rgba( 150, 0, 150, 1 )',
+            ANCHOR_DEFAULT_COLOR: 'rgba( 0, 255, 255, 1 )', //'rgba( 150, 0, 150, 1 )',
 
             //affects only anchor colors in Book text,
-            TP_OPACITY_FROM_fixed_colors : true,
+            TP_OPACITY_FROM_fixed_colors: true,
             //---------------------------------------------------
             // \\// tp color opacity
             // \\// tp color
@@ -168,9 +168,9 @@
             //---------------------------------------------------------------
             // //\\ anchor control
             //---------------------------------------------------------------
-            ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS : 0.8,
-            ANCHOR_TOPIC__OPACITY_IN_FOCUS : 1.0,
-            ITEM_BASE_COLOR_TO_ANCHOR : false, //for anchor-text, sets tpcolarr opacity to 1
+            ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS: 0.8,
+            ANCHOR_TOPIC__OPACITY_IN_FOCUS: 1.0,
+            ITEM_BASE_COLOR_TO_ANCHOR: false, //for anchor-text, sets tpcolarr opacity to 1
             //---------------------------------------------------------------
             // \\// anchor control
             //---------------------------------------------------------------

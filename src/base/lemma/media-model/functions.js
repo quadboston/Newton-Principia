@@ -2,7 +2,7 @@
     var {
         ssF,
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             modFun2innFun,
             modFun2scaledXY,
         },

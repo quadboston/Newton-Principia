@@ -4,7 +4,7 @@
         sDomF,
         stdMod, rg, sconf,
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             amode2rgstate,
         },
     });

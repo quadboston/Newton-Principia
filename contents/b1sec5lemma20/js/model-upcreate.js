@@ -3,7 +3,7 @@
         sn, haz, mat,
         stdMod, rg, sconf, ssF, sData,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             model_upcreate,
             deriveParameters,
             curveModel2branches,
@@ -211,7 +211,7 @@
             const orb = mat.polar_ellipse(brsObj);
             return {
                 point: orb.point,
-                pointPar : orb.ro,
+                pointPar: orb.ro,
             };
         };
         brsObj.breakCondition = function (pointPar1,  pointPar2) {

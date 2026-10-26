@@ -5,7 +5,7 @@
         fconf,
         ssF, amode,
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             doDebugMessage,
             doInitTopicScenarioCss,
             executesMessageAction,

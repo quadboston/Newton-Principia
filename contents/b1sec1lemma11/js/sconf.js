@@ -1,6 +1,6 @@
 (function () {
     var { ns, fconf, sconf, topicColors_repo } =
-        window.b$l.apptree({ ssFExportList : { init_conf } });
+        window.b$l.apptree({ ssFExportList: { init_conf } });
     return;
 
 
@@ -87,88 +87,88 @@
             given,
             proof,
             hidden,
-            'curve-AB'  : given,
-            'arc-AB'    : given,
-            'arc-Ab'    : proof,
-            'AB2'       : given,
-            'Ab2'       : proof,
-            'AB2-Ab2'   : proof,
-            'BD-bd'     : proof,
+            'curve-AB': given,
+            'arc-AB': given,
+            'arc-Ab': proof,
+            'AB2': given,
+            'Ab2': proof,
+            'AB2-Ab2': proof,
+            'BD-bd': proof,
             'claimRatio': proof,
-            'ratio'     : proof,
-            'circleJA'  : givenHover,
+            'ratio': proof,
+            'circleJA': givenHover,
         };
         //-----------------------------------
         // \\// topic group colors,
         //-----------------------------------
 
         var originalPoints = {
-            A : {
+            A: {
                 pos: A,
-                pcolor : given,
-                letterAngle : 90,
+                pcolor: given,
+                letterAngle: 90,
             },
-            D : {
+            D: {
                 pos: D,
-                pcolor : given,
-                letterAngle : 90,
+                pcolor: given,
+                letterAngle: 90,
             },
-            B : {
+            B: {
                 pos: B,
-                pcolor : given,
-                letterAngle : 0,
+                pcolor: given,
+                letterAngle: 0,
                 //cssClass: 'logic_phase--proof subessay--cor-1 subessay--cor-2',
             },
-            M : { // AB midpoint
-                pcolor : hidden
+            M: { // AB midpoint
+                pcolor: hidden
             },
-            C : {
+            C: {
                 pos: C,
-                pcolor : given,
-                letterAngle : 180,
+                pcolor: given,
+                letterAngle: 180,
                 cssClass: 'logic_phase--corollary',
             },
-            c : {
+            c: {
                 pos: c,
                 caption: '𝑐',
-                pcolor : proof,
-                letterAngle : 180,
+                pcolor: proof,
+                letterAngle: 180,
                 cssClass: 'logic_phase--corollary',
             },
-            b : {
+            b: {
                 pos: b,
                 caption: '𝑏',
-                pcolor : proof,
-                letterAngle : 45,
+                pcolor: proof,
+                letterAngle: 45,
                 cssClass: 'logic_phase--proof logic_phase--corollary',
                 conditionalDrag: 'logic_phase--proof',
             },
-            d : {
+            d: {
                 pos: d,
                 caption: '𝑑',
-                pcolor : proof,
-                letterAngle : 90,
+                pcolor: proof,
+                letterAngle: 90,
                 cssClass: 'logic_phase--proof logic_phase--corollary',
             },
 
-            J : {
+            J: {
                 pos: [A[0], 584],
-                pcolor : given,
-                letterAngle : 180,
-                letterRotRadius : 20,
+                pcolor: given,
+                letterAngle: 180,
+                letterRotRadius: 20,
                 cssClass: 'logic_phase--claim logic_phase--proof',
             },
-            g : {
+            g: {
                 pos: [A[0], 622],
                 caption: '𝑔',
-                pcolor : proof,
-                letterAngle : 45,
+                pcolor: proof,
+                letterAngle: 45,
                 cssClass: 'logic_phase--proof'
             },
-            G : {
+            G: {
                 pos: [A[0], 677],
-                pcolor : proof,
-                letterAngle : -45,
+                pcolor: proof,
+                letterAngle: -45,
                 cssClass: 'logic_phase--proof'
             },
         };
@@ -178,36 +178,36 @@
         var mod2inn_scale = (originalPoints.J.pos[1] - originalPoints.A.pos[1]) / 2;
 
         var linesArray = [
-            { 'Ad' : { pcolor : proof,
+            { 'Ad': { pcolor: proof,
                 cssClass: 'logic_phase--proof logic_phase--corollary'}, },
-            { 'AB' : { pcolor : given }, },
-            { 'AC' : { pcolor : given,
+            { 'AB': { pcolor: given }, },
+            { 'AC': { pcolor: given,
                 cssClass: 'logic_phase--corollary'}, },
-            { 'AD' : { pcolor : given }, },
-            { 'BD' : { pcolor : given,
+            { 'AD': { pcolor: given }, },
+            { 'BD': { pcolor: given,
                 //cssClass: 'subessay--cor-1 subessay--cor-2',
                 }, },
-            { 'BC' : { pcolor : given,
+            { 'BC': { pcolor: given,
                 cssClass: 'logic_phase--corollary', }, },
-            { 'AG' : { pcolor : proof,
+            { 'AG': { pcolor: proof,
                 cssClass: 'logic_phase--proof',}, },
-            { 'BG' : { pcolor : proof,
+            { 'BG': { pcolor: proof,
                 cssClass: 'logic_phase--proof', }, },
-            { 'GJ' : { pcolor : proof,
+            { 'GJ': { pcolor: proof,
                 cssClass: 'logic_phase--proof', }, },
-            { 'Ab' : { pcolor : proof,
+            { 'Ab': { pcolor: proof,
                 cssClass: 'logic_phase--proof logic_phase--corollary', }, },
-            { 'Ag' : { pcolor : proof,
+            { 'Ag': { pcolor: proof,
                 cssClass: 'logic_phase--proof', }, },
-            { 'bc' : { pcolor : proof,
+            { 'bc': { pcolor: proof,
                 cssClass: 'logic_phase--corollary',}, },
-            { 'bd' : { pcolor : proof,
+            { 'bd': { pcolor: proof,
                 cssClass: 'logic_phase--proof logic_phase--corollary', }, },
-            { 'bg' : { pcolor : proof,
+            { 'bg': { pcolor: proof,
                 cssClass: 'logic_phase--proof', }, },
-            { 'AJ' : { pcolor : given,
+            { 'AJ': { pcolor: given,
                 cssClass: 'logic_phase--claim logic_phase--proof', }, },
-            { 'bM' : { pcolor : supplementHover,
+            { 'bM': { pcolor: supplementHover,
                 cssClass: 'logic_phase--corollary',}, },
         ];
 
@@ -215,7 +215,7 @@
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
 
         ns.paste(sconf, {
-            mediaBgImage : "l11-diagram-3rded.jpg",
+            mediaBgImage: "l11-diagram-3rded.jpg",
             topicColors_elected,
             originalPoints,
             linesArray,

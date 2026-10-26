@@ -2,7 +2,7 @@
     var {
         mat, sconf, rg, stdMod, sData, ssF,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             completesSlidersCreation,
             slider_a_pos2value,
             slider_a_value2pos,

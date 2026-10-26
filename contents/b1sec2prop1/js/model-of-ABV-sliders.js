@@ -1,7 +1,7 @@
 //sets slider hanlders
 (function () {
 const { sn, mat, nspaste, sconf, sDomF, ssF, rg, toreg, stdMod, amode } =
-        window.b$l.apptree({ ssFExportList : { sets_A_v_forces_sliders
+        window.b$l.apptree({ ssFExportList: { sets_A_v_forces_sliders
 }});
 return;
 

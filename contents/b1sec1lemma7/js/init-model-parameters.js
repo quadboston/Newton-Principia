@@ -2,7 +2,7 @@
     var {
         ns, mat, nspaste, sconf, ssF, ssD, sDomF, sData, amode, stdMod, toreg, rg,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             init_model_parameters,
             model_upcreate,
         },
@@ -34,8 +34,8 @@
         rg.B.dragPriority = 100;
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
-            pname : 'B',
-            acceptPos : (newPos) => {
+            pname: 'B',
+            acceptPos: (newPos) => {
                 var newPosX = ssD.getUnrotatedParameterX(
                     newPos[0], rg.B.unrotatedParameterX
                 );
@@ -72,8 +72,8 @@
         };
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
-            pname : 'D',
-            acceptPos : (newPos) => {
+            pname: 'D',
+            acceptPos: (newPos) => {
                 if (rg.B.pos[0] > 0.2) { // so D can't be grabbed when it is under B
                     let originalDx = rg.D.originalPos[0];
                     let half_AD = originalDx / 2; // D can move half the width of AD in either dir
@@ -162,11 +162,11 @@
         ssF.line2abs('Ad');
 
         rg.AB.arcLen = mat.integral.curveLength({
-            fun             : ssD.repoConf[0].fun,
-            curveStartParam : rg.A.pos[0],
-            curveEndParam   : rg.B.pos[0],
-            funIsAVector    : true,
-            calculationAccuracy : 1e-4*rg.AB.abs,
+            fun: ssD.repoConf[0].fun,
+            curveStartParam: rg.A.pos[0],
+            curveEndParam: rg.B.pos[0],
+            funIsAVector: true,
+            calculationAccuracy: 1e-4*rg.AB.abs,
         });
 
         if (rg.AB.abs > 0) {

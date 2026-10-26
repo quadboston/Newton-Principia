@@ -62,14 +62,14 @@
         //--------------------------------------------------------
         if (blines) {
             mediael.paintedLines = nssvg.u({
-                svgel : mediael.paintedLines,
-                parent : parentSVG,
-                type : 'polyline',
-                points : '' + pivotsStr,
-                style : blines.style,
-                stroke : blines.stroke || 'rgba( 0,0,0, 1 )',
-                fill : blines.fill || 'transparent',
-                'stroke-width' : blines['stroke-width'] || 1
+                svgel: mediael.paintedLines,
+                parent: parentSVG,
+                type: 'polyline',
+                points: '' + pivotsStr,
+                style: blines.style,
+                stroke: blines.stroke || 'rgba( 0,0,0, 1 )',
+                fill: blines.fill || 'transparent',
+                'stroke-width': blines['stroke-width'] || 1
             });
         }
         //--------------------------------------------------------
@@ -101,13 +101,13 @@
                 ''
             );
             mediael.paintedCurve = nssvg.u({
-                svgel : mediael.paintedCurve,
-                parent : parentSVG,
-                type : 'path',
-                fill : bcurve.fill || 'transparent',
-                stroke : bcurve.stroke || 'rgba( 0,255,0, 1 )',
-                'stroke-width' : bcurve['stroke-width'] || 3,
-                d : '' + bezierStr
+                svgel: mediael.paintedCurve,
+                parent: parentSVG,
+                type: 'path',
+                fill: bcurve.fill || 'transparent',
+                stroke: bcurve.stroke || 'rgba( 0,255,0, 1 )',
+                'stroke-width': bcurve['stroke-width'] || 3,
+                d: '' + bezierStr
             });
         }
         //--------------------------------------------------------
@@ -145,14 +145,14 @@
                 mpm.point   = resultBPoints_model[pix];
                 mediael.points[pix].svgel =
                     nssvg.u({
-                        svgel   : mp.svgel,
-                        parent  : parentSVG,
-                        type    : 'circle',
-                        fill    : attrs.fill || 'rgba(255,0,0,1)',
-                        cx      : point[0],
-                        cy      : point[1],
-                        r       : attrs.r || 4,
-                        style   : attrs.style
+                        svgel: mp.svgel,
+                        parent: parentSVG,
+                        type: 'circle',
+                        fill: attrs.fill || 'rgba(255,0,0,1)',
+                        cx: point[0],
+                        cy: point[1],
+                        r: attrs.r || 4,
+                        style: attrs.style
                     });
                 //--------------------------------------------------------
                 // \\// paints point on bezier curve
@@ -169,20 +169,20 @@
                 //--------------------------------------------------------
                 var attrs = paintPivots.attrs || {};
                 mediael.pivotPoints[pix] = mediael.pivotPoints[pix] ||
-                                             { ix:pix, medpos:point };
+                                             { ix: pix, medpos: point };
                 mediael.pivotPoints[pix].medpos = point;
                 mediael.pivotPoints[pix].svgel =
                     nssvg.u({
-                        svgel : mediael.pivotPoints[pix].svgel,
-                        parent : parentSVG,
-                        type : 'circle',
-                        fill : attrs.fill || 'transparent',
-                        stroke : attrs.stroke || 'rgba(255,0,0,1)',
-                        'stroke-width' : attrs['stroke-width'] || 3,
-                        cx : point[0],
-                        cy : point[1],
-                        r : attrs.r || 4,
-                        style : attrs.style
+                        svgel: mediael.pivotPoints[pix].svgel,
+                        parent: parentSVG,
+                        type: 'circle',
+                        fill: attrs.fill || 'transparent',
+                        stroke: attrs.stroke || 'rgba(255,0,0,1)',
+                        'stroke-width': attrs['stroke-width'] || 3,
+                        cx: point[0],
+                        cy: point[1],
+                        r: attrs.r || 4,
+                        style: attrs.style
                     });
                 //--------------------------------------------------------
                 // \\// paints pivot of on bezier curve

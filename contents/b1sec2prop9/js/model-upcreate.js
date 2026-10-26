@@ -1,7 +1,7 @@
 (function () {
     var { $$, nsmethods, nssvg, mat,
         ssF, ssD, stdMod, sconf, rg, toreg, }
-        = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
+        = window.b$l.apptree({ stdModExportList: { model_upcreate, }, });
     return;
 
 
@@ -75,14 +75,14 @@
         var curvatureCircleName = 'curvatureCircle';
         var rgCurvatureCircle = toreg(curvatureCircleName)();
         rgCurvatureCircle.svgel = nssvg.u({
-            svgel   : rgCurvatureCircle.svgel,
-            parent  : stdMod.mmedia,
-            type    : 'circle',
-            fill    : 'transparent',
-            'stroke-width' : '1',
-            cx : RCmedpos[0],
-            cy : RCmedpos[1],
-            r : RRmedpos,
+            svgel: rgCurvatureCircle.svgel,
+            parent: stdMod.mmedia,
+            type: 'circle',
+            fill: 'transparent',
+            'stroke-width': '1',
+            cx: RCmedpos[0],
+            cy: RCmedpos[1],
+            r: RRmedpos,
         });
         $$.$(rgCurvatureCircle.svgel).addClass(
             //tostroke thickable ... what is thickable
@@ -107,10 +107,10 @@
 
         ssF.paintsCurve({
                 //rgName    : will become 'arc-QP',
-                fun         : cfun,
-                pointA      : Qrev,
-                pointB      : Prev,
-                mmedia      : stdMod.mmedia,
+                fun: cfun,
+                pointA: Qrev,
+                pointB: Prev,
+                mmedia: stdMod.mmedia,
         });
         //================================================
         // \\// highlightable arc PQ

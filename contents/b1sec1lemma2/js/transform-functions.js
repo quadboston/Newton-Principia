@@ -1,5 +1,5 @@
 (function () {
-    var { mat, } = window.b$l.apptree({ stdModExportList : {
+    var { mat, } = window.b$l.apptree({ stdModExportList: {
         recalculateAndStoreTransforms,
         xy_2_Txy,
         Txy_2_xy,

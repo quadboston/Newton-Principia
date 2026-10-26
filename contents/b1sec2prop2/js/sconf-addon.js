@@ -42,7 +42,7 @@ function init_conf_addon() {
     }
     },
 
-    "initial-state" : {
+    "initial-state": {
     "slider_sltime": {
         "curtime": 5.0001 * sconf.initialTimieStep
     },
@@ -55,7 +55,7 @@ function init_conf_addon() {
     },
     "t2corollary": {
 
-    "detected_user_interaction_effect_DONE" : true,
+    "detected_user_interaction_effect_DONE": true,
     "slider_sltime": {
         "curtime": 7.0001/4 * sconf.initialTimieStep
     },
@@ -78,19 +78,19 @@ function init_conf_addon() {
     }
     },
 
-    "__amode2rgstate" : [
+    "__amode2rgstate": [
     [
         "!ssF.mediaModelInitialized || amode.logic_phase === 'scholium' || amode.logic_phase === 'claim'",
         {
-            "captured" : "initial-state",
+            "captured": "initial-state",
         }
     ],
 
     [
         "amode.logic_phase === 'proof'",
         {
-            "rg" : {
-                "rgslid_dt" : { "val" : sconf.initialTimieStep },
+            "rg": {
+                "rgslid_dt": { "val": sconf.initialTimieStep },
                 "slider_sltime": {
                     "curtime": 3.2 //to capture dD, triangle SCD
                 }
@@ -101,8 +101,8 @@ function init_conf_addon() {
     [
         "( logic_phase === 'corollary' )",
         {
-            "captured" : "t2corollary",
-            "rg" : {
+            "captured": "t2corollary",
+            "rg": {
             }
         }
     ]
@@ -117,23 +117,23 @@ function topicColors_elected(tpel) {
         deviationAreaColor,
     } = tpel;
     return {
-        "Cprime"            : deviationColor,  //Point C'
-        "CCprime"           : deviationColor,  //Line C to C'
-        "CPprime"           : proofColor,  //Line C to C''
-        "cCprime"           : deviationColor,  //Line c to C'
-        "BCprime"           : deviationColor,     //Line B to C'
-        "SCprime"           : deviationColor,  //Line S C'
+        "Cprime": deviationColor,  //Point C'
+        "CCprime": deviationColor,  //Line C to C'
+        "CPprime": proofColor,  //Line C to C''
+        "cCprime": deviationColor,  //Line c to C'
+        "BCprime": deviationColor,     //Line B to C'
+        "SCprime": deviationColor,  //Line S C'
 
         // triangle SBC area description accelerated
-        "SBCprime"          : deviationAreaColor,
+        "SBCprime": deviationAreaColor,
 
-        "Vprime"            : deviationColor,    //Point V'
+        "Vprime": deviationColor,    //Point V'
         // force at B deviated toward V;        Line B to V'
         // area description accelerated
-        "BVprime"           : deviationColor,
+        "BVprime": deviationColor,
         // force vector at V displaced to V';   Line V to V'
         // area description accelerated
-        "VVprime"           : deviationColor,
+        "VVprime": deviationColor,
     };
 }
 })();

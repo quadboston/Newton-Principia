@@ -2,7 +2,7 @@
 ///which is calculated from time t and curve parameter q
 (function () {
     var { sn, stdMod, sconf, ssD, sData, rg, } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             builds_force_plusQ_minusQ_and_related,
             convertTimeTo_q,
             calculateTimeBetweenQAndP,

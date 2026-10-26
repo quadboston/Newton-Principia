@@ -22,11 +22,11 @@
         //======================================================
         // //\\ draws legend
         //======================================================
-        drawsLegendl({ legend : axisYLegend, gname:'y' });
-        drawsLegendl({ legend : axisXLegend, gname:'x',
-            offset : {
-                x : dimX_withMarg + marginX,
-                y : dimY_withMarg + marginY*(1.3),
+        drawsLegendl({ legend: axisYLegend, gname: 'y' });
+        drawsLegendl({ legend: axisXLegend, gname: 'x',
+            offset: {
+                x: dimX_withMarg + marginX,
+                y: dimY_withMarg + marginY*(1.3),
         }});
         //======================================================
         // \\// draws legend
@@ -38,7 +38,7 @@
         //==================================================
         function drawsLegendl({ legend, gname, offset }) {
             if (!legend) return;
-            offset = offset || { x:0, y:0 };
+            offset = offset || { x: 0, y: 0 };
             let med = graphFM_self.gmedia$();
             let garbage = sn('legendArrayGarbageCollector-'+gname, graphFM_self, []);
             garbage.forEach(leg => {
@@ -62,11 +62,11 @@
                         //nice to know: Array.from(g.children).forEach( ch => {
                 } else {
                     var t = nssvg.printText({
-                        text    : subLeg.text,
-                        x       : offset.x + subLeg.x,
-                        y       : offset.y + subLeg.y,
-                        parent  : med,
-                        style   : sstyle,
+                        text: subLeg.text,
+                        x: offset.x + subLeg.x,
+                        y: offset.y + subLeg.y,
+                        parent: med,
+                        style: sstyle,
                     });
                 }
                 garbage.push(t);

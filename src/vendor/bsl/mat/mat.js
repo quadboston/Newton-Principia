@@ -111,7 +111,7 @@
         var x = xx * rC - yy * rS + x0;
         var y = xx * rS + yy * rC + y0;
         // \\// rotates r and tan if rotationRads is  given,
-        return { x, y, cos, sin, tangent:[tanX, tanY], args};
+        return { x, y, cos, sin, tangent: [tanX, tanY], args};
     }
 
     ///Returns atan between 0 and 2PI

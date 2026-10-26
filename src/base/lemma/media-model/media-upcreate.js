@@ -1,7 +1,7 @@
 (function () {
 const { ns, sn, haz, haff, $$, eachprop,
         sconf, ssF, ssD, sDomN, sDomF, amode, stdMod, rg, exegs, } =
-      window.b$l.apptree({ ssFExportList : {
+      window.b$l.apptree({ ssFExportList: {
             media_upcreate_generic,
         },
     });
@@ -65,14 +65,14 @@ const { ns, sn, haz, haff, $$, eachprop,
             !ns.h(ssD.repoConf, 'customFunction')
         ) {
             ssF.paintsCurve({
-                    mmedia          : stdMod.mmedia,
-                    fun             : ssD.repoConf[0].fun,
-                    pointsName      : ns.haz(ssD.repoConf[0], 'pointsName') || 'AB',
-                    rgName          : ns.haz(ssD.repoConf[0], 'rgName'),
-                    addedCssClass   : ns.haz(ssD.repoConf[0], 'addedCssClass'),
-                    pointA          : ns.haz(ssD.repoConf[0], 'pointA'),
-                    pointB          : ns.haz(ssD.repoConf[0], 'pointB'),
-                    addToStepCount  : 1,
+                    mmedia: stdMod.mmedia,
+                    fun: ssD.repoConf[0].fun,
+                    pointsName: ns.haz(ssD.repoConf[0], 'pointsName') || 'AB',
+                    rgName: ns.haz(ssD.repoConf[0], 'rgName'),
+                    addedCssClass: ns.haz(ssD.repoConf[0], 'addedCssClass'),
+                    pointA: ns.haz(ssD.repoConf[0], 'pointA'),
+                    pointB: ns.haz(ssD.repoConf[0], 'pointB'),
+                    addToStepCount: 1,
             });
         }
 

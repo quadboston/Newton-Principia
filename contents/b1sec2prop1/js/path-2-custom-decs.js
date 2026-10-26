@@ -1,6 +1,6 @@
 (function () {
 const { nspaste, fconf, rg, } =
-        window.b$l.apptree({ stdModExportList : { traj2decs__II } });
+        window.b$l.apptree({ stdModExportList: { traj2decs__II } });
 return;
 
 

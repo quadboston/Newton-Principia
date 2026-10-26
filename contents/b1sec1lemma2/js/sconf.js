@@ -1,6 +1,6 @@
 (function () {
     var { sn, nspaste, fapp, fconf, sconf, ssF, topicColors_repo, } =
-        window.b$l.apptree({ ssFExportList : { init_conf, }, });
+        window.b$l.apptree({ ssFExportList: { init_conf, }, });
 
     var stdL2       = sn('stdL2', fapp);
     var study       = sn('study', stdL2);
@@ -12,7 +12,7 @@
     // //\\ presets data
     //=====================================
     appstate.movingBasePt = false;
-    sdata.view = { isInscribed:1, isCircumscribed:1, isFigureChecked:1 };
+    sdata.view = { isInscribed: 1, isCircumscribed: 1, isFigureChecked: 1 };
     //=====================================
     // \\// presets data
     //=====================================
@@ -37,12 +37,12 @@
         // //\\ datareg
         //----------------------------------
         dataregs.dr = ssF.initDataReg({
-            xLeft  : 32.5,
-            width  : 216.5,
-            height : 230.5,
+            xLeft: 32.5,
+            width: 216.5,
+            height: 230.5,
             yBottom: 259.5,
-            BASE_PT_DRAGGERS_ENABLED : (fconf.sappId === 'b1sec1lemma3'),
-            DRAGGABLE_END_POINTS : true,
+            BASE_PT_DRAGGERS_ENABLED: (fconf.sappId === 'b1sec1lemma3'),
+            DRAGGABLE_END_POINTS: true,
         });
         //----------------------------------
         // \\// datareg
@@ -79,229 +79,229 @@
             //For a line along the base of the figure.  Used for the bottom of
             //the figure, because line "AE" doesn't extend the entire width
             //when there are many bases.
-            "base"  : figureColor,
+            "base": figureColor,
 
-            "curve" : figureColor,
+            "curve": figureColor,
 
-            "figure-area"               : topicColors_repo["figure-area"],
-            "figure-area-txt"           : topicColors_repo["figure-area-txt"],
+            "figure-area": topicColors_repo["figure-area"],
+            "figure-area-txt": topicColors_repo["figure-area-txt"],
 
-            "circumscribed-rectangles"  : topicColors_repo["circumscribed-rectangles"],
-            "inscribed-rectangles"      : topicColors_repo["inscribed-rectangles"],
+            "circumscribed-rectangles": topicColors_repo["circumscribed-rectangles"],
+            "inscribed-rectangles": topicColors_repo["inscribed-rectangles"],
 
-            "widest-rectangular"        : fconf.sappId.indexOf('b1sec1lemma2')===0 ?
+            "widest-rectangular": fconf.sappId.indexOf('b1sec1lemma2')===0 ?
                                             widestRectangularHiddenStart :
                                             widestRectangular,
 
-            "circ-txt"                  : topicColors_repo["circ-txt"],
-            "insc-txt"                  : topicColors_repo["insc-txt"],
-            "widt-txt"                  : topicColors_repo["widt-txt"],
-            'a--K--b--l'                : difference,
-            'b--L--c--m'                : difference,
-            'c--M--d--n'                : difference,
-            'd--e--p--o'                : difference,
+            "circ-txt": topicColors_repo["circ-txt"],
+            "insc-txt": topicColors_repo["insc-txt"],
+            "widt-txt": topicColors_repo["widt-txt"],
+            'a--K--b--l': difference,
+            'b--L--c--m': difference,
+            'c--M--d--n': difference,
+            'd--e--p--o': difference,
         }
 
         var originalPoints = {
-            A : {
-                pcolor      : predT.figureColor,
-                letterAngle : -90,
+            A: {
+                pcolor: predT.figureColor,
+                letterAngle: -90,
             },
-            B : {
-                pcolor      : predT.figureColor,
-                letterAngle : -90,
+            B: {
+                pcolor: predT.figureColor,
+                letterAngle: -90,
             },
-            C : {
-                pcolor      : predT.figureColor,
-                letterAngle : -90,
+            C: {
+                pcolor: predT.figureColor,
+                letterAngle: -90,
             },
-            D : {
-                pcolor      : predT.figureColor,
-                letterAngle : -90,
+            D: {
+                pcolor: predT.figureColor,
+                letterAngle: -90,
             },
-            E : {
-                pcolor      : predT.figureColor,
-                letterAngle : -90,
+            E: {
+                pcolor: predT.figureColor,
+                letterAngle: -90,
             },
-            F : {
-                pcolor      : predT["widt-txt"],
-                letterAngle : 45,
+            F: {
+                pcolor: predT["widt-txt"],
+                letterAngle: 45,
             },
-            K : {
-                pcolor      : predT["insc-txt"],
-                letterAngle : 180,
-                letterRotRadius : 40,
+            K: {
+                pcolor: predT["insc-txt"],
+                letterAngle: 180,
+                letterRotRadius: 40,
             },
-            L : {
-                pcolor      : predT["insc-txt"],
-                letterAngle : 180,
+            L: {
+                pcolor: predT["insc-txt"],
+                letterAngle: 180,
             },
-            M : {
-                pcolor      : predT["insc-txt"],
-                letterAngle : 180,
-                letterRotRadius : 40,
+            M: {
+                pcolor: predT["insc-txt"],
+                letterAngle: 180,
+                letterRotRadius: 40,
             },
 
-            a : {
+            a: {
                 caption: '𝑎',
-                pcolor      : predT.figureColor,
-                letterAngle : 180,
+                pcolor: predT.figureColor,
+                letterAngle: 180,
             },
-            b : {
+            b: {
                 caption: '𝑏',
-                pcolor      : predT.figureColor,
-                letterAngle : 45,
+                pcolor: predT.figureColor,
+                letterAngle: 45,
             },
-            c : {
+            c: {
                 caption: '𝑐',
-                pcolor      : predT.figureColor,
-                letterAngle : 45,
+                pcolor: predT.figureColor,
+                letterAngle: 45,
             },
-            d : {
+            d: {
                 caption: '𝑑',
-                pcolor      : predT.figureColor,
-                letterAngle : 45,
+                pcolor: predT.figureColor,
+                letterAngle: 45,
             },
-            f : {
+            f: {
                 caption: '𝑓',
-                pcolor      : predT["widt-txt"],
-                letterAngle : 90,
+                pcolor: predT["widt-txt"],
+                letterAngle: 90,
             },
-            l : {
+            l: {
                 caption: '𝑙',
-                pcolor      : predT["circ-txt"],
-                letterAngle : 105,
+                pcolor: predT["circ-txt"],
+                letterAngle: 105,
             },
-            m : {
+            m: {
                 caption: '𝑚',
-                pcolor      : predT["circ-txt"],
-                letterAngle : 45,
+                pcolor: predT["circ-txt"],
+                letterAngle: 45,
             },
-            n : {
+            n: {
                 caption: '𝑛',
-                pcolor      : predT["circ-txt"],
-                letterAngle : 45,
+                pcolor: predT["circ-txt"],
+                letterAngle: 45,
             },
-            o : {
+            o: {
                 caption: '𝑜',
-                pcolor      : predT["circ-txt"],
-                letterAngle : 45,
+                pcolor: predT["circ-txt"],
+                letterAngle: 45,
             },
         };
 
         var linesArray = [
-            { AB : {
-                        pcolor : predT.figureColor,
+            { AB: {
+                        pcolor: predT.figureColor,
                    },
             },
-            { BC : {
-                        pcolor : predT.figureColor,
+            { BC: {
+                        pcolor: predT.figureColor,
                    },
             },
-            { CD : {
-                        pcolor : predT.figureColor,
+            { CD: {
+                        pcolor: predT.figureColor,
                    },
             },
-            { AE : {
-                        pcolor : predT.figureColor,
+            { AE: {
+                        pcolor: predT.figureColor,
                    },
             },
 
-            { aK : {
-                        pcolor : predT.figureColor,
-                        'stroke-width' : 1.5,
+            { aK: {
+                        pcolor: predT.figureColor,
+                        'stroke-width': 1.5,
                   },
             },
-            { AK : {
-                        pcolor : predT.figureColor,
-                        'stroke-width' : 1.5
+            { AK: {
+                        pcolor: predT.figureColor,
+                        'stroke-width': 1.5
                    },
             },
             // //\\ top rect sides
             //lower
-            { cL : {
-                        pcolor : predT["insc-txt"],
+            { cL: {
+                        pcolor: predT["insc-txt"],
                    },
             },
-            { dM : {
-                        pcolor : predT["insc-txt"],
+            { dM: {
+                        pcolor: predT["insc-txt"],
                    },
             },
             //circ, right rect sides
-            { lb : {
-                        pcolor : predT["circ-txt"],
+            { lb: {
+                        pcolor: predT["circ-txt"],
                    },
             },
-            { mc : {
-                        pcolor : predT["circ-txt"],
+            { mc: {
+                        pcolor: predT["circ-txt"],
                    },
             },
-            { nd : {
-                        pcolor : predT["circ-txt"],
+            { nd: {
+                        pcolor: predT["circ-txt"],
                    },
             },
-            { oE : {
-                        pcolor : [0, 0, 0, 0],
+            { oE: {
+                        pcolor: [0, 0, 0, 0],
                    },
             },
 
             //upper
-            { od : {
-                        pcolor : predT["circ-txt"],
+            { od: {
+                        pcolor: predT["circ-txt"],
                    },
             },
-            { nc : {
-                        pcolor : predT["circ-txt"],
+            { nc: {
+                        pcolor: predT["circ-txt"],
                    },
             },
-            { mb : {
-                        pcolor : predT["circ-txt"],
+            { mb: {
+                        pcolor: predT["circ-txt"],
                    },
             },
-            { la : {
-                        pcolor : predT["circ-txt"],
+            { la: {
+                        pcolor: predT["circ-txt"],
                    },
             },
             // \\// top rect sides
 
-            { Bb : {
-                        pcolor : predT["insc-txt"],
+            { Bb: {
+                        pcolor: predT["insc-txt"],
                    },
             },
-            { Cc : {
-                        pcolor : predT["insc-txt"],
+            { Cc: {
+                        pcolor: predT["insc-txt"],
                    },
             },
-            { Dd : {
-                        pcolor : predT["insc-txt"],
+            { Dd: {
+                        pcolor: predT["insc-txt"],
                    },
             },
-            { AF : {
-                        pcolor : predT.figureColor,
+            { AF: {
+                        pcolor: predT.figureColor,
                    },
             },
-            { Kb : {
-                        pcolor : predT["insc-txt"],
+            { Kb: {
+                        pcolor: predT["insc-txt"],
                    },
             },
-            { Aa : {
-                        pcolor : predT.figureColor,
-                        'stroke-width' : 1.5
+            { Aa: {
+                        pcolor: predT.figureColor,
+                        'stroke-width': 1.5
                    },
             },
         ];
 
         nspaste(sconf, {
-            topicColors_elected : predT,
+            topicColors_elected: predT,
             originalPoints,
             linesArray,
-            originX_onPicture : modorInPicX,
-            originY_onPicture : modorInPicY + pictureActiveArea,
+            originX_onPicture: modorInPicX,
+            originY_onPicture: modorInPicY + pictureActiveArea,
             pictureWidth,
             pictureHeight,
-            mod2inn_scale : 1, //was pictureActiveArea,
+            mod2inn_scale: 1, //was pictureActiveArea,
             //default_tp_stroke_width : 12,
-            handleRadius : 55,
+            handleRadius: 55,
         });
     };
 })();

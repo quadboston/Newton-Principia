@@ -2,7 +2,7 @@
     var {
         eachprop, nspaste, has, fapp, rg,
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             captureAState_generic,
         },
     });
@@ -18,7 +18,7 @@
                 kname !== 'rgId' &&
                 true //for "&&" at the end of line
             ) {
-                nspaste(clone, { [kname] : rgX });
+                nspaste(clone, { [kname]: rgX });
             }
         });
         fapp.captureState(clone);

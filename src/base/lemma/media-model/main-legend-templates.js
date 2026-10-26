@@ -7,7 +7,7 @@
         stdMod, sDomF, sDomN, amode,
         toreg,
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             dataSourceParsed1__2__makesBodyCluster,
             dataSourceParsed1__2__updatesDataInCell,
         },
@@ -38,7 +38,7 @@
 
         return {
             tpCssName,
-            clusterKey          : id,
+            clusterKey: id,
             clusterCaption,
         };
     }

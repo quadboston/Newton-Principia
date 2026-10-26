@@ -4,7 +4,7 @@
         sconf, ssF, ssD, sDomF,
         amode, stdMod, rg,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             init_model_parameters,
             model_upcreate,
         },

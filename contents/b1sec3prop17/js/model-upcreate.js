@@ -2,7 +2,7 @@
     var {
         sn, nspaste, mcurve, mat,
         fconf, ssF, amode, sconf, rg,
-    } = window.b$l.apptree({ stdModExportList : {
+    } = window.b$l.apptree({ stdModExportList: {
             model_upcreate,
         },
     });
@@ -119,7 +119,7 @@
                 cosOmega,
             } = mcurve.planeCurveDerivatives({
                 pointAt,
-                q   : rg.p.q,
+                q: rg.p.q,
                 posCenterOfForces,
             });
 
@@ -143,7 +143,7 @@
                 posBody,
             } = mcurve.planeCurveDerivatives({
                 pointAt,
-                q : rg.p.q + sop.sagittaDelta_q_initial,
+                q: rg.p.q + sop.sagittaDelta_q_initial,
                 posCenterOfForces,
             });
             nspaste(rg.q.pos, posBody);
@@ -218,7 +218,7 @@
         }
         return {
             posBody,
-            sagittaDeltaQ : q - rg.P.q,
+            sagittaDeltaQ: q - rg.P.q,
         };
     }
 })();

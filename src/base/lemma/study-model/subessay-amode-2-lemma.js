@@ -5,7 +5,7 @@
         stdMod, amode,
         //**************************************************
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             in_subessay_launch____amode2lemma,
         },
     });

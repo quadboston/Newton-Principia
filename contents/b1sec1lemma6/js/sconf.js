@@ -1,6 +1,6 @@
 (function () {
     var { ns, fconf, sconf, topicColors_repo } =
-    window.b$l.apptree({ ssFExportList : { init_conf } });
+    window.b$l.apptree({ ssFExportList: { init_conf } });
     return;
 
 
@@ -94,91 +94,91 @@
             givenColor,
 
             //:given
-            "curve-AB"      : givenColor,
-            "left-curve-AB" : givenColor, //extends curve left of A
-            'angleBAD'      : givenColor,
-            "arc-AB"        : givenColor, //curve-AB plus extension past B
+            "curve-AB": givenColor,
+            "left-curve-AB": givenColor, //extends curve left of A
+            'angleBAD': givenColor,
+            "arc-AB": givenColor, //curve-AB plus extension past B
         };
 
         var originalPoints = {
-            A : {
+            A: {
                 //assigment by reference to pos is safe: no parasite links, pos is recalculated later
-                pos         : A,
-                letterAngle : 90,
-                pcolor      : givenColor,
+                pos: A,
+                letterAngle: 90,
+                pcolor: givenColor,
             },
-            B : {
+            B: {
                 pos: B,
-                letterAngle : 0,
-                pcolor      : givenColor,
+                letterAngle: 0,
+                pcolor: givenColor,
             },
-            C : {
-                letterAngle : 45,
-                letterRotRadius : 13,
-                pcolor      : givenColor,
+            C: {
+                letterAngle: 45,
+                letterRotRadius: 13,
+                pcolor: givenColor,
             },
-            D : {
+            D: {
                 pos: D,
-                letterAngle : 90,
-                pcolor      : givenColor,
-                draggableX  : true, // this adds mouseover animation, does not affect behaviour
-                draggableY  : false,
+                letterAngle: 90,
+                pcolor: givenColor,
+                draggableX: true, // this adds mouseover animation, does not affect behaviour
+                draggableY: false,
             },
-            L : { // rectilinear angle slider
-                pcolor      : infoColor,
+            L: { // rectilinear angle slider
+                pcolor: infoColor,
                 cssClass: 'logic_phase--proof',
-                conditionalDrag : 'logic_phase--proof',
-                doPaintPname : false,
+                conditionalDrag: 'logic_phase--proof',
+                doPaintPname: false,
             },
-            R : {
+            R: {
                 pos: R,
-                letterAngle : 135,
-                pcolor      : givenColor,
-                undisplayAlways : true,
-                doPaintPname : false,
+                letterAngle: 135,
+                pcolor: givenColor,
+                undisplayAlways: true,
+                doPaintPname: false,
             },
-            curveStart  : {
-                pos : [A[0]-80, 0],
-                undisplayAlways : true,
-                doPaintPname : false,
+            curveStart: {
+                pos: [A[0]-80, 0],
+                undisplayAlways: true,
+                doPaintPname: false,
             },
-            curveEnd : {
-                pos : [B[0]+50, 0],
-                undisplayAlways : true,
-                doPaintPname : false,
+            curveEnd: {
+                pos: [B[0]+50, 0],
+                undisplayAlways: true,
+                doPaintPname: false,
             },
-            r : {
+            r: {
                 pos: r,
-                letterAngle : 135,
-                pcolor      : givenColor,
-                undisplayAlways : true,
-                doPaintPname : false,
+                letterAngle: 135,
+                pcolor: givenColor,
+                undisplayAlways: true,
+                doPaintPname: false,
             },
-            d : {
-                pos         : d,
-                undisplayAlways : true,
-                doPaintPname : false,
+            d: {
+                pos: d,
+                undisplayAlways: true,
+                doPaintPname: false,
             },
-            DLeft : {
-                pos         : DLeft,
-                letterAngle : 90,
-                pcolor      : givenColor,
-                undisplayAlways : true,
-                doPaintPname : false,
+            DLeft: {
+                pos: DLeft,
+                letterAngle: 90,
+                pcolor: givenColor,
+                undisplayAlways: true,
+                doPaintPname: false,
             },
-            curveLeftEnd : {
-                pos : [250, 100],
-                undisplayAlways : true,
-                doPaintPname : false,
+            curveLeftEnd: {
+                pos: [250, 100],
+                undisplayAlways: true,
+                doPaintPname: false,
             },
         };
 
         var linesArray = [
-            { 'AB' : { pcolor : givenColor } },
-            { 'AD' : { pcolor : givenColor } },
-            { 'AL' : { pcolor : infoColor,
+            { 'AB': { pcolor: givenColor } },
+            { 'AD': { pcolor: givenColor } },
+            { 'AL': { pcolor: infoColor,
                         cssClass: 'logic_phase--proof',} }, // rectilinear angle
-            { 'A,DLeft'  : { pcolor : givenColor, 'stroke-width' : 2, } }, //extends AD to the left
+            { 'A,DLeft': { pcolor: givenColor, 'stroke-width': 2, } }, //extends AD to the left
         ];
 
         //----------------------------------
@@ -221,7 +221,7 @@
 
         ns.paste(sconf, {
             //double back step ../../ is to reuse this path in code for lemma7
-            mediaBgImage : "../../b1sec1lemma6/img/b1s1l6-diagram-3rded-b.png",
+            mediaBgImage: "../../b1sec1lemma6/img/b1s1l6-diagram-3rded-b.png",
             givenCurve_pivots_inModel,
             topicColors_elected,
             originalPoints,

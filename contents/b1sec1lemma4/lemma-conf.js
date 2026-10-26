@@ -9,7 +9,7 @@
         var ref = '../../b1sec1lemma2/js/';
 
         return {
-            codesList : [
+            codesList: [
                 //todm: automate this list
                 { src: ref + 'sconf-common.js' },
                 { src: 'sconf.js' },
@@ -32,12 +32,12 @@
                 { src: "gui-sync-points.js" },
                 { src: ref + "amode2captures.js" },
             ],
-            "contents-list" : [
+            "contents-list": [
                 'txt/latin.txt',
                 'txt/cohen.txt',
             ],
             //optional additional reference html
-            referencesForAllLemmaEssays : '',
+            referencesForAllLemmaEssays: '',
         };
     }
 

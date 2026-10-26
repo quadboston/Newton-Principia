@@ -19,8 +19,8 @@
         var scale = 1; //typical lengh for geometrical model
         ssD.repoConf = [
             {
-                fname : "Original function: y = ax^2+bx^3 ... ",
-                fun : x => {
+                fname: "Original function: y = ax^2+bx^3 ... ",
+                fun: x => {
                     /*
                     var x1 = x*scale;
                     var x2 = x1*x1;

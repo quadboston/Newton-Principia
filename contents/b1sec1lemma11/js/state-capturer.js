@@ -2,7 +2,7 @@
     var {
         ns, fapp, rg,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             captureAState,
         },
     });
@@ -16,7 +16,7 @@
         fapp.captureState(
             ns.paste(
                 {
-                    B: { pos : rg.B.pos },
+                    B: { pos: rg.B.pos },
                 },
                 ast
             )

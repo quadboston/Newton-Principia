@@ -86,7 +86,7 @@
             funComplete //for one of runners
         ) {
         var hashStr = '' + hash++;
-        runners[hashStr] = { ownStart:Date.now(), fun:fun, duration:duration, funComplete:funComplete };
+        runners[hashStr] = { ownStart: Date.now(), fun: fun, duration: duration, funComplete: funComplete };
         return hashStr;
     };
 

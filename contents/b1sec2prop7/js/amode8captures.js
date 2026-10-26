@@ -1,6 +1,6 @@
 (function () {
     var { nspaste, amode, toreg, stdMod, rg, ssD, }
-        = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
+        = window.b$l.apptree({ ssFExportList: { amode2rgstate, }, });
     return;
 
 
@@ -11,7 +11,7 @@
         // Latin tabs have no subessays; they show what the Text tab
         // shows for the first subessay of the same logic_phase
         const subessay = aspect === 'latin' ?
-            { proof : 'solution', corollary : 'corollary1' }[logic_phase] :
+            { proof: 'solution', corollary: 'corollary1' }[logic_phase] :
             amode.subessay;
         const q2xy = stdMod.q2xy;
 

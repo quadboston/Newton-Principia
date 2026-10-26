@@ -1,6 +1,6 @@
 (function () {
     var { $$, nsmethods, nssvg, mat, has, ssF, ssF, ssD, stdMod, amode, sconf,
-        rg, toreg, mcurve, } = window.b$l.apptree({ stdModExportList : {
+        rg, toreg, mcurve, } = window.b$l.apptree({ stdModExportList: {
             model_upcreate, }, });
     return;
 
@@ -93,15 +93,15 @@
             const CCName = 'curvatureCircle';
             var rgCC = toreg(CCName)();
             rgCC.svgel = nssvg.u({
-                svgel   : rgCC.svgel,
-                parent  : stdMod.mmedia,
-                type    : 'circle',
-                stroke  : rg.C.pcolor,
-                fill    : 'transparent',
-                'stroke-width' : '1',
-                cx : RCmedpos[0],
-                cy : RCmedpos[1],
-                r : RRmedpos,
+                svgel: rgCC.svgel,
+                parent: stdMod.mmedia,
+                type: 'circle',
+                stroke: rg.C.pcolor,
+                fill: 'transparent',
+                'stroke-width': '1',
+                cx: RCmedpos[0],
+                cy: RCmedpos[1],
+                r: RRmedpos,
             });
             $$.$(rgCC.svgel).addClass(
                 'tp-' + nsmethods.toCssIdentifier(CCName) +
@@ -171,9 +171,9 @@
         // //\\ corollary 2,3
         //------------------------------------------------
         var curveP = mcurve.planeCurveDerivatives({
-            pointAt : q2xy,
-            q : rg.P.q,
-            posCenterOfForces : rg.Rcol2.pos,
+            pointAt: q2xy,
+            q: rg.P.q,
+            posCenterOfForces: rg.Rcol2.pos,
         });
         var {
             curvatureChordSecondPoint,
@@ -273,16 +273,16 @@
             ////visibility has been not yet stashed;
             ////therefore, doing stashing now,
             ssD.stashedVisibility = {
-                'Q'                     : rg.Q.undisplay,
-                'APQ'                   : rg.APQ.undisplay,
-                'Q.hideD8Dpoint'        : rg.Q.hideD8Dpoint,
-                'R'                     : rg.R.undisplay,
-                'QR'                    : rg.QR.undisplay,
-                'QP'                    : rg.QP.undisplay,
-                'SQ'                    : rg.SQ.undisplay,
-                'T'                     : rg.T.undisplay,
-                'QT'                    : rg.QT.undisplay,
-                'curvatureCircle'       : rg.curvatureCircle.undisplay,
+                'Q': rg.Q.undisplay,
+                'APQ': rg.APQ.undisplay,
+                'Q.hideD8Dpoint': rg.Q.hideD8Dpoint,
+                'R': rg.R.undisplay,
+                'QR': rg.QR.undisplay,
+                'QP': rg.QP.undisplay,
+                'SQ': rg.SQ.undisplay,
+                'T': rg.T.undisplay,
+                'QT': rg.QT.undisplay,
+                'curvatureCircle': rg.curvatureCircle.undisplay,
             };
             ///heres is an actual code which hides shapes
             Object.keys(ssD.stashedVisibility).forEach(okey => {

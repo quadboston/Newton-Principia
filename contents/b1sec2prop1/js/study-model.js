@@ -1,7 +1,7 @@
 (function () {
     const { sn, haff, hafff, nspaste, haz, globalCss, mat,
             rg, sconf, ssF, stdMod,
-    } = window.b$l.apptree({ stdModExportList : {
+    } = window.b$l.apptree({ stdModExportList: {
             init_model_parameters,
             model_upcreate,
         },
@@ -12,8 +12,8 @@
     function init_model_parameters() {
         stdMod.sconf_2_shapes();
         stdMod.shapeSconf_2_svg();
-        rg.displayTime = { value : '' };
-        rg.thoughtStep = { value : '' };
+        rg.displayTime = { value: '' };
+        rg.thoughtStep = { value: '' };
         stdMod.creates_sliderDomModel__4__time();
         stdMod.creates_delta_time_slider();
     }

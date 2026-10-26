@@ -2,7 +2,7 @@
     var {
         ns, mat, nspaste, sconf, fconf, ssF, ssD, sDomF, sData, amode, stdMod, toreg, rg,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             init_model_parameters,
             model_upcreate,
         },
@@ -22,9 +22,9 @@
         //-------------------------------------------------
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
-            orientation : 'axis-y',
-            pname : 'L',
-            acceptPos : (newPos) => {
+            orientation: 'axis-y',
+            pname: 'L',
+            acceptPos: (newPos) => {
                 var fullAngle = Math.atan(newPos[1]/newPos[0]);
                 ///restricts converging tangent positions,
                 ///saves user from unexpected experiments,
@@ -61,8 +61,8 @@
             //rg.B.unrotatedParameterX = rg.B.pos[0]*1.02;
             //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
             stdMod,
-            pname : 'B',
-            acceptPos : (newPos) => {
+            pname: 'B',
+            acceptPos: (newPos) => {
                 var new_unrotatedParameterX = ssD.getUnrotatedParameterX(
                     newPos[0], rg.B.unrotatedParameterX
                 );
@@ -138,8 +138,8 @@
         const half_AD = rg.AD.abs / 2; // D can move half the width of AD in either dir
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
-            pname : 'D',
-            acceptPos : (newPos) => {
+            pname: 'D',
+            acceptPos: (newPos) => {
                 newPos[1] = 0; // y pos doesn't change
                 let x = newPos[0];
                 if (x < original_Dx - half_AD || x > original_Dx + half_AD) {
@@ -171,16 +171,16 @@
         //-------------------------------------------------
         var wwId = 'proof-pop-up';
         ssF.createButton({
-            caption                 :
+            caption:
                 'AB cannot be diminished further while ' +
                 'containing the rectilinear angle.',
-            buttonUniversalId       : wwId,
+            buttonUniversalId: wwId,
             //scenarioEventOnClick    : 'graph-is-plotted',
-            clickCallback           : () => {
+            clickCallback: () => {
                 sData[wwId].dom$.css('display', 'none');
             },
-            noTopicScenario         : true,
-            cssText                 : `
+            noTopicScenario: true,
+            cssText: `
                 position            : absolute;
                 width               : 250px;
                 height              : 90px;

@@ -12,7 +12,7 @@
     var {
         $$, nssvg, has, haz, ssF,
         stdMod, sconf, rg,
-    } = window.b$l.apptree({ stdModExportList : {
+    } = window.b$l.apptree({ stdModExportList: {
             creates_orbitRack,
             establishesEccentricity,
         },
@@ -120,7 +120,7 @@
 
             // defines conic
             var curvePoints = ownrange2points({
-                stepsCount:800,
+                stepsCount: 800,
                 start: op.qStart,
                 end: op.qEnd
             });
@@ -129,7 +129,7 @@
             // defines segment of conic
             if (op.highlightSeg) {
                 var segPoints = ownrange2points({
-                    stepsCount:800,
+                    stepsCount: 800,
                     start: op.segStart,
                     end: op.segEnd
                 });
@@ -141,9 +141,9 @@
                 const [branchA, branchB] = splitAtAsymptotes(medpoints);
 
                 var polylineSvgA = rgXX.polylineSvgA = nssvg.polyline({
-                    pivots  : branchA,
-                    svgel   : rgXX.polylineSvgA,
-                    parent  : stdMod.svgScene,
+                    pivots: branchA,
+                    svgel: rgXX.polylineSvgA,
+                    parent: stdMod.svgScene,
                 });
                 if (!has(rgXX, 'polylineSvgA$')) {
                     rgXX.polylineSvgA$ = $$.$(polylineSvgA);
@@ -152,9 +152,9 @@
                 rgXX.polylineSvgA$.addClass('tostroke thickable tp-' + lowname);
 
                 var polylineSvg = rgXX.polylineSvg = nssvg.polyline({
-                    pivots  : branchB,
-                    svgel   : rgXX.polylineSvg,
-                    parent  : stdMod.svgScene,
+                    pivots: branchB,
+                    svgel: rgXX.polylineSvg,
+                    parent: stdMod.svgScene,
                 });
                 if (!has(rgXX, 'polylineSvg$')) {
                     rgXX.polylineSvg$ = $$.$(polylineSvg);
@@ -163,9 +163,9 @@
             } else {
                 // draw ellipse/parabola in svg
                 var polylineSvg = rgXX.polylineSvg = nssvg.polyline({
-                    pivots  : medpoints,
-                    svgel   : rgXX.polylineSvg,
-                    parent  : stdMod.svgScene,
+                    pivots: medpoints,
+                    svgel: rgXX.polylineSvg,
+                    parent: stdMod.svgScene,
                 });
                 if (!has(rgXX, 'polylineSvg$')) {
                     rgXX.polylineSvg$ = $$.$(polylineSvg);
@@ -179,9 +179,9 @@
             // draw highlighted segment of conic and only trace of full conic
             if (op.highlightSeg) {
                 var polylineSvg2 = rgXX.polylineSvg2 = nssvg.polyline({
-                    pivots  : segPoints,
-                    svgel   : rgXX.polylineSvg2,
-                    parent  : stdMod.svgScene,
+                    pivots: segPoints,
+                    svgel: rgXX.polylineSvg2,
+                    parent: stdMod.svgScene,
                 });
                 if (!has(rgXX, 'polylineSvg2$')) {
                     rgXX.polylineSvg2$ = $$.$(polylineSvg2);

@@ -11,7 +11,7 @@
         rg,
         stdMod,
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             create_proofSlider,
         },
     });
@@ -33,15 +33,15 @@
         sDomF.proofSlider = ssF.animatedSlider({
             //parent            :sDomN.menu,
             //.adds slider usually below numbers' table
-            parent              :stdMod.simScene,
-            cssp                :'bsl',
-            hideProofSlider     :sconf.hideProofSlider,
-            sliderClassId       :'simple',
-            captionScale        :captionScale,
-            railsLegend         :'Process proof by decreasing AC:',
-            ancestorClassToHideSlider   :'logic_phase--claim',
+            parent: stdMod.simScene,
+            cssp: 'bsl',
+            hideProofSlider: sconf.hideProofSlider,
+            sliderClassId: 'simple',
+            captionScale: captionScale,
+            railsLegend: 'Process proof by decreasing AC:',
+            ancestorClassToHideSlider: 'logic_phase--claim',
 
-            dataInMove:         function (dataArg, draggee) {
+            dataInMove: function (dataArg, draggee) {
                                     //:master place where tC updates
 
                                     //.todm wrong: belongs to subapp instance
@@ -51,7 +51,7 @@
                                     setCaption(sDomF.proofSlider.slider);
                                 },
             //.callback when handler stops
-            dataInArrival:      function (dataArg) {
+            dataInArrival: function (dataArg) {
                                     //.does synch secondary slider
                                     if (rg.C.achieved) rg.C.achieved.achieved = dataArg;
                                 },

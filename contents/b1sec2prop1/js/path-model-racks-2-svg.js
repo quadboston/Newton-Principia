@@ -1,6 +1,6 @@
 (function () {
     var { ssF, sDomF, toreg, rg, } =
-        window.b$l.apptree({ stdModExportList : { allPathRacks_2_unseenSVGs, }, });
+        window.b$l.apptree({ stdModExportList: { allPathRacks_2_unseenSVGs, }, });
     return;
 
 
@@ -27,8 +27,8 @@
             rg8pos_2_svg(
                 pkey,
                   {
-                    'fill' : 'transparent',
-                    r : 1,
+                    'fill': 'transparent',
+                    r: 1,
                   }
             );
             //---------------------------------------------------------
@@ -91,17 +91,17 @@
                 var fview = toreg(fkey)();
                 var ffkey0 = fkey+'-0';
                 var ffkey1 = fkey+'-1';
-                toreg(ffkey0)({ undisplay : true })();
-                toreg(ffkey1)({ undisplay : true })();
+                toreg(ffkey0)({ undisplay: true })();
+                toreg(ffkey1)({ undisplay: true })();
 
                 rg8pos_2_svg(ffkey0, {
-                    fill:'transparent',
-                    tpclass : 'force-_move hidden',
+                    fill: 'transparent',
+                    tpclass: 'force-_move hidden',
                 });
                 rg8pos_2_svg(ffkey1, {
-                    cssClass:'tofill',
-                    tpclass : 'force-_move hidden',
-                    r : 6, //this is circle's radius
+                    cssClass: 'tofill',
+                    tpclass: 'force-_move hidden',
+                    r: 6, //this is circle's radius
                 });
 
                 //----------------------------------
@@ -112,7 +112,7 @@
                 var wwpname = fkey+'-applied';
                 let pcolor = sDomF.getFixedColor('forceColor')
                 toreg(wwpname)
-                    ({ undisplay : true })
+                    ({ undisplay: true })
 
                     ////patch for purpose of drawing a vector tip
                     ('vectorTipIx', 1)
@@ -124,9 +124,9 @@
                     wwpname,
                     fview.pivots,
                     {
-                        cssClass:'tostroke tp-' + wwpname,
+                        cssClass: 'tostroke tp-' + wwpname,
                         'stroke-width': 3,
-                        tpclass : 'forceColor',
+                        tpclass: 'forceColor',
                     }
                 );
                 //----------------------------------
@@ -146,14 +146,14 @@
         pathRacks.forEach((prack, pix) => {
             if (pix === pathRacks.length - 1) return;
             var wwpname = 'pathSegment-' + pix;
-            toreg(wwpname)({ undisplay : true })();
+            toreg(wwpname)({ undisplay: true })();
             pivots_2_svgLineInRg(
                 wwpname,
                 false,
                 {
-                    cssClass:'tostroke',
-                    tpclass : 'bodyColor',
-                    'stroke-width':4
+                    cssClass: 'tostroke',
+                    tpclass: 'bodyColor',
+                    'stroke-width': 4
                 }
             );
         });

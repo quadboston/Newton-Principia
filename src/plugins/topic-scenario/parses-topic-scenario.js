@@ -9,7 +9,7 @@
         haz, eachprop,
         ssF, exegs, actionsList_default, actionsList_coded,
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             parsesTopicScenarios,
         },
     });
@@ -106,7 +106,7 @@
                                         var nextEventTimeout = parseInt(wwmach[1]);
                                         var theCommand = wwmach[2];
                                     }
-                                    var statement = { commandType, command:theCommand, };
+                                    var statement = { commandType, command: theCommand, };
                                     if (commandType === '^') {
                                         statement.nextEventTimeout = nextEventTimeout;
                                     }
@@ -117,7 +117,7 @@
                             ///state sugar ... if no statemens, then
                             ///interprets the event as state establisher
                             if (event2state) {
-                                statements.push({ commandType:'->', command:eventId });
+                                statements.push({ commandType: '->', command: eventId });
                             }
 
                             var evBlock = { eventId, statements, autopilotEventId };

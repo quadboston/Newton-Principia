@@ -1,5 +1,5 @@
 (function () {
-    var { ssF, amode, } = window.b$l.apptree({ stdModExportList : {
+    var { ssF, amode, } = window.b$l.apptree({ stdModExportList: {
         create_digital_legend, }, });
     return;
 
@@ -14,9 +14,9 @@
         var rowsCount       = legendScriptParsed.length;
         var clustersCount   = legendScriptParsed[0].length;
         ssF.createLogic_phaseLegend({
-            noTableTitle    : true,
-            logic_phase :  'claim',
-            tableVisibilityCondition : () => amode.subessay === 'latus-rectum-parabola',
+            noTableTitle: true,
+            logic_phase: 'claim',
+            tableVisibilityCondition: () => amode.subessay === 'latus-rectum-parabola',
             rowsCount,
             clustersCount,
             makesBodyCluster,

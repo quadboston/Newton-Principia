@@ -2,7 +2,7 @@
     var {
         $$, sDomF, stdMod, rg, toreg,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             upcreate_mainLegend,
             create_digital_legend,
         },

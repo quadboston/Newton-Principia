@@ -3,7 +3,7 @@
 (function () {
     var { sn, fapp, sapp, ssF, sDomF, stdMod, }
         = window.b$l.apptree({ setModule,
-        stdModExportList : { init_model_parameters, }, });
+        stdModExportList: { init_model_parameters, }, });
     var stdL2       = sn('stdL2', fapp);
     var study       = sn('study', stdL2);
     var gui         = sn('gui', stdL2);
@@ -25,15 +25,15 @@
         {
             let pid = 'proof-pop-up';
             let button = ssF.createButton({
-                caption                 :
+                caption:
                     'Newton\'s logic applies to monotonic curves',
-                buttonUniversalId       : pid,
+                buttonUniversalId: pid,
                 //scenarioEventOnClick    : 'graph-is-plotted',
-                clickCallback           : () => {
+                clickCallback: () => {
                     sData[pid].dom$.css('display', 'none');
                 },
-                noTopicScenario         : true,
-                cssText                 : `
+                noTopicScenario: true,
+                cssText: `
                     position            : absolute;
                     width               : 330px;
                     height              : 18px;

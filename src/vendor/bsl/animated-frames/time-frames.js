@@ -87,8 +87,8 @@
             lifeMax,
             lifeRunFun,
             lifeFinishFun,
-            lifeStart         : now,
-            lifeIntervalStart : now,
+            lifeStart: now,
+            lifeIntervalStart: now,
         };
         return kName;
     };

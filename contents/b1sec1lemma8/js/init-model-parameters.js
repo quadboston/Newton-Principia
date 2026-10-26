@@ -2,7 +2,7 @@
     var {
         ns, mat, nspaste, sconf, ssF, ssD, sDomF, sData, amode, stdMod, toreg, rg,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             init_model_parameters,
             model_upcreate,
         },
@@ -54,8 +54,8 @@
         rg.B.dragPriority = 100;
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
-            pname : 'B',
-            acceptPos : (newPos) => {
+            pname: 'B',
+            acceptPos: (newPos) => {
                 var new_unrotatedParameterX = newPos[0];
 
                 //prevents B from getting too close to A to avoid rounding errors
@@ -89,8 +89,8 @@
 
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
-            pname : 'R',
-            acceptPos : (newPos) => {
+            pname: 'R',
+            acceptPos: (newPos) => {
                 // R cannot be moved right of B on x-axis
                 if (newPos[0] >= rg.B.pos[0] - 0.2) {
                     return false;
@@ -115,8 +115,8 @@
 
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
-            pname : 'D',
-            acceptPos : (newPos) => {
+            pname: 'D',
+            acceptPos: (newPos) => {
                 let original_Dx = rg.D.originalPos[0];
                 let Bx = rg.B.pos[0];
 
@@ -201,16 +201,16 @@
         ssF.line2abs('r,d'); // rd
         ssF.line2abs('r,b'); // rb
 
-        rg.RAB = { area : getTriangleArea('AB', 'AR', 'RB') };
-        rg.RAD = { area : getTriangleArea('AD', 'AR', 'RD') };
-        rg.RACB = { area : getArcArea('AB', 'AR', 'RB', 'A', 'B', 'C') };
+        rg.RAB = { area: getTriangleArea('AB', 'AR', 'RB') };
+        rg.RAD = { area: getTriangleArea('AD', 'AR', 'RD') };
+        rg.RACB = { area: getArcArea('AB', 'AR', 'RB', 'A', 'B', 'C') };
 
-        rg.RACB_RAB = { ratio : rg.RACB.area / rg.RAB.area };
-        rg.RAD_RAB = { ratio : rg.RAD.area / rg.RAB.area };
+        rg.RACB_RAB = { ratio: rg.RACB.area / rg.RAB.area };
+        rg.RAD_RAB = { ratio: rg.RAD.area / rg.RAB.area };
 
-        rg.rAb = { area : getTriangleArea('Ab', 'A,r', 'r,b') };
-        rg.rAd = { area : rg.rAb.area * rg.RAD_RAB.ratio };
-        rg.rAcb = { area : rg.rAb.area * rg.RACB_RAB.ratio };
+        rg.rAb = { area: getTriangleArea('Ab', 'A,r', 'r,b') };
+        rg.rAd = { area: rg.rAb.area * rg.RAD_RAB.ratio };
+        rg.rAcb = { area: rg.rAb.area * rg.RACB_RAB.ratio };
 
         function getTriangleArea(A, B, C) {
             return calcTriangleArea(A, B, C);
@@ -263,11 +263,11 @@
         }
 
         rg.AB.arcLen = mat.integral.curveLength({
-            fun             : ssD.repoConf[0].fun,
-            curveStartParam : rg.A.pos[0],
-            curveEndParam   : rg.B.pos[0],
-            funIsAVector    : true,
-            calculationAccuracy : 1e-4*rg.AB.abs,
+            fun: ssD.repoConf[0].fun,
+            curveStartParam: rg.A.pos[0],
+            curveEndParam: rg.B.pos[0],
+            funIsAVector: true,
+            calculationAccuracy: 1e-4*rg.AB.abs,
         });
 
         if (rg.AB.abs > 0) {

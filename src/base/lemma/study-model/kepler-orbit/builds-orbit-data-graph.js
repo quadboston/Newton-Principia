@@ -1,6 +1,6 @@
 (function () {
     var { sn, rg, stdMod, sconf, ssD, sData, }
-        = window.b$l.apptree({ stdModExportList : {
+        = window.b$l.apptree({ stdModExportList: {
             builds_orbit_data_graph,
             qIndexFromPointPToGraphIndex,
         },
@@ -63,8 +63,8 @@
 
                 let graphColumn = {
                     qix,
-                    rr : bP.rr,
-                    x : sData.PLOT_BY_PATH ? bP.pathAtQ : bP.r.abs,
+                    rr: bP.rr,
+                    x: sData.PLOT_BY_PATH ? bP.pathAtQ : bP.r.abs,
                 };
                 graphArray.push(graphColumn);
 

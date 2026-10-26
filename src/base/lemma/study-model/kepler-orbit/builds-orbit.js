@@ -1,6 +1,6 @@
 (function () {
     var { mat, sn, has, mcurve, stdMod, rg, sconf, ssD, sData, }
-        = window.b$l.apptree({ stdModExportList : { buildsOrbit, }, });
+        = window.b$l.apptree({ stdModExportList: { buildsOrbit, }, });
     var NON_SOLVABLE_THRESHOLD = 0.05;
 
     //A large arbitrary value.  It should ensure smooth behavior (not too small
@@ -35,9 +35,9 @@
         ///with other step here for derivative params,
         for (var qix = 0; qix<=Q_STEPS; qix++) {
             var bP = qIndexToOrbit[qix] = mcurve.planeCurveDerivatives({
-                pointAt : q2xy,
-                q : orbit_q_start + qix * delta_q_between_steps,
-                posCenterOfForces : rg.S.pos,
+                pointAt: q2xy,
+                q: orbit_q_start + qix * delta_q_between_steps,
+                posCenterOfForces: rg.S.pos,
             });
             bP.qix = qix;
             var {

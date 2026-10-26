@@ -109,12 +109,12 @@
         subcatsMenu.list.forEach(function (mitem, mitemIx) {
             var scat_id = mitem.id;
             var leafRk = mitem.leafRk = {
-                ix          : mitemIx,
+                ix: mitemIx,
                 mcat_id,
                 scat_id,
                 teaf$,
-                studylab    : mitem.studylab, //comes from essaion header
-                caption     : mitem.hasOwnProperty('caption') ? mitem.caption : scat_id,
+                studylab: mitem.studylab, //comes from essaion header
+                caption: mitem.hasOwnProperty('caption') ? mitem.caption : scat_id,
                 decorOfShuttle$,
             };
             make_menu_leaf__onceLocFun(leafRk);

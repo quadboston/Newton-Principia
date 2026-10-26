@@ -2,7 +2,7 @@
     var {
         ssF, stdMod, topicColors_repo
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             create_digital_legend,
         },
     });
@@ -43,11 +43,11 @@
         //--------------------------
 
         ssF.createLogic_phaseLegend({
-            stdMod_given : stdMod,
+            stdMod_given: stdMod,
             logic_phase,
             rowsCount,
             clustersCount,
-            noTableTitle : true,
+            noTableTitle: true,
             makesBodyCluster,
             updatesDataInCell,
         });
