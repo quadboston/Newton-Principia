@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { $$, sDomF, ssD, stdMod, rg, toreg, }
         = window.b$l.apptree({ ssFExportList : { upcreate_mainLegend, create_digital_legend, }, });
     var clustersToUpdate = [];
@@ -149,14 +149,14 @@
                    .addClass('tostroke tocolor tobold tp-' + cssName)
                    .to(row);
 
-        if( spanIx === 0 ) { c$.a('colspan',''+spanVal); }
+        if ( spanIx === 0 ) { c$.a('colspan',''+spanVal); }
 
         var c$ = $$.c('td')
                    .cls('value')
                    .cls('tostroke tocolor tobold tp-'+cssName)
                    .to(row);
-        if( spanIx === 2 ) { c$.a('colspan',''+spanVal); }
-        if( claim0proof === 'claim' ) {
+        if ( spanIx === 2 ) { c$.a('colspan',''+spanVal); }
+        if ( claim0proof === 'claim' ) {
             clustersToUpdate_claim[mname] = c$();
         } else {
             clustersToUpdate[mname] = c$(); //updateeCell;

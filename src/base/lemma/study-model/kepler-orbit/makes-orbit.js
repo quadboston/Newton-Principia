@@ -8,7 +8,7 @@
  *
  * ****************************************************************************/
 
-( function() {
+( function () {
     var {
         $$, nssvg, has, haz, ssF,
         stdMod, sconf, rg,
@@ -54,11 +54,11 @@
         // param q (angle) to [x,y] point on conic
         // todo: rename? what is t?
         // also called from other modules to determine position of specified points
-        function t2xy( q ){
+        function t2xy( q ) {
 
             //denomenator
             var den = 1 - op.eccentricity * Math.cos(q);
-            if( den === 0 ) {
+            if ( den === 0 ) {
                 den = 1e-20; // avoid singularity (can't divide by zero)
             }
 
@@ -76,7 +76,7 @@
         {
             var points = [];
             var qStep = ( end - start ) / stepsCount;
-            for( var qix = 0; qix <= stepsCount; qix++ ) {
+            for ( var qix = 0; qix <= stepsCount; qix++ ) {
                 var q = start + qStep * qix;
                 points.push( t2xy( q ) );
             }
@@ -129,7 +129,7 @@
             var medpoints = curvePoints.map( cp => ssF.mod2inn( cp, stdMod ) ); // scales up conic
 
             // defines segment of conic
-            if(op.highlightSeg) {
+            if (op.highlightSeg) {
                 var segPoints = ownrange2points({
                     stepsCount:800,
                     start: op.segStart,
@@ -138,7 +138,7 @@
                 segPoints = segPoints.map( sp => ssF.mod2inn( sp, stdMod ) );
             }
 
-            if( -1 === op.conicSignum ) {
+            if ( -1 === op.conicSignum ) {
                 // draw hyperbola as two svg curves so asymptotes don't show
                 const [branchA, branchB] = splitAtAsymptotes(medpoints);
 
@@ -147,7 +147,7 @@
                     svgel   : rgXX.polylineSvgA,
                     parent  : stdMod.svgScene,
                 });
-                if( !has( rgXX, 'polylineSvgA$' ) ) {
+                if ( !has( rgXX, 'polylineSvgA$' ) ) {
                     rgXX.polylineSvgA$ = $$.$( polylineSvgA );
                 }
                 rgXX.polylineSvgA$.removeClass( 'hidden' );
@@ -158,7 +158,7 @@
                     svgel   : rgXX.polylineSvg,
                     parent  : stdMod.svgScene,
                 });
-                if( !has( rgXX, 'polylineSvg$' ) ) {
+                if ( !has( rgXX, 'polylineSvg$' ) ) {
                     rgXX.polylineSvg$ = $$.$( polylineSvg );
                 }
                 rgXX.polylineSvg$.addClass( 'tostroke thickable tp-' + lowname );
@@ -169,28 +169,28 @@
                     svgel   : rgXX.polylineSvg,
                     parent  : stdMod.svgScene,
                 });
-                if( !has( rgXX, 'polylineSvg$' ) ) {
+                if ( !has( rgXX, 'polylineSvg$' ) ) {
                     rgXX.polylineSvg$ = $$.$( polylineSvg );
                 }
                 rgXX.polylineSvg$.addClass( 'tostroke thickable tp-' + lowname );
-                if( rgXX.polylineSvgA$ ) {
+                if ( rgXX.polylineSvgA$ ) {
                     rgXX.polylineSvgA$.addClass( 'hidden' );
                 }
             }
 
             // draw highlighted segment of conic and only trace of full conic
-            if(op.highlightSeg) {
+            if (op.highlightSeg) {
                 var polylineSvg2 = rgXX.polylineSvg2 = nssvg.polyline({
                     pivots  : segPoints,
                     svgel   : rgXX.polylineSvg2,
                     parent  : stdMod.svgScene,
                 });
-                if( !has( rgXX, 'polylineSvg2$' ) ) {
+                if ( !has( rgXX, 'polylineSvg2$' ) ) {
                     rgXX.polylineSvg2$ = $$.$( polylineSvg2 );
                 }
                 rgXX.polylineSvg$.addClass( 'tostroke thickable tp-trace' );
                 rgXX.polylineSvg2$.addClass( 'tostroke thickable tp-' + lowname );
-                if( rgXX.polylineSvgA2$ ) {
+                if ( rgXX.polylineSvgA2$ ) {
                     rgXX.polylineSvgA2$.addClass( 'hidden' );
                 }
             }
@@ -205,7 +205,7 @@
         eccentricity,
         doAdjustLatus,  //optional, changes the latus, must be "falsy" if vop is present
         vop             //variable op, for case additional orbit is drawn
-    ){
+    ) {
         //called 6x on page load (3x per conic)
         //and any time Pv/pv are dragged (only for appropriate conic)
         //and once more per conic when switching tabs
@@ -226,7 +226,7 @@
             op.conicSignum = -1; // hyperbola
         }
 
-        if( doAdjustLatus ) {
+        if ( doAdjustLatus ) {
             op.latus = Math.abs( rgP.abs *
                 ( 1 - eccentricity * Math.cos( rgP.q ) ) );
         }
@@ -237,7 +237,7 @@
         op.lambda2      = Math.abs( 1 - op.eccentricity*op.eccentricity );
         op.lambda       = Math.sqrt( op.lambda2 );
         //if( op.conicSignum === 0 || op.conicSignum === -1 ) {
-        if( op.conicSignum === -1 ) {
+        if ( op.conicSignum === -1 ) {
             ////hyperbola
             op.SINGULARITY_ANGLE    = Math.acos(1/op.eccentricity);
             op.LOW_BOUNDARY         = op.SINGULARITY_ANGLE - op.ANGLE_BOUNDARY;
@@ -254,7 +254,7 @@
         // draws value on e slider (for pages that have one)
         function eccentricity2sliderPos()
         {
-            if( !has( rg, 'ZetaEnd' ) ) return;
+            if ( !has( rg, 'ZetaEnd' ) ) return;
 
             const zetaMin = haz(op, 'ZETA_MIN') || 0.0;
             const zetaMax = haz(op, 'ZETA_MAX') || Math.PI / 2;

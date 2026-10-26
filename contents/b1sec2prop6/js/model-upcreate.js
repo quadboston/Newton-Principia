@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { $$, nsmethods, nssvg, mat, has,
         ssF, ssD, stdMod, sconf, rg, toreg, }
         = window.b$l.apptree({ stdModExportList : {
@@ -27,7 +27,7 @@
             rg.P.pos = posBody;
             const Rc = R; //curvature radius
 
-            if( solvable ){
+            if ( solvable ) {
                 // --- helpers ---
                 function dist(a, b) {
                     return Math.hypot(a[0] - b[0], a[1] - b[1]);
@@ -73,7 +73,7 @@
                         if (d < bestDiff) {
                             bestDiff = d;
                             best = Qp;
-                            if(bestDiff < sagittaOnSP_Tolerance) {
+                            if (bestDiff < sagittaOnSP_Tolerance) {
                                 // break out of for loop once we found a
                                 // point that's close enough
                                 break;
@@ -82,7 +82,7 @@
                     }
 
                     //console.log(bestDiff.toFixed(3));
-                    if(bestDiff > sagittaOnSP_Tolerance) {
+                    if (bestDiff > sagittaOnSP_Tolerance) {
                         Porb.rrminus[0] = rg.rrminus.pos[0];
                         Porb.rrminus[1] = rg.rrminus.pos[1];
                     } else {
@@ -181,7 +181,7 @@
             let sumAbs = 0;
             var yMax = 0;
             //let leny = ga[0].y.length;
-            for( ix = 0; ix<len; ix++ ) {
+            for ( ix = 0; ix<len; ix++ ) {
                 let gaix = ga[ix];
                 //if( !solvable ){
                 //    for( let iy=0; iy<leny; iy++ ){
@@ -227,16 +227,16 @@
             let flen = foldps.length;
             let pastlen = ssD.pastFoldPoints;
             //c cc( 'folds='+flen + ' pains='+pp.length + ' past='+pastlen );
-            if( has( ssD, 'pastFoldPoints' ) ) {
+            if ( has( ssD, 'pastFoldPoints' ) ) {
                 //todm for( let i=foldps.length; i<flen; i++ ) {
-                for( let i=0; i<pastlen; i++ ) {
+                for ( let i=0; i<pastlen; i++ ) {
                     pp[i].rgX.undisplay = true;
                 }
             }
             ////otherwise, cannot display all separation points;
             ////therfore, displays nothing,
-            if( foldps.length <= pp.length ) {
-                 for( let i=0; i<flen; i++ ){
+            if ( foldps.length <= pp.length ) {
+                 for ( let i=0; i<flen; i++ ) {
                     let fp = foldps[i];
                     let rgX = pp[i].rgX;
                     rgX.pos = fp;
@@ -250,7 +250,7 @@
             let nsp = rg.nonSolvablePoint;
             let nsl = rg[ 'S,nonSolvablePoint' ];
             let len = ssD.foldPoints.length;
-            if( len ) {
+            if ( len ) {
                 ////displays last fold point
                 nsp.pos[0] = ssD.foldPoints[len-1][0];
                 nsp.pos[1] = ssD.foldPoints[len-1][1];
@@ -273,9 +273,9 @@
         // //\\ hides/shows non-existing elements
         //      for non-Kepler curve
         //================================================
-        if( solvable ) {
+        if ( solvable ) {
             restoresStashedVisibility();
-        } else if( !ssD.stashedVisibility ) {
+        } else if ( !ssD.stashedVisibility ) {
             ////===========================================
             ////this block hides shapes when orbit splits
             ////===========================================
@@ -300,7 +300,7 @@
             };
             ///heres is an actual code which hides shapes
             Object.keys(ssD.stashedVisibility).forEach( okey => {
-                switch(okey) {
+                switch (okey) {
                     case 'Q.hideD8Dpoint' : rg.Q.hideD8Dpoint = true;
                     break;
                     default : rg[ okey ].undisplay = true;
@@ -318,10 +318,10 @@
     function restoresStashedVisibility()
     {
         const sv = ssD.stashedVisibility;
-        if( !sv ) return;
+        if ( !sv ) return;
         Object.keys( sv ).forEach( okey => {
             const val = sv[ okey ];
-            switch(okey) {
+            switch (okey) {
                 case 'Q.hideD8Dpoint' : rg.Q.hideD8Dpoint = val;
                 break;
                 default : rg[ okey ].undisplay = val;

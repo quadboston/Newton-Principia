@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         mat, globalCss,
         sconf, ssF, rg, stdMod, toreg, sData,

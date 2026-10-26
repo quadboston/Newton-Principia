@@ -1,6 +1,6 @@
 // For application, creates and exports namespace tree
 // variables ("placeholders") and useful functions.
-(function(){
+(function () {
     var nsvars = window.b$l.nstree();
     var { ns, sn, haz, } = nsvars;
     ns.apptree      = apptree;
@@ -93,16 +93,16 @@
         modName         = ( modName && modName + '-' ) || '';
 
         srg_modules[ modName + mCount.count ] = () => {
-            if( setModule ) {
+            if ( setModule ) {
                 setModule();
             }
             //todm: why this code is delayes to srg_modules?
-            if( stdModExportList ) {
+            if ( stdModExportList ) {
                 ///replaces media_upcreate if createMedia0updateMediaAUX is in the list,
                 ///removes createMedia0updateMediaAUX then,
                 var mediaUpcreate = haz( stdModExportList,
                                          'createMedia0updateMediaAUX' );
-                if( mediaUpcreate ) {
+                if ( mediaUpcreate ) {
                     stdMod.media_upcreate = create_media_upcreate(
                         ssF, stdMod, stdModExportList.createMedia0updateMediaAUX );
                     delete stdModExportList.createMedia0updateMediaAUX;
@@ -113,7 +113,7 @@
                 ///if "model_upcreate" does exist in the list, but
                 ///"model8media_upcreate" does not, then latter is created
                 ///and added possible "media_upcreate".
-                if(
+                if (
                     //todm patch
                     //this condition indicates we are in module "study-model.js" now,
                     //assuming this is a most indicative property,
@@ -144,7 +144,7 @@
         //-------------------------------------------------------------
         // //\\ output
         //-------------------------------------------------------------
-        if( ret !== null ) return ret;
+        if ( ret !== null ) return ret;
         Object.assign( nsvars, {
             engCssMs,
             fmethods,
@@ -205,7 +205,7 @@
             //refreshes detectability
             ssF.toogle_detectablilitySliderPoints4Tools();
             createMedia0updateMediaAUX();
-            if( ssF.mediaModelInitialized ) {
+            if ( ssF.mediaModelInitialized ) {
                 stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
             }
             ssF.mediaModelInitialized = true;

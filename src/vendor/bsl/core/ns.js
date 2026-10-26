@@ -12,7 +12,7 @@
 //        Creates only one global: window[ APP_NAME ]
 //        jQuery can be added with no collision.
 
-( function() {
+( function () {
     var APP_NAME        = 'b$l';
 
     //.optional property: comment this definition out if not needed
@@ -28,7 +28,7 @@
     {
         var uniqueEarthWide = 'iamniquelks8e00w-e9jalknfnaegha;s[snfs=sieuhba;fkleub92784bna';
         var shortcutInClosure_for_speed = Object.prototype.hasOwnProperty;
-        var undef = (function( und ) { return und; } )();
+        var undef = (function ( und ) { return und; } )();
 
         ///if prop does not exist, returns primitive-value of undefined type,
         ///if exists, returns this prop,
@@ -37,14 +37,14 @@
         {
             var wwHas = shortcutInClosure_for_speed;
             var und = undef;
-            return ( function(pname) {
+            return ( function (pname) {
                 return wwHas.call( this, pname ) ? this[ pname ] : und;
             });
         }
 
         var ns = window[ APP_NAME ];
-        if( ns ) {
-            if( ns[ uniqueEarthWide ] ) { return ns; }
+        if ( ns ) {
+            if ( ns[ uniqueEarthWide ] ) { return ns; }
             //.lets community to take care about this app
             throw new Error(
                  'global name collision: the window["' + APP_NAME +
@@ -91,7 +91,7 @@
         ///Returns own property if property does exist.
         ///Otherwise, returns object of type "undefined".
         function haz( obj, property ) {
-            if( !obj ) return undef;
+            if ( !obj ) return undef;
             return shortcutInClosure_for_speed.call( obj, property ) ?
                    obj[ property ] : undef;
         };
@@ -140,8 +140,8 @@
         ///               returns function's return.
         ///Otherwise,     returns 'undefined' value.
         function haff( obj, property ) {
-            if( shortcutInClosure_for_speed.call( obj, property ) ) {
-                if( typeof obj[ property ] === 'function' ) {
+            if ( shortcutInClosure_for_speed.call( obj, property ) ) {
+                if ( typeof obj[ property ] === 'function' ) {
                     var ret = obj[ property ]();
                     return ret;
                 }
@@ -154,9 +154,9 @@
         ///Otherwise, returns null.
         function hafff( obj, property ) {
             var ret = null;
-            if( obj && typeof obj === 'object' ) {
-                if( shortcutInClosure_for_speed.call( obj, property ) ) {
-                    if( typeof obj[ property ] === 'function' ) {
+            if ( obj && typeof obj === 'object' ) {
+                if ( shortcutInClosure_for_speed.call( obj, property ) ) {
+                    if ( typeof obj[ property ] === 'function' ) {
                         ret = obj[ property ]();
                     }
                 }
@@ -174,7 +174,7 @@
 
         ///Returns parent object only if own property exists. Otherwise, returns false.
         function has( obj, property ) {
-            if( !obj ) return false;
+            if ( !obj ) return false;
             return shortcutInClosure_for_speed.call( obj, property ) &&
                    typeof obj[ property ] !== 'undefined' ? obj : false;
         };
@@ -186,12 +186,12 @@
             subname,
             parentNS,
             emptyTemplate, //any value: 1, '', null, {}, [], ...
-        ){
+        ) {
             parentNS = parentNS || ns;
-            if(
+            if (
                 shortcutInClosure_for_speed.call( parentNS, subname ) &&
                 typeof parentNS[ subname ] !== 'undefined'
-            ){
+            ) {
                 return parentNS[ subname ];
             }
             var sns = parentNS[ subname ] = typeof emptyTemplate !== 'undefined' ?
@@ -232,11 +232,11 @@
         ns.svgNS = "http://www.w3.org/2000/svg";
 
         ///https://css-tricks.com/snippets/javascript/loop-queryselectorall-matches/
-        ns.callOn = function( selector, parent, callback )
+        ns.callOn = function ( selector, parent, callback )
         {
             parent = parent || document;
             var els = parent.querySelectorAll( selector );
-            for( var ii = 0; ii < els.length; ii++ ) {
+            for ( var ii = 0; ii < els.length; ii++ ) {
                 callback( els[ii], ii );
             }
         };
@@ -257,7 +257,7 @@
         //      simple jQuery replacement, which
         //      can coexist with jQuery,
         var $$ = ns.$$ =
-        ( function() {
+        ( function () {
 
             ///syntax sugar to supply object in two forms: wrapped into $$ or naked
             function alt( obj )
@@ -265,57 +265,57 @@
                 return (typeof obj === 'function' ? obj() : obj);
             }
 
-            var gen = function() {
+            var gen = function () {
                 var ctxEl = null;
                 var methods =
                 {
                     //.wraps flat-dom-object-into-platform
-                    $:      function( obj )                 { ctxEl = obj                                            },
+                    $:      function ( obj )                 { ctxEl = obj                                            },
 
-                    children:    function( callback, obj )
+                    children:    function ( callback, obj )
                                  {
                                     ctxEl = obj || ctxEl;
-                                    if( !( ctxEl && ctxEl.children ) ) return;
-                                    [].forEach.call( ctxEl.children, function( child, ix ) {
-                                        if( child && child.style.display !== 'none' ) {
+                                    if ( !( ctxEl && ctxEl.children ) ) return;
+                                    [].forEach.call( ctxEl.children, function ( child, ix ) {
+                                        if ( child && child.style.display !== 'none' ) {
                                             callback( child, ix );
                                         }
                                     });
                                  },
 
-                    c:      function( type )                { ctxEl =                document.createElement( type ); },
+                    c:      function ( type )                { ctxEl =                document.createElement( type ); },
                     //.gets single by id
-                    g:      function( id )                  { ctxEl =                document.getElementById( id ); },
+                    g:      function ( id )                  { ctxEl =                document.getElementById( id ); },
                     //.gets single
-                    q:      function( selector, parent )    { ctxEl =                (parent||document.body).querySelector( selector ); },
+                    q:      function ( selector, parent )    { ctxEl =                (parent||document.body).querySelector( selector ); },
                     //.gets array of all
-                    qa:     function( selector, parent )    { ctxEl =                (parent||document.body).querySelectorAll( selector ); },
+                    qa:     function ( selector, parent )    { ctxEl =                (parent||document.body).querySelectorAll( selector ); },
 
                     // //\\ information providers
-                    box:    function( obj )                 { obj = obj || null;
+                    box:    function ( obj )                 { obj = obj || null;
                                                               ctxEl = obj || ctxEl;
                                                               return ctxEl && ctxEl.getBoundingClientRect();
                                                             },
-                    _html:    function( obj )               { obj = obj || null;
+                    _html:    function ( obj )               { obj = obj || null;
                                                               ctxEl = obj || ctxEl;
                                                               return ctxEl && ctxEl.innerHTML;
                                                             },
-                    _css:   function( prop, obj )           { obj = obj || null;
+                    _css:   function ( prop, obj )           { obj = obj || null;
                                                               ctxEl = obj || ctxEl;
                                                               return ctxEl && ctxEl.style[ prop ];
                                                             },
 
                     //does update css-value only if it is different
-                    css_:   function( name, value, obj )    {
+                    css_:   function ( name, value, obj )    {
                                                                ctxEl = obj || ctxEl;
-                                                               if( !ctxEl ) return;
+                                                               if ( !ctxEl ) return;
                                                                var cssProp = ctxEl.style[ name ];
-                                                               if( cssProp !== value ) {
+                                                               if ( cssProp !== value ) {
                                                                     ctxEl.style[ name ] = value;
                                                                }
                                                             },
 
-                    _a:     function( prop, obj )           { obj = obj || null;
+                    _a:     function ( prop, obj )           { obj = obj || null;
                                                               ctxEl = obj || ctxEl;
                                                               return ctxEl && ctxEl.getAttribute( prop );
                                                             },
@@ -348,16 +348,16 @@
                     */
                     // \\// not tested
 
-                    _cls:   function( obj )           { obj = obj || null;
+                    _cls:   function ( obj )           { obj = obj || null;
                                                               ctxEl = obj || ctxEl;
                                                               return ctxEl && ctxEl.getAttribute( 'class' );
                                                             },
-                hascls:   function( cls, obj )          { obj = obj || null;
+                hascls:   function ( cls, obj )          { obj = obj || null;
                                                           ctxEl = obj || ctxEl;
                                                           var doesContainCls = false;
-                                                          if( ctxEl ) {
+                                                          if ( ctxEl ) {
                                                             var cls_ = ctxEl.getAttribute( 'class' );
-                                                            if( cls_ ) {
+                                                            if ( cls_ ) {
                                                                 var re = new RegExp( '(?:^|\\s)' + cls + '(?:\\s|$)', 'g' );
                                                                 doesContainCls = cls_.match( re );
                                                             }
@@ -367,69 +367,69 @@
 
                     // \\// information providers
 
-                    svg:    function()                      { ctxEl =                document.createElementNS( ns.svgNS, 'svg' ); },
-                    cNS:    function( type )                { ctxEl =                document.createElementNS( ns.svgNS, type ); },
-                    a:      function( attr, text, obj )     { ctxEl = obj || ctxEl;  ctxEl.setAttribute( attr, text ); },
+                    svg:    function ()                      { ctxEl =                document.createElementNS( ns.svgNS, 'svg' ); },
+                    cNS:    function ( type )                { ctxEl =                document.createElementNS( ns.svgNS, type ); },
+                    a:      function ( attr, text, obj )     { ctxEl = obj || ctxEl;  ctxEl.setAttribute( attr, text ); },
 
                     //https://developer.mozilla.org/en-US/docs/Web/SVG/Namespaces_Crash_Course#Scripting_in_namespaced_XML
                     //for consistency ...(null, ... whys is this "consistency" ... ? the must be a cowpath ...
                     //https://stackoverflow.com/questions/35057909/difference-between-setattribute-and-setattributensnull
                     //it seems does not matter at all how to write setAttribute: as setAttribute or setAttributeNS:
-                    aNS:    function( attr, text, obj )     { ctxEl = obj || ctxEl;  ctxEl.setAttributeNS( null, attr, text ); },
+                    aNS:    function ( attr, text, obj )     { ctxEl = obj || ctxEl;  ctxEl.setAttributeNS( null, attr, text ); },
 
-                    to:     function( to, obj )             { ctxEl = obj || ctxEl;  alt( to ).appendChild( ctxEl ); },
+                    to:     function ( to, obj )             { ctxEl = obj || ctxEl;  alt( to ).appendChild( ctxEl ); },
 
                     //API: ch is an array of racks or single rack:
                     //     rack is a wrapped element or raw DOM element
-                    ch:     function( ch, obj )             { ctxEl = obj || ctxEl;
+                    ch:     function ( ch, obj )             { ctxEl = obj || ctxEl;
                                                               //.encourages syntax for alternatively empty list of children
                                                               //.$$.ch( obj ? ... : ... )
-                                                              if( !ch ) return;
+                                                              if ( !ch ) return;
 
-                                                              if( Array.isArray( ch ) ) {
+                                                              if ( Array.isArray( ch ) ) {
                                                                 ///if array, then adds children in sequence
-                                                                ch.forEach( function( child ) {
+                                                                ch.forEach( function ( child ) {
                                                                     child && ctxEl.appendChild( alt( child ) );
                                                                 });
                                                               } else {
                                                                 ctxEl.appendChild( alt( ch ) );
                                                               }
                                                             },
-                    e:      function( type, callback, obj ) { ctxEl = obj || ctxEl;  ctxEl.addEventListener( type, callback ); },
-                    css:    function( name, value, obj )    { ctxEl = obj || ctxEl;  ctxEl.style[ name ] = value; },
-                    csst:   function( value, obj )          { ctxEl = obj || ctxEl;  ctxEl.style.cssText = value; },
-                    html:   function( html, obj )           { ctxEl = obj || ctxEl;  ctxEl.innerHTML = html; },
+                    e:      function ( type, callback, obj ) { ctxEl = obj || ctxEl;  ctxEl.addEventListener( type, callback ); },
+                    css:    function ( name, value, obj )    { ctxEl = obj || ctxEl;  ctxEl.style[ name ] = value; },
+                    csst:   function ( value, obj )          { ctxEl = obj || ctxEl;  ctxEl.style.cssText = value; },
+                    html:   function ( html, obj )           { ctxEl = obj || ctxEl;  ctxEl.innerHTML = html; },
 
                     ///adds class,
                     ///supports multiword class,
                     ///does not create duplicate words in class,
-                    addClass:   function( text, obj )
+                    addClass:   function ( text, obj )
                                 {
                                     ctxEl = obj || ctxEl;  //bug fix: if text === '', then
                                                            //element is still created to save
                                                            //the "chain" of $$ calls
-                                    if( !text ) return; //sugar, saves extra "if"
+                                    if ( !text ) return; //sugar, saves extra "if"
                                     var clss = text.split(/\s+/);
-                                    if( clss.length>1 ) {
+                                    if ( clss.length>1 ) {
                                         ////many classes are supplied ...
                                         ////processes each of them
-                                        clss.forEach( function( cls ) {
+                                        clss.forEach( function ( cls ) {
                                             $$.addClass( cls, ctxEl );
                                         });
                                         return;
                                     }
 
                                     var at = ctxEl.getAttribute( 'class' ); //className is not for SVG
-                                    if( !at ) {
+                                    if ( !at ) {
                                         //https://stackoverflow.com/questions/41195397/how-to-assign-a-class-to-an-svg-element
                                         ctxEl.setAttribute( 'class', text ); //For SVG
                                         return;
                                     }
                                     var ats = ' ' + at + ' ';
                                     var testee = ' ' + text + ' ';
-                                    if( ats.indexOf( testee ) === -1 ) {
+                                    if ( ats.indexOf( testee ) === -1 ) {
                                         //c onsole.log( 'adding=' + text + ' to ' + at);
-                                        if( at.length > 0 && text ) {
+                                        if ( at.length > 0 && text ) {
                                             ////adds spacer betwenn end of class-sentence and addee,
                                             ////ASSUMES: multispacer dividors are harmless or none,
                                             ////for clear work, must "cleanse" them,
@@ -443,30 +443,30 @@
                                 },
 
                     //removes class.
-                    removeClass: function( text, obj )
+                    removeClass: function ( text, obj )
                                 {
-                                    if( !text ) return; //sugar, saves extra "if"
+                                    if ( !text ) return; //sugar, saves extra "if"
 
                                     //c onsole.log( 'removing=' + text );
                                     ctxEl = obj || ctxEl;
                                     var clss = text.split(/\s+/);
-                                    if( clss.length>1 ) {
+                                    if ( clss.length>1 ) {
                                         ////many classes are supplied ...
                                         ////processes each of them
-                                        clss.forEach( function( cls ) {
+                                        clss.forEach( function ( cls ) {
                                             $$.removeClass( cls, ctxEl );
                                         });
                                         return;
                                     }
 
                                     var at = ctxEl.getAttribute( 'class' );
-                                    if( !at ) {
+                                    if ( !at ) {
                                         ////nothing to remove ... leaving the task
                                         return;
                                     }
                                     var ats = ' ' + at + ' ';
                                     var testee = ' ' + text + ' ';
-                                    if( ats.indexOf( testee ) > -1 ) {
+                                    if ( ats.indexOf( testee ) > -1 ) {
                                         var re = new RegExp( '(?:^|\\s)' + text + '(?:\\s|$)', 'g' );
                                         //var match = at.match( re );
                                         //c onsole.log( 'match=', match );
@@ -484,39 +484,39 @@
                 //:here JavaScript writer can look which additional shortcuts do exist
                 //:here we can add more dependent shortcuts
                 methods.cls = methods.addClass;
-                methods.id = function( text, obj ) { methods.a( 'id', text, obj ); }; //.adds id
-                methods.src = function( text, obj ) { methods.a( 'src', text, obj ); }; //.adds src
-                methods.href = function( text, obj ) { methods.a( 'href', text, obj ); }; //.adds src
-                methods.div = function( obj ) { methods.c( 'div', obj ); }; //.creates div
-                methods.img = function( obj ) { methods.c( 'img', obj ); }; //.creates img
-                methods.span = function( obj ) { methods.c( 'span', obj ); }; //.creates span
-                methods.style = function( obj ) { methods.c( 'style', obj ); }; //.creates style
-                methods.$ul = function( obj ) { methods.c( 'ul', obj ); }; //.creates ul
-                methods.$li = function( obj ) { methods.c( 'li', obj ); }; //.creates li
-                methods.$a = function( obj ) { methods.c( 'a', obj ); }; //.creates a
+                methods.id = function ( text, obj ) { methods.a( 'id', text, obj ); }; //.adds id
+                methods.src = function ( text, obj ) { methods.a( 'src', text, obj ); }; //.adds src
+                methods.href = function ( text, obj ) { methods.a( 'href', text, obj ); }; //.adds src
+                methods.div = function ( obj ) { methods.c( 'div', obj ); }; //.creates div
+                methods.img = function ( obj ) { methods.c( 'img', obj ); }; //.creates img
+                methods.span = function ( obj ) { methods.c( 'span', obj ); }; //.creates span
+                methods.style = function ( obj ) { methods.c( 'style', obj ); }; //.creates style
+                methods.$ul = function ( obj ) { methods.c( 'ul', obj ); }; //.creates ul
+                methods.$li = function ( obj ) { methods.c( 'li', obj ); }; //.creates li
+                methods.$a = function ( obj ) { methods.c( 'a', obj ); }; //.creates a
 
-                methods.di = function( id, obj ) { methods.c( 'div', obj ); methods.a( 'id', id ); }; //.creates div, sets id
-                methods.dc = function( cls, obj ) { methods.c( 'div', obj ); methods.addClass( cls ); }; //.creates div, sets class
-                methods.dic = function( id, cls, obj ) {
+                methods.di = function ( id, obj ) { methods.c( 'div', obj ); methods.a( 'id', id ); }; //.creates div, sets id
+                methods.dc = function ( cls, obj ) { methods.c( 'div', obj ); methods.addClass( cls ); }; //.creates div, sets class
+                methods.dic = function ( id, cls, obj ) {
                                 methods.di( id, obj );
                                 methods.addClass( cls );
                 }; //.creates div, sets id and class
-                methods.dict = function( id, cls, to, obj ) {
+                methods.dict = function ( id, cls, to, obj ) {
                                 methods.di( id, obj );
                                 methods.addClass( cls );
                                 methods.to( to );
                 }; //.creates div, sets id and class, and appends to "to"
-                methods.dct = function( cls, to, obj ) {
+                methods.dct = function ( cls, to, obj ) {
                                 methods.dc( cls, obj )
                                 methods.to( to );
                 }; //.creates div, sets class, and appends to "to"
 
                 ///toggles class if ctxEl is detected
-                methods.togcls = function( cls, obj ) {
+                methods.togcls = function ( cls, obj ) {
                                     obj = obj || null;
                                     ctxEl = obj || ctxEl;
-                                    if( !ctxEl ) return;
-                                    if( methods.hascls( cls, obj ) ) {
+                                    if ( !ctxEl ) return;
+                                    if ( methods.hascls( cls, obj ) ) {
                                         methods.removeClass( cls );
                                     } else {
                                         methods.addClass( cls );
@@ -526,23 +526,23 @@
                 ///input:    condition - optional truthy, if arguments.length === 1
                 ///                      then toggling will be made,
                 ///                      otherwise, "condition" controls cls setting
-                methods.toggleClass = function( cls, condition, obj ) {
+                methods.toggleClass = function ( cls, condition, obj ) {
                                     obj = obj || null;
                                     ctxEl = obj || ctxEl;
-                                    if( !ctxEl ) return;
-                                    if( arguments.length === 1 ) {
+                                    if ( !ctxEl ) return;
+                                    if ( arguments.length === 1 ) {
                                         condition = !methods.hascls( cls, obj );
                                     }
-                                    if( condition ) {
+                                    if ( condition ) {
                                         methods.addClass( cls );
                                     } else {
                                         methods.removeClass( cls );
                                     }
                 };
-                var wrap = function() { return ctxEl; };
-                Object.keys( methods ).forEach( function( key ) {
+                var wrap = function () { return ctxEl; };
+                Object.keys( methods ).forEach( function ( key ) {
                     var method = methods[ key ];
-                    wrap[ key ] = function() {
+                    wrap[ key ] = function () {
                         var res = method.apply( {}, arguments );
                         ///if method is of "process type", then the framework wrap ($$) is returned
                         ///if method is of "give information type", then this information is returned
@@ -554,9 +554,9 @@
 
             var sample = gen();
             var masterGen = {};
-            Object.keys( sample ).forEach( function( key ) { //todm ... works for functions ? not only for objects?
+            Object.keys( sample ).forEach( function ( key ) { //todm ... works for functions ? not only for objects?
 
-                masterGen[ key ] = function() { return gen()[ key ].apply( {}, arguments ); };
+                masterGen[ key ] = function () { return gen()[ key ].apply( {}, arguments ); };
             });
             return masterGen;
 
@@ -566,18 +566,18 @@
         ///(which expected to be own property of elParent)
         ///from parent elParent and wrapped
         ///dom element elParent[ elName$ ]() from html
-        $$.$del = function(
+        $$.$del = function (
             elParent,
             elName$
         ) {
             var el$ = ns.haz( elParent, elName$ );
-            if( !el$ ) return;
+            if ( !el$ ) return;
             //this moment is specific:
             //will this also delete an actual element from DOM?
             //this element is in the closure of this function
             //will closure deleted if all it's child function deleted?
             //and is there an explicit way to delete elements from closure?
-            if( elParent ) {
+            if ( elParent ) {
                 delete elParent[ elName$ ];
             }
             //removes from HTML
@@ -606,7 +606,7 @@
     ///note:        make sure document.bod exists if used in manual refactoring,
     ns.createDebugger = function ()
     {
-        if( ns.h( ns, 'd' ) ) return; //creates debugger only once
+        if ( ns.h( ns, 'd' ) ) return; //creates debugger only once
 
         ///------------------------------------------------------------
         ///Checks if bsl-debug textarea exists and
@@ -615,9 +615,9 @@
         /// and in the code it is still safe to use the lines:
         /// Usage: window.b$l.d(text)
         ///------------------------------------------------------------
-        ns.d = function( text )
+        ns.d = function ( text )
         {
-            if( !debWind ) return; //no window, no debug accumulation
+            if ( !debWind ) return; //no window, no debug accumulation
             debWind.value +='\n' + text;
             debWind.scrollTop = debWind.scrollHeight;
         };
@@ -625,9 +625,9 @@
         ///------------------------------------------------------------
         // //\\ uncomment this debug-block to enable textarea for debug
         ///------------------------------------------------------------
-        if( ns.haz( ns.conf, 'deb' ) ) {
+        if ( ns.haz( ns.conf, 'deb' ) ) {
             var debWind = document.getElementById( 'bsl-debug' );
-            if( !debWind ) {
+            if ( !debWind ) {
                 ////this block is good when one needs to output large data object
                 ////into text box in a browser's textarea at the end of web-page
                 debWind = document.createElement( 'textarea' );
@@ -653,7 +653,7 @@
 // \\// creates debugger once per application
 //===========================================
 
-( function() {
+( function () {
     var ns = window.b$l;
 
     //=========================================================
@@ -663,12 +663,12 @@
     var lt_re = /</g;
     var gt_re = />/g;
     var line_feed_re = /\r\n|\r|\n/g;
-    ns.htmlesc = function( str )
+    ns.htmlesc = function ( str )
     {
         return str.replace( amp_re, '&amp;' ).replace( lt_re, '&lt;' ).replace( gt_re, '&gt;' );
     }
 
-    ns.pre2fluid = function( str )
+    ns.pre2fluid = function ( str )
     {
         return str.replace( line_feed_re, '<br>' );
     }
@@ -679,7 +679,7 @@
     //=========================================================
     // //\\ configures from URL
     //=========================================================
-    ns.url2conf = function( conf )
+    ns.url2conf = function ( conf )
     {
         //      if supplied, it overrides internal application conf
         //      format: ...index.html?conf=a.b.c.d=4,a.b.e=5
@@ -692,15 +692,15 @@
         */
         var urlConfRe   = /(?:&|\\?)conf=([^&]+)/i;
         var urlConf     = urlPars.match( urlConfRe );
-        if( urlConf ) {
+        if ( urlConf ) {
             urlConf = urlConf[1].split(',');
-            urlConf.forEach( function( opt ) {
+            urlConf.forEach( function ( opt ) {
                 //reserved chars: !#$%&'()*+,/:;=?@[]
                 //but no need to escape if char has no reserved purpose
                 //https://en.wikipedia.org/wiki/
                 //  Percent-encoding#Reserved_characters
                 var cc = opt.split('=');
-                if( cc[1] ) {
+                if ( cc[1] ) {
                     ////parameter x exists after sign "=" in expression p=x
                     //let user to say "yes" or "no"
                     cc[1] = cc[1] === "yes" ?
@@ -711,7 +711,7 @@
                     //// syntax: ...,x~floatValue,...
                     ////*****************************
                     var cc = opt.split('~');
-                    if( cc[1] ) {
+                    if ( cc[1] ) {
                         ////parameter x exists after sign "~" in expression p~x
                         ////and has float semantic
                         cc[1] = parseFloat( cc[1] );
@@ -735,7 +735,7 @@
     //=========================================================
     // //\\ if pages doesn't have passed in aspect, return default
     //=========================================================
-    ns.getAspectId = function(sappId) {
+    ns.getAspectId = function (sappId) {
         // todo: return current aspect only for pages that have it
         var aspectId = 'english';
         return aspectId;
@@ -744,7 +744,7 @@
     // \\// if pages doesn't have passed in aspect, return default
     //=========================================================
 
-    ns.getSubessayIdFromURL = function() {
+    ns.getSubessayIdFromURL = function () {
         var url = window.location.href;
         const match = url.match(/subessayId=([^,&]*)/);
         subessayId = match ? match[1] : 0;
@@ -752,10 +752,10 @@
     }
 
     // //\\ helpers
-    ns.prop2prop = function( target, source )
+    ns.prop2prop = function ( target, source )
     {
-        if( source ) {
-            Object.keys( source ).forEach( function( key ) {
+        if ( source ) {
+            Object.keys( source ).forEach( function ( key ) {
                 target[ key ] = source[ key ];
             });
         }
@@ -764,20 +764,20 @@
 
     ///updates properties of object obj from single key-value
     ///pair "name, value"
-    ns.dots2object = function( name, value, obj )
+    ns.dots2object = function ( name, value, obj )
     {
         var tokens	= name.split( '.' );
         var len		= tokens.length;
         var len1	= len - 1;
-        if( len1 < 0 ) {
+        if ( len1 < 0 ) {
             obj[ name ] = value;
             return obj;
         }
         var prop	= tokens[ 0 ];
-        for( var ii = 0; ii < len1; ii++ )
+        for ( var ii = 0; ii < len1; ii++ )
         {
             //:: appends objects if missed
-            if( !obj[ prop ] || typeof obj[ prop ] !== 'object' ) obj[ prop ] = {};
+            if ( !obj[ prop ] || typeof obj[ prop ] !== 'object' ) obj[ prop ] = {};
             obj = obj[ prop ];
             prop = tokens[ ii + 1 ];
         }
@@ -786,10 +786,10 @@
     }
 
     ///sugar for Object.keys( obj ).forEach ...
-    ns.eachprop = function( obj, callBack )
+    ns.eachprop = function ( obj, callBack )
     {
         var keys = Object.keys( obj );
-        keys.forEach( function( key, kix ) {
+        keys.forEach( function ( key, kix ) {
             callBack( obj[ key ], key, kix, keys.length );
         });
         return keys;
@@ -798,10 +798,10 @@
     ///maps props of object:
     ///creates new object and copies first level proper props to it,
     ///generalizes Array.map() to Object.map()
-    ns.mapp = function( obj, callBack )
+    ns.mapp = function ( obj, callBack )
     {
         var map = {};
-        if( obj ) {
+        if ( obj ) {
             Object.keys( obj ).forEach( ( key, kix ) => {
                 map[ key ] = callBack( obj[ key ], key, kix, obj, map );
             });
@@ -851,39 +851,39 @@
         var t = typeof paper;
 
         //.Arguments sugar: pasting nothing does not change wall
-        if( !level && (t === 'undefined' || paper === null ) ) return wall;
+        if ( !level && (t === 'undefined' || paper === null ) ) return wall;
 
         //.Returns back non-object-type value
-        if( t === 'undefined' || t === 'string' || t === 'boolean' || t === 'number' || t === 'function' || paper === null)
+        if ( t === 'undefined' || t === 'string' || t === 'boolean' || t === 'number' || t === 'function' || paper === null)
         {
             return paper;
         }
 
         ///Reduces the "deep-copy" to reference copy for leveles beneath reference-depth
-        if( refdepth || refdepth === 0 )
+        if ( refdepth || refdepth === 0 )
         {
-            if( level > refdepth ) return paper;
+            if ( level > refdepth ) return paper;
         }
 
         ///Recursion limit is exceeded. Truncates recursion by recdepth value.
-        if( ( recdepth || recdepth ===0 ) && level > recdepth )
+        if ( ( recdepth || recdepth ===0 ) && level > recdepth )
         {
             return '';
         }
 
         ///Paper is non-void array or object. If wall do not "match" the paper, making wall an object.
-        if( typeof wall !== 'object' || wall === null )
+        if ( typeof wall !== 'object' || wall === null )
         {
             wall = {};
         }
 
         var isArrayPaper = Array.isArray( paper );
-        if( isArrayPaper && !Array.isArray( wall ) ) {
+        if ( isArrayPaper && !Array.isArray( wall ) ) {
             ////Paper is array and wall is not. Morthing wall to array but preserve its properties.
             var wall_preserved = wall;
             wall = [];
             //.Returns preserved wall's properties to wall-as-array.
-            if( typeof wall_preserved.length !== 'undefined' ) {
+            if ( typeof wall_preserved.length !== 'undefined' ) {
                 ////edge-calse does not work: the only problem is when wall_preserved.length is defined.
                 ////todm: the only problem is when wall_preserved.length is defined.
                 throw new Error("copying array to object with" +
@@ -894,16 +894,16 @@
 
         ///Now both wall and paper are objects of the same type. Pasting their properties.
         var hasOwn	= Object.prototype.hasOwnProperty;
-        for(var p in paper )
+        for (var p in paper )
         {
-            if( hasOwn.call( paper, p ) ) //when works on arrays, then not fails on 'length'? bs "length" is notOwnProperty
+            if ( hasOwn.call( paper, p ) ) //when works on arrays, then not fails on 'length'? bs "length" is notOwnProperty
             {
-                if( p !== 'length' )
+                if ( p !== 'length' )
                 {
                     //paper[ p ];
                         var theValue = paste_non_arrays( wall[ p ], paper[ p ], level+1, skip_undefined, refdepth, recdepth );
 
-                        if( ! ( ( isArrayPaper || skip_undefined ) && typeof theValue === 'undefined' )  )
+                        if ( ! ( ( isArrayPaper || skip_undefined ) && typeof theValue === 'undefined' )  )
                         {
                             wall[ p ]		= theValue;
                         }
@@ -939,7 +939,7 @@
 ///gradually adds and updates global css
 ///as page loads at landing
 ///keeping css in one html-style-element;
-( function() {
+( function () {
     var DEFAULT_KEY         = 'default-style-tag-class';
     var ns                  = window.b$l;
     var globalCss           = ns.sn('globalCss');
@@ -974,7 +974,7 @@
     {
         htmlkey = htmlkey || DEFAULT_KEY;
         var ret = ns.haz( repo, htmlkey );
-        if( !ret ) {
+        if ( !ret ) {
             ret = repo[ htmlkey ] =
             {
                 cssText : '',
@@ -996,12 +996,12 @@
     function upqueue( moreText, htmlkey )
     {
         var rack = key2rack( htmlkey );
-        if( moreText ) { rack.cssText += moreText; }
-        if( rack.queueHandle !== null ) {
+        if ( moreText ) { rack.cssText += moreText; }
+        if ( rack.queueHandle !== null ) {
             clearTimeout( rack.queueHandle );
         }
         rack.queueHandle = setTimeout(
-            function() {
+            function () {
                 rack.cssDom$.html( rack.cssText );
                 rack.queueHandle = null;
             },
@@ -1014,7 +1014,7 @@
     function update( moreText, htmlkey )
     {
         var rack = key2rack( htmlkey );
-        if( moreText ) { rack.cssText += moreText; }
+        if ( moreText ) { rack.cssText += moreText; }
         rack.cssDom$.html( rack.cssText );
     };
     ///replaces CSS-text in rack and updates it immediately
@@ -1028,7 +1028,7 @@
     function updateIfDifferent( rtext, htmlkey )
     {
         var rack = key2rack( htmlkey );
-        if( rack.cssText === rtext ) return;
+        if ( rack.cssText === rtext ) return;
         rack.cssText = rtext;
         rack.cssDom$.html( rack.cssText );
     };
@@ -1037,7 +1037,7 @@
     {
         htmlkey = htmlkey || DEFAULT_KEY;
         var rack = ns.h( repo, htmlkey );
-        if( rack ) return;
+        if ( rack ) return;
         var rack = key2rack( htmlkey );
         rack.cssText = rtext;
         rack.cssDom$.html( rack.cssText );
@@ -1086,7 +1086,7 @@
 
 (function () {
     var ns = window.b$l;
-    ns.loadScript = function( src, onload, type )
+    ns.loadScript = function ( src, onload, type )
     {
         //https://developer.mozilla.org/en-US/docs/Web/HTTP/
         //      Basics_of_HTTP/MIME_types#JavaScript_types
@@ -1106,12 +1106,12 @@
     function doScrollToHash()
     {
         var hash = window.location.hash;
-        if( !hash || hash.length < 2 ) return;
+        if ( !hash || hash.length < 2 ) return;
         var hash = hash.substring( 1 );
         var search = 'a[name=' + hash + ']';
         //https://stackoverflow.com/questions/265774/programmatically-scroll-to-an-anchor-tag
         var found = document.querySelector( search );
-        if( !found ) return;
+        if ( !found ) return;
         found.scrollIntoView( true );
     }
 }) ();
@@ -1139,11 +1139,11 @@
     */
 
     ///deep iteration of DOM-element-tree
-    methods.elTree = function( el, callback )
+    methods.elTree = function ( el, callback )
     {
         callback( el );
         var children = el.children;
-        if( !children || !children.length ) return;
+        if ( !children || !children.length ) return;
         //https://stackoverflow.com/questions/22754315/for-loop-for-htmlcollection-elements
         [].forEach.call( children, el => methods.elTree( el, callback ) );
     }

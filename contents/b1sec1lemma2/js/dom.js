@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { sn, $$, fapp, fconf, sDomF, sDomN, ssF, stdMod, amode, }
         = window.b$l.apptree({ setModule, });
     var stdL2   = sn('stdL2', fapp );

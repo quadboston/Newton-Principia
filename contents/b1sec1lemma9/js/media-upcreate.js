@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         sn, $$, paste, haz, bezier, nssvg,
         sconf, ssD, ssF,
@@ -169,7 +169,7 @@
         // \\// does paint view
         //==========================================
 
-        if( ssF.mediaModelInitialized ) {
+        if ( ssF.mediaModelInitialized ) {
             var ww = stdMod.medD8D;
             ww && ww.updateAllDecPoints();
         }

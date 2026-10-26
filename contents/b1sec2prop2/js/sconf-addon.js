@@ -1,4 +1,4 @@
-(function(){
+(function () {
 const { sconf, nspaste, capture, ssF, ssD,} =
       window.b$l.apptree({});
     ssF.init_conf_addon = init_conf_addon;
@@ -9,7 +9,7 @@ const { sconf, nspaste, capture, ssF, ssD,} =
 ///====================================================
 /// add ownself to umbrella-subapp init_conf
 ///====================================================
-function init_conf_addon (){
+function init_conf_addon() {
     sconf.mediaBgImage = "../../b1sec2prop1/js/img/b1s2p1t1.png";
     //sconf.hide_perp_P_and_alike = true;
     //dose not work: sconf.SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY = 0.8;
@@ -113,7 +113,7 @@ function init_conf_addon (){
   });
 }
 
-function topicColors_elected(tpel){
+function topicColors_elected(tpel) {
     const {
         proofColor,
         deviationColor,

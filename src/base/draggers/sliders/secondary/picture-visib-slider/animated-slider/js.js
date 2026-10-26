@@ -1,5 +1,5 @@
 // //\\//
-(function() {
+(function () {
     var {
         ns, sn, $$,
         fconf, sconf, ssF, ssD,
@@ -100,11 +100,11 @@
             startX,     //initial application data
             endX,       //final application data
             dur         //duration of animation
-        ){
+        ) {
             var aframes = ns.aframes;
             var slider  = return_slider.slider;
             var rangeX  = endX - startX;
-            function emulatesMove( timestamp ){
+            function emulatesMove( timestamp ) {
                 var dataArg = startX + rangeX*(Math.min(timestamp, dur)) / dur;
                 slider.d8d_emulateAbsFractionX( dataArg, 'move' );
             }

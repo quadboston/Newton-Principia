@@ -1,4 +1,4 @@
-(function(){
+(function () {
 const {sn, $$, sv, globalCss, haz, sconf, sDomF, ssF, ssD,
         toreg, rg, amode, stdMod } =
         window.b$l.apptree({ stdModExportList : {
@@ -14,7 +14,7 @@ return;
 //      creates slider only once per
 //      app model creation;
 //----------------------------------------
-function creates_sliderDomModel__4__time (){
+function creates_sliderDomModel__4__time() {
     var pos2pointy    = ssF.pos2pointy;
     var pivots_2_svgLineInRg = ssF.pivots_2_svgLineInRg;
 
@@ -185,7 +185,7 @@ function creates_sliderDomModel__4__time (){
     ///recalculate the evolution, but
     ///  sets slider position and
     ///  shows evolution corresponding to time;
-    function upates_timeSlider8unmasksSvg (){
+    function upates_timeSlider8unmasksSvg() {
         var rawTime = api[ apiValueName ]; //===rg.slider_sltime.curtime;
 
         //interpolates slider GUI position
@@ -213,7 +213,7 @@ function creates_sliderDomModel__4__time (){
         //at the end of job, runs application-provided callback
         stdMod.unmasksVisib();
         stdMod.upcreate_mainLegend();
-        if( ssF.mediaModelInitialized ) {
+        if ( ssF.mediaModelInitialized ) {
             stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
         }
     };
@@ -223,13 +223,13 @@ function creates_sliderDomModel__4__time (){
 //----------------------------------------
 
 ///must be in contex of pointWrap ( like this = rg.B )
-function processDownEvent( arg ){
+function processDownEvent( arg ) {
     this.achieved.achieved = this.curtime;
 }
 
 ///move_2_val8gui8cb
 ///todm: this sub should be automatically throttled
-function move_2_updates( move_in_model ){
+function move_2_updates( move_in_model ) {
     var api = this;
     amode.userControl = 'diagram';
     sDomF.detected_user_interaction_effect();
@@ -254,7 +254,7 @@ function move_2_updates( move_in_model ){
     //======================================================
 }
 
-function slTime_2_stepIndice8tCaption (){
+function slTime_2_stepIndice8tCaption() {
     var sp8ep   = haz( rg, 'slider_sltime' );
     var ctime    = rg.slider_sltime.curtime;
 

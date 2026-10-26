@@ -1,4 +1,4 @@
-(function() {
+(function () {
     var { sn, $$, fapp, sconf, sDomF, rg } =
         window.b$l.apptree({ stdModExportList : {
         generateCurveName,

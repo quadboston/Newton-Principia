@@ -1,6 +1,6 @@
 // //\\// Main entrance into sub-application.
 
-(function() {
+(function () {
     var { sn, fapp, sapp, ssF, sDomF, stdMod, }
         = window.b$l.apptree({ setModule,
         stdModExportList : { init_model_parameters, }, });

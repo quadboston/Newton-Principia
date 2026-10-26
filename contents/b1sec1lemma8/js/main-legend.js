@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         eachprop, rg, ssF, stdMod,
     } = window.b$l.apptree({

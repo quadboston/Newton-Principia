@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         eachprop,
         sn,
@@ -43,7 +43,7 @@
             railsLegend         :'Process proof by decreasing AC:',
             ancestorClassToHideSlider   :'logic_phase--claim',
 
-            dataInMove:         function( dataArg, draggee ) {
+            dataInMove:         function ( dataArg, draggee ) {
                                     //:master place where tC updates
 
                                     //.todm wrong: belongs to subapp instance
@@ -53,9 +53,9 @@
                                     setCaption( sDomF.proofSlider.slider );
                                 },
             //.callback when handler stops
-            dataInArrival:      function( dataArg ) {
+            dataInArrival:      function ( dataArg ) {
                                     //.does synch secondary slider
-                                    if(rg.C.achieved) rg.C.achieved.achieved = dataArg;
+                                    if (rg.C.achieved) rg.C.achieved.achieved = dataArg;
                                 },
             setCaption: setCaption //apparently this is for dom-el created internally,
                                    //nothing to do with app or parent

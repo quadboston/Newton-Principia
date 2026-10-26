@@ -1,4 +1,4 @@
-(function(){
+(function () {
     const { sn, $$, eachprop, haz, sconf, rg, stdMod } =
         window.b$l.apptree({ stdModExportList : {
             hides_all_shapes,
@@ -11,7 +11,7 @@
     // adds "undisplay" flags to all interaction-groups for all pathIx
     // and to decoration-shapes
     //*****************************************************************
-    function hides_all_shapes (){
+    function hides_all_shapes() {
         eachprop( stdMod.decor, dec => {
             dec.undisplay = true;
         });

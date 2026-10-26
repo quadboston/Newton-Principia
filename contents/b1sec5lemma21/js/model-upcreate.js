@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         sn, mat, nspaste,
         amode, stdMod, rg, sconf, ssF, ssD,
@@ -35,7 +35,7 @@
         ];
         pos8tg_2_rg( 'N', N );
 
-        if( amode.subessay === 'converse-proof' ) {
+        if ( amode.subessay === 'converse-proof' ) {
             let np = rg.n.pos;
             nspaste( np, mat.dropLine( 1.4, rg.N.pos, rg.M.pos, ) );
             {
@@ -84,7 +84,7 @@
         var sinG = Math.sin(gamma);
 
         var ww = b-g*cosG;
-        if( Math.abs(ww) < 1e-20 ) {
+        if ( Math.abs(ww) < 1e-20 ) {
             BS = Math.PI/2;
         } else {
             var tanBS = g/ww * sinG;
@@ -96,7 +96,7 @@
         //triangle BAG sines theorem: a*sin(AS) = g*sin(G-AS)
         //(a+g*cosG)tgBS = g*sinG;
         var ww = a+g*cosG;
-        if( Math.abs(ww) < 1e-20 ) {
+        if ( Math.abs(ww) < 1e-20 ) {
             AS = Math.PI/2;
         } else {
             var tanAS = g/ww * sinG;
@@ -139,7 +139,7 @@
         var Ppos = sn( 'pos', P, [] );
         Ppos[0] = pos[0];
         Ppos[1] = pos[1];
-        if( tangent )
+        if ( tangent )
         {
             var Ptangent = sn( 'tangent', P, [] );
             Ptangent[0] = tangent[0];
@@ -148,7 +148,7 @@
         return rg[ nameP ];
     }
 
-    function curveModel2branches(){
+    function curveModel2branches() {
         ////makes branches
         const algfun = stdMod.calculateConicPoint_algo;
         const stepsCount = 400;
@@ -161,14 +161,14 @@
         bro.step = step;
         bro.start_q = start_q;
         bro.BRANCH_COMPLETER = 0;
-        bro.formula = function( q ) {
+        bro.formula = function ( q ) {
             let point = algfun( q ).D;
             return {
                 point,
                 pointPar : point,
             };
         };
-        bro.breakCondition = function( pointPar1,  pointPar2 ){
+        bro.breakCondition = function ( pointPar1,  pointPar2 ) {
             return Math.max(
                 Math.abs(pointPar1[0]-pointPar2[0]),
                 Math.abs(pointPar1[1]-pointPar2[1])

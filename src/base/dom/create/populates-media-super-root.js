@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, $$, cssp, has,
         fapp, fconf, sconf,
@@ -43,13 +43,13 @@
             //.css( 'display', 'block' )
             .e( 'click', () => {
                 rgtools.value = rgtools.value === 'on' ? 'off' : 'on';
-                if( rgtools.value === 'on' ) {
+                if ( rgtools.value === 'on' ) {
                     fapp.fappRoot$.addClass( 'rgtools' );
                 } else {
                     fapp.fappRoot$.removeClass( 'rgtools' );
                 }
                 var wwsm = ns.haf( stdMod, 'model8media_upcreate' );
-                if( wwsm ) {
+                if ( wwsm ) {
                     wwsm();
                 } else {
                     ns.haf( ssF, 'model8media_upcreate' )();
@@ -65,7 +65,7 @@
         //..........................
         // //\\ change model data button
         //..........................
-        if( sconf.enableDataFunctionsRepository ) {
+        if ( sconf.enableDataFunctionsRepository ) {
             $$
                 .c( 'div' )
                 .addClass( 'change-model-data-button' )
@@ -84,7 +84,7 @@
         //..........................
         // //\\ sets capture button
         //..........................
-        if( sconf.enableCapture ) {
+        if ( sconf.enableCapture ) {
             sDomN.captureButton$ = $$
                 .c( 'div' )
                 .addClass( 'capture-button' )
@@ -92,7 +92,7 @@
                 .to( topMediaControls$() )
                 //.css( 'display', 'block' )
                 .e( 'click', () => {
-                    if( sDomN.captureButton$._html().indexOf( 'capture' ) > -1 ) {
+                    if ( sDomN.captureButton$._html().indexOf( 'capture' ) > -1 ) {
                         //------------------------------------------------
                         // //\\ do wrap into capture-method or refactor
                         //------------------------------------------------
@@ -100,7 +100,7 @@
                         ///non-rg property: media center:
                         ///todm: legalize;
                         var mcenter = ns.haz( rg, 'diagram-panner' );
-                        if( mcenter ) {
+                        if ( mcenter ) {
                             ns.paste( ast, { 'diagram-panner' :
                                                 { achieved :  mcenter.achieved },
                                               subessay : amode.subessay,
@@ -135,7 +135,7 @@
         //..........................
         // //\\ sets studylab button
         //..........................
-        if( sconf.enableStudylab ) {
+        if ( sconf.enableStudylab ) {
             sDomN.enableStudylab$ = $$
                 .c( 'div' )
                 .addClass( 'studylab-button' )
@@ -144,7 +144,7 @@
                 .to( topMediaControls$() )
                 .css( 'display', 'block' )
                 .e( 'click', () => {
-                    if( sDomN.enableStudylab$._html().indexOf( 'close lab' ) === -1 ) {
+                    if ( sDomN.enableStudylab$._html().indexOf( 'close lab' ) === -1 ) {
                         sDomN.enableStudylab$.html( 'close lab' );
                         fapp.fappRoot$.addClass( 'studylab' );
                     } else {
@@ -165,7 +165,7 @@
             .a( 'alt', "Hover over the diagram to interact" )
             .to( wwHelpOnTop$() )
             ;
-        if( ns.h( fconf.appDecor, 'idleHelpButtonTooltip' ) ){
+        if ( ns.h( fconf.appDecor, 'idleHelpButtonTooltip' ) ) {
             sDomN.idleHelpButton$.a( 'title', fconf.appDecor.idleHelpButtonTooltip );
         }
 
@@ -208,14 +208,14 @@
                     ///      meaningly: only for first subexeg,
                     ///============================================================
                     var imgRk = stdMod.imgRk;
-                    if( has( imgRk, 'src' ) ) return;
+                    if ( has( imgRk, 'src' ) ) return;
                     imgRk.src = stdMod.imgRk.srcParsed;
                     var cssId = imgRk.cssId;
 
-                    if( !imgRk.onloadStarted ) {
+                    if ( !imgRk.onloadStarted ) {
                         imgRk.onloadStarted = true;
-                        imgRk.dom$().onload = function() {
-                            if( 1 === ++actuallyLoaded ) {
+                        imgRk.dom$().onload = function () {
+                            if ( 1 === ++actuallyLoaded ) {
                                 ////assumes that stdMod has bg. image to download
                                 //setTimeout( bgImagesAreLoaded_cb, 1000 );
                                 //without this call, app landing must crash:

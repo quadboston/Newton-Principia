@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { stdMod, } = window.b$l.apptree({
         stdModExportList : { init_model_parameters, }, });
     return;

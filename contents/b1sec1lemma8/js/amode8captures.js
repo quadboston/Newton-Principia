@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, paste, capture, nspaste, sDomF, ssD, amode, rg,
     } = window.b$l.apptree({

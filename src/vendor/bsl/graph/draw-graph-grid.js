@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, sn, nsmethods, haz, nssvg, $$,
     } = window.b$l.nstree();
@@ -43,7 +43,7 @@
             plotsScaffold, //optional flag to draw extra Y-axes
             plotsCount,
             extraAxisY,
-    }){
+    }) {
         brightenGrid = typeof brightenGrid === 'undefined' ? 1 : brightenGrid;
         //======================================================
         // //\\ axisX, axisY API
@@ -94,7 +94,7 @@
         // \\// axisX, axisY API
         //------------------------------------------------------
 
-        if( drawDecimalY && rangeY > 1e-100 ) {
+        if ( drawDecimalY && rangeY > 1e-100 ) {
             drawX0Ygrid({
                 gridAlongY : true,
                 axisA : axisY,
@@ -113,7 +113,7 @@
                     colorThreadArray,
             });
         }
-        if( drawDecimalX && rangeX > 1e-100 ) {
+        if ( drawDecimalX && rangeX > 1e-100 ) {
             drawX0Ygrid({
                 gridAlongY : false,
                 axisA : axisX,
@@ -149,19 +149,19 @@
                 plotsCount,
                 extraAxisY,
                 colorThreadArray,
-        }){
+        }) {
             var style = {};
 
             ////Nesessity for legacy code makes this "if"
             ////so complex.
-            if( gridAlongY ) {
-                if( typeof printAxisYDigits === 'undefined' ){
+            if ( gridAlongY ) {
+                if ( typeof printAxisYDigits === 'undefined' ) {
                     var prnDigitalSymbols = printAxisDigits;
                 } else {
                     var prnDigitalSymbols = printAxisYDigits;
                 }
             } else {
-                if( typeof printAxisXDigits === 'undefined' ){
+                if ( typeof printAxisXDigits === 'undefined' ) {
                     var prnDigitalSymbols = printAxisDigits;
                 } else {
                     var prnDigitalSymbols = printAxisXDigits;
@@ -177,7 +177,7 @@
             style.stroke = 'rgba( 0,0,0, ' + ( brightenGrid.toFixed(3) ) + ')';
 
             drawGrid8Axes_aux({ prnAxisDigits : prnDigitalSymbols });
-            if( subDecimal ) {
+            if ( subDecimal ) {
                 var decUnit  = decUnit * 0.1;
 
                 style.stroke = 'rgba( 0,0,0, ' + ( 0.2*brightenGrid.toFixed(3) ) + ')';
@@ -194,7 +194,7 @@
                 var gcount = 0;
                 var labelCountEstimation = Math.floor( ( maxA - linesStart ) / decUnit );
 
-                for( var gline=linesStart; gline<=maxA; gline+=decUnit ) {
+                for ( var gline=linesStart; gline<=maxA; gline+=decUnit ) {
 
                     //======================================================
                     // //\\ prepares grid and axes params
@@ -203,7 +203,7 @@
                     //for "gridAlongX", the line is horizontal, and l_media is an y-coordinate
                     var l_media = ( gline - minA ) / rangeA * dimA;
 
-                    if( gridAlongY ) {
+                    if ( gridAlongY ) {
                         l_media = marginY + dimA - l_media;
                     } else {
                         l_media += marginX;
@@ -243,9 +243,9 @@
                     //======================================================
                     var EXTRA_AXIS_OFFSET_STEP = marginX/2;
                     var EXTRA_AXIS_DIGITS = 3;
-                    if( prnAxisDigits ) {
+                    if ( prnAxisDigits ) {
                         var axesCount = drawAllAxesInGrid && gridAlongY ? plotsCount : 1;
-                        for( var aIx=0; aIx<axesCount; aIx++ ) {
+                        for ( var aIx=0; aIx<axesCount; aIx++ ) {
                             var effectiveAxis = axisA;
 
                             var fontStroke = drawAllAxesInGrid ?
@@ -253,10 +253,10 @@
                             var fontFill = drawAllAxesInGrid ?
                                                 colorThreadArray[ aIx ] : axisA[ 'fill' ];
 
-                            if( gridAlongY ) {
+                            if ( gridAlongY ) {
                                 ////we have horiz. line, putting a serie of dig.
                                 ///at its end,
-                                if( aIx === 0 ) {
+                                if ( aIx === 0 ) {
                                     var x = pivots[0][0] + axisA.fontShiftX;
                                 } else {
                                     var effectiveAxis = extraAxisY;
@@ -272,7 +272,7 @@
                                 var y = pivots[1][1] + effectiveAxis.fontShiftY;
                             }
                             ///forbids too dence marks along axis x
-                            if( !labelForbidden ) {
+                            if ( !labelForbidden ) {
 
                                 var decimalDigits = aIx === 0 ?
                                         effectiveAxis.decimalDigits :
@@ -327,7 +327,7 @@
         dimA,
         toollineStyle,
         numberMarks, //see //number Marks api
-    }){
+    }) {
         toollineStyle = toollineStyle || {};
         sn( 'stroke', toollineStyle, 'rgba( 0,0,0, 1 )' );
         var graphElement = graphArray[ Math.floor( abscissaIxValue ) ];
@@ -353,8 +353,8 @@
         //======================================================
         // //\\ prints numerical labels
         //======================================================
-        if( numberMarks ) {
-            if( !Array.isArray( numberMarks ) ) {
+        if ( numberMarks ) {
+            if ( !Array.isArray( numberMarks ) ) {
                 ///can make space array
                 numberMarks = graphElement.y.map( (yEl,yix) => (
                     //number Marks api
@@ -370,7 +370,7 @@
             }
             ///prints labels only on live numberMarks
             numberMarks.forEach( (nm,nmix) => {
-                if( !polylines[nmix] ) return;
+                if ( !polylines[nmix] ) return;
                 var gix = nm.graphIx;
                 var decimalDigits = nm.decimalDigits;
                 var nmVal = graphElement.y[ gix ];

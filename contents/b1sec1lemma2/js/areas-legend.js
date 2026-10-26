@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { sn, $$, fapp, sDomN, ssF, stdMod, }
         = window.b$l.apptree({ setModule, });
     var stdL2 = sn('stdL2', fapp );
@@ -30,13 +30,13 @@
 
         function setupEventsAreasLegend()
         {
-            Object.keys( study.eventHandlers ).forEach( function( methodName ) {
+            Object.keys( study.eventHandlers ).forEach( function ( methodName ) {
                 document.getElementById( methodName )
                     .addEventListener( 'change', study.eventHandlers[ methodName ] );
             });
 
             // //\\ copy-pasted from gui-art
-            gui.showFig = function(){
+            gui.showFig = function () {
                 //https://stackoverflow.com/questions/4754699/
                 //  how-do-i-determine-if-a-checkbox-is-checked
                 //no good: var cbox = document.getElementById(
@@ -44,12 +44,12 @@
                 //no good: if($('.figur').is(':checked'))  {
                 var checked = document.getElementById('checkbox_4').checked;
                 sdata.view.isFigureChecked = checked;
-                if(!checked)  {
+                if (!checked)  {
                     let view = sdata.view;
                     let isFig = view.isFigureChecked;
                     let isIn = view.isInscribed;
                     let isCir = view.isCircumscribed;
-                    if( !isIn && !isCir ) {
+                    if ( !isIn && !isCir ) {
                         document.getElementById('checkbox_4').checked = true;
                         sdata.view.isFigureChecked = true;
                         return;
@@ -68,7 +68,7 @@
             let isFig = view.isFigureChecked;
             let isIn = view.isInscribed;
             let isCir = view.isCircumscribed;
-            if( !isFig && !isCir ) {
+            if ( !isFig && !isCir ) {
                 document.getElementById('toggleInscribed').checked = true;
                 sdata.view.isInscribed=1;
                 return;
@@ -84,7 +84,7 @@
             let isFig = view.isFigureChecked;
             let isIn = view.isInscribed;
             let isCir = view.isCircumscribed;
-            if( !isFig && !isIn ) {
+            if ( !isFig && !isIn ) {
                 document.getElementById('toggleCircumscribed').checked = true;
                 view.isCircumscribed = 1;
                 return;

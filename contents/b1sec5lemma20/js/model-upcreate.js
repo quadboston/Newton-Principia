@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         sn, haz, mat,
         stdMod, rg, sconf, ssF, sData,
@@ -114,7 +114,7 @@
         var Ppos = sn( 'pos', P, [] );
         Ppos[0] = pos[0];
         Ppos[1] = pos[1];
-        if( tangent )
+        if ( tangent )
         {
             var Ptangent = sn( 'tangent', P, [] );
             Ptangent[0] = tangent[0];
@@ -159,7 +159,7 @@
         //      doing this only once per lemma init;
         //      later, this par will be from slider;
         //---------------------------
-        if( DID_INITIALIZED ) { //ns.haz( rg, 'T' ) ) {
+        if ( DID_INITIALIZED ) { //ns.haz( rg, 'T' ) ) {
             var parT = rg.T.value;
         } else {
             var parT = sconf.initialParT;
@@ -207,12 +207,12 @@
 
     ///input parameters are in model namespace,
     ///ellipse to array
-    function curveModel2branches(){
+    function curveModel2branches() {
         const brsObj = sData.polar_ell_model;
         brsObj.step = 2*Math.PI/brsObj.stepsCount;
         brsObj.start_q = 0;
         brsObj.BRANCH_COMPLETER = 3;
-        brsObj.formula = function( q ) {
+        brsObj.formula = function ( q ) {
             brsObj.q = q;
             const orb = mat.polar_ellipse(brsObj);
             return {
@@ -220,7 +220,7 @@
                 pointPar : orb.ro,
             };
         };
-        brsObj.breakCondition = function( pointPar1,  pointPar2 ){
+        brsObj.breakCondition = function ( pointPar1,  pointPar2 ) {
             return Math.sign( pointPar1 ) !== Math.sign( pointPar2 );
         };
         stdMod.formula2branches(brsObj);

@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var sn	        = window.b$l.sn;
     var mat         = sn( 'mat' );
     var integral    = sn( 'integral', mat );
@@ -40,7 +40,7 @@
         calculationAccuracy,
         STARTING_EXPONENT_FOR_2,
         SAFETY_INTERACTIONS_LIM,
-    }){
+    }) {
 
         //value 10 gives limit = 2^10, possibly accuracy = 0.001
         //SAFETY_INTERACTIONS_LIM = 25; //experiment: 25 seems ~ 180 Meg, accuracy ~ 10^-11
@@ -59,11 +59,11 @@
         funPoints[ expo ]       = [];
         var currentStep         = ( curveEndParam - curveStartParam ) / basePointsCount;
 
-        for( var it=0; it<=basePointsCount; it++ ) {
+        for ( var it=0; it<=basePointsCount; it++ ) {
             currentBasePoints[ it ] = curveStartParam + currentStep * it;
             var tt              = currentBasePoints[ it ];
             var funPoint        = fun( currentBasePoints[ it ] );
-            if( !funIsAVector ) {
+            if ( !funIsAVector ) {
                 funPoint = [ tt, funPoint ];
             }
             funPoints[ expo ][ it ] = funPoint;
@@ -74,7 +74,7 @@
         {
             var lenSum = 0;
             var curPLen = curvePoints.length;
-            for( var it=1; it<curPLen; it++ ) {
+            for ( var it=1; it<curPLen; it++ ) {
                 var prevP = curvePoints[ it-1 ];
                 var curP  = curvePoints[ it ];
                 var dx    = curP[0]-prevP[0];
@@ -84,7 +84,7 @@
             return lenSum;
         }
 
-        for( var expo = STARTING_EXPONENT_FOR_2 + 1;
+        for ( var expo = STARTING_EXPONENT_FOR_2 + 1;
              expo < SAFETY_INTERACTIONS_LIM; expo++
         ) {
             var prevPC              = mat.powersOf2[ expo-1 ];
@@ -93,17 +93,17 @@
             var currentBasePoints   = basePoints[ expo ] = [];
             var funP                = funPoints[ expo ] = [];
 
-            for( var ip = 0; ip <= prevPC; ip++ ) {
+            for ( var ip = 0; ip <= prevPC; ip++ ) {
                 var it          = ip*2;
                 var fP          = funP[ it ] = prevFP[ ip ];
                 var tLeft       = currentBasePoints[ it ] = prevBP[ ip ];
                 var tRight      = prevBP[ ip + 1 ];
 
-                if( ip === prevPC ) break;
+                if ( ip === prevPC ) break;
                 var tMiddle     = currentBasePoints[ it + 1 ] =
                                   ( tLeft + tRight ) * 0.5;
                 var funPoint    = fun( tMiddle );
-                if( !funIsAVector ) {
+                if ( !funIsAVector ) {
                     funPoint = [ tMiddle, funPoint ];
                 }
                 funP[ it + 1 ] = funPoint;
@@ -111,7 +111,7 @@
             var newLen = calculates_curvePoints2chordsSum( funP );
 
             var reachedAccuracy = Math.abs( prevLen - newLen );
-            if( calculationAccuracy > reachedAccuracy ) {
+            if ( calculationAccuracy > reachedAccuracy ) {
                 /*
                 ccc( 'reached accuracy=' + reachedAccuracy +
                      'value=', newLen, 'expo=', expo, 'memory~' + funP.length

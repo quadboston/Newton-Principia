@@ -1,4 +1,4 @@
-window.b$l.apptree({}).fapp.lemmaConfig = function(){ return {
+window.b$l.apptree({}).fapp.lemmaConfig = function () { return {
     sappCodeReference : 'b1sec2prop1',
     codesList : [
         { src : 'sconf-addon.js' },

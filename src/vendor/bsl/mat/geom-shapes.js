@@ -1,4 +1,4 @@
-( function() {
+( function () {
     const ns	= window.b$l;
     const mat = ns.sn( 'mat' );
 
@@ -16,9 +16,9 @@
         chord,  //alternative-A-from-AB
         A,      //alternative-A-from-AB
         B,      //alternative-A-from-AB
-    ){
+    ) {
         ///if par. chord is missed, chord is set by points A, B
-        if( !chord ) {
+        if ( !chord ) {
             chord = [ B[0] - A[0], B[1] - A[1] ];
         }
         //this is a norm to chord:
@@ -35,7 +35,7 @@
     function pos2angle( pos )
     {
         var t = Math.atan2( pos[1], pos[0] );
-        if( t < 0 ) {
+        if ( t < 0 ) {
             t = 2*Math.PI + t;
         }
         return t;

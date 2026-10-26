@@ -3,7 +3,7 @@
 
 //apparently this module was a derivative from
 //  /var/www/html/bwork/vbsl/vendor/bsl/slider/slider-handler.js
-(function() {
+(function () {
     var ns     = window.b$l;
     var dpdec  = ns.sn('drag-point-decorator');
     var haz    = ns.haz;
@@ -49,7 +49,7 @@
         dpdec.createSliderArrowsCSS(); // default arrow styles
         var cls = 'brc-slider-draggee';
         //overrides specific styles like color for specific points
-        if( addFeaturesToDecPoint ) {
+        if ( addFeaturesToDecPoint ) {
             dpdec.creates_spinnerOwnCss(
                 decorCount_debug,
                 spinnerClsId,
@@ -59,9 +59,9 @@
             );
             cls += ' ' + spinnerClsId;
         }
-        if( orientation === 'horiz' ) {
+        if ( orientation === 'horiz' ) {
             cls += ' axis-y';
-        } else if( orientation ) {
+        } else if ( orientation ) {
             cls += ' ' + orientation;
         }
         //----------------------------------------------
@@ -74,20 +74,20 @@
         var decPoint = document.createElement( 'div' );
         spinner_domParent.appendChild( decPoint );
         var mouseoverCb = haz( addFeaturesToDecPoint, 'mouseoverCb' );
-        if( mouseoverCb ) {
+        if ( mouseoverCb ) {
             decPoint.addEventListener( 'mouseover', (ev) => {
                 mouseoverCb( ev, decPoint );
             });
         }
         var mouseleaveCb = haz( addFeaturesToDecPoint, 'mouseleaveCb' );
-        if( mouseleaveCb ) {
+        if ( mouseleaveCb ) {
             decPoint.addEventListener( 'mouseleave', (ev) => {
                 mouseleaveCb( ev, decPoint );
             });
         }
 
         decPoint.setAttribute( 'class', cls );
-        if( tooltip ) {
+        if ( tooltip ) {
             decPoint.setAttribute( 'title', tooltip );
         }
         var left = document.createElement( 'div' );

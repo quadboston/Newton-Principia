@@ -1,4 +1,4 @@
-(function(){
+(function () {
     const { nspaste, capture, sconf, } =
         window.b$l.apptree({ ssFExportList : {
             setsCommonT1andT2capture,
@@ -24,7 +24,7 @@
         return;
 
 
-function setsCommonT1andT2capture (){
+function setsCommonT1andT2capture() {
     nspaste( capture, {
         //"1-B", replaced with 1-4
         "1-C": {
@@ -60,7 +60,7 @@ function setsCommonT1andT2capture (){
 ///sets captured states of the simulator,
 ///used in by-click-actions in text,
 ///jsobject has indices of this these actions,
-function makesProfessorsCaptureFootnotes (){
+function makesProfessorsCaptureFootnotes() {
     nspaste( capture, {
         "1-0": {
             "rgslid_dt": {

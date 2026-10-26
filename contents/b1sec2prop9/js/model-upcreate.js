@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { $$, nsmethods, nssvg, mat,
         ssF, ssD, stdMod, sconf, rg, toreg, }
         = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });

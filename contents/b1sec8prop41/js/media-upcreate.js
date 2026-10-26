@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, sn, ow, has, $$, nssvg, eachprop,
         fconf, ssF, ssD, sData,
@@ -19,13 +19,13 @@
         angleMax,
         angleMin,   //optional, 0 by default
         circleName
-    }){
+    }) {
         let rgX = toreg( circleName )();
         let len = 200;
         angleMin = ow( arguments[0], 'angleMin' ) ? angleMin : 0;
         let angleStep = (angleMax-angleMin) / len;
         rgX.pivots = has( rgX, 'pivots' ) ? rgX.pivots : [];
-        for( var ix=0; ix<len; ix++ ) {
+        for ( var ix=0; ix<len; ix++ ) {
             var angle = angleMin + angleStep * ix;
             rgX.pivots[ix] =[
                           -radius * Math.sin( angle ), //effective "x"-axis to the screen left
@@ -79,7 +79,7 @@
             stdMod.buildsQuadPlot( rgX );
         });
         eachprop( sData.quadSolved, (prop,pname) => {
-            if( pname !== 'orbit' ) return;
+            if ( pname !== 'orbit' ) return;
             let rgX = toreg( pname )();
             rgX.pivots = prop;
             stdMod.buildsQuadPlot( rgX );

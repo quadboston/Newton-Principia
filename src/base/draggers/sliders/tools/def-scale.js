@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         haz,
         sconf, ssF, rg, toreg,

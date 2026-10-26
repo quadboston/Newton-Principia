@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var ns          = window.b$l        = window.b$l        || {};
     var fapp        = ns.fapp           = ns.fapp           || {};
     fapp.version = '0.9.8'; //application version

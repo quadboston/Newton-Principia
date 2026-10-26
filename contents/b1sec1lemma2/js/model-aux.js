@@ -93,7 +93,7 @@
         let len = sconf.BASE_MAX_NUM;
         let step = chosenWidth/len;
         let sum = 0;
-        for( var ii=0; ii<len; ii++ ) {
+        for ( var ii=0; ii<len; ii++ ) {
             sum += ff(dr, ii*step+x_start);
         }
         sum *= step;
@@ -103,14 +103,14 @@
     function calculatesMajorantRect(dr)
     {
         let widestSize = 0;
-        for(let i=0; i<sconf.basesN; i++ ) {
+        for (let i=0; i<sconf.basesN; i++ ) {
             const width = dr.partitionWidths[i];
             widestSize = Math.max(widestSize, width);
         }
 
         let dv = dr.yVariations;
         let chchosen = dv.chchosen;
-        if( dv.chchosen.dir > 0 ) {
+        if ( dv.chchosen.dir > 0 ) {
             var left = dv.x_start;
             var right = left + widestSize;
         } else {
@@ -144,7 +144,7 @@
         //we make them by adding already known widths
         //to the monotonity interval,
         var bbl = dr.yVariations.x_start;
-        for( var ib = 0; ib < basesN; ib++ ) {
+        for ( var ib = 0; ib < basesN; ib++ ) {
             baseBarsLefts[ib] = bbl;
             bbl += pwidths[ib];
             baseBarsRights[ib] = bbl;
@@ -155,16 +155,16 @@
             let ff = numModel.curveFun;
             let yRef = dr.yVariations.yRef;
             let dir = dr.yVariations.chchosen.dir;
-            for( var ib = 0; ib < basesN; ib++ ) {
+            for ( var ib = 0; ib < basesN; ib++ ) {
                 let ymin = ff(dr, baseBarsLefts[ib]);
                 let ymax = ff(dr, baseBarsRights[ib]);
-                if( dir <=0 ) {
+                if ( dir <=0 ) {
                     let d = ymin;
                     ymin = ymax;
                     ymax = d;
                 }
                 ymax = Math.min(ymax, yRef*0.9999999);
-                if( ymin>=ymax ) {
+                if ( ymin>=ymax ) {
                     ////otherwise negative heights
                     ////happens at svg
                     ymin = ymax < 0 ? ymax*1.0000001 : ymax * 0.999999;
@@ -179,7 +179,7 @@
         var pwidths = dr.partitionWidths;
         var areaCir = 0;
         var areaIns = 0;
-        for( var ib = 0; ib < basesN; ib++ ) {
+        for ( var ib = 0; ib < basesN; ib++ ) {
             let barwidth = pwidths[ib];
             areaCir += barwidth*cirYar[ib];
             areaIns += barwidth*insYar[ib];
@@ -228,7 +228,7 @@
             return;
 
         //Only adjust the widths if both figures are monotonic.
-        if(!study.areBothFiguresMonotonic())
+        if (!study.areBothFiguresMonotonic())
             return;
 
         const ratioData = calculateRatioInscribedAreasAndWidthLast(drOther);
@@ -253,7 +253,7 @@
 
         let sumAreaIns = 0;
         const areasIns = [];
-        for(let i = 0; i < sconf.basesN; i++) {
+        for (let i = 0; i < sconf.basesN; i++) {
             const width = pwidths[i];
             const x = xLast + width;
             const y = ff(dr, x);
@@ -370,7 +370,7 @@
             let xRight = x_end - widthLastRect;
 
             //All remaining rectangles, start with the second last.
-            for(let i = sconf.basesN - 2; i >= 0; i--) {
+            for (let i = sconf.basesN - 2; i >= 0; i--) {
                 //If x is beyond the left side, constrain it so the height of
                 //that side is used.  This is helpful for estimating how much
                 //the scale is off by, because it still allows a width to be
@@ -422,7 +422,7 @@
             let widthData = null;
 
             //Constrain max iteration to prevent eg. infinite loop
-            for(let iteration = 0; iteration <= 4; iteration++) {
+            for (let iteration = 0; iteration <= 4; iteration++) {
                 //Calculate new scale or skip to check initial guess.
                 if (widthData) {
                     //Estimate derivative
@@ -470,7 +470,7 @@
             let scaleU = scaleMax;
 
             //Constrain max iteration to prevent eg. infinite loop
-            for(let iteration = 0; iteration < 20; iteration++) {
+            for (let iteration = 0; iteration < 20; iteration++) {
                 //Calculate new scale for midpoint
                 const scale = (scaleL + scaleU) / 2;
 

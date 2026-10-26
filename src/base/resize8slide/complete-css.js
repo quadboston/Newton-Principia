@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { sn, $$, haz, has, fmethods, eachprop, fconf, sconf, sDomN, wrkwin,
         stdMod, } = window.b$l.apptree({ ssFExportList : { }, });
     wrkwin.buildsMobile     = buildsMobile;
@@ -18,7 +18,7 @@
         var maxHeight = 250;
         sDomN.essaionsRoot$.children( child => {
             var wHeight = child.getBoundingClientRect().height;
-            if( maxHeight < wHeight ) {
+            if ( maxHeight < wHeight ) {
                 maxHeight = wHeight;
             }
         });
@@ -162,7 +162,7 @@
         // //\\ legend css
         //      note: for STATIC_LEGEND, legend dom is ignored
         //---------------------------------------------------------
-        if( wideScreen_flag ) {
+        if ( wideScreen_flag ) {
             //todo ???
             //var ww = fconf.sappId.indexOf('lemma2') === 0 ||
             //         fconf.sappId === 'lemma3' ? 20 : 0;

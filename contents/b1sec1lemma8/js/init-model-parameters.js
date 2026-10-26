@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, mat, nspaste, sconf, ssF, ssD, sDomF, sData, amode, stdMod, toreg, rg,
     } = window.b$l.apptree({
@@ -47,7 +47,7 @@
         //-------------------------------------------------
         // //\\ dragger B
         //-------------------------------------------------
-        rg.B.processOwnDownEvent = function() {
+        rg.B.processOwnDownEvent = function () {
             sData.unrotatedParameterX = rg.B.unrotatedParameterX;
             sData.RB_slope = [ rg.D.pos[0] - rg.B.pos[0], rg.D.pos[1] - rg.B.pos[1] ];
             ssD.draggerInUse = 'B';
@@ -61,12 +61,12 @@
                 var new_unrotatedParameterX = newPos[0];
 
                 //prevents B from getting too close to A to avoid rounding errors
-                if( new_unrotatedParameterX < 0.0065 ) {
+                if ( new_unrotatedParameterX < 0.0065 ) {
                     new_unrotatedParameterX = 0.0065;
                 }
 
                 ///prevents user from playing with too big curves
-                if( new_unrotatedParameterX > rg.curveEnd.pos[0] * 0.95 ) {
+                if ( new_unrotatedParameterX > rg.curveEnd.pos[0] * 0.95 ) {
                     new_unrotatedParameterX = rg.curveEnd.pos[0] * 0.95;
                 }
 
@@ -83,7 +83,7 @@
         //-------------------------------------------------
         // //\\ dragger R
         //-------------------------------------------------
-        rg.R.processOwnDownEvent = function() {
+        rg.R.processOwnDownEvent = function () {
             sData.unrotatedParameterX = rg.B.unrotatedParameterX;
             sData.RB_slope = [ rg.D.pos[0] - rg.B.pos[0], rg.D.pos[1] - rg.B.pos[1] ];
             ssD.draggerInUse = 'R';
@@ -95,11 +95,11 @@
             acceptPos : ( newPos ) =>
             {
                 // R cannot be moved right of B on x-axis
-                if(newPos[0] >= rg.B.pos[0] - 0.2) {
+                if (newPos[0] >= rg.B.pos[0] - 0.2) {
                     return false;
                 }
                 // R cannot be higher than B on y-axis
-                if(newPos[1] >= rg.B.pos[1] - 0.2) {
+                if (newPos[1] >= rg.B.pos[1] - 0.2) {
                     return false;
                 }
                 return true;
@@ -112,7 +112,7 @@
         //-------------------------------------------------
         // //\\ dragger D
         //-------------------------------------------------
-        rg.D.processOwnDownEvent = function() {
+        rg.D.processOwnDownEvent = function () {
             ssD.draggerInUse = 'D';
         };
 
@@ -128,7 +128,7 @@
 
                 // Stop D before slope of DR === slope of AR
                 // Prevent D from being moved too far to the right
-                if(newDx > Bx + 0.2 && newDx < original_Dx * 2) {
+                if (newDx > Bx + 0.2 && newDx < original_Dx * 2) {
                     return true;
                 } else {
                     return false;
@@ -177,7 +177,7 @@
         let posD = mat.lineSegmentsCross( rg.R.pos, rg.B.pos, rg.A.pos, rg.d.pos );
         let posR = mat.lineSegmentsCross( rg.D.pos, rg.B.pos, rg.A.pos, rg.r.pos );
 
-        if(ssD.draggerInUse === "D") {
+        if (ssD.draggerInUse === "D") {
             rg.R.pos = posR;
         } else {
             rg.D.pos[0] = posD[0];
@@ -274,7 +274,7 @@
             calculationAccuracy : 1e-4*rg.AB.abs,
         });
 
-        if(rg.AB.abs > 0) {
+        if (rg.AB.abs > 0) {
             rg.Ab.arcLen = rg.AB.arcLen * rg.Ab.abs / rg.AB.abs;
         }
 

@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ssF, stdMod
     } = window.b$l.apptree({
@@ -64,7 +64,7 @@
                  0 : 'op.eccentricity';
         }
 
-        function makesBodyCluster({ rowIx, clusterIx, }){
+        function makesBodyCluster({ rowIx, clusterIx, }) {
             //called 4x on page load, once per "cluster"
             //console.log('makesBodyCluster');
             return ssF.dataSourceParsed1__2__makesBodyCluster({

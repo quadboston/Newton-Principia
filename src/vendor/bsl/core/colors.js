@@ -1,17 +1,17 @@
-( function() {
+( function () {
     var ns	= window.b$l;
 
     //reg. ex for string aka rgba(4,4,4,0.1) to array
     ns.hslo_2_rgba_low8high = hslo_2_rgba_low8high;
 
     //api:arg = [r,g,b,a ]
-    ns.rgbaArr2hsla = function( arg ) {
+    ns.rgbaArr2hsla = function ( arg ) {
         var hsl = ns.rgb2hsl( arg[0],arg[1],arg[2] );
         return [ 355.99*hsl[0], 99.999*hsl[1], 99.999*hsl[2], arg[3], arg[4] ];
     };
 
     //was: function getRandomColor()
-    ns.pars2colors = function( HUE, SATURATION, LIGHTNESS, OPACITY )
+    ns.pars2colors = function ( HUE, SATURATION, LIGHTNESS, OPACITY )
     {
         var DARKER = 0.8;
 
@@ -76,7 +76,7 @@
     /// HSL to RGB
     /// https://en.wikipedia.org/wiki/HSL_and_HSV#From_HSL
     /// credit: https://codepen.io/frantic1048/pen/LGGxZP   , but it has a mistake: "* 60"
-    ns.hsl2rgb = function( hh, ss, ll)
+    ns.hsl2rgb = function ( hh, ss, ll)
     {
 
       var cc = (1 - Math.abs(2 * ll - 1)) * ss;
@@ -118,7 +118,7 @@
      * @return  Array           The HSL representation
      */
     //ns.rgbToHsl = function(r, g, b) {
-    ns.rgb2hsl = function(r, g, b) {
+    ns.rgb2hsl = function (r, g, b) {
       r /= 255, g /= 255, b /= 255;
 
       var max = Math.max(r, g, b), min = Math.min(r, g, b);
@@ -150,7 +150,7 @@
     ///     missed opacity ---> 1
     ns.arr2rgba = function ( arr )
     {
-        if( !arr || !Array.isArray(arr) ) return "rgba(0,0,0,1)";
+        if ( !arr || !Array.isArray(arr) ) return "rgba(0,0,0,1)";
         var op = ( typeof arr[3] !== 'undefined' ) ? arr[3] : 1;
         var r=Math.floor( arr[0] );
         var g=Math.floor( arr[1] );
@@ -161,7 +161,7 @@
     //input: arr[0],arr[1],arr[2] must be integers
     ns.arr2rgb_rgba = function ( arr )
     {
-        if( !arr || !Array.isArray(arr) ) return "rgba(0,0,0,1)";
+        if ( !arr || !Array.isArray(arr) ) return "rgba(0,0,0,1)";
         var op = ( typeof arr[3] !== 'undefined' ) ? arr[3] : 1;
         var r=Math.floor( arr[0] );
         var g=Math.floor( arr[1] );
@@ -182,7 +182,7 @@
         color1b = Math.max( Math.min( 255, color1b ), 0 ).toFixed();
 
         var str = color1r + ',' + color1g + ',' + color1b;
-        if( color1a || color1a === 0 ) {
+        if ( color1a || color1a === 0 ) {
             color1a = Math.max( Math.min( 255, color1a ), 0 ).toFixed(4);
             str = 'rgba(' + str + ',' + color1a + ')';
         } else {

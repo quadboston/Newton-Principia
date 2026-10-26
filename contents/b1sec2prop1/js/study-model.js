@@ -1,4 +1,4 @@
-(function(){
+(function () {
     const { sn, haff, hafff, nspaste, haz, globalCss, mat,
             rg, sconf, ssF, stdMod,
     } = window.b$l.apptree({ stdModExportList : {
@@ -9,7 +9,7 @@
     return;
 
 
-    function init_model_parameters (){
+    function init_model_parameters() {
         stdMod.sconf_2_shapes();
         stdMod.shapeSconf_2_svg();
         rg.displayTime = { value : '' };
@@ -18,7 +18,7 @@
         stdMod.creates_delta_time_slider();
     }
 
-    function model_upcreate (){
+    function model_upcreate() {
         //console.log('model_upcreate');
         //for case if captured click does not have curtime set
         stdMod.protects_curTime_ranges();

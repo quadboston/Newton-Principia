@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, sn, $$, nsmethods, nspaste, nssvg, mcurve, integral, mat,
         fconf, ssF, ssD, sData,

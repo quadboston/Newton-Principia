@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { mat, rg, ssD, stdMod, sconf, } = window.b$l.apptree({
         stdModExportList : {
             recreates_q2xy,
@@ -52,12 +52,12 @@
                     //"virtueal" inner_angle fi0
         }
         ///corrects approximate mouse point to exact point on the circle
-        function correctApproxMousePosToExact( pname, newPos, inner_angle ){
+        function correctApproxMousePosToExact( pname, newPos, inner_angle ) {
             let rgX = rg[pname];
-            if( typeof inner_angle === 'undefined' ){
+            if ( typeof inner_angle === 'undefined' ) {
                 inner_angle = pos2t( newPos );
             }
-            if( inner_angle < Math.PI*0.01 || inner_angle > sconf.orbit_q_end ){
+            if ( inner_angle < Math.PI*0.01 || inner_angle > sconf.orbit_q_end ) {
                 inner_angle = ( inner_angle + sconf.orbit_q_end ) % sconf.orbit_q_end;
             }
             let qix = Math.floor( inner_angle/sconf.delta_q_between_steps );

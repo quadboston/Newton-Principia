@@ -1,5 +1,5 @@
 //sets slider hanlders
-(function() {
+(function () {
 const { sn, mat, nspaste, sconf, sDomF, ssF, rg, toreg, stdMod, amode } =
         window.b$l.apptree({ ssFExportList : { sets_A_v_forces_sliders
 }});
@@ -7,7 +7,7 @@ return;
 
 
 ///executes one time
-function sets_A_v_forces_sliders (){
+function sets_A_v_forces_sliders() {
     //**********************
     //initially does job which sliders do at run-time
     toreg( 'slider_sltime' )( 'curtime',
@@ -29,7 +29,7 @@ function sets_A_v_forces_sliders (){
         let nam1='VVV'+ix;
         rgX = sn( nam1, rg );
         rgX.acceptPos =
-            function( newVPos, dummyPar, enforceNewPos ) {
+            function ( newVPos, dummyPar, enforceNewPos ) {
                 return V2forceParams(newVPos, dummyPar, enforceNewPos, ix);
             };
     });
@@ -40,7 +40,7 @@ function sets_A_v_forces_sliders (){
 /// estimates speed direction in the first step and
 /// resets speed direction;
 ///=============================================================
-function v2params( newPos, dummyPar, ){
+function v2params( newPos, dummyPar, ) {
     var path_Av = mat.subV( newPos, rg.A.pos );
     var unitAv = mat.unitVector( path_Av );
 
@@ -62,7 +62,7 @@ function v2params( newPos, dummyPar, ){
 ///when dragging point V, converts V pos change to force-law constant change,
 ///returns true which means newPos is allowed,
 ///=============================================================
-function V2forceParams( newVPos, dummyPar, enforceNewPos, fix ){
+function V2forceParams( newVPos, dummyPar, enforceNewPos, fix ) {
     let nam0='VV'+fix;
     let nam1='VVV'+fix;
     var tstep               = rg.rgslid_dt.val;
@@ -101,11 +101,11 @@ function V2forceParams( newVPos, dummyPar, enforceNewPos, fix ){
 ///==============================================================
 /// when dragging, changes initial distance: distance from A to S
 ///==============================================================
-function A2distanceToS( newAPos, dummyPar, ){
+function A2distanceToS( newAPos, dummyPar, ) {
     var posS    = rg.S.pos;
     var newAS   = mat.unitVector( mat.subV( newAPos, posS ) );
     //A is too close to S, forbid this configuration
-    if( newAS.abs < 1e-20 ) return false;
+    if ( newAS.abs < 1e-20 ) return false;
 
     //updates dragger v position
     var newP = mat.addV( rg.speeds.vect[0], rg.A.pos );

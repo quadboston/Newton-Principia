@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { stdMod, }
         = window.b$l.apptree({ stdModExportList : { customXLegend, }, });
     return;

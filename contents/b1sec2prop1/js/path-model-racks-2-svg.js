@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { ssF, sDomF, toreg, rg, } =
         window.b$l.apptree({ stdModExportList : { allPathRacks_2_unseenSVGs, }, });
     return;
@@ -39,7 +39,7 @@
             //---------------------------------------------------------
             // //\\ placifies keplerTriangles
             //---------------------------------------------------------
-            if( pix > 0 ) {
+            if ( pix > 0 ) {
                 const kix           = pix-1;
                 const pkey          = 'kepltr-' + kix;
 
@@ -82,7 +82,7 @@
 
             //forces master-index offset is pi = 1 and
             //identified with key 'kepltr-' + (pi-1)
-            if( pix > 0 ) {
+            if ( pix > 0 ) {
 
                 //*****************************************
                 // //\\ paints forces attached to B, C, ...
@@ -145,7 +145,7 @@
         //      apparently, segment after applying the force
         //-------------------------------------------------
         pathRacks.forEach( (prack, pix) => {
-            if( pix === pathRacks.length - 1 ) return;
+            if ( pix === pathRacks.length - 1 ) return;
             var wwpname = 'pathSegment-' + pix;
             toreg( wwpname )({ undisplay : true })();
             pivots_2_svgLineInRg(

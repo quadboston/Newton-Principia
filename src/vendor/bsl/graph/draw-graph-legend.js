@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         sn, $$, nsmethods, eachprop, haz, nssvg,
     } = window.b$l.nstree();
@@ -17,7 +17,7 @@
         marginX,
         dimY_withMarg,
         marginY,
-    }){
+    }) {
 
         //======================================================
         // //\\ draws legend
@@ -38,7 +38,7 @@
         //==================================================
         function drawsLegendl({ legend, gname, offset })
         {
-            if( !legend ) return;
+            if ( !legend ) return;
             offset = offset || { x:0, y:0 };
             let med = graphFM_self.gmedia$();
             let garbage = sn( 'legendArrayGarbageCollector-'+gname, graphFM_self, [] );
@@ -49,7 +49,7 @@
             legend.forEach( subLeg => {
                 //style is optional in legend
                 var sstyle = haz( subLeg, 'style' ) || {};
-                if( subLeg.text.match( /^\s*<text>/ ) ) {
+                if ( subLeg.text.match( /^\s*<text>/ ) ) {
                         let html = subLeg.text.replace( /<text>/, '' ).replace( /<\/text>/, '' );
                         var t = $$.cNS( 'text' )
                             .to( med )

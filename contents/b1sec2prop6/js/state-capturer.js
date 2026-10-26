@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, sconf, fapp, rg, ssD, stdMod,
     } = window.b$l.apptree({
@@ -18,7 +18,7 @@
     function captureAState(
         //as of March 3, 2021, has only few "insignificant sugar" GUI props for media d8d
         ast,
-    ){
+    ) {
         const round = ( value, digits ) => Number( value.toFixed( digits ) );
 
         // model position to picture position, as used for pos in sconf.js;

@@ -1,6 +1,6 @@
 //expands sconf.js into rg, topicColors_repo and
 //"unifies" and normalizes them,
-(function(){
+(function () {
     const {
         sn, haz, has, eachprop, own,
         rg, fconf, sf, ssF, sDomF, topicColors_repo,
@@ -13,7 +13,7 @@
     return;
 
 
-function doExpandConfig (){
+function doExpandConfig() {
     var {
         topicColors_elected,
         originalPoints,
@@ -134,7 +134,7 @@ function doExpandConfig (){
     var estimatesSizeScale = estimatedPictureSize/1000;
 
     var factor = MONITOR_Y_FLIP * inn2mod_scale;
-    (function() {
+    (function () {
         ///--------------------------------------------------
         ///equalizes repo and elected and makes place in rg
         ///--------------------------------------------------
@@ -149,7 +149,7 @@ function doExpandConfig (){
         // //\\ expands originalPoints placeholders
         //--------------------------------------------------
         eachprop( originalPoints, ( op, pname ) => {
-            if( Array.isArray( op ) ) {
+            if ( Array.isArray( op ) ) {
                 ////handles array of originalPoints
 
                 //prepares 3 properties for batch assignment
@@ -181,7 +181,7 @@ function doExpandConfig (){
         //----------------------------------
         linesArray = haz( sf, 'linesArray' );
         ///equalizes lines and linesArray from linesArray into lines:
-        if( linesArray ) {
+        if ( linesArray ) {
             lines = {};
             linesArray.forEach( (lineConf) => {
                 var lname = Object.keys( lineConf )[0];
@@ -211,8 +211,8 @@ function doExpandConfig (){
                 'pivotNames',
                 'stroke-width',
             ].forEach( propname => {
-                if( propname === 'pivotNames' ){
-                    if( has(gshape,propname) ){
+                if ( propname === 'pivotNames' ) {
+                    if ( has(gshape,propname) ) {
                         rgX[propname] = gshape[propname];
                     }
                 } else {
@@ -226,7 +226,7 @@ function doExpandConfig (){
             //stroke, 'stroke-width', and 'caption'
             //here we create even more mess because adding alternative stream for
             //pcolor
-            if( has( gshape, 'pcolor' ) ) {
+            if ( has( gshape, 'pcolor' ) ) {
                 var tk = sDomF.toCssIdentifier( pname );
                 //concat() separates generic color-arrays from
                 let fc = topicColors_repo[ tk ] = gshape.pcolor.concat();
@@ -241,8 +241,8 @@ function doExpandConfig (){
             }
 
             let gclass = haz( gshape, 'cssClass' );
-            if( gclass ){
-                if( gclass.indexOf( '--' )>0 ){
+            if ( gclass ) {
+                if ( gclass.indexOf( '--' )>0 ) {
                     gclass += ' hidee';
                     gshape.cssClass = gclass;
                     //c cc( pname +' gclass='+ gclass );
@@ -261,7 +261,7 @@ function doExpandConfig (){
         return;
 
         ///rg becomes normalized expansion of originalPoints
-        function expandsOrPoint( op, pname ){
+        function expandsOrPoint( op, pname ) {
             //todo ... non-readable: it tranfers properties from
             //??original points to here,
             //      this must be clearly written in code,
@@ -292,22 +292,22 @@ function doExpandConfig (){
             sn( 'draggableX', rgX, draggableX );
             sn( 'draggableY', rgX, draggableY );
 
-            if( has( op, 'cssClass' ) ){
+            if ( has( op, 'cssClass' ) ) {
                 let opclass = op.cssClass;
-                if( opclass.indexOf( '--' )>0 ){
+                if ( opclass.indexOf( '--' )>0 ) {
                     opclass += ' hidee';
                     op.cssClass = opclass;
                 }
                 rgX.classmark = opclass;
-            } else if( has( op, 'classmark' ) ) {
-                if( op.classmark.indexOf( '--' )>0 ){
+            } else if ( has( op, 'classmark' ) ) {
+                if ( op.classmark.indexOf( '--' )>0 ) {
                     op.classmark += ' hidee';
                 }
                 rgX.classmark = op.classmark;
             }
             rgX.doPaintPname = doPaintPname;
 
-            if( has( op, 'pcolor' ) ) {
+            if ( has( op, 'pcolor' ) ) {
                 var tk = sDomF.toCssIdentifier( pname );
                 let fc = topicColors_repo[ tk ] = op.pcolor; //low
                 topicColors_repo_camel2col[ pname ] = fc;       //camel
@@ -335,7 +335,7 @@ function doExpandConfig (){
                    op.fontSize :
                    fconf.LETTER_FONT_SIZE_PER_1000 );
             var letterShift     = haz( op, 'letterShift' );
-            if( letterShift ) {
+            if ( letterShift ) {
                 rgX.letterOffsetX = letterShift[0];
                 rgX.letterOffsetY = letterShift[1];
             } else {
@@ -350,7 +350,7 @@ function doExpandConfig (){
             rgX.letterOffsetY   *= -1; //for screen y-direction
 
             var letterColor = haz( op, 'letterColor' );
-            if( letterColor ) {
+            if ( letterColor ) {
                 //todm ...
                 //rgX.letterColor = haz( op, 'letterColor' ) || rgX.pcolor;
                 rgX.letterColor = sDomF.getFixedColor( letterColor );

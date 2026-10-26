@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         $$,
         fapp, fconf, wrkwin, sDomN, sDomF,
@@ -16,13 +16,13 @@
         //==============================================================
         // //\\ essay and media panes
         //==============================================================
-        for( wx=0; wx<2; wx++ ) {
-            if( ( wx===0 && fconf.ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML ) ||
+        for ( wx=0; wx<2; wx++ ) {
+            if ( ( wx===0 && fconf.ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML ) ||
                 ( wx===1 && !fconf.ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML ) ) {
                 // //\\ creates essaion pane
                 //      "essaion superroot"
                 var wCls = 'bsl-text-widget';
-                if( fconf.attach_menu_to_essaion_root ) {
+                if ( fconf.attach_menu_to_essaion_root ) {
                     wCls += ' leftside-menuholder';
                 }
                 sDomN.essaionsRoot$ = $$.div()
@@ -53,7 +53,7 @@
     function detected_user_interaction_effect( doShowDiagram )
     {
         doesShowDiagram( doShowDiagram );
-        if( typeof fconf.timeToShowOriginalDiagram_effective === 'number' &&
+        if ( typeof fconf.timeToShowOriginalDiagram_effective === 'number' &&
             fconf.timeToShowOriginalDiagram_effective > 0 && doShowDiagram ) {
             setTimeout(
                 () => {
@@ -67,7 +67,7 @@
         rg.detected_user_interaction_effect_DONE = !doShowDiagram;
         // with the study lab enabled, the book's diagram stays visible
         // for comparing the model with it
-        if( doShowDiagram || !sconf.enableStudylab ) {
+        if ( doShowDiagram || !sconf.enableStudylab ) {
             stdMod.imgRk.dom$
                [ doShowDiagram ? 'removeClass' : 'addClass' ]( 'in-study' );
         }

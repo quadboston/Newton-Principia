@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { amode, rg, sDomF, }
         = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     return;
@@ -41,7 +41,7 @@
         rg.pivotPoint1.pcolor = sDomF.getFixedColor( 'given' )
         rg.Ag.pcolor = sDomF.getFixedColor( 'given' )
 
-        if( logic_phase === 'claim' ) {
+        if ( logic_phase === 'claim' ) {
             //Sets and constrains the tiltAngle as follows.
             rg.tiltAngle.value = 0;
         }

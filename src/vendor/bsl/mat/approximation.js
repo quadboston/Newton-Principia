@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var ns	    = window.b$l;
     var mat     = ns.sn( 'mat' );
 
@@ -9,7 +9,7 @@
     ///constructs Newton's polynomial
     function calculate_divided_differences(
         pointsXY, //array function y(x) points in format: [ [x1,y1], [x2,y2], ... ]
-    ){
+    ) {
         var n = pointsXY.length;
 
         //Newton's divided differences indexed by levels:
@@ -24,7 +24,7 @@
         F[0] = pointsXY.concat( [] );
 
         ///constructs levels-above-initial interactively
-        for( var level=1; level<n; level++ ) {
+        for ( var level=1; level<n; level++ ) {
             var [ Ftop_arr, xx, PP ] = Flow_2_Ftop( F[ level-1 ] );
             F[ level ]  = Ftop_arr;
             z[ level ]  = xx;
@@ -37,7 +37,7 @@
         {
             var Ftop = [];
             var m1 = Flow.length-1;
-            for( var i=0; i<m1; i++ ) {
+            for ( var i=0; i<m1; i++ ) {
                 var F2 = Flow[i+1];
                 var F1 = Flow[i];
 
@@ -62,7 +62,7 @@
             var PP      = P;
             var poly    = P[0];
             var factors = 1;
-            for( var i=1; i<nn; i++ ) {
+            for ( var i=1; i<nn; i++ ) {
                 factors *= ( x - zz[i-1] );
                 poly += PP[i]*factors;
             }
@@ -96,7 +96,7 @@
             var reversalsSum = [ 1 ];   //index is level
             var unitDegree = [ -1 ];   //index is level
             ///loops via polynomial's derivative members
-            for( var i = 1; i < n; i++ ) {
+            for ( var i = 1; i < n; i++ ) {
                 //calculates common arrays:
                 xProduct[i]     = xProduct[i-1] * F[0][i-1][0];
                 reversalsSum[i] = reversalsSum[i-1] + ( 1/F[0][i-1][0] );

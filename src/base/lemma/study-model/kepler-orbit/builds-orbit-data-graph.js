@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { sn, rg, stdMod, sconf, ssD, sData, }
         = window.b$l.apptree({ stdModExportList : {
             builds_orbit_data_graph,
@@ -10,7 +10,7 @@
     return;
 
 
-    function qIndexFromPointPToGraphIndex(){
+    function qIndexFromPointPToGraphIndex() {
         const qix = rg.P.qix;
         const gix = qIndexToOrbit[ qix ]?.gix;
         return gix;
@@ -43,13 +43,13 @@
             ssD.xMaxFixedGraphAxis = 0;
         }
         //var fullPath = qIndexToOrbit[ gend ].pathAtQ;
-        for( let qix=gstart; qix<=gend; qix++ ){
+        for ( let qix=gstart; qix<=gend; qix++ ) {
             const bP = qIndexToOrbit[ qix ];
             const actualForce = bP.actualForce;
             const estimatedForce = bP.estimatedForce;
             const estimatedForceLargest = bP.estimatedForceLargest;
 
-            if( !(qix%dataPeriod) || qix===Q_STEPS ){
+            if ( !(qix%dataPeriod) || qix===Q_STEPS ) {
                 actualForceMax = Math.max(Math.abs(actualForce), actualForceMax);
                 estimatedForceMax = Math.max(Math.abs(estimatedForce), estimatedForceMax);
                 estimatedForceLargestMax = Math.max(
@@ -93,7 +93,7 @@
         const estimatedForceScale = (IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX ?
             actualForceMax : estimatedForceMax);
         var arrLen = graphArray.length;
-        for( var gix = 0; gix<arrLen; gix++ ){
+        for ( var gix = 0; gix<arrLen; gix++ ) {
             const ga = graphArray[ gix ];
             const qix = ga.qix;
             const bP = qIndexToOrbit[ qix ];

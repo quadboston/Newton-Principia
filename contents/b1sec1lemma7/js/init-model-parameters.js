@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, mat, nspaste, sconf, ssF, ssD, sDomF, sData, amode, stdMod, toreg, rg,
     } = window.b$l.apptree({
@@ -25,11 +25,11 @@
         //-------------------------------------------------
         // //\\ dragger B
         //-------------------------------------------------
-        rg.B.processOwnDownEvent = function() {
+        rg.B.processOwnDownEvent = function () {
             sData.RB_slope = [ rg.D.pos[0] - rg.B.pos[0], rg.D.pos[1] - rg.B.pos[1] ];
             ssD.draggerInUse = 'B';
         };
-        rg.B.processOwnUpEvent = function() {
+        rg.B.processOwnUpEvent = function () {
             ssD.draggerInUse = '';
         };
         rg.B.dragPriority = 100;
@@ -43,12 +43,12 @@
                 );
 
                 //prevents B from getting too close to A to avoid rounding errors
-                if( newPosX < sconf.NON_ZERO_A_PREVENTOR ) {
+                if ( newPosX < sconf.NON_ZERO_A_PREVENTOR ) {
                     newPosX = sconf.NON_ZERO_A_PREVENTOR;
                 }
 
                 ///prevents user from playing with too big curves
-                if( newPosX > rg.curveEnd.pos[0] ) {
+                if ( newPosX > rg.curveEnd.pos[0] ) {
                     newPosX = rg.curveEnd.pos[0]-0.00001;
                 }
 
@@ -66,22 +66,22 @@
         //-------------------------------------------------
         // //\\ dragger D
         //-------------------------------------------------
-        rg.D.processOwnDownEvent = function() {
+        rg.D.processOwnDownEvent = function () {
             ssD.draggerInUse = 'D';
         };
-        rg.D.processOwnUpEvent = function() {
+        rg.D.processOwnUpEvent = function () {
             ssD.draggerInUse = '';
         };
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
             pname : 'D',
             acceptPos : ( newPos ) => {
-                if(rg.B.pos[0] > 0.2) { // so D can't be grabbed when it is under B
+                if (rg.B.pos[0] > 0.2) { // so D can't be grabbed when it is under B
                     let originalDx = rg.D.originalPos[0];
                     let half_AD = originalDx / 2; // D can move half the width of AD in either dir
                     newPos[1] = 0; // y pos doesn't change
                     let x = newPos[0];
-                    if(x < originalDx - half_AD || x > originalDx + half_AD) {
+                    if (x < originalDx - half_AD || x > originalDx + half_AD) {
                         return false;
                     } else {
                         return true;
@@ -126,8 +126,8 @@
         var magn = toreg( 'magnitude' )( 'value', bpos[0]/Bx )( 'value' ); // creates rg.magnitude.value
         //console.log(Bx + ' ' + magn) // todo: sometimes magn is wrong when switching between claim/proof/corol
 
-        if(bpos[1] > rg.d.pos[1]) bpos[1] = rg.d.pos[1]; // b can't go above AD
-        if(bpos[0] > rg.d.pos[0] && bpos[1] >= rg.d.pos[1]) {
+        if (bpos[1] > rg.d.pos[1]) bpos[1] = rg.d.pos[1]; // b can't go above AD
+        if (bpos[0] > rg.d.pos[0] && bpos[1] >= rg.d.pos[1]) {
             bpos[0] = rg.d.pos[0]; // or to the right of d
         }
         nspaste( rg.b.pos, bpos );
@@ -135,7 +135,7 @@
         let posD = mat.lineSegmentsCross( rg.R.pos, rg.B.pos, rg.A.pos, rg.d.pos );
         let posR = mat.lineSegmentsCross( rg.D.pos, rg.B.pos, rg.A.pos, rg.r.pos );
 
-        if(ssD.draggerInUse === "D") {
+        if (ssD.draggerInUse === "D") {
             rg.R.pos = posR;
         } else {
             rg.D.pos[0] = posD[0];
@@ -172,7 +172,7 @@
             calculationAccuracy : 1e-4*rg.AB.abs,
         });
 
-        if(rg.AB.abs > 0) {
+        if (rg.AB.abs > 0) {
             rg.Ab.arcLen = rg.AB.arcLen * rg.Ab.abs / rg.AB.abs;
         }
 

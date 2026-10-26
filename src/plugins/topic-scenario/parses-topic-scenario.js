@@ -3,7 +3,7 @@
         "::#" - stack messages: add message and only if it does not repeat previous message
 */
 
-( function() {
+( function () {
     var {
         ns, sn,
         haz, eachprop,
@@ -43,7 +43,7 @@
                     var scenarioScript = haz( subexeg, 'scenarioScript' );
                     //example: exersise.subtopics.subessay2subexeg[
                     //         'measure-equival-point' ].scenarioScript
-                    if( !scenarioScript ) return;
+                    if ( !scenarioScript ) return;
 
                     //gets array of state-blocks in form of text for each block
                     var stateTexts = scenarioScript.split( SPLIT_STATES );
@@ -52,7 +52,7 @@
                     var previousEventBlock_forAutopilot = {};
                     stateTexts.forEach( stateScript => {
                         var stateScript = stateScript.replace( EMPTY, '' );
-                        if( !stateScript ) return; //discards empty space
+                        if ( !stateScript ) return; //discards empty space
 
                         //gets array of the eventScripts for each state-block
                         var eventScripts = stateScript.split( SPLIT_EVENTS );
@@ -61,7 +61,7 @@
                         //eventScripts is an array of event-blocks
                         eventScripts.splice( 0, 1 );
 
-                        if( !eventScripts.length ) {
+                        if ( !eventScripts.length ) {
                             alert(
                                 'State "' + stateId +
                                 '" has no events declared and ' +
@@ -82,34 +82,34 @@
                             elines.forEach( (eline,eix) => {
                                 var nextEventTimeout = null;
                                 eline = eline.replace( EMPTY, '' );
-                                if( eix === 0 ) {
-                                    if( eline.indexOf( '>' ) === 0 ) {
+                                if ( eix === 0 ) {
+                                    if ( eline.indexOf( '>' ) === 0 ) {
                                         event2state = true;
                                         eline = eline.replace( PURGE_EVENT, '' );
                                     }
                                     ////first line makes eventId
                                     eventId = eline;
                                 } else {
-                                    if( !eline ) return;
+                                    if ( !eline ) return;
                                     var wwmach = eline.match( EVENT_STATEMENT );
                                     var commandType = wwmach[1];
                                     commandType = commandType || 'funct';
                                     var theCommand = wwmach[2];
 
                                     //does not include comment into statements array
-                                    if( commandType.indexOf("'") === 0 ) {
+                                    if ( commandType.indexOf("'") === 0 ) {
                                         return;
                                     }
-                                    if( "*" === commandType ) {
+                                    if ( "*" === commandType ) {
                                         autopilotEventId = theCommand;
                                         return;
-                                    } else if( commandType === '^' ) {
+                                    } else if ( commandType === '^' ) {
                                         var wwmach = theCommand.match( TIMEOUT );
                                         var nextEventTimeout = parseInt( wwmach[1] );
                                         var theCommand = wwmach[2];
                                     }
                                     var statement = { commandType, command:theCommand, };
-                                    if( commandType === '^' ) {
+                                    if ( commandType === '^' ) {
                                         statement.nextEventTimeout = nextEventTimeout;
                                     }
                                     statements.push( statement );
@@ -118,7 +118,7 @@
 
                             ///state sugar ... if no statemens, then
                             ///interprets the event as state establisher
-                            if( event2state ) {
+                            if ( event2state ) {
                                 statements.push( { commandType:'->', command:eventId } );
                             }
 
@@ -127,7 +127,7 @@
                             eventId2eventBlock[ eventId ] = evBlock;
 
                             //if missed, fills previous event block autopoilot to ownself
-                            if( !haz( previousEventBlock_forAutopilot, 'autopilotEventId' )
+                            if ( !haz( previousEventBlock_forAutopilot, 'autopilotEventId' )
                                 //event 'start' runs automatically ... it does not have
                                 //to advertize own self and pollute the link of
                                 //autopilotEventId
@@ -153,7 +153,7 @@
             });
         });
 
-        if( ns.haz( ns.conf, 'makeactions' ) ) {
+        if ( ns.haz( ns.conf, 'makeactions' ) ) {
             actionsList_shells =
                 "Object.assign( actionsList_coded, { \n" +
                 actionsList_shells + '\n};';
@@ -167,9 +167,9 @@
         stateRack.orderedEvents.forEach( oEvent => {
                 oEvent.statements.forEach( statement => {
                     var ctype = statement.commandType;
-                    if( ctype !== '->' && ctype !== ':' && ctype !== '*' ) {
+                    if ( ctype !== '->' && ctype !== ':' && ctype !== '*' ) {
                         var ald = haz( actionsList_default, statement.command );
-                        if( ald ) return;
+                        if ( ald ) return;
                         actionsList_shells +=
 
     //----------------------------------------------------------------------
@@ -184,7 +184,7 @@
     `;
     //----------------------------------------------------------------------
 
-                        actionsList_default[ statement.command ] = function( stateId, eventId ) {
+                        actionsList_default[ statement.command ] = function ( stateId, eventId ) {
                                 var wwMessage =
                                      '  pl.holder act:  ||' + stateId +
                                      ' +' + eventId +

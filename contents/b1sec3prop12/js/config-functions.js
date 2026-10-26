@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { fconf, stdMod, sconf, } = window.b$l.apptree({ stdModExportList : {
             recreates_q2xy,
             recalculateOrbitStartAndEnd,
@@ -20,7 +20,7 @@
         {
             //denomenator
             var den = 1 - op.eccentricity * Math.cos(q);
-            if( den === 0 ) {
+            if ( den === 0 ) {
                 den = 1e-20; // avoid singularity (can't divide by zero)
             }
 

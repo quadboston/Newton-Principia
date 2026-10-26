@@ -1,5 +1,5 @@
 // //\\// widget config
-( function() {
+( function () {
     var { mat, fapp, fconf, sconf, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
@@ -598,7 +598,7 @@
         //----------------------------------------------------
         // //\\ copy-pastes to sconf
         //----------------------------------------------------
-        Object.keys( to_sconf ).forEach( function( key ) {
+        Object.keys( to_sconf ).forEach( function ( key ) {
             sconf[ key ] = to_sconf[ key ];
         });
         //----------------------------------------------------

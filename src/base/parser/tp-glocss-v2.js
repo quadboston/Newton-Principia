@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         cssp, eachprop, globalCss, sconf, topics, topicColors_repo
     } = window.b$l.apptree({
@@ -77,7 +77,7 @@ ${Rtp}.tobg {
     function v2_tplinks_2_highlightCss(
         nextTplinks,
         doReplace //optional, for prop1,2
-    ){
+    ) {
         nextTplinks.forEach( (anrack,tplink_ix) => {
             Object.keys( anrack.tpid2true ).forEach( low_tpID => {
                 var Rtp = ROOT + ' .tp-' + low_tpID;

@@ -68,7 +68,7 @@
         var mp_len1 = mp.length-1;
         //Include mp_end_ix to ensure there can't be a gap on the right side of
         //the figure.
-        for( var ix = mp_start_ix ; ix <= mp_end_ix; ix++ ) {
+        for ( var ix = mp_start_ix ; ix <= mp_end_ix; ix++ ) {
             const posT = stdMod.xy_2_Txy(dr, mp[ix]);
             mpRounded.push([posT[0].toFixed(2),posT[1].toFixed(2)]);
         }
@@ -99,17 +99,17 @@
         //=============================================
 
         ///calculates red curves
-        if(!study.isMonotonic(dr)) {
+        if (!study.isMonotonic(dr)) {
             let pre_Rounded = [];
             //Include mp_start_ix to ensure there can't be a gap between lines.
-            for( let ix = 0; ix <= mp_start_ix; ix++ ) {
+            for ( let ix = 0; ix <= mp_start_ix; ix++ ) {
                 const posT = stdMod.xy_2_Txy(dr, mp[ix]);
                 pre_Rounded.push([posT[0].toFixed(2), posT[1].toFixed(2)]);
             }
             let past_Rounded = [];
             //Include the last point on curveMicroPts to ensure there can't be
             //a gap on the right side of the figure.
-            for( let ix = mp_end_ix; ix <= mp_len1; ix++ ) {
+            for ( let ix = mp_end_ix; ix <= mp_len1; ix++ ) {
                 const pos = stdMod.xy_2_Txy(dr,  mp[ix]);
                 past_Rounded.push([pos[0].toFixed(2),pos[1].toFixed(2)]);
             }
@@ -131,7 +131,7 @@
         // //\\ resets app modes
         let remove = sDomN.essaionsRoot$.removeClass;
         let add = sDomN.essaionsRoot$.addClass;
-        if( dr.figureParams.deltaOnLeft ) {
+        if ( dr.figureParams.deltaOnLeft ) {
             remove( 'active-right' );
             add( 'active-left' );
         } else {
@@ -232,7 +232,7 @@
         let len = list.length;
         var end = Math.min( len, sconf.basesN+items.offset);
         let offset = items.visOffset;
-        for( ix=0; ix<len; ix++ ) {
+        for ( ix=0; ix<len; ix++ ) {
             let item = list[ix];
             var visib = ( offset <= ix && ix < end && vis ) ? "visible" : "hidden";
             ( item.dom || item ).style.visibility = visib; //vital line

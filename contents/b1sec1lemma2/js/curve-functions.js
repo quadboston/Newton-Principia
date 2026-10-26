@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { sn, fapp, sconf, } = window.b$l.apptree({});
 
     var stdL2       = sn('stdL2', fapp );
@@ -28,7 +28,7 @@
             return points[0][1];
 
         //Determine which section contains the x value
-        for(let i = 0; i < sectionIndices.length; i++) {
+        for (let i = 0; i < sectionIndices.length; i++) {
             const {indexStart, indexEnd} = sectionIndices[i];
             const xStart = points[indexStart][0];
             const xEnd = points[indexEnd][0];
@@ -138,7 +138,7 @@
 
         //Adjust x values if they are the exact same or very close.
         const spacingMin = 0.01;
-        for(let i = 1; i < copy.length; i++) {
+        for (let i = 1; i < copy.length; i++) {
             const xMin = copy[i - 1].x + spacingMin;
             //This can break their sorted order therefore check if less than
             //not just equal.
@@ -152,7 +152,7 @@
         const widthCopy = copy[copy.length - 1].x - copy[0].x;
         if (widthCopy > 0) {
             const scaleWidth = widthOriginal / widthCopy;
-            for(let i = 0; i < copy.length; i++)
+            for (let i = 0; i < copy.length; i++)
                 copy[i].x = copy[0].x + (copy[i].x - copy[0].x) * scaleWidth;
         }
         // \\// Adjust
@@ -328,7 +328,7 @@
 
         //Loop through the line segments that approximate the curve and find
         //the one containing the x value.
-        while(indexLine < section.length - 1) {
+        while (indexLine < section.length - 1) {
             const ptLeft = section[indexLine];
             const ptRight = section[indexLine + 1];
 

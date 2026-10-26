@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, sn, $$,
         sconf,
@@ -131,7 +131,7 @@
         }
         */
 
-        function makesBodyCluster({ rowIx, clusterIx, }){
+        function makesBodyCluster({ rowIx, clusterIx, }) {
             return ssF.dataSourceParsed1__2__makesBodyCluster({
                 rowIx,
                 clusterIx,

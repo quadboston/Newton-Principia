@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         nsmethods,
         haz,
@@ -19,7 +19,7 @@
             svgHeightCssValue,
             dimX,   //svg inner width in svg-ViewBox
             dimY,   //svg inner height in svg-ViewBox
-    }){
+    }) {
         var graphFM_self = { gmedia$ : null, gridIsPainted : false };
         const clipPathId = 'graph-plot-area-' + ( ++graphsCreated );
         creates_svgDomEl();
@@ -72,14 +72,14 @@
                 doPaintGridOnlyOnce,
                 doDrawToolline,
                 brightenGrid,
-        }){
+        }) {
             style = style || {};
             //nonefyDom();
             //creates_svgDomEl();
             //perhaps too expensive ... we already do reattach plots later, but not
             //preserve grid yet .. but grid is a hell expesive ... plot is nothing,
             graphFM_self.gmedia$.css( 'display', 'block' );
-            if( !doPaintGridOnlyOnce || !graphFM_self.gridIsPainted ) {
+            if ( !doPaintGridOnlyOnce || !graphFM_self.gridIsPainted ) {
                 graphFM_self.gmedia$.html( '' );
             }
             var polylines = [];
@@ -100,7 +100,7 @@
                 //they are skipped anyway:
                 //if( !points ) return;
                 points.y.forEach( (pointY,yix) => {
-                    if( graphArrayMask && !graphArrayMask[yix] ) return;
+                    if ( graphArrayMask && !graphArrayMask[yix] ) return;
                     plotsScaffold[ yix ] = plotsScaffold[ yix ] || [];
                     // plotsScaffold - format definition
                     plotsScaffold[ yix ].push( [points.x, pointY] );
@@ -117,60 +117,60 @@
             // //\\ autosets x and y ranges preventing
             //      x and y to go outside dimX, dimY
             //----------------------------------------
-            if( doFind ) {
+            if ( doFind ) {
                 graphArray.forEach( (points,pix) => {
                     //"undefined", null, '' skipped
-                    if( !points ) return;
-                    if( find_xMin ) {
-                        if( typeof xMin === 'undefined' ) {
+                    if ( !points ) return;
+                    if ( find_xMin ) {
+                        if ( typeof xMin === 'undefined' ) {
                             xMin = points.x;
                         }
                     }
-                    if( find_xMax ) {
-                        if( typeof xMax === 'undefined' ) {
+                    if ( find_xMax ) {
+                        if ( typeof xMax === 'undefined' ) {
                             xMax = points.x;
                         }
                     }
-                    if( find_yMin ) {
-                        if( typeof yMin === 'undefined' ) {
+                    if ( find_yMin ) {
+                        if ( typeof yMin === 'undefined' ) {
                             yMin = points.y[0];
                         }
                     }
-                    if( find_yMax ) {
-                        if( typeof yMax === 'undefined' ) {
+                    if ( find_yMax ) {
+                        if ( typeof yMax === 'undefined' ) {
                             yMax = points.y[0];
                         }
                     }
-                    if( find_xMin && xMin > points.x ) {
+                    if ( find_xMin && xMin > points.x ) {
                         xMin = points.x;
                     }
-                    if( find_xMax && xMax < points.x ) {
+                    if ( find_xMax && xMax < points.x ) {
                         xMax = points.x;
                     }
 
-                    if( find_y ) {
+                    if ( find_y ) {
                         points.y.forEach( (pointY,yix) => {
-                            if( graphArrayMask && !graphArrayMask[yix] ) return;
-                            if( find_yMin && yMin > pointY ) {
+                            if ( graphArrayMask && !graphArrayMask[yix] ) return;
+                            if ( find_yMin && yMin > pointY ) {
                                 yMin = pointY;
                             }
-                            if( find_yMax && yMax < pointY ) {
+                            if ( find_yMax && yMax < pointY ) {
                                 yMax = pointY;
                             }
                         });
                     }
                 });
             }
-            if( typeof yMin === 'undefined' ) return; //bs of empty array
+            if ( typeof yMin === 'undefined' ) return; //bs of empty array
             //todm patch
             var rangeX = xMax - xMin;
             var rangeY = yMax - yMin;
             var SMALLNESS = 1e-150;
-            if( Math.abs( rangeX ) < SMALLNESS ) {
+            if ( Math.abs( rangeX ) < SMALLNESS ) {
                 rangeX =  rangeX < 0 ? -SMALLNESS : SMALLNESS;
                 xMax = xMin + rangeX;
             }
-            if( Math.abs( rangeY ) < SMALLNESS ) {
+            if ( Math.abs( rangeY ) < SMALLNESS ) {
                 rangeY =  rangeY < 0 ? -SMALLNESS : SMALLNESS;
                 yMax = yMin + rangeY;
             }
@@ -178,7 +178,7 @@
             // \\// autosets x and y ranges preventing
             //----------------------------------------
 
-            if( doSideAxes ) {
+            if ( doSideAxes ) {
 
                 //shrinks graph area to leave space for axes
                 var SHRINK_RATIO = 0.2;
@@ -186,11 +186,11 @@
                 var marginX = dimX * SHRINK_RATIO / 2;
                 var dimY_withMarg = dimY - marginY*2;
                 var dimX_withMarg = dimX - marginX*2;
-                if( drawAllAxes ) {
+                if ( drawAllAxes ) {
                     ////possibly decreases available plotsCount from available
                     ////graph container width
                     var extraAxisWidth = marginX/2 * (plotsCount-1);
-                    if( extraAxisWidth > dimX_withMarg/2 ) {
+                    if ( extraAxisWidth > dimX_withMarg/2 ) {
                         plotsCount = Math.floor( (dimX_withMarg/2) / (marginX/2) + 1 );
                         extraAxisWidth = marginX/2 * (plotsCount-1);
                     }
@@ -212,21 +212,21 @@
             ///note: this must work for sparse array too
             graphArray.forEach( (points,pix) => {
                 //"undefined", null, '' skipped
-                if( !points ) return;
+                if ( !points ) return;
 
                 var x = points.x;
                 var mediaX = marginX + (points.x - xMin) / rangeX * dimX_withMarg;
-                if( xRangeFilter ) {
-                    if( x < xRangeFilter.min ) return;
-                    if( x > xRangeFilter.max ) return;
+                if ( xRangeFilter ) {
+                    if ( x < xRangeFilter.min ) return;
+                    if ( x > xRangeFilter.max ) return;
                 }
                 //masks makes polylines[ yix ] undefined where yix has empty mask
                 points.y.forEach( (pointY,yix) => {
 
                     //creates holes in polylines array
-                    if( graphArrayMask && !graphArrayMask[yix] ) return;
+                    if ( graphArrayMask && !graphArrayMask[yix] ) return;
 
-                    if( plotCurvesCount <= yix ) return;
+                    if ( plotCurvesCount <= yix ) return;
                     var mediaY = marginY + dimY_withMarg -
                                  ( pointY - yMin ) / rangeY * dimY_withMarg;
                     //makes holes in array:
@@ -238,7 +238,7 @@
             // \\// converts graphArray to polylines
             //==================================================
 
-            if( !graphFM_self.gridIsPainted ) {
+            if ( !graphFM_self.gridIsPainted ) {
                 nsmethods.drawGrid8Axes({
                     graphFM_self,
                     colorThreadArray,
@@ -276,7 +276,7 @@
                     dimY_withMarg,
                     marginY,
                 });
-                if( doPaintGridOnlyOnce ) {
+                if ( doPaintGridOnlyOnce ) {
                     graphFM_self.gridIsPainted = true;
                 }
             }
@@ -290,7 +290,7 @@
             setsPlotAreaClip( gMedia, marginX, marginY,
                               dimX_withMarg, dimY_withMarg );
             polylines.forEach( (pl,plix) => {
-                if( !pl ) return;
+                if ( !pl ) return;
                 var effStyle = Object.assign( {}, style );
                 effStyle.stroke = colorThreadArray[ plix ];
                 let svg = plotIx2plotSvg[ plix ];
@@ -302,7 +302,7 @@
                     'stroke-width' : 2,
                 });
                 svg.setAttribute( 'clip-path', 'url(#' + clipPathId + ')' );
-                if( !svg.parentNode ) {
+                if ( !svg.parentNode ) {
                     //todo why parent is always lost?
                     //ccc( plix+' lost' );
                     //if( svg ) {
@@ -324,7 +324,7 @@
             // \\// draws svg-plots from polylines
             //======================================================
 
-            if( doDrawToolline ) {
+            if ( doDrawToolline ) {
                 nsmethods.drawToolline({
                     polylines,
                     graphFM_self,
@@ -359,7 +359,7 @@
             const SVG_NS = 'http://www.w3.org/2000/svg';
             const HALF_STROKE = 1;
             let clip = gMedia.querySelector( '#' + clipPathId );
-            if( !clip ) {
+            if ( !clip ) {
                 clip = document.createElementNS( SVG_NS, 'clipPath' );
                 clip.setAttribute( 'id', clipPathId );
                 clip.appendChild( document.createElementNS( SVG_NS, 'rect' ) );
@@ -380,10 +380,10 @@
             var g$ = graphFM_self.gmedia$ = $$.svg()
                 .to( parent )
                 ;
-            if( typeof svgWidthCssValue !== 'undefined' ) {
+            if ( typeof svgWidthCssValue !== 'undefined' ) {
                 g$.css( 'width', svgWidthCssValue );
             }
-            if( typeof svgHeightCssValue !== 'undefined' ) {
+            if ( typeof svgHeightCssValue !== 'undefined' ) {
                 g$.css( 'height', svgHeightCssValue );
             }
             g$.aNS(
@@ -403,12 +403,12 @@
         function changesInnerDimensions({
             dimXnew,
             dimYnew,
-        }){
+        }) {
             dimX = dimXnew;
             dimY = dimYnew;
             ///secures the case if no media yet exists
             var gm$ = haz( graphFM_self, 'gmedia$' );
-            if( gm$ ) {
+            if ( gm$ ) {
                 gm$.aNS( 'viewBox', '0 0 ' +
                          dimXnew.toFixed() + ' ' + dimYnew.toFixed() );
             }

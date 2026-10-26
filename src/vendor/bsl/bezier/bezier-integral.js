@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var sn	        = window.b$l.sn;
     var mat         = sn('mat');
     var integral    = sn('integral', mat);

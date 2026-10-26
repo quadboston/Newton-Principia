@@ -1,8 +1,8 @@
-(function() {
+(function () {
     var ns = window.b$l;
     var anslider = ns.sn('animated-slider');
 
-    anslider.css = function(
+    anslider.css = function (
         ///all input pars are optional
         cssp,
         csskey,
@@ -26,7 +26,7 @@
             }
             `;
 
-        if( doHideSlider ) {
+        if ( doHideSlider ) {
             ret +=` 
                 div.${cssp}-slider-${csskey} {
                     position:absolute;
@@ -35,7 +35,7 @@
             `;
             //return ret; /* todmm why this does not work */
         }
-        if( ancestorClassToHideSlider ) {
+        if ( ancestorClassToHideSlider ) {
             ret +=` 
                 .${ancestorClassToHideSlider} .${cssp}-slider-${csskey} {
                     position:absolute;

@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { sn, stdMod, sconf, rg, } = window.b$l.apptree({
         stdModExportList : { creates_Zeta_slider, }, });
     var op = sn( 'orbitParameters', sconf );
@@ -20,7 +20,7 @@
             return true;
         };
 
-        if( rg.H.draggableX ) {
+        if ( rg.H.draggableX ) {
             //H is the other focus, at distance 2 * latus * e / ( e*e - 1 );
             //a pixel of H changes the eccentricity far less than a pixel of A
             rg.H.acceptPos = newPos => {

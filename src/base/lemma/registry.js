@@ -1,5 +1,5 @@
 //registry is used for study-model-elements or media-model-elements
-( function() {
+( function () {
     var { sn } = window.b$l.nstree();
     var sapp   = sn('sapp');
     var rg     = sn('rg', sapp);
@@ -75,10 +75,10 @@
         return updateMe;
 
         function updateMe( key, val ) {
-            switch( arguments.length ) {
+            switch ( arguments.length ) {
                 case 0: return rg[ id ];
                 case 1:
-                        if( typeof key === 'string' ) return rg[id][key]; //returns value
+                        if ( typeof key === 'string' ) return rg[id][key]; //returns value
                         ////otherwise, keeps chain going
                         Object.assign( rg[id], key );
                         return updateMe;

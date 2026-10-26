@@ -1,4 +1,4 @@
-(function(){
+(function () {
     var {
         nspaste, eachprop, haff, haz,
         sconf, sapp, ssF, rg,
@@ -35,25 +35,25 @@
         ///possibly has nothing to do with amode toggler:
         function astate_2_rg8model( astate, dontRun_model_upcreate )
         {
-            if( astate ) {
+            if ( astate ) {
                 nspaste( rg, astate );
                 delete rg.subessay; //should not be there
 
                 ///patch: changes non-rg property: media center:
                 ///todm: legalize;
                 var mcenter = haz( astate, 'diagram-panner' );
-                if( mcenter ) {
+                if ( mcenter ) {
                     var mcenterA = haz( mcenter, 'achieved' );
-                    if( mcenterA ) {
+                    if ( mcenterA ) {
                         var mcenterAA = haz( mcenterA, 'achieved' );
-                        if( mcenterAA ) {
+                        if ( mcenterAA ) {
                             sconf.modorInPicX = mcenterAA[0];
                             sconf.modorInPicY = mcenterAA[1];
                         }
                     }
                 }
                 var subessay = haz( astate, 'subessay' );
-                if( subessay ) {
+                if ( subessay ) {
                     amode.subessay = subessay;
                 }
             }

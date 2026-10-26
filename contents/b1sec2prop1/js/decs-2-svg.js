@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ssF, sDomF, rg,
     } = window.b$l.apptree({

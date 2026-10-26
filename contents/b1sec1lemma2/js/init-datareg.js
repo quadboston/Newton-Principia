@@ -1,4 +1,4 @@
-(function() {
+(function () {
     var { } = window.b$l.apptree({ ssFExportList : {
         initDataReg,
     }, });

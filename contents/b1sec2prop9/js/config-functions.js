@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { mat, stdMod, sconf, } = window.b$l.apptree({
         stdModExportList : { recreates_q2xy, }, });
     return;

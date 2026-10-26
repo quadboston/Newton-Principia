@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, sn, cssp, engCssMs,
         sconf, fconf, sDomN
@@ -23,9 +23,9 @@
             menu-on-left
         `
         .split(/\r\n|\n/g)
-        .forEach( function( modname ) {
+        .forEach( function ( modname ) {
             modname = modname.replace(/\s+/g,'');
-            if( modname ) {
+            if ( modname ) {
                 ////this list is prone to manual-errors, commas, etc
                 ////this is why this debug-style-coding
                 var cssGenerator = engCssMs[ modname ];
@@ -68,7 +68,7 @@
         //===========================
         // //\\ setting up shuttle CSS for all possible menu leaf choices
         var ret;
-        for( var ix=0; ix<sDomN.logic_phaseMenuMembersCount; ix++ ) {
+        for ( var ix=0; ix<sDomN.logic_phaseMenuMembersCount; ix++ ) {
             ret += `
                 .menu-teaf.logic_phase .decorated.litem-${ix},
                 .menu-teaf.logic_phase .litem-${ix},
@@ -81,7 +81,7 @@
             `;
         }
 
-        for( var ix=0; ix<sDomN.aspectionMenuMembersCount; ix++ ) {
+        for ( var ix=0; ix<sDomN.aspectionMenuMembersCount; ix++ ) {
             ret += `
                 .menu-teaf.aspect .decorated.litem-${ix},
                 .menu-teaf.aspect .litem-${ix},

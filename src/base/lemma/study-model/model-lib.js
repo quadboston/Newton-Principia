@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, sn,
         nspaste, mat, has, haz,
@@ -32,7 +32,7 @@
         lineName,
         dropPointParam,     //optional
         dropPointParam_t,   //optional, unitless parameter counted from point A
-    ){
+    ) {
         var splitToken = lineName.indexOf( ',' ) > -1 ? ',' : '';
         var points = lineName.split( splitToken );
         var AB = toreg( lineName )();
@@ -46,7 +46,7 @@
         AB.abs2 = d2;
         AB.x = dx;
         AB.y = dy;
-        if( Math.abs(d) > 1E-100 ) {
+        if ( Math.abs(d) > 1E-100 ) {
             AB.unitX = dx/d;
             AB.unitY = dy/d;
         } else {
@@ -79,7 +79,7 @@
         AB.abs2 = d2;
         AB.x = dx;
         AB.y = dy;
-        if( Math.abs(d) > 1E-100 ) {
+        if ( Math.abs(d) > 1E-100 ) {
             AB.unitX = dx/d;
             AB.unitY = dy/d;
         } else {
@@ -99,7 +99,7 @@
     function circumscribeCircleOverChordAndBothNormals_XY(
         rg, //registry which holds shape of keyName XY,
         XY, //string which names line segment aka "AB" or "pointA,pointB",
-    ){
+    ) {
         var splitToken = XY.indexOf( ',' ) > -1 ? ',' : '';
         var points = XY.split( splitToken );
         var points = XY.split('');
@@ -167,7 +167,7 @@
     function gets_orbit_closest_point(
         r, //distance to which point
         orbitPoints
-    ){
+    ) {
         const SEARCH_POINTS = 1000;
         const len = orbitPoints.length;
         const STEP = Math.max( 1, Math.floor( len / SEARCH_POINTS ) );
@@ -176,12 +176,12 @@
         const y = r[1]-point[1];
         let min = x*x + y*y;
         let qix_min = null;
-        for( let qix=STEP; qix<len; qix+=STEP ){
+        for ( let qix=STEP; qix<len; qix+=STEP ) {
             const point = orbitPoints[qix];
             const x = r[0]-point[0];
             const y = r[1]-point[1];
             const d2 = x*x + y*y;
-            if( qix_min === null || min>d2 ){
+            if ( qix_min === null || min>d2 ) {
                 min = d2;
                 qix_min = qix;
             }

@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var ns          = window.b$l;
     var sn          = ns.sn;
     var methods     = sn('methods');
@@ -30,7 +30,7 @@
     {
         var completionCount = 0;
 
-        scriptList.forEach( function( scriptItem, ix ) {
+        scriptList.forEach( function ( scriptItem, ix ) {
 
             //https://developer.mozilla.org/en-US/docs/Web/HTTP/
             //      Basics_of_HTTP/MIME_types#JavaScript_types
@@ -39,7 +39,7 @@
             // runs scripts in list order, so a lemma's own scripts can
             // replace the exports of the lemma whose code it reuses
             scrip.async = false;
-            scrip.onload = function() {
+            scrip.onload = function () {
                 completionCount++;
                 scriptItem.cb && scriptItem.cb( loadedItem );
                 checkCompletion();
@@ -52,7 +52,7 @@
 
         function checkCompletion()
         {
-            if( completionCount === scriptList.length ) {
+            if ( completionCount === scriptList.length ) {
                 lastCb && lastCb();
             }
         }

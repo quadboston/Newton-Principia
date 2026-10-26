@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         sn, mat, nspaste, sData, amode, stdMod, sconf, rg, ssF
     } = window.b$l.apptree({ stdModExportList : { completesSlidersCreation, }});
@@ -16,7 +16,7 @@
         //======================================================================
         // //\\ centripetal force slider (f)
         //======================================================================
-        rg.f.processOwnDownEvent = function() {
+        rg.f.processOwnDownEvent = function () {
             //--------------------------------------------------------
             // //\\ stashes sample
             //--------------------------------------------------------
@@ -55,7 +55,7 @@
             var newPos1 = -dragMove[1] + sData.Lpos1_g;
             let dShift = [ newPos0 - rg.p.pos[0], newPos1 - rg.p.pos[1] ];
             var dS = Math.sqrt( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
-            if( dS < 0.00000001 ) return;
+            if ( dS < 0.00000001 ) return;
             var incr = dS / sData.dShift_g;
 
             //-------------------------------------------
@@ -63,7 +63,7 @@
             //-------------------------------------------
             var Kepler_g = sData.stashedKepler_g * incr;
 
-            if( subessay === 'corollary2' ){
+            if ( subessay === 'corollary2' ) {
                 var newLatus = sData.stashedLatus_g;
             } else {
                 var newLatus = sData.stashedLatus_g / incr;
@@ -80,7 +80,7 @@
             // sample (green) conic should always be ellipse
             let Sp = ssF.line2abs('Sp').abs; // distance from S to p
             let S2mouse = ssF.linePoints2abs(newPos, rg.S.pos).abs; //S to mouse
-            if(e >= 0.9 || S2mouse >= Sp) {
+            if (e >= 0.9 || S2mouse >= Sp) {
                 return;
             }
 
@@ -89,7 +89,7 @@
             op.Kepler_g = Kepler_g;
             sop.latus = newLatus;
 
-            if( !( subessay === 'corollary2' ) ){
+            if ( !( subessay === 'corollary2' ) ) {
                 rg.p.q = fi;
                 //rotates main axis in respect to change q,
                 //bs op.PparQ_initial === initial axis-fi
@@ -114,8 +114,8 @@
                 om  : sData.stashedOmega,
                 signCosOmega : sData.stashedCosOmega,  // -1 for for cor.
             })
-            if( p17c12 ){
-                if( e > 1 ) {
+            if ( p17c12 ) {
+                if ( e > 1 ) {
                     op.mainAxisAngle = -Math.PI;
                 }
             }
@@ -140,7 +140,7 @@
         //=========================================================================
         // //\\  body speed slider R
         //=========================================================================
-        rg.R.processOwnDownEvent = function() {
+        rg.R.processOwnDownEvent = function () {
             const pp                    = rg.P.pos;
             sData.Rpos                 = nspaste( [], rg.R.pos );
             var dShift                  = mat.sm( 1, rg.R.pos, -1, pp );
@@ -168,13 +168,13 @@
             var increase = dS / sData.dShift;
             op.Kepler_v = sData.Kepler_v_stashed * increase;
 
-            if( (subessay == 'corollary1' || subessay == 'corollary2' )) {
+            if ( (subessay == 'corollary1' || subessay == 'corollary2' )) {
                 // can only be dragged vertically
                 var newSinOmega = sData.stashedOmega;
                 var signCosOmega = Math.sign( sData.stashedCosOmega );
             } else {
                 const sl = mat.p1_to_p2( pp, np ); //slider
-                if( sl.abs < 0.2 ) return;
+                if ( sl.abs < 0.2 ) return;
                 let omega = mat.angleBetweenLines([
                     [ [0,0], pp ],
                     [ [0,0], sl.vector ],
@@ -186,11 +186,11 @@
                 {
                     //excludes unsafe values
                     let LIM = Math.PI * 0.99999;
-                    if( Math.abs( omega ) > LIM ){
+                    if ( Math.abs( omega ) > LIM ) {
                         //console.log('too close to pi')
                         omega = Math.sign( omega ) > 0 ? LIM : -LIM;
                     }
-                    if( Math.abs( omega ) < 0.000001 ){
+                    if ( Math.abs( omega ) < 0.000001 ) {
                         //console.log('too close to zero')
                         omega = Math.sign( omega ) > 0 ? 0.000001 : -0.000001;
                     }
@@ -231,7 +231,7 @@
         // //\\ sample slider for point r
         //      for Kepler_v
         //=========================================================================
-        rg.point_r.processOwnDownEvent = function() {
+        rg.point_r.processOwnDownEvent = function () {
             const pp                    = rg.p.pos;
             sData.pos_r                 = nspaste( [], rg.point_r.pos );
             var dShift                  = mat.sm( 1, rg.point_r.pos, -1, pp );
@@ -257,13 +257,13 @@
             var dS = Math.sqrt( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
             var increase = dS / sData.dShift_r;
 
-            if( subessay == 'corollary2' ){
+            if ( subessay == 'corollary2' ) {
                 var newSinOmega = sop.om;
                 var signCosOmega = Math.sign( sop.cosOmega );
                 var momentumIncrease = increase;
             } else {
                 const sl = mat.p1_to_p2( pp, np ); //slider
-                if( sl.abs < 0.2 ) return;
+                if ( sl.abs < 0.2 ) return;
                 var omega = mat.angleBetweenLines([
                     [ [0,0], pp ],
                     [ [0,0], sl.vector ],
@@ -275,10 +275,10 @@
                 {
                     //excludes unsafe values
                     let LIM = Math.PI * 0.99999;
-                    if( Math.abs( omega ) > LIM ){
+                    if ( Math.abs( omega ) > LIM ) {
                         omega = Math.sign( omega ) > 0 ? LIM : -LIM;
                     }
-                    if( Math.abs( omega ) < 0.000001 ){
+                    if ( Math.abs( omega ) < 0.000001 ) {
                         omega = Math.sign( omega ) > 0 ? 0.000001 : -0.000001;
                     }
                 }
@@ -300,7 +300,7 @@
             });
 
             // sample (green) conic must always be ellipse
-            if(e >= 0.9) {
+            if (e >= 0.9) {
                 sData.pAtLimit = true;
                 return false;
             } else {

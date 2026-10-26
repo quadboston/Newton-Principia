@@ -1,4 +1,4 @@
-( function() {
+( function () {
     const { ns, fconf, sconf, topicColors_repo, amode} =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;

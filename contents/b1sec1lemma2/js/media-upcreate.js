@@ -17,7 +17,7 @@
     function setModule()
     {
         ///same in meaning to legacy !view.isNewton property
-        sapp.isLite = function()
+        sapp.isLite = function ()
         {
             return amode.aspect === 'video';
         };
@@ -32,7 +32,7 @@
             guiup.updatePtsRectsLabelsAreas(dr);
         });
         let medD8D = haz( stdMod, 'medD8D' );
-        if( medD8D ) {
+        if ( medD8D ) {
             ////it may be not defined at application landing up
             medD8D.updateAllDecPoints();
         }

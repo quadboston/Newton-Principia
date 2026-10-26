@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, sn, $$, sv, haz,
         sconf, ssF, sDomF, rg, toreg,
@@ -26,7 +26,7 @@
     {
         var anglePname      = 'rays-angle-' + pname;
         var rgAngle         = haz( rg, anglePname );
-        if( !rgAngle )      return;
+        if ( !rgAngle )      return;
         var doUndisplay     = ns.haz( rgAngle, 'undisplay' );
 
         var svgel$          = haz( rgAngle, 'svgel$' );
@@ -52,7 +52,7 @@
         tpclassName,
         stepsCount,
         captionRadiusIncrease,
-    }){
+    }) {
         var medPosPivotsAB = [  //=[ medposA, medposB ]
             [ AB[0].medpos[0], AB[0].medpos[1] ],
             [ AB[1].medpos[0], AB[1].medpos[1] ],
@@ -65,7 +65,7 @@
         var angleEnd        = segmentAngle( medPosPivotsCD )*sconf.MONITOR_Y_FLIP;
 
         var angleDelta      = ( angleEnd - angleStart + Math.PI*4 ) % (Math.PI*2);
-        if( angleDelta > Math.PI ) {
+        if ( angleDelta > Math.PI ) {
             angleDelta -= Math.PI*2;
         }
         angleEnd = angleStart + angleDelta;
@@ -112,7 +112,7 @@
         fontSize,
         drawExternalSector,
         stepsCount,
-    }){
+    }) {
         ANGLE_SIZE = ANGLE_SIZE || 0.1;
         ///"manually" created polyline which formes ellipse's sector,
         ///input: ellipse = (x-x0)^2/a^2 + (y-y0)^2/b^2 = 1;
@@ -163,7 +163,7 @@
         svgel$.toggleClass( 'undisplay', ns.haz( rgX, 'undisplay' ) );
 
         ///draws caption
-        if( caption ) {
+        if ( caption ) {
             var fontSize = fontSize || 20;
             var wwAngle = ( angleStart + angleEnd ) / 2;
 

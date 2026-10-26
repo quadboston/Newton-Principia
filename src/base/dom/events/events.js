@@ -1,5 +1,5 @@
 // //\\// Application core-events setup
-( function() {
+( function () {
     var {
         sn, $$,
         has, haz, haf, hafa,
@@ -36,7 +36,7 @@
         links.forEach( link => {
             var match = link.getAttribute( 'class' ).match( /\sid-(\S+)/ );
             link.setAttribute( 'title', 'click to go to episode' );
-            link.addEventListener( 'click', function() {
+            link.addEventListener( 'click', function () {
                 amode.userControl = 'text';
                 executeCapturedState( match[1] );
             });
@@ -70,7 +70,7 @@
         //sapp.ix
         //todm get rid of sapp.ix; this is a poor naming;
         var next = direction === 'right' ? next = allowedIx + 1 : allowedIx - 1;
-        if( next >= fconf.ix2lemmaDefAllowed.length || next < 0 ||
+        if ( next >= fconf.ix2lemmaDefAllowed.length || next < 0 ||
             fconf.ix2lemmaDefAllowed[ next ].sappId === 'home-pane'
         ) {
             pager$.addClass( 'non-displayed' );
@@ -82,7 +82,7 @@
                 'sappId=' + nextSapp.sappId +
                 ',logic_phaseId=claim,aspectId=english';
 
-            if( fconf.appDecor.putTextDescriptionIntoTopNavigationArrows  ){
+            if ( fconf.appDecor.putTextDescriptionIntoTopNavigationArrows  ) {
                 var wwFullCaption = direction === 'right' ? fullCaption : fullCaption + ' ';
             } else {
                 var wwFullCaption = '';
@@ -97,7 +97,7 @@
             pager$.a( 'title', "Go to " + nextSapp.caption );
             pager$.removeClass( 'non-displayed' );
             ///this did work but anchor works better
-            pager$.e( 'click', function() {
+            pager$.e( 'click', function () {
                 const match = newLoc.match(/sappId=([^,]+)/);
                 if (match) {
                     var sappId = match[1];
@@ -129,7 +129,7 @@
                 );
 
             var validated = rg.media_scale.value2validate2pos( newScale );
-            if( !validated ) return;
+            if ( !validated ) return;
 
             rg.media_scale.value = newScale;
             rg.media_scale.stdMod = stdMod;
@@ -266,7 +266,7 @@
             //this.event.cancelBubble = true;
             //historical? https://developer.mozilla.org/en-US/docs/Web/API/Event/cancelBubble
             //very good: https://javascript.info/bubbling-and-capturing
-            if( ev.stopImmediatePropagation ) {
+            if ( ev.stopImmediatePropagation ) {
                 ////missed on Android 2.?.?
                 ev.stopImmediatePropagation(); //IE9+
             } else {

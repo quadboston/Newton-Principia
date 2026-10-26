@@ -1,4 +1,4 @@
-(function(){
+(function () {
 const { haz, rg, amode, stdMod, sconf,} =
       window.b$l.apptree({ stdModExportList : {
           trajectoryShapes_2_groups__III,
@@ -14,7 +14,7 @@ return;
 /// therefore, it is dynamic and sensetive to
 /// haz( amode, 'userControl') === 'text'
 ///**********************************************
-function trajectoryShapes_2_groups__III (){
+function trajectoryShapes_2_groups__III() {
     var pathRacks = rg.pathRacks.pathRacks;
     ///pathIx_2_groups: pathIx |-> fGroups = [ fgroup0, fgroup1, ... ].
     rg.pathIx_2_pathSubsteps = pathRacks.map((
@@ -32,7 +32,7 @@ function trajectoryShapes_2_groups__III (){
         // and then can be displayed depending on app-state,
         var fGroups = [];
 
-        if( pix === 0 ) {
+        if ( pix === 0 ) {
             ////logical group 0 = empty grop for reached point A
             var fgroup = [];
             fGroups.push( fgroup );
@@ -64,7 +64,7 @@ function trajectoryShapes_2_groups__III (){
             var fgroup = [];
             fGroups.push( fgroup );
             fgroup.push( rgPathPoint );
-            if( sconf.TIMER_AND_LOGIC_STEPS_COINSIDE ||
+            if ( sconf.TIMER_AND_LOGIC_STEPS_COINSIDE ||
                 haz( amode, 'userControl') === 'text' ||
                 pix === 1 // this is a sort of anomaly,
                           // needs a thought,
@@ -81,7 +81,7 @@ function trajectoryShapes_2_groups__III (){
                 //we show it here in prelast proof-substep of motion-step
                 //fgroup.push( rg[ 'pathSegment-' + (pix-1) ] ); //bug fix
                 fgroup.push( pathRacks[ pix ] );
-                if( pix < pathRacks.lengh-1 ) {
+                if ( pix < pathRacks.lengh-1 ) {
                     fgroup.push( rg[ 'pathSegment-' + (pix) ] );
                 }
             }

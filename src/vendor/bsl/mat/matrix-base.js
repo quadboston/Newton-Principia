@@ -48,12 +48,12 @@
         var A;
         var ar = arguments;
 
-        if( typeof ar[0] === 'number' ) {
+        if ( typeof ar[0] === 'number' ) {
             a = ar[0]; A = ar[1];
-            if( ar.length === 4 ) { b = ar[2]; B = ar[3]; }
+            if ( ar.length === 4 ) { b = ar[2]; B = ar[3]; }
         } else {
             A = ar[0];
-            if( ar.length === 3 ) {
+            if ( ar.length === 3 ) {
                 b = ar[1];
                 B = ar[2];
             } else {
@@ -64,7 +64,7 @@
                     a*A[0]+b*B[0],
                     a*A[1]+b*B[1]
                ];
-        if( A.length === 3 ) {
+        if ( A.length === 3 ) {
             ret.push( a*A[2]+b*B[2], );
         }
         return ret;
@@ -85,19 +85,19 @@
     function unitVector(
         vector,
         doDenullify //optional, makes vector non zero
-    ){
+    ) {
         var is3d = vector.length === 3;
         var v2 = vector[0]*vector[0] + vector[1]*vector[1];
-        if( is3d ) {
+        if ( is3d ) {
             v2 += vector[2]*vector[2];
         }
         var abs = Math.sqrt( v2 );
-        if( abs < 1e-100 && doDenullify ) {
+        if ( abs < 1e-100 && doDenullify ) {
                 var unitVec = [1e-100,0,0];
                 var abs = 1e-100;
                 var v2 = abs * abs;
         } else {
-            if( is3d ) {
+            if ( is3d ) {
                 var unitVec = abs < 1e-40 ? [0,0,0] :
                     [ vector[0]/abs, vector[1]/abs, vector[2]/abs, ];
             } else {
@@ -117,15 +117,15 @@
     function scalarProduct(
         v1,
         v2,
-    ){
+    ) {
         return v1[0]*v2[0] + v1[1]*v2[1];
     }
 
     ///rotates two-dimenstional vector anti-clockwidse
     function rotatesVect( v, angle,
         sn, cs // sin or cos - alternative arguments
-    ){
-        if( typeof angle !== 'undefined' ) {
+    ) {
+        if ( typeof angle !== 'undefined' ) {
             sn = Math.sin( angle );
             cs = Math.cos( angle );
         }
@@ -147,17 +147,17 @@
     {
         var is2d = vector.length == 2;
         var v2 = vector[0]*vector[0] + vector[1]*vector[1];
-        if( !is2d ) {
+        if ( !is2d ) {
             v2 += vector[2]*vector[2];
         }
         var abs = Math.sqrt( v2 );
-        if( abs < 1e-100 ) {
+        if ( abs < 1e-100 ) {
             var unit = [1,0];
             vector[2] = 0;
         } else {
             var unit = [ vector[0]/abs, vector[1]/abs, ];
         }
-        if( is2d ) {
+        if ( is2d ) {
             //vector in plane
             var norm = [ -unit[1], unit[0] ];
             var ret = { abs, norm, unit };
@@ -166,10 +166,10 @@
             abs = abs < 1e-100 ? 1e-100 : abs;
             unit.push( vector[2]/abs );
             var normSeed = [];
-            for( var mIx=0; mIx<3; mIx++ ) {
+            for ( var mIx=0; mIx<3; mIx++ ) {
                 var uCur = Math.abs( unit[ mIx ] );
-                if( uCur < uMin || mIx === 0 ) {
-                    if( mIx > 0 ) {
+                if ( uCur < uMin || mIx === 0 ) {
+                    if ( mIx > 0 ) {
                         normSeed[ minIx ] = 0;
                     }
                     var minIx = mIx;
@@ -199,7 +199,7 @@
     function p1_to_p2(
         p1,
         p2,
-    ){
+    ) {
         const vector = [ p2[0]-p1[0], p2[1]-p1[1] ];
         const res = unitVector( vector );
         res.vector = vector;
@@ -315,10 +315,10 @@
         direction, //direction with scale instead of A, B
         directionLength, //superceedes t, "direction" and "B-A": sets distance
                          //from point A
-    ){
+    ) {
         start = start || A;
         var u = direction || [ B[0] - A[0], B[1] - A[1] ];
-        if( directionLength ) {
+        if ( directionLength ) {
             u = unitVector( u ).unitVec;
             t = directionLength;
         }

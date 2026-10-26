@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, mat, nspaste, sconf, fconf, ssF, ssD, sDomF, sData, amode, stdMod, toreg, rg,
     } = window.b$l.apptree({
@@ -30,10 +30,10 @@
                 var fullAngle = Math.atan( newPos[1]/newPos[0] );
                 ///restricts converging tangent positions,
                 ///saves user from unexpected experiments,
-                if( fullAngle > 0.001 ) {
+                if ( fullAngle > 0.001 ) {
                     fullAngle = 0;
                 }
-                if( fullAngle < rg.AB.angle ) {
+                if ( fullAngle < rg.AB.angle ) {
                     ///this is lowest allowed L-position on the screen
                     fullAngle = rg.AB.angle;
                     sData[ 'proof-pop-up' ].dom$.css( 'display', 'block' );
@@ -74,7 +74,7 @@
 
                 //patch: instead of fixing arc-Ab calculations properly,
                 //       this code-fragment restricts area where this arc miscalculated:
-                if( new_unrotatedParameterX < sconf.NON_ZERO_A_PREVENTOR ) {
+                if ( new_unrotatedParameterX < sconf.NON_ZERO_A_PREVENTOR ) {
                     ///we need to put some constraint here, to
                     ///prevent chord vanishing
                     new_unrotatedParameterX = sconf.NON_ZERO_A_PREVENTOR;
@@ -87,11 +87,11 @@
                   [rg.A.pos, rg.L.pos],
                 ]).angle
 
-                if( fconf.sappId === "b1sec1lemma6" &&
+                if ( fconf.sappId === "b1sec1lemma6" &&
                     //core essays:
                     ( !(amode.aspect === 'model') && amode.logic_phase === 'proof' ) &&
                     (angleBAM < 0 || cpos[1] > -0.01)
-                ){
+                ) {
                     adjust_new_unrotatedParameterX_asNeccesary();
                     sData[ 'proof-pop-up' ].dom$.css( 'display', 'block' );
                 } else {
@@ -99,7 +99,7 @@
                 }
 
                 ///prevents user from playing with too big curves
-                if( new_unrotatedParameterX > rg.curveEnd.pos[0] ) {
+                if ( new_unrotatedParameterX > rg.curveEnd.pos[0] ) {
                     new_unrotatedParameterX = rg.curveEnd.pos[0]-0.00001;
                 }
 
@@ -145,7 +145,7 @@
             acceptPos : ( newPos ) => {
                 newPos[1] = 0; // y pos doesn't change
                 let x = newPos[0];
-                if(x < original_Dx - half_AD || x > original_Dx + half_AD) {
+                if (x < original_Dx - half_AD || x > original_Dx + half_AD) {
                     return false;
                 } else {
                     return true;

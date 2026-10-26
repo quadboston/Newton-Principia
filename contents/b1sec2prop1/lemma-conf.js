@@ -1,4 +1,4 @@
-{window.b$l.apptree({}).fapp.lemmaConfig = function(){ return {
+{window.b$l.apptree({}).fapp.lemmaConfig = function () { return {
     codesList :
     [
         //configures initial constants

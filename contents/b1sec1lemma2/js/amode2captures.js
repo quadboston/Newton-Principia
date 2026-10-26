@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { nspaste, capture, ssF, } = window.b$l.apptree({
         ssFExportList : { amode2rgstate, }, });
     setCapture();

@@ -1,6 +1,6 @@
 //default app wide settings for lemmas
 //may be overriden later by URL-query or lemma sconf.js,
-(function(){
+(function () {
     const { fapp, sf } =
            window.b$l.apptree({});
     fapp.normalizeSliders = normalizeSliders;
@@ -12,7 +12,7 @@
     return;
 
 
-    function setUIConstants (){
+    function setUIConstants() {
         // runs once per page load
 
         sf.default_tp_stroke_width = 10;

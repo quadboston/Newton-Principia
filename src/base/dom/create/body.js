@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, $$, haz, userOptions,
         fapp, sapp, sDomN, html, fconf,
@@ -83,7 +83,7 @@
             )
             .ch( sDomN.returnToLemmaButton$ = $$
                 .dc( "master-pagination-btn return-to-lemma-button" )
-                .e( 'click', function() {
+                .e( 'click', function () {
                     return landingPage8Options_click();
                  })
             );
@@ -169,7 +169,7 @@
                 </div>
             </div>
         `;
-        fapp.fappRoot$.e( 'click', function( event ) {
+        fapp.fappRoot$.e( 'click', function ( event ) {
             stepUp( event.target )
         });
         return coreText;
@@ -178,14 +178,14 @@
     ///if button found, does nothing,
     ///if not, then closes list,
     function stepUp( el ) {
-        if( !el || !el.className || typeof el.className !== 'string' ) {
+        if ( !el || !el.className || typeof el.className !== 'string' ) {
             ////c cc( 'reached the top of dom tree' );
             let b = document.body.querySelector(
                 '.master-pagination-btn.home-button div' );
             $$.$( b ).removeClass( 'isopen' ).addClass( 'isclosed' );
             return;
         }
-        if( el.className.indexOf('trigger-option') < 0 ) {
+        if ( el.className.indexOf('trigger-option') < 0 ) {
             stepUp( el.parentNode );
         }
     }
@@ -194,12 +194,12 @@
     {
         userOptions.userOptions_2_updatedGUI();
 
-        if( typeof goToFrontPage === 'undefined' ) {
+        if ( typeof goToFrontPage === 'undefined' ) {
             goToFrontPage = fapp.homePage$().className.indexOf( 'is-hidden' ) > -1;
         }
         ////it does always click on landing of pure home page when
         ////no lemmas called
-        if( goToFrontPage ) {
+        if ( goToFrontPage ) {
             //(I) this replaces "erased css", whish was erased before,
             //this creates exceptionally strong separation of styles of
             //front-page-pane and lemma-pane without reloading the application,
@@ -224,7 +224,7 @@
             $$.$(document.body).removeClass('contents');
             //todm patch
             let sce$ = haz( sDomN, 'simSScene$' );
-            if( sce$ ) {
+            if ( sce$ ) {
                 sce$.css('display', 'inline-block');
             }
         }

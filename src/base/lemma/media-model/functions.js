@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ssF,
     } = window.b$l.apptree({
@@ -21,9 +21,9 @@
         magnitude = magnitude || 1;
         //var fun = aka ssD.repoConf[0].fun; or simple
         //          one argument returning function,
-        return function( x ) {
+        return function ( x ) {
             var point = fun( x );
-            if( typeof point === 'object' ) {
+            if ( typeof point === 'object' ) {
                 var [xx,yy] = point;
             } else {
                 var xx = x;
@@ -43,7 +43,7 @@
         magnitudeY, //scales y
     }) {
         //var fun = ssD.repoConf[0].fun;
-        return function( x ) {
+        return function ( x ) {
             var [xx,yy] = fun( x );
             var res = ssF.mod2inn([ xx*magnitudeX, yy*magnitudeY ]);
             return res;

@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         sn, $$, mat, nssvg, mcurve, haz,
         ssF, ssD, sDomF, toreg,
@@ -45,7 +45,7 @@
         //so, outcome, rg[ 'approximated-curve' ].curvePoints, is not swapped,
         //i.e. swaps only in two places,
         doSwapXY,
-    ){
+    ) {
         curveName = curveName || 'orbit';
         pivotsName = pivotsName || 'curvePivots';
         approxCurveName = approxCurveName || 'approximated-curve';
@@ -65,7 +65,7 @@
         sconf.originalPoints.curvePivots.forEach( (pivot,pix) => {
             var pname = pivotsName + '-' + pix;
             var p = pname2point[pname]; //p has format [xx,xx],
-            if( separateXYforParamT ) {
+            if ( separateXYforParamT ) {
                 xt[ pix ] = [ pix, p[0] ];
                 yt[ pix ] = [ pix, p[1] ];
             }
@@ -77,7 +77,7 @@
 
         //sets the function:
         // **api-outputs---divided-diff
-        if( separateXYforParamT ) {
+        if ( separateXYforParamT ) {
             var axt = rg[ approxCurveName ].xt = mat.calculate_divided_differences( xt );
             var ayt = rg[ approxCurveName ].yt = mat.calculate_divided_differences( yt );
         } else {
@@ -117,10 +117,10 @@
             var antid = antider;
             antid.length = 1;
             var tstep = ( tEnd - tStart ) / stepsCount;
-            for( var tix = 0; tix<=stepsCount; tix++ ) {
+            for ( var tix = 0; tix<=stepsCount; tix++ ) {
                 var q = tStart + tstep * tix;
                 var pos = q2xy( q );
-                if( doIntegrate && tix ) {
+                if ( doIntegrate && tix ) {
                     area += tstep * pos[1];
                     antid[ tix ] = area;
                 }

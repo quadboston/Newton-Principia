@@ -2,7 +2,7 @@
 // bsl/d8d/d8d-framework.js
 // They have different findDraggee and findDraggee_default
 // functions, for example.
-( function() {
+( function () {
     var {
         ns, haz, d8dp,
         sconf, fconf, fmethods,
@@ -45,7 +45,7 @@
         //other places for this property are:
         //  processDownEvent
         //  processUpEvent
-        if( !haz( sconf, 'diagramPannerDisabled' ) ){
+        if ( !haz( sconf, 'diagramPannerDisabled' ) ) {
             //vital for appearing of 'grab" right at the launch
             stdMod.simScene.style.cursor = 'grab';
         }
@@ -108,13 +108,13 @@
         var testMediaY = testMedpos[1];
 
         var unfoundDragger = null;
-        dragWraps.forEach( function( dragWrap ) {
+        dragWraps.forEach( function ( dragWrap ) {
             var dragPoint   = dragWrap.pointWrap;
-            if( ns.haz( dragPoint, 'unfound' ) ) {
+            if ( ns.haz( dragPoint, 'unfound' ) ) {
                 unfoundDragger = dragWrap;
                 return;
             }
-            if( haz( dragPoint, 'hideD8Dpoint' ) ) return;
+            if ( haz( dragPoint, 'hideD8Dpoint' ) ) return;
 
             var tdX = Math.abs( testMediaX - dragPoint.medpos[0] );
             var tdY = Math.abs( testMediaY - dragPoint.medpos[1] );
@@ -122,14 +122,14 @@
 
             var distLim = haz( dragPoint, 'DRAGGER_TOLERANCE' ) || DRAGGER_TOLERANCE;
             //console.log('distLim ' + distLim);
-            if( td <= distLim ) {
+            if ( td <= distLim ) {
                 let dpp = dragPoint.dragPriority;
-                if( !closestDragWrap ||
+                if ( !closestDragWrap ||
                     (
                         ( dpp > closestDragPriority ) ||
                         ( dpp === closestDragPriority && closestTd > td )
                     )
-                ){
+                ) {
                     closestDragWrap = dragWrap;
                     closestTd = td;
                     closestDragPriority = dragPoint.dragPriority || 0;
@@ -141,7 +141,7 @@
             }
         });
         ///used in full model-media area drag ...
-        if( !closestDragWrap && unfoundDragger ) {
+        if ( !closestDragWrap && unfoundDragger ) {
             closestDragWrap = unfoundDragger;
         }
         return closestDragWrap;
