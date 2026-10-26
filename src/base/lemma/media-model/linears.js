@@ -65,7 +65,7 @@
         } else if (!has(pv1, 'medpos')) {
             pv1.medpos = ssF.mod2inn(pv1.pos);
         }
-        var pivotsMedPos= [ pv0.medpos, pv1.medpos ];
+        var pivotsMedPos= [pv0.medpos, pv1.medpos];
 
         //this is a wrong place for changing a model of a
         //line interval, so removing from media manager:
@@ -90,7 +90,7 @@
             ///patch for lemma 4 for lines aka
             //leftbar-1-left-bottom,leftbar-1-right-bottom pivotNames
             if (has(pv0, 'pname') && has(pv1, 'pname')) {
-            line.pivotNames     = [ pv0.pname, pv1.pname ];
+            line.pivotNames     = [pv0.pname, pv1.pname];
             } else {
                 //patch for lemma 4
                 sn('pivotNames', line. null);
@@ -138,7 +138,7 @@
         }
         line.svgel$.toggleClass('undisplay', ns.haz(line, 'undisplay'));
         //updates pivots in line:
-        line.pivots = [ pv0, pv1 ];
+        line.pivots = [pv0, pv1];
 
         //=================================================
         // //\\ draws line caption
@@ -155,7 +155,7 @@
             var pvs = pivotsMedPos,
             lposX = (pvs[0][0] + pvs[1][0]) / 2;
             lposY = (pvs[0][1] + pvs[1][1]) / 2;
-            var dir = [ pvs[1][0] - pvs[0][0], pvs[1][1] - pvs[0][1] ];
+            var dir = [pvs[1][0] - pvs[0][0], pvs[1][1] - pvs[0][1]];
             var segAngle = Math.atan2(
                     dir[1] * sconf.MONITOR_Y_FLIP, //y, screen to model angle
                     dir[0]
@@ -195,7 +195,7 @@
             line.pnameLabelsvg$
                 .aNS('x', finalPosX.toFixed()+'px')
                 .aNS('y', finalPosY.toFixed()+'px')
-                .toggleClass('undisplay', ns.haz(rg[ line.pname ], 'undisplay'))
+                .toggleClass('undisplay', ns.haz(rg[line.pname], 'undisplay'))
                 ;
             line.pnameLabelsvg$.toggleClass(
                 'undisplay',
@@ -215,8 +215,8 @@
     function paintsVectorTips({ vectorTipIx, pivots, line, }) {
         let tipFraction = haz(line, 'tipFraction');
         var TIP_FRACTION = Math.abs(tipFraction) ||  0.2;
-        var vectEnd = pivots[ vectorTipIx ].medpos;
-        var vectStart = pivots[ (vectorTipIx+1)%2 ].medpos;
+        var vectEnd = pivots[vectorTipIx].medpos;
+        var vectStart = pivots[(vectorTipIx+1)%2].medpos;
         var { abs, norm, unit } = mat.vector2normalOrts(
                 [vectEnd[0]-vectStart[0], vectEnd[1]-vectStart[1]]);
         let tF = (TIP_FRACTION * abs) || 1; //vector can be 0
@@ -227,18 +227,18 @@
                     10 * sconf.pictureWidth * 0.0025, tF
                 );
         var tipStart = abs-tipLength;
-        var vecTipStart = [ vectStart[0] + unit[0] * tipStart,
-                            vectStart[1] + unit[1] * tipStart ];
+        var vecTipStart = [vectStart[0] + unit[0] * tipStart,
+                            vectStart[1] + unit[1] * tipStart];
         var ARROW_TANGENT = tipFraction < 0 ?
             0.15 :
             line.finalStrokeWidth * 1.5 / tipLength;
         var tipHeight = Math.max(sconf.thickness*1.5, tipLength * ARROW_TANGENT);
         var pivots = [
-            [ vecTipStart[0] + norm[0]*tipHeight, vecTipStart[1] + norm[1]*tipHeight ],
-            [ vecTipStart[0] - norm[0]*tipHeight, vecTipStart[1] - norm[1]*tipHeight ],
+            [vecTipStart[0] + norm[0]*tipHeight, vecTipStart[1] + norm[1]*tipHeight],
+            [vecTipStart[0] - norm[0]*tipHeight, vecTipStart[1] - norm[1]*tipHeight],
               vectEnd,
             //this point closes poly.
-            [ vecTipStart[0] + norm[0]*tipHeight, vecTipStart[1] + norm[1]*tipHeight ],
+            [vecTipStart[0] + norm[0]*tipHeight, vecTipStart[1] + norm[1]*tipHeight],
         ];
         line.vectorArrowSvg = sv.polyline({
             svgel   : ns.haz(line, 'vectorArrowSvg'),
@@ -277,7 +277,7 @@
         } else if (!haz(rg, pns[0])) {
             throw Error('Missed pivot name = ' + pns[0]);
         }
-        const pivots = [ rg[ pns[0] ], rg[ pns[1] ] ];
+        const pivots = [rg[pns[0]], rg[pns[1]]];
 
         cssClass = haz(lineAttr, 'cssClass') || cssClass;
         let strokeWidth = 2;
@@ -315,7 +315,7 @@
     ) {
         var CLOSED_POLYLINE = true;
         var pName = pNames.join(correctJoin ? '--' : '');
-        var pivots = pNames.map(pname => rg[ pname ].medpos);
+        var pivots = pNames.map(pname => rg[pname].medpos);
         if (CLOSED_POLYLINE) {
             pivots.push(pivots[0]);
         }
@@ -377,9 +377,9 @@
         if (poly.UPDATE_MPOS_BEFORE_POLY) {
             let mod2inn = ssF.mod2inn;
             pNames.forEach(pname =>
-                { rg[ pname ].medpos = mod2inn(rg[ pname ].pos) });
+                { rg[pname].medpos = mod2inn(rg[pname].pos) });
         }
-        var pivots = pNames.map(pname => rg[ pname ].medpos);
+        var pivots = pNames.map(pname => rg[pname].medpos);
         if (CLOSED_POLYLINE) {
             pivots.push(pivots[0]);
         }
@@ -397,7 +397,7 @@
     ///         triang.vertices
     ///         cssCls can be for 'logic_phase--proof'
     function paintTriangle(triangleId, cssCls, tpclass, defaultFill,) {
-        var triang = rg[ triangleId ];
+        var triang = rg[triangleId];
         var mod2inn = ssF.mod2inn;
         var vertices = triang.vertices.map(pos => {
             return mod2inn(pos,);

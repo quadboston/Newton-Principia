@@ -48,7 +48,7 @@
     var aframes_start = null;
 
     aframes.start = function () {
-        if (!aframes_start) { aframes_start = [ Date.now() ]; }
+        if (!aframes_start) { aframes_start = [Date.now()]; }
         var timeOrigin  = aframes_start[0];
         unixTime        = Date.now();
         elapsed         = unixTime - timeOrigin;
@@ -59,7 +59,7 @@
     };
 
     function doRun(hashStr) {
-        var rr          = runners[ hashStr ];
+        var rr          = runners[hashStr];
         var fun         = rr.fun;
         var funComplete = rr.funComplete;
         var ownStart    = rr.ownStart;
@@ -86,7 +86,7 @@
             funComplete //for one of runners
         ) {
         var hashStr = '' + hash++;
-        runners[ hashStr ] = { ownStart:Date.now(), fun:fun, duration:duration, funComplete:funComplete };
+        runners[hashStr] = { ownStart:Date.now(), fun:fun, duration:duration, funComplete:funComplete };
         return hashStr;
     };
 
@@ -102,12 +102,12 @@
 
     aframes.remove = function (hashStr) {
         //other way?: https://stackoverflow.com/questions/12216540/how-to-test-for-equality-of-functions-in-javascript
-        delete runners[ hashStr ];
+        delete runners[hashStr];
     };
     ///if hashStr is not a string, then this function does nothing
     aframes.complete8remove = function (hashStr) {
         if (typeof hashStr !== 'string') return; //automates skipping already cleared runners
-        var rr = runners[ hashStr ];
+        var rr = runners[hashStr];
         if (!rr) return; //allows competing removes
         if (!aframes_start) {
             ////nothing started yet

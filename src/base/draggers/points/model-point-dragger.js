@@ -145,8 +145,8 @@
 
     function processUpEvent(arg) {
         if (ns.haz(this, 'diagramPanner')) {
-            this.achieved.achieved[ 0 ] = sconf.modorInPicX;
-            this.achieved.achieved[ 1 ] = sconf.modorInPicY;
+            this.achieved.achieved[0] = sconf.modorInPicX;
+            this.achieved.achieved[1] = sconf.modorInPicY;
 
             //// non-ordinary case:
             this.undisplay = true;

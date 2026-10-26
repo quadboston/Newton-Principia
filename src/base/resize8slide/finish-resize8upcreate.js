@@ -52,7 +52,7 @@
         haff(ssF, 'updatesLegendTablesDisplay');
         if (
             //isMobile
-            ns.widthThresholds[ fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD ]()
+            ns.widthThresholds[fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD]()
         ) {
             preparesMobile();
         } else {

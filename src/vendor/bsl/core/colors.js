@@ -7,7 +7,7 @@
     //api:arg = [r,g,b,a ]
     ns.rgbaArr2hsla = function (arg) {
         var hsl = ns.rgb2hsl(arg[0], arg[1], arg[2]);
-        return [ 355.99*hsl[0], 99.999*hsl[1], 99.999*hsl[2], arg[3], arg[4] ];
+        return [355.99*hsl[0], 99.999*hsl[1], 99.999*hsl[2], arg[3], arg[4]];
     };
 
     //was: function getRandomColor()
@@ -98,7 +98,7 @@
       }
 
       var mm = ll - 0.5 * cc;
-      return [ rgb[0] + mm, rgb[1] + mm, rgb[2] + mm];
+      return [rgb[0] + mm, rgb[1] + mm, rgb[2] + mm];
     };
 
     //https://stackoverflow.com/questions/39118528/rgb-to-hsl-conversion
@@ -136,7 +136,7 @@
         h /= 6;
       }
 
-      return [ h, s, l ];
+      return [h, s, l];
     }
 
     ///array to color string:

@@ -26,7 +26,7 @@
         const op        = sconf.orbitParameters;
         var cosAxis     = Math.cos(op.mainAxisAngle);
         var sinAxis     = Math.sin(op.mainAxisAngle);
-        const pointAt       = rg[ 'approximated-curve' ].t2xy; //returns [x, y], defined in makes-orbit.js
+        const pointAt       = rg['approximated-curve'].t2xy; //returns [x, y], defined in makes-orbit.js
         const q         = rg.P.q; //PparQ (position of P,Q,R on conic), gets set to initial, then updated with sliders Pv and f
 
         const rr0 = pointAt(q); // rg.P.pos
@@ -98,7 +98,7 @@
         rg.L.pos[1]  =  cosAxis * op.latus;
         rg.LL.pos[0] =  sinAxis * op.latus;
         rg.LL.pos[1] = -cosAxis * op.latus;
-        rg[ 'L,LL' ].value = (2*op.latus).toFixed(3);
+        rg['L,LL'].value = (2*op.latus).toFixed(3);
 
         //================================================
         // \\// op (brown orbit)
@@ -109,7 +109,7 @@
         //=============================================================
         {
             ////sample orbit
-            let pointAt = rg[ 'approximated-curve-sample' ].t2xy;
+            let pointAt = rg['approximated-curve-sample'].t2xy;
             var {
                 posBody,
                 uTangential,
@@ -187,7 +187,7 @@
 
         op = sconf.orbitParameters;
         const posCenterOfForces = rg.S.pos;
-        const pointAt = rg[ 'approximated-curve' ].t2xy;
+        const pointAt = rg['approximated-curve'].t2xy;
         var q = rg.P.q;
         var {
             ds_dq,

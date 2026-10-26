@@ -31,8 +31,8 @@
             const Pqix = rg.P.qix;
             const Qqix = stdMod.gets_orbit_closest_point(newPos);
             if (sconf.TIME_IS_FREE_VARIABLE) {
-                const timeQ = qIndexToOrbit[ Qqix ].timeAtQ;
-                const timeP = qIndexToOrbit[ Pqix ].timeAtQ;
+                const timeQ = qIndexToOrbit[Qqix].timeAtQ;
+                const timeP = qIndexToOrbit[Pqix].timeAtQ;
                 let Dt = timeQ - timeP;
                 if (sconf.CURVE_REVOLVES) {
                     //For models that "revolve" (eg. circular orbit), "wrap" Dt
@@ -67,8 +67,8 @@
                 ssD.Dt = Math.max(Math.min(Dt, sconf.DT_SLIDER_MAX), 0);
 
             } else {
-                const qQ = qIndexToOrbit[ Qqix ].q;
-                const qP = qIndexToOrbit[ Pqix ].q;
+                const qQ = qIndexToOrbit[Qqix].q;
+                const qP = qIndexToOrbit[Pqix].q;
                 let Dq = qQ - qP;
                 if (sconf.CURVE_REVOLVES) {
                     //todo
@@ -103,7 +103,7 @@
         let stashedPos = null;
         let sp = rg.A.pos;
         rg.A.processOwnDownEvent = () => {
-            stashedPos = [ sp[0], sp[1] ];
+            stashedPos = [sp[0], sp[1]];
         };
 
         rg.A.processOwnUpEvent = () => {
@@ -114,7 +114,7 @@
             const eccentricityMax = sconf.eccentricityMax;
 
             // lock Y
-            newPos = [ newPos[0], stashedPos[1] ];
+            newPos = [newPos[0], stashedPos[1]];
 
             // enforce ellipse equation: solve for a given x,y
             let x = newPos[0];

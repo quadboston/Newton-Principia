@@ -11,7 +11,7 @@
     const EQUAL_TANGENTS_ANGLE = 0.10579977792284677;
 
     ///diff and Euclid tangents are equal
-    var ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] = {
+    var ANGLE_EQUALS = ssD["L-equal-d curveRotationAngle"] = {
         "angle": EQUAL_TANGENTS_ANGLE,
         "sin": Math.sin(EQUAL_TANGENTS_ANGLE),
         "cos": Math.cos(EQUAL_TANGENTS_ANGLE),
@@ -30,7 +30,7 @@
 
     // model origin in the picture; must match modorInPicX, modorInPicY
     // in sconf.js, which are not set yet when this module runs
-    const MODEL_ORIGIN_IN_PIC = [ 140, 61 ];
+    const MODEL_ORIGIN_IN_PIC = [140, 61];
 
     setCapture();
     return;
@@ -99,7 +99,7 @@
     function amode2rgstate(captured) {
         var { logic_phase, aspect, subessay } = amode;
         sDomF.resetModelPos();
-        rg[ 'arc-Ab' ].undisplay    = logic_phase !== 'given';
+        rg['arc-Ab'].undisplay    = logic_phase !== 'given';
 
         //idle?:
         ns.paste(rg.curveStart.pos, ssD.curveStartInitialPos);
@@ -120,11 +120,11 @@
         } else if (aspect !== 'model') {
             captured = "L-equal-d";
 
-            ns.paste(rg.curveStart.pos, [ -0.2, 0 ]);
-            ns.paste(rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ]);
+            ns.paste(rg.curveStart.pos, [-0.2, 0]);
+            ns.paste(rg.curveEnd.pos, [ssD.curveEndInitialPos[0], 0]);
 
             if (logic_phase === 'proof') {
-                rg[ 'arc-Ab' ].undisplay = false;
+                rg['arc-Ab'].undisplay = false;
             }
         }
 

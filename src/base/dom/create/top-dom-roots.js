@@ -67,7 +67,7 @@
         // for comparing the model with it
         if (doShowDiagram || !sconf.enableStudylab) {
             stdMod.imgRk.dom$
-               [ doShowDiagram ? 'removeClass' : 'addClass' ]('in-study');
+               [doShowDiagram ? 'removeClass' : 'addClass']('in-study');
         }
         rg.allLettersAreHidden = doShowDiagram;
     }

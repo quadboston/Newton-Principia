@@ -27,7 +27,7 @@
             if (modname) {
                 ////this list is prone to manual-errors, commas, etc
                 ////this is why this debug-style-coding
-                var cssGenerator = engCssMs[ modname ];
+                var cssGenerator = engCssMs[modname];
                 var cssTxt = cssGenerator(cssp, fconf);
                 //update( moreText, htmlkey )
                 ns.globalCss.update( //addText(

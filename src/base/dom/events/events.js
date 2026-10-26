@@ -46,7 +46,7 @@
         sDomF.detected_user_interaction_effect();
         //match[1] is astateKey
         //was: hafa( stdMod, 'astate_2_rg8model8media' )( ... match[1] ], match[1] );
-        hafa(stdMod, 'astate_2_rg8model8media')(ssD.capture[ captureKeyName ]);
+        hafa(stdMod, 'astate_2_rg8model8media')(ssD.capture[captureKeyName]);
     }
 
     function setupEvents() {
@@ -61,17 +61,17 @@
         var pager$ = direction === 'right' ? sDomN.rightButton$ :
                      sDomN.leftButton$;
 
-        var mList = fconf.sappId2lemmaDef[ fconf.sappId ];
+        var mList = fconf.sappId2lemmaDef[fconf.sappId];
         let allowedIx = mList.allowedIx;
         //sapp.ix
         //todm get rid of sapp.ix; this is a poor naming;
         var next = direction === 'right' ? next = allowedIx + 1 : allowedIx - 1;
         if (next >= fconf.ix2lemmaDefAllowed.length || next < 0 ||
-            fconf.ix2lemmaDefAllowed[ next ].sappId === 'home-pane'
+            fconf.ix2lemmaDefAllowed[next].sappId === 'home-pane'
         ) {
             pager$.addClass('non-displayed');
         } else {
-            var nextSapp = fconf.ix2lemmaDefAllowed[ next ];
+            var nextSapp = fconf.ix2lemmaDefAllowed[next];
             var fullCaption = nextSapp.book + '. ' + nextSapp.caption;
 
             var newLoc = window.location.pathname + '?conf=' +
@@ -249,7 +249,7 @@
             sconf.modorInPicY += dragMoveY;
 
             // necessary so drag to move starts at correct position
-            rg[ "diagram-panner" ].achieved.achieved = [
+            rg["diagram-panner"].achieved.achieved = [
                 sconf.modorInPicX,
                 sconf.modorInPicY
             ];

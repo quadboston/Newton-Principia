@@ -60,7 +60,7 @@
                     )
                     ();
                 //todm ... programming unwanted surprises
-                sconf.pname2point[ pname ] = pos;
+                sconf.pname2point[pname] = pos;
                 //too much?: rgX.medpos = ssF.mod2inn( pt.pos );
 
             break;
@@ -112,7 +112,7 @@
                     ();
                 sn('pname2point', sconf);
                 //preserves pos reference if exists
-                sconf.pname2point[ pname ] = pos;
+                sconf.pname2point[pname] = pos;
                 rgX.medpos = ssF.mod2inn(pos,);
                 rgX.caption = caption;
 

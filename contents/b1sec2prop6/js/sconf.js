@@ -164,13 +164,13 @@
         //---------------------------------------------------
         var curvePivots = [
             posA,
-            [ 523.3, 252 ],
-            [ 510.9, 193.2 ],
-            [ 385.6, 156.7 ],
+            [523.3, 252],
+            [510.9, 193.2],
+            [385.6, 156.7],
             [300, 137.2], //near Q
             [217, 132],
             [102, 180.1],
-            [51, 238 ],
+            [51, 238],
             [24.2, 315]
         ];
         sconf.rgPq = 0.270;
@@ -189,7 +189,7 @@
                         let y = cp[1] - originY_onPicture;
                         x *=1.1
                         y *= i==6 ? 1.45 : (i==4 ? 1.05 : 1.1);
-                        cp=[ x+originX_onPicture, y+originY_onPicture  ];
+                        cp=[x+originX_onPicture, y+originY_onPicture];
                     }
                     wwcp.push(cp);
                 }

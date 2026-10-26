@@ -57,7 +57,7 @@
                             ();
                         t.innerHTML = html;
                         eachprop(sstyle, (prop, pname) => {
-                           t.style[ pname ] = prop;
+                           t.style[pname] = prop;
                         });
                         //nice to know: Array.from(g.children).forEach( ch => {
                 } else {

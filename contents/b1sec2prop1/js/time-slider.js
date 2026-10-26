@@ -76,8 +76,8 @@ function creates_sliderDomModel__4__time() {
     //----------------------------------------------------------------------------
 
     //:spawns api pars
-    var startPos          = [ startX, startY ];
-    var endPos            = [ endX, startY ];
+    var startPos          = [startX, startY];
+    var endPos            = [endX, startY];
 
     //--------------------------------------------------------
     // //\\ slider api
@@ -108,7 +108,7 @@ function creates_sliderDomModel__4__time() {
     ///some other styles,
     var rails = pivots_2_svgLineInRg(
             rails_rgid,
-            [ railsStart, railsEnd ],
+            [railsStart, railsEnd],
             { stroke           : COLOR,
             'stroke-width'   : 3,
             tpclass          : tpId,
@@ -137,7 +137,7 @@ function creates_sliderDomModel__4__time() {
     );
     //.overrides tp - machinery suppressed opacity,
     //.the handler must be solid,
-    wwrack.svgel.style[ 'fill-opacity' ] = '1';
+    wwrack.svgel.style['fill-opacity'] = '1';
     //-------------------------------------
     // \\// makes svg representation of api
     //--------------------------------------------------------
@@ -185,13 +185,13 @@ function creates_sliderDomModel__4__time() {
     ///  sets slider position and
     ///  shows evolution corresponding to time;
     function upates_timeSlider8unmasksSvg() {
-        var rawTime = api[ apiValueName ]; //===rg.slider_sltime.curtime;
+        var rawTime = api[apiValueName]; //===rg.slider_sltime.curtime;
 
         //interpolates slider GUI position
         var sliderXpos =
                 railsStart.pos[0] +
                 rawTime / sconf.timeRange * api.railsLength;
-        api.pos = [ sliderXpos, railsStart.pos[1] ];
+        api.pos = [sliderXpos, railsStart.pos[1]];
 
         //does what it says, no extra calculations
         slTime_2_stepIndice8tCaption();
@@ -240,7 +240,7 @@ function move_2_updates(move_in_model) {
 
     //sets preliminary time:
     var newTime = api.achieved.achieved +
-                        move_in_model[ 0 ] /
+                        move_in_model[0] /
                         api.railsLength *
                         sconf.timeRange;
     //sets value:

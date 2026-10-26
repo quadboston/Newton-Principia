@@ -28,7 +28,7 @@
                 var xx = x;
                 var yy = point;
             }
-            var res = ssF.mod2inn([ xx*magnitude, yy*magnitude ]);
+            var res = ssF.mod2inn([xx*magnitude, yy*magnitude]);
             return res;
         }
     }
@@ -44,7 +44,7 @@
         //var fun = ssD.repoConf[0].fun;
         return function (x) {
             var [xx, yy] = fun(x);
-            var res = ssF.mod2inn([ xx*magnitudeX, yy*magnitudeY ]);
+            var res = ssF.mod2inn([xx*magnitudeX, yy*magnitudeY]);
             return res;
         }
     }

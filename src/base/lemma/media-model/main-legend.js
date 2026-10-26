@@ -59,7 +59,7 @@
                                 upcreate_mainLegend,
                             }
             );
-        var rgTeoTab = rg[ 'main-legend' ][ logic_phase ];
+        var rgTeoTab = rg['main-legend'][logic_phase];
         var clustersToUpdate = [];
         var tableCaption$;
         var tb;
@@ -125,7 +125,7 @@
                         row,
                         clusterIx,
                     });
-                    rowRack[ clusterIx ] = makesClusterCells(
+                    rowRack[clusterIx] = makesClusterCells(
                         Object.assign(
                         {
                             row,
@@ -145,7 +145,7 @@
             //================================================
             for (var rowIx=0; rowIx < rowsCount; rowIx++) {
                 var row = $$.c('tr').to(tb)();
-                var rowRack = domModel$.body$[ rowIx ] = [];
+                var rowRack = domModel$.body$[rowIx] = [];
                 ///================================================
                 /// creates cells for given row
                 ///================================================
@@ -157,7 +157,7 @@
                         row,
                         makesClusterCells,
                     });
-                    rowRack[ clusterIx ] = makesClusterCells(
+                    rowRack[clusterIx] = makesClusterCells(
                         Object.assign(
                         {
                             row,
@@ -223,7 +223,7 @@
                .to(row);
             if (ixOfSpanBeginning === 2) { valuePlaceholder$.a('colspan', '' + spanVal); }
             cells$.push(valuePlaceholder$);
-            clustersToUpdate[ clusterKey ] = valuePlaceholder$();
+            clustersToUpdate[clusterKey] = valuePlaceholder$();
             //========================================================
             // \\// cell = value placeholder
             //========================================================
@@ -232,7 +232,7 @@
             if (style) {
                 style.forEach((stl, six) => {
                     stl.forEach(st => {
-                        cells$[ six ].css(st[0], st[1]);
+                        cells$[six].css(st[0], st[1]);
                     });
                 });
             }
@@ -259,7 +259,7 @@
                 for (var clusterIx=0; clusterIx < clustersCount; clusterIx++) {
                     if (!cellsVisibilityCondition(rowIx, clusterIx)) continue;
                     var { clusterCellIx, htmlbody, } = updatesDataInCell({ rowIx, clusterIx, });
-                    domModel$.body$[ rowIx ][ clusterIx ][ clusterCellIx ].html(htmlbody);
+                    domModel$.body$[rowIx][clusterIx][clusterCellIx].html(htmlbody);
                 }
             }
             visibilizeTable();
@@ -277,7 +277,7 @@
                 for (var clusterIx=0; clusterIx < len; clusterIx++) {
                     var { columnCaptionTitle, clusterCellIx  } =
                         updatesCaptionCluster({ clusterIx, });
-                    domModel$.columnCaptionsRow[ clusterIx ][ clusterCellIx ]
+                    domModel$.columnCaptionsRow[clusterIx][clusterCellIx]
                         .html(columnCaptionTitle)
                         ;
                 }
@@ -309,14 +309,14 @@
             //--------------------------------------------
             if (makesCaptionCluster) {
                 for (var clusterIx=0; clusterIx<clustersCount; clusterIx++) {
-                    domModel$.columnCaptionsRow[ clusterIx ].forEach(c$ => {
+                    domModel$.columnCaptionsRow[clusterIx].forEach(c$ => {
                         c$.addClass('hidden');
                     });
                 }
             }
             for (var rowIx=0; rowIx < rowsCount; rowIx++) {
                 for (var clusterIx=0; clusterIx <= clustersCount-rowIx-1; clusterIx++) {
-                    domModel$.body$[ rowIx ][ clusterIx ].forEach(c$ => {
+                    domModel$.body$[rowIx][clusterIx].forEach(c$ => {
                         c$.addClass('hidden');
                     });
                 }
@@ -330,7 +330,7 @@
             //--------------------------------------------
             if (makesCaptionCluster) {
                 for (var clusterIx=0; clusterIx < clustersCount; clusterIx++) {
-                    domModel$.columnCaptionsRow[ clusterIx ].forEach(c$ => {
+                    domModel$.columnCaptionsRow[clusterIx].forEach(c$ => {
                         ///by design, captions visibility is the same as row-0
                         cellsVisibilityCondition(0, clusterIx) && c$.removeClass('hidden');
                     });
@@ -339,7 +339,7 @@
             for (var rowIx = 0; rowIx < rowsCount; rowIx++) {
                 for (var clusterIx=0; clusterIx < clustersCount; clusterIx++) {
                     cellsVisibilityCondition(rowIx, clusterIx) &&
-                    domModel$.body$[ rowIx ][ clusterIx ].forEach(c$ => {
+                    domModel$.body$[rowIx][clusterIx].forEach(c$ => {
                         c$.removeClass('hidden');
                     });
                 }

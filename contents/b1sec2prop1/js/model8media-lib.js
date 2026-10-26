@@ -38,8 +38,8 @@
 
         //perpendicular to unseen lines looks awkward
         //st -= rg.substepIx < 2 ? 1 : 0;
-        var pos0    = path[ st-1 ];
-        var pos1    = path[ st ];
+        var pos0    = path[st-1];
+        var pos1    = path[st];
         nspaste(rg.P.pos, mat.dropPerpendicular(rg.S.pos, pos0, pos1));
         nspaste(rg.T.pos, pos0);
         //rg.P.p is unit vector interface

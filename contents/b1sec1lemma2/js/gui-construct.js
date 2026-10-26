@@ -240,7 +240,7 @@
         pdom.setAttributeNS(null, "draggable", "false"); //todo ... redundant? ...
         var draggable = { dom:pdom, type:type, index:i, id:key };
         if (i>0 || type === 'ctrl') {
-            dr.movables[ key ] = draggable;
+            dr.movables[key] = draggable;
         }
         return draggable;
     }
@@ -259,7 +259,7 @@
         //.todm patch
         //pdom.style.fill = 'rgba(255,255,255,1)'; //makes the point hollow
         //pdom.style.stroke = sDomF.getFixedColor( 'figure' );
-        pdom.style[ 'stroke-width' ] = '1px';
+        pdom.style['stroke-width'] = '1px';
         pt.x = pos[0];
         pt.y = pos[1];
 

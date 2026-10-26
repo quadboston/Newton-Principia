@@ -51,7 +51,7 @@
                 break;
         }
         for (let qix=0; qix<=Q_STEPS; qix++) {
-            const bP = qIndexToOrbit[ qix ]; //body point data
+            const bP = qIndexToOrbit[qix]; //body point data
             MAKE_RANGE && (bP.invalid = false);
             //**********************************************
             // //\\ q is free variable
@@ -206,8 +206,8 @@
                 //Found correct qix so calculate q value
                 //Must use dq_dt from PEnd not PStart to be consistent with
                 //how qIndexToOrbit data is setup in "builds-orbit.js"
-                const PStart = qIndexToOrbit[ qix ];
-                const PEnd = qIndexToOrbit[ qix + 1 ];
+                const PStart = qIndexToOrbit[qix];
+                const PEnd = qIndexToOrbit[qix + 1];
                 const T_reminder = timeFind - timeStart;
                 const Q = PStart.q +  T_reminder * PEnd.dq_dt;
                 return Q;
@@ -266,8 +266,8 @@
         //Calculate time value
         //Must use dq_dt from PEnd not PStart to be consistent with
         //how qIndexToOrbit data is setup in "builds-orbit.js"
-        const PStart = qIndexToOrbit[ qixL ];
-        const PEnd = qIndexToOrbit[ qixL + 1 ];
+        const PStart = qIndexToOrbit[qixL];
+        const PEnd = qIndexToOrbit[qixL + 1];
         const q_reminder = q - PStart.q;
         const time = PStart.timeAtQ + q_reminder / PEnd.dq_dt;
         return time;
@@ -275,7 +275,7 @@
 
     function calculateTimeBetweenQAndP() {
         if (!sconf.TIME_IS_FREE_VARIABLE) {
-            const bP = ssD.qIndexToOrbit[ rg.P.qix ];
+            const bP = ssD.qIndexToOrbit[rg.P.qix];
             const qQ = bP.plusQ;
             const timeQ = convert_qToTime(qQ, true);
             const timeP = bP.timeAtQ;

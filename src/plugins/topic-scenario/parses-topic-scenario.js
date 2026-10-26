@@ -122,7 +122,7 @@
 
                             var evBlock = { eventId, statements, autopilotEventId };
                             orderedEvents.push(evBlock);
-                            eventId2eventBlock[ eventId ] = evBlock;
+                            eventId2eventBlock[eventId] = evBlock;
 
                             //if missed, fills previous event block autopoilot to ownself
                             if (!haz(previousEventBlock_forAutopilot, 'autopilotEventId')
@@ -143,7 +143,7 @@
                                                         orderedEvents,
                                                         eventId2eventBlock
                                                        };
-                        stateId2state[ stateId ]    = stateRack;
+                        stateId2state[stateId]    = stateRack;
                         orderedStates.push(stateRack);
                         buildUserAutoPilot(subexeg);
                     });
@@ -181,7 +181,7 @@
     `;
     //----------------------------------------------------------------------
 
-                        actionsList_default[ statement.command ] = function (stateId, eventId) {
+                        actionsList_default[statement.command] = function (stateId, eventId) {
                                 var wwMessage =
                                      '  pl.holder act:  ||' + stateId +
                                      ' +' + eventId +

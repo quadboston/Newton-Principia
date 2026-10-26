@@ -52,7 +52,7 @@
             var { subessay } = amode;
             var newPos0 = dragMove[0] + sData.Lpos0_g;
             var newPos1 = -dragMove[1] + sData.Lpos1_g;
-            let dShift = [ newPos0 - rg.p.pos[0], newPos1 - rg.p.pos[1] ];
+            let dShift = [newPos0 - rg.p.pos[0], newPos1 - rg.p.pos[1]];
             var dS = Math.sqrt(dShift[0]*dShift[0] + dShift[1]*dShift[1]);
             if (dS < 0.00000001) return;
             var incr = dS / sData.dShift_g;
@@ -175,8 +175,8 @@
                 const sl = mat.p1_to_p2(pp, np); //slider
                 if (sl.abs < 0.2) return;
                 let omega = mat.angleBetweenLines([
-                    [ [0, 0], pp ],
-                    [ [0, 0], sl.vector ],
+                    [[0, 0], pp],
+                    [[0, 0], sl.vector],
                 ]).angle;
 
                 //--------------------------------
@@ -264,8 +264,8 @@
                 const sl = mat.p1_to_p2(pp, np); //slider
                 if (sl.abs < 0.2) return;
                 var omega = mat.angleBetweenLines([
-                    [ [0, 0], pp ],
-                    [ [0, 0], sl.vector ],
+                    [[0, 0], pp],
+                    [[0, 0], sl.vector],
                 ]).angle;
 
                 //--------------------------------

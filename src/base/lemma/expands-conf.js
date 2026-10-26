@@ -93,7 +93,7 @@ function doExpandConfig() {
 
     ///adds point's color from topicColors_elected if missed
     eachprop(originalPoints, (point, pname) => {
-        point.pcolor = haz(point, 'pcolor') || topicColors_elected[ pname ];
+        point.pcolor = haz(point, 'pcolor') || topicColors_elected[pname];
     });
 
     ///it is vital to set these pars now ...
@@ -141,8 +141,8 @@ function doExpandConfig() {
         Object.keys(topicColors_elected).forEach(camelId => {
         toreg(camelId)('pname', camelId);
             var lowId = sDomF.toCssIdentifier(camelId);
-            let tr = topicColors_repo[ lowId ] = topicColors_elected[ camelId ];
-            topicColors_repo_camel2col[ camelId ] = tr;
+            let tr = topicColors_repo[lowId] = topicColors_elected[camelId];
+            topicColors_repo_camel2col[camelId] = tr;
         });
 
         //--------------------------------------------------
@@ -185,7 +185,7 @@ function doExpandConfig() {
             lines = {};
             linesArray.forEach((lineConf) => {
                 var lname = Object.keys(lineConf)[0];
-                lines[ lname ] = lineConf[ lname ];
+                lines[lname] = lineConf[lname];
             });
         }
 
@@ -229,8 +229,8 @@ function doExpandConfig() {
             if (has(gshape, 'pcolor')) {
                 var tk = sDomF.toCssIdentifier(pname);
                 //concat() separates generic color-arrays from
-                let fc = topicColors_repo[ tk ] = gshape.pcolor.concat();
-                topicColors_repo_camel2col[ pname ] = fc;
+                let fc = topicColors_repo[tk] = gshape.pcolor.concat();
+                topicColors_repo_camel2col[pname] = fc;
                 rgX.pcolor = sDomF.getFixedColor(gshape.pcolor);
                 rgX.opaqueColor = sDomF.getFixedColor(
                                     gshape.pcolor, !!'makeOpacity1');
@@ -277,9 +277,9 @@ function doExpandConfig() {
             var draggableY = has(op, 'draggableY') ? op.draggableY : false;
             // \\// todm: automate property transfer
 
-            var pos = pname2point[ pname ] = !pictureP ?
+            var pos = pname2point[pname] = !pictureP ?
                 [0, 0] :
-                [ (pictureP[0] - originX_onPicture) * inn2mod_scale,
+                [(pictureP[0] - originX_onPicture) * inn2mod_scale,
                     (pictureP[1] - originY_onPicture) * factor,
                 ];
             //creates rgX or reuses existing one
@@ -309,8 +309,8 @@ function doExpandConfig() {
 
             if (has(op, 'pcolor')) {
                 var tk = sDomF.toCssIdentifier(pname);
-                let fc = topicColors_repo[ tk ] = op.pcolor; //low
-                topicColors_repo_camel2col[ pname ] = fc;       //camel
+                let fc = topicColors_repo[tk] = op.pcolor; //low
+                topicColors_repo_camel2col[pname] = fc;       //camel
                 rgX.pcolor = sDomF.getFixedColor(op.pcolor);
                 rgX.opaqueColor = sDomF.getFixedColor(op.pcolor,
                                     !!'makeOpacity1');

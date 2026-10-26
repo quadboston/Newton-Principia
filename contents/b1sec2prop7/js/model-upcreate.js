@@ -12,7 +12,7 @@
     function model_upcreate() {
         const q2xy = stdMod.q2xy;
         const solvable = ssD.solvable;
-        const Porb = ssD.qIndexToOrbit[ rg.P.qix ];
+        const Porb = ssD.qIndexToOrbit[rg.P.qix];
         var {
             RC, R, curvatureChordSecondPoint, projectionOfCenterOnTangent,
             uTangential,
@@ -32,7 +32,7 @@
             rg.Q.q_minus = Porb.minusQ;
             rg.Q.pos[0] = rrplus[0];
             rg.Q.pos[1] = rrplus[1];
-            const chord = rg.chord = [ rrplus[0] - rrminus[0], rrplus[1] - rrminus[1], ];
+            const chord = rg.chord = [rrplus[0] - rrminus[0], rrplus[1] - rrminus[1],];
             rg.chord2 = chord[0]*chord[0]+chord[1]*chord[1];
 
             //R = parallel-projection of Q to tangent
@@ -68,7 +68,7 @@
             var Z = mat.linesCross(
                 uTangential,
                 rg.P.pos,
-                [ rg.Q.pos[0]-rg.T.pos[0], rg.Q.pos[1]-rg.T.pos[1], ],
+                [rg.Q.pos[0]-rg.T.pos[0], rg.Q.pos[1]-rg.T.pos[1],],
                 rg.T.pos,
             );
             rg.Z.pos[0] = Z[0];
@@ -185,7 +185,7 @@
         // //\\ builds SG
         //------------------------------------------------------------
         var Gcol2 = mat.linesCross(
-            [ rg.Rcol2.pos[0]-rg.P.pos[0], rg.Rcol2.pos[1]-rg.P.pos[1] ],  //direction-1
+            [rg.Rcol2.pos[0]-rg.P.pos[0], rg.Rcol2.pos[1]-rg.P.pos[1]],  //direction-1
             rg.S.pos,  //start-1
             uTangential, //direction-2'
             rg.P.pos  //start-2'
@@ -227,7 +227,7 @@
         {
             ///single fold point decorations
             let nsp = rg.nonSolvablePoint;
-            let nsl = rg[ 'S,nonSolvablePoint' ];
+            let nsl = rg['S,nonSolvablePoint'];
             let len = ssD.foldPoints.length;
             if (len) {
                 ////displays last fold point
@@ -257,11 +257,11 @@
                 ////when curve became non-Kepler
                 let sv = ssD.stashedVisibility;
                 Object.keys(ssD.stashedVisibility).forEach(okey => {
-                    let val = sv[ okey ];
+                    let val = sv[okey];
                     switch (okey) {
                         case 'Q.hideD8Dpoint' : rg.Q.hideD8Dpoint = val;
                         break;
-                        default : rg[ okey ].undisplay = val;
+                        default : rg[okey].undisplay = val;
                     }
                 });
                 ssD.stashedVisibility = null;
@@ -289,7 +289,7 @@
                 switch (okey) {
                     case 'Q.hideD8Dpoint' : rg.Q.hideD8Dpoint = true;
                     break;
-                    default : rg[ okey ].undisplay = true;
+                    default : rg[okey].undisplay = true;
                 }
             });
         }

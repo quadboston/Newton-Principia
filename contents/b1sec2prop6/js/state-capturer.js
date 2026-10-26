@@ -31,8 +31,8 @@
         // Bezier pivots define the curve; init_model_parameters scales the
         // configured pivots, so the scale is undone here
         const curvePivots = ssD.bezio.pivotsPos.map((pos, cpix) => {
-            const [ scaleX, scale ] = stdMod.pivotScale(cpix);
-            return model2picture([ pos[0] / scaleX, pos[1] / scale ]);
+            const [scaleX, scale] = stdMod.pivotScale(cpix);
+            return model2picture([pos[0] / scaleX, pos[1] / scale]);
         });
 
         // P: middle of its orbit step, so Math.floor() gives the step back

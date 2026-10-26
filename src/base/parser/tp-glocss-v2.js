@@ -81,7 +81,7 @@ ${Rtp}.tobg {
             Object.keys(anrack.tpid2true).forEach(low_tpID => {
                 var Rtp = ROOT + ' .tp-' + low_tpID;
                 var Rix = ROOT + '.tp-' + tplink_ix;
-                var gcssRack = topics.lowtpid_2_glocss8anchorRack[ low_tpID ];
+                var gcssRack = topics.lowtpid_2_glocss8anchorRack[low_tpID];
                 var ts = '';
                 var { highOpacity, rgba_own} = gcssRack;
                 var tpOpacityHigh_str = highOpacity.toFixed(3);
@@ -119,7 +119,7 @@ ${Rix} .tohidden.tp-${low_tpID} {
     visibility:visible;
 }
                 `;
-                globalCss[ doReplace ? 'replace' : 'update' ](ts,
+                globalCss[doReplace ? 'replace' : 'update'](ts,
                     'glocss-id-' + low_tpID + '-glocss-ix-'+tplink_ix);
             });
         });

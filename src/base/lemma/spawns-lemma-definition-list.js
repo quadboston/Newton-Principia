@@ -15,7 +15,7 @@
             ld.allowedIx = ix2lemmaDefAllowed.length;
             ix2lemmaDefAllowed.push(ld);
             sn('caption', ld, 'Undefined Caption');
-            fconf.sappId2lemmaDef[ ld.sappId ] = ld;
+            fconf.sappId2lemmaDef[ld.sappId] = ld;
         });
     }
 

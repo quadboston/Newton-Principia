@@ -45,9 +45,9 @@ function unmasksVisib() {
     //--------------------------------------
     // always shows first Kepler's triangle to show
     // all other Kepler's triangles are equal to it
-    $$.$(rg[ 'kepltr-' + 0 ].svgel).removeClass('undisplay');
+    $$.$(rg['kepltr-' + 0].svgel).removeClass('undisplay');
     //Also show the path segment.
-    $$.$(rg[ 'pathSegment-' + 0 ].svgel).removeClass('undisplay');
+    $$.$(rg['pathSegment-' + 0].svgel).removeClass('undisplay');
     //rg[ 'VVV0' ].undisplay = false;
     //--------------------------------------
     // \\// picture drawing began

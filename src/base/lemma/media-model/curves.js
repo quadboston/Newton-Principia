@@ -169,7 +169,7 @@
                                   annPointsPositions[aix].par : start + incr * aix;
                 var pos         = fun(pointParam);
                 var annName     = 'ann-' + rgName + '-' + aix;
-                var rgAnn = rgAnnPoints[ aix ] = ssF.declareGeomtric({
+                var rgAnn = rgAnnPoints[aix] = ssF.declareGeomtric({
                             pname   : annName,
                             pos,
                             caption : captionFunct({

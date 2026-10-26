@@ -15,7 +15,7 @@
     function model_upcreate() {
         const solvable = ssD.solvable;
         //qIndexToOrbit is meta data for all points on orbit, qix is index of P
-        const Porb = ssD.qIndexToOrbit[ rg.P.qix ];
+        const Porb = ssD.qIndexToOrbit[rg.P.qix];
         if (Porb) {
             var {
                 RC, R, curvatureChordSecondPoint, projectionOfCenterOnTangent,
@@ -101,7 +101,7 @@
                 rg.Q.pos[0] = rrplus[0];
                 rg.Q.pos[1] = rrplus[1];
 
-                const chord = rg.chord = [ rrplus[0] - rrminus[0], rrplus[1] - rrminus[1], ];
+                const chord = rg.chord = [rrplus[0] - rrminus[0], rrplus[1] - rrminus[1],];
                 rg.chord2 = chord[0]*chord[0]+chord[1]*chord[1];
 
                 let Mx = (rrplus[0] + Porb.rrminus[0]) / 2;
@@ -247,7 +247,7 @@
         {
             ///single fold point decorations
             let nsp = rg.nonSolvablePoint;
-            let nsl = rg[ 'S,nonSolvablePoint' ];
+            let nsl = rg['S,nonSolvablePoint'];
             let len = ssD.foldPoints.length;
             if (len) {
                 ////displays last fold point
@@ -281,8 +281,8 @@
             ////visibility has been not yet stashed;
             ////therefore, doing stashing now,
             ssD.stashedVisibility = {
-                'Q,rrminus'             : rg[ 'Q,rrminus' ].undisplay,
-                'P,sagitta'             : rg[ 'P,sagitta' ].undisplay,
+                'Q,rrminus'             : rg['Q,rrminus'].undisplay,
+                'P,sagitta'             : rg['P,sagitta'].undisplay,
                 'Q'                     : rg.Q.undisplay,
                 'APQ'                   : rg.APQ.undisplay,
                 'Q.hideD8Dpoint'        : rg.Q.hideD8Dpoint,
@@ -302,7 +302,7 @@
                 switch (okey) {
                     case 'Q.hideD8Dpoint' : rg.Q.hideD8Dpoint = true;
                     break;
-                    default : rg[ okey ].undisplay = true;
+                    default : rg[okey].undisplay = true;
                 }
             });
         }
@@ -318,11 +318,11 @@
         const sv = ssD.stashedVisibility;
         if (!sv) return;
         Object.keys(sv).forEach(okey => {
-            const val = sv[ okey ];
+            const val = sv[okey];
             switch (okey) {
                 case 'Q.hideD8Dpoint' : rg.Q.hideD8Dpoint = val;
                 break;
-                default : rg[ okey ].undisplay = val;
+                default : rg[okey].undisplay = val;
             }
         });
         ssD.stashedVisibility = null;

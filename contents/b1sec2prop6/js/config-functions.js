@@ -16,7 +16,7 @@
     function bezierPivotsToCurvePivots() {
         const bezio = ssD.bezio;
         bezio.pivotsPos.map((pos, ix) => {
-            let cp = rg[ 'curvePivots-' + ix ];
+            let cp = rg['curvePivots-' + ix];
             let posNew = bezio.fun(cp.q);
             cp.pos[0] = posNew[0];
             cp.pos[1] = posNew[1];

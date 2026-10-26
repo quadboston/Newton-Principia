@@ -61,7 +61,7 @@
         //=============================================
         // //\\ points reused in config
         //=============================================
-        var posC = [443, 375 ];
+        var posC = [443, 375];
         //=============================================
         // \\// points reused in config
         //=============================================
@@ -72,7 +72,7 @@
         var mod2inn_scale = 360;
         var originX_onPicture = posC[0]; //for model's axis x
         var originY_onPicture = posC[1]; //for model's axis y
-        sconf.diagramOrigin = [ 0, 0 ];
+        sconf.diagramOrigin = [0, 0];
 
         //-------------------------------------------
         // //\\ calculation algo parameters

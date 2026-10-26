@@ -35,15 +35,15 @@
         //:vanishing areas
         //:sets display of "main vanishing values"
         //:these statements do output all the "vanishing" digits
-        ww.ABD.innerHTML        = (wD2*calcA[ 'AFD' ].total).toFixed(dig+4);
-        ww.ACE.innerHTML        = (wD2*calcA[ 'AGE' ].total).toFixed(dig+4);
+        ww.ABD.innerHTML        = (wD2*calcA['AFD'].total).toFixed(dig+4);
+        ww.ACE.innerHTML        = (wD2*calcA['AGE'].total).toFixed(dig+4);
 
-        ww.ABDPerACE.innerHTML  = (calcA[ 'AFD' ].total/calcA[ 'AGE' ].total).toFixed(3);
+        ww.ABDPerACE.innerHTML  = (calcA['AFD'].total/calcA['AGE'].total).toFixed(3);
         ww.AD2PerAE2.innerHTML  = (claimR*claimR).toFixed(3);
 
         var ww = clustersToUpdate_claim;
         //: vanishing areas
-        ww.ABDPerACE.innerHTML  = (calcA[ 'AFD' ].total/calcA[ 'AGE' ].total).toFixed(3);
+        ww.ABDPerACE.innerHTML  = (calcA['AFD'].total/calcA['AGE'].total).toFixed(3);
         ww.AD2PerAE2.innerHTML  = (claimR*claimR).toFixed(3);
     }
     //=========================================

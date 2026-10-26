@@ -44,13 +44,13 @@
     ///     assigns val to rg[ kname ].pos,
     ///     returns val
     function topos(kname, val) {
-        rg[ kname ] = rg.hasOwnProperty(kname) ?
-            rg[ kname ] :
+        rg[kname] = rg.hasOwnProperty(kname) ?
+            rg[kname] :
             {
                 rgId : kname,
             }
         ;
-        return (rg[ kname ].pos = val);
+        return (rg[kname].pos = val);
     }
 
     ///creates or updates registered umbrella-object rg[id] and its properties
@@ -70,12 +70,12 @@
             ('mykey4'); //returns myval4
     */
     function toreg(id) {
-        rg[ id ] = rg.hasOwnProperty(id) ? rg[ id ] : { rgId : id, };
+        rg[id] = rg.hasOwnProperty(id) ? rg[id] : { rgId : id, };
         return updateMe;
 
         function updateMe(key, val) {
             switch (arguments.length) {
-                case 0: return rg[ id ];
+                case 0: return rg[id];
                 case 1:
                         if (typeof key === 'string') return rg[id][key]; //returns value
                         ////otherwise, keeps chain going

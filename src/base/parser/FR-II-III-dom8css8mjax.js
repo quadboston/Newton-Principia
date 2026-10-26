@@ -26,7 +26,7 @@
                     ///in some application state this class is assigned to top html-parent,
                     ///subexeg.activeFrags are non-unJSONED-active Fragment text units,
                     subexeg.activeFrags.forEach(function (rawActiveFrag, tix) {
-                        subexeg.built_act8stat_fragments_texts[ tix ] = {
+                        subexeg.built_act8stat_fragments_texts[tix] = {
                             //text ready to be inserted in html with anchor-sripts
                             //converted to anchor text,
                             htmlReadyFragText_racks :

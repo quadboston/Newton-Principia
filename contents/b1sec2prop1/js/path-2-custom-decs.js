@@ -24,9 +24,9 @@ function traj2decs__II() {
     //-----------------------------------------------------
     // //\\ recalculates BCDEF points pos
     //-----------------------------------------------------
-    [ 'B', 'C', 'D', 'E', 'F' ].forEach((kname, ix) => {
-        nspaste(rg[ kname ].pos, path[ ix + 1 ]);
-        nspaste(rg[ 'VVV'+ix ].pos, rg[ 'force-' + ix + '-1' ].pos);
+    ['B', 'C', 'D', 'E', 'F'].forEach((kname, ix) => {
+        nspaste(rg[kname].pos, path[ix + 1]);
+        nspaste(rg['VVV'+ix].pos, rg['force-' + ix + '-1'].pos);
     });
     //-------------------------------------------------
     // \\// recalculates BCDEF points pos
@@ -51,7 +51,7 @@ function traj2decs__II() {
 
     if (fconf.sappId === 'b1sec2prop2') {
         //top of the accelerated kepler-triangle
-        nspaste(rg.Cprime.pos, rg.pathAracc.pos[ 2 ]);
+        nspaste(rg.Cprime.pos, rg.pathAracc.pos[2]);
         //=== normal-to-radii-displacement - added to position "V"
         rg.Vprime.pos[0] =
                 rg.Cprime.pos[0]-rg.C.pos[0]+ //normal displaysment

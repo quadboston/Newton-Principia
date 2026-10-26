@@ -34,9 +34,9 @@
                 if (fullAngle < rg.AB.angle) {
                     ///this is lowest allowed L-position on the screen
                     fullAngle = rg.AB.angle;
-                    sData[ 'proof-pop-up' ].dom$.css('display', 'block');
+                    sData['proof-pop-up'].dom$.css('display', 'block');
                 } else {
-                    sData[ 'proof-pop-up' ].dom$.css('display', 'none');
+                    sData['proof-pop-up'].dom$.css('display', 'none');
                 }
                 rg.curveRotationAngle.angle = fullAngle - rg.originalGapTangent.angle;
                 return true;
@@ -80,7 +80,7 @@
                 ////implements team agreed feature of preventing point B
                 ////entering area above line AL for core essays
                 const angleBAM = mat.angleBetweenLines([
-                  [rg.A.pos, cpos ],
+                  [rg.A.pos, cpos],
                   [rg.A.pos, rg.L.pos],
                 ]).angle
 
@@ -90,9 +90,9 @@
                     (angleBAM < 0 || cpos[1] > -0.01)
                 ) {
                     adjust_new_unrotatedParameterX_asNeccesary();
-                    sData[ 'proof-pop-up' ].dom$.css('display', 'block');
+                    sData['proof-pop-up'].dom$.css('display', 'block');
                 } else {
-                    sData[ 'proof-pop-up' ].dom$.css('display', 'none');
+                    sData['proof-pop-up'].dom$.css('display', 'none');
                 }
 
                 ///prevents user from playing with too big curves
@@ -177,7 +177,7 @@
             buttonUniversalId       : wwId,
             //scenarioEventOnClick    : 'graph-is-plotted',
             clickCallback           : () => {
-                sData[ wwId ].dom$.css('display', 'none');
+                sData[wwId].dom$.css('display', 'none');
             },
             noTopicScenario         : true,
             cssText                 : `

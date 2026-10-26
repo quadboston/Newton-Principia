@@ -217,9 +217,9 @@
                                //marginX*2 + dimB :
                                //marginX + dimB;
                     var pivots = gridAlongY ?
-                            [ [ marginX, l_media ], [ horizontAxisEndX, l_media ], ]
+                            [[marginX, l_media], [horizontAxisEndX, l_media],]
                             :
-                            [ [ l_media, marginY ], [ l_media, marginY + dimB  ], ]
+                            [[l_media, marginY], [l_media, marginY + dimB],]
                             ;
                     //======================================================
                     // \\// prepares grid and axes params
@@ -248,9 +248,9 @@
                             var effectiveAxis = axisA;
 
                             var fontStroke = drawAllAxesInGrid ?
-                                                colorThreadArray[ aIx ] : axisA[ 'stroke' ];
+                                                colorThreadArray[aIx] : axisA['stroke'];
                             var fontFill = drawAllAxesInGrid ?
-                                                colorThreadArray[ aIx ] : axisA[ 'fill' ];
+                                                colorThreadArray[aIx] : axisA['fill'];
 
                             if (gridAlongY) {
                                 ////we have horiz. line, putting a serie of dig.
@@ -259,8 +259,8 @@
                                     var x = pivots[0][0] + axisA.fontShiftX;
                                 } else {
                                     var effectiveAxis = extraAxisY;
-                                    var fontStroke = colorThreadArray[ aIx ];
-                                    var fontFill = colorThreadArray[ aIx ];
+                                    var fontStroke = colorThreadArray[aIx];
+                                    var fontFill = colorThreadArray[aIx];
                                     var x = pivots[0][0] + marginX +
                                             dimB + (aIx-1) * EXTRA_AXIS_OFFSET_STEP +
                                             effectiveAxis.fontShiftX;
@@ -282,9 +282,9 @@
                                     y,
                                     parent  : graphFM_self.gmedia$(),
                                     style   : {
-                                                'font-size'     : effectiveAxis[ 'font-size' ],
-                                                'font-weight'   : effectiveAxis[ 'font-weight' ],
-                                                'stroke-width'  : effectiveAxis[ 'stroke-width' ],
+                                                'font-size'     : effectiveAxis['font-size'],
+                                                'font-weight'   : effectiveAxis['font-weight'],
+                                                'stroke-width'  : effectiveAxis['stroke-width'],
                                                 'stroke'        : fontStroke,
                                                 'fill'          : fontFill,
                                     },
@@ -329,13 +329,13 @@
     }) {
         toollineStyle = toollineStyle || {};
         sn('stroke', toollineStyle, 'rgba( 0,0,0, 1 )');
-        var graphElement = graphArray[ Math.floor(abscissaIxValue) ];
+        var graphElement = graphArray[Math.floor(abscissaIxValue)];
         if (!graphElement) return;
 
         var svgParent = graphFM_self.gmedia$();
 
         var l_media = marginX + (graphElement.x - xMin) / rangeX * dimA;
-        var pivots = [ [ l_media, marginY ], [ l_media, marginY + dimB ], ];
+        var pivots = [[l_media, marginY], [l_media, marginY + dimB],];
 
         //======================================================
         // //\\ prints toolline
@@ -361,7 +361,7 @@
                         graphIx : yix,
                         decimalDigits : 2,
                         fontSize : 22,
-                        fontFill : colorThreadArray[ yix ],
+                        fontFill : colorThreadArray[yix],
                         fontWeight : 'normal',
                         strokeWidth : 0.1,
                     }
@@ -372,7 +372,7 @@
                 if (!polylines[nmix]) return;
                 var gix = nm.graphIx;
                 var decimalDigits = nm.decimalDigits;
-                var nmVal = graphElement.y[ gix ];
+                var nmVal = graphElement.y[gix];
                 var x = l_media;
                 var y = marginY + dimB - (nmVal - yMin) / rangeY * dimB;
 

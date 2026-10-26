@@ -33,11 +33,11 @@
         const bezio = ssD.bezio;
         var pivs = sconf.originalPoints.curvePivots;
         pivs.forEach((cp, cpix) => {
-            var pos1 = rg[ 'curvePivots-' + cpix ].pos;
+            var pos1 = rg['curvePivots-' + cpix].pos;
             var stashedPos = null;
             cp.rgX.processOwnDownEvent = () => {
                 let pos = stdMod.q2xy(bezio.ix2parameter[cpix]);
-                stashedPos = [ pos[0], pos[1] ];
+                stashedPos = [pos[0], pos[1]];
             };
 
             cp.rgX.processOwnUpEvent = () => {
@@ -80,7 +80,7 @@
                 ///updates curve pivots every time:
                 stdMod.bezierPivotsToCurvePivots();
 
-                stashedPos = [ newPos[0], newPos[1] ];
+                stashedPos = [newPos[0], newPos[1]];
                 if (ssD.foldPoints.length) {
                     ////we do return true, because would like to
                     ////redraw gapped orbit with pivots

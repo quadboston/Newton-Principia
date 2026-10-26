@@ -51,12 +51,12 @@
         captionRadiusIncrease,
     }) {
         var medPosPivotsAB = [  //=[ medposA, medposB ]
-            [ AB[0].medpos[0], AB[0].medpos[1] ],
-            [ AB[1].medpos[0], AB[1].medpos[1] ],
+            [AB[0].medpos[0], AB[0].medpos[1]],
+            [AB[1].medpos[0], AB[1].medpos[1]],
         ];
         var medPosPivotsCD = [
-            [ CD[0].medpos[0], CD[0].medpos[1] ],
-            [ CD[1].medpos[0], CD[1].medpos[1] ],
+            [CD[0].medpos[0], CD[0].medpos[1]],
+            [CD[1].medpos[0], CD[1].medpos[1]],
         ];
         var angleStart      = segmentAngle(medPosPivotsAB)*sconf.MONITOR_Y_FLIP;
         var angleEnd        = segmentAngle(medPosPivotsCD)*sconf.MONITOR_Y_FLIP;

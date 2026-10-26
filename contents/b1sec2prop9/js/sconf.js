@@ -61,7 +61,7 @@
         // //\\ points reused in config
         //=============================================
         RR = 360; //Math.sqrt( RR ) / 2;
-        var C = [510, 311 ];
+        var C = [510, 311];
         var S = C;
         //=============================================
         // \\// points reused in config
@@ -73,7 +73,7 @@
         var mod2inn_scale = 360; //RR;
         var originX_onPicture = C[0]; //for model's axis x
         var originY_onPicture = C[1]; //for model's axis y
-        sconf.diagramOrigin = [ 0, 0 ];
+        sconf.diagramOrigin = [0, 0];
 
         //-------------------------------------------
         // //\\ calculation algo parameters

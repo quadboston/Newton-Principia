@@ -24,8 +24,8 @@
         //decorations:
         toreg('gN')('value', sconf.initial_gN);
 
-        stdMod.pos8tg_2_rg('C', [ -rg.a.value, 0 ]); //AH = a
-        stdMod.pos8tg_2_rg('B', [ 1-rg.a.value, 0 ]); //BH = b
+        stdMod.pos8tg_2_rg('C', [-rg.a.value, 0]); //AH = a
+        stdMod.pos8tg_2_rg('B', [1-rg.a.value, 0]); //BH = b
 
         toreg('b');
         stdMod.baseParams_2_extendedParams();

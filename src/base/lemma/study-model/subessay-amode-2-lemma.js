@@ -49,7 +49,7 @@
             ///aka: "true", or "( logic_phase === 'claim' || ...
             var cond = cblock[0];
             if (eval(cond)) {
-                var instr = cblock[ 1 ];
+                var instr = cblock[1];
                 ///latter "captured" in array overrides previous "captured"
                 captured = haz(instr, "captured") || captured;
 
@@ -109,7 +109,7 @@
 
         //reminder: captured here is the last satisfied captured,
         //the last after recent loop via code fragements above
-        stdMod.astate_2_rg8model(captured && ssD.capture[ captured ]);
+        stdMod.astate_2_rg8model(captured && ssD.capture[captured]);
 
         var wwLaunch = haz(stdMod, 'subessayLaunch_definedInLemma_universal');
         if (wwLaunch) {

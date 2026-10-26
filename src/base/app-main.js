@@ -47,7 +47,7 @@ const {
         ssF.spawns_lemsDefArr(); // contents/content-list.js to fconf
         fapp.setUIConstants();
         fapp.setColors();
-        fapp.lemmaDef = fconf.sappId2lemmaDef[ fconf.sappId ];
+        fapp.lemmaDef = fconf.sappId2lemmaDef[fconf.sappId];
         document.title = fconf.sappId == 'conics' ? '𝘊𝘰𝘯𝘪𝘤𝘴 reference'  : fapp.lemmaDef.caption;
         fconf.sappIdUnCamel = nsmethods.toCssIdentifier(fconf.sappId);
         //=========================
@@ -234,7 +234,7 @@ const {
                             //l caseId2allLemTopics is empty at this moment,
                             eachprop(topicColors_repo_camel2col, (colorArray, camelId) => {
                                 var low_tpID = wwCase(camelId);
-                                lowtpid_2_glocss8anchorRack[ low_tpID ] = {
+                                lowtpid_2_glocss8anchorRack[low_tpID] = {
                                     //todo why tpcolarr
                                     'tpcolarr' : colorArray,
                                     camelId,

@@ -38,7 +38,7 @@
                             ////per team agreement, we block curve positions
                             ////depicting "ad absurdum" proof and position
                             ////the curve in lemma claim position,
-                            var anRack = ssD[ "L-equal-d curveRotationAngle" ];
+                            var anRack = ssD["L-equal-d curveRotationAngle"];
                         }
 
                         var sin = anRack.sin;
@@ -46,7 +46,7 @@
                         var y = originalFun(x);
                         var xx = cos * x - sin * y;
                         var yy = sin * x + cos * y;
-                        return [ xx, yy ];
+                        return [xx, yy];
                 },
             },
             {
@@ -69,7 +69,7 @@
                 fun : function (x) {
                         var R = this.R;
                         var xx = x-this.x0;
-                        return [ x, this.y0+this.branch*Math.sqrt(R*R -xx*xx) ];
+                        return [x, this.y0+this.branch*Math.sqrt(R*R -xx*xx)];
                 },
             },
 
@@ -90,7 +90,7 @@
                         var y = originalFun(x);
                         var xx = cos * x - sin * y;
                         var yy = sin * x + cos * y;
-                        return [ -xx, yy ];
+                        return [-xx, yy];
                 },
             },
 

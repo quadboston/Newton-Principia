@@ -85,7 +85,7 @@
                 };
                 loadedFiles.push(loadedItem);
                 if (has(fileItem, 'id')) {
-                    loadedFilesById[ fileItem.id ] = loadedItem;
+                    loadedFilesById[fileItem.id] = loadedItem;
                 }
                 completionCount++;
                 fileItem.cb && fileItem.cb(loadedItem);

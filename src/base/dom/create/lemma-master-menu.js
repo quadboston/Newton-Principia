@@ -44,14 +44,14 @@
             );
         });
         //:sets up a state and logic_phase-menu
-        var submItem = sconf.asp8theor_menus.logic_phase.duplicates[ amode.logic_phase ];
+        var submItem = sconf.asp8theor_menus.logic_phase.duplicates[amode.logic_phase];
         do_select_leaf__localfun(submItem.leafRk, !'amodel2app_8_extraWork');
 
         //:sets up aspect menu
         //skip this, possibly does duplicate job,
         //do_select_leaf__localfun( submItem.leafRk, !!'amodel2app_8_extraWork' );
         //do only CSS job:
-        let lRk = sconf.asp8theor_menus.aspect.duplicates[ amode.aspect ].leafRk;
+        let lRk = sconf.asp8theor_menus.aspect.duplicates[amode.aspect].leafRk;
         lRk.li$.addClass('chosen');
         lRk.decorOfShuttle$.a('class', 'litem shuttle shuttle-'+lRk.ix);
     }
@@ -71,7 +71,7 @@
         }
 
         ['aspect', 'logic_phase'].forEach(function (mcat_id) {
-            sDomN.teafs$[ mcat_id ] = $$.dct(
+            sDomN.teafs$[mcat_id] = $$.dct(
                 'menu-teaf ' + mcat_id,
                 fconf.attach_menu_to_essaion_root ?
                     (mcat_id === 'aspect' ? leftSide_menuRotator$ : sDomN.essaionsRoot$) :
@@ -90,7 +90,7 @@
     //Input: subcatsMenu - contains list = array of items in submenu
     function build_teaf__localfun(mcat_id, subcatsMenu,
     ) {
-        var teaf$ = sDomN.teafs$[ mcat_id ];
+        var teaf$ = sDomN.teafs$[mcat_id];
         var decorOfShuttle$;
 
         //------------------------------------
@@ -180,7 +180,7 @@
                     //:todm: it is not clear why this is required, and why flag
                     //:'chosen' is not cleared up downstream automatically
                     let mid = mcat_id;
-                    let submItem = sconf.asp8theor_menus[ mid ].duplicates[ amode[ mid ] ];
+                    let submItem = sconf.asp8theor_menus[mid].duplicates[amode[mid]];
                         submItem.leafRk.li$.removeClass('chosen');
 
                     do_select_leaf__localfun(leafRk, !!'amodel2app_8_extraWork');
@@ -190,7 +190,7 @@
                 $$
                     .dc('caption')
                     .ch(
-                        [   videoPlaceholder$,
+                        [videoPlaceholder$,
                             leafRk.mItemCaptionHtml$ = $$.span().html(caption)
                         ]
                     )
@@ -270,7 +270,7 @@
         var scat_id         = leafRk.scat_id;
         var mcat_id         = leafRk.mcat_id;
         var decorOfShuttle$ = leafRk.decorOfShuttle$;
-        var exAspect        = exegs[ amode.logic_phase ][ amode.aspect ];
+        var exAspect        = exegs[amode.logic_phase][amode.aspect];
 
         //todm: with this lemma 2 looks bad ... why? ... missed resize?
         //if( amode[ mcat_id ] === scat_id ) return; //click is idempotent
@@ -300,12 +300,12 @@
         // //\\ makes model change
         //**************************************************************
         //**************************************************************
-        amode[ mcat_id ]    = scat_id;
-        var exAspect        = exegs[ amode.logic_phase ][ amode.aspect ];
+        amode[mcat_id]    = scat_id;
+        var exAspect        = exegs[amode.logic_phase][amode.aspect];
         //on page load, keeps the subessay already chosen (eg from the URL),
         //so the first layout measures what is shown; otherwise selects the
         //default, or the first essay if there is no default
-        var subexeg0        = exAspect.subexegs[ 0 ];
+        var subexeg0        = exAspect.subexegs[0];
         var chosenSubexeg   = !amodel2app_8_extraWork &&
                               ns.haz(exAspect.subessay2subexeg, amode.subessay);
         var subexeg         = chosenSubexeg || ns.haz(exAspect, "default") ||
@@ -346,11 +346,11 @@
         //flag to shuttle
         decorOfShuttle$.a('class', 'litem shuttle shuttle-'+leafRk.ix);
         if (mcat_id === 'logic_phase') {
-            ns.eachprop(exegs[ amode.logic_phase ], (exegAsp, aspId) => {
+            ns.eachprop(exegs[amode.logic_phase], (exegAsp, aspId) => {
                 //updates left menu caption for logic_phases with omitted aspect texts
-                var menItem = sconf.asp8theor_menus.aspect.duplicates[ aspId ];
+                var menItem = sconf.asp8theor_menus.aspect.duplicates[aspId];
                 menItem.leafRk.mItemCaptionHtml$.html(
-                    exegAsp.subexegs[ 0 ].essayHeader.menuCaption ||
+                    exegAsp.subexegs[0].essayHeader.menuCaption ||
                     menItem.caption //where this came from?
                                     // ... where theoreon caption comes?
                                     // ... theoreonCaption ?

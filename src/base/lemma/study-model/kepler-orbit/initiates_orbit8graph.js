@@ -40,7 +40,7 @@
 
         //:sets parameters of P
         rg.P.qix = Math.floor(sconf.parQ / sconf.delta_q_between_steps);
-        var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
+        var Porb = ssD.qIndexToOrbit[rg.P.qix];
         nspaste(rg.P.pos, Porb.rr);
 
         // //\\ scenario: coincided P and Q: Q splits first

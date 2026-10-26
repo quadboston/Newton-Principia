@@ -91,7 +91,7 @@
         mCount.count    = mCount.count ? mCount.count + 1 : 1;
         modName         = (modName && modName + '-') || '';
 
-        srg_modules[ modName + mCount.count ] = () => {
+        srg_modules[modName + mCount.count] = () => {
             if (setModule) {
                 setModule();
             }

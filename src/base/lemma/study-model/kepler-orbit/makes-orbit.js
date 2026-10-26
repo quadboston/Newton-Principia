@@ -36,7 +36,7 @@
 
         //both: css and rg names
         var lowname     = curveName; //sDomF.toCssIdentifier( curveName );
-        var rgX         = vop ? rg[ 'approximated-curve-sample' ] : rg[ 'approximated-curve' ];
+        var rgX         = vop ? rg['approximated-curve-sample'] : rg['approximated-curve'];
 
         //prevents leaks polylineSvg from js-prototype
         rgX.polylineSvg = haz(rgX, 'polylineSvg');
@@ -66,7 +66,7 @@
 
             var x = r * Math.cos(q + op.mainAxisAngle);
             var y = r * Math.sin(q + op.mainAxisAngle);
-            return [ x, y ];
+            return [x, y];
         }
 
         ///draws full orbit for angle q in [0,2PI)

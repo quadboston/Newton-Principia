@@ -127,13 +127,13 @@ function init_conf() {
         force : [
             //[ -2, 3.9 ], //apparently, the first number is a power n for f=Ar^n
             //f=kr^n
-            [   -2,                      //=n
+            [-2,                      //=n
                 1.95 / initialTimieStep / initialTimieStep //=k
             ],
-            [ -1, 0 ],
-            [ 0, 0 ],
-            [ 1, 0 ],
-            [ 2, 0 ]
+            [-1, 0],
+            [0, 0],
+            [1, 0],
+            [2, 0]
         ],
 
         //for T2.Cor2: accelerating areas:
@@ -163,7 +163,7 @@ function init_conf() {
     //----------------------------------
     {
         const mp = sconf.modelPoints = {};
-        const uu = [ medposB[0] - medposA[0], medposB[1] - medposA[1] ];
+        const uu = [medposB[0] - medposA[0], medposB[1] - medposA[1]];
         const u2 = uu[0]*uu[0] + uu[1]*uu[1];
         const u = Math.sqrt(u2);
         sconf.mod2inn_scale = u; //initial unit

@@ -27,7 +27,7 @@
         stdMod.creates_orbitRack(sop);
 
         //cor2.
-        let Dpos = rg[ 'approximated-curve' ].t2xy(0);
+        let Dpos = rg['approximated-curve'].t2xy(0);
         let DVect = mat.unitVector(Dpos);
         sop.corII_speed = Math.sqrt(op.Kepler_g / DVect.abs);
         sop.corII_Dpos = Dpos;

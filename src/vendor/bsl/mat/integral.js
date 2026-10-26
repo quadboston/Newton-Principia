@@ -54,9 +54,9 @@
         var sum     = 0;
 
         if (returnAll) {
-            resultX = [ x1 ];
-            resultF = [ fun1 ];
-            integrals = [ 0 ];
+            resultX = [x1];
+            resultF = [fun1];
+            integrals = [0];
             var fmin = fun1;
             var fmax = fun1;
         }
@@ -116,7 +116,7 @@
         var INTEGRATION_POINTS_LIM = 10000;
         var origin = simpleIntegration({
             fun,
-            baseArray : [ startFX, endFX ],
+            baseArray : [startFX, endFX],
             returnAll : true,
             INTEGRATION_POINTS_LIM,
         });
@@ -143,23 +143,23 @@
             integF.x    = posX;
             if (iIx >= INTEGRATION_POINTS_LIM) {
                 integF.area = origin.integral;
-                integF.fun = resultF[ resultF.length-1 ];
+                integF.fun = resultF[resultF.length-1];
             } else {
                 var grals = origin.integrals;
-                integF.area  = grals[ iIx ] +
-                    (grals[ iIx + 1 ] - grals[ iIx ]) *
-                    (posX - origin.resultX[ iIx ]) / stepX
+                integF.area  = grals[iIx] +
+                    (grals[iIx + 1] - grals[iIx]) *
+                    (posX - origin.resultX[iIx]) / stepX
                     ;
-                integF.fun = resultF[ iIx ] +
-                    (resultF[ iIx + 1 ] - resultF[ iIx ]) *
-                    (posX - resultX[ iIx ]) / stepX
+                integF.fun = resultF[iIx] +
+                    (resultF[iIx + 1] - resultF[iIx]) *
+                    (posX - resultX[iIx]) / stepX
                     ;
             }
         });
 
         var originG = simpleIntegration({
             fun         : funG,
-            baseArray   : [ startGX, endGX ],
+            baseArray   : [startGX, endGX],
             returnAll   : true,
             INTEGRATION_POINTS_LIM,
         });
@@ -178,24 +178,24 @@
             var searchAreaG = rgX.integ.f.area * ratioGF;
             integG.area = searchAreaG;
             for (var gix=gStartIx; gix<=INTEGRATION_POINTS_LIM; gix++) {
-                var currentArea = integralsG[ gix ];
-                var formerArea = integralsG[ gix-1 ];
+                var currentArea = integralsG[gix];
+                var formerArea = integralsG[gix-1];
                 if (gix === INTEGRATION_POINTS_LIM) {
                     integG.ix = gix;
-                    integG.x = resultGX[ gix ];
-                    integG.fun = resultGY[ gix ];
+                    integG.x = resultGX[gix];
+                    integG.fun = resultGY[gix];
                     gStartIx = gix;
                 } else if (currentArea >= searchAreaG) {
                     integG.ix = gix;
                     ////map z-point found for rgX.pos
-                    integG.x = resultGX[ gix-1 ] +
+                    integG.x = resultGX[gix-1] +
                                 (searchAreaG - formerArea) *
-                                (resultGX[ gix ] - resultGX[ gix-1 ])
+                                (resultGX[gix] - resultGX[gix-1])
                                 / (currentArea - formerArea)
                                 ;
-                    integG.fun = resultGY[ gix-1 ] +
-                        (resultGY[ gix ] - resultGY[ gix-1 ]) *
-                        (integG.x - resultGX[ gix-1 ]) / stepX
+                    integG.fun = resultGY[gix-1] +
+                        (resultGY[gix] - resultGY[gix-1]) *
+                        (integG.x - resultGX[gix-1]) / stepX
                         ;
 
                     // //\\ debug
@@ -231,19 +231,19 @@
         function findsMinOnIntervals(f0g) {
             //finding fmin
             partition.forEach((point, pix) => {
-                var integX = point.integ[ f0g ];
+                var integX = point.integ[f0g];
                 if (pix === partition.length - 1) {
                     integX.min = integX.fun;
                     return;
                 }
-                var point1 = partition[ pix+1 ];
-                var integX1 = point1.integ[ f0g ];
+                var point1 = partition[pix+1];
+                var integX1 = point1.integ[f0g];
 
                 var startIx = integX.ix;
                 var lim     = integX1.ix;
                 var min    = integX.fun;
                 for (var ix=startIx; ix<lim; ix++) {
-                    var currF = f0g === 'f' ? resultF[ ix ] : resultGY[ ix ];
+                    var currF = f0g === 'f' ? resultF[ix] : resultGY[ix];
                     if (min > currF) {
                         min = currF;
                     }

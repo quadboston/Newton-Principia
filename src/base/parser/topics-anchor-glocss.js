@@ -29,7 +29,7 @@
                 var match = cls.match(/tl-(\S*)/);
                 if (!match) return;
                 var tplink_ix = parseInt(match[1]);
-                var anrack    = topics.anix2anrack[ tplink_ix ];
+                var anrack    = topics.anix2anrack[tplink_ix];
                 assigns_color_to_anchor({ anrack, anchors__cssHighlighter, });
                 setsAnchor_mouseHighlightEvents(anchor, tplink_ix);
                 nextTplinks[tplink_ix] = anrack;
@@ -54,7 +54,7 @@
         var focusOp_str = sconf.ANCHOR_TOPIC__OPACITY_IN_FOCUS.toFixed(3)
         var fixedCol = haz(anrack, 'tpcolarr');
         //selects the very first color-operand from anchor
-        var gcssRack = topics.lowtpid_2_glocss8anchorRack[ tpIDs[0] ];
+        var gcssRack = topics.lowtpid_2_glocss8anchorRack[tpIDs[0]];
         if (fixedCol) {
             //note: high opacity is taken as sconf.TP_OPACITY_HIGH in this ver
             var { rgb, rgba_high, } = ssF.colorArray_2_rgba(
@@ -116,7 +116,7 @@
         const match = rgbaString.match(/rgba?\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)/);
         if (!match) throw new Error("Invalid RGBA format");
 
-        let [ , r, g, b, a ] = match;
+        let [, r, g, b, a] = match;
         r = Math.min(255, Math.max(0, parseInt(r) * factor));
         g = Math.min(255, Math.max(0, parseInt(g) * factor));
         b = Math.min(255, Math.max(0, parseInt(b) * factor));

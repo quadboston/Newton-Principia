@@ -58,14 +58,14 @@
         const brs = pem.branches
         const bN = brs.length;
         for (var ib = 0; ib < bN; ib++) {
-            const br = brs[ ib ];
+            const br = brs[ib];
             if (has(br, 'svgel')) {
                 nssvg.branch2svg(br, bN===1);
             } else {
                 ////makes ellipse first to put point over it later
                 br.parent = stdMod.mmedia;
                 br['stroke-width'] = 5;
-                br.stroke = ns.arr2rgba(topicColors_repo[ "ellipse" ]);
+                br.stroke = ns.arr2rgba(topicColors_repo["ellipse"]);
                 br.svgel = nssvg.branch2svg(br, bN===1);
                 $$.$(br.svgel).cls('tp-ellipse tostroke thickable');
             }

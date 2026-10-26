@@ -194,7 +194,7 @@
     {
         var plen = pivots.length;
         return points.map(function (paramT) {
-                    return [ weightify(paramT, pivots, 0, 0, plen),
+                    return [weightify(paramT, pivots, 0, 0, plen),
                              weightify(paramT, pivots, 1, 0, plen)
                     ];
         });
@@ -204,7 +204,7 @@
     ///Calculates point on bezier curve by given point's t-parameter
     ///=============================================================
     function parT2point(parT, pivots) {
-        return [ weightify(parT, pivots, 0, 0, pivots.length),
+        return [weightify(parT, pivots, 0, 0, pivots.length),
                  weightify(parT, pivots, 1, 0, pivots.length)
         ];
     }
@@ -302,7 +302,7 @@
                 if (t0 >=0 && t0 <= 1) {result.push(t0);}
                 if (t1 >=0 && t1 <= 1) {result.push(t1);}
                 solution = result.length < 2 ? result :
-                           t0 > t1 ? [ t1, t0 ] : result;
+                           t0 > t1 ? [t1, t0] : result;
             }
         }
         return solution;

@@ -27,15 +27,15 @@
         let orbSolved = sData.quadSolved;
         let F = orbSolved.F;
         let kernel = orbSolved.kernel;
-        let xy = rg[ 'approximated-curve' ].curvePoints;
-        nspaste(rg.a.pos, kernel.Tkernel[ orbSolved.fiStartedIx - orbSolved.roPlus0Top ]);
+        let xy = rg['approximated-curve'].curvePoints;
+        nspaste(rg.a.pos, kernel.Tkernel[orbSolved.fiStartedIx - orbSolved.roPlus0Top]);
         {
             var Dpos = rg.D.pos;
             var tk = kernel.Tkernel;
             var fk = kernel.Fkernel;
             let start = tk[0][1];
             let l1 = tk.length - 1;
-            let end = tk[ l1 ][1];
+            let end = tk[l1][1];
             let fraction = (Dpos[1] - start) / (end - start);
             //====================================
             var iqD = Math.floor(fraction * l1); //iqD is from top point or turn point ix
@@ -48,12 +48,12 @@
             nspaste(rg.Zgpoint.pos, kernel.Zgraph[iqD]);
             nspaste(rg.Z2graph.pos, kernel.Z2graph[iqD]);
 
-            let dp = xy[ orbSolved.dropPointIx ];
-            nspaste(rg.A.pos, [ rg.A.pos[0], dp[1] ]);
-            nspaste(rg.B.pos, [ dp[0], dp[1] ]);
+            let dp = xy[orbSolved.dropPointIx];
+            nspaste(rg.A.pos, [rg.A.pos[0], dp[1]]);
+            nspaste(rg.B.pos, [dp[0], dp[1]]);
 
             var Epos = rg.E.pos;
-            nspaste(Epos, [ Dpos[0], Dpos[1] - sconf.dRo ]);
+            nspaste(Epos, [Dpos[0], Dpos[1] - sconf.dRo]);
             fraction = (Epos[1] - start) / (end - start);
             var iqE = Math.floor(fraction * l1);
             nspaste(rg.z.pos, kernel.Tkernel[iqE]);
@@ -61,7 +61,7 @@
 
             start = xy[0][1];
             l1 = xy.length - 1;
-            end = xy[ l1 ][1];
+            end = xy[l1][1];
             fraction = (Dpos[1] - start) / (end - start);
             let iqF = Math.floor(fraction * l1);
             nspaste(rg.F.pos, xy[iqF]);
@@ -71,32 +71,32 @@
         {
             var R = rg.V.pos[1]; //because C is an origin [0,0]
             let aOfR = sconf.angleOfR;
-            nspaste(rg.R.pos, [ -R * Math.sin(aOfR), R * Math.cos(aOfR) ]);
+            nspaste(rg.R.pos, [-R * Math.sin(aOfR), R * Math.cos(aOfR)]);
 
             let FiD = F[iqD];
             rg.X.FiD = FiD;
-            nspaste(rg.X.pos, [ -R * Math.sin(FiD), R * Math.cos(FiD) ]);
+            nspaste(rg.X.pos, [-R * Math.sin(FiD), R * Math.cos(FiD)]);
 
             let FiE = F[iqE];
-            nspaste(rg.Y.pos, [ -R * Math.sin(FiE), R * Math.cos(FiE) ]);
+            nspaste(rg.Y.pos, [-R * Math.sin(FiE), R * Math.cos(FiE)]);
             rg.Y.FiE = FiE;
 
             //radius D
             let RadD = Dpos[1];
-            nspaste(rg.I.pos, [ -RadD * Math.sin(FiD), RadD * Math.cos(FiD) ]);
+            nspaste(rg.I.pos, [-RadD * Math.sin(FiD), RadD * Math.cos(FiD)]);
 
             //radius E
             let RadE = Epos[1];
-            nspaste(rg.K.pos, [ -RadE * Math.sin(FiE), RadE * Math.cos(FiE) ]);
+            nspaste(rg.K.pos, [-RadE * Math.sin(FiE), RadE * Math.cos(FiE)]);
 
             //point N
-            nspaste(rg.N.pos, [ -RadE * Math.sin(FiD), RadE * Math.cos(FiD) ]);
+            nspaste(rg.N.pos, [-RadE * Math.sin(FiD), RadE * Math.cos(FiD)]);
 
             //point k
             var iqk = fk.length - 1;
             let Fiend = F[iqk];
             var Rend = fk[iqk][1];
-            nspaste(rg.k.pos, [ -Rend * Math.sin(Fiend), Rend * Math.cos(Fiend) ]);
+            nspaste(rg.k.pos, [-Rend * Math.sin(Fiend), Rend * Math.cos(Fiend)]);
         }
 
         //areas
@@ -121,7 +121,7 @@
             let pivots = rgX.pivots = [];
 
             //:fills model pivots
-            pivots.push([ rg.C.pos[0], rg.C.pos[1], ]);
+            pivots.push([rg.C.pos[0], rg.C.pos[1],]);
             for (let iq=iqD; iq<=iqE; iq++) {
                 pivots.push(graph[iq]);
             }
@@ -137,7 +137,7 @@
             let pivots = rgX.pivots = [];
 
             //:fills model pivots
-            pivots.push([ rg.C.pos[0], rg.C.pos[1], ]);
+            pivots.push([rg.C.pos[0], rg.C.pos[1],]);
             for (let iq=0; iq<=iqD; iq++) {
                 pivots.push(graph[iq]);
             }
@@ -162,7 +162,7 @@
             let M = Math.sin(op.angleOmega) * op.Kepler_v * 1;
             let ro = rg.I.pos;
             let Mfactor = M / (ro[0]*ro[0] + ro[1]*ro[1]);
-            let norm = [ -ro[1]*Mfactor, ro[0]*Mfactor ];
+            let norm = [-ro[1]*Mfactor, ro[0]*Mfactor];
             nspaste(rg.Z.pos, mat.sm(rg.I.pos, norm));
         }
         //---------------------------
@@ -180,11 +180,11 @@
         let pivots = rgX.pivots = [];
 
         //:fills model pivots
-        fill0stroke === 'fill' && pivots.push([ 0, graph[firstIq][1] ]);
+        fill0stroke === 'fill' && pivots.push([0, graph[firstIq][1]]);
         for (let iq=firstIq; iq<=lastIq; iq++) {
             pivots.push(graph[iq]);
         }
-        fill0stroke === 'fill' && pivots.push([ 0, graph[lastIq][1] ]);
+        fill0stroke === 'fill' && pivots.push([0, graph[lastIq][1]]);
 
         //builds
         buildsQuadPlot(rgX, fill0stroke);

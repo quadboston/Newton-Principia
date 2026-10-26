@@ -29,10 +29,10 @@
         //todm this is a patch: do use Pr/Pt
         let grad = '<sup>ᵒ</sup>';
         let rad2grad = 180/Math.PI;
-        ww[ 'eta' ].innerHTML = (rg.angleBCM*rad2grad).toFixed(1) + grad;
+        ww['eta'].innerHTML = (rg.angleBCM*rad2grad).toFixed(1) + grad;
 
-        ww[ 'beta' ].innerHTML = (rg.beta.value*rad2grad).toFixed(1) + grad;
-        ww[ 'alpha' ].innerHTML = (rg.alpha.value*rad2grad).toFixed(1) + grad;
+        ww['beta'].innerHTML = (rg.beta.value*rad2grad).toFixed(1) + grad;
+        ww['alpha'].innerHTML = (rg.alpha.value*rad2grad).toFixed(1) + grad;
 
         //ww[ 'media_scale' ].innerHTML = rg.media_scale.value.toFixed(3);
     }

@@ -363,13 +363,13 @@ function sconf_points8lines() {
 
         let doPaintPname = false;
         let pcolor = tpel.force;
-        mixedSteps_conf[ nam0 ] = {
+        mixedSteps_conf[nam0] = {
             doPaintPname,
             pcolor,
             initialR    : 5 * sconf.controlsScale,
         };
         //tips of foreces (double sagittas)
-        mixedSteps_conf[ nam1 ] = {
+        mixedSteps_conf[nam1] = {
             doPaintPname,
             pcolor,
             initialR    : 5 * sconf.controlsScale,
@@ -405,9 +405,9 @@ function sconf_points8lines() {
             doPaintPname,
             isPoint : true,
         });
-        Object.assign(rg[ pname ], dec);
-        Object.assign(dec, rg[ pname ]);
-        rg[ pname ] = dec;
+        Object.assign(rg[pname], dec);
+        Object.assign(dec, rg[pname]);
+        rg[pname] = dec;
     });
     //---------------------------------------------------
     // \\// equalizing decor and rg
@@ -575,15 +575,15 @@ function sconf_points8lines() {
         let linesArrElem = {};
         sconf.linesArray.push(linesArrElem);
         const lineName = ln.nam[0]+ln.nam[1];
-        const lineConf = linesArrElem[ lineName ] = {
+        const lineConf = linesArrElem[lineName] = {
             isLine : true,
         };
         //equalizing rg, decor elements and lineConf,
-        let rgElem = decor[ lineName ] = sn(lineName, rg);
+        let rgElem = decor[lineName] = sn(lineName, rg);
         rgElem.pname = lineName;
         rgElem.pivotNames = [ln.nam[0], ln.nam[1]];
         rgElem.isPoint = false;
-        [   'cssClass',
+        ['cssClass',
             'pcolor',
             'caption',
             'captionShiftNorm',
@@ -602,10 +602,10 @@ function sconf_points8lines() {
         ///if there is not explicit decStart in the line element, then
         ///decStart in extracted from the directional point of the line segment
         var decStart = has(ln, 'decStart') ?
-            ln.decStart : rg[ ln.nam[1] ].decStart;
+            ln.decStart : rg[ln.nam[1]].decStart;
         ///the same procedure happens with "end" setting
         var decEnd = has(ln, 'decEnd') ?
-            ln.decEnd : rg[ ln.nam[1] ].decEnd;
+            ln.decEnd : rg[ln.nam[1]].decEnd;
         if (ln.nam[0] === 'S' && ln.nam[1] === 'C') {
             decStart = 7;
         }
@@ -634,9 +634,9 @@ function sconf_points8lines() {
         var tpLowKey = sDomF.toCssIdentifier(tpCamel);
         //compliments topicColors_repo from stuff created in this sconf,
         //topicColors_repo are based on non-Camel id,
-        var fck = topicColors_repo[ tpLowKey ] = tpel[ tpCamel ].concat();
+        var fck = topicColors_repo[tpLowKey] = tpel[tpCamel].concat();
         //compensates missing of "extend-confib" in engine core
-        topicColors_repo_camel2col[ tpCamel ] = fck; //based on Camel Id
+        topicColors_repo_camel2col[tpCamel] = fck; //based on Camel Id
     });
     //==================================================
     // \\// equalizes topicColors_elected, topicColors_repo, and
@@ -646,13 +646,13 @@ function sconf_points8lines() {
     //to ensure they start becoming visible for the specified steps.
     if (sconf.TIMER_AND_LOGIC_STEPS_COINSIDE === false) {
         rg.SC.decStart = 7;
-        [ rg.D, rg.d, rg.Dd, rg.Cd, rg.CD, rg.SD, rg.Sd, rg.SCd ].forEach(pn => {
+        [rg.D, rg.d, rg.Dd, rg.Cd, rg.CD, rg.SD, rg.Sd, rg.SCd].forEach(pn => {
             pn.decStart = rg.SC.decStart + 4;
         });
-        [ rg.E, rg.e, rg.Ee, rg.De, rg.DE, rg.SE, rg.Se, rg.SDe ].forEach(pn => {
+        [rg.E, rg.e, rg.Ee, rg.De, rg.DE, rg.SE, rg.Se, rg.SDe].forEach(pn => {
             pn.decStart = rg.SC.decStart + 8;
         });
-        [ rg.F, rg.Z, rg.W, rg.EW, rg.DF, rg.f, rg.Ff, rg.Ef, rg.EF,
+        [rg.F, rg.Z, rg.W, rg.EW, rg.DF, rg.f, rg.Ff, rg.Ef, rg.EF,
             rg.SF, rg.Sf, rg.SEf,
         ].forEach(pn => {
             pn.decStart = rg.SC.decStart + 12;

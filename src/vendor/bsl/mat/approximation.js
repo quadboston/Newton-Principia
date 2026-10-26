@@ -19,16 +19,16 @@
         //  F[0    ][i    ]=[ xi, yi ]
         var F = [];
         //created for performance speed
-            var z = [ pointsXY[0][0] ];
-            var P = [ pointsXY[0][1] ];
+            var z = [pointsXY[0][0]];
+            var P = [pointsXY[0][1]];
         F[0] = pointsXY.concat([]);
 
         ///constructs levels-above-initial interactively
         for (var level=1; level<n; level++) {
-            var [ Ftop_arr, xx, PP ] = Flow_2_Ftop(F[ level-1 ]);
-            F[ level ]  = Ftop_arr;
-            z[ level ]  = xx;
-            P[ level ]  = PP;
+            var [Ftop_arr, xx, PP] = Flow_2_Ftop(F[level-1]);
+            F[level]  = Ftop_arr;
+            z[level]  = xx;
+            P[level]  = PP;
         }
         // **api-outputs---divided-diff
         return { coefficients:F, calculate_polynomial, derivativeAtZero };
@@ -47,9 +47,9 @@
                 //x2 = x[i+j+1],
                 //dd = (d[j][i+1]-d[j][i]) / (x[i+j+1]-x[i]),
                 //where j is a low-level;
-                Ftop[ i ] = [ x2, dd ];
+                Ftop[i] = [x2, dd];
             }
-            return [ Ftop, Ftop[0][0], Ftop[0][1], ];
+            return [Ftop, Ftop[0][0], Ftop[0][1],];
         }
 
         //calculates Newton's polynomial at point x:
@@ -89,15 +89,15 @@
         function derivativeAtZero() {
             var der = 0;
             var n = F.length; //polynomial's degree
-            var xProduct = [ 1 ];       //index is level
-            var reversalsSum = [ 1 ];   //index is level
-            var unitDegree = [ -1 ];   //index is level
+            var xProduct = [1];       //index is level
+            var reversalsSum = [1];   //index is level
+            var unitDegree = [-1];   //index is level
             ///loops via polynomial's derivative members
             for (var i = 1; i < n; i++) {
                 //calculates common arrays:
                 xProduct[i]     = xProduct[i-1] * F[0][i-1][0];
                 reversalsSum[i] = reversalsSum[i-1] + (1/F[0][i-1][0]);
-                unitDegree[ i ] = -unitDegree[ i-1 ];
+                unitDegree[i] = -unitDegree[i-1];
                 //calculates member's contribution:
                 der += F[i][0][1] * xProduct[i] * reversalsSum[i] * unitDegree[i];
             }

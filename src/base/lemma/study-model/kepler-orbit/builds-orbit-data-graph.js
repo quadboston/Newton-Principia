@@ -12,7 +12,7 @@
 
     function qIndexFromPointPToGraphIndex() {
         const qix = rg.P.qix;
-        const gix = qIndexToOrbit[ qix ]?.gix;
+        const gix = qIndexToOrbit[qix]?.gix;
         return gix;
     }
 
@@ -43,7 +43,7 @@
         }
         //var fullPath = qIndexToOrbit[ gend ].pathAtQ;
         for (let qix=gstart; qix<=gend; qix++) {
-            const bP = qIndexToOrbit[ qix ];
+            const bP = qIndexToOrbit[qix];
             const actualForce = bP.actualForce;
             const estimatedForce = bP.estimatedForce;
             const estimatedForceLargest = bP.estimatedForceLargest;
@@ -93,9 +93,9 @@
             actualForceMax : estimatedForceMax);
         var arrLen = graphArray.length;
         for (var gix = 0; gix<arrLen; gix++) {
-            const ga = graphArray[ gix ];
+            const ga = graphArray[gix];
             const qix = ga.qix;
-            const bP = qIndexToOrbit[ qix ];
+            const bP = qIndexToOrbit[qix];
             bP.gix = gix;
 
             //todo Once all the graphs are adjusted update the following

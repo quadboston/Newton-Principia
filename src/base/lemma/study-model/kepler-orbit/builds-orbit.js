@@ -34,7 +34,7 @@
         ///they are recalculated here
         ///with other step here for derivative params,
         for (var qix = 0; qix<=Q_STEPS; qix++) {
-            var bP = qIndexToOrbit[ qix ] = mcurve.planeCurveDerivatives({
+            var bP = qIndexToOrbit[qix] = mcurve.planeCurveDerivatives({
                 pointAt : q2xy,
                 q : orbit_q_start + qix * delta_q_between_steps,
                 posCenterOfForces : rg.S.pos,
@@ -55,7 +55,7 @@
             sinAbs = Math.abs(sinOmega);
             if (NON_SOLVABLE_THRESHOLD > sinAbs) {
                 solvable = false;
-                foldPoints.push([ posBody[0], posBody[1] ]);
+                foldPoints.push([posBody[0], posBody[1]]);
                 bP.solvablePoint = solvable;
             }
 
@@ -105,7 +105,7 @@
             const ORBIT_STEP = Q_STEPS/orbitXYToDraw_LIMIT;
             for (let oix=0; oix<=orbitXYToDraw_LIMIT; oix++) {
                 let qix = Math.floor(oix * ORBIT_STEP);
-                orbitXYToDraw[ oix ] = qIndexToOrbit[qix].posBody;
+                orbitXYToDraw[oix] = qIndexToOrbit[qix].posBody;
             }
         }
         // \\// one or many shapes

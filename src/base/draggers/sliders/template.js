@@ -67,8 +67,8 @@
 
         //in model units:
         var railsLength       = endX - startX;
-        var startPos          = [ startX, startY ];
-        var endPos            = [ endX, startY ];
+        var startPos          = [startX, startY];
+        var endPos            = [endX, startY];
         //----------------------------------------------------------------------------
         // \\// in model units and reference system
         //----------------------------------------------------------------------------
@@ -91,7 +91,7 @@
         ///draws rails
         var slider_rg = pivots_2_svgLineInRg(
              'slider-' + magnit,
-             [ sliderStart_rg, sliderEnd_rg ],
+             [sliderStart_rg, sliderEnd_rg],
              {
                 stroke : SUGGESTED_COLOR,
                 'stroke-width' : 3,
@@ -108,7 +108,7 @@
         //----------------------------------------------------------------------------
         // //\\ slider api
         //----------------------------------------------------------------------------
-        var magnit_api                  = rg[ magnit ];
+        var magnit_api                  = rg[magnit];
         magnit_api.stdMod               = stdMod;
         magnit_api.startX               = startX;
         magnit_api.endX                 = endX;
@@ -192,7 +192,7 @@
             if (val < min_magnit || val > max_magnit) return;
             var handleXpos  = (val - min_magnit) /
                                 range_magnit * railsLength + startX;
-            magnit_api.pos  = [ handleXpos, startY ];
+            magnit_api.pos  = [handleXpos, startY];
             return true; //true === validated
         }
 
@@ -238,7 +238,7 @@
     function toogle_detectablilitySliderPoints4Tools() {
         var toolsSliders = sn('toolsSliders', stdMod, []);
         toolsSliders.forEach(slname => {
-            var sl = rg[ slname ];
+            var sl = rg[slname];
             sl.hideD8Dpoint = haz(rgtools, 'value') === 'on' ? false : true;
         })
     }

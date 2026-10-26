@@ -36,21 +36,21 @@
             var wwHas = shortcutInClosure_for_speed;
             var und = undef;
             return (function (pname) {
-                return wwHas.call(this, pname) ? this[ pname ] : und;
+                return wwHas.call(this, pname) ? this[pname] : und;
             });
         }
 
-        var ns = window[ APP_NAME ];
+        var ns = window[APP_NAME];
         if (ns) {
-            if (ns[ uniqueEarthWide ]) { return ns; }
+            if (ns[uniqueEarthWide]) { return ns; }
             //.lets community to take care about this app
             throw new Error(
                  'global name collision: the window["' + APP_NAME +
                  '"] already exists in web-browser'
             );
         } else {
-            ns = window[ APP_NAME ] = {};
-            ns[ uniqueEarthWide ] = true;
+            ns = window[APP_NAME] = {};
+            ns[uniqueEarthWide] = true;
             ns.uniqueEarthWide = uniqueEarthWide;
 
             ns.own = returnOwnPropertyIfExist();
@@ -82,8 +82,8 @@
         ///The difference from "sn" is that ha does not create missed property.
         function ha(obj, property, defaultProperty) {
             return shortcutInClosure_for_speed.call(obj, property) &&
-                   typeof obj[ property ] !== 'undefined'  ?
-                   obj[ property ] : defaultProperty;
+                   typeof obj[property] !== 'undefined'  ?
+                   obj[property] : defaultProperty;
         };
 
         ///Returns own property if property does exist.
@@ -91,7 +91,7 @@
         function haz(obj, property) {
             if (!obj) return undef;
             return shortcutInClosure_for_speed.call(obj, property) ?
-                   obj[ property ] : undef;
+                   obj[property] : undef;
         };
 
         ///Returns own property if property does exist. Otherwise, returns undef.
@@ -101,7 +101,7 @@
                      typeof obj === 'function') &&
                      shortcutInClosure_for_speed.call(obj, property
                    ) ?
-                     obj[ property ] :
+                     obj[property] :
                      undef;
         };
 
@@ -110,14 +110,14 @@
         ///Otherwise, returns empty function.
         function hae(obj, property) {
             return shortcutInClosure_for_speed.call(obj, property) &&
-                    typeof obj[ property ] !== 'undefined' ?
-                    (fun) => { fun(obj[ property ]) } : () => {};
+                    typeof obj[property] !== 'undefined' ?
+                    (fun) => { fun(obj[property]) } : () => {};
         };
 
         ///Returns object's property if property does exist. Otherwise, returns empty function.
         function haf(obj, property) {
             return shortcutInClosure_for_speed.call(obj, property) ?
-                   obj[ property ] : ()=>{};
+                   obj[property] : ()=>{};
         };
 
         ///Returns object's property if property does exist. Otherwise, returns empty function.
@@ -125,13 +125,13 @@
         ///todm this function should replace haf,
         function hafa(obj, property) {
             return obj && shortcutInClosure_for_speed.call(obj, property) ?
-                   obj[ property ] : ()=>{};
+                   obj[property] : ()=>{};
         };
 
         ///Returns function bound to object
         function hafb(obj, property) {
             return shortcutInClosure_for_speed.call(obj, property) ?
-                   obj[ property ].bind(obj) : ()=>{};
+                   obj[property].bind(obj) : ()=>{};
         };
 
         ///If prop exist, executes it as a function with empty args, and
@@ -139,8 +139,8 @@
         ///Otherwise,     returns 'undefined' value.
         function haff(obj, property) {
             if (shortcutInClosure_for_speed.call(obj, property)) {
-                if (typeof obj[ property ] === 'function') {
-                    var ret = obj[ property ]();
+                if (typeof obj[property] === 'function') {
+                    var ret = obj[property]();
                     return ret;
                 }
             }
@@ -154,8 +154,8 @@
             var ret = null;
             if (obj && typeof obj === 'object') {
                 if (shortcutInClosure_for_speed.call(obj, property)) {
-                    if (typeof obj[ property ] === 'function') {
-                        ret = obj[ property ]();
+                    if (typeof obj[property] === 'function') {
+                        ret = obj[property]();
                     }
                 }
             }
@@ -166,15 +166,15 @@
         //    otherwise, returns property which is intended to be object
         function hob(obj, property) {
             return shortcutInClosure_for_speed.call(obj, property) &&
-                    typeof obj[ property ] !== 'undefined' ?
-                    obj[ property ] : {};
+                    typeof obj[property] !== 'undefined' ?
+                    obj[property] : {};
         };
 
         ///Returns parent object only if own property exists. Otherwise, returns false.
         function has(obj, property) {
             if (!obj) return false;
             return shortcutInClosure_for_speed.call(obj, property) &&
-                   typeof obj[ property ] !== 'undefined' ? obj : false;
+                   typeof obj[property] !== 'undefined' ? obj : false;
         };
 
         ///In plain words: makes-sure object-property exists and returns it.
@@ -188,11 +188,11 @@
             parentNS = parentNS || ns;
             if (
                 shortcutInClosure_for_speed.call(parentNS, subname) &&
-                typeof parentNS[ subname ] !== 'undefined'
+                typeof parentNS[subname] !== 'undefined'
             ) {
-                return parentNS[ subname ];
+                return parentNS[subname];
             }
-            var sns = parentNS[ subname ] = typeof emptyTemplate !== 'undefined' ?
+            var sns = parentNS[subname] = typeof emptyTemplate !== 'undefined' ?
                                             emptyTemplate : {};
             //collide with Object.keys forEach
             //sns.owned = returnOwnPropertyIfExist();
@@ -243,7 +243,7 @@
             //	Feature 	Chrome 	Firefox (Gecko) 	Internet Explorer 	Opera 	Safari
             //	Basic support 	1.0 	3.0 (1.9) 	4.0 	(Yes) 	4.0
             var box	= domelem.getBoundingClientRect();
-            var loc	= [ Math.round(event.clientX - box.left), Math.round(event.clientY - box.top) ];
+            var loc	= [Math.round(event.clientX - box.left), Math.round(event.clientY - box.top)];
             return loc;
         };
 
@@ -294,16 +294,16 @@
                                                             },
                     _css:   function (prop, obj)           { obj = obj || null;
                                                               ctxEl = obj || ctxEl;
-                                                              return ctxEl && ctxEl.style[ prop ];
+                                                              return ctxEl && ctxEl.style[prop];
                                                             },
 
                     //does update css-value only if it is different
                     css_:   function (name, value, obj)    {
                                                                ctxEl = obj || ctxEl;
                                                                if (!ctxEl) return;
-                                                               var cssProp = ctxEl.style[ name ];
+                                                               var cssProp = ctxEl.style[name];
                                                                if (cssProp !== value) {
-                                                                    ctxEl.style[ name ] = value;
+                                                                    ctxEl.style[name] = value;
                                                                }
                                                             },
 
@@ -388,7 +388,7 @@
                                                               }
                                                             },
                     e:      function (type, callback, obj) { ctxEl = obj || ctxEl;  ctxEl.addEventListener(type, callback); },
-                    css:    function (name, value, obj)    { ctxEl = obj || ctxEl;  ctxEl.style[ name ] = value; },
+                    css:    function (name, value, obj)    { ctxEl = obj || ctxEl;  ctxEl.style[name] = value; },
                     csst:   function (value, obj)          { ctxEl = obj || ctxEl;  ctxEl.style.cssText = value; },
                     html:   function (html, obj)           { ctxEl = obj || ctxEl;  ctxEl.innerHTML = html; },
 
@@ -531,8 +531,8 @@
                 };
                 var wrap = function () { return ctxEl; };
                 Object.keys(methods).forEach(function (key) {
-                    var method = methods[ key ];
-                    wrap[ key ] = function () {
+                    var method = methods[key];
+                    wrap[key] = function () {
                         var res = method.apply({}, arguments);
                         ///if method is of "process type", then the framework wrap ($$) is returned
                         ///if method is of "give information type", then this information is returned
@@ -546,7 +546,7 @@
             var masterGen = {};
             Object.keys(sample).forEach(function (key) { //todm ... works for functions ? not only for objects?
 
-                masterGen[ key ] = function () { return gen()[ key ].apply({}, arguments); };
+                masterGen[key] = function () { return gen()[key].apply({}, arguments); };
             });
             return masterGen;
 
@@ -568,7 +568,7 @@
             //will closure deleted if all it's child function deleted?
             //and is there an explicit way to delete elements from closure?
             if (elParent) {
-                delete elParent[ elName$ ];
+                delete elParent[elName$];
             }
             //removes from HTML
             var el = el$();
@@ -740,7 +740,7 @@
     ns.prop2prop = function (target, source) {
         if (source) {
             Object.keys(source).forEach(function (key) {
-                target[ key ] = source[ key ];
+                target[key] = source[key];
             });
         }
         return target;
@@ -753,17 +753,17 @@
         var len		= tokens.length;
         var len1	= len - 1;
         if (len1 < 0) {
-            obj[ name ] = value;
+            obj[name] = value;
             return obj;
         }
-        var prop	= tokens[ 0 ];
+        var prop	= tokens[0];
         for (var ii = 0; ii < len1; ii++) {
             //:: appends objects if missed
-            if (!obj[ prop ] || typeof obj[ prop ] !== 'object') obj[ prop ] = {};
-            obj = obj[ prop ];
-            prop = tokens[ ii + 1 ];
+            if (!obj[prop] || typeof obj[prop] !== 'object') obj[prop] = {};
+            obj = obj[prop];
+            prop = tokens[ii + 1];
         }
-        obj[ prop ] = value;
+        obj[prop] = value;
         return obj;
     }
 
@@ -771,7 +771,7 @@
     ns.eachprop = function (obj, callBack) {
         var keys = Object.keys(obj);
         keys.forEach(function (key, kix) {
-            callBack(obj[ key ], key, kix, keys.length);
+            callBack(obj[key], key, kix, keys.length);
         });
         return keys;
     };
@@ -783,7 +783,7 @@
         var map = {};
         if (obj) {
             Object.keys(obj).forEach((key, kix) => {
-                map[ key ] = callBack(obj[ key ], key, kix, obj, map);
+                map[key] = callBack(obj[key], key, kix, obj, map);
             });
         }
         return map;
@@ -874,10 +874,10 @@
             {
                 if (p !== 'length') {
                     //paper[ p ];
-                        var theValue = paste_non_arrays(wall[ p ], paper[ p ], level+1, skip_undefined, refdepth, recdepth);
+                        var theValue = paste_non_arrays(wall[p], paper[p], level+1, skip_undefined, refdepth, recdepth);
 
                         if (! ((isArrayPaper || skip_undefined) && typeof theValue === 'undefined')) {
-                            wall[ p ]		= theValue;
+                            wall[p]		= theValue;
                         }
                 } else {
                     throw new Error(
@@ -893,7 +893,7 @@
     ///removes wall's own properties and array elements if any
     ns.cleanpaste = function (wall, paper) {
         Object.keys(wall).forEach(akey => {
-            delete wall[ akey ];
+            delete wall[akey];
         });
         ns.paste(wall, paper);
     };
@@ -944,7 +944,7 @@
         htmlkey = htmlkey || DEFAULT_KEY;
         var ret = ns.haz(repo, htmlkey);
         if (!ret) {
-            ret = repo[ htmlkey ] = {
+            ret = repo[htmlkey] = {
                 cssText : '',
                 cssDom$ : ns.$$
                     .style()

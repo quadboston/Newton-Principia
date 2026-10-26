@@ -19,7 +19,7 @@
                      scaleX = 1.1;
             break;
         }
-        return [ scaleX, scale ];
+        return [scaleX, scale];
     }
 
     function init_model_parameters() {
@@ -28,13 +28,13 @@
         {
             let ocp = sconf.originalPoints.curvePivots;
             let pivotsPos = ocp.map((cp, cpix) => {
-                let pos = rg[ 'curvePivots-' + cpix ].pos;
-                return [ pos[0], pos[1] ];
+                let pos = rg['curvePivots-' + cpix].pos;
+                return [pos[0], pos[1]];
             });
             pivotsPos = pivotsPos.map((pos, cpix) => {
-                const [ scaleX, scale ] = pivotScale(cpix);
-                rg[ 'curvePivots-' + cpix ].q = cpix / (pivotsPos.length-1);
-                return [ pos[0]*scaleX, pos[1]*scale ];
+                const [scaleX, scale] = pivotScale(cpix);
+                rg['curvePivots-' + cpix].q = cpix / (pivotsPos.length-1);
+                return [pos[0]*scaleX, pos[1]*scale];
             }); //map
 
             //bezier framework generates Optimized Bezier Framework:
@@ -49,7 +49,7 @@
             //todm why do they exist in the first place?
             stdMod.bezierPivotsToCurvePivots();
         }
-        rg.A.pos = rg[ 'curvePivots-0' ].pos;
+        rg.A.pos = rg['curvePivots-0'].pos;
 
         //-----------------------------------------
         // //\\ partially draggers and decoration
@@ -57,7 +57,7 @@
         //      todm: not very consistent,
         //-----------------------------------------
         sconf.originalPoints.foldPoints.forEach((fp, ppix) => {
-            fp.rgX = rg[ 'foldPoints-' + ppix ];
+            fp.rgX = rg['foldPoints-' + ppix];
             fp.rgX.undisplay = true;
         });
         //-----------------------------------------

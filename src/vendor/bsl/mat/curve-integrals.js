@@ -52,30 +52,30 @@
         STARTING_EXPONENT_FOR_2 = STARTING_EXPONENT_FOR_2   || 4;
 
         var expo                = STARTING_EXPONENT_FOR_2;
-        var basePointsCount     = mat.powersOf2[ expo ];
+        var basePointsCount     = mat.powersOf2[expo];
         basePoints              = [];
         funPoints               = [];
-        var currentBasePoints   = basePoints[ expo ] = [];
-        funPoints[ expo ]       = [];
+        var currentBasePoints   = basePoints[expo] = [];
+        funPoints[expo]       = [];
         var currentStep         = (curveEndParam - curveStartParam) / basePointsCount;
 
         for (var it=0; it<=basePointsCount; it++) {
-            currentBasePoints[ it ] = curveStartParam + currentStep * it;
-            var tt              = currentBasePoints[ it ];
-            var funPoint        = fun(currentBasePoints[ it ]);
+            currentBasePoints[it] = curveStartParam + currentStep * it;
+            var tt              = currentBasePoints[it];
+            var funPoint        = fun(currentBasePoints[it]);
             if (!funIsAVector) {
-                funPoint = [ tt, funPoint ];
+                funPoint = [tt, funPoint];
             }
-            funPoints[ expo ][ it ] = funPoint;
+            funPoints[expo][it] = funPoint;
         }
-        var prevLen = calculates_curvePoints2chordsSum(funPoints[ expo ]);
+        var prevLen = calculates_curvePoints2chordsSum(funPoints[expo]);
 
         function calculates_curvePoints2chordsSum(curvePoints) {
             var lenSum = 0;
             var curPLen = curvePoints.length;
             for (var it=1; it<curPLen; it++) {
-                var prevP = curvePoints[ it-1 ];
-                var curP  = curvePoints[ it ];
+                var prevP = curvePoints[it-1];
+                var curP  = curvePoints[it];
                 var dx    = curP[0]-prevP[0];
                 var dy    = curP[1]-prevP[1];
                 lenSum   += Math.sqrt(dx*dx + dy*dy);
@@ -86,26 +86,26 @@
         for (var expo = STARTING_EXPONENT_FOR_2 + 1;
              expo < SAFETY_INTERACTIONS_LIM; expo++
         ) {
-            var prevPC              = mat.powersOf2[ expo-1 ];
-            var prevBP              = basePoints[ expo-1 ];
-            var prevFP              = funPoints[ expo-1 ];
-            var currentBasePoints   = basePoints[ expo ] = [];
-            var funP                = funPoints[ expo ] = [];
+            var prevPC              = mat.powersOf2[expo-1];
+            var prevBP              = basePoints[expo-1];
+            var prevFP              = funPoints[expo-1];
+            var currentBasePoints   = basePoints[expo] = [];
+            var funP                = funPoints[expo] = [];
 
             for (var ip = 0; ip <= prevPC; ip++) {
                 var it          = ip*2;
-                var fP          = funP[ it ] = prevFP[ ip ];
-                var tLeft       = currentBasePoints[ it ] = prevBP[ ip ];
-                var tRight      = prevBP[ ip + 1 ];
+                var fP          = funP[it] = prevFP[ip];
+                var tLeft       = currentBasePoints[it] = prevBP[ip];
+                var tRight      = prevBP[ip + 1];
 
                 if (ip === prevPC) break;
-                var tMiddle     = currentBasePoints[ it + 1 ] =
+                var tMiddle     = currentBasePoints[it + 1] =
                                   (tLeft + tRight) * 0.5;
                 var funPoint    = fun(tMiddle);
                 if (!funIsAVector) {
-                    funPoint = [ tMiddle, funPoint ];
+                    funPoint = [tMiddle, funPoint];
                 }
-                funP[ it + 1 ] = funPoint;
+                funP[it + 1] = funPoint;
             }
             var newLen = calculates_curvePoints2chordsSum(funP);
 

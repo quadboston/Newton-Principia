@@ -68,7 +68,7 @@
             //Ensure second paint pivot is hidden.  Otherwise a small dot will be in its location for the claim tab, since the point that would
             //cover it for other tabs is hidden.
             paintPivots : {
-                topaint : [ null, null, true ],
+                topaint : [null, null, true],
                 attrs : {
                     'stroke-width' : 1 * sconf.thickness,
                     //r : 4 * sconf.thickness
@@ -91,8 +91,8 @@
         $$.cls('tostroke', mainCurve.mediael.paintedCurve)
           .cls('tp-' + '_a_b_c')
           ;
-        rg[ 'pivotPoint1' ].doWhiteKernel = true;
-        rg[ 'pivotPoint2' ].doWhiteKernel = true;
+        rg['pivotPoint1'].doWhiteKernel = true;
+        rg['pivotPoint2'].doWhiteKernel = true;
         paste(rg.pivotPoint1.pos, modCurvPivots[1]);
         paste(rg.pivotPoint2.pos, modCurvPivots[2]);
         //--------------------------------------------------------------
@@ -184,9 +184,9 @@
         // //\\ curved areas
         //==========================================
         function paintCurveArea(areaId, fullMode, topicGroup_decapitalized) {
-            var area = rg[ areaId ];
+            var area = rg[areaId];
 
-            var lowCurve = rg[ areaId ].curve;
+            var lowCurve = rg[areaId].curve;
 
             var dd = '';
             dd += "M" + area.startPoint[0] + ' ' +
@@ -221,7 +221,7 @@
         //==========================================
         ///paints AGE-like area
         function paintLikeAGE(areaId, fullMode, topicGroup_decapitalized, stroke0fill) {
-            var area = rg[ areaId ];
+            var area = rg[areaId];
             var vertices = area.vertices.map(pos => {
                 return ssF.mod2inn(pos, stdMod);
             });

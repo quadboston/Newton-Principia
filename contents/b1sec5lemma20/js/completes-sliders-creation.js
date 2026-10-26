@@ -26,7 +26,7 @@
         rg.D.acceptPos = function (newPos) {
             const pem = sData.polar_ell_model;
             const pix = ssF.gets_orbit_closest_point(newPos, pem.points);
-            const Dpos = pem.points[ pix ];
+            const Dpos = pem.points[pix];
             const Tpos = mat.lineSegmentsCross(Dpos, rg.B.pos, rg.P.pos, rg.t.pos);
             const T = rg.T;
             T.pos[0] = Tpos[0];
