@@ -52,10 +52,10 @@ ${Rtp}.tobg {
             //add on for svg <image>, Oct 23, 2021
             ts += `
 ${ROOT} svg image.tp-${low_tpID} {
-    opacity : ${ sconf.SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY };
+    opacity : ${sconf.SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY};
 }
 ${ROOT} svg .tp-${low_tpID}.hover-width {
-    stroke-width:${ sconf.nonhover_width }px;
+    stroke-width:${sconf.nonhover_width}px;
 }
             `;
             //todo experiment
@@ -103,14 +103,14 @@ ${Rix} span.tp-${low_tpID} {
                         ///todm: very crude and wordy stroke width control
                      ts += `
 ${Rix} svg .tp-${low_tpID}.tostroke {
-    stroke-width:${ sconf.default_tp_stroke_width }px;
+    stroke-width:${sconf.default_tp_stroke_width}px;
 }
                     `;
 
 ts += `
 
 ${Rix} svg .tp-${low_tpID}.tostroke.hover-width {
-    stroke-width:${ sconf.hover_width }px;
+    stroke-width:${sconf.hover_width}px;
 }
                     `;
                     //todm: can be done via tpOpacityLow = 0;

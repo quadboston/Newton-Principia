@@ -81,7 +81,7 @@
                     case 'up': ach.achieved = rg.E.pos.concat([]);
                                sDomF.detected_user_interaction_effect();
                     break;
-                    case 'move' :
+                    case 'move':
                         //Calculate point C
                         const modC = bezier.parT2point(ssD.tC, modCurvPivots);
 

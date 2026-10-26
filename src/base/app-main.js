@@ -13,7 +13,7 @@ const {
     // //\\ establishes landing-start-state
     //======================================================
     document.documentElement.className += 'non-loaded';
-    $$  .style()
+    $$.style()
         .to(document.head)
         .html(
             "html.non-loaded body { \n" +

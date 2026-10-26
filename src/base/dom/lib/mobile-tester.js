@@ -50,7 +50,7 @@
         //we can use globalCss.update(,
         //but like "vanilla js solution" and
         //don't like named style tag
-        $$ .style()
+        $$.style()
            .to(document.head)
            .html(`
                 .${cls} {

@@ -41,7 +41,7 @@
                   anslider.css(cssp, sliderClassId, railsLegend,
                                 ancestorClassToHideSlider, sconf.hideProofSlider
                   );
-        $$  .style()
+        $$.style()
             .html(css)
             .to(document.head);
         //-------------------------------

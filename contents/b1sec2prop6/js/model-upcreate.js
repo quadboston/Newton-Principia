@@ -300,9 +300,9 @@
             ///heres is an actual code which hides shapes
             Object.keys(ssD.stashedVisibility).forEach(okey => {
                 switch (okey) {
-                    case 'Q.hideD8Dpoint' : rg.Q.hideD8Dpoint = true;
+                    case 'Q.hideD8Dpoint': rg.Q.hideD8Dpoint = true;
                     break;
-                    default : rg[okey].undisplay = true;
+                    default: rg[okey].undisplay = true;
                 }
             });
         }
@@ -320,9 +320,9 @@
         Object.keys(sv).forEach(okey => {
             const val = sv[okey];
             switch (okey) {
-                case 'Q.hideD8Dpoint' : rg.Q.hideD8Dpoint = val;
+                case 'Q.hideD8Dpoint': rg.Q.hideD8Dpoint = val;
                 break;
-                default : rg[okey].undisplay = val;
+                default: rg[okey].undisplay = val;
             }
         });
         ssD.stashedVisibility = null;

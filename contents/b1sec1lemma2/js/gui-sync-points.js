@@ -34,7 +34,7 @@
             let posEx = blist[4].x;
 
             switch (iIx) {
-            case 0 : var pname = 'A';
+            case 0: var pname = 'A';
                         var itemx = posAx;
                         var pnameFun = 'a'; //right on the curve
                         var pnameLow_ = 'K'; //min of the interval
@@ -46,7 +46,7 @@
                         rg[pnameTop_].pos[0] = (posBx - xoff) / scale;
                         rg[pnameTop_].pos[1] = cirPy;
                      break;
-            case 1 : var pname = 'B';
+            case 1: var pname = 'B';
                      var itemx = posBx;
                      ////optional names
                      var pnameFun = 'b'; //right on the curve
@@ -59,7 +59,7 @@
                     //rg[ 'C' ].pos[0];
                     rg[pnameTop_].pos[1] = cirPy;
                     break;
-            case 2 : var pname = 'C';
+            case 2: var pname = 'C';
                      var itemx = posCx;
                      ////optional names
                      var pnameFun = 'c';
@@ -71,7 +71,7 @@
                     rg[pnameTop_].pos[0] = (posDx - xoff) / scale;
                     rg[pnameTop_].pos[1] = cirPy;
                     break;
-            case 3 : var pname = 'D';
+            case 3: var pname = 'D';
                     var itemx = posDx;
                      ////optional names
                      var pnameFun = 'd';
@@ -91,7 +91,7 @@
                      // \\// making low boundary of difference-rect
                      //--------------------------------------------
                      break;
-            case 4 :
+            case 4:
                      var pname = 'E';
                      var itemx = posEx;
                      //--------------------------------------------

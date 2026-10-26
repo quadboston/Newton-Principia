@@ -146,7 +146,7 @@
         ////makes branches
         const algfun = stdMod.calculateConicPoint_algo;
         const stepsCount = 400;
-        const start_q = - 5;
+        const start_q = -5;
         const end_q = 5;
         const range_q = end_q - start_q;
         const step = range_q / stepsCount;
