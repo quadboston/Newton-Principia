@@ -130,7 +130,7 @@
         const height = 1;
         const posBR = [base, 0];
         const posTL = [0, height];
-        
+
         //Transformed
         const posBRT = mat.MxV(matrix, posBR);
         const posTLT = mat.MxV(matrix, posTL);

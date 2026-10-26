@@ -52,11 +52,11 @@
         //===================================
         //Constrain the bezier middle pivot to be within the specified bounds, and on line ec (ultimately same position as point g).
         //Code here to ensure always run whenever an update occurs (tab changed, point dragged, diagram moved, window resized etc.)
-        
+
 
         //Ensure max angle A is before tiltAngleRad (keep in mind angle A is 0 when vertical, tiltAngle is 0 when horizontal)...
         //-Line Ag cannot be parallel to line ec (tiltAngle) they wouldn't intersect.
-        //-If the angle between those lines goes beyond parallel, their intersection is on the other side of ec (left of Ae) and below 
+        //-If the angle between those lines goes beyond parallel, their intersection is on the other side of ec (left of Ae) and below
         //the constraint for angleA_min.
         const angleARad_max = mat.degToRad(80) - tiltAngleRad;
 
@@ -107,8 +107,8 @@
         // //\\ looking for pointB
         var directionX  = modC[0];
         var directionY  = modC[1] - modE[1];
-        var tB          = ssF.tB = bezier.line2bezier( 
-                            modD, 
+        var tB          = ssF.tB = bezier.line2bezier(
+                            modD,
                             [ directionX, directionY ],
                             modCurvPivots[1],
                             modCurvPivots[2]
@@ -151,7 +151,7 @@
                     [remote[1], remote[2]], tC, tiltEC, mod_g, sconf.areaScale );
 
         //proof biggest linear
-        var areas = calcAreas[ 'Age' ] = 
+        var areas = calcAreas[ 'Age' ] =
         {
             total     : areas.areaBetweenTanT_8_curve,
             base      : areas.areaUnderTan1,
@@ -159,7 +159,7 @@
         };
 
         //given biggest linear
-        calcAreas[ 'AGE' ] = 
+        calcAreas[ 'AGE' ] =
         {
             total     : areas.total * rr_2,
             base      : areas.base * rr_2,
@@ -169,7 +169,7 @@
                     [remote[1], remote[2]], tB, tiltEC, mod_f, sconf.areaScale );
 
         //proof smalles curved
-        var areas = calcAreas[ 'Afd' ] = 
+        var areas = calcAreas[ 'Afd' ] =
         {
             total     : areas.areaBetweenTanT_8_curve,
             base      : areas.areaUnderTan1,
@@ -177,7 +177,7 @@
         };
 
         //given  smallest curved
-        calcAreas[ 'AFD' ] = 
+        calcAreas[ 'AFD' ] =
         {
             total     : areas.total * rr_2,
             base      : areas.base * rr_2,
@@ -204,12 +204,12 @@
     /*
         Points and angles Aa, Ea, Ga, Ca:
 
-        |                            .  
+        |                            .
         |                         .
         |                    C  .  a
      Cy o----------.----------o--------------
-        |         .       . .  
-        |        . a  .   . 
+        |         .       . .
+        |        . a  .   .
         |     G o .     .
         |    . .      .
         |.    .     .
@@ -217,8 +217,8 @@
         |   .   .
         |  .  .
         |a. .
-        |. 
-      A o      
+        |.
+      A o
 
     */
     ///Inputs: C,E

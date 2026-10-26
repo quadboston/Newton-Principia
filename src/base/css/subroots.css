@@ -35,10 +35,10 @@ div.bsl-approot svg.bsl--svgscene .undisplay,
 
 /* https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting */
 /* this really solved firefox problem of "shadow-dragging-object"
-    the problem tested and logged in 
+    the problem tested and logged in
     83-current-svg-firefox-problems.zip
     as of June 12, 2019 ( a year later we don't see this problem in FF )
-    circle.movable { user-select: none; .... 
+    circle.movable { user-select: none; ....
 */
 .highlight-text-disabled,
 .menu-teaf,
@@ -66,7 +66,7 @@ div.bsl-approot svg.bsl--svgscene .undisplay,
     position: absolute;
     height: 100%;
     background-color: #cccccc;
-}  
+}
 
 /* only central dots image is actually interactive, so only change cursor there */
 #bsl-resizable-handle img {
@@ -79,7 +79,7 @@ div.bsl-approot svg.bsl--svgscene .undisplay,
 /* todm non-consistent style set, must be dynamic by box-tester as for other parts */
 /* value corresponds to MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD : 70; in contents/conf/conf.js */
 @media screen and (max-width: 790px) {
-    
+
     #bsl-resizable-handle {
         display: none;
     }
@@ -118,7 +118,7 @@ div.bsl-approot svg.bsl--svgscene .undisplay,
     border: 1px solid var(--border-color);
     white-space: nowrap; /* keeps everything on one line */
 
-    /* this is a brute force way to specify opacity for table data 
+    /* this is a brute force way to specify opacity for table data
         without affect TP_OPACITY values used in the models,
         however, it prevents dynamic opacity change on hover */
     opacity: 1 !important;
@@ -166,11 +166,11 @@ div.bsl-approot svg.bsl--svgscene .undisplay,
 
 .main-legend .eq-sign {
     text-align:center;
-} 
+}
 
 .main-legend .limit {
     font-family: var(--font-condensed);
-}  
+}
 
 /* graphs in P6, P7, etc */
 .graph-parent {

@@ -1,5 +1,5 @@
 (function(){
-const { sn, eachprop, has, haf, 
+const { sn, eachprop, has, haf,
         fconf, sconf, toreg, rg, ssD, sDomF, stdMod,
         topicColors_repo, topicColors_repo_camel2col, originalPoints,
 } = window.b$l.apptree({ stdModExportList : { sconf_points8lines, }, });
@@ -213,7 +213,7 @@ function sconf_points8lines (){
                 letterAngle : 62,
                 letterRotRadius : 21,
         },
-        D   : { decStart : 10, 
+        D   : { decStart : 10,
                 letterAngle : 80,
         },
         E   : { decStart : 14,
@@ -338,7 +338,7 @@ function sconf_points8lines (){
                 //undisplay : true,
                 },
         //sagittae ABC = middle sagitta in sagittae-parallelogram,
-        //layed down from point B, 
+        //layed down from point B,
         U   : {
                 decStart : decor.C.decStart,
                 decEnd : decor.C.decEnd,
@@ -346,7 +346,7 @@ function sconf_points8lines (){
                 cssClass : 'hidden',
         },
         //sagittae DEF=middle sagitta in sagittae-parallelogram
-        //layed down from point E, 
+        //layed down from point E,
         W   : {
                 decStart : decor.F.decStart,
                 decEnd : decor.D.decEnd,
@@ -360,7 +360,7 @@ function sconf_points8lines (){
         //tips of forces
         //rg['VVV'+ix].pos <-- rg['force-'+ix+'-1'].pos
         let nam1 = 'VVV'+ix;
-  
+
         let doPaintPname = false;
         let pcolor = tpel.force;
         mixedSteps_conf[ nam0 ] = {
@@ -391,7 +391,7 @@ function sconf_points8lines (){
             pointRack[pointKey] = pointProp;
         });
     });
-    
+
     //---------------------------------------------------
     // //\\ equalizing points in decor and rg
     //---------------------------------------------------
@@ -444,7 +444,7 @@ function sconf_points8lines (){
         },
         { nam : ['S', 'C'],		// SC
             cssClass : 'logic_phase--proof',
-        }, 
+        },
         { nam : ['S', 'D'],		// SD
             cssClass : 'logic_phase--proof',
         },
@@ -588,7 +588,7 @@ function sconf_points8lines (){
             'caption',
             'captionShiftNorm',
             'undisplay',
-            'zOrderAfter',  
+            'zOrderAfter',
             'notp',
             'vectorTipIx',
             'stroke-width',
@@ -623,7 +623,7 @@ function sconf_points8lines (){
     //
     // expands predefinedTopic colors into rg,
     // todo rg.SCd will be crashed later without this
-    // expansion, this scenario must have more steps    
+    // expansion, this scenario must have more steps
     //==================================================
     sconf.topicColors_elected = tpel;
     ////array tpel will be discraded upon leaving this function,
@@ -641,7 +641,7 @@ function sconf_points8lines (){
     //==================================================
     // \\// equalizes topicColors_elected, topicColors_repo, and
     //==================================================
-    
+
     //Update decStart for the following decorations if needed,
     //to ensure they start becoming visible for the specified steps.
     if (sconf.TIMER_AND_LOGIC_STEPS_COINSIDE === false) {

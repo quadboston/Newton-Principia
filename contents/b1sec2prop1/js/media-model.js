@@ -103,7 +103,7 @@ function media_upcreate___before_basic (){
     pathDelays2forceDraggers();
     stdMod.allPathRacks_2_unseenSVGs();
     stdMod.SAvV_model__2__svg(); //changes svg
-    
+
     //***********************************************************
     //wraps remained tasks into d8d slider
     //if slider is already created ...

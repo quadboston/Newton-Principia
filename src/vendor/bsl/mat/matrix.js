@@ -11,7 +11,7 @@
 
     ///	calculates: c = a*b, where
     ///             (a*b)[y][z] = SUM_VIA_x(  a[y][x] * b[x][z]  );
-    ///             a[y][x], b[x][z] is conventional JS-indexation of arrays;    
+    ///             a[y][x], b[x][z] is conventional JS-indexation of arrays;
     ///	input:		aa is m x n; y=0,...,m; bb is n x k;
     //				m is outer index ( number of rows in a ),
     //              k is outer index ( number of columns in b )
@@ -72,8 +72,8 @@
         var mm	= aa.length;
         var nn	= aa[ 0 ].length;
         var cc	= [];
-        A		= A || A === 0 ? A : 1; 
-        B		= B || B === 0 ? B : 1; 
+        A		= A || A === 0 ? A : 1;
+        B		= B || B === 0 ? B : 1;
 
         for ( var yy = 0; yy < mm; yy++ )
         {
@@ -96,8 +96,8 @@
     {
         var nn	= aa.length;
         var cc	= [];
-        A		= A || A === 0 ? A : 1; 
-        B		= B || B === 0 ? B : 1; 
+        A		= A || A === 0 ? A : 1;
+        B		= B || B === 0 ? B : 1;
 
         for ( var xx = 0; xx < nn; xx++ )
         {
@@ -166,7 +166,7 @@
     mat.zero4 = [ 0, 0, 0, 0 ];
     mat.zero3 = [ 0, 0, 0 ];
 
-    mat.unit4x4 = 
+    mat.unit4x4 =
     [
         [ 1, 0, 0, 0 ],
         [ 0, 1, 0, 0 ],

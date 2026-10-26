@@ -39,7 +39,7 @@
     setCapture();
     return;
 
-    
+
     function setCapture()
     {
         paste( capture,

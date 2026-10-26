@@ -1,5 +1,5 @@
 ( function() {
-    var { 
+    var {
         eachprop, rg, ssF, stdMod,
     } = window.b$l.apptree({
         stdModExportList : {
@@ -48,7 +48,7 @@
 
         // function defined in /src/base/lemma/media-model/main-legend.js
         ssF.createLogic_phaseLegend({
-            tableCaption    : '', 
+            tableCaption    : '',
             noTableTitle    : true,
             stdMod_given    : stdMod,
             logic_phase        : key,

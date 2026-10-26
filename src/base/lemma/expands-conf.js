@@ -2,7 +2,7 @@
 //"unifies" and normalizes them,
 (function(){
     const {
-        sn, haz, has, eachprop, own, 
+        sn, haz, has, eachprop, own,
         rg, fconf, sf, ssF, sDomF, topicColors_repo,
         topicColors_repo_camel2col,
         toreg,
@@ -203,7 +203,7 @@ function doExpandConfig (){
                 'caption',
                 'captionShiftNorm',
                 'undisplay',
-                'zOrderAfter',  
+                'zOrderAfter',
                 'notp',
                 'vectorTipIx',
                 'tipFraction',
@@ -219,7 +219,7 @@ function doExpandConfig (){
                 has(gshape,propname) && (rgX[propname] = gshape[propname]);
                 }
             });
-            
+
             //todm: mess: lines array elements attributes go into
             //line-maker in lemma-linerars-machine lineAttr
             //, but this is done via "str2line" which ignores "everything" except
@@ -444,7 +444,7 @@ function doExpandConfig (){
     //=========================================
     // \\// thickness
     //=========================================
-   // \\// 
+   // \\//
    */
 
     //check or remove this section

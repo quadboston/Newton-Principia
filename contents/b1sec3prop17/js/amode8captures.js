@@ -10,7 +10,7 @@
     function amode2rgstate( captured )
     {
         //called 1x on page load, then once more when switching tabs
-        //console.log('amode8captures.js'); 
+        //console.log('amode8captures.js');
 
         var { logic_phase, aspect, subessay } = amode;
 
@@ -19,7 +19,7 @@
         rg.point_r.hideD8Dpoint =
             // for this corollary, p's velocity is determined by the force
             logic_phase === 'corollary' && amode.subessay === 'corollary2';
-            
+
         //=============================================================
         // //\\ model (reset to starting positions)
         //=============================================================
@@ -52,7 +52,7 @@
         rg.P.abs = mat.unitVector( rg.P.pos ).abs;
 
         //-------------------------------------------------
-        // //\\ op 
+        // //\\ op
         //-------------------------------------------------
         op.cosOmega = op.cosOmega_initial;
         op.om       = op.om_initial;
@@ -64,11 +64,11 @@
             rg.P.abs = mat.unitVector( rg.P.pos ).abs;
         }
         //-------------------------------------------------
-        // \\// op 
+        // \\// op
         //-------------------------------------------------
 
         //-------------------------------------------------
-        // //\\ sop 
+        // //\\ sop
         //-------------------------------------------------
         var sop      = sconf.sampleOrbitParameters;
         sop.latus    = sop.latusInitial;
@@ -104,7 +104,7 @@
         }
         sop.delta_t  = sop.delta_t_initial;
         //-------------------------------------------------
-        // \\// sop 
+        // \\// sop
         //-------------------------------------------------
         //=============================================================
         // \\// model

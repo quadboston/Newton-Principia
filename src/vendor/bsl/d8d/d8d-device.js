@@ -1,6 +1,6 @@
 //***************************************************************************************************
 // //\\//   "maximally closes to device" level drag and drop processor;
-//          ns.d8dp.creFW_BSLd8d1BASE 
+//          ns.d8dp.creFW_BSLd8d1BASE
 //              - a method of the layer between mouse/touch events and application
 //                  - handles DOM events,
 //                  - submits results to app-processor, d8d_cb_middle2lowest
@@ -36,7 +36,7 @@
         //      media means canvas, img, or possibly video;
         //		in general for media, finally detected mouse-point is
         //		in internal media coordinates;
-        var surface	= arg.surface;	
+        var surface	= arg.surface;
 
         //:	to whom to attach events
         var att = arg.attachee || surface;
@@ -65,7 +65,7 @@
         // //\\ locals
         //------------------------------------------
         //.is a d8d-in-progress-flag ...
-        var startPoint	= null; 
+        var startPoint	= null;
         var lastPoint   = null;
         //------------------------------------------
         // \\// locals
@@ -111,7 +111,7 @@
             //  http://stackoverflow.com/questions/5186441/javascript-drag-and-drop-for-touch-devices
             //. todo: touch must provide event which then tested for
             //  Ctrl-pressed flag: use different handler
-            att.addEventListener( 'touchstart', doStartDown );  
+            att.addEventListener( 'touchstart', doStartDown );
             att.addEventListener( 'mousedown', doStartDown );
         };
 
@@ -161,7 +161,7 @@
             ///mouse-down
             } else {
                 forbidden = do_complete_down( ev );
-                if( !forbidden ) { 
+                if( !forbidden ) {
                     !dontStopDownAfteshocks && stopsAftershocks ( ev );
                     att.addEventListener( 'mousemove', mouseMove);
                     att.addEventListener( 'mouseup',   mouseEnd);
@@ -252,9 +252,9 @@
             if( !startPoint ) {
                 //ns.d('mouseMove: no start point exist');
                 return;
-            } 
+            }
             var surfPoint = eventPos_2_surfacePos( childEvent );
-            if(!surfPoint) { 
+            if(!surfPoint) {
                 //vital-for-mobile
                 //ns.d('\nmouseMove: media point failed');
                 return;
@@ -269,11 +269,11 @@
         function do_complete_move( surfPoint, childEvent, moveIncrement )
         {
             var surfMove =
-            [	
+            [
                 surfPoint[ 0 ] - startPoint[ 0 ],
                 surfPoint[ 1 ] - startPoint[ 1 ]
             ];
-            ///api: 
+            ///api:
             d8d_cb_middle2lowest(
                 //todo: do name? it (drag?)SurfaceAccomulatedMove
                 surfMove, //total move which begins from down event
@@ -348,7 +348,7 @@
             //https://developer.mozilla.org/en-US/docs/Web/API/Element.getBoundingClientRect
             var box	= surface.getBoundingClientRect();
             var loc	=
-            [ 
+            [
                 Math.round( event.clientX - box.left ),
                 Math.round( event.clientY - box.top )
             ];
@@ -368,13 +368,13 @@
         function default_skip( ev )
         {
             var tag = ev.target.tagName.toLowerCase();
-            if(     
-                    //protects wbd debugger    
+            if(
+                    //protects wbd debugger
                     tag === 'textarea' ||
-                    //protects forms    
+                    //protects forms
                     tag === 'input' || tag === 'select' || tag === 'button'
-                    //protects firmware plugins which use svg  
-                    // || tag === 'rect' || tag === 'path'                            
+                    //protects firmware plugins which use svg
+                    // || tag === 'rect' || tag === 'path'
             ) {
                 return true;
             }

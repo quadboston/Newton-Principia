@@ -1,6 +1,6 @@
 // //\\// widget config
 ( function() {
-    var { mat, fapp, fconf, sconf, topicColors_repo, } = 
+    var { mat, fapp, fconf, sconf, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -28,7 +28,7 @@
         let slider_aX=532;
         let slider_aY=pictureHeight;
         let pointRadius = 12;
-        
+
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
@@ -37,7 +37,7 @@
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
         fconf.LETTER_FONT_SIZE_PER_1000 = 20; //works
-        
+
         fconf.DRAGGER_TOLERANCE = 25; // distance where crosshair appears
 
         //--------------------------------------
@@ -74,9 +74,9 @@
             ellipse,
         } = topicColors_repo;
 
-        
+
         const topicColors_elected =
-        {   
+        {
             static,
             core,
             aux,
@@ -95,8 +95,8 @@
             "aux-dots"              : aux,
         }
         const pt = topicColors_elected;
-        
-        
+
+
         var originalPoints =
         {
             P : { pos: [996, 570],
@@ -122,7 +122,7 @@
                   letterAngle : 45,
                   letterRotRadius : 20,
                 },
-  
+
             // //\\ aux points
             G : {
                    pcolor : pt.aux,
@@ -183,7 +183,7 @@
                     initialR: pointRadius,
                 },
             // \\// aux points
-  
+
             ///-------------------------------------------------
             ///builds center point first to be used in ellipse
             ///-------------------------------------------------
@@ -236,10 +236,10 @@
                     caption : 'eccentricity',
                     draggableX : true,
                     draggableY : false,
-                    
+
                     pos: [slider_aX,slider_aY],
                     pcolor : topicColors_elected.ellipse,
-    
+
                     letterAngle : 166,
                     letterRotRadius : 104,
                     //makes display independent on user action
@@ -269,7 +269,7 @@
         // \\// original material parameters
         //----------------------------------
 
-        
+
         var linesArray =
         [
             { 'KS' : {
@@ -312,7 +312,7 @@
            //-------------------------
            // \\// base-figure
            //-------------------------
-  
+
            { 'PT' : {
                         pcolor : topicColors_elected["key-triangle"],
                         'stroke-width' : 10,
@@ -325,7 +325,7 @@
                         cssClass : 'tp-key-triangle tp-key-parts',
                     }
            },
-  
+
             //-------------------------
             // //\\ given parallelogram
             //-------------------------
@@ -385,7 +385,7 @@
             // \\// linear-generators
             //------------------------
 
-            
+
             //------------------------
             // //\\ aux-lines
             //------------------------
@@ -448,7 +448,7 @@
             //------------------------
             // \\// aux-lines
             //------------------------
-            
+
             //------------------------
             // //\\ static triangle
             //------------------------
@@ -518,7 +518,7 @@
             let P = [ PP[0] - OO[0], PP[1] - OO[1] ];
             pictureActiveArea = mat.unitVector(P).abs;
         }
-        //mediaSize = mod2inn_scale * modelSize, 
+        //mediaSize = mod2inn_scale * modelSize,
         var mod2inn_scale = pictureActiveArea;
         //----------------------------------
         // \\// app view parameters
@@ -551,7 +551,7 @@
             initialparA : 5.17,
             initialparB : -0.51,
             // \\// this approximately fits Newton's diagram
-            
+
             /*
             //it is hard to fit original Newton diagram
             //probably, one needs bigger latus

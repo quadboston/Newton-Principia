@@ -60,7 +60,7 @@
                         // intersection I(Q') of SP and QQ'
                         const I = lineIntersection(rg.S.pos, rg.P.pos, Q, Qp);
                         if (!I) {
-                            continue; 
+                            continue;
                         }
 
                         // midpoint M(Q, Q')
@@ -89,7 +89,7 @@
                         Porb.rrminus[0] = rg.rrminus.pos[0] = best[0];
                         Porb.rrminus[1] = rg.rrminus.pos[1] = best[1];
                     }
-                    rg.infoMessage.undisplay = 
+                    rg.infoMessage.undisplay =
                         bestDiff <= 2 * sagittaOnSP_Tolerance;
                 }
 
@@ -232,7 +232,7 @@
             if( has( ssD, 'pastFoldPoints' ) ) {
                 //todm for( let i=foldps.length; i<flen; i++ ) {
                 for( let i=0; i<pastlen; i++ ) {
-                    pp[i].rgX.undisplay = true;  
+                    pp[i].rgX.undisplay = true;
                 }
             }
             ////otherwise, cannot display all separation points;
@@ -245,7 +245,7 @@
                     rgX.undisplay = false;
                 };
                 ssD.pastFoldPoints = flen;
-            } 
+            }
         }
         {
             ///single fold point decorations

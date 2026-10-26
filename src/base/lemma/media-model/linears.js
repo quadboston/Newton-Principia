@@ -307,7 +307,7 @@
     // \\// creates svg-line or updates it if exists
     //==============================================
 
-    
+
     ///master function for polygons
     function namesArr_2_svgpoly(
         pNames,

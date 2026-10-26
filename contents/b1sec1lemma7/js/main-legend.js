@@ -42,15 +42,15 @@
         [lemma7Data.claim[2][0], [ 'arc-Ab', 'arc A𝑐𝑏', getVal('rg.Ab.arcLen', 'rg.Ab.abs') ]],
         [[ 'spacer', '', '' ], [ 'spacer', '', '' ]], //small space
         [lemma7Data.claim[4][0], [ 'proofRatio', 'A𝑑 : A𝑏', getVal('(rg.Ad.abs.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)', '1.000') ]],
-        [lemma7Data.claim[5][0], [ 'proofRatio', 'arc A𝑐𝑏 : A𝑏', getVal('(rg.Ab.arcLen.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)', '1.000') ]], 
+        [lemma7Data.claim[5][0], [ 'proofRatio', 'arc A𝑐𝑏 : A𝑏', getVal('(rg.Ab.arcLen.toFixed(3)/rg.Ab.abs.toFixed(3)).toFixed(3)', '1.000') ]],
     ];
 
     // all 3 corollaries defined as one big table so framework updates their data properly
-    // rows shown/hidden in media-upcreate.js, based on which cor is selected 
+    // rows shown/hidden in media-upcreate.js, based on which cor is selected
     lemma7Data.corollary = [
         //corollary 1
         [[ 'proofData', 'BF', 'rg.BF.abs' ], [ 'hidden', '', '' ]], // labelled "proofData" to differentiate from line (so it doesn't get highlighted on AFBD mouseover)
-        [lemma7Data.claim[2][0], [ 'hidden', '', '' ]], //arc ACB 
+        [lemma7Data.claim[2][0], [ 'hidden', '', '' ]], //arc ACB
         [[ 'spacer', '', '' ], [ 'hidden', '', '' ]],
         [[ 'givenData', 'BF : arc ACB', getCor1Ratio() ], [ 'hidden', '', '' ]],
 
@@ -62,16 +62,16 @@
         [[ 'spacer', '', '' ], [ 'hidden', '', '' ]],
         [[ 'proofData', 'AE : AD', getLineRatio('AE', 'AD') ], [ 'hidden', '', '' ]],
         [[ 'givenData', 'AB : AD', getLineRatio('AB', 'AD') ], [ 'hidden', '', '' ]],
-        [[ 'givenData', 'arc ACB : AD', getArcRatio('AB', 'AD') ], [ 'hidden', '', '' ]], 
-        
+        [[ 'givenData', 'arc ACB : AD', getArcRatio('AB', 'AD') ], [ 'hidden', '', '' ]],
+
         //corollary 3
         [lemma7Data.claim[0][0], [ 'hidden', '', '' ]], // AB
         [lemma7Data.claim[1][0], lemma7Data.claim[4][0]], // AD
         [lemma7Data.claim[2][0], lemma7Data.claim[5][0]], //arc ACB
-        [[ 'BF', 'BF', 'rg.BF.abs' ], [ 'BF', 'BF : AB', getLineRatio('BF', 'AB') ]], 
+        [[ 'BF', 'BF', 'rg.BF.abs' ], [ 'BF', 'BF : AB', getLineRatio('BF', 'AB') ]],
         [[ 'AE', 'AE', 'rg.AE.abs'], [ 'AE', 'AE : AB', getLineRatio('AE', 'AB') ]],
-        [[ 'BG', 'BG', 'rg.BG.abs' ], [ 'BG', 'BG : AB', getLineRatio('BG', 'AB') ]], 
-    ]; 
+        [[ 'BG', 'BG', 'rg.BG.abs' ], [ 'BG', 'BG : AB', getLineRatio('BG', 'AB') ]],
+    ];
 
     // when AB <= NON_ZERO_A_PREVENTOR we're rounding to zero because the calculations become innaccurate at small values
     // param val: calculated value for when AB > 0.01
@@ -81,7 +81,7 @@
             rg.AB.abs.toFixed(3) <= sconf.NON_ZERO_A_PREVENTOR ? ${zero} : ${val};
         `;
     }
-    
+
     // coding these as strings is bad practice, but necessary for now to play nice with framework
     // specifically, rg is not available when this module is initiated,
     // and data is parsed with eval() in main-legend-templates.js, so it would throw errors
@@ -126,7 +126,7 @@
 
         // function defined in /src/base/lemma/media-model/main-legend.js
         ssF.createLogic_phaseLegend({
-            tableCaption    : '', 
+            tableCaption    : '',
             noTableTitle    : true,
             stdMod_given    : stdMod,
             logic_phase        : key,

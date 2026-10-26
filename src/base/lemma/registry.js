@@ -6,7 +6,7 @@
     sapp.toreg = toreg;
     sapp.topos = topos; // legacy specific case of property "pos"
     return;
-    
+
     //test
     /*
     var myumbr = toreg('my')

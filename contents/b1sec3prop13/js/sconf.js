@@ -1,5 +1,5 @@
 ( function() {
-    var { ns, sn, fconf, sconf, stdMod, topicColors_repo, } = 
+    var { ns, sn, fconf, sconf, stdMod, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     var op = sn( 'orbitParameters', sconf );
     return;
@@ -31,7 +31,7 @@
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
-        
+
         fconf.DRAGGER_TOLERANCE = 15; // distance where crosshair appears
         sconf.enableStudylab = false;
 
@@ -188,7 +188,7 @@
                 letterAngle : -45,
                 letterRotRadius : 15,
                 cssClass: 'subessay--solution',
-           },            
+           },
             x : {
                 caption : "𝑥",
                 pcolor : proofColor,
@@ -264,7 +264,7 @@
             B : {
                 letterRotRadius : 20,
                 pcolor : bodyColor,
-            },             
+            },
             BB : { // opposite B
                 letterAngle : 90,
                 undisplayAlways : true,
@@ -274,7 +274,7 @@
             E : {
                 pcolor : proofColor,
                 letterRotRadius : 20,
-            }, 
+            },
             I : {
                 pcolor : proofColor,
                 letterRotRadius : 20,
@@ -299,14 +299,14 @@
             { NS : proofSolution },
             { NP :  proofSolution },
             { Pv :  proofSolution },
-            { Qv :  proofSolution }, 
+            { Qv :  proofSolution },
             { Qx :  { pcolor : proofColor,
-                cssClass: 'subessay--goal subessay--solution', } },  
-            { Px :  { pcolor : proofColor, 
-                'stroke-width' : 1.2,  
+                cssClass: 'subessay--goal subessay--solution', } },
+            { Px :  { pcolor : proofColor,
+                'stroke-width' : 1.2,
                 cssClass: 'subessay--goal subessay--solution', }, },
-            { Tx :  { pcolor : proofColor, 
-                'stroke-width' : 1.2,  
+            { Tx :  { pcolor : proofColor,
+                'stroke-width' : 1.2,
                 cssClass: 'subessay--goal subessay--solution', }, },
             { SA : {  pcolor : proofHover,
                 cssClass: 'subessay--solution', }, },
@@ -315,12 +315,12 @@
                 cssClass: 'subessay--goal subessay--solution logic_phase--corollary', }, },
 
             // tangent
-            { 'PR' : { 
-                pcolor : proofColor, 
-                'stroke-width' : 2, 
+            { 'PR' : {
+                pcolor : proofColor,
+                'stroke-width' : 2,
                 captionShiftNorm : -18,
-                cssClass: 'subessay--goal subessay--solution logic_phase--corollary', }, 
-            },                
+                cssClass: 'subessay--goal subessay--solution logic_phase--corollary', },
+            },
             { 'P,Zminus' : { pcolor : proofColor,
                 cssClass: 'subessay--solution', }, },
 

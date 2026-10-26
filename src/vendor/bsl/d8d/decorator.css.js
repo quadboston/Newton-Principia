@@ -1,6 +1,6 @@
 // defines css classes and animations for spinning arrows around draggable points
 // dom elements created in decorator.js to overlay point positions
-// visibility of spinner is toggled in d8d-framework.js when corresponding 
+// visibility of spinner is toggled in d8d-framework.js when corresponding
 // svg element is under mouse (look for decPoint.style.display)
 
 //apparently this module was a derivative from
@@ -8,12 +8,12 @@
 (function() {
     var ns     = window.b$l;
     var dpdec  = ns.sn('drag-point-decorator');
-    
+
     //these two lines merge vendor's module to
     //src/base/app-tree.js context:
-    var fapp   = ns.sn('fapp' ); 
+    var fapp   = ns.sn('fapp' );
     var fconf  = ns.sn('fconf',fapp);
-    
+
     //---------------------------------------
     // //\\ configures dimensions
     //---------------------------------------
@@ -26,7 +26,7 @@
     //than change to mouse search cursor:
     dm.WIDTH                =  ( fconf.DRAG_HANDLE_HALFHOTSPOT || 15 ) * 2 +
                                 5; //to overlap dragger-search-hot-spot,
-    dm.HEIGHT               = dm.WIDTH;    
+    dm.HEIGHT               = dm.WIDTH;
     dm.DISK_RADIUS          = dm.WIDTH*0.1;
     dm.DISK_LEFT            = dm.WIDTH*0.5;
     dm.DISK_TOP             = dm.HEIGHT*0.5;

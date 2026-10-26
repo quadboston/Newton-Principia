@@ -546,9 +546,9 @@
 
 
     /**
-     * Gets a fixed color as an rgba string. Topic names are looked up in the 
+     * Gets a fixed color as an rgba string. Topic names are looked up in the
      * fixed color palette. Arrays are converted to rgba format.
-     * 
+     *
      * @param {string | number[]} topicOrArray - Topic name (e.g., 'given',
      * 		'proof') or rgba array [r, g, b, a]. Returns black if falsy.
      * @param {boolean} [makeOpacity1] - If true, sets opacity to 1

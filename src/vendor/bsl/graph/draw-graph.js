@@ -42,7 +42,7 @@
 
                 //first index along the path, next=number of plots
                 graphArray,
-                
+
                 colorThreadArray,
                 style,
 
@@ -64,7 +64,7 @@
                 printAxisDigits,
                     printAxisXDigits,
                     printAxisYDigits,
-                
+
                 axisX,      //optional, set to default if missed, API is as in default below
                 axisY,      //optional, set to default if missed, API is as in default below
                 axisYLegend,
@@ -229,7 +229,7 @@
                 }
                 //masks makes polylines[ yix ] undefined where yix has empty mask
                 points.y.forEach( (pointY,yix) => {
-                    
+
                     //creates holes in polylines array
                     if( graphArrayMask && !graphArrayMask[yix] ) return;
 
@@ -255,7 +255,7 @@
 
                     printAxisXDigits,
                     printAxisYDigits,
-                    
+
                     drawDecimalX,
                     drawDecimalY,
                     rangeY,

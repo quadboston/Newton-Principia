@@ -14,7 +14,7 @@
         stdMod.q2xy = q2xy;
         stdMod.xyToQ = xyToQ;
         return;
-        
+
         // points of the spiral
         function q2xy( q )
         {

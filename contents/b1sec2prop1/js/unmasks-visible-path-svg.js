@@ -62,7 +62,7 @@ function unmasksVisib (){
 
     //Each step has decorations that should be shown.  Each step corresponds
     //to a group, and each group has sub-groups which
-    //correspond to substeps.  Therefore any group before the current step 
+    //correspond to substeps.  Therefore any group before the current step
     //("stepIx") should show its final sub-group, the
     //current step should show its sub-group corresponding to the current
     //substep ("substepIx"), and any remaining groups

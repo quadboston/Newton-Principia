@@ -12,8 +12,8 @@
     userOptions.usingBackgroundImage = useBGimage;
     userOptions.userOptions_2_updatedGUI = userOptions_2_updatedGUI;
     userOptions.shouldShowSubessayMenu = shouldShowSubessayMenu;
-    return;   
-    
+    return;
+
     function showingLatin() {
         return sessionStorage.getItem(LATIN) === 'true';
     }
@@ -39,7 +39,7 @@
     function doesStoreOption(option, newValue) {
         sessionStorage.setItem(option, newValue);
     }
-    
+
     //decides whether an entire subessay-menu should be visible
     function shouldShowSubessayMenu(...args) {
         if (args.length > 1) {

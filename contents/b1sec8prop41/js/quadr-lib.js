@@ -111,11 +111,11 @@
             }
 
             v2graph[iq]    = [ v2, ro ];
-            vgraph[iq]     = [ Math.sqrt(v2), ro ]; 
+            vgraph[iq]     = [ Math.sqrt(v2), ro ];
             Tkernel.push( [T_Kernel, ro] );
             Fkernel.push( [F_Kernel, ro] );
-            Zgraph[iq]     = [Z,ro]; 
-            Z2graph[iq]    = [Z*Z,ro]; 
+            Zgraph[iq]     = [Z,ro];
+            Z2graph[iq]    = [Z*Z,ro];
 
             if( fiStartedIx === iqFull ) {
                 var fi0 = F[iq];
@@ -200,7 +200,7 @@
             vback.push( [ src[0], src[1] ] );
         }
 
-        return { 
+        return {
                     vback, //from drop point
                     //golbal array index, index from force top array
                     dropPointIx, roPlusIx

@@ -39,7 +39,7 @@
         study.calculateAndStoreTransformedFigureAreaRatios();
     }
 
-    
+
 
     ///second point in changes contains first turning point
     ///if function is monotonic, then there is only

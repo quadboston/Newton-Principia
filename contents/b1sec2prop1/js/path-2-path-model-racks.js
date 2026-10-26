@@ -1,5 +1,5 @@
 /*
- * Apparently, the role of this module is to reserve rg-names for the subdetails 
+ * Apparently, the role of this module is to reserve rg-names for the subdetails
  * of geo objects. Not for the racks of path.
  * Possibly redundant module. Using toreg, all this job can go to
  * following value assigners.
@@ -21,7 +21,7 @@
     // rg.pathRacks.pathRacks
     //      'pathSegment-' + pix
     // rg.speeds.vect
-    
+
     //indices late by one unit for
     // rg.impulses.vectors
     //      for rg.impulses.views
@@ -33,7 +33,7 @@
     // rgObj: 'translated-force-' + kix
     // rg.freePathRacks.freePathRacks
     //      and their rgObj: 'freepath-' + pix;
-    //      'freePathSegment-' + pix 
+    //      'freePathSegment-' + pix
     ///at current ver, runs at every model_upcreate
     function path2rgModelPlaceholders__I (){
         var S               = rg.S.pos;

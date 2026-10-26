@@ -269,10 +269,10 @@ function slTime_2_stepIndice8tCaption (){
     //virtual thing, just stretches time to better subdivide stepIx
     var stepIx4 = Math.floor( ctime * 4 / rg.rgslid_dt.val );
     rg.stretchedFourTimes_stIx = stepIx4;
-    
+
     //local index = reached substep
     rg.substepIx  = stepIx4%4;
-    
+
     //cell index = main step of orbit =
     //number of completed orbit steps =
     var stepIx      = ( stepIx4 - rg.substepIx ) / 4;

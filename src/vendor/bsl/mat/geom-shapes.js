@@ -19,7 +19,7 @@
     ){
         ///if par. chord is missed, chord is set by points A, B
         if( !chord ) {
-            chord = [ B[0] - A[0], B[1] - A[1] ]; 
+            chord = [ B[0] - A[0], B[1] - A[1] ];
         }
         //this is a norm to chord:
         var norm2 = [ -chord[1], chord[0] ];

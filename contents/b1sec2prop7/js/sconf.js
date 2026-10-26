@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, fconf, sconf, topicColors_repo, } = 
+    var { ns, fconf, sconf, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -44,7 +44,7 @@
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
         handleRadius            = Math.floor( 3.2 * controlsScale ),
         //overrides "global", lemma.conf.js::sconf
-        sconf.pointDecoration.r = handleRadius; 
+        sconf.pointDecoration.r = handleRadius;
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
         //this makes hanle's border nicely thin
@@ -321,7 +321,7 @@
             { 'Gcol2,S' : { pcolor : proofColor }, },
             { 'Gcol2,P' : { pcolor : proofColor }, },
             { 'S,nonSolvablePoint' : { pcolor : invalidColor }, },
-            
+
             { 'SP' : { pcolor : estimatedForceColor }, },
         ];
 

@@ -16,13 +16,13 @@
     ///                       if falsy, then never wait and never curry.
     ///                       if falsy, never throttles: does executes immediately
     ///                       Ultimately fires if called at elapsed >= wait.
-    ///                       If not called this way, then 
+    ///                       If not called this way, then
     ///                       times out to wait, since last call.
     ///          fun        - throttlee,
     ///Return:  return-function signature:
     ///             doCallNow   has effect of immediate calling plus effect of cleaning up,
     ///             arg_        can be used for ordinary app. paramters
-    ///             
+    ///
     ///
     function throttle( fun, wait )
     {
@@ -50,7 +50,7 @@
                     //timeout = null;
                     //timeStart = null;
                     //before fun( arg ) call
-                   
+
                     fun( arg );
 
                     //this must be above fun( arg )
@@ -72,7 +72,7 @@
             }
 
             //// do bounce or throttle
-            timeout = setTimeout( 
+            timeout = setTimeout(
                 function() {
                     fun( arg );
                     timeout = null;

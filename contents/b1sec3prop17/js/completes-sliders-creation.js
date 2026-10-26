@@ -1,12 +1,12 @@
 ( function() {
-    var { 
+    var {
         sn, mat, nspaste, sData, amode, stdMod, sconf, rg, ssF
     } = window.b$l.apptree({ stdModExportList : { completesSlidersCreation, }});
     var conics = sn( 'conics', mat );
     var sop = sn( 'sampleOrbitParameters', sconf );
     return;
 
-    
+
     function completesSlidersCreation()
     {
         //console.log('completesSlidersCreation'); //called once on page load
@@ -24,9 +24,9 @@
             sData.Lpos1_g = rg.f.pos[1];
             {
                 let dShift = mat.sm( 1, rg.f.pos, -1, rg.p.pos );
-                sData.dShift_g = Math.sqrt( 
-                    dShift[0]*dShift[0] + 
-                    dShift[1]*dShift[1] 
+                sData.dShift_g = Math.sqrt(
+                    dShift[0]*dShift[0] +
+                    dShift[1]*dShift[1]
                 );
                 sData.stashedOmega_g = sop.om;
                 sData.stashedCosOmega_g = sop.cosOmega;
@@ -81,7 +81,7 @@
             let Sp = ssF.line2abs('Sp').abs; // distance from S to p
             let S2mouse = ssF.linePoints2abs(newPos, rg.S.pos).abs; //S to mouse
             if(e >= 0.9 || S2mouse >= Sp) {
-                return; 
+                return;
             }
 
             sop.Kepler_v = sData.stashedKepler_v * Math.sqrt( incr );
@@ -145,9 +145,9 @@
             const pp                    = rg.P.pos;
             sData.Rpos                 = nspaste( [], rg.R.pos );
             var dShift                  = mat.sm( 1, rg.R.pos, -1, pp );
-            sData.dShift                = Math.sqrt( 
-                                            dShift[0]*dShift[0] + 
-                                            dShift[1]*dShift[1] 
+            sData.dShift                = Math.sqrt(
+                                            dShift[0]*dShift[0] +
+                                            dShift[1]*dShift[1]
                                         );
             sData.stashedOmega          = op.om;
             sData.stashedCosOmega       = op.cosOmega;
@@ -167,7 +167,7 @@
             var dShift = mat.sm( 1, np, -1, pp );
             var dS = Math.sqrt( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
             var increase = dS / sData.dShift;
-            op.Kepler_v = sData.Kepler_v_stashed * increase; 
+            op.Kepler_v = sData.Kepler_v_stashed * increase;
 
             if( (subessay == 'corollary1' || subessay == 'corollary2' )) {
                 // can only be dragged vertically
@@ -178,7 +178,7 @@
                 if( sl.abs < 0.2 ) return;
                 let omega = mat.angleBetweenLines([
                     [ [0,0], pp ],
-                    [ [0,0], sl.vector ], 
+                    [ [0,0], sl.vector ],
                 ]).angle;
 
                 //--------------------------------
@@ -196,8 +196,8 @@
                         omega = Math.sign( omega ) > 0 ? 0.000001 : -0.000001;
                     }
                 }
-                var newSinOmega = Math.sin( omega ); 
-                op.om               = newSinOmega;    
+                var newSinOmega = Math.sin( omega );
+                op.om               = newSinOmega;
                 op.cosOmega         = Math.cos( omega );
                 var signCosOmega = Math.sign( op.cosOmega );
                 //--------------------------------
@@ -214,7 +214,7 @@
                 lat : op.latus,
                 signCosOmega,
             });
-            rg.P.q = fi;  
+            rg.P.q = fi;
 
             //rotates main axis in respect to change q,
             //bs op.PparQ_initial === initial axis-fi
@@ -237,9 +237,9 @@
             const pp                    = rg.p.pos;
             sData.pos_r                 = nspaste( [], rg.point_r.pos );
             var dShift                  = mat.sm( 1, rg.point_r.pos, -1, pp );
-            sData.dShift_r              = Math.sqrt( 
-                                            dShift[0]*dShift[0] + 
-                                            dShift[1]*dShift[1] 
+            sData.dShift_r              = Math.sqrt(
+                                            dShift[0]*dShift[0] +
+                                            dShift[1]*dShift[1]
                                         );
             sData.stashedOmega_r        = sop.om;
             sData.Kepler_v_stashed_r    = sop.Kepler_v;
@@ -268,7 +268,7 @@
                 if( sl.abs < 0.2 ) return;
                 var omega = mat.angleBetweenLines([
                     [ [0,0], pp ],
-                    [ [0,0], sl.vector ], 
+                    [ [0,0], sl.vector ],
                 ]).angle;
 
                 //--------------------------------
@@ -305,7 +305,7 @@
             if(e >= 0.9) {
                 sData.pAtLimit = true;
                 return false;
-            } else {                
+            } else {
                 sop.Kepler_v = sData.Kepler_v_stashed_r * increase;
                 sop.om = newSinOmega;
                 sop.cosOmega = cosOmega;

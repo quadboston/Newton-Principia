@@ -1,7 +1,7 @@
 ( function () {
     var { sn, nspaste, fapp, fconf, sconf, ssF, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf, }, });
-    
+
     var stdL2       = sn('stdL2', fapp );
     var study       = sn('study', stdL2 );
     var sdata       = sn('sdata', study );
@@ -15,7 +15,7 @@
     sdata.view = { isInscribed:1, isCircumscribed:1, isFigureChecked:1 };
     //=====================================
     // \\// presets data
-    //=====================================    
+    //=====================================
     return;
 
 
@@ -63,8 +63,8 @@
 
         // radius of points
         // only works on solid green points, not draggers
-        // CTRL_RADIUS, MOVABLE_BASE_RADIUS set in sconf-common.js 
-        sconf.pointDecoration.r = 0.5; 
+        // CTRL_RADIUS, MOVABLE_BASE_RADIUS set in sconf-common.js
+        sconf.pointDecoration.r = 0.5;
 
         //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
         const {
@@ -250,7 +250,7 @@
                    },
             },
             { oE : {
-                        pcolor : [0,0,0,0], 
+                        pcolor : [0,0,0,0],
                    },
             },
 
@@ -299,7 +299,7 @@
                    },
             },
         ];
-        
+
         nspaste( sconf, {
             topicColors_elected : predT,
             originalPoints,

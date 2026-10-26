@@ -1,5 +1,5 @@
 ( function() {
-    var { nspaste, mat, fconf, ssD, stdMod, sconf, rg, 
+    var { nspaste, mat, fconf, ssD, stdMod, sconf, rg,
     } = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
     return;
 

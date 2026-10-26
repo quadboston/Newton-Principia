@@ -21,15 +21,15 @@
         //****************************************************************
         // //\\ MicroAPI
         //      the key role belongs to the unitless inner value
-        //      and parameter "absFraction". It means fraction of the 
-        //      full range which is = 1. 
+        //      and parameter "absFraction". It means fraction of the
+        //      full range which is = 1.
         //      The position of slider is by default is
         //      (absFraction*100)%.
         //****************************************************************
         //Dom element which will be visually dragged.
         var draggee          = thisSlider.draggee = arg.handleDomEl;
 
-        //The "draw-surface", the dom-element to which touchstart, mousedown, mousemove, and similar event 
+        //The "draw-surface", the dom-element to which touchstart, mousedown, mousemove, and similar event
         //will be attached.
         //Optional parameter. Defaults defined from the following line.
         var surface0attachee = thisSlider.surface = arg.drawSurfaceDomEl || draggee.parentNode;
@@ -105,7 +105,7 @@
 
 
 
-        ///Sets absFraction, draggee position, and, optionally, sets accomulated 
+        ///Sets absFraction, draggee position, and, optionally, sets accomulated
         ///position, absFractDone.
         function doSet( absFraction_, doSetDoneValue )
         {
@@ -130,7 +130,7 @@
                 //.this makes program immune to resize
                 var len = surface0attachee.getBoundingClientRect().width;
                 //.calculates absolute move adding initial position + current move
-                absFraction = validateAbsFraction( absFracDone + move[ 0 ]/len ); 
+                absFraction = validateAbsFraction( absFracDone + move[ 0 ]/len );
                 //.supplies absolute move to application
                 var setIsForbidden = dataInMove( absFraction, draggee );
                 if( !setIsForbidden ) { doSet( absFraction ); }
@@ -140,7 +140,7 @@
                 //.accomulates and memorizes accomulated move
                 absFracDone = absFraction;
                 dataInArrival( absFraction, draggee );
-            } 
+            }
         }
 
 
@@ -171,13 +171,13 @@
         {
                 var tag = ev.target.tagName.toLowerCase();
                 ///fails: var cls = ev.target.className;
-                if(     
-                        //protects wbd debugger    
+                if(
+                        //protects wbd debugger
                         tag === 'textarea' ||
-                        //protects forms    
+                        //protects forms
                         tag === 'input' || tag === 'select' || tag === 'button' ||
-                        //protects firmware plugins which use svg  
-                        tag === 'rect' || tag === 'path'                            
+                        //protects firmware plugins which use svg
+                        tag === 'rect' || tag === 'path'
                 ) {
                     //ns.d('touchDown: skips drag on tag=' + tag);
                     return true;

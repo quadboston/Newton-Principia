@@ -12,7 +12,7 @@
     });
     return;
 
-    
+
     ///returns protected time
     function protects_curTime_ranges( ctime ){
         let sl = rg.slider_sltime;
@@ -30,7 +30,7 @@
     function doesPosition_PTandTheirLine (){
         var st      = rg.stepIx.value;
         var path    = rg.path.pos;
-        //Constrain the step value as follows.  Previously 
+        //Constrain the step value as follows.  Previously
         //"if( st >= path.length -1 ) return;" was run however this caused an issue.
         //The positions for the “perpendicular” and “rectilinear tangent” lines
         //in P1 “Corollary 1”, didn't get updated when the time

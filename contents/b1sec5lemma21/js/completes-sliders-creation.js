@@ -9,8 +9,8 @@
         },
     });
     return;
-    
-    
+
+
     function completesSlidersCreation()
     {
         rg.M.acceptPos = function( newPos )
@@ -30,10 +30,10 @@
                 //projects shift to direction of unit vector "gamma":
                 var g = -dd[0]*Math.cos(gamma) - dd[1]*Math.sin(gamma);
                 return g;
-            } 
+            }
         }
-        
-        
+
+
         rg.A.acceptPos = function( newPos )
         {
             var { alpha, beta } = pos2alpha8beta( newPos )
@@ -51,19 +51,19 @@
                 var cosAlpha = A_A.unitVec[0];
                 var alpha = Math.acos( cosAlpha ) * ( A_A.unitVec[1] < 0 ? -1 : 1 );
                 return { alpha, beta };
-            }            
+            }
         }
-        
-        
+
+
         rg.H.acceptPos = function( newPos )
         {
             //var H = rg.H;
             rg.a.value = newPos[0] - rg.C.pos[0];
             return true;
         }
-        
+
     }
-    
-    
+
+
 }) ();
 

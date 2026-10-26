@@ -1,11 +1,11 @@
 /*  ***************************************************************************
- *  Calculates a set number of points along a conic based on the 
+ *  Calculates a set number of points along a conic based on the
  *  given orbit parameters and adds them as svgs paths in the model.
- * 
+ *
  *  NOTE: This module is used for Propositions 12-17. There are others
  *  currently used for P6-11, L20-21, and P41. Though this one can be used
  *  to draw any conic (ellipse, parabola, hyperbola w/out asymptotes) as needed.
- *  
+ *
  * ****************************************************************************/
 
 ( function() {
@@ -24,7 +24,7 @@
     //analogy of pointsArr_2_singleDividedDifferences() (P41)
     function creates_orbitRack( vop )
     {
-        //console.log('creates_orbitRack'); 
+        //console.log('creates_orbitRack');
 
         var op = vop || sconf.orbitParameters;
 
@@ -48,12 +48,12 @@
                 poly2svg,
         };
         Object.assign( rgX, result );
-        //poly2svg({}); //unnecessary, called a million times from media-upcreate 
+        //poly2svg({}); //unnecessary, called a million times from media-upcreate
         return result;
 
 
         // param q (angle) to [x,y] point on conic
-        // todo: rename? what is t? 
+        // todo: rename? what is t?
         // also called from other modules to determine position of specified points
         function t2xy( q ){
 
@@ -78,7 +78,7 @@
             var points = [];
             var qStep = ( end - start ) / stepsCount;
             for( var qix = 0; qix <= stepsCount; qix++ ) {
-                var q = start + qStep * qix;        
+                var q = start + qStep * qix;
                 points.push( t2xy( q ) );
             }
             return points;
@@ -120,34 +120,34 @@
             // then once each from media-upcreate at which point the model becomes visible
             // then 4 more times from media-upcreate for no reason
             // console.log('poly2svg: ' + rgXX.rgId);
-            
+
             // defines conic
-            var curvePoints = ownrange2points({ 
+            var curvePoints = ownrange2points({
                 stepsCount:800,
                 start: op.qStart,
                 end: op.qEnd
-            }); 
+            });
             var medpoints = curvePoints.map( cp => ssF.mod2inn( cp, stdMod ) ); // scales up conic
 
             // defines segment of conic
             if(op.highlightSeg) {
-                var segPoints = ownrange2points({ 
+                var segPoints = ownrange2points({
                     stepsCount:800,
                     start: op.segStart,
                     end: op.segEnd
-                }); 
+                });
                 segPoints = segPoints.map( sp => ssF.mod2inn( sp, stdMod ) );
             }
 
-            if( -1 === op.conicSignum ) {               
+            if( -1 === op.conicSignum ) {
                 // draw hyperbola as two svg curves so asymptotes don't show
-                const [branchA, branchB] = splitAtAsymptotes(medpoints); 
+                const [branchA, branchB] = splitAtAsymptotes(medpoints);
 
                 var polylineSvgA = rgXX.polylineSvgA = nssvg.polyline({
-                    pivots  : branchA, 
+                    pivots  : branchA,
                     svgel   : rgXX.polylineSvgA,
                     parent  : stdMod.svgScene,
-                });                
+                });
                 if( !has( rgXX, 'polylineSvgA$' ) ) {
                     rgXX.polylineSvgA$ = $$.$( polylineSvgA );
                 }
@@ -155,10 +155,10 @@
                 rgXX.polylineSvgA$.addClass( 'tostroke thickable tp-' + lowname );
 
                 var polylineSvg = rgXX.polylineSvg = nssvg.polyline({
-                    pivots  : branchB, 
+                    pivots  : branchB,
                     svgel   : rgXX.polylineSvg,
                     parent  : stdMod.svgScene,
-                });                
+                });
                 if( !has( rgXX, 'polylineSvg$' ) ) {
                     rgXX.polylineSvg$ = $$.$( polylineSvg );
                 }
@@ -166,7 +166,7 @@
             } else {
                 // draw ellipse/parabola in svg
                 var polylineSvg = rgXX.polylineSvg = nssvg.polyline({
-                    pivots  : medpoints, 
+                    pivots  : medpoints,
                     svgel   : rgXX.polylineSvg,
                     parent  : stdMod.svgScene,
                 });
@@ -182,7 +182,7 @@
             // draw highlighted segment of conic and only trace of full conic
             if(op.highlightSeg) {
                 var polylineSvg2 = rgXX.polylineSvg2 = nssvg.polyline({
-                    pivots  : segPoints, 
+                    pivots  : segPoints,
                     svgel   : rgXX.polylineSvg2,
                     parent  : stdMod.svgScene,
                 });
@@ -211,7 +211,7 @@
         //and any time Pv/pv are dragged (only for appropriate conic)
         //and once more per conic when switching tabs
         //console.log('e: ' + eccentricity);
-        
+
         var op = vop || sconf.orbitParameters;
         var rgP = vop ? rg.p : rg.P;
         var SAFE_VALUE = 0.02;
@@ -224,9 +224,9 @@
             eccentricity = 0.9999;
             op.conicSignum = 0; // parabola
         } else {
-            op.conicSignum = -1; // hyperbola  
+            op.conicSignum = -1; // hyperbola
         }
-        
+
         if( doAdjustLatus ) {
             op.latus = Math.abs( rgP.abs *
                 ( 1 - eccentricity * Math.cos( rgP.q ) ) );
@@ -250,7 +250,7 @@
         op.A            = op.B / op.lambda;
         op.C            = op.A * op.eccentricity;
         !vop && eccentricity2sliderPos();
-        
+
         // todo: is there a better place for this?
         // draws value on e slider (for pages that have one)
         function eccentricity2sliderPos()
@@ -268,9 +268,9 @@
             rg.ZetaCaption.caption = op.eccentricity.toFixed(3);
         }
 
-        //this function does not change eccentricity (except SAFE_VALUE case), 
+        //this function does not change eccentricity (except SAFE_VALUE case),
         //mostly just flips model from ellipse to hyperbola based on e
-        //console.log('newEccentricity: ' + eccentricity.toFixed(3)); 
+        //console.log('newEccentricity: ' + eccentricity.toFixed(3));
     }
 
 

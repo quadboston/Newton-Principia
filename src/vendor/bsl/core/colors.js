@@ -51,8 +51,8 @@
             var rgb = 'rgb(' + ww + ')';
             var rgba = 'rgba(' + ww + ',' + opasS + ')';
             var rgbaCSS = rrS + '-' +  ggS + '-' +  bbS + '-' + opasS;
-        
-            return { 
+
+            return {
                 hsl0: hsl0,
                 hsla : hsla,
                 rgb : rgb,
@@ -206,6 +206,6 @@
         let rgba_low    = corRack.rgba;
         var corRack     = ns.pars2colors( hue, sat, light, highOpacity );
         let rgba_high   = corRack.rgba;
-        return { rgb, rgba_low, rgba_high, lowOpacity, highOpacity }; 
+        return { rgb, rgba_low, rgba_high, lowOpacity, highOpacity };
     }
 }) ();

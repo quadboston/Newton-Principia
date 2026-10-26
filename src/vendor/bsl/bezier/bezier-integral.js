@@ -8,9 +8,9 @@
 
     //bezier.zbezier2integralY = zbezier2integralY;
     bezier.zbezier2areas = zbezier2areas;
-    
+
     ///Returns: integral on [0,t] S = I[0,t]y*dx
-    ///Context: P = 2t(1-t)P1 + ttP2 = att + bt; 
+    ///Context: P = 2t(1-t)P1 + ttP2 = att + bt;
     ///         P is zero-based bezier curve;
     ///         S = Iyx'dt
     function zbezier2integralY( pivots, t )
@@ -22,7 +22,7 @@
         var ax = P2[0] - 2*P1[0];
         var bx = 2*P1[0];
         var bxs = 2*ax;
-        var cxs = bx;  
+        var cxs = bx;
 
         var S = integral.polynomial( ay*bxs, ay*cxs + bxs*by, by*cxs, 0, t );
         return S;
@@ -40,7 +40,7 @@
             [
                 [ pivots[0][1],
                   pivots[0][0]
-                ], 
+                ],
                 [ pivots[1][1],
                   pivots[1][0]
                 ]
@@ -49,7 +49,7 @@
         );
     }
     //c cc( zbezier2integralX( [[0.5,1],[1,1]], 1 ) );   //1/3
-    
+
     function zbezier2areas( pivots, t, tanT, tanCross, scale )
     {
         scale = scale || 1;
@@ -78,7 +78,7 @@
 
         // //\\ under tan1
         var total = tanCross[0]*tanCross[1]/2;      //1/9 = 0.1111
-        var delta = tanCross[0]*tanCross[0]/2*tanT; //1/9/2/2 = 1/36 
+        var delta = tanCross[0]*tanCross[0]/2*tanT; //1/9/2/2 = 1/36
         var areaUnderTan1 = total - delta;          //1/12
         // \\// under tan1
 
@@ -93,8 +93,8 @@
     }
 
     //:tests
-    //c cc( zbezier2areas( [[0.5,1],[1,1]], 1, 0.5, [ 1/4 + 1/12, 1/2+2/12 ] ) );   //1/3 - 1/4 = 1/12, 
-    //c cc( zbezier2areas( [[0.5,1],[1,1]], 1, 0.5, [ 1/3, 2/3 ] ) );   //1/3 - 1/4 = 1/12, 
+    //c cc( zbezier2areas( [[0.5,1],[1,1]], 1, 0.5, [ 1/4 + 1/12, 1/2+2/12 ] ) );   //1/3 - 1/4 = 1/12,
+    //c cc( zbezier2areas( [[0.5,1],[1,1]], 1, 0.5, [ 1/3, 2/3 ] ) );   //1/3 - 1/4 = 1/12,
 
 
 }) ();

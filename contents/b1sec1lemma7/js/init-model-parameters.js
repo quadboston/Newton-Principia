@@ -14,7 +14,7 @@
     {
         ssD.curveStartInitialPos = ns.paste( {}, rg.curveStart.pos );
         ssD.curveEndInitialPos = ns.paste( {}, rg.curveEnd.pos );
-        
+
         rg.B.originalPos = [];
         nspaste( rg.B.originalPos, rg.B.pos );
         rg.D.originalPos = [];
@@ -31,22 +31,22 @@
         };
         rg.B.processOwnUpEvent = function() {
             ssD.draggerInUse = '';
-        }; 
+        };
         rg.B.dragPriority = 100;
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
             pname : 'B',
             acceptPos : ( newPos ) =>
             {
-                var newPosX = ssD.getUnrotatedParameterX( 
-                    newPos[0], rg.B.unrotatedParameterX 
+                var newPosX = ssD.getUnrotatedParameterX(
+                    newPos[0], rg.B.unrotatedParameterX
                 );
 
                 //prevents B from getting too close to A to avoid rounding errors
                 if( newPosX < sconf.NON_ZERO_A_PREVENTOR ) {
                     newPosX = sconf.NON_ZERO_A_PREVENTOR;
                 }
-                
+
                 ///prevents user from playing with too big curves
                 if( newPosX > rg.curveEnd.pos[0] ) {
                     newPosX = rg.curveEnd.pos[0]-0.00001;
@@ -68,19 +68,19 @@
         //-------------------------------------------------
         rg.D.processOwnDownEvent = function() {
             ssD.draggerInUse = 'D';
-        }; 
+        };
         rg.D.processOwnUpEvent = function() {
             ssD.draggerInUse = '';
-        }; 
+        };
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
             pname : 'D',
             acceptPos : ( newPos ) => {
                 if(rg.B.pos[0] > 0.2) { // so D can't be grabbed when it is under B
                     let originalDx = rg.D.originalPos[0];
-                    let half_AD = originalDx / 2; // D can move half the width of AD in either dir 
+                    let half_AD = originalDx / 2; // D can move half the width of AD in either dir
                     newPos[1] = 0; // y pos doesn't change
-                    let x = newPos[0]; 
+                    let x = newPos[0];
                     if(x < originalDx - half_AD || x > originalDx + half_AD) {
                         return false;
                     } else {
@@ -118,12 +118,12 @@
         rg.B.pos[1] = newPos[1];
 
         //=================================================
-        // //\\ builds Newton microscope 
+        // //\\ builds Newton microscope
         //    - scales whole model when a dragger is used
         //=================================================
         var Bx = rg.B.pos[0];
         var bpos = mat.lineSegmentsCross( rg.A.pos, rg.B.pos, rg.r.pos, rg.d.pos );
-        var magn = toreg( 'magnitude' )( 'value', bpos[0]/Bx )( 'value' ); // creates rg.magnitude.value  
+        var magn = toreg( 'magnitude' )( 'value', bpos[0]/Bx )( 'value' ); // creates rg.magnitude.value
         //console.log(Bx + ' ' + magn) // todo: sometimes magn is wrong when switching between claim/proof/corol
 
         if(bpos[1] > rg.d.pos[1]) bpos[1] = rg.d.pos[1]; // b can't go above AD
@@ -139,7 +139,7 @@
             rg.R.pos = posR;
         } else {
             rg.D.pos[0] = posD[0];
-        }  
+        }
         rg.r.pos[0] = rg.R.pos[0] * magn;
         rg.r.pos[1] = rg.R.pos[1] * magn;
         rg.d.pos[0] = rg.D.pos[0] * magn;
@@ -155,12 +155,12 @@
         // \\// builds Newton microscope
         //=================================================
 
-        //: adds length of line seg as rg["xx"].abs    
+        //: adds length of line seg as rg["xx"].abs
         ssF.line2abs( 'AB' );
         ssF.line2abs( 'BG' );
         ssF.line2abs( 'AD' );
         ssF.line2abs( 'AE' );
-        ssF.line2abs( 'BF' );        
+        ssF.line2abs( 'BF' );
         ssF.line2abs( 'Ab' );
         ssF.line2abs( 'Ad' );
 

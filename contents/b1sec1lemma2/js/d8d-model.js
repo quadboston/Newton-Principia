@@ -267,7 +267,7 @@
 
                 stdMod.recalculateAndStoreTransforms(dr);
 
-                                
+
             } else if(index > 0 && index < sconf.basesN) {
                 //Base points
                 // //\\ limitifies newX by dom-neighbors

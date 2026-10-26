@@ -1,12 +1,12 @@
 ( function() {
-    var { $$, sconf, fconf, sDomF, ssD, stdMod, rg, toreg, } 
+    var { $$, sconf, fconf, sDomF, ssD, stdMod, rg, toreg, }
         = window.b$l.apptree({ ssFExportList : { upcreate_mainLegend, create_digital_legend, }, });
     var clustersToUpdate = [];
     var clustersToUpdate_claim = [];
     var AbdAce_row$;
     return;
 
-    
+
     function create_digital_legend()
     {
         var mlegend = toreg( 'main-legend' )();
@@ -42,7 +42,7 @@
 
         ww.ABDPerACE.innerHTML  = (calcA[ 'AFD' ].total/calcA[ 'AGE' ].total).toFixed(3);
         ww.AD2PerAE2.innerHTML  = (claimR*claimR).toFixed(3);
-        
+
         var ww = clustersToUpdate_claim;
         //: vanishing areas
         ww.ABDPerACE.innerHTML  = (calcA[ 'AFD' ].total/calcA[ 'AGE' ].total).toFixed(3);
@@ -83,7 +83,7 @@
         //===================
         var row = $$.c('tr')
                     .addClass('tostroke')
-                    .to(tb)();                    
+                    .to(tb)();
         makeCl( row, 'ACE');
         makeCl( row, 'AD2PerAE2', 'AD² : AE²');
         //===================
@@ -148,7 +148,7 @@
     //
     //=========================================
     ///Makes:  magnitude's cluster in table,
-    ///Effect: represents magnitude in html-table-row in 
+    ///Effect: represents magnitude in html-table-row in
     ///        form "mname = mvalue",
     ///Input:  mname = magnitude name
     function makeClBoth( row, mname, mcaption, spanIx, spanVal, claim0proof )

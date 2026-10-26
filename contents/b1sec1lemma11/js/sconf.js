@@ -30,7 +30,7 @@
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
-        
+
         fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
 
         //--------------------------------------
@@ -48,7 +48,7 @@
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
 
-  
+
         //this makes hanle's border nicely thin
         sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
         //sconf.text_nonhover_width = 1;
@@ -109,7 +109,7 @@
 
         var originalPoints =
         {
-            A : { 
+            A : {
                 pos: A,
                 pcolor : given,
                 letterAngle : 90,
@@ -161,7 +161,7 @@
                 pos: [A[0], 584],
                 pcolor : given,
                 letterAngle : 180,
-                letterRotRadius : 20, 
+                letterRotRadius : 20,
                 cssClass: 'logic_phase--claim logic_phase--proof',
             },
             g :
@@ -195,7 +195,7 @@
                 cssClass: 'logic_phase--corollary'}, },
             { 'AD' : { pcolor : given }, },
             { 'BD' : { pcolor : given,
-                //cssClass: 'subessay--cor-1 subessay--cor-2', 
+                //cssClass: 'subessay--cor-1 subessay--cor-2',
                 }, },
             { 'BC' : { pcolor : given,
                 cssClass: 'logic_phase--corollary', }, },

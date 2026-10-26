@@ -126,8 +126,8 @@
             top,
         };
     }
-    
-    
+
+
     function calculates_inscr8circums(dr)
     {
         var insYar = sn( 'inscribedY', dr.basePts, [] );
@@ -150,7 +150,7 @@
             bbl += pwidths[ib];
             baseBarsRights[ib] = bbl;
         }
-        
+
         // //\\ calculates min and max on separate bases
         {
             let ff = numModel.curveFun;
@@ -176,7 +176,7 @@
         }
         // \\// calculates min and max on separate bases
 
-        
+
         // //\\ calculates min and max areas
         var pwidths = dr.partitionWidths;
         var areaCir = 0;
@@ -300,7 +300,7 @@
         const dv = dr.yVariations;
         if (!dv)
             return null;
-        
+
 
         const {x_start, x_end, chosenWidth} = dv;
         const ff = numModel.curveFun;
@@ -403,7 +403,7 @@
                 const height = dv.yRef - y;
                 if (height === 0)
                     return null;
-                
+
                 //                  A1 / A    * B
                 const areaDesired = ratios[i] * sumAreaChosen;
                 const width = areaDesired / height;
@@ -432,7 +432,7 @@
             //method.  Note that converging quickly is very important when the
             //number of bases is large to prevent performance issues.
 
-            
+
             const offset = 0.001;//Offset to approximate derivative
             const slopeTolerance = 1e-9;//Tolerance for a flat slope
 
@@ -442,7 +442,7 @@
             //large, since the sum of inscribed rectangle area approaches the
             //exact figure area.
             let scale = 1;
-            
+
             let widthData = null;
 
             //Constrain max iteration to prevent eg. infinite loop
@@ -507,7 +507,7 @@
                     scaleL = scale;
                 else
                     scaleU = scale;
-                    
+
                 //Check if converged.
                 const errorRelative = widthData.sumWidth / chosenWidth - 1;
                 if (Math.abs(errorRelative) < errorTolerance)
@@ -521,5 +521,5 @@
     //***********************************************
     // \\// auxiliary postprocessing functions
     //***********************************************
-    
+
 }) ();

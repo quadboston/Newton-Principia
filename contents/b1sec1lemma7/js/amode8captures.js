@@ -134,7 +134,7 @@
                 rg[ 'arc-Ab' ].undisplay = false;
             }
         }
-        
+
         nspaste( rg.B.pos, rg.B.originalPos );
         nspaste(rg.R.pos, rg.R.originalPos);
         nspaste(rg.D.pos, rg.D.originalPos);

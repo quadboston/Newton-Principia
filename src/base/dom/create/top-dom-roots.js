@@ -64,7 +64,7 @@
             );
         }
     }
-    function doesShowDiagram( doShowDiagram ) { 
+    function doesShowDiagram( doShowDiagram ) {
         rg.detected_user_interaction_effect_DONE = !doShowDiagram;
         // with the study lab enabled, the book's diagram stays visible
         // for comparing the model with it

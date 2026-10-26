@@ -57,7 +57,7 @@
         var endX = baseArray[1];
 
         var rangeX  = endX - startX;
-        var stepX   = rangeX / INTEGRATION_POINTS_LIM; 
+        var stepX   = rangeX / INTEGRATION_POINTS_LIM;
         var fun1    = fun( startX );
         var x1      = startX;
         var sum     = 0;
@@ -104,7 +104,7 @@
         }
     }
 
-    ///note, this function is based on integer arithmetics, so 
+    ///note, this function is based on integer arithmetics, so
     ///this function can be done in integer arithmetics, so
     ///"drastically" speed up performance,
     function equalizeAreas({
@@ -187,7 +187,7 @@
             var integG = rgX.integ.g;
 
             var searchAreaG = rgX.integ.f.area * ratioGF;
-            integG.area = searchAreaG; 
+            integG.area = searchAreaG;
             for( var gix=gStartIx; gix<=INTEGRATION_POINTS_LIM; gix++ ) {
                 var currentArea = integralsG[ gix ];
                 var formerArea = integralsG[ gix-1 ];

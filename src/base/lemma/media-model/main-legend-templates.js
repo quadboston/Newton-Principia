@@ -37,7 +37,7 @@
         var tpCssName       = ds[0];
         tpCssName           = tpCssName && tpCssName.replace( /<>/g, ',' );
         let clusterCaption  = (ds[1].replace( /_/g, ' ' ) || ' ').replace( /<>/g, ',' );
-        
+
         return {
             tpCssName,
             clusterKey          : id,

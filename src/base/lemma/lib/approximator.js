@@ -14,12 +14,12 @@
     //test
     /*
         var { q2xy, trange2points } =
-            stdMod.pointsArr_2_doubledDividedDifferences();        
+            stdMod.pointsArr_2_doubledDividedDifferences();
 
         var curvePoints = trange2points({ tStart:0, tEnd:9, stepsCount:180 });
         var medpoints = curvePoints.map( cp => ssF.mod2inn( cp, ) );
         var psvg = nssvg.polyline({
-            pivots  : medpoints, 
+            pivots  : medpoints,
             svgel   : psvg,
             parent  : stdMod.svgScene,
         });
@@ -172,7 +172,7 @@
                 return ssF.mod2inn( cp, );
             });
             var polylineSvg = rgX.polylineSvg = nssvg.polyline({
-                pivots  : medpoints, 
+                pivots  : medpoints,
                 svgel   : rgX.polylineSvg,
                 parent  : stdMod.svgScene,
 

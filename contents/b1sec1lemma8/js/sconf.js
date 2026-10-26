@@ -24,10 +24,10 @@
         //====================================================
         // \\// subapp regim switches
         //====================================================
-        
+
         //making size to better fit lemma's diagram
-        fconf.LETTER_FONT_SIZE_PER_1000 = 20; //font size of labels        
-        
+        fconf.LETTER_FONT_SIZE_PER_1000 = 20; //font size of labels
+
         fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
 
         sconf.TP_OPACITY_LOW_POINT = sconf.TP_OPACITY_LOW = 0.85;
@@ -42,10 +42,10 @@
         var pictureHeight = 566;
         var modorInPicX = 166; // affect the shape of ACB
         var modorInPicY = 63;
-        
+
         var A = [modorInPicX, modorInPicY];
         var B = [358, 165];
-        var D = [496, modorInPicY];        
+        var D = [496, modorInPicY];
         var DLeft = [100, modorInPicY];
 
         //: svg model colors
@@ -56,7 +56,7 @@
             proofArea
         } = topicColors_repo;
 
-        var topicColors_elected = { 
+        var topicColors_elected = {
             //given (claim)
             "curve-AB"      : givenColor, // ACB and curve segment after B
             "left-curve-AB" : givenColor, // curve segment before A
@@ -64,32 +64,32 @@
 
             //proof
             "arc-Ab"        : proofColor, // Acb
-            
+
             // triangles
-            'RAB' : givenColor, 
-            'RACB' : givenColor, 
-            'RAD' : givenColor, 
-            'RACB-RAB' : givenColor, 
-            'RAD-RAB' : givenColor, 
-            
-            'rAb' : proofColor, 
-            'rAcb' : proofColor, 
-            'rAd' : proofColor, 
-            'rAcb-rAb' : proofColor, 
-            'rAd-rAb' : proofColor, 
+            'RAB' : givenColor,
+            'RACB' : givenColor,
+            'RAD' : givenColor,
+            'RACB-RAB' : givenColor,
+            'RAD-RAB' : givenColor,
+
+            'rAb' : proofColor,
+            'rAcb' : proofColor,
+            'rAd' : proofColor,
+            'rAcb-rAb' : proofColor,
+            'rAd-rAb' : proofColor,
 
             // areas
             'area-RAB' : givenArea,
             'area-RAD' : givenArea,
             'area-RACB' : givenArea,
 
-            
+
             'area-rAb' : proofArea,
             'area-rAd' : proofArea,
             'area-rAcb' : proofArea
         };
 
-        var originalPoints = { 
+        var originalPoints = {
 
             // styles, positions, and animations of points and their labels
             //:originals from Book
@@ -113,7 +113,7 @@
             D : {
                 pos: D,
                 letterAngle : 90,
-                pcolor      : givenColor,                
+                pcolor      : givenColor,
                 draggableX  : true, // this adds animation and allows dragging along x
                 draggableY  : false, // but not y
             },
@@ -122,7 +122,7 @@
                 pcolor      : givenColor,
                 draggableX  : true, // this adds mouseover animation, but does not affect behaviour...?
                 draggableY  : true,
-            },            
+            },
             c : {
                 caption: "𝑐",
                 letterAngle : 45,
@@ -155,7 +155,7 @@
                 letterRotRadius : 30,
                 cssClass: 'logic_phase--proof',
             },
-            
+
             curveStart  : {
                 pos : [ A[0]-80, 0 ],
                 undisplayAlways : true,
@@ -185,24 +185,24 @@
         [
             //** this defines render order */
 
-            // proof (shown in blue) 
+            // proof (shown in blue)
             { 'Ab' : { pcolor : proofColor,
-                cssClass: 'logic_phase--proof', } },  
+                cssClass: 'logic_phase--proof', } },
 
             { 'A,d' : { pcolor : proofColor,
-                cssClass: 'logic_phase--proof', } }, // Ad  
+                cssClass: 'logic_phase--proof', } }, // Ad
             { 'A,r' : { pcolor : proofColor,
-                        cssClass: 'logic_phase--proof', } }, // Ar   
+                        cssClass: 'logic_phase--proof', } }, // Ar
             { 'r,d' : { pcolor : proofColor,
                 cssClass: 'logic_phase--proof', } }, // rd
             { 'r,b' : { pcolor : proofColor,
                 cssClass: 'logic_phase--proof', } }, //rb
 
-            // claim (shown in green)            
+            // claim (shown in green)
             { 'AB' : { pcolor : givenColor } },
-            { 'AR' : { pcolor : givenColor } }, 
-            { 'AD' : { pcolor : givenColor } }, 
-            { 'A,DLeft'  : { pcolor : givenColor, 'stroke-width' : 2, } }, // to left of A            
+            { 'AR' : { pcolor : givenColor } },
+            { 'AD' : { pcolor : givenColor } },
+            { 'A,DLeft'  : { pcolor : givenColor, 'stroke-width' : 2, } }, // to left of A
             { 'RD' : { pcolor : givenColor } },
             { 'BR' : { pcolor : givenColor } },
         ];
@@ -216,7 +216,7 @@
         var ww2 = [272,94];
         var ww2 = [300,110];
         var ww3 = B;
-        
+
         //model's spacial unit in pixels of the picture:
         var mod2inn_scale = 239; // conversion factor to calc values displayed in data table
 

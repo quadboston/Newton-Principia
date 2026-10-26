@@ -8,7 +8,7 @@
     });
     return;
 
-    
+
     ///analogy of function
     ///pointsArr_2_singleDividedDifferences()
     function creates_createOrUpdateOrbit()
@@ -36,7 +36,7 @@
 
         function createOrUpdateOrbitPolyline(svgel, curve_points) {
             const output = nssvg.polyline({
-                pivots  : curve_points.map( cp => ssF.mod2inn( cp, stdMod ) ), 
+                pivots  : curve_points.map( cp => ssF.mod2inn( cp, stdMod ) ),
                 svgel   : svgel,
                 parent  : stdMod.svgScene,
 
@@ -56,7 +56,7 @@
             return curve_points.map(cp => [x - (cp[0] - x), cp[1]]);
         }
     }
-    
+
     ///INPUT    input parameters are in model namespace,
     ///         curve formula to branches of a curve,
     ///OUTPUT   result attaches to brsObj
@@ -84,7 +84,7 @@
                 brs[ branchesLen ].points = bpoints;
                 branchesLen++;
             }
-            pointPar = orb.pointPar;            
+            pointPar = orb.pointPar;
             bpoints.push( point );
             totalPoints.push( point );
         }

@@ -1,5 +1,5 @@
 ( function() {
-    const { ns, fconf, sconf, topicColors_repo, amode} = 
+    const { ns, fconf, sconf, topicColors_repo, amode} =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -32,7 +32,7 @@
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
-        
+
         fconf.DRAGGER_TOLERANCE = 15; // distance where crosshair appears
 
         //--------------------------------------
@@ -272,7 +272,7 @@
                 caption : '',
                 pcolor : proofColor,
                 cssClass: 'subessay--latus-rectum',
-            },            
+            },
 
             P : {
                 //pos: set by sconf.parQ
@@ -291,7 +291,7 @@
                 draggableY  : true,
                 cssClass: 'subessay--i21-ellipse',
                 conditionalDrag : 'subessay--i21-ellipse',
-            }, 
+            },
 
             Qemphasis : {
                  pcolor : estimatedForceColor,
@@ -302,14 +302,14 @@
                  draggableY  : true,
                 cssClass: 'subessay--ordinate',
                 conditionalDrag : 'subessay--ordinate',
-            }, 
+            },
 
             q : { // will be put across from Q
                 pcolor : proofColor,
                 caption: '',
                 undisplayAlways : true,
                 cssClass: 'subessay--ordinate',
-            },         
+            },
 
             A : {
                 pcolor : proofColor,
@@ -333,16 +333,16 @@
             { xP : { pcolor : proofHover,
                 cssClass: 'subessay--solution',
              },},
-            { EP : { pcolor : proofHover, 
+            { EP : { pcolor : proofHover,
                 cssClass: 'logic_phase--proof',
             },},
-            { ES : { pcolor : proofHover, 
+            { ES : { pcolor : proofHover,
                 cssClass: 'logic_phase--proof',
             },},
             { EI : { pcolor : proofHover,
                 cssClass: 'subessay--solution',
              },},
-            { CE : { pcolor : proofColor, 
+            { CE : { pcolor : proofColor,
                 cssClass: 'logic_phase--proof',
             },},
             { PH : { pcolor : proofColor,
@@ -364,14 +364,14 @@
                 cssClass: 'subessay--solution',
              },},
 
-            { 'SP' : { pcolor : estimatedForceColor, 
+            { 'SP' : { pcolor : estimatedForceColor,
                 cssClass: 'subessay--goal logic_phase--proof',
             },},
-            { 'SQ' : { pcolor : proofColor, 
+            { 'SQ' : { pcolor : proofColor,
                 cssClass: 'subessay--goal',
             },},
 
-            { 'L,LL' : { 
+            { 'L,LL' : {
                 pcolor : proofHover,
                 captionShiftNorm : 22, lposYSugar : 3
             }, },
@@ -395,7 +395,7 @@
             { CK : { pcolor : proofColor,
                 cssClass: 'subessay--solution',
              },},
-            { vC : { pcolor : proofHover,                 
+            { vC : { pcolor : proofHover,
                      cssClass: 'subessay--i21-ellipse',
             }, },
             { CG : { pcolor : proofColor,

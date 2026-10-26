@@ -51,7 +51,7 @@
             garbage.forEach( leg => {
                 leg.remove();
             });
-            
+
             legend.forEach( subLeg => {
                 //style is optional in legend
                 var sstyle = haz( subLeg, 'style' ) || {};
@@ -63,7 +63,7 @@
                             .aNS( 'y', offset.y + subLeg.y )
                             ();
                         t.innerHTML = html;
-                        eachprop( sstyle, (prop, pname) => { 
+                        eachprop( sstyle, (prop, pname) => {
                            t.style[ pname ] = prop;
                         });
                         //nice to know: Array.from(g.children).forEach( ch => {

@@ -22,7 +22,7 @@
         //===================================
         // \\// creates application root
         //===================================
-        
+
 
         //===================================
         // //\\ makes CSS testers
@@ -105,7 +105,7 @@
                 //==================================================
                 // //\\ site menu: builds lemmas' navigator
                 //==================================================
-                .ch(    
+                .ch(
                     sDomN.leftButton$ = $$
                     .dc( "master-pagination-btn left" )
                     .a( 'title', 'Previous item of site content.' )
@@ -118,7 +118,7 @@
                     .css( 'border', '3px solid rgba(150, 175, 200, 1)' )
                     .html( caption )
                 )
-                .ch(    
+                .ch(
                     sDomN.rightButton$ = $$
                     .dc( "master-pagination-btn right" )
                     .a( 'title', 'Next item of site content.' )
@@ -198,11 +198,11 @@
             stepUp( el.parentNode );
         }
     }
-    
+
     function landingPage8Options_click( goToFrontPage )
     {
         userOptions.userOptions_2_updatedGUI();
-        
+
         if( typeof goToFrontPage === 'undefined' ) {
             goToFrontPage = fapp.homePage$().className.indexOf( 'is-hidden' ) > -1;
         }
@@ -216,7 +216,7 @@
 
             fapp.homePage$.removeClass( 'is-hidden' );
             sDomN.returnToLemmaButton$.removeClass( 'non-displayed' );
-            
+
             fapp.fappRoot$.css( 'overflow', 'visible' );
             document.body.style.overflow = 'visible';
             $$.$( document.body ).addClass( 'contents' );
@@ -224,11 +224,11 @@
         } else {
             //(I) this erases css of front-page-pane
             ns.globalCss.clearStyleTag('home');
-            
+
             fapp.homePage$.addClass( 'is-hidden' );
             sDomN.returnToLemmaButton$.addClass( 'non-displayed' );
             sDomN.homeButton$.removeClass('non-visible');
-            
+
             document.body.style.overflow = 'hidden';
             $$.$(document.body).removeClass('contents');
             //todm patch

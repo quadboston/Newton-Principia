@@ -22,7 +22,7 @@
     function captureAState( ast )
     {
         fapp.captureState(
-            ns.paste( 
+            ns.paste(
                 {
                     B: { pos : rg.B.pos },
                 },

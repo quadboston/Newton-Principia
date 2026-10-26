@@ -1,5 +1,5 @@
 ( function() {
-    const { nspaste, fconf, sconf, topicColors_repo, } = 
+    const { nspaste, fconf, sconf, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -27,10 +27,10 @@
         //***************************************************************
         // //\\ decorational parameters
         //***************************************************************
-        
+
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
-        
+
         fconf.DRAGGER_TOLERANCE = 17; // distance where crosshair appears
         sconf.enableStudylab = false;
 
@@ -40,7 +40,7 @@
         //--------------------------------------
         default_tp_stroke_width = Math.floor( 6 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 3.2 * controlsScale ),        
+        handleRadius            = Math.floor( 3.2 * controlsScale ),
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius;
         // //\\ principal tp-css pars
@@ -145,8 +145,8 @@
         // //\\ points to approximate and draw original curve
         //---------------------------------------------------
         var originalPoints = {
-            
-            // //\\ no visibility cssClass            
+
+            // //\\ no visibility cssClass
             AA : {
                 undisplayAlways : true,
                 doPaintPname : false,
@@ -170,7 +170,7 @@
                 letterAngle : 120,
                 letterRotRadius : 35,
             },
-            
+
             B : {
                 pcolor : proofColor,
                 letterAngle : 90,
@@ -230,7 +230,7 @@
                 cssClass: 'subessay--another-solution',
             },
             // \\// proof
-  
+
 
             //Book's "another solution"
             u : {
@@ -262,7 +262,7 @@
                 letterAngle : 70,
                 draggableX  : true,
                 draggableY  : true,
-            },   
+            },
 
             Q : {
                 pcolor : estimatedForceColor,
@@ -272,7 +272,7 @@
                 draggableY  : true,
                 cssClass: 'subessay--goal logic_phase--proof',
                 conditionalDrag : 'subessay--goal logic_phase--proof',
-            },         
+            },
 
             A : {
                 pcolor : proofColor,
@@ -342,10 +342,10 @@
             { Tv : { pcolor : proofHover,
                      cssClass: 'logic_phase--proof',
             }, },
-            { vC : { pcolor : proofHover,                 
+            { vC : { pcolor : proofHover,
                      cssClass: 'logic_phase--proof',
             }, },
-            { CG : { pcolor : proofColor,                 
+            { CG : { pcolor : proofColor,
                      cssClass: 'logic_phase--proof',
             }, },
             { DC : { pcolor : proofHover,
@@ -377,10 +377,10 @@
                      cssClass: 'subessay--another-solution',
             }, },
             { PC : { pcolor : estimatedForceColor,
-                cssClass: 
+                cssClass:
                 'subessay--goal logic_phase--proof subessay--corollary1 logic_phase--scholium',
             }, },
-            { 'QC' : { pcolor : proofColor, 
+            { 'QC' : { pcolor : proofColor,
                 cssClass: 'subessay--goal',
             },},
 

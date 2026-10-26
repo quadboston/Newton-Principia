@@ -18,7 +18,7 @@
             var len		= tokens.length;
             var done;
 
-            //:till the next "//:", so comments next two lines ( 
+            //:till the next "//:", so comments next two lines (
             obj[ prop ] = value;
             obj[ prop2 ] = value;
             //:comments next line

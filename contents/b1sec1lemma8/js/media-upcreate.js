@@ -8,7 +8,7 @@
     });
     return;
 
-    
+
     //=========================================================
     // //\\ lemma custom addons
     //      - called every time model changes
@@ -37,7 +37,7 @@
 
         //: analytical derivative dy/dx
         var cfun = ssD.repoConf[ssD.repoConf.customFunction];
-        
+
         //-------------------------------------------------
         // //\\ original arc and curve
         //-------------------------------------------------
@@ -107,8 +107,8 @@
                 pointB      : rg.derotated_b,
                 mmedia      : stdMod.mmedia,
                 magnitude,
-                //addedCssClass: 'tp-arc-Ab tp-both-curves', 
-                addedCssClass: 'tp-arc-Ab', 
+                //addedCssClass: 'tp-arc-Ab tp-both-curves',
+                addedCssClass: 'tp-arc-Ab',
                 addToStepCount : 1,
                 stepsCount : fconf.sappId === "b1sec1lemma8" ? 200 : null,
         });
@@ -160,11 +160,11 @@
             const pointsArray = originalPolyline.getAttribute("points").split(" ").map(point => point.split(","));
 
             // Construct the `d` value for the path
-            let dValue = `M${pointsArray[0][0]} ${pointsArray[0][1]}`;            
+            let dValue = `M${pointsArray[0][0]} ${pointsArray[0][1]}`;
             for (let i = 1; i < pointsArray.length; i++) {
                 dValue += ` L${pointsArray[i][0]} ${pointsArray[i][1]}`;
-            }            
-            dValue += ` L${Rpos[0]} ${Rpos[1]}`;            
+            }
+            dValue += ` L${Rpos[0]} ${Rpos[1]}`;
             dValue += " Z"; // Close the path
 
             area.dd = dValue;

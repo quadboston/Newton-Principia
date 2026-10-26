@@ -66,7 +66,7 @@
             d8dp        : sn( 'd8dp' ),
             plugins     : sn('plugins'),
             tframes     : sn('tframes'),
- 
+
             fapp,
             fconf,
             sconf,

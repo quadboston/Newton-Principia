@@ -50,7 +50,7 @@
         var A;
         var ar = arguments;
 
-        if( typeof ar[0] === 'number' ) { 
+        if( typeof ar[0] === 'number' ) {
             a = ar[0]; A = ar[1];
             if( ar.length === 4 ) { b = ar[2]; B = ar[3]; }
         } else {
@@ -236,7 +236,7 @@
         var A = inverse[0][0];
         var B = inverse[0][1];
 
-        //var free members    
+        //var free members
         var z0 = vs[0] - v[0];
         var z1 = vs[1] - v[1];
         //finds parameters x,y
@@ -273,7 +273,7 @@
         var v = [        A[0],        A[1] ];
 
         //direction of the perpendicular to line AB
-        var us = [ u[1], -u[0] ];             
+        var us = [ u[1], -u[0] ];
         //start point of the perpendicular
         var vs = S;
 
@@ -294,7 +294,7 @@
         var v = [        A[0],        A[1] ];
 
         //direction of the perpendicular to line AB
-        var us = [ lineForPerp[1], -lineForPerp[0] ];             
+        var us = [ lineForPerp[1], -lineForPerp[0] ];
         //start point of the perpendicular
         var vs = S;
         var crossPoint = linesCross( lineForPerp,v,us,vs );

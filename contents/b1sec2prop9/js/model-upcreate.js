@@ -100,7 +100,7 @@
         //================================================
         var cfun = stdMod.q2xy;
         let Qrev = JSON.parse(JSON.stringify(rg.Q)); // deep copies
-        let Prev = JSON.parse(JSON.stringify(rg.P));   
+        let Prev = JSON.parse(JSON.stringify(rg.P));
         let qQ = stdMod.xyToQ(rg.Q.pos[0], rg.Q.pos[1]);
         let qP = stdMod.xyToQ(rg.P.pos[0], rg.P.pos[1]);
         Qrev.pos[0] = qQ; //adjusted values to ensure arc lines up with points

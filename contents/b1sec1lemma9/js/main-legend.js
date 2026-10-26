@@ -1,12 +1,12 @@
 ( function() {
-    var { $$, sDomF, ssD, stdMod, rg, toreg, } 
+    var { $$, sDomF, ssD, stdMod, rg, toreg, }
         = window.b$l.apptree({ ssFExportList : { upcreate_mainLegend, create_digital_legend, }, });
     var clustersToUpdate = [];
     var clustersToUpdate_claim = [];
     var AbdAce_row$;
     return;
 
-    
+
     function create_digital_legend()
     {
         var mlegend = toreg( 'main-legend' )();
@@ -34,7 +34,7 @@
         ww.ABDPerACE.innerHTML  = (calcA[ 'AFD' ].total/calcA[ 'AGE' ].total).toFixed(3);
         ww.AD2PerAE2.innerHTML  = (claimR*claimR).toFixed(3);
         ww.Ad2PerAe2.innerHTML  = (claimR*claimR).toFixed(3);
-        
+
         //: claim
         var ww = clustersToUpdate_claim;
         ww.ABDPerACE.innerHTML  = (calcA[ 'AFD' ].total/calcA[ 'AGE' ].total).toFixed(3);
@@ -65,8 +65,8 @@
         AbdAce_row$ = $$.c('tr')
             .addClass('tostroke')
             .to(tb);
-        var row = AbdAce_row$();        
-        makeCl( row, 'ABDPerACE', '△ABD : △ACE' );  
+        var row = AbdAce_row$();
+        makeCl( row, 'ABDPerACE', '△ABD : △ACE' );
         makeCl( row, 'AbdPerAce', '△Abd : △Ace' );
         //===================
         // \\// first row
@@ -77,8 +77,8 @@
         //===================
         var row = $$.c('tr')
                     .addClass('tostroke')
-                    .to(tb)();              
-        makeCl( row, 'AD2PerAE2', 'AD² : AE²');    
+                    .to(tb)();
+        makeCl( row, 'AD2PerAE2', 'AD² : AE²');
         makeCl( row, 'Ad2PerAe2', 'Ad² : Ae²');
         //===================
         // \\// second row
@@ -142,7 +142,7 @@
     //
     //=========================================
     ///Makes:  magnitude's cluster in table,
-    ///Effect: represents magnitude in html-table-row in 
+    ///Effect: represents magnitude in html-table-row in
     ///        form "mname = mvalue",
     ///Input:  mname = magnitude name
     function makeClBoth( row, mname, mcaption, spanIx, spanVal, claim0proof )

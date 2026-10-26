@@ -73,7 +73,7 @@
                         eventScripts.splice( 0, 1 );
 
                         if( !eventScripts.length ) {
-                            alert( 
+                            alert(
                                 'State "' + stateId +
                                 '" has no events declared and ' +
                                 'removed from scenario.'
@@ -99,7 +99,7 @@
                                         eline = eline.replace( PURGE_EVENT, '' );
                                     }
                                     ////first line makes eventId
-                                    eventId = eline; 
+                                    eventId = eline;
                                 } else {
                                     if( !eline ) return;
                                     var wwmach = eline.match( EVENT_STATEMENT );

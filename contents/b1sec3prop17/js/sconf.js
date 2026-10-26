@@ -1,8 +1,8 @@
 
 ( function() {
-    var { ns, sn, mat, fconf, sconf, stdMod, topicColors_repo, } = 
+    var { ns, sn, mat, fconf, sconf, stdMod, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
-    // sn points to sconf.orbitParameters if param exisits, 
+    // sn points to sconf.orbitParameters if param exisits,
     // these are initialized here as empty objs
     var op = sn( 'orbitParameters', sconf ); //conic ABD (brown)
     var sop = sn( 'sampleOrbitParameters', sconf ); //conic pq (green)
@@ -15,10 +15,10 @@
     function init_conf()
     {
         //console.log('sconf.js init_conf'); //called once on page load
-        
+
         //***************************************************************
         // //\\ decorational parameters
-        //***************************************************************        
+        //***************************************************************
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
         var pictureWidth = 1037;
@@ -29,15 +29,15 @@
         var controlsScale = realSvgSize / sconf.standardSvgSize;
 
         //making size to better fit lemma's diagram
-        fconf.LETTER_FONT_SIZE_PER_1000 = 20;  
-        
+        fconf.LETTER_FONT_SIZE_PER_1000 = 20;
+
         fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
 
         // override engine defaults, in expands-conf.js,
         default_tp_stroke_width = Math.floor( 6 * controlsScale ),
         defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 2.8 * controlsScale ),        
-        sconf.pointDecoration.r = handleRadius;        
+        handleRadius            = Math.floor( 2.8 * controlsScale ),
+        sconf.pointDecoration.r = handleRadius;
         sconf.default_tp_lightness = 30;
 
         // principal tp-css pars; see: topics-media-glocss.js
@@ -50,8 +50,8 @@
         //misses: pnameLabelsvg).addClass( 'tp-_s tostroke' );
         sconf.text_nonhover_width   = 0.2; //vital to fix too thick font
         sconf.text_hover_width      = 1.5;
-        
-        // points reused in config      
+
+        // points reused in config
         var F = [ 350, 410 ]; //x,y of whole svg model (S's starting pos)
         sconf.diagramOrigin = [ 0, 0 ];
         var originX_onPicture = F[0]; //for model's axis x
@@ -59,23 +59,23 @@
         //***************************************************************
         // \\// decorational parameters
         //***************************************************************
-        
+
 
         //gravitational constant
         var Kepler_g = 0.64478; //3.5105 * (0.6/1.4)*(0.6/1.4);
         op.Kepler_g = op.Kepler_gInitial = Kepler_g;
         sop.Kepler_g = sop.Kepler_gInitial = Kepler_g;
 
-        //model's spacial unit expressed in pixels of the picture, 
+        //model's spacial unit expressed in pixels of the picture,
         //vital to set to non-0 value
-        var mod2inn_scale = 260; 
+        var mod2inn_scale = 260;
 
 
         //-------------------------------------------
         // //\\ sop (green conic)
         //-------------------------------------------
         sop.latus = sop.latusInitial = 1; //length
-        sop.forceHandle = sop.forceHandleInitial = 0.8; //pos of dragger f        
+        sop.forceHandle = sop.forceHandleInitial = 0.8; //pos of dragger f
         {
             //Book's diagram values
             sop.r = 1.30307;
@@ -88,13 +88,13 @@
             let fi = Math.acos( (1-eta)/e );
             sop.PparQ_initial = fi;
             sop.initialEccentricity = e;
-            
+
             //derived
             sop.mainAxisAngle = sop.r2axisX_angle - sop.PparQ_initial;
 
-            stdMod.establishesEccentricity( sop.initialEccentricity, null, sop ); 
+            stdMod.establishesEccentricity( sop.initialEccentricity, null, sop );
             sop.sagittaDelta_q_initial = 0.4; //decoration
-        }        
+        }
         // speed
         var { Kepler_v, cosOmega, om } = mat.conics.innerPars2innerPars({
                 lat         : sop.latusInitial,
@@ -111,7 +111,7 @@
 
         //-------------------------------------------
         // //\\ op (brown conic)
-        //-------------------------------------------        
+        //-------------------------------------------
         op.mainAxisAngle = op.mainAxisAngle_initial = 0; //angle of ASCHD
         op.latus = op.latusInitial = 0.93; //length
         op.initialEccentricity  = 0.60; //change this to 1 to test parabola condition
@@ -138,7 +138,7 @@
         op.Kepler_v = op.Kepler_v_initial     = Kepler_v;
         //-------------------------------------------
         // \\// op (brown conic)
-        //------------------------------------------- 
+        //-------------------------------------------
 
         //-----------------------------------
         // //\\ topic group colors
@@ -159,7 +159,7 @@
             sunColor
         } = topicColors_repo;
 
-        const ALL_EXCEPT_PROBLEM_TAB = 
+        const ALL_EXCEPT_PROBLEM_TAB =
             'subessay--solution subessay--corollary1 subessay--corollary2';
 
         var topicColors_elected =
@@ -187,17 +187,17 @@
 
             //-------------------------------------------
             // //\\ op (brown conic)
-            //------------------------------------------- 
+            //-------------------------------------------
             P : {
                 pcolor : body,
                 letterAngle : 225
-            }, 
+            },
             K : {
                 pcolor : proof,
                 cssClass: 'subessay--solution subessay--corollary1',
                 letterRotRadius : 20,
                 letterAngle : -60,
-            },           
+            },
             B : {
                 letterRotRadius : 20,
                 cssClass: 'subessay--solution',
@@ -234,7 +234,7 @@
             },
             //-------------------------------------------
             // //\\ op (brown conic)
-            //------------------------------------------- 
+            //-------------------------------------------
 
             //-------------------------------------------
             // //\\ sop (green conic)
@@ -271,7 +271,7 @@
             //-------------------------------------------
             // //\\ sop (green conic)
             //-------------------------------------------
-            
+
             //not shown as points, but used in calculations to draw lines
             A : {
                 cssClass : 'hidden',
@@ -304,7 +304,7 @@
                 cssClass : 'hidden',
                 doPaintPname : false,
             },
-            
+
             Y : {
                 // intersection of PR and its ⟂ with S
                 pcolor : proof,
@@ -323,13 +323,13 @@
         [
             //-------------------------------------------
             // //\\ op (PR brown conic)
-            //-------------------------------------------                        
-            { SP : { pcolor : given},},   
+            //-------------------------------------------
+            { SP : { pcolor : given},},
             { SK : {
                 pcolor : proof,
                 cssClass: 'subessay--solution subessay--corollary1',
             }, },
-            { PH : { 				
+            { PH : {
                 pcolor : proof,
                 cssClass: 'subessay--solution subessay--corollary1',
             }, },
@@ -337,31 +337,31 @@
                 pcolor : proof,
                 cssClass: 'subessay--solution subessay--corollary1',
             }, },
-            { 'L,LL' : { 
+            { 'L,LL' : {
                 pcolor : supplementHover,
                captionShiftNorm : 22, lposYSugar : 3
             }, },
             { CB : {
                 pcolor : proof,
                 cssClass: 'subessay--solution',
-            }, },   
+            }, },
             { BH : {
                 pcolor : proof,
                 cssClass: 'subessay--solution',
             }, },
-            { PR : { 
+            { PR : {
                 pcolor : given,
                 captionShiftNorm : -18,
                 vectorTipIx : 1
             }, },
-                        
-            //not visible, because behind overlapping lines  
-            //but may be highlighted in text links                      
+
+            //not visible, because behind overlapping lines
+            //but may be highlighted in text links
             { CS : {
                 pcolor : proof,
                 cssClass: 'subessay--solution',
             }, },
-            { DS : { 
+            { DS : {
                 pcolor : corollaryHover,
                 cssClass: 'subessay--corollary1 subessay--corollary2',
             }, },
@@ -375,48 +375,48 @@
             }, },
 
             // perpendiculars referenced in the Solution
-            { 'SY' : { 
+            { 'SY' : {
                 // perpendicular from S to PR
                 pcolor : supplementHover,
-                captionShiftNorm : -28 
-            }, }, 
-            { 'S,Ys' : { 
+                captionShiftNorm : -28
+            }, },
+            { 'S,Ys' : {
                 // perpendicular from S to pr
                 pcolor : supplementHover,
-                captionShiftNorm : -28 
+                captionShiftNorm : -28
             }, },
             //-------------------------------------------
             // \\// op (brown conic)
-            //------------------------------------------- 
+            //-------------------------------------------
 
             //-------------------------------------------
             // //\\ sop (green conic)
-            //-------------------------------------------  
-            { 'Sp' : { 
+            //-------------------------------------------
+            { 'Sp' : {
                 pcolor : given,
-                'stroke-width' : 1.1, 
-                captionShiftNorm : -18}, 
+                'stroke-width' : 1.1,
+                captionShiftNorm : -18},
             },
-            { 'p,f' : { 
+            { 'p,f' : {
                 pcolor : forceColor,
-                'stroke-width' : 1.1, 
+                'stroke-width' : 1.1,
                 captionShiftNorm : -18,
-                vectorTipIx : 1 }, 
+                vectorTipIx : 1 },
             },
-            { 'l,ll' : { 
+            { 'l,ll' : {
                 pcolor : supplementHover,
-                captionShiftNorm : 44, 
-                lposYSugar : -5, }, 
+                captionShiftNorm : 44,
+                lposYSugar : -5, },
             },
-            { 'p,point_r' : { 
-                pcolor : given, 
-                'stroke-width' : 1.1, 
+            { 'p,point_r' : {
+                pcolor : given,
+                'stroke-width' : 1.1,
                 captionShiftNorm : -18,
-                vectorTipIx : 1 }, 
+                vectorTipIx : 1 },
             },
             //-------------------------------------------
             // \\// sop (green conic)
-            //------------------------------------------- 
+            //-------------------------------------------
 
         ];
 

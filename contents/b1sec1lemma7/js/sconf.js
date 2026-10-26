@@ -20,8 +20,8 @@
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
         //making size to better fit lemma's diagram
-        fconf.LETTER_FONT_SIZE_PER_1000 = 20;        
-        
+        fconf.LETTER_FONT_SIZE_PER_1000 = 20;
+
         fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
         sconf.TP_OPACITY_LOW_POINT = sconf.TP_OPACITY_LOW = 0.85;
 
@@ -55,7 +55,7 @@
         // \\// principal tp-css pars
         //--------------------------------------
         // \\// do override engine defaults,
-        //--------------------------------------        
+        //--------------------------------------
         //***************************************************************
         // \\// decorational parameters
         //***************************************************************
@@ -75,7 +75,7 @@
 
         var A = [modorInPicX, modorInPicY];
         var B = [323, 156];
-        var D = [474, modorInPicY];        
+        var D = [474, modorInPicY];
         var DLeft = [70, modorInPicY];
         var d = [778, modorInPicY];
         var b = [514, 254];
@@ -85,10 +85,10 @@
 
         //================================================================
         // \\// original positions
-        //================================================================      
-        
+        //================================================================
+
         //: topic group colors
-        var givenColor   = topicColors_repo.givenColor;        
+        var givenColor   = topicColors_repo.givenColor;
         var proofColor   = topicColors_repo.proofColor;
         var hidden  = topicColors_repo.hidden;
 
@@ -102,7 +102,7 @@
             //claim
             "curve-AB"      : givenColor, //arc-AB plus extension past B
             "left-curve-AB" : givenColor, //extends curve ACB to the left of A
-            "arc-AB"        : givenColor, 
+            "arc-AB"        : givenColor,
             "givenData"    : givenColor, //data table
 
             //proof
@@ -110,18 +110,18 @@
             "arc-Ab"        : proofColor, // this is the one rendered in proof
             "proofRatio"    : proofColor, //data table
 
-            //corollaries            
+            //corollaries
             'proofData' : proofColor, // used to style BF in data table (sometimes we don't want it linked to model BF line for mouseover highlighting)
         };
 
         var originalPoints =
         {
-            A : { 
+            A : {
                 //assigment by reference to pos is safe: no parasite links, pos is recalculated later
                 pos         : A,
                 letterAngle : 90,
                 pcolor      : givenColor,
-            },           
+            },
             C : {
                 letterAngle : 45,
                 letterRotRadius : 13,
@@ -130,18 +130,18 @@
             D : {
                 pos: D,
                 letterAngle : 90,
-                pcolor      : givenColor,                
+                pcolor      : givenColor,
                 draggableX  : true, // this adds animation and allows dragging along x
                 draggableY  : false,
             },
-            
+
             B : {
                 pos: B,
                 letterAngle : 0,
-                pcolor      : givenColor,                
+                pcolor      : givenColor,
                 draggableX  : true,
                 draggableY  : true,
-            }, 
+            },
 
             DLeft : {
                 pos         : DLeft,
@@ -179,7 +179,7 @@
                 letterRotRadius : 20,
                 pcolor      : proofColor,
                 cssClass: 'logic_phase--proof',
-            },  
+            },
             d : {
                 caption: "𝑑",
                 pos         : d,
@@ -222,27 +222,27 @@
         };
 
         var linesArray =
-        [            
+        [
             { "rd" : { pcolor : hidden } }, // used for calcs
 
-            { 'Ad' : { pcolor : proofColor, 
+            { 'Ad' : { pcolor : proofColor,
                         cssClass: 'logic_phase--proof' } },
-            { 'Ab' : { pcolor : proofColor, 
+            { 'Ab' : { pcolor : proofColor,
                         cssClass: 'logic_phase--proof' } },
-            { 'bd' : { pcolor : proofColor, 
+            { 'bd' : { pcolor : proofColor,
                         cssClass: 'logic_phase--proof' } },
             { 'BD' : { pcolor : givenColor } },  //lemma 7, coroll 1
-            { 'BF' : { pcolor : proofColor, 
+            { 'BF' : { pcolor : proofColor,
                         cssClass: 'logic_phase--corollary' } },
-            { 'AF' : { pcolor : proofColor, 
+            { 'AF' : { pcolor : proofColor,
                         cssClass: 'logic_phase--corollary' } },
-            { 'AG' : { pcolor : proofColor, 
+            { 'AG' : { pcolor : proofColor,
                         cssClass: 'subessay--cor-2 subessay--cor-3'} },
-            { 'AE' : { pcolor : proofColor, 
+            { 'AE' : { pcolor : proofColor,
                         cssClass: 'subessay--cor-2 subessay--cor-3'} },
-            { 'BG' : { pcolor : proofColor, 
+            { 'BG' : { pcolor : proofColor,
                 cssClass: 'subessay--cor-2 subessay--cor-3'} },
-            { 'BE' : { pcolor : proofColor, 
+            { 'BE' : { pcolor : proofColor,
                 cssClass: 'subessay--cor-2 subessay--cor-3'} },
             { 'AB' : { pcolor : givenColor, } },
             { 'AD' : { pcolor : givenColor, } },
@@ -256,7 +256,7 @@
         //      points for divided
         //      differences interpolation
         //----------------------------------
-        
+
         //model's spacial unit in pixels of the picture:
         var mod2inn_scale = originalPoints.R.pos[1] - originalPoints.A.pos[1];
 

@@ -6,7 +6,7 @@
 
 
 
-    anslider.css = function( 
+    anslider.css = function(
         ///all input pars are optional
         cssp,
         csskey,
@@ -51,7 +51,7 @@
         /*
         variant when slider is not visible originally
         .${cssp}-slider-${csskey} {
-            visibility:hidden;            
+            visibility:hidden;
         .${cssp}-slider-${csskey}.${cssp}-highlited-chart {
             visibility:visible;
         }

@@ -213,7 +213,7 @@
             if( has( ssD, 'pastFoldPoints' ) ) {
                 //todm for( let i=foldps.length; i<flen; i++ ) {
                 for( let i=0; i<pastlen; i++ ) {
-                    pp[i].rgX.undisplay = true;  
+                    pp[i].rgX.undisplay = true;
                 }
             }
             ////otherwise, cannot display all separation points;
@@ -226,7 +226,7 @@
                     rgX.undisplay = false;
                 };
                 ssD.pastFoldPoints = flen;
-            } 
+            }
         }
         {
             ///single fold point decorations

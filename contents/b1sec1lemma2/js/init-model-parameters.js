@@ -73,12 +73,12 @@
         //function does not exist in engine core:
         ssF.media_upcreate_generic();
 
-        Object.values(dataregs).forEach((dr) => {            
+        Object.values(dataregs).forEach((dr) => {
             //numberless:
             guicon.constructsCurve8Area(dr); //do on top of ancestors
 
             guicon.constructBasePts_domParless(dr, dr.basePts);
-            
+
             guicon.constructTransformPoints(dr);
             stdMod.recalculateAndStoreTransforms(dr);
             guicon.constructsControlPoints(dr);

@@ -49,7 +49,7 @@
     }
 
 
-    ///aka: var wwMessage = 'a u t o p   '+eventBlock.autopilotEventId; 
+    ///aka: var wwMessage = 'a u t o p   '+eventBlock.autopilotEventId;
     function doDebugMessage( wwMessage )
     {
         if( ns.haz( ns.conf, 'deb' ) ) {
@@ -78,7 +78,7 @@
             fbFrame_dom.innerHTML = '';
         }
 
-        //adds ecommand to feedback frame 
+        //adds ecommand to feedback frame
         ecommand            = '<div class="dialog-prompt">' + ecommand + '</div>';
         var newMessage_dom  = $$.c('div')();
         $$.$( fbFrame_dom ).ch( newMessage_dom );

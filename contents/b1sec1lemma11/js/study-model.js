@@ -1,7 +1,7 @@
 ( function() {
     var {
         sn, mat,
-        sconf, ssF, ssD, sDomF, 
+        sconf, ssF, ssD, sDomF,
         amode, stdMod, rg,
     } = window.b$l.apptree({
         stdModExportList :
@@ -52,8 +52,8 @@
                 //keeps point D "under existing ratio of angle"
                 rg.d.pos[0] = rg.b.pos[0] + angD * rg.b.pos[1];
 
-                
-                rg.B.dragPriority = rg.B.pos[0] <= 0.00001 ? 4 : 2; 
+
+                rg.B.dragPriority = rg.B.pos[0] <= 0.00001 ? 4 : 2;
                 return true; //true means: do accept new pos
             };
 
@@ -79,9 +79,9 @@
                 return true; //true means: do accept new pos
             };
 
-        rg.b.dragPriority = 3; 
+        rg.b.dragPriority = 3;
         sDomF.pname__2__rgX8dragwrap_gen_list( 'b', stdMod )
-            .acceptPos = function( newPos ) {  
+            .acceptPos = function( newPos ) {
                 ///restricts point b
                 if( newPos[0] < 0.000001 ) {
                     newPos[0] = 0.0000001;
@@ -112,7 +112,7 @@
                 //keeps point d "under existing ratio of angle"
                 rg.d.pos[0] = newPos[0] + angD * newPos[1];
 
-                rg.B.dragPriority = rg.B.pos[0] <= 0.00001 ? 4 : 2; 
+                rg.B.dragPriority = rg.B.pos[0] <= 0.00001 ? 4 : 2;
                 return true; //true means: do accept new pos
             };
     }
@@ -143,7 +143,7 @@
         // find midpoint of AB
         let Mx = (rg.A.pos[0] + rg.B.pos[0]) / 2;
         let My = (rg.A.pos[1] + rg.B.pos[1]) / 2;
-        rg.M.pos = [Mx, My]; 
+        rg.M.pos = [Mx, My];
 
         //mostly for demo purposes
         var line2abs = ssF.line2abs;

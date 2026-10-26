@@ -101,8 +101,8 @@
                         ////then adds first point for C or Q curves and
                         ////Bezier contro letter after them:
                        acc = 'M' + point[0] + ' ' + point[1] + ' ' + bcontr;
-                    } 
-                    return acc; 
+                    }
+                    return acc;
                 },
                 ''
             );
@@ -153,7 +153,7 @@
                 mpm.point   = resultBPoints_model[ pix ];
                 mediael.points[ pix ].svgel =
                     nssvg.u({
-                        svgel   : mp.svgel,                         
+                        svgel   : mp.svgel,
                         parent  : parentSVG,
                         type    : 'circle',
                         fill    : attrs.fill || 'rgba(255,0,0,1)',
@@ -181,7 +181,7 @@
                 mediael.pivotPoints[ pix ].medpos = point;
                 mediael.pivotPoints[ pix ].svgel =
                     nssvg.u({
-                        svgel : mediael.pivotPoints[ pix ].svgel,                         
+                        svgel : mediael.pivotPoints[ pix ].svgel,
                         parent : parentSVG,
                         type : 'circle',
                         fill : attrs.fill || 'transparent',
