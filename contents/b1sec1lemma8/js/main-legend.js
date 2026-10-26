@@ -1,8 +1,8 @@
-( function() {
+(function () {
     var {
         eachprop, rg, ssF, stdMod,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             create_digital_legend,
         },
     });
@@ -26,26 +26,26 @@
     ////**********************************************************************************
 
     var lemma8Data =  {
-        claim : [
-            [[ 'RAB', '△RAB', 'rg.RAB.area' ]],
-            [[ 'RACB', '△RACB', 'rg.RACB.area' ]],
-            [[ 'RAD', '△RAD', 'rg.RAD.area' ]],
-            [[ 'spacer', '', '' ]], 
-            [[ 'RACB-RAB', '△RACB : △RAB', getRatio('rg.RACB_RAB.ratio') ]],
-            [[ 'RAD-RAB', '△RAD : △RAB', getRatio('rg.RAD_RAB.ratio') ]],
+        claim: [
+            [['RAB', '△RAB', 'rg.RAB.area']],
+            [['RACB', '△RACB', 'rg.RACB.area']],
+            [['RAD', '△RAD', 'rg.RAD.area']],
+            [['spacer', '', '']],
+            [['RACB-RAB', '△RACB : △RAB', getRatio('rg.RACB_RAB.ratio')]],
+            [['RAD-RAB', '△RAD : △RAB', getRatio('rg.RAD_RAB.ratio')]],
         ]
     };
 
     lemma8Data.proof = [
-        [lemma8Data.claim[0][0], [ 'rAb', '△𝑟A𝑏', 'rg.rAb.area' ]],
-        [lemma8Data.claim[1][0], [ 'rAcb', '△𝑟A𝑐𝑏', 'rg.rAcb.area' ]],
-        [lemma8Data.claim[2][0], [ 'rAd', '△𝑟A𝑑', 'rg.rAd.area' ]],
-        [lemma8Data.claim[3][0], [ 'spacer', '', '' ]], 
-        [lemma8Data.claim[4][0], [ 'rAcb-rAb', '△𝑟A𝑐𝑏 : △𝑟A𝑏', 'rg.RACB_RAB.ratio' ]],
-        [lemma8Data.claim[5][0], [ 'rAd-rAb', '△𝑟A𝑑 : △𝑟A𝑏', 'rg.RAD_RAB.ratio' ]],
+        [lemma8Data.claim[0][0], ['rAb', '△𝑟A𝑏', 'rg.rAb.area']],
+        [lemma8Data.claim[1][0], ['rAcb', '△𝑟A𝑐𝑏', 'rg.rAcb.area']],
+        [lemma8Data.claim[2][0], ['rAd', '△𝑟A𝑑', 'rg.rAd.area']],
+        [lemma8Data.claim[3][0], ['spacer', '', '']],
+        [lemma8Data.claim[4][0], ['rAcb-rAb', '△𝑟A𝑐𝑏 : △𝑟A𝑏', 'rg.RACB_RAB.ratio']],
+        [lemma8Data.claim[5][0], ['rAd-rAb', '△𝑟A𝑑 : △𝑟A𝑏', 'rg.RAD_RAB.ratio']],
     ];
 
-    lemma8Data.corollary = lemma8Data.proof; 
+    lemma8Data.corollary = lemma8Data.proof;
 
     function getRatio(r) {
         return `
@@ -55,22 +55,22 @@
 
     // called once per page load
     function create_digital_legend() {
-        eachprop( lemma8Data, (tableData, key) => {
-            createTable( key, tableData ); // key = "claim", "proof", etc
+        eachprop(lemma8Data, (tableData, key) => {
+            createTable(key, tableData); // key = "claim", "proof", etc
         });
     }
 
-    function createTable( key, tableData ) {
+    function createTable(key, tableData) {
         var legendScriptParsed = tableData;
         var rowsCount = legendScriptParsed.length;
         var clustersCount = legendScriptParsed[0].length;
 
         // function defined in /src/base/lemma/media-model/main-legend.js
         ssF.createLogic_phaseLegend({
-            tableCaption    : '', 
-            noTableTitle    : true,
-            stdMod_given    : stdMod,
-            logic_phase     : key,
+            tableCaption: '',
+            noTableTitle: true,
+            stdMod_given: stdMod,
+            logic_phase: key,
             rowsCount,
             clustersCount,
             makesBodyCluster,
@@ -95,6 +95,4 @@
             })
         }
     }
-
-}) ();
-
+})();

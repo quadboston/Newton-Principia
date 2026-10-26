@@ -1,9 +1,9 @@
-( function () {
+(function () {
     var { sn, $$, fapp, sconf, rg, amode, stdMod, } = window.b$l.apptree({
-        stdModExportList : { syncPoints, }, });
-    var stdL2       = sn('stdL2', fapp );
-    var numModel    = sn('numModel', stdL2 );
-    var study       = sn('study', stdL2 );
+        stdModExportList: { syncPoints, }, });
+    var stdL2       = sn('stdL2', fapp);
+    var numModel    = sn('numModel', stdL2);
+    var study       = sn('study', stdL2);
     return;
 
 
@@ -32,7 +32,6 @@
         pt.pos[1] = -(posTransformed[1] - yoff) / scale;
     }
 
-
     function syncPoints(dr) {
         const ptsUntransformed = dr.ctrlPts.untransformed;
         const ptFirst = ptsUntransformed[0];
@@ -40,10 +39,10 @@
 
         if (ptFirst && ptLast) {
             const xMiddle = (ptFirst.x + ptLast.x) / 2;
-            const posMiddle = {x: xMiddle, y: numModel.curveFun(dr, xMiddle)};
-            const posBaseFirst = {x: ptFirst.x, y: ptLast.y};
+            const posMiddle = { x: xMiddle, y: numModel.curveFun(dr, xMiddle) };
+            const posBaseFirst = { x: ptFirst.x, y: ptLast.y };
 
-            const {CTRL_PT_FIRST, CURVE_MIDDLE, CTRL_PT_LAST, BASE_PT_FIRST} =
+            const { CTRL_PT_FIRST, CURVE_MIDDLE, CTRL_PT_LAST, BASE_PT_FIRST } =
                 dr.POINT_LABELS;
             syncPoint(dr, CTRL_PT_FIRST, ptFirst);
             syncPoint(dr, CTRL_PT_LAST, ptLast);
@@ -51,7 +50,4 @@
             syncPoint(dr, BASE_PT_FIRST, posBaseFirst);
         }
     }
-    
-    
-}) ();
-
+})();

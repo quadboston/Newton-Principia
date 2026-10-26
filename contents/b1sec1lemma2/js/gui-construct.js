@@ -1,21 +1,20 @@
-( function () {
+(function () {
     var {
         ///standard levels of application
-        sn, svgNS, fapp, sconf, stdMod, topicColors_repo}
+        sn, svgNS, fapp, sconf, stdMod, topicColors_repo }
         = window.b$l.apptree({ setModule, });
-    var stdL2               = sn('stdL2', fapp );
-    var gui                 = sn('gui', stdL2 );
-    var guicon              = sn('guiConstruct', gui );
-    var guiup               = sn('guiUpdate',gui);
+    var stdL2               = sn('stdL2', fapp);
+    var gui                 = sn('gui', stdL2);
+    var guicon              = sn('guiConstruct', gui);
+    var guiup               = sn('guiUpdate', gui);
 
-    var study               = sn('study', stdL2 );
-    var sdata               = sn('sdata', study );
+    var study               = sn('study', stdL2);
+    var sdata               = sn('sdata', study);
     return;
 
 
-    function setModule()
-    {
-        Object.assign( guicon,
+    function setModule() {
+        Object.assign(guicon,
         {
             constructsRects_tillExtraOffset_parlessDom,
             constructsControlPoints,
@@ -29,15 +28,14 @@
     // //\\ rects
     //======================================================
     //apparently makes "emptu junk" "without numbers there"
-    function constructsRects_tillExtraOffset_parlessDom(dr)
-    {
+    function constructsRects_tillExtraOffset_parlessDom(dr) {
         //this is just an empty list
         const cArr = topicColors_repo["circ-outline"];
         const circColor = `rgb(${cArr[0]}, ${cArr[1]}, ${cArr[2]}, ${cArr[3]})`;
         const iArr = topicColors_repo["insc-outline"];
         const inscColor = `rgb(${iArr[0]}, ${iArr[1]}, ${iArr[2]}, ${iArr[3]})`;
-        makes_rects( dr.circRects, "tp-circumscribed-rectangles circumscribed");
-        makes_rects_outlines( dr.circRects_outline, circColor);
+        makes_rects(dr.circRects, "tp-circumscribed-rectangles circumscribed");
+        makes_rects_outlines(dr.circRects_outline, circColor);
 
         {
             //Add the figure name if needed
@@ -53,7 +51,7 @@
             makes_rects_outlines(dr.InscrRects_outline, inscColor);
         }
 
-        makes_rects( dr.differenceRects, "tp-difference difference");
+        makes_rects(dr.differenceRects, "tp-difference difference");
         /*
         $$.$(dr.differenceRects.list[0]).addClass( 'tp-a--_k--b--l' );
         $$.$(dr.differenceRects.list[1]).addClass( 'tp-b--_l--c--m' );
@@ -64,134 +62,122 @@
     //listWrap can hold an empt arry
     //reserves "empty junk" and includes
     //cells 0,...,listWrap.offset-1 there.
-    function makes_rects( listWrap, classStyle, classPrefixSingle = null )
-    {
+    function makes_rects(listWrap, classStyle, classPrefixSingle = null) {
         classStyle += ' rect tofill';
         let BASE_MAX_NUM = sconf.BASE_MAX_NUM;
         let list = listWrap.list;
         let len = BASE_MAX_NUM+listWrap.offset;
-        for (var i=0; i<len; i++){
+        for (var i = 0; i < len; i++) {
             //"makes an empty junk"
             //Class for individual ones if applicable
             let classSingle = "";
             if (classPrefixSingle)
                 classSingle = classPrefixSingle + i.toString() + " ";
             //A polygon (rather than "rect") so it can be transformed
-            list.push( makeSType( "polygon", classSingle + classStyle ) );
+            list.push(makeSType("polygon", classSingle + classStyle));
         }
     }
 
     // creates duplicate of rectangles with no fill, just stroke
     // so the stroke looks the same as those specified in sconf
     // and so the strokes' opacity can be set independently of fill opacity
-    function makes_rects_outlines( listWrap, color )
-    {
+    function makes_rects_outlines(listWrap, color) {
         let BASE_MAX_NUM = sconf.BASE_MAX_NUM;
         let list = listWrap.list;
         let len = BASE_MAX_NUM+listWrap.offset;
-        for (var i=0; i<len; i++){
+        for (var i = 0; i < len; i++) {
             //Create stroke duplicate with no fill
-            let strokeRect = makeSType( "polygon", "rect tostroke" );
+            let strokeRect = makeSType("polygon", "rect tostroke");
             strokeRect.setAttributeNS(null, 'fill', 'none');
             strokeRect.setAttributeNS(null, 'stroke', color);
             strokeRect.setAttributeNS(null, 'stroke-width', '5px');
-            list.push( strokeRect );
+            list.push(strokeRect);
         }
     }
     //======================================================
     // \\// rects
     //======================================================
 
-
-    
-    
     //======================================================
     // //\\ figure, base, and transform contol points
     //======================================================
     ///builds list of control points, dr.ctrlPts.list and updates construction
     ///of bookkeeper dr.movables
-    function constructsControlPoints(dr)
-    {
+    function constructsControlPoints(dr) {
         const ctrlPts = dr.ctrlPts;
         const cp = ctrlPts.untransformed;
 
         //Only create and add points for the control points that are enabled.
         const offset = ctrlPts.DRAGGABLE_END_POINTS ? 0 : 1;
-        for (var i=offset, len=cp.length-offset; i < len; i++) {
+        for (var i = offset, len = cp.length-offset; i < len; i++) {
             const posTransformed = stdMod.xy_2_Txy(dr, [cp[i].x, cp[i].y]);
             ctrlPts.list.push(createCurvePoint(dr, posTransformed, "ctrl", i));
         }
 
-        reset_hollowPoints({ dr, onCurve:true, onBase:false });
+        reset_hollowPoints({ dr, onCurve: true, onBase: false });
     }
 
-
-
-    function reset_hollowPoints({ dr, onCurve, onBase })
-    {
+    function reset_hollowPoints({ dr, onCurve, onBase }) {
         let view = sdata.view;
         let isFig = !!view.isFigureChecked;
         let isIn = !!view.isInscribed;
         let isCir = !!view.isCircumscribed;
-        
+
         // control points
-        if( onCurve ) {
+        if (onCurve) {
             var cpList = dr.ctrlPts.list;
-            for (var i=0, len=cpList.length; i < len; i++)
+            for (var i = 0, len = cpList.length; i < len; i++)
                 resetPoint(cpList[i]);
         }
 
-        if( onBase && dr.BASE_PT_DRAGGERS_ENABLED) {
+        if (onBase && dr.BASE_PT_DRAGGERS_ENABLED) {
             // //\\ dehollowfies basePts
             const bplist = dr.basePts.list;
             const DRAGGABLE_BASE_POINTS = sconf.DRAGGABLE_BASE_POINTS;
-            for (var i=0, len=DRAGGABLE_BASE_POINTS; i <= len; i++)
+            for (var i = 0, len = DRAGGABLE_BASE_POINTS; i <= len; i++)
                 resetPoint(bplist[i]);
             // \\//  dehollowfies basePts
         }
 
         // transform points
-        if( onCurve ) {
+        if (onCurve) {
             const tpList = Object.values(dr.transforms.pts);
-            for (var i=0, len=tpList.length; i < len; i++)
+            for (var i = 0, len = tpList.length; i < len; i++)
                 resetPoint(tpList[i]);
         }
 
         function resetPoint(pt) {
             const pdom = pt.dom;
             pdom.style.fill = 'rgba(255,255,255,1)'; //makes the point hollow
-			 const ptColor = 
-			 	pt.type === "base" || pt.index == 0 || pt.index == 3 ?
-				topicColors_repo.figureColor :
-				topicColors_repo.infoColor ;
-			pdom.style.stroke = 'rgba(' + ptColor.join() + ')';
+             const ptColor =
+                pt.type === "base" || pt.index == 0 || pt.index == 3 ?
+                topicColors_repo.figureColor :
+                topicColors_repo.infoColor;
+            pdom.style.stroke = 'rgba(' + ptColor.join() + ')';
         }
     }
 
     ///apparently, base points from second to "D" are
     ///draggable (movable) and also include draggable point "E" = end point,
-    function constructBasePts_domParless( dr, basePts )
-    {
+    function constructBasePts_domParless(dr, basePts) {
         let bplist = basePts.list;
         //constant, sconf.BASE_MAX_NUM = usually 500,
         //sconf.DRAGGABLE_BASE_POINTS = usually 15,
         const DRAGGABLE_BASE_POINTS = sconf.DRAGGABLE_BASE_POINTS;
         const BASE_PT_DRAGGERS_ENABLED = dr.BASE_PT_DRAGGERS_ENABLED;
-        for (var i=0, len=sconf.BASE_MAX_NUM; i <= len; i++) {
+        for (var i = 0, len = sconf.BASE_MAX_NUM; i <= len; i++) {
             //not yet draggable, just a template
-  		    pt = makeDragP_tpl( dr, "base", i );
-	        if( BASE_PT_DRAGGERS_ENABLED && i < DRAGGABLE_BASE_POINTS ) {
+            pt = makeDragP_tpl(dr, "base", i);
+            if (BASE_PT_DRAGGERS_ENABLED && i < DRAGGABLE_BASE_POINTS) {
                 //todo-patch-disable-base-drag 1 of 2
-                if( i>0 ) {
-                    guiup.sets_pt2movable( pt );
+                if (i > 0) {
+                    guiup.sets_pt2movable(pt);
                 }
             }
             pt.dom.style.fill = 'rgba(255,255,255,1)';
-  		    bplist.push( pt );
+            bplist.push(pt);
         }
     }
-
-
 
     function constructTransformPoints(dr) {
         //Creates and adds the transform points to the input datareg for any
@@ -205,7 +191,7 @@
         const ptLast = ptsUntransformed[ptsUntransformed.length - 1];
         if (!ptFirst || !ptLast)
             return;
-        
+
         //Set pos to transform relative to.
         transforms.origin = [ptFirst.x, ptLast.y];
 
@@ -214,7 +200,6 @@
             transforms.pts.j = createPoint(ptFirst, 0, true, true);
         if (transforms.POINT_I_ENABLED)
             transforms.pts.i = createPoint(ptLast, 1, true, false);
-
 
         function createPoint(cp, i, draggableX, draggableY) {
             const pt = createCurvePoint(dr, [cp.x, cp.y], "trans", i);
@@ -231,36 +216,31 @@
     // \\// figure, base, and transform contol points
     //======================================================
 
-    
-    
-    
     //==================================================
     // //\\ common shape
     //      dom without numeric parameters
     //      "makes an empty junk"
     //==================================================
-    function makeSType( shapeType, classStyle )
-    {
+    function makeSType(shapeType, classStyle) {
         ///does only dom
-        var sdom = document.createElementNS( svgNS, shapeType);
+        var sdom = document.createElementNS(svgNS, shapeType);
         sdom.setAttributeNS(null, "class", classStyle);
         sdom.setAttributeNS(null, "visibility", "hidden");
-        stdMod.svgScene.appendChild( sdom );
+        stdMod.svgScene.appendChild(sdom);
         return sdom;
     }
-    
+
     ///does only dom and bookkeeper, dr.movables[ key ] = draggable,
     ///creates svg-circle-tag with unit-transform and and appends it to svg-root
-    function makeDragP_tpl( dr, type, i )
-    {
+    function makeDragP_tpl(dr, type, i) {
         var key  = type + i;
-        var pdom = document.createElementNS( svgNS, "circle");
-        stdMod.svgScene.appendChild( pdom );
-        pdom.setAttributeNS( null, "id", key );
-        pdom.setAttributeNS( null, "draggable", "false" ); //todo ... redundant? ...
-        var draggable = { dom:pdom, type:type, index:i, id:key };
-        if( i>0 || type === 'ctrl' ) {
-            dr.movables[ key ] = draggable;
+        var pdom = document.createElementNS(svgNS, "circle");
+        stdMod.svgScene.appendChild(pdom);
+        pdom.setAttributeNS(null, "id", key);
+        pdom.setAttributeNS(null, "draggable", "false"); //todo ... redundant? ...
+        var draggable = { dom: pdom, type: type, index: i, id: key };
+        if (i > 0 || type === 'ctrl') {
+            dr.movables[key] = draggable;
         }
         return draggable;
     }
@@ -269,7 +249,7 @@
         //Used to create curve control and transform points.  It may be
         //possible to combine with base points to reduce code.
         //pt = dr.movables[ type + i ]
-        const pt = makeDragP_tpl( dr, type, i );
+        const pt = makeDragP_tpl(dr, type, i);
         const pdom = pt.dom;
 
         pdom.setAttributeNS(null, "class", `${type}Pt`);
@@ -279,14 +259,13 @@
         //.todm patch
         //pdom.style.fill = 'rgba(255,255,255,1)'; //makes the point hollow
         //pdom.style.stroke = sDomF.getFixedColor( 'figure' );
-        pdom.style[ 'stroke-width' ] = '1px';
+        pdom.style['stroke-width'] = '1px';
         pt.x = pos[0];
         pt.y = pos[1];
-        
+
         return pt;
     }
     //==================================================
     // \\// common shape
     //==================================================
-    
-}) ();
+})();

@@ -1,0 +1,42 @@
+# Whitespace-only commits that `git blame` skips.
+# GitHub reads this file automatically; locally run once per clone:
+#   git config blame.ignoreRevsFile .git-blame-ignore-revs
+
+# Whitespace: convert CRLF line endings to LF
+1516ecf69b63f96f99324d0fec35898bd4035ef5
+
+# Whitespace: indent with spaces instead of tabs
+d137da9b5848007740c7f68637969896c10bc7b6
+
+# Whitespace: remove trailing whitespace, end files with one newline
+2257826fe4845351e294955d170292b1613c798e
+
+# Whitespace: at most one blank line in a row; two after header return
+aa814bb5b833f0d9901805a23981132bcd3816bc
+
+# Whitespace: space after keywords, before blocks, after anonymous function
+070c7cc3e6efff80557b98ed267fe2dd1cf666d9
+
+# Whitespace: no spaces inside parentheses or before argument lists
+f523cc6a8d69f83b4e5583a6e98dd0c3e5883481
+
+# Whitespace: put block and value brackets at the end of the previous line
+63a595aff9356f4f27774409fade79618a3c4228
+
+# Whitespace: no spaces inside square brackets
+a9083b8f33de41b54e80ed45fa6a8fd9809216c2
+
+# Whitespace: no space before object-key colons, one after
+2cc476361eb88a6c98dea14c65c5be04e9f0abaa
+
+# Whitespace: spaces around assignment, comparison, logical and ternary operators
+f9aef2b709a7ea4988aeca87b2adfe70e8645865
+
+# Whitespace: spaces inside braces
+62380b631732cf5c0a560054925acd41c2c7f886
+
+# Whitespace: no blank lines at the start or end of blocks
+dee62e2eb29bc2839772e018804ee211cab30095
+
+# Whitespace: switch-colon, template, unary, semicolon and property spacing
+aaf119cee27b3b61ff2bcda33a5fe9f1a8d51d92

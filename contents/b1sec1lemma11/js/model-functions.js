@@ -1,4 +1,4 @@
-( function() {
+(function () {
     var {
         mat,
         ssD,
@@ -8,25 +8,19 @@
     return;
 
 
-
-
-    function setModule()
-    {
+    function setModule() {
         createsModelFunctions();
     }
-
 
     //=================================================
     // //\\ configures repo of "experimental" functions
     //=================================================
-    function createsModelFunctions()
-    {
+    function createsModelFunctions() {
         var scale = 1; //typical lengh for geometrical model
-        ssD.repoConf =
-        [
+        ssD.repoConf = [
             {
-                fname : "Original function: y = ax^2+bx^3 ... ",
-                fun : x => {
+                fname: "Original function: y = ax^2+bx^3 ... ",
+                fun: x => {
                     /*
                     var x1 = x*scale;
                     var x2 = x1*x1;
@@ -51,14 +45,14 @@
                         - 0.018*x16
                     ];
                     */
-                    return [ x, mat.poly( x*scale, [
+                    return [x, mat.poly(x*scale, [
                         0,
                         0,
                         -0.81,  //2
-                        + 0.88, //3
-                        - 0.5,
-                        - 0,    //x^5
-                        - 0.08, //x^6
+                        +0.88, //3
+                        -0.5,
+                        -0,    //x^5
+                        -0.08, //x^6
                         0,
                         0,
                         0,
@@ -83,7 +77,4 @@
     //=================================================
     // \\// configures repo of "experimental" functions
     //=================================================
-
-
-}) ();
-
+})();

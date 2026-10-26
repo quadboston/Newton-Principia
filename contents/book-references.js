@@ -1,16 +1,14 @@
-( function() {
+(function () {
     var {
         ssD,
     } = window.b$l.apptree({
     });
 
-
-    ssD.bookReferences =
-    {
+    ssD.bookReferences = {
         ////no unescaped special chars between backticks `...`
         ////no unescaped $, "\", ...
 
-        'latin-on-e-rara' : `
+        'latin-on-e-rara': `
             <div class="isclosed">
                 <div class="trigger-option">
                     Philosophiae Naturalis Principia Mathematica.
@@ -31,7 +29,7 @@
             </div>
         `,
 
-        Donahue : `
+        Donahue: `
             <div class="isclosed">
                 <div class="trigger-option">
                     The <i>Principia</i>, Donahue translation
@@ -45,7 +43,7 @@
             </div>
         `,
 
-        Densmore : `
+        Densmore: `
             <div class="isclosed">
                 <div class="trigger-option">
                     Newton's <i>Principia</i>: The Centeral Argument
@@ -59,7 +57,7 @@
             </div>
         `,
 
-        'Bernard-Cohen-Anne-Whitman' : `
+        'Bernard-Cohen-Anne-Whitman': `
             <div class="isclosed">
                 <div class="trigger-option">
                     The <i>Principia</i>, Cohen and Whitman translation
@@ -73,7 +71,7 @@
             </div>
             `,
 
-			'Bernard-Cohen-guide' : `
+            'Bernard-Cohen-guide': `
             <div class="isclosed">
                 <div class="trigger-option">
                     A Guide to Newton's <i>Principia</i>
@@ -88,4 +86,4 @@
             `,
 
     }
-}) ();
+})();

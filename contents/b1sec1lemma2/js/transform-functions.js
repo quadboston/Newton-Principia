@@ -1,5 +1,5 @@
-( function() {
-    var { mat, } = window.b$l.apptree({ stdModExportList : {
+(function () {
+    var { mat, } = window.b$l.apptree({ stdModExportList: {
         recalculateAndStoreTransforms,
         xy_2_Txy,
         Txy_2_xy,
@@ -33,9 +33,9 @@
         //Default transformation matrix
         const T = [[1, 0], [0, 1]];
 
-        const {origin, pts, POINT_I_ENABLED, POINT_J_ENABLED} = transforms;
+        const { origin, pts, POINT_I_ENABLED, POINT_J_ENABLED } = transforms;
         if (origin && pts) {
-            const {i, j} = pts;
+            const { i, j } = pts;
             //Calculate matrix values using point i if needed
             if (POINT_I_ENABLED && i) {
                 const xOffsetInitial = i.xOffsetInitial;
@@ -66,17 +66,13 @@
         transforms.matrixInverse = mat.inverse2x2(T);
     }
 
-
-
     function xy_2_Txy(dr, pos) {
         return transformPos(dr, pos, dr.transforms.matrix);
     }
 
-
     function Txy_2_xy(dr, pos) {
         return transformPos(dr, pos, dr.transforms.matrixInverse);
     }
-
 
     function transformPos(dr, pos, matrix) {
         //Transform pos relative to the transform origin.
@@ -89,8 +85,6 @@
         const posRelativeT = mat.MxV(matrix, posRelative);
         return mat.addV(posRelativeT, origin);
     }
-
-
 
     function calculateFactorAreaTransformed(dr) {
         //Calculate a factor to multiply un-transformed areas by to get the
@@ -130,7 +124,7 @@
         const height = 1;
         const posBR = [base, 0];
         const posTL = [0, height];
-        
+
         //Transformed
         const posBRT = mat.MxV(matrix, posBR);
         const posTLT = mat.MxV(matrix, posTL);

@@ -1,13 +1,12 @@
-( function() {
+(function () {
     var { sn, $$, haz, has, fmethods, eachprop, fconf, sconf, sDomN, wrkwin,
-        stdMod, } = window.b$l.apptree({ ssFExportList : { }, });
+        stdMod, } = window.b$l.apptree({ ssFExportList: { }, });
     wrkwin.buildsMobile     = buildsMobile;
     wrkwin.buildsNonMobile  = buildsNonMobile;
     return;
 
 
-    function buildsMobile({})
-    {
+    function buildsMobile({}) {
         //------------------------------------------------------------------
         // //\\ essays css
         // //\\ very tedious way to get the necessary height of visible text
@@ -16,9 +15,9 @@
         //makes at least part of vertical menu visible
         //todm: make all vertical menu visible:
         var maxHeight = 250;
-        sDomN.essaionsRoot$.children( child => {
+        sDomN.essaionsRoot$.children(child => {
             var wHeight = child.getBoundingClientRect().height;
-            if( maxHeight < wHeight ) {
+            if (maxHeight < wHeight) {
                 maxHeight = wHeight;
             }
         });
@@ -27,18 +26,16 @@
         //------------------------------------------------------------------
 
         //todm: why 2 in window.innerHeight/2 ?
-        var essH_str = Math.min( maxHeight, window.innerHeight/2
+        var essH_str = Math.min(maxHeight, window.innerHeight/2
                        ).toFixed(2) + 'px';
         var essW_str = "92%";
         sDomN.essaionsRoot$
-            .css( 'width',  essW_str )
-            .css( 'height',  essH_str )
+            .css('width',  essW_str)
+            .css('height',  essH_str)
             ;
         //------------------------------------------------------------------
         // \\// essays css
         //------------------------------------------------------------------
-
-
 
         //----------------------------------------------------------------
         // //\\ medias spatial css
@@ -46,10 +43,10 @@
         stdMod.svgScene.style.width = '100%';
         //amends desktop setting
         //sDomN.simSScene$.css( 'height', 'auto' );
-        var imgDom$ = haz( stdMod.imgRk, 'dom$' );
+        var imgDom$ = haz(stdMod.imgRk, 'dom$');
         imgDom$ && imgDom$  //if image exists
-            .css( 'width', '100%' )
-            .css( 'left', '0px' )
+            .css('width', '100%')
+            .css('left', '0px')
             ;
         //----------------------------------------------------------------
         // \\// medias spatial css
@@ -58,12 +55,11 @@
         //------------------------------------------------------------------
         // //\\ legend css
         //------------------------------------------------------------------
-        stdMod.legendRoot$.css( 'top', '10px' );
-        stdMod.legendRoot$.css( 'left', '0px' );
+        stdMod.legendRoot$.css('top', '10px');
+        stdMod.legendRoot$.css('left', '0px');
         //------------------------------------------------------------------
         // \\// legend css
         //------------------------------------------------------------------
-
 
         //------------------------------------------------------------------
         // //\\ video css
@@ -82,7 +78,6 @@
         //------------------------------------------------------------------
     }
 
-
     function buildsNonMobile({
         wideScreen_flag,
         SSceneH,
@@ -99,7 +94,6 @@
         legendMargin,
         bases_slidersH,
     }) {
-
         //-------------------------------------------------------------
         // //\\ essay
         //      width is a scapegoat for failing width adjustment
@@ -116,7 +110,7 @@
                 :
                 0
         ;
-        var essW_str  = ( essayWidth
+        var essW_str  = (essayWidth
             // manual safety patch
             // decrease essay to give more space for fluind media and legend
             //- 20    //fails, todm
@@ -124,12 +118,12 @@
             //- l6patch
 
             ).toFixed()+'px';
-        var essH_str = ( SSceneH
+        var essH_str = (SSceneH
                             - 20  //todm
                        ).toFixed()+'px';
         sDomN.essaionsRoot$
-            .css( 'width',  essW_str )
-            .css( 'height',  essH_str )
+            .css('width',  essW_str)
+            .css('height',  essH_str)
             ;
         //-------------------------------------------------------------
         // \\// essay
@@ -140,7 +134,7 @@
         //---------------------------------------------------------
         sDomN.simSScene$
             //needed for horizontal dividor setting of 100%
-            .css( 'height', SSceneH.toFixed() + 'px' )
+            .css('height', SSceneH.toFixed() + 'px')
             ;
         //---------------------------------------------------------
         // \\// super scene csss
@@ -153,38 +147,36 @@
         stdMod.svgScene.style.width =
             stdMod.svgSceneW.toFixed() + 'px';
 
-        var imgDom$ = haz( stdMod.imgRk, 'dom$' );
+        var imgDom$ = haz(stdMod.imgRk, 'dom$');
         imgDom$ && imgDom$  //if image exists
-            .css( 'width', bgImgW.toFixed() + 'px' )
-            .css( 'left', bgImgOffset.toFixed() + 'px' )
+            .css('width', bgImgW.toFixed() + 'px')
+            .css('left', bgImgOffset.toFixed() + 'px')
             ;
         //---------------------------------------------------------
         // \\// medias spatial css
         //---------------------------------------------------------
 
-
         //---------------------------------------------------------
         // //\\ legend css
         //      note: for STATIC_LEGEND, legend dom is ignored
         //---------------------------------------------------------
-        if( wideScreen_flag ) {
+        if (wideScreen_flag) {
             //todo ???
             //var ww = fconf.sappId.indexOf('lemma2') === 0 ||
             //         fconf.sappId === 'lemma3' ? 20 : 0;
             stdMod.legendRoot$
-                .css( 'left', ( svgSceneW + legendMargin ).toFixed() + 'px' )
-                .css( 'top','0px' )
+                .css('left', (svgSceneW + legendMargin).toFixed() + 'px')
+                .css('top', '0px')
                 ;
         } else {
             stdMod.legendRoot$
-                .css( 'top', (stdMod.svgSceneH + 10).toFixed()+'px' )
-                .css( 'left', legendMargin.toFixed(2) + 'px' )
+                .css('top', (stdMod.svgSceneH + 10).toFixed()+'px')
+                .css('left', legendMargin.toFixed(2) + 'px')
                 ;
         }
         //---------------------------------------------------------
         // \\// legend css
         //---------------------------------------------------------
-
 
         //--------------------
         // //\\ video css
@@ -210,7 +202,4 @@
         // \\// video css
         //--------------------
     }
-
-
-}) ();
-
+})();

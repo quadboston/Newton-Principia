@@ -1,12 +1,12 @@
-( function() {
+(function () {
     var { sn, nspaste, rg, stdMod, sconf, ssD, sData, }
-        = window.b$l.apptree({ stdModExportList : {
-			initiates_orbit8graph,
+        = window.b$l.apptree({ stdModExportList: {
+            initiates_orbit8graph,
             rebuilds_orbit,
             initiates_kepler_config,
         },
     });
-    const qIndexToOrbit = sn( 'qIndexToOrbit', ssD, [] );
+    const qIndexToOrbit = sn('qIndexToOrbit', ssD, []);
     return;
 
 
@@ -19,18 +19,18 @@
         initiates_kepler_config();
         // default media step for orbit models; a lemma that defines
         // its own media_upcreate___part_of_medupcr_basic keeps it
-        if( !stdMod.media_upcreate___part_of_medupcr_basic ) {
+        if (!stdMod.media_upcreate___part_of_medupcr_basic) {
             stdMod.media_upcreate___part_of_medupcr_basic = () => {
                 // enables curve move when dragging an entire diagram
                 stdMod.createOrUpdateOrbit({});
             };
         }
-		if (!sconf.omitGraph) {
-			stdMod.graph = stdMod.createsGraph({
-				parentDom$ : stdMod.legendRoot$,
-				customXLegend : stdMod.customXLegend,
-			});
-		}
+        if (!sconf.omitGraph) {
+            stdMod.graph = stdMod.createsGraph({
+                parentDom$: stdMod.legendRoot$,
+                customXLegend: stdMod.customXLegend,
+            });
+        }
         stdMod.creates_createOrUpdateOrbit();
         if (stdMod.calculateMaxGraphValues)
             stdMod.calculateMaxGraphValues();
@@ -39,25 +39,25 @@
         stdMod.creates__gets_orbit_closest_point();
 
         //:sets parameters of P
-        rg.P.qix = Math.floor( sconf.parQ / sconf.delta_q_between_steps );
-        var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
-        nspaste( rg.P.pos, Porb.rr );
+        rg.P.qix = Math.floor(sconf.parQ / sconf.delta_q_between_steps);
+        var Porb = ssD.qIndexToOrbit[rg.P.qix];
+        nspaste(rg.P.pos, Porb.rr);
 
         // //\\ scenario: coincided P and Q: Q splits first
         rg.P.dragPriority = 10;
         rg.Q.dragPriority = 100;
-		if ( rg.Qemphasis ) {
-			rg.Qemphasis.dragPriority = 100;
-		}
+        if (rg.Qemphasis) {
+            rg.Qemphasis.dragPriority = 100;
+        }
         // \\// scenario: coincided P and Q: Q splits first
 
         stdMod.creates_Q8P_sliders();
-        if( rg.S.draggableX || rg.S.draggableY ) {
+        if (rg.S.draggableX || rg.S.draggableY) {
             stdMod.creates_S_slider();
         }
-		if( rg.A && (rg.A.draggableX || rg.A.draggableY) ) {
-			stdMod.creates_A_slider();
-		}
+        if (rg.A && (rg.A.draggableX || rg.A.draggableY)) {
+            stdMod.creates_A_slider();
+        }
     }
 
     function rebuilds_orbit(setMaxGraphValues = false) {
@@ -92,4 +92,4 @@
         const qixMax = ssD.qix_graph_end;
         rg.P.qix = Math.max(qixMin, Math.min(qixMax, rg.P.qix));
     }
-}) ();
+})();

@@ -1,20 +1,20 @@
-( function() {
+(function () {
     var { ns,  fmethods, haff, haz, has, nspaste, wrkwin, fconf,
         sconf, ssF, sDomN, dividorFractions, stdMod, }
-        = window.b$l.apptree({ sDomNExportList : {
-            bgImgOffset : 0,    //fake initial value before resize ran
-            bgImgW : 1000,      //fake initial value before resize ran
+        = window.b$l.apptree({ sDomNExportList: {
+            bgImgOffset: 0,    //fake initial value before resize ran
+            bgImgW: 1000,      //fake initial value before resize ran
         },
     });
     //allowed to be overriden
     ssF.gets_LEGEND_FIXED_FRACTION = gets_LEGEND_FIXED_FRACTION;
 
     /// chain-dispatches callback "resizeHappened"
-    ( function() {
-        var hazR = haz( fmethods, 'resizeHappened' );
+    (function () {
+        var hazR = haz(fmethods, 'resizeHappened');
         fmethods.resizeHappened  = hazR ?
                 () => {
-                    hazR(); 
+                    hazR();
                 }
             :
                 ()=>{}
@@ -49,10 +49,10 @@
         //-------------------------------------------------------------
         // legend tables shown only in some subessays must be shown or
         // hidden for the current one before the legend is measured
-        haff( ssF, 'updatesLegendTablesDisplay' );
-        if(
+        haff(ssF, 'updatesLegendTablesDisplay');
+        if (
             //isMobile
-            ns.widthThresholds[ fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD ]()
+            ns.widthThresholds[fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD]()
         ) {
             preparesMobile();
         } else {
@@ -61,8 +61,8 @@
                 doDividorSynch,
             });
         }
-        fmethods.resizeHappened(); 
-        haff( stdMod, 'model8media_upcreate' );
+        fmethods.resizeHappened();
+        haff(stdMod, 'model8media_upcreate');
     }
     ///========================================================
     /// \\// restricts and sets super root and text pane sizes,
@@ -71,7 +71,7 @@
     function preparesDesktop({
         draggerMove,
         doDividorSynch,
-    }){
+    }) {
         //========================================
         // //\\ phase 1. detects parameters
         //========================================
@@ -80,11 +80,11 @@
         // patch: hard coding height so it doesn't shift causing gap below
         // partition on page load.
         // note: will need to be adjusted if nav bar layout changes
-        let navBarHeight = 76; 
+        let navBarHeight = 76;
         //let navBarHeight = sDomN.pageNavTopBar$.box().height;
 
         var SSceneH     = window.innerHeight -
-                          ( fconf.doDisplayPageTopNavigatMenu ?
+                          (fconf.doDisplayPageTopNavigatMenu ?
                             navBarHeight : 0
                           );
         ///-------------------------------------------
@@ -135,7 +135,6 @@
         // \\// calculates legend
         // \\// phase 1. detects parameters
         //========================================
-
 
         //========================================
         // //\\ phase 2. calculates new values
@@ -197,7 +196,7 @@
         dividorFractions[0] = fracLeft;
         dividorFractions[1] = 1 - fracLeft;
         if (doDividorSynch) {
-            //Refer to "As the browser is widened..." comment (phase 2), for more detail on when 
+            //Refer to "As the browser is widened..." comment (phase 2), for more detail on when
             //achieved needs to be set here.
             wrkwin.dividor.achieved.achieved = nspaste([], dividorFractions)
             fmethods.panesD8D.updateAllDecPoints();
@@ -208,7 +207,6 @@
         // \\// phase 3. synchs results with dividor-slider states
         //==========================================================
 
-
         //===============================================
         // //\\ phase 4. allocates widths and heights
         //===============================================
@@ -217,7 +215,7 @@
             //todo make variable via fconf....
             - sDomN.helpBoxAboveMedia$.box().height; //=helpBoxHeight
 
-        var svgW_Leg = ( simSceneH - legendHeight ) / stdMod.simSceSvg_narrowestAsp;
+        var svgW_Leg = (simSceneH - legendHeight) / stdMod.simSceSvg_narrowestAsp;
         //but, really available width can be smaller:
 
         //***************************************************************************
@@ -232,7 +230,7 @@
         // //\\ wide screen,
         //      legend stays on the right from model
         //-------------------------------------------------------------
-        if( 
+        if (
             //never wide if ...FIXED...
             !STATIC_LEGEND
             &&
@@ -252,19 +250,18 @@
             var svgW            = proposedRightW - legendWidth + 20;
             // bases_slidersH to ensure svg sliders don't get cut off
             var bgImgW          = Math.min(
-                                    (simSceneH / stdMod.simSceSvg_narrowestAsp 
-                                        - bases_slidersH), 
-                                    svgW );
+                                    (simSceneH / stdMod.simSceSvg_narrowestAsp
+                                        - bases_slidersH),
+                                    svgW);
             var legendMargin    = 7;
             //var bgImgOffset     = Math.max( 0, ( svgW - bgImgW - 20 ) / 2 );
-            var bgImgOffset     = Math.max( 0, ( svgW - bgImgW ) / 2 );
+            var bgImgOffset     = Math.max(0, (svgW - bgImgW) / 2);
             var simSceneW       = svgW + 20; // so tool tip and sliderGroup$ line up to svg canvas
             var svgSceneW       = svgW; //proposedRightW - legendWidth;
             var svgSceneH       = simSceneH;
         //-------------------------------------------------------------
         // \\// wide screen,
         //-------------------------------------------------------------
-
         } else {
             ////narrow screen
             var wideScreen_flag = false;
@@ -281,13 +278,13 @@
             //:does set setting legendMarginr
             //-------------------------------------------------
             //does centering legend below the media
-            if( STATIC_LEGEND ) {
+            if (STATIC_LEGEND) {
                 ////for STATIC_LEGEND, legend dom is ignored
                 var legendMargin = 0;
             } else {
-                var legendMargin = Math.max( 0,
-                    ( ( proposedRightW - consideredLegendWidth
-                    ) ) / 2 );
+                var legendMargin = Math.max(0,
+                    ((proposedRightW - consideredLegendWidth
+                    )) / 2);
             }
             var bgImgOffset = Math.max(0,
                 ((proposedRightW - bgImgW
@@ -315,7 +312,7 @@
         stdMod.bgImgOffset  = bgImgOffset; //positive or 0
         stdMod.bgImgW       = bgImgW;      //svgSceneW - offsets
         //used only in lemma2:
-        stdMod.bgImgH       = stdMod.bgImgW * stdMod.simSceSvg_narrowestAsp;   
+        stdMod.bgImgH       = stdMod.bgImgW * stdMod.simSceSvg_narrowestAsp;
         //-------------------------------------------------------
 
         //see **api innerMediaHeight
@@ -339,18 +336,17 @@
         if (sliderGroup$ && sconf.BASES_SLIDER_WIDTH_FACTOR != null) {
             const sliderWidth = calculateSliderWidth();
             let sliderTop; // offset slider so it appears within canvas
-            if(sconf.sappId === 'b1sec1lemma4') {
-                sliderTop = stdMod.bgImgH - 25; 
+            if (sconf.sappId === 'b1sec1lemma4') {
+                sliderTop = stdMod.bgImgH - 25;
             } else { // L1, L2
-                sliderTop = stdMod.bgImgH - 20; 
+                sliderTop = stdMod.bgImgH - 20;
             }
             sliderGroup$
-                .css( 'top', sliderTop.toFixed() + 'px')
-                .css( 'width', `${sliderWidth}px` )
-                .css( 'left', ((simSceneW - sliderWidth) / 2).toFixed() + 'px')
+                .css('top', sliderTop.toFixed() + 'px')
+                .css('width', `${sliderWidth}px`)
+                .css('left', ((simSceneW - sliderWidth) / 2).toFixed() + 'px')
                 ;
         }
-
 
         makes_svgViewBox();
         doesTopContainersSizing();
@@ -379,12 +375,10 @@
     /// \\// restricts and sets super root and text pane sizes
     ///=============================================================================
 
-
     ///========================================
     ///
     ///========================================
-    function preparesMobile()
-    {
+    function preparesMobile() {
         var wid             = window.innerWidth * (1 - fconf.RIGHT_WORKAREA_MARGIN) - 50;
         stdMod.bgImgW       = wid;
         stdMod.bgImgH       = wid * stdMod.simSceSvg_narrowestAsp;
@@ -404,12 +398,12 @@
             //Ensure the width gets updated as the window changes size
             const sliderWidth = calculateSliderWidth();
             let extendCanvas = stdMod.svgVB_H * 0.1;
-            if(sconf.sappId === 'b1sec1lemma4') {
+            if (sconf.sappId === 'b1sec1lemma4') {
                 extendCanvas = stdMod.svgVB_H * 0.25;
             }
             stdMod.svgVB_H += extendCanvas;
             sliderGroup$
-                .css( 'display', 'inline-block' )
+                .css('display', 'inline-block')
                 //'relative' rather than 'static' so the z-index is enabled for
                 //slider-group in mobile mode.  Otherwise an issue can occur
                 //where the slider can't be dragged in mobile mode, eg. for L4.
@@ -417,19 +411,19 @@
                 //default), and an empty image gets displayed instead of
                 //the background image, and it's position and dimensions are
                 //such that it can be on top of the slider.
-                .css( 'position', 'relative' )
-                .css( 'top', '-80px' )
-                .css( 'left', '0px' )
-                .css( 'width', `${sliderWidth}px` );
+                .css('position', 'relative')
+                .css('top', '-80px')
+                .css('left', '0px')
+                .css('width', `${sliderWidth}px`);
                 ;
                 stdMod.simSceneH = stdMod.svgVB_H + 750;
         } else {
-            const legendHeight = stdMod.legendRoot$().getBoundingClientRect().height;   
-            stdMod.simSceneH = stdMod.svgVB_H + legendHeight; 
+            const legendHeight = stdMod.legendRoot$().getBoundingClientRect().height;
+            stdMod.simSceneH = stdMod.svgVB_H + legendHeight;
 
             // todo: these conditionals aren't ideal but do the trick
             // note: the narrower the window, the greater the space at bottom of page...
-            switch(fconf.sappId) { 
+            switch (fconf.sappId) {
                 case 'b1sec1lemma9': case 'b1sec1lemma10':
                     stdMod.simSceneH += 320;
                     break;
@@ -439,10 +433,10 @@
                 case 'b1sec2prop1': case 'b1sec2prop2':
                     stdMod.simSceneH += 100;
                     break;
-                case 'b1sec2prop6': 
+                case 'b1sec2prop6':
                     stdMod.simSceneH += 150;
                     break;
-                case 'b1sec2prop7': case 'b1sec2prop9': case 'b1sec2prop10': 
+                case 'b1sec2prop7': case 'b1sec2prop9': case 'b1sec2prop10':
                 case 'b1sec3prop13':
                     stdMod.simSceneH -= 100;
                     break;
@@ -452,10 +446,10 @@
                 case 'b1sec3prop17':
                     stdMod.simSceneH -= 170;
                     break;
-                case 'b1sec5lemma20':              
+                case 'b1sec5lemma20':
                     stdMod.simSceneH -= 1150;
                     break;
-                case 'b1sec5lemma21':              
+                case 'b1sec5lemma21':
                     stdMod.simSceneH -= 1100;
                     break;
                 default:
@@ -469,27 +463,22 @@
         wrkwin.buildsMobile({});
     }
 
-
-    function doesTopContainersSizing()
-    {
+    function doesTopContainersSizing() {
         sDomN.simSScene$
-            .css( 'width', stdMod.simSceneW.toFixed(1) + 'px')
-            .css( 'height', stdMod.simSceneH.toFixed(1) + 'px')
+            .css('width', stdMod.simSceneW.toFixed(1) + 'px')
+            .css('height', stdMod.simSceneH.toFixed(1) + 'px')
             ;
         stdMod.simScene$
-            .css( 'width', stdMod.simSceneW.toFixed(1) + 'px')
-            .css( 'height', stdMod.simSceneH.toFixed(1) + 'px')
+            .css('width', stdMod.simSceneW.toFixed(1) + 'px')
+            .css('height', stdMod.simSceneH.toFixed(1) + 'px')
             ;
     }
-
-
 
     ///=============================================================================
     /// expands media playable area to margins
     /// be aware: this can damage shrink to mobile: do cleanup in mobile,
     ///=============================================================================
-    function makes_svgViewBox()
-    {
+    function makes_svgViewBox() {
         var offset_x    = stdMod.svgVB_offsX.toFixed(4);
         var offset_y    = '0';
         var width       = stdMod.svgVB_W.toFixed(4);
@@ -498,9 +487,9 @@
         // |x=offset_x < 0 ------------------- |x=0---------------x=width-1|
         // |<-------------- offset_x -------- >|<----narrow width -------->|
         // |<--------------------- width --------------------------------->|
-        // |<---beginning-of-view-----------------------------end-of-view->| 
+        // |<---beginning-of-view-----------------------------end-of-view->|
 
-        var viewBox = 
+        var viewBox =
             offset_x + ' ' + offset_y + ' ' +
             width +    ' ' + height;
         stdMod.mmedia.setAttributeNS(
@@ -508,8 +497,7 @@
         );
     }
 
-    function gets_LEGEND_FIXED_FRACTION()
-    {
+    function gets_LEGEND_FIXED_FRACTION() {
         return false;
     }
 
@@ -521,4 +509,4 @@
         //sometimes.
         return stdMod.bgImgW * sconf.BASES_SLIDER_WIDTH_FACTOR;
     }
-}) ();
+})();

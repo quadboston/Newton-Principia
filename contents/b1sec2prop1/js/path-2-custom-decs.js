@@ -1,11 +1,11 @@
-(function(){
+(function () {
 const { nspaste, fconf, rg, } =
-        window.b$l.apptree({ stdModExportList : { traj2decs__II } });
+        window.b$l.apptree({ stdModExportList: { traj2decs__II } });
 return;
 
 
 ///at current ver, runs at every model_upcreate
-function traj2decs__II (){
+function traj2decs__II() {
     var path            = rg.path.pos;
     var freePath        = rg.freePath.pos;
 
@@ -13,10 +13,10 @@ function traj2decs__II (){
     // //\\ allocates positions for c,d,e,f
     //-----------------------------------------------------
     //      for c,d,e,f - "free" points
-    nspaste( rg.c.pos, freePath[0] );
-    nspaste( rg.d.pos, freePath[1] );
-    nspaste( rg.e.pos, freePath[2] );
-    nspaste( rg.f.pos, freePath[3] );
+    nspaste(rg.c.pos, freePath[0]);
+    nspaste(rg.d.pos, freePath[1]);
+    nspaste(rg.e.pos, freePath[2]);
+    nspaste(rg.f.pos, freePath[3]);
     //-----------------------------------------------------
     // \\// allocates positions for c,d,e,f
     //-----------------------------------------------------
@@ -24,9 +24,9 @@ function traj2decs__II (){
     //-----------------------------------------------------
     // //\\ recalculates BCDEF points pos
     //-----------------------------------------------------
-    [ 'B', 'C', 'D', 'E', 'F' ].forEach( (kname,ix) => {
-        nspaste( rg[ kname ].pos, path[ ix + 1 ] );
-        nspaste( rg[ 'VVV'+ix ].pos, rg[ 'force-' + ix + '-1' ].pos );
+    ['B', 'C', 'D', 'E', 'F'].forEach((kname, ix) => {
+        nspaste(rg[kname].pos, path[ix + 1]);
+        nspaste(rg['VVV'+ix].pos, rg['force-' + ix + '-1'].pos);
     });
     //-------------------------------------------------
     // \\// recalculates BCDEF points pos
@@ -35,23 +35,23 @@ function traj2decs__II (){
     //-------------------------------------------------
     // //\\ recalculates sagittaes pos
     //-------------------------------------------------
-    ( function() {
-        nspaste( rg.U.pos, [
-            ( rg.B.pos[0] + rg.V.pos[0] )*0.5,
-            ( rg.B.pos[1] + rg.V.pos[1] )*0.5,
-        ] );
-        nspaste( rg.W.pos, [
-            ( rg.E.pos[0] + rg.Z.pos[0] )*0.5,
-            ( rg.E.pos[1] + rg.Z.pos[1] )*0.5,
-        ] );
+    (function () {
+        nspaste(rg.U.pos, [
+            (rg.B.pos[0] + rg.V.pos[0])*0.5,
+            (rg.B.pos[1] + rg.V.pos[1])*0.5,
+        ]);
+        nspaste(rg.W.pos, [
+            (rg.E.pos[0] + rg.Z.pos[0])*0.5,
+            (rg.E.pos[1] + rg.Z.pos[1])*0.5,
+        ]);
     })();
     //-------------------------------------------------
     // \\// recalculates sagittaes pos
     //-------------------------------------------------
 
-    if( fconf.sappId === 'b1sec2prop2' ){
+    if (fconf.sappId === 'b1sec2prop2') {
         //top of the accelerated kepler-triangle
-        nspaste( rg.Cprime.pos, rg.pathAracc.pos[ 2 ] );
+        nspaste(rg.Cprime.pos, rg.pathAracc.pos[2]);
         //=== normal-to-radii-displacement - added to position "V"
         rg.Vprime.pos[0] =
                 rg.Cprime.pos[0]-rg.C.pos[0]+ //normal displaysment

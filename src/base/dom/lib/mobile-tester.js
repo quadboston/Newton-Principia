@@ -7,7 +7,7 @@
     The test-method can be called from JavaScript with two methods
     of test enabled: boolean test value return and callback.
 */
-( function() {
+(function () {
     var {
         ns, sn, cssp, $$, globalCss,
         fconf,
@@ -16,11 +16,6 @@
     ns.widthThresholds = {};
     ns.create_mobile_tester = create_mobile_tester;
     return;
-
-
-
-
-
 
 
     ///=============================================================
@@ -43,22 +38,21 @@
     */
     /// (Creates media query and test-method.)
     ///=========================================================
-    function create_mobile_tester( domElToAttachTo, mediaThreshold )
-    {
+    function create_mobile_tester(domElToAttachTo, mediaThreshold) {
         var thresId = ''+mediaThreshold;
-        if( ns.widthThresholds[ thresId ] ) return;
+        if (ns.widthThresholds[thresId]) return;
         var cls = cssp+'-mobile-width-detector-'+mediaThreshold;
         var tester = $$
-           .dct( cls, domElToAttachTo )
-           .css( 'position', 'absolute' )
-           .css( 'visibility', 'hidden' );
+           .dct(cls, domElToAttachTo)
+           .css('position', 'absolute')
+           .css('visibility', 'hidden');
 
         //we can use globalCss.update(,
         //but like "vanilla js solution" and
         //don't like named style tag
-        $$ .style()
-           .to( document.head )
-           .html( `
+        $$.style()
+           .to(document.head)
+           .html(`
                 .${cls} {
                     width:200px;
                 }
@@ -71,15 +65,12 @@
                 }
            `);
 
-        ns.widthThresholds[ thresId ] = function( cb )
-        {
+        ns.widthThresholds[thresId] = function (cb) {
             var testWidth = tester.box().width;
             //c cc( 'testWidth '+testWidth, tester() );
-            var mobile = testWidth <150;
+            var mobile = testWidth < 150;
             cb && cb(mobile);
             return mobile;
         };
     }
-
-}) ();
-
+})();

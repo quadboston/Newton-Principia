@@ -1,4 +1,4 @@
-( function() {
+(function () {
     var {
         //nsd, //vital-for-mobile
         $$, nspaste, cssp, d8dp,
@@ -10,10 +10,6 @@
     wrkwin.storePosPartitionHandle = storePosPartitionHandle;
     wrkwin.createDividorResizer = createDividorResizer;
     return;
-
-
-
-    
 
 
     ///=============================================================================
@@ -67,8 +63,6 @@
         sessionStorage.setItem(key, JSON.stringify(values));
     }
 
-
-
     //=========================================================
     /// creates DividorResizer
     //=========================================================
@@ -77,8 +71,7 @@
         return [fracLeft, 1 - fracLeft];
     }
 
-    function createDividorResizer()
-    {
+    function createDividorResizer() {
         nspaste(dividorFractions, computeDividorFractionsDefault());
         wrkwin.dividor = {};
 
@@ -87,15 +80,15 @@
         //      root, handle, and css-placeholder
         //---------------------------
         var wResizer = $$
-            .c( 'div' )
-            .a( 'class', cssp +'-resizable-handle' )
-            .a( 'id', cssp +'-resizable-handle' )
-            .to( sDomN.simSScene$ )
+            .c('div')
+            .a('class', cssp +'-resizable-handle')
+            .a('id', cssp +'-resizable-handle')
+            .to(sDomN.simSScene$)
             ();
         var mediaHorizontalHandler = $$
-            .c( 'img' )
-            .a( 'src', fconf.engineImg + '/vertical.png' )
-            .to( wResizer )
+            .c('img')
+            .a('src', fconf.engineImg + '/vertical.png')
+            .to(wResizer)
             ();
         ///dynamic CSS placeholder
         sDomN.mediaHorizontalHandlerCSS$ = $$.style().to(document.head);
@@ -103,14 +96,11 @@
         // \\// dom roots
         //---------------------------
 
-
-
-
         //.........................................
         // creates lower-layer framework
         //.........................................
         var D8D_fw = fmethods.panesD8D = d8dp.crePointFW_BSLd8d1CHAMBER({
-            dragSurface : fapp.fappRoot$(),
+            dragSurface: fapp.fappRoot$(),
             //todM : do this:
             //DRAG_POINTS_THROTTLE_TIME : fconf.DRAG_POINTS_THROTTLE_TIME
         });
@@ -121,10 +111,10 @@
         //.id is vital to have for removing extra disk over dividor
         wrkwin.dividor.spinnerClsId = 'dividor';   //makes a placeholder for handler
         D8D_fw.pointWrap_2_dragWrap_BSLd8d2PIPE({
-            pointWrap           : wrkwin.dividor,
-            update_decPoint     : 'update_decPoint_default',
-            doProcess           : doProcess,
-            dragHandleDOM       : mediaHorizontalHandler,
+            pointWrap: wrkwin.dividor,
+            update_decPoint: 'update_decPoint_default',
+            doProcess: doProcess,
+            dragHandleDOM: mediaHorizontalHandler,
             // cursor type set in subroots.css: .bsl-resizable-handle img
         });
 
@@ -132,19 +122,11 @@
         loadPosPartitionHandle();
         return;
 
-
-
-
-
-
-
-
         ///=============================================================================
         /// defines drag processor
         ///=============================================================================
-        function doProcess( arg )
-        {
-            switch( arg.down_move_up ) {
+        function doProcess(arg) {
+            switch (arg.down_move_up) {
                 case 'down':
                     //Store the partition handle's start position,
                     //also update the sessionStorage.
@@ -162,6 +144,4 @@
             }
         }
     }
-
-}) ();
-
+})();

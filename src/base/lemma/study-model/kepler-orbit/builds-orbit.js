@@ -1,6 +1,6 @@
-( function() {
+(function () {
     var { mat, sn, has, mcurve, stdMod, rg, sconf, ssD, sData, }
-        = window.b$l.apptree({ stdModExportList : { buildsOrbit, }, });
+        = window.b$l.apptree({ stdModExportList: { buildsOrbit, }, });
     var NON_SOLVABLE_THRESHOLD = 0.05;
 
     //A large arbitrary value.  It should ensure smooth behavior (not too small
@@ -8,21 +8,20 @@
     //an issue (not way too large).
     ssD.ANGLE_INCREMENTS = 360000;
 
-    const graphArray = sn( 'graphArray', stdMod, [] );
-    const qIndexToOrbit = sn( 'qIndexToOrbit', ssD, [] );
-    const orbitXYToDraw = sn( 'orbitXYToDraw', ssD, [] );
+    const graphArray = sn('graphArray', stdMod, []);
+    const qIndexToOrbit = sn('qIndexToOrbit', ssD, []);
+    const orbitXYToDraw = sn('orbitXYToDraw', ssD, []);
     return;
 
 
-    function buildsOrbit()
-    {
-        graphArray.length =0;
+    function buildsOrbit() {
+        graphArray.length = 0;
         qIndexToOrbit.length = 0;
 
         const orbit_q_start = sconf.orbit_q_start;
         const q2xy = stdMod.q2xy;
         const Q_STEPS = sconf.Q_STEPS;
-        const orbitXYToDraw_LIMIT = Math.min( 1000, Q_STEPS );
+        const orbitXYToDraw_LIMIT = Math.min(1000, Q_STEPS);
         const delta_q_between_steps = sconf.delta_q_between_steps;
         let h0 = 0; //at start of the path
 
@@ -34,12 +33,11 @@
         //embedded into svg in other place,
         ///they are recalculated here
         ///with other step here for derivative params,
-        for (var qix = 0; qix<=Q_STEPS; qix++ )
-        {
-            var bP = qIndexToOrbit[ qix ] = mcurve.planeCurveDerivatives({
-                pointAt : q2xy,
-                q : orbit_q_start + qix * delta_q_between_steps,
-                posCenterOfForces : rg.S.pos,
+        for (var qix = 0; qix <= Q_STEPS; qix++) {
+            var bP = qIndexToOrbit[qix] = mcurve.planeCurveDerivatives({
+                pointAt: q2xy,
+                q: orbit_q_start + qix * delta_q_between_steps,
+                posCenterOfForces: rg.S.pos,
             });
             bP.qix = qix;
             var {
@@ -54,10 +52,10 @@
 
             // Kepler's motion: rvₜcos(w) = M
             // f = M²/(Rr²cos³(w))
-            sinAbs = Math.abs( sinOmega );
-            if( NON_SOLVABLE_THRESHOLD > sinAbs ) {
+            sinAbs = Math.abs(sinOmega);
+            if (NON_SOLVABLE_THRESHOLD > sinAbs) {
                 solvable = false;
-                foldPoints.push( [ posBody[0], posBody[1] ] );
+                foldPoints.push([posBody[0], posBody[1]]);
                 bP.solvablePoint = solvable;
             }
 
@@ -65,7 +63,7 @@
             // //\\ preparing time array
             //------------------------------------------
             //meaning: dq_dt = dq/dt
-            if( 0 === qix ) {
+            if (0 === qix) {
                 var ds_dt = calculate_ds_dt(bP);
                 //Specific angular momentum for first point
                 h0 = hPerSpeed * ds_dt;
@@ -91,23 +89,23 @@
         }
 
         // //\\ one or many shapes
-        if( !has( sconf, 'RESHAPABLE_ORBIT' ) ){
+        if (!has(sconf, 'RESHAPABLE_ORBIT')) {
             sconf.RESHAPABLE_ORBIT = 1;
         }
         //todo start here apparen duplicate with other builder or
         //svg object duplicates and leaks, this is seen when,
         //we do not add ...P11 in media_upcreate basic,
-        if( sconf.RESHAPABLE_ORBIT ){
-            if( sconf.RESHAPABLE_ORBIT === 1 ){
+        if (sconf.RESHAPABLE_ORBIT) {
+            if (sconf.RESHAPABLE_ORBIT === 1) {
                 ////blocks redraw forever
                 sconf.RESHAPABLE_ORBIT = 0;
             }
             ///for static orbit shapes shoult build once per launch,
             ///decoration: builds pivots for scalable decorational orbit
             const ORBIT_STEP = Q_STEPS/orbitXYToDraw_LIMIT;
-            for( let oix=0; oix<=orbitXYToDraw_LIMIT; oix++ ){
-                let qix = Math.floor( oix * ORBIT_STEP );
-                orbitXYToDraw[ oix ] = qIndexToOrbit[qix].posBody;
+            for (let oix = 0; oix <= orbitXYToDraw_LIMIT; oix++) {
+                let qix = Math.floor(oix * ORBIT_STEP);
+                orbitXYToDraw[oix] = qIndexToOrbit[qix].posBody;
             }
         }
         // \\// one or many shapes
@@ -115,8 +113,6 @@
         ssD.solvable = solvable;
         ssD.foldPoints = foldPoints;
     }
-
-
 
     function calculateAngleIncrement(posPoint, qix) {
         //Calculate the angle of this point relative to the origin
@@ -156,8 +152,6 @@
         return Math.round(angle * incrementsPerRadian);
     }
 
-
-
     function calculate_ds_dt(bP) {
         //Calculate speed (ds/dt) of the body at the input point on the orbit
 
@@ -182,7 +176,6 @@
         const deltaPosNormal = mat.scalarProduct(deltaPos, bP.uNormal);
         const deltaPosTangential = mat.scalarProduct(deltaPos, bP.uTangential);
 
-
         //Acceleration (dv/dt) for input point
         const actualForce = stdMod.calculateForce({
             bP,
@@ -194,7 +187,6 @@
         //Calculate normal and tangential components
         const a0Normal = mat.scalarProduct(a0, bP.uNormal);
         const a0Tangential = mat.scalarProduct(a0, bP.uTangential);
-
 
         //Normal direction
         //Know deltaPosNormal = v0Normal*t + 1/2*a0Normal*t^2
@@ -209,5 +201,4 @@
         //Ensure always +ve as interested in magnitude only
         return Math.abs(speed);
     }
-}) ();
-
+})();

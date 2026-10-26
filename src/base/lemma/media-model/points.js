@@ -1,17 +1,16 @@
-( function() {
+(function () {
     var {
         sn, $$, nsmethods, haz, has, han, nssvg,
         sconf, sDomF, ssF, lowtpid_2_glocss8anchorRack, rg, toreg,
         stdMod,
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList: {
             pos2pointy,
             doPaintPoints,
             doPaintLetter8kernel,
         },
     });
-    var ix2origPoint = sn( 'ix2origPoint', sconf, [] );
+    var ix2origPoint = sn('ix2origPoint', sconf, []);
     //unlucky name: must be aka ssF.rgPos2svgPoint
     ssF.rgPos2rgMedia = pos2pointy; //modifies svg-dom, more sensible alias
     var ownProp = Object.prototype.hasOwnProperty;
@@ -36,65 +35,63 @@
     ///Twins: doPaintLetter8kernel( pname )
     ///       which does more work for this function
     ///Returns: rg[ pName ]
-    function pos2pointy( pName, attrs, )
-    {
+    function pos2pointy(pName, attrs,) {
         attrs = attrs || {};
-        var pt = rg[ pName ];
+        var pt = rg[pName];
 
         //if points are flagged as 'unscalable', then
         //they are immune to scaling when user scales diagram with mouse
-        pt.medpos = haz( pt, 'unscalable' ) ? ssF.mod2inn_original( pt.pos, ) :
-                                              ssF.mod2inn( pt.pos, );
-        var dressed = ownProp.call( pt, 'pointIsAlreadyDressed' );
-        if( !dressed ) {
-
+        pt.medpos = haz(pt, 'unscalable') ? ssF.mod2inn_original(pt.pos,) :
+                                              ssF.mod2inn(pt.pos,);
+        var dressed = ownProp.call(pt, 'pointIsAlreadyDressed');
+        if (!dressed) {
             ////long, initial version of pos2pointy
             var tpclass = nsmethods.toCssIdentifier(
-                          ( haz( attrs, 'tpclass' ) ) || pName
+                          (haz(attrs, 'tpclass')) || pName
             );
-            var cssClass = has( attrs, 'cssClass' ) ? attrs['cssClass'] + ' ' :  '';
-            if( has( pt, 'classmark' ) ){
+            var cssClass = has(attrs, 'cssClass') ? attrs['cssClass'] + ' ' :  '';
+            if (has(pt, 'classmark')) {
                 cssClass += pt.classmark + ' ';
             }
             pt.pname                = pName;
             //optional attrs
-            pt.stroke               = haz( pt, 'stroke' ) ||
-                                      han( attrs, 'stroke', sDomF.getFixedColor( tpclass ) );
-            pt.fill                 = haz( pt, 'fill' ) ||
-                                      han( attrs, 'fill', sDomF.getFixedColor( tpclass ) );
-            pt.initialStrokeWidth   = han( attrs, 'stroke-width', 0 );
-            pt.initialR             = han( pt, 'initialR', han( attrs, 'r', 4 ) );
+            pt.stroke               = haz(pt, 'stroke') ||
+                                      han(attrs, 'stroke', sDomF.getFixedColor(tpclass));
+            pt.fill                 = haz(pt, 'fill') ||
+                                      han(attrs, 'fill', sDomF.getFixedColor(tpclass));
+            pt.initialStrokeWidth   = han(attrs, 'stroke-width', 0);
+            pt.initialR             = han(pt, 'initialR', han(attrs, 'r', 4));
             pt.media                = stdMod.mmedia;
             pt.svgel                = null;
 
             var argsvg = {
-                svgel   : pt.svgel,
-                parent  : pt.media,
-                type    : 'circle',
-                'stroke-width' : pt.initialStrokeWidth * sconf.thickness,
-                cx : pt.medpos[0],
-                cy : pt.medpos[1],
-                r  : pt.initialR * sconf.thickness,
-                style : haz(pt, 'style'),
+                svgel: pt.svgel,
+                parent: pt.media,
+                type: 'circle',
+                'stroke-width': pt.initialStrokeWidth * sconf.thickness,
+                cx: pt.medpos[0],
+                cy: pt.medpos[1],
+                r: pt.initialR * sconf.thickness,
+                style: haz(pt, 'style'),
             };
 
             ///shapes without pName presribed in Topics do
             ///paint colors in own attributes
-            var low_tpID = nsmethods.toCssIdentifier( pName );
-            var tpactive = haz( lowtpid_2_glocss8anchorRack, low_tpID );
-            if( !tpactive ) {
+            var low_tpID = nsmethods.toCssIdentifier(pName);
+            var tpactive = haz(lowtpid_2_glocss8anchorRack, low_tpID);
+            if (!tpactive) {
                 argsvg.fill = pt.fill;
                 argsvg.stroke = pt.stroke;
             };
-            pt.svgel = nssvg.u( argsvg );
-            var svgel$ = pt.svgel$ = $$.$( pt.svgel );
+            pt.svgel = nssvg.u(argsvg);
+            var svgel$ = pt.svgel$ = $$.$(pt.svgel);
 
             //todm patch which overrides tp-opacity model for points only,
             //but patches only for lemmas covered with this subroutine and this patch,
-            svgel$().style[ 'fill-opacity' ] = '1';
-            var finalTp = haz( pt, 'notp' ) ? 'notp' : 'tp';
+            svgel$().style['fill-opacity'] = '1';
+            var finalTp = haz(pt, 'notp') ? 'notp' : 'tp';
             var wwClass = cssClass + finalTp + '-' +  tpclass;
-            pt.svgel.setAttributeNS( null, 'class', wwClass );
+            pt.svgel.setAttributeNS(null, 'class', wwClass);
 
             ///this thing is static yet
             /*
@@ -104,17 +101,15 @@
                 //svgel$.e( 'mouseover',
             }
             */
-
         } else {
             ////optimized, updating version of pos2pointy
-            var svgel= pt.svgel;
-            svgel.setAttributeNS( null, 'stroke-width',
-                                  pt.initialStrokeWidth * sconf.thickness );
-            svgel.setAttributeNS( null, 'cx', pt.medpos[0] );
-            svgel.setAttributeNS( null, 'cy', pt.medpos[1] );
-            svgel.setAttributeNS( null, 'r', pt.initialR * sconf.thickness );
+            var svgel = pt.svgel;
+            svgel.setAttributeNS(null, 'stroke-width',
+                                  pt.initialStrokeWidth * sconf.thickness);
+            svgel.setAttributeNS(null, 'cx', pt.medpos[0]);
+            svgel.setAttributeNS(null, 'cy', pt.medpos[1]);
+            svgel.setAttributeNS(null, 'r', pt.initialR * sconf.thickness);
         }
-
 
         //*****************************************************
         // todm: get rid of this
@@ -123,15 +118,15 @@
         // lemmas do stop using  pt.pointWrap
         //       possibly only one offender left: theorem1,
         //
-        var pointWrap = haz( pt, 'pointWrap' );
+        var pointWrap = haz(pt, 'pointWrap');
         //*****************************************************
-        if( has( pt, 'undisplayAlways' ) ){
+        if (has(pt, 'undisplayAlways')) {
             //good but may be corrupts legacy lemmas
             //pt.undisplay = true; //fixes hiding of letters
-            pt.svgel$.toggleClass( 'undisplay', pt.undisplayAlways );
+            pt.svgel$.toggleClass('undisplay', pt.undisplayAlways);
         } else {
-            pt.svgel$.toggleClass( 'undisplay',
-                             !haz( pt, 'displayAlways' ) && haz( pt, 'undisplay' )
+            pt.svgel$.toggleClass('undisplay',
+                             !haz(pt, 'displayAlways') && haz(pt, 'undisplay')
             );
         }
         pt.pointIsAlreadyDressed = true;
@@ -141,41 +136,36 @@
     // \\// Adds DOM and decorations to pointRack
     //==============================================
 
-
-
-
-
     ///-----------------------------------------------
     /// paints latin letters for points
     ///-----------------------------------------------
-    function doPaintLetter8kernel( pname, )
-    {
-        var rgX = rg[ pname ];
+    function doPaintLetter8kernel(pname,) {
+        var rgX = rg[pname];
         ///adds fake points over draggable points to
         ///make white kernels drawn above lines
         ///move_2_updates is a flag of point for being a draggee
-        if(
-            !haz( rgX, 'noKernel' ) &&
+        if (
+            !haz(rgX, 'noKernel') &&
             (
-                has( rgX, 'move_2_updates' ) || has( rgX, 'doWhiteKernel' )
+                has(rgX, 'move_2_updates') || has(rgX, 'doWhiteKernel')
             )
-        ){
+        ) {
             var fakeName = pname+'-kernel';
             var wp = rg[pname].pos;
-            var rgXX = rg[ fakeName ];
+            var rgXX = rg[fakeName];
 
             //removes kernel visully if requested
-            var undisplay = haz( rg[pname], 'hideD8Dpoint' ) ||
-                            haz( rg[pname], 'undisplay' );
+            var undisplay = haz(rg[pname], 'hideD8Dpoint') ||
+                            haz(rg[pname], 'undisplay');
 
-            if( !has( rg, fakeName ) || !has( rg[fakeName], 'pos' ) ) {
+            if (!has(rg, fakeName) || !has(rg[fakeName], 'pos')) {
                 ////...decorates for the first time and updates
-                var rgXX = toreg( fakeName )
-                    ( 'pos', [ wp[0], wp[1] ]  )
-                    ( 'undisplay', undisplay  )
+                var rgXX = toreg(fakeName)
+                    ('pos', [wp[0], wp[1]])
+                    ('undisplay', undisplay)
                     ();
 
-                if( haz( rg[pname], 'unscalable' ) ) {
+                if (haz(rg[pname], 'unscalable')) {
                     rgXX.unscalable = rg[pname].unscalable;
                 }
                 pos2pointy(
@@ -184,12 +174,12 @@
                         //planned feature
                         //'stroke'        : han( rgX, 'kernelStroke' , rgX.pcolor, ),
 
-                        'stroke'        : rgX.pcolor,
+                        'stroke': rgX.pcolor,
 
-                        'fill'          : 'white',
+                        'fill': 'white',
                         //'stroke-width'  : 2,
-                        r               : han( rgX, 'initialR' , sconf.handleRadius ),
-                        tpclass         : '',
+                        r: han(rgX, 'initialR', sconf.handleRadius),
+                        tpclass: '',
                                           //pname +
                                           //' tp-' + fakeName + //possibly new feature
                                           //' tostroke hover-width'
@@ -200,45 +190,45 @@
                 rgXX.pos[0] = wp[0];
                 rgXX.pos[1] = wp[1];
                 rgXX.undisplay = undisplay;
-                pos2pointy( fakeName, null, ); //updates
+                pos2pointy(fakeName, null,); //updates
             }
         }
-        if( rgX.doPaintPname && rgX.caption !== '' ) {
+        if (rgX.doPaintPname && rgX.caption !== '') {
             var lpos = rgX.medpos.concat([]);
             var lposX = rgX.letterOffsetX + rgX.medpos[0];
             var lposY = rgX.letterOffsetY + rgX.medpos[1];
 
-            var strokeCol   = haz( rgX, 'letterColor' ) || rgX.pcolor || 'black';
-            var fillCol     = haz( rgX, 'letterColor' ) || rgX.pcolor || 'black';
+            var strokeCol   = haz(rgX, 'letterColor') || rgX.pcolor || 'black';
+            var fillCol     = haz(rgX, 'letterColor') || rgX.pcolor || 'black';
 
             var txtstyle = {
-                    'font-size' : rgX.fontSize.toFixed() + 'px',
-                    'line-height' : '1',
-                    stroke        : strokeCol, //fix
-                    fill          : fillCol,
+                    'font-size': rgX.fontSize.toFixed() + 'px',
+                    'line-height': '1',
+                    stroke: strokeCol, //fix
+                    fill: fillCol,
             };
             var lposX_rounded = lposX.toFixed();
             var lposY_rounded = lposY.toFixed();
             rgX.pnameLabelsvg = nssvg.printText({
                 //tpclass         : '', //apparently non-used
-                text            : rgX.caption || pname,
+                text: rgX.caption || pname,
                 //stroke          : strokeCol,
                 //fill            : fillCol,
-                "stroke-width"  : 1,
-                svgel           : rgX.pnameLabelsvg,
-                parent          : stdMod.mmedia,
-                x               : lposX_rounded + 'px',
-                y               : lposY_rounded + 'px',
-                style           : txtstyle,
+                "stroke-width": 1,
+                svgel: rgX.pnameLabelsvg,
+                parent: stdMod.mmedia,
+                x: lposX_rounded + 'px',
+                y: lposY_rounded + 'px',
+                style: txtstyle,
             });
 
             //--------------------------------------------------------------------------
             // //\\ textLineTurn can be applied ...
             //      https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform
             //--------------------------------------------------------------------------
-            var textLineTurn = haz( rgX, 'textLineTurn' );
-            if( textLineTurn ) {
-                rgX.pnameLabelsvg.setAttribute( 'transform', 'rotate(' +
+            var textLineTurn = haz(rgX, 'textLineTurn');
+            if (textLineTurn) {
+                rgX.pnameLabelsvg.setAttribute('transform', 'rotate(' +
                      textLineTurn + ',' + lposX_rounded + ',' + lposY_rounded + ' )'
                 );
             }
@@ -246,65 +236,60 @@
             // \\// textLineTurn can be applied ...
             //--------------------------------------------------------------------------
 
-            let $$$svg = $$.$( rgX.pnameLabelsvg );
+            let $$$svg = $$.$(rgX.pnameLabelsvg);
             $$$svg.toggleClass(
                 'undisplay',
                 rgX.hideCaption ||
                 (
-                    !haz( rgX, 'displayAlways' ) &&
+                    !haz(rgX, 'displayAlways') &&
                     (
                         // messages, unlike letters, show before the user
                         // interacts with the diagram
-                        ( haz( rg, 'allLettersAreHidden' ) &&
-                          !haz( rgX, 'showsWhileLettersHidden' ) ) ||
-                        haz( rgX, 'undisplay' )
+                        (haz(rg, 'allLettersAreHidden') &&
+                          !haz(rgX, 'showsWhileLettersHidden')) ||
+                        haz(rgX, 'undisplay')
                     )
                 )
             );
 
-            let txtclass = haz( rgX, 'classmark' );
-            if( txtclass ) {
-                $$$svg.addClass( txtclass );
+            let txtclass = haz(rgX, 'classmark');
+            if (txtclass) {
+                $$$svg.addClass(txtclass);
             }
             //make tp - boldable all points labels:
-            $$$svg.addClass( 'tobold' );
-
+            $$$svg.addClass('tobold');
         } else {
             ////bug fix: June 3, 2021
-            var wwSvg = haz( rgX, 'pnameLabelsvg' );
-            $$.$( wwSvg ).toggleClass( 'undisplay', true );
+            var wwSvg = haz(rgX, 'pnameLabelsvg');
+            $$.$(wwSvg).toggleClass('undisplay', true);
         }
     }
-
-
 
     //-------------------------------------------------
     // //\\ adds to points their media position
     //      and sets point's color
     //-------------------------------------------------
-    function doPaintPoints()
-    {
-        var p2p = haz( sconf, 'pname2point' );
-        if( !p2p ) return;
-        if( ix2origPoint.length ) {
+    function doPaintPoints() {
+        var p2p = haz(sconf, 'pname2point');
+        if (!p2p) return;
+        if (ix2origPoint.length) {
             ////makes svg-z-order
-            ix2origPoint.forEach( op => {
-                var pname = haz( op, 'kName' );
-                if( !pname ) return;
-                ssF.rgPos2rgMedia( pname, sconf.pointDecoration, );
-                doPaintLetter8kernel( pname, );
+            ix2origPoint.forEach(op => {
+                var pname = haz(op, 'kName');
+                if (!pname) return;
+                ssF.rgPos2rgMedia(pname, sconf.pointDecoration,);
+                doPaintLetter8kernel(pname,);
             });
         } else {
             ////legacy paint with no svg-z-order,
             ////legacy preserves legacy projects,
-            Object.keys( p2p ).forEach( pname => {
-                ssF.rgPos2rgMedia( pname, sconf.pointDecoration, );
-                doPaintLetter8kernel( pname, );
+            Object.keys(p2p).forEach(pname => {
+                ssF.rgPos2rgMedia(pname, sconf.pointDecoration,);
+                doPaintLetter8kernel(pname,);
             });
         }
     }
     //-------------------------------------------------
     // \\// adds to points their media position
     //-------------------------------------------------
-
-}) ();
+})();

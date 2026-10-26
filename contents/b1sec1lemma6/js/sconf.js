@@ -1,12 +1,10 @@
-
-( function() {
+(function () {
     var { ns, fconf, sconf, topicColors_repo } =
-    window.b$l.apptree({ ssFExportList : { init_conf } });
+    window.b$l.apptree({ ssFExportList: { init_conf } });
     return;
-    
 
-    function init_conf()
-    {
+
+    function init_conf() {
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
         var pictureWidth = 839;
@@ -16,14 +14,14 @@
         // //\\ decorational parameters
         //***************************************************************
         //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var realSvgSize = 2 * (pictureWidth + pictureHeight) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
         sconf.TP_OPACITY_LOW_POINT = sconf.TP_OPACITY_LOW = 0.85;
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
-        
+
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
 
@@ -35,18 +33,18 @@
         //--------------------------------------
         sconf.default_tp_lightness = 22;
         sconf.default_tp_stroke_width = 8;
-        default_tp_stroke_width = Math.floor( 6 * controlsScale ),
-        defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 3.5 * controlsScale ),
+        default_tp_stroke_width = Math.floor(6 * controlsScale),
+        defaultLineWidth        = Math.floor(1 * controlsScale),
+        handleRadius            = Math.floor(3.5 * controlsScale),
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius;
 
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
         //this makes hanle's border nicely thin
-        sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
+        sconf.nonhover_width    = Math.max(1, Math.floor(1*controlsScale/1.6));
         //sconf.nonhover_width = 4;
-        sconf.hover_width       = Math.max( 2, Math.floor( 7*controlsScale/1.6 ) );
+        sconf.hover_width       = Math.max(2, Math.floor(7*controlsScale/1.6));
         //sconf.hover_width = 114;  //needs hover-width cls at svg-text-el,
                                     //aka for: Δsin(φ),
 
@@ -59,14 +57,13 @@
         // \\// principal tp-css pars
         //--------------------------------------
         // \\// do override engine defaults,
-        //--------------------------------------        
+        //--------------------------------------
         //***************************************************************
         // \\// decorational parameters
         //***************************************************************
 
         //to avoid rounding errors as B gets very close to A
         sconf.NON_ZERO_A_PREVENTOR = 0.0001;
-
 
         //================================================================
         // //\\ original positions
@@ -85,106 +82,103 @@
 
         //================================================================
         // \\// original positions
-        //================================================================      
-        
+        //================================================================
+
         //: topic group colors
-        var givenColor   = topicColors_repo.givenColor;        
+        var givenColor   = topicColors_repo.givenColor;
         var infoColor   = topicColors_repo.infoColor;
 
-        var topicColors_elected =
-        {
+        var topicColors_elected = {
             //:basic topics
             infoColor,
             givenColor,
 
             //:given
-            "curve-AB"      : givenColor,
-            "left-curve-AB" : givenColor, //extends curve left of A
-            'angleBAD'      : givenColor,
-            "arc-AB"        : givenColor, //curve-AB plus extension past B
+            "curve-AB": givenColor,
+            "left-curve-AB": givenColor, //extends curve left of A
+            'angleBAD': givenColor,
+            "arc-AB": givenColor, //curve-AB plus extension past B
         };
 
-        var originalPoints =
-        {
-            A : { 
+        var originalPoints = {
+            A: {
                 //assigment by reference to pos is safe: no parasite links, pos is recalculated later
-                pos         : A,
-                letterAngle : 90,
-                pcolor      : givenColor,
+                pos: A,
+                letterAngle: 90,
+                pcolor: givenColor,
             },
-            B : {
+            B: {
                 pos: B,
-                letterAngle : 0,
-                pcolor      : givenColor,
-            },            
-            C : {
-                letterAngle : 45,
-                letterRotRadius : 13,
-                pcolor      : givenColor,
+                letterAngle: 0,
+                pcolor: givenColor,
             },
-            D : {
+            C: {
+                letterAngle: 45,
+                letterRotRadius: 13,
+                pcolor: givenColor,
+            },
+            D: {
                 pos: D,
-                letterAngle : 90,
-                pcolor      : givenColor,
-                draggableX  : true, // this adds mouseover animation, does not affect behaviour
-                draggableY  : false,
+                letterAngle: 90,
+                pcolor: givenColor,
+                draggableX: true, // this adds mouseover animation, does not affect behaviour
+                draggableY: false,
             },
-            L : { // rectilinear angle slider
-                pcolor      : infoColor,
-				cssClass: 'logic_phase--proof',
-				conditionalDrag : 'logic_phase--proof',
-				doPaintPname : false,
+            L: { // rectilinear angle slider
+                pcolor: infoColor,
+                cssClass: 'logic_phase--proof',
+                conditionalDrag: 'logic_phase--proof',
+                doPaintPname: false,
             },
-			R : {
-				pos: R,
-				letterAngle : 135,
-				pcolor      : givenColor,
-				undisplayAlways : true,
-				doPaintPname : false,
-			},
-			curveStart  : {
-				pos : [ A[0]-80, 0 ],
-				undisplayAlways : true,
-				doPaintPname : false,
-			},
-			curveEnd : {
-				pos : [B[0]+50,0],
-				undisplayAlways : true,
-				doPaintPname : false,
-			},
-			r : {
-				pos: r,
-				letterAngle : 135,
-				pcolor      : givenColor,
-				undisplayAlways : true,
-				doPaintPname : false,
-			},
-			d : {
-				pos         : d,
-				undisplayAlways : true,
-				doPaintPname : false,
-			},
-			DLeft : {
-                pos         : DLeft,
-				letterAngle : 90,
-				pcolor      : givenColor,
-				undisplayAlways : true,
-				doPaintPname : false,
-			},
-			curveLeftEnd : {
-				pos : [250,100],
-				undisplayAlways : true,
-				doPaintPname : false,
-			},
+            R: {
+                pos: R,
+                letterAngle: 135,
+                pcolor: givenColor,
+                undisplayAlways: true,
+                doPaintPname: false,
+            },
+            curveStart: {
+                pos: [A[0]-80, 0],
+                undisplayAlways: true,
+                doPaintPname: false,
+            },
+            curveEnd: {
+                pos: [B[0]+50, 0],
+                undisplayAlways: true,
+                doPaintPname: false,
+            },
+            r: {
+                pos: r,
+                letterAngle: 135,
+                pcolor: givenColor,
+                undisplayAlways: true,
+                doPaintPname: false,
+            },
+            d: {
+                pos: d,
+                undisplayAlways: true,
+                doPaintPname: false,
+            },
+            DLeft: {
+                pos: DLeft,
+                letterAngle: 90,
+                pcolor: givenColor,
+                undisplayAlways: true,
+                doPaintPname: false,
+            },
+            curveLeftEnd: {
+                pos: [250, 100],
+                undisplayAlways: true,
+                doPaintPname: false,
+            },
         };
-        
-        var linesArray =
-        [            
-            { 'AB' : { pcolor : givenColor } },
-            { 'AD' : { pcolor : givenColor } },
-            { 'AL' : { pcolor : infoColor,
-						cssClass: 'logic_phase--proof',} }, // rectilinear angle
-            { 'A,DLeft'  : { pcolor : givenColor, 'stroke-width' : 2, } }, //extends AD to the left
+
+        var linesArray = [
+            { 'AB': { pcolor: givenColor } },
+            { 'AD': { pcolor: givenColor } },
+            { 'AL': { pcolor: infoColor,
+                        cssClass: 'logic_phase--proof', } }, // rectilinear angle
+            { 'A,DLeft': { pcolor: givenColor, 'stroke-width': 2, } }, //extends AD to the left
         ];
 
         //----------------------------------
@@ -192,29 +186,28 @@
         //      points for divided
         //      differences interpolation
         //----------------------------------
-        
+
         //model's spacial unit in pixels of the picture:
         var mod2inn_scale = originalPoints.R.pos[1] - originalPoints.A.pos[1];
 
-        var givenCurve_pivots =
-        [
+        var givenCurve_pivots = [
             //extending the curve to the left is quite a work bs
             //we need to change hard-coded tangent
-            [148,62],
-            [161,64],
-            [202,75],
-            [259,100],
-            [305,135],
+            [148, 62],
+            [161, 64],
+            [202, 75],
+            [259, 100],
+            [305, 135],
             [B[0], B[1]],
-            [353,203],
+            [353, 203],
             //[360.5, 239.0], //"oversampling"
         ];
         var ww_MONITOR_Y_FLIP = -1;
         var ww_inn2mod_scale = 1/mod2inn_scale;
         var ww_factor = ww_MONITOR_Y_FLIP * ww_inn2mod_scale;
-        var givenCurve_pivots_inModel = givenCurve_pivots.map( opoint =>
-            [ ( opoint[0] - modorInPicX ) * ww_inn2mod_scale,
-              ( opoint[1] - modorInPicY +
+        var givenCurve_pivots_inModel = givenCurve_pivots.map(opoint =>
+            [(opoint[0] - modorInPicX) * ww_inn2mod_scale,
+              (opoint[1] - modorInPicY +
 
                 //additional tune-up: shifting curve exactly into origin A
                 modorInPicY - 61.085869
@@ -226,9 +219,9 @@
         // \\// curve pars
         //----------------------------------
 
-        ns.paste( sconf, {
+        ns.paste(sconf, {
             //double back step ../../ is to reuse this path in code for lemma7
-            mediaBgImage : "../../b1sec1lemma6/img/b1s1l6-diagram-3rded-b.png",
+            mediaBgImage: "../../b1sec1lemma6/img/b1s1l6-diagram-3rded-b.png",
             givenCurve_pivots_inModel,
             topicColors_elected,
             originalPoints,
@@ -240,4 +233,4 @@
             mod2inn_scale,
         });
     }
-}) ();
+})();

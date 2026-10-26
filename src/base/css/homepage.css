@@ -1,4 +1,4 @@
-/*====================================================== 
+/*======================================================
 //\\\\ home page generics
 ======================================================*/
 
@@ -48,24 +48,24 @@
 }
 
 
-/*====================================================== 
+/*======================================================
 //\\\\ home-page header
 ======================================================*/
 
 header {
-    position:relative;  
+    position:relative;
     grid-area: header;
-    padding: 0 0;    
+    padding: 0 0;
     margin-top: 5vh !important;
     margin-bottom: 4vh !important;
-} 
+}
 
 header.default {
-    min-height: 450px;    
+    min-height: 450px;
 }
 
 
-/*====================================================== 
+/*======================================================
 //\\\\ front-page master caption and read first button
 ======================================================*/
 
@@ -76,7 +76,7 @@ header.default {
 }
 
 
-/*====================================================== 
+/*======================================================
 //\\\\ front-page master caption
 ======================================================*/
 
@@ -89,11 +89,11 @@ header.default {
     line-height: 9vw;
     margin-bottom: 16px;
     margin-left: 150px;
-    grid-area: title; 
+    grid-area: title;
 }
 
 .landing-title span {
-    font-style: italic; 
+    font-style: italic;
 }
 
 @media only screen and (min-width: 1000px) {
@@ -110,11 +110,11 @@ header.default {
     letter-spacing: 1.32px;
     line-height: 36px;
     padding-bottom: 3vh;
-    grid-area: title; 
+    grid-area: title;
 }
 
 .landing-subtitle span {
-    font-style: italic; 
+    font-style: italic;
 }
 
 .landing-subtitle a {
@@ -128,11 +128,11 @@ header.default {
     color: var(--color-white);
     letter-spacing: 1.32px;
     line-height: 28px;
-    grid-area: title; 
+    grid-area: title;
 }
 
 .sub-title span {
-    font-style: italic; 
+    font-style: italic;
 }
 
 .sub-title a {
@@ -141,7 +141,7 @@ header.default {
 }
 
 
-/*====================================================== 
+/*======================================================
 \\\\// front-page master caption and read first button
 ======================================================*/
 
@@ -152,11 +152,11 @@ header.default {
     left: 30px;
     height: 156px;
     z-index: -1;
-    right: 96px; 
+    right: 96px;
 }
 
 
-/*====================================================== 
+/*======================================================
 //\\\\ table of contents
 good: transform : scale(1.1, 1.0);
 ======================================================*/
@@ -205,7 +205,7 @@ good: transform : scale(1.1, 1.0);
 .landing-table-of-contents ul .table-tag {
     font-family: var(--text-tab-font);
     font-size: 14px;
-    font-weight: 300; 
+    font-weight: 300;
 }
 
 .landing-table-of-contents .column {
@@ -231,7 +231,7 @@ good: transform : scale(1.1, 1.0);
 }
 
 
-/*====================================================== 
+/*======================================================
 //\\\\ how to
 ======================================================*/
 
@@ -239,7 +239,7 @@ good: transform : scale(1.1, 1.0);
     padding: 5vh 0;
     text-align: center;
     background: #E9E2DA;
-    grid-area: howTo; 
+    grid-area: howTo;
     font-family: var(--default-font);
 }
 
@@ -249,14 +249,14 @@ good: transform : scale(1.1, 1.0);
     .how-to-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-column-gap: 52px; 
+    grid-column-gap: 52px;
 }
 
 .how-to__cell {
     p {
         font-size: 20px;
     }
-    padding: 0 14px; 
+    padding: 0 14px;
 }
 
 .how-to__cell__image {
@@ -265,7 +265,7 @@ good: transform : scale(1.1, 1.0);
     justify-content: center;
     height: auto;
     margin-top: 16px;
-    margin-bottom: 66px; 
+    margin-bottom: 66px;
     img {
         max-width: 100%;
         height: auto;
@@ -274,33 +274,33 @@ good: transform : scale(1.1, 1.0);
 
 .how-to__cell h4 {
     font-size: 24px;
-    color: var(--color-main) !important; 
+    color: var(--color-main) !important;
 }
 
 
-/*====================================================== 
+/*======================================================
 //\\\\ home page plain text sections
 ======================================================*/
 
 .hp-text-section {
     color: var(--color-white);
     font-family: var(--default-font);
-    margin-top: 128px; 
+    margin-top: 128px;
 }
 
 .about__text {
     width: 100%;
-    margin-right: 10%; 
+    margin-right: 10%;
 }
 
 .about__text p {
     font-size: 18px;
-    line-height: 1.5; 
+    line-height: 1.5;
 }
 
 .about__text h2 {
     margin-bottom: 12px;
-    color: var(--color-white); 
+    color: var(--color-white);
 }
 
 .about__author {
@@ -311,7 +311,7 @@ good: transform : scale(1.1, 1.0);
 
 .hp-text-section-body {
     padding: 8px;
-    font-size: 18px; 
+    font-size: 18px;
 }
 
 .hp-small-text-section-body {
@@ -325,11 +325,11 @@ good: transform : scale(1.1, 1.0);
 
 .dd-label a {
     color: rgba(255, 255, 255, 0.8);
-    text-decoration: underline; 
+    text-decoration: underline;
 }
 
 .dd-label a:hover {
-    color: white; 
+    color: white;
 }
 
 /* todm ... not very clear why we need this patch, but it is vital;
@@ -344,7 +344,7 @@ good: transform : scale(1.1, 1.0);
 }
 
 
-/*====================================================== 
+/*======================================================
 //\\\\ options
 ======================================================*/
 .options {
@@ -354,10 +354,10 @@ good: transform : scale(1.1, 1.0);
 }
 
 .option__text {
-    font-size: 18px; 
+    font-size: 18px;
 }
 
-/*====================================================== 
+/*======================================================
 //\\\\ feedback
 ======================================================*/
 
@@ -375,26 +375,26 @@ good: transform : scale(1.1, 1.0);
 
 .feedback-label a {
     color: rgba(255, 255, 255, 0.8);
-    text-decoration: underline; 
+    text-decoration: underline;
 }
 
 .feedback-label a:hover {
-    color: white; 
+    color: white;
 }
 
 
 @keyframes mousemove {
     0% {
         transform: translateY(0px);
-        opacity: 0; 
+        opacity: 0;
     }
     25% {
-        opacity: 1; 
+        opacity: 1;
     }
     100% {
         transform: translateY(200px);
-        opacity: 0; 
-    } 
+        opacity: 0;
+    }
 }
 
 /*~~~~~~~~~~~~~~~~~~~~
@@ -406,16 +406,16 @@ Media Queries
         display: grid;
         grid-template-columns: 1fr;
         grid-column-gap: 12px;
-        grid-row-gap: 20px; 
+        grid-row-gap: 20px;
     }
     .about {
-        flex-direction: column; 
+        flex-direction: column;
     }
     .about .about__text {
-        width: 100%; 
+        width: 100%;
     }
     .about .about__author {
         width: 100%;
-        text-align: left; 
+        text-align: left;
     }
 }

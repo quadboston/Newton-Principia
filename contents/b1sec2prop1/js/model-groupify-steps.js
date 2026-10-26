@@ -1,8 +1,8 @@
-(function(){
-const { haz, rg, amode, stdMod, sconf,} =
-      window.b$l.apptree({ stdModExportList : {
+(function () {
+const { haz, rg, amode, stdMod, sconf, } =
+      window.b$l.apptree({ stdModExportList: {
           trajectoryShapes_2_groups__III,
-}});
+} });
 return;
 
 
@@ -14,7 +14,7 @@ return;
 /// therefore, it is dynamic and sensetive to
 /// haz( amode, 'userControl') === 'text'
 ///**********************************************
-function trajectoryShapes_2_groups__III (){
+function trajectoryShapes_2_groups__III() {
     var pathRacks = rg.pathRacks.pathRacks;
     ///pathIx_2_groups: pathIx |-> fGroups = [ fgroup0, fgroup1, ... ].
     rg.pathIx_2_pathSubsteps = pathRacks.map((
@@ -31,19 +31,19 @@ function trajectoryShapes_2_groups__III (){
         // fragments and fgroups are prebuilt based on solution for entire path
         // and then can be displayed depending on app-state,
         var fGroups = [];
-        
-        if( pix === 0 ) {
+
+        if (pix === 0) {
             ////logical group 0 = empty grop for reached point A
             var fgroup = [];
-            fGroups.push( fgroup );
+            fGroups.push(fgroup);
         } else {
             ////logical groups for C and beyond
             //------------------------------------
             // //\\ logical group 0
             //------------------------------------
             var fgroup = [];
-            fGroups.push( fgroup );   
-            fgroup.push( rgPathPoint );
+            fGroups.push(fgroup);
+            fgroup.push(rgPathPoint);
             //------------------------------------
             // \\// logical group 0
             //------------------------------------
@@ -52,8 +52,8 @@ function trajectoryShapes_2_groups__III (){
             // //\\ logical group 1
             //------------------------------------
             var fgroup = [];
-            fGroups.push( fgroup );   
-            fgroup.push( rgPathPoint );
+            fGroups.push(fgroup);
+            fgroup.push(rgPathPoint);
             //------------------------------------
             // \\// logical group 1
             //------------------------------------
@@ -62,27 +62,26 @@ function trajectoryShapes_2_groups__III (){
             // //\\ logical group 2 = force applied group
             //------------------------------------
             var fgroup = [];
-            fGroups.push( fgroup );   
-            fgroup.push( rgPathPoint );
-            if( sconf.TIMER_AND_LOGIC_STEPS_COINSIDE ||
-                haz( amode, 'userControl') === 'text' ||
+            fGroups.push(fgroup);
+            fgroup.push(rgPathPoint);
+            if (sconf.TIMER_AND_LOGIC_STEPS_COINSIDE ||
+                haz(amode, 'userControl') === 'text' ||
                 pix === 1 // this is a sort of anomaly,
                           // needs a thought,
-            )
-            {
+            ) {
                 //:force appears
                 var fkey        = 'force-' + (pix-1);
                 var fappliedKey = fkey + '-applied';
                 var tipKey      = fkey+'-1';
-                fgroup.push( rg[ fappliedKey ] );   
-                fgroup.push( rg[ tipKey ] );   
-                fgroup.push( rg[ 'VVV'+(pix-1) ] );
+                fgroup.push(rg[fappliedKey]);
+                fgroup.push(rg[tipKey]);
+                fgroup.push(rg['VVV'+(pix-1)]);
                 //this is a blue thickable path line:
                 //we show it here in prelast proof-substep of motion-step
                 //fgroup.push( rg[ 'pathSegment-' + (pix-1) ] ); //bug fix
-                fgroup.push( pathRacks[ pix ] );
-                if( pix < pathRacks.lengh-1 ) {
-                    fgroup.push( rg[ 'pathSegment-' + (pix) ] );
+                fgroup.push(pathRacks[pix]);
+                if (pix < pathRacks.lengh-1) {
+                    fgroup.push(rg['pathSegment-' + (pix)]);
                 }
             }
             //------------------------------------
@@ -93,31 +92,31 @@ function trajectoryShapes_2_groups__III (){
             // //\\ logical group 3 = path finalized group
             //------------------------------------
             var fgroup = [];
-            fGroups.push( fgroup );   
-            fgroup.push( rgPathPoint );
+            fGroups.push(fgroup);
+            fgroup.push(rgPathPoint);
 
             //:force still visible
             var fkey = 'force-' + (pix-1);
             var fappliedKey = fkey + '-applied';
             var tipKey      = fkey+'-1';
-            fgroup.push( rg[ fkey + '-applied' ] );
-            fgroup.push( rg[ fkey+'-1' ] );
-            fgroup.push( rg[ fappliedKey ] );   
-            fgroup.push( rg[ tipKey ] );   
-            fgroup.push( rg[ 'VVV'+(pix-1) ] );   
+            fgroup.push(rg[fkey + '-applied']);
+            fgroup.push(rg[fkey+'-1']);
+            fgroup.push(rg[fappliedKey]);
+            fgroup.push(rg[tipKey]);
+            fgroup.push(rg['VVV'+(pix-1)]);
 
             //The following previously checked "pix<pathRacks.length-1",
             //however pathRacks.length varies even when the desired result doesn't.
             //As the delta time slider is moved to the left pathRacks.length
-            //increases, however when moved back to the right pathRacks.length 
+            //increases, however when moved back to the right pathRacks.length
             //doesn't decrease.  This means that the following would sometimes
             //get added for an extra step.  rg.spatialSteps-1 always has the
             //correct value, and therefore a consistent result.
             if (pix < rg.spatialSteps - 1) {
-                fgroup.push( rg[ 'kepltr-' + pix ] );
-                fgroup.push( rg[ 'pathSegment-' + (pix) ] );
+                fgroup.push(rg['kepltr-' + pix]);
+                fgroup.push(rg['pathSegment-' + (pix)]);
             }
-            fgroup.push( pathRacks[ pix ] );
+            fgroup.push(pathRacks[pix]);
             //------------------------------------
             // \\// logical group 3 = path finalized group
             //------------------------------------

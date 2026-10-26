@@ -1,4 +1,4 @@
-( function() {
+(function () {
     var {
         ns, sn, $$,
         sconf,
@@ -8,23 +8,14 @@
         toreg,
         amode,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList: {
             create_digital_legend,
         },
     });
     return;
 
 
-
-
-
-
-
-
-
-    function create_digital_legend()
-    {
+    function create_digital_legend() {
         return;
         //see lemma 11 for the sample
         /*
@@ -33,13 +24,11 @@
         */
     }
 
-    function create_digital_legend_for_logic_phase( logic_phase )
-    {
+    function create_digital_legend_for_logic_phase(logic_phase) {
         //--------------------------
         // //\\ data source scenario
         //--------------------------
-        var legendScript =
-        [
+        var legendScript = [
             ////**********************************************************************************
             ////legendScript-format:
             ////clusters separated with <space>:
@@ -51,12 +40,10 @@
             ////'_' is replaced with ' ' in caption,
             ////**********************************************************************************
 
-
              //first table row
             'none,,null none,,"left&nbsp;area:"        ' +
             'none,,"right&nbsp;area:"        ' +
             'none,,"left&nbsp;/&nbsp;right&nbsp;ratio:"',
-
 
              //second table row
             'none,,"bar&nbsp;to&nbsp;bar&nbsp;ratio:" ' +
@@ -78,9 +65,9 @@
 
         ///spawns configuration
         ///returns array-of-lines, line = array-of-clusters, cluster=array-of-tokens,
-        var legendScriptParsed = legendScript.map( (line,lix) => {
+        var legendScriptParsed = legendScript.map((line, lix) => {
             var lparsed = line.split(/\s+/);
-            return lparsed.map( clusterToken => {
+            return lparsed.map(clusterToken => {
                 return clusterToken.split(',');
             });
         });
@@ -91,9 +78,9 @@
         //--------------------------
 
         ssF.createLogic_phaseLegend({
-            tableCaption    : 'Areas and Ratios',
-            noTableTitle    : false,
-            stdMod_given    : stdMod,
+            tableCaption: 'Areas and Ratios',
+            noTableTitle: false,
+            stdMod_given: stdMod,
             logic_phase,
             rowsCount,
             clustersCount,
@@ -103,8 +90,6 @@
             updatesDataInCell,
         })
         return;
-
-
 
         /*
         //no dice for caption row
@@ -142,7 +127,7 @@
         }
         */
 
-        function makesBodyCluster({ rowIx, clusterIx, }){
+        function makesBodyCluster({ rowIx, clusterIx, }) {
             return ssF.dataSourceParsed1__2__makesBodyCluster({
                 rowIx,
                 clusterIx,
@@ -150,8 +135,7 @@
             })
         }
 
-        function updatesDataInCell({ rowIx, clusterIx, })
-        {
+        function updatesDataInCell({ rowIx, clusterIx, }) {
             return ssF.dataSourceParsed1__2__updatesDataInCell({
                 rowIx,
                 clusterIx,
@@ -162,6 +146,4 @@
     //=========================================
     // \\// creates logic_phase table
     //=========================================
-
-}) ();
-
+})();

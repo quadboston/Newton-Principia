@@ -1,10 +1,10 @@
-(function(){
+(function () {
 const { sn, $$, eachprop, has, haz, hafff, fmethods,
         fconf, sconf, ssF, sDomF, rg,  amode, stdMod,
-} = window.b$l.apptree({ stdModExportList : {
+} = window.b$l.apptree({ stdModExportList: {
         media_upcreate___before_basic,
         media_upcreate___after_basic,
-}});
+} });
 var initialization_is_done = false;
 var zorderFixed = false;
 //enables steps BC, CD, ... by clicks on B, C, ...
@@ -15,24 +15,24 @@ const lemmaP2coroll =
 return;
 
 
-function media_upcreate___before_basic (){
+function media_upcreate___before_basic() {
     //reestablishes detecton to hide/unhide image for case the state
     //rg.detected_user_interaction_effect_DONE came from subessay launch
     sDomF.detected_user_interaction_effect(
-        !rg.detected_user_interaction_effect_DONE );
+        !rg.detected_user_interaction_effect_DONE);
 
     //***********************************************************
     //todo //patch
-    sn( 'displayPathStep', rg, { value : 1 } );
-    sn( 'stepIx', rg, { value : 1 } );
-    sn( 'p', rg.P, { abs : 1 } );
+    sn('displayPathStep', rg, { value: 1 });
+    sn('stepIx', rg, { value: 1 });
+    sn('p', rg.P, { abs: 1 });
     //***********************************************************
 
-    if( sconf.TIMER_AND_LOGIC_STEPS_COINSIDE ||
-        ( haz( amode, 'logic_phase') === 'proof' &&
+    if (sconf.TIMER_AND_LOGIC_STEPS_COINSIDE ||
+        (haz(amode, 'logic_phase') === 'proof' &&
             fconf.sappId === "b1sec2prop1"
         )
-    ){
+    ) {
         //Adjust when the following decorations start
         //becoming visible for the P1 proof tab.
 
@@ -79,17 +79,17 @@ function media_upcreate___before_basic (){
     //-------------------------------------------------------
     let CStart = rg.C.decStart;
 
-    if( fconf.sappId === 'b1sec2prop2' ){
-        lemmaP2coroll.forEach( pn => {
+    if (fconf.sappId === 'b1sec2prop2') {
+        lemmaP2coroll.forEach(pn => {
             rg[pn].decStart = CStart;
             rg[pn].decEnd = CStart+3;
         });
     }
-    if(
+    if (
         amode.subessay === 'cor-1' ||
         amode.subessay === 'cor-6' ||
         amode.logic_phase !== 'corollary'
-    ){
+    ) {
         rg.V.decStart = 11111111;
         rg.V.decEnd   = 1111111;
     } else {
@@ -103,94 +103,94 @@ function media_upcreate___before_basic (){
     pathDelays2forceDraggers();
     stdMod.allPathRacks_2_unseenSVGs();
     stdMod.SAvV_model__2__svg(); //changes svg
-    
+
     //***********************************************************
     //wraps remained tasks into d8d slider
     //if slider is already created ...
-    hafff( rg.slider_sltime, 'upates_timeSlider8unmasksSvg' );
-    hafff( rg.rgslid_dt, 'updates_sliderGUI' );
+    hafff(rg.slider_sltime, 'upates_timeSlider8unmasksSvg');
+    hafff(rg.rgslid_dt, 'updates_sliderGUI');
     //***********************************************************
 
     //----------------------------------------------------
     // //\\ shows next move of the proof
     //----------------------------------------------------
-    if( !initialization_is_done ) {
+    if (!initialization_is_done) {
         ///launch time work
         initialization_is_done = true;
-        if( POINTS_BCDE_ARE_ACTIVE ) {
-            rg.B.svgel.addEventListener( 'click', function() {
-                if( amode.logic_phase === 'proof' ) {
-                    fmethods.executeCapturedState( '1-4' );
+        if (POINTS_BCDE_ARE_ACTIVE) {
+            rg.B.svgel.addEventListener('click', function () {
+                if (amode.logic_phase === 'proof') {
+                    fmethods.executeCapturedState('1-4');
                 }
             });
-            rg.C.svgel.addEventListener( 'click', function() {
-                if( amode.logic_phase === 'proof' ) {
-                    fmethods.executeCapturedState( '1-C' );
+            rg.C.svgel.addEventListener('click', function () {
+                if (amode.logic_phase === 'proof') {
+                    fmethods.executeCapturedState('1-C');
                 }
             });
-            rg.D.svgel.addEventListener( 'click', function() {
-                if( amode.logic_phase === 'proof' ) {
-                    fmethods.executeCapturedState( '1-D' );
+            rg.D.svgel.addEventListener('click', function () {
+                if (amode.logic_phase === 'proof') {
+                    fmethods.executeCapturedState('1-D');
                 }
             });
-            rg.E.svgel.addEventListener( 'click', function() {
-                if( amode.logic_phase === 'proof' ) {
-                    fmethods.executeCapturedState( '1-E' );
+            rg.E.svgel.addEventListener('click', function () {
+                if (amode.logic_phase === 'proof') {
+                    fmethods.executeCapturedState('1-E');
                 }
             });
-            ['B', 'C', 'D', 'E'].forEach( id => {
+            ['B', 'C', 'D', 'E'].forEach(id => {
                 rg[id + 'title'] = $$
-                    .cNS( 'title' )
-                    .to( rg[id].svgel )
-                    .addClass( 'tpstroke' )
-                    .addClass( 'tpfill' )
+                    .cNS('title')
+                    .to(rg[id].svgel)
+                    .addClass('tpstroke')
+                    .addClass('tpfill')
                     ();
             });
         }
     }
     var pointsAreOn = POINTS_BCDE_ARE_ACTIVE &&
                         amode.logic_phase === 'proof';
-    ['B', 'C', 'D', 'E'].forEach( id => {
-            let rgX = rg[ id ];
-            if( has(rgX, 'svgel' )){
-                rgX.svgel.setAttribute( 'r', pointsAreOn ? '6' : '4' );
-                rgX.svgel.style[ 'fill' ] = pointsAreOn ?
-                '#cccccc' : sDomF.getFixedColor( 'bodyColor' );// TODO: check
+    ['B', 'C', 'D', 'E'].forEach(id => {
+            let rgX = rg[id];
+            if (has(rgX, 'svgel')) {
+                rgX.svgel.setAttribute('r', pointsAreOn ? '6' : '4');
+                rgX.svgel.style['fill'] = pointsAreOn ?
+                '#cccccc' : sDomF.getFixedColor('bodyColor');// TODO: check
             //} else {
                 //todo why is this?
                 //c cc( rgX.pname + ' svg is missed in media-model.js' );
             }
-            if( POINTS_BCDE_ARE_ACTIVE ) {
-                rg[ id + 'title' ].textContent =
+            if (POINTS_BCDE_ARE_ACTIVE) {
+                rg[id + 'title'].textContent =
                     pointsAreOn ? 'show next move' : '';
             }
     });
     //----------------------------------------------------
     // \\// shows next move of the proof
     //----------------------------------------------------
-    if(!haz( fconf, 'RESEARCH' )){
+    if (!haz(fconf, 'RESEARCH')) {
         //exists in popular ver:
         rg['main-legend'].tb.corollary.style.display =
-           ( amode.logic_phase === 'corollary' && amode.subessay === 'cor-1' ) ?
+           (amode.logic_phase === 'corollary' && amode.subessay === 'cor-1') ?
            'table' : 'none';
     }
     ssF.mediaModelInitialized = true;
 }
 
-function pathDelays2forceDraggers (){
-    ['B','C','D','E','F'].forEach( (pname, ix) => {
+function pathDelays2forceDraggers() {
+    ['B', 'C', 'D', 'E', 'F'].forEach((pname, ix) => {
         let decEnd = rg.C.decEnd+(ix+10)*4;
         let decStart = rg.C.decStart+ix*4;
         let nam0 = 'VV'+ix;
         let nam1 = 'VVV'+ix;
         let doPaintPname = false;
-        Object.assign( rg[ nam0 ], {
-            decStart    : 111111111,
+        Object.assign(rg[nam0], {
+            decStart: 111111111,
             decEnd,
             doPaintPname,
         });
-        Object.assign( rg[ nam1 ], {
-            decStart    : 111111111,
+        Object.assign(rg[nam1], {
+            decStart: 111111111,
             decEnd,
             doPaintPname,
         });
@@ -198,49 +198,49 @@ function pathDelays2forceDraggers (){
 }
 
 function putInFront(...items) {
-	for (const item of items) {
-		const svg = item.svgel;
-		const parent = svg.parentNode;
-		svg.remove();
-		parent.appendChild(svg);
-	}
+    for (const item of items) {
+        const svg = item.svgel;
+        const parent = svg.parentNode;
+        svg.remove();
+        parent.appendChild(svg);
+    }
 }
 
 function putInBack(...items) {
-	for (const item of items) {
-		const svg = item.svgel;
-		const parent = svg.parentNode;
-		svg.remove();
-		parent.insertBefore(svg, parent.firstChild);
-	}
+    for (const item of items) {
+        const svg = item.svgel;
+        const parent = svg.parentNode;
+        svg.remove();
+        parent.insertBefore(svg, parent.firstChild);
+    }
 }
 
-function media_upcreate___after_basic (){
+function media_upcreate___after_basic() {
     ///todm this fixes refreshment of green free Kepler triangles
     ///when media scales,
-    eachprop( stdMod.decor, (dec,pname) => {
-        if( !dec.isPoint && dec.pivotNames.length !== 2 ) {
+    eachprop(stdMod.decor, (dec, pname) => {
+        if (!dec.isPoint && dec.pivotNames.length !== 2) {
             dec.poly_2_updatedPolyPos8undisplay();
         }
     });
 
     ///this is a way around canonical config:
     ///placing svg shapes on top of configured z order,
-    if( !zorderFixed ) {
-		putInFront(rg['S']);
-		putInBack(rg['Bc']);
+    if (!zorderFixed) {
+        putInFront(rg['S']);
+        putInBack(rg['Bc']);
 
         ///path
         const path = rg.path.pos;
-        path.forEach( (pt, pix) => {
-            if( !pix ) return;
-            putInFront(rg[ 'force-' + (pix - 1) + '-applied']);
+        path.forEach((pt, pix) => {
+            if (!pix) return;
+            putInFront(rg['force-' + (pix - 1) + '-applied']);
         });
 
         ///put handler kernels over vector tips
-        ['B','C','D','E','F'].forEach( (pname, ix) => {
-			putInFront(rg[pname]); // force vector bases
-			putInFront(rg['VVV'+ix+'-kernel']); // force draggers
+        ['B', 'C', 'D', 'E', 'F'].forEach((pname, ix) => {
+            putInFront(rg[pname]); // force vector bases
+            putInFront(rg['VVV'+ix+'-kernel']); // force draggers
         });
 
         zorderFixed = true;

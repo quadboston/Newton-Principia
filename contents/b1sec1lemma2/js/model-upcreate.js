@@ -1,14 +1,14 @@
-( function () {
-    var { sn, fapp, sconf, stdMod, } = window.b$l.apptree({ stdModExportList :
+(function () {
+    var { sn, fapp, sconf, stdMod, } = window.b$l.apptree({ stdModExportList:
         { model_upcreate, },
     });
 
-    var stdL2       = sn('stdL2', fapp );
-    var dataregs    = sn('dataregs', stdL2 );
-    var numModel    = sn('numModel', stdL2 );
-    var study       = sn('study', stdL2 );
+    var stdL2       = sn('stdL2', fapp);
+    var dataregs    = sn('dataregs', stdL2);
+    var numModel    = sn('numModel', stdL2);
+    var study       = sn('study', stdL2);
 
-    Object.assign( study,
+    Object.assign(study,
     {
         calculates_monotIntervals8ref,
         isMonotonic,
@@ -17,8 +17,7 @@
     return;
 
 
-    function model_upcreate()
-    {
+    function model_upcreate() {
         //Calculate the following for both figures first, before calling the
         //function to match the ratio of areas.
         Object.values(dataregs).forEach(dr => {
@@ -39,13 +38,10 @@
         study.calculateAndStoreTransformedFigureAreaRatios();
     }
 
-    
-
     ///second point in changes contains first turning point
     ///if function is monotonic, then there is only
     ///"one turning point" - a last one
-    function calculates_monotIntervals8ref(dr)
-    {
+    function calculates_monotIntervals8ref(dr) {
         //part I: intervals
         let fP = dr.figureParams;
 
@@ -56,22 +52,22 @@
         var maxY = p[0][1];
         let len = p.length;
         let dir = p[1][1] > p[0][1] ? 1 : 0;
-        changes.push( {ix, dir, pstart:p[ix], mp_start_ix:ix } );
+        changes.push({ ix, dir, pstart: p[ix], mp_start_ix: ix });
         var stashedChan = changes[0];
-        for( ix = 1; ix<len; ix++ ) {
+        for (ix = 1; ix < len; ix++) {
             let y = p[ix][1];
             minY = minY > y ? y : minY;
             maxY = maxY > y ? maxY : y;
             let newDir = p[ix][1] > p[ix-1][1] ? 1 : 0;
-            if( newDir !== dir ) {
+            if (newDir !== dir) {
                 dir = newDir;
                 let ch = {
-                    ix:ix-1, //micropoints turning index
-                    mp_start_ix : ix-1,
+                    ix: ix-1, //micropoints turning index
+                    mp_start_ix: ix-1,
                     dir,
-                    pstart:p[ix-1]
+                    pstart: p[ix-1]
                 };
-                changes.push( ch );
+                changes.push(ch);
                 //updates previous interval
                 stashedChan.pend = p[ix-1];
                 stashedChan.mp_end_ix = ix-1;
@@ -92,11 +88,11 @@
         ///chooses only increasing (in svg context) intervals
         var gapXMax = 0;
         var gapX_ix = 0;
-        for(let ch=0; ch<changes.length; ch++ ) {
-            let change = changes[ ch ];
-            let widthx = changes[ ch ].widthx;
+        for (let ch = 0; ch < changes.length; ch++) {
+            let change = changes[ch];
+            let widthx = changes[ch].widthx;
             //if( change.dir > 0 && gapXMax < widthx ) {
-            if( gapXMax < widthx ) {
+            if (gapXMax < widthx) {
                 ////well, bigger gap is found
                 gapXMax = widthx;
                 gapX_ix = ch;
@@ -122,10 +118,10 @@
                 minY,
                 maxY,
                 complimentaryAreaBar, //area size
-                mp_start_ix : chon.mp_start_ix,
-                mp_end_ix : chon.mp_end_ix,
-                x_start : chon.pstart[0],
-                x_end : chon.pend[0],
+                mp_start_ix: chon.mp_start_ix,
+                mp_end_ix: chon.mp_end_ix,
+                x_start: chon.pstart[0],
+                x_end: chon.pend[0],
             };
         }
         //part II: flag: fP.deltaOnLeft
@@ -137,12 +133,9 @@
         dr.yVariations.yRef = dr.yVariations.maxY;
     }
 
-
-
     function isMonotonic(dr) {
         return dr?.yVariations?.changes?.length === 1;
     }
-
 
     function areBothFiguresMonotonic() {
         const drL = stdL2.dataregs.drL;
@@ -150,8 +143,4 @@
 
         return (isMonotonic(drL) && isMonotonic(drR));
     }
-}) ();
-
-
-
-
+})();

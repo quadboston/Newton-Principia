@@ -1,4 +1,4 @@
-( function() {
+(function () {
     var {
         sn, $$, paste, haz, bezier, nssvg,
         sconf, ssD, ssF,
@@ -10,17 +10,15 @@
     return;
 
 
-    function setModule()
-    {
-        stdMod.media_upcreate___part_of_medupcr_basic =media_upcreate___part_of_medupcr_basic;
+    function setModule() {
+        stdMod.media_upcreate___part_of_medupcr_basic = media_upcreate___part_of_medupcr_basic;
         pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
     }
 
     //=========================================================
     // //\\ updates and creates media
     //=========================================================
-    function media_upcreate___part_of_medupcr_basic()
-    {
+    function media_upcreate___part_of_medupcr_basic() {
         // console.log('media-upcreate');
 
         //:study-pars
@@ -31,11 +29,11 @@
 
         //var medCurvPivots      = modCurvPivots.map( mod2innCustom );
         //var medRemoteCurPivots = ssD.modRemoteCurPivots.map( mod2innCustom );
-        var medCurvPivots      = modCurvPivots.map( pos => {
-            return ssF.mod2inn( pos, stdMod );
+        var medCurvPivots      = modCurvPivots.map(pos => {
+            return ssF.mod2inn(pos, stdMod);
         });
-        var medRemoteCurPivots = ssD.modRemoteCurPivots.map( pos => {
-            return ssF.mod2inn( pos, stdMod );
+        var medRemoteCurPivots = ssD.modRemoteCurPivots.map(pos => {
+            return ssF.mod2inn(pos, stdMod);
         });
 
         var pointA     = rg.A;
@@ -53,31 +51,28 @@
         // \\// spawns study model from main parameters ssD
         //===================================================
 
-
         //==========================================
         // //\\ does paint view
         //      (in viewBox for SVG)
         //==========================================
 
         // //\\ paints curve with pivot points
-        var mainCurve = toreg( 'mainCurve' )();
+        var mainCurve = toreg('mainCurve')();
         mainCurve.mediael = bezier.mediafy({
-            mediael : mainCurve.mediael, //this is a rack, not svg: goal?: not to recreate DOM.
-            parentSVG : stdMod.mmedia,
-            pivots : medCurvPivots,
-            bcurve :
-            {
-                'stroke-width' : 1 * sconf.thickness
+            mediael: mainCurve.mediael, //this is a rack, not svg: goal?: not to recreate DOM.
+            parentSVG: stdMod.mmedia,
+            pivots: medCurvPivots,
+            bcurve: {
+                'stroke-width': 1 * sconf.thickness
             },
             //Ensure second paint pivot is hidden.  Otherwise a small dot will be in its location for the claim tab, since the point that would
             //cover it for other tabs is hidden.
-            paintPivots : {
-                topaint : [ null, null, true ],
-                attrs :
-                {
-                    'stroke-width' : 1 * sconf.thickness,
+            paintPivots: {
+                topaint: [null, null, true],
+                attrs: {
+                    'stroke-width': 1 * sconf.thickness,
                     //r : 4 * sconf.thickness
-                    r : 0.7 * sconf.thickness
+                    r: 0.7 * sconf.thickness
                 }
             }
         });
@@ -93,31 +88,30 @@
             //tr( 'pivotPoint'+w0, 'svgel', ww );
         }
         */
-        $$.cls( 'tostroke', mainCurve.mediael.paintedCurve)
-          .cls( 'tp-' + '_a_b_c')
+        $$.cls('tostroke', mainCurve.mediael.paintedCurve)
+          .cls('tp-' + '_a_b_c')
           ;
-        rg[ 'pivotPoint1' ].doWhiteKernel = true;
-        rg[ 'pivotPoint2' ].doWhiteKernel = true;
-        paste( rg.pivotPoint1.pos, modCurvPivots[1] );
-        paste( rg.pivotPoint2.pos, modCurvPivots[2] );
+        rg['pivotPoint1'].doWhiteKernel = true;
+        rg['pivotPoint2'].doWhiteKernel = true;
+        paste(rg.pivotPoint1.pos, modCurvPivots[1]);
+        paste(rg.pivotPoint2.pos, modCurvPivots[2]);
         //--------------------------------------------------------------
         // \\// helps to draw hollow dragee-points on diagram
         //--------------------------------------------------------------
 
-        var remoteCurve = toreg( 'remoteCurve' )();
+        var remoteCurve = toreg('remoteCurve')();
         remoteCurve.mediael = bezier.mediafy({
-            mediael : remoteCurve.mediael,
-            parentSVG : stdMod.mmedia,
-            pivots : medRemoteCurPivots,
-            bcurve :
-            {
-                stroke : 'transparent', //todm add to bsl core
-                'stroke-width' : 1 * sconf.thickness
+            mediael: remoteCurve.mediael,
+            parentSVG: stdMod.mmedia,
+            pivots: medRemoteCurPivots,
+            bcurve: {
+                stroke: 'transparent', //todm add to bsl core
+                'stroke-width': 1 * sconf.thickness
             }
         });
-        $$.$( remoteCurve.mediael.paintedCurve )
-            .addClass( 'tostroke tp-_abc' )
-            .toggleClass( 'undisplay', haz( remoteCurve, 'undisplay' ) )
+        $$.$(remoteCurve.mediael.paintedCurve)
+            .addClass('tostroke tp-_abc')
+            .toggleClass('undisplay', haz(remoteCurve, 'undisplay'))
             ;
         // \\// paints curve with two pivot points
 
@@ -126,12 +120,12 @@
         //------------------------------------------
         var wCCA = ssF.calculateCurvedArea;
         //api:calculateCurvedArea( rgId, pivots, tend, startPoint, endPoint )
-        wCCA( 'area-Ace', medRemoteCurPivots,  tC, pointA.medpos, pointOe.medpos );
-        wCCA( 'area-Abd', medRemoteCurPivots,  tB, pointA.medpos, pointOd.medpos );
-        paintCurveArea( 'area-Ace', 'logic_phase--proof', '_ace' );
+        wCCA('area-Ace', medRemoteCurPivots,  tC, pointA.medpos, pointOe.medpos);
+        wCCA('area-Abd', medRemoteCurPivots,  tB, pointA.medpos, pointOd.medpos);
+        paintCurveArea('area-Ace', 'logic_phase--proof', '_ace');
         //.apparently makes this shape-element exclusively present in
         //.'logic_phase--proof' mode
-        paintCurveArea( 'area-Abd', 'logic_phase--proof', '_abd' );
+        paintCurveArea('area-Abd', 'logic_phase--proof', '_abd');
         //------------------------------------------
         //  \\// proof curved areas
         //------------------------------------------
@@ -140,11 +134,11 @@
         //  //\\ given curved areas
         //------------------------------------------
         //console.log(medCurvPivots + '; ' + tC)
-        wCCA( 'area-ACE', medCurvPivots,       tC, pointA.medpos, pointE.medpos );
-        wCCA( 'area-ABD', medCurvPivots,       tB, pointA.medpos, pointD.medpos );
+        wCCA('area-ACE', medCurvPivots,       tC, pointA.medpos, pointE.medpos);
+        wCCA('area-ABD', medCurvPivots,       tB, pointA.medpos, pointD.medpos);
         //.null makes this element present in all(?) theoreons
-        paintCurveArea( 'area-ACE', null, '_a_c_e' );
-        paintCurveArea( 'area-ABD', null, '_a_b_d' );
+        paintCurveArea('area-ACE', null, '_a_c_e');
+        paintCurveArea('area-ABD', null, '_a_b_d');
         //------------------------------------------
         //  \\// given curved areas
         //------------------------------------------
@@ -152,8 +146,8 @@
         //------------------------------------------
         //  //\\ proof linear areas
         //------------------------------------------
-        paintLikeAGE( 'Age', 'logic_phase--proof', '_age', 'tostroke' );
-        paintLikeAGE( 'Afd', 'logic_phase--proof', '_afd', 'tostroke' );
+        paintLikeAGE('Age', 'logic_phase--proof', '_age', 'tostroke');
+        paintLikeAGE('Afd', 'logic_phase--proof', '_afd', 'tostroke');
         //------------------------------------------
         //  \\// proof linear areas
         //------------------------------------------
@@ -170,7 +164,7 @@
         // \\// does paint view
         //==========================================
 
-        if( ssF.mediaModelInitialized ) {
+        if (ssF.mediaModelInitialized) {
             var ww = stdMod.medD8D;
             ww && ww.updateAllDecPoints();
         }
@@ -186,15 +180,13 @@
         return;
         // \\//\\// ends imperative part of the module
 
-
         //==========================================
         // //\\ curved areas
         //==========================================
-        function paintCurveArea( areaId, fullMode, topicGroup_decapitalized )
-        {
-            var area = rg[ areaId ];
+        function paintCurveArea(areaId, fullMode, topicGroup_decapitalized) {
+            var area = rg[areaId];
 
-            var lowCurve = rg[ areaId ].curve;
+            var lowCurve = rg[areaId].curve;
 
             var dd = '';
             dd += "M" + area.startPoint[0] + ' ' +
@@ -207,54 +199,47 @@
                         area.endPoint[1] + ' ';
 
             area.mediael = nssvg.u({
-                svgel : area.mediael,
-                type : 'path',
-                d:dd,
-                parent : stdMod.mmedia
+                svgel: area.mediael,
+                type: 'path',
+                d: dd,
+                parent: stdMod.mmedia
             });
             //area.mediael.setAttributeNS( null, 'class', fullMode + ' tofill' );
             fullMode = fullMode ? ' ' + fullMode : '';
 
             $$.$(area.mediael)
-                .cls( ' tp-'+topicGroup_decapitalized + fullMode + ' tofill' )
-                .toggleClass( 'undisplay', haz( area, 'undisplay' ) )
+                .cls(' tp-'+topicGroup_decapitalized + fullMode + ' tofill')
+                .toggleClass('undisplay', haz(area, 'undisplay'))
                 ;
         }
         //==========================================
         // \\// curved areas
         //==========================================
 
-
-
-
         //==========================================
         // //\\ linear areas
         //==========================================
         ///paints AGE-like area
-        function paintLikeAGE( areaId, fullMode, topicGroup_decapitalized, stroke0fill )
-        {
-            var area = rg[ areaId ];
-            var vertices = area.vertices.map( pos => {
-                return ssF.mod2inn( pos, stdMod );
+        function paintLikeAGE(areaId, fullMode, topicGroup_decapitalized, stroke0fill) {
+            var area = rg[areaId];
+            var vertices = area.vertices.map(pos => {
+                return ssF.mod2inn(pos, stdMod);
             });
             area.mediael = nssvg.polyline({
-                pivots : vertices,
-                svgel : area.mediael,
-                parent : stdMod.mmedia
+                pivots: vertices,
+                svgel: area.mediael,
+                parent: stdMod.mmedia
             });
-            $$.$( area.mediael )
+            $$.$(area.mediael)
                 .addClass(`tp-${topicGroup_decapitalized} tofill`)
-                .toggleClass( 'undisplay', haz( area, 'undisplay' ) )
+                .toggleClass('undisplay', haz(area, 'undisplay'))
                 ;
         }
         //==========================================
         // \\// linear areas
         //==========================================
-
     }
     //=========================================================
     // \\// updates and creates media
     //=========================================================
-
-}) ();
-
+})();

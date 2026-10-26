@@ -1,4 +1,4 @@
-( function() {
+(function () {
     var { ns, $$, userOptions, fconf, has, haz, nsconf } = window.b$l.apptree({});
     const LATIN = "latin",
           USE_BG_IMAGE = "use-background-image";
@@ -12,8 +12,9 @@
     userOptions.usingBackgroundImage = useBGimage;
     userOptions.userOptions_2_updatedGUI = userOptions_2_updatedGUI;
     userOptions.shouldShowSubessayMenu = shouldShowSubessayMenu;
-    return;   
-    
+    return;
+
+
     function showingLatin() {
         return sessionStorage.getItem(LATIN) === 'true';
     }
@@ -39,7 +40,7 @@
     function doesStoreOption(option, newValue) {
         sessionStorage.setItem(option, newValue);
     }
-    
+
     //decides whether an entire subessay-menu should be visible
     function shouldShowSubessayMenu(...args) {
         if (args.length > 1) {
@@ -54,5 +55,4 @@
         }
         return fconf.SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM;
     }
-
-}) ();
+})();

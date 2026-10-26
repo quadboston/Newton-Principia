@@ -1,4 +1,4 @@
-( function() {
+(function () {
     var {
         ns, $$, sn, haz, sconf, fconf,
         sDomF,
@@ -8,17 +8,7 @@
     return;
 
 
-
-
-
-
-
-
-
-
-
-    function setModule()
-    {
+    function setModule() {
         //todm: must be loop via stMods
         sDomF.rgX_2_dragWrap   = rgX_2_dragWrap;
         //sDomF.doProcess_rgX = doProcess_rgX;
@@ -38,14 +28,13 @@
     }) {
         var pointWrap               = rgX;
         pointWrap.spinnerClsId      = 'point-' +
-            sDomF.toCssIdentifier( rgX.pname ) +
+            sDomF.toCssIdentifier(rgX.pname) +
             '-slider';
         //**rgX must have dragDecorColor' ) || pcolor:
-        pointWrap.dragDecorColor    = haz( rgX, 'dragDecorColor' ) || rgX.pcolor;
+        pointWrap.dragDecorColor    = haz(rgX, 'dragDecorColor') || rgX.pcolor;
         var argc = //= see: **api-pointWrap_2_dragWrap
         {
-            pointWrap           : rgX,
-
+            pointWrap: rgX,
 
             /*
                 //see: **api-doProcessWrap
@@ -58,18 +47,17 @@
            */
             doProcess,
 
-
-            orientation         : orientation,
-            nospinner           : nospinner,
+            orientation: orientation,
+            nospinner: nospinner,
         };
-        medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE( argc );
+        medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE(argc);
 
         // Move handler to the top of the svg so it never
         // disappears when it is overlapped by other elements
         const svg = document.querySelector('svg.bsl--svgscene');
         const handlers = document.querySelectorAll('circle[fill="white"]');
         handlers.forEach((element) => {
-          svg.appendChild(element); 
+          svg.appendChild(element);
         });
     }
 
@@ -85,24 +73,24 @@
 
        */
         arg
-    ){
-        var pWrap = arg.pointWrap; 
-        switch( arg.down_move_up ) {
+    ) {
+        var pWrap = arg.pointWrap;
+        switch (arg.down_move_up) {
             case 'down':
                 //**rgX optionally can have processDownEvent method:
-                ns.hafb( pWrap, 'processDownEvent' )( arg );
+                ns.hafb(pWrap, 'processDownEvent')(arg);
                 break;
-            case 'up' :
+            case 'up':
                 //**rgX optionally can have processUpEvent method:
-                ns.hafb( pWrap, 'processUpEvent' )(arg);
+                ns.hafb(pWrap, 'processUpEvent')(arg);
                 break;
             case 'move':
 
                 //**rgX can be media mover engine
-                if( ns.haz( pWrap, 'diagramPanner' ) ) {
+                if (ns.haz(pWrap, 'diagramPanner')) {
                     var css2model = sDomF.out2inn();
-                    var mouseOnSurf = sDomF.outparent2inn( arg.point_on_dragSurf );
-                } else if( haz(pWrap, 'unscalable' ) ){
+                    var mouseOnSurf = sDomF.outparent2inn(arg.point_on_dragSurf);
+                } else if (haz(pWrap, 'unscalable')) {
                     ////good for bottom side sliders which must igonre zooming
                     var css2model = sDomF.out2inn() / sconf.originalMod2inn_scale;
                 } else {
@@ -121,7 +109,7 @@
 
                     //"fullMoveInsideMathModel",
                     //is in model units except for diagram-panner(-as-a-whole)
-                    scaledMove, 
+                    scaledMove,
 
                     mouseOnSurf, //possibly in media units, not im model units,
                 );
@@ -131,8 +119,4 @@
     //==========================================
     // \\// attemt to unify dragger for point
     //==========================================
-
-
-
-}) ();
-
+})();

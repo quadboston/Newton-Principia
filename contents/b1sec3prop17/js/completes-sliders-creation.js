@@ -1,14 +1,13 @@
-( function() {
-    var { 
+(function () {
+    var {
         sn, mat, nspaste, sData, amode, stdMod, sconf, rg, ssF
-    } = window.b$l.apptree({ stdModExportList : { completesSlidersCreation, }});
-    var conics = sn( 'conics', mat );
-    var sop = sn( 'sampleOrbitParameters', sconf );
+    } = window.b$l.apptree({ stdModExportList: { completesSlidersCreation, } });
+    var conics = sn('conics', mat);
+    var sop = sn('sampleOrbitParameters', sconf);
     return;
 
-    
-    function completesSlidersCreation()
-    {
+
+    function completesSlidersCreation() {
         //console.log('completesSlidersCreation'); //called once on page load
 
         var op = sconf.orbitParameters;
@@ -16,17 +15,17 @@
         //======================================================================
         // //\\ centripetal force slider (f)
         //======================================================================
-        rg.f.processOwnDownEvent = function() {
+        rg.f.processOwnDownEvent = function () {
             //--------------------------------------------------------
             // //\\ stashes sample
             //--------------------------------------------------------
             sData.Lpos0_g = rg.f.pos[0];
             sData.Lpos1_g = rg.f.pos[1];
             {
-                let dShift = mat.sm( 1, rg.f.pos, -1, rg.p.pos );
-                sData.dShift_g = Math.sqrt( 
-                    dShift[0]*dShift[0] + 
-                    dShift[1]*dShift[1] 
+                let dShift = mat.sm(1, rg.f.pos, -1, rg.p.pos);
+                sData.dShift_g = Math.sqrt(
+                    dShift[0]*dShift[0] +
+                    dShift[1]*dShift[1]
                 );
                 sData.stashedOmega_g = sop.om;
                 sData.stashedCosOmega_g = sop.cosOmega;
@@ -49,13 +48,13 @@
             //--------------------------------------------------------
         };
 
-        rg.f.acceptPos = ( newPos, dragMove ) => {
+        rg.f.acceptPos = (newPos, dragMove) => {
             var { subessay } = amode;
             var newPos0 = dragMove[0] + sData.Lpos0_g;
             var newPos1 = -dragMove[1] + sData.Lpos1_g;
-            let dShift = [ newPos0 - rg.p.pos[0], newPos1 - rg.p.pos[1] ];
-            var dS = Math.sqrt( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
-            if( dS < 0.00000001 ) return;
+            let dShift = [newPos0 - rg.p.pos[0], newPos1 - rg.p.pos[1]];
+            var dS = Math.sqrt(dShift[0]*dShift[0] + dShift[1]*dShift[1]);
+            if (dS < 0.00000001) return;
             var incr = dS / sData.dShift_g;
 
             //-------------------------------------------
@@ -63,40 +62,40 @@
             //-------------------------------------------
             var Kepler_g = sData.stashedKepler_g * incr;
 
-            if( subessay === 'corollary2' ){
+            if (subessay === 'corollary2') {
                 var newLatus = sData.stashedLatus_g;
             } else {
                 var newLatus = sData.stashedLatus_g / incr;
             }
 
             var { e, fi } = conics.innerPars2innerPars({
-                r : rg.p.abs,
-                lat : newLatus,
-                om  : sData.stashedOmega_g,
-                signCosOmega : sData.stashedCosOmega_g,
+                r: rg.p.abs,
+                lat: newLatus,
+                om: sData.stashedOmega_g,
+                signCosOmega: sData.stashedCosOmega_g,
                 Kepler_g,
             });
 
             // sample (green) conic should always be ellipse
             let Sp = ssF.line2abs('Sp').abs; // distance from S to p
             let S2mouse = ssF.linePoints2abs(newPos, rg.S.pos).abs; //S to mouse
-            if(e >= 0.9 || S2mouse >= Sp) {
-                return; 
+            if (e >= 0.9 || S2mouse >= Sp) {
+                return;
             }
 
-            sop.Kepler_v = sData.stashedKepler_v * Math.sqrt( incr );
+            sop.Kepler_v = sData.stashedKepler_v * Math.sqrt(incr);
             sop.Kepler_g = Kepler_g;
             op.Kepler_g = Kepler_g;
             sop.latus = newLatus;
 
-            if( !( subessay === 'corollary2' ) ){
+            if (!(subessay === 'corollary2')) {
                 rg.p.q = fi;
                 //rotates main axis in respect to change q,
                 //bs op.PparQ_initial === initial axis-fi
                 //in respect to SP
                 sop.mainAxisAngle = sop.r2axisX_angle - fi;
             }
-            stdMod.establishesEccentricity( e, !'doAdjustLatus', sop );
+            stdMod.establishesEccentricity(e, !'doAdjustLatus', sop);
             //-------------------------------------------
             // \\// sample
             //-------------------------------------------
@@ -105,17 +104,17 @@
             // //\\ reestablish solved-orbit
             //--------------------------------
             let solvedLatus = sData.stashedLatus / incr;
-            let p17c12 = ( subessay === 'corollary1' || subessay === 'corollary2' );
+            let p17c12 = (subessay === 'corollary1' || subessay === 'corollary2');
             var { e, fi } = conics.innerPars2innerPars({
-                r : ( p17c12 ? rg.P.posInitialUnitVector.abs : rg.P.abs ) *
+                r: (p17c12 ? rg.P.posInitialUnitVector.abs : rg.P.abs) *
                     1,  //We do enforce here only positive branch, no matter is this
                         //ellipse or hyperbola.
-                lat : solvedLatus,
-                om  : sData.stashedOmega,
-                signCosOmega : sData.stashedCosOmega,  // -1 for for cor.
+                lat: solvedLatus,
+                om: sData.stashedOmega,
+                signCosOmega: sData.stashedCosOmega,  // -1 for for cor.
             })
-            if( p17c12 ){
-                if( e > 1 ) {
+            if (p17c12) {
+                if (e > 1) {
                     op.mainAxisAngle = -Math.PI;
                 }
             }
@@ -126,7 +125,7 @@
             //in respect to SP
             op.mainAxisAngle    = op.PparQ_initial - fi;
             op.latus            = solvedLatus;
-            stdMod.establishesEccentricity( e );
+            stdMod.establishesEccentricity(e);
             //--------------------------------
             // \\// reestablish solved-orbit
             //--------------------------------------------------------------------
@@ -137,17 +136,16 @@
         // \\// gamma slider
         //=========================================================================
 
-
         //=========================================================================
         // //\\  body speed slider R
         //=========================================================================
-        rg.R.processOwnDownEvent = function() {
+        rg.R.processOwnDownEvent = function () {
             const pp                    = rg.P.pos;
-            sData.Rpos                 = nspaste( [], rg.R.pos );
-            var dShift                  = mat.sm( 1, rg.R.pos, -1, pp );
-            sData.dShift                = Math.sqrt( 
-                                            dShift[0]*dShift[0] + 
-                                            dShift[1]*dShift[1] 
+            sData.Rpos                 = nspaste([], rg.R.pos);
+            var dShift                  = mat.sm(1, rg.R.pos, -1, pp);
+            sData.dShift                = Math.sqrt(
+                                            dShift[0]*dShift[0] +
+                                            dShift[1]*dShift[1]
                                         );
             sData.stashedOmega          = op.om;
             sData.stashedCosOmega       = op.cosOmega;
@@ -156,29 +154,29 @@
             sData.stashedLatus4slider   = op.latus;
         };
 
-        rg.R.acceptPos = ( newPos, dragMove ) => {
+        rg.R.acceptPos = (newPos, dragMove) => {
             //console.log('moving R');
             var { subessay } = amode;
             const pp = rg.P.pos;
-            let np = nspaste( [], [
+            let np = nspaste([], [
                 dragMove[0] + sData.Rpos[0],
                 -dragMove[1] + sData.Rpos[1]
             ]);
-            var dShift = mat.sm( 1, np, -1, pp );
-            var dS = Math.sqrt( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
+            var dShift = mat.sm(1, np, -1, pp);
+            var dS = Math.sqrt(dShift[0]*dShift[0] + dShift[1]*dShift[1]);
             var increase = dS / sData.dShift;
-            op.Kepler_v = sData.Kepler_v_stashed * increase; 
+            op.Kepler_v = sData.Kepler_v_stashed * increase;
 
-            if( (subessay == 'corollary1' || subessay == 'corollary2' )) {
+            if ((subessay == 'corollary1' || subessay == 'corollary2')) {
                 // can only be dragged vertically
                 var newSinOmega = sData.stashedOmega;
-                var signCosOmega = Math.sign( sData.stashedCosOmega );
+                var signCosOmega = Math.sign(sData.stashedCosOmega);
             } else {
-                const sl = mat.p1_to_p2( pp, np ); //slider
-                if( sl.abs < 0.2 ) return;
+                const sl = mat.p1_to_p2(pp, np); //slider
+                if (sl.abs < 0.2) return;
                 let omega = mat.angleBetweenLines([
-                    [ [0,0], pp ],
-                    [ [0,0], sl.vector ], 
+                    [[0, 0], pp],
+                    [[0, 0], sl.vector],
                 ]).angle;
 
                 //--------------------------------
@@ -187,59 +185,58 @@
                 {
                     //excludes unsafe values
                     let LIM = Math.PI * 0.99999;
-                    if( Math.abs( omega ) > LIM ){
+                    if (Math.abs(omega) > LIM) {
                         //console.log('too close to pi')
-                        omega = Math.sign( omega ) > 0 ? LIM : -LIM;
+                        omega = Math.sign(omega) > 0 ? LIM : -LIM;
                     }
-                    if( Math.abs( omega ) < 0.000001 ){
+                    if (Math.abs(omega) < 0.000001) {
                         //console.log('too close to zero')
-                        omega = Math.sign( omega ) > 0 ? 0.000001 : -0.000001;
+                        omega = Math.sign(omega) > 0 ? 0.000001 : -0.000001;
                     }
                 }
-                var newSinOmega = Math.sin( omega ); 
-                op.om               = newSinOmega;    
-                op.cosOmega         = Math.cos( omega );
-                var signCosOmega = Math.sign( op.cosOmega );
+                var newSinOmega = Math.sin(omega);
+                op.om               = newSinOmega;
+                op.cosOmega         = Math.cos(omega);
+                var signCosOmega = Math.sign(op.cosOmega);
                 //--------------------------------
                 // \\// corrects extreme values
                 //--------------------------------
             }
 
-            var momentumIncrease = increase * Math.abs( newSinOmega / sData.stashedOmega );
+            var momentumIncrease = increase * Math.abs(newSinOmega / sData.stashedOmega);
 
             op.latus = sData.stashedLatus4slider * momentumIncrease * momentumIncrease;
             var { e, fi, } = conics.innerPars2innerPars({
-                r   : sData.stashedR, //rg.P.abs
-                om  : newSinOmega,
-                lat : op.latus,
+                r: sData.stashedR, //rg.P.abs
+                om: newSinOmega,
+                lat: op.latus,
                 signCosOmega,
             });
-            rg.P.q = fi;  
+            rg.P.q = fi;
 
             //rotates main axis in respect to change q,
             //bs op.PparQ_initial === initial axis-fi
             //in respect to SP
             op.mainAxisAngle  = op.PparQ_initial - fi;
 
-            stdMod.establishesEccentricity( e, null );
+            stdMod.establishesEccentricity(e, null);
             stdMod.model8media_upcreate();
         }
         //=========================================================================
         // \\// body speed slider
         //=========================================================================
 
-
         //=========================================================================
         // //\\ sample slider for point r
         //      for Kepler_v
         //=========================================================================
-        rg.point_r.processOwnDownEvent = function() {
+        rg.point_r.processOwnDownEvent = function () {
             const pp                    = rg.p.pos;
-            sData.pos_r                 = nspaste( [], rg.point_r.pos );
-            var dShift                  = mat.sm( 1, rg.point_r.pos, -1, pp );
-            sData.dShift_r              = Math.sqrt( 
-                                            dShift[0]*dShift[0] + 
-                                            dShift[1]*dShift[1] 
+            sData.pos_r                 = nspaste([], rg.point_r.pos);
+            var dShift                  = mat.sm(1, rg.point_r.pos, -1, pp);
+            sData.dShift_r              = Math.sqrt(
+                                            dShift[0]*dShift[0] +
+                                            dShift[1]*dShift[1]
                                         );
             sData.stashedOmega_r        = sop.om;
             sData.Kepler_v_stashed_r    = sop.Kepler_v;
@@ -247,28 +244,28 @@
             sData.stashedLatus4slider_r = sop.latus;
         };
 
-        rg.point_r.acceptPos = ( newPos, dragMove ) => {
+        rg.point_r.acceptPos = (newPos, dragMove) => {
             //console.log('moving point_r');
             var { subessay } = amode;
             const pp = rg.p.pos;
-            let np = nspaste( [], [
+            let np = nspaste([], [
                 dragMove[0] + sData.pos_r[0],
                 -dragMove[1] + sData.pos_r[1]
             ]);
-            var dShift = mat.sm( 1, np, -1, pp );
-            var dS = Math.sqrt( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
+            var dShift = mat.sm(1, np, -1, pp);
+            var dS = Math.sqrt(dShift[0]*dShift[0] + dShift[1]*dShift[1]);
             var increase = dS / sData.dShift_r;
 
-            if( subessay == 'corollary2' ){
+            if (subessay == 'corollary2') {
                 var newSinOmega = sop.om;
-                var signCosOmega = Math.sign( sop.cosOmega );
+                var signCosOmega = Math.sign(sop.cosOmega);
                 var momentumIncrease = increase;
             } else {
-                const sl = mat.p1_to_p2( pp, np ); //slider
-                if( sl.abs < 0.2 ) return;
+                const sl = mat.p1_to_p2(pp, np); //slider
+                if (sl.abs < 0.2) return;
                 var omega = mat.angleBetweenLines([
-                    [ [0,0], pp ],
-                    [ [0,0], sl.vector ], 
+                    [[0, 0], pp],
+                    [[0, 0], sl.vector],
                 ]).angle;
 
                 //--------------------------------
@@ -277,35 +274,35 @@
                 {
                     //excludes unsafe values
                     let LIM = Math.PI * 0.99999;
-                    if( Math.abs( omega ) > LIM ){
-                        omega = Math.sign( omega ) > 0 ? LIM : -LIM;
+                    if (Math.abs(omega) > LIM) {
+                        omega = Math.sign(omega) > 0 ? LIM : -LIM;
                     }
-                    if( Math.abs( omega ) < 0.000001 ){
-                        omega = Math.sign( omega ) > 0 ? 0.000001 : -0.000001;
+                    if (Math.abs(omega) < 0.000001) {
+                        omega = Math.sign(omega) > 0 ? 0.000001 : -0.000001;
                     }
                 }
-                var newSinOmega = Math.sin( omega );
-                var cosOmega = Math.cos( omega );
-                var signCosOmega = Math.sign( cosOmega );
+                var newSinOmega = Math.sin(omega);
+                var cosOmega = Math.cos(omega);
+                var signCosOmega = Math.sign(cosOmega);
                 //--------------------------------
                 // \\// corrects extreme values
                 //--------------------------------
-                var momentumIncrease = increase * Math.abs( newSinOmega / sData.stashedOmega_r );
+                var momentumIncrease = increase * Math.abs(newSinOmega / sData.stashedOmega_r);
             }
 
             let latus = sData.stashedLatus4slider_r * momentumIncrease * momentumIncrease;
             var { e, fi, } = conics.innerPars2innerPars({
-                r : sData.stashedR_r,
-                om : newSinOmega,
-                lat : latus,
+                r: sData.stashedR_r,
+                om: newSinOmega,
+                lat: latus,
                 signCosOmega,
             });
 
             // sample (green) conic must always be ellipse
-            if(e >= 0.9) {
+            if (e >= 0.9) {
                 sData.pAtLimit = true;
                 return false;
-            } else {                
+            } else {
                 sop.Kepler_v = sData.Kepler_v_stashed_r * increase;
                 sop.om = newSinOmega;
                 sop.cosOmega = cosOmega;
@@ -317,18 +314,15 @@
                 //in respect to SP
                 sop.mainAxisAngle = sop.r2axisX_angle - fi;
 
-                stdMod.establishesEccentricity( e,
+                stdMod.establishesEccentricity(e,
                     null,   //null because of latus is already adjusted
-                sop );
+                sop);
 
                 stdMod.model8media_upcreate();
             }
-
         }
         //=========================================================================
         // \\// sample slider for point r
         //=========================================================================
-
     }
-
-}) ();
+})();

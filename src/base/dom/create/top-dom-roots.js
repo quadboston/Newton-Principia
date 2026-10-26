@@ -1,4 +1,4 @@
-( function() {
+(function () {
     var {
         $$,
         fapp, fconf, wrkwin, sDomN, sDomF,
@@ -11,29 +11,28 @@
     return;
 
 
-    function creates_mainWorkspace_domRoots()
-    {
+    function creates_mainWorkspace_domRoots() {
         //==============================================================
         // //\\ essay and media panes
         //==============================================================
-        for( wx=0; wx<2; wx++ ) {
-            if( ( wx===0 && fconf.ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML ) ||
-                ( wx===1 && !fconf.ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML ) ) {
+        for (wx = 0; wx < 2; wx++) {
+            if ((wx === 0 && fconf.ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML) ||
+                (wx === 1 && !fconf.ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML)) {
                 // //\\ creates essaion pane
                 //      "essaion superroot"
                 var wCls = 'bsl-text-widget';
-                if( fconf.attach_menu_to_essaion_root ) {
+                if (fconf.attach_menu_to_essaion_root) {
                     wCls += ' leftside-menuholder';
                 }
                 sDomN.essaionsRoot$ = $$.div()
-                    .cls( wCls )
-                    .to( fapp.fappRoot$ )
+                    .cls(wCls)
+                    .to(fapp.fappRoot$)
                     ;
                 // \\// creates essaion pane
             } else {
                 //: creates media superroot
                 sDomN.simSScene$ = $$.div()
-                    .cls( 'bsl-sim-superscene' )
+                    .cls('bsl-sim-superscene')
                     .to(fapp.fappRoot$)
                     ;
             }
@@ -46,36 +45,33 @@
         wrkwin.createDividorResizer();
     }
 
-
     //===================================================================
     // //\\ this makes effect of fading-out
     //      the original picture
     //===================================================================
-    function detected_user_interaction_effect( doShowDiagram )
-    {
-        doesShowDiagram( doShowDiagram );
-        if( typeof fconf.timeToShowOriginalDiagram_effective === 'number' &&
-            fconf.timeToShowOriginalDiagram_effective > 0 && doShowDiagram ) {
+    function detected_user_interaction_effect(doShowDiagram) {
+        doesShowDiagram(doShowDiagram);
+        if (typeof fconf.timeToShowOriginalDiagram_effective === 'number' &&
+            fconf.timeToShowOriginalDiagram_effective > 0 && doShowDiagram) {
             setTimeout(
                 () => {
-                    doesShowDiagram( false );
+                    doesShowDiagram(false);
                 },
                 fconf.timeToShowOriginalDiagram_effective
             );
         }
     }
-    function doesShowDiagram( doShowDiagram ) { 
+    function doesShowDiagram(doShowDiagram) {
         rg.detected_user_interaction_effect_DONE = !doShowDiagram;
         // with the study lab enabled, the book's diagram stays visible
         // for comparing the model with it
-        if( doShowDiagram || !sconf.enableStudylab ) {
+        if (doShowDiagram || !sconf.enableStudylab) {
             stdMod.imgRk.dom$
-               [ doShowDiagram ? 'removeClass' : 'addClass' ]( 'in-study' );
+               [doShowDiagram ? 'removeClass' : 'addClass']('in-study');
         }
         rg.allLettersAreHidden = doShowDiagram;
     }
     //===================================================================
     // \\// this makes effect of fading-out
     //===================================================================
-
-}) ();
+})();

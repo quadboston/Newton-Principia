@@ -8,8 +8,7 @@
     // \\// to link to app
     //================================
 
-    function establishesContentTriggers( postExecutionCallBack )
-    {
+    function establishesContentTriggers(postExecutionCallBack) {
         //================================
         // //\\ to link to app
         //      based on b$l framwork
@@ -21,8 +20,7 @@
         //can be either like const IMAGE_PATH = '../../local-content-trigger';
 
         ///distributes images
-        var divs = document.querySelectorAll( '.trigger-option' ).forEach( div =>
-        {
+        var divs = document.querySelectorAll('.trigger-option').forEach(div => {
             div.innerHTML = `
                 <img class="isclosed" src="${IMAGE_PATH}/content-book-closed.png"
 					alt="Closed book icon" title="Show book credit">
@@ -30,22 +28,19 @@
 					alt="Open book icon" title="Hide book credit">
             ` + div.innerHTML;
         });
-        var divs = document.querySelectorAll( 'div.trigger-option' ).forEach( div =>
-        {
-            div.addEventListener( 'click', clicker );
+        var divs = document.querySelectorAll('div.trigger-option').forEach(div => {
+            div.addEventListener('click', clicker);
         });
 
         ///purely decorational block:
-        var divs = document.querySelectorAll( '.trigger-content' ).forEach( div =>
-        {
+        var divs = document.querySelectorAll('.trigger-content').forEach(div => {
             div.innerHTML = div.innerHTML;
         });
 
         postExecutionCallBack && postExecutionCallBack();
         return;
-        
-        function clicker()
-        {
+
+        function clicker() {
             let p = this.parentNode;
             p.className = p.className === 'isopen' ? 'isclosed' : 'isopen';
         }

@@ -1,25 +1,24 @@
-( function() {
+(function () {
     var {
         nspaste, mat, sDomF, stdMod, amode, rg, sconf,
-    } = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
+    } = window.b$l.apptree({ ssFExportList: { amode2rgstate, }, });
     return;
 
 
     ///runs inside "subessay launch" which in turn runs after
     ///"init model parameters"
-    function amode2rgstate( captured )
-    {
+    function amode2rgstate(captured) {
         //called 1x on page load, then once more when switching tabs
-        //console.log('amode8captures.js'); 
+        //console.log('amode8captures.js');
 
         var { logic_phase, aspect, subessay } = amode;
 
         sDomF.resetModelPos();
 
-		rg.point_r.hideD8Dpoint =
-			// for this corollary, p's velocity is determined by the force
-			logic_phase === 'corollary' && amode.subessay === 'corollary2';
-			
+        rg.point_r.hideD8Dpoint =
+            // for this corollary, p's velocity is determined by the force
+            logic_phase === 'corollary' && amode.subessay === 'corollary2';
+
         //=============================================================
         // //\\ model (reset to starting positions)
         //=============================================================
@@ -30,45 +29,45 @@
         //1
         op.latus         = op.latusInitial;
         //2
-        stdMod.establishesEccentricity( op.initialEccentricity );
+        stdMod.establishesEccentricity(op.initialEccentricity);
         op.PparQ_initial = op.PparQ_initial_essay
-        if( logic_phase === 'corollary'){
+        if (logic_phase === 'corollary') {
             op.PparQ_initial = 0;
         }
         //3
         rg.P.q      = op.PparQ_initial;
         //4
-        nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy( op.PparQ_initial ));
+        nspaste(rg.P.pos, rg['approximated-curve'].t2xy(op.PparQ_initial));
         // \\// "draws" conics and P
 
         rg.S.pos[0] = 0;
         rg.S.pos[1] = 0;
 
-        rg.P.posInitialUnitVector = mat.unitVector( rg.P.pos );
+        rg.P.posInitialUnitVector = mat.unitVector(rg.P.pos);
         op.Kepler_g = op.Kepler_gInitial;
         op.Kepler_v = op.Kepler_v_initial; //this supposed to be redundant
         op.delta_t  = op.delta_t_initial;
 
-        rg.P.abs = mat.unitVector( rg.P.pos ).abs;
+        rg.P.abs = mat.unitVector(rg.P.pos).abs;
 
         //-------------------------------------------------
-        // //\\ op 
+        // //\\ op
         //-------------------------------------------------
         op.cosOmega = op.cosOmega_initial;
         op.om       = op.om_initial;
-        if( logic_phase === 'corollary'){ //Pv can only be dragged vertically
+        if (logic_phase === 'corollary') { //Pv can only be dragged vertically
             op.om = 1;
             op.cosOmega = 0;
             rg.P.q      = 0;
-            nspaste( rg.P.pos, rg[ 'approximated-curve' ].t2xy( rg.P.q ));
-            rg.P.abs = mat.unitVector( rg.P.pos ).abs;
+            nspaste(rg.P.pos, rg['approximated-curve'].t2xy(rg.P.q));
+            rg.P.abs = mat.unitVector(rg.P.pos).abs;
         }
         //-------------------------------------------------
-        // \\// op 
+        // \\// op
         //-------------------------------------------------
 
         //-------------------------------------------------
-        // //\\ sop 
+        // //\\ sop
         //-------------------------------------------------
         var sop      = sconf.sampleOrbitParameters;
         sop.latus    = sop.latusInitial;
@@ -76,7 +75,7 @@
         sop.Kepler_v = sop.Kepler_v_initial;
         sop.cosOmega = sop.cosOmega_initial;
         sop.om       = sop.om_initial;
-        if( logic_phase === 'corollary' && amode.subessay === 'corollary2' ){
+        if (logic_phase === 'corollary' && amode.subessay === 'corollary2') {
             sop.om = 1;
             sop.cosOmega = 0;
             sop.latus = sop.corII_DVect.abs;
@@ -85,7 +84,7 @@
                 null,
                 sop,
             );
-            sop.corII_speed = Math.sqrt( op.Kepler_g / sop.corII_DVect.abs );
+            sop.corII_speed = Math.sqrt(op.Kepler_g / sop.corII_DVect.abs);
             sop.Kepler_v    = sop.corII_speed;
             rg.p.q          = 0;
             sop.mainAxisAngle = 0;
@@ -104,7 +103,7 @@
         }
         sop.delta_t  = sop.delta_t_initial;
         //-------------------------------------------------
-        // \\// sop 
+        // \\// sop
         //-------------------------------------------------
         //=============================================================
         // \\// model
@@ -112,4 +111,4 @@
 
         return captured;
     }
-}) ();
+})();

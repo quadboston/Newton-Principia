@@ -1,15 +1,13 @@
-
-( function() {
+(function () {
     var { ns, fconf, sconf, topicColors_repo } =
-        window.b$l.apptree({ ssFExportList : { init_conf } });
+        window.b$l.apptree({ ssFExportList: { init_conf } });
     return;
 
 
     //====================================================
     // //\\ inits and sets config pars
     //====================================================
-    function init_conf()
-    {
+    function init_conf() {
         //--------------------------------------
         // //\\ geometics parameters
         //--------------------------------------
@@ -25,12 +23,12 @@
         // //\\ decorational parameters
         //***************************************************************
         //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var realSvgSize = 2 * (pictureWidth + pictureHeight) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
-        
+
         fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
 
         //--------------------------------------
@@ -40,17 +38,16 @@
         sconf.default_tp_lightness = 22;
         sconf.default_tp_lightness = 30;
         sconf.default_tp_stroke_width = 8;
-        default_tp_stroke_width = Math.floor( 6 * controlsScale );
-        defaultLineWidth        = Math.floor( 1 * controlsScale );
-        handleRadius            = Math.floor( 4 * controlsScale );
+        default_tp_stroke_width = Math.floor(6 * controlsScale);
+        defaultLineWidth        = Math.floor(1 * controlsScale);
+        handleRadius            = Math.floor(4 * controlsScale);
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius;
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
 
-  
         //this makes hanle's border nicely thin
-        sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
+        sconf.nonhover_width    = Math.max(1, Math.floor(1*controlsScale/1.6));
         //sconf.text_nonhover_width = 1;
         //sconf.nonhover_width = 4;
 
@@ -59,7 +56,7 @@
 
         //sconf.hover_width = 114; //needs hover-width cls at svg-text-el,
                                     //aka for: Δsin(φ),
-        sconf.hover_width       = Math.max( 2, Math.floor( 7*controlsScale/1.6 ) );
+        sconf.hover_width       = Math.max(2, Math.floor(7*controlsScale/1.6));
         //--------------------------------------
         // \\// do override engine defaults,
         //--------------------------------------
@@ -82,150 +79,143 @@
             given,
             proof,
             hidden,
-			supplementHover,
-			givenHover,
+            supplementHover,
+            givenHover,
         } = topicColors_repo;
 
-        var topicColors_elected =
-        {
+        var topicColors_elected = {
             given,
             proof,
             hidden,
-            'curve-AB'  : given,
-            'arc-AB'    : given,
-            'arc-Ab'    : proof,
-            'AB2'       : given,
-            'Ab2'       : proof,
-            'AB2-Ab2'   : proof,
-            'BD-bd'     : proof,
+            'curve-AB': given,
+            'arc-AB': given,
+            'arc-Ab': proof,
+            'AB2': given,
+            'Ab2': proof,
+            'AB2-Ab2': proof,
+            'BD-bd': proof,
             'claimRatio': proof,
-            'ratio'     : proof,
-            'circleJA'  : givenHover,
+            'ratio': proof,
+            'circleJA': givenHover,
         };
         //-----------------------------------
         // \\// topic group colors,
         //-----------------------------------
 
-
-        var originalPoints =
-        {
-            A : { 
+        var originalPoints = {
+            A: {
                 pos: A,
-                pcolor : given,
-                letterAngle : 90,
+                pcolor: given,
+                letterAngle: 90,
             },
-            D : {
+            D: {
                 pos: D,
-                pcolor : given,
-                letterAngle : 90,
+                pcolor: given,
+                letterAngle: 90,
             },
-            B : {
+            B: {
                 pos: B,
-                pcolor : given,
-                letterAngle : 0,
-				//cssClass: 'logic_phase--proof subessay--cor-1 subessay--cor-2',
+                pcolor: given,
+                letterAngle: 0,
+                //cssClass: 'logic_phase--proof subessay--cor-1 subessay--cor-2',
             },
-            M : { // AB midpoint
-                pcolor : hidden
+            M: { // AB midpoint
+                pcolor: hidden
             },
-            C : {
+            C: {
                 pos: C,
-                pcolor : given,
-                letterAngle : 180,
-				cssClass: 'logic_phase--corollary',
+                pcolor: given,
+                letterAngle: 180,
+                cssClass: 'logic_phase--corollary',
             },
-            c : {
+            c: {
                 pos: c,
-				caption: '𝑐',
-                pcolor : proof,
-                letterAngle : 180,
-				cssClass: 'logic_phase--corollary',
+                caption: '𝑐',
+                pcolor: proof,
+                letterAngle: 180,
+                cssClass: 'logic_phase--corollary',
             },
-            b : {
+            b: {
                 pos: b,
-				caption: '𝑏',
-                pcolor : proof,
-                letterAngle : 45,
-				cssClass: 'logic_phase--proof logic_phase--corollary',
-				conditionalDrag: 'logic_phase--proof',
+                caption: '𝑏',
+                pcolor: proof,
+                letterAngle: 45,
+                cssClass: 'logic_phase--proof logic_phase--corollary',
+                conditionalDrag: 'logic_phase--proof',
             },
-            d : {
+            d: {
                 pos: d,
-				caption: '𝑑',
-                pcolor : proof,
-                letterAngle : 90,
-				cssClass: 'logic_phase--proof logic_phase--corollary',
+                caption: '𝑑',
+                pcolor: proof,
+                letterAngle: 90,
+                cssClass: 'logic_phase--proof logic_phase--corollary',
             },
 
-            J : {
+            J: {
                 pos: [A[0], 584],
-                pcolor : given,
-                letterAngle : 180,
-                letterRotRadius : 20, 
-				cssClass: 'logic_phase--claim logic_phase--proof',
+                pcolor: given,
+                letterAngle: 180,
+                letterRotRadius: 20,
+                cssClass: 'logic_phase--claim logic_phase--proof',
             },
-            g :
-            {
+            g: {
                 pos: [A[0], 622],
-				caption: '𝑔',
-                pcolor : proof,
-                letterAngle : 45,
-				cssClass: 'logic_phase--proof'
+                caption: '𝑔',
+                pcolor: proof,
+                letterAngle: 45,
+                cssClass: 'logic_phase--proof'
             },
-            G :
-            {
+            G: {
                 pos: [A[0], 677],
-                pcolor : proof,
-                letterAngle : -45,
-				cssClass: 'logic_phase--proof'
+                pcolor: proof,
+                letterAngle: -45,
+                cssClass: 'logic_phase--proof'
             },
         };
 
-
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
-        var mod2inn_scale = ( originalPoints.J.pos[1] - originalPoints.A.pos[1] ) / 2;
+        var mod2inn_scale = (originalPoints.J.pos[1] - originalPoints.A.pos[1]) / 2;
 
-        var linesArray =
-        [
-			{ 'Ad' : { pcolor : proof,
-				cssClass: 'logic_phase--proof logic_phase--corollary'}, },
-            { 'AB' : { pcolor : given }, },
-			{ 'AC' : { pcolor : given,
-				cssClass: 'logic_phase--corollary'}, },
-            { 'AD' : { pcolor : given }, },
-            { 'BD' : { pcolor : given,
-				//cssClass: 'subessay--cor-1 subessay--cor-2', 
-				}, },
-            { 'BC' : { pcolor : given,
-				cssClass: 'logic_phase--corollary', }, },
-            { 'AG' : { pcolor : proof,
-				cssClass: 'logic_phase--proof',}, },
-            { 'BG' : { pcolor : proof,
-				cssClass: 'logic_phase--proof', }, },
-            { 'GJ' : { pcolor : proof,
-				cssClass: 'logic_phase--proof', }, },
-            { 'Ab' : { pcolor : proof,
-				cssClass: 'logic_phase--proof logic_phase--corollary', }, },
-            { 'Ag' : { pcolor : proof,
-				cssClass: 'logic_phase--proof', }, },
-            { 'bc' : { pcolor : proof,
-				cssClass: 'logic_phase--corollary',}, },
-            { 'bd' : { pcolor : proof,
-				cssClass: 'logic_phase--proof logic_phase--corollary', }, },
-            { 'bg' : { pcolor : proof,
-				cssClass: 'logic_phase--proof', }, },
-            { 'AJ' : { pcolor : given,
-				cssClass: 'logic_phase--claim logic_phase--proof', }, },
-            { 'bM' : { pcolor : supplementHover,
-				cssClass: 'logic_phase--corollary',}, },
+        var linesArray = [
+            { 'Ad': { pcolor: proof,
+                cssClass: 'logic_phase--proof logic_phase--corollary' }, },
+            { 'AB': { pcolor: given }, },
+            { 'AC': { pcolor: given,
+                cssClass: 'logic_phase--corollary' }, },
+            { 'AD': { pcolor: given }, },
+            { 'BD': { pcolor: given,
+                //cssClass: 'subessay--cor-1 subessay--cor-2',
+                }, },
+            { 'BC': { pcolor: given,
+                cssClass: 'logic_phase--corollary', }, },
+            { 'AG': { pcolor: proof,
+                cssClass: 'logic_phase--proof', }, },
+            { 'BG': { pcolor: proof,
+                cssClass: 'logic_phase--proof', }, },
+            { 'GJ': { pcolor: proof,
+                cssClass: 'logic_phase--proof', }, },
+            { 'Ab': { pcolor: proof,
+                cssClass: 'logic_phase--proof logic_phase--corollary', }, },
+            { 'Ag': { pcolor: proof,
+                cssClass: 'logic_phase--proof', }, },
+            { 'bc': { pcolor: proof,
+                cssClass: 'logic_phase--corollary', }, },
+            { 'bd': { pcolor: proof,
+                cssClass: 'logic_phase--proof logic_phase--corollary', }, },
+            { 'bg': { pcolor: proof,
+                cssClass: 'logic_phase--proof', }, },
+            { 'AJ': { pcolor: given,
+                cssClass: 'logic_phase--claim logic_phase--proof', }, },
+            { 'bM': { pcolor: supplementHover,
+                cssClass: 'logic_phase--corollary', }, },
         ];
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
 
-        ns.paste( sconf, {
-            mediaBgImage : "l11-diagram-3rded.jpg",
+        ns.paste(sconf, {
+            mediaBgImage: "l11-diagram-3rded.jpg",
             topicColors_elected,
             originalPoints,
             linesArray,
@@ -239,4 +229,4 @@
         // \\// geometics parameters
         //--------------------------------------
     }
-}) ();
+})();

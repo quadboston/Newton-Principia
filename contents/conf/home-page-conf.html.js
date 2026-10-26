@@ -1,4 +1,4 @@
-( function() {
+(function () {
     var {
         ns, sn, $$, haz, userOptions,
         fapp, fconf, sapp, sconf, html, stdMod,
@@ -9,8 +9,7 @@
     return;
 
 
-    function builds_homePane()
-    {
+    function builds_homePane() {
         var subsiteImg = fconf.pathToContentSiteImg;
 
         buildHeader();
@@ -21,7 +20,6 @@
         buildTranslations();
         buildFeedbackAndTip();
         padBottom();
-
 
         //==================================================
         // //\\ header
@@ -44,20 +42,18 @@
         // \\// header
         //==================================================
 
-        
         //==================================================
         // //\\ table of contents
         //==================================================
          function buildTableOfContents()
          {
             var coreText = '<h2 id="model-list">Table of contents</h2>' + buildListOfLemmas(true);
-			$$.c('div').addClass('landing-table-of-contents hp-section-wrap').to(fapp.homePage$())
-				.html(coreText);
+            $$.c('div').addClass('landing-table-of-contents hp-section-wrap').to(fapp.homePage$())
+                .html(coreText);
         }
         //==================================================
         // \\// table of contents
         //==================================================
-
 
         //==================================================
         // //\\ how-to
@@ -119,7 +115,6 @@
         // \\// how-to
         //==================================================
 
-
         //==================================================
         // //\\ options
         //==================================================
@@ -140,7 +135,6 @@
         //==================================================
         // \\// options
         //==================================================
-
 
         //==================================================
         // //\\ about wrapper
@@ -171,7 +165,6 @@
         //==================================================
         // \\// about wrapper
         //==================================================
-
 
         //==================================================
         // //\\ legal wrapper
@@ -224,7 +217,7 @@
         // //\\ feedback wrapper
         //==================================================
         function buildFeedbackAndTip() {
-            var coreText = 
+            var coreText =
                 `
                 <div class="feedback">
                     <span class="feedback-label"><a href="javascript:decryptEmail('Y29udGFjdEBzY2llbmNlaGlrZS5jb20=');">Feedback</a></span> welcome, as well as donations:
@@ -239,7 +232,6 @@
         //==================================================
         // \\// feedback wrapper
         //==================================================
-        
 
         //==================================================
         // //\\ pad bottom
@@ -257,17 +249,15 @@
         //==================================================
     }
 
-
     // param: true if building for homepage, false if building for Contents button
-    function buildListOfLemmas(isHomepage)
-    {
+    function buildListOfLemmas(isHomepage) {
         var landingPath = window.location.pathname;
         var book = null;
         var coreText = '';
         fconf.ix2lemmaDefAllowed.forEach(function (sappItem) {
             if (sappItem.sappId === 'home-pane') return;
             if (book === null || book !== sappItem.book) {
-                if( book !== null ) {
+                if (book !== null) {
                     coreText += '</ul></div>';
                 }
                 book = sappItem.book;
@@ -280,7 +270,7 @@
                             <span class="book-title">${book}</span>
                     </div>
                 `;
-				coreText += '<div' + cls2 + '><div' + cls  + `><ul>`;
+                coreText += '<div' + cls2 + '><div' + cls  + `><ul>`;
             }
             let chosen = sappItem.sappId === fconf.sappId ? ' chosen' : '';
             //when navigating to a new page, vertical tab persists, horizontal tab reset to claim
@@ -290,11 +280,11 @@
                     class="lemma-item-title ${chosen}">&nbsp;&nbsp;&nbsp;${sappItem.caption}
                     </a>
                 </li>`;
-            if(isHomepage && sappItem.sappId === "b1sec2prop7") {
+            if (isHomepage && sappItem.sappId === "b1sec2prop7") {
                 coreText += `</ul></div></div><div class="column"><div><ul>`;
             }
         });
         coreText += '\n</ul></div></div>';
         return coreText;
     }
-}) ();
+})();

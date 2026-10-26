@@ -1,7 +1,7 @@
 ///notations are from Prop6, cor. 5,
-( function() {
+(function () {
     var { mat, stdMod, sconf, ssD, sData, } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             calculateForce,
             calculateDqSubstituteActualForce,
         }, });
@@ -36,8 +36,8 @@
         //must be 0 or greater)
         let delta_q_max = 0;
 
-        for(let qix=0; qix<=Q_STEPS; qix++) {
-            const bP = qIndexToOrbit[ qix ]; //body point data
+        for (let qix = 0; qix <= Q_STEPS; qix++) {
+            const bP = qIndexToOrbit[qix]; //body point data
             const timeP = bP.timeAtQ;
 
             const timeOffset = timeP + ssD.DT_SUBSTITUTE_ACTUAL_FORCE;
@@ -52,10 +52,9 @@
 
         ssD.DqSubstituteActualForce = delta_q_max;
 
-
         //todo
         //Add models here that have been checked
-        switch(sconf.sappId) {
+        switch (sconf.sappId) {
             case "b1sec2prop9":
                 return;
         }
@@ -72,7 +71,6 @@
         //-NaN data points for the estimated force curve
         //-Jagged/noisy estimated force curve
     }
-
 
     function calculateForce({
         parq, //orbit argument
@@ -107,8 +105,8 @@
         // }
 
         let force = (isUlitmacyForActualForce || substituteActualForce) ?
-            calculateActualForce({bP}) :
-            calculateEstimatedForce({parq, bP});
+            calculateActualForce({ bP }) :
+            calculateEstimatedForce({ parq, bP });
 
         //The functions above that calculate force are proportional to the exact
         //solution.  This means when comparing one orbit to another orbit, the
@@ -120,7 +118,6 @@
         return force;
     }
 
-
     function calculateActualForce({
         bP    //orbit point P rack
     }) {
@@ -131,11 +128,11 @@
 
         const SY0 = S[0]-Y[0];
         const SY1 = S[1]-Y[1];
-        const SY = Math.sqrt( SY0*SY0 + SY1*SY1 );
+        const SY = Math.sqrt(SY0*SY0 + SY1*SY1);
 
         const PV0 = P[0]-V[0];
         const PV1 = P[1]-V[1];
-        const PV = Math.sqrt( PV0*PV0 + PV1*PV1 );
+        const PV = Math.sqrt(PV0*PV0 + PV1*PV1);
 
         const force = 1 / (SY ** 2 * PV);
 
@@ -143,15 +140,14 @@
         return sign * force;
     }
 
-
     function calculateEstimatedForce({
         parq, //orbit argument
         bP    //orbit point P rack
-    }){
+    }) {
         ///builds estimated force as displacement/area^2,
         ///displacement = QR, area = QT*SP,
         const q2xy = stdMod.q2xy;
-        const Q = q2xy( parq );
+        const Q = q2xy(parq);
         const P = bP.posBody;
         const S = bP.posCenterOfForces;
         const R = mat.linesCross(
@@ -160,12 +156,12 @@
         );
         const QR0 = Q[0]-R[0];
         const QR1 = Q[1]-R[1];
-        const QR = Math.sqrt( QR0*QR0 + QR1*QR1 );
+        const QR = Math.sqrt(QR0*QR0 + QR1*QR1);
 
-        const T = mat.dropPerpendicular( Q, S, P )
+        const T = mat.dropPerpendicular(Q, S, P)
         const QT0 = Q[0]-T[0];
         const QT1 = Q[1]-T[1];
-        const QT = Math.sqrt( QT0*QT0 + QT1*QT1 );
+        const QT = Math.sqrt(QT0*QT0 + QT1*QT1);
         const SP = bP.r.abs;
         const area = SP*QT;
         const force = QR/(area*area);
@@ -174,10 +170,9 @@
         return sign * force;
     }
 
-
     function calculateSign(bP, direction) {
         //Calculate by comparing directions of the following vectors
         const r = bP.r; //from S to P
         return Math.sign(r.vector[0]*direction[0] + r.vector[1]*direction[1]);
     }
-}) ();
+})();

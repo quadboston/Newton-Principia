@@ -1,14 +1,13 @@
-( function() {
+(function () {
     var { ns, fconf, sconf, topicColors_repo, } =
-        window.b$l.apptree({ ssFExportList : { init_conf } });
+        window.b$l.apptree({ ssFExportList: { init_conf } });
     return;
 
 
     //====================================================
     // //\\ inits and sets config pars
     //====================================================
-    function init_conf()
-    {
+    function init_conf() {
         //***************************************************************
         // //\\ geometical scales
         //***************************************************************
@@ -18,7 +17,7 @@
         var pictureHeight = 600;
 
         //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var realSvgSize = 2 * (pictureWidth + pictureHeight) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
         //***************************************************************
         // \\// geometical scales
@@ -37,16 +36,16 @@
         // //\\ do override engine defaults,
         //      in expands-conf.js,
         //--------------------------------------
-        default_tp_stroke_width = Math.floor( 8 * controlsScale ),
-        defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 3.2 * controlsScale ),
+        default_tp_stroke_width = Math.floor(8 * controlsScale),
+        defaultLineWidth        = Math.floor(1 * controlsScale),
+        handleRadius            = Math.floor(3.2 * controlsScale),
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius;
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
         //this makes hanle's border nicely thin
-        sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
-        sconf.hover_width       = Math.max( 2, Math.floor( 9*controlsScale/1.6 ) );
+        sconf.nonhover_width    = Math.max(1, Math.floor(1*controlsScale/1.6));
+        sconf.hover_width       = Math.max(2, Math.floor(9*controlsScale/1.6));
 
         //make effect apparently only for line-captions,
         //not for point-captions bs
@@ -62,12 +61,11 @@
         // //\\ points reused in config
         //=============================================
         RR = 360; //Math.sqrt( RR ) / 2;
-        var C = [510, 311 ];
+        var C = [510, 311];
         var S = C;
         //=============================================
         // \\// points reused in config
         //=============================================
-
 
         //:diagram sandbox spatial parameters
         //model's spacial unit expressed in pixels of the picture:
@@ -75,7 +73,7 @@
         var mod2inn_scale = 360; //RR;
         var originX_onPicture = C[0]; //for model's axis x
         var originY_onPicture = C[1]; //for model's axis y
-        sconf.diagramOrigin = [ 0, 0 ];
+        sconf.diagramOrigin = [0, 0];
 
         //-------------------------------------------
         // //\\ calculation algo parameters
@@ -104,7 +102,7 @@
 
         //intervals of dt or dq to construct an arc for estimated force
         //Sets initial distance of point Q from P
-        if( FT ){
+        if (FT) {
             sconf.Dt0 = 0.25;
         } else {
             sconf.Dq0 = 0.25;
@@ -119,7 +117,7 @@
         //-----------------------------------
         const {
             givenColor,
-			givenHover,
+            givenHover,
             bodyColor,
             proofColor,
             forceColor,
@@ -128,16 +126,14 @@
             sunColor,
         } = topicColors_repo;
 
-
-        var topicColors_elected =
-        {
-			estimatedForceColor,
-            curvatureCircle : infoColor,
+        var topicColors_elected = {
+            estimatedForceColor,
+            curvatureCircle: infoColor,
             body: bodyColor,
-            orbit : bodyColor,
-			force : forceColor,
-            "arc-QP" : bodyColor,
-			time: estimatedForceColor,
+            orbit: bodyColor,
+            force: forceColor,
+            "arc-QP": bodyColor,
+            time: estimatedForceColor,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -147,74 +143,72 @@
         // //\\ points to approximate and draw original curve
         //---------------------------------------------------
         var originalPoints = {
-            S : {
+            S: {
                 pos: S,
-                pcolor : sunColor,
-                letterAngle : -90,
+                pcolor: sunColor,
+                letterAngle: -90,
             },
-            P : {
-                pcolor : bodyColor,
-                letterAngle : 70,
-                draggableX  : true,
+            P: {
+                pcolor: bodyColor,
+                letterAngle: 70,
+                draggableX: true,
             },
-            T : {
-                pcolor : estimatedForceColor,
-                letterAngle : 264,
-				cssClass:  'subessay--solution',
+            T: {
+                pcolor: estimatedForceColor,
+                letterAngle: 264,
+                cssClass: 'subessay--solution',
             },
-            R : {
-                pcolor : estimatedForceColor,
-                letterAngle : 45,
- 				cssClass:  'subessay--solution',
+            R: {
+                pcolor: estimatedForceColor,
+                letterAngle: 45,
+                cssClass: 'subessay--solution',
            },
-            Q : {
-                pcolor : estimatedForceColor,
-                letterAngle : 225,
-                letterRotRadius : 40,
-                draggableX  : true,
-                draggableY  : true,
-				cssClass:  'subessay--claim subessay--solution',
+            Q: {
+                pcolor: estimatedForceColor,
+                letterAngle: 225,
+                letterRotRadius: 40,
+                draggableX: true,
+                draggableY: true,
+                cssClass: 'subessay--claim subessay--solution',
             },
-            Y : {
-                pcolor : proofColor,
-                letterAngle : -90,
-				cssClass:'subessay--another-solution',
+            Y: {
+                pcolor: proofColor,
+                letterAngle: -90,
+                cssClass: 'subessay--another-solution',
             },
-            V : {
-                pcolor : proofColor,
-                letterAngle : -45,
-				cssClass:'subessay--another-solution',
+            V: {
+                pcolor: proofColor,
+                letterAngle: -45,
+                cssClass: 'subessay--another-solution',
             },
         };
 
-
-        var linesArray =
-        [
-            { 'PV' : { pcolor : proofColor,
-				cssClass:'subessay--another-solution',}, },
-            { 'PY' : { pcolor : givenColor }, },
-            { 'PR' : { pcolor : givenHover,
-				cssClass:'subessay--solution',}, },
-            { 'SY' : { pcolor : proofColor,
-				cssClass:'subessay--another-solution',}, },
-            { 'QR' : { pcolor : estimatedForceColor,
-				cssClass:'subessay--solution',}, },
-            { 'SQ' : { pcolor : givenColor,
-				cssClass:  'subessay--claim subessay--solution',},},
-            { 'QT' : { pcolor : estimatedForceColor,
-				 cssClass:'subessay--solution',}, },
-            { 'PT' : { pcolor : proofColor,
-				cssClass:'subessay--another-solution',}, },
-			{ 'SP' : { pcolor : estimatedForceColor }, },
+        var linesArray = [
+            { 'PV': { pcolor: proofColor,
+                cssClass: 'subessay--another-solution', }, },
+            { 'PY': { pcolor: givenColor }, },
+            { 'PR': { pcolor: givenHover,
+                cssClass: 'subessay--solution', }, },
+            { 'SY': { pcolor: proofColor,
+                cssClass: 'subessay--another-solution', }, },
+            { 'QR': { pcolor: estimatedForceColor,
+                cssClass: 'subessay--solution', }, },
+            { 'SQ': { pcolor: givenColor,
+                cssClass: 'subessay--claim subessay--solution', }, },
+            { 'QT': { pcolor: estimatedForceColor,
+                 cssClass: 'subessay--solution', }, },
+            { 'PT': { pcolor: proofColor,
+                cssClass: 'subessay--another-solution', }, },
+            { 'SP': { pcolor: estimatedForceColor }, },
         ];
 
-        ns.paste( sconf, {
+        ns.paste(sconf, {
             ro0,
             curveParA,
             Q_STEPS,
             DATA_GRAPH_STEPS,
 
-            mediaBgImage : "diagram.png",
+            mediaBgImage: "diagram.png",
             topicColors_elected,
             originalPoints,
             linesArray,
@@ -229,4 +223,4 @@
             handleRadius,
         });
     }
-}) ();
+})();

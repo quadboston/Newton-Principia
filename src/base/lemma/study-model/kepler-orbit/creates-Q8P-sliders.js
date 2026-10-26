@@ -1,25 +1,24 @@
 ///adds Q and P sliders for
 ///for dq and body in
 ///models in propopositions 6-17 in Principia
-( function() {
+(function () {
     var { sn, fconf, ssD, stdMod, sconf, rg, } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             creates_Q8P_sliders,
             creates_A_slider,
             creates__gets_orbit_closest_point,
-        },});
-    const qIndexToOrbit = sn( 'qIndexToOrbit', ssD, [] );
+        }, });
+    const qIndexToOrbit = sn('qIndexToOrbit', ssD, []);
     return;
 
 
-    function creates_Q8P_sliders()
-    {
+    function creates_Q8P_sliders() {
         /// point P slider
         rg.P.acceptPos = newPos => {
             //Ensure solvable and qix exist to help prevent P6 errors when orbits
             //are disconnected
             if (ssD.solvable) {
-                const qix = stdMod.gets_orbit_closest_point( newPos, !!'fromGraph' );
+                const qix = stdMod.gets_orbit_closest_point(newPos, !!'fromGraph');
                 if (qix != null) {
                     rg.P.qix = qix;
                     stdMod.model8media_upcreate();
@@ -30,10 +29,10 @@
         /// point Q slider
         rg.Q.acceptPos = newPos => {
             const Pqix = rg.P.qix;
-            const Qqix = stdMod.gets_orbit_closest_point( newPos );
-            if( sconf.TIME_IS_FREE_VARIABLE ){
-                const timeQ = qIndexToOrbit[ Qqix ].timeAtQ;
-                const timeP = qIndexToOrbit[ Pqix ].timeAtQ;
+            const Qqix = stdMod.gets_orbit_closest_point(newPos);
+            if (sconf.TIME_IS_FREE_VARIABLE) {
+                const timeQ = qIndexToOrbit[Qqix].timeAtQ;
+                const timeP = qIndexToOrbit[Pqix].timeAtQ;
                 let Dt = timeQ - timeP;
                 if (sconf.CURVE_REVOLVES) {
                     //For models that "revolve" (eg. circular orbit), "wrap" Dt
@@ -66,12 +65,11 @@
 
                 //Clamp as needed
                 ssD.Dt = Math.max(Math.min(Dt, sconf.DT_SLIDER_MAX), 0);
-
             } else {
-                const qQ = qIndexToOrbit[ Qqix ].q;
-                const qP = qIndexToOrbit[ Pqix ].q;
+                const qQ = qIndexToOrbit[Qqix].q;
+                const qP = qIndexToOrbit[Pqix].q;
                 let Dq = qQ - qP;
-                if( sconf.CURVE_REVOLVES ){
+                if (sconf.CURVE_REVOLVES) {
                     //todo
                     console.error(
                         `At the time of writing this no models "revolve" ` +
@@ -92,9 +90,9 @@
             stdMod.model8media_upcreate();
             return; //avoids repetition
         }
-		if (rg.Qemphasis) {
-			rg.Qemphasis.acceptPos = rg.Q.acceptPos;
-		}
+        if (rg.Qemphasis) {
+            rg.Qemphasis.acceptPos = rg.Q.acceptPos;
+        }
     }
 
     //=====================================================================
@@ -104,7 +102,7 @@
         let stashedPos = null;
         let sp = rg.A.pos;
         rg.A.processOwnDownEvent = () => {
-            stashedPos = [ sp[0], sp[1] ];
+            stashedPos = [sp[0], sp[1]];
         };
 
         rg.A.processOwnUpEvent = () => {
@@ -115,21 +113,21 @@
             const eccentricityMax = sconf.eccentricityMax;
 
             // lock Y
-            newPos = [ newPos[0], stashedPos[1] ];
+            newPos = [newPos[0], stashedPos[1]];
 
             // enforce ellipse equation: solve for a given x,y
             let x = newPos[0];
-			if (x < 0) { // don't drag A on the far left
-				return;
-			}
+            if (x < 0) { // don't drag A on the far left
+                return;
+            }
             let y = newPos[1];
             let b = sconf.ellipseB;
 
             // compute semi-major axis a from ellipse equation
-            let a = Math.sqrt( x*x / (1 - (y*y)/(b*b)) );
+            let a = Math.sqrt(x*x / (1 - (y*y)/(b*b)));
 
-			// allow ellipse to be circle, rather than abort at last ellipse
-			a = Math.max(a, b);
+            // allow ellipse to be circle, rather than abort at last ellipse
+            a = Math.max(a, b);
 
             //TEMP
             //Constrain a if needed, to ensure eccentricity isn't above the max
@@ -142,13 +140,13 @@
             sconf.ellipseA = a;
             sconf.ellipseFocus = Math.sqrt(a*a - b*b);
             sconf.eccentricity = sconf.ellipseFocus / a;
-            if(sconf.ellipseFocus <= 0) sconf.ellipseFocus = 0.00001; // to avoid cuckoo graph
-			rg.A.pos[0] = x;
-			rg.A.pos[1] = y;
-			if (rg.H && rg.S) {
+            if (sconf.ellipseFocus <= 0) sconf.ellipseFocus = 0.00001; // to avoid cuckoo graph
+            rg.A.pos[0] = x;
+            rg.A.pos[1] = y;
+            if (rg.H && rg.S) {
                 rg.S.pos[0] = -sconf.ellipseFocus;
-				rg.H.pos[0] = sconf.ellipseFocus;
-			}
+                rg.H.pos[0] = sconf.ellipseFocus;
+            }
 
             stdMod.rebuilds_orbit(); // draws ellipse
             stdMod.model8media_upcreate(); // repositions points
@@ -165,7 +163,7 @@
        function gets_orbit_closest_point(
             r, //distance to this point
             fromGraph //optional, using valid graph points
-        ){
+        ) {
             //Search every point in the array to ensure point P dragging isn't
             //choppy (previously only some points were checked).  Note this
             //runs in a fraction of a millisecond even with a large number of
@@ -179,14 +177,14 @@
             //therefore limits what points can be output.
             const qS = fromGraph ? ssD.qix_graph_start : 0;
             const qE = fromGraph ? ssD.qix_graph_end+1 : qIndexToOrbit.length;
-            for( let qix=qS; qix<qE; qix++){
+            for (let qix = qS; qix < qE; qix++) {
                 const point = qIndexToOrbit[qix];
-                if(!point) continue;
+                if (!point) continue;
                 const pos = point.posBody;
                 const x = r[0]-pos[0];
                 const y = r[1]-pos[1];
                 const d2 = x*x + y*y;
-                if( qix_min === null || min>d2 ){
+                if (qix_min === null || min > d2) {
                     min = d2;
                     qix_min = qix;
                 }
@@ -194,4 +192,4 @@
             return qix_min;
         }
    }
-}) ();
+})();

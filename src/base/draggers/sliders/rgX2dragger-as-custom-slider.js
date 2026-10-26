@@ -1,21 +1,14 @@
-( function() {
+(function () {
     var {
         sn, has,
         sDomF,
         stdMod,
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             rgXSlider__2__dragwrap_gen_list,
         },
     });
     return;
-
-
-
-
-
-
-
 
 
     //==========================================
@@ -27,8 +20,8 @@
         nospinner,
     }) {
         stdMod.customDraggers_list.push(
-            ( function( medD8D ) {
-                rgX.dragDecorColor= rgX.pcolor; //'#00aaba';
+            (function (medD8D) {
+                rgX.dragDecorColor = rgX.pcolor; //'#00aaba';
                 sDomF.rgX_2_dragWrap({
                     medD8D,
                     rgX,
@@ -38,11 +31,7 @@
             })
         );
         //todm ... do automate
-        stdMod.railsCustomSlidersCount = has( stdMod, 'railsCustomSlidersCount' ) ?
-            stdMod.railsCustomSlidersCount + 1 : 1; 
+        stdMod.railsCustomSlidersCount = has(stdMod, 'railsCustomSlidersCount') ?
+            stdMod.railsCustomSlidersCount + 1 : 1;
     }
-
-
-
-}) ();
-
+})();

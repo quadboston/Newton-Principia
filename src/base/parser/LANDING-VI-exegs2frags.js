@@ -1,11 +1,9 @@
-(function(){
-const { ns, eachprop, exegs, topics, fconf, references} = window.b$l.apptree({
-        ssFExportList :
-        {
+(function () {
+const { ns, eachprop, exegs, topics, fconf, references } = window.b$l.apptree({
+        ssFExportList: {
             exegs_2_frags,
         },
     });
-
 
     //*************************************************
     //todm: buggy
@@ -19,6 +17,7 @@ const { ns, eachprop, exegs, topics, fconf, references} = window.b$l.apptree({
     //possible alternative:
     //var ACTION_SPLITTER = /[\u00BF-\u00BF]/g;
     return;
+
 
     ///===================================================================
     ///Splits bodyscript-of-exegesis into array of "active"-fragments.
@@ -34,8 +33,7 @@ const { ns, eachprop, exegs, topics, fconf, references} = window.b$l.apptree({
     ///     ...
     ///}
     ///===================================================================
-    function exegs_2_frags()
-    {
+    function exegs_2_frags() {
         //will collect unique keys for aspect, logical_phase, and subessay keynames:
         let allTkeys = {};
         let allAkeys = {};
@@ -44,25 +42,25 @@ const { ns, eachprop, exegs, topics, fconf, references} = window.b$l.apptree({
         //==============================================
         // //\\ sapwns script-embedded-in-text to html
         //==============================================
-        eachprop( exegs, ( logic_phaseAspects, logic_phase_id ) => {
-            allTkeys[ logic_phase_id ] = true;
-            eachprop( logic_phaseAspects, ( exAspect, aspect_id ) => {
-                allAkeys[ aspect_id ] = true;
-                exAspect.subexegs.forEach( ( subexeg, exegId ) => {
+        eachprop(exegs, (logic_phaseAspects, logic_phase_id) => {
+            allTkeys[logic_phase_id] = true;
+            eachprop(logic_phaseAspects, (exAspect, aspect_id) => {
+                allAkeys[aspect_id] = true;
+                exAspect.subexegs.forEach((subexeg, exegId) => {
                     //dirt: subexeg.domComponents  = [];
                     const subessay = subexeg.essayHeader.subessay;
-                    subexeg.classStr = 'original-text ' + 
+                    subexeg.classStr = 'original-text ' +
                         logic_phase_id + ' ' + aspect_id +
                         ' subessay-' + subessay;
                     //c cc( exegId, subexeg.classStr );
-                    //we do assume that exegId are already 
+                    //we do assume that exegId are already
                     //converted to subessay "human names" where possible:
-                    allSkeys[ subessay ] = true;
-                                             
+                    allSkeys[subessay] = true;
+
                     //-----------------------------------------------------
                     // //\\ preliminary prepasing to extract active content
                     //-----------------------------------------------------
-                    var bodySplit = subexeg.bodyscript.split( ACTION_SPLITTER );
+                    var bodySplit = subexeg.bodyscript.split(ACTION_SPLITTER);
 
                     //Creates array of subexeg.activeFrags.
                     //Elements of this array are atomic fragments which are either text or
@@ -70,9 +68,9 @@ const { ns, eachprop, exegs, topics, fconf, references} = window.b$l.apptree({
                     //The action defines what fragment displays:
                     //the action looks for application state and by this state
                     //displays fragment's content.
-                    var activeFrags = bodySplit.map( function( splittee ) {
-                        if( splittee.indexOf( ACTION_INDICATOR ) === 0 ) {
-                            return JSON.parse( splittee.substring(1) );
+                    var activeFrags = bodySplit.map(function (splittee) {
+                        if (splittee.indexOf(ACTION_INDICATOR) === 0) {
+                            return JSON.parse(splittee.substring(1));
                         } else {
                             return splittee;
                         }
@@ -92,15 +90,15 @@ const { ns, eachprop, exegs, topics, fconf, references} = window.b$l.apptree({
         // //\\ unhiders
         //it is made dynamic because states do depend on lemma's text
         let hideeCss = '';
-        eachprop( allTkeys, (prop, kname) => {
+        eachprop(allTkeys, (prop, kname) => {
             hideeCss += (hideeCss ? ',\n' : '\n') +
             `svg.bsl--svgscene.logic_phase--${kname} .logic_phase--${kname}`;
         });
-        eachprop( allAkeys, (prop, kname) => {
+        eachprop(allAkeys, (prop, kname) => {
             hideeCss += (hideeCss ? ',\n' : '\n') +
             `svg.bsl--svgscene.aspect--${kname} .aspect--${kname}`;
         });
-        eachprop( allSkeys, (prop, kname) => {
+        eachprop(allSkeys, (prop, kname) => {
             hideeCss += (hideeCss ? ',\n' : '\n') +
             `svg.bsl--svgscene.subessay--${kname} .subessay--${kname}`;
         });
@@ -114,7 +112,7 @@ const { ns, eachprop, exegs, topics, fconf, references} = window.b$l.apptree({
             {
                 display : block;
             }`;
-        ns.globalCss.update( hideeCss );
+        ns.globalCss.update(hideeCss);
         // \\// unhiders
     }
 })();

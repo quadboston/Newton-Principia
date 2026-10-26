@@ -3,18 +3,17 @@
             mcat_id = "logic_phase", "aspect"
             menu tree is like:
                 mcat_id = "logic_phase"
-                              scat_id = claim, proof, ...           
+                              scat_id = claim, proof, ...
                 mcat_id = "aspect"
-                              scat_id = latin, english, video, ...           
+                              scat_id = latin, english, video, ...
 */
 
-
-( function() {
+(function () {
     var {
         ns, $$, haff,
         haz,
         sconf, fconf,
-        fapp, 
+        fapp,
         ssF,
         sDomF, sDomN,
         stdMod, amode,
@@ -39,71 +38,67 @@
     //      at this moment, exegs are built,
     //====================================
     function populateMenu(
-    ){
-        ns.eachprop( sconf.asp8theor_menus, function( subcatsMenu, mcat_id ) {
-            build_teaf__localfun( mcat_id, subcatsMenu,
+    ) {
+        ns.eachprop(sconf.asp8theor_menus, function (subcatsMenu, mcat_id) {
+            build_teaf__localfun(mcat_id, subcatsMenu,
             );
         });
         //:sets up a state and logic_phase-menu
-        var submItem = sconf.asp8theor_menus.logic_phase.duplicates[ amode.logic_phase ];
-        do_select_leaf__localfun( submItem.leafRk, !'amodel2app_8_extraWork' );
+        var submItem = sconf.asp8theor_menus.logic_phase.duplicates[amode.logic_phase];
+        do_select_leaf__localfun(submItem.leafRk, !'amodel2app_8_extraWork');
 
         //:sets up aspect menu
         //skip this, possibly does duplicate job,
         //do_select_leaf__localfun( submItem.leafRk, !!'amodel2app_8_extraWork' );
         //do only CSS job:
-        let lRk = sconf.asp8theor_menus.aspect.duplicates[ amode.aspect ].leafRk;
-        lRk.li$.addClass( 'chosen' );
-        lRk.decorOfShuttle$.a('class','litem shuttle shuttle-'+lRk.ix);
+        let lRk = sconf.asp8theor_menus.aspect.duplicates[amode.aspect].leafRk;
+        lRk.li$.addClass('chosen');
+        lRk.decorOfShuttle$.a('class', 'litem shuttle shuttle-'+lRk.ix);
     }
     //====================================
     // \\// populate menu
     //====================================
 
-
-    function build_menu_top_leafs_placeholders()
-    {
+    function build_menu_top_leafs_placeholders() {
         //teaf$ is one of the top-leafs of menu
         sDomN.teafs$ = {};
 
-        if( fconf.attach_menu_to_essaion_root ) {
+        if (fconf.attach_menu_to_essaion_root) {
             var leftSide_menuRotator$ = $$.dct(
                 'left-side-menu-rotator',
                 sDomN.essaionsRoot$
             );
         }
 
-        ['aspect','logic_phase'].forEach( function( mcat_id ) {
-            sDomN.teafs$[ mcat_id ] = $$.dct(
+        ['aspect', 'logic_phase'].forEach(function (mcat_id) {
+            sDomN.teafs$[mcat_id] = $$.dct(
                 'menu-teaf ' + mcat_id,
                 fconf.attach_menu_to_essaion_root ?
-                    ( mcat_id === 'aspect' ? leftSide_menuRotator$ : sDomN.essaionsRoot$ ) :
+                    (mcat_id === 'aspect' ? leftSide_menuRotator$ : sDomN.essaionsRoot$) :
                     sDomN.menu
             );
         });
 
-        if( haz( fconf, 'logic_phaseTab_nonClickable' ) ){
+        if (haz(fconf, 'logic_phaseTab_nonClickable')) {
             sDomF.makes_logic_phaseTab_nonClickable();
         }
     }
-
-
 
     //====================================
     // //\\ sets menu top leaf
     //====================================
     //Input: subcatsMenu - contains list = array of items in submenu
-    function build_teaf__localfun( mcat_id, subcatsMenu,
-    ){
-        var teaf$ = sDomN.teafs$[ mcat_id ];
+    function build_teaf__localfun(mcat_id, subcatsMenu,
+    ) {
+        var teaf$ = sDomN.teafs$[mcat_id];
         var decorOfShuttle$;
 
         //------------------------------------
         // shuttle
         //------------------------------------
         //makes shuttle non-chosen and its position undefined
-        decorOfShuttle$ = $$.dct( 'litem shuttle', teaf$ );
-        /*       
+        decorOfShuttle$ = $$.dct('litem shuttle', teaf$);
+        /*
                             .ch( $$.dc( 'shuttle-oval-body' ) )
                             .ch( $$.dc( 'shuttle-shadow' ) )
                             ;
@@ -111,27 +106,23 @@
         //------------------------------------
         // builds mencat own tree
         //------------------------------------
-        subcatsMenu.list.forEach( function( mitem, mitemIx ) {
+        subcatsMenu.list.forEach(function (mitem, mitemIx) {
             var scat_id = mitem.id;
-            var leafRk = mitem.leafRk =
-            {
-                ix          : mitemIx,
+            var leafRk = mitem.leafRk = {
+                ix: mitemIx,
                 mcat_id,
                 scat_id,
                 teaf$,
-                studylab    : mitem.studylab, //comes from essaion header
-                caption     : mitem.hasOwnProperty( 'caption' ) ? mitem.caption : scat_id,
+                studylab: mitem.studylab, //comes from essaion header
+                caption: mitem.hasOwnProperty('caption') ? mitem.caption : scat_id,
                 decorOfShuttle$,
             };
-            make_menu_leaf__onceLocFun( leafRk );
+            make_menu_leaf__onceLocFun(leafRk);
         });
     }
     //====================================
     // \\// sets menu top leaf
     //====================================
-
-
-
 
     //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
     // //\\ makes radio menu
@@ -139,8 +130,7 @@
     /// for single leafRk indexed with pair (mcat_id, scat_id),
     /// builds its togglable-menu-tab;
     /// makes tab's components button;
-    function make_menu_leaf__onceLocFun( leafRk )
-    {
+    function make_menu_leaf__onceLocFun(leafRk) {
         var scat_id     = leafRk.scat_id;   //sub category: logic_phase or aspect
         var mcat_id     = leafRk.mcat_id;   //main category: logic_phase or aspect
         var caption     = leafRk.caption;
@@ -155,20 +145,20 @@
         ///this thing participate in creation placeholder inside
         ///logic_phase tab-tags-buttons
         var iconClass = 'videoicon-placeholder' +
-            ( mcat_id === 'aspect' ? '-aspect' : '' );
-        var videoPlaceholder$ = toreg( iconClass )( scat_id,
+            (mcat_id === 'aspect' ? '-aspect' : '');
+        var videoPlaceholder$ = toreg(iconClass)(scat_id,
             $$
             .div()
-            .cls( iconClass )
-            //:can put this css into fapp.css.js 
+            .cls(iconClass)
+            //:can put this css into fapp.css.js
             //:while no specific place exist
-            .css( 'display', 'inline-block' )
-            .css( 'position', 'relative' )
-            .css( 'top', '2px' )
-            .css( 'padding-right', '4%' )
-            .css( 'padding-left', '0%' )
-            .css( 'height', '10px' )
-        )( scat_id );
+            .css('display', 'inline-block')
+            .css('position', 'relative')
+            .css('top', '2px')
+            .css('padding-right', '4%')
+            .css('padding-left', '0%')
+            .css('height', '10px')
+        )(scat_id);
         //------------------------------
         // \\// video-button placeholder
         // \\// fluid-html part
@@ -177,31 +167,30 @@
         //-------------------------------------------------------------------
         // //\\ builds clickable dom element to toggle essay-texts-menu-items
         //-------------------------------------------------------------------
-        let decor$ = $$.dct( 'decorated litem litem-'+leafRk.ix, teaf$ )
+        let decor$ = $$.dct('decorated litem litem-'+leafRk.ix, teaf$)
         var li$ = leafRk.li$ = $$
-            .dct( 'litem litem-'+leafRk.ix, teaf$ )
-            .e('mouseover', ()=>{ decor$.addClass( 'hovered' ) })
-            .e('mouseleave', ()=>{ decor$.removeClass( 'hovered' ) })
-            .e('click', function( ) {
+            .dct('litem litem-'+leafRk.ix, teaf$)
+            .e('mouseover', ()=>{ decor$.addClass('hovered') })
+            .e('mouseleave', ()=>{ decor$.removeClass('hovered') })
+            .e('click', function () {
                 //console.log(leafRk.mcat_id + ' ' + leafRk.scat_id);
                 let update = updateURL(leafRk.mcat_id, leafRk.scat_id)
-                if( update && (mcat_id !== 'logic_phase' || !fconf.logic_phaseTab_nonClickable) ) {
-
+                if (update && (mcat_id !== 'logic_phase' || !fconf.logic_phaseTab_nonClickable)) {
                     //:todm: it is not clear why this is required, and why flag
                     //:'chosen' is not cleared up downstream automatically
                     let mid = mcat_id;
-                    let submItem = sconf.asp8theor_menus[ mid ].duplicates[ amode[ mid ] ];
-                        submItem.leafRk.li$.removeClass( 'chosen' );
+                    let submItem = sconf.asp8theor_menus[mid].duplicates[amode[mid]];
+                        submItem.leafRk.li$.removeClass('chosen');
 
-                    do_select_leaf__localfun( leafRk, !!'amodel2app_8_extraWork' );
+                    do_select_leaf__localfun(leafRk, !!'amodel2app_8_extraWork');
                 }
             })
             .ch([
                 $$
-                    .dc( 'caption' )
-                    .ch( 
-                        [   videoPlaceholder$,
-                            leafRk.mItemCaptionHtml$ = $$.span().html( caption )
+                    .dc('caption')
+                    .ch(
+                        [videoPlaceholder$,
+                            leafRk.mItemCaptionHtml$ = $$.span().html(caption)
                         ]
                     )
             ]);
@@ -209,8 +198,8 @@
         // \\// builds clickable dom element to toggle essay-texts-menu-items
         //-------------------------------------------------------------------
 
-        if( studylab && mcat_id === 'aspect' ) {
-            li$.addClass( 'studylab' );
+        if (studylab && mcat_id === 'aspect') {
+            li$.addClass('studylab');
         }
     }
     //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
@@ -230,21 +219,21 @@
             });
         }
 
-        if(mcat === 'logic_phase' ) { // horizontal tabs
-            if(params["logic_phaseId"] !== scat) {
-                params["logic_phaseId"] = scat;  
+        if (mcat === 'logic_phase') { // horizontal tabs
+            if (params["logic_phaseId"] !== scat) {
+                params["logic_phaseId"] = scat;
             } else {
                 return false; // do not update model if we haven't actually switched tabs
             }
-        } else if(mcat === 'aspect') { // vertcial tabs
+        } else if (mcat === 'aspect') { // vertcial tabs
             params["aspectId"] = scat;
 
             // update aspect of all links so it persists when changing pages
             const links = document.querySelectorAll('.lemma-item-title');
-            links.forEach((link) => {            
+            links.forEach((link) => {
                 // extract sappId from the link
                 let sappId = null;
-                if(link.href) {
+                if (link.href) {
                     const match = link.href.match(/sappId=([^,]+)/);
                     if (match) {
                         sappId = match[1];
@@ -253,7 +242,6 @@
                     }
                 }
             });
-
         } else {
             // todo: are there more?
             console.log('unhandled: ' + mcat + ' ' + scat);
@@ -276,12 +264,11 @@
     //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
     // //\\ does select menu-leaf
     //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
-    function do_select_leaf__localfun( leafRk, amodel2app_8_extraWork )
-    {
+    function do_select_leaf__localfun(leafRk, amodel2app_8_extraWork) {
         var scat_id         = leafRk.scat_id;
         var mcat_id         = leafRk.mcat_id;
         var decorOfShuttle$ = leafRk.decorOfShuttle$;
-        var exAspect        = exegs[ amode.logic_phase ][ amode.aspect ];
+        var exAspect        = exegs[amode.logic_phase][amode.aspect];
 
         //todm: with this lemma 2 looks bad ... why? ... missed resize?
         //if( amode[ mcat_id ] === scat_id ) return; //click is idempotent
@@ -290,39 +277,36 @@
         // does cleanup before change
         //==================================================
         //sets menu flag
-        leafRk.li$.removeClass( 'chosen' );
+        leafRk.li$.removeClass('chosen');
 
         //sets fappRoot flags
-        fapp.fappRoot$.removeClass( 'logic_phase--' + amode.logic_phase +
-            ' aspect--' + amode.aspect );
+        fapp.fappRoot$.removeClass('logic_phase--' + amode.logic_phase +
+            ' aspect--' + amode.aspect);
         //sets content-text visibility
-        if( userOptions.shouldShowSubessayMenu(exAspect) ) {
-            exAspect.subessayMenuContainer$.removeClass( 'chosen' );
+        if (userOptions.shouldShowSubessayMenu(exAspect)) {
+            exAspect.subessayMenuContainer$.removeClass('chosen');
         }
-        exAspect.subexegs.forEach( subexeg => {
+        exAspect.subexegs.forEach(subexeg => {
             //book's text
-            $$.removeClass( 'chosen', subexeg.domEl );
-            ( userOptions.shouldShowSubessayMenu(exAspect) ) &&
-              subexeg.subessayMenuItem$.removeClass( 'chosen' );
+            $$.removeClass('chosen', subexeg.domEl);
+            (userOptions.shouldShowSubessayMenu(exAspect)) &&
+              subexeg.subessayMenuItem$.removeClass('chosen');
         });
-
-
-
 
         //**************************************************************
         //**************************************************************
         // //\\ makes model change
         //**************************************************************
         //**************************************************************
-        amode[ mcat_id ]    = scat_id;
-        var exAspect        = exegs[ amode.logic_phase ][ amode.aspect ];
+        amode[mcat_id]    = scat_id;
+        var exAspect        = exegs[amode.logic_phase][amode.aspect];
         //on page load, keeps the subessay already chosen (eg from the URL),
         //so the first layout measures what is shown; otherwise selects the
         //default, or the first essay if there is no default
-        var subexeg0        = exAspect.subexegs[ 0 ];
+        var subexeg0        = exAspect.subexegs[0];
         var chosenSubexeg   = !amodel2app_8_extraWork &&
-                              ns.haz( exAspect.subessay2subexeg, amode.subessay );
-        var subexeg         = chosenSubexeg || ns.haz( exAspect, "default" ) ||
+                              ns.haz(exAspect.subessay2subexeg, amode.subessay);
+        var subexeg         = chosenSubexeg || ns.haz(exAspect, "default") ||
                               subexeg0;
         amode.subessay      = subexeg.essayHeader.subessay;
         //**************************************************************
@@ -330,9 +314,6 @@
         // \\// makes model change
         //**************************************************************
         //**************************************************************
-
-
-
 
         //==================================================
         // //\\ spawns changes
@@ -343,31 +324,30 @@
         );
 
         //flag to content-text-components
-        if( userOptions.shouldShowSubessayMenu(exAspect) ) {
-
+        if (userOptions.shouldShowSubessayMenu(exAspect)) {
             //vital: makes an entire subessays-menu visible ...
             //       misleading wording "chosen"
-            exAspect.subessayMenuContainer$.addClass( 'chosen' );
+            exAspect.subessayMenuContainer$.addClass('chosen');
 
-            exAspect.subexegs.forEach( subexeg => {
-                subexeg.subessayMenuItem$.addClass( 'chosen' );
+            exAspect.subexegs.forEach(subexeg => {
+                subexeg.subessayMenuItem$.addClass('chosen');
             });
         } else {
             //adds 'chosen' to book's text
-            $$.addClass( 'chosen', subexeg0.domEl );
+            $$.addClass('chosen', subexeg0.domEl);
         }
 
         //flag to menu
         //menu "button"
-        leafRk.li$.addClass( 'chosen' ); //todm redundant state-flag, but fails if omitted
+        leafRk.li$.addClass('chosen'); //todm redundant state-flag, but fails if omitted
         //flag to shuttle
-        decorOfShuttle$.a('class','litem shuttle shuttle-'+leafRk.ix);
-        if( mcat_id === 'logic_phase' ) {
-            ns.eachprop( exegs[ amode.logic_phase ], ( exegAsp, aspId ) => {
+        decorOfShuttle$.a('class', 'litem shuttle shuttle-'+leafRk.ix);
+        if (mcat_id === 'logic_phase') {
+            ns.eachprop(exegs[amode.logic_phase], (exegAsp, aspId) => {
                 //updates left menu caption for logic_phases with omitted aspect texts
-                var menItem = sconf.asp8theor_menus.aspect.duplicates[ aspId ];
+                var menItem = sconf.asp8theor_menus.aspect.duplicates[aspId];
                 menItem.leafRk.mItemCaptionHtml$.html(
-                    exegAsp.subexegs[ 0 ].essayHeader.menuCaption ||
+                    exegAsp.subexegs[0].essayHeader.menuCaption ||
                     menItem.caption //where this came from?
                                     // ... where theoreon caption comes?
                                     // ... theoreonCaption ?
@@ -379,12 +359,10 @@
         // updates app and ...
         //==================================================
 
-
-
         ///=========================================================
         /// establishes amodel state if lemma is ready for it
         ///=========================================================
-        menu2lemma( amodel2app_8_extraWork );
+        menu2lemma(amodel2app_8_extraWork);
         //==================================================
         // \\// spawns changes
         //==================================================
@@ -393,43 +371,39 @@
     // \\// does select menu-leaf
     //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 
-
-
     ///this happens only on 2 click events(ver Dec10,2020)
     ///one click is for top-text-menu?,
     ///second click is for submenu,
     ///param = false on initial page load, true on tab switch
-    function menu2lemma( amodel2app_8_extraWork )
-    {
+    function menu2lemma(amodel2app_8_extraWork) {
         var res = wrkwin.start8finish_media8Ess8Legend_resize__upcreate;
 
         //we need to run "media" updater because we need to update
         //archived, "sleeping", d8d past values,
         //todm ... instead the solution of updating them at "down" event
         //         will be more elagant and cause less fuss,
-        if( amodel2app_8_extraWork ) {
+        if (amodel2app_8_extraWork) {
             // runs from init-sapp.js on page load
             // we need to run again here when switching tabs to update model
-            ssF.in_subessay_launch____amode2lemma( amodel2app_8_extraWork );
+            ssF.in_subessay_launch____amode2lemma(amodel2app_8_extraWork);
 
             haff(stdMod, 'sliders_value2pos');
-            
+
             //Tab (text or video) changed so load the following.
             wrkwin.loadPosPartitionHandle();
 
             //.todm code proliferation ... model runs twice?
-            res( null, !!'doDividorSynch');
-
+            res(null, !!'doDividorSynch');
         }
-        
+
         //**********************************************************************************
         //todo patch: this is a vital patch, without it to appear legend needs
         //second resize event, the reason for the bug is unknown,
-        //only needed for L7, P1 corollaries 
-        if(fconf.sappId === 'b1sec1lemma7' || fconf.sappId === 'b1sec2prop1') {
+        //only needed for L7, P1 corollaries
+        if (fconf.sappId === 'b1sec1lemma7' || fconf.sappId === 'b1sec2prop1') {
             setTimeout(
-                function() {
-                    res( null, !!'doDividorSynch' );
+                function () {
+                    res(null, !!'doDividorSynch');
                 },
                 100
             );
@@ -438,17 +412,16 @@
     }
 
     //reveals subessay in menu and in text
-    function addsChosenCSSCls_to_subessay8menuSubitem({ exAspect, subexeg, })
-    {
-        exAspect.subexegs.forEach( subexeg => {
-            subexeg.domEl$.removeClass( 'chosen' );
-            if(userOptions.shouldShowSubessayMenu(exAspect, subexeg) ) {
-                subexeg.subessayMenuItem$.removeClass( 'subexeg-toggler-chosen' );
+    function addsChosenCSSCls_to_subessay8menuSubitem({ exAspect, subexeg, }) {
+        exAspect.subexegs.forEach(subexeg => {
+            subexeg.domEl$.removeClass('chosen');
+            if (userOptions.shouldShowSubessayMenu(exAspect, subexeg)) {
+                subexeg.subessayMenuItem$.removeClass('subexeg-toggler-chosen');
             }
         });
-        subexeg.domEl$.addClass( 'chosen' );
-        if( userOptions.shouldShowSubessayMenu(exAspect, subexeg) ) {
-            subexeg.subessayMenuItem$.addClass( 'subexeg-toggler-chosen' );
+        subexeg.domEl$.addClass('chosen');
+        if (userOptions.shouldShowSubessayMenu(exAspect, subexeg)) {
+            subexeg.subessayMenuItem$.addClass('subexeg-toggler-chosen');
         }
     }
-}) ();
+})();

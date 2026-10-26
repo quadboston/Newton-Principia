@@ -1,7 +1,7 @@
-(function(){
+(function () {
     const { sn, haff, hafff, nspaste, haz, globalCss, mat,
             rg, sconf, ssF, stdMod,
-    } = window.b$l.apptree({ stdModExportList : {
+    } = window.b$l.apptree({ stdModExportList: {
             init_model_parameters,
             model_upcreate,
         },
@@ -9,16 +9,16 @@
     return;
 
 
-    function init_model_parameters (){
+    function init_model_parameters() {
         stdMod.sconf_2_shapes();
         stdMod.shapeSconf_2_svg();
-        rg.displayTime = { value : '' };
-        rg.thoughtStep = { value : '' };
+        rg.displayTime = { value: '' };
+        rg.thoughtStep = { value: '' };
         stdMod.creates_sliderDomModel__4__time();
         stdMod.creates_delta_time_slider();
     }
 
-    function model_upcreate (){
+    function model_upcreate() {
         //console.log('model_upcreate');
         //for case if captured click does not have curtime set
         stdMod.protects_curTime_ranges();
@@ -33,8 +33,8 @@
         stdMod.trajectoryShapes_2_groups__III();
         {
             let v = rg.speeds.vect[0];
-            var pos = mat.addV( v, rg.A.pos );
-            nspaste( rg.v.pos, pos );
+            var pos = mat.addV(v, rg.A.pos);
+            nspaste(rg.v.pos, pos);
         }
     }
 })();

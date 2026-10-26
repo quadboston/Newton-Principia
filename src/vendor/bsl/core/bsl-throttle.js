@@ -1,10 +1,9 @@
 // //\\//   attaches library function to b$l
-( function () {
-	var ns	= window.b$l;
+(function () {
+    var ns	= window.b$l;
     ns.throttle = throttle;
     var throttleDebCount = 0;
     return;
-
 
 
     ///This is a throttler not bouncer.
@@ -16,66 +15,62 @@
     ///                       if falsy, then never wait and never curry.
     ///                       if falsy, never throttles: does executes immediately
     ///                       Ultimately fires if called at elapsed >= wait.
-    ///                       If not called this way, then 
+    ///                       If not called this way, then
     ///                       times out to wait, since last call.
     ///          fun        - throttlee,
     ///Return:  return-function signature:
     ///             doCallNow   has effect of immediate calling plus effect of cleaning up,
     ///             arg_        can be used for ordinary app. paramters
-    ///             
     ///
-    function throttle( fun, wait )
-    {
+    ///
+    function throttle(fun, wait) {
         throttleDebCount++;
         var timeout = null;
         var timeStart = null;
         var arg;
-        return function( arg_, doCallNow, doCancel, do_bounce ) {
+        return function (arg_, doCallNow, doCancel, do_bounce) {
             arg         = arg_; //updates arg at every call
             var time    = Date.now();
             timeStart   = timeStart === null ? time : timeStart;
             var elapsed = time - timeStart;
 
-            if( do_bounce ) {
-                if(timeout !== null) {
-                    clearTimeout( timeout );
+            if (do_bounce) {
+                if (timeout !== null) {
+                    clearTimeout(timeout);
                 }
-
             } else {
-
-                if( !wait || elapsed > wait || doCallNow ) {
-
+                if (!wait || elapsed > wait || doCallNow) {
                     //this must be here,
                     //if( timeout !== null ) clearTimeout( timeout );
                     //timeout = null;
                     //timeStart = null;
                     //before fun( arg ) call
-                   
-                    fun( arg );
+
+                    fun(arg);
 
                     //this must be above fun( arg )
-                    if( timeout !== null ) clearTimeout( timeout );
+                    if (timeout !== null) clearTimeout(timeout);
 
                     timeout = null;
                     timeStart = null;
                     return;
                 }
-                if( doCancel && timeout !== null ) {
-                    clearTimeout( timeout );
+                if (doCancel && timeout !== null) {
+                    clearTimeout(timeout);
                     return;
                 }
                 //.this statement prevents program from extension of the term
                 //.in contrary to bouncer which extends the term
-                if( timeout !== null ) {
+                if (timeout !== null) {
                     return;
                 }
             }
 
             //// do bounce or throttle
-            timeout = setTimeout( 
-                function() {
-	                fun( arg );
-	                timeout = null;
+            timeout = setTimeout(
+                function () {
+                    fun(arg);
+                    timeout = null;
                     timeStart = null;
                 },
                 wait
@@ -83,7 +78,4 @@
             timeStart = time;
         };
     };
-
-}) ();
-
-
+})();
