@@ -98,7 +98,7 @@
 
         if (mcaption !== ']no caption[') {
             var c$ = $$.c('td')
-                       .html(mcaption||mname)
+                       .html(mcaption || mname)
                        .addClass('tostroke tocolor tobold tp-' + cssName)
                        .to(row);
         }

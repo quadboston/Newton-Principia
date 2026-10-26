@@ -200,7 +200,7 @@
             // //\\ the combination of these switches is too convoluted and
             //      needs thought:
             //==================================================================
-            var addFeaturesToDecPoint= haz(pointWrap, 'addFeaturesToDecPoint');
+            var addFeaturesToDecPoint = haz(pointWrap, 'addFeaturesToDecPoint');
             //thes two ignite
             //addFeaturesToDecPoint.dragDecorColor as a condition to
             //run creates_spinnerOwnCss()
@@ -348,7 +348,7 @@
                         );
                     }
                     ////this cleans up drag and drop lifecycle
-                    selectedElement_flag=null;
+                    selectedElement_flag = null;
                 }
             }
             //=====================================================

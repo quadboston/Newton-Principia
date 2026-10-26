@@ -9,7 +9,7 @@
     var gui     = sn('gui', stdL2);
     var guicon  = sn('guiConstruct', gui);
     var sdata   = sn('sdata', study);
-    var dataregs= sn('dataregs', stdL2);
+    var dataregs = sn('dataregs', stdL2);
     var guiup   = sn('guiUpdate', gui);
     return;
 

@@ -65,7 +65,7 @@
         } else if (!has(pv1, 'medpos')) {
             pv1.medpos = ssF.mod2inn(pv1.pos);
         }
-        var pivotsMedPos= [pv0.medpos, pv1.medpos];
+        var pivotsMedPos = [pv0.medpos, pv1.medpos];
 
         //this is a wrong place for changing a model of a
         //line interval, so removing from media manager:

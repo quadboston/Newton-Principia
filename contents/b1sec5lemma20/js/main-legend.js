@@ -35,8 +35,8 @@
         //todm this is a patch: do use Pr/Pt
         var PT = Math.abs(rg.T.value) < 1e-20 ? 1 : rg.T.value;
 
-        var wwR=rg.R.pos;
-        var wwP=rg.P.pos;
+        var wwR = rg.R.pos;
+        var wwP = rg.P.pos;
         var PR = mat.unitVector([wwR[0]-wwP[0], wwR[1]-wwP[1]]).abs;
         var PR_PT = (PR/PT);
         ww['PT'].innerHTML = PT.toFixed(2);
@@ -89,7 +89,7 @@
 
         if (mcaption !== ']no caption[') {
             var c$ = $$.c('td')
-                       .html(mcaption||mname)
+                       .html(mcaption || mname)
                        .addClass('tostroke tocolor tobold tp-' + cssName)
                        .to(row);
         }

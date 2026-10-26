@@ -50,7 +50,7 @@
                 var Dq = 0;
                 break;
         }
-        for (let qix=0; qix<=Q_STEPS; qix++) {
+        for (let qix = 0; qix <= Q_STEPS; qix++) {
             const bP = qIndexToOrbit[qix]; //body point data
             MAKE_RANGE && (bP.invalid = false);
             //**********************************************

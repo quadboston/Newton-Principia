@@ -178,14 +178,14 @@
             //therefore limits what points can be output.
             const qS = fromGraph ? ssD.qix_graph_start : 0;
             const qE = fromGraph ? ssD.qix_graph_end+1 : qIndexToOrbit.length;
-            for (let qix=qS; qix<qE; qix++) {
+            for (let qix = qS; qix < qE; qix++) {
                 const point = qIndexToOrbit[qix];
                 if (!point) continue;
                 const pos = point.posBody;
                 const x = r[0]-pos[0];
                 const y = r[1]-pos[1];
                 const d2 = x*x + y*y;
-                if (qix_min === null || min>d2) {
+                if (qix_min === null || min > d2) {
                     min = d2;
                     qix_min = qix;
                 }

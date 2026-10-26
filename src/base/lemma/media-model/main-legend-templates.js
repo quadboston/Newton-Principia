@@ -53,7 +53,7 @@
         var ds      = legendScriptParsed[rowIx][clusterIx];
         //var res     = ds[2] ? eval( ds[2] ) : '';
         var res     = eval(ds[2]);
-        res         = typeof res === 'number'? res.toFixed(3) : (res || '');
+        res         = typeof res === 'number' ? res.toFixed(3) : (res || '');
         res         = res.replace(/<_>/g, ' ').replace(/<>/g, ',');
         htmlbody = res;
         return { clusterCellIx, htmlbody, };

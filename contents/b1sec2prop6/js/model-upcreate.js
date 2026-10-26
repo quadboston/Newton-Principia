@@ -180,7 +180,7 @@
             let sumAbs = 0;
             var yMax = 0;
             //let leny = ga[0].y.length;
-            for (ix = 0; ix<len; ix++) {
+            for (ix = 0; ix < len; ix++) {
                 let gaix = ga[ix];
                 //if( !solvable ){
                 //    for( let iy=0; iy<leny; iy++ ){
@@ -228,14 +228,14 @@
             //c cc( 'folds='+flen + ' pains='+pp.length + ' past='+pastlen );
             if (has(ssD, 'pastFoldPoints')) {
                 //todm for( let i=foldps.length; i<flen; i++ ) {
-                for (let i=0; i<pastlen; i++) {
+                for (let i = 0; i < pastlen; i++) {
                     pp[i].rgX.undisplay = true;
                 }
             }
             ////otherwise, cannot display all separation points;
             ////therfore, displays nothing,
             if (foldps.length <= pp.length) {
-                 for (let i=0; i<flen; i++) {
+                 for (let i = 0; i < flen; i++) {
                     let fp = foldps[i];
                     let rgX = pp[i].rgX;
                     rgX.pos = fp;

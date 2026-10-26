@@ -67,7 +67,7 @@
         let BASE_MAX_NUM = sconf.BASE_MAX_NUM;
         let list = listWrap.list;
         let len = BASE_MAX_NUM+listWrap.offset;
-        for (var i=0; i<len; i++) {
+        for (var i = 0; i < len; i++) {
             //"makes an empty junk"
             //Class for individual ones if applicable
             let classSingle = "";
@@ -85,7 +85,7 @@
         let BASE_MAX_NUM = sconf.BASE_MAX_NUM;
         let list = listWrap.list;
         let len = BASE_MAX_NUM+listWrap.offset;
-        for (var i=0; i<len; i++) {
+        for (var i = 0; i < len; i++) {
             //Create stroke duplicate with no fill
             let strokeRect = makeSType("polygon", "rect tostroke");
             strokeRect.setAttributeNS(null, 'fill', 'none');
@@ -109,7 +109,7 @@
 
         //Only create and add points for the control points that are enabled.
         const offset = ctrlPts.DRAGGABLE_END_POINTS ? 0 : 1;
-        for (var i=offset, len=cp.length-offset; i < len; i++) {
+        for (var i = offset, len = cp.length-offset; i < len; i++) {
             const posTransformed = stdMod.xy_2_Txy(dr, [cp[i].x, cp[i].y]);
             ctrlPts.list.push(createCurvePoint(dr, posTransformed, "ctrl", i));
         }
@@ -126,7 +126,7 @@
         // control points
         if (onCurve) {
             var cpList = dr.ctrlPts.list;
-            for (var i=0, len=cpList.length; i < len; i++)
+            for (var i = 0, len = cpList.length; i < len; i++)
                 resetPoint(cpList[i]);
         }
 
@@ -134,7 +134,7 @@
             // //\\ dehollowfies basePts
             const bplist = dr.basePts.list;
             const DRAGGABLE_BASE_POINTS = sconf.DRAGGABLE_BASE_POINTS;
-            for (var i=0, len=DRAGGABLE_BASE_POINTS; i <= len; i++)
+            for (var i = 0, len = DRAGGABLE_BASE_POINTS; i <= len; i++)
                 resetPoint(bplist[i]);
             // \\//  dehollowfies basePts
         }
@@ -142,7 +142,7 @@
         // transform points
         if (onCurve) {
             const tpList = Object.values(dr.transforms.pts);
-            for (var i=0, len=tpList.length; i < len; i++)
+            for (var i = 0, len = tpList.length; i < len; i++)
                 resetPoint(tpList[i]);
         }
 
@@ -165,12 +165,12 @@
         //sconf.DRAGGABLE_BASE_POINTS = usually 15,
         const DRAGGABLE_BASE_POINTS = sconf.DRAGGABLE_BASE_POINTS;
         const BASE_PT_DRAGGERS_ENABLED = dr.BASE_PT_DRAGGERS_ENABLED;
-        for (var i=0, len=sconf.BASE_MAX_NUM; i <= len; i++) {
+        for (var i = 0, len = sconf.BASE_MAX_NUM; i <= len; i++) {
             //not yet draggable, just a template
             pt = makeDragP_tpl(dr, "base", i);
             if (BASE_PT_DRAGGERS_ENABLED && i < DRAGGABLE_BASE_POINTS) {
                 //todo-patch-disable-base-drag 1 of 2
-                if (i>0) {
+                if (i > 0) {
                     guiup.sets_pt2movable(pt);
                 }
             }
@@ -239,7 +239,7 @@
         pdom.setAttributeNS(null, "id", key);
         pdom.setAttributeNS(null, "draggable", "false"); //todo ... redundant? ...
         var draggable = { dom: pdom, type: type, index: i, id: key };
-        if (i>0 || type === 'ctrl') {
+        if (i > 0 || type === 'ctrl') {
             dr.movables[key] = draggable;
         }
         return draggable;

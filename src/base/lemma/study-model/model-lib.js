@@ -172,12 +172,12 @@
         const y = r[1]-point[1];
         let min = x*x + y*y;
         let qix_min = null;
-        for (let qix=STEP; qix<len; qix+=STEP) {
+        for (let qix = STEP; qix < len; qix += STEP) {
             const point = orbitPoints[qix];
             const x = r[0]-point[0];
             const y = r[1]-point[1];
             const d2 = x*x + y*y;
-            if (qix_min === null || min>d2) {
+            if (qix_min === null || min > d2) {
                 min = d2;
                 qix_min = qix;
             }

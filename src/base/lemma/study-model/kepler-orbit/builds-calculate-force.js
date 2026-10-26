@@ -36,7 +36,7 @@
         //must be 0 or greater)
         let delta_q_max = 0;
 
-        for (let qix=0; qix<=Q_STEPS; qix++) {
+        for (let qix = 0; qix <= Q_STEPS; qix++) {
             const bP = qIndexToOrbit[qix]; //body point data
             const timeP = bP.timeAtQ;
 

@@ -27,7 +27,7 @@
             `;
 
         if (doHideSlider) {
-            ret +=` 
+            ret += ` 
                 div.${cssp}-slider-${csskey} {
                     position:absolute;
                     visibility:hidden;
@@ -36,7 +36,7 @@
             //return ret; /* todmm why this does not work */
         }
         if (ancestorClassToHideSlider) {
-            ret +=` 
+            ret += ` 
                 .${ancestorClassToHideSlider} .${cssp}-slider-${csskey} {
                     position:absolute;
                     visibility:hidden;

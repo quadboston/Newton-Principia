@@ -208,14 +208,14 @@
             //c cc( 'folds='+flen + ' pains='+pp.length + ' past='+pastlen );
             if (has(ssD, 'pastFoldPoints')) {
                 //todm for( let i=foldps.length; i<flen; i++ ) {
-                for (let i=0; i<pastlen; i++) {
+                for (let i = 0; i < pastlen; i++) {
                     pp[i].rgX.undisplay = true;
                 }
             }
             ////otherwise, cannot display all separation points;
             ////therfore, displays nothing,
             if (foldps.length <= pp.length) {
-                 for (let i=0; i<flen; i++) {
+                 for (let i = 0; i < flen; i++) {
                     let fp = foldps[i];
                     let rgX = pp[i].rgX;
                     rgX.pos = fp;

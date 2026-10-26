@@ -242,7 +242,7 @@ function doExpandConfig() {
 
             let gclass = haz(gshape, 'cssClass');
             if (gclass) {
-                if (gclass.indexOf('--')>0) {
+                if (gclass.indexOf('--') > 0) {
                     gclass += ' hidee';
                     gshape.cssClass = gclass;
                     //c cc( pname +' gclass='+ gclass );
@@ -271,7 +271,7 @@ function doExpandConfig() {
             //at the moment for missing flag, doPaintPname === true,
 
             // //\\ todm: automate property transfer
-            var doPaintPname= has(op, 'doPaintPname') ?
+            var doPaintPname = has(op, 'doPaintPname') ?
                                 op.doPaintPname : true;
             var draggableX = has(op, 'draggableX') ? op.draggableX : false;
             var draggableY = has(op, 'draggableY') ? op.draggableY : false;
@@ -294,13 +294,13 @@ function doExpandConfig() {
 
             if (has(op, 'cssClass')) {
                 let opclass = op.cssClass;
-                if (opclass.indexOf('--')>0) {
+                if (opclass.indexOf('--') > 0) {
                     opclass += ' hidee';
                     op.cssClass = opclass;
                 }
                 rgX.classmark = opclass;
             } else if (has(op, 'classmark')) {
-                if (op.classmark.indexOf('--')>0) {
+                if (op.classmark.indexOf('--') > 0) {
                     op.classmark += ' hidee';
                 }
                 rgX.classmark = op.classmark;

@@ -68,7 +68,7 @@
         ns.widthThresholds[thresId] = function (cb) {
             var testWidth = tester.box().width;
             //c cc( 'testWidth '+testWidth, tester() );
-            var mobile = testWidth <150;
+            var mobile = testWidth < 150;
             cb && cb(mobile);
             return mobile;
         };

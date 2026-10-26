@@ -163,7 +163,7 @@
             abs = abs < 1e-100 ? 1e-100 : abs;
             unit.push(vector[2]/abs);
             var normSeed = [];
-            for (var mIx=0; mIx<3; mIx++) {
+            for (var mIx = 0; mIx < 3; mIx++) {
                 var uCur = Math.abs(unit[mIx]);
                 if (uCur < uMin || mIx === 0) {
                     if (mIx > 0) {

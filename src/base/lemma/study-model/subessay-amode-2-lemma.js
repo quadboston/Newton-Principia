@@ -54,7 +54,7 @@
                 captured = haz(instr, "captured") || captured;
 
                 ///core of condition: sets registry immediately
-                nspaste(rg, haz(instr, "rg")||{});
+                nspaste(rg, haz(instr, "rg") || {});
 
                 if (has(instr, 'action')) {
                     ////aka: sDomF.detected_user_interaction_effect()

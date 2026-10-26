@@ -31,7 +31,7 @@
             ///apparently texts is an essay which is currently chosen,
             ///           texts will append captured bookmarks
             var texts = document.querySelectorAll('.original-text.chosen');
-            for (var ix=0, len=texts.length; ix<len; ix++) {
+            for (var ix = 0, len = texts.length; ix < len; ix++) {
                 var etext = texts[ix];
                 ns.eachprop(cap.captured, (prop, pix) => {
                     var stateMark = 'captured-state-'+pix;

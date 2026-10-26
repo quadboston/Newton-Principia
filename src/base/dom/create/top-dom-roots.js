@@ -15,9 +15,9 @@
         //==============================================================
         // //\\ essay and media panes
         //==============================================================
-        for (wx=0; wx<2; wx++) {
-            if ((wx===0 && fconf.ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML) ||
-                (wx===1 && !fconf.ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML)) {
+        for (wx = 0; wx < 2; wx++) {
+            if ((wx === 0 && fconf.ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML) ||
+                (wx === 1 && !fconf.ESSAY_PANE_IS_BEFORE_MEDIA_IN_HTML)) {
                 // //\\ creates essaion pane
                 //      "essaion superroot"
                 var wCls = 'bsl-text-widget';

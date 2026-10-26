@@ -24,7 +24,7 @@
         //this is a norm to chord:
         var norm2 = [-chord[1], chord[0]];
         //sum of two vectors gives: norm2*l+chord=AG=[0,G]
-        var l=-chord[0]/norm2[0];
+        var l = -chord[0]/norm2[0];
         var G = norm2[1]*l + chord[1];
         return [0, G];
     }

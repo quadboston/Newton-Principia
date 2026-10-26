@@ -89,7 +89,7 @@
             "circumscribed-rectangles": topicColors_repo["circumscribed-rectangles"],
             "inscribed-rectangles": topicColors_repo["inscribed-rectangles"],
 
-            "widest-rectangular": fconf.sappId.indexOf('b1sec1lemma2')===0 ?
+            "widest-rectangular": fconf.sappId.indexOf('b1sec1lemma2') === 0 ?
                                             widestRectangularHiddenStart :
                                             widestRectangular,
 

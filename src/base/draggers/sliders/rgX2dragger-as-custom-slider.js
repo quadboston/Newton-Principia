@@ -21,7 +21,7 @@
     }) {
         stdMod.customDraggers_list.push(
             (function (medD8D) {
-                rgX.dragDecorColor= rgX.pcolor; //'#00aaba';
+                rgX.dragDecorColor = rgX.pcolor; //'#00aaba';
                 sDomF.rgX_2_dragWrap({
                     medD8D,
                     rgX,

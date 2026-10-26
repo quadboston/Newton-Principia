@@ -11,7 +11,7 @@
 
 
     function setModule() {
-        stdMod.media_upcreate___part_of_medupcr_basic =media_upcreate___part_of_medupcr_basic;
+        stdMod.media_upcreate___part_of_medupcr_basic = media_upcreate___part_of_medupcr_basic;
         pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
     }
 

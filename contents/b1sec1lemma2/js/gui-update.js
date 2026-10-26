@@ -57,7 +57,7 @@
         var mp = dr.curveMicroPts.points;
         var mp_start_ix  = dv.mp_start_ix;
         var mp_end_ix = dv.mp_end_ix;
-        var maxY= dv.maxY;
+        var maxY = dv.maxY;
         var x_start = dv.x_start;
         var x_end = dv.x_end;
         var mp_len1 = mp.length-1;
@@ -171,7 +171,7 @@
         var insYar = dr.basePts.inscribedY;
         var cirYar = dr.basePts.circumscribedY;
         var yRef = dr.yVariations.yRef;
-        for (var i=0; i<basN; i++) {
+        for (var i = 0; i < basN; i++) {
             let x = baseBarsLefts[i];
             let insY = insYar[i];
             let cirY = cirYar[i];
@@ -224,7 +224,7 @@
         let len = list.length;
         var end = Math.min(len, sconf.basesN+items.offset);
         let offset = items.visOffset;
-        for (ix=0; ix<len; ix++) {
+        for (ix = 0; ix < len; ix++) {
             let item = list[ix];
             var visib = (offset <= ix && ix < end && vis) ? "visible" : "hidden";
             (item.dom || item).style.visibility = visib; //vital line

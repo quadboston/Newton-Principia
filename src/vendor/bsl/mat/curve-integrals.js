@@ -59,7 +59,7 @@
         funPoints[expo]       = [];
         var currentStep         = (curveEndParam - curveStartParam) / basePointsCount;
 
-        for (var it=0; it<=basePointsCount; it++) {
+        for (var it = 0; it <= basePointsCount; it++) {
             currentBasePoints[it] = curveStartParam + currentStep * it;
             var tt              = currentBasePoints[it];
             var funPoint        = fun(currentBasePoints[it]);
@@ -73,7 +73,7 @@
         function calculates_curvePoints2chordsSum(curvePoints) {
             var lenSum = 0;
             var curPLen = curvePoints.length;
-            for (var it=1; it<curPLen; it++) {
+            for (var it = 1; it < curPLen; it++) {
                 var prevP = curvePoints[it-1];
                 var curP  = curvePoints[it];
                 var dx    = curP[0]-prevP[0];

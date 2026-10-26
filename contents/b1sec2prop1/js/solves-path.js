@@ -37,7 +37,7 @@
         //:fixes lenghts to synch with new sSteps
         path.length         = Math.min(path.length, sSteps);
         impulses.length     = Math.min(impulses.length, sSteps-1);
-        impulsesAracc.length= Math.min(impulsesAracc.length, sSteps-1);
+        impulsesAracc.length = Math.min(impulsesAracc.length, sSteps-1);
         speeds.length       = Math.min(speeds.length, sSteps-1);
         speedsAracc.length  = Math.min(speedsAracc.length, sSteps-1);
         freePath.length     = Math.min(freePath.length, sSteps-2);
@@ -55,7 +55,7 @@
             var path = rg.path.pos;
             var timeStep = rg.rgslid_dt.val;
             //pi = path index, we start here from poinit B:
-            for (pi = 1; pi<sSteps; pi++) {
+            for (pi = 1; pi < sSteps; pi++) {
                 //====================================================
                 // //\\ recalls current and former speed placeholders
                 //====================================================
@@ -125,10 +125,10 @@
                 //calculate vector to center S
 
                 //applies force law
-                let {lawPower, lawConstant} = rg.force.inarray[pi<6?pi-1:4];
+                let {lawPower, lawConstant} = rg.force.inarray[pi < 6 ? pi-1 : 4];
                 var forceByDistance = Math.exp(lawPower * Math.log(r));
                 var forceAbs = lawConstant * forceByDistance;
-                if (pi<6) {
+                if (pi < 6) {
                     rg.force.inarray[pi-1].forceAbs = forceAbs;
                 }
                  //speed impuls of force over double-time-step

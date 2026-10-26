@@ -56,7 +56,7 @@
         let dl = dr.differenceRects.list;
         let bN = sconf.basesN;
         let dir = dv.chchosen.dir > 0;
-        for (var ii=0; ii<4; ii++) {
+        for (var ii = 0; ii < 4; ii++) {
             swap.forEach(sw => {
                 sw.forEach(sw2 => {
 
@@ -78,7 +78,7 @@
         let dl = dr.differenceRects.list;
         var bN = sconf.basesN;
         let dir = dv.chchosen.dir > 0;
-        for (var ii=0; ii<2; ii++) {
+        for (var ii = 0; ii < 2; ii++) {
             let pair = swap[ii];
             let direct1 = dir ? pair[0] : pair[1];
             let direct2 = dir ? pair[1] : pair[0];

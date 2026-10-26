@@ -23,7 +23,7 @@
         //:sets dragger handle color
         pointWrap.spinnerClsId = 'tp-' + magnitude;
         //todm ... not straight
-        pointWrap.dragDecorColor= pointWrap.svgel.getAttribute('stroke');
+        pointWrap.dragDecorColor = pointWrap.svgel.getAttribute('stroke');
         var argc = {
             pointWrap,
             doProcess,

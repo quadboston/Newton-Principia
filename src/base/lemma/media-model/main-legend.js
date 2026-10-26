@@ -120,7 +120,7 @@
             if (makesCaptionCluster) {
                 var row = $$.c('tr').to(tb)();
                 var rowRack = domModel$.columnCaptionsRow;
-                for (var clusterIx=0; clusterIx < clustersCount; clusterIx++) {
+                for (var clusterIx = 0; clusterIx < clustersCount; clusterIx++) {
                     var clusterPars = makesCaptionCluster({
                         row,
                         clusterIx,
@@ -143,13 +143,13 @@
             //================================================
             // //\\ creates rows below captions-row
             //================================================
-            for (var rowIx=0; rowIx < rowsCount; rowIx++) {
+            for (var rowIx = 0; rowIx < rowsCount; rowIx++) {
                 var row = $$.c('tr').to(tb)();
                 var rowRack = domModel$.body$[rowIx] = [];
                 ///================================================
                 /// creates cells for given row
                 ///================================================
-                for (var clusterIx=0; clusterIx < clustersCount; clusterIx++) {
+                for (var clusterIx = 0; clusterIx < clustersCount; clusterIx++) {
                     if (!cellsVisibilityCondition(rowIx, clusterIx)) continue;
                     var clusterPars = makesBodyCluster({
                         rowIx,
@@ -256,7 +256,7 @@
             !noTableTitle && updatesTableTitle && updatesTableTitle({ tableCaption$ });
             updateCaptionsRow();
             for (var rowIx = 0; rowIx < rowsCount; rowIx++) {
-                for (var clusterIx=0; clusterIx < clustersCount; clusterIx++) {
+                for (var clusterIx = 0; clusterIx < clustersCount; clusterIx++) {
                     if (!cellsVisibilityCondition(rowIx, clusterIx)) continue;
                     var { clusterCellIx, htmlbody, } = updatesDataInCell({ rowIx, clusterIx, });
                     domModel$.body$[rowIx][clusterIx][clusterCellIx].html(htmlbody);
@@ -274,7 +274,7 @@
         function updateCaptionsRow() {
             if (updatesCaptionCluster) {
                 var len = clustersCount;
-                for (var clusterIx=0; clusterIx < len; clusterIx++) {
+                for (var clusterIx = 0; clusterIx < len; clusterIx++) {
                     var { columnCaptionTitle, clusterCellIx  } =
                         updatesCaptionCluster({ clusterIx, });
                     domModel$.columnCaptionsRow[clusterIx][clusterCellIx]
@@ -308,14 +308,14 @@
             // //\\ hides all cells
             //--------------------------------------------
             if (makesCaptionCluster) {
-                for (var clusterIx=0; clusterIx<clustersCount; clusterIx++) {
+                for (var clusterIx = 0; clusterIx < clustersCount; clusterIx++) {
                     domModel$.columnCaptionsRow[clusterIx].forEach(c$ => {
                         c$.addClass('hidden');
                     });
                 }
             }
-            for (var rowIx=0; rowIx < rowsCount; rowIx++) {
-                for (var clusterIx=0; clusterIx <= clustersCount-rowIx-1; clusterIx++) {
+            for (var rowIx = 0; rowIx < rowsCount; rowIx++) {
+                for (var clusterIx = 0; clusterIx <= clustersCount-rowIx-1; clusterIx++) {
                     domModel$.body$[rowIx][clusterIx].forEach(c$ => {
                         c$.addClass('hidden');
                     });
@@ -329,7 +329,7 @@
             // //\\ shows cells by condition
             //--------------------------------------------
             if (makesCaptionCluster) {
-                for (var clusterIx=0; clusterIx < clustersCount; clusterIx++) {
+                for (var clusterIx = 0; clusterIx < clustersCount; clusterIx++) {
                     domModel$.columnCaptionsRow[clusterIx].forEach(c$ => {
                         ///by design, captions visibility is the same as row-0
                         cellsVisibilityCondition(0, clusterIx) && c$.removeClass('hidden');
@@ -337,7 +337,7 @@
                 }
             }
             for (var rowIx = 0; rowIx < rowsCount; rowIx++) {
-                for (var clusterIx=0; clusterIx < clustersCount; clusterIx++) {
+                for (var clusterIx = 0; clusterIx < clustersCount; clusterIx++) {
                     cellsVisibilityCondition(rowIx, clusterIx) &&
                     domModel$.body$[rowIx][clusterIx].forEach(c$ => {
                         c$.removeClass('hidden');

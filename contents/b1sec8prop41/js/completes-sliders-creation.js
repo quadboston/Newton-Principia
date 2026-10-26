@@ -190,7 +190,7 @@
     function pointEisIncluded(DposY) {
         DposY = DposY || DposY === 0 ? DposY : rg.D.pos[1];
         let xy = rg['approximated-curve'].curvePoints;
-        let endIx = sData.quadSolved.roMinusIx===null ? xy.length-1 :
+        let endIx = sData.quadSolved.roMinusIx === null ? xy.length-1 :
                     sData.quadSolved.roMinusIx;
         let roEnd = xy[endIx][1];
         let EposY = DposY - sconf.dRo;

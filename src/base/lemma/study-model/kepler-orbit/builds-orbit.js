@@ -15,7 +15,7 @@
 
 
     function buildsOrbit() {
-        graphArray.length =0;
+        graphArray.length = 0;
         qIndexToOrbit.length = 0;
 
         const orbit_q_start = sconf.orbit_q_start;
@@ -33,7 +33,7 @@
         //embedded into svg in other place,
         ///they are recalculated here
         ///with other step here for derivative params,
-        for (var qix = 0; qix<=Q_STEPS; qix++) {
+        for (var qix = 0; qix <= Q_STEPS; qix++) {
             var bP = qIndexToOrbit[qix] = mcurve.planeCurveDerivatives({
                 pointAt: q2xy,
                 q: orbit_q_start + qix * delta_q_between_steps,
@@ -103,7 +103,7 @@
             ///for static orbit shapes shoult build once per launch,
             ///decoration: builds pivots for scalable decorational orbit
             const ORBIT_STEP = Q_STEPS/orbitXYToDraw_LIMIT;
-            for (let oix=0; oix<=orbitXYToDraw_LIMIT; oix++) {
+            for (let oix = 0; oix <= orbitXYToDraw_LIMIT; oix++) {
                 let qix = Math.floor(oix * ORBIT_STEP);
                 orbitXYToDraw[oix] = qIndexToOrbit[qix].posBody;
             }

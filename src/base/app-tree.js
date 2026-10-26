@@ -29,7 +29,7 @@
     var references  = sn('references', ssD);
     var capture     = sn('capture', ssD);
     var topics      = sn('topics', ssD);
-    var lowtpid_2_glocss8anchorRack= sn('lowtpid_2_glocss8anchorRack', topics);
+    var lowtpid_2_glocss8anchorRack = sn('lowtpid_2_glocss8anchorRack', topics);
     var anid2anrack   = sn('anid2anrack', topics);
     var anix2anrack   = sn('anix2anrack', topics, []);
 
