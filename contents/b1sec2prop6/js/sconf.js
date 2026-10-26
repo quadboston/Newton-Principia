@@ -151,7 +151,7 @@
             proofColor,
             curvature,
             curvatureCircle : curvature,
-			time: estimatedForceColor,
+            time: estimatedForceColor,
             orbit: bodyColor,
             timearc : bodyColor,
             APQ     : bodyColor,
@@ -175,7 +175,7 @@
             [217,132],
             [102, 180.1],
             [51,238 ],
-			[24.2, 315] 
+            [24.2, 315] 
         ];
         sconf.rgPq = 0.270;
         //sconf.tForSagitta0 = 0.168;
@@ -226,9 +226,9 @@
         Object.assign( originalPoints, {
             A : {
                 pcolor : bodyColor,
-				draggableX  : true,
+                draggableX  : true,
                 draggableY  : true,
-				cssClass: 'logic_phase--corollary',
+                cssClass: 'logic_phase--corollary',
             },
 
             S : {
@@ -257,26 +257,26 @@
             T : {
                 pcolor : estimatedForceColor,
                 letterAngle : 180,
-				cssClass: 'subessay--corollary1 subessay--corollary5',
+                cssClass: 'subessay--corollary1 subessay--corollary5',
             },
 
             R : {
                 pcolor : estimatedForceColor,
                 letterAngle : 45,
-				cssClass: 'logic_phase--corollary',
+                cssClass: 'logic_phase--corollary',
             },
 
             Z : {
                 pcolor : proofColor,
                 letterAngle : 45,
-				cssClass: 'subessay--corollary1',
+                cssClass: 'subessay--corollary1',
             },
 
             // Q's counterpart at other end of arc
             rrminus : {
                 caption : '',
                 pcolor : givenColor,
-				cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
+                cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
             },
 
             sagitta : {
@@ -291,13 +291,13 @@
             Y : {
                 pcolor : estimatedForceColor,
                 letterAngle : 80,
-				cssClass: 'subessay--corollary3 subessay--corollary5',
+                cssClass: 'subessay--corollary3 subessay--corollary5',
             },
 
             V : {
                 pcolor : estimatedForceColor,
                 letterAngle : -45,
-				cssClass: 'subessay--corollary3 subessay--corollary5',
+                cssClass: 'subessay--corollary3 subessay--corollary5',
             },
 
             //center of instant curvature circle
@@ -306,7 +306,7 @@
                 caption : '',
                 pcolor : curvature,
                 letterAngle : -45,
-				cssClass: 'subessay--corollary3',
+                cssClass: 'subessay--corollary3',
             },
 
             nonSolvablePoint : {
@@ -318,7 +318,7 @@
                 letterAngle : 0,
             },
             errorMessage : { // nonSolvablePoint message shown at to of canvas
-				// caption assigned in model-upcreate by const set in builds-orbit.js
+                // caption assigned in model-upcreate by const set in builds-orbit.js
                 pos : [20, 20],
                 fontSize : '25',
                 pcolor : invalid,
@@ -341,44 +341,44 @@
         var linesArray =
         [
             { 'PV' : { pcolor : estimatedForceColor,
-				cssClass: 'subessay--corollary3 subessay--corollary5',
-			 }, },
+                cssClass: 'subessay--corollary3 subessay--corollary5',
+             }, },
             { 'SP' : { pcolor : estimatedForceColor,
-			 }, },
+             }, },
             { 'PY' : { pcolor : bodyColor,
-				cssClass: 'subessay--corollary3 subessay--corollary5',
-			 }, },
+                cssClass: 'subessay--corollary3 subessay--corollary5',
+             }, },
             { 'PZ' : { pcolor : proofColor,
-				cssClass: 'subessay--corollary1 subessay--corollary3',
-			 }, },
+                cssClass: 'subessay--corollary1 subessay--corollary3',
+             }, },
             { 'PR' : { pcolor : proofColor,
-				cssClass: 'logic_phase--corollary',
-			 }, },
+                cssClass: 'logic_phase--corollary',
+             }, },
             { 'SY' : { pcolor : estimatedForceColor,
-				cssClass: 'subessay--corollary3 subessay--corollary5',
-			 }, },
+                cssClass: 'subessay--corollary3 subessay--corollary5',
+             }, },
             { 'QR' : { pcolor : estimatedForceColor,
-				cssClass: 'logic_phase--corollary',
-			 }, },
+                cssClass: 'logic_phase--corollary',
+             }, },
             { 'QP' : { pcolor : proofColor }, },
             { 'SQ' : { pcolor : proofColor,
-				cssClass: 'subessay--corollary1',
-			 }, },
+                cssClass: 'subessay--corollary1',
+             }, },
             { 'QT' : { pcolor : estimatedForceColor,
-				cssClass: 'subessay--corollary1 subessay--corollary5',
-			 }, },
+                cssClass: 'subessay--corollary1 subessay--corollary5',
+             }, },
             { 'PC' : { pcolor : curvature,
-				cssClass: 'subessay--corollary3',
-			 }, },
+                cssClass: 'subessay--corollary3',
+             }, },
             { 'Q,rrminus' : { pcolor : givenColor,
-				cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
-			 }, },
+                cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
+             }, },
             { 'P,sagitta' : { pcolor : estimatedForceColor,
-				cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
-			 }, },
+                cssClass: 'logic_phase--claim logic_phase--proof subessay--corollary1',
+             }, },
             { 'S,nonSolvablePoint' : { pcolor : invalid,
-				undisplayAlways : true,
-			 }, },
+                undisplayAlways : true,
+             }, },
         ];
 
         ns.paste( sconf, {

@@ -160,27 +160,27 @@
                    letterRotRadius : 20,
                 },
             t : { pos: [1511, 574],
-				  caption : '𝑡',
+                  caption : '𝑡',
                   pcolor : pt.aux,
                   cssClass : 'subessay--corollary1 subessay--corollary2',
                   letterAngle : 45,
                   letterRotRadius : 20,
                 },
             r : { pos: [1028, 830],
-				  caption : '𝑟',
+                  caption : '𝑟',
                   pcolor : pt.aux,
                   cssClass :  'subessay--corollary1 subessay--corollary2',
                 },
             q : { pos: [1028, 830],
-				  caption : '𝑞',
+                  caption : '𝑞',
                   pcolor : pt.aux,
                   cssClass : 'subessay--corollary3',
                 },
             d : { pos: [1028, 830],
-					caption : '𝑑',
-                	pcolor : pt.aux,
-                	cssClass : 'subessay--corollary3',
-                	initialR: pointRadius,
+                    caption : '𝑑',
+                    pcolor : pt.aux,
+                    cssClass : 'subessay--corollary3',
+                    initialR: pointRadius,
                 },
             // \\// aux points
   
@@ -273,16 +273,16 @@
         var linesArray =
         [
             { 'KS' : {
-						pcolor : pt.aux,
-						cssClass : 'subessay--case1',
+                        pcolor : pt.aux,
+                        cssClass : 'subessay--case1',
                     }
             },
             { 'AE' : {
                         pcolor : pt.aux,
-						cssClass : 'subessay--case1 subessay--case2',
+                        cssClass : 'subessay--case1 subessay--case2',
                     }
             },
-			 { 'AC' : {
+             { 'AC' : {
                         pcolor : pt.aux,
                     }
             },
@@ -420,7 +420,7 @@
                         cssClass : 'subessay--corollary1 subessay--corollary2',
                     }
             },
-			{ 'CF' : {
+            { 'CF' : {
                         pcolor : pt.aux,
                         cssClass : 'subessay--case1 subessay--case2',
                     }
@@ -490,7 +490,7 @@
                         cssClass : 'subessay--corollary1 subessay--corollary2',
                     }
             },
-			{ 'CP' : {
+            { 'CP' : {
                         pcolor : topicColors_elected["similar-triangle"],
                         cssClass : 'subessay--case1',
                     }

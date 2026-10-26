@@ -133,10 +133,10 @@
             invalidColor,
             hidden,
             estimatedForceColor,
-			infoColor,
+            infoColor,
             chord,
-			sunColor,
-			proofHover,
+            sunColor,
+            proofHover,
         } = topicColors_repo;
 
 
@@ -149,10 +149,10 @@
             invalidColor,
             proofColor,
             hidden,
-			time: estimatedForceColor,
+            time: estimatedForceColor,
             curvatureCircle : infoColor,
-			force : forceColor,
-			orbit: bodyColor,
+            force : forceColor,
+            orbit: bodyColor,
             APQ     : bodyColor,
         };
         //-----------------------------------
@@ -290,7 +290,7 @@
         var linesArray =
         [
             { 'PV' : { pcolor : proofHover }, },
-			{ 'SV' : { pcolor : proofColor }, },
+            { 'SV' : { pcolor : proofColor }, },
             { 'AV' : { pcolor : proofColor }, },
             { 'AP' : { pcolor : proofColor }, },
 
@@ -302,8 +302,8 @@
             { 'PR' : { pcolor : proofColor }, },
             { 'ZQ' : { pcolor : bodyColor }, },
 
-			{ 'RL' : { pcolor : proofHover }, },
-			{ 'QL' : { pcolor : proofColor }, },
+            { 'RL' : { pcolor : proofHover }, },
+            { 'QL' : { pcolor : proofColor }, },
 
             { 'SY' : { pcolor : proofColor }, },
             { 'QR' : { pcolor : estimatedForceColor }, },

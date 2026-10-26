@@ -1,5 +1,5 @@
 ( function() {
-	const ns	  = window.b$l;
+    const ns	  = window.b$l;
     const has     = ns.h;
     const haz     = ns.haz;
     const $$      = ns.$$;
@@ -21,7 +21,7 @@
     ///     arg.style
     ///     and other attributes in form "key"-"value"
     ///Returns new or updated svgel - svg element
-	nssvg.u = function( arg )
+    nssvg.u = function( arg )
     {
         var svgel = haz( arg, 'svgel' );
         ///protects from repeating construction

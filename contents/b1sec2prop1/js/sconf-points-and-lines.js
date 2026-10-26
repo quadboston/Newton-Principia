@@ -17,18 +17,18 @@ return;
 //-------------------------------------------------------
 function sconf_points8lines (){
     let {
-		givenColor,
+        givenColor,
         proofColor,
-		bodyColor,
+        bodyColor,
         forceColor,
         infoColor,
         corollaryColor,
         proofArea,
-		supplementColor,
-		sunColor,
-		deviationAreaColor,
+        supplementColor,
+        sunColor,
+        deviationAreaColor,
     } = topicColors_repo;
-	let deviationColor;
+    let deviationColor;
 
     {   const harden = col => ([col[0],col[1],col[2],1,1]);
         //0.5 is good for areas, bad for lines,
@@ -39,8 +39,8 @@ function sconf_points8lines (){
         infoColor = harden(infoColor);
         forceColor = harden(forceColor);
         supplementColor = harden(supplementColor);
-		sunColor = harden(sunColor);
-		deviationColor = harden(deviationAreaColor);
+        sunColor = harden(sunColor);
+        deviationColor = harden(deviationAreaColor);
     }
 
     ///topic names elected
@@ -50,8 +50,8 @@ function sconf_points8lines (){
         time : infoColor,                       //Time slider
         dt                  : infoColor, //Delta time slider
         bodyColor,
-		deviationColor,
-		deviationAreaColor,
+        deviationColor,
+        deviationAreaColor,
 
         //The following sets the color of the text in
         //the text area for these triangles.  If
@@ -154,7 +154,7 @@ function sconf_points8lines (){
         "De"                : proofColor,
         "Ef"                : proofColor,
 
-		"v"		: supplementColor,
+        "v"		: supplementColor,
     };
     var p2_elected = haf( ssD, 'P2_topicColors_elected' )(tpel);
     if( p2_elected ) {
@@ -199,7 +199,7 @@ function sconf_points8lines (){
                 // \\// templates
               },
         B   : { decStart : -2, decEnd : 1111111111,
-				letterAngle : -45,
+                letterAngle : -45,
               },
     };
     Object.assign( decor, firstSteps_conf );
@@ -210,12 +210,12 @@ function sconf_points8lines (){
         //"rg" [ 'B', 'C', 'D', 'E', 'F' ].pos <-- path[ ix + 1 ]
         C   : {
                 decStart : 6,
-				letterAngle : 62,
-				letterRotRadius : 21,
+                letterAngle : 62,
+                letterRotRadius : 21,
         },
         D   : { decStart : 10, 
-				letterAngle : 80,
-		},
+                letterAngle : 80,
+        },
         E   : { decStart : 14,
                 letterAngle : 90,
         },
@@ -242,7 +242,7 @@ function sconf_points8lines (){
                 caption : "C′",
                 decStart : decor.C.decStart,
                 decEnd : decor.C.decStart,
-				letterAngle : 66,
+                letterAngle : 66,
                 cssClass : 'logic_phase--corollary',
             },
             //will be repositioned by algo
@@ -250,7 +250,7 @@ function sconf_points8lines (){
                 caption : "V′",
                 decStart : decor.C.decStart,
                 decEnd : decor.C.decStart,
-				letterAngle : 50,
+                letterAngle : 50,
                 cssClass : 'logic_phase--corollary',
             },
         };
@@ -270,21 +270,21 @@ function sconf_points8lines (){
             cssClass : fconf.sappId === 'b1sec2prop2' ?
                 'logic_phase--proof logic_phase--corollary' :
                 'subessay--cor-3 logic_phase--proof',
-			letterAngle : 30,
+            letterAngle : 30,
         },
         d   : {
             caption : '𝑑',
             decStart : LOGIC ? 9 : decor.D.decStart,
             decEnd : decor.F.decStart+2,
             cssClass : lemmaModes,
-			letterAngle : 80,
+            letterAngle : 80,
         },
         e   : {
             caption : '𝑒',
             decStart : LOGIC ? 13 : decor.E.decStart,
             decEnd : decor.F.decStart+2,
             cssClass : lemmaModes,
-			letterAngle : 80,
+            letterAngle : 80,
         },
         f   : {
             caption : '𝑓',
@@ -293,7 +293,7 @@ function sconf_points8lines (){
             cssClass : fconf.sappId === 'b1sec2prop2' ?
                 'logic_phase--proof logic_phase--corollary' :
                 'subessay--cor-3 logic_phase--proof',
-			letterAngle : 90,
+            letterAngle : 90,
         },
     }
     // \\// c,d,e,f
@@ -302,15 +302,15 @@ function sconf_points8lines (){
         //double sagitta layed down from point B
         V   : { decStart : -2, decEnd : 1111111,
                 cssClass : 'logic_phase--corollary',
-				letterAngle : -50,
-				letterRotRadius : 35,
+                letterAngle : -50,
+                letterRotRadius : 35,
               },
         //double sagitta layed down from point E
         Z   : {
                 decStart : decor.F.decStart,
                 decEnd : decor.F.decEnd,
                 cssClass : theor1corollary,
-				letterAngle : -160,
+                letterAngle : -160,
               },
     };
 
@@ -322,7 +322,7 @@ function sconf_points8lines (){
               },
         v   : {
                 //pos      : sconf.B.concat(),
-				caption: '𝘷𝘦𝘭𝘰𝘤𝘪𝘵𝘺',
+                caption: '𝘷𝘦𝘭𝘰𝘤𝘪𝘵𝘺',
                 decStart : -2, //always visible
                 draggableX : true, draggableY : true,
               },

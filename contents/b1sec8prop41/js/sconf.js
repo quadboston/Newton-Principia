@@ -1,7 +1,7 @@
 
 ( function() {
     var { sn, eachprop, nspaste, topicColors_repo, fconf, sconf, } 
-		= window.b$l.apptree({ ssFExportList : { init_conf } });
+        = window.b$l.apptree({ ssFExportList : { init_conf } });
     var op = sn( 'orbitParameters', sconf );
     return;
 
@@ -23,33 +23,33 @@
         //----------------------------------
         // //\\ paper diagram parameters
         //----------------------------------
-		//for real picture if diagram's picture is supplied or
-		//for graphical-media work-area if not supplied:
-		var pictureWidth = 912;
-		var pictureHeight = 603;
-		var C = [ 376,
-					587
-				];
-		sconf.Fi_distance = 1.8;
-		sconf.insertDelayedBatch = true;
-		sconf.dRo = 0.075; //dr - infinitesimal interval
+        //for real picture if diagram's picture is supplied or
+        //for graphical-media work-area if not supplied:
+        var pictureWidth = 912;
+        var pictureHeight = 603;
+        var C = [ 376,
+                    587
+                ];
+        sconf.Fi_distance = 1.8;
+        sconf.insertDelayedBatch = true;
+        sconf.dRo = 0.075; //dr - infinitesimal interval
 
-		var V = [C[0], 100];
+        var V = [C[0], 100];
 
-		//model's spacial unit expressed in pixels of the picture:
-		//vital to set to non-0 value
-		var mod2inn_scale = C[1] - V[1];
+        //model's spacial unit expressed in pixels of the picture:
+        //vital to set to non-0 value
+        var mod2inn_scale = C[1] - V[1];
 
-		var A = [C[0], 39];
-		var B = [464,  A[1]];
-		var forceStart = [ B[0]*1.03, -100 ];
-		var D = [C[0], 270];
-		var E = [C[0], 304];
-		var R = [41, 234];
-		var k = [246, 491];
+        var A = [C[0], 39];
+        var B = [464,  A[1]];
+        var forceStart = [ B[0]*1.03, -100 ];
+        var D = [C[0], 270];
+        var E = [C[0], 304];
+        var R = [41, 234];
+        var k = [246, 491];
 
-		//decorations
-		sconf.angleOfR = Math.PI * 0.245;
+        //decorations
+        sconf.angleOfR = Math.PI * 0.245;
         //----------------------------------
         // \\// paper diagram parameters
         //----------------------------------

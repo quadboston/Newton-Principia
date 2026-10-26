@@ -17,19 +17,19 @@
     //=========================================================
     function media_upcreate___part_of_medupcr_basic()
     {
-		paintCurveFromAto(rg.b);
-		paintCurveFromAto(rg.B);
+        paintCurveFromAto(rg.b);
+        paintCurveFromAto(rg.B);
         paintCircle();
 
-		function paintCurveFromAto(endPoint) {
-			ssF.paintsCurve({
-				fun         : ssD.repoConf[0].fun,
-				mmedia      : stdMod.mmedia,
-				pointA      : rg.A,
-				pointB      : endPoint,
-				addToStepCount : 1,
-			});
-		}
+        function paintCurveFromAto(endPoint) {
+            ssF.paintsCurve({
+                fun         : ssD.repoConf[0].fun,
+                mmedia      : stdMod.mmedia,
+                pointA      : rg.A,
+                pointB      : endPoint,
+                addToStepCount : 1,
+            });
+        }
 
         function paintCircle() {
             const circleName = 'circleJA';

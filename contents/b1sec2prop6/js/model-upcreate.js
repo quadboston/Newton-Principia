@@ -51,7 +51,7 @@
                     let best = null;
                     let bestDiff = Infinity;
                     const Q = Porb.rrplus;
-					const sagittaOnSP_Tolerance = 0.0006;
+                    const sagittaOnSP_Tolerance = 0.0006;
 
                     for (let i = rg.P.qix; i > 0; i--) {
                         const Qp = ssD.qIndexToOrbit[i]?.posBody;
@@ -89,8 +89,8 @@
                         Porb.rrminus[0] = rg.rrminus.pos[0] = best[0];
                         Porb.rrminus[1] = rg.rrminus.pos[1] = best[1];
                     }
-					rg.infoMessage.undisplay = 
-						bestDiff <= 2 * sagittaOnSP_Tolerance;
+                    rg.infoMessage.undisplay = 
+                        bestDiff <= 2 * sagittaOnSP_Tolerance;
                 }
 
                 adjustQprime(); // finds Q' that brings M closest to I

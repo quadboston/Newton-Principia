@@ -4,10 +4,10 @@
     return;
 
 
-	function customXLegend() {
-		return {
-			legendText	: 'Distance along arc',
-			legendX	: -520,
-		}
-	}
+    function customXLegend() {
+        return {
+            legendText	: 'Distance along arc',
+            legendX	: -520,
+        }
+    }
 }) ();

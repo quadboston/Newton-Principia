@@ -4,10 +4,10 @@
     return;
 
 
-	function customXLegend() {
-		return {
-			legendText	: 'Distance from force (CP)',
-			legendX	: -560,
-		}
-	}
+    function customXLegend() {
+        return {
+            legendText	: 'Distance from force (CP)',
+            legendX	: -560,
+        }
+    }
 }) ();

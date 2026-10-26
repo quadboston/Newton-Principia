@@ -1,6 +1,6 @@
 // //\\//   attaches library function to b$l
 ( function () {
-	var ns	= window.b$l;
+    var ns	= window.b$l;
     ns.throttle = throttle;
     var throttleDebCount = 0;
     return;
@@ -74,8 +74,8 @@
             //// do bounce or throttle
             timeout = setTimeout( 
                 function() {
-	                fun( arg );
-	                timeout = null;
+                    fun( arg );
+                    timeout = null;
                     timeStart = null;
                 },
                 wait

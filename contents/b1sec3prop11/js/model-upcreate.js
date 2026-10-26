@@ -22,10 +22,10 @@
         var Qpos = q2xy( Porb.plusQ );
         rg.Q.pos[0] = Qpos[0];
         rg.Q.pos[1] = Qpos[1];
-		if (rg.Qemphasis) {
-			rg.Qemphasis.pos[0] = Qpos[0];
-			rg.Qemphasis.pos[1] = Qpos[1];
-		}
+        if (rg.Qemphasis) {
+            rg.Qemphasis.pos[0] = Qpos[0];
+            rg.Qemphasis.pos[1] = Qpos[1];
+        }
 
         // **api-input---plane-curve-derivatives
         var {
@@ -98,15 +98,15 @@
         rg.v.pos[0] = wwR[0];
         rg.v.pos[1] = wwR[1];
 
-		// put q across from Q
-		rg.q.pos[0] = 2 * rg.v.pos[0] - rg.Q.pos[0];
-		rg.q.pos[1] = 2 * rg.v.pos[1] - rg.Q.pos[1];
+        // put q across from Q
+        rg.q.pos[0] = 2 * rg.v.pos[0] - rg.Q.pos[0];
+        rg.q.pos[1] = 2 * rg.v.pos[1] - rg.Q.pos[1];
 
         //extra points
         nspaste( rg.F.pos, mat.dropPerpendicular( rg.P.pos, rg.D.pos, rg.K.pos ) );
         nspaste( rg.A.pos, q2xy( 0 ) );
         nspaste( rg.B.pos, q2xy( Math.PI/2 ) );
-		nspaste( rg.AA.pos, q2xy( Math.PI ) );
+        nspaste( rg.AA.pos, q2xy( Math.PI ) );
 
         //point x
         nspaste( rg.x.pos, mat.lineSegmentsCross(
@@ -124,8 +124,8 @@
             mat.sm( rg.S.pos, -1, rg.P.pos ), rg.S.pos, //direction, start
         ));
 
-		// graph
-		if (stdMod.graph) {
+        // graph
+        if (stdMod.graph) {
             let graphArg = {
             }
 
@@ -277,7 +277,7 @@
             // console.log(`width = ${percentWidthMax}%`);
 
 
-			stdMod.graph.drawsGraph(graphArg);
-		}
+            stdMod.graph.drawsGraph(graphArg);
+        }
     }
 })();

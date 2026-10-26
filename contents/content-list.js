@@ -98,7 +98,7 @@
             caption : 'Sec. 3, Proposition 13',
         },
 
-		/* Removed until interaction is redone
+        /* Removed until interaction is redone
         {   sappId : 'b1sec3prop14',
             book : 'Book 1',
             caption : 'Sec. 3, Proposition 14',
@@ -128,13 +128,13 @@
             book : 'Book 1',
             caption : 'Sec. 8, Proposition 41',
         },
-		
-		{   sappId : 'conics',
+        
+        {   sappId : 'conics',
             book : 'Appendix',
             caption : '<em>Conics</em> reference',
         },
 
-		{   sappId : 'glossary',
+        {   sappId : 'glossary',
             book : 'Appendix',
             caption : 'Glossary',
         },

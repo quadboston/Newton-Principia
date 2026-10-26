@@ -1,6 +1,6 @@
 ( function () {
     var { fconf, sconf, } =
-	    window.b$l.apptree({ ssFExportList : { init_conf_common, }, });
+        window.b$l.apptree({ ssFExportList : { init_conf_common, }, });
     return;
 
 
@@ -67,7 +67,7 @@
             MOVABLE_BASE_RADIUS : 2.25, //L3 draggable base points
             CTRL_RADIUS     : 2.25,
             //Minimum distance between base handles
-	        BASE_POINTS_REPELLING_DISTANCE : 10,
+            BASE_POINTS_REPELLING_DISTANCE : 10,
 
             //:d8d
             //DRAG_POINTS_THROTTLE_TIME : 0, //ms, softens drag8drop on performance-weak-devices

@@ -520,10 +520,10 @@
                         fconf.pathToContentSite + '/contents/' +
                         fconf.sappId + '/img/' + imgId;
                 stdMod.imgRk.hasImage = imgId !== '*empty*';
-				// a later section's image replaces an earlier empty one,
-				// so the timeout must follow the image finally chosen
-				fconf.timeToShowOriginalDiagram_effective =
-					imgId === '*empty*' ? 1 : fconf.timeToShowOriginalDiagram;
+                // a later section's image replaces an earlier empty one,
+                // so the timeout must follow the image finally chosen
+                fconf.timeToShowOriginalDiagram_effective =
+                    imgId === '*empty*' ? 1 : fconf.timeToShowOriginalDiagram;
                 // \\// establishes image source file name
             }
             // \\// bg images
@@ -545,15 +545,15 @@
     }
 
 
-	/**
-	 * Gets a fixed color as an rgba string. Topic names are looked up in the 
-	 * fixed color palette. Arrays are converted to rgba format.
-	 * 
-	 * @param {string | number[]} topicOrArray - Topic name (e.g., 'given',
-	 * 		'proof') or rgba array [r, g, b, a]. Returns black if falsy.
-	 * @param {boolean} [makeOpacity1] - If true, sets opacity to 1
-	 * @returns {string} rgba color string like 'rgba(44,150,120,1)'
-	 */
+    /**
+     * Gets a fixed color as an rgba string. Topic names are looked up in the 
+     * fixed color palette. Arrays are converted to rgba format.
+     * 
+     * @param {string | number[]} topicOrArray - Topic name (e.g., 'given',
+     * 		'proof') or rgba array [r, g, b, a]. Returns black if falsy.
+     * @param {boolean} [makeOpacity1] - If true, sets opacity to 1
+     * @returns {string} rgba color string like 'rgba(44,150,120,1)'
+     */
     function getFixedColor(topicOrArray, makeOpacity1)
     {
         if( typeof topicOrArray === 'string' ) {

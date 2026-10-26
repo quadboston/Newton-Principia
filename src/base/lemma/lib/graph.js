@@ -65,9 +65,9 @@
             //first array mast be enabled
             let graphArrayMask = haz( graph, 'graphArrayMask' );
 
-			var { legendText, legendX } = customXLegend ?
-				customXLegend() :
-				{ legendText: 'Distance from force (SP)', legendX : -560 };
+            var { legendText, legendX } = customXLegend ?
+                customXLegend() :
+                { legendText: 'Distance from force (SP)', legendX : -560 };
             const { textColor, axisYLegend, axisXLegend, } =
                 graphAxisLegends( legendText, legendX );
             //==================================================
@@ -98,7 +98,7 @@
                 plotsCount_overrider : 1000,
                 doPaintGridOnlyOnce : false,
                 doDrawToolline : toollineConfig(),
-				brightenGrid : 0.3,
+                brightenGrid : 0.3,
                 xMin,
                 xMax,
                 yMin,
@@ -109,14 +109,14 @@
             // \\// calls low tier api
             //==================================================
 
-        	setsGraphTpClasses(graph.chart);
+            setsGraphTpClasses(graph.chart);
         }
         //===================================================
         // \\// top tier painter which wraps low tier painter
         //===================================================
 
 
-		function toollineConfig()
+        function toollineConfig()
         {
             return {
                 toollineStyle : {
@@ -212,109 +212,109 @@
         );
     }
 
-	///this thing is not dynamic (missed in design),
-	///but, colorThreadArray is accessible for reset
-	///dynamically,
-	///
-	//this is just an example how to reset colors dynamically
-	//in model_upcreate():
-	//stdMod.graph.colorThreadArray[0] = sDomF.getFixedColor( 'force' );
-	function defaultPlotColors() {
-		let colorThreadArray = [
-			sDomF.getFixedColor( 'force' ),
-			sDomF.getFixedColor( 'estimatedForceColor' ),
-		];
-		return colorThreadArray;
-	}
+    ///this thing is not dynamic (missed in design),
+    ///but, colorThreadArray is accessible for reset
+    ///dynamically,
+    ///
+    //this is just an example how to reset colors dynamically
+    //in model_upcreate():
+    //stdMod.graph.colorThreadArray[0] = sDomF.getFixedColor( 'force' );
+    function defaultPlotColors() {
+        let colorThreadArray = [
+            sDomF.getFixedColor( 'force' ),
+            sDomF.getFixedColor( 'estimatedForceColor' ),
+        ];
+        return colorThreadArray;
+    }
 
-	function createsGraphContainer( parentDom$ ) {
-		const container$ = $$.div()
-		.addClass( 'graph-container' )
-		.to( $$.div().to( parentDom$ )
-				.addClass( 'graph-parent' )
-				//.css( 'position', 'absolute' )
+    function createsGraphContainer( parentDom$ ) {
+        const container$ = $$.div()
+        .addClass( 'graph-container' )
+        .to( $$.div().to( parentDom$ )
+                .addClass( 'graph-parent' )
+                //.css( 'position', 'absolute' )
 
-				//:this data sets outer dimensions of the graph
-				.css( 'width', '400px' )
-				.css( 'height', '230px' )
-				.css( 'top', '0' )
-				.css( 'left', '0' )
-				.css( 'z-index', '111111' )
-		);
-		//creates low tier api
-		const graph_dimX = 1000;  //innerWidth
-		const graph_dimY = 580;   //innerHeight
-		return {container$, graph_dimX, graph_dimY}
-	}
+                //:this data sets outer dimensions of the graph
+                .css( 'width', '400px' )
+                .css( 'height', '230px' )
+                .css( 'top', '0' )
+                .css( 'left', '0' )
+                .css( 'z-index', '111111' )
+        );
+        //creates low tier api
+        const graph_dimX = 1000;  //innerWidth
+        const graph_dimY = 580;   //innerHeight
+        return {container$, graph_dimX, graph_dimY}
+    }
 
-	function graphAxisLegends(legendText, legendX) {
-		const getFixedColor = sDomF.getFixedColor;
+    function graphAxisLegends(legendText, legendX) {
+        const getFixedColor = sDomF.getFixedColor;
 
-		//==================================================
-		// //\\ calls api
-		//==================================================
-		var textColor      = 'rgba(0,0,0,1)';
-		var axisYLegend =
-		[
-			{
-				//together, tobold hover-width and tostroke can be redundant
-				text    :   '<text><tspan class="tofill tobold hover-width"' +
-							'>Force</tspan></text>',
-				x       : 40,
-				y       : 25,
-				style   : {
-							'font-size' : 28 + 'px',
-				},
-			},
-			{	// chart title
-				text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
-							//overrides tp machinery
-							' style="fill:'+getFixedColor( 'force' ) + '; stroke:'+getFixedColor( 'force' ) + ';"' +
-							'>Actual</tspan>' +
-							'<tspan> and </tspan>' +
+        //==================================================
+        // //\\ calls api
+        //==================================================
+        var textColor      = 'rgba(0,0,0,1)';
+        var axisYLegend =
+        [
+            {
+                //together, tobold hover-width and tostroke can be redundant
+                text    :   '<text><tspan class="tofill tobold hover-width"' +
+                            '>Force</tspan></text>',
+                x       : 40,
+                y       : 25,
+                style   : {
+                            'font-size' : 28 + 'px',
+                },
+            },
+            {	// chart title
+                text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
+                            //overrides tp machinery
+                            ' style="fill:'+getFixedColor( 'force' ) + '; stroke:'+getFixedColor( 'force' ) + ';"' +
+                            '>Actual</tspan>' +
+                            '<tspan> and </tspan>' +
 
-							'<tspan class="tofill tobold hover-width"' +
-							//overrides tp machinery
-							' style="fill:'+getFixedColor( 'estimatedForceColor' ) + '; stroke:' + getFixedColor( 'estimatedForceColor' ) + ';"' +
-							'>Estimated' +
-							'</tspan>' +
+                            '<tspan class="tofill tobold hover-width"' +
+                            //overrides tp machinery
+                            ' style="fill:'+getFixedColor( 'estimatedForceColor' ) + '; stroke:' + getFixedColor( 'estimatedForceColor' ) + ';"' +
+                            '>Estimated' +
+                            '</tspan>' +
 
-							'<tspan> forces</tspan>' +
-							'</text>',
-				x       : 310,
-				y       : 40,
-				style   : {
-							'font-size' : '30px',
-				},
-			},
-		];
-		var axisXLegend =
-		[
-			{
-				text    : legendText,
-				x       : legendX,
-				y       : 25,
-				style   : {
-							'font-size' : '30px',
-							'stroke' : textColor,
-							'fill' : textColor,
-				},
-			},
-		];
-		return { textColor, axisYLegend, axisXLegend, };
-	}
+                            '<tspan> forces</tspan>' +
+                            '</text>',
+                x       : 310,
+                y       : 40,
+                style   : {
+                            'font-size' : '30px',
+                },
+            },
+        ];
+        var axisXLegend =
+        [
+            {
+                text    : legendText,
+                x       : legendX,
+                y       : 25,
+                style   : {
+                            'font-size' : '30px',
+                            'stroke' : textColor,
+                            'fill' : textColor,
+                },
+            },
+        ];
+        return { textColor, axisYLegend, axisXLegend, };
+    }
 
-	/**
-	 * Makes a particular graph plot highlight along with its
-	 * corresponding text.
-	 */
-	///this thing fails if not to synch it with mask,
-	///the unmasked indices must be the same as here:
-	function setsGraphTpClasses(chart) {
-		chart.plotIx2plotSvg.forEach( (pl,pix) => {
-			switch(pix) {
-				case 0: pl && $$.$(pl).addClass( 'tp-force tostroke' ); break;
-			}
-		});
-	}
+    /**
+     * Makes a particular graph plot highlight along with its
+     * corresponding text.
+     */
+    ///this thing fails if not to synch it with mask,
+    ///the unmasked indices must be the same as here:
+    function setsGraphTpClasses(chart) {
+        chart.plotIx2plotSvg.forEach( (pl,pix) => {
+            switch(pix) {
+                case 0: pl && $$.$(pl).addClass( 'tp-force tostroke' ); break;
+            }
+        });
+    }
 }) ();

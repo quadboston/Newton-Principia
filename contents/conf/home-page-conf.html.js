@@ -51,8 +51,8 @@
          function buildTableOfContents()
          {
             var coreText = '<h2 id="model-list">Table of contents</h2>' + buildListOfLemmas(true);
-			$$.c('div').addClass('landing-table-of-contents hp-section-wrap').to(fapp.homePage$())
-				.html(coreText);
+            $$.c('div').addClass('landing-table-of-contents hp-section-wrap').to(fapp.homePage$())
+                .html(coreText);
         }
         //==================================================
         // \\// table of contents
@@ -280,7 +280,7 @@
                             <span class="book-title">${book}</span>
                     </div>
                 `;
-				coreText += '<div' + cls2 + '><div' + cls  + `><ul>`;
+                coreText += '<div' + cls2 + '><div' + cls  + `><ul>`;
             }
             let chosen = sappItem.sappId === fconf.sappId ? ' chosen' : '';
             //when navigating to a new page, vertical tab persists, horizontal tab reset to claim

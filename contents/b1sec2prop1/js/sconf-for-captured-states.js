@@ -1,27 +1,27 @@
 (function(){
     const { nspaste, capture, sconf, } =
-		window.b$l.apptree({ ssFExportList : {
-			setsCommonT1andT2capture,
+        window.b$l.apptree({ ssFExportList : {
+            setsCommonT1andT2capture,
             makesProfessorsCaptureFootnotes,
-		}});
-		Object.assign( sconf, {
-			initialTimieStep : 0.75,
-		});
-		const positionA = {
-			"pos": [
-				2.4846663769760875,
-				-0.010267216433785486
-			]
-		};
-		const speedVector = {
-			"vect": [
-				[
-					0.2618140190615299 / sconf.initialTimieStep,
-					0.9651183447758357 / sconf.initialTimieStep
-				]
-			]
-		};
-		return;
+        }});
+        Object.assign( sconf, {
+            initialTimieStep : 0.75,
+        });
+        const positionA = {
+            "pos": [
+                2.4846663769760875,
+                -0.010267216433785486
+            ]
+        };
+        const speedVector = {
+            "vect": [
+                [
+                    0.2618140190615299 / sconf.initialTimieStep,
+                    0.9651183447758357 / sconf.initialTimieStep
+                ]
+            ]
+        };
+        return;
 
 
 

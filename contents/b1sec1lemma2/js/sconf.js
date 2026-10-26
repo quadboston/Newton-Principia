@@ -1,6 +1,6 @@
 ( function () {
     var { sn, nspaste, fapp, fconf, sconf, ssF, topicColors_repo, } =
-	    window.b$l.apptree({ ssFExportList : { init_conf, }, });
+        window.b$l.apptree({ ssFExportList : { init_conf, }, });
     
     var stdL2       = sn('stdL2', fapp );
     var study       = sn('study', stdL2 );
@@ -131,7 +131,7 @@
                 pcolor      : predT.figureColor,
                 letterAngle : -90,
             },
-			F : {
+            F : {
                 pcolor      : predT["widt-txt"],
                 letterAngle : 45,
             },
@@ -151,47 +151,47 @@
             },
 
             a : {
-				caption: '𝑎',
+                caption: '𝑎',
                 pcolor      : predT.figureColor,
                 letterAngle : 180,
             },
-			b : {
-				caption: '𝑏',
+            b : {
+                caption: '𝑏',
                 pcolor      : predT.figureColor,
                 letterAngle : 45,
             },
             c : {
-				caption: '𝑐',
+                caption: '𝑐',
                 pcolor      : predT.figureColor,
                 letterAngle : 45,
             },
             d : {
-				caption: '𝑑',
+                caption: '𝑑',
                 pcolor      : predT.figureColor,
                 letterAngle : 45,
             },
             f : {
-				caption: '𝑓',
+                caption: '𝑓',
                 pcolor      : predT["widt-txt"],
                 letterAngle : 90,
             },
             l : {
-				caption: '𝑙',
+                caption: '𝑙',
                 pcolor      : predT["circ-txt"],
                 letterAngle : 105,
             },
             m : {
-				caption: '𝑚',
+                caption: '𝑚',
                 pcolor      : predT["circ-txt"],
                 letterAngle : 45,
             },
             n : {
-				caption: '𝑛',
+                caption: '𝑛',
                 pcolor      : predT["circ-txt"],
                 letterAngle : 45,
             },
             o : {
-				caption: '𝑜',
+                caption: '𝑜',
                 pcolor      : predT["circ-txt"],
                 letterAngle : 45,
             },
@@ -218,12 +218,12 @@
 
             { aK : {
                         pcolor : predT.figureColor,
- 						'stroke-width' : 1.5,
+                        'stroke-width' : 1.5,
                   },
             },
             { AK : {
                         pcolor : predT.figureColor,
-						'stroke-width' : 1.5
+                        'stroke-width' : 1.5
                    },
             },
             // //\\ top rect sides
@@ -243,7 +243,7 @@
             },
             { mc : {
                         pcolor : predT["circ-txt"],
-				   },
+                   },
             },
             { nd : {
                         pcolor : predT["circ-txt"],

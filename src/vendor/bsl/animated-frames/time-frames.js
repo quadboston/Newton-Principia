@@ -68,8 +68,8 @@
 
 
 
-	function runsMainCycle()
-	{
+    function runsMainCycle()
+    {
         var fisrtStart = false;
         if( !managerStart ) {
             var fisrtStart = true;
@@ -82,8 +82,8 @@
         //if( managerElapsed > ANIMATION_THROTTLER || fisrtStart ) {
             Object.keys(runners).forEach( runsAddee );
         //}
-		setTimeout( tframes.runsMainCycle, ANIMATION_THROTTLER ); //todo: setInterval
-	};
+        setTimeout( tframes.runsMainCycle, ANIMATION_THROTTLER ); //todo: setInterval
+    };
 
     /// adds callbacks to "dispatcher",
     /// return kName for case of prescheduled disposal

@@ -1,6 +1,6 @@
 ( function () {
     var { sn, nspaste, fapp, sconf, ssF, topicColors_repo, } = 
-	    window.b$l.apptree({ ssFExportList : { init_conf, }, });
+        window.b$l.apptree({ ssFExportList : { init_conf, }, });
     
     var stdL2       = sn('stdL2', fapp );
     var study       = sn('study', stdL2 );
@@ -90,7 +90,7 @@
 
         //point sizes
         sconf.pointDecoration.r = 2; // solid points
-				// (overwrites defaults from sconf-common.js)
+                // (overwrites defaults from sconf-common.js)
         sconf.MOVABLE_BASE_RADIUS = 3.2; // movable base points
         sconf.CTRL_RADIUS = 3.2;	// curve control points
 
@@ -172,7 +172,7 @@
         var originalPoints =
         {
             a : {
-				caption: '𝑎',
+                caption: '𝑎',
                 pcolor      : predT.figureColor,
                 letterAngle : 45,
                 fontSize : labelFontSize
@@ -191,7 +191,7 @@
             },
 
             c : {
-				caption: '𝑐',
+                caption: '𝑐',
                 pcolor      : predT.figureColor,
                 letterAngle : 45,
                 fontSize : labelFontSize
@@ -199,7 +199,7 @@
 
 
             p : {
-				caption: '𝑝',
+                caption: '𝑝',
                 pcolor      : predT.figureColor,
                 letterAngle : 45,
                 fontSize : labelFontSize
@@ -218,7 +218,7 @@
             },
 
             r : {
-				caption: '𝑟',
+                caption: '𝑟',
                 pcolor      : predT.figureColor,
                 letterAngle : 45,
                 fontSize : labelFontSize
@@ -258,7 +258,7 @@
             mod2inn_scale : 5, //was pictureActiveArea,
             //default_tp_stroke_width : 12,
             handleRadius : 155,
-			mediaBgImage : "l4-diagram.png",
+            mediaBgImage : "l4-diagram.png",
         });
         //=====================================
         // \\// patch for quick slider creation

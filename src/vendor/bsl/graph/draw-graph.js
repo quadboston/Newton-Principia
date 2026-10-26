@@ -306,7 +306,7 @@
                     pivots  : pl,
                     parent  : gMedia,
                     style   : effStyle,
-					'stroke-width' : 2,
+                    'stroke-width' : 2,
                 });
                 svg.setAttribute( 'clip-path', 'url(#' + clipPathId + ')' );
                 if( !svg.parentNode ) {

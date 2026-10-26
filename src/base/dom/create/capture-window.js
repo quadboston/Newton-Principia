@@ -101,7 +101,7 @@
         `;
         /*
         window.addEventListener( 'keydown', function ( event ) {
-		    if( event.ctrlKey && event.shiftKey &&
+            if( event.ctrlKey && event.shiftKey &&
                 'abcdefghijklmnopqrstuvxyz'.charAt( event.keyCode - 65 ) === 'e' ) {
                 debWind.style.display === 'none' ?
                     debWind.style.display = 'block' :

@@ -124,26 +124,26 @@
                 draggableY  : true,
             },            
             c : {
-				caption: "𝑐",
+                caption: "𝑐",
                 letterAngle : 45,
                 letterRotRadius : 18,
                 pcolor      : proofColor,
-				cssClass: 'logic_phase--proof',
+                cssClass: 'logic_phase--proof',
             },
             b : {
-				caption: "𝑏",
+                caption: "𝑏",
                 letterAngle : 0,
                 pcolor      : proofColor,
-				cssClass: 'logic_phase--proof',
+                cssClass: 'logic_phase--proof',
             },
 
             ///modified point r, closer to d
             "r" : {
-				caption : "𝑟",
+                caption : "𝑟",
                 pcolor      : proofColor,
                 letterAngle : -45,
                 letterRotRadius : 30,
-				cssClass: 'logic_phase--proof',
+                cssClass: 'logic_phase--proof',
             },
 
             ///modified point r, closer to d
@@ -153,30 +153,30 @@
                 pcolor      : proofColor,
                 letterAngle : -90,
                 letterRotRadius : 30,
-				cssClass: 'logic_phase--proof',
+                cssClass: 'logic_phase--proof',
             },
             
             curveStart  : {
                 pos : [ A[0]-80, 0 ],
-				undisplayAlways : true,
-				doPaintPname : false,
+                undisplayAlways : true,
+                doPaintPname : false,
             },
             curveEnd : {
                 pos : [B[0]+50,0],
-				undisplayAlways : true,
-				doPaintPname : false,
+                undisplayAlways : true,
+                doPaintPname : false,
             },
             curveLeftEnd : {
                 pos : [250,100],
-				undisplayAlways : true,
-				doPaintPname : false,
+                undisplayAlways : true,
+                doPaintPname : false,
             },
             DLeft : {
                 pos         : DLeft,
                 letterAngle : 90,
                 pcolor      : givenColor,
-				undisplayAlways : true,
-				doPaintPname : false,
+                undisplayAlways : true,
+                doPaintPname : false,
             },
 
         };
@@ -187,16 +187,16 @@
 
             // proof (shown in blue) 
             { 'Ab' : { pcolor : proofColor,
-				cssClass: 'logic_phase--proof', } },  
+                cssClass: 'logic_phase--proof', } },  
 
             { 'A,d' : { pcolor : proofColor,
-				cssClass: 'logic_phase--proof', } }, // Ad  
+                cssClass: 'logic_phase--proof', } }, // Ad  
             { 'A,r' : { pcolor : proofColor,
-						cssClass: 'logic_phase--proof', } }, // Ar   
+                        cssClass: 'logic_phase--proof', } }, // Ar   
             { 'r,d' : { pcolor : proofColor,
-				cssClass: 'logic_phase--proof', } }, // rd
+                cssClass: 'logic_phase--proof', } }, // rd
             { 'r,b' : { pcolor : proofColor,
-				cssClass: 'logic_phase--proof', } }, //rb
+                cssClass: 'logic_phase--proof', } }, //rb
 
             // claim (shown in green)            
             { 'AB' : { pcolor : givenColor } },
@@ -222,13 +222,13 @@
 
         originalPoints.t1 = {
                 pos: ww1,
-				undisplayAlways : true,
-				doPaintPname : false,
+                undisplayAlways : true,
+                doPaintPname : false,
         };
         originalPoints.t2 = {
                 pos: ww2,
-				undisplayAlways : true,
-				doPaintPname : false,
+                undisplayAlways : true,
+                doPaintPname : false,
         };
 
         var givenCurve_pivots = [

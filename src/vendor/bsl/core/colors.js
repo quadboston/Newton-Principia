@@ -1,5 +1,5 @@
 ( function() {
-	var ns	= window.b$l;
+    var ns	= window.b$l;
 
     //reg. ex for string aka rgba(4,4,4,0.1) to array
     ns.hslo_2_rgba_low8high = hslo_2_rgba_low8high;

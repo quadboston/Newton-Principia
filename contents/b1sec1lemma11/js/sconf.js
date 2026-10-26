@@ -82,8 +82,8 @@
             given,
             proof,
             hidden,
-			supplementHover,
-			givenHover,
+            supplementHover,
+            givenHover,
         } = topicColors_repo;
 
         var topicColors_elected =
@@ -123,7 +123,7 @@
                 pos: B,
                 pcolor : given,
                 letterAngle : 0,
-				//cssClass: 'logic_phase--proof subessay--cor-1 subessay--cor-2',
+                //cssClass: 'logic_phase--proof subessay--cor-1 subessay--cor-2',
             },
             M : { // AB midpoint
                 pcolor : hidden
@@ -132,29 +132,29 @@
                 pos: C,
                 pcolor : given,
                 letterAngle : 180,
-				cssClass: 'logic_phase--corollary',
+                cssClass: 'logic_phase--corollary',
             },
             c : {
                 pos: c,
-				caption: '𝑐',
+                caption: '𝑐',
                 pcolor : proof,
                 letterAngle : 180,
-				cssClass: 'logic_phase--corollary',
+                cssClass: 'logic_phase--corollary',
             },
             b : {
                 pos: b,
-				caption: '𝑏',
+                caption: '𝑏',
                 pcolor : proof,
                 letterAngle : 45,
-				cssClass: 'logic_phase--proof logic_phase--corollary',
-				conditionalDrag: 'logic_phase--proof',
+                cssClass: 'logic_phase--proof logic_phase--corollary',
+                conditionalDrag: 'logic_phase--proof',
             },
             d : {
                 pos: d,
-				caption: '𝑑',
+                caption: '𝑑',
                 pcolor : proof,
                 letterAngle : 90,
-				cssClass: 'logic_phase--proof logic_phase--corollary',
+                cssClass: 'logic_phase--proof logic_phase--corollary',
             },
 
             J : {
@@ -162,22 +162,22 @@
                 pcolor : given,
                 letterAngle : 180,
                 letterRotRadius : 20, 
-				cssClass: 'logic_phase--claim logic_phase--proof',
+                cssClass: 'logic_phase--claim logic_phase--proof',
             },
             g :
             {
                 pos: [A[0], 622],
-				caption: '𝑔',
+                caption: '𝑔',
                 pcolor : proof,
                 letterAngle : 45,
-				cssClass: 'logic_phase--proof'
+                cssClass: 'logic_phase--proof'
             },
             G :
             {
                 pos: [A[0], 677],
                 pcolor : proof,
                 letterAngle : -45,
-				cssClass: 'logic_phase--proof'
+                cssClass: 'logic_phase--proof'
             },
         };
 
@@ -188,37 +188,37 @@
 
         var linesArray =
         [
-			{ 'Ad' : { pcolor : proof,
-				cssClass: 'logic_phase--proof logic_phase--corollary'}, },
+            { 'Ad' : { pcolor : proof,
+                cssClass: 'logic_phase--proof logic_phase--corollary'}, },
             { 'AB' : { pcolor : given }, },
-			{ 'AC' : { pcolor : given,
-				cssClass: 'logic_phase--corollary'}, },
+            { 'AC' : { pcolor : given,
+                cssClass: 'logic_phase--corollary'}, },
             { 'AD' : { pcolor : given }, },
             { 'BD' : { pcolor : given,
-				//cssClass: 'subessay--cor-1 subessay--cor-2', 
-				}, },
+                //cssClass: 'subessay--cor-1 subessay--cor-2', 
+                }, },
             { 'BC' : { pcolor : given,
-				cssClass: 'logic_phase--corollary', }, },
+                cssClass: 'logic_phase--corollary', }, },
             { 'AG' : { pcolor : proof,
-				cssClass: 'logic_phase--proof',}, },
+                cssClass: 'logic_phase--proof',}, },
             { 'BG' : { pcolor : proof,
-				cssClass: 'logic_phase--proof', }, },
+                cssClass: 'logic_phase--proof', }, },
             { 'GJ' : { pcolor : proof,
-				cssClass: 'logic_phase--proof', }, },
+                cssClass: 'logic_phase--proof', }, },
             { 'Ab' : { pcolor : proof,
-				cssClass: 'logic_phase--proof logic_phase--corollary', }, },
+                cssClass: 'logic_phase--proof logic_phase--corollary', }, },
             { 'Ag' : { pcolor : proof,
-				cssClass: 'logic_phase--proof', }, },
+                cssClass: 'logic_phase--proof', }, },
             { 'bc' : { pcolor : proof,
-				cssClass: 'logic_phase--corollary',}, },
+                cssClass: 'logic_phase--corollary',}, },
             { 'bd' : { pcolor : proof,
-				cssClass: 'logic_phase--proof logic_phase--corollary', }, },
+                cssClass: 'logic_phase--proof logic_phase--corollary', }, },
             { 'bg' : { pcolor : proof,
-				cssClass: 'logic_phase--proof', }, },
+                cssClass: 'logic_phase--proof', }, },
             { 'AJ' : { pcolor : given,
-				cssClass: 'logic_phase--claim logic_phase--proof', }, },
+                cssClass: 'logic_phase--claim logic_phase--proof', }, },
             { 'bM' : { pcolor : supplementHover,
-				cssClass: 'logic_phase--corollary',}, },
+                cssClass: 'logic_phase--corollary',}, },
         ];
 
         //making size to better fit lemma's diagram

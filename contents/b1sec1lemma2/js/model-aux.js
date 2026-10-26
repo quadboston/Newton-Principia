@@ -51,12 +51,12 @@
         ///of previously existing bars,
         for (var i=0; i<basesN; i++) {
             ///if base is new and to be added
-	        if ( !dr.partitionWidths[i] ) {
+            if ( !dr.partitionWidths[i] ) {
                 //makes average base constant and, therefore,
                 //provides equal basesN for all added basesN
-		        dr.partitionWidths[i] = sum / i;
+                dr.partitionWidths[i] = sum / i;
             }
-	        sum += dr.partitionWidths[i];
+            sum += dr.partitionWidths[i];
             //in first round of setting partitionWidths, sum = basesN
         }
         //now, average sum=previous average sum = sum/basesN;

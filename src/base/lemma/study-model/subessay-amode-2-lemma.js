@@ -89,7 +89,7 @@
                         }
                     }
                 })
-				rg[shape.rgId].hideD8Dpoint = dohide;
+                rg[shape.rgId].hideD8Dpoint = dohide;
             }
         });
 

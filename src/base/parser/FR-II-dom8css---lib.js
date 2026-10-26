@@ -244,12 +244,12 @@
                         //if topicId keyName is missed, then an empty object created
                         //ccc( 'FR II, set low_tpID into lowtpid_2_glocss8anchorRack' );
                         if( !has( lowtpid_2_glocss8anchorRack, low_tpID ) ){
-							const href = window.location.href;
+                            const href = window.location.href;
                             if (!href.includes('glossary') && !href.includes('conics')) {
-								ccc( 'Helper: text topic "'+low_tpID +'" ' +
-									'is missed in js-code. '
-								);
-							}
+                                ccc( 'Helper: text topic "'+low_tpID +'" ' +
+                                    'is missed in js-code. '
+                                );
+                            }
                             //for this keyName, 'fixed-colors'
                             //is a flag and is = 'undefined',
                             //don't forget lowtpid_2_glocss8anchorRack is in topics.lowtpid_2_glocss8anchorRack

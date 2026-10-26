@@ -17,18 +17,18 @@
 
 
     ///****************************************************************
-	/// d8d object constructor
+    /// d8d object constructor
     //  this is most basic d8d constructor sitting on the "bottom" of
     //  all d8d constructs of the application,
     ///****************************************************************
-	ns.d8d = d8dp.creFW_BSLd8d1BASE = function ( arg )
-	{
+    ns.d8d = d8dp.creFW_BSLd8d1BASE = function ( arg )
+    {
         //------------------------------------------
         // //\\ input arguments
         //------------------------------------------
         //:application-level-handler
         // see function-call-signature in code below
-		var d8d_cb_middle2lowest  = arg.d8d_cb_middle2lowest;
+        var d8d_cb_middle2lowest  = arg.d8d_cb_middle2lowest;
 
         //:	where to draw:
         //  final destination of mouse-point-coordinates detection;
@@ -36,10 +36,10 @@
         //      media means canvas, img, or possibly video;
         //		in general for media, finally detected mouse-point is
         //		in internal media coordinates;
-		var surface	= arg.surface;	
+        var surface	= arg.surface;	
 
- 		//:	to whom to attach events
-		var att = arg.attachee || surface;
+        //:	to whom to attach events
+        var att = arg.attachee || surface;
 
         var skipD8D = arg.skipD8D || default_skip;
 
@@ -65,8 +65,8 @@
         // //\\ locals
         //------------------------------------------
         //.is a d8d-in-progress-flag ...
-		var startPoint	= null; 
-		var lastPoint   = null;
+        var startPoint	= null; 
+        var lastPoint   = null;
         //------------------------------------------
         // \\// locals
         //------------------------------------------
@@ -88,7 +88,7 @@
 
 
         //******************************************************************
-		// //\\ passes down-event from application
+        // //\\ passes down-event from application
         //      instead of "statically" establish event to drag-surface,
         //      this function used in case of parameter
         //      "doGiveClickEvent===true",
@@ -97,17 +97,17 @@
             doStartDown( ev );
         }
         //******************************************************************
-		// \\// passes down-event from application
+        // \\// passes down-event from application
         //******************************************************************
 
 
 
         //******************************************************************
-		// //\\ d8d-scenario root events
+        // //\\ d8d-scenario root events
         //******************************************************************
         function addEvents()
         {
-		    //  possible Android fix:
+            //  possible Android fix:
             //  http://stackoverflow.com/questions/5186441/javascript-drag-and-drop-for-touch-devices
             //. todo: touch must provide event which then tested for
             //  Ctrl-pressed flag: use different handler
@@ -121,15 +121,15 @@
             att.removeEventListener( 'mousedown', doStartDown );
         };
         //******************************************************************
-		// \\// d8d-scenario root events
+        // \\// d8d-scenario root events
         //******************************************************************
 
 
 
         //*****************************************
-		// //\\ DOWN SUBROUTINES
+        // //\\ DOWN SUBROUTINES
         //*****************************************
-		// //\\ root d8d handler
+        // //\\ root d8d handler
         //========================================
         function doStartDown( ev )
         {
@@ -193,12 +193,12 @@
             }
         }
         //========================================
-		// \\// root d8d handler
+        // \\// root d8d handler
         //========================================
 
 
         //=========================================
-		// //\\ second level of down-handling
+        // //\\ second level of down-handling
         //=========================================
         function do_complete_down( childEvent, rootEvent )
         {
@@ -215,22 +215,22 @@
             }
 
             //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-			var forbidden = d8d_cb_middle2lowest( [0,0], 'down',
+            var forbidden = d8d_cb_middle2lowest( [0,0], 'down',
                             point_on_dragSurf, childEvent, [0,0] );
             //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-			if( forbidden ) {
+            if( forbidden ) {
                 return true;
             }
-			startPoint = point_on_dragSurf;
+            startPoint = point_on_dragSurf;
             //ns.d('\nfw' + frameworkId + ' eid' + eventId + ' startPoint=' +
             //    JSON.stringify(startPoint)
             //);
             lastPoint = point_on_dragSurf;
         }
         //=========================================
-		// \\// second level of down-handling
+        // \\// second level of down-handling
         //*****************************************
-		// \\// DOWN SUBROUTINES
+        // \\// DOWN SUBROUTINES
         //*****************************************
 
 
@@ -238,11 +238,11 @@
 
 
         //*****************************************
-		// //\\ MOVE SUBROUTINES
+        // //\\ MOVE SUBROUTINES
         //*****************************************
         function touchMove( ev )
         {
-    	    mouseMove( ev.touches[ 0 ], ev );
+            mouseMove( ev.touches[ 0 ], ev );
         }
 
         function mouseMove( childEvent, rootEvent )
@@ -261,18 +261,18 @@
             }
             var moveIncrement = [ surfPoint[0]-lastPoint[0], surfPoint[1]-lastPoint[1] ];
             lastPoint = surfPoint;
-			do_complete_move( surfPoint, childEvent, moveIncrement );
-			return false;
+            do_complete_move( surfPoint, childEvent, moveIncrement );
+            return false;
         }
 
         ///adds move - the "sugar"
-		function do_complete_move( surfPoint, childEvent, moveIncrement )
-		{
-			var surfMove =
-			[	
-				surfPoint[ 0 ] - startPoint[ 0 ],
-				surfPoint[ 1 ] - startPoint[ 1 ]
-			];
+        function do_complete_move( surfPoint, childEvent, moveIncrement )
+        {
+            var surfMove =
+            [	
+                surfPoint[ 0 ] - startPoint[ 0 ],
+                surfPoint[ 1 ] - startPoint[ 1 ]
+            ];
             ///api: 
             d8d_cb_middle2lowest(
                 //todo: do name? it (drag?)SurfaceAccomulatedMove
@@ -283,9 +283,9 @@
                 moveIncrement
             );
             return surfMove;
-		};
+        };
         //*****************************************
-		// \\// MOVE SUBROUTINES
+        // \\// MOVE SUBROUTINES
         //*****************************************
 
 
@@ -294,7 +294,7 @@
 
 
         //*****************************************
-		// //\\ END SUBROUTINES
+        // //\\ END SUBROUTINES
         //*****************************************
         function touchEnd( rootEvent ) {
             att.removeEventListener( 'touchmove',   touchMove );
@@ -320,17 +320,17 @@
             }
         }
 
-		function do_complete_end( childEvent, rootEvent )
-		{
+        function do_complete_end( childEvent, rootEvent )
+        {
             if( startPoint ) {
                 //todo: dontStopEndAfteshocks is always undefined?
                 !dontStopEndAfteshocks && stopsAftershocks( rootEvent || childEvent );
                 d8d_cb_middle2lowest( null, 'up', null, childEvent );
-	            startPoint = null;
+                startPoint = null;
             }
-		};
+        };
         //*****************************************
-		// \\// END SUBROUTINES
+        // \\// END SUBROUTINES
         //*****************************************
 
 
@@ -339,7 +339,7 @@
 
 
         //*****************************************
-		// //\\ HELPERS
+        // //\\ HELPERS
         //*****************************************
         // //\\ converts event pos to domelem-css-pos
         //===========================================
@@ -412,9 +412,9 @@
         //=========================================
         // \\// Clears sibling events.
         //*****************************************
-		// \\// HELPERS
+        // \\// HELPERS
         //*****************************************
-	};
+    };
 
 }) ();
 

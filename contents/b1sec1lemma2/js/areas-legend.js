@@ -14,8 +14,8 @@
 
         study.eventHandlers =
         {
-	        toggleInscribed,
-	        toggleCircumscribed,
+            toggleInscribed,
+            toggleCircumscribed,
         };
         study.setupEventsAreasLegend = setupEventsAreasLegend;
 
@@ -76,8 +76,8 @@
                 sdata.view.isInscribed=1;
                 return;
             }
-	        sdata.view.isInscribed^=1;
-	        //stdL2.shows_rects();
+            sdata.view.isInscribed^=1;
+            //stdL2.shows_rects();
             //has: stdMod.media_upcreate___before_basic_L2
             ssF.media_upcreate_generic();
         }
@@ -92,8 +92,8 @@
                 view.isCircumscribed = 1;
                 return;
             }
-	        sdata.view.isCircumscribed^=1;
-	        //stdL2.shows_rects();
+            sdata.view.isCircumscribed^=1;
+            //stdL2.shows_rects();
             ssF.media_upcreate_generic();
         }
         //======================================

@@ -4,7 +4,7 @@
 
 
 ( function ( window ) {
-	var ns	    = window.b$l;
+    var ns	    = window.b$l;
     var mat     = ns.sn( 'mat' );
 
     /*

@@ -1,5 +1,5 @@
 ( function() {
-	var sn	        = window.b$l.sn;
+    var sn	        = window.b$l.sn;
     var mat         = sn( 'mat' );
     var conics      = sn( 'conics', mat );
 

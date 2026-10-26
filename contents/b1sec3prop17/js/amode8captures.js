@@ -16,10 +16,10 @@
 
         sDomF.resetModelPos();
 
-		rg.point_r.hideD8Dpoint =
-			// for this corollary, p's velocity is determined by the force
-			logic_phase === 'corollary' && amode.subessay === 'corollary2';
-			
+        rg.point_r.hideD8Dpoint =
+            // for this corollary, p's velocity is determined by the force
+            logic_phase === 'corollary' && amode.subessay === 'corollary2';
+            
         //=============================================================
         // //\\ model (reset to starting positions)
         //=============================================================

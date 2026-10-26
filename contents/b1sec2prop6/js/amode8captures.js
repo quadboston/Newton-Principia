@@ -26,8 +26,8 @@
         // \\// common values
         //----------------------------------
 
-		rg.curvatureCircle.undisplay = 
-			!(logic_phase === 'corollary' && subessay === 'corollary3');
+        rg.curvatureCircle.undisplay = 
+            !(logic_phase === 'corollary' && subessay === 'corollary3');
 
         stdMod.rebuilds_orbit();
         return captured;

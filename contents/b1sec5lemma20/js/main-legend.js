@@ -69,7 +69,7 @@
         //===================
         var row = $$.c('tr')
             .to(tb)();
-		makeCl( row, 'PR', 'PR', 'key-triangle' );
+        makeCl( row, 'PR', 'PR', 'key-triangle' );
         makeCl( row, 'PT', 'PT', 'key-triangle' );
         makeCl( row, 'PR-PT', 'PR : PT', 'key-triangle' );
         //===================

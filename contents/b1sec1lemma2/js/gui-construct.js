@@ -160,11 +160,11 @@
         function resetPoint(pt) {
             const pdom = pt.dom;
             pdom.style.fill = 'rgba(255,255,255,1)'; //makes the point hollow
-			 const ptColor = 
-			 	pt.type === "base" || pt.index == 0 || pt.index == 3 ?
-				topicColors_repo.figureColor :
-				topicColors_repo.infoColor ;
-			pdom.style.stroke = 'rgba(' + ptColor.join() + ')';
+             const ptColor = 
+                pt.type === "base" || pt.index == 0 || pt.index == 3 ?
+                topicColors_repo.figureColor :
+                topicColors_repo.infoColor ;
+            pdom.style.stroke = 'rgba(' + ptColor.join() + ')';
         }
     }
 
@@ -179,15 +179,15 @@
         const BASE_PT_DRAGGERS_ENABLED = dr.BASE_PT_DRAGGERS_ENABLED;
         for (var i=0, len=sconf.BASE_MAX_NUM; i <= len; i++) {
             //not yet draggable, just a template
-  		    pt = makeDragP_tpl( dr, "base", i );
-	        if( BASE_PT_DRAGGERS_ENABLED && i < DRAGGABLE_BASE_POINTS ) {
+            pt = makeDragP_tpl( dr, "base", i );
+            if( BASE_PT_DRAGGERS_ENABLED && i < DRAGGABLE_BASE_POINTS ) {
                 //todo-patch-disable-base-drag 1 of 2
                 if( i>0 ) {
                     guiup.sets_pt2movable( pt );
                 }
             }
             pt.dom.style.fill = 'rgba(255,255,255,1)';
-  		    bplist.push( pt );
+            bplist.push( pt );
         }
     }
 
