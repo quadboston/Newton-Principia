@@ -11,8 +11,7 @@
     //====================================================
     // //\\ inits and sets config pars
     //====================================================
-    function init_conf()
-    {
+    function init_conf() {
         //console.log('sconf.js init_conf'); //called once on page load
 
         //***************************************************************
@@ -159,8 +158,7 @@
         const ALL_EXCEPT_PROBLEM_TAB =
             'subessay--solution subessay--corollary1 subessay--corollary2';
 
-        var topicColors_elected =
-        {
+        var topicColors_elected = {
             given,
             proof,
             hidden,
@@ -316,8 +314,7 @@
             },
         });
 
-        var linesArray =
-        [
+        var linesArray = [
             //-------------------------------------------
             // //\\ op (PR brown conic)
             //-------------------------------------------

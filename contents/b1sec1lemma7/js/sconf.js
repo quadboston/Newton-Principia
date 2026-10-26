@@ -4,8 +4,7 @@
     return;
 
 
-    function init_conf()
-    {
+    function init_conf() {
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
         var pictureWidth = 839;
@@ -91,8 +90,7 @@
         var proofColor   = topicColors_repo.proofColor;
         var hidden  = topicColors_repo.hidden;
 
-        var topicColors_elected =
-        {
+        var topicColors_elected = {
             //:basic topics
             proofColor,
             givenColor,
@@ -113,8 +111,7 @@
             'proofData' : proofColor, // used to style BF in data table (sometimes we don't want it linked to model BF line for mouseover highlighting)
         };
 
-        var originalPoints =
-        {
+        var originalPoints = {
             A : {
                 //assigment by reference to pos is safe: no parasite links, pos is recalculated later
                 pos         : A,
@@ -219,8 +216,7 @@
             },
         };
 
-        var linesArray =
-        [
+        var linesArray = [
             { "rd" : { pcolor : hidden } }, // used for calcs
 
             { 'Ad' : { pcolor : proofColor,
@@ -257,8 +253,7 @@
         //model's spacial unit in pixels of the picture:
         var mod2inn_scale = originalPoints.R.pos[1] - originalPoints.A.pos[1];
 
-        var givenCurve_pivots =
-        [
+        var givenCurve_pivots = [
             //extending the curve to the left is quite a work bs
             //we need to change hard-coded tangent
             // [86,75],

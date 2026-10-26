@@ -4,15 +4,13 @@
         fconf, sDomF,
         stdMod, amode, sconf,
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList : {
             scaleValue2app,
             mod2inn,
             inn2mod,
             mod2inn_original,
         },
-        sDomFExportList :
-        {
+        sDomFExportList : {
             out2inn,
             outparent2inn,
             inn2outparent,
@@ -30,8 +28,7 @@
     // //\\ pos to pos
     //==========================================
     ///transforms model-coordinates to media-coordinates
-    function mod2inn(pos)
-    {
+    function mod2inn(pos) {
         const m2i = sconf.mod2inn_scale;
         pos = pos || this;
         return [
@@ -42,8 +39,7 @@
         ];
     }
     ///transforms media-coordinates to model-coordinates
-    function inn2mod(medpos)
-    {
+    function inn2mod(medpos) {
         medpos = medpos || this;
         const i2m = sconf.inn2mod_scale;
         return [
@@ -53,8 +49,7 @@
     }
     ///purpose: use for controls independent on model scale and origin
     ///         user controls,
-    function mod2inn_original(pos,)
-    {
+    function mod2inn_original(pos,) {
         const m2oi = sconf.originalMod2inn_scale;
         pos = pos || this;
         return [
@@ -73,8 +68,7 @@
     ///wrong?: converts pos-in-media-scope to
     ///pos-in-dom-scope-related-to-media-dom-offset
     ///right?    .... to-media-parent-dom-offset
-    function inn2outparent()
-    {
+    function inn2outparent() {
         var off     = sconf.mediaOffset;
         var medpos  = this.medpos;
         var i2o     = 1/sDomF.out2inn();

@@ -7,8 +7,7 @@
     //====================================================
     // //\\ inits and sets config pars
     //====================================================
-    function init_conf()
-    {
+    function init_conf() {
         //***************************************************************
         // //\\ geometrical scales
         //***************************************************************
@@ -136,8 +135,7 @@
             proofLight,
         } = topicColors_repo;
 
-        var topicColors_elected =
-        {
+        var topicColors_elected = {
             estimatedForceColor,
             proofColor,
             hidden,
@@ -151,8 +149,7 @@
         //---------------------------------------------------
         // //\\ points to approximate and draw original curve
         //---------------------------------------------------
-        var originalPoints =
-        {
+        var originalPoints = {
             C : {
                 pcolor : proofColor,
                 pos: posC,
@@ -319,8 +316,7 @@
             //---------------------------------------
         };
 
-        var linesArray =
-        [
+        var linesArray = [
             { 'A,AA' : { pcolor : proofColor,
                      cssClass: 'subessay--latus-rectum',
             }, },

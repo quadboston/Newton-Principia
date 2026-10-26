@@ -3,18 +3,15 @@
         mat,
         rg,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             completesSlidersCreation,
         },
     });
     return;
 
 
-    function completesSlidersCreation()
-    {
-        rg.M.acceptPos = function (newPos)
-        {
+    function completesSlidersCreation() {
+        rg.M.acceptPos = function (newPos) {
             var M = rg.M;
             var newValue = pos2Gpar(newPos)
             //protects drag from going outside the window
@@ -22,8 +19,7 @@
             rg.g.value = newValue;
             return true;
 
-            function pos2Gpar(pos)
-            {
+            function pos2Gpar(pos) {
                 var H=rg.H.pos;
                 var gamma = rg.gamma.value;
                 var dd = [ pos[0]-H[0], pos[1]-H[1] ];
@@ -33,15 +29,13 @@
             }
         }
 
-        rg.A.acceptPos = function (newPos)
-        {
+        rg.A.acceptPos = function (newPos) {
             var { alpha, beta } = pos2alpha8beta(newPos)
             rg.alpha.value = alpha;
             rg.beta.value = beta;
             return true;
 
-            function pos2alpha8beta(pos)
-            {
+            function pos2alpha8beta(pos) {
                 var BC = mat.p1_to_p2(rg.B.pos, pos);
                 var cosBeta = -BC.unitVec[0];
                 var beta = Math.acos(cosBeta) * (BC.unitVec[1] < 0 ? -1 : 1);
@@ -53,8 +47,7 @@
             }
         }
 
-        rg.H.acceptPos = function (newPos)
-        {
+        rg.H.acceptPos = function (newPos) {
             //var H = rg.H;
             rg.a.value = newPos[0] - rg.C.pos[0];
             return true;

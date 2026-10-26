@@ -5,8 +5,7 @@
     return;
 
 
-    function init_conf()
-    {
+    function init_conf() {
         //====================================================
         // //\\ subapp regim switches
         //====================================================
@@ -74,8 +73,7 @@
             ellipse,
         } = topicColors_repo;
 
-        const topicColors_elected =
-        {
+        const topicColors_elected = {
             static,
             core,
             aux,
@@ -95,8 +93,7 @@
         }
         const pt = topicColors_elected;
 
-        var originalPoints =
-        {
+        var originalPoints = {
             P : { pos: [996, 570],
                   pcolor: pt.static,
                   cssClass: 'tp-key-triangle',
@@ -267,8 +264,7 @@
         // \\// original material parameters
         //----------------------------------
 
-        var linesArray =
-        [
+        var linesArray = [
             { 'KS' : {
                         pcolor : pt.aux,
                         cssClass : 'subessay--case1',
@@ -524,8 +520,7 @@
         // //\\  prepares sconf data holder
         //----------------------------------------------------
         fapp.normalizeSliders(pictureHeight / 444);
-        to_sconf =
-        {
+        to_sconf = {
             topicColors_elected,
             originalPoints,
             linesArray,

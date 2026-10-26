@@ -6,8 +6,7 @@
         anid2anrack, anix2anrack,
         amode, sconf, rg, userOptions
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList : {
             fragment__collectsRawTpLinks,
             rawFragments2htmlText,
             builtFrags_2_dom8mj,

@@ -61,8 +61,7 @@
         //====================================================
     }
 
-    function normalizeSliders(sscale)
-    {
+    function normalizeSliders(sscale) {
         sf.GENERIC_SLIDERS_FONT_SIZE *= sscale;
         sf.GENERIC_SLIDER_HEIGHT_Y *= sscale;
         sf.SLIDERS_LEGEND_HEIGHT *= sscale;

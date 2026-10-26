@@ -20,8 +20,7 @@
     //  this is most basic d8d constructor sitting on the "bottom" of
     //  all d8d constructs of the application,
     ///****************************************************************
-    ns.d8d = d8dp.creFW_BSLd8d1BASE = function (arg)
-    {
+    ns.d8d = d8dp.creFW_BSLd8d1BASE = function (arg) {
         //------------------------------------------
         // //\\ input arguments
         //------------------------------------------
@@ -96,8 +95,7 @@
         //******************************************************************
         // //\\ d8d-scenario root events
         //******************************************************************
-        function addEvents()
-        {
+        function addEvents() {
             //  possible Android fix:
             //  http://stackoverflow.com/questions/5186441/javascript-drag-and-drop-for-touch-devices
             //. todo: touch must provide event which then tested for
@@ -106,8 +104,7 @@
             att.addEventListener('mousedown', doStartDown);
         };
 
-        function removeEvents()
-        {
+        function removeEvents() {
             att.removeEventListener('touchstart', doStartDown);
             att.removeEventListener('mousedown', doStartDown);
         };
@@ -120,8 +117,7 @@
         //*****************************************
         // //\\ root d8d handler
         //========================================
-        function doStartDown(ev)
-        {
+        function doStartDown(ev) {
             eventId++;
             var forbidden;
 
@@ -188,8 +184,7 @@
         //=========================================
         // //\\ second level of down-handling
         //=========================================
-        function do_complete_down(childEvent, rootEvent)
-        {
+        function do_complete_down(childEvent, rootEvent) {
             //ns.d( 'do_complete_down: started' );
             if (startPoint !== null) {
                 return true;
@@ -224,13 +219,11 @@
         //*****************************************
         // //\\ MOVE SUBROUTINES
         //*****************************************
-        function touchMove(ev)
-        {
+        function touchMove(ev) {
             mouseMove(ev.touches[ 0 ], ev);
         }
 
-        function mouseMove(childEvent, rootEvent)
-        {
+        function mouseMove(childEvent, rootEvent) {
             eventId++;
             !dontStopMoveAfteshocks && stopsAftershocks(rootEvent || childEvent);
             if (!startPoint) {
@@ -250,10 +243,8 @@
         }
 
         ///adds move - the "sugar"
-        function do_complete_move(surfPoint, childEvent, moveIncrement)
-        {
-            var surfMove =
-            [
+        function do_complete_move(surfPoint, childEvent, moveIncrement) {
+            var surfMove = [
                 surfPoint[ 0 ] - startPoint[ 0 ],
                 surfPoint[ 1 ] - startPoint[ 1 ]
             ];
@@ -283,8 +274,7 @@
             do_complete_end(childEvent, rootEvent);
         }
 
-        function mouseEnd(child8rootEvent)
-        {
+        function mouseEnd(child8rootEvent) {
             eventId++;
             //ns.d( '***eid=' + eventId + ' removing mouse events\n\n' );
             att.removeEventListener('mousemove', mouseMove);
@@ -298,8 +288,7 @@
             }
         }
 
-        function do_complete_end(childEvent, rootEvent)
-        {
+        function do_complete_end(childEvent, rootEvent) {
             if (startPoint) {
                 //todo: dontStopEndAfteshocks is always undefined?
                 !dontStopEndAfteshocks && stopsAftershocks(rootEvent || childEvent);
@@ -316,12 +305,10 @@
         //*****************************************
         // //\\ converts event pos to domelem-css-pos
         //===========================================
-        function eventPos_2_surfacePos(event)
-        {
+        function eventPos_2_surfacePos(event) {
             //https://developer.mozilla.org/en-US/docs/Web/API/Element.getBoundingClientRect
             var box	= surface.getBoundingClientRect();
-            var loc	=
-            [
+            var loc	= [
                 Math.round(event.clientX - box.left),
                 Math.round(event.clientY - box.top)
             ];
@@ -336,8 +323,7 @@
         //====================================================================
         //      to preserve ordinary clicks on form elements or other controls
         //      disables dragging on form and other elements
-        function default_skip(ev)
-        {
+        function default_skip(ev) {
             var tag = ev.target.tagName.toLowerCase();
             if (
                     //protects wbd debugger
@@ -359,8 +345,7 @@
         //      Can be used to prevent the events set in this module to
         //      to be caught by native or other event-handlers.
         //==============================================================
-        function stopsAftershocks(rootEvent)
-        {
+        function stopsAftershocks(rootEvent) {
             rootEvent.preventDefault();
             //very good:
             //  javascript.info/bubbling-and-capturing

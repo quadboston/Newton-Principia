@@ -3,8 +3,7 @@
     return;
 
 
-    function lemmaConfig()
-    {
+    function lemmaConfig() {
         return {
             "contents-list" : [
                 'txt/conics.txt',

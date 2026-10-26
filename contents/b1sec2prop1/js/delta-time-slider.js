@@ -14,8 +14,7 @@
     //      creates slider only once per
     //      app model creation;
     //----------------------------------------
-    function creates_delta_time_slider()
-    {
+    function creates_delta_time_slider() {
         var pos2pointy    = ssF.pos2pointy;
         var pivots_2_svgLineInRg = ssF.pivots_2_svgLineInRg;
 
@@ -142,8 +141,7 @@
             parent          : stdMod.mmedia,
             text            : sliderId,
            'stroke-width'   : 1,
-            style           :
-            {
+            style           : {
                 'font-family'   : 'var(--default-font)',
                 'font-size'     : sconf.GENERIC_SLIDERS_FONT_SIZE +'px',
                 'stroke-width'  : 1,
@@ -181,8 +179,7 @@
         ///recalculate the evolution, but
         ///  sets slider position and
         ///  shows evolution corresponding to time;
-        function updates_sliderGUI()
-        {
+        function updates_sliderGUI() {
             var rawDeltaT = api.val;
             //-----------------------------------------------------
             // //\\ corrects pos and updates slider's GUI
@@ -219,15 +216,13 @@
     //----------------------------------------
 
     ///must be in contex of pointWrap ( like this = rg.B )
-    function processDownEvent(arg)
-    {
+    function processDownEvent(arg) {
         this.achieved.achieved = this.val;
     }
 
     ///move_2_val8gui8cb
     ///todm: this sub should be automatically throttled
-    function move_2_updates(move_in_model)
-    {
+    function move_2_updates(move_in_model) {
         var api = this;
         sDomF.detected_user_interaction_effect();
 

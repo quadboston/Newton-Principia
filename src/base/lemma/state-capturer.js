@@ -2,16 +2,14 @@
     var {
         eachprop, nspaste, has, fapp, rg,
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList : {
             captureAState_generic,
         },
     });
     return;
 
 
-    function captureAState_generic(ast)
-    {
+    function captureAState_generic(ast) {
         var clone = {};
         eachprop(rg, (rgX, kname) => {
             if (typeof rgX !== 'function' &&

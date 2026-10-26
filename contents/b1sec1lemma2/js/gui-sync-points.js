@@ -13,8 +13,7 @@
     /// framework points with L2/3 legacy
     /// code points (with rg[ name ].pos)
     ///======================================
-    function syncPoint(dr, item)
-    {
+    function syncPoint(dr, item) {
         var dv = dr.yVariations;
         var xoff = sconf.originX_onPicture;
         var yoff = sconf.originY_onPicture;

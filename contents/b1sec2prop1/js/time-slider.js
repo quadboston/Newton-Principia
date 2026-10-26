@@ -147,8 +147,7 @@ function creates_sliderDomModel__4__time() {
         parent          : stdMod.mmedia,
         text            : sliderId,
         'stroke-width'   : 1,
-        style           :
-        {
+        style           : {
             'font-family'   : 'var(--default-font)',
             'font-size'     : sconf.GENERIC_SLIDERS_FONT_SIZE +'px',
             'stroke-width'  : 1,

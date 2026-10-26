@@ -8,8 +8,7 @@
     });
 
     ///diff and Euclid tangents are equal
-    var ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] =
-    {
+    var ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] = {
         "angle": 0,
         "sin": 0,
         "cos": 1
@@ -17,8 +16,7 @@
 
     //this is Books origin, authentic N. drawing,
     //curveRotationAngle = 0,
-    var ANGLE_AUTH = ssD.authenticOriginal_curveRotationAngle =
-    {
+    var ANGLE_AUTH = ssD.authenticOriginal_curveRotationAngle = {
         "angle": 0,
         "sin": 0,
         "cos": 1
@@ -35,8 +33,7 @@
     return;
 
 
-    function setCapture()
-    {
+    function setCapture() {
         paste(capture,
         {
             "reset-to-origin" : {
@@ -86,8 +83,7 @@
         });
     }
 
-    function amode2rgstate(captured)
-    {
+    function amode2rgstate(captured) {
         var { logic_phase, aspect } = amode;
 
         sDomF.resetModelPos();

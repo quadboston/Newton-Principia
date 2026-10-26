@@ -8,19 +8,16 @@
     return;
 
 
-    function setModule()
-    {
+    function setModule() {
         createsModelFunctions();
     }
 
     //=================================================
     // //\\ configures repo of "experimental" functions
     //=================================================
-    function createsModelFunctions()
-    {
+    function createsModelFunctions() {
         var scale = 1; //typical lengh for geometrical model
-        ssD.repoConf =
-        [
+        ssD.repoConf = [
             {
                 fname : "Original function: y = ax^2+bx^3 ... ",
                 fun : x => {

@@ -7,8 +7,7 @@
     return;
 
 
-    function setModule()
-    {
+    function setModule() {
         Object.assign(ssF,
         {
             continue_create_8_prepopulate_svg,
@@ -19,8 +18,7 @@
         });
     }
 
-    function constructsCurve8Area(dr)
-    {
+    function constructsCurve8Area(dr) {
         var svg = stdMod.mmedia$.aNS('id', 'illus')();
         dr.curve_pre$ = $$.cNS('polyline')
             .aNS('class', "outline-cls")
@@ -44,8 +42,7 @@
         dr.figureInternalArea = dr.figureInternalArea$();
     }
 
-    function continue_create_8_prepopulate_svg(dr)
-    {
+    function continue_create_8_prepopulate_svg(dr) {
         var svg = stdMod.mmedia$.aNS('id', 'illus')();
 
         //====================================================================

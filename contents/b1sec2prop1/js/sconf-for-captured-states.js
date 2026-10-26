@@ -227,8 +227,7 @@ function makesProfessorsCaptureFootnotes() {
             "A": positionA,
         },
 
-        "__amode2rgstate" :
-        [
+        "__amode2rgstate" : [
             [
                 "true",
                 {
@@ -284,8 +283,7 @@ function makesProfessorsCaptureFootnotes() {
                 "!ssF.mediaModelInitialized",
                 {
                     "captured" : "initial-state",
-                    "rg" :
-                    {
+                    "rg" : {
                     }
                 }
             ],
@@ -293,8 +291,7 @@ function makesProfessorsCaptureFootnotes() {
                 "( logic_phase === 'proof' )",
                 {
                     "captured" : "1-0",
-                    "rg" :
-                    {
+                    "rg" : {
                         "V": {
                             "decEnd" : 11111111,
                             "doPaintPname" : true,
@@ -307,8 +304,7 @@ function makesProfessorsCaptureFootnotes() {
                 "( logic_phase === 'claim' && aspect !== 'model' )",
                 {
                     "captured" : "initial-state",
-                    "rg" :
-                    {
+                    "rg" : {
                     }
                 }
             ],
@@ -317,8 +313,7 @@ function makesProfessorsCaptureFootnotes() {
                 "( logic_phase === 'corollary' )",
                 {
                     "captured" : "initial-state",
-                    "rg" :
-                    {
+                    "rg" : {
                     }
                 }
             ],

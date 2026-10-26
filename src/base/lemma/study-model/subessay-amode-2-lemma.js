@@ -5,8 +5,7 @@
         stdMod, amode,
         //**************************************************
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList : {
             in_subessay_launch____amode2lemma,
         },
     });
@@ -19,8 +18,7 @@
     ///     after init_model_parameters in init-sapp.js::init_sapp...s tudyMods,
     ///     more comments are in: ver/excluded/code-overview/init-params-tips.txt
     ///===================================================================
-    function in_subessay_launch____amode2lemma(amodel2app_8_extraWork,)
-    {
+    function in_subessay_launch____amode2lemma(amodel2app_8_extraWork,) {
         // called once on page load from init-sapp.js
         // called again on tab switch from lemma-master-menu.js
 

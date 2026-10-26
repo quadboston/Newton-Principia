@@ -69,8 +69,7 @@
             //alternatively returns a specific property
             ('mykey4'); //returns myval4
     */
-    function toreg(id)
-    {
+    function toreg(id) {
         rg[ id ] = rg.hasOwnProperty(id) ? rg[ id ] : { rgId : id, };
         return updateMe;
 

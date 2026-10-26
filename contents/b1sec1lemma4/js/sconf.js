@@ -19,8 +19,7 @@
     return;
 
 
-    function init_conf()
-    {
+    function init_conf() {
         //----------------------------------
         // //\\ original material parameters
         //----------------------------------
@@ -98,8 +97,7 @@
             widths,
         } = topicColors_repo;
 
-        const predT =
-        {
+        const predT = {
             given,
             figureColor,
 
@@ -162,8 +160,7 @@
         //      see //modern approach ... abandoned
         //=====================================
         const labelFontSize = 22;
-        var originalPoints =
-        {
+        var originalPoints = {
             a : {
                 caption: '𝑎',
                 pcolor      : predT.figureColor,
@@ -217,8 +214,7 @@
             },
         };
 
-        var linesArray =
-        [
+        var linesArray = [
             { AE : {
                         pcolor : predT.figureColor,
                    },

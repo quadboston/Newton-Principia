@@ -30,8 +30,7 @@
     /// sets click event for each capture reference
     ///  "captured reference" can be found in essay text
     ///===================================================
-    function setupCapturerEvents()
-    {
+    function setupCapturerEvents() {
         var links = document.querySelectorAll('.captured-reference');
         links.forEach(link => {
             var match = link.getAttribute('class').match(/\sid-(\S+)/);
@@ -50,18 +49,15 @@
         hafa(stdMod, 'astate_2_rg8model8media')(ssD.capture[ captureKeyName ]);
     }
 
-    function setupEvents()
-    {
+    function setupEvents() {
         window.addEventListener('resize', fullResize);
     };
 
-    function fullResize()
-    {
+    function fullResize() {
         wrkwin.start8finish_media8Ess8Legend_resize__upcreate(null, !!'doDividorSynch');
     }
 
-    function does_set_next_lemma_button_event(direction)
-    {
+    function does_set_next_lemma_button_event(direction) {
         var pager$ = direction === 'right' ? sDomN.rightButton$ :
                      sDomN.leftButton$;
 
@@ -110,8 +106,7 @@
         }
     }
 
-    function attachWeelToDomEl(domel$,)
-    {
+    function attachWeelToDomEl(domel$,) {
         // mouse wheel to zoom
         const WHEEL_SCALE_FOR_SCROLL_MODE = 0.001;
         domel$.e('wheel', wheelHandler);
@@ -260,8 +255,7 @@
             ];
         }
 
-        function stopAftershocks(ev)
-        {
+        function stopAftershocks(ev) {
             ev.preventDefault();
             //this.event.cancelBubble = true;
             //historical? https://developer.mozilla.org/en-US/docs/Web/API/Event/cancelBubble

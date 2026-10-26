@@ -23,8 +23,7 @@
     // shows or hides each legend table by its tableVisibilityCondition;
     // the resize pass calls this before it measures the legend, so a
     // hidden table takes no space
-    function updatesLegendTablesDisplay()
-    {
+    function updatesLegendTablesDisplay() {
         Object.values(ns.haz(rg, 'main-legend') || {}).forEach(rgTeoTab => {
             if (rgTeoTab && typeof rgTeoTab.updatesTableDisplay === 'function') {
                 rgTeoTab.updatesTableDisplay();
@@ -64,8 +63,7 @@
         var clustersToUpdate = [];
         var tableCaption$;
         var tb;
-        var domModel$ =
-        {
+        var domModel$ = {
             columnCaptionsRow   : [],
             body$       : [],
         };
@@ -85,8 +83,7 @@
         ///====================
         /// creates GUI table
         ///====================
-        function createsTablePlaceholder()
-        {
+        function createsTablePlaceholder() {
             tb = $$
                 .c('table')
                 .to(stdMod.legendRoot$)
@@ -103,8 +100,7 @@
         ///====================
         /// creates table title
         ///====================
-        function createsTableTitle()
-        {
+        function createsTableTitle() {
             var row = $$.c('tr').to(tb)();
             tableCaption$ = $$.c('td')
                 .a('colspan', '33')
@@ -113,8 +109,7 @@
                 .to(row);
         }
 
-        function creates_caption8body_rows()
-        {
+        function creates_caption8body_rows() {
             //this is a protection: creates legend only once:
             //we don't need this protection because it's done elsewhere
             //if( domModel$.body$.length ) return;
@@ -125,8 +120,7 @@
             if (makesCaptionCluster) {
                 var row = $$.c('tr').to(tb)();
                 var rowRack = domModel$.columnCaptionsRow;
-                for (var clusterIx=0; clusterIx < clustersCount; clusterIx++)
-                {
+                for (var clusterIx=0; clusterIx < clustersCount; clusterIx++) {
                     var clusterPars = makesCaptionCluster({
                         row,
                         clusterIx,
@@ -149,15 +143,13 @@
             //================================================
             // //\\ creates rows below captions-row
             //================================================
-            for (var rowIx=0; rowIx < rowsCount; rowIx++)
-            {
+            for (var rowIx=0; rowIx < rowsCount; rowIx++) {
                 var row = $$.c('tr').to(tb)();
                 var rowRack = domModel$.body$[ rowIx ] = [];
                 ///================================================
                 /// creates cells for given row
                 ///================================================
-                for (var clusterIx=0; clusterIx < clustersCount; clusterIx++)
-                {
+                for (var clusterIx=0; clusterIx < clustersCount; clusterIx++) {
                     if (!cellsVisibilityCondition(rowIx, clusterIx)) continue;
                     var clusterPars = makesBodyCluster({
                         rowIx,
@@ -257,17 +249,14 @@
         //             anything
         //      ************************************
         //=========================================
-        function upcreate_mainLegend()
-        {
+        function upcreate_mainLegend() {
             // called 3x when should only be called once
             // console.log('upcreate_mainLegend actual');
 
             !noTableTitle && updatesTableTitle && updatesTableTitle({ tableCaption$ });
             updateCaptionsRow();
-            for (var rowIx = 0; rowIx < rowsCount; rowIx++)
-            {
-                for (var clusterIx=0; clusterIx < clustersCount; clusterIx++)
-                {
+            for (var rowIx = 0; rowIx < rowsCount; rowIx++) {
+                for (var clusterIx=0; clusterIx < clustersCount; clusterIx++) {
                     if (!cellsVisibilityCondition(rowIx, clusterIx)) continue;
                     var { clusterCellIx, htmlbody, } = updatesDataInCell({ rowIx, clusterIx, });
                     domModel$.body$[ rowIx ][ clusterIx ][ clusterCellIx ].html(htmlbody);
@@ -282,12 +271,10 @@
         ///================================================
         /// refills first row below the table caption;
         ///================================================
-        function updateCaptionsRow()
-        {
+        function updateCaptionsRow() {
             if (updatesCaptionCluster) {
                 var len = clustersCount;
-                for (var clusterIx=0; clusterIx < len; clusterIx++)
-                {
+                for (var clusterIx=0; clusterIx < len; clusterIx++) {
                     var { columnCaptionTitle, clusterCellIx  } =
                         updatesCaptionCluster({ clusterIx, });
                     domModel$.columnCaptionsRow[ clusterIx ][ clusterCellIx ]
@@ -303,8 +290,7 @@
         /// (via updatesLegendTablesDisplay) before measuring
         /// the legend, so the measurement follows the table
         ///================================================
-        function updatesTableDisplay()
-        {
+        function updatesTableDisplay() {
             if (tableVisibilityCondition) {
                 // '' leaves display to CSS, which hides tables
                 // of other logic phases
@@ -315,25 +301,21 @@
         ///================================================
         /// selectively makes table's cells visible
         ///================================================
-        function visibilizeTable()
-        {
+        function visibilizeTable() {
             updatesTableDisplay();
 
             //--------------------------------------------
             // //\\ hides all cells
             //--------------------------------------------
             if (makesCaptionCluster) {
-                for (var clusterIx=0; clusterIx<clustersCount; clusterIx++)
-                {
+                for (var clusterIx=0; clusterIx<clustersCount; clusterIx++) {
                     domModel$.columnCaptionsRow[ clusterIx ].forEach(c$ => {
                         c$.addClass('hidden');
                     });
                 }
             }
-            for (var rowIx=0; rowIx < rowsCount; rowIx++)
-            {
-                for (var clusterIx=0; clusterIx <= clustersCount-rowIx-1; clusterIx++)
-                {
+            for (var rowIx=0; rowIx < rowsCount; rowIx++) {
+                for (var clusterIx=0; clusterIx <= clustersCount-rowIx-1; clusterIx++) {
                     domModel$.body$[ rowIx ][ clusterIx ].forEach(c$ => {
                         c$.addClass('hidden');
                     });
@@ -347,18 +329,15 @@
             // //\\ shows cells by condition
             //--------------------------------------------
             if (makesCaptionCluster) {
-                for (var clusterIx=0; clusterIx < clustersCount; clusterIx++)
-                {
+                for (var clusterIx=0; clusterIx < clustersCount; clusterIx++) {
                     domModel$.columnCaptionsRow[ clusterIx ].forEach(c$ => {
                         ///by design, captions visibility is the same as row-0
                         cellsVisibilityCondition(0, clusterIx) && c$.removeClass('hidden');
                     });
                 }
             }
-            for (var rowIx = 0; rowIx < rowsCount; rowIx++)
-            {
-                for (var clusterIx=0; clusterIx < clustersCount; clusterIx++)
-                {
+            for (var rowIx = 0; rowIx < rowsCount; rowIx++) {
+                for (var clusterIx=0; clusterIx < clustersCount; clusterIx++) {
                     cellsVisibilityCondition(rowIx, clusterIx) &&
                     domModel$.body$[ rowIx ][ clusterIx ].forEach(c$ => {
                         c$.removeClass('hidden');

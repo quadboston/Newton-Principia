@@ -33,8 +33,7 @@
 
 
     ///calculates integral from 0 to x of dx^3+ax^2+bx+c
-    function polynomial(d, a, b, c, x)
-    {
+    function polynomial(d, a, b, c, x) {
         return (((d/4*x + a/3) * x + b/2) * x + c) * x;
     }
 
@@ -229,8 +228,7 @@
         findsMinOnIntervals('g')
         return { originF : origin, originG, };
 
-        function findsMinOnIntervals(f0g)
-        {
+        function findsMinOnIntervals(f0g) {
             //finding fmin
             partition.forEach((point, pix) => {
                 var integX = point.integ[ f0g ];

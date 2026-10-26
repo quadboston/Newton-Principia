@@ -56,8 +56,7 @@
     return;
 
 
-    function setsEngineDefaults()
-    {
+    function setsEngineDefaults() {
         //these are pre-professorscripts values: at engine level
         amode.logic_phase = '';
         amode.aspect = '';
@@ -198,10 +197,8 @@
     //      stdMod.createMedia0updateMediaAUX must exist
     //      at time of inner function call
     //=========================================================
-    function create_media_upcreate(ssF, createMedia0updateMediaAUX)
-    {
-        return (function media_upcreate()
-        {
+    function create_media_upcreate(ssF, createMedia0updateMediaAUX) {
+        return (function media_upcreate() {
             //refreshes detectability
             ssF.toogle_detectablilitySliderPoints4Tools();
             createMedia0updateMediaAUX();

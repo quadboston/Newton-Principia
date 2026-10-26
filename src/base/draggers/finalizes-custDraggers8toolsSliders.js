@@ -20,8 +20,7 @@
     // //\\ inits drag model
     //      createsFW === ? FrameWork
     //==========================================
-    function createsFW__8__executes_dragWr_gens_list()
-    {
+    function createsFW__8__executes_dragWr_gens_list() {
         ///creates tools for the first time and only once
 
         enableZoom();
@@ -85,8 +84,7 @@
     ///
     ///Returns: point drag Wrap
     ///         which is closest to testPoint.
-    function findDraggee(point_on_dragSurf, dragWraps)
-    {
+    function findDraggee(point_on_dragSurf, dragWraps) {
         /*
         //vital-for-mobile
         ns.d('findDraggee in launcher: fw=' +

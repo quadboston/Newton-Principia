@@ -11,8 +11,7 @@
     return;
 
 
-    function setModule()
-    {
+    function setModule() {
         sDomF.move_2_updates        = move_2_updates;
         sDomF.processDownEvent      = processDownEvent;
         sDomF.processUpEvent        = processUpEvent;
@@ -35,8 +34,7 @@
     ///
     ///===================================================
     ///possibly outdated, the only lemma 11 relies on this:
-    function pname__2__rgX8dragwrap_gen_list(pname,)
-    {
+    function pname__2__rgX8dragwrap_gen_list(pname,) {
         return params__2__rgX8dragwrap_gen_list({ pname,});
     }
     function params__2__rgX8dragwrap_gen_list({
@@ -116,8 +114,7 @@
     }
 
     ///must be in contex of pointWrap ( like this = rg.B )
-    function processDownEvent(arg)
-    {
+    function processDownEvent(arg) {
         if (ns.haz(this, 'diagramPanner')) {
             //// non-ordinary case:
             this.hideD8Dpoint = false;
@@ -146,8 +143,7 @@
         haff(this, 'processOwnDownEvent');
     }
 
-    function processUpEvent(arg)
-    {
+    function processUpEvent(arg) {
         if (ns.haz(this, 'diagramPanner')) {
             this.achieved.achieved[ 0 ] = sconf.modorInPicX;
             this.achieved.achieved[ 1 ] = sconf.modorInPicY;

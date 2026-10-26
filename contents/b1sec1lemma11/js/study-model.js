@@ -4,8 +4,7 @@
         sconf, ssF, ssD, sDomF,
         amode, stdMod, rg,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             init_model_parameters,
             model_upcreate,
         },
@@ -16,8 +15,7 @@
     ///****************************************************
     /// model initiation
     ///****************************************************
-    function init_model_parameters()
-    {
+    function init_model_parameters() {
         rg.B.dragPriority = 2; // highest value gets priority
         sDomF.pname__2__rgX8dragwrap_gen_list('B', stdMod)
             .acceptPos = function (newPos) {
@@ -120,8 +118,7 @@
     /// model scenario
     /// is required; to skip define as ()=>{};
     ///****************************************************
-    function model_upcreate()
-    {
+    function model_upcreate() {
         //:"limit point" and J
         var Lx = 0.0000001;
         var Ly = ssD.repoConf[0].fun(Lx)[1];

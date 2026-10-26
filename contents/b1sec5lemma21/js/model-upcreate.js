@@ -3,8 +3,7 @@
         sn, mat, nspaste,
         amode, stdMod, rg, sconf, ssF, ssD,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             model_upcreate,
             pos8tg_2_rg,
             baseParams_2_extendedParams,
@@ -19,8 +18,7 @@
     //***************************************************
     // //\\ updates figure (and creates if none)
     //***************************************************
-    function model_upcreate()
-    {
+    function model_upcreate() {
         baseParams_2_extendedParams();
         var {D, M, A, P, angleBCM} = calculateConicPoint_algo(rg.g.value);
         rg.angleBCM = angleBCM;
@@ -60,15 +58,13 @@
     // \\// updates figure (and creates if none)
     //***************************************************
 
-    function baseParams_2_extendedParams()
-    {
+    function baseParams_2_extendedParams() {
         rg.b.value = 1- rg.a.value;
         pos8tg_2_rg('H', [ rg.C.pos[0] + rg.a.value, rg.O.pos[1] ]);
     }
 
     ///input:   parameter g, along the model line OM (former OG)
-    function calculateConicPoint_algo(g)
-    {
+    function calculateConicPoint_algo(g) {
         var a = rg.a.value; //AH = a
         var b = rg.b.value; //BH = b
         var gamma = rg.gamma.value;
@@ -131,16 +127,14 @@
     // \\// registers model pars into common scope
     //===================================================
 
-    function pos8tg_2_rg(nameP, pos, tangent)
-    {
+    function pos8tg_2_rg(nameP, pos, tangent) {
         //we cannot do P = t r( nameP, 'pos', [x, y] );
         //in a fear to erase [x,y] reference which may be already stored
         var P = sn(nameP, rg);
         var Ppos = sn('pos', P, []);
         Ppos[0] = pos[0];
         Ppos[1] = pos[1];
-        if (tangent)
-        {
+        if (tangent) {
             var Ptangent = sn('tangent', P, []);
             Ptangent[0] = tangent[0];
             Ptangent[1] = tangent[1];

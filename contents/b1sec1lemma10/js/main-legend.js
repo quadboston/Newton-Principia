@@ -7,8 +7,7 @@
     return;
 
 
-    function create_digital_legend()
-    {
+    function create_digital_legend() {
         var mlegend = toreg('main-legend')();
         doCreateTable_claim(mlegend);
         doCreateTable_proof(mlegend);
@@ -17,8 +16,7 @@
     //=========================================
     // //\\ updates values during simulation
     //=========================================
-    function upcreate_mainLegend()
-    {
+    function upcreate_mainLegend() {
         //********************************************
         // takes values not from registry rg, but from
         var calcA = ssD.calculatedAreas;
@@ -56,8 +54,7 @@
     // //\\ creates proof table
     //      does one time work of html creation
     //=========================================
-    function doCreateTable_proof(mlegend)
-    {
+    function doCreateTable_proof(mlegend) {
         mlegend.tb = mlegend.tb || {};
         var tb = mlegend.tb.proof = $$
             .c('table')
@@ -103,8 +100,7 @@
     // //\\ creates claim table
     //      similar to doCreateTable()
     //=========================================
-    function doCreateTable_claim(mlegend)
-    {
+    function doCreateTable_claim(mlegend) {
         mlegend.tb = mlegend.tb || {};
         var tb = mlegend.tb.claim = $$
             .c('table')
@@ -146,8 +142,7 @@
     ///Effect: represents magnitude in html-table-row in
     ///        form "mname = mvalue",
     ///Input:  mname = magnitude name
-    function makeClBoth(row, mname, mcaption, spanIx, spanVal, claim0proof)
-    {
+    function makeClBoth(row, mname, mcaption, spanIx, spanVal, claim0proof) {
         var cssName = sDomF.toCssIdentifier(mname);
         var c$ = $$.c('td')
                    .html(mcaption||mname)

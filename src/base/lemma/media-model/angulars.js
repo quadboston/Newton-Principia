@@ -4,8 +4,7 @@
         sconf, ssF, sDomF, rg, toreg,
         stdMod,
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList : {
             drawAngle,
             drawAngleFrom_rayAB2rayCD_at_medpos,
             angleVisib,
@@ -15,15 +14,13 @@
     return;
 
 
-    function segmentAngle(segm)
-    {
+    function segmentAngle(segm) {
         return Math.atan2(segm[1][1] - segm[0][1], segm[1][0] - segm[0][0])
     }
 
     ///shows/hides angle if its caption if any
     ///inputs:  pname - name of master element
-    function angleVisib({ pname })
-    {
+    function angleVisib({ pname }) {
         var anglePname      = 'rays-angle-' + pname;
         var rgAngle         = haz(rg, anglePname);
         if (!rgAngle)      return;

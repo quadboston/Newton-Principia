@@ -15,8 +15,7 @@
     //      - all it seems to do is paint the arcs
     //      - the rest is drawn in src\base\lemma\media-model\media-upcreate.js
     //=========================================================
-    function media_upcreate___part_of_medupcr_basic()
-    {
+    function media_upcreate___part_of_medupcr_basic() {
         //console.log('updating/creating arcs')
         //=================================================
         // //\\ manages legend CSS-visibility

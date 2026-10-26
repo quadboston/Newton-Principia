@@ -5,12 +5,10 @@
     return;
 
 
-    function lemmaConfig()
-    {
+    function lemmaConfig() {
         return {
             sappCodeReference : 'b1sec1lemma2',
-            "contents-list" :
-            [
+            "contents-list" : [
                 "txt/latin.txt",
                 "txt/cohen.txt",
                 "txt/video.txt",

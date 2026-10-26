@@ -10,8 +10,7 @@
     return;
 
 
-    function setModule()
-    {
+    function setModule() {
         stdMod.media_upcreate___part_of_medupcr_basic =media_upcreate___part_of_medupcr_basic;
         pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
     }
@@ -19,8 +18,7 @@
     //=========================================================
     // //\\ updates and creates media
     //=========================================================
-    function media_upcreate___part_of_medupcr_basic()
-    {
+    function media_upcreate___part_of_medupcr_basic() {
         // console.log('media-upcreate');
 
         //:study-pars
@@ -64,16 +62,14 @@
             mediael : mainCurve.mediael, //this is a rack, not svg: goal?: not to recreate DOM.
             parentSVG : stdMod.mmedia,
             pivots : medCurvPivots,
-            bcurve :
-            {
+            bcurve : {
                 'stroke-width' : 1 * sconf.thickness
             },
             //Ensure second paint pivot is hidden.  Otherwise a small dot will be in its location for the claim tab, since the point that would
             //cover it for other tabs is hidden.
             paintPivots : {
                 topaint : [ null, null, true ],
-                attrs :
-                {
+                attrs : {
                     'stroke-width' : 1 * sconf.thickness,
                     //r : 4 * sconf.thickness
                     r : 0.7 * sconf.thickness
@@ -108,8 +104,7 @@
             mediael : remoteCurve.mediael,
             parentSVG : stdMod.mmedia,
             pivots : medRemoteCurPivots,
-            bcurve :
-            {
+            bcurve : {
                 stroke : 'transparent', //todm add to bsl core
                 'stroke-width' : 1 * sconf.thickness
             }
@@ -188,8 +183,7 @@
         //==========================================
         // //\\ curved areas
         //==========================================
-        function paintCurveArea(areaId, fullMode, topicGroup_decapitalized)
-        {
+        function paintCurveArea(areaId, fullMode, topicGroup_decapitalized) {
             var area = rg[ areaId ];
 
             var lowCurve = rg[ areaId ].curve;
@@ -226,8 +220,7 @@
         // //\\ linear areas
         //==========================================
         ///paints AGE-like area
-        function paintLikeAGE(areaId, fullMode, topicGroup_decapitalized, stroke0fill)
-        {
+        function paintLikeAGE(areaId, fullMode, topicGroup_decapitalized, stroke0fill) {
             var area = rg[ areaId ];
             var vertices = area.vertices.map(pos => {
                 return ssF.mod2inn(pos, stdMod);

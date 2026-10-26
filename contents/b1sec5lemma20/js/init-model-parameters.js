@@ -3,16 +3,14 @@
         mat, globalCss,
         sconf, ssF, rg, stdMod, toreg, sData,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             init_model_parameters,
         },
     });
     return;
 
 
-    function init_model_parameters()
-    {
+    function init_model_parameters() {
         sData.initialparC = sconf.initialparC;
         sData.initialparA = sconf.initialparA;
         sData.initialparB = sconf.initialparB;

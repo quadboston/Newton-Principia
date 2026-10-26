@@ -4,8 +4,7 @@
         amode, sconf, sDomF, sDomN, ssD, ssF, topicColors_repo,
         rg, toreg, stdMod,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             //media_upcreate,
             media_upcreate___part_of_medupcr_basic,
             media_upcreate___before_basic,
@@ -18,15 +17,13 @@
     return;
 
 
-    function setModule()
-    {
+    function setModule() {
         pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
         pos2pointy      = ssF.pos2pointy;
         paintTriangle   = ssF.paintTriangle;
     }
 
-    function media_upcreate___before_basic()
-    {
+    function media_upcreate___before_basic() {
         //this is a "policy" ... should be in the state manager if any ...
         rg.detected_user_interaction_effect_DONE = false;
         rg.allLettersAreHidden = false; //!rg.detected_user_interaction_effect_DONE;

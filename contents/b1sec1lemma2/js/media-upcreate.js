@@ -14,11 +14,9 @@
     return;
 
 
-    function setModule()
-    {
+    function setModule() {
         ///same in meaning to legacy !view.isNewton property
-        sapp.isLite = function ()
-        {
+        sapp.isLite = function () {
             return amode.aspect === 'video';
         };
     }

@@ -7,8 +7,7 @@
     //====================================================
     // //\\ inits and sets config pars
     //====================================================
-    function init_conf()
-    {
+    function init_conf() {
         //***************************************************************
         // //\\ geometrical scales
         //***************************************************************
@@ -139,8 +138,7 @@
             sunColor,
         } = topicColors_repo;
 
-        var topicColors_elected =
-        {
+        var topicColors_elected = {
             estimatedForceColor,
             hidden,
             body: bodyColor,
@@ -155,8 +153,7 @@
         //---------------------------------------------------
         // //\\ points to approximate and draw original curve
         //---------------------------------------------------
-        var originalPoints =
-        {
+        var originalPoints = {
             C : {
                 pcolor : proofColor,
                 pos: posC,
@@ -310,8 +307,7 @@
             //---------------------------------------
         };
 
-        var linesArray =
-        [
+        var linesArray = [
             { Qx : { pcolor : proofColor,
                 cssClass: 'subessay--solution subessay--goal',
              },},

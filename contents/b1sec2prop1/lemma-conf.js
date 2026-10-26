@@ -1,6 +1,5 @@
 {window.b$l.apptree({}).fapp.lemmaConfig = function () { return {
-    codesList :
-    [
+    codesList : [
         //configures initial constants
         { src : '../js/sconf.js' },
         { src : '../js/sconf-for-captured-states.js' },
@@ -31,8 +30,7 @@
         { src : '../js/model8media-lib.js' },
         { src : '../js/main-legend.js' },
     ],
-    "contents-list" :
-    [
+    "contents-list" : [
         'txt/latin.txt',
         'txt/cohen.txt',
     ],

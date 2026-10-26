@@ -34,8 +34,7 @@ const {
     //***********************************************
     // //\\ begins establish home and lemmas
     //***********************************************
-    function LANDING_I___app_main()
-    {
+    function LANDING_I___app_main() {
         // each page is independent so this gets re-run on each page load
         // console.log('domContentLoaded - app_main');
 
@@ -88,8 +87,7 @@ const {
     //***********************************************
     // //\\ establishes lemmas (loads page specific scrips)
     //***********************************************
-    function LANDING_III___config8run_lemmaModules()
-    {
+    function LANDING_III___config8run_lemmaModules() {
         fconf.lemmaCode_fullpath = fconf.pathToContents + "/" +
                                    fapp.lemmaDef.sappId;
         //-------------------------------------------------
@@ -108,8 +106,7 @@ const {
         //-------------------------------------------------
         return;
 
-        function landing_III_cb()
-        {
+        function landing_III_cb() {
             //"ancestor" scripts list now is "inside" of function fapp.lemmaConfig
             //deep copy, original does not change
             ns.paste(fapp.lemmaDef, fapp.lemmaConfig());
@@ -143,8 +140,7 @@ const {
         }
 
         //loads images (if any) and then JS-scripts for specific lemma
-        function LANDING_IV___loadLemmaJSCodes()
-        {
+        function LANDING_IV___loadLemmaJSCodes() {
             let imagesToLoadList = fapp.lemmaDef.imagesToLoadList;
             if (imagesToLoadList) {
                 ////loads images first
@@ -158,8 +154,7 @@ const {
                 loadsJSScripts();
             }
 
-            function loadsJSScripts()
-            {
+            function loadsJSScripts() {
                 ///we complete paths for ancestor list if any
                 fapp.jsCodesList.forEach(function (codeItem) {
                     codeItem.src = fconf.ancestorCode_fullpath + "/js/" + codeItem.src;
@@ -177,8 +172,7 @@ const {
                 //goes again to web site and gets all js-codes for lemma:
                 nsmethods.loadScripts(fapp.jsCodesList, loadsJSScripts_atLastLoadedScript);
 
-                function loadsJSScripts_atLastLoadedScript()
-                {
+                function loadsJSScripts_atLastLoadedScript() {
                     //----------------------------------------------------------
                     ///module can be executed right after load if it is safe or
                     ///module can register subs. in setModule and execute them
@@ -333,8 +327,7 @@ const {
     }
 
     ///apparently does not do any modules landing-load
-    function LANDING_VII___landingFlag_8_nextLemmaButtons()
-    {
+    function LANDING_VII___landingFlag_8_nextLemmaButtons() {
         //--------------------------------------------
         // //\\ remove_landing_state_from_top_html();
         //--------------------------------------------

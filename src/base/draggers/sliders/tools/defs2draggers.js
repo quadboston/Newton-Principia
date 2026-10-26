@@ -11,23 +11,20 @@
     ///==========================================
     /// inits drag points
     ///==========================================
-    function inits_tools_sliders(medD8D,)
-    {
+    function inits_tools_sliders(medD8D,) {
         var toolsSliders = sn('toolsSliders', stdMod, []);
         toolsSliders.forEach(slname => {
             createDragger(medD8D, slname,);
         });
     };
 
-    function createDragger(medD8D, magnitude,)
-    {
+    function createDragger(medD8D, magnitude,) {
         var pointWrap = rg[ magnitude ];
         //:sets dragger handle color
         pointWrap.spinnerClsId = 'tp-' + magnitude;
         //todm ... not straight
         pointWrap.dragDecorColor= pointWrap.svgel.getAttribute('stroke');
-        var argc =
-        {
+        var argc = {
             pointWrap,
             doProcess,
         };

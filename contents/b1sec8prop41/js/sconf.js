@@ -5,8 +5,7 @@
     return;
 
 
-    function init_conf()
-    {
+    function init_conf() {
         //----------------------------------
         // //\\ study model parameters
         //----------------------------------
@@ -142,8 +141,7 @@
         const ro = distance;
         const Tkernel = prop41timeColor;
 
-        var topicColors_elected =
-        {
+        var topicColors_elected = {
             given,
             proof,
             hidden,
@@ -186,8 +184,7 @@
         //---------------------------------------------------
         // //\\ points to approximate and draw original curve
         //---------------------------------------------------
-        var curvePivots =
-        [
+        var curvePivots = [
             forceStart,
 
             B,
@@ -393,8 +390,7 @@
         originalPoints.c.letterAngle = 45;
         originalPoints.x.letterAngle = 45;
 
-        var linesArray =
-        [
+        var linesArray = [
             { 'V,v' : {
                     pcolor : body,
                     vectorTipIx : 1 },

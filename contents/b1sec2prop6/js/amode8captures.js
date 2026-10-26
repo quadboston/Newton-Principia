@@ -6,8 +6,7 @@
     return;
 
 
-    function amode2rgstate(captured)
-    {
+    function amode2rgstate(captured) {
         var { logic_phase, subessay } = amode;
 
         ////shows shapes hidden for a non-Kepler orbit;

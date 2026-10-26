@@ -7,8 +7,7 @@
 
     ///runs inside "subessay launch" which in turn runs after
     ///"init model parameters"
-    function amode2rgstate(captured)
-    {
+    function amode2rgstate(captured) {
         //called 1x on page load, then once more when switching tabs
         //console.log('amode8captures.js');
 

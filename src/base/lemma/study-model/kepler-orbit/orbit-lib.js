@@ -11,16 +11,14 @@
 
     ///analogy of function
     ///pointsArr_2_singleDividedDifferences()
-    function creates_createOrUpdateOrbit()
-    {
+    function creates_createOrUpdateOrbit() {
         var polylineSvg;
         var polylineSvgMirrored;
         stdMod.createOrUpdateOrbit = createOrUpdateOrbit;
         return;
 
         ///decoration, should run in upcreate_media
-        function createOrUpdateOrbit(arg)
-        {
+        function createOrUpdateOrbit(arg) {
             //Main orbit polyline
             const cp = ssD.orbitXYToDraw;
             polylineSvg = createOrUpdateOrbitPolyline(polylineSvg, cp);

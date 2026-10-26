@@ -14,8 +14,7 @@
     ///... appar. this function is derived from vbls/... animated-slider.js
     ///... which had prototype: n s .simpleSlider =
     ///    function( parent, cssp, sliderClassId, captionScale )
-    function animatedSlider(sarg)
-    {
+    function animatedSlider(sarg) {
         var parent          = sarg.parent;
         var cssp            = sarg.cssp;
         var hideProofSlider = sarg.hideProofSlider;
@@ -108,8 +107,7 @@
                 var dataArg = startX + rangeX*(Math.min(timestamp, dur)) / dur;
                 slider.d8d_emulateAbsFractionX(dataArg, 'move');
             }
-            function completesMove()
-            {
+            function completesMove() {
                 slider.d8d_emulateAbsFractionX(endX, 'up');
             };
 

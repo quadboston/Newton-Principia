@@ -7,8 +7,7 @@
     //====================================================
     // //\\ inits and sets config pars
     //====================================================
-    function init_conf()
-    {
+    function init_conf() {
         //***************************************************************
         // //\\ geometrical scales
         //***************************************************************
@@ -143,8 +142,7 @@
             sunColor
         } = topicColors_repo;
 
-        var topicColors_elected =
-        {
+        var topicColors_elected = {
             estimatedForceColor,
             givenColor,
             proofColor,
@@ -164,8 +162,7 @@
         //---------------------------------------------------
         // //\\ points to approximate and draw original curve
         //---------------------------------------------------
-        var curvePivots =
-        [
+        var curvePivots = [
             posA,
             [ 523.3, 252 ],
             [ 510.9, 193.2 ],
@@ -214,8 +211,7 @@
         }));
 
         //---------------------------------------------------
-        var originalPoints =
-        {
+        var originalPoints = {
             curvePivots,
             foldPoints,
         };
@@ -337,8 +333,7 @@
         //vital to set to non-0 value
         var mod2inn_scale = (posA[0] - posS[0]);
 
-        var linesArray =
-        [
+        var linesArray = [
             { 'PV' : { pcolor : estimatedForceColor,
                 cssClass: 'subessay--corollary3 subessay--corollary5',
              }, },

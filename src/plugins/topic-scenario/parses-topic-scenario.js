@@ -9,8 +9,7 @@
         haz, eachprop,
         ssF, exegs, actionsList_default, actionsList_coded,
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList : {
             parsesTopicScenarios,
         },
     });
@@ -18,8 +17,7 @@
     return;
 
 
-    function parsesTopicScenarios()
-    {
+    function parsesTopicScenarios() {
         //https://stackoverflow.com/questions/32116312/javascript-regex-special-characters
         //makes most sense: https://javascript.info/regexp-escaping:
         //                  [ ] { } ( ) \ ^ $ . | ? * +
@@ -161,8 +159,7 @@
         }
     }
 
-    function buildUserAutoPilot(subexeg)
-    {
+    function buildUserAutoPilot(subexeg) {
         subexeg.orderedStates.forEach(stateRack => {
         stateRack.orderedEvents.forEach(oEvent => {
                 oEvent.statements.forEach(statement => {

@@ -7,8 +7,7 @@
     //====================================================
     // //\\ inits and sets config pars
     //====================================================
-    function init_conf()
-    {
+    function init_conf() {
         //--------------------------------------
         // //\\ geometics parameters
         //--------------------------------------
@@ -84,8 +83,7 @@
             givenHover,
         } = topicColors_repo;
 
-        var topicColors_elected =
-        {
+        var topicColors_elected = {
             given,
             proof,
             hidden,
@@ -104,8 +102,7 @@
         // \\// topic group colors,
         //-----------------------------------
 
-        var originalPoints =
-        {
+        var originalPoints = {
             A : {
                 pos: A,
                 pcolor : given,
@@ -161,16 +158,14 @@
                 letterRotRadius : 20,
                 cssClass: 'logic_phase--claim logic_phase--proof',
             },
-            g :
-            {
+            g : {
                 pos: [A[0], 622],
                 caption: '𝑔',
                 pcolor : proof,
                 letterAngle : 45,
                 cssClass: 'logic_phase--proof'
             },
-            G :
-            {
+            G : {
                 pos: [A[0], 677],
                 pcolor : proof,
                 letterAngle : -45,
@@ -182,8 +177,7 @@
         //vital to set to non-0 value
         var mod2inn_scale = (originalPoints.J.pos[1] - originalPoints.A.pos[1]) / 2;
 
-        var linesArray =
-        [
+        var linesArray = [
             { 'Ad' : { pcolor : proof,
                 cssClass: 'logic_phase--proof logic_phase--corollary'}, },
             { 'AB' : { pcolor : given }, },

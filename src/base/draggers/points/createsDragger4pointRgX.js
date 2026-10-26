@@ -8,8 +8,7 @@
     return;
 
 
-    function setModule()
-    {
+    function setModule() {
         //todm: must be loop via stMods
         sDomF.rgX_2_dragWrap   = rgX_2_dragWrap;
         //sDomF.doProcess_rgX = doProcess_rgX;

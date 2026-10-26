@@ -4,8 +4,7 @@
     return;
 
 
-    function init_model_parameters()
-    {
+    function init_model_parameters() {
         stdMod.initiates_orbit8graph();
         stdMod.creates_Zeta_slider();
     }

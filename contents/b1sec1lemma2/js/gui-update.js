@@ -25,37 +25,32 @@
     return;
 
 
-    function xy2lineShape(line, x1, y1, x2, y2)
-    {
+    function xy2lineShape(line, x1, y1, x2, y2) {
         line.setAttribute("x1", x1);
         line.setAttribute("y1", y1);
         line.setAttribute("x2", x2);
         line.setAttribute("y2", y2);
     }
     ///2 use cases: base, ctrl ...
-    function xy_2_xy8shape(item, xName, x, yName, y)
-    {
+    function xy_2_xy8shape(item, xName, x, yName, y) {
         item.x = x;
         item.y = y;
         item.dom.setAttributeNS(null, xName, x);
         item.dom.setAttributeNS(null, yName, y);
     }
-    function xy2shape(item, xName, x, yName, y)
-    {
+    function xy2shape(item, xName, x, yName, y) {
         item.setAttributeNS(null, xName, x);
         item.setAttributeNS(null, yName, y);
     }
 
-    function sets_pt2movable(pt)
-    {
+    function sets_pt2movable(pt) {
         pt.dom.setAttributeNS(null, "class", "figure");
         pt.dom.setAttributeNS(null, "r", sconf.MOVABLE_BASE_RADIUS);
         pt.movable = true;
     }
 
     ///rather redigitizes model for curves and more
-    function paints_curve8axes(dr)
-    {
+    function paints_curve8axes(dr) {
         // var curveFun = numModel.curveFun;
         var mpRounded = [];
         var dv = dr.yVariations;
@@ -163,15 +158,13 @@
         rectDom.setAttributeNS(null, "points", positionsT.join(" "));
     }
 
-    function updatePts(dr, i, x)
-    {
+    function updatePts(dr, i, x) {
         var yRef = dr.yVariations.yRef;
         if (!appstate.movingBasePt) {
             guiup.xy_2_xy8shape(dr.basePts.list[i], "cx", x, "cy", yRef);
         }
     }
-    function updatePtsRectsLabelsAreas(dr)
-    {
+    function updatePtsRectsLabelsAreas(dr) {
         var view = sdata.view;
         var basN = sconf.basesN;
         var baseBarsLefts = dr.basePts.baseBarsLefts;
@@ -226,8 +219,7 @@
     ///fills visibility in items.list by value vis:
     ///     in this range: items.visOffset <= ii && ii < items.visOffset+sconf.basesN,
     ///     the rest is filled with "hidden",
-    function setsVisibleRange(items, vis)
-    {
+    function setsVisibleRange(items, vis) {
         let list = items.list;
         let len = list.length;
         var end = Math.min(len, sconf.basesN+items.offset);
@@ -239,8 +231,7 @@
         }
     }
 
-    function shows_rects(dr)
-    {
+    function shows_rects(dr) {
         var view = sdata.view;
         const hidden = sconf.HIDE_WHEN_NON_MONOTONIC && !study.isMonotonic(dr);
 

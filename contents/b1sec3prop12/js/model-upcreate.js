@@ -8,8 +8,7 @@
     /// model scenario
     /// is required; to skip define as ()=>{};
     ///****************************************************
-    function model_upcreate()
-    {
+    function model_upcreate() {
         stdMod.builds_force_plusQ_minusQ_and_related();
         const op        = sconf.orbitParameters;
         const cosAxis   = Math.cos(op.mainAxisAngle);

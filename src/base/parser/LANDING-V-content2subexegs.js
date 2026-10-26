@@ -5,8 +5,7 @@
         topicColors_repo, topicColors_repo_camel2col, exegs,
         stdMod, amode, userOptions
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList : {
             LANDING_V___loads_professorList8cont_8_buildsSubexegs,
         },
     });
@@ -30,8 +29,7 @@
 
         ///This ajax-load takes contents-files, concatenates them, and calls
         ///final subroutine, subessays2subexegs_8_doProcessSubexegs.
-        function contentsList_2_essaions_2_exegs(lemmaConfig)
-        {
+        function contentsList_2_essaions_2_exegs(lemmaConfig) {
             var lemma_bookfiles_list = lemmaConfig[ 'contents-list' ];
             //=========================================================
             // //\\ ajax load
@@ -93,8 +91,7 @@
         //====================================================
         // //\\ on content Files Load Success
         //====================================================
-        function subessays2subexegs_8_doProcessSubexegs(lemmaConfig)
-        {
+        function subessays2subexegs_8_doProcessSubexegs(lemmaConfig) {
             var SUBESSAYS_DIVIDOR = /\*::\*/g;
             var subessays = allEssays__str.split(SUBESSAYS_DIVIDOR);
 
@@ -247,8 +244,7 @@
                     //---------------------------------------------------------
                     // //\\ does index bodyscript and essayHeader
                     //---------------------------------------------------------
-                    var subexeg =
-                    {
+                    var subexeg = {
                         bodyscript,
                         essayHeader,
                         //subexegsIx,
@@ -283,8 +279,7 @@
                         let aspExeg = exegToFill[asp_id] = {};
                         var subexegsIx  = 0;
                         var essayHeader = { subessay : subexegsIx + '' };
-                        var subexeg =
-                        {
+                        var subexeg = {
                             bodyscript : '',
                             essayHeader,
                         };
@@ -383,8 +378,7 @@
             //=======================================
             // //\\ parses and sets menu
             //=======================================
-            function setMenu(leafId, mcat_id, essayHeader)
-            {
+            function setMenu(leafId, mcat_id, essayHeader) {
                 //=======================================
                 // //\\ how submenu built
                 //=======================================
@@ -536,8 +530,7 @@
      * @param {boolean} [makeOpacity1] - If true, sets opacity to 1
      * @returns {string} rgba color string like 'rgba(44,150,120,1)'
      */
-    function getFixedColor(topicOrArray, makeOpacity1)
-    {
+    function getFixedColor(topicOrArray, makeOpacity1) {
         if (typeof topicOrArray === 'string') {
             //returns blank, ' ' if topicOrArray is falsy
             var cleared = nsmethods.toCssIdentifier(topicOrArray || ' ');

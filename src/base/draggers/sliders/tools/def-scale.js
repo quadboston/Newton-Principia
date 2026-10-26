@@ -14,8 +14,7 @@
     return;
 
 
-    function setModule()
-    {
+    function setModule() {
         pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
     }
 
@@ -23,8 +22,7 @@
     /// creates slider only once per
     /// app model creation;
     ///----------------------------------------
-    function createSliderPlaceholder_media_scale()
-    {
+    function createSliderPlaceholder_media_scale() {
         var magnit = 'media_scale';
         var media_scale_value = haz(rg[ magnit ], 'value') || 1;
         toreg(magnit)('value', media_scale_value);
@@ -40,8 +38,7 @@
         });
     }
 
-    function magnitude2app(magnit_api, newValue,)
-    {
+    function magnitude2app(magnit_api, newValue,) {
         // //\\ todm: fullLength patch,
         //            to fit CB in window
         //            todm: what is "CB"? why do we have "fullLength" here?

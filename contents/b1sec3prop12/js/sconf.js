@@ -8,8 +8,7 @@
     //====================================================
     // //\\ inits and sets config pars
     //====================================================
-    function init_conf()
-    {
+    function init_conf() {
         //***************************************************************
         // //\\ geometrical scales
         //***************************************************************
@@ -145,8 +144,7 @@
             sunColor,
         } = topicColors_repo;
 
-        var topicColors_elected =
-        {
+        var topicColors_elected = {
             estimatedForceColor,
             orbit: bodyColor,
             force: forceColor,
@@ -293,8 +291,7 @@
             },
         });
 
-        var linesArray =
-        [
+        var linesArray = [
             { ST : { pcolor : proofColor,	// Q can bring T below S
                 'stroke-width' : 1.1,
                 cssClass: 'subessay--goal subessay--solution',}, },

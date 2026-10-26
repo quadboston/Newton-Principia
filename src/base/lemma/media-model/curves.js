@@ -3,8 +3,7 @@
         ns, sn, haz,
         ssF, sDomF, rg,
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList : {
             paintsCurve,
         },
     });

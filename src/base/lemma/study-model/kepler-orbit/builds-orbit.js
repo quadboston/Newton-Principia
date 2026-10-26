@@ -14,8 +14,7 @@
     return;
 
 
-    function buildsOrbit()
-    {
+    function buildsOrbit() {
         graphArray.length =0;
         qIndexToOrbit.length = 0;
 
@@ -34,8 +33,7 @@
         //embedded into svg in other place,
         ///they are recalculated here
         ///with other step here for derivative params,
-        for (var qix = 0; qix<=Q_STEPS; qix++)
-        {
+        for (var qix = 0; qix<=Q_STEPS; qix++) {
             var bP = qIndexToOrbit[ qix ] = mcurve.planeCurveDerivatives({
                 pointAt : q2xy,
                 q : orbit_q_start + qix * delta_q_between_steps,

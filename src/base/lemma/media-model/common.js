@@ -3,8 +3,7 @@
         sn, haz,
         sconf, ssF, sDomF, rg, toreg,
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList : {
             upcreate__pars2rgShape,
             declareGeomtric,
             putInFront,
@@ -38,11 +37,9 @@
     ///whirl is geometrical-shape-in-model: point, line, ...
     ///we don't want to call them "shape" because it collides with word "shape" in svg
     ///which is GUI-geometrical shape - visula representation thing;
-    function upcreate__pars2rgShape({ pname, pos, wtype, })
-    {
+    function upcreate__pars2rgShape({ pname, pos, wtype, }) {
         var rgX = null;
-        switch (wtype)
-        {
+        switch (wtype) {
             default:
             case 'point':
                 sn('pname2point', sconf);
@@ -92,8 +89,7 @@
         caption,        //optional
     }) {
         var rgX   = null;
-        switch (wtype)
-        {
+        switch (wtype) {
             default:
             case 'point':
                 var rgX = haz(rg, pname);

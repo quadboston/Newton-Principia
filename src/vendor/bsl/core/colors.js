@@ -11,8 +11,7 @@
     };
 
     //was: function getRandomColor()
-    ns.pars2colors = function (HUE, SATURATION, LIGHTNESS, OPACITY)
-    {
+    ns.pars2colors = function (HUE, SATURATION, LIGHTNESS, OPACITY) {
         var DARKER = 0.8;
 
         //:gets pars
@@ -29,8 +28,7 @@
         resultColor.softColor = makeColor(70);
 
         ///does the job
-        function makeColor(light)
-        {
+        function makeColor(light) {
             var ligthStr = light.toFixed(2);
 
             var opasS = (opas === 1 && '1') || opas.toFixed(3);
@@ -76,8 +74,7 @@
     /// HSL to RGB
     /// https://en.wikipedia.org/wiki/HSL_and_HSV#From_HSL
     /// credit: https://codepen.io/frantic1048/pen/LGGxZP   , but it has a mistake: "* 60"
-    ns.hsl2rgb = function (hh, ss, ll)
-    {
+    ns.hsl2rgb = function (hh, ss, ll) {
 
       var cc = (1 - Math.abs(2 * ll - 1)) * ss;
       var hue = hh / 60;
@@ -148,8 +145,7 @@
     ///input/output
     ///     falsy ---> rgba(0,0,0,1)
     ///     missed opacity ---> 1
-    ns.arr2rgba = function (arr)
-    {
+    ns.arr2rgba = function (arr) {
         if (!arr || !Array.isArray(arr)) return "rgba(0,0,0,1)";
         var op = (typeof arr[3] !== 'undefined') ? arr[3] : 1;
         var r=Math.floor(arr[0]);
@@ -159,8 +155,7 @@
         return 'rgba('+r+','+g+','+b+','+op+')';
     }
     //input: arr[0],arr[1],arr[2] must be integers
-    ns.arr2rgb_rgba = function (arr)
-    {
+    ns.arr2rgb_rgba = function (arr) {
         if (!arr || !Array.isArray(arr)) return "rgba(0,0,0,1)";
         var op = (typeof arr[3] !== 'undefined') ? arr[3] : 1;
         var r=Math.floor(arr[0]);
@@ -175,8 +170,7 @@
     ///converts arguments to rgb or rgba string
     ///depending on presence of fourth, opacity argument,
     ///validates and corrects color values,
-    ns.arr2rgb_a = function (color1r, color1g, color1b, color1a)
-    {
+    ns.arr2rgb_a = function (color1r, color1g, color1b, color1a) {
         color1r = Math.max(Math.min(255, color1r), 0).toFixed();
         color1g = Math.max(Math.min(255, color1g), 0).toFixed();
         color1b = Math.max(Math.min(255, color1b), 0).toFixed();
@@ -195,8 +189,7 @@
 
     ///creates twin-colors: argument lowOpacity goes to rgba_low,
     ///        highOpacity goes to rgba_high,
-    function hslo_2_rgba_low8high(hue, sat, light, lowOpacity, highOpacity)
-    {
+    function hslo_2_rgba_low8high(hue, sat, light, lowOpacity, highOpacity) {
         highOpacity = typeof highOpacity === 'undefined' ? 1 : highOpacity;
         var corRack     = ns.pars2colors(hue, sat, light, lowOpacity);
         let rgb         = corRack.rgb;

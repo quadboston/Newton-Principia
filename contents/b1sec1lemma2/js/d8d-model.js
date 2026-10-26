@@ -7,8 +7,7 @@
     return;
 
 
-    function setModule()
-    {
+    function setModule() {
         var gui         = sn('gui', stdL2);
         var guiup       = sn('guiUpdate', gui);
         var appstate    = sn('appstate', stdL2);
@@ -37,8 +36,7 @@
             });
         }
 
-        function processMouseDown(cPW)
-        {
+        function processMouseDown(cPW) {
             cPW.achieved.achieved.x = cPW.x; //point_on_dragSurf[0];
             cPW.achieved.achieved.y = cPW.y; //point_on_dragSurf[1];
             ///apparently, d8dp.crePointFW_BSLd8d1CHAMBER does this
@@ -114,8 +112,7 @@
         }
 
         ///decorates DraggeeHoverer movement
-        function Update_decPoint(pointWrap)
-        {
+        function Update_decPoint(pointWrap) {
             var pw = pointWrap;
             return (function (decPoint, dragSurface, pointWrap, nonenify) {
                 if (pw.x || pw.x === 0) {
@@ -133,8 +130,7 @@
             });
         }
 
-        function doProcess(arg)
-        {
+        function doProcess(arg) {
             if (arg.down_move_up === 'move') {
                 var pw = arg.pointWrap;
                 if (pw.type === 'base') {
@@ -152,8 +148,7 @@
         // //\\ finds draggee
         //====================
         ///Gets movable and visible point which is closest to mousePoint.
-        function findDraggee(mousePoint, dragWraps)
-        {
+        function findDraggee(mousePoint, dragWraps) {
 
             //////////////////////////////////////////////////////////
             // //\\ todo. d8d points tmp patch.
@@ -167,8 +162,7 @@
             });
             return closest ? closest.dwrap : null;
         }
-        function findClosestPoint(closest, mousePoint, dwrap)
-        {
+        function findClosestPoint(closest, mousePoint, dwrap) {
             var pointWrap = dwrap.pointWrap;
             var DRAGGER_TOLERANCE = sconf.DRAGGER_TOLERANCE;
 
@@ -199,8 +193,7 @@
         //======================================
         // //\\ event to js
         //======================================
-        function move2js(pointWrap, move, ach)
-        {
+        function move2js(pointWrap, move, ach) {
             const scale = sDomF.out2inn();
             const newX = ach.achieved.x + move[0]*scale;
             const newY = ach.achieved.y + move[1]*scale;

@@ -38,8 +38,7 @@
     */
     /// (Creates media query and test-method.)
     ///=========================================================
-    function create_mobile_tester(domElToAttachTo, mediaThreshold)
-    {
+    function create_mobile_tester(domElToAttachTo, mediaThreshold) {
         var thresId = ''+mediaThreshold;
         if (ns.widthThresholds[ thresId ]) return;
         var cls = cssp+'-mobile-width-detector-'+mediaThreshold;
@@ -66,8 +65,7 @@
                 }
            `);
 
-        ns.widthThresholds[ thresId ] = function (cb)
-        {
+        ns.widthThresholds[ thresId ] = function (cb) {
             var testWidth = tester.box().width;
             //c cc( 'testWidth '+testWidth, tester() );
             var mobile = testWidth <150;

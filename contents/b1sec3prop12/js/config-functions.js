@@ -8,16 +8,14 @@
 
 
     ///parameters are enclosed in closure for performance
-    function recreates_q2xy()
-    {
+    function recreates_q2xy() {
         const center = sconf.diagramOrigin;
         const op     = sconf.orbitParameters;
         stdMod.q2xy  = q2xy;
         stdMod.computeOrbitXCenter = computeOrbitXCenter;
         return;
 
-        function q2xy(q)
-        {
+        function q2xy(q) {
             //denomenator
             var den = 1 - op.eccentricity * Math.cos(q);
             if (den === 0) {

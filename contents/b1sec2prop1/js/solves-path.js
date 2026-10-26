@@ -18,8 +18,7 @@
     ///    is labeled with postfix "prime".
     ///
     ///=================================================================
-    function solvesTrajectoryMath__O()
-    {
+    function solvesTrajectoryMath__O() {
         //:study-pars
         var sSteps          = rg.spatialSteps = Math.floor(sconf.timeRange
                               / rg.rgslid_dt.val);
@@ -72,26 +71,22 @@
                 // //\\ speeds do change positions
                 //====================================
                 //speed contributes to the path increment
-                var step =
-                [
+                var step = [
                     speed[0]*timeStep,
                     speed[1]*timeStep,
                 ];
-                var stepAracc =
-                [
+                var stepAracc = [
                     speedAracc[0]*timeStep,
                     speedAracc[1]*timeStep,
                 ];
                 //path increment is added to path
-                path[pi] =
-                [
+                path[pi] = [
                     //for example: (path at A + step) === path at B
                     path[pi-1][0]+step[0],
                     path[pi-1][1]+step[1],
                 ];
                 ////recall pi = 0 maps to A, pi = 1 to B,
-                pathAracc[pi] =
-                [
+                pathAracc[pi] = [
                     pathAracc[pi-1][0]+stepAracc[0], //=== path at A + step === path at B
                     pathAracc[pi-1][1]+stepAracc[1],
                 ];
@@ -106,8 +101,7 @@
                     let formerSpeed = speeds[pi-2];
                     let formerPath = path[pi-1];
                     //this thing index shifted by two units:
-                    freePath[pi-2] =
-                    [
+                    freePath[pi-2] = [
                         formerPath[0]+formerSpeed[0]*timeStep,
                         formerPath[1]+formerSpeed[1]*timeStep,
                     ];
@@ -168,16 +162,14 @@
                 //speed at index Ix is a speed with which
                 //body begins to travel in path point paths[Ix],
                 //for example speeds[1] = speed of departue from point B
-                speeds[pi] =
-                [
+                speeds[pi] = [
                     speed[0]+fx,
                     speed[1]+fy,
                 ];
                 ///speeds with tangential acc. contribution
                 ///recall, impulses and speeds have different indices meaning,
                 ///base of impulse (, index = 0) is coincided with index 1 of speed
-                speedsAracc[pi] =
-                [
+                speedsAracc[pi] = [
                     speedAracc[0]+impulsesAracc[ pi-1 ][0],
                     speedAracc[1]+impulsesAracc[ pi-1 ][1],
                 ];

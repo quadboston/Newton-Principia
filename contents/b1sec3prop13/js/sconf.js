@@ -8,8 +8,7 @@
     //====================================================
     // //\\ inits and sets config pars
     //====================================================
-    function init_conf()
-    {
+    function init_conf() {
         //***************************************************************
         // //\\ geometrical scales
         //***************************************************************
@@ -131,8 +130,7 @@
             sunColor,
         } = topicColors_repo;
 
-        var topicColors_elected =
-        {
+        var topicColors_elected = {
             estimatedForceColor,
             orbit: bodyColor,
             force: forceColor,
@@ -284,8 +282,7 @@
         const proofSolution = { pcolor : proofColor,
                 cssClass: 'subessay--solution', };
 
-        var linesArray =
-        [
+        var linesArray = [
             { QR : { pcolor : estimatedForceColor,
                 cssClass: 'subessay--goal subessay--solution subessay--corollary2', }, },
             { QT : { pcolor : estimatedForceColor,

@@ -12,8 +12,7 @@
     //=================================================
     // //\\ configures curve
     //=================================================
-    function createModelFunctions()
-    {
+    function createModelFunctions() {
         //:principal variable params:
         //sconf.givenCurve_pivots_inModel are negative in this model:
         var pol = rg.curve = mat.calculate_divided_differences(sconf.givenCurve_pivots_inModel);

@@ -4,8 +4,7 @@
         fconf, ssF, sData, sDomF,
         stdMod, amode, sconf, rg, toreg,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             model_upcreate,
             buildsQuadPlot,
         },
@@ -18,8 +17,7 @@
     /// model scenario
     /// is required; to skip define as ()=>{};
     ///****************************************************
-    function model_upcreate()
-    {
+    function model_upcreate() {
         stdMod.quadratures();
         //if( !stdMod.drop8pointE() ) {
             ////must not happen
@@ -172,8 +170,7 @@
         //---------------------------
     }
 
-    function pivots2graph(pname, graph, lastIq, firstIq, fill0stroke)
-    {
+    function pivots2graph(pname, graph, lastIq, firstIq, fill0stroke) {
         //alternates
         fill0stroke = fill0stroke || 'fill';
         firstIq = firstIq || 0;
@@ -193,8 +190,7 @@
         buildsQuadPlot(rgX, fill0stroke);
     }
 
-    function buildsQuadPlot(rgX, fill0stroke)
-    {
+    function buildsQuadPlot(rgX, fill0stroke) {
         fill0stroke = fill0stroke || 'stroke';
 
         //fills media pivots

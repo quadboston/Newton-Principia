@@ -70,8 +70,7 @@
         }
         var prevLen = calculates_curvePoints2chordsSum(funPoints[ expo ]);
 
-        function calculates_curvePoints2chordsSum(curvePoints)
-        {
+        function calculates_curvePoints2chordsSum(curvePoints) {
             var lenSum = 0;
             var curPLen = curvePoints.length;
             for (var it=1; it<curPLen; it++) {

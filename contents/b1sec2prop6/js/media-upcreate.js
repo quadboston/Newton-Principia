@@ -10,8 +10,7 @@
     //=========================================================
     // //\\ lemma custom addons
     //=========================================================
-    function media_upcreate___part_of_medupcr_basic()
-    {
+    function media_upcreate___part_of_medupcr_basic() {
         stdMod.createOrUpdateOrbit({});
 
         // entire green curve

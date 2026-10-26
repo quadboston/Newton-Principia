@@ -12,8 +12,7 @@
     /// model scenario
     /// is required; to skip define as ()=>{};
     ///****************************************************
-    function model_upcreate()
-    {
+    function model_upcreate() {
         const solvable = ssD.solvable;
         //qIndexToOrbit is meta data for all points on orbit, qix is index of P
         const Porb = ssD.qIndexToOrbit[ rg.P.qix ];
@@ -315,8 +314,7 @@
 
     ///restores visibility which has been stashed
     ///when curve became non-Kepler
-    function restoresStashedVisibility()
-    {
+    function restoresStashedVisibility() {
         const sv = ssD.stashedVisibility;
         if (!sv) return;
         Object.keys(sv).forEach(okey => {

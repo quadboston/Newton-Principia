@@ -8,8 +8,7 @@
     //====================================================
     // //\\ inits and sets config pars
     //====================================================
-    function init_conf()
-    {
+    function init_conf() {
         //***************************************************************
         // //\\ geometrical scales
         //***************************************************************
@@ -130,8 +129,7 @@
             forceColor,
         } = topicColors_repo;
 
-        var topicColors_elected =
-        {
+        var topicColors_elected = {
             estimatedForceColor,
             proofColor,
             bodyColor,
@@ -292,8 +290,7 @@
         const showForLatus = { pcolor : proofColor,
                 cssClass: 'subessay--latus-rectum-parabola', };
 
-        var linesArray =
-        [
+        var linesArray = [
             { GP : {pcolor : proofColor} },
             { gP : {pcolor : proofHover} },
             { Pv :  showForLatus },

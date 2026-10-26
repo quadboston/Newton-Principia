@@ -6,12 +6,10 @@
 
 
     // fine tuneup of a configured curve pivot: [ scaleX, scaleY ]
-    function pivotScale(cpix)
-    {
+    function pivotScale(cpix) {
         let scale = 1.2;
         let scaleX = 1;
-        switch (cpix)
-        {
+        switch (cpix) {
             case 1 : scale = 1.4;
                      scaleX = 1.02;
             break;
@@ -24,8 +22,7 @@
         return [ scaleX, scale ];
     }
 
-    function init_model_parameters()
-    {
+    function init_model_parameters() {
         ///curve pars
         ///sconf is insufficient, there is a fine tuneup,
         {

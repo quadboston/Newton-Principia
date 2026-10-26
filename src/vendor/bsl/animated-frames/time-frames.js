@@ -53,8 +53,7 @@
     return;
 
 
-    function runsMainCycle()
-    {
+    function runsMainCycle() {
         var fisrtStart = false;
         if (!managerStart) {
             var fisrtStart = true;
@@ -94,16 +93,14 @@
         return kName;
     };
 
-    function removesAddee(kName)
-    {
+    function removesAddee(kName) {
         //other way?:
         // https://stackoverflow.com/questions/12216540
         //      /how-to-test-for-equality-of-functions-in-javascript
         delete runners[ kName ];
     };
 
-    function runsAddee(kName)
-    {
+    function runsAddee(kName) {
         /*
         //this would more economical approach, run only when
         //at least one demand is made

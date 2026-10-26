@@ -5,8 +5,7 @@
     return;
 
 
-    function setModule()
-    {
+    function setModule() {
         var gui         = sn('gui', stdL2);
         var guicon      = sn('guiConstruct', gui);
         var guiup       = sn('guiUpdate', gui);
@@ -19,8 +18,7 @@
         //===============================================
         // //\\ widest-rect
         //===============================================
-        guicon.constructsWidestRect = function (dr)
-        {
+        guicon.constructsWidestRect = function (dr) {
             //Really a polygon so it can be transformed
             dr.faaf   = document.createElementNS(svgNS, "polygon");
             $$.$(dr.faaf)
@@ -28,8 +26,7 @@
                 .to(stdMod.svgScene);
         };
 
-        gui.drawsWidestRect = function (dr)
-        {
+        gui.drawsWidestRect = function (dr) {
             let { left, right, top, } = dr.widestRect;
             guiup.assignRectValues(
                 dr,

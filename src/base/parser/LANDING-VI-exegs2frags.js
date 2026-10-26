@@ -1,7 +1,6 @@
 (function () {
 const { ns, eachprop, exegs, topics, fconf, references} = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList : {
             exegs_2_frags,
         },
     });
@@ -34,8 +33,7 @@ const { ns, eachprop, exegs, topics, fconf, references} = window.b$l.apptree({
     ///     ...
     ///}
     ///===================================================================
-    function exegs_2_frags()
-    {
+    function exegs_2_frags() {
         //will collect unique keys for aspect, logical_phase, and subessay keynames:
         let allTkeys = {};
         let allAkeys = {};

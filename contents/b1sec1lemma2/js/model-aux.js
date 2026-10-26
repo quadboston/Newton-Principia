@@ -39,8 +39,7 @@
     //      after micropoints
     //      and monotonity interval
     //==================================
-    function addsNewBases_8_convertWidths(dr)
-    {
+    function addsNewBases_8_convertWidths(dr) {
         var basesN = sconf.basesN;
         var sum = 0;
         //===================================================
@@ -84,8 +83,7 @@
     //==================================
     // \\// calculates mediawidths
     //==================================
-    function calcsMonotIntervalArea(dr)
-    {
+    function calcsMonotIntervalArea(dr) {
         let ff = numModel.curveFun;
         let dv = dr.yVariations;
         let x_start = dv.x_start;
@@ -100,8 +98,7 @@
         dr.figureArea = dv.complimentaryAreaBar-sum;
     }
     ///must run after widths have been finalized
-    function calculatesMajorantRect(dr)
-    {
+    function calculatesMajorantRect(dr) {
         let widestSize = 0;
         for (let i=0; i<sconf.basesN; i++) {
             const width = dr.partitionWidths[i];
@@ -127,8 +124,7 @@
         };
     }
 
-    function calculates_inscr8circums(dr)
-    {
+    function calculates_inscr8circums(dr) {
         var insYar = sn('inscribedY', dr.basePts, []);
         var cirYar = sn('circumscribedY', dr.basePts, []);
         var baseBarsLefts = sn('baseBarsLefts', dr.basePts, []);

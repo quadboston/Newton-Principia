@@ -26,8 +26,7 @@
     //                  scriptItem.cb - optional callback for individual script load
     //             lastCb - optional callback called when all scripts loaded
     //===============================================================================
-    function loadScripts(scriptList, lastCb)
-    {
+    function loadScripts(scriptList, lastCb) {
         var completionCount = 0;
 
         scriptList.forEach(function (scriptItem, ix) {
@@ -50,8 +49,7 @@
             scrip.src = scriptItem.src;
         });
 
-        function checkCompletion()
-        {
+        function checkCompletion() {
             if (completionCount === scriptList.length) {
                 lastCb && lastCb();
             }

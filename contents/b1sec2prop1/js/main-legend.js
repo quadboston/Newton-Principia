@@ -93,8 +93,7 @@
     ///        form "mname = mvalue",
     ///Input:  mname = magnitude name, just an ID of a cell and
     ///        tip for the css-class
-    function makeCl(row, mname, mcaption, table_logic_phase)
-    {
+    function makeCl(row, mname, mcaption, table_logic_phase) {
         var cssName = sDomF.toCssIdentifier(mname);
 
         if (mcaption !== ']no caption[') {

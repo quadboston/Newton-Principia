@@ -12,8 +12,7 @@
     return;
 
 
-    function setModule()
-    {
+    function setModule() {
         ///this thing works in context of
         ///LANDING_IV___loadLemmaJSCodes() after
         ///and overrided setModule of Landing II
@@ -21,8 +20,7 @@
     }
 
     ///one of the first thing called in app-wide sapp.init_sapp
-    function init_model_parameters()
-    {
+    function init_model_parameters() {
 
         {
             let pid = 'proof-pop-up';
@@ -103,8 +101,7 @@
         gui.buildSlider();
     }
 
-    function finish_sapp_UI()
-    {
+    function finish_sapp_UI() {
         gui.createDragModel();
         study.setupEventsAreasLegend?.();
     }

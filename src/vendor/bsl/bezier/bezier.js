@@ -19,8 +19,7 @@
 
     ///performance-optimized
     ///standalone framework for multidimensional Beizier pivots
-    function preparesOptimizedBezier(pivots)
-    {
+    function preparesOptimizedBezier(pivots) {
         let rack = {};
         rack.pivots = pivots;
         rack.dimension = 1;
@@ -65,8 +64,7 @@
         rack.curvePivots2bezierPivots = curvePivots2bezierPivots();
         return rack;
 
-        function fun(t)
-        {
+        function fun(t) {
             let pivots = rack.pivots;
             let rank = pivots.length-1
             let dim = rack.dimension;
@@ -114,8 +112,7 @@
             return result;
         }
 
-        function updatesPivot(pivot, i)
-        {
+        function updatesPivot(pivot, i) {
             let pivots = rack.pivots;
             let coefficients = rack.coefficients;
             let binom = rack.binom;
@@ -132,8 +129,7 @@
 
         ///calculates partial derivatives d(BezierPivot)/d(CurvePivot),
         ///their dependency is actually linear
-        function curvePivots2bezierPivots()
-        {
+        function curvePivots2bezierPivots() {
             let binom = rack.binom;
             let rank = pivots.length-1;
             let ix2parameter = rack.ix2parameter;
@@ -161,8 +157,7 @@
 
         ///"sugar-function"
         ///makes points uniformely distributed
-        function updatesArrayOfPoints(arr, n)
-        {
+        function updatesArrayOfPoints(arr, n) {
             arr.length = 0;
             let step = 1/(n-1);
             let fun = rack.fun;
@@ -183,8 +178,7 @@
     ///        tt = point parameter <- [0,1]
     ///        start = 0 initially
     ///        len = pivotPoints.length initially
-    function weightify(tt, pivotPoints, dim, start, len)
-    {
+    function weightify(tt, pivotPoints, dim, start, len) {
         if (len === 2) {
             return (1-tt)*pivotPoints[start][dim] + tt*pivotPoints[start+1][dim];
         } else {
@@ -209,8 +203,7 @@
     ///=============================================================
     ///Calculates point on bezier curve by given point's t-parameter
     ///=============================================================
-    function parT2point(parT, pivots)
-    {
+    function parT2point(parT, pivots) {
         return [ weightify(parT, pivots, 0, 0, pivots.length),
                  weightify(parT, pivots, 1, 0, pivots.length)
         ];
@@ -219,8 +212,7 @@
     ///=============================================================
     ///3d poiont
     ///=============================================================
-    function t_2_3Dpoint(parT, pivots)
-    {
+    function t_2_3Dpoint(parT, pivots) {
         return [
             weightify(parT, pivots, 0, 0, pivots.length),
             weightify(parT, pivots, 1, 0, pivots.length),
@@ -272,8 +264,7 @@
                   c = Q'y - Q'x
 
     */
-    function line2bezier(Q, D, B, C)
-    {
+    function line2bezier(Q, D, B, C) {
         var Fx = C[0] - 2*B[0];
         var Gx = 2*B[0];
         var Fy = C[1] - 2*B[1];
@@ -335,8 +326,7 @@
                 Driving these steps backward
                 does prove (*).
     */
-    function zeroBezier2zeroSubbezier(B, C, tS)
-    {
+    function zeroBezier2zeroSubbezier(B, C, tS) {
         var sm = mat.sm;
         var u = tS;
         return [
@@ -396,8 +386,7 @@
 
     ///The same as zeroBezier2upperSubbezier( B, C, T ), but
     ///with 3 input pivots with A in an orbitrary position
-    function bezier2upper(pivots, T)
-    {
+    function bezier2upper(pivots, T) {
         var sm = mat.sm;
         var A = pivots[0];
         var B = pivots[1];
@@ -422,8 +411,7 @@
 
     ///The same as zeroBezier2zeroSubbezier( B, C, T ), but
     ///with 3 input pivots with A in an orbitrary position
-    function bezier2lower(pivots, T)
-    {
+    function bezier2lower(pivots, T) {
         var sm = mat.sm;
         var A = pivots[0];
         var B = pivots[1];

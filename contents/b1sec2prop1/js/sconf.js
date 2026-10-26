@@ -124,8 +124,7 @@ function init_conf() {
         //----------------
         // //\\ math model
         //----------------
-        force :
-        [
+        force : [
             //[ -2, 3.9 ], //apparently, the first number is a power n for f=Ar^n
             //f=kr^n
             [   -2,                      //=n

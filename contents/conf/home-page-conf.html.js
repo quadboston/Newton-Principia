@@ -9,8 +9,7 @@
     return;
 
 
-    function builds_homePane()
-    {
+    function builds_homePane() {
         var subsiteImg = fconf.pathToContentSiteImg;
 
         buildHeader();
@@ -251,8 +250,7 @@
     }
 
     // param: true if building for homepage, false if building for Contents button
-    function buildListOfLemmas(isHomepage)
-    {
+    function buildListOfLemmas(isHomepage) {
         var landingPath = window.location.pathname;
         var book = null;
         var coreText = '';

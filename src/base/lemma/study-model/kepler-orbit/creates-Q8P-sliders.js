@@ -12,8 +12,7 @@
     return;
 
 
-    function creates_Q8P_sliders()
-    {
+    function creates_Q8P_sliders() {
         /// point P slider
         rg.P.acceptPos = newPos => {
             //Ensure solvable and qix exist to help prevent P6 errors when orbits

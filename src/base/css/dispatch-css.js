@@ -10,8 +10,7 @@
     return;
 
 
-    function dispatch_css()
-    {
+    function dispatch_css() {
         //ensures css vars are correct
         root.style.setProperty('--main_horizontal_dividor_width_px', sconf.main_horizontal_dividor_width_px + "px");
         root.style.setProperty('--doDisplayPageTopNavigatMenu', fconf.doDisplayPageTopNavigatMenu ? 'flex' : 'none');
@@ -39,8 +38,7 @@
         });
     }
 
-    function decorateText(text, modname)
-    {
+    function decorateText(text, modname) {
         return ` 
     /******************************************
        //\\\\ css lemma module = ${modname}
