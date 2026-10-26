@@ -31,7 +31,6 @@
         }
     }
 
-
     function calculateMaxGraphValues() {
         //No adjustments needed, just calculate maximum forces.
         stdMod.rebuilds_orbit(true);

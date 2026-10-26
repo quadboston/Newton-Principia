@@ -307,7 +307,6 @@
     // \\// creates svg-line or updates it if exists
     //==============================================
 
-
     ///master function for polygons
     function namesArr_2_svgpoly(
         pNames,
@@ -427,7 +426,6 @@
             var tpclass = sDomF.toCssIdentifier( tpclass || triangleId );
             cssCls = cssCls ? ' ' + cssCls + ' ' : ' ';
             $$.$( triang.svgel ).cls( 'tofill' + cssCls + 'tp-' + tpclass );
-
 
         } else {
             sv.updatePolyline({

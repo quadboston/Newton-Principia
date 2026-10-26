@@ -6,9 +6,6 @@
     return;
 
 
-
-
-
     ///constructs Newton's polynomial
     function calculate_divided_differences(
         pointsXY, //array function y(x) points in format: [ [x1,y1], [x2,y2], ... ]
@@ -35,8 +32,6 @@
         }
         // **api-outputs---divided-diff
         return { coefficients:F, calculate_polynomial, derivativeAtZero };
-
-
 
         function Flow_2_Ftop( Flow )
         {
@@ -87,12 +82,10 @@
         }
         */
 
-
         //checks the job;
         //var dd = mat.calculate_divided_differences( xy ).calculate_polynomial;
         //var Sx = sconf.p name2point.S.pos[0];
         //var rr = dd( Sx );
-
 
         ///calculates_derivative_at_point_zero
         function derivativeAtZero()
@@ -117,5 +110,3 @@
     }
 
 }) ();
-
-

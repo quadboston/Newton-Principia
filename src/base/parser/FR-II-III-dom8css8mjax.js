@@ -12,9 +12,6 @@
     return;
 
 
-
-
-
     ///Includes step II and III:
     ///Frag. step II. Norm. and anchor-texts and
     ///Frag. step III. Html and global-css-visib-of-active-category.
@@ -53,5 +50,3 @@
         });
     }
 }) ();
-
-

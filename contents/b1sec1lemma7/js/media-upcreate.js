@@ -54,7 +54,6 @@
         //must be in synch with rotation of AL
         //pointB      : rg.B,
 
-
         ssF.paintsCurve({
                 //rgName    : will become 'arc-AB',
                 fun         : cfun.fun,
@@ -103,7 +102,6 @@
         //-------------------------------------------------
         // \\// original arc and curve
         //-------------------------------------------------
-
 
         //-------------------------------------------------
         // //\\ paints magnified curve

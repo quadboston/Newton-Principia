@@ -18,11 +18,6 @@
     return;
 
 
-
-
-
-
-
     ///=============================================================
     /// Creates test-probe-div accoring to device screen dimensions.
     /// test-probe-div contains a flag which can be probed
@@ -82,4 +77,3 @@
     }
 
 }) ();
-

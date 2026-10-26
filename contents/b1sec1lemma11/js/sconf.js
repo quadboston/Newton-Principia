@@ -1,4 +1,3 @@
-
 ( function() {
     var { ns, fconf, sconf, topicColors_repo } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
@@ -47,7 +46,6 @@
         sconf.pointDecoration.r = handleRadius;
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
-
 
         //this makes hanle's border nicely thin
         sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
@@ -105,7 +103,6 @@
         //-----------------------------------
         // \\// topic group colors,
         //-----------------------------------
-
 
         var originalPoints =
         {
@@ -180,7 +177,6 @@
                 cssClass: 'logic_phase--proof'
             },
         };
-
 
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value

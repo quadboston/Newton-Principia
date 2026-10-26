@@ -1,4 +1,3 @@
-
 ( function() {
     var { ns, fconf, sconf, topicColors_repo } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
@@ -82,7 +81,6 @@
             'area-RAB' : givenArea,
             'area-RAD' : givenArea,
             'area-RACB' : givenArea,
-
 
             'area-rAb' : proofArea,
             'area-rAd' : proofArea,

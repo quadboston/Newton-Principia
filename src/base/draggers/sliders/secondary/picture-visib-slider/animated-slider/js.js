@@ -11,12 +11,6 @@
     return;
 
 
-
-
-
-
-
-
     ///... appar. this function is derived from vbls/... animated-slider.js
     ///... which had prototype: n s .simpleSlider =
     ///    function( parent, cssp, sliderClassId, captionScale )
@@ -39,8 +33,6 @@
         parent = parent || document.body;
         return_slider = {};
 
-
-
         //===============================
         // //\\ creates dom placeholders
         //===============================
@@ -57,8 +49,6 @@
         // \\// appends style
         //-------------------------------
 
-
-
         //:appends slider root
         return_slider.slider$ = $$
             .c( 'div' )
@@ -72,8 +62,6 @@
         //===============================
         // \\// creates dom placeholders
         //===============================
-
-
 
         //======================
         // //\\ creates slider
@@ -96,8 +84,6 @@
         // \\// creates slider
         //======================
 
-
-
         //===============================
         // //\\ starts landing animation
         //===============================
@@ -108,12 +94,6 @@
         //1111111111111111111111111111111
         return return_slider;
         //1111111111111111111111111111111
-
-
-
-
-
-
 
         ///defines landing animation
         function doSet_childOpeningAnimation(
@@ -148,4 +128,3 @@
     };
 
 })();
-

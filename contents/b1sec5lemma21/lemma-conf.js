@@ -5,7 +5,6 @@
     return;
 
 
-
     function lemmaConfig()
     {
         return {
@@ -27,4 +26,3 @@
     }
 
 }) ();
-

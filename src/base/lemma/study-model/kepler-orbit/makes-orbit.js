@@ -51,7 +51,6 @@
         //poly2svg({}); //unnecessary, called a million times from media-upcreate
         return result;
 
-
         // param q (angle) to [x,y] point on conic
         // todo: rename? what is t?
         // also called from other modules to determine position of specified points
@@ -273,6 +272,4 @@
         //console.log('newEccentricity: ' + eccentricity.toFixed(3));
     }
 
-
 }) ();
-

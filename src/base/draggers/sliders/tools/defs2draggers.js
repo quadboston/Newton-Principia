@@ -8,11 +8,6 @@
     return;
 
 
-
-
-
-
-
     ///==========================================
     /// inits drag points
     ///==========================================
@@ -23,8 +18,6 @@
             createDragger( medD8D, slname, );
         });
     };
-
-
 
     function createDragger( medD8D, magnitude, )
     {
@@ -79,7 +72,4 @@
 
     }
 
-
-
 }) ();
-

@@ -20,14 +20,6 @@
     return;
 
 
-
-
-
-
-
-
-
-
     ///****************************************************
     /// model scenario
     /// is required; to skip define as ()=>{};
@@ -45,14 +37,11 @@
         var yRange          = sconf.APP_MODEL_Y_RANGE;
         var angleARad_min   = mat.degToRad(sconf.angleA_min);
 
-
-
         //===================================
         // //\\ Constrain bezier middle pivot
         //===================================
         //Constrain the bezier middle pivot to be within the specified bounds, and on line ec (ultimately same position as point g).
         //Code here to ensure always run whenever an update occurs (tab changed, point dragged, diagram moved, window resized etc.)
-
 
         //Ensure max angle A is before tiltAngleRad (keep in mind angle A is 0 when vertical, tiltAngle is 0 when horizontal)...
         //-Line Ag cannot be parallel to line ec (tiltAngle) they wouldn't intersect.
@@ -83,8 +72,6 @@
         //===================================
         // \\// Constrain bezier middle pivot
         //===================================
-
-
 
         //===================================================
         // //\\ spawns study model from main parameters ssD
@@ -127,16 +114,12 @@
         toreg( 'Afd' )( 'vertices', make_points_AGE( mod_b, mod_d, tanA ) );
         // \\// making areas
 
-
         ns.paste( rg.G.pos, rg.AGE.vertices[1] );
         ns.paste( rg.F.pos, rg.AFD.vertices[1] );
         var mod_g = rg[ 'Age' ].vertices[1];
         topos( 'g', mod_g );
         var mod_f = mat.sm( claimRatio, mod_g );
         topos( 'f', mod_f );
-
-
-
 
         //=======================
         // //\\ calculates areas
@@ -195,8 +178,6 @@
     // \\// updates figure (and creates if none)
     //=========================================================
 
-
-
     //==========================================
     // //\\ model helpers
     // //\\ calculates area similar to AGE
@@ -240,7 +221,6 @@
     // \\// calculates area similar to AGE
     //==========================================
 
-
     //==========================================
     // //\\ calculateCurvedArea
     //==========================================
@@ -254,7 +234,6 @@
     //==========================================
     // \\// calculateCurvedArea
     //==========================================
-
 
     //====================================================================
     // //\\ converts point-on-curve-coordinate x or y
@@ -305,7 +284,6 @@
     // \\// converts point-on-curve-coordinate x or y
     //====================================================================
 
-
     ///====================================================================
     ///rescales pivots
     ///====================================================================
@@ -320,4 +298,3 @@
     //====================================================================
 
 }) ();
-

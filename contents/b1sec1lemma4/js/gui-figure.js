@@ -21,7 +21,6 @@
         return sDomF.toCssIdentifier(curveName);
     }
 
-
     function generateFigureName(dr) {
         //Generate figure name using letters from input datareg
         if (!dr.POINT_LABELS)
@@ -33,7 +32,6 @@
             CTRL_PT_LAST;
         return sDomF.toCssIdentifier(figureName);
     }
-
 
     function hideWhenNonMonotonic(dr) {
         //Show/hide the following on the figure as needed

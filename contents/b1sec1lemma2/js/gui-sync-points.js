@@ -131,7 +131,6 @@
         }
     }
 
-
     function syncPoints(dr) {
         let view = sdata.view;
         const showFigure = !!view.isFigureChecked;

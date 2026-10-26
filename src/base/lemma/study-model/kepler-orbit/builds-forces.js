@@ -91,7 +91,6 @@
             // \\// q is free variable
             //**********************************************
 
-
             //**********************************************
             // //\\ t is a free variable
             //**********************************************
@@ -167,8 +166,6 @@
         // check_qAndTimeConversions();
     }
 
-
-
     function convertTimeTo_q(time) {
         //Use the bisection method to find the qix interval containing the
         //input time, then interpolate and output the q value using that
@@ -183,13 +180,11 @@
         if (timeFind < 0 || timeFind > timeRange)
             return null;
 
-
         //Lower and upper bound for searching
         let qixL = 0;
         //As interval is always defined by the first qix (not qix + 1), last
         //possible index can never be a valid value.
         let qixU = (qIndexToOrbit.length - 1) - 1;
-
 
         while(qixL <= qixU) {
             //Calculate new qix for midpoint
@@ -222,7 +217,6 @@
         return null;
     }
 
-
     function convert_qToTime(q, clampToMinAndMaxTime = false) {
         //Find the qix interval containing the input q, then interpolate and
         //output the time value using that interval.  Optionally if out of
@@ -252,7 +246,6 @@
             return clampToMinAndMaxTime ? timeRange : null;
         }
 
-
         //Calculate qix for q
         const qix = (q - orbit_q_start) / delta_q_between_steps;
 
@@ -279,7 +272,6 @@
         const time = PStart.timeAtQ + q_reminder / PEnd.dq_dt;
         return time;
     }
-
 
     function calculateTimeBetweenQAndP() {
         if( !sconf.TIME_IS_FREE_VARIABLE ){
@@ -308,7 +300,6 @@
 
         return ssD.Dt;
     }
-
 
     function check_qAndTimeConversions() {
         //Simple automated test intended to help check if convertTimeTo_q and
@@ -354,7 +345,6 @@
         showMessage(countsTimeTo_q, "convertTimeTo_q");
         showMessage(counts_qToTime, "convert_qToTime");
 
-
         function updateCounts(counts, valueCalculated, valueActual) {
             //Check value and update counts
             if (valueCalculated === null) {
@@ -377,4 +367,3 @@
         }
     }
 }) ();
-

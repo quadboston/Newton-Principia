@@ -115,7 +115,6 @@
             svgel.setAttributeNS( null, 'r', pt.initialR * sconf.thickness );
         }
 
-
         //*****************************************************
         // todm: get rid of this
         //
@@ -140,10 +139,6 @@
     //==============================================
     // \\// Adds DOM and decorations to pointRack
     //==============================================
-
-
-
-
 
     ///-----------------------------------------------
     /// paints latin letters for points
@@ -275,8 +270,6 @@
             $$.$( wwSvg ).toggleClass( 'undisplay', true );
         }
     }
-
-
 
     //-------------------------------------------------
     // //\\ adds to points their media position

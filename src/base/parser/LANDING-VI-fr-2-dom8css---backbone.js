@@ -14,13 +14,6 @@
     return;
 
 
-
-
-
-
-
-
-
     ///this function needs application-model-view already created;
     ///as of this version, it is executed only once
     ///
@@ -60,7 +53,6 @@
         //***********************************************************
     }
 
-
     ///apparently this thing ruins performance and pollutes css
     function digestsSingleMessage_2_topics( messageDomEl, singleMessageText )
     {
@@ -99,7 +91,6 @@
         );
         //***********************************************************
 
-
         //***********************************************************
         // Frag. steps IV, V, VI
         //===========================================================
@@ -116,5 +107,3 @@
         newlyDigestedStyleId++;
     }
 }) ();
-
-

@@ -24,7 +24,6 @@
         return;
 
 
-
 function setsCommonT1andT2capture (){
     nspaste( capture, {
         //"1-B", replaced with 1-4

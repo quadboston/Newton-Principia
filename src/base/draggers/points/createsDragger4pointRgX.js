@@ -8,15 +8,6 @@
     return;
 
 
-
-
-
-
-
-
-
-
-
     function setModule()
     {
         //todm: must be loop via stMods
@@ -46,7 +37,6 @@
         {
             pointWrap           : rgX,
 
-
             /*
                 //see: **api-doProcessWrap
                 down_move_up    : down_move_up, //flag, string
@@ -57,7 +47,6 @@
 
            */
             doProcess,
-
 
             orientation         : orientation,
             nospinner           : nospinner,
@@ -132,7 +121,4 @@
     // \\// attemt to unify dragger for point
     //==========================================
 
-
-
 }) ();
-

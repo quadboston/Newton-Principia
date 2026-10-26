@@ -44,7 +44,6 @@
     // \\// updates values during simulation
     //=========================================
 
-
     //=========================================
     // //\\ creates proof table
     //      does one time work of html creation
@@ -95,7 +94,6 @@
     // \\// creates proof table
     //=========================================
 
-
     //=========================================
     // //\\ creates claim table
     //      similar to doCreateTable()
@@ -127,7 +125,6 @@
         makeCl( row, 'AD2PerAE2', 'AD² : AE²');
         return;
 
-
         function makeCl( row, mname, mcaption, spanIx, spanVal ) {
             return makeClBoth(
                 row, mname, mcaption, spanIx, spanVal, 'claim' );
@@ -136,7 +133,6 @@
     //=========================================
     // \\// creates claim table
     //=========================================
-
 
     //=========================================
     //
@@ -169,4 +165,3 @@
     }
 
 }) ();
-

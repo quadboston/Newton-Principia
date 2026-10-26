@@ -43,7 +43,6 @@
             railsLegend         :'Process proof by decreasing AC:',
             ancestorClassToHideSlider   :'logic_phase--claim',
 
-
             dataInMove:         function( dataArg, draggee ) {
                                     //:master place where tC updates
 
@@ -88,4 +87,3 @@
     }
 
 }) ();
-

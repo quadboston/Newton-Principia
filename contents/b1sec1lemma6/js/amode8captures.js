@@ -56,7 +56,6 @@
                     }
             },
 
-
             "L-equal-d" :  {
                     curveRotationAngle : Object.assign( ANGLE_EQUALS ),
                     "B": {
@@ -95,7 +94,6 @@
 
         });
     }
-
 
     function amode2rgstate( captured )
     {

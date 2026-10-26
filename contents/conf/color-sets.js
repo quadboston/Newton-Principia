@@ -74,7 +74,6 @@
         tr.bodyColor        = rgbToArray("rgb(50, 149, 191)"),
         tr.body2Color       = rgbToArray("rgb(205, 103, 54)");//rgbToArray("rgb(255, 149, 111)"),
 
-
         function setDerivedColors() {
             // Hover colors are only visibile when hovering over
             // corresponding text. Used when they overlap with
@@ -176,7 +175,6 @@
             // \\// anchor control
             //---------------------------------------------------------------
         });
-
 
         function setL2throughL4Colors() {
             tr.difference  = rgbToArray("rgb(150, 50, 0)", 0, 0.64);

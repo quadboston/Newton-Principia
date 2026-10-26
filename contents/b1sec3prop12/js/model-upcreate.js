@@ -136,7 +136,6 @@
             createGraph();
         }
 
-
         function createGraph() {
             //Fixed bounds allow different arrangements of curves to easily be
             //compared to one another (eg. different eccentricities).  Note

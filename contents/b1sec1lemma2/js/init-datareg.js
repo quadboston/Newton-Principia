@@ -60,7 +60,6 @@
         }
     };
 
-
     function controlPointPositions(xLeft, width, height,
         yBottom = 332) {//Bottom of figure
 

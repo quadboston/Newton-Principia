@@ -174,7 +174,6 @@
         // \\// setting parT
         //---------------------------
 
-
         //decorations
         var Spos = mat.linesCross( nBA, P, nCA, C );
         pos8tg_2_rg( 'S', Spos );
@@ -206,7 +205,6 @@
         return PTalgebraic;
      }
 
-
     ///input parameters are in model namespace,
     ///ellipse to array
     function curveModel2branches(){
@@ -228,4 +226,3 @@
         stdMod.formula2branches(brsObj);
     };
 })();
-

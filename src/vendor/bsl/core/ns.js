@@ -12,7 +12,6 @@
 //        Creates only one global: window[ APP_NAME ]
 //        jQuery can be added with no collision.
 
-
 ( function() {
     var APP_NAME        = 'b$l';
 
@@ -23,8 +22,6 @@
     var ns = setAppNamespace();
     setDomWrap( ns );
     return;
-
-
 
 
     function setAppNamespace()
@@ -44,7 +41,6 @@
                 return wwHas.call( this, pname ) ? this[ pname ] : und;
             });
         }
-
 
         var ns = window[ APP_NAME ];
         if( ns ) {
@@ -92,7 +88,6 @@
                    obj[ property ] : defaultProperty;
         };
 
-
         ///Returns own property if property does exist.
         ///Otherwise, returns object of type "undefined".
         function haz( obj, property ) {
@@ -112,8 +107,6 @@
                      undef;
         };
 
-
-
         ///If property exists, returns function which takes callback to be executed
         ///on this this property.
         ///Otherwise, returns empty function.
@@ -129,7 +122,6 @@
                    obj[ property ] : ()=>{};
         };
 
-
         ///Returns object's property if property does exist. Otherwise, returns empty function.
         ///"Property" is supposed to be of function type.
         ///todm this function should replace haf,
@@ -137,7 +129,6 @@
             return obj && shortcutInClosure_for_speed.call( obj, property ) ?
                    obj[ property ] : ()=>{};
         };
-
 
         ///Returns function bound to object
         function hafb( obj, property ) {
@@ -232,12 +223,6 @@
 
     }
 
-
-
-
-
-
-
     //***************************************************************************
     // //\\ dom manipulation library. ns.$$.
     //***************************************************************************
@@ -266,7 +251,6 @@
             var loc	= [ Math.round( event.clientX - box.left ), Math.round( event.clientY - box.top ) ];
             return loc;
         };
-
 
         // //\\ DOM wrap
         //      for chains
@@ -307,7 +291,6 @@
                     //.gets array of all
                     qa:     function( selector, parent )    { ctxEl =                (parent||document.body).querySelectorAll( selector ); },
 
-
                     // //\\ information providers
                     box:    function( obj )                 { obj = obj || null;
                                                               ctxEl = obj || ctxEl;
@@ -331,7 +314,6 @@
                                                                     ctxEl.style[ name ] = value;
                                                                }
                                                             },
-
 
                     _a:     function( prop, obj )           { obj = obj || null;
                                                               ctxEl = obj || ctxEl;
@@ -365,7 +347,6 @@
                                                             },
                     */
                     // \\// not tested
-
 
                     _cls:   function( obj )           { obj = obj || null;
                                                               ctxEl = obj || ctxEl;
@@ -418,7 +399,6 @@
                     css:    function( name, value, obj )    { ctxEl = obj || ctxEl;  ctxEl.style[ name ] = value; },
                     csst:   function( value, obj )          { ctxEl = obj || ctxEl;  ctxEl.style.cssText = value; },
                     html:   function( html, obj )           { ctxEl = obj || ctxEl;  ctxEl.innerHTML = html; },
-
 
                     ///adds class,
                     ///supports multiword class,
@@ -613,19 +593,12 @@
 
 }) ();
 
-
-
-
-
 //===========================================
 // //\\ creates debugger once per application
 //        non-dispensable for mobiles
 //===========================================
 ( function () {
     var ns = window.b$l;
-
-
-
 
     ///invocation:
     ///             way 1: as of September 1, 2020,
@@ -683,9 +656,6 @@
 ( function() {
     var ns = window.b$l;
 
-
-
-
     //=========================================================
     // //\\ ecapes html specials
     //=========================================================
@@ -705,8 +675,6 @@
     //=========================================================
     // \\// ecapes html specials
     //=========================================================
-
-
 
     //=========================================================
     // //\\ configures from URL
@@ -783,7 +751,6 @@
         return subessayId;
     }
 
-
     // //\\ helpers
     ns.prop2prop = function( target, source )
     {
@@ -794,8 +761,6 @@
         }
         return target;
     };
-
-
 
     ///updates properties of object obj from single key-value
     ///pair "name, value"
@@ -820,7 +785,6 @@
         return obj;
     }
 
-
     ///sugar for Object.keys( obj ).forEach ...
     ns.eachprop = function( obj, callBack )
     {
@@ -844,8 +808,6 @@
         }
         return map;
     };
-
-
 
     ///	Purpose:		Cloning object trees by value till refdepth.
 
@@ -908,7 +870,6 @@
         {
             return '';
         }
-
 
         ///Paper is non-void array or object. If wall do not "match" the paper, making wall an object.
         if( typeof wall !== 'object' || wall === null )
@@ -974,9 +935,6 @@
 
 }) ();
 
-
-
-
 ///global css manager;
 ///gradually adds and updates global css
 ///as page loads at landing
@@ -1007,9 +965,6 @@
     return;
 
 
-
-
-
     ///rack is a fully decorated style-tag-unit,
     ///generates rack or returns rack if exists,
     ///rack is an apartment in repo,
@@ -1033,8 +988,6 @@
         }
         return ret;
     }
-
-
 
     ///adds css-text updates to queue after-main-thread;
     ///used to avoid performance downgrade for frequent series of css updates;
@@ -1109,7 +1062,6 @@
         rack.cssDom$.html( '\n.dummy-style { .dummy-class : dummy-value; }\n ' );
     };
 
-
     /**
      * Converts a camelCase identifier to a valid CSS identifier format.
      * Transforms uppercase letters to lowercase with underscore prefix,
@@ -1130,10 +1082,7 @@
         );
     }
 
-
 })();
-
-
 
 (function () {
     var ns = window.b$l;
@@ -1152,6 +1101,7 @@
     ns.doScrollToHash = doScrollToHash;
     return;
 
+
     ///enables this scroll for html-created in late-loaded-scripts
     function doScrollToHash()
     {
@@ -1166,17 +1116,12 @@
     }
 }) ();
 
-
-
 (function () {
     var ns = window.b$l;
     ns.conf = ns.url2conf( {} );
     //window.addEventListener( 'load', () => { ns.createDebugger(); } );
     document.addEventListener( "DOMContentLoaded", () => { ns.createDebugger(); } );
 }) ();
-
-
-
 
 (function () {
     var ns          = window.b$l;
@@ -1193,7 +1138,6 @@
     }
     */
 
-
     ///deep iteration of DOM-element-tree
     methods.elTree = function( el, callback )
     {
@@ -1205,5 +1149,3 @@
     }
 
 }) ();
-
-

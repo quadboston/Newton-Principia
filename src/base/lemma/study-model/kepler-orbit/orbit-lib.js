@@ -107,4 +107,3 @@
         brs.length = branchesLen;
     }
 })();
-

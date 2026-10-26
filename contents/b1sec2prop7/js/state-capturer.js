@@ -10,12 +10,6 @@
     return;
 
 
-
-
-
-
-
-
     ///=====================================================
     /// called by User from lab-button, sDomN.captureButton$
     /// reports the sconf.js values which start S, P, and Q

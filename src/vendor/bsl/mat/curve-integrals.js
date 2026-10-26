@@ -27,13 +27,6 @@
     return;
 
 
-
-
-
-
-
-
-
     ///for not more than 2^61 base points
     ///2^26 is a memory crash?
     function curveLength({
@@ -58,7 +51,6 @@
         calculationAccuracy     = calculationAccuracy        || 0.000000001;
         STARTING_EXPONENT_FOR_2 = STARTING_EXPONENT_FOR_2   || 4;
 
-
         var expo                = STARTING_EXPONENT_FOR_2;
         var basePointsCount     = mat.powersOf2[ expo ];
         basePoints              = [];
@@ -77,7 +69,6 @@
             funPoints[ expo ][ it ] = funPoint;
         }
         var prevLen = calculates_curvePoints2chordsSum( funPoints[ expo ] );
-
 
         function calculates_curvePoints2chordsSum( curvePoints )
         {
@@ -143,5 +134,3 @@
     }
 
 }) ();
-
-

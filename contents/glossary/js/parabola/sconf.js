@@ -235,7 +235,6 @@
                 undisplayAlways  : true,
             },
 
-
             // not used but calculated in model-upcreate for P12
             // todo: if splitting P12 from P13 model-upcreate, can delete
             C : { //center symmetry of orbit

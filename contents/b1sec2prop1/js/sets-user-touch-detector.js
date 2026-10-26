@@ -11,16 +11,6 @@
     return;
 
 
-
-
-
-
-
-
-
-
-
-
     ///core functionality
     function subessayLaunch_definedInLemma_after_model_upcreate()
     {
@@ -31,4 +21,3 @@
     }
 
 }) ();
-

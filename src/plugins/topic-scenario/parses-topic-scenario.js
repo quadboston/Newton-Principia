@@ -3,9 +3,6 @@
         "::#" - stack messages: add message and only if it does not repeat previous message
 */
 
-
-
-
 ( function() {
     var {
         ns, sn,
@@ -19,14 +16,6 @@
     });
     var actionsList_shells = '';
     return;
-
-
-
-
-
-
-
-
 
 
     function parsesTopicScenarios()
@@ -172,7 +161,6 @@
         }
     }
 
-
     function buildUserAutoPilot( subexeg )
     {
         subexeg.orderedStates.forEach( stateRack => {
@@ -209,6 +197,4 @@
         });
     }
 
-
 }) ();
-

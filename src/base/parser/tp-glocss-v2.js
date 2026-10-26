@@ -72,7 +72,6 @@ ${Rtp}.tobg {
         });
     }
 
-
     ///this thing runs in LANDING VI and apparently in
     ///tutor-platform's message
     function v2_tplinks_2_highlightCss(
@@ -127,5 +126,3 @@ ${Rix} .tohidden.tp-${low_tpID} {
         });
     }
 })();
-
-

@@ -7,9 +7,7 @@
         tframes,
     } = window.b$l.nstree();
 
-
     var ANIMATION_THROTTLER = 16.69;
-
 
     var unixTime;
     var managerElapsed;
@@ -53,19 +51,6 @@
     //=========================================================
     */
     return;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     function runsMainCycle()
@@ -159,6 +144,5 @@
     //**************************************
     // \\// animation frames framework
     //**************************************
-
 
 }) ();

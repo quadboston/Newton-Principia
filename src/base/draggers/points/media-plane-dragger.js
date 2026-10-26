@@ -17,7 +17,6 @@
         sDomF.resetModelPos = resetModelPos;
     }
 
-
     //===================================================
     //interface for diagram-panner
     //===================================================
@@ -57,7 +56,6 @@
         );
     }
 
-
     // reset model back to its original [x,y] position
     function resetModelPos() {
         nspaste( rg[ "diagram-panner" ].achieved,
@@ -74,4 +72,3 @@
     }
 
 }) ();
-

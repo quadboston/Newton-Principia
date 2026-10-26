@@ -10,12 +10,6 @@
     return;
 
 
-
-
-
-
-
-
     function captureAState_generic( ast )
     {
         var clone = {};
@@ -33,4 +27,3 @@
     }
 
 }) ();
-

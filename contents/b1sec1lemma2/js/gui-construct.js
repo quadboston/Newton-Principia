@@ -102,9 +102,6 @@
     // \\// rects
     //======================================================
 
-
-
-
     //======================================================
     // //\\ figure, base, and transform contol points
     //======================================================
@@ -124,8 +121,6 @@
 
         reset_hollowPoints({ dr, onCurve:true, onBase:false });
     }
-
-
 
     function reset_hollowPoints({ dr, onCurve, onBase })
     {
@@ -191,8 +186,6 @@
         }
     }
 
-
-
     function constructTransformPoints(dr) {
         //Creates and adds the transform points to the input datareg for any
         //that are enabled.
@@ -215,7 +208,6 @@
         if (transforms.POINT_I_ENABLED)
             transforms.pts.i = createPoint(ptLast, 1, true, false);
 
-
         function createPoint(cp, i, draggableX, draggableY) {
             const pt = createCurvePoint(dr, [cp.x, cp.y], "trans", i);
             //Initial offset used to determine how transforms should change as
@@ -230,9 +222,6 @@
     //======================================================
     // \\// figure, base, and transform contol points
     //======================================================
-
-
-
 
     //==================================================
     // //\\ common shape

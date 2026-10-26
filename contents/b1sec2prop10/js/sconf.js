@@ -67,7 +67,6 @@
         // \\// points reused in config
         //=============================================
 
-
         //:diagram sandbox spatial parameters
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
@@ -231,7 +230,6 @@
             },
             // \\// proof
 
-
             //Book's "another solution"
             u : {
                 caption : '𝑢',
@@ -284,7 +282,6 @@
             // \\// draggable points
             //---------------------------------------
         };
-
 
         var linesArray =
         [

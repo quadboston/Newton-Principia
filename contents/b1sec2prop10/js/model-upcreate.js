@@ -59,7 +59,6 @@
         // \\// arc, sagittae and related
         //================================================
 
-
         //================================================
         // //\\ decorations
         // //\\ graph
@@ -68,7 +67,6 @@
         {
             let graphArg = {
             }
-
 
             //The bounds of the graph switch between a fixed and variable max.
             //The x and y axes always need to maintain a fixed ratio relative to
@@ -98,19 +96,16 @@
             graphArg.yMin = 0;
             graphArg.yMax = graphArg.xMax * ratio / ssD.MAF;
 
-
             stdMod.graph.drawsGraph(graphArg);
         }
         //------------------------------------------------
         // \\// graph
         //------------------------------------------------
 
-
         //conjugate diameters
         nspaste( rg.G.pos, q2xy( parQ + Math.PI ) );
         nspaste( rg.D.pos, q2xy( parQ + Math.PI/2 ) );
         nspaste( rg.K.pos, q2xy( parQ + 3/2*Math.PI ) );
-
 
         //vuFV
         //v = parallel-projection of Q to tangent

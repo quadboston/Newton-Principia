@@ -44,8 +44,6 @@
         appendsGraphCSS();
         return graph;
 
-
-
         //===================================================
         // //\\ top tier painter which wraps low tier painter
         //===================================================
@@ -115,7 +113,6 @@
         // \\// top tier painter which wraps low tier painter
         //===================================================
 
-
         function toollineConfig()
         {
             return {
@@ -175,8 +172,6 @@
     // \\// instantiable graph
     //**************************************************
     //**************************************************
-
-
 
     ///===========================================
     /// appends graph CSS, once for all graphs

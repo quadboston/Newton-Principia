@@ -19,7 +19,6 @@
         });
     }
 
-
     function constructsCurve8Area(dr)
     {
         var svg = stdMod.mmedia$.aNS( 'id', 'illus' )();
@@ -45,7 +44,6 @@
         dr.figureInternalArea = dr.figureInternalArea$();
     }
 
-
     function continue_create_8_prepopulate_svg(dr)
     {
         var svg = stdMod.mmedia$.aNS( 'id', 'illus' )();
@@ -63,4 +61,3 @@
         //====================================================================
     }
 }) ();
-

@@ -33,7 +33,6 @@
         op.angleOmega = op.angleOmega_initial;
         op.Kepler_v   = op.Kepler_v_initial;
 
-
         // //\\ hiding
         rg.nonSolvablePoint.undisplay = true;
         rg[ 'V,Vangle' ].undisplay = true;

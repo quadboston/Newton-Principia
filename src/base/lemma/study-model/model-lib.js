@@ -189,4 +189,3 @@
         return qix_min;
     }
 })();
-

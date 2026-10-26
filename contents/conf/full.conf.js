@@ -39,7 +39,6 @@
         //:data
         svgNS : ns.svgNS,
 
-
         //--------------------
         // //\\ page-wide
         //--------------------
@@ -75,7 +74,6 @@
         //as of ver 2955 is created automatically in content2exegs.js
         //dragPointDecoratorClasses : [],
         //[ 'aspect--video', 'aspect--english', 'aspect--xixcentury' ],
-
 
         LETTER_FONT_SIZE_PER_1000 : 32,
         //--------------------

@@ -29,7 +29,6 @@
         // \\// common values
         //----------------------------------
 
-
         if( subessay === 'corollary2' || subessay === 'corollary3' ){
             var Ss = Math.PI * 1.2;
             var S = q2xy( Ss );

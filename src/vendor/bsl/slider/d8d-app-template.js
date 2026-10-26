@@ -5,18 +5,11 @@
     } = window.b$l.apptree({
     });
 
-
-
-
-
-
     ///Purpose: constructor of an object which encapsulates slider functionality.
     ///Input:   arg: see MicroAPI section below.
     ns.sliderControl = function( arg )
     {
         thisSlider = {}; //created object which is returned from constructor
-
-
 
         //****************************************************************
         // //\\ MicroAPI
@@ -58,11 +51,6 @@
         // \\// MicroAPI
         //****************************************************************
 
-
-
-
-
-
         //--------------------------------------
         // //\\ creates locals
         //--------------------------------------
@@ -75,7 +63,6 @@
         //--------------------------------------
         // \\// creates locals
         //--------------------------------------
-
 
         //--------------------------------------
         // //\\ processes module
@@ -102,9 +89,6 @@
         // \\// processes module
         //--------------------------------------
 
-
-
-
         ///Sets absFraction, draggee position, and, optionally, sets accomulated
         ///position, absFractDone.
         function doSet( absFraction_, doSetDoneValue )
@@ -116,7 +100,6 @@
                 absFracDone = absFraction;
             }
         }
-
 
         ///d8d application
         function d8d_cb_middle2lowest( move, mouseUpOrDown )
@@ -143,7 +126,6 @@
             }
         }
 
-
         ///d8d application emulator
         ///mocks real event, mouseUpOrDown, and sets absFraction
         ///used for "programmable animation" of this slider
@@ -153,8 +135,6 @@
             var relMove = ( absFraction - absFracDone ) * len;
             return d8d_cb_middle2lowest( [ relMove, 0 ], mouseUpOrDown );
         }
-
-
 
         // //\\// helpers
         function validateAbsFraction( absFrac )
@@ -189,4 +169,3 @@
 
     };
 })();
-

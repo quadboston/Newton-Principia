@@ -127,7 +127,6 @@
         };
     }
 
-
     function calculates_inscr8circums(dr)
     {
         var insYar = sn( 'inscribedY', dr.basePts, [] );
@@ -176,7 +175,6 @@
         }
         // \\// calculates min and max on separate bases
 
-
         // //\\ calculates min and max areas
         var pwidths = dr.partitionWidths;
         var areaCir = 0;
@@ -191,8 +189,6 @@
         dr.areaIns = dv.complimentaryAreaBar - areaIns;
         // \\// calculates min and max on separate bases
     }
-
-
 
     function calculateAndStoreTransformedFigureAreaRatios() {
         const drL = dataregs.drL;
@@ -209,10 +205,8 @@
         const sumA = drL.areaIns * areaFactorA;
         const sumB = drR.areaIns * areaFactorB;
 
-
         toreg('exact_ratio')('value', calculateRatio(exactA, exactB));
         toreg('sum_ratio')('value', calculateRatio(sumA, sumB));
-
 
         function calculateRatio(a, b) {
             //Calculate the ratio safely
@@ -226,8 +220,6 @@
         }
     }
 
-
-
     function adjustRectWidthsToMatchAreaRatiosIfNeeded(dr) {
         //Automatically adjust rectangle widths in the input datareg to match
         //the ratio of areas in the other specified datareg if needed.
@@ -239,20 +231,16 @@
         if(!study.areBothFiguresMonotonic())
             return;
 
-
         const ratioData = calculateRatioInscribedAreasAndWidthLast(drOther);
         if (!ratioData)
             return;
         const {ratios, widthLastRect} = ratioData;
-
 
         const widths = calculateRectWidthsToMatchAreaRatios(dr, ratios,
             widthLastRect);
         if (widths)
             dr.partitionWidths = widths;
     }
-
-
 
     function calculateRatioInscribedAreasAndWidthLast(dr) {
         const dv = dr.yVariations;
@@ -285,8 +273,6 @@
         };
     }
 
-
-
     function calculateRectWidthsToMatchAreaRatios(dr, ratios, widthLastRect) {
         //Calculate rectangle widths for the input datareg, so that the ratio
         //of each of their areas (inscribed rectangle area divide by sum of
@@ -295,12 +281,10 @@
         //Tolerance for calculated sum of widths
         const errorTolerance = 0.001;
 
-
         //Ensure the following has been initialized.
         const dv = dr.yVariations;
         if (!dv)
             return null;
-
 
         const {x_start, x_end, chosenWidth} = dv;
         const ff = numModel.curveFun;
@@ -308,7 +292,6 @@
 
         //Bounds to constrain the scale (1 means exact figure area).
         const scaleMin = 0.01, scaleMax = 1;
-
 
         //Calculate the widths.  Sometimes there are multiple roots/solutions
         //and the algorithm can "jump" between them.  This issue mainly occurs
@@ -327,7 +310,6 @@
         if (!solvedData)
             solvedData = solveUsingBisection();
 
-
         //If solution not found (unlikely to happen).
         if (!solvedData || !solvedData.widthData)
             return null;
@@ -337,7 +319,6 @@
         if (!widthsReversed || sumWidth <= 0)
             return null;
 
-
         //Reverse widths so in correct order.
         const widths = widthsReversed.reverse();
 
@@ -346,8 +327,6 @@
         const scaleWidth = chosenWidth / sumWidth;
 
         return widths.map(width => width * scaleWidth);
-
-
 
         function calculateWidthData(scale) {
             //Calculate widths for each inscribed rectangle using a chosen sum
@@ -419,8 +398,6 @@
             return {widthsReversed, sumWidth};
         }
 
-
-
         function solveUsingNewtonRaphson() {
             //Use the Newton Raphson method to find a root of the mathematic
             //function created by calculateWidthData().  In many cases it's a
@@ -431,7 +408,6 @@
             //this happens it's best to stop early and use another root finding
             //method.  Note that converging quickly is very important when the
             //number of bases is large to prevent performance issues.
-
 
             const offset = 0.001;//Offset to approximate derivative
             const slopeTolerance = 1e-9;//Tolerance for a flat slope
@@ -481,7 +457,6 @@
             //Didn't converge
             return null;
         }
-
 
         function solveUsingBisection() {
             //Use the bisection method to find a root of the mathematic

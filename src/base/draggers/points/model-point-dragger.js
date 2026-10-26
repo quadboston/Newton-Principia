@@ -20,8 +20,6 @@
         sDomF.pname__2__rgX8dragwrap_gen_list    = pname__2__rgX8dragwrap_gen_list;
     }
 
-
-
     ///===================================================
     /// point X dragger interface
     ///     this.achieved.achieved will be created by

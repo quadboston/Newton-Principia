@@ -71,7 +71,6 @@
         }
     }
 
-
     function calculateMaxGraphValues() {
         //Calculate initial value on page load
         stdMod.rebuilds_orbit();
@@ -80,7 +79,6 @@
         //TEMP
         ssD.actualForceMaxInitial = ssD.actualForceMaxCurrent;
         ssD.xMaxInitialGraphAxis = ssD.xMaxCurrentGraphAxis;
-
 
         //The highest forces for this model occur when eccentricity is max,
         //therefore temporarily adjust it and calculate the maximum forces.
@@ -92,7 +90,6 @@
 
         //Reset eccentricity
         setEccentricityAndRelated(eccentricityStored);
-
 
         function setEccentricityAndRelated(eccentricity) {
             //Set eccentricity and related values needed for above calculations

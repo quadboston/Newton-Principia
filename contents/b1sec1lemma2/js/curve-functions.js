@@ -59,8 +59,6 @@
         return points[points.length - 1][1];
     }
 
-
-
     function calculates_microPoints(dr) {
         //Calculate and store point data (line segments) that approximate the
         //curve for the input datareg.  This code ensures the output is always
@@ -68,11 +66,9 @@
         //used to calculate the curve often yield a relation (more than one y
         //per x) which this "cleans up".
 
-
         const ptsUntransformed = dr.ctrlPts.untransformed;
         const DRAGGABLE_END_POINTS = dr.ctrlPts.DRAGGABLE_END_POINTS;
         const CURVE_SEGMENTS_APPROXIMATE = sconf.CURVE_SEGMENTS_APPROXIMATE;
-
 
         const sorted = copySortAdjustHandlePositions(ptsUntransformed,
             DRAGGABLE_END_POINTS);
@@ -82,9 +78,7 @@
         const xEnd = sorted[sorted.length - 1].x;
         const spacingApproximate = (xEnd - xStart) / CURVE_SEGMENTS_APPROXIMATE;
 
-
         const curveSections = curveSectionsForInterpolation(sorted);
-
 
         //Calculate line segments for each section and join them together.
         //This is done section by section to ensure the correct section is
@@ -115,8 +109,6 @@
         fP.maxX = mp[mp.length - 1].x;
     }
 
-
-
     function copySortAdjustHandlePositions(ptsUntransformed,
         DRAGGABLE_END_POINTS) {
         //Make a copy of the handle positions, sort them by x value, and adjust
@@ -129,7 +121,6 @@
         let copy = ptsUntransformed.map(p => ({...p}));
         // \\// Copy
 
-
         // //\\ Sort
         if (DRAGGABLE_END_POINTS) {
             copy = sortByX(copy);
@@ -141,7 +132,6 @@
             copy = [first, ...between, last];
         }
         // \\// Sort
-
 
         // //\\ Adjust
         const widthOriginal = copy[copy.length - 1].x - copy[0].x;
@@ -169,14 +159,11 @@
 
         return copy;
 
-
         //Helper function
         function sortByX(array) {
             return array.sort((a, b) => a.x - b.x);
         }
     }
-
-
 
     function curveSectionsForInterpolation(sorted) {
         //Approximate each section of the curve (between and including each
@@ -187,14 +174,12 @@
         //Number of line segments to approximate curve
         const steps = 50;
 
-
         //First and last handle points
         const ptFirst = sorted[0];
         const ptLast = sorted[sorted.length - 1];
 
         const figureWidth = ptLast.x - ptFirst.x;
         const figureHeight = ptLast.y - ptFirst.y;
-
 
         //4 points are required to calculate each section (two points for the
         //handles and a point that extends on either side).  To make the curve
@@ -207,7 +192,6 @@
             {x: ptLast.x,
              y: ptLast.y + figureHeight * 0.05}
         ];
-
 
         const output = [];
 
@@ -243,7 +227,6 @@
 
         return output;
 
-
         function adjustExtendedPointIfNeeded(pAdjust, pOther) {
             //If pAdjust is far from pOther move it closer.  This makes the
             //first and last sections of the curve become more curved when a
@@ -266,8 +249,6 @@
         }
     }
 
-
-
     function catmullRom(t, p0, p1, p2, p3) {
         //Catmull-Rom spline interpolation for smooth curves
         const t2 = t * t;
@@ -281,8 +262,6 @@
         );
     }
 
-
-
     function finalLineSegmentDataForSection(section, addFirstHandlePos,
         spacingApproximate) {
         //Calculate the final point data (evenly spaced line segments within
@@ -293,19 +272,16 @@
         if (section.length < 2)
             return null;
 
-
         const ptFirst = section[0];
         const ptLast = section[section.length - 1];
 
         const points = [];
-
 
         // //\\ First point
         //Only add first handle position if needed
         if (addFirstHandlePos)
             points.push([ptFirst.x, ptFirst.y]);
         // \\// First point
-
 
         // //\\ Between points
         const xStart = ptFirst.x;
@@ -337,7 +313,6 @@
         }
         // \\// Between points
 
-
         // //\\ Last point
         //Always add last handle position
         points.push([ptLast.x, ptLast.y]);
@@ -345,8 +320,6 @@
 
         return points;
     }
-
-
 
     function interpolateY(x, section, indexLine) {
         //Interpolate y value for curve in the input section.  For performance

@@ -16,7 +16,6 @@
         return gix;
     }
 
-
     function builds_orbit_data_graph(setMaxGraphValues = false)
     {
         if (!stdMod.graph) {

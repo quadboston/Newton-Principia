@@ -9,7 +9,6 @@
     // \\// updated automatically. Don't edit this string.
  }) ();
 
-
 function decryptEmail(encoded) {
     window.location.href = "mailto:" + atob(encoded);
 }

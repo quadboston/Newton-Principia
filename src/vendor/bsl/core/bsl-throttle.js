@@ -6,7 +6,6 @@
     return;
 
 
-
     ///This is a throttler not bouncer.
     ///This function code is update 103-06-28. Only wait === 0 argument is tested so far.
     ///
@@ -85,5 +84,3 @@
     };
 
 }) ();
-
-

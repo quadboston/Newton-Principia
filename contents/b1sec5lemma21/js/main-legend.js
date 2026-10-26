@@ -42,7 +42,6 @@
     // \\// updates values during simulation
     //=========================================
 
-
     //=========================================
     // //\\ creates proof table
     //      does one time work of html creation
@@ -106,4 +105,3 @@
     }
 
 }) ();
-

@@ -13,7 +13,6 @@
 
         //sconf.TP_OPACITY_FROM_fixed_colors = true;
 
-
         //----------------------------------
         //:app view parameters
         //----------------------------------
@@ -23,7 +22,6 @@
         sconf.default_tp_lightness = 30;
         sconf.diagramPannerDisabled = !false;
         sconf.skipGenDragList = !false; //false is for media mover,
-
 
         //todm: this disables functionality ... not only CSS:
         fconf.appDecor.helpBox_opacity0             = true;

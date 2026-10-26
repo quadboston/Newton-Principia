@@ -2,12 +2,9 @@
 //        (c) 2017 Konstantin Kirillov. License MIT.
 //        Origin taken from: /var/www/html/bids/done/SMALL/ww/calibrator/now/vendor/btb/matrix.js. Nov. 2014.
 
-
-
 ( function ( window ) {
     var ns      = window.b$l;
     var mat     = ns.mat         = ns.mat         || {};
-
 
     ///	calculates: c = a*b, where
     ///             (a*b)[y][z] = SUM_VIA_x(  a[y][x] * b[x][z]  );
@@ -39,8 +36,6 @@
         return res;
     };
 
-
-
     ///	calculates: c = a x v;
     ///	input:		aa is a matrix m x n, vv has lenght n;
     mat.MxV = function( aa, vv )
@@ -61,8 +56,6 @@
         }
         return res;
     };
-
-
 
     ///	calculates c = Aa + Bb;
     //	a is m x n matrix;
@@ -118,7 +111,6 @@
         return cc;
     };
 
-
     ///returns A * aa
     //A is a scalar
     //aa is a vector
@@ -132,8 +124,6 @@
         }
         return cc;
     };
-
-
 
     ///	calculates inverse for 2x2 matrix
     ///	input:		aa is a matrix
@@ -160,8 +150,6 @@
         //ccc( 'checks im=',A*a + B*c, A*b + B*d, C*a + D*c, C*b+D*d );
         return [[A, B], [C, D]];
     }
-
-
 
     mat.zero4 = [ 0, 0, 0, 0 ];
     mat.zero3 = [ 0, 0, 0 ];
@@ -199,7 +187,6 @@
         ];
     mat.turn = [ mat.turnX, mat.turnY, mat.turnZ ];
 
-
     ///before use this, test this for speed against legacy-loop
     var cloneM = mat.cloneM = function( mm ) {
         //return mm.map( function( row ) { return row.map( function( val ) { return val; } ); });
@@ -209,4 +196,3 @@
     mat.getClonedUnitMatrix4x4 = function() { return cloneM( mat.unit4x4 ); };
 
 }) ( window );
-

@@ -66,17 +66,13 @@
         transforms.matrixInverse = mat.inverse2x2(T);
     }
 
-
-
     function xy_2_Txy(dr, pos) {
         return transformPos(dr, pos, dr.transforms.matrix);
     }
 
-
     function Txy_2_xy(dr, pos) {
         return transformPos(dr, pos, dr.transforms.matrixInverse);
     }
-
 
     function transformPos(dr, pos, matrix) {
         //Transform pos relative to the transform origin.
@@ -89,8 +85,6 @@
         const posRelativeT = mat.MxV(matrix, posRelative);
         return mat.addV(posRelativeT, origin);
     }
-
-
 
     function calculateFactorAreaTransformed(dr) {
         //Calculate a factor to multiply un-transformed areas by to get the

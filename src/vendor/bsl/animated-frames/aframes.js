@@ -1,14 +1,9 @@
 //code taken from: /var/www/html/sand/web-dev/tools/frontend/btb-master/btb/jq/create-media-runner.js
 //css vs js: https://developer.mozilla.org/en-US/Apps/Fundamentals/Performance/CSS_JavaScript_animation_performance
 
-
-
 ( function() {
     var ns      = window.b$l;
     var aframes = ns.sn('aframes');
-
-
-
 
     //**************************************
     // //\\ prepares native animation frames
@@ -39,9 +34,6 @@
     // \\// prepares native animation frames
     //**************************************
 
-
-
-
     //**************************************
     // //\\ animation frames framework
     //**************************************
@@ -68,7 +60,6 @@
         window.requestAnimationFrame( aframes.start );
     };
 
-
     function doRun( hashStr )
     {
         var rr          = runners[ hashStr ];
@@ -89,7 +80,6 @@
             aframes.remove( hashStr );
         }
     };
-
 
     /// adds callbacks to "dispatcher"
     /// see callback signature above
@@ -134,6 +124,5 @@
     //**************************************
     // \\// animation frames framework
     //**************************************
-
 
 }) ();

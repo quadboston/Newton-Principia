@@ -32,7 +32,6 @@
         pt.pos[1] = -(posTransformed[1] - yoff) / scale;
     }
 
-
     function syncPoints(dr) {
         const ptsUntransformed = dr.ctrlPts.untransformed;
         const ptFirst = ptsUntransformed[0];
@@ -52,6 +51,4 @@
         }
     }
 
-
 }) ();
-

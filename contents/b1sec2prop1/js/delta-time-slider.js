@@ -9,13 +9,6 @@
     return;
 
 
-
-
-
-
-
-
-
     //----------------------------------------
     // //\\ makes up time slider
     //      creates slider only once per
@@ -79,7 +72,6 @@
         // \\// in model units and reference system
         //--------------------------------------------------------------------------
 
-
         //:spawns api pars
         var startPos          = [ startX, startY ];
         var endPos            = [ endX, startY ];
@@ -123,7 +115,6 @@
         //-------------------------------------
         // \\// adds helpers
         //-------------------------------------
-
 
         //------------------------------------------------
         // //\\ makes svg representation of api
@@ -185,17 +176,6 @@
             orientation         : 'axis-x',
         });
         return;
-
-
-
-
-
-
-
-
-
-
-
 
         ///this function does "minor" update: it does not
         ///recalculate the evolution, but
@@ -277,4 +257,3 @@
     }
 
 }) ();
-

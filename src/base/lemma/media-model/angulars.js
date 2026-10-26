@@ -20,7 +20,6 @@
         return Math.atan2( segm[1][1] - segm[0][1], segm[1][0] - segm[0][0] )
     }
 
-
     ///shows/hides angle if its caption if any
     ///inputs:  pname - name of master element
     function angleVisib({ pname })
@@ -96,9 +95,6 @@
         });
     }
 
-
-
-
     //angles are in mod xy-system
     //sizes are in medpos xy-sytem
     function drawAngle({
@@ -132,7 +128,6 @@
             //// see: function ellipse( args )
             stepsCount : stepsCount || 20, //todm: too granular .. fix but don't make slow
 
-
             // //\\ todm ... mod2inn_scale must be incapsulated in model
             //instead we are converting from model to media manually here
             //it is very annoying to always remember to
@@ -146,7 +141,6 @@
             t0 : angleStart,
             t1 : angleEnd,
             // \\// todm ... mod2inn_scale must be incapsulated in model
-
 
             svgel : rgX.svgel,
             parent : ns.sapp.stdMod.mmedia,
@@ -167,7 +161,6 @@
                             )
         );
         svgel$.toggleClass( 'undisplay', ns.haz( rgX, 'undisplay' ) );
-
 
         ///draws caption
         if( caption ) {
@@ -204,6 +197,4 @@
         return rgX;
     }
 
-
 }) ();
-

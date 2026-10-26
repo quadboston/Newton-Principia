@@ -14,4 +14,3 @@
         rg.allLettersAreHidden = true;
     }
 })();
-
