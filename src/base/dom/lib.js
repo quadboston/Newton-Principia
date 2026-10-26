@@ -1,5 +1,5 @@
 //\\// Application Entry
-( function () {
+(function () {
     var {
         sn,
         $$,
@@ -25,28 +25,28 @@
             scenarioEventOnClick,   //aka 'graph-is-plotted'
     }) {
         var butt = ssD.lastPopupButton =
-            sData[ buttonUniversalId ] = { dom$ : $$.c( 'div' )
-            .addClass( buttonUniversalId )
-            .csst( cssText )
-            .to( sDomN.simSScene$ )
-            .e( 'click', ( ev ) => {
-                clickCallback && clickCallback( ev );
+            sData[ buttonUniversalId ] = { dom$ : $$.c('div')
+            .addClass(buttonUniversalId)
+            .csst(cssText)
+            .to(sDomN.simSScene$)
+            .e('click', (ev) => {
+                clickCallback && clickCallback(ev);
                 // !noTopicScenario && ssF.executesTopicScenario( scenarioEventOnClick );
             })
-            .ch( $$.c( 'div' )
-                   .css( 'position', 'relative' )
-                   .css( 'top', '50%' )
-                   .css( 'transform',  'translate(0%,-50%)' )
-                   .html( caption )
+            .ch($$.c('div')
+                   .css('position', 'relative')
+                   .css('top', '50%')
+                   .css('transform',  'translate(0%,-50%)')
+                   .html(caption)
             )
         }
 
-        var unlockButton = sn( 'unlockButton', stdMod );
-        unlockButton[ buttonUniversalId ] = function ( doUnlock )
+        var unlockButton = sn('unlockButton', stdMod);
+        unlockButton[ buttonUniversalId ] = function (doUnlock)
         {
-            butt.dom$.css( 'display', doUnlock ? 'block' : 'none' );
+            butt.dom$.css('display', doUnlock ? 'block' : 'none');
         }
         return butt;
     }
 
-}) ();
+})();

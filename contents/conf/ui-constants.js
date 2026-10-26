@@ -22,7 +22,7 @@
         sf.standardSvgSize = 1000;
         sf.PATH_WIDTH = '2';
 
-        Object.assign( sf, {
+        Object.assign(sf, {
 
             //***************************************************
             // ??? in better design, this setting should come
@@ -61,7 +61,7 @@
         //====================================================
     }
 
-    function normalizeSliders( sscale )
+    function normalizeSliders(sscale)
     {
         sf.GENERIC_SLIDERS_FONT_SIZE *= sscale;
         sf.GENERIC_SLIDER_HEIGHT_Y *= sscale;

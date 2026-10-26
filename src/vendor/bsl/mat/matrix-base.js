@@ -2,9 +2,9 @@
 //        (c) 2017 Konstantin Kirillov. License MIT.
 //        Origin taken from: /var/www/html/bids/done/SMALL/ww/calibrator/now/vendor/btb/matrix.js. Nov. 2014.
 
-( function ( window ) {
+(function (window) {
     var ns	    = window.b$l;
-    var mat     = ns.sn( 'mat' );
+    var mat     = ns.sn('mat');
 
     /*
     //subtracts vectors
@@ -40,20 +40,20 @@
                 A,b,B   - comb A+bB
                 a,A,b,B - comb aA+bB
     */
-    function sm( arg )
+    function sm(arg)
     {
         var a = 1;
         var b = 1;
-        var B = [0,0];
+        var B = [0, 0];
         var A;
         var ar = arguments;
 
-        if ( typeof ar[0] === 'number' ) {
+        if (typeof ar[0] === 'number') {
             a = ar[0]; A = ar[1];
-            if ( ar.length === 4 ) { b = ar[2]; B = ar[3]; }
+            if (ar.length === 4) { b = ar[2]; B = ar[3]; }
         } else {
             A = ar[0];
-            if ( ar.length === 3 ) {
+            if (ar.length === 3) {
                 b = ar[1];
                 B = ar[2];
             } else {
@@ -64,14 +64,14 @@
                     a*A[0]+b*B[0],
                     a*A[1]+b*B[1]
                ];
-        if ( A.length === 3 ) {
-            ret.push( a*A[2]+b*B[2], );
+        if (A.length === 3) {
+            ret.push(a*A[2]+b*B[2],);
         }
         return ret;
     }
 
     ///Output: lin. comb. of two 3d vect.
-    function sm3( a1, v1, a2, v2 )
+    function sm3(a1, v1, a2, v2)
     {
         return [
             a1 * v1[0] + a2 * v2[0],
@@ -88,20 +88,20 @@
     ) {
         var is3d = vector.length === 3;
         var v2 = vector[0]*vector[0] + vector[1]*vector[1];
-        if ( is3d ) {
+        if (is3d) {
             v2 += vector[2]*vector[2];
         }
-        var abs = Math.sqrt( v2 );
-        if ( abs < 1e-100 && doDenullify ) {
-                var unitVec = [1e-100,0,0];
+        var abs = Math.sqrt(v2);
+        if (abs < 1e-100 && doDenullify) {
+                var unitVec = [1e-100, 0, 0];
                 var abs = 1e-100;
                 var v2 = abs * abs;
         } else {
-            if ( is3d ) {
-                var unitVec = abs < 1e-40 ? [0,0,0] :
+            if (is3d) {
+                var unitVec = abs < 1e-40 ? [0, 0, 0] :
                     [ vector[0]/abs, vector[1]/abs, vector[2]/abs, ];
             } else {
-                var unitVec = abs < 1e-40 ? [0,0] : [ vector[0]/abs, vector[1]/abs ];
+                var unitVec = abs < 1e-40 ? [0, 0] : [ vector[0]/abs, vector[1]/abs ];
             }
         }
         return {
@@ -122,12 +122,12 @@
     }
 
     ///rotates two-dimenstional vector anti-clockwidse
-    function rotatesVect( v, angle,
+    function rotatesVect(v, angle,
         sn, cs // sin or cos - alternative arguments
     ) {
-        if ( typeof angle !== 'undefined' ) {
-            sn = Math.sin( angle );
-            cs = Math.cos( angle );
+        if (typeof angle !== 'undefined') {
+            sn = Math.sin(angle);
+            cs = Math.cos(angle);
         }
         return [
             v[0] * cs - v[1] * sn,
@@ -143,33 +143,33 @@
     ///3d functionality is not enough tested:
     ///Given 3d-vector in input, returns two unit normals to it.
     ///     which both normals are orhtogonal.
-    function vector2normalOrts( vector )
+    function vector2normalOrts(vector)
     {
         var is2d = vector.length == 2;
         var v2 = vector[0]*vector[0] + vector[1]*vector[1];
-        if ( !is2d ) {
+        if (!is2d) {
             v2 += vector[2]*vector[2];
         }
-        var abs = Math.sqrt( v2 );
-        if ( abs < 1e-100 ) {
-            var unit = [1,0];
+        var abs = Math.sqrt(v2);
+        if (abs < 1e-100) {
+            var unit = [1, 0];
             vector[2] = 0;
         } else {
             var unit = [ vector[0]/abs, vector[1]/abs, ];
         }
-        if ( is2d ) {
+        if (is2d) {
             //vector in plane
             var norm = [ -unit[1], unit[0] ];
             var ret = { abs, norm, unit };
         } else {
             //vector in 3d space
             abs = abs < 1e-100 ? 1e-100 : abs;
-            unit.push( vector[2]/abs );
+            unit.push(vector[2]/abs);
             var normSeed = [];
-            for ( var mIx=0; mIx<3; mIx++ ) {
-                var uCur = Math.abs( unit[ mIx ] );
-                if ( uCur < uMin || mIx === 0 ) {
-                    if ( mIx > 0 ) {
+            for (var mIx=0; mIx<3; mIx++) {
+                var uCur = Math.abs(unit[ mIx ]);
+                if (uCur < uMin || mIx === 0) {
+                    if (mIx > 0) {
                         normSeed[ minIx ] = 0;
                     }
                     var minIx = mIx;
@@ -184,7 +184,7 @@
                 -unit[0]*normSeed[2] - unit[2]*normSeed[0],
                 unit[0]*normSeed[1] - unit[1]*normSeed[0],
             ];
-            norm1 = unitVector( norm1 ).unitVec;
+            norm1 = unitVector(norm1).unitVec;
             var norm2 = [
                 unit[1]*norm1[2] - unit[2]*norm1[1],
                 -unit[0]*norm1[2] - unit[2]*norm1[0],
@@ -201,7 +201,7 @@
         p2,
     ) {
         const vector = [ p2[0]-p1[0], p2[1]-p1[1] ];
-        const res = unitVector( vector );
+        const res = unitVector(vector);
         res.vector = vector;
         return res;
     }
@@ -239,17 +239,17 @@
 
     ///returns intersection of two lines built upon line segments
     ///(A,B) and (AS,BS)
-    function lineSegmentsCross( A, B, AS, BS ) {
+    function lineSegmentsCross(A, B, AS, BS) {
         var u = [ B[0] - A[0], B[1] - A[1] ];
         var us = [ BS[0] - AS[0], BS[1] - AS[1] ];
-        return linesCross( u,A,us,AS );
+        return linesCross(u, A, us, AS);
     }
 
     ///drops perpendicular which starts at point S and is
     ///a perpendicular to line segment AB,
     ///input:   point S and two points A,B
     ///returns: endPoint of perpendicular which is a point at cross of perpendicular and line AB
-    function dropPerpendicular( S, A, B )
+    function dropPerpendicular(S, A, B)
     {
         //direction of line AB = line segment from start point A to end point B
         var u = [ B[0] - A[0], B[1] - A[1] ];
@@ -261,15 +261,15 @@
         //start point of the perpendicular
         var vs = S;
 
-        return linesCross( u,v,us,vs );
+        return linesCross(u, v, us, vs);
     }
 
-    function dropPerpendicularDetails( S, A, B )
+    function dropPerpendicularDetails(S, A, B)
     {
         //direction of line AB = line segment from start point A to end point B
         var lineForPerp = [ B[0] - A[0], B[1] - A[1] ];
-        var lAbs = Math.sqrt( lineForPerp[0]*lineForPerp[0] + lineForPerp[1]*lineForPerp[1] );
-        lAbs = Math.max( lAbs, 1.e-150 );
+        var lAbs = Math.sqrt(lineForPerp[0]*lineForPerp[0] + lineForPerp[1]*lineForPerp[1]);
+        lAbs = Math.max(lAbs, 1.e-150);
         var unitLine = [ lineForPerp[0]/lAbs, lineForPerp[1]/lAbs, ]
 
         //start point of line AB
@@ -279,10 +279,10 @@
         var us = [ lineForPerp[1], -lineForPerp[0] ];
         //start point of the perpendicular
         var vs = S;
-        var crossPoint = linesCross( lineForPerp,v,us,vs );
+        var crossPoint = linesCross(lineForPerp, v, us, vs);
         var hx = crossPoint[0] - S[0];
         var hy = crossPoint[1] - S[1];
-        var perpAbs = Math.sqrt( hx*hx + hy*hy );
+        var perpAbs = Math.sqrt(hx*hx + hy*hy);
         return {
             crossPoint,
             perp : [ hx, hy ],
@@ -318,8 +318,8 @@
     ) {
         start = start || A;
         var u = direction || [ B[0] - A[0], B[1] - A[1] ];
-        if ( directionLength ) {
-            u = unitVector( u ).unitVec;
+        if (directionLength) {
+            u = unitVector(u).unitVec;
             t = directionLength;
         }
         return [ start[0] + u[0]*t, start[1] + u[1]*t ];
@@ -349,11 +349,11 @@
         vector1,
         vector2,
     ]) {
-        var unitVector1 = p1_to_p2( vector1[0], vector1[1] ).unitVec;
-        var unitVector2 = p1_to_p2( vector2[0], vector2[1] ).unitVec;
+        var unitVector1 = p1_to_p2(vector1[0], vector1[1]).unitVec;
+        var unitVector2 = p1_to_p2(vector2[0], vector2[1]).unitVec;
         var cos = unitVector1[0]*unitVector2[0] + unitVector1[1]*unitVector2[1];
         var sin = unitVector1[0]*unitVector2[1] - unitVector1[1]*unitVector2[0];
-        return { cos, sin, angle:Math.atan2( sin, cos ) };
+        return { cos, sin, angle:Math.atan2(sin, cos) };
     }
 
-}) ( window );
+})(window);

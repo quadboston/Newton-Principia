@@ -7,7 +7,7 @@
 
     ///Purpose: constructor of an object which encapsulates slider functionality.
     ///Input:   arg: see MicroAPI section below.
-    ns.sliderControl = function ( arg )
+    ns.sliderControl = function (arg)
     {
         thisSlider = {}; //created object which is returned from constructor
 
@@ -68,7 +68,7 @@
         // //\\ processes module
         //--------------------------------------
         //.at creation time, absFracDone is set, and by default to 0
-        doSet( default_absFrac, 'doSetDoneValue' );
+        doSet(default_absFrac, 'doSetDoneValue');
 
         ///calls low-level drag-and-drop-MicroAPI
         var this_d8d = d8dp.creFW_BSLd8d1BASE(
@@ -91,55 +91,55 @@
 
         ///Sets absFraction, draggee position, and, optionally, sets accomulated
         ///position, absFractDone.
-        function doSet( absFraction_, doSetDoneValue )
+        function doSet(absFraction_, doSetDoneValue)
         {
-            absFraction = validateAbsFraction( absFraction_ );
+            absFraction = validateAbsFraction(absFraction_);
             //.the only place where dragge's style is set
             draggee.style.left = (sliderStyleOffset + absFraction).toFixed(4)*100 + '%';
-            if ( doSetDoneValue ) {
+            if (doSetDoneValue) {
                 absFracDone = absFraction;
             }
         }
 
         ///d8d application
-        function d8d_cb_middle2lowest( move, mouseUpOrDown )
+        function d8d_cb_middle2lowest(move, mouseUpOrDown)
         {
-            if ( mouseUpOrDown === 'down' ) {
+            if (mouseUpOrDown === 'down') {
                 return;
             }
 
-            if ( mouseUpOrDown === 'move' || mouseUpOrDown === 'up' ) {
+            if (mouseUpOrDown === 'move' || mouseUpOrDown === 'up') {
 
                 //.this makes program immune to resize
                 var len = surface0attachee.getBoundingClientRect().width;
                 //.calculates absolute move adding initial position + current move
-                absFraction = validateAbsFraction( absFracDone + move[ 0 ]/len );
+                absFraction = validateAbsFraction(absFracDone + move[ 0 ]/len);
                 //.supplies absolute move to application
-                var setIsForbidden = dataInMove( absFraction, draggee );
-                if ( !setIsForbidden ) { doSet( absFraction ); }
+                var setIsForbidden = dataInMove(absFraction, draggee);
+                if (!setIsForbidden) { doSet(absFraction); }
             }
 
-            if ( mouseUpOrDown === 'up' ) {
+            if (mouseUpOrDown === 'up') {
                 //.accomulates and memorizes accomulated move
                 absFracDone = absFraction;
-                dataInArrival( absFraction, draggee );
+                dataInArrival(absFraction, draggee);
             }
         }
 
         ///d8d application emulator
         ///mocks real event, mouseUpOrDown, and sets absFraction
         ///used for "programmable animation" of this slider
-        function d8d_emulateAbsFractionX( absFraction, mouseUpOrDown )
+        function d8d_emulateAbsFractionX(absFraction, mouseUpOrDown)
         {
             var len = surface0attachee.getBoundingClientRect().width;
-            var relMove = ( absFraction - absFracDone ) * len;
-            return d8d_cb_middle2lowest( [ relMove, 0 ], mouseUpOrDown );
+            var relMove = (absFraction - absFracDone) * len;
+            return d8d_cb_middle2lowest([ relMove, 0 ], mouseUpOrDown);
         }
 
         // //\\// helpers
-        function validateAbsFraction( absFrac )
+        function validateAbsFraction(absFrac)
         {
-            return Math.min( maxLimit, Math.max( absFrac, lowLimit ) );
+            return Math.min(maxLimit, Math.max(absFrac, lowLimit));
         }
 
         //====================================================================
@@ -147,7 +147,7 @@
         //      to preserve ordinary clicks on form elements or other controls
         //      disables dragging on form and other elements
         //====================================================================
-        function skipD8D( ev )
+        function skipD8D(ev)
         {
                 var tag = ev.target.tagName.toLowerCase();
                 ///fails: var cls = ev.target.className;

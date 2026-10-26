@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         eachprop,
         sconf, sapp, ssF,
@@ -23,4 +23,4 @@
         ssF.mediaModelInitialized = true;
     }
 
-}) ();
+})();

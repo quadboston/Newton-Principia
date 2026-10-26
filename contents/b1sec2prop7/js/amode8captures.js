@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { nspaste, amode, toreg, stdMod, rg, ssD, }
         = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     return;
@@ -6,7 +6,7 @@
 
     ///runs inside "subessay launch" which in turn runs after
     ///"init model parameters"
-    function amode2rgstate( captured )
+    function amode2rgstate(captured)
     {
         const { logic_phase, aspect } = amode;
         // Latin tabs have no subessays; they show what the Text tab
@@ -29,26 +29,26 @@
         // \\// common values
         //----------------------------------
 
-        if ( subessay === 'corollary2' || subessay === 'corollary3' ) {
+        if (subessay === 'corollary2' || subessay === 'corollary3') {
             var Ss = Math.PI * 1.2;
-            var S = q2xy( Ss );
+            var S = q2xy(Ss);
             rg.S.pos[0] = S[0]*0.4;
             rg.S.pos[1] = S[1]*0.4;
 
             var Rcol2_s = Math.PI * 0.75;
-            var Rcol2 = q2xy( Rcol2_s );
+            var Rcol2 = q2xy(Rcol2_s);
             rg.Rcol2.pos[0] = Rcol2[0]*0.4;
-            rg.Rcol2.pos[1] = q2xy( 0.5 )[1];
+            rg.Rcol2.pos[1] = q2xy(0.5)[1];
 
-        } else if ( subessay === 'corollary1' ) {
+        } else if (subessay === 'corollary1') {
             // S on the circle
-            nspaste( rg.S.pos, [-0.9997779468574, -0.0210731450212] );
+            nspaste(rg.S.pos, [-0.9997779468574, -0.0210731450212]);
         } else {
             // S in the original diagram, set in sconf.js
-            nspaste( rg.S.pos, ssD.S_configuredPos );
+            nspaste(rg.S.pos, ssD.S_configuredPos);
         }
 
-        modifyDecorationVisibility( subessay );
+        modifyDecorationVisibility(subessay);
 
         ssD.stashedVisibility = null;
         stdMod.rebuilds_orbit();
@@ -64,7 +64,7 @@
     /**
      * Show or hide components according to whether they are used
      */
-    function modifyDecorationVisibility( subessay ) {
+    function modifyDecorationVisibility(subessay) {
         const { logic_phase } = amode;
         if (logic_phase === 'claim') {
             showOnly(
@@ -152,4 +152,4 @@
             );
         }
     }
-}) ();
+})();

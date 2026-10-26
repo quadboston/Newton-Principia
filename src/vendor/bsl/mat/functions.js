@@ -1,6 +1,6 @@
-( function () {
+(function () {
     var sn	        = window.b$l.sn;
-    var mat         = sn( 'mat' );
+    var mat         = sn('mat');
     mat.poly = poly;
     mat.squaredDistance = squaredDistance;
     mat.lengthOf = lengthOf;
@@ -10,15 +10,15 @@
 
     ///Calculates polynomial.
     ///Loops from low-coefficients to high which gives inaccurate accuracy for long polynomials.
-    function poly( x, coefficients )
+    function poly(x, coefficients)
     {
         var fun = coefficients[0];
         var power = 1;
         var length = coefficients.length;
-        for ( ix=1; ix<length; ix++ ) {
+        for (ix=1; ix<length; ix++) {
             power *= x;
             var coef = coefficients[ix];
-            if ( coef === 0 ) continue;
+            if (coef === 0) continue;
             fun += power * coef;
         }
         return fun;
@@ -34,4 +34,4 @@
         return Math.sqrt(mat.squaredDistance(pt1, pt2));;
     }
 
-}) ();
+})();

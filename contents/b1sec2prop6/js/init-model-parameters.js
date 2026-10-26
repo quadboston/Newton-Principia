@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { nspaste, bezier,
         ssD, stdMod, sconf, rg, toreg, } = window.b$l.apptree({
         stdModExportList : { init_model_parameters, pivotScale, }, });
@@ -6,7 +6,7 @@
 
 
     // fine tuneup of a configured curve pivot: [ scaleX, scaleY ]
-    function pivotScale( cpix )
+    function pivotScale(cpix)
     {
         let scale = 1.2;
         let scaleX = 1;
@@ -30,20 +30,20 @@
         ///sconf is insufficient, there is a fine tuneup,
         {
             let ocp = sconf.originalPoints.curvePivots;
-            let pivotsPos = ocp.map( (cp,cpix) => {
+            let pivotsPos = ocp.map((cp, cpix) => {
                 let pos = rg[ 'curvePivots-' + cpix ].pos;
                 return [ pos[0], pos[1] ];
             });
-            pivotsPos = pivotsPos.map( (pos,cpix) => {
-                const [ scaleX, scale ] = pivotScale( cpix );
+            pivotsPos = pivotsPos.map((pos, cpix) => {
+                const [ scaleX, scale ] = pivotScale(cpix);
                 rg[ 'curvePivots-' + cpix ].q = cpix / (pivotsPos.length-1);
                 return [ pos[0]*scaleX, pos[1]*scale ];
             }); //map
 
             //bezier framework generates Optimized Bezier Framework:
-            const bezio = ssD.bezio = bezier.preparesOptimizedBezier( pivotsPos );;
+            const bezio = ssD.bezio = bezier.preparesOptimizedBezier(pivotsPos);;
             bezio.pivotsPos = pivotsPos;
-            ssD.initialPivots = nspaste( [], pivotsPos );
+            ssD.initialPivots = nspaste([], pivotsPos);
 
             //reasonable aliasing
             stdMod.q2xy = bezio.fun;
@@ -59,7 +59,7 @@
         //      are initiated here
         //      todm: not very consistent,
         //-----------------------------------------
-        sconf.originalPoints.foldPoints.forEach( (fp,ppix) => {
+        sconf.originalPoints.foldPoints.forEach((fp, ppix) => {
             fp.rgX = rg[ 'foldPoints-' + ppix ];
             fp.rgX.undisplay = true;
         });
@@ -71,10 +71,10 @@
         stdMod.creates__curve_pivots_sliders();
 
         //creates placeholder
-        toreg( 'curvatureCircle' );
+        toreg('curvatureCircle');
 
         //possibly good user control for changing diagram scenatio:
         //stdMod.createsChordModeRadioControl();
     }
 
-}) ();
+})();

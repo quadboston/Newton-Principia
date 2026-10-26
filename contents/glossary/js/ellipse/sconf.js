@@ -1,4 +1,4 @@
-( function () {
+(function () {
     const { ns, fconf, sconf, topicColors_repo, amode} =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
@@ -18,7 +18,7 @@
         var pictureHeight = 728;
 
         //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var realSvgSize = 2 * (pictureWidth + pictureHeight) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
         //***************************************************************
         // \\// geometrical scales
@@ -39,16 +39,16 @@
         // //\\ do override engine defaults,
         //      in expands-conf.js,
         //--------------------------------------
-        default_tp_stroke_width = Math.floor( 6 * controlsScale ),
-        defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 3.1 * controlsScale ),
+        default_tp_stroke_width = Math.floor(6 * controlsScale),
+        defaultLineWidth        = Math.floor(1 * controlsScale),
+        handleRadius            = Math.floor(3.1 * controlsScale),
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius;
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
         //this makes hanle's border nicely thin
-        sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
-        sconf.hover_width       = Math.max( 2, Math.floor( 7*controlsScale/1.6 ) );
+        sconf.nonhover_width    = Math.max(1, Math.floor(1*controlsScale/1.6));
+        sconf.hover_width       = Math.max(2, Math.floor(7*controlsScale/1.6));
 
         //make effect apparently only for line-captions,
         //not for point-captions bs
@@ -99,7 +99,7 @@
         sconf.ellipseA  = 1.07;
         sconf.ellipseAOriginal  = sconf.ellipseA;
         sconf.ellipseB  =
-            Math.sqrt( Math.abs( 1 - sconf.eccentricity*sconf.eccentricity ) ) //Lambda
+            Math.sqrt(Math.abs(1 - sconf.eccentricity*sconf.eccentricity)) //Lambda
             * sconf.ellipseA; //0.86;
         var curveParA   = -0.64;
         sconf.orbit_q_start = 0.0 * Math.PI;
@@ -109,7 +109,7 @@
             // gets ellipse parameters
             let ellB2 = sconf.ellipseB*sconf.ellipseB;
             let ellA2 = sconf.ellipseA*sconf.ellipseA;
-            sconf.ellipseFocus = Math.sqrt( ellA2 - ellB2 );
+            sconf.ellipseFocus = Math.sqrt(ellA2 - ellB2);
         }
         //-------------------------------------------
         // \\// curve shape parameters
@@ -441,7 +441,7 @@
             }, },
         ];
 
-        ns.paste( sconf, {
+        ns.paste(sconf, {
             curveParA,
             Q_STEPS,
             DATA_GRAPH_STEPS,
@@ -460,4 +460,4 @@
             handleRadius,
         });
     }
-}) ();
+})();

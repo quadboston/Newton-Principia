@@ -8,7 +8,7 @@
  *
  * ****************************************************************************/
 
-( function () {
+(function () {
     var {
         $$, nssvg, has, haz, ssF,
         stdMod, sconf, rg,
@@ -22,7 +22,7 @@
 
     //called from page's init-model-parameters.js
     //analogy of pointsArr_2_singleDividedDifferences() (P41)
-    function creates_orbitRack( vop )
+    function creates_orbitRack(vop)
     {
         //console.log('creates_orbitRack');
 
@@ -40,33 +40,33 @@
         var rgX         = vop ? rg[ 'approximated-curve-sample' ] : rg[ 'approximated-curve' ];
 
         //prevents leaks polylineSvg from js-prototype
-        rgX.polylineSvg = haz( rgX, 'polylineSvg' );
+        rgX.polylineSvg = haz(rgX, 'polylineSvg');
 
         //rg[ 'approximated-curve' ] will have these properties:
         var result = {
                 t2xy, // f : x |-> rr, rr is in |R^2
                 poly2svg,
         };
-        Object.assign( rgX, result );
+        Object.assign(rgX, result);
         //poly2svg({}); //unnecessary, called a million times from media-upcreate
         return result;
 
         // param q (angle) to [x,y] point on conic
         // todo: rename? what is t?
         // also called from other modules to determine position of specified points
-        function t2xy( q ) {
+        function t2xy(q) {
 
             //denomenator
             var den = 1 - op.eccentricity * Math.cos(q);
-            if ( den === 0 ) {
+            if (den === 0) {
                 den = 1e-20; // avoid singularity (can't divide by zero)
             }
 
             // radial distance
             var r = op.latus / den;
 
-            var x = r * Math.cos( q + op.mainAxisAngle );
-            var y = r * Math.sin( q + op.mainAxisAngle );
+            var x = r * Math.cos(q + op.mainAxisAngle);
+            var y = r * Math.sin(q + op.mainAxisAngle);
             return [ x, y ];
         }
 
@@ -75,10 +75,10 @@
         function ownrange2points({ stepsCount, start, end })
         {
             var points = [];
-            var qStep = ( end - start ) / stepsCount;
-            for ( var qix = 0; qix <= stepsCount; qix++ ) {
+            var qStep = (end - start) / stepsCount;
+            for (var qix = 0; qix <= stepsCount; qix++) {
                 var q = start + qStep * qix;
-                points.push( t2xy( q ) );
+                points.push(t2xy(q));
             }
             return points;
         }
@@ -126,7 +126,7 @@
                 start: op.qStart,
                 end: op.qEnd
             });
-            var medpoints = curvePoints.map( cp => ssF.mod2inn( cp, stdMod ) ); // scales up conic
+            var medpoints = curvePoints.map(cp => ssF.mod2inn(cp, stdMod)); // scales up conic
 
             // defines segment of conic
             if (op.highlightSeg) {
@@ -135,10 +135,10 @@
                     start: op.segStart,
                     end: op.segEnd
                 });
-                segPoints = segPoints.map( sp => ssF.mod2inn( sp, stdMod ) );
+                segPoints = segPoints.map(sp => ssF.mod2inn(sp, stdMod));
             }
 
-            if ( -1 === op.conicSignum ) {
+            if (-1 === op.conicSignum) {
                 // draw hyperbola as two svg curves so asymptotes don't show
                 const [branchA, branchB] = splitAtAsymptotes(medpoints);
 
@@ -147,21 +147,21 @@
                     svgel   : rgXX.polylineSvgA,
                     parent  : stdMod.svgScene,
                 });
-                if ( !has( rgXX, 'polylineSvgA$' ) ) {
-                    rgXX.polylineSvgA$ = $$.$( polylineSvgA );
+                if (!has(rgXX, 'polylineSvgA$')) {
+                    rgXX.polylineSvgA$ = $$.$(polylineSvgA);
                 }
-                rgXX.polylineSvgA$.removeClass( 'hidden' );
-                rgXX.polylineSvgA$.addClass( 'tostroke thickable tp-' + lowname );
+                rgXX.polylineSvgA$.removeClass('hidden');
+                rgXX.polylineSvgA$.addClass('tostroke thickable tp-' + lowname);
 
                 var polylineSvg = rgXX.polylineSvg = nssvg.polyline({
                     pivots  : branchB,
                     svgel   : rgXX.polylineSvg,
                     parent  : stdMod.svgScene,
                 });
-                if ( !has( rgXX, 'polylineSvg$' ) ) {
-                    rgXX.polylineSvg$ = $$.$( polylineSvg );
+                if (!has(rgXX, 'polylineSvg$')) {
+                    rgXX.polylineSvg$ = $$.$(polylineSvg);
                 }
-                rgXX.polylineSvg$.addClass( 'tostroke thickable tp-' + lowname );
+                rgXX.polylineSvg$.addClass('tostroke thickable tp-' + lowname);
             } else {
                 // draw ellipse/parabola in svg
                 var polylineSvg = rgXX.polylineSvg = nssvg.polyline({
@@ -169,12 +169,12 @@
                     svgel   : rgXX.polylineSvg,
                     parent  : stdMod.svgScene,
                 });
-                if ( !has( rgXX, 'polylineSvg$' ) ) {
-                    rgXX.polylineSvg$ = $$.$( polylineSvg );
+                if (!has(rgXX, 'polylineSvg$')) {
+                    rgXX.polylineSvg$ = $$.$(polylineSvg);
                 }
-                rgXX.polylineSvg$.addClass( 'tostroke thickable tp-' + lowname );
-                if ( rgXX.polylineSvgA$ ) {
-                    rgXX.polylineSvgA$.addClass( 'hidden' );
+                rgXX.polylineSvg$.addClass('tostroke thickable tp-' + lowname);
+                if (rgXX.polylineSvgA$) {
+                    rgXX.polylineSvgA$.addClass('hidden');
                 }
             }
 
@@ -185,13 +185,13 @@
                     svgel   : rgXX.polylineSvg2,
                     parent  : stdMod.svgScene,
                 });
-                if ( !has( rgXX, 'polylineSvg2$' ) ) {
-                    rgXX.polylineSvg2$ = $$.$( polylineSvg2 );
+                if (!has(rgXX, 'polylineSvg2$')) {
+                    rgXX.polylineSvg2$ = $$.$(polylineSvg2);
                 }
-                rgXX.polylineSvg$.addClass( 'tostroke thickable tp-trace' );
-                rgXX.polylineSvg2$.addClass( 'tostroke thickable tp-' + lowname );
-                if ( rgXX.polylineSvgA2$ ) {
-                    rgXX.polylineSvgA2$.addClass( 'hidden' );
+                rgXX.polylineSvg$.addClass('tostroke thickable tp-trace');
+                rgXX.polylineSvg2$.addClass('tostroke thickable tp-' + lowname);
+                if (rgXX.polylineSvgA2$) {
+                    rgXX.polylineSvgA2$.addClass('hidden');
                 }
             }
         }
@@ -226,18 +226,18 @@
             op.conicSignum = -1; // hyperbola
         }
 
-        if ( doAdjustLatus ) {
-            op.latus = Math.abs( rgP.abs *
-                ( 1 - eccentricity * Math.cos( rgP.q ) ) );
+        if (doAdjustLatus) {
+            op.latus = Math.abs(rgP.abs *
+                (1 - eccentricity * Math.cos(rgP.q)));
         }
         op.eccentricity = eccentricity;
 
         //// orbit parameters,
         //// derived from eccentricity and latus
-        op.lambda2      = Math.abs( 1 - op.eccentricity*op.eccentricity );
-        op.lambda       = Math.sqrt( op.lambda2 );
+        op.lambda2      = Math.abs(1 - op.eccentricity*op.eccentricity);
+        op.lambda       = Math.sqrt(op.lambda2);
         //if( op.conicSignum === 0 || op.conicSignum === -1 ) {
-        if ( op.conicSignum === -1 ) {
+        if (op.conicSignum === -1) {
             ////hyperbola
             op.SINGULARITY_ANGLE    = Math.acos(1/op.eccentricity);
             op.LOW_BOUNDARY         = op.SINGULARITY_ANGLE - op.ANGLE_BOUNDARY;
@@ -254,13 +254,13 @@
         // draws value on e slider (for pages that have one)
         function eccentricity2sliderPos()
         {
-            if ( !has( rg, 'ZetaEnd' ) ) return;
+            if (!has(rg, 'ZetaEnd')) return;
 
             const zetaMin = haz(op, 'ZETA_MIN') || 0.0;
             const zetaMax = haz(op, 'ZETA_MAX') || Math.PI / 2;
 
             var scale = rg.ZetaEnd.pos[0] - rg.ZetaStart.pos[0];
-            var zeta = Math.atan( op.eccentricity );
+            var zeta = Math.atan(op.eccentricity);
             rg.Zeta.pos[0] = (zeta - zetaMin) / (zetaMax - zetaMin) * scale +
                                 rg.ZetaStart.pos[0];
             rg.ZetaCaption.pos[0] = rg.Zeta.pos[0];
@@ -272,4 +272,4 @@
         //console.log('newEccentricity: ' + eccentricity.toFixed(3));
     }
 
-}) ();
+})();

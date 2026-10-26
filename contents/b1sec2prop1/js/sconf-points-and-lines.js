@@ -3,7 +3,7 @@ const { sn, eachprop, has, haf,
         fconf, sconf, toreg, rg, ssD, sDomF, stdMod,
         topicColors_repo, topicColors_repo_camel2col, originalPoints,
 } = window.b$l.apptree({ stdModExportList : { sconf_points8lines, }, });
-const decor = sn( 'decor', stdMod );
+const decor = sn('decor', stdMod);
 const LOGIC = false; //true does separate spatial and logic steps
 return;
 
@@ -30,7 +30,7 @@ function sconf_points8lines() {
     } = topicColors_repo;
     let deviationColor;
 
-    {   const harden = col => ([col[0],col[1],col[2],1,1]);
+    {   const harden = col => ([col[0], col[1], col[2], 1, 1]);
         //0.5 is good for areas, bad for lines,
         //so, lines shold have color pattern [x,x,x,1,1]
         forceColor = harden(forceColor);
@@ -156,9 +156,9 @@ function sconf_points8lines() {
 
         "v"		: supplementColor,
     };
-    var p2_elected = haf( ssD, 'P2_topicColors_elected' )(tpel);
-    if ( p2_elected ) {
-        Object.assign( tpel, p2_elected );
+    var p2_elected = haf(ssD, 'P2_topicColors_elected')(tpel);
+    if (p2_elected) {
+        Object.assign(tpel, p2_elected);
     }
 
     //lemma modes
@@ -202,7 +202,7 @@ function sconf_points8lines() {
                 letterAngle : -45,
               },
     };
-    Object.assign( decor, firstSteps_conf );
+    Object.assign(decor, firstSteps_conf);
     //----------------------------------------------------
     // //\\ proof points initial settings
     //----------------------------------------------------
@@ -224,11 +224,11 @@ function sconf_points8lines() {
         },
     };
     ///makes proof points disappear after a while
-    eachprop( CDEF_conf, (fs) => {
+    eachprop(CDEF_conf, (fs) => {
         fs.decEnd = sconf.numberOfManyBases*4 *
                     sconf.FIRST_POINT_LABELS_DISPLAY_LIMIT;
     });
-    Object.assign( decor, CDEF_conf );
+    Object.assign(decor, CDEF_conf);
     //----------------------------------------------------
     // \\// proof points initial settings
     //----------------------------------------------------
@@ -236,7 +236,7 @@ function sconf_points8lines() {
     //----------------------------------------------------
     // //\\ theor 2 coroll. path decor
     //----------------------------------------------------
-    if ( fconf.sappId === 'b1sec2prop2' ) {
+    if (fconf.sappId === 'b1sec2prop2') {
         var prime_conf = {
             Cprime : {
                 caption : "C′",
@@ -354,7 +354,7 @@ function sconf_points8lines() {
                 cssClass : 'hidden',
         },
     };
-    ['B','C','D','E','F'].forEach( (pname, ix) => {
+    ['B', 'C', 'D', 'E', 'F'].forEach((pname, ix) => {
         let nam0 = 'VV'+ix;  //starts of forces
 
         //tips of forces
@@ -377,16 +377,16 @@ function sconf_points8lines() {
             draggableY : true,
         };
     });
-    Object.assign( decor, mixedSteps_conf );
-    Object.assign( decor, middleSteps_conf );
-    Object.assign( decor, forceTip_conf );
-    Object.assign( decor, prime_conf );
+    Object.assign(decor, mixedSteps_conf);
+    Object.assign(decor, middleSteps_conf);
+    Object.assign(decor, forceTip_conf);
+    Object.assign(decor, prime_conf);
 
     ///unifies with originalPoints
-    Object.keys( decor ).forEach( propKey => {
+    Object.keys(decor).forEach(propKey => {
         const point = decor[propKey];
         const pointRack = originalPoints[propKey]={};
-        Object.keys( point ).forEach( pointKey => {
+        Object.keys(point).forEach(pointKey => {
             let pointProp = point[pointKey];
             pointRack[pointKey] = pointProp;
         });
@@ -395,18 +395,18 @@ function sconf_points8lines() {
     //---------------------------------------------------
     // //\\ equalizing points in decor and rg
     //---------------------------------------------------
-    eachprop( decor, (dec,pname) => {
-        rgElem = sn( pname, rg );
+    eachprop(decor, (dec, pname) => {
+        rgElem = sn(pname, rg);
         rgElem.pname = pname;
         rgElem.isPoint = true;
-        var doPaintPname = has( dec, 'doPaintPname' ) ?
+        var doPaintPname = has(dec, 'doPaintPname') ?
                            dec.doPaintPname : true;
-        Object.assign( dec, {
+        Object.assign(dec, {
             doPaintPname,
             isPoint : true,
         });
-        Object.assign( rg[ pname ], dec );
-        Object.assign( dec, rg[ pname ] );
+        Object.assign(rg[ pname ], dec);
+        Object.assign(dec, rg[ pname ]);
         rg[ pname ] = dec;
     });
     //---------------------------------------------------
@@ -557,21 +557,21 @@ function sconf_points8lines() {
         { nam : ['D', 'F'], cssClass : theor1corollary },	// DF
     ];
 
-    if ( fconf.sappId === 'b1sec2prop2' ) {
-        linesConf = linesConf.concat( [
-            { nam : ['c','Cprime'], cssClass : theor2corollary, },
-            { nam : ['C','Cprime'], cssClass : theor2corollary, },
-            { nam : ['S','Cprime'], cssClass : theor2corollary, },
-            { nam : ['B','Cprime'], cssClass : theor2corollary,
+    if (fconf.sappId === 'b1sec2prop2') {
+        linesConf = linesConf.concat([
+            { nam : ['c', 'Cprime'], cssClass : theor2corollary, },
+            { nam : ['C', 'Cprime'], cssClass : theor2corollary, },
+            { nam : ['S', 'Cprime'], cssClass : theor2corollary, },
+            { nam : ['B', 'Cprime'], cssClass : theor2corollary,
                 //equal to path
                 'stroke-width': 4,
             },
-            { nam : ['V','Vprime'], cssClass : theor2corollary, },
-            { nam : ['B','Vprime'], cssClass : theor2corollary, },
+            { nam : ['V', 'Vprime'], cssClass : theor2corollary, },
+            { nam : ['B', 'Vprime'], cssClass : theor2corollary, },
         ]);
     }
 
-    linesConf.forEach( ln => {
+    linesConf.forEach(ln => {
         let linesArrElem = {};
         sconf.linesArray.push(linesArrElem);
         const lineName = ln.nam[0]+ln.nam[1];
@@ -579,9 +579,9 @@ function sconf_points8lines() {
             isLine : true,
         };
         //equalizing rg, decor elements and lineConf,
-        let rgElem = decor[ lineName ] = sn( lineName, rg );
+        let rgElem = decor[ lineName ] = sn(lineName, rg);
         rgElem.pname = lineName;
-        rgElem.pivotNames = [ln.nam[0],ln.nam[1]];
+        rgElem.pivotNames = [ln.nam[0], ln.nam[1]];
         rgElem.isPoint = false;
         [   'cssClass',
             'pcolor',
@@ -595,18 +595,18 @@ function sconf_points8lines() {
             'fontSize',
             'tipFraction',
             'tipFill'
-        ].forEach( pname => {
-            has(ln,pname) && (lineConf[pname] = ln[pname]);
-            has(ln,pname) && (rgElem[pname] = ln[pname]);
+        ].forEach(pname => {
+            has(ln, pname) && (lineConf[pname] = ln[pname]);
+            has(ln, pname) && (rgElem[pname] = ln[pname]);
         })
         ///if there is not explicit decStart in the line element, then
         ///decStart in extracted from the directional point of the line segment
-        var decStart = has( ln, 'decStart' ) ?
+        var decStart = has(ln, 'decStart') ?
             ln.decStart : rg[ ln.nam[1] ].decStart;
         ///the same procedure happens with "end" setting
-        var decEnd = has( ln, 'decEnd' ) ?
+        var decEnd = has(ln, 'decEnd') ?
             ln.decEnd : rg[ ln.nam[1] ].decEnd;
-        if ( ln.nam[0] === 'S' && ln.nam[1] === 'C' ) {
+        if (ln.nam[0] === 'S' && ln.nam[1] === 'C') {
             decStart = 7;
         }
         rgElem.decStart = decStart;
@@ -627,11 +627,11 @@ function sconf_points8lines() {
     //==================================================
     sconf.topicColors_elected = tpel;
     ////array tpel will be discraded upon leaving this function,
-    Object.keys( tpel ).forEach( tpCamel => {
+    Object.keys(tpel).forEach(tpCamel => {
         //generates rg for all topics,
         //this code is a substitute of expand-config.js
-        toreg( tpCamel )( 'pname', tpCamel );
-        var tpLowKey = sDomF.toCssIdentifier( tpCamel );
+        toreg(tpCamel)('pname', tpCamel);
+        var tpLowKey = sDomF.toCssIdentifier(tpCamel);
         //compliments topicColors_repo from stuff created in this sconf,
         //topicColors_repo are based on non-Camel id,
         var fck = topicColors_repo[ tpLowKey ] = tpel[ tpCamel ].concat();
@@ -646,15 +646,15 @@ function sconf_points8lines() {
     //to ensure they start becoming visible for the specified steps.
     if (sconf.TIMER_AND_LOGIC_STEPS_COINSIDE === false) {
         rg.SC.decStart = 7;
-        [ rg.D, rg.d, rg.Dd, rg.Cd, rg.CD, rg.SD, rg.Sd, rg.SCd ].forEach( pn => {
+        [ rg.D, rg.d, rg.Dd, rg.Cd, rg.CD, rg.SD, rg.Sd, rg.SCd ].forEach(pn => {
             pn.decStart = rg.SC.decStart + 4;
         });
-        [ rg.E, rg.e, rg.Ee, rg.De, rg.DE, rg.SE, rg.Se, rg.SDe ].forEach( pn => {
+        [ rg.E, rg.e, rg.Ee, rg.De, rg.DE, rg.SE, rg.Se, rg.SDe ].forEach(pn => {
             pn.decStart = rg.SC.decStart + 8;
         });
         [ rg.F, rg.Z, rg.W, rg.EW, rg.DF, rg.f, rg.Ff, rg.Ef, rg.EF,
             rg.SF, rg.Sf, rg.SEf,
-        ].forEach( pn => {
+        ].forEach(pn => {
             pn.decStart = rg.SC.decStart + 12;
         });
     }
@@ -667,7 +667,7 @@ function sconf_points8lines() {
         rg.e, rg.Ee, rg.De, rg.SE, rg.Se, rg.SDe,
         rg.f, rg.Ff, rg.Ef, rg.SF, rg.Sf, rg.SEf,
         rg.SA, rg.SB, rg.SC,
-    ].forEach( pn => {
+    ].forEach(pn => {
         pn.decEnd = rg.f.decStart + 3;
     });
     //******************************

@@ -1,7 +1,7 @@
 //code taken from: /var/www/html/sand/web-dev/tools/frontend/btb-master/btb/jq/create-media-runner.js
 //css vs js: https://developer.mozilla.org/en-US/Apps/Fundamentals/Performance/CSS_JavaScript_animation_performance
 
-( function () {
+(function () {
     var ns      = window.b$l;
     var aframes = ns.sn('aframes');
 
@@ -14,11 +14,11 @@
     // //\\ IE10+
     //      good for debug
     //var documentStart = performance.now(); //not for IE9?
-    var timeoutAnimationFrame = function ( callback )
+    var timeoutAnimationFrame = function (callback)
     {
         var ANIMATION_INTERVAL = 200;
         //window.setTimeout( function() { callback( performance.now() - documentStart ); }, ANIMATION_INTERVAL );
-        window.setTimeout( callback, ANIMATION_INTERVAL );
+        window.setTimeout(callback, ANIMATION_INTERVAL);
     };
     //window.requestAnimationFrame = timeoutAnimationFrame;
     // \\// IE10+
@@ -50,17 +50,17 @@
 
     aframes.start = function ()
     {
-        if ( !aframes_start ) { aframes_start = [ Date.now() ]; }
+        if (!aframes_start) { aframes_start = [ Date.now() ]; }
         var timeOrigin  = aframes_start[0];
         unixTime        = Date.now();
         elapsed         = unixTime - timeOrigin;
-        if ( elapsed > ANIMATION_THROTTLER ) {
-            Object.keys(runners).forEach( doRun );
+        if (elapsed > ANIMATION_THROTTLER) {
+            Object.keys(runners).forEach(doRun);
         }
-        window.requestAnimationFrame( aframes.start );
+        window.requestAnimationFrame(aframes.start);
     };
 
-    function doRun( hashStr )
+    function doRun(hashStr)
     {
         var rr          = runners[ hashStr ];
         var fun         = rr.fun;
@@ -69,15 +69,15 @@
         var duration    = rr.duration;
         var ownElapsed  = unixTime - ownStart;
 
-        if ( typeof duration === 'undefined' || ownElapsed <= duration ) {
+        if (typeof duration === 'undefined' || ownElapsed <= duration) {
             //==============================================
             // MicroAPI: callback signature
-            fun( ownElapsed, elapsed, unixTime );
+            fun(ownElapsed, elapsed, unixTime);
             //==============================================
         } else {
             //.fires up funComplete if any at the end of animation
-            funComplete && funComplete( ownElapsed, elapsed, unixTime );
-            aframes.remove( hashStr );
+            funComplete && funComplete(ownElapsed, elapsed, unixTime);
+            aframes.remove(hashStr);
         }
     };
 
@@ -99,30 +99,30 @@
             duration,   //dur for one of runners
             funComplete //for one of runners
     ) {
-        if ( !aframes_start ) aframes.start();
-        return aframes.add( fun, duration, funComplete );
+        if (!aframes_start) aframes.start();
+        return aframes.add(fun, duration, funComplete);
     };
 
-    aframes.remove = function ( hashStr ) {
+    aframes.remove = function (hashStr) {
         //other way?: https://stackoverflow.com/questions/12216540/how-to-test-for-equality-of-functions-in-javascript
         delete runners[ hashStr ];
     };
     ///if hashStr is not a string, then this function does nothing
-    aframes.complete8remove = function ( hashStr ) {
-        if ( typeof hashStr !== 'string' ) return; //automates skipping already cleared runners
+    aframes.complete8remove = function (hashStr) {
+        if (typeof hashStr !== 'string') return; //automates skipping already cleared runners
         var rr = runners[ hashStr ];
-        if ( !rr ) return; //allows competing removes
-        if ( !aframes_start ) {
+        if (!rr) return; //allows competing removes
+        if (!aframes_start) {
             ////nothing started yet
             //.todm ... this scenario is not good enough ... is unclear for the newcomer
-            aframes.remove( hashStr );
+            aframes.remove(hashStr);
             return;
         }
         rr.duration = -1000;
-        doRun( hashStr );
+        doRun(hashStr);
     };
     //**************************************
     // \\// animation frames framework
     //**************************************
 
-}) ();
+})();

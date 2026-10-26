@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         $$, haz, fconf, ssF, ssD, amode, stdMod, rg, toreg, nssvg
     } = window.b$l.apptree({
@@ -22,13 +22,13 @@
         // //\\ manages legend CSS-visibility
         //      by essay-state
         //=================================================
-        var rgMainLegend = haz( rg, 'main-legend' );
-        if ( rgMainLegend ) {
+        var rgMainLegend = haz(rg, 'main-legend');
+        if (rgMainLegend) {
             var rgTeoTab = rgMainLegend[ amode.logic_phase ];
-            if ( amode.logic_phase === 'corollary' && amode.aspect === 'model' ) {
-                $$.$( rgTeoTab.tableDom ).addClass( 'hidden' );
+            if (amode.logic_phase === 'corollary' && amode.aspect === 'model') {
+                $$.$(rgTeoTab.tableDom).addClass('hidden');
             } else {
-                $$.$( rgTeoTab.tableDom ).removeClass( 'hidden' );
+                $$.$(rgTeoTab.tableDom).removeClass('hidden');
             }
         }
         //=================================================
@@ -55,7 +55,7 @@
                 //-----------------------------------------
                 //      arc out of synch with B
                 start       : rg.A.pos[0],
-                step        : (rg.B.unrotatedParameterX - rg.A.pos[0] ) / 20,
+                step        : (rg.B.unrotatedParameterX - rg.A.pos[0]) / 20,
                 stepsCount  : 20,
                 //-----------------------------------------
                 // \\// apparently this fixes
@@ -98,7 +98,7 @@
         //-------------------------------------------------
         var magnitude = rg.magnitude.value;
         //misleading notation: this is not ..._b, this is ..._B
-        rg.derotated_b = toreg( 'derotated_b' )( 'pos', [rg.B.unrotatedParameterX,0] )();
+        rg.derotated_b = toreg('derotated_b')('pos', [rg.B.unrotatedParameterX, 0])();
         ssF.paintsCurve({
                 rgName      : 'arc-Ab',
                 fun         : cfun.fun, //for l8, cust fun = 0 = rotated fun
@@ -121,23 +121,23 @@
 
         // draw proof triangles first so they're on the bottom
         calculateTriangleArea('area-rAd', rg.A.medpos, rg.d.medpos, rg.r.medpos);
-        paintArea( 'area-rAd', null, 'area-r_ad' );
+        paintArea('area-rAd', null, 'area-r_ad');
 
         calculateTriangleArea('area-rAb', rg.A.medpos, rg.b.medpos, rg.r.medpos);
-        paintArea( 'area-rAb', null, 'area-r_ab' );
+        paintArea('area-rAb', null, 'area-r_ab');
 
         calculateCurvedTriangleArea('area-rAcb', 'tp-arc-_ab', rg.A.medpos, rg.b.medpos, rg.r.medpos);
-        paintArea( 'area-rAcb', null, 'area-r_acb' );
+        paintArea('area-rAcb', null, 'area-r_acb');
 
         // draw claim triangles
         calculateTriangleArea('area-RAD', rg.A.medpos, rg.D.medpos, rg.R.medpos);
-        paintArea( 'area-RAD', null, 'area-_r_a_d' );
+        paintArea('area-RAD', null, 'area-_r_a_d');
 
         calculateTriangleArea('area-RAB', rg.A.medpos, rg.B.medpos, rg.R.medpos);
-        paintArea( 'area-RAB', null, 'area-_r_a_b' );
+        paintArea('area-RAB', null, 'area-_r_a_b');
 
         calculateCurvedTriangleArea('area-RACB', 'tp-arc-_a_b', rg.A.medpos, rg.B.medpos, rg.R.medpos);
-        paintArea( 'area-RACB', null, 'area-_r_a_c_b' );
+        paintArea('area-RACB', null, 'area-_r_a_c_b');
 
         function calculateTriangleArea(rgId, Apos, Bpos, Rpos) {
             var area = toreg(rgId)();
@@ -193,4 +193,4 @@
     // \\// lemma custom addons
     //=========================================================
 
-}) ();
+})();

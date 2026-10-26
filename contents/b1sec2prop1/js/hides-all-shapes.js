@@ -12,17 +12,17 @@
     // and to decoration-shapes
     //*****************************************************************
     function hides_all_shapes() {
-        eachprop( stdMod.decor, dec => {
+        eachprop(stdMod.decor, dec => {
             dec.undisplay = true;
         });
-        rg.pathIx_2_pathSubsteps.forEach( (fragment,fix) => {
-            fragment.forEach( (fgroup,gix) => {
-                fgroup.forEach( ( paintee, mix ) => {
+        rg.pathIx_2_pathSubsteps.forEach((fragment, fix) => {
+            fragment.forEach((fgroup, gix) => {
+                fgroup.forEach((paintee, mix) => {
                     //paintee.undisplay = true;
                     //todm ... make following line to follow from above line
-                    paintee?.svgel && $$.$(paintee.svgel).addClass( 'undisplay' );
-                    let tipArrow$ = haz( paintee, 'vectorArrowSvg$' );
-                    tipArrow$ && tipArrow$.addClass( 'undisplay' );
+                    paintee?.svgel && $$.$(paintee.svgel).addClass('undisplay');
+                    let tipArrow$ = haz(paintee, 'vectorArrowSvg$');
+                    tipArrow$ && tipArrow$.addClass('undisplay');
                 });
             });
         });
@@ -32,9 +32,9 @@
         //to the right they are never removed.  Therefore it's important to
         //hide all of them here (then only show the correct ones in
         //"unmasks-visible-path-svg.js").
-        rg?.pathRacks?.pathRacks?.forEach( (prack, index) => {
+        rg?.pathRacks?.pathRacks?.forEach((prack, index) => {
             const paintee = rg[ 'kepltr-' + (index) ];
-            paintee && $$.$(paintee.svgel).addClass( 'undisplay' );
+            paintee && $$.$(paintee.svgel).addClass('undisplay');
         });
     }
 })();

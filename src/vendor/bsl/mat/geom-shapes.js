@@ -1,6 +1,6 @@
-( function () {
+(function () {
     const ns	= window.b$l;
-    const mat = ns.sn( 'mat' );
+    const mat = ns.sn('mat');
 
     mat.circumscribeCircleOverChordAndBothNormals =
         circumscribeCircleOverChordAndBothNormals;
@@ -18,7 +18,7 @@
         B,      //alternative-A-from-AB
     ) {
         ///if par. chord is missed, chord is set by points A, B
-        if ( !chord ) {
+        if (!chord) {
             chord = [ B[0] - A[0], B[1] - A[1] ];
         }
         //this is a norm to chord:
@@ -32,10 +32,10 @@
     ///returns andgle from interval [0,2PI),
     ///converts atan2 from interval [-PI,PI] to interval [0,2PI),
     ///when atan2 < 0 returns angle from [0,2PI).
-    function pos2angle( pos )
+    function pos2angle(pos)
     {
-        var t = Math.atan2( pos[1], pos[0] );
-        if ( t < 0 ) {
+        var t = Math.atan2(pos[1], pos[0]);
+        if (t < 0) {
             t = 2*Math.PI + t;
         }
         return t;

@@ -33,8 +33,8 @@
         stdMod.trajectoryShapes_2_groups__III();
         {
             let v = rg.speeds.vect[0];
-            var pos = mat.addV( v, rg.A.pos );
-            nspaste( rg.v.pos, pos );
+            var pos = mat.addV(v, rg.A.pos);
+            nspaste(rg.v.pos, pos);
         }
     }
 })();

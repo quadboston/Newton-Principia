@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { stdMod, rg, toreg, } = window.b$l.apptree({
         stdModExportList : { init_model_parameters, }, });
     return;
@@ -9,11 +9,11 @@
         stdMod.initiates_orbit8graph();
 
         //body moves backward on x,
-        toreg( 'vt' )( 'val', 1 );
+        toreg('vt')('val', 1);
         //creates placeholder
-        toreg( 'curvatureCircle' );
+        toreg('curvatureCircle');
 
         rg.allLettersAreHidden = true;
     }
 
-}) ();
+})();

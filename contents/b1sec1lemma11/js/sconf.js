@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { ns, fconf, sconf, topicColors_repo } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
@@ -24,7 +24,7 @@
         // //\\ decorational parameters
         //***************************************************************
         //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var realSvgSize = 2 * (pictureWidth + pictureHeight) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
         //making size to better fit lemma's diagram
@@ -39,16 +39,16 @@
         sconf.default_tp_lightness = 22;
         sconf.default_tp_lightness = 30;
         sconf.default_tp_stroke_width = 8;
-        default_tp_stroke_width = Math.floor( 6 * controlsScale );
-        defaultLineWidth        = Math.floor( 1 * controlsScale );
-        handleRadius            = Math.floor( 4 * controlsScale );
+        default_tp_stroke_width = Math.floor(6 * controlsScale);
+        defaultLineWidth        = Math.floor(1 * controlsScale);
+        handleRadius            = Math.floor(4 * controlsScale);
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius;
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
 
         //this makes hanle's border nicely thin
-        sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
+        sconf.nonhover_width    = Math.max(1, Math.floor(1*controlsScale/1.6));
         //sconf.text_nonhover_width = 1;
         //sconf.nonhover_width = 4;
 
@@ -57,7 +57,7 @@
 
         //sconf.hover_width = 114; //needs hover-width cls at svg-text-el,
                                     //aka for: Δsin(φ),
-        sconf.hover_width       = Math.max( 2, Math.floor( 7*controlsScale/1.6 ) );
+        sconf.hover_width       = Math.max(2, Math.floor(7*controlsScale/1.6));
         //--------------------------------------
         // \\// do override engine defaults,
         //--------------------------------------
@@ -180,7 +180,7 @@
 
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
-        var mod2inn_scale = ( originalPoints.J.pos[1] - originalPoints.A.pos[1] ) / 2;
+        var mod2inn_scale = (originalPoints.J.pos[1] - originalPoints.A.pos[1]) / 2;
 
         var linesArray =
         [
@@ -220,7 +220,7 @@
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
 
-        ns.paste( sconf, {
+        ns.paste(sconf, {
             mediaBgImage : "l11-diagram-3rded.jpg",
             topicColors_elected,
             originalPoints,
@@ -235,4 +235,4 @@
         // \\// geometics parameters
         //--------------------------------------
     }
-}) ();
+})();

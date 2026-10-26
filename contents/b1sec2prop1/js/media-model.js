@@ -19,17 +19,17 @@ function media_upcreate___before_basic() {
     //reestablishes detecton to hide/unhide image for case the state
     //rg.detected_user_interaction_effect_DONE came from subessay launch
     sDomF.detected_user_interaction_effect(
-        !rg.detected_user_interaction_effect_DONE );
+        !rg.detected_user_interaction_effect_DONE);
 
     //***********************************************************
     //todo //patch
-    sn( 'displayPathStep', rg, { value : 1 } );
-    sn( 'stepIx', rg, { value : 1 } );
-    sn( 'p', rg.P, { abs : 1 } );
+    sn('displayPathStep', rg, { value : 1 });
+    sn('stepIx', rg, { value : 1 });
+    sn('p', rg.P, { abs : 1 });
     //***********************************************************
 
-    if ( sconf.TIMER_AND_LOGIC_STEPS_COINSIDE ||
-        ( haz( amode, 'logic_phase') === 'proof' &&
+    if (sconf.TIMER_AND_LOGIC_STEPS_COINSIDE ||
+        (haz(amode, 'logic_phase') === 'proof' &&
             fconf.sappId === "b1sec2prop1"
         )
     ) {
@@ -79,8 +79,8 @@ function media_upcreate___before_basic() {
     //-------------------------------------------------------
     let CStart = rg.C.decStart;
 
-    if ( fconf.sappId === 'b1sec2prop2' ) {
-        lemmaP2coroll.forEach( pn => {
+    if (fconf.sappId === 'b1sec2prop2') {
+        lemmaP2coroll.forEach(pn => {
             rg[pn].decStart = CStart;
             rg[pn].decEnd = CStart+3;
         });
@@ -107,60 +107,60 @@ function media_upcreate___before_basic() {
     //***********************************************************
     //wraps remained tasks into d8d slider
     //if slider is already created ...
-    hafff( rg.slider_sltime, 'upates_timeSlider8unmasksSvg' );
-    hafff( rg.rgslid_dt, 'updates_sliderGUI' );
+    hafff(rg.slider_sltime, 'upates_timeSlider8unmasksSvg');
+    hafff(rg.rgslid_dt, 'updates_sliderGUI');
     //***********************************************************
 
     //----------------------------------------------------
     // //\\ shows next move of the proof
     //----------------------------------------------------
-    if ( !initialization_is_done ) {
+    if (!initialization_is_done) {
         ///launch time work
         initialization_is_done = true;
-        if ( POINTS_BCDE_ARE_ACTIVE ) {
-            rg.B.svgel.addEventListener( 'click', function () {
-                if ( amode.logic_phase === 'proof' ) {
-                    fmethods.executeCapturedState( '1-4' );
+        if (POINTS_BCDE_ARE_ACTIVE) {
+            rg.B.svgel.addEventListener('click', function () {
+                if (amode.logic_phase === 'proof') {
+                    fmethods.executeCapturedState('1-4');
                 }
             });
-            rg.C.svgel.addEventListener( 'click', function () {
-                if ( amode.logic_phase === 'proof' ) {
-                    fmethods.executeCapturedState( '1-C' );
+            rg.C.svgel.addEventListener('click', function () {
+                if (amode.logic_phase === 'proof') {
+                    fmethods.executeCapturedState('1-C');
                 }
             });
-            rg.D.svgel.addEventListener( 'click', function () {
-                if ( amode.logic_phase === 'proof' ) {
-                    fmethods.executeCapturedState( '1-D' );
+            rg.D.svgel.addEventListener('click', function () {
+                if (amode.logic_phase === 'proof') {
+                    fmethods.executeCapturedState('1-D');
                 }
             });
-            rg.E.svgel.addEventListener( 'click', function () {
-                if ( amode.logic_phase === 'proof' ) {
-                    fmethods.executeCapturedState( '1-E' );
+            rg.E.svgel.addEventListener('click', function () {
+                if (amode.logic_phase === 'proof') {
+                    fmethods.executeCapturedState('1-E');
                 }
             });
-            ['B', 'C', 'D', 'E'].forEach( id => {
+            ['B', 'C', 'D', 'E'].forEach(id => {
                 rg[id + 'title'] = $$
-                    .cNS( 'title' )
-                    .to( rg[id].svgel )
-                    .addClass( 'tpstroke' )
-                    .addClass( 'tpfill' )
+                    .cNS('title')
+                    .to(rg[id].svgel)
+                    .addClass('tpstroke')
+                    .addClass('tpfill')
                     ();
             });
         }
     }
     var pointsAreOn = POINTS_BCDE_ARE_ACTIVE &&
                         amode.logic_phase === 'proof';
-    ['B', 'C', 'D', 'E'].forEach( id => {
+    ['B', 'C', 'D', 'E'].forEach(id => {
             let rgX = rg[ id ];
-            if ( has(rgX, 'svgel' )) {
-                rgX.svgel.setAttribute( 'r', pointsAreOn ? '6' : '4' );
+            if (has(rgX, 'svgel')) {
+                rgX.svgel.setAttribute('r', pointsAreOn ? '6' : '4');
                 rgX.svgel.style[ 'fill' ] = pointsAreOn ?
-                '#cccccc' : sDomF.getFixedColor( 'bodyColor' );// TODO: check
+                '#cccccc' : sDomF.getFixedColor('bodyColor');// TODO: check
             //} else {
                 //todo why is this?
                 //c cc( rgX.pname + ' svg is missed in media-model.js' );
             }
-            if ( POINTS_BCDE_ARE_ACTIVE ) {
+            if (POINTS_BCDE_ARE_ACTIVE) {
                 rg[ id + 'title' ].textContent =
                     pointsAreOn ? 'show next move' : '';
             }
@@ -168,28 +168,28 @@ function media_upcreate___before_basic() {
     //----------------------------------------------------
     // \\// shows next move of the proof
     //----------------------------------------------------
-    if (!haz( fconf, 'RESEARCH' )) {
+    if (!haz(fconf, 'RESEARCH')) {
         //exists in popular ver:
         rg['main-legend'].tb.corollary.style.display =
-           ( amode.logic_phase === 'corollary' && amode.subessay === 'cor-1' ) ?
+           (amode.logic_phase === 'corollary' && amode.subessay === 'cor-1') ?
            'table' : 'none';
     }
     ssF.mediaModelInitialized = true;
 }
 
 function pathDelays2forceDraggers() {
-    ['B','C','D','E','F'].forEach( (pname, ix) => {
+    ['B', 'C', 'D', 'E', 'F'].forEach((pname, ix) => {
         let decEnd = rg.C.decEnd+(ix+10)*4;
         let decStart = rg.C.decStart+ix*4;
         let nam0 = 'VV'+ix;
         let nam1 = 'VVV'+ix;
         let doPaintPname = false;
-        Object.assign( rg[ nam0 ], {
+        Object.assign(rg[ nam0 ], {
             decStart    : 111111111,
             decEnd,
             doPaintPname,
         });
-        Object.assign( rg[ nam1 ], {
+        Object.assign(rg[ nam1 ], {
             decStart    : 111111111,
             decEnd,
             doPaintPname,
@@ -218,27 +218,27 @@ function putInBack(...items) {
 function media_upcreate___after_basic() {
     ///todm this fixes refreshment of green free Kepler triangles
     ///when media scales,
-    eachprop( stdMod.decor, (dec,pname) => {
-        if ( !dec.isPoint && dec.pivotNames.length !== 2 ) {
+    eachprop(stdMod.decor, (dec, pname) => {
+        if (!dec.isPoint && dec.pivotNames.length !== 2) {
             dec.poly_2_updatedPolyPos8undisplay();
         }
     });
 
     ///this is a way around canonical config:
     ///placing svg shapes on top of configured z order,
-    if ( !zorderFixed ) {
+    if (!zorderFixed) {
         putInFront(rg['S']);
         putInBack(rg['Bc']);
 
         ///path
         const path = rg.path.pos;
-        path.forEach( (pt, pix) => {
-            if ( !pix ) return;
+        path.forEach((pt, pix) => {
+            if (!pix) return;
             putInFront(rg[ 'force-' + (pix - 1) + '-applied']);
         });
 
         ///put handler kernels over vector tips
-        ['B','C','D','E','F'].forEach( (pname, ix) => {
+        ['B', 'C', 'D', 'E', 'F'].forEach((pname, ix) => {
             putInFront(rg[pname]); // force vector bases
             putInFront(rg['VVV'+ix+'-kernel']); // force draggers
         });

@@ -1,12 +1,12 @@
-( function () {
+(function () {
     var { sn, nspaste, fapp, sconf, ssF, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf, }, });
 
-    var stdL2       = sn('stdL2', fapp );
-    var study       = sn('study', stdL2 );
-    var sdata       = sn('sdata', study );
-    var dataregs    = sn('dataregs', stdL2 );
-    var appstate    = sn('appstate', stdL2 );
+    var stdL2       = sn('stdL2', fapp);
+    var study       = sn('study', stdL2);
+    var sdata       = sn('sdata', study);
+    var dataregs    = sn('dataregs', stdL2);
+    var appstate    = sn('appstate', stdL2);
 
     //=====================================
     // //\\ presets data
@@ -128,7 +128,7 @@
         //=====================================
         // //\\ configures application engine
         //=====================================
-        Object.assign( sconf,
+        Object.assign(sconf,
         {
             //Curve handles can't pass sloped line offset from figure bottom.
             //This reduces "jumping" issues where algorithm that automatically
@@ -238,7 +238,7 @@
             },
         ];
 
-        nspaste( sconf, {
+        nspaste(sconf, {
             topicColors_elected : predT,
             originalPoints,
             linesArray,
@@ -258,4 +258,4 @@
 
         //fapp.stdL2.setupL2data();
     };
-}) ();
+})();

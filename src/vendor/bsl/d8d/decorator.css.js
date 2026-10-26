@@ -11,8 +11,8 @@
 
     //these two lines merge vendor's module to
     //src/base/app-tree.js context:
-    var fapp   = ns.sn('fapp' );
-    var fconf  = ns.sn('fconf',fapp);
+    var fapp   = ns.sn('fapp');
+    var fconf  = ns.sn('fconf', fapp);
 
     //---------------------------------------
     // //\\ configures dimensions
@@ -24,7 +24,7 @@
     //15 as a distance of the search:
     //in this case animation starts a bit earlier
     //than change to mouse search cursor:
-    dm.WIDTH                =  ( fconf.DRAG_HANDLE_HALFHOTSPOT || 15 ) * 2 +
+    dm.WIDTH                =  (fconf.DRAG_HANDLE_HALFHOTSPOT || 15) * 2 +
                                 5; //to overlap dragger-search-hot-spot,
     dm.HEIGHT               = dm.WIDTH;
     dm.DISK_RADIUS          = dm.WIDTH*0.1;
@@ -38,7 +38,7 @@
     dm.ARROW_LENGTH         = dm.WIDTH/3;
     dm.ARROW_HEIGHT         = dm.WIDTH/6;
     var ds = {};
-    Object.keys( dm ).forEach( key => {
+    Object.keys(dm).forEach(key => {
         ds[ key ] = dm[ key ].toFixed(2) + 'px';
     });
     //---------------------------------------
@@ -75,7 +75,7 @@
         parent_classes = parent_classes || [''];
         var ret = '';
         // //\\ css /////////////////////////////////////////
-        parent_classes.forEach( function ( dclass ) {
+        parent_classes.forEach(function (dclass) {
             ////if dclass exists, apparently it constrains css to ownself,
             ////possibly useless and easy to forget when scripting lemma,
             ////example: dclacc = .aspect--english
@@ -106,13 +106,13 @@
         });
         // \\// css /////////////////////////////////////////
 
-        ns.globalCss.update( ret, spinnerClsId );
+        ns.globalCss.update(ret, spinnerClsId);
     }
 
     // defines css for arrow hover animations around draggable points
     function createSliderArrowsCSS()
     {
-        if ( globalCssCreated_flag ) return;
+        if (globalCssCreated_flag) return;
         var ret =
 
         // //\\ css /////////////////////////////////////////
@@ -235,7 +235,7 @@
         /*=============================*/
         `;
         // \\// css /////////////////////////////////////////
-        ns.globalCss.update( ret, 'spinner-core-css');
+        ns.globalCss.update(ret, 'spinner-core-css');
         globalCssCreated_flag = true;
     };
 })();

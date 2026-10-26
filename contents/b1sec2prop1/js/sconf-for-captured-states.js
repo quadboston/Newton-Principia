@@ -4,7 +4,7 @@
             setsCommonT1andT2capture,
             makesProfessorsCaptureFootnotes,
         }});
-        Object.assign( sconf, {
+        Object.assign(sconf, {
             initialTimieStep : 0.75,
         });
         const positionA = {
@@ -25,7 +25,7 @@
 
 
 function setsCommonT1andT2capture() {
-    nspaste( capture, {
+    nspaste(capture, {
         //"1-B", replaced with 1-4
         "1-C": {
             "slider_sltime": {
@@ -61,7 +61,7 @@ function setsCommonT1andT2capture() {
 ///used in by-click-actions in text,
 ///jsobject has indices of this these actions,
 function makesProfessorsCaptureFootnotes() {
-    nspaste( capture, {
+    nspaste(capture, {
         "1-0": {
             "rgslid_dt": {
                 "val": sconf.initialTimieStep

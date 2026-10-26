@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         sn, haz,
         sconf, ssF, sDomF, rg, toreg,
@@ -41,14 +41,14 @@
     function upcreate__pars2rgShape({ pname, pos, wtype, })
     {
         var rgX = null;
-        switch ( wtype )
+        switch (wtype)
         {
             default:
             case 'point':
-                sn( 'pname2point', sconf );
-                rgX = toreg( pname )
-                    ( 'pname', pname )
-                    ( 'pos', pos )
+                sn('pname2point', sconf);
+                rgX = toreg(pname)
+                    ('pname', pname)
+                    ('pos', pos)
                     //( 'pcolor' : sDomF.getFixedColor( pname ) ),
                     ///todm: work out to remove this
                     ///      proliferated coding: medpos, pos, ...  are two places:
@@ -57,7 +57,7 @@
                         'pointWrap',
                         {
                            pos : pos,
-                           pcolor : sDomF.getFixedColor( pname ), //todm remove
+                           pcolor : sDomF.getFixedColor(pname), //todm remove
                            doPaintPname : true, //todm remove
                         }
                     )
@@ -92,15 +92,15 @@
         caption,        //optional
     }) {
         var rgX   = null;
-        switch ( wtype )
+        switch (wtype)
         {
             default:
             case 'point':
-                var rgX = haz( rg, pname );
-                if ( rgX ) {
+                var rgX = haz(rg, pname);
+                if (rgX) {
                     ////rgX does already exist
-                    var rgpos = haz( rgX, 'pos' );
-                    if ( rgpos && pos) {
+                    var rgpos = haz(rgX, 'pos');
+                    if (rgpos && pos) {
                         rgX.pos[0] = pos[0];
                         rgX.pos[1] = pos[1];
                     }
@@ -108,16 +108,16 @@
 
                 //.................................
                 //preserves pos reference if exists
-                pos = rgpos || pos || [0,0];
+                pos = rgpos || pos || [0, 0];
                 //.................................
-                rgX = toreg( pname )
-                    ( 'pname', pname )
-                    ( 'pos', pos )
+                rgX = toreg(pname)
+                    ('pname', pname)
+                    ('pos', pos)
                     ();
-                sn( 'pname2point', sconf );
+                sn('pname2point', sconf);
                 //preserves pos reference if exists
                 sconf.pname2point[ pname ] = pos;
-                rgX.medpos = ssF.mod2inn( pos, );
+                rgX.medpos = ssF.mod2inn(pos,);
                 rgX.caption = caption;
 
             break;
@@ -131,4 +131,4 @@
         return rgX;
     }
 
-}) ();
+})();

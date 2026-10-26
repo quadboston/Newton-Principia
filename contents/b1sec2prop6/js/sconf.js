@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { ns, fconf, sData, sconf, topicColors_repo,} =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
@@ -18,7 +18,7 @@
         var pictureHeight = 400;
 
         //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var realSvgSize = 2 * (pictureWidth + pictureHeight) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize;
         //***************************************************************
         // \\// geometrical scales
@@ -39,17 +39,17 @@
         // //\\ do override engine defaults,
         //      in expands-conf.js,
         //--------------------------------------
-        default_tp_stroke_width = Math.floor( 8 * controlsScale ),
-        defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 3.5 * controlsScale ),
+        default_tp_stroke_width = Math.floor(8 * controlsScale),
+        defaultLineWidth        = Math.floor(1 * controlsScale),
+        handleRadius            = Math.floor(3.5 * controlsScale),
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius; // todo: this doesn't seem to do anything...
 
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
         //this makes hanle's border nicely thin
-        sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
-        sconf.hover_width       = Math.max( 2, Math.floor( 9*controlsScale/1.6 ) );
+        sconf.nonhover_width    = Math.max(1, Math.floor(1*controlsScale/1.6));
+        sconf.hover_width       = Math.max(2, Math.floor(9*controlsScale/1.6));
 
         //make effect apparently only for line-captions,
         //not for point-captions bs
@@ -109,7 +109,7 @@
 
         //intervals of dt or dq to construct an arc for estimated force
         //Sets initial distance of point Q from P
-        if ( FT ) {
+        if (FT) {
             var Dt0 = 0.2276;
         } else {
             sconf.Dq0 = 0.2;
@@ -171,35 +171,35 @@
             [ 510.9, 193.2 ],
             [ 385.6, 156.7 ],
             [300, 137.2], //near Q
-            [217,132],
+            [217, 132],
             [102, 180.1],
-            [51,238 ],
+            [51, 238 ],
             [24.2, 315]
         ];
         sconf.rgPq = 0.270;
         //sconf.tForSagitta0 = 0.168;
-        if ( sconf.BESIER_PIVOTS === 5 ) {
+        if (sconf.BESIER_PIVOTS === 5) {
             ////adjustements of initial positions
             //sconf.tForSagitta0 = 0.172;
             Dt0 = 0.172;
             sconf.rgPq = 0.28;
             let wwcp = [];
-            for ( var i=0; i<curvePivots.length; i++ ) {
-                if ( (i-1)%2 ) {
+            for (var i=0; i<curvePivots.length; i++) {
+                if ((i-1)%2) {
                     let cp = curvePivots[i];
-                    if ( i!==0 && i!==curvePivots.length-1 ) {
+                    if (i!==0 && i!==curvePivots.length-1) {
                         let x = cp[0] - originX_onPicture;
                         let y = cp[1] - originY_onPicture;
                         x *=1.1
-                        y *= i==6 ? 1.45 : ( i==4 ? 1.05 : 1.1 );
+                        y *= i==6 ? 1.45 : (i==4 ? 1.05 : 1.1);
                         cp=[ x+originX_onPicture, y+originY_onPicture  ];
                     }
-                    wwcp.push( cp );
+                    wwcp.push(cp);
                 }
             }
             curvePivots = wwcp;
         }
-        curvePivots = curvePivots.map( pivot => ({
+        curvePivots = curvePivots.map(pivot => ({
             pos         : pivot,
             pcolor      : infoColor,
             letterAngle : 45,
@@ -208,7 +208,7 @@
             doPaintPname : false,
         }));
 
-        var foldPoints  = (new Array(200)).fill({}).map( () => ({
+        var foldPoints  = (new Array(200)).fill({}).map(() => ({
             pcolor      : invalid,
             doPaintPname : false,
         }));
@@ -222,7 +222,7 @@
         // \\// points to approximate and draw original curve
         //---------------------------------------------------
 
-        Object.assign( originalPoints, {
+        Object.assign(originalPoints, {
             A : {
                 pcolor : bodyColor,
                 draggableX  : true,
@@ -335,7 +335,7 @@
 
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
-        var mod2inn_scale = ( posA[0] - posS[0] );
+        var mod2inn_scale = (posA[0] - posS[0]);
 
         var linesArray =
         [
@@ -380,7 +380,7 @@
              }, },
         ];
 
-        ns.paste( sconf, {
+        ns.paste(sconf, {
             orbit_q_start,
             Dt0,
             Q_STEPS,
@@ -399,4 +399,4 @@
             handleRadius,
         });
     }
-}) ();
+})();

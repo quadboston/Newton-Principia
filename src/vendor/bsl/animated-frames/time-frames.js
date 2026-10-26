@@ -2,7 +2,7 @@
 // /var/www/html/sand/web-dev/tools/frontend/btb-master/btb/jq/create-media-runner.js
 //css vs js: https://developer.mozilla.org/en-US/Apps/Fundamentals/Performance/CSS_JavaScript_animation_performance
 
-( function () {
+(function () {
     var {
         tframes,
     } = window.b$l.nstree();
@@ -56,7 +56,7 @@
     function runsMainCycle()
     {
         var fisrtStart = false;
-        if ( !managerStart ) {
+        if (!managerStart) {
             var fisrtStart = true;
             managerStart = [ Date.now() ];
         }
@@ -65,9 +65,9 @@
         unixTime        = Date.now();
         managerElapsed  = unixTime - timeOrigin;
         //if( managerElapsed > ANIMATION_THROTTLER || fisrtStart ) {
-            Object.keys(runners).forEach( runsAddee );
+            Object.keys(runners).forEach(runsAddee);
         //}
-        setTimeout( tframes.runsMainCycle, ANIMATION_THROTTLER ); //todo: setInterval
+        setTimeout(tframes.runsMainCycle, ANIMATION_THROTTLER); //todo: setInterval
     };
 
     /// adds callbacks to "dispatcher",
@@ -94,7 +94,7 @@
         return kName;
     };
 
-    function removesAddee( kName )
+    function removesAddee(kName)
     {
         //other way?:
         // https://stackoverflow.com/questions/12216540
@@ -102,7 +102,7 @@
         delete runners[ kName ];
     };
 
-    function runsAddee( kName )
+    function runsAddee(kName)
     {
         /*
         //this would more economical approach, run only when
@@ -124,8 +124,8 @@
         var lifeElapsed             = now - lifeStart;
         var lifeIntervalElapsed     = now - lifeIntervalStart;
 
-        if ( typeof lifeMax === 'undefined' || lifeElapsed < lifeMax ) {
-            if ( typeof lifeIntervalMax === 'undefined' ||
+        if (typeof lifeMax === 'undefined' || lifeElapsed < lifeMax) {
+            if (typeof lifeIntervalMax === 'undefined' ||
                 lifeIntervalMax <= lifeIntervalElapsed
             ) {
                 rr.lifeIntervalStart = now;
@@ -138,11 +138,11 @@
             lifeFinishFun && lifeFinishFun({
                 lifeElapsed, lifeIntervalElapsed, managerElapsed, now
             });
-            removesAddee( kName );
+            removesAddee(kName);
         }
     };
     //**************************************
     // \\// animation frames framework
     //**************************************
 
-}) ();
+})();

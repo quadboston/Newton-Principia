@@ -14,7 +14,7 @@ const {
     //======================================================
     document.documentElement.className += 'non-loaded';
     $$  .style()
-        .to( document.head )
+        .to(document.head)
         .html(
             "html.non-loaded body { \n" +
                 "opacity :0; \n" +
@@ -27,7 +27,7 @@ const {
     // \\// establishes landing-start-state
     //======================================================
     //main application entry
-    document.addEventListener( "DOMContentLoaded", LANDING_I___app_main );
+    document.addEventListener("DOMContentLoaded", LANDING_I___app_main);
     return;
 
 
@@ -44,13 +44,13 @@ const {
         // //\\ sets ids and titles
         //===============================
         // if fconf.sappId is undefined, sets it to 'home-pane' (otherwise it's the page id, ex b1sec1lemma6)
-        sn( 'sappId', fconf, 'home-pane' );
+        sn('sappId', fconf, 'home-pane');
         ssF.spawns_lemsDefArr(); // contents/content-list.js to fconf
         fapp.setUIConstants();
         fapp.setColors();
         fapp.lemmaDef = fconf.sappId2lemmaDef[ fconf.sappId ];
         document.title = fconf.sappId == 'conics' ? '𝘊𝘰𝘯𝘪𝘤𝘴 reference'  : fapp.lemmaDef.caption;
-        fconf.sappIdUnCamel = nsmethods.toCssIdentifier( fconf.sappId );
+        fconf.sappIdUnCamel = nsmethods.toCssIdentifier(fconf.sappId);
         //=========================
         // \\// sets ids and titles
         //===============================
@@ -66,18 +66,18 @@ const {
         // \\// home8lemmas
         //=========================
 
-        if ( fconf.sappId === 'home-pane' ) {
+        if (fconf.sappId === 'home-pane') {
             //// home. apparently does not do any modules landing-load
             LANDING_VII___landingFlag_8_nextLemmaButtons();
-            sDomN.landingPage8Options_click( !!'goToFrontPage' );
+            sDomN.landingPage8Options_click(!!'goToFrontPage');
             ns.doScrollToHash();
         } else {
-            sDomN.landingPage8Options_click( !'goToFrontPage' );
-            if ( !haz( fconf, 'lemmaHasHomeButton' ) ) {
-                sDomN.homeButton$.css( 'display', 'none' );
+            sDomN.landingPage8Options_click(!'goToFrontPage');
+            if (!haz(fconf, 'lemmaHasHomeButton')) {
+                sDomN.homeButton$.css('display', 'none');
             }
             /// removed LANDING_II___main_lemma() bc it was just making redundant calls
-            ns.globalCss.clearStyleTag( 'home' )
+            ns.globalCss.clearStyleTag('home')
             LANDING_III___config8run_lemmaModules(); //no home-pane modules
         }
     }
@@ -112,14 +112,14 @@ const {
         {
             //"ancestor" scripts list now is "inside" of function fapp.lemmaConfig
             //deep copy, original does not change
-            ns.paste( fapp.lemmaDef, fapp.lemmaConfig() );
+            ns.paste(fapp.lemmaDef, fapp.lemmaConfig());
             //establishes array if missed
-            sn( 'codesList', fapp.lemmaDef, [] );
-            fconf.ancestor_ref = ns.haz( fapp.lemmaDef, 'sappCodeReference' );
+            sn('codesList', fapp.lemmaDef, []);
+            fconf.ancestor_ref = ns.haz(fapp.lemmaDef, 'sappCodeReference');
             fconf.ancestorCode_fullpath = fconf.pathToContents + "/" +
                                           fconf.ancestor_ref;
             // //\\ loads jscodes and continues
-            if ( fconf.ancestor_ref ) {
+            if (fconf.ancestor_ref) {
                 ////preloads referenced jscodes before own jscodes
                 nsmethods.loadScripts(
                     [
@@ -128,7 +128,7 @@ const {
                     ],
                     function () {
                         ////uses own placeholder of-jscodes-list or adds missed
-                        fapp.jsCodesList = sn( 'codesList', fapp.lemmaConfig(), [] );
+                        fapp.jsCodesList = sn('codesList', fapp.lemmaConfig(), []);
                         //loads own jscodes and continues landing
                         LANDING_IV___loadLemmaJSCodes();
                     }
@@ -146,13 +146,13 @@ const {
         function LANDING_IV___loadLemmaJSCodes()
         {
             let imagesToLoadList = fapp.lemmaDef.imagesToLoadList;
-            if ( imagesToLoadList ) {
+            if (imagesToLoadList) {
                 ////loads images first
-                eachprop( imagesToLoadList, function ( codeItem ) {
+                eachprop(imagesToLoadList, function (codeItem) {
                     codeItem.src = fconf.lemmaCode_fullpath + "/img/" + codeItem.src;
                 });
                 ///loads images first and then follows to load scripts
-                nsmethods.loadImages( loadsJSScripts, imagesToLoadList );
+                nsmethods.loadImages(loadsJSScripts, imagesToLoadList);
             } else {
                 ///follows to load scripts
                 loadsJSScripts();
@@ -161,13 +161,13 @@ const {
             function loadsJSScripts()
             {
                 ///we complete paths for ancestor list if any
-                fapp.jsCodesList.forEach( function ( codeItem ) {
+                fapp.jsCodesList.forEach(function (codeItem) {
                     codeItem.src = fconf.ancestorCode_fullpath + "/js/" + codeItem.src;
                 });
 
                 ///adds ancestors (if any) to descendants(if any) and accumulates
                 ///result in fapp.jsCodesList
-                fapp.lemmaDef.codesList.forEach( function ( codeItem ) {
+                fapp.lemmaDef.codesList.forEach(function (codeItem) {
                     fapp.jsCodesList.push({
                         src : fconf.lemmaCode_fullpath + "/js/" + codeItem.src
                         });
@@ -175,7 +175,7 @@ const {
                 //fapp.jsCodesList has ancestor and desc list merged and
                 //polished for fapp.lemmaDef.sappId
                 //goes again to web site and gets all js-codes for lemma:
-                nsmethods.loadScripts( fapp.jsCodesList, loadsJSScripts_atLastLoadedScript );
+                nsmethods.loadScripts(fapp.jsCodesList, loadsJSScripts_atLastLoadedScript);
 
                 function loadsJSScripts_atLastLoadedScript()
                 {
@@ -187,7 +187,7 @@ const {
                     ///executes loaded modules from modules registry
                     ///this is a second and a last round of executing setModule for
                     ///lemma modules
-                    eachprop( srg_modules, function ( setModule, wwProp ) {
+                    eachprop(srg_modules, function (setModule, wwProp) {
                         setModule();
                     });
                     //----------------------------------------------------------
@@ -202,19 +202,19 @@ const {
                         userOptions.usingBackgroundImage() ? fconf.timeToShowOriginalDiagram : 1;
 
                     {
-                        haff( stdMod, 'init_conf' );
+                        haff(stdMod, 'init_conf');
                         //expansion patch: todm: make function for this:
                         //unscaled mediaSize = originalMod2inn_scale * modelSize,
                         sconf.originalMod2inn_scale = sconf.mod2inn_scale;
                         //can add this here: doesImproveSconf();
                         ssF.doExpandConfig();
-                        ns.url2conf( sconf );
+                        ns.url2conf(sconf);
                     }
-                    ns.url2conf( fconf ); //overriding url-query one more time
+                    ns.url2conf(fconf); //overriding url-query one more time
                     //URLs without tabs, such as links between essays,
                     //open the tab the site's own links open
-                    sn( 'logic_phaseId', fconf, 'claim' );
-                    sn( 'aspectId', fconf, ns.getAspectId( fconf.sappId ) );
+                    sn('logic_phaseId', fconf, 'claim');
+                    sn('aspectId', fconf, ns.getAspectId(fconf.sappId));
                     //==========================================================
                     // \\// init_conf for models
                     //==========================================================
@@ -238,8 +238,8 @@ const {
                             //pastes ssD['fixed-colors'] into l caseId2allLemTopics
                             //ssD['fixed-colors'] - goes from JS-code and book's text,
                             //l caseId2allLemTopics is empty at this moment,
-                            eachprop( topicColors_repo_camel2col, ( colorArray, camelId ) => {
-                                var low_tpID = wwCase( camelId );
+                            eachprop(topicColors_repo_camel2col, (colorArray, camelId) => {
+                                var low_tpID = wwCase(camelId);
                                 lowtpid_2_glocss8anchorRack[ low_tpID ] = {
                                     //todo why tpcolarr
                                     'tpcolarr' : colorArray,
@@ -293,8 +293,8 @@ const {
 
         // init legends here to ensure they are in DOM when layout it calculated
         // todo: some pages use stdMod, others ssF - should be same
-        ns.haff( stdMod, 'create_digital_legend' );
-        ns.haff( ssF, 'create_digital_legend' );
+        ns.haff(stdMod, 'create_digital_legend');
+        ns.haff(ssF, 'create_digital_legend');
 
         //======================================================
         // //\\ stdModPatch
@@ -322,7 +322,7 @@ const {
         sapp.init_sapp();
 
         sDomF.populateMenu();
-        ns.haff( sapp, 'finish_sapp_UI' );
+        ns.haff(sapp, 'finish_sapp_UI');
         nsmethods.establishesContentTriggers();
         sapp.isInitialized = true;
 
@@ -343,12 +343,12 @@ const {
         //.todm ... use regEx to cooperate with
         //.other frameworks on html-element
         var de = document.documentElement;
-        de.className = de.className.replace( 'non-loaded', '' );
+        de.className = de.className.replace('non-loaded', '');
         //--------------------------------------------
         // \\// remove_landing_state_from_top_html();
         //--------------------------------------------
-        fmethods.does_set_next_lemma_button_event( 'right' );
-        fmethods.does_set_next_lemma_button_event( 'left' );
+        fmethods.does_set_next_lemma_button_event('right');
+        fmethods.does_set_next_lemma_button_event('left');
 
         //todo: do observe does it fix vertical-misplacement-bug?
         //      remove this fix, reproduce

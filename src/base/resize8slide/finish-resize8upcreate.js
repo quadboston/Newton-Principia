@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { ns,  fmethods, haff, haz, has, nspaste, wrkwin, fconf,
         sconf, ssF, sDomN, dividorFractions, stdMod, }
         = window.b$l.apptree({ sDomNExportList : {
@@ -10,8 +10,8 @@
     ssF.gets_LEGEND_FIXED_FRACTION = gets_LEGEND_FIXED_FRACTION;
 
     /// chain-dispatches callback "resizeHappened"
-    ( function () {
-        var hazR = haz( fmethods, 'resizeHappened' );
+    (function () {
+        var hazR = haz(fmethods, 'resizeHappened');
         fmethods.resizeHappened  = hazR ?
                 () => {
                     hazR();
@@ -49,7 +49,7 @@
         //-------------------------------------------------------------
         // legend tables shown only in some subessays must be shown or
         // hidden for the current one before the legend is measured
-        haff( ssF, 'updatesLegendTablesDisplay' );
+        haff(ssF, 'updatesLegendTablesDisplay');
         if (
             //isMobile
             ns.widthThresholds[ fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD ]()
@@ -62,7 +62,7 @@
             });
         }
         fmethods.resizeHappened();
-        haff( stdMod, 'model8media_upcreate' );
+        haff(stdMod, 'model8media_upcreate');
     }
     ///========================================================
     /// \\// restricts and sets super root and text pane sizes,
@@ -84,7 +84,7 @@
         //let navBarHeight = sDomN.pageNavTopBar$.box().height;
 
         var SSceneH     = window.innerHeight -
-                          ( fconf.doDisplayPageTopNavigatMenu ?
+                          (fconf.doDisplayPageTopNavigatMenu ?
                             navBarHeight : 0
                           );
         ///-------------------------------------------
@@ -215,7 +215,7 @@
             //todo make variable via fconf....
             - sDomN.helpBoxAboveMedia$.box().height; //=helpBoxHeight
 
-        var svgW_Leg = ( simSceneH - legendHeight ) / stdMod.simSceSvg_narrowestAsp;
+        var svgW_Leg = (simSceneH - legendHeight) / stdMod.simSceSvg_narrowestAsp;
         //but, really available width can be smaller:
 
         //***************************************************************************
@@ -252,10 +252,10 @@
             var bgImgW          = Math.min(
                                     (simSceneH / stdMod.simSceSvg_narrowestAsp
                                         - bases_slidersH),
-                                    svgW );
+                                    svgW);
             var legendMargin    = 7;
             //var bgImgOffset     = Math.max( 0, ( svgW - bgImgW - 20 ) / 2 );
-            var bgImgOffset     = Math.max( 0, ( svgW - bgImgW ) / 2 );
+            var bgImgOffset     = Math.max(0, (svgW - bgImgW) / 2);
             var simSceneW       = svgW + 20; // so tool tip and sliderGroup$ line up to svg canvas
             var svgSceneW       = svgW; //proposedRightW - legendWidth;
             var svgSceneH       = simSceneH;
@@ -279,13 +279,13 @@
             //:does set setting legendMarginr
             //-------------------------------------------------
             //does centering legend below the media
-            if ( STATIC_LEGEND ) {
+            if (STATIC_LEGEND) {
                 ////for STATIC_LEGEND, legend dom is ignored
                 var legendMargin = 0;
             } else {
-                var legendMargin = Math.max( 0,
-                    ( ( proposedRightW - consideredLegendWidth
-                    ) ) / 2 );
+                var legendMargin = Math.max(0,
+                    ((proposedRightW - consideredLegendWidth
+                    )) / 2);
             }
             var bgImgOffset = Math.max(0,
                 ((proposedRightW - bgImgW
@@ -343,9 +343,9 @@
                 sliderTop = stdMod.bgImgH - 20;
             }
             sliderGroup$
-                .css( 'top', sliderTop.toFixed() + 'px')
-                .css( 'width', `${sliderWidth}px` )
-                .css( 'left', ((simSceneW - sliderWidth) / 2).toFixed() + 'px')
+                .css('top', sliderTop.toFixed() + 'px')
+                .css('width', `${sliderWidth}px`)
+                .css('left', ((simSceneW - sliderWidth) / 2).toFixed() + 'px')
                 ;
         }
 
@@ -405,7 +405,7 @@
             }
             stdMod.svgVB_H += extendCanvas;
             sliderGroup$
-                .css( 'display', 'inline-block' )
+                .css('display', 'inline-block')
                 //'relative' rather than 'static' so the z-index is enabled for
                 //slider-group in mobile mode.  Otherwise an issue can occur
                 //where the slider can't be dragged in mobile mode, eg. for L4.
@@ -413,10 +413,10 @@
                 //default), and an empty image gets displayed instead of
                 //the background image, and it's position and dimensions are
                 //such that it can be on top of the slider.
-                .css( 'position', 'relative' )
-                .css( 'top', '-80px' )
-                .css( 'left', '0px' )
-                .css( 'width', `${sliderWidth}px` );
+                .css('position', 'relative')
+                .css('top', '-80px')
+                .css('left', '0px')
+                .css('width', `${sliderWidth}px`);
                 ;
                 stdMod.simSceneH = stdMod.svgVB_H + 750;
         } else {
@@ -468,12 +468,12 @@
     function doesTopContainersSizing()
     {
         sDomN.simSScene$
-            .css( 'width', stdMod.simSceneW.toFixed(1) + 'px')
-            .css( 'height', stdMod.simSceneH.toFixed(1) + 'px')
+            .css('width', stdMod.simSceneW.toFixed(1) + 'px')
+            .css('height', stdMod.simSceneH.toFixed(1) + 'px')
             ;
         stdMod.simScene$
-            .css( 'width', stdMod.simSceneW.toFixed(1) + 'px')
-            .css( 'height', stdMod.simSceneH.toFixed(1) + 'px')
+            .css('width', stdMod.simSceneW.toFixed(1) + 'px')
+            .css('height', stdMod.simSceneH.toFixed(1) + 'px')
             ;
     }
 
@@ -514,4 +514,4 @@
         //sometimes.
         return stdMod.bgImgW * sconf.BASES_SLIDER_WIDTH_FACTOR;
     }
-}) ();
+})();

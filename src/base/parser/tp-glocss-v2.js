@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         cssp, eachprop, globalCss, sconf, topics, topicColors_repo
     } = window.b$l.apptree({
@@ -20,7 +20,7 @@
     function v2_topics_2_unhighCss()
     {
         //ccc( 'v2_topics_2_unhighCss' );
-        eachprop( topics.lowtpid_2_glocss8anchorRack, ( gcssRack, low_tpID ) => {
+        eachprop(topics.lowtpid_2_glocss8anchorRack, (gcssRack, low_tpID) => {
             var { fillOpacity, strokeOpacity, rgba_own } = gcssRack;
             var Rtp = ROOT + ' .tp-' + low_tpID;
             var tpOpacityLow_str = gcssRack.lowOpacity.toFixed(3);
@@ -68,7 +68,7 @@ ${Rtp}.tobg {
     background-color : ${rgba_own};
 }
             `;
-            globalCss.replace( ts, 'glocss-'+low_tpID );
+            globalCss.replace(ts, 'glocss-'+low_tpID);
         });
     }
 
@@ -78,8 +78,8 @@ ${Rtp}.tobg {
         nextTplinks,
         doReplace //optional, for prop1,2
     ) {
-        nextTplinks.forEach( (anrack,tplink_ix) => {
-            Object.keys( anrack.tpid2true ).forEach( low_tpID => {
+        nextTplinks.forEach((anrack, tplink_ix) => {
+            Object.keys(anrack.tpid2true).forEach(low_tpID => {
                 var Rtp = ROOT + ' .tp-' + low_tpID;
                 var Rix = ROOT + '.tp-' + tplink_ix;
                 var gcssRack = topics.lowtpid_2_glocss8anchorRack[ low_tpID ];
@@ -120,8 +120,8 @@ ${Rix} .tohidden.tp-${low_tpID} {
     visibility:visible;
 }
                 `;
-                globalCss[ doReplace ? 'replace' : 'update' ]( ts,
-                    'glocss-id-' + low_tpID + '-glocss-ix-'+tplink_ix );
+                globalCss[ doReplace ? 'replace' : 'update' ](ts,
+                    'glocss-id-' + low_tpID + '-glocss-ix-'+tplink_ix);
             });
         });
     }

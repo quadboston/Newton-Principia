@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { ns, fconf, sconf, topicColors_repo } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
@@ -160,12 +160,12 @@
                 doPaintPname : false,
             },
             curveEnd : {
-                pos : [B[0]+50,0],
+                pos : [B[0]+50, 0],
                 undisplayAlways : true,
                 doPaintPname : false,
             },
             curveLeftEnd : {
-                pos : [250,100],
+                pos : [250, 100],
                 undisplayAlways : true,
                 doPaintPname : false,
             },
@@ -209,10 +209,10 @@
         // //\\ curve pars
         //     points for divided differences interpolation
         //----------------------------------
-        var ww1 = [204,67];
-        var ww1 = [244,82];
-        var ww2 = [272,94];
-        var ww2 = [300,110];
+        var ww1 = [204, 67];
+        var ww1 = [244, 82];
+        var ww2 = [272, 94];
+        var ww2 = [300, 110];
         var ww3 = B;
 
         //model's spacial unit in pixels of the picture:
@@ -231,22 +231,22 @@
 
         var givenCurve_pivots = [
             //make curve symmetrical in respect to axis Y
-            [2*A[0]-ww3[0],ww3[1]],
-            [2*A[0]-ww2[0],ww2[1]],
-            [2*A[0]-ww1[0],ww1[1]],
+            [2*A[0]-ww3[0], ww3[1]],
+            [2*A[0]-ww2[0], ww2[1]],
+            [2*A[0]-ww1[0], ww1[1]],
 
             [A[0], A[1]],
             ww1,
             ww2,
             [ww3[0], ww3[1]],
-            [377,206],
+            [377, 206],
         ];
         var ww_MONITOR_Y_FLIP = -1;
         var ww_inn2mod_scale = 1/mod2inn_scale;
         var ww_factor = ww_MONITOR_Y_FLIP * ww_inn2mod_scale;
-        var givenCurve_pivots_inModel = givenCurve_pivots.map( opoint =>
-            [ ( opoint[0] - modorInPicX ) * ww_inn2mod_scale,
-              ( opoint[1] - modorInPicY
+        var givenCurve_pivots_inModel = givenCurve_pivots.map(opoint =>
+            [ (opoint[0] - modorInPicX) * ww_inn2mod_scale,
+              (opoint[1] - modorInPicY
               ) * ww_factor,
             ]
         );
@@ -254,7 +254,7 @@
         // \\// curve pars
         //----------------------------------
 
-        ns.paste( sconf, { // adds these members to globally available sconf
+        ns.paste(sconf, { // adds these members to globally available sconf
             //double back step ../../ is to reuse this path in code for lemma7
             mediaBgImage : "../../b1sec1lemma8/img/d.png",
             givenCurve_pivots_inModel,
@@ -271,4 +271,4 @@
         // \\// geometics parameters
         //--------------------------------------
     }
-}) ();
+})();

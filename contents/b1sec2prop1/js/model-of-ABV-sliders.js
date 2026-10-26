@@ -10,49 +10,49 @@ return;
 function sets_A_v_forces_sliders() {
     //**********************
     //initially does job which sliders do at run-time
-    toreg( 'slider_sltime' )( 'curtime',
-            sconf.unitlessMinTime * sconf.initialTimieStep );
-    toreg( 'speeds' )( 'vect', [ sconf.modelPoints.v0 ] );
-    toreg( 'speedsAracc' )( 'vect', [ sconf.modelPoints.v0 ] );
-    toreg( 'rgslid_dt' )( 'val', sconf.initialTimieStep );
+    toreg('slider_sltime')('curtime',
+            sconf.unitlessMinTime * sconf.initialTimieStep);
+    toreg('speeds')('vect', [ sconf.modelPoints.v0 ]);
+    toreg('speedsAracc')('vect', [ sconf.modelPoints.v0 ]);
+    toreg('rgslid_dt')('val', sconf.initialTimieStep);
     //**********************
 
     //---------------------------------------------------
     //interface for B
     //---------------------------------------------------
-    sn( 'v', rg ).acceptPos = v2params;
+    sn('v', rg).acceptPos = v2params;
 
     ///---------------------------------------------------
     ///interfaces for force hanles
     ///---------------------------------------------------
-    ['B','C','D','E','F'].forEach( (name, ix) => {
+    ['B', 'C', 'D', 'E', 'F'].forEach((name, ix) => {
         let nam1='VVV'+ix;
-        rgX = sn( nam1, rg );
+        rgX = sn(nam1, rg);
         rgX.acceptPos =
-            function ( newVPos, dummyPar, enforceNewPos ) {
+            function (newVPos, dummyPar, enforceNewPos) {
                 return V2forceParams(newVPos, dummyPar, enforceNewPos, ix);
             };
     });
-    sn( 'A', rg ).acceptPos = A2distanceToS;
+    sn('A', rg).acceptPos = A2distanceToS;
 }
 
 ///=============================================================
 /// estimates speed direction in the first step and
 /// resets speed direction;
 ///=============================================================
-function v2params( newPos, dummyPar, ) {
-    var path_Av = mat.subV( newPos, rg.A.pos );
-    var unitAv = mat.unitVector( path_Av );
+function v2params(newPos, dummyPar,) {
+    var path_Av = mat.subV(newPos, rg.A.pos);
+    var unitAv = mat.unitVector(path_Av);
 
     // gets new speed, but speed abs value does not change
-    var newv0 = mat.scaleV( sconf.speed, unitAv.unitVec );
+    var newv0 = mat.scaleV(sconf.speed, unitAv.unitVec);
     var newv0 = path_Av;
 
-    toreg( 'speeds' )( 'vect', [ newv0 ] );
-    toreg( 'speedsAracc' )( 'vect', [ newv0 ] );
+    toreg('speeds')('vect', [ newv0 ]);
+    toreg('speedsAracc')('vect', [ newv0 ]);
 
     //updates dragger position
-    var newP = mat.addV( newv0, rg.A.pos );
+    var newP = mat.addV(newv0, rg.A.pos);
     newPos[0] = newP[0];
     newPos[1] = newP[1];
     return true;
@@ -62,17 +62,17 @@ function v2params( newPos, dummyPar, ) {
 ///when dragging point V, converts V pos change to force-law constant change,
 ///returns true which means newPos is allowed,
 ///=============================================================
-function V2forceParams( newVPos, dummyPar, enforceNewPos, fix ) {
+function V2forceParams(newVPos, dummyPar, enforceNewPos, fix) {
     let nam0='VV'+fix;
     let nam1='VVV'+fix;
     var tstep               = rg.rgslid_dt.val;
     var posB                = rg[nam0].pos;
     var posS                = rg.S.pos;
-    var newBV               = mat.unitVector( mat.subV( newVPos, posB ) );
+    var newBV               = mat.unitVector(mat.subV(newVPos, posB));
     var bvNorm              = newBV.unitVec;
     var newForceAbs         = newBV.abs;
-    var BS                  = mat.unitVector( mat.subV( posB, posS ) );
-    var bsNorm              = mat.scaleV( -1, BS.unitVec );
+    var BS                  = mat.unitVector(mat.subV(posB, posS));
+    var bsNorm              = mat.scaleV(-1, BS.unitVec);
 
     //-------------------------------------
     // //\\ gets abs value of lawConstant A
@@ -81,7 +81,7 @@ function V2forceParams( newVPos, dummyPar, enforceNewPos, fix ) {
     //but for simplicity, write comments here for this power = 2,
     let lawPower = rg.force.inarray[ fix ].lawPower;
     var r2 = Math.exp(
-                -lawPower * Math.log( BS.abs )
+                -lawPower * Math.log(BS.abs)
                 );
     //newForceAbs = displacement = A/r^2 * 2dt^2  => A = move * r^2 / (2dt^2)
     var dt22                = 0.5/(tstep*tstep)
@@ -101,14 +101,14 @@ function V2forceParams( newVPos, dummyPar, enforceNewPos, fix ) {
 ///==============================================================
 /// when dragging, changes initial distance: distance from A to S
 ///==============================================================
-function A2distanceToS( newAPos, dummyPar, ) {
+function A2distanceToS(newAPos, dummyPar,) {
     var posS    = rg.S.pos;
-    var newAS   = mat.unitVector( mat.subV( newAPos, posS ) );
+    var newAS   = mat.unitVector(mat.subV(newAPos, posS));
     //A is too close to S, forbid this configuration
-    if ( newAS.abs < 1e-20 ) return false;
+    if (newAS.abs < 1e-20) return false;
 
     //updates dragger v position
-    var newP = mat.addV( rg.speeds.vect[0], rg.A.pos );
+    var newP = mat.addV(rg.speeds.vect[0], rg.A.pos);
     rg.v.pos[0] = newP[0];
     rg.v.pos[1] = newP[1];
     return true;

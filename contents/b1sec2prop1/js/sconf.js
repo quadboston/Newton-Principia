@@ -3,7 +3,7 @@ const {
     sn, haff, has,
     stdMod, fconf, sconf, ssF,
 } = window.b$l.apptree({ ssFExportList : { init_conf } });
-const linesArray = sn( 'linesArray', sconf, [] );
+const linesArray = sn('linesArray', sconf, []);
 return;
 
 
@@ -48,7 +48,7 @@ function init_conf() {
     //done in picture-system y-coord:
     //(pic.bottom-y=+picHeight)
     sconf.originY_onPicture = activeAreaOffsetOnPictureY +
-        ( sconf.MONITOR_Y_FLIP === -1 ? sconf.pictureActiveArea : 0 );
+        (sconf.MONITOR_Y_FLIP === -1 ? sconf.pictureActiveArea : 0);
     //todm duplic?
     sconf.modorInPicY = sconf.originY_onPicture;
     //.set it from graph editor
@@ -85,12 +85,12 @@ function init_conf() {
 
     fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
     //affects drag hanldes in p1
-    sconf.pointDecoration.r = Math.floor( 5 * sconf.controlsScale );
-    Object.assign( sconf, {
+    sconf.pointDecoration.r = Math.floor(5 * sconf.controlsScale);
+    Object.assign(sconf, {
         //======================================
         // //\\ does shape GUI
         //======================================
-        hover_width : Math.max( 10, Math.floor( 7*sconf.controlsScale/1.6 ) ),
+        hover_width : Math.max(10, Math.floor(7*sconf.controlsScale/1.6)),
         //nonhover_width  : Math.max( 5, Math.floor( 1*sconf.controlsScale/1.6 ) ),
         //this collaborates with impulse line-segment, we are afraide to
         //keep this "undefined",
@@ -166,7 +166,7 @@ function init_conf() {
         const mp = sconf.modelPoints = {};
         const uu = [ medposB[0] - medposA[0], medposB[1] - medposA[1] ];
         const u2 = uu[0]*uu[0] + uu[1]*uu[1];
-        const u = Math.sqrt( u2 );
+        const u = Math.sqrt(u2);
         sconf.mod2inn_scale = u; //initial unit
         sconf.inn2mod_scale = 1/sconf.mod2inn_scale;
         mp.v0 = [
@@ -181,8 +181,8 @@ function init_conf() {
 
     ssF.setsCommonT1andT2capture();
     //this comes from theorem P2; this does not exist in P1;
-    if ( has( ssF, 'init_conf_addon' ) ) {
-        haff( ssF, 'init_conf_addon' );
+    if (has(ssF, 'init_conf_addon')) {
+        haff(ssF, 'init_conf_addon');
     } else {
         ssF.makesProfessorsCaptureFootnotes();
     }

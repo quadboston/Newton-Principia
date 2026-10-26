@@ -1,9 +1,9 @@
-( function () {
+(function () {
     var { sn, $$, fapp, sconf, rg, amode, stdMod, } = window.b$l.apptree({
         stdModExportList : { syncPoints, }, });
-    var stdL2       = sn('stdL2', fapp );
-    var numModel    = sn('numModel', stdL2 );
-    var study       = sn('study', stdL2 );
+    var stdL2       = sn('stdL2', fapp);
+    var numModel    = sn('numModel', stdL2);
+    var study       = sn('study', stdL2);
     return;
 
 
@@ -51,4 +51,4 @@
         }
     }
 
-}) ();
+})();

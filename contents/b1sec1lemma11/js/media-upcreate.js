@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         $$, nsmethods, rg,
         ssF, ssD, sconf,
@@ -33,8 +33,8 @@
 
         function paintCircle() {
             const circleName = 'circleJA';
-            var rgCircle = toreg( circleName )();
-            const centerPos = ssF.mod2inn( rg.J.pos );
+            var rgCircle = toreg(circleName)();
+            const centerPos = ssF.mod2inn(rg.J.pos);
             const radius = sconf.mod2inn_scale * calcRadius();
             rgCircle.svgel = nssvg.u({
                 svgel   : rgCircle.svgel,
@@ -47,8 +47,8 @@
                 cy : centerPos[1],
                 r : radius,
             });
-            $$.$( rgCircle.svgel ).addClass(
-                'tp-' + nsmethods.toCssIdentifier( circleName ) +
+            $$.$(rgCircle.svgel).addClass(
+                'tp-' + nsmethods.toCssIdentifier(circleName) +
                 ' tostroke'
             );
 
@@ -64,4 +64,4 @@
     // \\// lemma custom addons
     //=========================================================
 
-}) ();
+})();

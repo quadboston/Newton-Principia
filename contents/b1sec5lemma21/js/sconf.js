@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { mat, fapp, fconf, sconf, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
@@ -32,7 +32,7 @@
 
         //do not change total dimension of svgdom and the picture,
         //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = ( pictureWidth + pictureHeight ) / 2;
+        var realSvgSize = (pictureWidth + pictureHeight) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
         //sconf.standardSvgSize = 250;
 
@@ -45,17 +45,17 @@
         //      in expands-conf.js,
         //--------------------------------------
         sconf.default_tp_lightness = 30;
-        default_tp_stroke_width = Math.floor( 6 * controlsScale ),
-        defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 6 * controlsScale ),
+        default_tp_stroke_width = Math.floor(6 * controlsScale),
+        defaultLineWidth        = Math.floor(1 * controlsScale),
+        handleRadius            = Math.floor(6 * controlsScale),
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius;
 
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
         //this makes hanle's border nicely thin
-        sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
-        sconf.hover_width       = Math.max( 2, Math.floor( 7*controlsScale/1.6 ) );
+        sconf.nonhover_width    = Math.max(1, Math.floor(1*controlsScale/1.6));
+        sconf.hover_width       = Math.max(2, Math.floor(7*controlsScale/1.6));
 
         //make effect apparently only for line-captions,
         //not for point-captions bs
@@ -99,7 +99,7 @@
         {
             C : [50, originY_onPicture], //550],
             B : [838, originY_onPicture], //552],
-            M : [391-384+originX_onPicture,634],
+            M : [391-384+originX_onPicture, 634],
 
             //:apparently inactive static points
             N : [380-384+originX_onPicture, 476-553+originY_onPicture],
@@ -146,7 +146,7 @@
             //possibly initial_g = initial_Munit.abs/mod2inn_scale;
             initial_g = 0.105;
             //is an absolute value of an angle:
-            gamma = Math.acos( initial_Munit.unitVec[0] );
+            gamma = Math.acos(initial_Munit.unitVec[0]);
             gamma *= 1.01;
 
             //---sets initial decorational param gN
@@ -173,7 +173,7 @@
         var originalPoints =
         {
             C : {
-                  pos: [0,0], //fake pos
+                  pos: [0, 0], //fake pos
                   pcolor: pt.static,
                   cssClass: 'tp-static tp-_C',
                   letterAngle : -90,
@@ -496,8 +496,8 @@
         //----------------------------------------------------
         // //\\  prepares sconf data holder
         //----------------------------------------------------
-        fapp.normalizeSliders( pictureHeight / 500 ); //todo not automated, prolifer.
-        Object.assign( to_sconf, {
+        fapp.normalizeSliders(pictureHeight / 500); //todo not automated, prolifer.
+        Object.assign(to_sconf, {
             topicColors_elected,
             originalPoints,
             linesArray,
@@ -543,7 +543,7 @@
         //----------------------------------------------------
         // //\\ copy-pastes to sconf
         //----------------------------------------------------
-        Object.keys( to_sconf ).forEach( function ( key ) {
+        Object.keys(to_sconf).forEach(function (key) {
             sconf[ key ] = to_sconf[ key ];
         });
         //----------------------------------------------------
@@ -554,4 +554,4 @@
     // \\// inits and sets config pars
     //====================================================
 
-}) ();
+})();

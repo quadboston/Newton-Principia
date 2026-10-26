@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         eachprop, rg, ssF, stdMod,
     } = window.b$l.apptree({
@@ -113,12 +113,12 @@
     // called once per page load
     function create_digital_legend() {
         //console.log(sconf);
-        eachprop( lemma7Data, (tableData, key) => {
-            createTable( key, tableData ); // key = "claim", "proof", etc
+        eachprop(lemma7Data, (tableData, key) => {
+            createTable(key, tableData); // key = "claim", "proof", etc
         });
     }
 
-    function createTable( key, tableData ) {
+    function createTable(key, tableData) {
         var legendScriptParsed = tableData;
         var rowsCount = legendScriptParsed.length;
         var clustersCount = legendScriptParsed[0].length;
@@ -154,4 +154,4 @@
         }
     }
 
-}) ();
+})();

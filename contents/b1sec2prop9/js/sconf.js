@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { ns, fconf, sconf, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
@@ -18,7 +18,7 @@
         var pictureHeight = 600;
 
         //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var realSvgSize = 2 * (pictureWidth + pictureHeight) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
         //***************************************************************
         // \\// geometical scales
@@ -37,16 +37,16 @@
         // //\\ do override engine defaults,
         //      in expands-conf.js,
         //--------------------------------------
-        default_tp_stroke_width = Math.floor( 8 * controlsScale ),
-        defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 3.2 * controlsScale ),
+        default_tp_stroke_width = Math.floor(8 * controlsScale),
+        defaultLineWidth        = Math.floor(1 * controlsScale),
+        handleRadius            = Math.floor(3.2 * controlsScale),
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius;
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
         //this makes hanle's border nicely thin
-        sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
-        sconf.hover_width       = Math.max( 2, Math.floor( 9*controlsScale/1.6 ) );
+        sconf.nonhover_width    = Math.max(1, Math.floor(1*controlsScale/1.6));
+        sconf.hover_width       = Math.max(2, Math.floor(9*controlsScale/1.6));
 
         //make effect apparently only for line-captions,
         //not for point-captions bs
@@ -103,7 +103,7 @@
 
         //intervals of dt or dq to construct an arc for estimated force
         //Sets initial distance of point Q from P
-        if ( FT ) {
+        if (FT) {
             sconf.Dt0 = 0.25;
         } else {
             sconf.Dq0 = 0.25;
@@ -205,7 +205,7 @@
             { 'SP' : { pcolor : estimatedForceColor }, },
         ];
 
-        ns.paste( sconf, {
+        ns.paste(sconf, {
             ro0,
             curveParA,
             Q_STEPS,
@@ -226,4 +226,4 @@
             handleRadius,
         });
     }
-}) ();
+})();

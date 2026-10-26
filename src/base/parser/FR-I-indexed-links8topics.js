@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         sn, $$, eachprop, haz,
         sconf,
@@ -28,42 +28,42 @@
     */
     function exegs__2__dom_indexedLinks_indexedTopics()
     {
-        eachprop( exegs, ( logic_phaseAspects ) => {
-            eachprop( logic_phaseAspects, ( exAspect ) => {
-                exAspect.subexegs.forEach( ( subexeg, exegId ) => {
+        eachprop(exegs, (logic_phaseAspects) => {
+            eachprop(logic_phaseAspects, (exAspect) => {
+                exAspect.subexegs.forEach((subexeg, exegId) => {
                     subexeg.cssCls = ' subessay-menuitem-id-' + exegId;
                     //====================================================
                     // //\\ creates subessay's doms for text and
                     //      subessay menuItem
                     //====================================================
-                    if ( userOptions.shouldShowSubessayMenu(exAspect) ) {
+                    if (userOptions.shouldShowSubessayMenu(exAspect)) {
                         subexeg.subessayCaption =
-                                haz( subexeg.essayHeader, 'subessayCaption' ) ||
-                                haz( subexeg.essayHeader, 'menuCaption' ) ||
+                                haz(subexeg.essayHeader, 'subessayCaption') ||
+                                haz(subexeg.essayHeader, 'menuCaption') ||
                                 subexeg.essayHeader.subessay;
                         subexeg.subessayMenuItem$ = $$
                           .c('div')
-                          .html( subexeg.subessayCaption )
+                          .html(subexeg.subessayCaption)
                           //... wrong wording ... not "toggler" but
                           //    "subessay-selector" === "menu-item"
-                          .cls( 'subessay-toggler highlight-text-disabled' +
+                          .cls('subessay-toggler highlight-text-disabled' +
                             subexeg.cssCls +
 
                             //adds blocker till the first click,
                             //block is done via CSS,
-                            ( haz( sconf,
-                                'DONT_HIGHLIGHT_UNTOUCHED_SELECTED_SUBESSAY_MENU_ITEM' ) ?
+                            (haz(sconf,
+                                'DONT_HIGHLIGHT_UNTOUCHED_SELECTED_SUBESSAY_MENU_ITEM') ?
                                 ' user-untouched' : ''
                             )
                           )
-                          .e( 'click', () => {
-                                if ( ssD.subessayClickDisabled ) return;
+                          .e('click', () => {
+                                if (ssD.subessayClickDisabled) return;
                                 //virtualSubessayClick( subexeg );<<<
                                 var url = window.location.href;
                                 var subessayId = subexeg.essayHeader.subessay;
                                 const needsReload = isReloadNeeded(url, subessayId);
-                                if ( !needsReload ) {
-                                    virtualSubessayClick( subexeg );
+                                if (!needsReload) {
+                                    virtualSubessayClick(subexeg);
                                 }
                                 const match = url.includes('subessayId=');
                                 if (match) {
@@ -82,7 +82,7 @@
                     }
                     subexeg.domEl$ = $$
                       .c('div')
-                      .cls( subexeg.classStr )
+                      .cls(subexeg.classStr)
                       ;
                     subexeg.domEl = subexeg.domEl$();
                     //====================================================
@@ -98,15 +98,15 @@
                     ///   they are non-unJSONED-active Fragment text units
                     ///rawActiveFrag and rawActFrValue are obtained from Book
                     ///with help by ACTION_SPLITTER = /¿/
-                    subexeg.activeFrags.forEach( function ( rawActiveFrag ) {
-                        if ( typeof( rawActiveFrag ) === 'object' ) {
-                            eachprop( rawActiveFrag, (rawActFrValue) => {
-                                ssF.fragment__collectsRawTpLinks( rawActFrValue );
+                    subexeg.activeFrags.forEach(function (rawActiveFrag) {
+                        if (typeof(rawActiveFrag) === 'object') {
+                            eachprop(rawActiveFrag, (rawActFrValue) => {
+                                ssF.fragment__collectsRawTpLinks(rawActFrValue);
                             });
                         } else {
                             //.strange why TOP_ANCH_REG_gu (with flag "g") works
                             //.and TOP_ANCH_REG_u does not
-                            ssF.fragment__collectsRawTpLinks( rawActiveFrag );
+                            ssF.fragment__collectsRawTpLinks(rawActiveFrag);
                         }
                     });
                     //===========================================================
@@ -122,24 +122,24 @@
                 //      this visibility,
                 //************************************************************
                 ///puts togglers on top
-                if ( userOptions.shouldShowSubessayMenu(exAspect)
+                if (userOptions.shouldShowSubessayMenu(exAspect)
                 ) {
                     var subessayMenuContainer$ = exAspect.subessayMenuContainer$ = $$
-                        .c( 'div' )
-                        .cls( 'subessay-menu-container highlight-text-disabled' )
-                        .to( sDomN.essaionsRoot$ )
+                        .c('div')
+                        .cls('subessay-menu-container highlight-text-disabled')
+                        .to(sDomN.essaionsRoot$)
                         ;
-                    exAspect.subexegs.forEach( ( subexeg ) => {
-                        subexeg.subessayMenuItem$.to( subessayMenuContainer$ );
+                    exAspect.subexegs.forEach((subexeg) => {
+                        subexeg.subessayMenuItem$.to(subessayMenuContainer$);
                         $$.c('span')
-                            .addClass( subexeg.cssCls )
-                            .html( '<br>' )
-                            .to( subessayMenuContainer$ );
+                            .addClass(subexeg.cssCls)
+                            .html('<br>')
+                            .to(subessayMenuContainer$);
                     });
                 }
                 ///puts bodies to the bottom
-                exAspect.subexegs.forEach( ( subexeg ) => {
-                    subexeg.domEl$.to( sDomN.essaionsRoot$ );
+                exAspect.subexegs.forEach((subexeg) => {
+                    subexeg.domEl$.to(sDomN.essaionsRoot$);
                 });
                 //************************************************************
                 // \\// here page content injects into html for the first time
@@ -165,7 +165,7 @@
     }
 
     ///emulates user-click and first-user-click
-    function virtualSubessayClick( subexeg )
+    function virtualSubessayClick(subexeg)
     {
         amode.subessay = subexeg.essayHeader.subessay;
 
@@ -175,11 +175,11 @@
             //before this subessay had '.user-clicked-sensitive',
             //note: '.user-clicked-sensitive' is set in text-script,
             //the change is set in CSS
-            .addClass( 'subessay-had-user-clicked' )
+            .addClass('subessay-had-user-clicked')
             ;
         //removes blocker at the first click or first
         //virtual subessay click
-        subexeg.subessayMenuItem$.removeClass( 'user-untouched' ); //vestige?
-        sDomF.menu2lemma( !!'amodel2app_8_extraWork' );
+        subexeg.subessayMenuItem$.removeClass('user-untouched'); //vestige?
+        sDomF.menu2lemma(!!'amodel2app_8_extraWork');
     }
-}) ();
+})();

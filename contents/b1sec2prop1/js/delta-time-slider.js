@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         sn, $$, sv, hafff, globalCss,
         sconf, sDomF, ssF, ssD, toreg, rg,
@@ -28,7 +28,7 @@
         var slCaption0  = '∆t';
 
         ///will be overridden with tp-color if any:
-        var COLOR = sDomF.getFixedColor( sliderId );
+        var COLOR = sDomF.getFixedColor(sliderId);
         var customSliderShift = -20; //picture units
         //=========================================
         // \\// slider api pars
@@ -39,11 +39,11 @@
 
         //leaving this as toolsSliders breaks sliders, needs
         //split from generic slider framework,
-        var toolsSliders_    = sn( 'toolsSliders_',stdMod, [] );
+        var toolsSliders_    = sn('toolsSliders_', stdMod, []);
         var sliderIx        = toolsSliders_.length;
-        toolsSliders_.push( api_rgid );
+        toolsSliders_.push(api_rgid);
 
-        var api         = toreg( api_rgid )();
+        var api         = toreg(api_rgid)();
         var rgX         = api;
         var start_rgid  = 'railsStart_' + sliderId;
         var end_rgid    = 'railsEnd_'   + sliderId;
@@ -52,7 +52,7 @@
         //-------------------------------------------------------------------------
         // //\\ in model units and reference system
         //-------------------------------------------------------------------------
-        var startX            = ( -sconf.originX_onPicture +
+        var startX            = (-sconf.originX_onPicture +
                                    sconf.innerMediaWidth *
                                    sconf.SLIDERS_OFFSET_X
                                 ) * sconf.inn2mod_scale;
@@ -62,7 +62,7 @@
         var startY            = sconf.originY_onPicture
                                         - sconf.innerMediaHeight
                                         + sconf.SLIDERS_OFFSET_Y
-                                        - ( sliderIx
+                                        - (sliderIx
                                             //+ customSlidersAbove
                                           ) * sconf.GENERIC_SLIDER_HEIGHT_Y
                                         + sconf.SLIDERS_LEGEND_HEIGHT
@@ -75,8 +75,8 @@
         //:spawns api pars
         var startPos          = [ startX, startY ];
         var endPos            = [ endX, startY ];
-        toreg( start_rgid )( 'pos', startPos );
-        toreg( end_rgid )( 'pos', endPos );
+        toreg(start_rgid)('pos', startPos);
+        toreg(end_rgid)('pos', endPos);
 
         //--------------------------------------------------------
         // //\\ slider api
@@ -111,7 +111,7 @@
                cssClass         : 'tofill tostroke',
              }
         );
-        $$.$( rails.svgel ).cls( tptpId );
+        $$.$(rails.svgel).cls(tptpId);
         //-------------------------------------
         // \\// adds helpers
         //-------------------------------------
@@ -150,8 +150,8 @@
             },
         });
         //todmm ... patch ... adds tp dimming machinery
-        $$.$( api.text_svg ).addClass( tptpId );
-        globalCss.update( `
+        $$.$(api.text_svg).addClass(tptpId);
+        globalCss.update(`
                 .bsl-simscene svg text.${tptpId} {
                     stroke          : ${COLOR};
                     fill            : ${COLOR};
@@ -209,7 +209,7 @@
             //at the end of job, runs application-provided callback
             //stdMod.unmasks Visib();
             //stdMod.upcreate_ mainLegend();
-            if ( ssF.mediaModelInitialized ) {
+            if (ssF.mediaModelInitialized) {
                 stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
             }
         };
@@ -219,14 +219,14 @@
     //----------------------------------------
 
     ///must be in contex of pointWrap ( like this = rg.B )
-    function processDownEvent( arg )
+    function processDownEvent(arg)
     {
         this.achieved.achieved = this.val;
     }
 
     ///move_2_val8gui8cb
     ///todm: this sub should be automatically throttled
-    function move_2_updates( move_in_model )
+    function move_2_updates(move_in_model)
     {
         var api = this;
         sDomF.detected_user_interaction_effect();
@@ -241,11 +241,11 @@
                             move_in_model[ 0 ] /
                             api.railsLength *
                             sconf.initialTimieStep;
-        newdt = Math.max( sconf.dtMin, Math.min( sconf.initialTimieStep, newdt ) );
+        newdt = Math.max(sconf.dtMin, Math.min(sconf.initialTimieStep, newdt));
         api.val = newdt;
         var posB = rg.path.pos[1];
         var absAB = sconf.speed * newdt;
-        var absB = Math.sqrt( posB[0]*posB[0] + posB[1]*posB[1] );
+        var absB = Math.sqrt(posB[0]*posB[0] + posB[1]*posB[1]);
         var scale = absAB / absB;
         posB[0] = posB[0]*scale;
         posB[1] = posB[1]*scale;
@@ -256,4 +256,4 @@
         stdMod.media_upcreate();
     }
 
-}) ();
+})();

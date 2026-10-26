@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { ssF, sDomF, toreg, rg, } =
         window.b$l.apptree({ stdModExportList : { allPathRacks_2_unseenSVGs, }, });
     return;
@@ -17,7 +17,7 @@
         // //\\ spawns path to
         //      path "rgPoints", Kepler-triangles, free-triangles
         //=======================================================
-        path.forEach( (pt, pix) => {
+        path.forEach((pt, pix) => {
 
             //---------------------------------------------------------
             // //\\ spawns path-points to media,
@@ -39,7 +39,7 @@
             //---------------------------------------------------------
             // //\\ placifies keplerTriangles
             //---------------------------------------------------------
-            if ( pix > 0 ) {
+            if (pix > 0) {
                 const kix           = pix-1;
                 const pkey          = 'kepltr-' + kix;
 
@@ -78,28 +78,28 @@
         // //\\ path to spatial-model-forces
         //      and media-forces
         //---------------------------------------------------------
-        path.forEach( (pt, pix) => {
+        path.forEach((pt, pix) => {
 
             //forces master-index offset is pi = 1 and
             //identified with key 'kepltr-' + (pi-1)
-            if ( pix > 0 ) {
+            if (pix > 0) {
 
                 //*****************************************
                 // //\\ paints forces attached to B, C, ...
                 //*****************************************
                 var kix = pix-1;
                 var fkey = 'force-' + kix;
-                var fview = toreg( fkey )();
+                var fview = toreg(fkey)();
                 var ffkey0 = fkey+'-0';
                 var ffkey1 = fkey+'-1';
-                toreg( ffkey0 )({ undisplay : true })();
-                toreg( ffkey1 )({ undisplay : true })();
+                toreg(ffkey0)({ undisplay : true })();
+                toreg(ffkey1)({ undisplay : true })();
 
-                rg8pos_2_svg( ffkey0, {
+                rg8pos_2_svg(ffkey0, {
                     fill:'transparent',
                     tpclass : 'force-_move hidden',
-                } );
-                rg8pos_2_svg( ffkey1, {
+                });
+                rg8pos_2_svg(ffkey1, {
                     cssClass:'tofill',
                     tpclass : 'force-_move hidden',
                     r : 6, //this is circle's radius
@@ -111,15 +111,15 @@
                 //      not a sagittae,
                 //----------------------------------
                 var wwpname = fkey+'-applied';
-                let pcolor = sDomF.getFixedColor( 'forceColor' )
-                toreg( wwpname )
+                let pcolor = sDomF.getFixedColor('forceColor')
+                toreg(wwpname)
                     ({ undisplay : true })
 
                     ////patch for purpose of drawing a vector tip
-                    ( 'vectorTipIx', 1 )
-                    ( 'tipFraction', 0.4 )
-                    ( 'pcolor', pcolor )
-                    ( 'tipFill', pcolor )
+                    ('vectorTipIx', 1)
+                    ('tipFraction', 0.4)
+                    ('pcolor', pcolor)
+                    ('tipFill', pcolor)
                     ();
                 let forceShape = pivots_2_svgLineInRg(
                     wwpname,
@@ -144,10 +144,10 @@
         // //\\ real path line segment,
         //      apparently, segment after applying the force
         //-------------------------------------------------
-        pathRacks.forEach( (prack, pix) => {
-            if ( pix === pathRacks.length - 1 ) return;
+        pathRacks.forEach((prack, pix) => {
+            if (pix === pathRacks.length - 1) return;
             var wwpname = 'pathSegment-' + pix;
-            toreg( wwpname )({ undisplay : true })();
+            toreg(wwpname)({ undisplay : true })();
             pivots_2_svgLineInRg(
                 wwpname,
                 false,

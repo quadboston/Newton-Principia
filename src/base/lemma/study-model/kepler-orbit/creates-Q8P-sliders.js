@@ -1,14 +1,14 @@
 ///adds Q and P sliders for
 ///for dq and body in
 ///models in propopositions 6-17 in Principia
-( function () {
+(function () {
     var { sn, fconf, ssD, stdMod, sconf, rg, } = window.b$l.apptree({
         stdModExportList : {
             creates_Q8P_sliders,
             creates_A_slider,
             creates__gets_orbit_closest_point,
         },});
-    const qIndexToOrbit = sn( 'qIndexToOrbit', ssD, [] );
+    const qIndexToOrbit = sn('qIndexToOrbit', ssD, []);
     return;
 
 
@@ -19,7 +19,7 @@
             //Ensure solvable and qix exist to help prevent P6 errors when orbits
             //are disconnected
             if (ssD.solvable) {
-                const qix = stdMod.gets_orbit_closest_point( newPos, !!'fromGraph' );
+                const qix = stdMod.gets_orbit_closest_point(newPos, !!'fromGraph');
                 if (qix != null) {
                     rg.P.qix = qix;
                     stdMod.model8media_upcreate();
@@ -30,8 +30,8 @@
         /// point Q slider
         rg.Q.acceptPos = newPos => {
             const Pqix = rg.P.qix;
-            const Qqix = stdMod.gets_orbit_closest_point( newPos );
-            if ( sconf.TIME_IS_FREE_VARIABLE ) {
+            const Qqix = stdMod.gets_orbit_closest_point(newPos);
+            if (sconf.TIME_IS_FREE_VARIABLE) {
                 const timeQ = qIndexToOrbit[ Qqix ].timeAtQ;
                 const timeP = qIndexToOrbit[ Pqix ].timeAtQ;
                 let Dt = timeQ - timeP;
@@ -71,7 +71,7 @@
                 const qQ = qIndexToOrbit[ Qqix ].q;
                 const qP = qIndexToOrbit[ Pqix ].q;
                 let Dq = qQ - qP;
-                if ( sconf.CURVE_REVOLVES ) {
+                if (sconf.CURVE_REVOLVES) {
                     //todo
                     console.error(
                         `At the time of writing this no models "revolve" ` +
@@ -126,7 +126,7 @@
             let b = sconf.ellipseB;
 
             // compute semi-major axis a from ellipse equation
-            let a = Math.sqrt( x*x / (1 - (y*y)/(b*b)) );
+            let a = Math.sqrt(x*x / (1 - (y*y)/(b*b)));
 
             // allow ellipse to be circle, rather than abort at last ellipse
             a = Math.max(a, b);
@@ -179,14 +179,14 @@
             //therefore limits what points can be output.
             const qS = fromGraph ? ssD.qix_graph_start : 0;
             const qE = fromGraph ? ssD.qix_graph_end+1 : qIndexToOrbit.length;
-            for ( let qix=qS; qix<qE; qix++) {
+            for (let qix=qS; qix<qE; qix++) {
                 const point = qIndexToOrbit[qix];
                 if (!point) continue;
                 const pos = point.posBody;
                 const x = r[0]-pos[0];
                 const y = r[1]-pos[1];
                 const d2 = x*x + y*y;
-                if ( qix_min === null || min>d2 ) {
+                if (qix_min === null || min>d2) {
                     min = d2;
                     qix_min = qix;
                 }
@@ -194,4 +194,4 @@
             return qix_min;
         }
    }
-}) ();
+})();

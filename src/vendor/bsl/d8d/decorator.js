@@ -37,7 +37,7 @@
         } = (opt||{});
 
         var { spinnerClsId, dragDecorColor, individual_zindex,
-        } = ( addFeaturesToDecPoint || {} );
+        } = (addFeaturesToDecPoint || {});
         spinnerClsId = spinnerClsId || 'dec-spinner-id='+decorCount_debug;
         //----------------------------------------------
         // \\// api
@@ -49,7 +49,7 @@
         dpdec.createSliderArrowsCSS(); // default arrow styles
         var cls = 'brc-slider-draggee';
         //overrides specific styles like color for specific points
-        if ( addFeaturesToDecPoint ) {
+        if (addFeaturesToDecPoint) {
             dpdec.creates_spinnerOwnCss(
                 decorCount_debug,
                 spinnerClsId,
@@ -59,9 +59,9 @@
             );
             cls += ' ' + spinnerClsId;
         }
-        if ( orientation === 'horiz' ) {
+        if (orientation === 'horiz') {
             cls += ' axis-y';
-        } else if ( orientation ) {
+        } else if (orientation) {
             cls += ' ' + orientation;
         }
         //----------------------------------------------
@@ -71,32 +71,32 @@
         //----------------------------------------------
         // //\\ builds 3 DOM elements
         //----------------------------------------------
-        var decPoint = document.createElement( 'div' );
-        spinner_domParent.appendChild( decPoint );
-        var mouseoverCb = haz( addFeaturesToDecPoint, 'mouseoverCb' );
-        if ( mouseoverCb ) {
-            decPoint.addEventListener( 'mouseover', (ev) => {
-                mouseoverCb( ev, decPoint );
+        var decPoint = document.createElement('div');
+        spinner_domParent.appendChild(decPoint);
+        var mouseoverCb = haz(addFeaturesToDecPoint, 'mouseoverCb');
+        if (mouseoverCb) {
+            decPoint.addEventListener('mouseover', (ev) => {
+                mouseoverCb(ev, decPoint);
             });
         }
-        var mouseleaveCb = haz( addFeaturesToDecPoint, 'mouseleaveCb' );
-        if ( mouseleaveCb ) {
-            decPoint.addEventListener( 'mouseleave', (ev) => {
-                mouseleaveCb( ev, decPoint );
+        var mouseleaveCb = haz(addFeaturesToDecPoint, 'mouseleaveCb');
+        if (mouseleaveCb) {
+            decPoint.addEventListener('mouseleave', (ev) => {
+                mouseleaveCb(ev, decPoint);
             });
         }
 
-        decPoint.setAttribute( 'class', cls );
-        if ( tooltip ) {
-            decPoint.setAttribute( 'title', tooltip );
+        decPoint.setAttribute('class', cls);
+        if (tooltip) {
+            decPoint.setAttribute('title', tooltip);
         }
-        var left = document.createElement( 'div' );
-        left.setAttribute( 'class', 'brc-slider-draggee-left' );
-        decPoint.appendChild( left );
+        var left = document.createElement('div');
+        left.setAttribute('class', 'brc-slider-draggee-left');
+        decPoint.appendChild(left);
 
-        var right = document.createElement( 'div' );
-        right.setAttribute( 'class', 'brc-slider-draggee-right' );
-        decPoint.appendChild( right );
+        var right = document.createElement('div');
+        right.setAttribute('class', 'brc-slider-draggee-right');
+        decPoint.appendChild(right);
         //----------------------------------------------
         // \\// builds 3 DOM elements
         //----------------------------------------------

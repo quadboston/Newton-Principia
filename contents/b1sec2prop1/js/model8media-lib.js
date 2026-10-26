@@ -14,10 +14,10 @@
 
 
     ///returns protected time
-    function protects_curTime_ranges( ctime ) {
+    function protects_curTime_ranges(ctime) {
         let sl = rg.slider_sltime;
-        ctime = ( ctime || ctime === 0 ) ? ctime : sl.curtime;
-        ctime = Math.min( ctime, sconf.timeRange * 0.999999 );
+        ctime = (ctime || ctime === 0) ? ctime : sl.curtime;
+        ctime = Math.min(ctime, sconf.timeRange * 0.999999);
         sl.curtime = ctime = Math.max(
             ctime,
             sconf.unitlessMinTime * rg.rgslid_dt.val
@@ -41,9 +41,9 @@
         //st -= rg.substepIx < 2 ? 1 : 0;
         var pos0    = path[ st-1 ];
         var pos1    = path[ st ];
-        nspaste( rg.P.pos, mat.dropPerpendicular( rg.S.pos, pos0, pos1 ) );
-        nspaste( rg.T.pos, pos0 );
+        nspaste(rg.P.pos, mat.dropPerpendicular(rg.S.pos, pos0, pos1));
+        nspaste(rg.T.pos, pos0);
         //rg.P.p is unit vector interface
-        rg.P.p = mat.p1_to_p2( rg.S.pos, rg.P.pos );
+        rg.P.p = mat.p1_to_p2(rg.S.pos, rg.P.pos);
     }
 })();

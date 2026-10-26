@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { fconf, stdMod, sconf, } = window.b$l.apptree({ stdModExportList : {
             recreates_q2xy,
             recalculateOrbitStartAndEnd,
@@ -16,11 +16,11 @@
         stdMod.computeOrbitXCenter = computeOrbitXCenter;
         return;
 
-        function q2xy( q )
+        function q2xy(q)
         {
             //denomenator
             var den = 1 - op.eccentricity * Math.cos(q);
-            if ( den === 0 ) {
+            if (den === 0) {
                 den = 1e-20; // avoid singularity (can't divide by zero)
             }
 
@@ -28,8 +28,8 @@
             var r = op.latus / den;
 
             return [
-                r * Math.cos( q + op.mainAxisAngle ) + center[0],
-                r * Math.sin( q + op.mainAxisAngle ) + center[1],
+                r * Math.cos(q + op.mainAxisAngle) + center[0],
+                r * Math.sin(q + op.mainAxisAngle) + center[1],
             ];
         }
 
@@ -74,4 +74,4 @@
             stdMod.rebuilds_orbit(true);
         }
     };
-}) ();
+})();

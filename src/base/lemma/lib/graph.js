@@ -3,7 +3,7 @@
 // legends, plot colors, and CSS.
 // Any number of graphs can be created.
 
-( function () {
+(function () {
     var { $$, sDomF, nsmethods, haz, globalCss, stdMod, }
         = window.b$l.apptree({ stdModExportList : { createsGraph, }, });
     var GLOBAL_CSS_APPENDED = false;
@@ -30,7 +30,7 @@
         graph.setsGraphVisible = setsGraphVisible;
         ///creates graph dom container
         const {container$, graph_dimX, graph_dimY} =
-            createsGraphContainer( parentDom$ );
+            createsGraphContainer(parentDom$);
         ///creates low tier api
         graph.chart = nsmethods.createsGraphFramework({
             parent : container$,
@@ -61,13 +61,13 @@
             drawDecimalX = typeof drawDecimalX === 'undefined' ? true : drawDecimalX;
 
             //first array mast be enabled
-            let graphArrayMask = haz( graph, 'graphArrayMask' );
+            let graphArrayMask = haz(graph, 'graphArrayMask');
 
             var { legendText, legendX } = customXLegend ?
                 customXLegend() :
                 { legendText: 'Distance from force (SP)', legendX : -560 };
             const { textColor, axisYLegend, axisXLegend, } =
-                graphAxisLegends( legendText, legendX );
+                graphAxisLegends(legendText, legendX);
             //==================================================
             // //\\ calls api
             // //\\ calls low tier api
@@ -81,8 +81,8 @@
                 style : {
                    //'stroke-width' : 2, //destroys tp-machine
                 },
-                axisX : axisXStyle( textColor ),
-                axisY : axisYStyle( textColor ),
+                axisX : axisXStyle(textColor),
+                axisY : axisYStyle(textColor),
                 drawDecimalY,
                 drawDecimalX,
                 doSideAxes : true,
@@ -102,7 +102,7 @@
                 yMin,
                 yMax,
             });
-            graph.chart.gmedia$.addClass( 'graph-media' );
+            graph.chart.gmedia$.addClass('graph-media');
             //==================================================
             // \\// calls low tier api
             //==================================================
@@ -125,7 +125,7 @@
         }
 
         ///horizontal axis x pars, font, etc,
-        function axisXStyle( textColor )
+        function axisXStyle(textColor)
         {
             return {
                 'font-size'     : '18px',
@@ -138,7 +138,7 @@
             };
         }
 
-        function axisYStyle( textColor )
+        function axisYStyle(textColor)
         {
             return {
                 'font-size'     : '20px',
@@ -154,12 +154,12 @@
         //==================================================
         // //\\ shows/hides graph container
         //==================================================
-        function setsGraphVisible( isVisible )
+        function setsGraphVisible(isVisible)
         {
-            if ( isVisible ) {
-                container$.removeClass( 'hidden' );
+            if (isVisible) {
+                container$.removeClass('hidden');
             } else {
-                container$.addClass( 'hidden' );
+                container$.addClass('hidden');
             }
         }
         //==================================================
@@ -178,9 +178,9 @@
     ///===========================================
     function appendsGraphCSS()
     {
-        if ( GLOBAL_CSS_APPENDED ) return;
+        if (GLOBAL_CSS_APPENDED) return;
         GLOBAL_CSS_APPENDED = true;
-        globalCss.update( `
+        globalCss.update(`
             .graph-container {
                 position: relative;
                 width   : 95%;
@@ -216,25 +216,25 @@
     //stdMod.graph.colorThreadArray[0] = sDomF.getFixedColor( 'force' );
     function defaultPlotColors() {
         let colorThreadArray = [
-            sDomF.getFixedColor( 'force' ),
-            sDomF.getFixedColor( 'estimatedForceColor' ),
+            sDomF.getFixedColor('force'),
+            sDomF.getFixedColor('estimatedForceColor'),
         ];
         return colorThreadArray;
     }
 
-    function createsGraphContainer( parentDom$ ) {
+    function createsGraphContainer(parentDom$) {
         const container$ = $$.div()
-        .addClass( 'graph-container' )
-        .to( $$.div().to( parentDom$ )
-                .addClass( 'graph-parent' )
+        .addClass('graph-container')
+        .to($$.div().to(parentDom$)
+                .addClass('graph-parent')
                 //.css( 'position', 'absolute' )
 
                 //:this data sets outer dimensions of the graph
-                .css( 'width', '400px' )
-                .css( 'height', '230px' )
-                .css( 'top', '0' )
-                .css( 'left', '0' )
-                .css( 'z-index', '111111' )
+                .css('width', '400px')
+                .css('height', '230px')
+                .css('top', '0')
+                .css('left', '0')
+                .css('z-index', '111111')
         );
         //creates low tier api
         const graph_dimX = 1000;  //innerWidth
@@ -264,13 +264,13 @@
             {	// chart title
                 text    :   '<text><tspan class="tp-force tofill tobold hover-width"' +
                             //overrides tp machinery
-                            ' style="fill:'+getFixedColor( 'force' ) + '; stroke:'+getFixedColor( 'force' ) + ';"' +
+                            ' style="fill:'+getFixedColor('force') + '; stroke:'+getFixedColor('force') + ';"' +
                             '>Actual</tspan>' +
                             '<tspan> and </tspan>' +
 
                             '<tspan class="tofill tobold hover-width"' +
                             //overrides tp machinery
-                            ' style="fill:'+getFixedColor( 'estimatedForceColor' ) + '; stroke:' + getFixedColor( 'estimatedForceColor' ) + ';"' +
+                            ' style="fill:'+getFixedColor('estimatedForceColor') + '; stroke:' + getFixedColor('estimatedForceColor') + ';"' +
                             '>Estimated' +
                             '</tspan>' +
 
@@ -306,10 +306,10 @@
     ///this thing fails if not to synch it with mask,
     ///the unmasked indices must be the same as here:
     function setsGraphTpClasses(chart) {
-        chart.plotIx2plotSvg.forEach( (pl,pix) => {
+        chart.plotIx2plotSvg.forEach((pl, pix) => {
             switch (pix) {
-                case 0: pl && $$.$(pl).addClass( 'tp-force tostroke' ); break;
+                case 0: pl && $$.$(pl).addClass('tp-force tostroke'); break;
             }
         });
     }
-}) ();
+})();

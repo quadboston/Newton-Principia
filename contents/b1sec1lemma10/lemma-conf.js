@@ -1,5 +1,5 @@
-( function () {
-    window.b$l.sn('fapp' ).lemmaConfig = function () { return {
+(function () {
+    window.b$l.sn('fapp').lemmaConfig = function () { return {
 
         codesList :
         [
@@ -19,4 +19,4 @@
             'txt/cohen.txt',
         ],
     }; }
-}) ();
+})();

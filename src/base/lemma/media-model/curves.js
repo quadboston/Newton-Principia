@@ -1,4 +1,4 @@
-( function () {
+(function () {
     const {
         ns, sn, haz,
         ssF, sDomF, rg,
@@ -65,12 +65,12 @@
         //-----------------------------------------------------------------
         // //\\ model-function to media-function conversion
         //-----------------------------------------------------------------
-        if ( magnitudeX && magnitudeY ) {
+        if (magnitudeX && magnitudeY) {
             var mediaFunction   = ssF.modFun2scaledXY({ fun, magnitudeX, magnitudeY });
         } else {
             //todm: replace "magnitude || 1 " with "magnitude"
             //      bs already inside the fun ...
-            var mediaFunction   = ssF.modFun2innFun( fun, magnitude || 1 );
+            var mediaFunction   = ssF.modFun2innFun(fun, magnitude || 1);
         }
         //-----------------------------------------------------------------
         // \\// model-function to media-function conversion
@@ -80,28 +80,28 @@
         // //\\ rgName, pointA,B, start, step, tp-class
         //-----------------------------------------------------------------
         stepsCount = stepsCount || 85;
-        if ( pointA && pointB ) {
+        if (pointA && pointB) {
             rgName              = rgName || 'arc-' + pointA.pname + pointB.pname;
         } else {
             rgName              = rgName || 'curve-' + pointsName;
-            if ( pointsName ) {
-                var splitted        = pointsName.split( pointsName.indexOf(',')>-1 ? ',' : '' );
-                if ( ns.h( rg, splitted[0] ) && ns.h( rg, splitted[1] ) ) {
+            if (pointsName) {
+                var splitted        = pointsName.split(pointsName.indexOf(',')>-1 ? ',' : '');
+                if (ns.h(rg, splitted[0]) && ns.h(rg, splitted[1])) {
                     pointA          = rg[splitted[0]];
                     pointB          = rg[splitted[1]];
                 }
             }
         }
-        if ( !start && start !== 0 ) {
-            if ( pointA && pointB ) {
+        if (!start && start !== 0) {
+            if (pointA && pointB) {
                 var start           = pointA.pos[0];
-                var step            = ( pointB.pos[0] - start ) / stepsCount;
+                var step            = (pointB.pos[0] - start) / stepsCount;
             } else {
                 var start           = 0;
                 var step            = 0.015*85/stepsCount;
             }
         }
-        addedCssClass = sDomF.toCssIdentifier( addedCssClass || 'tp-' + rgName );
+        addedCssClass = sDomF.toCssIdentifier(addedCssClass || 'tp-' + rgName);
         //-----------------------------------------------------------------
         // \\// rgName, pointA,B, start, step, tp-class
         //-----------------------------------------------------------------
@@ -110,7 +110,7 @@
         // //\\ registers and paints to svg
         //====================================================
         //this curve registry item
-        var rgX = sn( rgName, rg );
+        var rgX = sn(rgName, rg);
         //rgX.rgName = rgName;
         rgX.svg = //no need in this assignment,
                   //todm: get rid of this assignment and test,
@@ -118,7 +118,7 @@
                   //assigned to rgX,
             ns.svg.curve({
                 rgX,
-                xOFy            : false,//true,
+                xOFy            : false, //true,
                 stepsCount,
                 addToStepCount,
                 /*
@@ -132,15 +132,15 @@
                 start,
                 step,
                 curve           : mediaFunction,
-                stroke          : stroke || sDomF.getFixedColor( rgName ),
+                stroke          : stroke || sDomF.getFixedColor(rgName),
                 "stroke-width"  : strokeWidth || 2,
                 svgel           : rgX.svgel, //[ rgName ].svg,
                 dontClose       : true,
                 parent          : mmedia,
             });
         rgX.svgel$
-            .toggleClass( 'undisplay', ns.haz( rgX, 'undisplay' ) )
-            .addClass( 'tostroke thickable ' + addedCssClass);
+            .toggleClass('undisplay', ns.haz(rgX, 'undisplay'))
+            .addClass('tostroke thickable ' + addedCssClass);
         //====================================================
         // \\// registers and paints to svg
         //====================================================
@@ -148,7 +148,7 @@
         //====================================================
         // //\\ annotates curve if requested
         //====================================================
-        if ( annotationConfig ) {
+        if (annotationConfig) {
             const {
                 //required
                 fontSize,
@@ -158,17 +158,17 @@
                     annPointsPositions,
                     annPointsCount,
             } = annotationConfig;
-            if ( annPointsPositions ) {
+            if (annPointsPositions) {
                 var ann_COUNT = annPointsPositions.length;
             } else {
                 var ann_COUNT = annPointsCount;
-                var incr = step*stepsCount / ( ann_COUNT - ( addToStepCount ? 1 : 0 ) );
+                var incr = step*stepsCount / (ann_COUNT - (addToStepCount ? 1 : 0));
             }
             var rgAnnPoints = [];
-            for ( aix=0; aix<ann_COUNT; aix++ ) {
+            for (aix=0; aix<ann_COUNT; aix++) {
                 var pointParam  = annPointsPositions ?
                                   annPointsPositions[aix].par : start + incr * aix;
-                var pos         = fun( pointParam );
+                var pos         = fun(pointParam);
                 var annName     = 'ann-' + rgName + '-' + aix;
                 var rgAnn = rgAnnPoints[ aix ] = ssF.declareGeomtric({
                             pname   : annName,
@@ -177,12 +177,12 @@
                                 pointParam, pointIndex : aix, pointPos : pos
                             }),
                 });
-                rgAnn.undisplay = haz( rgX, 'undisplay' );
-                letterPars && Object.assign( rgAnn, letterPars );
-                if ( annPointsPositions ) {
-                    var ownLetterPars =  haz( annPointsPositions[aix], 'letterPars' );
-                    if ( ownLetterPars ) {
-                        Object.assign( rgAnn, ownLetterPars );
+                rgAnn.undisplay = haz(rgX, 'undisplay');
+                letterPars && Object.assign(rgAnn, letterPars);
+                if (annPointsPositions) {
+                    var ownLetterPars =  haz(annPointsPositions[aix], 'letterPars');
+                    if (ownLetterPars) {
+                        Object.assign(rgAnn, ownLetterPars);
                     }
                 }
             }
@@ -195,4 +195,4 @@
         return rgX;
     }
 
-}) ();
+})();

@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         //nsd, //vital-for-mobile
         $$, nspaste, cssp, d8dp,
@@ -81,15 +81,15 @@
         //      root, handle, and css-placeholder
         //---------------------------
         var wResizer = $$
-            .c( 'div' )
-            .a( 'class', cssp +'-resizable-handle' )
-            .a( 'id', cssp +'-resizable-handle' )
-            .to( sDomN.simSScene$ )
+            .c('div')
+            .a('class', cssp +'-resizable-handle')
+            .a('id', cssp +'-resizable-handle')
+            .to(sDomN.simSScene$)
             ();
         var mediaHorizontalHandler = $$
-            .c( 'img' )
-            .a( 'src', fconf.engineImg + '/vertical.png' )
-            .to( wResizer )
+            .c('img')
+            .a('src', fconf.engineImg + '/vertical.png')
+            .to(wResizer)
             ();
         ///dynamic CSS placeholder
         sDomN.mediaHorizontalHandlerCSS$ = $$.style().to(document.head);
@@ -126,9 +126,9 @@
         ///=============================================================================
         /// defines drag processor
         ///=============================================================================
-        function doProcess( arg )
+        function doProcess(arg)
         {
-            switch ( arg.down_move_up ) {
+            switch (arg.down_move_up) {
                 case 'down':
                     //Store the partition handle's start position,
                     //also update the sessionStorage.
@@ -147,4 +147,4 @@
         }
     }
 
-}) ();
+})();

@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         ssF, stdMod, topicColors_repo
     } = window.b$l.apptree({
@@ -11,12 +11,12 @@
 
     function create_digital_legend()
     {
-        create_digital_legend_for_logic_phase( 'claim' );
-        create_digital_legend_for_logic_phase( 'proof' );
-        create_digital_legend_for_logic_phase( 'corollary' );
+        create_digital_legend_for_logic_phase('claim');
+        create_digital_legend_for_logic_phase('proof');
+        create_digital_legend_for_logic_phase('corollary');
     }
 
-    function create_digital_legend_for_logic_phase( logic_phase )
+    function create_digital_legend_for_logic_phase(logic_phase)
     {
         const {
             given,
@@ -75,4 +75,4 @@
     // \\// creates logic_phase table
     //=========================================
 
-}) ();
+})();

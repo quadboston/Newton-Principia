@@ -35,7 +35,7 @@
         //======================================================
         // //\\ definitions
         //======================================================
-        !haz( sconf, 'diagramPannerDisabled' ) &&
+        !haz(sconf, 'diagramPannerDisabled') &&
                 sDomF.creates_diagramPanner_in_rgX8dragWrapGenList();
         //------------------------------------------------------------------
         // //\\ rerouts name "media_upcreate_generic"
@@ -46,12 +46,12 @@
         //      media_upcreate          -       for non-standard, past lemmas
         //      media_upcreate_generic    -     for modern, half-automated lemmas
         //ccc( 'Remodel: media_upcreate exists = ' + !!haz( stdMod, 'media_upcreate' ) );
-        stdMod.media_upcreate = haz( stdMod, 'media_upcreate' ) ||
+        stdMod.media_upcreate = haz(stdMod, 'media_upcreate') ||
                                 ssF.media_upcreate_generic;
         //------------------------------------------------------------------
         // \\// rerouts name "media_upcreate_generic"
         //------------------------------------------------------------------
-        haff( stdMod, 'createsModelFunctions_before___init_model_parameters' );
+        haff(stdMod, 'createsModelFunctions_before___init_model_parameters');
         rgDict__2__dragWrap_gen_list();
         //======================================================
         // \\// definitions
@@ -67,7 +67,7 @@
         //sDomN.simSScene$$().offsetTop=500;
         //sDomN.medRoot$().offsetTop=550;
         //fapp.homePage$().offsetTop=0;
-        sDomN.midddleButton$.a( 'tabindex', '0');
+        sDomN.midddleButton$.a('tabindex', '0');
         //breaks border's color: sDomN.midddleButton$().focus();
         //==============================================================
         // \\// shifted-landing-frames-fix-patch
@@ -76,33 +76,33 @@
         stdMod.init_model_parameters();
         //todm: rename with "dragWrapGenList":
         //on Dec 4, 2021, this is only for lem. 20,21,5
-        haff( stdMod, 'populates__cust_draggers_list' );
+        haff(stdMod, 'populates__cust_draggers_list');
 
         {
             ////for "sites" which have user-guiding-scenarios
-            var parsesTopicScenarios = haz( ssF, 'parsesTopicScenarios' );
-            if ( parsesTopicScenarios ) {
+            var parsesTopicScenarios = haz(ssF, 'parsesTopicScenarios');
+            if (parsesTopicScenarios) {
 
                 //apparently, this completes assembling of scripts among
                 //them own: pieces are merged to be later parsed with
                 //parsesTopicScenarios()
-                arios.forEach( as => { as(); } );
+                arios.forEach(as => { as(); });
 
                 //apparently, pieces are parsed now
-                haff( ssF, 'parsesTopicScenarios' );
-                haff( ssF, 'doInitTopicScenarioCss' );
+                haff(ssF, 'parsesTopicScenarios');
+                haff(ssF, 'doInitTopicScenarioCss');
             }
         }
 
         ssF.in_subessay_launch____amode2lemma();
-        haff( stdMod, 'sliders_value2pos' );
+        haff(stdMod, 'sliders_value2pos');
 
-        if ( fconf.sappId === 'b3lemma5' ) {
+        if (fconf.sappId === 'b3lemma5') {
             stdMod.media_upcreate();
         }
         !sconf.skipGenDragList &&
             sDomF.createsFW__8__executes_dragWr_gens_list();
-        if ( fconf.sappId === 'b1sec1lemma9' ||
+        if (fconf.sappId === 'b1sec1lemma9' ||
             fconf.sappId === 'b1sec1lemma10'
         ) {
             //c cc( 'calls sDomF.createsFW__8__executes_dragWr_gens_list ' );
@@ -111,14 +111,14 @@
             //c cc( 'calling by expecting it exists, stdMod.medD8D=', !!stdMod.medD8D );
             //this is an overengineering:
             stdMod.media_upcreate();
-            stdMod.initDragModel( stdMod.medD8D )
+            stdMod.initDragModel(stdMod.medD8D)
         }
         //=======================================================
         // //\\ executes "lesson-guide-scenario" from start-event
         //=======================================================
-        eachprop( exegs[ amode.logic_phase ][ amode.aspect ].subessay2subexeg,
+        eachprop(exegs[ amode.logic_phase ][ amode.aspect ].subessay2subexeg,
                     (subessayRack, sname) => {
-            if ( haz( subessayRack, 'stateId2state' ) ) {
+            if (haz(subessayRack, 'stateId2state')) {
                 subessayRack.scenario_stateId = 'start';
                 //user activity in every subessay becomes aware about
                 //beginning of the lesson
@@ -129,36 +129,36 @@
         // \\// executes "lesson-guide-scenario" from start-event
         //=======================================================
 
-        if ( has( stdMod, 'model8media_upcreate' ) ) {
+        if (has(stdMod, 'model8media_upcreate')) {
             ////to=200 feels choppy,
             ////to=100 helps,
-            stdMod.model8media_upcreate = ns.throttle( stdMod.model8media_upcreate, 20 );
+            stdMod.model8media_upcreate = ns.throttle(stdMod.model8media_upcreate, 20);
         }
     }
 
     ///adds plain point dragger if either draggableX, ...Y is defined
     ///todo bad: dragWrap_gen_list --> rgDict__2__draggers_list
     function rgDict__2__dragWrap_gen_list() {
-        eachprop( rg, (shape,pname) => {
-            var drX = haz( shape, 'draggableX' );
-            var drY = haz( shape, 'draggableY' );
-            if ( !drX && !drY ) return;
+        eachprop(rg, (shape, pname) => {
+            var drX = haz(shape, 'draggableX');
+            var drY = haz(shape, 'draggableY');
+            if (!drX && !drY) return;
             sDomF.params__2__rgX8dragwrap_gen_list({
                 stdMod,
                 pname,
-                nospinner : haz( shape, 'nospinner' ),
+                nospinner : haz(shape, 'nospinner'),
                 //todm
                 //orientation : drY&drX ? 'rotate' : ( drX ? 'axis-x' : 'axis-y' ),
 
                 pos : rg.pos, //todo not tested app wide, and why one needs pos?
-                acceptPos : haz( shape, 'acceptPos' ) || ( newPos =>
+                acceptPos : haz(shape, 'acceptPos') || (newPos =>
                 {
-                    if ( drX ) {
+                    if (drX) {
                         shape.pos[0] = newPos[0];
                     } else {
                         newPos[0] = shape.pos[0]; //blocks movement
                     }
-                    if ( drY ) {
+                    if (drY) {
                         shape.pos[1] = newPos[1];
                     } else {
                         newPos[1] = shape.pos[1]; //blocks movement

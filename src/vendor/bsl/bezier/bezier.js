@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var sn      = window.b$l.sn;
     var mat     = sn('mat');
     var bezier  = sn('bezier');
@@ -19,12 +19,12 @@
 
     ///performance-optimized
     ///standalone framework for multidimensional Beizier pivots
-    function preparesOptimizedBezier( pivots )
+    function preparesOptimizedBezier(pivots)
     {
         let rack = {};
         rack.pivots = pivots;
         rack.dimension = 1;
-        if ( Array.isArray(pivots[0]) ) {
+        if (Array.isArray(pivots[0])) {
             rack.dimension = pivots[0].length;
         }
         let dim = rack.dimension;
@@ -33,27 +33,27 @@
         let rankBase = 0;
         {
             let fraction = rank;
-            while ( fraction >1 ) {
+            while (fraction >1) {
                 rankBase++;
                 fraction /= 2;
             }
         }
         rack.rankBase = rankBase;
-        for ( i=1; i<=rank; i++ ) {
+        for (i=1; i<=rank; i++) {
             factorial[i] = factorial[i-1]*i;
         }
         let binom = rack.binom = [];
         let coefficients = rack.coefficients = [];
         let ix2parameter = [];
-        for ( i=0; i<=rank; i++ ) {
-            ix2parameter.push( i/rank );
+        for (i=0; i<=rank; i++) {
+            ix2parameter.push(i/rank);
             binom[i] = factorial[rank]
                 / (factorial[rank-i] * factorial[i]);
-            if ( dim === 1 ) {
+            if (dim === 1) {
                 coefficients[i] = pivots[i] * binom[i];
             } else {
                 coefficients[i] = [];
-                for ( j=0; j<dim; j++ ) {
+                for (j=0; j<dim; j++) {
                     coefficients[i][j] = pivots[i][j] * binom[i];
                 }
             }
@@ -65,16 +65,16 @@
         rack.curvePivots2bezierPivots = curvePivots2bezierPivots();
         return rack;
 
-        function fun( t )
+        function fun(t)
         {
             let pivots = rack.pivots;
             let rank = pivots.length-1
             let dim = rack.dimension;
-            if ( dim === 1 ) {
+            if (dim === 1) {
                 var result = 0;
             } else {
                 var result = [];
-                for ( j=0; j<dim; j++ ) {
+                for (j=0; j<dim; j++) {
                     result[j] = 0;
                 }
             }
@@ -87,43 +87,43 @@
             let rankBase = rack.rankBase;
             var polScale = large_t ? t : (1-t);
             var multiplier = (1-polScale)/polScale;
-            for ( var i=0; i<rankBase; i++ ) {
+            for (var i=0; i<rankBase; i++) {
                 polScale *=polScale;
             }
 
             let coefficients = rack.coefficients;
-            for ( let ii=0; ii<=rank; ii++ ) {
+            for (let ii=0; ii<=rank; ii++) {
                 //changes order of summation to from small members first
                 let i = large_t ? ii : rank-ii;
                 ////algo: Poly = ((( a*x + b)*x+...
-                if ( dim === 1 ) {
+                if (dim === 1) {
                     result = result * multiplier + coefficients[i];
                 } else {
-                    for ( j=0; j<dim; j++ ) {
+                    for (j=0; j<dim; j++) {
                         result[j] = result[j] * multiplier + coefficients[i][j];
                     }
                 }
             }
-            if ( dim === 1 ) {
+            if (dim === 1) {
                 result *= polScale;
             } else {
-                for ( j=0; j<dim; j++ ) {
+                for (j=0; j<dim; j++) {
                     result[j]  *= polScale;
                 }
             }
             return result;
         }
 
-        function updatesPivot( pivot, i )
+        function updatesPivot(pivot, i)
         {
             let pivots = rack.pivots;
             let coefficients = rack.coefficients;
             let binom = rack.binom;
-            if ( dim === 1 ) {
+            if (dim === 1) {
                 pivots[i] = pivot;
                 coefficients[i] = pivot * binom[i];
             } else {
-                for ( j=0; j<dim; j++ ) {
+                for (j=0; j<dim; j++) {
                     pivots[i][j] = pivot[j];
                     coefficients[i][j] = pivot[j] * binom[i];
                 }
@@ -139,18 +139,18 @@
             let ix2parameter = rack.ix2parameter;
             let step = 1/rank;
             var res = Array(rank+1);
-            for ( var tix=0; tix<=rank; tix++ ) {
+            for (var tix=0; tix<=rank; tix++) {
                 var t = ix2parameter[tix];
-                if ( tix===rank ) {
+                if (tix===rank) {
                     res[tix] = 1;
                 } else {
                     let ct = 1-t;
                     //fails on Safari:
                     //let rs = binom[tix]*Array(rank).keys().reduce(acc => (acc * ct),1);
-                    let rs = binom[tix]*((new Array(rank)).fill(1)).reduce(acc => (acc * ct),1);
+                    let rs = binom[tix]*((new Array(rank)).fill(1)).reduce(acc => (acc * ct), 1);
                     new Array(4).fill(1)
                     let multiplier = t/ct;
-                    for ( var j=0; j<tix; j++ ) {
+                    for (var j=0; j<tix; j++) {
                          rs *=multiplier;
                     }
                     res[tix]=1/rs;
@@ -161,13 +161,13 @@
 
         ///"sugar-function"
         ///makes points uniformely distributed
-        function updatesArrayOfPoints( arr, n )
+        function updatesArrayOfPoints(arr, n)
         {
             arr.length = 0;
             let step = 1/(n-1);
             let fun = rack.fun;
-            for (i=0; i<n; i++ ) {
-                arr.push( fun(i*step) );
+            for (i=0; i<n; i++) {
+                arr.push(fun(i*step));
             }
         }
     }
@@ -183,25 +183,25 @@
     ///        tt = point parameter <- [0,1]
     ///        start = 0 initially
     ///        len = pivotPoints.length initially
-    function weightify( tt, pivotPoints, dim, start, len )
+    function weightify(tt, pivotPoints, dim, start, len)
     {
-        if (  len === 2 ) {
+        if (len === 2) {
             return (1-tt)*pivotPoints[start][dim] + tt*pivotPoints[start+1][dim];
         } else {
-            return  (1-tt) * weightify( tt, pivotPoints, dim, start,   len - 1 ) +
-                    tt     * weightify( tt, pivotPoints, dim, start+1, len - 1 )
+            return  (1-tt) * weightify(tt, pivotPoints, dim, start,   len - 1) +
+                    tt     * weightify(tt, pivotPoints, dim, start+1, len - 1)
         }
     }
 
     ///Sugar subroutine.
     ///Calculates array of points on besier curve,
     ///Input:   points - array of t-parameters on besier curve
-    function points2bezier( points, pivots )
+    function points2bezier(points, pivots)
     {
         var plen = pivots.length;
-        return points.map( function ( paramT ) {
-                    return [ weightify( paramT, pivots, 0, 0, plen ),
-                             weightify( paramT, pivots, 1, 0, plen )
+        return points.map(function (paramT) {
+                    return [ weightify(paramT, pivots, 0, 0, plen),
+                             weightify(paramT, pivots, 1, 0, plen)
                     ];
         });
      }
@@ -209,22 +209,22 @@
     ///=============================================================
     ///Calculates point on bezier curve by given point's t-parameter
     ///=============================================================
-    function parT2point( parT, pivots )
+    function parT2point(parT, pivots)
     {
-        return [ weightify( parT, pivots, 0, 0, pivots.length ),
-                 weightify( parT, pivots, 1, 0, pivots.length )
+        return [ weightify(parT, pivots, 0, 0, pivots.length),
+                 weightify(parT, pivots, 1, 0, pivots.length)
         ];
     }
 
     ///=============================================================
     ///3d poiont
     ///=============================================================
-    function t_2_3Dpoint( parT, pivots )
+    function t_2_3Dpoint(parT, pivots)
     {
         return [
-            weightify( parT, pivots, 0, 0, pivots.length ),
-            weightify( parT, pivots, 1, 0, pivots.length ),
-            weightify( parT, pivots, 2, 0, pivots.length )
+            weightify(parT, pivots, 0, 0, pivots.length),
+            weightify(parT, pivots, 1, 0, pivots.length),
+            weightify(parT, pivots, 2, 0, pivots.length)
         ];
     }
 
@@ -272,7 +272,7 @@
                   c = Q'y - Q'x
 
     */
-    function line2bezier( Q, D, B, C )
+    function line2bezier(Q, D, B, C)
     {
         var Fx = C[0] - 2*B[0];
         var Gx = 2*B[0];
@@ -296,20 +296,20 @@
         var b = Gsx - Gsy;
         var c = Qsy - Qsx;
 
-        var solution = mat.squarePolyRoot( a, b, c );
-        if ( solution.length === 1 ) {
+        var solution = mat.squarePolyRoot(a, b, c);
+        if (solution.length === 1) {
             var t = solution[0];
-            if ( t < 0 || t > 1 ) { solution = []; }
-        } else if ( solution.length === 2 ) {
-            if ( solution[0].length ) {
+            if (t < 0 || t > 1) { solution = []; }
+        } else if (solution.length === 2) {
+            if (solution[0].length) {
                 ////complex solution
                 solution = [];
             } else {
                 var t0 = solution[0];
                 var t1 = solution[1];
                 var result = [];
-                if ( t0 >=0 && t0 <= 1 ) {result.push( t0 );}
-                if ( t1 >=0 && t1 <= 1 ) {result.push( t1 );}
+                if (t0 >=0 && t0 <= 1) {result.push(t0);}
+                if (t1 >=0 && t1 <= 1) {result.push(t1);}
                 solution = result.length < 2 ? result :
                            t0 > t1 ? [ t1, t0 ] : result;
             }
@@ -335,13 +335,13 @@
                 Driving these steps backward
                 does prove (*).
     */
-    function zeroBezier2zeroSubbezier( B, C, tS )
+    function zeroBezier2zeroSubbezier(B, C, tS)
     {
         var sm = mat.sm;
         var u = tS;
         return [
-            sm(tS,B),
-            sm(u*u, sm(C,-2,B), 2*u, B)
+            sm(tS, B),
+            sm(u*u, sm(C, -2, B), 2*u, B)
         ];
 
         /*
@@ -396,7 +396,7 @@
 
     ///The same as zeroBezier2upperSubbezier( B, C, T ), but
     ///with 3 input pivots with A in an orbitrary position
-    function bezier2upper( pivots, T )
+    function bezier2upper(pivots, T)
     {
         var sm = mat.sm;
         var A = pivots[0];
@@ -404,25 +404,25 @@
         var C = pivots[2];
 
         //:converts to coordinate system with origin in C
-        var Cq = sm(A,-1,C);
-        var Bq = sm(B,-1,C);
+        var Cq = sm(A, -1, C);
+        var Bq = sm(B, -1, C);
         var Q  = 1-T;
-        var newPivots = zeroBezier2zeroSubbezier( Bq, Cq, Q );
+        var newPivots = zeroBezier2zeroSubbezier(Bq, Cq, Q);
         ////now we have the solution with param u with starting point
         ////at C, middle point Bs, and ending point mapped to Q.
         ////it can be returned at this point
 
         ////but we add the following sugar
         ////converts pivots to original coordinate system
-        var As = sm(newPivots[1],C);
-        var Bs = sm(newPivots[0],C);
+        var As = sm(newPivots[1], C);
+        var Bs = sm(newPivots[0], C);
         var Cs = C;
-        return [As,Bs,Cs];
+        return [As, Bs, Cs];
     }
 
     ///The same as zeroBezier2zeroSubbezier( B, C, T ), but
     ///with 3 input pivots with A in an orbitrary position
-    function bezier2lower( pivots, T )
+    function bezier2lower(pivots, T)
     {
         var sm = mat.sm;
         var A = pivots[0];
@@ -430,19 +430,19 @@
         var C = pivots[2];
 
         //:converts to coordinate system with origin in C
-        var Cq = sm(C,-1,A);
-        var Bq = sm(B,-1,A);
-        var newPivots = zeroBezier2zeroSubbezier( Bq, Cq, T );
+        var Cq = sm(C, -1, A);
+        var Bq = sm(B, -1, A);
+        var newPivots = zeroBezier2zeroSubbezier(Bq, Cq, T);
         ////now we have the solution with param u with starting point
         ////at C, middle point Bs, and ending point mapped to Q.
         ////it can be returned at this point
 
         ////but we add the following sugar
         ////converts pivots to original coordinate system
-        var Bs = sm(newPivots[0],A);
-        var Cs = sm(newPivots[1],A);
-        return [A,Bs,Cs];
+        var Bs = sm(newPivots[0], A);
+        var Cs = sm(newPivots[1], A);
+        return [A, Bs, Cs];
     }
     // //\\// helpers
 
-}) ();
+})();

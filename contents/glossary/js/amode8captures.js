@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { sDomF, stdMod, sconf, }
         = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     return;
@@ -6,7 +6,7 @@
 
     ///runs inside "subessay launch" which in turn runs after
     ///"init model parameters"
-    function amode2rgstate( captured )
+    function amode2rgstate(captured)
     {
         sDomF.resetModelPos();
 
@@ -16,7 +16,7 @@
         var op           = sconf.orbitParameters;
 
         // //\\ "draws" conics
-        stdMod.establishesEccentricity( op.initialEccentricity )
+        stdMod.establishesEccentricity(op.initialEccentricity)
         // \\// "draws" conics
 
         //=============================================================
@@ -27,4 +27,4 @@
         return captured;
     }
 
-}) ();
+})();

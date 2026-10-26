@@ -1,4 +1,4 @@
-( function () {
+(function () {
     const {
         sn, $$, nssvg, haz, sDomF, ssF, ssD, stdMod, sconf, } = window.b$l.apptree({
         stdModExportList : {
@@ -36,7 +36,7 @@
 
         function createOrUpdateOrbitPolyline(svgel, curve_points) {
             const output = nssvg.polyline({
-                pivots  : curve_points.map( cp => ssF.mod2inn( cp, stdMod ) ),
+                pivots  : curve_points.map(cp => ssF.mod2inn(cp, stdMod)),
                 svgel   : svgel,
                 parent  : stdMod.svgScene,
 
@@ -45,9 +45,9 @@
                 'stroke-width' : sconf.PATH_WIDTH,
                 //fill             : haz( arg, 'fill' ),
             });
-            const lowname = sDomF.toCssIdentifier( 'orbit' );
+            const lowname = sDomF.toCssIdentifier('orbit');
             //sets tp-machine
-            $$.$( output ).addClass( 'tostroke thickable tp-'+lowname );
+            $$.$(output).addClass('tostroke thickable tp-'+lowname);
             return output;
         }
 
@@ -60,7 +60,7 @@
     ///INPUT    input parameters are in model namespace,
     ///         curve formula to branches of a curve,
     ///OUTPUT   result attaches to brsObj
-    function formula2branches( brsObj ) {
+    function formula2branches(brsObj) {
         const {
             stepsCount,
             step,
@@ -68,27 +68,27 @@
             formula,
             breakCondition,
         } = brsObj;
-        const BRANCH_COMPLETER = haz( brsObj, 'BRANCH_COMPLETER' ) || 0;
-        const brs = sn( 'branches', brsObj, [] );
+        const BRANCH_COMPLETER = haz(brsObj, 'BRANCH_COMPLETER') || 0;
+        const brs = sn('branches', brsObj, []);
         const totalPoints = brsObj.points = [];
         let bpoints;
         let pointPar; //ro;
         let branchesLen = 0;
         //0 for no-completion, usually 3 for hyperbola:
-        for ( var ii = 0; ii < stepsCount; ii++ ) {
+        for (var ii = 0; ii < stepsCount; ii++) {
             const orb = formula(start_q + step * ii);
             const point = orb.point;
-            if ( !ii || breakCondition( pointPar, orb.pointPar ) ) {
+            if (!ii || breakCondition(pointPar, orb.pointPar)) {
                 bpoints = [];
                 brs[ branchesLen ] = brs[ branchesLen ] || {};
                 brs[ branchesLen ].points = bpoints;
                 branchesLen++;
             }
             pointPar = orb.pointPar;
-            bpoints.push( point );
-            totalPoints.push( point );
+            bpoints.push(point);
+            totalPoints.push(point);
         }
-        if ( branchesLen === BRANCH_COMPLETER ) {
+        if (branchesLen === BRANCH_COMPLETER) {
             ////second hyperbola branch is split, to
             ////first and third branch, so do
             ////connect them
@@ -97,9 +97,9 @@
             ps[ ps.length ] = [first[0], first[1]];
         }
         ///removes dom stuff in brs if leftover
-        for ( ii=branchesLen; ii < brs.length; ii++ ) {
-            const svgel = haz( brs[ii], 'svgel' );
-            if ( svgel ) {
+        for (ii=branchesLen; ii < brs.length; ii++) {
+            const svgel = haz(brs[ii], 'svgel');
+            if (svgel) {
                 svgel.remove();
                 delete brs[ii].svgel;
             }

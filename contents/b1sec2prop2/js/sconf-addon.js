@@ -29,7 +29,7 @@ function init_conf_addon() {
     //}
 
     // //\\ makes capture
-    nspaste( capture, {
+    nspaste(capture, {
     "proof-step-D": {
     "slider_sltime": {
         "curtime": 4.01 * sconf.initialTimieStep

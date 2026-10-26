@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         ns, sn, $$, sv, haz,
         sconf, ssF, sDomF, rg, toreg,
@@ -15,9 +15,9 @@
     return;
 
 
-    function segmentAngle( segm )
+    function segmentAngle(segm)
     {
-        return Math.atan2( segm[1][1] - segm[0][1], segm[1][0] - segm[0][0] )
+        return Math.atan2(segm[1][1] - segm[0][1], segm[1][0] - segm[0][0])
     }
 
     ///shows/hides angle if its caption if any
@@ -25,14 +25,14 @@
     function angleVisib({ pname })
     {
         var anglePname      = 'rays-angle-' + pname;
-        var rgAngle         = haz( rg, anglePname );
-        if ( !rgAngle )      return;
-        var doUndisplay     = ns.haz( rgAngle, 'undisplay' );
+        var rgAngle         = haz(rg, anglePname);
+        if (!rgAngle)      return;
+        var doUndisplay     = ns.haz(rgAngle, 'undisplay');
 
-        var svgel$          = haz( rgAngle, 'svgel$' );
-        var pnameLabelsvg$  = haz( rgAngle, 'pnameLabelsvg$' );
-        svgel$              && svgel$.toggleClass(            'undisplay', doUndisplay );
-        pnameLabelsvg$      && pnameLabelsvg$.toggleClass(    'undisplay', doUndisplay );
+        var svgel$          = haz(rgAngle, 'svgel$');
+        var pnameLabelsvg$  = haz(rgAngle, 'pnameLabelsvg$');
+        svgel$              && svgel$.toggleClass('undisplay', doUndisplay);
+        pnameLabelsvg$      && pnameLabelsvg$.toggleClass('undisplay', doUndisplay);
     }
 
     ///paints angle from "start" to "end" by placing result in the range (-PI,+PI) counting
@@ -61,16 +61,16 @@
             [ CD[0].medpos[0], CD[0].medpos[1] ],
             [ CD[1].medpos[0], CD[1].medpos[1] ],
         ];
-        var angleStart      = segmentAngle( medPosPivotsAB )*sconf.MONITOR_Y_FLIP;
-        var angleEnd        = segmentAngle( medPosPivotsCD )*sconf.MONITOR_Y_FLIP;
+        var angleStart      = segmentAngle(medPosPivotsAB)*sconf.MONITOR_Y_FLIP;
+        var angleEnd        = segmentAngle(medPosPivotsCD)*sconf.MONITOR_Y_FLIP;
 
-        var angleDelta      = ( angleEnd - angleStart + Math.PI*4 ) % (Math.PI*2);
-        if ( angleDelta > Math.PI ) {
+        var angleDelta      = (angleEnd - angleStart + Math.PI*4) % (Math.PI*2);
+        if (angleDelta > Math.PI) {
             angleDelta -= Math.PI*2;
         }
         angleEnd = angleStart + angleDelta;
         var pname           = 'rays-angle-' + rgSample.pname;
-        var rgAngle         = toreg( pname )();
+        var rgAngle         = toreg(pname)();
         rgAngle.pname       = pname;
         rgAngle.medpos      = rgSample.medpos;
         rgAngle.pcolor      = rgSample.pcolor;
@@ -82,7 +82,7 @@
             ANGLE_SIZE      : ANGLE_SIZE || 1,
             captionRadiusIncrease,
             tpClassName     : tpclassName === '' ? '' :
-                              tpclassName || sDomF.toCssIdentifier( rgSample.pname ),
+                              tpclassName || sDomF.toCssIdentifier(rgSample.pname),
             fill            : fill || rgAngle.pcolor,
 
             //commenting this line does fix non-nice tp-highlighting of angle border
@@ -151,27 +151,27 @@
             drawExternalSector,
         });
 
-        var svgel$ = rgX.svgel$ = haz( rgX, 'svgel$' ) || $$.$( rgX.svgel );
+        var svgel$ = rgX.svgel$ = haz(rgX, 'svgel$') || $$.$(rgX.svgel);
         svgel$.cls(
             !tpClassName ?  '' :
                             (
                                 'tp-' + tpClassName +
-                                (stroke ? ' tostroke' : '' ) +
-                                (fill ? ' tofill' : '' )
+                                (stroke ? ' tostroke' : '') +
+                                (fill ? ' tofill' : '')
                             )
         );
-        svgel$.toggleClass( 'undisplay', ns.haz( rgX, 'undisplay' ) );
+        svgel$.toggleClass('undisplay', ns.haz(rgX, 'undisplay'));
 
         ///draws caption
-        if ( caption ) {
+        if (caption) {
             var fontSize = fontSize || 20;
-            var wwAngle = ( angleStart + angleEnd ) / 2;
+            var wwAngle = (angleStart + angleEnd) / 2;
 
-            var lposXSugar = Math.abs( Math.sin(wwAngle) ) > 0.7 ? 0.5 : 0;
-            let rad = ANGLE_SIZE * 0.5 * sn( 'captionRadiusIncrease', arguments[0], 1.1 );
-            var lposX = rad * sconf.mod2inn_scale * Math.cos( wwAngle )+rgX.medpos[0] +
+            var lposXSugar = Math.abs(Math.sin(wwAngle)) > 0.7 ? 0.5 : 0;
+            let rad = ANGLE_SIZE * 0.5 * sn('captionRadiusIncrease', arguments[0], 1.1);
+            var lposX = rad * sconf.mod2inn_scale * Math.cos(wwAngle)+rgX.medpos[0] +
                         -fontSize * lposXSugar;
-            var lposY = rad * sconf.mod2inn_scale * Math.sin( wwAngle )+rgX.medpos[1] +
+            var lposY = rad * sconf.mod2inn_scale * Math.sin(wwAngle)+rgX.medpos[1] +
                         -fontSize * 0.2;
             var tpcls = tpClassName ? ' tostroke tobold tofill tp-' + tpClassName : '';
             rgX.pnameLabelsvg = ns.svg.printText({
@@ -190,11 +190,11 @@
                 },
             });
             var pnameLabelsvg$ = rgX.pnameLabelsvg$ =
-                haz( rgX, 'pnameLabelsvg$' ) || $$.$( rgX.pnameLabelsvg );
-            pnameLabelsvg$.toggleClass( 'undisplay', ns.haz( rg[rgX.pname], 'undisplay' ) );
-            pnameLabelsvg$.addClass( tpcls );
+                haz(rgX, 'pnameLabelsvg$') || $$.$(rgX.pnameLabelsvg);
+            pnameLabelsvg$.toggleClass('undisplay', ns.haz(rg[rgX.pname], 'undisplay'));
+            pnameLabelsvg$.addClass(tpcls);
         }
         return rgX;
     }
 
-}) ();
+})();

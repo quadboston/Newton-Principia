@@ -1,6 +1,6 @@
-( function () {
+(function () {
     var ns = window.b$l;
-    var fapp = ns.sn('fapp' );
+    var fapp = ns.sn('fapp');
     fapp.lemmaConfig = lemmaConfig;
     return;
 
@@ -18,4 +18,4 @@
         };
     }
 
-}) ();
+})();

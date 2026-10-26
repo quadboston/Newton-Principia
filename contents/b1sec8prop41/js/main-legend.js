@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         ns, sn, $$,
         sconf,
@@ -26,7 +26,7 @@
         */
     }
 
-    function create_digital_legend_for_logic_phase( logic_phase )
+    function create_digital_legend_for_logic_phase(logic_phase)
     {
         //--------------------------
         // //\\ data source scenario
@@ -69,9 +69,9 @@
 
         ///spawns configuration
         ///returns array-of-lines, line = array-of-clusters, cluster=array-of-tokens,
-        var legendScriptParsed = legendScript.map( (line,lix) => {
+        var legendScriptParsed = legendScript.map((line, lix) => {
             var lparsed = line.split(/\s+/);
-            return lparsed.map( clusterToken => {
+            return lparsed.map(clusterToken => {
                 return clusterToken.split(',');
             });
         });
@@ -152,4 +152,4 @@
     // \\// creates logic_phase table
     //=========================================
 
-}) ();
+})();

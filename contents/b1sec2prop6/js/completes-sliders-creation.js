@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { sn, mat, ssD, stdMod, sconf, rg, } = window.b$l.apptree({
         stdModExportList : { creates__curve_pivots_sliders, creates_S_slider, }, });
     return;
@@ -32,11 +32,11 @@
     function creates__curve_pivots_sliders() {
         const bezio = ssD.bezio;
         var pivs = sconf.originalPoints.curvePivots;
-        pivs.forEach( (cp,cpix) => {
+        pivs.forEach((cp, cpix) => {
             var pos1 = rg[ 'curvePivots-' + cpix ].pos;
             var stashedPos = null;
             cp.rgX.processOwnDownEvent = () => {
-                let pos = stdMod.q2xy( bezio.ix2parameter[cpix] );
+                let pos = stdMod.q2xy(bezio.ix2parameter[cpix]);
                 stashedPos = [ pos[0], pos[1] ];
             };
 
@@ -54,8 +54,8 @@
                 //--------------------------------------------------------------
                 var previousPoint = cpix-1;
                 var nextPoint = cpix+1;
-                var nextPoint = (nextPoint === pivs.length ) ? null : nextPoint;
-                var previousPoint = (previousPoint < 0 ) ? null : previousPoint;
+                var nextPoint = (nextPoint === pivs.length) ? null : nextPoint;
+                var previousPoint = (previousPoint < 0) ? null : previousPoint;
                 //--------------------------------------------------------------
                 // \\// preserves pivot's order along x and being them too close
                 //--------------------------------------------------------------
@@ -72,7 +72,7 @@
                 let c2p = bezio.curvePivots2bezierPivots[cpix];
                 pos[0] += dpos0*c2p;
                 pos[1] += dpos1*c2p;
-                bezio.updatesPivot( pos, cpix );
+                bezio.updatesPivot(pos, cpix);
 
                 stdMod.rebuilds_orbit();
                 updatePointPPos();
@@ -81,7 +81,7 @@
                 stdMod.bezierPivotsToCurvePivots();
 
                 stashedPos = [ newPos[0], newPos[1] ];
-                if ( ssD.foldPoints.length ) {
+                if (ssD.foldPoints.length) {
                     ////we do return true, because would like to
                     ////redraw gapped orbit with pivots
                     return true;
@@ -98,10 +98,10 @@
         //Update point P qix (position) to be as close as possible to where it
         //was before.  Also adjusts it as needed to ensure at valid qix if out
         //of bounds to prevent issues.
-        if ( stdMod.graphArray.length ) {
+        if (stdMod.graphArray.length) {
             ////for case when curve shape changes,
             //tricky loop: pos -> qix -> pos( in upcreate_model ):
-            rg.P.qix = stdMod.gets_orbit_closest_point( rg.P.pos, !!'fromGraph' );
+            rg.P.qix = stdMod.gets_orbit_closest_point(rg.P.pos, !!'fromGraph');
         }
     }
-}) ();
+})();

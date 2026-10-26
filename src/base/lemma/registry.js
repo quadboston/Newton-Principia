@@ -1,5 +1,5 @@
 //registry is used for study-model-elements or media-model-elements
-( function () {
+(function () {
     var { sn } = window.b$l.nstree();
     var sapp   = sn('sapp');
     var rg     = sn('rg', sapp);
@@ -43,14 +43,14 @@
     ///     generates/reuses rg[ kname ],
     ///     assigns val to rg[ kname ].pos,
     ///     returns val
-    function topos( kname, val ) {
-        rg[ kname ] = rg.hasOwnProperty( kname ) ?
+    function topos(kname, val) {
+        rg[ kname ] = rg.hasOwnProperty(kname) ?
             rg[ kname ] :
             {
                 rgId : kname,
             }
         ;
-        return ( rg[ kname ].pos = val );
+        return (rg[ kname ].pos = val);
     }
 
     ///creates or updates registered umbrella-object rg[id] and its properties
@@ -69,18 +69,18 @@
             //alternatively returns a specific property
             ('mykey4'); //returns myval4
     */
-    function toreg( id )
+    function toreg(id)
     {
-        rg[ id ] = rg.hasOwnProperty( id ) ? rg[ id ] : { rgId : id, };
+        rg[ id ] = rg.hasOwnProperty(id) ? rg[ id ] : { rgId : id, };
         return updateMe;
 
-        function updateMe( key, val ) {
-            switch ( arguments.length ) {
+        function updateMe(key, val) {
+            switch (arguments.length) {
                 case 0: return rg[ id ];
                 case 1:
-                        if ( typeof key === 'string' ) return rg[id][key]; //returns value
+                        if (typeof key === 'string') return rg[id][key]; //returns value
                         ////otherwise, keeps chain going
-                        Object.assign( rg[id], key );
+                        Object.assign(rg[id], key);
                         return updateMe;
                 case 2:
                         rg[id][key] = val;
@@ -93,4 +93,4 @@
     /// \\// creates or updates registry rg entry
     ///================================================
 
-}) ();
+})();

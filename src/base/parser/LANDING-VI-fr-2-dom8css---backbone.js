@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         sn, eachprop, nspaste, haz, globalCss,
         sDomN, ssD, sDomF, ssF, exegs,
@@ -46,20 +46,20 @@
         ///Frag. step V. Unhighlighted global CSS.
         ssF.v2_topics_2_unhighCss();
         ///Frag. step VI. Highlighted global CSS.
-        ssF.v2_tplinks_2_highlightCss( nextTplinks, );
+        ssF.v2_tplinks_2_highlightCss(nextTplinks,);
         //inserts tp-highlight-machinery css into html-document
         //globalCss.update( styleStr, 'style8afrag8media8anchors-media' );
-        globalCss.update( styleAnchors, 'style8afrag8media8anchors-anchors' );
+        globalCss.update(styleAnchors, 'style8afrag8media8anchors-anchors');
         //***********************************************************
     }
 
     ///apparently this thing ruins performance and pollutes css
-    function digestsSingleMessage_2_topics( messageDomEl, singleMessageText )
+    function digestsSingleMessage_2_topics(messageDomEl, singleMessageText)
     {
         //Frag. step I.
         //collects and adds more entries into l caseId2allLemTopics,
         //var collectedTpLinks =
-        ssF.fragment__collectsRawTpLinks( singleMessageText );
+        ssF.fragment__collectsRawTpLinks(singleMessageText);
         //  link = {
         //                tplink_ix : tplink_ix,
         //                tpid2true : {
@@ -95,15 +95,15 @@
         // Frag. steps IV, V, VI
         //===========================================================
         //Frag. step IV. Text anchors. Only for new anchors.
-        var { styleAnchors, nextTplinks } = ssF.topics_anchor_css( messageDomEl );
+        var { styleAnchors, nextTplinks } = ssF.topics_anchor_css(messageDomEl);
         ///Frag. step VI. Highlighted global CSS.
-        ssF.v2_tplinks_2_highlightCss( nextTplinks, );
+        ssF.v2_tplinks_2_highlightCss(nextTplinks,);
 
         //inserts tp-highlight-machinery css into html-document,
         //only for new nextTplinks
-        styleAnchors && globalCss.update( styleAnchors, 'style8afrag8media8anchors-'+
-            newlyDigestedStyleId  );
+        styleAnchors && globalCss.update(styleAnchors, 'style8afrag8media8anchors-'+
+            newlyDigestedStyleId);
         //***********************************************************
         newlyDigestedStyleId++;
     }
-}) ();
+})();

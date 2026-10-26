@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { ns, sn, bezier, fapp, fconf, sconf, sDomF, sDomN, amode, ssD, ssF, rg, stdMod, }
         = window.b$l.apptree({ stdModExportList : { initDragModel, }, });
     return;
@@ -7,12 +7,12 @@
     //==========================================
     // //\\ inits drag points
     //==========================================
-    function initDragModel( medD8D )
+    function initDragModel(medD8D)
     {
         var modCurvPivots   = ssD.curvePivots;
         var yflip           = sconf.MONITOR_Y_FLIP;
         var yRange          = sconf.APP_MODEL_Y_RANGE;
-        var mat             = sn( 'mat' );
+        var mat             = sn('mat');
 
         //==========================================
         // //\\ sets drag points
@@ -22,17 +22,17 @@
         //.........................................
         var claimRatio_max = sconf.claimRatio_max;
         var wpoint              = rg.B;
-        wpoint.dragDecorColor   = sDomF.getFixedColor( 'given' );
+        wpoint.dragDecorColor   = sDomF.getFixedColor('given');
         wpoint.dragPriority     = 9;
         wpoint.spinnerClsId       = 'B';
         createDragger({
             achieved    : sconf.claimRatio,
             pointWrap   : wpoint,
             cssClasses  : ['axis-y'],
-            doProcess   : function ( arg )
+            doProcess   : function (arg)
             {
                 var ach = arg.pointWrap.achieved;
-                switch ( arg.down_move_up ) {
+                switch (arg.down_move_up) {
                     case 'up':   ach.achieved = ssD.claimRatio;
                                  sDomF.detected_user_interaction_effect();
                     break;
@@ -41,7 +41,7 @@
                         ////some of these Ey, Dy, values are perpendicular projections, not
                         ////y-coordinates
                         ////but since proportion holds, they are good here  ...
-                        var Ey = bezier.parT2point( ssD.tC, modCurvPivots )[1];
+                        var Ey = bezier.parT2point(ssD.tC, modCurvPivots)[1];
 
                         var startDy = ach.achieved * Ey;
                         var newDy   = Math.min(
@@ -49,7 +49,7 @@
                                         startDy - arg.surfMove[1] * sconf.inn2mod_scale *
                                         sDomF.out2inn()
                                       );
-                        newDy = Math.max( newDy, Ey*0.01 ); //todm make ranges in conf
+                        newDy = Math.max(newDy, Ey*0.01); //todm make ranges in conf
                         ssD.claimRatio = newDy/Ey;
                         stdMod.model8media_upcreate();
                     break;
@@ -67,16 +67,16 @@
         //moves when the tiltAngle changes.  The following needs the initial E y position.  This could be computed using the initial tiltAngle and initial
         //point C y.  However if achieved stored the initial the tiltAngle, it would not have access to the initial point C y.
         var wpoint              = rg.E;
-        wpoint.dragDecorColor   = ns.haz( rg.E, 'pcolor' ) || sDomF.getFixedColor( 'given' );
+        wpoint.dragDecorColor   = ns.haz(rg.E, 'pcolor') || sDomF.getFixedColor('given');
         wpoint.spinnerClsId       = 'E';
         createDragger({
             achieved            : rg.E.pos.concat([]),
             pointWrap           : wpoint,
             cssClasses          : ['axis-y'],
-            doProcess : function ( arg )
+            doProcess : function (arg)
             {
                 var ach = arg.pointWrap.achieved;
-                switch ( arg.down_move_up ) {
+                switch (arg.down_move_up) {
                     case 'down':
                         //Update ach.achieved to prevent 'jumping' in case point E moved (eg. point C was moved).
                         ach.achieved = rg.E.pos.concat([]);
@@ -86,7 +86,7 @@
                     break;
                     case 'move' :
                         //Calculate point C
-                        const modC = bezier.parT2point( ssD.tC, modCurvPivots );
+                        const modC = bezier.parT2point(ssD.tC, modCurvPivots);
 
                         //Dragger offset in y direction relative to initial dragger position (note dragger offset and diagram use different scales).
                         const yOffset = sDomF.out2inn() * sconf.inn2mod_scale * arg.surfMove[1] * yflip;
@@ -114,33 +114,33 @@
         var wpoint              = rg.C;
         wpoint.dragPriority     = 10;
         wpoint.spinnerClsId       = 'C';
-        wpoint.dragDecorColor   = sDomF.getFixedColor( 'given' );
+        wpoint.dragDecorColor   = sDomF.getFixedColor('given');
 
-        if ( !sconf.hideProofSliderCompletely ) {
+        if (!sconf.hideProofSliderCompletely) {
             createDragger({
                 achieved            : sconf.tC,
                 pointWrap           : rg.C,
                 cssClasses          : ['green'],
-                doProcess : function ( arg )
+                doProcess : function (arg)
                 {
                     var ach = arg.pointWrap.achieved;
-                    switch ( arg.down_move_up ) {
+                    switch (arg.down_move_up) {
                         case 'up':   //.this is done through proofSlider: ach.achieved = ssD.tC;
                                      //.does update through proofSlider synch
-                                     sDomF.proofSlider.slider.d8d_emulateAbsFractionX( ssD.tC, 'up' );
+                                     sDomF.proofSlider.slider.d8d_emulateAbsFractionX(ssD.tC, 'up');
                                      sDomF.detected_user_interaction_effect();
                         break;
                         case 'move':
                              var startCx = bezier.parT2point(
-                                           ach.achieved, modCurvPivots )[0];
+                                           ach.achieved, modCurvPivots)[0];
                              var newCx = startCx + arg.surfMove[0] *
                                          sconf.inn2mod_scale * sDomF.out2inn();
-                             newCx = Math.max( newCx, Cx_min );
+                             newCx = Math.max(newCx, Cx_min);
 
-                             var newTC = ssF.x0y_2_t( newCx, 0 );
+                             var newTC = ssF.x0y_2_t(newCx, 0);
 
                              //.does update through proofSlider synch
-                             sDomF.proofSlider.slider.d8d_emulateAbsFractionX( newTC, 'move' );
+                             sDomF.proofSlider.slider.d8d_emulateAbsFractionX(newTC, 'move');
                         break;
                     }
                 }
@@ -166,17 +166,17 @@
         //Ensure only draggable for lemma 9, as lemma 10 no longer has this point.
         if (fconf.sappId === "b1sec1lemma9") {
             var wpoint              = rg.pivotPoint1;
-            wpoint.dragDecorColor   = ns.haz( rg.pivotPoint1, 'pcolor' ) || sDomF.getFixedColor( 'proof' );
+            wpoint.dragDecorColor   = ns.haz(rg.pivotPoint1, 'pcolor') || sDomF.getFixedColor('proof');
             wpoint.spinnerClsId     = 'pivotPoint1';
             createDragger({
                 achieved            : ssD.curvePivots[1].concat([]),
                 pointWrap           : wpoint,
                 cssClasses          : ['axis-x'],
-                doProcess : function ( arg )
+                doProcess : function (arg)
                 {
                     var ach = arg.pointWrap.achieved;
                     var pv = ssD.curvePivots[1];
-                    switch ( arg.down_move_up ) {
+                    switch (arg.down_move_up) {
                         case 'down':
                             //Update ach.achieved to prevent 'jumping' in case the bezier middle pivot moved (eg. point E was moved and constrained it).
                             ach.achieved = pv.concat([]);
@@ -212,18 +212,18 @@
         //.........................................
         var mainCurve           = rg['mainCurve'];
         var wpoint              = mainCurve.mediael.pivotPoints[2];
-        wpoint.dragDecorColor   = ns.haz( rg.pivotPoint2, 'pcolor' ) || sDomF.getFixedColor( 'given' );
+        wpoint.dragDecorColor   = ns.haz(rg.pivotPoint2, 'pcolor') || sDomF.getFixedColor('given');
         wpoint.spinnerClsId        = 'pivotPoint2';
 
         createDragger({
             achieved            : sconf.curvePivots[2].concat([]),
             pointWrap           : wpoint,
-            cssClasses          : ['given','rotate'],
-            doProcess : function ( arg )
+            cssClasses          : ['given', 'rotate'],
+            doProcess : function (arg)
             {
                 var ach = arg.pointWrap.achieved;
                 var pv = ssD.curvePivots[2];
-                switch ( arg.down_move_up ) {
+                switch (arg.down_move_up) {
                     case 'up':   ach.achieved = pv.concat([]);
                                  sDomF.detected_user_interaction_effect();
                     break;
@@ -234,9 +234,9 @@
 
                         var newX = ach.achieved[0] + mx;
                         var newY = ach.achieved[1] + my;
-                        var newX = Math.min( newX, sconf.pivot2x_max );
-                        var newY = Math.max( newY, sconf.pivot2y_min );
-                        var newY = Math.min( newY, sconf.pivot2y_max );
+                        var newX = Math.min(newX, sconf.pivot2x_max);
+                        var newY = Math.max(newY, sconf.pivot2y_min);
+                        var newY = Math.min(newY, sconf.pivot2y_max);
 
                         pv[0] = newX;
                         pv[1] = newY;
@@ -251,19 +251,19 @@
         ns.globalCss.update(); //for decorator
         return;
 
-        function createDragger( argc )
+        function createDragger(argc)
         {
             var pointWrap        = argc.pointWrap;
             pointWrap.dragDecorColor = pointWrap.dragDecorColor || 'red';
 
-            if ( argc.cssClasses ) {
+            if (argc.cssClasses) {
                 var orientation = '';
-                argc.cssClasses.forEach( function ( cls ) {
+                argc.cssClasses.forEach(function (cls) {
                     orientation += orientation ? ' ' + cls : cls;
                 });
                 argc.orientation = orientation;
             }
-            medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE( argc );
+            medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE(argc);
         }
     };
     //==========================================
@@ -321,4 +321,4 @@
     // \\// finds draggee
     //====================
 
-}) ();
+})();

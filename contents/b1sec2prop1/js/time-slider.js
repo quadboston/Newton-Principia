@@ -31,7 +31,7 @@ function creates_sliderDomModel__4__time() {
 
     var captionPrefix = 'm = ';
     ///will be overridden with tp-color if any:
-    var COLOR         = sDomF.getFixedColor( sliderId );
+    var COLOR         = sDomF.getFixedColor(sliderId);
     var customSliderShift = 0; //picture units
     //=========================================
     // \\// slider api pars
@@ -42,9 +42,9 @@ function creates_sliderDomModel__4__time() {
 
     //leaving this as toolsSliders breaks sliders, needs
     //split from generic slider framework,
-    var toolsSliders_    = sn( 'toolsSliders_',stdMod, [] );
+    var toolsSliders_    = sn('toolsSliders_', stdMod, []);
     var sliderIx        = toolsSliders_.length;
-    toolsSliders_.push( api_rgid );
+    toolsSliders_.push(api_rgid);
 
     var start_rgid  = 'railsStart_' + sliderId;
     var end_rgid    = 'railsEnd_'   + sliderId;
@@ -55,7 +55,7 @@ function creates_sliderDomModel__4__time() {
     //----------------------------------------------------------------------------
     // //\\ in model units and reference system
     //----------------------------------------------------------------------------
-    var startX            = ( -sconf.originX_onPicture +
+    var startX            = (-sconf.originX_onPicture +
                                 sconf.innerMediaWidth *
                                 sconf.SLIDERS_OFFSET_X
                             ) * sconf.inn2mod_scale;
@@ -65,7 +65,7 @@ function creates_sliderDomModel__4__time() {
     var startY            = sconf.originY_onPicture
                                     - sconf.innerMediaHeight
                                     + sconf.SLIDERS_OFFSET_Y
-                                    - ( sliderIx
+                                    - (sliderIx
                                         //+ customSlidersAbove
                                         ) * sconf.GENERIC_SLIDER_HEIGHT_Y
                                     + sconf.SLIDERS_LEGEND_HEIGHT
@@ -82,7 +82,7 @@ function creates_sliderDomModel__4__time() {
     //--------------------------------------------------------
     // //\\ slider api
     //--------------------------------------------------------
-    var api = toreg( api_rgid )();
+    var api = toreg(api_rgid)();
     api.pos         = [startX, startY];
     api.startX      = startX;
     api.endX        = endX;
@@ -93,8 +93,8 @@ function creates_sliderDomModel__4__time() {
     //-------------------------------------
     // //\\ adds helpers
     //-------------------------------------
-    toreg( start_rgid )( 'pos', startPos );
-    toreg( end_rgid )( 'pos', endPos );
+    toreg(start_rgid)('pos', startPos);
+    toreg(end_rgid)('pos', endPos);
     var railsStart = pos2pointy(
         start_rgid,
         { fill : COLOR, tpclass:tpId, cssClass : 'tofill tostroke', }
@@ -115,7 +115,7 @@ function creates_sliderDomModel__4__time() {
             cssClass         : 'tofill tostroke',
             }
     );
-    $$.$( rails.svgel ).cls( tptpId );
+    $$.$(rails.svgel).cls(tptpId);
     //-------------------------------------
     // \\// adds helpers
     //-------------------------------------
@@ -154,8 +154,8 @@ function creates_sliderDomModel__4__time() {
             'stroke-width'  : 1,
         },
     });
-    $$.$( api.text_svg ).addClass( 'tp-time' );
-    globalCss.update( `
+    $$.$(api.text_svg).addClass('tp-time');
+    globalCss.update(`
             .bsl-simscene svg text.${tptpId} {
                 stroke          : ${COLOR};
                 fill            : ${COLOR};
@@ -213,7 +213,7 @@ function creates_sliderDomModel__4__time() {
         //at the end of job, runs application-provided callback
         stdMod.unmasksVisib();
         stdMod.upcreate_mainLegend();
-        if ( ssF.mediaModelInitialized ) {
+        if (ssF.mediaModelInitialized) {
             stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
         }
     };
@@ -223,13 +223,13 @@ function creates_sliderDomModel__4__time() {
 //----------------------------------------
 
 ///must be in contex of pointWrap ( like this = rg.B )
-function processDownEvent( arg ) {
+function processDownEvent(arg) {
     this.achieved.achieved = this.curtime;
 }
 
 ///move_2_val8gui8cb
 ///todm: this sub should be automatically throttled
-function move_2_updates( move_in_model ) {
+function move_2_updates(move_in_model) {
     var api = this;
     amode.userControl = 'diagram';
     sDomF.detected_user_interaction_effect();
@@ -245,7 +245,7 @@ function move_2_updates( move_in_model ) {
                         api.railsLength *
                         sconf.timeRange;
     //sets value:
-    stdMod.protects_curTime_ranges( newTime );
+    stdMod.protects_curTime_ranges(newTime);
 
     stdMod.media_upcreate();
     //we don't need this,
@@ -255,7 +255,7 @@ function move_2_updates( move_in_model ) {
 }
 
 function slTime_2_stepIndice8tCaption() {
-    var sp8ep   = haz( rg, 'slider_sltime' );
+    var sp8ep   = haz(rg, 'slider_sltime');
     var ctime    = rg.slider_sltime.curtime;
 
     //*****************************************************
@@ -267,7 +267,7 @@ function slTime_2_stepIndice8tCaption() {
     //*****************************************************
     //full index = master index reached in orbit and logic:
     //virtual thing, just stretches time to better subdivide stepIx
-    var stepIx4 = Math.floor( ctime * 4 / rg.rgslid_dt.val );
+    var stepIx4 = Math.floor(ctime * 4 / rg.rgslid_dt.val);
     rg.stretchedFourTimes_stIx = stepIx4;
 
     //local index = reached substep
@@ -275,7 +275,7 @@ function slTime_2_stepIndice8tCaption() {
 
     //cell index = main step of orbit =
     //number of completed orbit steps =
-    var stepIx      = ( stepIx4 - rg.substepIx ) / 4;
+    var stepIx      = (stepIx4 - rg.substepIx) / 4;
 
     //The following line caused some bugs, has been commented out,
     //and left for reference.  If the delta time slider is moved to the
@@ -286,7 +286,7 @@ function slTime_2_stepIndice8tCaption() {
     //text in the Proof tab, and showing/hiding the last red force vector
     //in the model area.
     // stepIx = Math.min( stepIx, rg.spatialSteps - 1 );
-    toreg( 'stepIx' )( 'value', stepIx );
+    toreg('stepIx')('value', stepIx);
     /*
         c cc( 'ctime=' + ctime +
             ' ESTABLISH: stepIx4=' + stepIx4 +
@@ -300,8 +300,8 @@ function slTime_2_stepIndice8tCaption() {
 
     rg.thoughtStep.value = (rg.substepIx+1) + '';
     //sets granular time display increment during last proof step
-    let nexStepDisplay = ( rg.substepIx === 3 ? 1 : 0 ) + rg.stepIx.value;
-    rg.displayTime.value = ( nexStepDisplay * rg.rgslid_dt.val ).toFixed(2);
+    let nexStepDisplay = (rg.substepIx === 3 ? 1 : 0) + rg.stepIx.value;
+    rg.displayTime.value = (nexStepDisplay * rg.rgslid_dt.val).toFixed(2);
     rg.displayPathStep = { value:nexStepDisplay };
 }
 })();

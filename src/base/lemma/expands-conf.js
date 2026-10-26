@@ -42,12 +42,12 @@ function doExpandConfig() {
     // //\\ transition from poor name in legacy code
     //      , removing "pictureWidth", ...
     //-----------------------------------------------------------
-    pictureWidth = ( svgModel_width || svgModel_width === 0 ) ?
+    pictureWidth = (svgModel_width || svgModel_width === 0) ?
                         svgModel_width : pictureWidth;
     sf.pictureWidth = pictureWidth;
     sf.svgModel_width = pictureWidth;
 
-    pictureHeight = ( svgModel_height || svgModel_height === 0 ) ?
+    pictureHeight = (svgModel_height || svgModel_height === 0) ?
                         svgModel_height : pictureHeight;
     sf.pictureHeight = pictureHeight;
     sf.svgModel_height = pictureHeight;
@@ -64,12 +64,12 @@ function doExpandConfig() {
     modorInPicY = originY_onPicture;
 
     //allocates missed placeholders
-    lines = lines || sn( 'lines', sf, [] );
-    originalPoints = originalPoints || sn( 'originalPoints', sf );
-    Object.assign( sf.originalPoints, originalPoints );
+    lines = lines || sn('lines', sf, []);
+    originalPoints = originalPoints || sn('originalPoints', sf);
+    Object.assign(sf.originalPoints, originalPoints);
 
     //todo: this thing also gets more members from "dragger engine": poor job,
-    var pname2point = sn( 'pname2point', sf );
+    var pname2point = sn('pname2point', sf);
 
     //----------------------------------
     // //\\ MONITOR Y FLIP
@@ -92,13 +92,13 @@ function doExpandConfig() {
     var inn2mod_scale = 1/mod2inn_scale;
 
     ///adds point's color from topicColors_elected if missed
-    eachprop( originalPoints, (point,pname) => {
-        point.pcolor = haz( point, 'pcolor' ) || topicColors_elected[ pname ];
+    eachprop(originalPoints, (point, pname) => {
+        point.pcolor = haz(point, 'pcolor') || topicColors_elected[ pname ];
     });
 
     ///it is vital to set these pars now ...
     ///they are used in function calls a little below this block ...
-    Object.assign( sf, {
+    Object.assign(sf, {
         //----------------------------------
         // //\\ model-view parameters
         //----------------------------------
@@ -138,9 +138,9 @@ function doExpandConfig() {
         ///--------------------------------------------------
         ///equalizes repo and elected and makes place in rg
         ///--------------------------------------------------
-        Object.keys( topicColors_elected ).forEach( camelId => {
-        toreg( camelId )( 'pname', camelId );
-            var lowId = sDomF.toCssIdentifier( camelId );
+        Object.keys(topicColors_elected).forEach(camelId => {
+        toreg(camelId)('pname', camelId);
+            var lowId = sDomF.toCssIdentifier(camelId);
             let tr = topicColors_repo[ lowId ] = topicColors_elected[ camelId ];
             topicColors_repo_camel2col[ camelId ] = tr;
         });
@@ -148,28 +148,28 @@ function doExpandConfig() {
         //--------------------------------------------------
         // //\\ expands originalPoints placeholders
         //--------------------------------------------------
-        eachprop( originalPoints, ( op, pname ) => {
-            if ( Array.isArray( op ) ) {
+        eachprop(originalPoints, (op, pname) => {
+            if (Array.isArray(op)) {
                 ////handles array of originalPoints
 
                 //prepares 3 properties for batch assignment
-                var doPaintPname = has( op, 'doPaintPname' ) ?
+                var doPaintPname = has(op, 'doPaintPname') ?
                                     op.doPaintPname : true;
-                var draggableX   = haz( op, 'draggableX' );
-                var draggableY   = haz( op, 'draggableY' );
+                var draggableX   = haz(op, 'draggableX');
+                var draggableY   = haz(op, 'draggableY');
 
-                op.forEach( ( opInArr, inIx ) => {
-                    opInArr.draggableX = has( opInArr, 'draggableX' ) ?
+                op.forEach((opInArr, inIx) => {
+                    opInArr.draggableX = has(opInArr, 'draggableX') ?
                                             opInArr.draggableX : draggableX;
-                    opInArr.draggableY = has( opInArr, 'draggableY' ) ?
+                    opInArr.draggableY = has(opInArr, 'draggableY') ?
                                             opInArr.draggableY : draggableY;
-                    opInArr.doPaintPname = has( opInArr, 'doPaintPname' ) ?
+                    opInArr.doPaintPname = has(opInArr, 'doPaintPname') ?
                                             opInArr.doPaintPname : doPaintPname;
-                    expandsOrPoint( opInArr, pname + '-' + inIx );
+                    expandsOrPoint(opInArr, pname + '-' + inIx);
                 });
             } else {
                 ////handles single originalPoint
-                expandsOrPoint( op, pname );
+                expandsOrPoint(op, pname);
             }
         });
         //--------------------------------------------------
@@ -179,19 +179,19 @@ function doExpandConfig() {
         //----------------------------------
         // //\\ expands lines placeholders
         //----------------------------------
-        linesArray = haz( sf, 'linesArray' );
+        linesArray = haz(sf, 'linesArray');
         ///equalizes lines and linesArray from linesArray into lines:
-        if ( linesArray ) {
+        if (linesArray) {
             lines = {};
-            linesArray.forEach( (lineConf) => {
-                var lname = Object.keys( lineConf )[0];
+            linesArray.forEach((lineConf) => {
+                var lname = Object.keys(lineConf)[0];
                 lines[ lname ] = lineConf[ lname ];
             });
         }
 
         ///apparently non-unified with shapes-points, points have more properties
-        eachprop( lines, ( gshape, pname ) => {
-            let rgX = sn( pname, rg );
+        eachprop(lines, (gshape, pname) => {
+            let rgX = sn(pname, rg);
             rgX.pname = pname;
             rgX.tostroke = true;
             rgX.isPoint = false;
@@ -210,13 +210,13 @@ function doExpandConfig() {
                 'tipFill',
                 'pivotNames',
                 'stroke-width',
-            ].forEach( propname => {
-                if ( propname === 'pivotNames' ) {
-                    if ( has(gshape,propname) ) {
+            ].forEach(propname => {
+                if (propname === 'pivotNames') {
+                    if (has(gshape, propname)) {
                         rgX[propname] = gshape[propname];
                     }
                 } else {
-                has(gshape,propname) && (rgX[propname] = gshape[propname]);
+                has(gshape, propname) && (rgX[propname] = gshape[propname]);
                 }
             });
 
@@ -226,31 +226,31 @@ function doExpandConfig() {
             //stroke, 'stroke-width', and 'caption'
             //here we create even more mess because adding alternative stream for
             //pcolor
-            if ( has( gshape, 'pcolor' ) ) {
-                var tk = sDomF.toCssIdentifier( pname );
+            if (has(gshape, 'pcolor')) {
+                var tk = sDomF.toCssIdentifier(pname);
                 //concat() separates generic color-arrays from
                 let fc = topicColors_repo[ tk ] = gshape.pcolor.concat();
                 topicColors_repo_camel2col[ pname ] = fc;
-                rgX.pcolor = sDomF.getFixedColor( gshape.pcolor );
+                rgX.pcolor = sDomF.getFixedColor(gshape.pcolor);
                 rgX.opaqueColor = sDomF.getFixedColor(
-                                    gshape.pcolor, !!'makeOpacity1' );
+                                    gshape.pcolor, !!'makeOpacity1');
             } else {
-                rgX.pcolor = sDomF.getFixedColor( pname );
-                rgX.opaqueColor = sDomF.getFixedColor( pname,
-                                    !!'makeOpacity1' );
+                rgX.pcolor = sDomF.getFixedColor(pname);
+                rgX.opaqueColor = sDomF.getFixedColor(pname,
+                                    !!'makeOpacity1');
             }
 
-            let gclass = haz( gshape, 'cssClass' );
-            if ( gclass ) {
-                if ( gclass.indexOf( '--' )>0 ) {
+            let gclass = haz(gshape, 'cssClass');
+            if (gclass) {
+                if (gclass.indexOf('--')>0) {
                     gclass += ' hidee';
                     gshape.cssClass = gclass;
                     //c cc( pname +' gclass='+ gclass );
                 }
             }
             rgX.cssClass = gclass;
-            rgX.fontSize    = estimatesSizeScale * ( has( gshape, 'fontSize' ) ?
-                                gshape.fontSize : fconf.LETTER_FONT_SIZE_PER_1000 );
+            rgX.fontSize    = estimatesSizeScale * (has(gshape, 'fontSize') ?
+                                gshape.fontSize : fconf.LETTER_FONT_SIZE_PER_1000);
             //---------------------------------------------------------
             // \\// transfers properties from line-options to rg-lines:
             //---------------------------------------------------------
@@ -261,65 +261,65 @@ function doExpandConfig() {
         return;
 
         ///rg becomes normalized expansion of originalPoints
-        function expandsOrPoint( op, pname ) {
+        function expandsOrPoint(op, pname) {
             //todo ... non-readable: it tranfers properties from
             //??original points to here,
             //      this must be clearly written in code,
             op.own          = own;
-            var pictureP    = op.own( 'pos' );  //=media pos
+            var pictureP    = op.own('pos');  //=media pos
 
             //at the moment for missing flag, doPaintPname === true,
 
             // //\\ todm: automate property transfer
-            var doPaintPname= has( op, 'doPaintPname' ) ?
+            var doPaintPname= has(op, 'doPaintPname') ?
                                 op.doPaintPname : true;
-            var draggableX = has( op, 'draggableX' ) ? op.draggableX : false;
-            var draggableY = has( op, 'draggableY' ) ? op.draggableY : false;
+            var draggableX = has(op, 'draggableX') ? op.draggableX : false;
+            var draggableY = has(op, 'draggableY') ? op.draggableY : false;
             // \\// todm: automate property transfer
 
             var pos = pname2point[ pname ] = !pictureP ?
-                [0,0] :
-                [ ( pictureP[0] - originX_onPicture ) * inn2mod_scale,
-                    ( pictureP[1] - originY_onPicture ) * factor,
+                [0, 0] :
+                [ (pictureP[0] - originX_onPicture) * inn2mod_scale,
+                    (pictureP[1] - originY_onPicture) * factor,
                 ];
             //creates rgX or reuses existing one
             var rgX = op.rgX = ssF.declareGeomtric({
-                pname, pos, caption : haz( op, 'caption' ),
+                pname, pos, caption : haz(op, 'caption'),
             });
 
             //in some weird lemmas, rgX.draggableX is defined
             //in sf.js, don't erase it:
-            sn( 'draggableX', rgX, draggableX );
-            sn( 'draggableY', rgX, draggableY );
+            sn('draggableX', rgX, draggableX);
+            sn('draggableY', rgX, draggableY);
 
-            if ( has( op, 'cssClass' ) ) {
+            if (has(op, 'cssClass')) {
                 let opclass = op.cssClass;
-                if ( opclass.indexOf( '--' )>0 ) {
+                if (opclass.indexOf('--')>0) {
                     opclass += ' hidee';
                     op.cssClass = opclass;
                 }
                 rgX.classmark = opclass;
-            } else if ( has( op, 'classmark' ) ) {
-                if ( op.classmark.indexOf( '--' )>0 ) {
+            } else if (has(op, 'classmark')) {
+                if (op.classmark.indexOf('--')>0) {
                     op.classmark += ' hidee';
                 }
                 rgX.classmark = op.classmark;
             }
             rgX.doPaintPname = doPaintPname;
 
-            if ( has( op, 'pcolor' ) ) {
-                var tk = sDomF.toCssIdentifier( pname );
+            if (has(op, 'pcolor')) {
+                var tk = sDomF.toCssIdentifier(pname);
                 let fc = topicColors_repo[ tk ] = op.pcolor; //low
                 topicColors_repo_camel2col[ pname ] = fc;       //camel
-                rgX.pcolor = sDomF.getFixedColor( op.pcolor );
-                rgX.opaqueColor = sDomF.getFixedColor( op.pcolor,
-                                    !!'makeOpacity1' );
+                rgX.pcolor = sDomF.getFixedColor(op.pcolor);
+                rgX.opaqueColor = sDomF.getFixedColor(op.pcolor,
+                                    !!'makeOpacity1');
             } else {
-                rgX.pcolor = sDomF.getFixedColor( pname );
-                rgX.opaqueColor = sDomF.getFixedColor( pname,
-                                    !!'makeOpacity1' );
+                rgX.pcolor = sDomF.getFixedColor(pname);
+                rgX.opaqueColor = sDomF.getFixedColor(pname,
+                                    !!'makeOpacity1');
             }
-            rgX.undisplay = has( op, 'undisplay' ) ? op.undisplay : false;
+            rgX.undisplay = has(op, 'undisplay') ? op.undisplay : false;
 
             //todm ... make it a stand-alone function to facilitate
             //         dynamic points creation ... to avoid extra declaration
@@ -327,33 +327,33 @@ function doExpandConfig() {
             // //\\ sets up point letters
             //----------------------------------------------------------
             var letterOffset    = estimatesSizeScale * (
-                has( op, 'letterRotRadius' ) ?
+                has(op, 'letterRotRadius') ?
                 op.letterRotRadius :
-                LETTER_ROTATION_RADIUS_PER_1000 );
+                LETTER_ROTATION_RADIUS_PER_1000);
             var fontSize        = estimatesSizeScale * (
-                has( op, 'fontSize' ) ?
+                has(op, 'fontSize') ?
                    op.fontSize :
-                   fconf.LETTER_FONT_SIZE_PER_1000 );
-            var letterShift     = haz( op, 'letterShift' );
-            if ( letterShift ) {
+                   fconf.LETTER_FONT_SIZE_PER_1000);
+            var letterShift     = haz(op, 'letterShift');
+            if (letterShift) {
                 rgX.letterOffsetX = letterShift[0];
                 rgX.letterOffsetY = letterShift[1];
             } else {
-                var letterAngle     = has( op, 'letterAngle' ) ?
+                var letterAngle     = has(op, 'letterAngle') ?
                                         op.letterAngle : 0;
                 var rad             = letterAngle / 180 * Math.PI;
-                rgX.letterOffsetX   = letterOffset * Math.cos( rad ) -
+                rgX.letterOffsetX   = letterOffset * Math.cos(rad) -
                                         fontSize*LETTER_CENTER_X_PER_FONT_SIZE;
-                rgX.letterOffsetY   = letterOffset * Math.sin( rad ) -
+                rgX.letterOffsetY   = letterOffset * Math.sin(rad) -
                                         fontSize*LETTER_CENTER_Y_PER_FONT_SIZE;
             }
             rgX.letterOffsetY   *= -1; //for screen y-direction
 
-            var letterColor = haz( op, 'letterColor' );
-            if ( letterColor ) {
+            var letterColor = haz(op, 'letterColor');
+            if (letterColor) {
                 //todm ...
                 //rgX.letterColor = haz( op, 'letterColor' ) || rgX.pcolor;
-                rgX.letterColor = sDomF.getFixedColor( letterColor );
+                rgX.letterColor = sDomF.getFixedColor(letterColor);
             }
             rgX.fontSize = fontSize;
             //----------------------------------------------------------
@@ -381,8 +381,8 @@ function doExpandConfig() {
                 //before multiplication by initialR * sf.thickness,
                 'initialR',
                 'unscalable',
-            ].forEach( propname => {
-                has(op,propname) && (rgX[propname] = op[propname]);
+            ].forEach(propname => {
+                has(op, propname) && (rgX[propname] = op[propname]);
             });
             [
                 'caption', //todm conflict with declare Geometric?
@@ -391,8 +391,8 @@ function doExpandConfig() {
                 'conditionalDrag',
                 'style',
                 'textLineTurn',
-            ].forEach( propname => {
-                rgX[propname] = haz(op,propname);
+            ].forEach(propname => {
+                rgX[propname] = haz(op, propname);
             });
         }
     })();
@@ -403,8 +403,8 @@ function doExpandConfig() {
     //----------------------------------------------------
     // //\\  prepares sf data holder
     //----------------------------------------------------
-    sn( 'hideProofSlider', sf, true );
-    Object.assign( sf, {
+    sn('hideProofSlider', sf, true);
+    Object.assign(sf, {
         //model-view parameter
         thickness : 1,
         //:scenario
@@ -448,14 +448,14 @@ function doExpandConfig() {
    */
 
     //check or remove this section
-    sn( 'hover_width', sf,
-        Math.max( 1,  sf.default_tp_stroke_width ) );
-    sn( 'text_hover_width', sf,
-        Math.max( 1,  sf.hover_width ) );
-    sn( 'nonhover_width', sf,
-        Math.max( 1,  sf.hover_width/2 ) );
-    sn( 'text_nonhover_width', sf,
-        Math.max( 1,  sf.text_hover_width/2 ) );
+    sn('hover_width', sf,
+        Math.max(1,  sf.default_tp_stroke_width));
+    sn('text_hover_width', sf,
+        Math.max(1,  sf.hover_width));
+    sn('nonhover_width', sf,
+        Math.max(1,  sf.hover_width/2));
+    sn('text_nonhover_width', sf,
+        Math.max(1,  sf.text_hover_width/2));
     //----------------------------------
     // \\// prepares sf data holder
     //----------------------------------------------------

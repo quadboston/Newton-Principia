@@ -4,11 +4,11 @@
     var { sn, fapp, sapp, ssF, sDomF, stdMod, }
         = window.b$l.apptree({ setModule,
         stdModExportList : { init_model_parameters, }, });
-    var stdL2       = sn('stdL2', fapp );
-    var study       = sn('study', stdL2 );
-    var gui         = sn('gui', stdL2 );
-    var dataregs    = sn('dataregs', stdL2 );
-    var guicon      = sn('guiConstruct', gui );
+    var stdL2       = sn('stdL2', fapp);
+    var study       = sn('study', stdL2);
+    var gui         = sn('gui', stdL2);
+    var dataregs    = sn('dataregs', stdL2);
+    var guicon      = sn('guiConstruct', gui);
     return;
 
 
@@ -32,7 +32,7 @@
                 buttonUniversalId       : pid,
                 //scenarioEventOnClick    : 'graph-is-plotted',
                 clickCallback           : () => {
-                    sData[ pid ].dom$.css( 'display', 'none' );
+                    sData[ pid ].dom$.css('display', 'none');
                 },
                 noTopicScenario         : true,
                 cssText                 : `
@@ -109,4 +109,4 @@
         study.setupEventsAreasLegend?.();
     }
 
-}) ();
+})();
