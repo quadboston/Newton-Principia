@@ -14,3 +14,4 @@ src/plugins/phys-ideal-gas
 src/plugins/dynoribbon
 src/plugins/vend
 .vscode
+/node_modules
