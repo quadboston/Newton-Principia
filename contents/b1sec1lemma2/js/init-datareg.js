@@ -5,30 +5,30 @@
     return;
 
 
-    function initDataReg({xLeft, width, height, yBottom,
+    function initDataReg({ xLeft, width, height, yBottom,
         BASE_PT_DRAGGERS_ENABLED, POINT_LABELS, DRAGGABLE_END_POINTS,
         TRANSFORM_PT_I_ENABLED, TRANSFORM_PT_J_ENABLED,
-        DR_ADJUST_WIDTHS_MATCH_AREA_RATIOS}) {
+        DR_ADJUST_WIDTHS_MATCH_AREA_RATIOS }) {
         return {
             //offset 0 (was 1) to hide base point on right side of figure
-            basePts: {offset: 0, visOffset: 0, list: []},
-            curvPts: {offset: 1, visOffset: 0, list: []},
-            transPts: {offset: 1, visOffset: 0, list: []},
-            circRects: {offset: 0, visOffset: 0, list: []},
-            circRects_outline: {offset: 0, visOffset: 0, list: []},
-            InscrRects: {offset: 0, visOffset: 0, list: []},
-            InscrRects_outline: {offset: 0, visOffset: 0, list: []},
-            differenceRects: {offset: 0, visOffset: 0, list: []},
+            basePts: { offset: 0, visOffset: 0, list: [] },
+            curvPts: { offset: 1, visOffset: 0, list: [] },
+            transPts: { offset: 1, visOffset: 0, list: [] },
+            circRects: { offset: 0, visOffset: 0, list: [] },
+            circRects_outline: { offset: 0, visOffset: 0, list: [] },
+            InscrRects: { offset: 0, visOffset: 0, list: [] },
+            InscrRects_outline: { offset: 0, visOffset: 0, list: [] },
+            differenceRects: { offset: 0, visOffset: 0, list: [] },
 
             //baseLabels      : {offset:1, visOffset:0, list:[]},
-            curvLabels: {offset: 0, visOffset: 0, list: []},
-            leftLabels: {offset: 0, visOffset: 0, list: []},
+            curvLabels: { offset: 0, visOffset: 0, list: [] },
+            leftLabels: { offset: 0, visOffset: 0, list: [] },
             //righLabels      : {offset:0, visOffset:0, list:[]},
             //deltaOnLeft historically means "virtual majoranta-rectangle"
             //is on the right
-            figureParams: {minX: 0, maxX: 0, deltaOnLeft: true},
+            figureParams: { minX: 0, maxX: 0, deltaOnLeft: true },
             figureArea: 0,
-            curveMicroPts: {points: [], sectionIndices: []},
+            curveMicroPts: { points: [], sectionIndices: [] },
             ctrlPts: {
                 //Control point draggers with transformed positions.
                 list: [],
@@ -66,12 +66,12 @@
         //Unscaled positions (used as a template)
         const positionsUnscaled = [
             //Top left
-            {x: 0, y: 0},
+            { x: 0, y: 0 },
             //Two middle handles
-            {x: 102.7, y: 44.5},
-            {x: 217.3, y: 151.0},
+            { x: 102.7, y: 44.5 },
+            { x: 217.3, y: 151.0 },
             //Bottom right
-            {x: 265, y: 252},
+            { x: 265, y: 252 },
         ];
 
         const pLast = positionsUnscaled[positionsUnscaled.length-1];

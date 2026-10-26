@@ -15,7 +15,7 @@
         if (!dr.POINT_LABELS)
             return "";
 
-        const {CTRL_PT_FIRST, CURVE_MIDDLE, CTRL_PT_LAST} =
+        const { CTRL_PT_FIRST, CURVE_MIDDLE, CTRL_PT_LAST } =
             dr.POINT_LABELS;
         const curveName = CTRL_PT_FIRST + CURVE_MIDDLE + CTRL_PT_LAST;
         return sDomF.toCssIdentifier(curveName);
@@ -26,7 +26,7 @@
         if (!dr.POINT_LABELS)
             return "";
 
-        const {CTRL_PT_FIRST, CURVE_MIDDLE, CTRL_PT_LAST, BASE_PT_FIRST} =
+        const { CTRL_PT_FIRST, CURVE_MIDDLE, CTRL_PT_LAST, BASE_PT_FIRST } =
             dr.POINT_LABELS;
         const figureName = BASE_PT_FIRST + CTRL_PT_FIRST + CURVE_MIDDLE +
             CTRL_PT_LAST;
@@ -41,7 +41,7 @@
                 !study.isMonotonic(dr) ? 'none' : 'block');
 
             if (dr.POINT_LABELS) {
-                const {CTRL_PT_FIRST, CTRL_PT_LAST, BASE_PT_FIRST} =
+                const { CTRL_PT_FIRST, CTRL_PT_LAST, BASE_PT_FIRST } =
                     dr.POINT_LABELS;
 
                 const lineLeftSide = rg[BASE_PT_FIRST + CTRL_PT_FIRST];

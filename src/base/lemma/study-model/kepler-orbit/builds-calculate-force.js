@@ -105,8 +105,8 @@
         // }
 
         let force = (isUlitmacyForActualForce || substituteActualForce) ?
-            calculateActualForce({bP}) :
-            calculateEstimatedForce({parq, bP});
+            calculateActualForce({ bP }) :
+            calculateEstimatedForce({ parq, bP });
 
         //The functions above that calculate force are proportional to the exact
         //solution.  This means when comparing one orbit to another orbit, the

@@ -7,7 +7,7 @@
             creates_Q8P_sliders,
             creates_A_slider,
             creates__gets_orbit_closest_point,
-        },});
+        }, });
     const qIndexToOrbit = sn('qIndexToOrbit', ssD, []);
     return;
 

@@ -1,5 +1,5 @@
 (function () {
-const { ns, eachprop, exegs, topics, fconf, references} = window.b$l.apptree({
+const { ns, eachprop, exegs, topics, fconf, references } = window.b$l.apptree({
         ssFExportList: {
             exegs_2_frags,
         },

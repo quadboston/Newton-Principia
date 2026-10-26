@@ -17,7 +17,7 @@
 
     function curveFun(dr, x) {
         //Calculate y value of the curve using linear interpolation.
-        const {points, sectionIndices} = dr.curveMicroPts;
+        const { points, sectionIndices } = dr.curveMicroPts;
 
         //If not enough points return default value
         if (points.length < 2)
@@ -29,7 +29,7 @@
 
         //Determine which section contains the x value
         for (let i = 0; i < sectionIndices.length; i++) {
-            const {indexStart, indexEnd} = sectionIndices[i];
+            const { indexStart, indexEnd } = sectionIndices[i];
             const xStart = points[indexStart][0];
             const xEnd = points[indexEnd][0];
             const xRange = xEnd - xStart;
@@ -99,7 +99,7 @@
                 const indexStart = (i === 0 ? 0 : (mp.length - 1));
                 mp.push(...points);
                 const indexEnd = mp.length - 1;
-                sectionIndices.push({indexStart, indexEnd});
+                sectionIndices.push({ indexStart, indexEnd });
             }
         });
 
@@ -118,7 +118,7 @@
         // //\\ Copy
         //Copies values rather than references, so modifications won't affect
         //the original.
-        let copy = ptsUntransformed.map(p => ({...p}));
+        let copy = ptsUntransformed.map(p => ({ ...p }));
         // \\// Copy
 
         // //\\ Sort
@@ -186,11 +186,11 @@
         //appear smooth and minimize undesired curves and bends, the following
         //extended points have been chosen.
         const extendedPoints = [
-            {x: ptFirst.x - figureWidth * 0.05,
-             y: ptFirst.y},
+            { x: ptFirst.x - figureWidth * 0.05,
+             y: ptFirst.y },
             ...sorted,
-            {x: ptLast.x,
-             y: ptLast.y + figureHeight * 0.05}
+            { x: ptLast.x,
+             y: ptLast.y + figureHeight * 0.05 }
         ];
 
         const output = [];
@@ -200,10 +200,10 @@
             const section = [];
 
             //Default points.
-            const p0 = {...extendedPoints[i]};
-            const p1 = {...extendedPoints[i + 1]};
-            const p2 = {...extendedPoints[i + 2]};
-            const p3 = {...extendedPoints[i + 3]};
+            const p0 = { ...extendedPoints[i] };
+            const p1 = { ...extendedPoints[i + 1] };
+            const p2 = { ...extendedPoints[i + 2] };
+            const p3 = { ...extendedPoints[i + 3] };
 
             //Adjust extended points as needed
             if (i === 0) {
@@ -219,7 +219,7 @@
                 const u = t / steps;
                 const x = catmullRom(u, p0.x, p1.x, p2.x, p3.x);
                 const y = catmullRom(u, p0.y, p1.y, p2.y, p3.y);
-                section.push({x, y})
+                section.push({ x, y })
             }
 
             output.push(section);
@@ -237,12 +237,12 @@
             //-Very low distance means very straight
             const distMax = Math.hypot(figureWidth, figureHeight) * 0.3;
 
-            const delta = {x: pAdjust.x - pOther.x, y: pAdjust.y - pOther.y};
+            const delta = { x: pAdjust.x - pOther.x, y: pAdjust.y - pOther.y };
             const dist = Math.hypot(delta.x, delta.y);
 
             if (dist > 0 && dist > distMax) {
                 //Normalize then adjust
-                const n = {x: delta.x / dist, y: delta.y / dist};
+                const n = { x: delta.x / dist, y: delta.y / dist };
                 pAdjust.x = pOther.x + n.x * distMax;
                 pAdjust.y = pOther.y + n.y * distMax;
             }
@@ -337,7 +337,7 @@
                 //Found so calculate and output y
                 const slope = (ptRight.y - ptLeft.y) / xRange;
                 const y = ptLeft.y + slope * (x - ptLeft.x);
-                return {y, indexLine};
+                return { y, indexLine };
             } else {
                 //Not found so move to next line segment
                 indexLine++;

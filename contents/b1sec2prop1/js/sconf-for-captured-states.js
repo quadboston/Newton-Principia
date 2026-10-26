@@ -3,7 +3,7 @@
         window.b$l.apptree({ ssFExportList: {
             setsCommonT1andT2capture,
             makesProfessorsCaptureFootnotes,
-        }});
+        } });
         Object.assign(sconf, {
             initialTimieStep: 0.75,
         });

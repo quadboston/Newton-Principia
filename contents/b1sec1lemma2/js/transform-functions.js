@@ -33,9 +33,9 @@
         //Default transformation matrix
         const T = [[1, 0], [0, 1]];
 
-        const {origin, pts, POINT_I_ENABLED, POINT_J_ENABLED} = transforms;
+        const { origin, pts, POINT_I_ENABLED, POINT_J_ENABLED } = transforms;
         if (origin && pts) {
-            const {i, j} = pts;
+            const { i, j } = pts;
             //Calculate matrix values using point i if needed
             if (POINT_I_ENABLED && i) {
                 const xOffsetInitial = i.xOffsetInitial;

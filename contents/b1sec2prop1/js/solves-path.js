@@ -125,7 +125,7 @@
                 //calculate vector to center S
 
                 //applies force law
-                let {lawPower, lawConstant} = rg.force.inarray[pi < 6 ? pi-1 : 4];
+                let { lawPower, lawConstant } = rg.force.inarray[pi < 6 ? pi-1 : 4];
                 var forceByDistance = Math.exp(lawPower * Math.log(r));
                 var forceAbs = lawConstant * forceByDistance;
                 if (pi < 6) {

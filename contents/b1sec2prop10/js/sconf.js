@@ -376,7 +376,7 @@
             }, },
             { 'QC': { pcolor: proofColor,
                 cssClass: 'subessay--goal',
-            },},
+            }, },
 
             { PF: { pcolor: proofColor,
                      cssClass: 'logic_phase--proof',

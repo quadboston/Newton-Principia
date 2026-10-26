@@ -230,7 +230,7 @@
         const ratioData = calculateRatioInscribedAreasAndWidthLast(drOther);
         if (!ratioData)
             return;
-        const {ratios, widthLastRect} = ratioData;
+        const { ratios, widthLastRect } = ratioData;
 
         const widths = calculateRectWidthsToMatchAreaRatios(dr, ratios,
             widthLastRect);
@@ -282,7 +282,7 @@
         if (!dv)
             return null;
 
-        const {x_start, x_end, chosenWidth} = dv;
+        const { x_start, x_end, chosenWidth } = dv;
         const ff = numModel.curveFun;
         const figureArea = dr.figureArea;
 
@@ -311,7 +311,7 @@
             return null;
 
         //If calculated data not usable (unlikely to happen).
-        const {widthsReversed, sumWidth} = solvedData.widthData;
+        const { widthsReversed, sumWidth } = solvedData.widthData;
         if (!widthsReversed || sumWidth <= 0)
             return null;
 
@@ -391,7 +391,7 @@
                 xRight -= width;
             }
 
-            return {widthsReversed, sumWidth};
+            return { widthsReversed, sumWidth };
         }
 
         function solveUsingNewtonRaphson() {
@@ -447,7 +447,7 @@
                     return null;
                 const errorRelative = widthData.sumWidth / chosenWidth - 1;
                 if (Math.abs(errorRelative) < errorTolerance)
-                    return {scale, widthData, iteration};
+                    return { scale, widthData, iteration };
             }
 
             //Didn't converge
@@ -482,7 +482,7 @@
                 //Check if converged.
                 const errorRelative = widthData.sumWidth / chosenWidth - 1;
                 if (Math.abs(errorRelative) < errorTolerance)
-                    return {scale, widthData, iteration};
+                    return { scale, widthData, iteration };
             }
 
             //Didn't converge

@@ -29,7 +29,7 @@
         graph.drawsGraph = drawsGraph;
         graph.setsGraphVisible = setsGraphVisible;
         ///creates graph dom container
-        const {container$, graph_dimX, graph_dimY} =
+        const { container$, graph_dimX, graph_dimY } =
             createsGraphContainer(parentDom$);
         ///creates low tier api
         graph.chart = nsmethods.createsGraphFramework({
@@ -234,7 +234,7 @@
         //creates low tier api
         const graph_dimX = 1000;  //innerWidth
         const graph_dimY = 580;   //innerHeight
-        return {container$, graph_dimX, graph_dimY}
+        return { container$, graph_dimX, graph_dimY }
     }
 
     function graphAxisLegends(legendText, legendX) {

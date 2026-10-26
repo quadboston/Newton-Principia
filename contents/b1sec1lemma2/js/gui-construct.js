@@ -1,7 +1,7 @@
 (function () {
     var {
         ///standard levels of application
-        sn, svgNS, fapp, sconf, stdMod, topicColors_repo}
+        sn, svgNS, fapp, sconf, stdMod, topicColors_repo }
         = window.b$l.apptree({ setModule, });
     var stdL2               = sn('stdL2', fapp);
     var gui                 = sn('gui', stdL2);

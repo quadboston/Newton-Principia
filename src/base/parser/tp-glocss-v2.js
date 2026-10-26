@@ -83,7 +83,7 @@ ${Rtp}.tobg {
                 var Rix = ROOT + '.tp-' + tplink_ix;
                 var gcssRack = topics.lowtpid_2_glocss8anchorRack[low_tpID];
                 var ts = '';
-                var { highOpacity, rgba_own} = gcssRack;
+                var { highOpacity, rgba_own } = gcssRack;
                 var tpOpacityHigh_str = highOpacity.toFixed(3);
                 ts += `
 ${Rix} .tp-${low_tpID} {

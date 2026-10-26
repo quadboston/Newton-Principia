@@ -52,7 +52,7 @@
         var maxY = p[0][1];
         let len = p.length;
         let dir = p[1][1] > p[0][1] ? 1 : 0;
-        changes.push({ix, dir, pstart: p[ix], mp_start_ix: ix });
+        changes.push({ ix, dir, pstart: p[ix], mp_start_ix: ix });
         var stashedChan = changes[0];
         for (ix = 1; ix < len; ix++) {
             let y = p[ix][1];

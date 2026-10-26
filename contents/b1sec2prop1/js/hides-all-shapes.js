@@ -2,7 +2,7 @@
     const { sn, $$, eachprop, haz, sconf, rg, stdMod } =
         window.b$l.apptree({ stdModExportList: {
             hides_all_shapes,
-    }});
+    } });
     return;
 
 

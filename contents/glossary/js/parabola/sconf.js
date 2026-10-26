@@ -291,8 +291,8 @@
                 cssClass: 'subessay--latus-rectum-parabola', };
 
         var linesArray = [
-            { GP: {pcolor: proofColor} },
-            { gP: {pcolor: proofHover} },
+            { GP: { pcolor: proofColor } },
+            { gP: { pcolor: proofHover } },
             { Pv: showForLatus },
             { Qv: showForLatus },
             { MP: showForiii48 },
@@ -306,7 +306,7 @@
                 cssClass: 'subessay--diameter-parabola subessay--iii48-parabola', }, },
 
             // base line
-            { 'A,AA': {pcolor: proofColor} },
+            { 'A,AA': { pcolor: proofColor } },
 
             { 'L,LL': { pcolor: infoHover,
                captionShiftNorm: 22, lposYSugar: 3 }, },

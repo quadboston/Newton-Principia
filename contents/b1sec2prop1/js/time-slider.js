@@ -1,5 +1,5 @@
 (function () {
-const {sn, $$, sv, globalCss, haz, sconf, sDomF, ssF, ssD,
+const { sn, $$, sv, globalCss, haz, sconf, sDomF, ssF, ssD,
         toreg, rg, amode, stdMod } =
         window.b$l.apptree({ stdModExportList: {
         //creates_sliderDomModel__4__time

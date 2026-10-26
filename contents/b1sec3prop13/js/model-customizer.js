@@ -1,5 +1,5 @@
 (function () {
-    var {nspaste, mat, rg}
+    var { nspaste, mat, rg }
         = window.b$l.apptree({ stdModExportList: { customizePoints, }, });
     return;
 

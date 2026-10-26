@@ -179,10 +179,10 @@
 
         var linesArray = [
             { 'Ad': { pcolor: proof,
-                cssClass: 'logic_phase--proof logic_phase--corollary'}, },
+                cssClass: 'logic_phase--proof logic_phase--corollary' }, },
             { 'AB': { pcolor: given }, },
             { 'AC': { pcolor: given,
-                cssClass: 'logic_phase--corollary'}, },
+                cssClass: 'logic_phase--corollary' }, },
             { 'AD': { pcolor: given }, },
             { 'BD': { pcolor: given,
                 //cssClass: 'subessay--cor-1 subessay--cor-2',
@@ -190,7 +190,7 @@
             { 'BC': { pcolor: given,
                 cssClass: 'logic_phase--corollary', }, },
             { 'AG': { pcolor: proof,
-                cssClass: 'logic_phase--proof',}, },
+                cssClass: 'logic_phase--proof', }, },
             { 'BG': { pcolor: proof,
                 cssClass: 'logic_phase--proof', }, },
             { 'GJ': { pcolor: proof,
@@ -200,7 +200,7 @@
             { 'Ag': { pcolor: proof,
                 cssClass: 'logic_phase--proof', }, },
             { 'bc': { pcolor: proof,
-                cssClass: 'logic_phase--corollary',}, },
+                cssClass: 'logic_phase--corollary', }, },
             { 'bd': { pcolor: proof,
                 cssClass: 'logic_phase--proof logic_phase--corollary', }, },
             { 'bg': { pcolor: proof,
@@ -208,7 +208,7 @@
             { 'AJ': { pcolor: given,
                 cssClass: 'logic_phase--claim logic_phase--proof', }, },
             { 'bM': { pcolor: supplementHover,
-                cssClass: 'logic_phase--corollary',}, },
+                cssClass: 'logic_phase--corollary', }, },
         ];
 
         //making size to better fit lemma's diagram

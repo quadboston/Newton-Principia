@@ -1,7 +1,7 @@
 (function () {
     var {
         sn, mat, nspaste, sData, amode, stdMod, sconf, rg, ssF
-    } = window.b$l.apptree({ stdModExportList: { completesSlidersCreation, }});
+    } = window.b$l.apptree({ stdModExportList: { completesSlidersCreation, } });
     var conics = sn('conics', mat);
     var sop = sn('sampleOrbitParameters', sconf);
     return;

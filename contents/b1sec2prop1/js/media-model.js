@@ -4,7 +4,7 @@ const { sn, $$, eachprop, has, haz, hafff, fmethods,
 } = window.b$l.apptree({ stdModExportList: {
         media_upcreate___before_basic,
         media_upcreate___after_basic,
-}});
+} });
 var initialization_is_done = false;
 var zorderFixed = false;
 //enables steps BC, CD, ... by clicks on B, C, ...
