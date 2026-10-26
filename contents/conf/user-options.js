@@ -55,5 +55,4 @@
         }
         return fconf.SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM;
     }
-
 })();

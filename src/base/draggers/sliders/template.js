@@ -242,5 +242,4 @@
             sl.hideD8Dpoint = haz(rgtools, 'value') === 'on' ? false : true;
         })
     }
-
 })();

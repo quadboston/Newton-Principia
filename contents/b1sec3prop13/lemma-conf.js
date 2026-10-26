@@ -16,5 +16,4 @@
             sappCodeReference: 'b1sec3prop12',
         };
     }
-
 })();

@@ -21,7 +21,6 @@
 
     ///one of the first thing called in app-wide sapp.init_sapp
     function init_model_parameters() {
-
         {
             let pid = 'proof-pop-up';
             let button = ssF.createButton({
@@ -105,5 +104,4 @@
         gui.createDragModel();
         study.setupEventsAreasLegend?.();
     }
-
 })();

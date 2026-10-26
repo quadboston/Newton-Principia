@@ -17,7 +17,6 @@
         //      path "rgPoints", Kepler-triangles, free-triangles
         //=======================================================
         path.forEach((pt, pix) => {
-
             //---------------------------------------------------------
             // //\\ spawns path-points to media,
             //      path[0] apparently used nowhere
@@ -78,11 +77,9 @@
         //      and media-forces
         //---------------------------------------------------------
         path.forEach((pt, pix) => {
-
             //forces master-index offset is pi = 1 and
             //identified with key 'kepltr-' + (pi-1)
             if (pix > 0) {
-
                 //*****************************************
                 // //\\ paints forces attached to B, C, ...
                 //*****************************************

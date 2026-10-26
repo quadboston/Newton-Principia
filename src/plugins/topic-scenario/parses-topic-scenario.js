@@ -37,7 +37,6 @@
         //                               "subtopics"
             eachprop(logic_phaseAspects, (exAspect, aspect_id) => {
                 exAspect.subexegs.forEach((subexeg, exegId) => {
-
                     var scenarioScript = haz(subexeg, 'scenarioScript');
                     //example: exersise.subtopics.subessay2subexeg[
                     //         'measure-equival-point' ].scenarioScript
@@ -193,5 +192,4 @@
             });
         });
     }
-
 })();

@@ -54,7 +54,6 @@
         // todo: rename? what is t?
         // also called from other modules to determine position of specified points
         function t2xy(q) {
-
             //denomenator
             var den = 1 - op.eccentricity * Math.cos(q);
             if (den === 0) {
@@ -268,5 +267,4 @@
         //mostly just flips model from ellipse to hyperbola based on e
         //console.log('newEccentricity: ' + eccentricity.toFixed(3));
     }
-
 })();

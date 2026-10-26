@@ -66,7 +66,6 @@
 
             //Reset eccentricity
             stdMod.establishesEccentricity(eccentricityStored);
-
         } else if (fconf.sappId === 'b1sec3prop13') {
             //No adjustments needed, just calculate maximum forces.
             stdMod.rebuilds_orbit(true);

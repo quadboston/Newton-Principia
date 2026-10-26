@@ -135,5 +135,4 @@
 
         return captured;
     }
-
 })();

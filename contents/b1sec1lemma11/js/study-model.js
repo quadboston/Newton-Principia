@@ -148,5 +148,4 @@
         line2abs('BD');
         line2abs('bd');
     }
-
 })();

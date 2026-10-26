@@ -103,5 +103,4 @@
         decorCount_debug++;
         return decPoint;
     }
-
 })();

@@ -92,7 +92,6 @@
                 //=========================================
                 //parsedLink[3] === '(?:(¦)(¦)*' +  //catches delayed topc-link for MathJax sibling
                 if (parsedLink[3]) {
-
                     ///this array collects information for spawning plain-words (which are
                     ///original match keys), collected info will be used later for first-step for
                     ///replacing plain-words with match-clauses,
@@ -296,7 +295,6 @@
                             //affecting originally supplied rawActiveFrag argument.
             akey
         ) => {
-
             //these subs are the KINGs of processing the Book
             //  doesInsertSiteHTMLMacros( fragBody_raw )
             //  insertDelayedBatch( fragBody_raw )
@@ -541,5 +539,4 @@
         }
         return fragBody_raw;
     }
-
 })();

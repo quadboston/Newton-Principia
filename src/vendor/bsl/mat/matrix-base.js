@@ -350,5 +350,4 @@
         var sin = unitVector1[0]*unitVector2[1] - unitVector1[1]*unitVector2[0];
         return { cos, sin, angle: Math.atan2(sin, cos) };
     }
-
 })(window);

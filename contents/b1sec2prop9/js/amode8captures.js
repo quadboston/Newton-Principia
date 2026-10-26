@@ -22,5 +22,4 @@
         rg['curvatureCircle'].undisplay = subessay !== 'another-solution';
         return captured;
     }
-
 })();

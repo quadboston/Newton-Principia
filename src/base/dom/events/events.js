@@ -231,7 +231,6 @@
 
         // moves model so zoom is around mouse
         function pansToKeepZoomCenter(oldScale, newScale, mousePicX, mousePicY) {
-
             var originX = sconf.modorInPicX;
             var originY = sconf.modorInPicY;
 
@@ -269,5 +268,4 @@
         };
     }
     ///wheel
-
 })();

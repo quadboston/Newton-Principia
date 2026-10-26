@@ -50,5 +50,4 @@
             syncPoint(dr, BASE_PT_FIRST, posBaseFirst);
         }
     }
-
 })();

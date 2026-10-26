@@ -52,7 +52,5 @@
             rg.a.value = newPos[0] - rg.C.pos[0];
             return true;
         }
-
     }
-
 })();

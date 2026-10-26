@@ -176,7 +176,6 @@
                 //console.log(leafRk.mcat_id + ' ' + leafRk.scat_id);
                 let update = updateURL(leafRk.mcat_id, leafRk.scat_id)
                 if (update && (mcat_id !== 'logic_phase' || !fconf.logic_phaseTab_nonClickable)) {
-
                     //:todm: it is not clear why this is required, and why flag
                     //:'chosen' is not cleared up downstream automatically
                     let mid = mcat_id;
@@ -243,7 +242,6 @@
                     }
                 }
             });
-
         } else {
             // todo: are there more?
             console.log('unhandled: ' + mcat + ' ' + scat);
@@ -327,7 +325,6 @@
 
         //flag to content-text-components
         if (userOptions.shouldShowSubessayMenu(exAspect)) {
-
             //vital: makes an entire subessays-menu visible ...
             //       misleading wording "chosen"
             exAspect.subessayMenuContainer$.addClass('chosen');
@@ -397,7 +394,6 @@
 
             //.todm code proliferation ... model runs twice?
             res(null, !!'doDividorSynch');
-
         }
 
         //**********************************************************************************

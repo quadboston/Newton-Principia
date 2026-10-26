@@ -17,5 +17,4 @@
         //                      ( amode.logic_phase !== 'corollary' )
         sDomF.detected_user_interaction_effect(!!"showBookDiagram");
     }
-
 })();

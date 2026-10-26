@@ -250,5 +250,4 @@
         stdMod.model_upcreate();
         stdMod.media_upcreate();
     }
-
 })();

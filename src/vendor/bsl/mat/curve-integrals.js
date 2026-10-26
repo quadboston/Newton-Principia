@@ -41,7 +41,6 @@
         STARTING_EXPONENT_FOR_2,
         SAFETY_INTERACTIONS_LIM,
     }) {
-
         //value 10 gives limit = 2^10, possibly accuracy = 0.001
         //SAFETY_INTERACTIONS_LIM = 25; //experiment: 25 seems ~ 180 Meg, accuracy ~ 10^-11
         //SAFETY_INTERACTIONS_LIM = 23; //23 must be safe, 30 - danger
@@ -131,5 +130,4 @@
         //what we have:
         return prevLen;
     }
-
 })();

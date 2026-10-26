@@ -63,7 +63,6 @@
                 //------------------------------------
                 nsmethods.loadAjaxFiles(lbf_forAjax, function (loadedFilesById_II) {
                         lbf_forAjax.forEach(function (listItem) {
-
                             //do collect resources somewhere elese, like for PIXI plugin ...
                             if (listItem.id.match(res_matchRe)) return;
                             //patch
@@ -100,7 +99,6 @@
             //      and prebuilds esssay-placeholders and indexes them
             //=========================================================
             subessays.forEach(function (singleSubessay) {
-
                 //removes subessays which are empty text
                 if (singleSubessay.replace(/(\s|\n\r)*/g, '').length === 0) return;
 
@@ -311,7 +309,6 @@
 
                         ///we need menu and classes only once per theor-aspect pair
                         if (subexId === 0) {
-
                             //.not elegant: should be in "logic_phase" loop, not in child loop,
                             setMenu(logic_phase_id, 'logic_phase', essayHeader);
 
@@ -550,5 +547,4 @@
         }
         return rgba;
     }
-
 })();

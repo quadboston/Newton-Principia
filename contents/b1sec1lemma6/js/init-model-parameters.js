@@ -121,7 +121,6 @@
                                 break;
                             }
                         }
-
                     })();
                 }
             }
@@ -231,5 +230,4 @@
             rg.r.pos, rg.d.pos);
         nspaste(rg.L.pos, L);
     }
-
 })();

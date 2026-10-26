@@ -124,7 +124,6 @@
         var f0g = 'f';
 
         partition.forEach(point => {
-
             //***********************************
             // to make this a generic algo in bsl
             // these extra layers of props of
@@ -259,5 +258,4 @@
             });
         }
     }
-
 })();

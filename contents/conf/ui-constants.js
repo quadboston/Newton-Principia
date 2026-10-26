@@ -67,5 +67,4 @@
         sf.SLIDERS_LEGEND_HEIGHT *= sscale;
         sf.SLIDERS_OFFSET_Y *= sscale;
     }
-
 })();

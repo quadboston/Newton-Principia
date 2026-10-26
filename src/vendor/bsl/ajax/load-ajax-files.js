@@ -41,7 +41,6 @@
         var completionCount = 0;
 
         filesList.forEach(function (fileItem, ix) {
-
             var xml = new XMLHttpRequest();
             try {
                 xml.responseType = ns.haz(fileItem, 'responseType') || 'text';
@@ -56,7 +55,6 @@
                     //sets primary callback
                     xml.onreadystatechange = process_by_good_readystate;
                 }
-
             } catch (e) {	//	TODM
                 //Give up.
                 completionCount++;
@@ -103,5 +101,4 @@
     //===============================================================================
     // \\// microAPI to load list of files
     //===============================================================================
-
 })();

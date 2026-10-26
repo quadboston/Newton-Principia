@@ -43,7 +43,6 @@
             arg.parent.appendChild(svgel);
         }
         Object.keys(arg).forEach(function (key) {
-
             //--------------------------------------
             // //\\ ignores 'parent' and 'type'
             //      properties which were used above
@@ -81,7 +80,6 @@
             //-------------------------------------
             var val = arg[key];
             if (val || val === 0) {
-
                 //valuable for d e b u g
                 //if( typeof val === 'string' && val.indexOf('NaN')> 0 )
                 //    c cc( val );

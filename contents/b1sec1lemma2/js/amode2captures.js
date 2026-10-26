@@ -17,5 +17,4 @@
         ssF.media_upcreate_generic();
         return captured;
     }
-
 })();

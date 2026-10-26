@@ -139,7 +139,6 @@
         //==================================================
         // \\// application version label
         //==================================================
-
     }
     ///inserts itself into sDomN.homeButton$.html
     function fillsLemmasList() {

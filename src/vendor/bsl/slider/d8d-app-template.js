@@ -106,7 +106,6 @@
             }
 
             if (mouseUpOrDown === 'move' || mouseUpOrDown === 'up') {
-
                 //.this makes program immune to resize
                 var len = surface0attachee.getBoundingClientRect().width;
                 //.calculates absolute move adding initial position + current move
@@ -160,6 +159,5 @@
         //====================================================================
         // \\// protects textarea, form elements ... from dragging
         //====================================================================
-
     };
 })();

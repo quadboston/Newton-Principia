@@ -55,5 +55,4 @@
             'inactive-tabs-document-header-tag',
         );
     }
-
 })();

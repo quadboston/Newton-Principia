@@ -609,5 +609,4 @@
             fun(arg_closured, dragType_closured);
         }
     }
-
 })();

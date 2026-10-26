@@ -185,5 +185,4 @@
         stdMod.setsDifferenceBarsMonotonity(dr);
         (dv.chchosen.dir <= 0) && stdMod.swapMonotonity(dr);
     }
-
 })();

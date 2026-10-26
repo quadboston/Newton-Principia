@@ -65,7 +65,6 @@
 
                 //Clamp as needed
                 ssD.Dt = Math.max(Math.min(Dt, sconf.DT_SLIDER_MAX), 0);
-
             } else {
                 const qQ = qIndexToOrbit[Qqix].q;
                 const qP = qIndexToOrbit[Pqix].q;

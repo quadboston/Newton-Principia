@@ -134,10 +134,8 @@
                     }`,
                     'table-patch',
                 );
-
             }
         }
         return captured;
     }
-
 })();
