@@ -64,7 +64,10 @@
         // radius of points
         // only works on solid green points, not draggers
         // CTRL_RADIUS, MOVABLE_BASE_RADIUS set in sconf-common.js 
-        sconf.pointDecoration.r = 0.5; 
+        // drawn by fill alone: Firefox leaves a hole in the middle of
+        // a circle whose stroke is much wider than its radius
+        sconf.pointDecoration.r = 2;
+        sconf.pointDecoration['stroke-width'] = 0;
 
         //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
         const {
