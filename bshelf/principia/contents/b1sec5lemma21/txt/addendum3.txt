@@ -1,0 +1,76 @@
+*::*claim|model
+{
+  "menuCaption" : "---"
+}
+*..*
+
+
+
+*::*proof|model
+{
+  "menuCaption" : "Addendum"
+}
+*..*
+
+<b>In <a target="_blank"
+         href="?conf=sappId=addd-fw#Cframework">Vector Calculus</a></b><br><br>
+
+<b>Numerical Model</b><br><br>
+
+Given parameters are: <br><br>
+
+¦gamma¦gamma = BOM¦¦, <br>
+¦angle-alpha¦alpha = BCA¦¦,<br>
+¦angle-beta¦beta = CBA¦¦<br>
+¦core¦c = CO¦¦, ¦CB¦CB=1¦¦, <br>
+<br>
+Parameter ¦g-parameter¦g¦¦ = ¦g-parameter¦OM¦¦ varies. <br>
+When ¦g-parameter¦g¦¦ changes, point ¦constructors¦D¦¦ runs along ¦ellipse¦conic curve¦¦.<br>
+<br><br>
+
+Let 𝗶,𝗷,𝗸 to be right oriented coodinate orts.<br>
+Let vector 𝗿=μ𝗲ⁱᵠ move along the line, μ is line's parameter.<br>
+Let 𝗱 be unit vector 𝗱=𝗶 and 𝝶₁=η₁𝗱 𝝶₂=-η₂𝗱 and 𝝶₁-𝝶₂=𝗱 and therefore η₁+η₂=1.<br>
+Let 𝗿ᵢ=𝗿+𝝶ᵢ, obtain vectors 𝗵₁, 𝗵₂ by rotating and scaling 𝗿ᵢ,<br>
+
+<div style="text-align:center;">
+    𝗵₁=λ₁𝗲<sup>iβ₁</sup>𝗿<br>
+    𝗵₂=λ₂𝗲<sup>-iβ₂</sup>𝗿<br>
+</div>
+to form a triagle with 𝗱: 𝗵₁=𝗵₂+𝗱 <br><br>
+
+ψ, 𝝶ᵢ, and  βᵢ are fixed, only μ changes, λᵢ are unknows.<br><br>
+
+(In lemma 21 notation: 𝗿=𝗚𝗠, 𝝶₁=𝗖𝗚 and 𝝶₂=𝗕𝗚, 𝗵₁=𝗖𝗔, 𝗵₂=𝗕𝗔, 𝗿₁=𝗖𝗠, 𝗿₂=𝗕𝗠.)<br><br>
+
+Recall a definition 𝗮|𝗯 =ᵈᶠ Im(𝗮*𝗯) = [𝗮𝗯]𝗸. <br><br>
+
+Triangle condition gives us unknown λ₁:
+<div style="text-align:center;">
+    Im(𝗵₂*𝗵₁) = 1|(𝗵₂*𝗵₁) = 𝗵₂|𝗵₁ = 𝗵₂|(𝗵₁-𝗵₂) =<br>
+    𝗵₂|1 = Im(𝗵₂*) ᵈᶠ= λ₂Ω₂ <br>
+    λ₁Im(𝗲<sup>iβ₂</sup>𝗿₂*𝗲<sup>iβ₁</sup>𝗿₁) ᵈᶠ= λ₁Ω = 
+    Ω₂ = Im(𝗲<sup>iβ₂</sup>𝗿₂*),<br>
+</div>
+and expression for vector 𝗵₁ will be
+<div style="text-align:center;">
+    𝗵₁Ω = Ω₂𝗲<sup>iβ₁</sup>(μ𝗲ⁱᵠ+𝝶₁).
+</div><br>
+Recall, that lemma 21 claims that curve 𝗵₁(μ) is a conic.<br>
+<div style="text-align:center;">
+    Ω = Im( 𝝨(𝗿*+𝝶₂)(𝗿+𝝶₁) ) <br>
+    𝝨 =ᵈᶠ 𝝱₁𝝱₂, 𝝱ᵢ=ᵈᶠ𝗲<sup>iβᵢ</sup>, <br>
+    Ω = Im(𝝨(μ² + μ(𝗲*η₁+𝗲η₂) + η₁η₂),<br>
+    Ω = S<sub>Σ</sub>(μ² + η₁η₂) + 
+            (S<sub>Σ-ψ</sub>η₁+S<sub>Σ+ψ</sub>η₂)μ, <br>
+    Σ =ᵈᶠ β₁+β₂, Sₓ =ᵈᶠ sin(x), Cₓ =ᵈᶠ cos(x),<br>
+</div>
+<br>
+Let us see will be this beneficial to "scalarize" expressions around Ω₂:
+<div style="text-align:center;">
+    Ω₂ = Im(𝗲<sup>iβ₂</sup>𝗿₂*) = μS<sub>β₂-ψ</sub> + η₂S<sub>β₂</sub>,<br>
+    Ω₂𝗲<sup>iβ₁</sup>(μ𝗲ⁱᵠ+𝝶₁) = Ω₂(𝝱₁𝞇μ + 𝝱₁η₁). <br>
+</div>
+<br>
+
+

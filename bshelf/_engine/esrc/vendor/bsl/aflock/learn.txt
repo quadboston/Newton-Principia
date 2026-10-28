@@ -1,0 +1,26 @@
+
+If there is a JavaScript code fragment
+ window.i=0;
+ window.k=0;
+ window.j=0;
+ function callframe(){
+    console.log( 'i=', i++ );
+    window.requestAnimationFrame( callframe );
+ };
+ console.log( 'k=', k++ );
+
+ //end of fragment
+
+and if there is a user click event attached to html button
+
+ <button onclick="console.log('j=', j++);">click</button>
+
+then can code thread i++ and code thread j++; run concurrently or JavaScript will always make them wait for each other?
+
+///GPT answer:
+In a normal browser page, i++ and j++ do not execute concurrently on the same JavaScript thread.
+
+JavaScript in the page runs on a single main thread/event loop. Your two pieces of code are scheduled as separate tasks/callbacks, but when one callback is executing, the other waits.
+
+
+

@@ -1,0 +1,50 @@
+//===============================================================================
+// //\\ microAPI to load list of contents for html-element-scripts
+//
+//      Loads scripts from list and calls callbacks per
+        //****************************************************
+        // "scripts" mean html-tag
+        //      <script ...
+        // not text of authoring engine script ... and
+        // not any kind of text written in custom-language ...
+        //****************************************************
+//      scripts and per list-completion
+//
+//      Every time this function is called it manages new scripts list separately
+//      from other calls lists
+//
+//      Input: scriptList
+//                  scriptItem.src - link or path
+//                  scriptItem.cb - optional callback for individual script load
+//             lastCb - optional callback called when all scripts loaded
+//===============================================================================
+window.b$l.methods.loadScripts = function( scriptList, lastCb ){
+    const has = window.b$l.has;
+    var completionCount = 0;
+    scriptList.forEach( function( scriptItem, ix ){
+        //https://developer.mozilla.org/en-US/docs/Web/HTTP/
+        //      Basics_of_HTTP/MIME_types#JavaScript_types
+        type = scriptItem.type || 'text/javascript';
+        var scrip = document.createElement('script');
+        //not in use: scriptItem.dom = scrip;
+        if( has( scriptItem.async ) ){
+            scrip.async = scriptItem.async;
+        }
+        scrip.onload = function() {
+            completionCount++;
+            //c cc( completionCount + ' loaded ' + scriptItem.src );
+            scriptItem.cb && scriptItem.cb( scriptItem );
+            checkCompletion();
+        }
+        document.head.appendChild( scrip );
+        //https://medium.com/@vschroeder/javascript-how-to-execute-code-from-an-
+        //asynchronously-loaded-script-although-when-it-is-not-bebcbd6da5ea
+        scrip.src = scriptItem.src;
+    });
+
+    function checkCompletion(){
+        if( completionCount === scriptList.length ){
+            lastCb && lastCb();
+        }
+    }
+}; //THIS SEMICOLUMN IS VITAL, PROD. CRASHESH WITHOUT IT.

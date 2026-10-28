@@ -6,7 +6,7 @@
 
         This file, site-deployment-engine.php, is a first part of
         site deployment scenario, productify.sh
-        Handles the site located in /sites/site_id/ folder.
+        Handles the site located in /bshelf/site_id/ folder.
         This file is a twin of deployment-engine.php
 
         Builds production index.html and its associates from
@@ -211,7 +211,7 @@
     ///====================================
     if( $test ) {
         $split_regex = '#(\n|\r)+#';
-        $siteid_file_regex = '#\/full.conf.js$#';
+        $siteid_file_regex = '#\/full-conf-eng.js$#';
         $scripts = preg_split( $split_regex, $matches[1] );
         //print_r( $scripts );
         foreach( $scripts as $key => $val ) {
@@ -241,7 +241,7 @@
                     //-----------------------------------
                     // //\\ catches siteid placeholder,
                     //      if catches, then replaces placeholder
-                    //      with siteid in full.conf.js which
+                    //      with siteid in full-conf.js which
                     //      enables production JS code to know
                     //      siteid and enables to construct
                     //      correct inner links to files,

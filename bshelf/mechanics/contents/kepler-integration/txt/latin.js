@@ -1,0 +1,33 @@
+//note: $, `, \ must be escaped in text if any:
+window.b$l.atree().ssD.lemma_book_text += `
+
+*::*claim|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+<img src="contents/b1sec8prop41/img/latin.png" style="width:100%">
+<br><br>
+<div book-reference-id="latin"></div>
+
+
+
+*::*proof|latin
+{
+  "menuCaption" : "Latin"
+}
+*..*
+<img src="contents/b1sec8prop41/img/latin.png" style="width:100%">
+<br><br>
+<div book-reference-id="latin"></div>
+
+
+
+*::*corollary|latin
+{
+  "subessayCaption" : "Corollary 1",
+  "subessay" : "corollary1"
+}
+*..*
+`;
+

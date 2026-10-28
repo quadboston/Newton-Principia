@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Newton Principia interactive models</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,
+                   maximum-scale=1.0, minimum-scale=1.0">
+    <!--
+    <link rel="stylesheet" href="https://use.typekit.net/tdy5xyj.css">
+    -->
+
+    <!-- //\\ replace with prod script -->
+    <!-- //\\ vendor -->
+
+    <!-- //\\ order of these first scripts is vital -->
+    <script src="../_engine/esrc/vendor/bsl/core/ns.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/ns-tree.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/core/checks-online-status.js"></script>
+    <script src="../_engine/esrc/base/lemma/registry.js"></script>
+    <script src="../_engine/esrc/base/app-tree.js"></script>
+
+    <!-- user-options.js must precede home-page-conf.html.js -->
+    <script src="contents/conf/user-options.js"></script>
+    <script src="contents/conf/sapp-conf.js"></script>
+    <script src="../_engine/full-conf-eng.js"></script>
+    <script src="contents/conf/full-conf.js"></script>
+    <!-- \\// order of these first scripts is vital -->
+
+    <!-- MathJax ************************************************* -->
+    <script src="../_engine/esrc/vendor/mathjax/configs-and-loads-mj.js" async></script>
+
+    <script src="../_engine/esrc/vendor/bsl/slider/d8d-app-template.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/d8d/d8d-device.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/d8d/d8d-lemma.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/d8d/decorator.css.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/d8d/decorator.js"></script>
+
+    <script src="../_engine/esrc/vendor/bsl/bezier/bezier.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/bezier/bezier-media.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/bezier/bezier-integral.js"></script>
+
+    <script src="../_engine/esrc/vendor/bsl/mat/mat.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/mat/matrix-base.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/mat/matrix.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/mat/integral.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/mat/curve-integrals.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/mat/monotonic/monotonic-fun.js"></script>
+
+    <!-- this module is usually for unused version -->
+    <script src="../_engine/esrc/vendor/bsl/mat/monotonic/monotonic-fun-array.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/mat/approximation.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/mat/geom-shapes.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/mat/functions.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/mat/plane-curve-derivatives.js"></script>
+
+    <script src="../_engine/esrc/vendor/bsl/mat/conics.js"></script>
+
+    <script src="../_engine/esrc/vendor/bsl/core/bsl-throttle.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/core/lib.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/core/keyboard-keys.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/core/colors.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/core/svg.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/core/svg-gradient.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/core/load-scripts.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/core/load-images.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/ajax/ajax.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/ajax/load-ajax-files.js"></script>
+    <!-- //todo rid this module-->
+    <script src="../_engine/esrc/vendor/bsl/graph/auto-graph.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/graph/creates-fw.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/graph/draw-graph-grid.js"></script>
+
+    <script src="../_engine/esrc/vendor/bsl/graph/draw-graph-legend.js"></script>
+    <script src="../_engine/esrc/vendor/bsl/gui/local-content-trigger/trigger.js"></script>
+    <!-- \\// vendor -->
+
+
+    <!-- //\\ core -->
+    <script src="../_engine/esrc/base/lemma/lib/approxer-divdif.js"></script>
+    <script src="../_engine/esrc/base/lemma/lib/config-vectors-lib.js"></script>
+    <script src="../_engine/esrc/base/lemma/graph/creates-fw.js"></script>
+    <script src="../_engine/esrc/base/lemma/study-model/kepler-orbit/builds-sagitta.js"></script>
+    <script src="../_engine/esrc/base/lemma/study-model/kepler-orbit/builds-orbit.js"></script>
+    <script src="../_engine/esrc/base/lemma/study-model/kepler-orbit/builds-orbit-time-grid.js"></script>
+    <script src="../_engine/esrc/base/lemma/study-model/kepler-orbit/builds-orbit-data-graph.js"></script>
+    <script src="../_engine/esrc/base/lemma/study-model/kepler-orbit/builds-forces.js"></script>
+    <script src="../_engine/esrc/base/lemma/study-model/kepler-orbit/orbit-lib.js"></script>
+    <script src="../_engine/esrc/base/lemma/study-model/kepler-orbit/creates-Q8P-sliders.js"></script>
+    <script src="../_engine/esrc/base/lemma/study-model/kepler-orbit/init-orbit8graph.js"></script>
+    <script src="../_engine/esrc/base/lemma/study-model/init-orbit-shapes.js"></script>
+
+
+    <!-- //\\ core css -->
+    <script src="../_engine/esrc/base/css/dispatch-css.js"></script>
+    <!-- \\// core css -->
+
+
+
+    <!-- //\\ core html -->
+    <script src="../_engine/esrc/base/dom/create/top-dom-roots.js"></script>
+    <script src="../_engine/esrc/base/dom/create/populates-media-super-root.js"></script>
+    <script src="../_engine/esrc/base/dom/create/lemma-master-menu.js"></script>
+    <script src="../_engine/esrc/base/dom/create/lemma-master-menu-lib.js"></script>
+    <script src="../_engine/esrc/base/dom/create/simscene-svg-l2slider-legend.js"></script>
+    <script src="../_engine/esrc/base/dom/create/capture-window.js"></script>
+    <script src="../_engine/esrc/base/dom/create/body.js"></script>
+    <script src="../_engine/esrc/base/dom/events/events.js"></script>
+    <script src="../_engine/esrc/base/dom/secondary/video-help-manager.js"></script>
+    <script src="../_engine/esrc/base/dom/lib/mobile-tester.js"></script>
+    <script src="../_engine/esrc/base/dom/lib.js"></script>
+
+    <script src="../_engine/esrc/base/resize8slide/workplace-dividor.js"></script>
+    <script src="../_engine/esrc/base/resize8slide/finish-resize8upcreate.js"></script>
+    <script src="../_engine/esrc/base/resize8slide/complete-css.js"></script>
+
+    <script src="../_engine/esrc/base/parser/LANDING-VI-fr-2-dom8css---backbone.js"></script>
+    <script src="../_engine/esrc/base/parser/LANDING-V-content2subexegs.js"></script>
+    <script src="../_engine/esrc/base/parser/LANDING-VI-exegs2frags.js"></script>
+
+    <script src="../_engine/esrc/base/parser/FR-I-indexed-links8topics.js"></script>
+    <script src="../_engine/esrc/base/parser/FR-II-III-dom8css8mjax.js"></script>
+    <script src="../_engine/esrc/base/parser/FR-II-dom8css---lib.js"></script>
+
+    <script src="../_engine/esrc/vendor/mathjax/FR-II-finalizes-delayed-anchors---lib.js"></script>
+    <script src="../_engine/esrc/base/parser/tp-glocss.js"></script>
+    <script src="../_engine/esrc/base/parser/topics-anchor-glocss.js"></script>
+    <script src="../_engine/esrc/base/parser/colors-lib.js"></script>
+    <!-- \\// core html -->
+
+
+
+    <!-- //\\ lib -->
+    <script src="../../changelog/local-version.js"></script>
+
+    <script src="../_engine/esrc/base/lemma/media-model/common.js"></script>
+    <script src="../_engine/esrc/base/lemma/media-model/functions.js"></script>
+    <script src="../_engine/esrc/base/lemma/media-model/points.js"></script>
+    <script src="../_engine/esrc/base/lemma/media-model/linears.js"></script>
+    <script src="../_engine/esrc/base/lemma/media-model/angulars.js"></script>
+    <script src="../_engine/esrc/base/lemma/media-model/curves.js"></script>
+    <script src="../_engine/esrc/base/lemma/media-model/media-upcreate.js"></script>
+    <script src="../_engine/esrc/base/lemma/media-model/main-legend.js"></script>
+    <script src="../_engine/esrc/base/lemma/media-model/main-legend-templates.js"></script>
+    <script src="../_engine/esrc/base/lemma/media-model/dom2model-scales.js"></script>
+    <script src="../_engine/esrc/base/lemma/study-model/model-lib.js"></script>
+    <script src="../_engine/esrc/base/lemma/study-model/subessay-amode-2-lemma.js"></script>
+    <script src="../_engine/esrc/base/lemma/spawns-lemma-definition-list.js"></script>
+
+    <script src="../_engine/esrc/base/d8d/draglist/rg2draglist.js"></script>
+    <script src="../_engine/esrc/base/d8d/draglist/rgx2draglist.js"></script>
+    <script src="../_engine/esrc/base/d8d/draglist/rgx-media-mover--2--draglist.js"></script>
+    <script src="../_engine/esrc/base/d8d/draglist/init-draglist.js"></script>
+    <script src="../_engine/esrc/base/d8d/config-sliders-lib.js"></script>
+    <script src="../_engine/esrc/base/d8d/ruler-draglist/template.js"></script>
+    <script src="../_engine/esrc/base/d8d/cbDownMoveUp-III.js"></script>
+
+    <!-- //\\ plugins -->
+    <!-- //\\ plugin topic-scenario -->
+    <script src="../_engine/esrc/plugins/topic-scenario/parses-topic-scenario.js"></script>
+    <script src="../_engine/esrc/plugins/topic-scenario/executes-topic-scenario.js"></script>
+    <!-- \\// plugin topic-scenario -->
+
+    <script src="../_engine/esrc/vendor/bsl/aflock/time-frames.js"></script>
+    <!-- //\\ abandoned -->
+	<!-- used in L9 -->
+    <script src="../_engine/esrc/vendor/bsl/aflock/aflock.js"></script>
+    <script src="../_engine/esrc/base/d8d/animated/js.js"></script>
+    <script src="../_engine/esrc/base/d8d/animated/css.js"></script>
+    <!-- \\// abandoned -->
+
+    <script src="../_engine/esrc/base/lemma/init-sapp.js"></script>
+    <script src="../_engine/esrc/base/lemma/astate2app.js"></script>
+    <script src="../_engine/esrc/base/lemma/expands-conf.js"></script>
+    <script src="../_engine/esrc/base/lemma/expands-conf-lib.js"></script>
+
+    <script src="../_engine/esrc/base/app-main.js"></script>
+    <!-- \\// core -->
+
+    <link rel="stylesheet" href="../_engine/esrc/base/css/roots.css">
+    <link rel="stylesheet" href="../_engine/esrc/base/css/subroots.css">
+    <link rel="stylesheet" href="../_engine/esrc/base/css/inner-page.css">
+    <link rel="stylesheet" href="../_engine/esrc/base/css/lemma-comp.css">
+    <link rel="stylesheet" href="../_engine/esrc/base/css/pages/inner-page.css">
+    <link rel="stylesheet" href="../_engine/esrc/base/css/pages/model.css">
+    <script src="../_engine/home-page-conf-eng.html.js"></script>
+
+    <!-- //\\ site-specific config and home page -->
+    <link rel="stylesheet" href="contents/conf/homepage.css">
+    <script src="contents/conf/home-page-conf.html.js"></script>
+    <!-- \\// site-specific config and home page  -->
+
+    <!-- //\\ full app config -->
+    <script src="contents/book-references.js"></script>
+    <script src="contents/content-list.js"></script>
+    <!-- \\// full app config -->
+    <!-- \\// replace with prod script -->
+  </head>
+  <body>
+  </body>
+</html>

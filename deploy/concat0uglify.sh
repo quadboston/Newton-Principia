@@ -9,7 +9,7 @@
 PWD=`pwd`
 
 SITEID="$1"
-WEB_LANDING_PATH="$PWD/sites/$SITEID/index.html"
+WEB_LANDING_PATH="$PWD/bshelf/$SITEID/index.html"
 PHP_DEPLOYER="$PWD/deploy/site-deployment-engine.php"
 
 #-----------------------------------------------------------------------

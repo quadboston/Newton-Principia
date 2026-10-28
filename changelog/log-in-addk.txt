@@ -1,0 +1,13 @@
+
+
+October 26, 2026.
+
+Project restructured: Principia became an ordinary book in bookshelf.
+Sites can be offline. For example: book (bshelf/mechanics) mechanics.
+Configuration scenario rewritten: points, lines, etc unified in gshapes.
+Sliders and drag and drop scenario is more unified.
+Multiple minor changes and renamings happened.
+These changes are not yet implemented in full, some non-mainstream lemmas became visually unfinished or lost features.
+
+
+

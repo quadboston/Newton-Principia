@@ -6,10 +6,10 @@
     //aka cd ../../.. PACKAGE_ROOT=`pwd`
     //deploy/extract-site.php $PACKAGE_ROOT $SITEID
 
-    //possibly for /sites/site_id
+    //possibly for /bshelf/site_id
     //what is the difference from productify scenario?
     //does this only dev environment for specific
-    //sites/site_id
+    //bshelf/site_id
 
     //zips up all except git files
     //development helper: not a part of deployer
@@ -228,15 +228,15 @@
     $name_of_copy = "$version-$siteid-src$archive_postfix";
     //printf( 'name_of_copy=' . $name_of_copy . "\n" );
     cli( "mkdir $name_of_copy", "creating placeholder" );
+    cli( "mkdir $name_of_copy/bshelf", "creating placeholder" );
+    cli( "cp -R $folder_to_zip/bshelf/_engine $name_of_copy/bshelf", "cloning.." );
+    cli( "cp -R $folder_to_zip/bshelf/$siteid $name_of_copy/bshelf", "cloning.." );
 
     cli( "cp -R $folder_to_zip/deploy $name_of_copy", "cloning.." );
-    cli( "cp -R $folder_to_zip/engine-img $name_of_copy", "cloning.." );
     cli( "cp -R $folder_to_zip/version.js $name_of_copy", "cloning.." );
     cli( "cp -R $folder_to_zip/LICENSE $name_of_copy", "cloning.." );
-    cli( "mkdir $name_of_copy/sites", "creating placeholder" );
-    cli( "cp -R $folder_to_zip/sites/$siteid $name_of_copy/sites", "cloning.." );
 
-    cli( "cp -R $folder_to_zip/sites/src $name_of_copy/sites", "cloning.." );
+    //cli( "cp -R $folder_to_zip/bshelf/_engine/eimg $name_of_copy", "cloning.." );
 
     $command = 'zip -rq ' . $name_of_copy . '.zip ' . $name_of_copy;
     //.excludes .git from zip

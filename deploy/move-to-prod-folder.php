@@ -209,17 +209,26 @@
 
     cli( "rm -rf $name_of_copy", "removing former copy is exists", FALSE, FALSE, TRUE );
     cli( "mkdir $name_of_copy", "creating placeholder", FALSE, FALSE, TRUE );
+    cli( "mkdir $name_of_copy/bshelf", "creating placeholder", FALSE, FALSE, TRUE );
 
-    cli( "mv $folder_to_zip/index.html $name_of_copy", "cloning..", FALSE, FALSE, TRUE );
-    cli( "cp -R $folder_to_zip/engine-img $name_of_copy", "cloning..", FALSE, FALSE, TRUE );
-    cli( "mv $folder_to_zip/prod $name_of_copy", "cloning..", FALSE, FALSE, TRUE );
+    //placeholders inside book shelf
+    cli( "mkdir $name_of_copy/bshelf/_engine", "creating placeholder", FALSE, FALSE, TRUE );
+    cli( "mkdir $name_of_copy/bshelf/$siteid", "creating placeholder", FALSE, FALSE, TRUE );
+
+    cli( "mv $folder_to_zip/prod $name_of_copy", "cloning and purging..", FALSE, FALSE, TRUE );
+    //we use mv instead of cp to purge dev environment
+    cli( "mv $folder_to_zip/index.html $name_of_copy", "cloning and purging..", FALSE, FALSE, TRUE );
+
+    // //\\ not all entities in _engine will be copied,
+    //      esrc is excluded bs it is concatenated earlier
+    //      we use cp instead of mv to preserve the dev. environment
+    cli( "cp -R $folder_to_zip/bshelf/_engine/eimg $name_of_copy/bshelf/_engine/", "cloning..", FALSE, FALSE, TRUE );
+    // \\// not all entities in _engine will be copied,
 
     //copying siteid with text contents
-    cli( "mkdir $name_of_copy/sites", "creating placeholder", FALSE, FALSE, TRUE );
-    cli( "mkdir $name_of_copy/sites/$siteid", "creating placeholder", FALSE, FALSE, TRUE );
     // //\\ not all entities in siteid will be copied
-    cli( "cp $folder_to_zip/sites/$siteid/favicon.ico $name_of_copy", "cloning..", FALSE, FALSE, TRUE );
-    cli( "cp -R $folder_to_zip/sites/$siteid/contents $name_of_copy/sites/$siteid", "cloning..", FALSE, FALSE, TRUE );
+    cli( "cp $folder_to_zip/bshelf/$siteid/favicon.ico $name_of_copy", "cloning..", FALSE, FALSE, TRUE );
+    cli( "cp -R $folder_to_zip/bshelf/$siteid/contents $name_of_copy/bshelf/$siteid", "cloning..", FALSE, FALSE, TRUE );
     // \\// not all entities in siteid will be copied
 
     //clones vendor/mathjax files

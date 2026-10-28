@@ -13,12 +13,12 @@
     //=====================================================
     // //\\ makes helpers
     //=====================================================
-    function cli ( $command, $action_descr, $do_print_output = FALSE, $get_output = FALSE ) 
+    function cli ( $command, $action_descr, $do_print_output = FALSE, $get_output = FALSE )
     {
     	$res = array();
         $ret = exec( $command, $res, $retcode );
         if( $retcode . '' !== '0' ) {
-            printf( "\n$action_descr:\nproblems in command:\n$command\noutput=" ); 
+            printf( "\n$action_descr:\nproblems in command:\n$command\noutput=" );
             print_r( $res );
             printf( "\n" );
             exit;
@@ -127,8 +127,8 @@
     //=====================================================
     // //\\ gets version
     //=====================================================
-    $path_to_version_file = 'changelog/' . 
-        ( $local_version ? 'local-' : '' ) . 'version.js'; 
+    $path_to_version_file = 'changelog/' .
+        ( $local_version ? 'local-' : '' ) . 'version.js';
     $list = glob( $path_to_version_file );
     if( count($list) < 1 ) exit( "version file \"$path_to_version_file\" is missed\n" );
 
@@ -136,7 +136,7 @@
     if( $js_text === FALSE ) exit( "js_text is missed\n" );
 
     //see $versionPattern below
-    $version_re = '#' . 
+    $version_re = '#' .
                         '\s*' .
                     'fapp.version' .
                         '\s*' .
@@ -151,8 +151,8 @@
                     'application version' .
                   '#';
     $matches = array();
-    //http://php.net/manual/en/function.preg-match.php    
-    $test = preg_match( 
+    //http://php.net/manual/en/function.preg-match.php
+    $test = preg_match(
             $version_re,
             $js_text,
             $matches
@@ -167,7 +167,7 @@
     $next_version = $version + 1;
     //echo "new version = $next_version\n";
     $versionPattern = "\n    fapp.version = $next_version; //application version";
-    $new_content = preg_replace( 
+    $new_content = preg_replace(
             $version_re,
             $versionPattern,
             $js_text
@@ -181,12 +181,12 @@
     //=====================================================
     // //\\ updates build date
     //=====================================================
-    $oldBuildDatePattern = '#' . 
+    $oldBuildDatePattern = '#' .
                     'fapp.buildDateString\s*=\s*"\d*-\d*-\d*";\s' .
                     '//build date#';
     $today = date('Y-m-d', time());
     $newBuildDatePattern = 'fapp.buildDateString = "' . $today . '"; //build date';
-    $new_content = preg_replace( 
+    $new_content = preg_replace(
             $oldBuildDatePattern,
             $newBuildDatePattern,
             $new_content
@@ -204,7 +204,7 @@
     $postfix_len        = strlen( $archive_postfix );
     $archive_postfix    = $archive_postfix ? '-' .
                           $archive_postfix : '';
-    $archive_postfix    = preg_replace( 
+    $archive_postfix    = preg_replace(
                             '#\s+#',
                             '-',
                             $archive_postfix );
@@ -225,8 +225,10 @@
     //=====================================================
     chdir( '..' );
     $name_of_copy = "$version" .
-                    ( $local_version ? '-L' : '' ) .
-                    "-$folder_to_zip$archive_postfix";
+        //( $local_version ? '-L' : '' ) .
+        //adds an extra '-' indicating that this is a local version
+        ( $local_version ? '-' : '' ) .
+        "-$folder_to_zip$archive_postfix";
     $rsync = "$folder_to_zip/ $name_of_copy/";
 
     $skipper = '';
