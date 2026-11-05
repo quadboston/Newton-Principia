@@ -46,9 +46,23 @@
             ////
             ////**********************************************************************************
             'dtime<_>data-monospace,Δt&nbsp;:,"&nbsp;"+(ssD.Dt*2).toFixed(4)',
-            'P<>sagitta<_>data-monospace,Estimated_force_at_P&nbsp;:,"&nbsp;"+rg.borbit.graphFW_lemma.fw.content.pix2values[stdMod.P2gix()].y[1].toFixed(4)',
-            'force<_>data-monospace,Actual_force_at_P&nbsp;:,"&nbsp;"+rg.borbit.graphFW_lemma.fw.content.pix2values[stdMod.P2gix()].y[0].toFixed(4)',
-            'none,_,"<_>"', //dummy row for spacing at foot
+
+            'force<_>data-monospace,' +
+                'f<sub>ultimate</sub>_=_sign/(SY²PV)&nbsp;:,' +
+                '"&nbsp;"+rg.borbit.graphFW_lemma.fw.content.pix2values[stdMod.P2gix()].y[0].toFixed(4)',
+            'sagitta<_>data-monospace,' +
+                //'Sagitta_at_P&nbsp;:,' +
+                'f<sub>Δt</sub>_=_sagitta_=_sign*(PQₛ)&nbsp;:,' +
+
+                '"&nbsp;"+rg.borbit.graphFW_lemma.fw.content.pix2values[stdMod.P2gix()].y[3].toFixed(4)',
+
+
+            'fQR<_>data-monospace,' +
+            //'Sagitta_at_P&nbsp;:,' +
+            'f<sub>Δs</sub>_=_sign*QR/(QT*SP)²&nbsp;:,' +
+
+            '"&nbsp;"+rg.borbit.graphFW_lemma.fw.content.pix2values[stdMod.P2gix()].y[1].toFixed(4)',
+
             'none,_,"<_>"' //dummy row for spacing at foot
         ];
 

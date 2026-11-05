@@ -4,7 +4,7 @@ const {
         bezier, CONST,  ssF, rg, stdMod,  ssD, gshapes, apush,
       } = window.b$l.atree({ ssFList: {
         init_conf
-}});
+      }});
 const el = tpelect;
 const { POINT, LINE, ANGLE, CURVE, SHAPE } = CONST;
 return;
@@ -60,17 +60,13 @@ function init_conf (){
     // //\\ sconf.curve
     //----------------------------
     sf.curve = stripp({
-        orbit_q_start: 0,
-        orbit_q_end: 1,
+        ORBIT_Q_START: 0,
+        ORBIT_Q_END: 1,
         //diagramOrigin: sf.diagramOrigin,
     });
     //----------------------------
     // \\// sconf.curve
     //----------------------------
-    sf.parQ = 0.250;
-    //pos of P
-    sf.rgPq = 0.270;
-
     //the law to be studied in given lemma:
     //fe: for 1/r^2, the assigment is
     //    sf.force_law = bP => 1/(bP.r2);
@@ -84,30 +80,42 @@ function init_conf (){
     //***************************************************************
     // //\\ math model auxilaries
     //***************************************************************
-    sf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN = true; //only for non addendum
-    const FT = sf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
+    sf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN = false; //only for non addendum
     sf.CURVE_REVOLVES = false; //true for cyclic orbit
     sf.ADDENDUM_NORM_BY_MIN = false;
-    sf.DQ_SLIDER_MAX = FT ? null : 0.69;
+    //------------------------------
+    // //\\ force time scenario
+    //------------------------------
+    sf.parQ = 0.250;
+    //pos of P
+    sf.rgPq = 0.270;
+    const FT = sf.FORCE_CALCULATION_IS_BASED_ON_TIME = true; //t vs q
+    sf.DQ_SLIDER_MAX = FT ? null : 0,5; //0.69;
     //sf.DQ_SLIDER_MIN = FT ? null : 0.0001;
-    sf.DT_SLIDER_MAX = FT ? 0.18 : null;
+    //sf.DT_SLIDER_MAX = FT ? 0.18 : null;
+    sf.DT_SLIDER_MAX = FT ? 0.15 : null;
+    //intervals of dt or dq to construct an arc for
+    //fQR or sagitta,
+    if( FT ){
+        //sf.Dt0 = 0.168; //0.1;
+        sf.Dt0 = 0.1; //0.1;
+    } else {
+        sf.Dq0 = 0.2;
+    }
+    //------------------------------
+    // \\// force time scenario
+    //------------------------------
+
     sf.DT_FRACTION_OF_T_RANGE_MAX = 0.23;
-    sf.Q_STEPS = 2000;
-    sf.TIME_STEPS = 2000;
-    sf.DATA_GRAPH_STEPS = 200;
+    sf.qPOINTS = 2000;
+    sf.tPOINTS = 2000;
+    sf.gPOINTS = 200;
     sf.RESHAPABLE_ORBIT = 2; //omitted or 1-once, 2-many
 
     //calculation decoration and quality
     sf.BESIER_PIVOTS = 0; //5; //otherwise assumed 9 pivots
     //true can be in effect only for not-"addendum":
-    sf.FORCE_PARAM_IS_ALONG_CURVE = false;
-    //intervals of dt or dq to construct an arc for
-    //fQR or sagitta,
-    if( FT ){
-        sf.Dt0 = 0.168; //0.1;
-    } else {
-        sf.Dq0 = 0.2;
-    }
+    sf.PATH_IS_GRAPH_ABSCISS = false;
     //***************************************************************
     // \\// math model auxilaries
     //***************************************************************
@@ -116,8 +124,8 @@ function init_conf (){
     // //\\ model comparison demo
     //***************************************************************
     sf.SHOW_FORMULAS = [
-        //usually, bP is aka context of "plane-cureve-derivatives"
         { label : '1/r²',
+          //already default: tpname: 'halfShadow',
           fun:(bP) => 1/bP.r2,
           //t// cssclass : 'tp-context tostroke etc',
         },
@@ -217,6 +225,7 @@ function init_conf (){
                 return [ rgPivot.pos[0], rgPivot.pos[1] ];
             });
             //generates framework:
+            //should be rg[rgn].bezio =
             const bezio = ssD.bezio =
                 bezier.preparesOptimizedBezier( pivots_modelPos );
             bezio.pivotsPos = pivots_modelPos;
@@ -235,15 +244,15 @@ function init_conf (){
     {
         kind: CURVE,
         rgn: 'timearc',
-        start_eval : 'rg.Q.q_minus',
-        step_eval: '(rg.Q.q - rg.Q.q_minus ) / 100',
+        start_eval : 'rg.P.qminus',
+        step_eval: '(rg.P.qplus - rg.P.qminus ) / 100',
         stepsCount : 101,
         gshape2svg : (gshape)=> {
             gshape.fun = rg.borbit.bodyq2xy;
             ssF.gcurve2svg( gshape );
         },
         fldo: 'solvable_orbit',
-        cssClass: 'flcs--solvable_orbit hover-width',
+        cssClass: 'flcs--off-non-solvable_orbit hover-width',
         //low precedence svg-attribute style,
         //overriden with tp hover-width
         //strokeWidth: 33,
@@ -255,14 +264,15 @@ function init_conf (){
         kind: CURVE,
         rgn: 'APQ',
         start: 0,
-        step_eval: 'rg.Q.q / 100',
+        step_eval: 'rg.P.qplus / 100',
         stepsCount: 101,
         gshape2svg: (gshape)=> {
             gshape.fun = rg.borbit.bodyq2xy,
             ssF.gcurve2svg( gshape );
         },
         fldo: 'solvable_orbit',
-        cssClass: 'flcs--valid-p',
+        //cssClass: 'flcs--off-non-solvable_orbit',
+        cssClass: 'flcs--solvable_orbit',
     },
     {
         kind: 'not yet defined, until gshape2svg missed',
@@ -283,15 +293,17 @@ function init_conf (){
         rgn: 'P,sagitta',
         pcolor : el.sagitta,
         vectorTipIx : 1,
-        cssClass: 'flcs--off-valid-p',
+        cssClass: 'flcs--off-non-solvable_orbit',
     },
     {
         rgn: 'Q,rrminus',
-        pcolor : el.proof,
-        cssClass: 'flcs--off-valid-p',
+        pcolor : el.sagitta,
+        cssClass: 'flcs--off-non-solvable_orbit',
     },
     {
-        rgn:'SP', pcolor : el.distanceToCenter
+        rgn:'SP',
+        pcolor: el.distanceToCenter,
+        cssClass: 'flcs--off-non-solvable_orbit',
     },
     {
         rgn:'PV',
@@ -317,7 +329,7 @@ function init_conf (){
     },
     {
         rgn: 'QP',
-        pcolor: el.proof,
+        pcolor: el.sagitta,
         cssClass: 'subessay--none',
     },
     {
@@ -349,11 +361,11 @@ function init_conf (){
     },
     {
         rgn: 'P,rrminus',
-        pcolor : el.proof,
+        pcolor : el.sagitta,
         cssClass: 'subessay--none',
     },
     {
-        rgn: 'S,nonSolvablePoint',
+        rgn: 'S,nonSolvableMark',
         pcolor: el.attention,
         undisplayAlways: true,
     },
@@ -369,15 +381,14 @@ function init_conf (){
     {
         kind: POINT,
         rgn: 'Q',
-        pcolor : el.proof,
+        pcolor : el.sagitta,
         letterAngle : 225,
         letterRotRadius : 40,
         draggableX  : true,
         draggableY  : true,
-        cssClass: 'flcs--solvable_orbit',
+        cssClass: 'flcs--off-non-solvable_orbit',
         conditionalDrag:
-            'logic_phase--proof logic_phase--corollary ' +
-            'logic_phase--claim',
+            'flcs--solvable_orbit',
      },
      {
         rgn: 'S',
@@ -408,20 +419,33 @@ function init_conf (){
      {
         rgn: 'rrminus',
         caption: 'Q-',
-        pcolor: el.proof,
+        pcolor: el.sagitta,
         letterAngle: 225,
         letterRotRadius: 40,
-        cssClass: 'flcs--solvable_orbit',
+        cssClass: 'flcs--off-non-solvable_orbit',
         doPaintPname: false,
      },
      {
         rgn: 'sagitta',
-        caption : 'I',
+        //caption : '',
         pcolor : el.sagitta,
-        letterAngle : 270,
-        letterRotRadius : 35,
+        letterAngle : 240,
+        letterRotRadius : 25,
         doPaintPname : false,
-        cssClass: 'flcs--off-valid-p',
+        undisplayAlways: true,
+        cssClass: 'flcs--off-non-solvable_orbit',
+     },
+     {
+        rgn: 'sagittaTip',
+        posAlias: 'sagitta',
+        caption: 'Qₛ',
+        pcolor: el.fQR,
+        letterAngle: 240,
+        letterRotRadius: 25,
+        doPaintPname: true,
+        undisplayAlways: true,
+        cssClass: 'tp-sagitta '+
+            'flcs--off-non-solvable_orbit aspect--off-english',
      },
      {
         rgn: 'QtimeDecor',
@@ -431,7 +455,7 @@ function init_conf (){
         letterAngle : 225,
         letterShift : [10,0],
         letterRotRadius : 40,
-        cssClass: 'tp-dtime flcs--solvable_orbit ' +
+        cssClass: 'tp-dtime flcs--off-non-solvable_orbit ' +
             'logic_phase--off-claim',
      },
      {
@@ -485,10 +509,12 @@ function init_conf (){
          cssClass: 'logic_phase--dummy',
       },
       {
-         rgn: 'nonSolvablePoint' ,
+         rgn: 'nonSolvableMark' ,
          pos: [0,0], //will be calculated
-         //caption : '<text><tspan>Orbits are disconnected where curve`s</tspan>' +
-         //          '<tspan>tangent passes through center of force.</tspan></text>',
+         //caption : '<text><tspan>Orbits are disconnected '+
+         //          'where curve`s</tspan>' +
+         //          '<tspan>tangent passes through center '+
+         //          'of force.</tspan></text>',
          fontSize : '25',
          undisplayAlways : true,
          pcolor: el.attention,

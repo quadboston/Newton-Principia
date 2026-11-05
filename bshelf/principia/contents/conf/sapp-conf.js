@@ -115,6 +115,7 @@ function doesConfigLemma (){
     //neutral elements
     tr.shadow      = [50,  50, 50,      ];
     tr.dimShadow   = [0,  0, 0,  0.2   ];
+    tr.halfShadow  = [0,  0, 0,  0.7   ];
     tr.hidden      = [0,   0,  0,    0  ];
     tr.context     = [0,   0,  0,    1  ];
     tr.legends     = [0,   0,  0,    1  ];

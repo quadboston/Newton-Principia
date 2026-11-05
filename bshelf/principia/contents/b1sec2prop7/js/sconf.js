@@ -85,8 +85,8 @@ function init_conf (){
     //***************************************************************
     // //\\ math model auxilaries
     //***************************************************************
-    sf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN = true; //only for non addendum
-    const FT = sf.TIME_IS_FREE_VARIABLE = true; //vs q is free variable
+    sf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN = false; //only for non addendum
+    const FT = sf.FORCE_CALCULATION_IS_BASED_ON_TIME = true; //vs q is free variable
     sf.CURVE_REVOLVES = false; //true for cyclic orbit
     sf.ADDENDUM_NORM_BY_MIN = true;
     //calculation decoration and quality
@@ -150,14 +150,10 @@ function init_conf (){
         kind: CURVE,
         rgn: 'foldPoints',
         cpivots: (new Array(200)).fill({}).map( fp => ({
-            pcolor: el.attention,
-            initialR: 1,
-            doPaintPname: false,
-        })),
-        //todm implement: this will remove code from
-        //amode8captures,
-        //flcs: 'solvable_orbit',
-        //flcs: 'flcs--off-solvable_orbit',
+                pcolor: el.attention,
+                initialR: 1,
+                doPaintPname: false,
+            })),
         },
         {
           kind: CURVE,
@@ -250,7 +246,7 @@ function init_conf (){
     {   rgn: 'RL', pcolor : el.proof,
                 cssClass: 'subessay--solution aspect--addendum',
     },
-    {   rgn: 'P,rrminus', pcolor : el.proof,
+    {   rgn: 'P,rrminus', pcolor : el.sagitta,
                         cssClass: 'subessay--solution',
     },
     {   rgn: 'P,sagitta',
@@ -283,7 +279,7 @@ function init_conf (){
     {   rgn: 'Gcol2,P', pcolor : el.proof,
         cssClass: 'subessay--corollary2 subessay--corollary3',
     },
-    {   rgn: 'S,nonSolvablePoint',
+    {   rgn: 'S,nonSolvableMark',
         pcolor: el.invalid,
         //cssClass: 'subessay--corollary2',
         cssClass: 'subessay--none',
@@ -326,7 +322,7 @@ function init_conf (){
     {
         rgn: 'Q',
         pos: Q,
-        pcolor : el.proof,
+        pcolor : el.sagitta,
         letterAngle : 225,
         letterRotRadius : 40,
         draggableX  : true,
@@ -405,7 +401,7 @@ function init_conf (){
     {
         rgn: 'rrminus',
         caption : 'Q-',
-        pcolor : el.proof,
+        pcolor : el.sagitta,
         letterAngle : 225,
         letterRotRadius : 40,
         undisplayAlways: true,
@@ -423,7 +419,7 @@ function init_conf (){
         //undisplay : true,
     },
     {
-        rgn: 'nonSolvablePoint',
+        rgn: 'nonSolvableMark',
         pos: [0,0], //will be calculated
         caption : 'Orbit`s tangent cannot pass throgh center of force.',
         fontSize : '25',

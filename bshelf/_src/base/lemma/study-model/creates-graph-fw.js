@@ -1,7 +1,7 @@
 (function(){
 const {
         sn, nsmethods, $$, nspaste, has, haz, hafff, globalCss, ssF,
-        ssD, fldo, sDomF, sData, amode, stdMod, sconf,
+        tprepo, ssD, fldo, sDomF, sData, amode, stdMod, sconf,
       } = window.b$l.atree({ stdModList: {
         creates_lemma_graph_fw,
         creates_chain_of_containers_under_parent,
@@ -48,11 +48,13 @@ function creates_lemma_graph_fw({
         ];
         sconf.SHOW_FORMULAS.forEach( (f,fix) => {
             tpnames[tpnames.length + fix] =
-                haz( f, 'tpname' ) || 'context';
+                haz( f, 'tpname' ) || 'halfShadow';
         });
         return tpnames;
     }
 
+    ///pix2color is used directly in vendor's drawGraph for
+    ///plots, labels, etc
     function makes_pix2color (){
         const multi = ssD?.zebraCols?.multicolor;
         if( multi ){
@@ -63,9 +65,9 @@ function creates_lemma_graph_fw({
                 c => sDomF.rgn0arrc_2_rgba( c ));
         }
         gcontent.pix2color = pix2color;
-        return pix2color;
     }
 
+    ///setsAxes8captions
     function sets_axes (){
         const ADDENDUM = amode.aspect === 'addendum';
         const ULTIM_NORM = !ADDENDUM &&
@@ -73,6 +75,8 @@ function creates_lemma_graph_fw({
         //==================================================
         // //\\ calls api
         //==================================================
+        const fsign =
+            sn('forceSign', gcontent.pix2values, 1) < 0 ? '-' : '';
         const mask = gcontent.pix2mask;
         //axis x and legend x color:
         //manually picked color, not from plot,
@@ -84,13 +88,19 @@ function creates_lemma_graph_fw({
         const c_body = n2c( 'body' );
         const c_force = n2c( 'force' );
         const c_sagitta = n2c( 'sagitta' );
+        const c_formula = gcontent.pix2color[ 4 ];
         const c_fQR = n2c( 'fQR' );
-        const xColor = sData.FORCE_PARAM_IS_ALONG_CURVE ? c_orbit : c_force;
+        const xColor =
+            sData.PATH_IS_GRAPH_ABSCISS ? c_orbit : c_force;
         const axisYLegend = [
             {
                 //"hover-width" decreases gigantict bold
                 //together, tobold hover-width and tostroke
                 //can be redundant
+
+                text    :
+                    '<text>Forces per their own max.</text>',
+                /*
                 text    :
                     '<text>Force: <tspan class=' +
                     '"tp-force tofill tobold hover-width"' +
@@ -98,6 +108,7 @@ function creates_lemma_graph_fw({
                     ' style="fill:' + c_force + '; stroke:'+
                     c_force + ';"' +
                     '></tspan></text>',
+                */
                 x       : 40,
                 y       : 25,
                 style   : {
@@ -106,40 +117,64 @@ function creates_lemma_graph_fw({
             },
         ];
         let text = '<text>';
-        text +=
-            '<tspan class="tp-force tofill tobold hover-width" ' +
-            'style="fill:' + c_force + '; stroke:' + c_force + ';">' +
-            'actual f' +
-            '</tspan>';
+
+        /*
+        //let skip this block of captions,
+        //plot label already has caption.
+        var attrib = 'class="tp-force tofill tobold hover-width" ' +
+            ' style="fill:' + c_force + '; stroke:' +
+            c_force +';"';
+
+        text += '<tspan ' + attrib + '>f</tspan>' +
+
+            '<tspan baseline-shift="sub" ' + attrib +
+            ' font-size : 23;' + '"' +
+            '>ultimate</span>' +
+            '</tspan>'
+            ;
 
         var attrib = 'class="tp-f_q_r tofill tobold hover-width" ' +
             ' style="fill:' + c_fQR + '; stroke:' +
             c_fQR +';';
         text += !mask[1] ? '' :
             ', <tspan ' + attrib + '"' +
-            '>f</tspan>' +
-            '<tspan baseline-shift="sub"' + attrib +
+            '>f</tspan>'+
+            '<tspan baseline-shift="sub" ' + attrib +
             ' font-size : 23;' + '"' +
-            '>QR</span>' +
+            '>Δs</span>' +
             '</tspan>';
         text += !mask[2] ? '' :
-            ', <tspan class="tp-body tofill tobold hover-width" ' +
+            ', <tspan class="tp-body tofill tobold hover-width " ' +
             ' style="fill:' + c_body + '; stroke:' + c_body + ';"' +
             '>speed v' +
             '</tspan>';
+
+        var attrib = 'class="tp-sagitta tofill tobold hover-width" ' +
+            ' style="fill:' + c_sagitta + '; stroke:' +
+            c_sagitta +';';
         text += !mask[3] ? '' :
-            ', <tspan class="tp-_p_-sagitta tofill tobold hover-width" ' +
-            'style="fill:' + c_sagitta + '; stroke:' +
-            c_sagitta + ';">' +
-            'sagitta' +
+            ', <tspan ' + attrib + '"' +
+            '>f</tspan>'+
+            '<tspan baseline-shift="sub" ' + attrib +
+            ' font-size : 23;' + '"' +
+            '>Δt</span>' +
+            '</tspan>';
+
+        text += !(mask[4]&&sconf.SHOW_FORMULAS) ? '' :
+            ', <tspan class="tofill tobold hover-width" ' +
+            'style="fill:' + c_formula + '; stroke:' +
+            c_formula + ';">' + fsign+sconf.SHOW_FORMULAS[0].label +
             '</tspan>';
         text += ULTIM_NORM ?
                     ' normed by f<tspan baseline-shift="sub">' +
                     'ultimate max</tspan>'
                     :
-                    ' normed by own ' +
-                    ( sconf.ADDENDUM_NORM_BY_MIN ? 'min' : 'max' );
-        text += '.</text>';
+                    '';
+                    // normed by own ' +
+                    //( sconf.ADDENDUM_NORM_BY_MIN ? 'min' : 'max' );
+        text += '</text>';
+        */
+
         axisYLegend[1] = {
             text,
             x       : 250,
@@ -151,7 +186,7 @@ function creates_lemma_graph_fw({
 
         var axisXLegend = [
             {
-                text    :  sData.FORCE_PARAM_IS_ALONG_CURVE ?
+                text    :  sData.PATH_IS_GRAPH_ABSCISS ?
                         'Path along arc.' : 'r, distance from force center.',
                 x       : -700,
                 y       : 25,
@@ -195,8 +230,6 @@ function creates_lemma_graph_fw({
     }
 
     function makes_mask (){
-        //const subessay = amode.subessay;
-        const TIME = sconf.TIME_IS_FREE_VARIABLE;
         const ADDENDUM = amode.aspect === 'addendum';
         const ULTIM_NORM = !ADDENDUM &&
                 haz( sconf, 'NORMALIZE_BY_ULTIM_IN_NON_ADDEN' );
@@ -204,31 +237,34 @@ function creates_lemma_graph_fw({
         const mask = gcontent.pix2mask;
         mask[0] = true; //instantForce
         mask[1] = solvable_orbit;  //fRQ
-            //&& (
             //   subessay === 'corollary1' ||
-            //   subessay === 'corollary5'
-            //)
         mask[2] = false; //body's speed
-        mask[3] = solvable_orbit && TIME; //sagitta
+        mask[3] = solvable_orbit &&  //sagitta
+            sconf.FORCE_CALCULATION_IS_BASED_ON_TIME;
         sconf.SHOW_FORMULAS.forEach( (f,fix) => {
-            //t/ mask[4+fix] = ADDENDUM || subessay === 'corollary1';
-            mask[4+fix] = ADDENDUM;
+            mask[4+fix] = ADDENDUM &&
+                ( fix !== 0 || amode.logic_phase === 'claim' );
         });
     }
     //=====================================
     // \\// tp classes, colors, and masks
     //=====================================
 
+    //=====================================
+    // //\\ labels and style.stroke
+    //=====================================
     function plotLabels_2_plotsPars (){
         const pix2color = gcontent.pix2color;
-        //if( !sn( 'solvable', ssD, true ) ) return;
+        const fsign =
+            sn('forceSign', gcontent.pix2values, 1) < 0 ? '-' : '';
         const addendum = amode.aspect === 'addendum';
         ///make sure, the number of plot labels
         //is equal to plot functions y(x)
         const labels = [
             {
                 fraqX : 0.2,
-                pcaption : 'f',
+                pcaption :
+                    'f<tspan baseline-shift="sub">ultimate</tspan>',
                 //t/class : 'tp-force',
                 fontShiftX : 0,
                 fontShiftY : 0,
@@ -239,7 +275,8 @@ function creates_lemma_graph_fw({
             },
             {
                 fraqX : addendum ? 0.25 : 0.3,
-                pcaption : 'f<tspan baseline-shift="sub">QR</tspan>',
+                pcaption: 'f<tspan baseline-shift="sub">Δs</tspan>',
+                //pcaption : 'fΔs',
                 //t/'class' : 'tp-f_q_r',
                 fontShiftX : 0,
                 fontShiftY : 0,
@@ -261,23 +298,23 @@ function creates_lemma_graph_fw({
             {
                 //ix = 3
                 fraqX : 0.9,
-                pcaption : '',
+                pcaption: 'f<tspan baseline-shift="sub">Δt</tspan>',
                 fontShiftX : 0,
                 fontShiftY : 0,
+                //'class': 'tp-sagitta',
                 style : {
                     'font-size' : '40px',
                     'stroke'  : pix2color[3],
                 },
             },
         ];
-        const fsign =
-            sn('forceSign', gcontent.pix2values, 1) < 0 ? '-' : '';
         sconf.SHOW_FORMULAS.forEach( (f,fix) => {
             const pix = 4+fix; //plot index
             labels[ pix ] =
             {
                 fraqX : 0.25 + fix/10, //plot cosmetics
                 pcaption : fsign + f.label,
+                //pcaption : f.label,
                 fontShiftX : 0,
                 fontShiftY : 20,
                 //t/cssclass : 'tp-formula-' + fix,
@@ -289,6 +326,9 @@ function creates_lemma_graph_fw({
         });
         return labels;
     }
+    //=====================================
+    // \\// labels and style.stroke
+    //=====================================
 
     ///to modify in blesson, this fun. needs overriding
     ///in blesson

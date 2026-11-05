@@ -1,33 +1,34 @@
-( function() {
-    var {
+(function(){
+    const {
         //**************************************************
         // this module has "eval" statement which may
         // need common objects, so don't be greedy to
         // list them here:
-        //============================================================
+        //--------------------------------------------------
         sn, $$, nspaste, eachprop, has, haz, hazz, haff,
         fapp, fconf, sconf, ssF, ssD, sDomN, sDomF, exegs, rg,
-        stdMod, amode, gshapes,
+        stdMod, amode, gshapes, flcs,
         //**************************************************
-    } = window.b$l.atree({
-        ssFList :
-        {
+    } = window.b$l.atree({ ssFList: {
             in_subessay_launch____amode2lemma,
             doMinimizeTextMenus,
+            lemmaState2draggabilityFlags,
         },
     });
     return;
 
 
-    ///===================================================================
+    ///==============================================================
     /// app-mode to lemma states and actions,
     ///     runs only in three? categories of click events and
     ///     after init_lemma in init-sapp.js::init_sapp...s tudyMods,
-    ///     more comments are in: ver/excluded/code-overview/init-params-tips.txt
-    ///===================================================================
-    function in_subessay_launch____amode2lemma( amodel2app_8_extraWork,  )
-    {
-        if( amodel2app_8_extraWork ) {
+    ///     more comments are in:
+    ///     ver/excluded/code-overview/init-params-tips.txt
+    ///==============================================================
+    function in_subessay_launch____amode2lemma(
+            amodel2app_8_extraWork
+    ){
+        if( amodel2app_8_extraWork ){
             doMinimizeTextMenus();
         }
         var { logic_phase, aspect, subessay } = amode;
@@ -103,30 +104,8 @@
         ///------------------------------------------------------------------
 
         ///enables or disables conditional drag point if preset in sconf.js,
-        eachprop( rg, (shape, rgn) => {
-            if( has( shape, 'conditionalDrag' ) ){
-                let dohide = true;
-                //options which do activate drag
-                'logic_phase aspect subessay sappId'
+        lemmaState2draggabilityFlags();
 
-                .split( ' ' ).forEach(
-                    aname => {
-                    //https://javascript.info/regexp-introduction
-                    //can be \-\-(\S*)(?:$|\s)/g
-                    const RE = new RegExp( '\\b' + aname + '\\-\\-(\\S*)\\b', 'g' );
-                    let matches = shape.conditionalDrag.matchAll( RE );
-                    for (const match of matches) {
-                        if( amode[aname] === match[1] ||
-                            ( aname === 'sappId' && fconf.sappId === match[1] )
-                        ) {
-                            dohide = false;
-                            //c cc( rgn, match[1] );
-                        }
-                    }
-                })
-                rg.Q.hideD8Dpoint = dohide;
-            }
-        });
         if( sconf.SUBESSAY_TAB_RESETS_zoom_to_1 ){
             //:restores pole origin
             sconf.medposOfModOrigin_x =
@@ -190,6 +169,7 @@
             //todom: must be ported to normal app-launch-subessay scenario
             haff( stdMod, 'subessayLaunch_definedInLemma_after_model_upcreate' );
         }
+        ssF.lemmaState2draggabilityFlags();
     }
 
     ///todm: not in ver, why? useless?
@@ -233,6 +213,46 @@
                 `;
             }
             textMenuStyle$.html( html );
+        }
+    }
+//todo exclude flcs or fldo
+    ///enables or disables conditional drag point if
+    ///preset in sconf.js,
+    //tospeedup via partitioning rg,
+    function lemmaState2draggabilityFlags(){
+        //options which do activate drag
+        const controllers =
+            'logic_phase aspect subessay sappId flcs'.split( ' ' );
+        //is this not faster?
+        //for (const rgn in rg) {
+        //    let shape = (typeof rg[rgn] === 'object') && rg[rgn];
+        //    if( shape.conditionalDrag ){
+
+        for (const [rgn, shape] of Object.entries(rg)) {
+            ////tospeedup todo remove non object srom rg?
+            if( (typeof shape === 'object') && shape.conditionalDrag ){
+                let dohide = true;
+                controllers.forEach( aname => {
+                    //https://javascript.info/regexp-introduction
+                    //can be \-\-(\S*)(?:$|\s)/g
+                    const RE = new RegExp(
+                        '\\b' + aname + '\\-\\-(\\S*)\\b', 'g' );
+                    let matches = shape.conditionalDrag.matchAll( RE );
+                    for (const match of matches) {
+                        if( amode[aname] === match[1] ||
+                            ( aname === 'sappId' &&
+                                fconf.sappId === match[1]
+                            ) ||
+                            ( aname === 'flcs' &&
+                                flcs['flcs--'+match[1]]
+                            )
+                        ) {
+                            dohide = false;
+                        }
+                    }
+                });
+                shape.hideD8Dpoint = dohide;
+            }
         }
     }
 })();

@@ -15,6 +15,7 @@ return;
 ///****************************************************
 function model_upcreate (){
     const M_v0 = ssD.M_v0;
+    //todo remove true
     const solvable_orbit = sn( 'solvable_orbit', fldo, true );
     const Porb = ssD.qix2orb[ rg.P.qix ];
     var {
@@ -32,24 +33,20 @@ function model_upcreate (){
     const rrc = rg.S.pos;
     const Rc = R; //curvature radius
 
-    if( solvable_orbit ){
-        flcs['flcs--solvable_orbit'] = true;
+    if( solvable_orbit && !Porb.skipPoint ){
         const rrplus = Porb.rrplus;
         const rrminus = rg.rrminus.pos;
-
         rg.QtimeDecor.caption = 'Δt=' + (2*ssD.Dt).toFixed(5);
         rg.QtimeDecor.pos = Porb.rrplus;
         let sagV = Porb.sagittaVector;
-
         rg.sagitta.pos = [sagV[0]+rr[0],sagV[1]+rr[1]];
         const chord = rg.chord = [ rrplus[0] - rrminus[0],
                         rrplus[1] - rrminus[1], ];
         rg.chord2 = chord[0]*chord[0]+chord[1]*chord[1];
-
         //R = parallel-projection of Q to tangent
         var RR = mat.linesCross(
             uu, rr0, //direction, start
-            [rr0[0]-rrc[0], rr0[1]-rrc[1]], rg.Q.pos, //direction, start
+            [rr0[0]-rrc[0], rr0[1]-rrc[1]], rg.Q.pos,
         );
         rg.R.pos[0] = RR[0];
         rg.R.pos[1] = RR[1];
@@ -57,8 +54,6 @@ function model_upcreate (){
         const TT = mat.dropPerpendicular( rg.Q.pos, rrc, rr0 )
         rg.T.pos[0] = TT[0];
         rg.T.pos[1] = TT[1];
-    } else {
-        flcs['flcs--solvable_orbit'] = false;
     }
     //================================================
     // //\\ curvature circle
@@ -96,14 +91,20 @@ function model_upcreate (){
     // //\\ decorations
     // //\\ graph
     //------------------------------------------------
-    //if( solvable ) {
-        //t/const mask = [];
-        //t/mask[1]=0;
-        rg.borbit.graphFW_lemma.draw_graph({
-            //t/mask,
-            printAxisXDigits : true,
-        });
-    //}
+    //todm mask is not automated, should be via cssClass flags
+    const mask = [];
+    mask[1] = //fQR
+        (amode.subessay === 'corollary1' ||
+        amode.subessay === 'corollary5') &&
+        flcs['flcs--solvable_orbit'];
+    //sagitta
+    mask[3] = (amode.subessay === 'corollary3' ||
+        amode.logic_phase === 'proof') &&
+        flcs['flcs--solvable_orbit'];
+    rg.borbit.graphFW_lemma.draw_graph({
+        mask,
+        printAxisXDigits : true,
+    });
     //------------------------------------------------
     // \\// graph
     //------------------------------------------------
@@ -138,9 +139,10 @@ function model_upcreate (){
         for( let i=0; i<pastlen; i++ ) {
             cpivots[i].rgShape.undisplay = true;
         }
+        ///todm: Easter Egg
         ////otherwise, cannot display all separation points;
-        ////therfore, displays nothing,
-        if( folds.length <= cpivots.length ) {
+        ////therfore, displays nothing:
+        if( flen <= cpivots.length ) {
             for( let i=0; i<flen; i++ ){
                 let fp = folds[i];
                 let rgShape = cpivots[i].rgShape;
@@ -152,8 +154,8 @@ function model_upcreate (){
     }
     {
         ///single fold point decorations
-        let nsp = rg.nonSolvablePoint;
-        let nsl = rg[ 'S,nonSolvablePoint' ];
+        let nsp = rg.nonSolvableMark;
+        let nsl = rg[ 'S,nonSolvableMark' ];
         let len = ssD.foldPoints.length;
         if( len ) {
             ////displays last fold point

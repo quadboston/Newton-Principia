@@ -67,6 +67,13 @@ function media_upcreate_generic (){
                 //doit && rg[ gs.rgn ].gshape2svg();
                 doit && rg[ gs.rgn ].gshape2svg();
             }
+            if( gs.posAlias ){
+                //todo speedup
+                const ownpos = rg[gs.rgn].pos;
+                const alipos = rg[gs.posAlias].pos;
+                ownpos[0] = alipos[0];
+                ownpos[1] = alipos[1];
+            }
         });
     }
     {

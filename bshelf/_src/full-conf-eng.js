@@ -26,7 +26,7 @@ function full_conf(){
     //this is a top root of an entire project suite folder system
     fconf.dev8prod_projectRoot  = siteidMatch ? '../..' : '.';
     fconf.pathToContentSiteImg  = fconf.pathToContentSite + '/contents/img';
-    fconf.engineImg             = fconf.dev8prod_projectRoot + '/bshelf/_engine/eimg';
+    fconf.engineImg             = fconf.dev8prod_projectRoot + '/bshelf/_img';
     fconf.pathToContents        = fconf.pathToContentSite + '/contents';
     //===================================================
     // \\// establishes site id,

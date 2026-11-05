@@ -142,7 +142,7 @@ function createsGraphFW ( gwrap ){
         //----------------------------------------------
         var plotsScaffold = [];
         pix2values.forEach( (points,pix) => {
-            if( points.nonSolvablePoint ) return;
+            if( points.skipPoint ) return;
             //"undefined", '' skipped
             //they are skipped anyway:
             //if( !points ) return;
@@ -184,7 +184,7 @@ function createsGraphFW ( gwrap ){
                 if( find_xMax && xMax < points.x ) {
                     xMax = points.x;
                 }
-                if( !points.nonSolvablePoint ){
+                if( !points.skipPoint ){
                     if( find_yMin ) {
                         if( typeof yMin === 'undefined' ) {
                             yMin = points.y[0];
@@ -262,7 +262,7 @@ function createsGraphFW ( gwrap ){
         let branchesEndIx = -2;
         pix2values.forEach( (points,pix) => {
             //"undefined", null, '' skipped
-            if( !points || points.nonSolvablePoint ) return;
+            if( !points || points.skipPoint ) return;
             var x = points.x;
             var mediaX = marginX +
                             (points.x - xMin) / rangeX * dimX_withMarg;
@@ -343,17 +343,16 @@ function createsGraphFW ( gwrap ){
         //======================================================
         const pix2bc = gcontent.pix2tpcls;
         let gMedia = fw_self.gmedia$();
-        //polylines is usually a small number of graph curved lines
+        //polylines are usually a small number of graph curved lines
         //and polylines have common index with pix2color and
         //with plotsPars,
-
         branches.forEach( branch => {
             branch.forEach( (polyline,plix) => {
                 if( !polyline ) return;
                 var effStyle = Object.assign( {}, pstyle );
                 effStyle.stroke = pix2color[ plix ];
-                var plotStyle = haz( plotsPars && plotsPars[ plix ],
-                                'plotStyle' );
+                var plotStyle =
+                    haz( plotsPars && plotsPars[plix], 'plotStyle');
                 if( plotStyle ) {
                     Object.assign( effStyle, plotStyle );
                 }

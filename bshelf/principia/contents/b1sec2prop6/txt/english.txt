@@ -96,7 +96,7 @@ the law of ¦force¦centripetal force¦¦ may be found by which ¦P¦any body yo
 perpetually drawn back from a ¦PY¦rectilinear course¦¦, will be confined to
 the ¦borbit¦perimeter of that figure¦¦, and will trace it out by revolving.
 
-That is, one computes the solid sq.¦SP¦¦ x sq.¦QT¦¦ / ¦QR¦¦ ... [that is] inversely proportional to this ¦force¦¦.
+That is, one ¦fQR¦computes the solid¦¦ sq.¦SP¦¦ x sq.¦QT¦¦ / ¦QR¦¦ ... [that is] inversely proportional to this ¦force¦¦.
 We shall give example of this procedure in the following problems.
 <br><br>
 <div book-reference-id="Donahue"></div>

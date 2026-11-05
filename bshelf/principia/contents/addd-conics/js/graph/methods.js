@@ -50,7 +50,6 @@
                 sDomF.rgn0arrc_2_rgba( 'semiaxes' ),
             ];
             graph_wrap.fw.content.pix2color = pix2color;
-            return pix2color;
         }
 
         ///this thing fails if not to synch it with mask,

@@ -599,7 +599,6 @@ function init_conf (){
         {
             rgn: 'exc',
             pcolor: el.ellipse,
-            //cssClass: //'tp-time flcs--solvable_orbit' +
             animateDuration_flg: 5000,
             gconf: {
                 unit: '',

@@ -4,7 +4,7 @@
 (function(){
 const { sn, nspaste, fldo, ssD,stdMod, sconf, rg, ssF } =
         window.b$l.atree({ ssFList: {
-            creates__two_steps_closest_search,
+            creates__two_rounds_closest_search,
             creates_Q8P_sliders,
 }});
 const qix2orb = sn( 'qix2orb', ssD, [] );
@@ -17,13 +17,12 @@ function creates_Q8P_sliders( rgOrb ){
     rg.P.acceptPos = newPos => {
         //we do employ a crude search for P, because it has
         //only decorational importance
-        const qix = stdMod.two_steps_closest_search(
+        const qix = stdMod.two_rounds_closest_search(
             newPos, !!'search from Graph array', 'skip_point' );
         if( qix !== null ){
             rg.P.qix = qix;
             ssF.updatesPNeighbours();
             stdMod.model8media_upcreate();
-            return; //avoids repetition
         }
     }
 
@@ -32,55 +31,36 @@ function creates_Q8P_sliders( rgOrb ){
         if( rg.P.skipPoint ) return;
         const qix = rg.P.qix;
         //we do employ a precise search for Q, for the sake
-        //of exact simulation
-        var Qqix = stdMod.two_steps_closest_search( newPos );
+        //of pleasant simulation
+        var Qqix = stdMod.two_rounds_closest_search( newPos );
         if( Qqix === null || Qqix === qix ) return;
-        if( sconf.TIME_IS_FREE_VARIABLE ){
-            let tt = qix2orb[ Qqix ].tQ;
-            let Dt = tt - qix2orb[ qix ].tQ;
-            if( sconf.CURVE_REVOLVES && Dt<0 ) {
-                ////the point P crossed start of the coninc,
-                ////usually point A and point t(Q) became less
-                ////than t(P),
-                ////this line adjusts Dt by using "cycled t change",
-                ////where time period is ssD.trange,
-                Dt = (Dt + ssD.trange) % ssD.trange;
-            }
-            if(Dt< ssD.tStep*(sconf.SAGITTA_ACCURACY_LIMIT+1)||
+        if( sconf.FORCE_CALCULATION_IS_BASED_ON_TIME ){
+            let tt = qix2orb[ Qqix ].qnode_t;
+            let Dt = tt - qix2orb[ qix ].qnode_t;
+            if( Dt<ssD.tStep*(sconf.Q_SLIDER_DELTA_qix_MIN_GAP+1 )||
                 sconf.DT_SLIDER_MAX <= Dt ) return;
             ssD.Dt = Dt;
         } else {
             const q = qix2orb[ Qqix ].q;
             let Dq = q - qix2orb[ qix ].q;
-            if( sconf.CURVE_REVOLVES ){
-                if( Dq<0 ) {
-                    ////the point P crossed start of the coninc,
-                    ////usually point A and point q(Q) became less than q(P),
-                    ////this line adjusts Da by using "cycled a change",
-                    ////where q period is sconf.curveQRange,
-                    Dq = (Dq + sconf.curveQRange ) % sconf.curveQRange;
-                }
-            }
             if( Dq <=0  || Dq >= sconf.DQ_SLIDER_MAX ) return;
             ssD.Dq = Dq;
             ssD.Dt = Dq/rg.P.dt_dq;
         }
-        //:Dt or Dq changed
-        ssF.builds_dq8sagit8displace( {rgOrb} );
-        ssF.builds_orbit_data_graph( rgOrb );
+        ssF.builds_sagitta8fQR( rgOrb );
+        ssF.builds_orbGraphData( rgOrb );
         stdMod.model8media_upcreate();
-        return; //avoids repetition
     }
 }
 
-function creates__two_steps_closest_search() {
+function creates__two_rounds_closest_search() {
     //the more, the better: slider accuracy:
     const SEARCH_POINTS = 50;
     //:alternative orbit arrays to be used:
     const q2o = qix2orb;
     const ga = graphArray;
 
-    stdMod.two_steps_closest_search = two_steps_closest_search;
+    stdMod.two_rounds_closest_search = two_rounds_closest_search;
     return;
 
 
@@ -89,7 +69,7 @@ function creates__two_steps_closest_search() {
     ///if argument fromGraph is truthed, then
     ///first sparce search done via valid graph points and
     ///then via exact orbit points,
-    function two_steps_closest_search(
+    function two_rounds_closest_search(
         r, //distance to this point
 
         //optional, using valid graph points and leave

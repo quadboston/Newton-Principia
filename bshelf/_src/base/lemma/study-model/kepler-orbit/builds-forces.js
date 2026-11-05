@@ -5,22 +5,8 @@
     const { sn, mat, stdMod, rg }
         = window.b$l.atree({ stdModList : {
             calcs_fQR,
-            calcs_trajectorial_force,
         }});
     return;
-
-    ///for "kepler force" which shape is defined by curve geomety,
-    ///direction of force honored,
-    ///return value is equal to prop6, cor.3: f~1/SV^2/PY,
-    ///
-    ///c/sinOmega = 1/(Rc * sinOmega) ~ PV,
-    ///r2*sinOmega^2 = SV^2
-    ///PY = r*sinOmega,
-    ///f = -bk / SV^2 / PY; 𝗳 = f * 𝗲.
-    function calcs_trajectorial_force( bP ){
-        const { c, bk, r2, sinOmega } = bP;
-        return -bk * c / (r2*sinOmega*sinOmega*sinOmega);
-    }
 
     function calcs_fQR({
         qplus, //orbit argument
@@ -49,7 +35,6 @@
        const QT2 = QT0*QT0 + QT1*QT1;
        const SP2 = bP.r2;
        const area2 = SP2*QT2;
-       const fQR = QR/area2;
-       return sign * fQR;
+       return sign*QR/area2;
     }
 })();

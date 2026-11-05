@@ -1,0 +1,30 @@
+
+
+November 4, 2026.
+
+Project restructured. Multiple books are allowed. Each book called a site.
+Subproject of single site can be extracted from an entire project.
+Principia now stands on "equal foot" with other books.
+
+Sites can be made running offline and without web server. For example: book (bshelf/mechanics) mechanics.
+
+Configuration scenario in sconf.js is rewritten: points, lines, curves, etc unified as gshapes.
+
+Sliders and drag and drop scenario is more unified.
+Sliders can be animated.
+
+Graph.
+    Plotter filters out "skipPoint" flagged points. No longer need to split curves to
+    branches when preparing graphArray.
+    Instead of changing x-coordinate range, skipPoints allow constant range with nice impression.
+
+Major objects: rg, stdMod, all that created in apptree are deprototyped which
+amends using has( , haz( checkers.
+Some function calls are also deprototyped using stripp(args).
+### see stackoverflow
+    
+Multiple minor changes and renamings happened.
+These changes are not yet implemented in full, some non-mainstream lemmas became visually unfinished or lost features.
+
+
+

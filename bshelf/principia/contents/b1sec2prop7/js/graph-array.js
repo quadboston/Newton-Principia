@@ -37,7 +37,7 @@
               stdMod.graphFW_lemma.fw.content.pix2values.forceSign =
               Math.sign(ga[0].y[0]);
         //central angle =
-        let qQP = rg.Q.q - rg.P.q;
+        let qQP = rg.P.qplus - rg.P.q;
         //no need for this:
         //let calcs _fQR = stdMod.calcs _fQR;
         for( ix = 0; ix<glen; ix++ ) {

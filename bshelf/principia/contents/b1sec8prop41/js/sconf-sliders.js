@@ -15,7 +15,7 @@ function completesSlidersCreation(){
     //====================================================
     // //\\ curve pivots sliders
     //====================================================
-    var nsp = rg.nonSolvablePoint;
+    var nsp = rg.nonSolvableMark;
     const rgn = 'force';
     var pivs = rg[rgn].cpivots;
     pivs.forEach( (cp,cpix) => {

@@ -49,7 +49,6 @@
                     c => sDomF.rgn0arrc_2_rgba( c ));
             }
             graph_wrap.fw.content.pix2color = pix2color;
-            return pix2color;
         }
 
         ///this thing fails if not to synch it with mask,

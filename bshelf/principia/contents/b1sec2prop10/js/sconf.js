@@ -55,8 +55,8 @@ function init_conf (){
     sf.curve = stripp({
         ellipseA: 1.03,
         ellipseB: 0.86,
-        orbit_q_start: 0,
-        orbit_q_end: 2.0 * Math.PI,
+        ORBIT_Q_START: 0,
+        ORBIT_Q_END: 2.0 * Math.PI,
         diagramOrigin: sf.diagramOrigin,
     });
     //----------------------------
@@ -78,15 +78,15 @@ function init_conf (){
     //***************************************************************
     // //\\ math model auxilaries
     //***************************************************************
-    const FT = sf.TIME_IS_FREE_VARIABLE = false; //vs q is free variable
+    const FT = sf.FORCE_CALCULATION_IS_BASED_ON_TIME = false; //vs q is free variable
     sf.NORMALIZE_BY_ULTIM_IN_NON_ADDEN = false;
     sf.CURVE_REVOLVES = true; //true for cyclic orbit
     sf.DQ_SLIDER_MAX = FT ? null : 1.0;
     sf.DQ_SLIDER_MIN = FT ? null : 0.0001;
     sf.DT_SLIDER_MAX = FT ? 0.66 : null;
-    sf.TIME_STEPS = FT ? 1000 : null;;
-    sf.Q_STEPS = 1500;
-    sf.DATA_GRAPH_STEPS = 500;
+    sf.tPOINTS = FT ? 1000 : null;;
+    sf.qPOINTS = 1500;
+    sf.gPOINTS = 500;
 
     //intervals of dt or dq to construct an arc for
     //displacement or sagitta,
@@ -127,19 +127,16 @@ function init_conf (){
             kind: CONST.CURVE,
             rgn: 'borbit',
             initShapes: (gshape)=>{
-                //creates rgShape.bodyq2xy() with pars. in closure,
-                (function() {
-                    const {
-                        ellipseA, ellipseB, diagramOrigin, orbit_q_start
-                    } = sf.curve;
-                    gshape.rgShape.bodyq2xy = function ( q ){
-                        q += orbit_q_start;
-                        return [
-                            ellipseA * Math.cos( q ) + diagramOrigin[0],
-                            ellipseB * Math.sin( q ) + diagramOrigin[1],
-                        ];
-                    }
-                })();
+                const {
+                    ellipseA, ellipseB, diagramOrigin, ORBIT_Q_START
+                } = sf.curve;
+                gshape.rgShape.bodyq2xy = function ( q ){
+                    q += ORBIT_Q_START;
+                    return [
+                        ellipseA * Math.cos( q ) + diagramOrigin[0],
+                        ellipseB * Math.sin( q ) + diagramOrigin[1],
+                    ];
+                }
                 stdMod.init__orbit8graph( gshape.rgn );
             },
         },

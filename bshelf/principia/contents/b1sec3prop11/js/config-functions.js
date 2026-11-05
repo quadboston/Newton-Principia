@@ -30,14 +30,14 @@ function recreates__posCorrector(){
             inner_angle = pos2t( newPos );
         }
         if( inner_angle < Math.PI*0.01 ||
-            inner_angle > sconf.curve.orbit_q_end
+            inner_angle > sconf.curve.ORBIT_Q_END
         ){
             inner_angle = ( inner_angle +
-            sconf.curve.orbit_q_end ) % sconf.curve.orbit_q_end;
+            sconf.curve.ORBIT_Q_END ) % sconf.curve.ORBIT_Q_END;
         }
-        let qix = Math.floor( inner_angle/sconf.qgrid_step );
+        let qix = Math.floor( inner_angle/sconf.qSTEP );
         rgX.qix = qix;
-        rgX.parQ = qix * sconf.qgrid_step;
+        rgX.parQ = qix * sconf.qSTEP;
         var newP = ssD.qix2orb[ qix ].rr;
         let pos = rgX.pos;
         pos[0] = newP[0];

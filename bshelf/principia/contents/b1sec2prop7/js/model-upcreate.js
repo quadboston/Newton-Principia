@@ -47,8 +47,8 @@ function model_upcreate (){
         var { rplus, rminus, sidePlus, sideMinus, qplus,
               qminus, Qparams, dt2dq, dt } =
                 qgrid_step_2_arc( M_v0, DDD );
-        rg.Q.q = qplus;
-        rg.Q.q_minus = qminus;
+        rg.P.qplus = qplus;
+        rg.P.qminus = qminus;
         rg.Q.Qparams = Qparams;
         rg.Q.dt2dq = dt2dq;
         rg.tForSagitta.val =dt;
@@ -67,7 +67,7 @@ function model_upcreate (){
         //if( Qq < rgCurve.tEnd ) {
             //var rrplus = rr;
             var sidePlus = side;
-            rg.Q.q = Qq;
+            rg.P.qplus = Qq;
             rg.Q.Qparams = Qparams;
             rg.Q.dt2dq = dt2dq;
         //}
@@ -78,7 +78,7 @@ function model_upcreate (){
         //if( Qq > rgCurve.tStart ) {
             //var rrminus = rr;
             var sideMinus = side;
-            rg.Q.q_minus = Qq;
+            rg.P.qminus = Qq;
         //}
         ///was validator and corrector
         ///creative user may move Q beyond curve x-limits, don't let trouble to happen,
@@ -92,8 +92,8 @@ function model_upcreate (){
                 rg.P.pos[0] = rg.formerP[0];
                 rg.P.pos[1] = rg.formerP[1];
                 rg.Q.Qparams = rg.Q.frormerQparams;
-                rg.Q.q = rg.Q.former_q;
-                rg.Q.q_minus = rg.Q.former_q_minus;
+                rg.P.qplus = rg.Q.former_q;
+                rg.P.qminus = rg.P.former_qminus;
                 var sideMinus = rg.former_sideMinus;
                 var sidePlus = rg.former_sidePlus;
             }
@@ -110,7 +110,7 @@ function model_upcreate (){
     //rg.Q.caption =
     rg.QtimeDecor.caption = 'Δt=' + (2*rg.tForSagitta.val).toFixed(5);
     rg.QtimeDecor.pos = rg.Q.pos;
-    let Qminus = common_fun( rg.Q.q_minus );
+    let Qminus = common_fun( rg.P.qminus );
     rg.rrminus.pos[0] = Qminus[0];
     rg.rrminus.pos[1] = Qminus[1];
 
@@ -123,11 +123,11 @@ function model_upcreate (){
     rg.formerP = [ rg.P.pos[0], rg.P.pos[1] ];
     rg.former_Pq = rg.P.q;
     rg.Q.frormerQparams = rg.Q.Qparams;
-    rg.Q.former_q = rg.Q.q;
-    rg.Q.former_q_minus = rg.Q.q_minus;
+    rg.Q.former_q = rg.P.qplus;
+    rg.P.former_qminus = rg.P.qminus;
     //todm: rid:
-    rg.Q.former_q = rg.Q.q;
-    rg.rrminus.former_q_minus = rg.Q.q_minus;
+    rg.Q.former_q = rg.P.qplus;
+    rg.P.former_qminus = rg.P.qminus;
     rg.former_sideMinus = sideMinus;
     rg.former_sidePlus = sidePlus;
     //-----------------------------------------
@@ -154,7 +154,7 @@ function model_upcreate (){
     //------------------------------------------------
     // //\\ L
     //------------------------------------------------
-    rg.Q.intervalS = rg.Q.q-rg.P.q;
+    rg.Q.intervalS = rg.P.qplus-rg.P.q;
     //because of angles SPQ and SLV are = rg.Q.intervalS:
     var tL = stdMod.pos2t( rg.V.pos ) - rg.Q.intervalS;
     var L = fun( tL );
@@ -284,8 +284,8 @@ function model_upcreate (){
     }
     {
         ///single fold point decorations
-        let nsp = rg.nonSolvablePoint;
-        let nsl = rg[ 'S,nonSolvablePoint' ];
+        let nsp = rg.nonSolvableMark;
+        let nsl = rg[ 'S,nonSolvableMark' ];
         let len = ssD.foldPoints.length;
         if( len ) {
             ////displays last fold point

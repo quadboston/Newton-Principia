@@ -51,7 +51,6 @@ function creates_lemma_graph_fw({
         var pix2color = RETURNS_TP_NAMES().map(
             c => sDomF.rgn0arrc_2_rgba( c ));
         gcontent.pix2color = pix2color;
-        return pix2color;
     }
 
     function sets_axes (){
@@ -153,7 +152,7 @@ function creates_lemma_graph_fw({
 
     function makes_mask (){
         //const subessay = amode.subessay;
-        const TIME = sconf.TIME_IS_FREE_VARIABLE;
+        const TIME = sconf.FORCE_CALCULATION_IS_BASED_ON_TIME;
         const solvable_orbit = sn( 'solvable_orbit', fldo, true );
         const mask = gcontent.pix2mask;
         mask[0] = solvable_orbit;

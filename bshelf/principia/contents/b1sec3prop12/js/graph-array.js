@@ -16,11 +16,11 @@ function makesGraphArray_8_drawsPlots( bodyq2xy ){
     var qEnd    = op.qEnd;
     var rrc     = rg.S.pos;
     var forceGraphArray = [];
-    var Q_STEPS = 400;
+    var qPOINTS = 400;
     let calcs_fQR = stdMod.calcs_fQR;
-    for (var forceArrayIx = 0; forceArrayIx<=Q_STEPS; forceArrayIx++ )
+    for (var forceArrayIx = 0; forceArrayIx<=qPOINTS; forceArrayIx++ )
     {
-        var q = qStart + forceArrayIx * ( qEnd - qStart ) / Q_STEPS;
+        var q = qStart + forceArrayIx * ( qEnd - qStart ) / qPOINTS;
         let bP = mcurve.planeCurveDerivatives(
             bodyq2xy,
             q,

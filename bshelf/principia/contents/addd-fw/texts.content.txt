@@ -8,7 +8,7 @@
 *..*
 
 
-⦁ The purpose of these Addendums is to mine logical truth based on logic itself.
+⦁ The purpose of these Addendums is to obtain logical truth based on logic itself.
 <br><br>
 
 ⦁ The content is inspired by Newton's Principia and Euclid's Elements. We hope this helps reader to discover what Newton meant with minimal reliance on translation and words.
@@ -23,13 +23,17 @@
 ⦁ We do not do any claims these facts are known to Newton or Euclid. We do not insist on what Newton or Euclid intended to say. This may be discussed in Addendums under original Lemma or Proposition. 
 <br><br>
 
-⦁ Principia is written in Euclidian logical context, namely Geometry and Ratios (ER). Addendum occasionally may include context of Real numbers in which Calculus for modern Mechanics is built. (We name it Vector Calculus.) Apparently the lack of (Real) numbers in Newton's time was Newton's reason to support Quadrature in Principia by purely geometrical magnitudes, areas, cubes, ... as for example, in 1.8.proposition 41.
+Force graphs. Newton does not draw graphs. We do graphs in Vector Calculus context. Often, propositions have forces in both directions, from the center of force and to. We can assign to the latter positive sign, but this worsens consistency of Vector Calculus framework, so we prefer to stick with modern convensional signs.
+
+⦁ Principia is written in Euclidian logical context, namely Geometry and Ratios (ER). Addendum occasionally may include context of Real numbers used in Calculus for modern Mechanics. (We name it Vector Calculus.) Apparently the lack of (Real) numbers in Newton's time was Newton's reason to support Quadrature in Principia by purely geometrical magnitudes, areas, cubes, ... as for example, in 1.8.proposition 41.
 <br><br>
 
 By the way, Book's context feels as an extension of Geomtry, like adding three axioms (force laws) to the Geometry. The same way as reaxiomatizing Geometry in General Relativiy. What a coincidence.
 <br><br>
 
+<!--
 Addendum, in Programming Guide, may also include anything interesting like programming details or problems related to the Book.
+-->
 <br><br>
 
 ⦁  References to original text lemma are in parenthesises. For example,

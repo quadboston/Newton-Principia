@@ -19,10 +19,10 @@
         var rrc      = rg.S.pos;
         var fun      = dyn_q2xy;
         var forceGraphArray = [];
-        var Q_STEPS = 400;
-        for (var forceArrayIx = 0; forceArrayIx<=Q_STEPS; forceArrayIx++ )
+        var qPOINTS = 400;
+        for (var forceArrayIx = 0; forceArrayIx<=qPOINTS; forceArrayIx++ )
         {
-            var q = xStart + forceArrayIx * ( xEnd - xStart ) / Q_STEPS;
+            var q = xStart + forceArrayIx * ( xEnd - xStart ) / qPOINTS;
             var {
                 rr, //from coor. sys. orig.
                 rOrAbs,

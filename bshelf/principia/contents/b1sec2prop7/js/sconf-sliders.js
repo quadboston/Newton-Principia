@@ -36,7 +36,7 @@ function completesSlidersCreation(){
         ];
         let { v, uu } = rg.Q.Qparams;
         let qgrid_step = (deltaPos[0]*uu[0] + deltaPos[1]*uu[1])/v;
-        let new_q = rg.Q.q + qgrid_step;
+        let new_q = rg.P.qplus + qgrid_step;
 
         //this is resundant: this is validated in model
         //if( new_q <=0 || new_q >= 1 ) return false;

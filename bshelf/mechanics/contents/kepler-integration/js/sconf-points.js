@@ -7,7 +7,7 @@ ssF.init_conf_points=function({ V, A, D, E, R, k }){
     apush( gshapes, [
     {
         kind: CONST.POINT,
-        rgn: 'nonSolvablePoint',
+        rgn: 'nonSolvableMark',
         medpos: [666,444], //will be calculated
         caption : 'Force is out of considered range.',
         fontSize : '20',

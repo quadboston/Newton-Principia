@@ -55,8 +55,8 @@ function init_conf (){
     // //\\ sconf.curve
     //----------------------------
     sf.curve = stripp({
-        orbit_q_start: -0.05 * Math.PI,
-        orbit_q_end: 1.3 * Math.PI,
+        ORBIT_Q_START: -0.05 * Math.PI,
+        ORBIT_Q_END: 1.3 * Math.PI,
         ro0: 1.17,
         curveParA: -0.64,
         diagramOrigin: sf.diagramOrigin,
@@ -65,7 +65,7 @@ function init_conf (){
     // \\// sconf.curve
     //----------------------------
     //pos of P?
-    sf.parQ = -sf.curve.orbit_q_start*2;
+    sf.parQ = -sf.curve.ORBIT_Q_START*2;
     //the law to be studied in given lemma:
     //  fe: for 1/r^2, the assigment is
     //    sf.force_law = bP => 1/(bP.r2);
@@ -80,14 +80,14 @@ function init_conf (){
     // //\\ math model auxilaries
     //***************************************************************
     //true; //vs q is free variable
-    const FT = sf.TIME_IS_FREE_VARIABLE = false;
+    const FT = sf.FORCE_CALCULATION_IS_BASED_ON_TIME = false;
     sf.CURVE_REVOLVES = false; //true for cyclic orbit
     sf.DQ_SLIDER_MAX = FT ? null : 0.69;
     sf.DQ_SLIDER_MIN = FT ? null : 0.0001;
     sf.DT_SLIDER_MAX = FT ? 0.32 : null;
-    sf.Q_STEPS = 1000;
-    sf.TIME_STEPS = 1000;
-    sf.DATA_GRAPH_STEPS = 200;
+    sf.qPOINTS = 1000;
+    sf.tPOINTS = 1000;
+    sf.gPOINTS = 200;
 
     //intervals of dt or dq to construct an arc for
     //fQR or sagitta,
@@ -130,22 +130,19 @@ function init_conf (){
         kind: CURVE,
         rgn: 'borbit',
         initShapes: (gshape)=>{
-            //creates rgShape.bodyq2xy() with pars. in closure,
-            (function(){
-                const { diagramOrigin,
-                        ro0,
-                        curveParA,
-                        orbit_q_start
-                } = sf.curve;
-                gshape.rgShape.bodyq2xy = function ( q ){
-                    q += orbit_q_start;
-                    var ro = ro0*Math.exp( curveParA*q );
-                    return [
-                        ro * Math.cos( q ) + diagramOrigin[0],
-                        ro * Math.sin( q ) + diagramOrigin[1],
-                    ];
-                }
-            })();
+            const { diagramOrigin,
+                    ro0,
+                    curveParA,
+                    ORBIT_Q_START
+            } = sf.curve;
+            gshape.rgShape.bodyq2xy = function ( q ){
+                q += ORBIT_Q_START;
+                var ro = ro0*Math.exp( curveParA*q );
+                return [
+                    ro * Math.cos( q ) + diagramOrigin[0],
+                    ro * Math.sin( q ) + diagramOrigin[1],
+                ];
+            }
             stdMod.init__orbit8graph( gshape.rgn );
         },
     },
@@ -174,7 +171,7 @@ function init_conf (){
     { rgn: 'QR', pcolor: el.proof,
                 cssClass : 'logic_phase--proof',
     },
-    { rgn: 'QP', pcolor: el.proof,
+    { rgn: 'QP', pcolor: el.sagitta,
                 cssClass : 'logic_phase--proof',
     },
     { rgn: 'QT', pcolor: el.proof,

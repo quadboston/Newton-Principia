@@ -13,7 +13,7 @@ return;
 /// is required; to skip define as ()=>{};
 ///****************************************************
 function model_upcreate (){
-    ssF.builds_dq8sagit8displace( {rgOrb:rg.borbit} );
+    ssF.builds_sagitta8fQR( rg.borbit );
     var rr0 = rg.P.pos;
     var rrc = rg.S.pos;
     var side = [ rg.Q.pos[0] - rr0[0], rg.Q.pos[1] - rr0[1] ];

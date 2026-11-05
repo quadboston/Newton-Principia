@@ -13,10 +13,10 @@ function makesGraphArray_8_drawsPlots( bodyq2xy ){
     var xEnd     = sconf.curve.curveParFiMax;
     var rrc      = rg.S.pos;
     var forceGraphArray = [];
-    var Q_STEPS = 400;
-    for (var forceArrayIx = 0; forceArrayIx<=Q_STEPS; forceArrayIx++ )
+    var qPOINTS = 400;
+    for (var forceArrayIx = 0; forceArrayIx<=qPOINTS; forceArrayIx++ )
     {
-        var q = xStart + forceArrayIx * ( xEnd - xStart ) / Q_STEPS;
+        var q = xStart + forceArrayIx * ( xEnd - xStart ) / qPOINTS;
         var {
             rr,
             r, //from chosen rrc
