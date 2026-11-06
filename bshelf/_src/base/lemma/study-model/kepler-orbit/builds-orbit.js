@@ -14,7 +14,7 @@ function buildsOrbit (rgOrb){
     const foldPoints = sn( 'foldPoints', ssD, [] );
 
     //local shortcuts
-    const QS = sconf.qPOINTS;
+    const qPOINTS = sconf.qPOINTS;
     const qrange = sconf.CURVE_RANGE;
     const qSTEP = sconf.qSTEP;
     const ORBIT_Q_START = sconf.curve.ORBIT_Q_START;
@@ -23,7 +23,7 @@ function buildsOrbit (rgOrb){
 
     qix2o.length = 0;
     foldPoints.length = 0;
-    for (var qix = 0; qix<QS; qix++ ){
+    for (var qix = 0; qix<qPOINTS; qix++ ){
         var bP = qix2o[ qix ] = mcurve.planeCurveDerivatives(
             dyn_q2xy,
             ORBIT_Q_START + qix * qSTEP,

@@ -18,10 +18,10 @@ Graph.
     branches when preparing graphArray.
     Instead of changing x-coordinate range, skipPoints allow constant range with nice impression.
 
-Major objects: rg, stdMod, all that created in apptree are deprototyped which
+Major objects: rg, stdMod, all that created in apptree, are deprototyped which
 amends using has( , haz( checkers.
 Some function calls are also deprototyped using stripp(args).
-### see stackoverflow
+see: https://stackoverflow.com/questions/79930412/how-to-check-properties-in-destructured-argument-object?noredirect=1#comment141045587_79930412
     
 Multiple minor changes and renamings happened.
 These changes are not yet implemented in full, some non-mainstream lemmas became visually unfinished or lost features.

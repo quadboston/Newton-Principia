@@ -22,7 +22,8 @@ function init__kepler_config (rgOrb) {
     sconf.qSTEP = sconf.CURVE_RANGE / (sconf.qPOINTS-1);
     sn( 'orbModpos', rgOrb, [] );
     //this length is for orbit painting on svg,
-    //we don't want to pant all of QS points, 1000 points is enough,
+    //we don't want to pant all of qPOINTS points,
+    //1000 points is enough,
     rgOrb.orbModpos.length = Math.min( 1000, sconf.qPOINTS );
 
     sconf.qSTEPinv = 1 / sconf.qSTEP;

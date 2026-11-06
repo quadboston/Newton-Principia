@@ -34,11 +34,14 @@ function creates_Q8P_sliders( rgOrb ){
         //of pleasant simulation
         var Qqix = stdMod.two_rounds_closest_search( newPos );
         if( Qqix === null || Qqix === qix ) return;
+
+
         if( sconf.FORCE_CALCULATION_IS_BASED_ON_TIME ){
             let tt = qix2orb[ Qqix ].qnode_t;
             let Dt = tt - qix2orb[ qix ].qnode_t;
-            if( Dt<ssD.tStep*(sconf.Q_SLIDER_DELTA_qix_MIN_GAP+1 )||
+            if( Dt<ssD.tSTEP*(sconf.Q_SLIDER_DELTA_qix_MIN_GAP+1 )||
                 sconf.DT_SLIDER_MAX <= Dt ) return;
+            //c cc(Dt.toFixed(6),'ssD.tSTEP='+ssD.tSTEP.toFixed(6));
             ssD.Dt = Dt;
         } else {
             const q = qix2orb[ Qqix ].q;

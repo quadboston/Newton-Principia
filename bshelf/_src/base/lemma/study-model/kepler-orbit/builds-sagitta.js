@@ -86,18 +86,23 @@ function builds_sagitta8fQR( rgOrb ){
             var tix = Math.floor( tInt/tSTEP );
             if( tInt <= 0 || tix >= tPOINTS ) return;
         }
-        const tOrb = tix2qnode[tix];
-        const tLow = tOrb.qnode_t;
-        const qLow = tOrb.qnode_q;
+        const bLow = tix2qnode[tix];
+        const tLow = bLow.qnode_t;
+        const qLow = bLow.qnode_q;
 
-        let qixHigh = tOrb.qix + 1;
+        let qixHigh = bLow.qix + 1;
         qixHigh = CR ? (qixHigh + qPOINTS ) % qPOINTS : qixHigh;
         const bHigh = qix2o[qixHigh];
         const tHigh = bHigh.qnode_t;
         const qHigh= bHigh.q;
 
+        //not sure what is faster
         const qT = qLow + (tInt - tLow)*
             ( qHigh - qLow ) / (tHigh-tLow);
+        //this makes bigger chopping on sagitta graph
+        //const qT = qLow + (tInt - tLow)*bLow.dq_dt;
+        //but possibly is good when qix gap = 5,
+
         return qT;
     }
 }

@@ -33,7 +33,10 @@ function builds_orbit_time_grid(){
         tix2qnode[tix] = {
             qix: qix_former,
             qnode_t: t_former,
-            qnode_q: qix2o[qix_former].q
+            qnode_q: qix2o[qix_former].q,
+            //needed only when used in time
+            //interpolation alternative:
+            dq_dt: qix2o[qix_former].dq_dt
         };
         qix = qix_former;
         qnode_t = t_former;
