@@ -15,6 +15,7 @@
     function model_upcreate()
     {
         const solvable = ssD.solvable;
+        const q2xy = stdMod.q2xy;
         //qIndexToOrbit is meta data for all points on orbit, qix is index of P
         const Porb = ssD.qIndexToOrbit[ rg.P.qix ];
         if (Porb) {
@@ -32,37 +33,50 @@
                 // the midpoint of QQ' lies on line SP, or null if there is
                 // no such point; Q' is P when Q is P
                 function findsQprime_q(Q) {
+                    const P = posBody;
                     const S = rg.S.pos;
                     const SP = [ P[0] - S[0], P[1] - S[1] ];
 
                     // signed distance of the midpoint of QQ' from line SP,
-                    // times |SP|
-                    function midpointOffSP(Qp) {
-                        const Mx = (Q[0] + Qp[0]) / 2 - S[0];
-                        const My = (Q[1] + Qp[1]) / 2 - S[1];
-                        return SP[0] * My - SP[1] * Mx;
+                    // times |SP|.  Note the position of S and P are constant,
+                    // therefore |SP| is also constant.  Given this function is
+                    // used for root finding, keeping the output multiplied by
+                    // that constant simplifies the code without causing issues.
+                    function offsetMidpointSP(QPrime) {
+                        const Mx = (Q[0] + QPrime[0]) / 2;
+                        const My = (Q[1] + QPrime[1]) / 2;
+                        const SMidpoint = [Mx - S[0], My - S[1]];
+                        //Area of a parallelogram (cross product), where the
+                        //base is |SP|, and height the distance of the midpoint
+                        //of QQ' from line SP.
+                        return SP[0] * SMidpoint[1] - SP[1] * SMidpoint[0];
                     }
 
                     let qHigh = Porb.q;
-                    let offHigh = midpointOffSP(P);
+                    let offsetHigh = offsetMidpointSP(P);
                     // Q's q comes from interpolated time, so Q at P can
                     // land a rounding error before P
-                    if (offHigh === 0 || Porb.plusQ <= qHigh) return qHigh;
+                    if (offsetHigh === 0 || Porb.plusQ <= qHigh) return qHigh;
 
-                    // walks the orbit back from P to the first sign change,
-                    // then bisects between those two orbit points
+                    // walks the orbit back from P to the first sign change
+                    // (linear search), to find the approximate location of the
+                    // first root on the Q' side of P.  Then bisects between
+                    // those two orbit points to refine further, so Q' isn't
+                    // constrained to a discrete point.  Note if there are
+                    // multiple roots, this algorithm will consistently find the
+                    // first root, rather than jump between roots.
                     for (let i = rg.P.qix - 1; i >= 0; i--) {
                         const bP = ssD.qIndexToOrbit[i];
                         let qLow = bP.q;
-                        let offLow = midpointOffSP(bP.posBody);
-                        if (offLow === 0) return qLow;
-                        if ((offLow < 0) !== (offHigh < 0)) {
+                        let offsetLow = offsetMidpointSP(bP.posBody);
+                        if (offsetLow === 0) return qLow;
+                        if ((offsetLow < 0) !== (offsetHigh < 0)) {
                             for (let k = 0; k < 30; k++) {
                                 const qMid = (qLow + qHigh) / 2;
-                                const offMid = midpointOffSP(stdMod.q2xy(qMid));
-                                if ((offMid < 0) === (offLow < 0)) {
+                                const offsetMid = offsetMidpointSP(q2xy(qMid));
+                                if ((offsetMid < 0) === (offsetLow < 0)) {
                                     qLow = qMid;
-                                    offLow = offMid;
+                                    offsetLow = offsetMid;
                                 } else {
                                     qHigh = qMid;
                                 }
@@ -70,18 +84,17 @@
                             return (qLow + qHigh) / 2;
                         }
                         qHigh = qLow;
-                        offHigh = offLow;
+                        offsetHigh = offsetLow;
                     }
                     return null;
                 }
 
-                const P = rg.P.pos;
                 const rrplus = Porb.rrplus; // Q
                 const qPrime = findsQprime_q(rrplus);
                 // without a solution, Q' stays where it was
                 if (qPrime !== null) {
                     rg.rrminus.q = qPrime;
-                    rg.rrminus.pos = stdMod.q2xy(qPrime);
+                    rg.rrminus.pos = q2xy(qPrime);
                 }
                 rg.infoMessage.undisplay = qPrime !== null;
                 const rrminus = rg.rrminus.pos; // Q'
