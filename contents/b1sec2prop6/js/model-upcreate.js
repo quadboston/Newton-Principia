@@ -54,9 +54,10 @@
 
                     let qHigh = Porb.q;
                     let offsetHigh = offsetMidpointSP(P);
-                    // Q's q comes from interpolated time, so Q at P can
-                    // land a rounding error before P
-                    if (offsetHigh === 0 || Porb.plusQ <= qHigh) return qHigh;
+                    // Q is P when Dt is 0, though Q's q comes from
+                    // interpolated time and can land a rounding error to
+                    // either side of P
+                    if (offsetHigh === 0 || ssD.Dt === 0) return qHigh;
 
                     // walks the orbit back from P to the first sign change
                     // (linear search), to find the approximate location of the
