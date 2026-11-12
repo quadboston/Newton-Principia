@@ -15,6 +15,7 @@
     function model_upcreate()
     {
         const solvable = ssD.solvable;
+        const q2xy = stdMod.q2xy;
         //qIndexToOrbit is meta data for all points on orbit, qix is index of P
         const Porb = ssD.qIndexToOrbit[ rg.P.qix ];
         if (Porb) {
@@ -28,85 +29,86 @@
             const Rc = R; //curvature radius
 
             if( solvable ){
-                // --- helpers ---
-                function dist(a, b) {
-                    return Math.hypot(a[0] - b[0], a[1] - b[1]);
-                }
-                function lineIntersection(A, B, C, D) {
-                    const x1 = A[0], y1 = A[1];
-                    const x2 = B[0], y2 = B[1];
-                    const x3 = C[0], y3 = C[1];
-                    const x4 = D[0], y4 = D[1];
+                // finds q of the point Q' on the orbit before P such that
+                // the midpoint of QQ' lies on line SP, or null if there is
+                // no such point; Q' is P when Q is P
+                function findsQprime_q(Q) {
+                    const P = posBody;
+                    const S = rg.S.pos;
+                    const SP = [ P[0] - S[0], P[1] - S[1] ];
 
-                    const den = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
-                    if (den === 0) return null; // parallel or coincident
+                    // signed distance of the midpoint of QQ' from line SP,
+                    // times |SP|.  Note the position of S and P are constant,
+                    // therefore |SP| is also constant.  Given this function is
+                    // used for root finding, keeping the output multiplied by
+                    // that constant simplifies the code without causing issues.
+                    function offsetMidpointSP(QPrime) {
+                        const Mx = (Q[0] + QPrime[0]) / 2;
+                        const My = (Q[1] + QPrime[1]) / 2;
+                        const SMidpoint = [Mx - S[0], My - S[1]];
+                        //Area of a parallelogram (cross product), where the
+                        //base is |SP|, and height the distance of the midpoint
+                        //of QQ' from line SP.
+                        return SP[0] * SMidpoint[1] - SP[1] * SMidpoint[0];
+                    }
 
-                    const px = ((x1*y2 - y1*x2) * (x3 - x4) - (x1 - x2) * (x3*y4 - y3*x4)) / den;
-                    const py = ((x1*y2 - y1*x2) * (y3 - y4) - (y1 - y2) * (x3*y4 - y3*x4)) / den;
+                    let qHigh = Porb.q;
+                    let offsetHigh = offsetMidpointSP(P);
+                    // Q is P when Dt is 0, though Q's q comes from
+                    // interpolated time and can land a rounding error to
+                    // either side of P
+                    if (offsetHigh === 0 || ssD.Dt === 0) return qHigh;
 
-                    return [px, py];
-                }
-
-                function adjustQprime() {
-                    let best = null;
-                    let bestDiff = Infinity;
-                    const Q = Porb.rrplus;
-					const sagittaOnSP_Tolerance = 0.0006;
-
-                    for (let i = rg.P.qix; i > 0; i--) {
-                        const Qp = ssD.qIndexToOrbit[i]?.posBody;
-                        if (!Qp) continue;
-
-                        // intersection I(Q') of SP and QQ'
-                        const I = lineIntersection(rg.S.pos, rg.P.pos, Q, Qp);
-                        if (!I) {
-                            continue; 
-                        }
-
-                        // midpoint M(Q, Q')
-                        const M = [
-                            (Q[0] + Qp[0]) / 2,
-                            (Q[1] + Qp[1]) / 2
-                        ];
-
-                        const d = dist(M, I);
-                        if (d < bestDiff) {
-                            bestDiff = d;
-                            best = Qp;
-                            if(bestDiff < sagittaOnSP_Tolerance) {
-                                // break out of for loop once we found a
-                                // point that's close enough
-                                break;
+                    // walks the orbit back from P to the first sign change
+                    // (linear search), to find the approximate location of the
+                    // first root on the Q' side of P.  Then bisects between
+                    // those two orbit points to refine further, so Q' isn't
+                    // constrained to a discrete point.  Note if there are
+                    // multiple roots, this algorithm will consistently find the
+                    // first root, rather than jump between roots.
+                    for (let i = rg.P.qix - 1; i >= 0; i--) {
+                        const bP = ssD.qIndexToOrbit[i];
+                        let qLow = bP.q;
+                        let offsetLow = offsetMidpointSP(bP.posBody);
+                        if (offsetLow === 0) return qLow;
+                        if ((offsetLow < 0) !== (offsetHigh < 0)) {
+                            for (let k = 0; k < 30; k++) {
+                                const qMid = (qLow + qHigh) / 2;
+                                const offsetMid = offsetMidpointSP(q2xy(qMid));
+                                if ((offsetMid < 0) === (offsetLow < 0)) {
+                                    qLow = qMid;
+                                    offsetLow = offsetMid;
+                                } else {
+                                    qHigh = qMid;
+                                }
                             }
+                            return (qLow + qHigh) / 2;
                         }
+                        qHigh = qLow;
+                        offsetHigh = offsetLow;
                     }
-
-                    //console.log(bestDiff.toFixed(3));
-                    if(bestDiff > sagittaOnSP_Tolerance) {
-                        Porb.rrminus[0] = rg.rrminus.pos[0];
-                        Porb.rrminus[1] = rg.rrminus.pos[1];
-                    } else {
-                        Porb.rrminus[0] = rg.rrminus.pos[0] = best[0];
-                        Porb.rrminus[1] = rg.rrminus.pos[1] = best[1];
-                    }
-					rg.infoMessage.undisplay = 
-						bestDiff <= 2 * sagittaOnSP_Tolerance;
+                    return null;
                 }
-
-                adjustQprime(); // finds Q' that brings M closest to I
 
                 const rrplus = Porb.rrplus; // Q
-                const rrminus = rg.rrminus.pos = Porb.rrminus; // Q'
+                const qPrime = findsQprime_q(rrplus);
+                // without a solution, Q' stays where it was
+                if (qPrime !== null) {
+                    rg.rrminus.q = qPrime;
+                    rg.rrminus.pos = q2xy(qPrime);
+                }
+                rg.infoMessage.undisplay = qPrime !== null;
+                const rrminus = rg.rrminus.pos; // Q'
                 rg.Q.q = Porb.plusQ;
-                rg.Q.q_minus = Porb.minusQ;
+                rg.Q.q_minus = rg.rrminus.q ?? Porb.minusQ;
                 rg.Q.pos[0] = rrplus[0];
                 rg.Q.pos[1] = rrplus[1];
 
                 const chord = rg.chord = [ rrplus[0] - rrminus[0], rrplus[1] - rrminus[1], ];
                 rg.chord2 = chord[0]*chord[0]+chord[1]*chord[1];
 
-                let Mx = (rrplus[0] + Porb.rrminus[0]) / 2;
-                let My = (rrplus[1] + Porb.rrminus[1]) / 2;
+                let Mx = (rrplus[0] + rrminus[0]) / 2;
+                let My = (rrplus[1] + rrminus[1]) / 2;
                 rg.sagitta.pos = [Mx, My]; //ensures we're showing the true M
 
                 ///R and T only used in corollaries
