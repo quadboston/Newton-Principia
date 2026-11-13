@@ -82,8 +82,11 @@
         const prevDt = ssD.Dt;
         ssD.Dq = prevDq !== undefined ? prevDq : sconf.Dq0;
         ssD.Dt = prevDt !== undefined ? prevDt : sconf.Dt0;
-        stdMod.builds_force_plusQ_minusQ_and_related(sData.ULTIM_MAX);
-        stdMod.builds_force_plusQ_minusQ_and_related(sData.ULTIM_ACTUAL);
+        const calculateActualForce = stdMod.calculateActualForce;
+        for( let qix=0; qix<=Q_STEPS; qix++ ) {
+            const bP = qIndexToOrbit[ qix ];
+            bP.actualForce = calculateActualForce({bP});
+        }
         stdMod.builds_force_plusQ_minusQ_and_related();
         stdMod.builds_orbit_data_graph(setMaxGraphValues);
 

@@ -37,11 +37,17 @@
                 var Dt = sconf.DT_SLIDER_MAX;
                 var Dq = sconf.DQ_SLIDER_MAX;
                 //we are going to rebuid diagram abscissa range:
+                /*
                 MAKE_RANGE = true;
                 ssD.qix_graph_start = 0;
                 ssD.qix_graph_end = Q_STEPS;
+                */
                 break;
             case sData.ULTIM_ESTIMATED:
+
+                MAKE_RANGE = true;
+                ssD.qix_graph_start = 0;
+                ssD.qix_graph_end = Q_STEPS;
                 var Dt = ssD.Dt;
                 var Dq = ssD.Dq;
                 break;
@@ -78,6 +84,7 @@
                             bP.estimatedForceLargest = force;
                             break;
                         case sData.ULTIM_ESTIMATED:
+                            bP.estimatedForceLargest = force;
                             bP.estimatedForce = force;
                             break;
                         case sData.ULTIM_ACTUAL:
@@ -99,14 +106,11 @@
             {
                 const plusT = bodyTime + Dt;
                 var plusQ = convertTimeTo_q(plusT);
-
                 if (plusQ === null) {
                     if (MAKE_RANGE && !CURVE_REVOLVES) {
-                        if (plusT > timeRange) {
                             bP.invalid = true;
                             ssD.qix_graph_end =
                                 Math.min( ssD.qix_graph_end, qix-1 );
-                        }
                     }
                 } else {
                     //saves data for model-upcreate;
@@ -129,6 +133,7 @@
                         bP.estimatedForceLargest = force;
                         break;
                     case sData.ULTIM_ESTIMATED:
+                        bP.estimatedForceLargest = force;
                         bP.estimatedForce = force;
                         break;
                     case sData.ULTIM_ACTUAL:
@@ -143,12 +148,10 @@
                 var minusQ = convertTimeTo_q(minusT);
 
                 if (minusQ === null) {
-                    if( MAKE_RANGE && !CURVE_REVOLVES && Q_MINUS_EXISTS ){
-                        if (minusT < 0) {
+                    if( !CURVE_REVOLVES ){
                             ssD.qix_graph_start =
                                 Math.max( ssD.qix_graph_start, qix+1 );
                             bP.invalid = true;
-                        }
                     }
                     continue;
                 }
@@ -177,12 +180,10 @@
         const CURVE_REVOLVES = sconf.CURVE_REVOLVES;
         const qIndexToOrbit = ssD.qIndexToOrbit;
         const timeRange = ssD.timeRange;
-
         //Adjust time as needed, and ensure within bounds.
         const timeFind = CURVE_REVOLVES ? (timeRange + time) % timeRange : time;
         if (timeFind < 0 || timeFind > timeRange)
             return null;
-
 
         //Lower and upper bound for searching
         let qixL = 0;

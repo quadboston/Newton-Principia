@@ -90,12 +90,13 @@
                 }
 
                 const rrplus = Porb.rrplus; // Q
-                const qPrime = findsQprime_q(rrplus);
+                const qPrime = null; //findsQprime_q(rrplus);
                 // without a solution, Q' stays where it was
                 if (qPrime !== null) {
                     rg.rrminus.q = qPrime;
                     rg.rrminus.pos = q2xy(qPrime);
                 }
+                rg.rrminus.pos = Porb.rrminus;
                 rg.infoMessage.undisplay = qPrime !== null;
                 const rrminus = rg.rrminus.pos; // Q'
                 rg.Q.q = Porb.plusQ;
@@ -314,6 +315,10 @@
         // \\// hides/shows non-existing elements
         //      for non-Kepler curve
         //================================================
+        ccc( 'qminus ='+(Porb.minusQ && Porb.minusQ.toFixed(4)) +
+             ' min,P,max: qix='+ssD.qix_graph_start +
+             ' ' + rg.P.qix +
+             ' ' + ssD.qix_graph_end );
     }
 
     ///restores visibility which has been stashed

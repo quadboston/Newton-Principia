@@ -4,6 +4,7 @@
         stdModExportList : {
             calculateForce,
             calculateDqSubstituteActualForce,
+            calculateActualForce,
         }, });
     ssD.DT_SUBSTITUTE_ACTUAL_FORCE = 0.0001;
     return;
@@ -119,7 +120,6 @@
             force *= stdMod.forceCorrectionScale();
         return force;
     }
-
 
     function calculateActualForce({
         bP    //orbit point P rack
