@@ -110,6 +110,7 @@
             //==================================================
 
         	setsGraphTpClasses(graph.chart);
+            drawsActualForceOnTop(graph.chart);
         }
         //===================================================
         // \\// top tier painter which wraps low tier painter
@@ -316,5 +317,15 @@
 				case 0: pl && $$.$(pl).addClass( 'tp-force tostroke' ); break;
 			}
 		});
+	}
+
+	///moves the actual force plot just above the estimated force plot,
+	///so where they overlap, as in the limit, the actual force shows
+	function drawsActualForceOnTop(chart) {
+		const [ actualPlot, estimatedPlot ] = chart.plotIx2plotSvg;
+		if( actualPlot && estimatedPlot &&
+			estimatedPlot.nextSibling !== actualPlot ) {
+			estimatedPlot.after( actualPlot );
+		}
 	}
 }) ();
