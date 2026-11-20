@@ -324,14 +324,6 @@
                 pcolor : invalid,
                 unscalable  : true,
             },
-            infoMessage : {
-                pos : [20, 20],
-                caption: "In the limit, the sagitta will pass through the center of forces",
-                fontSize : '25',
-                pcolor : infoColor,
-                letterAngle : 0,
-                unscalable  : true,
-            }
         });
 
         //model's spacial unit expressed in pixels of the picture:
