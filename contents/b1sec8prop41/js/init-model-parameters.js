@@ -30,8 +30,8 @@
         stdMod.completesSlidersCreation();      //in-diagram sliders
 
         let omega = Math.sin(op.angleOmega);
-        let vv = [ -op.Kepler_v * omega,        //"-" bs x and y swapped in media-model
-                    op.Kepler_v * Math.cos(op.angleOmega) ];
+        let vv = [-op.Kepler_v * omega,        //"-" bs x and y swapped in media-model
+                    op.Kepler_v * Math.cos(op.angleOmega)];
 
         //initial speed
         nspaste(rg.v.pos,         mat.sm(rg.V.pos, vv));

@@ -200,7 +200,7 @@
             },
 
             curveStart  : {
-                pos : [ A[0]-80, 0 ],
+                pos : [A[0]-80, 0],
                 undisplayAlways : true,
                 doPaintPname : false,
             },
@@ -274,7 +274,7 @@
         var ww_inn2mod_scale = 1/mod2inn_scale;
         var ww_factor = ww_MONITOR_Y_FLIP * ww_inn2mod_scale;
         var givenCurve_pivots_inModel = givenCurve_pivots.map(opoint =>
-            [ (opoint[0] - modorInPicX) * ww_inn2mod_scale,
+            [(opoint[0] - modorInPicX) * ww_inn2mod_scale,
               (opoint[1] - modorInPicY +
 
                 //additional tune-up: shifting curve exactly into origin A

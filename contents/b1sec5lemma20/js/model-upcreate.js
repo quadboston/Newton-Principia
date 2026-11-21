@@ -30,8 +30,8 @@
         var PR = rg.T.pos2Tpar(rg.T.pos) * Pr_by_Pt;
         var qScale = 1.4;
         var Pq = PR * qScale;
-        var Rpos = [ P[0] + Pr.unitVec[0] * PR, P[1] + Pr.unitVec[1] * PR ];
-        var qpos = [ P[0] + Pr.unitVec[0] * Pq, P[1] + Pr.unitVec[1] * Pq ];
+        var Rpos = [P[0] + Pr.unitVec[0] * PR, P[1] + Pr.unitVec[1] * PR];
+        var qpos = [P[0] + Pr.unitVec[0] * Pq, P[1] + Pr.unitVec[1] * Pq];
         var R = pos8tg_2_rg('R', Rpos).pos;
         var q = pos8tg_2_rg('q', qpos).pos;
 
@@ -54,16 +54,16 @@
         // \\// thread from T to D
         //------------------------------------
         var A = rg.A.pos;
-        var AB = [ B[0]-A[0], B[1]-A[1] ];
-        var AC = [ C[0]-A[0], C[1]-A[1] ];
-        var PB = [ P[0]-B[0], P[1]-B[1] ];
-        var PC = [ P[0]-C[0], P[1]-C[1] ];
+        var AB = [B[0]-A[0], B[1]-A[1]];
+        var AC = [C[0]-A[0], C[1]-A[1]];
+        var PB = [P[0]-B[0], P[1]-B[1]];
+        var PC = [P[0]-C[0], P[1]-C[1]];
 
         var G = mat.linesCross(AB, D, AC, A);
         pos8tg_2_rg('G', G);
-        var DG = [ D[0]-G[0], D[1]-G[1] ];
+        var DG = [D[0]-G[0], D[1]-G[1]];
 
-        var AC = [ C[0]-A[0], C[1]-A[1] ];
+        var AC = [C[0]-A[0], C[1]-A[1]];
         var I = mat.linesCross(AB, D, AC, P);
         pos8tg_2_rg('I', I);
         var E = mat.linesCross(AB, A, AC, D);
@@ -81,7 +81,7 @@
         pem.q = parQ;
         var { point, tangent } = mat.polar_ellipse(pem);
         pos8tg_2_rg(pname, point, tangent);
-        return rg[ pname ];
+        return rg[pname];
     }
 
     /*
@@ -115,7 +115,7 @@
             Ptangent[0] = tangent[0];
             Ptangent[1] = tangent[1];
         }
-        return rg[ nameP ];
+        return rg[nameP];
     }
 
     function deriveParameters(doSetT) {
@@ -139,7 +139,7 @@
         //-----------------------
         //all in model units:
         var tpos = mat.linesCross(
-            [-rg.B.tangent[0], -rg.B.tangent[1] ], B, nBA, P);
+            [-rg.B.tangent[0], -rg.B.tangent[1]], B, nBA, P);
         pos8tg_2_rg('t', tpos);
         //-----------------------
         // \\// deriving tangent
@@ -162,7 +162,7 @@
             rg.T.pos2Tpar = pos2Tpar;
             DID_INITIALIZED = true;
         }
-        var Tpos = [ -nBA[0]*parT + P[0],  -nBA[1]*parT + P[1] ];
+        var Tpos = [-nBA[0]*parT + P[0],  -nBA[1]*parT + P[1]];
         pos8tg_2_rg('T', Tpos);
         //---------------------------
         // \\// setting parT

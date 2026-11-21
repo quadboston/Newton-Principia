@@ -27,8 +27,8 @@
 
         //draws conics
         //enables curve move when dragging an entire diagram
-        rg[ 'approximated-curve' ].poly2svg();
-        rg[ 'approximated-curve-sample' ].poly2svg();
+        rg['approximated-curve'].poly2svg();
+        rg['approximated-curve-sample'].poly2svg();
     }
     //=========================================================
     // \\// lemma custom addons

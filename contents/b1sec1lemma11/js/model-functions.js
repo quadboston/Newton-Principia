@@ -45,7 +45,7 @@
                         - 0.018*x16
                     ];
                     */
-                    return [ x, mat.poly(x*scale, [
+                    return [x, mat.poly(x*scale, [
                         0,
                         0,
                         -0.81,  //2

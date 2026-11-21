@@ -67,7 +67,7 @@
                 if (style) {
                     var stl = svgel.style;
                     Object.keys(style).forEach(function (key) {
-                        stl[ key ] = style[ key ];
+                        stl[key] = style[key];
                     });
                 }
                 return;
@@ -79,7 +79,7 @@
             //-------------------------------------
             // //\\ sets remaining attributes
             //-------------------------------------
-            var val = arg[ key ];
+            var val = arg[key];
             if (val || val === 0) {
 
                 //valuable for d e b u g
@@ -166,8 +166,8 @@
                 //must be transparent bs stroke or fill are often exclusive
 
             fill    : arg.fill || 'transparent',
-            'stroke-width' : arg[ 'stroke-width' ] || 1,
-            'stroke-linecap' : arg[ 'stroke-linecap' ] || 'round',
+            'stroke-width' : arg['stroke-width'] || 1,
+            'stroke-linecap' : arg['stroke-linecap'] || 'round',
         });
 
         function rep(match1, match2) {
@@ -300,9 +300,9 @@
             });
             var xx = ell.x;
             var yy = ell.y;
-            cpivots.push([ xx, yy ]);
+            cpivots.push([xx, yy]);
         }
-        cpivots.push([ xx, yy ]);
+        cpivots.push([xx, yy]);
         //makes sector closed:
         //todm not good:  use arg...
         cpivots.push(cpivots[0]);
@@ -341,11 +341,11 @@
         for (var ii = 0; ii < stepsLim; ii++) {
             var curv = curve(start + step * ii);
             if (notArr) {
-                var curv = [ curv.x, curv.y ];
+                var curv = [curv.x, curv.y];
             }
             if (xOFy) {
                 ////swaps x and y if we draw graph x(y)
-                curv = [ curv[1], curv[0] ];
+                curv = [curv[1], curv[0]];
             }
             polyline.push(curv);
         }

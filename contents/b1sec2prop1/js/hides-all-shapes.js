@@ -33,7 +33,7 @@
         //hide all of them here (then only show the correct ones in
         //"unmasks-visible-path-svg.js").
         rg?.pathRacks?.pathRacks?.forEach((prack, index) => {
-            const paintee = rg[ 'kepltr-' + (index) ];
+            const paintee = rg['kepltr-' + (index)];
             paintee && $$.$(paintee.svgel).addClass('undisplay');
         });
     }

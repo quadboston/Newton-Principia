@@ -98,7 +98,7 @@
                     ///replacing plain-words with match-clauses,
                     ///in the later second-step replacement, match-clauses will be normally
                     ///parsed to html-anchors as usual "tp-topics",
-                    collectedDelayedLinks[ parsedLink[2] ] = {
+                    collectedDelayedLinks[parsedLink[2]] = {
 
                         //total future match clause = string aka  ¦anchor config¦anchor caption¦¦
                         //note: trailing ¦¦ are stripped,
@@ -156,18 +156,18 @@
                     var tplink_ix = tplinkCount++;
 
                     //recall: anix2anrack and anid2anrack do live in lemma-scope.
-                    anix2anrack[ tplink_ix ] =
+                    anix2anrack[tplink_ix] =
                     ///at the moment, stripped duplicate links have nothing like
                     ///this object
-                    anid2anrack[ tplinkConf ] = {
+                    anid2anrack[tplinkConf] = {
                         tplink_ix : tplink_ix,
                         tpid2true : {},
                         //link:parsedLink[2], not-used
                     };
                 }
-                var anchorRack = anid2anrack[ tplinkConf ];
+                var anchorRack = anid2anrack[tplinkConf];
                 //why dubbing?:
-                collectedTpLinks[ tplinkConf ] = anchorRack;
+                collectedTpLinks[tplinkConf] = anchorRack;
                 var tplink_ix = anchorRack.tplink_ix;
                 //=========================================
                 // \\// indexes topic links and colors
@@ -222,7 +222,7 @@
                         var ww = anchorRack.colorCateg =
                             anchorOperator.match(ANCH_COLOR_CAT_rg);
                         //.fixed set to tp-link
-                        anchorRack[ 'tpcolarr' ] = haz(topicColors_repo, ww[1]);
+                        anchorRack['tpcolarr'] = haz(topicColors_repo, ww[1]);
                         return;
                     }
                     //..........................................................
@@ -234,7 +234,7 @@
                     //anchorRack has collection of anchor commands,
                     ///now we do add anchorRack.tpid2tru to anchorRack,
                     if (low_tpID  && low_tpID.replace(/ /g, '')) {
-                        anchorRack.tpid2true[ low_tpID ] = true;
+                        anchorRack.tpid2true[low_tpID] = true;
                         //if topicId keyName is missed, then an empty object created
                         //ccc( 'FR II, set low_tpID into lowtpid_2_glocss8anchorRack' );
                         if (!has(lowtpid_2_glocss8anchorRack, low_tpID)) {
@@ -329,7 +329,7 @@
             // \\// Macros filter
             //***************************************************
 
-            norFrRack[ akey ] = {
+            norFrRack[akey] = {
                 //(*) format:
                 //text ready to be injected into html dom$
                 fragBody    : fragBody_raw.replace(TOP_ANCH_REG_gu, replWithAnchor),
@@ -365,7 +365,7 @@
                 anchorConfig = anchorConfig.substring(1, anchorConfig.length);
             }
 
-            var rack = topics.anid2anrack[ anchorConfig ];
+            var rack = topics.anid2anrack[anchorConfig];
             if (!rack) return;
             var dix = cflag ? ' delayed-anchor' : '';
             dix += farFlag ? ' delayed-far' : '';
@@ -532,7 +532,7 @@
 
                        //this "match" will be a match-key for future replacement with anchor
                        //match===all===config+key+pipes: aka: ¦v2graph VSarea¦ABFD¦¦
-                       collectedDelayedLinks[ arguments[2] ].match +
+                       collectedDelayedLinks[arguments[2]].match +
 
                        arguments[3];  //trailing spacer: !!it cannot be used in ajacent RegEx if any,
                                       //must: KWA dividorA dividorB KWB, not dividorA is the same as

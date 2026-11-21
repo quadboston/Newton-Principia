@@ -45,8 +45,8 @@
                 ();
             fi.medpos = ssF.mod2inn(fi.pos);
             ssF.drawAngleFrom_rayAB2rayCD_at_medpos({
-                AB          : rg[ 'CV' ].pivots,
-                CD          : rg[ 'CX' ].pivots,
+                AB          : rg['CV'].pivots,
+                CD          : rg['CX'].pivots,
                 rgSample    : fi, //pname used for tp...
                 ANGLE_SIZE  : 2*rg.V.pos[1],
                 captionRadiusIncrease : 1.02,
@@ -62,8 +62,8 @@
                 ();
             XCY.medpos = ssF.mod2inn(XCY.pos);
             ssF.drawAngleFrom_rayAB2rayCD_at_medpos({
-                AB          : rg[ 'CX' ].pivots,
-                CD          : rg[ 'CY' ].pivots,
+                AB          : rg['CX'].pivots,
+                CD          : rg['CY'].pivots,
                 rgSample    : XCY, //pname used for tp...
                 ANGLE_SIZE  : 2*rg.V.pos[1],
                 //captionRadiusIncrease : 1.02,
@@ -88,23 +88,23 @@
             let cName = 'MainCircle';
             //makesArc({ radius:rg.V.pos[1], angleMax:sconf.angleOfR, circleName:cName });
             makesArc({ radius:rg.V.pos[1], angleMax:Math.PI, circleName:cName });
-            stdMod.buildsQuadPlot(rg[ cName ]);
+            stdMod.buildsQuadPlot(rg[cName]);
 
             cName = 'DCircle';
             makesArc({ radius:rg.D.pos[1], angleMax:rg.X.FiD, circleName:cName });
-            stdMod.buildsQuadPlot(rg[ cName ]);
+            stdMod.buildsQuadPlot(rg[cName]);
 
             cName = 'ECircle';
             makesArc({ radius:rg.E.pos[1], angleMax:rg.X.FiD, circleName:cName });
-            stdMod.buildsQuadPlot(rg[ cName ]);
+            stdMod.buildsQuadPlot(rg[cName]);
 
             cName = 'NK';
             makesArc({ radius:rg.E.pos[1], angleMax:rg.X.FiD, angleMin:rg.Y.FiE, circleName:cName });
-            stdMod.buildsQuadPlot(rg[ cName ]);
+            stdMod.buildsQuadPlot(rg[cName]);
 
             cName = 'YX';
             makesArc({ radius:rg.V.pos[1], angleMax:rg.X.FiD, angleMin:rg.Y.FiE, circleName:cName });
-            stdMod.buildsQuadPlot(rg[ cName ]);
+            stdMod.buildsQuadPlot(rg[cName]);
         }
 
         //=============================================================
@@ -112,7 +112,7 @@
         //=============================================================
         //vital: enables curve move when dragging an entire diagram,
         //       othewise, pivots and curve are non-synched,
-        rg[ 'approximated-curve' ].poly2svg({});
+        rg['approximated-curve'].poly2svg({});
         //=============================================================
         // \\// draws curves
         //=============================================================

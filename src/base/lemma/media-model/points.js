@@ -37,7 +37,7 @@
     ///Returns: rg[ pName ]
     function pos2pointy(pName, attrs,) {
         attrs = attrs || {};
-        var pt = rg[ pName ];
+        var pt = rg[pName];
 
         //if points are flagged as 'unscalable', then
         //they are immune to scaling when user scales diagram with mouse
@@ -89,7 +89,7 @@
 
             //todm patch which overrides tp-opacity model for points only,
             //but patches only for lemmas covered with this subroutine and this patch,
-            svgel$().style[ 'fill-opacity' ] = '1';
+            svgel$().style['fill-opacity'] = '1';
             var finalTp = haz(pt, 'notp') ? 'notp' : 'tp';
             var wwClass = cssClass + finalTp + '-' +  tpclass;
             pt.svgel.setAttributeNS(null, 'class', wwClass);
@@ -142,7 +142,7 @@
     /// paints latin letters for points
     ///-----------------------------------------------
     function doPaintLetter8kernel(pname,) {
-        var rgX = rg[ pname ];
+        var rgX = rg[pname];
         ///adds fake points over draggable points to
         ///make white kernels drawn above lines
         ///move_2_updates is a flag of point for being a draggee
@@ -154,7 +154,7 @@
         ) {
             var fakeName = pname+'-kernel';
             var wp = rg[pname].pos;
-            var rgXX = rg[ fakeName ];
+            var rgXX = rg[fakeName];
 
             //removes kernel visully if requested
             var undisplay = haz(rg[pname], 'hideD8Dpoint') ||
@@ -163,7 +163,7 @@
             if (!has(rg, fakeName) || !has(rg[fakeName], 'pos')) {
                 ////...decorates for the first time and updates
                 var rgXX = toreg(fakeName)
-                    ('pos', [ wp[0], wp[1] ])
+                    ('pos', [wp[0], wp[1]])
                     ('undisplay', undisplay)
                     ();
 

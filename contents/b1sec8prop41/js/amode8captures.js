@@ -33,7 +33,7 @@
 
         // //\\ hiding
         rg.nonSolvablePoint.undisplay = true;
-        rg[ 'V,Vangle' ].undisplay = true;
+        rg['V,Vangle'].undisplay = true;
         rg.R.undisplay = false;
         rg.M.undisplay = true;
         rg.Z.undisplay = true;

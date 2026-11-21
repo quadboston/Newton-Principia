@@ -37,7 +37,7 @@
         //3
         rg.P.q      = op.PparQ_initial;
         //4
-        nspaste(rg.P.pos, rg[ 'approximated-curve' ].t2xy(op.PparQ_initial));
+        nspaste(rg.P.pos, rg['approximated-curve'].t2xy(op.PparQ_initial));
         // \\// "draws" conics and P
 
         rg.S.pos[0] = 0;
@@ -59,7 +59,7 @@
             op.om = 1;
             op.cosOmega = 0;
             rg.P.q      = 0;
-            nspaste(rg.P.pos, rg[ 'approximated-curve' ].t2xy(rg.P.q));
+            nspaste(rg.P.pos, rg['approximated-curve'].t2xy(rg.P.q));
             rg.P.abs = mat.unitVector(rg.P.pos).abs;
         }
         //-------------------------------------------------

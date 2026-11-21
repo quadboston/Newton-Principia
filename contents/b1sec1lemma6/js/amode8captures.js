@@ -13,7 +13,7 @@
     const EQUAL_TANGENTS_ANGLE = 0.10579977792284677;
 
     ///diff and Euclid tangents are equal
-    var ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] = {
+    var ANGLE_EQUALS = ssD["L-equal-d curveRotationAngle"] = {
         "angle": EQUAL_TANGENTS_ANGLE,
         "sin": Math.sin(EQUAL_TANGENTS_ANGLE),
         "cos": Math.cos(EQUAL_TANGENTS_ANGLE),
@@ -32,7 +32,7 @@
 
     // model origin in the picture; must match modorInPicX, modorInPicY
     // in sconf.js, which are not set yet when this module runs
-    const MODEL_ORIGIN_IN_PIC = [ 140, 61 ];
+    const MODEL_ORIGIN_IN_PIC = [140, 61];
 
     setCapture();
     return;
@@ -111,7 +111,7 @@
         // \\// common values
         //----------------------------------
 
-        sData[ 'proof-pop-up' ].dom$.css('display', 'none');
+        sData['proof-pop-up'].dom$.css('display', 'none');
 
         captured = "reset-to-origin";
         if (logic_phase === 'claim') {

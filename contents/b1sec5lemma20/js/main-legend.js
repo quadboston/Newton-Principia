@@ -37,11 +37,11 @@
 
         var wwR=rg.R.pos;
         var wwP=rg.P.pos;
-        var PR = mat.unitVector([wwR[0]-wwP[0], wwR[1]-wwP[1] ]).abs;
+        var PR = mat.unitVector([wwR[0]-wwP[0], wwR[1]-wwP[1]]).abs;
         var PR_PT = (PR/PT);
-        ww[ 'PT' ].innerHTML = PT.toFixed(2);
-        ww[ 'PR' ].innerHTML = PR.toFixed(2);
-        ww[ 'PR-PT' ].innerHTML     = PR_PT.toFixed(2);
+        ww['PT'].innerHTML = PT.toFixed(2);
+        ww['PR'].innerHTML = PR.toFixed(2);
+        ww['PR-PT'].innerHTML     = PR_PT.toFixed(2);
     }
     //=========================================
     // \\// updates values during simulation

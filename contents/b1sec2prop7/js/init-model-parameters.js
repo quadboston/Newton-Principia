@@ -24,7 +24,7 @@
         //      todm: not very consistent,
         //-----------------------------------------
         sconf.originalPoints.foldPoints.forEach((fp, ppix) => {
-            fp.rgX = rg[ 'foldPoints-' + ppix ];
+            fp.rgX = rg['foldPoints-' + ppix];
             fp.rgX.undisplay = true;
         });
         //-----------------------------------------

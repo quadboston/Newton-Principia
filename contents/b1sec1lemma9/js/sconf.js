@@ -19,8 +19,8 @@
         var pictureWidth    = 504;
         var pictureHeight   = 495;
 
-        var pointA          = [ 28, 456 ];
-        var pointe          = [ 28, 46 ];
+        var pointA          = [28, 456];
+        var pointe          = [28, 46];
 
         var modorInPicX = pointA[0];
         var modorInPicY = pointA[1];
@@ -232,7 +232,7 @@
                 [0, 0],
                 //The bezier middle pivot is constrained in "model-upcreate.js" beginning of "model_upcreate" function.
                 [440, APP_MODEL_Y_RANGE],
-                [ 1060, 567 ]
+                [1060, 567]
 
                 /* very good for debug: simple curve
                 [0, 0],

@@ -69,7 +69,7 @@
                 style : blines.style,
                 stroke : blines.stroke || 'rgba( 0,0,0, 1 )',
                 fill : blines.fill || 'transparent',
-                'stroke-width' : blines[ 'stroke-width' ] || 1
+                'stroke-width' : blines['stroke-width'] || 1
             });
         }
         //--------------------------------------------------------
@@ -106,7 +106,7 @@
                 type : 'path',
                 fill : bcurve.fill || 'transparent',
                 stroke : bcurve.stroke || 'rgba( 0,255,0, 1 )',
-                'stroke-width' : bcurve[ 'stroke-width' ] || 3,
+                'stroke-width' : bcurve['stroke-width'] || 3,
                 d : '' + bezierStr
             });
         }
@@ -133,17 +133,17 @@
                 // //\\ paints point on bezier curve
                 //--------------------------------------------------------
                 var attrs = bpoints.attrs || {};
-                var point = resultBPoints[ pix ];
+                var point = resultBPoints[pix];
 
                 //in the same space as pivots: if mod then mod, if in media, than med:
-                var mp      = mediael.points[ pix ] = mediael.points[ pix ] || {};
+                var mp      = mediael.points[pix] = mediael.points[pix] || {};
                 mp.ix       = pix;
                 mp.point    = point;
                 //stashes model-twin of media point
-                var mpm     = mediael.points_model[ pix ] = {};
+                var mpm     = mediael.points_model[pix] = {};
                 mpm.ix      = pix;
-                mpm.point   = resultBPoints_model[ pix ];
-                mediael.points[ pix ].svgel =
+                mpm.point   = resultBPoints_model[pix];
+                mediael.points[pix].svgel =
                     nssvg.u({
                         svgel   : mp.svgel,
                         parent  : parentSVG,
@@ -168,17 +168,17 @@
                 // //\\ paints pivot of bezier curve
                 //--------------------------------------------------------
                 var attrs = paintPivots.attrs || {};
-                mediael.pivotPoints[ pix ] = mediael.pivotPoints[ pix ] ||
+                mediael.pivotPoints[pix] = mediael.pivotPoints[pix] ||
                                              { ix:pix, medpos:point };
-                mediael.pivotPoints[ pix ].medpos = point;
-                mediael.pivotPoints[ pix ].svgel =
+                mediael.pivotPoints[pix].medpos = point;
+                mediael.pivotPoints[pix].svgel =
                     nssvg.u({
-                        svgel : mediael.pivotPoints[ pix ].svgel,
+                        svgel : mediael.pivotPoints[pix].svgel,
                         parent : parentSVG,
                         type : 'circle',
                         fill : attrs.fill || 'transparent',
                         stroke : attrs.stroke || 'rgba(255,0,0,1)',
-                        'stroke-width' : attrs[ 'stroke-width' ] || 3,
+                        'stroke-width' : attrs['stroke-width'] || 3,
                         cx : point[0],
                         cy : point[1],
                         r : attrs.r || 4,

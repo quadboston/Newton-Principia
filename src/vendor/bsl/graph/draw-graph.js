@@ -101,9 +101,9 @@
                 //if( !points ) return;
                 points.y.forEach((pointY, yix) => {
                     if (graphArrayMask && !graphArrayMask[yix]) return;
-                    plotsScaffold[ yix ] = plotsScaffold[ yix ] || [];
+                    plotsScaffold[yix] = plotsScaffold[yix] || [];
                     // plotsScaffold - format definition
-                    plotsScaffold[ yix ].push([points.x, pointY]);
+                    plotsScaffold[yix].push([points.x, pointY]);
                 });
             });
             var plotsCount = plotsScaffold.length;
@@ -230,8 +230,8 @@
                     var mediaY = marginY + dimY_withMarg -
                                  (pointY - yMin) / rangeY * dimY_withMarg;
                     //makes holes in array:
-                    polylines[ yix ] = polylines[ yix ] || [];
-                    polylines[ yix ].push([ mediaX, mediaY ]);
+                    polylines[yix] = polylines[yix] || [];
+                    polylines[yix].push([mediaX, mediaY]);
                 });
             });
             //==================================================
@@ -292,9 +292,9 @@
             polylines.forEach((pl, plix) => {
                 if (!pl) return;
                 var effStyle = Object.assign({}, style);
-                effStyle.stroke = colorThreadArray[ plix ];
-                let svg = plotIx2plotSvg[ plix ];
-                svg = plotIx2plotSvg[ plix ] = nssvg.polyline({
+                effStyle.stroke = colorThreadArray[plix];
+                let svg = plotIx2plotSvg[plix];
+                svg = plotIx2plotSvg[plix] = nssvg.polyline({
                     svgel : svg,
                     pivots  : pl,
                     parent  : gMedia,

@@ -35,8 +35,8 @@
         var splitToken = lineName.indexOf(',') > -1 ? ',' : '';
         var points = lineName.split(splitToken);
         var AB = toreg(lineName)();
-        var A = rg[ points[0] ].pos;
-        var B = rg[ points[1] ].pos;
+        var A = rg[points[0]].pos;
+        var B = rg[points[1]].pos;
         var dx = B[0]-A[0];
         var dy = B[1]-A[1];
         var d2 = dx*dx + dy*dy;
@@ -102,8 +102,8 @@
         var splitToken = XY.indexOf(',') > -1 ? ',' : '';
         var points = XY.split(splitToken);
         var points = XY.split('');
-        var A = rg[ points[0] ].pos;
-        var B = rg[ points[1] ].pos;
+        var A = rg[points[0]].pos;
+        var B = rg[points[1]].pos;
         return mat.circumscribeCircleOverChordAndBothNormals(null, A, B);
     }
 
@@ -117,11 +117,11 @@
         var assigmentPoints = assigneeTopPoint1Point2_str.split('=');
         var points = assigmentPoints[1].split(',');
         nspaste(
-            rg[ assigmentPoints[0] ].pos,
+            rg[assigmentPoints[0]].pos,
             mat.dropPerpendicular(
-                rg[ points[0] ].pos,
-                rg[ points[1] ].pos,
-                rg[ points[2] ].pos,
+                rg[points[0]].pos,
+                rg[points[1]].pos,
+                rg[points[2]].pos,
             )
         );
     }
@@ -137,12 +137,12 @@
         var assigmentPoints = assigneeScalePoint1Point2_str.split('=');
         var operands = assigmentPoints[1].split(',');
         nspaste(
-            rg[ assigmentPoints[0] ].pos,
+            rg[assigmentPoints[0]].pos,
             mat.dropLine(
                 parseFloat(operands[0]),
-                rg[ operands[1] ].pos,
-                rg[ operands[2] ].pos,
-                operands[3] && rg[ operands[3] ].pos,
+                rg[operands[1]].pos,
+                rg[operands[2]].pos,
+                operands[3] && rg[operands[3]].pos,
             )
         );
     }
@@ -152,8 +152,8 @@
     function dropPoint(operands_str) {
         var operands = operands_str.split('=');
         nspaste(
-            rg[ operands[0] ].pos,
-            rg[ operands[1] ].pos,
+            rg[operands[0]].pos,
+            rg[operands[1]].pos,
         );
     }
     //===============================================================

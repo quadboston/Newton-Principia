@@ -55,7 +55,7 @@
         var xy = [];
         var xt = [];
         var yt = [];
-        var antider = [ 0 ];
+        var antider = [0];
         var curvePoints = [];
 
         var lowname = sDomF.toCssIdentifier(curveName);
@@ -65,10 +65,10 @@
             var pname = pivotsName + '-' + pix;
             var p = pname2point[pname]; //p has format [xx,xx],
             if (separateXYforParamT) {
-                xt[ pix ] = [ pix, p[0] ];
-                yt[ pix ] = [ pix, p[1] ];
+                xt[pix] = [pix, p[0]];
+                yt[pix] = [pix, p[1]];
             }
-            xy[ pix ] = doSwapXY ? [ p[1], p[0] ] : [ p[0], p[1] ];
+            xy[pix] = doSwapXY ? [p[1], p[0]] : [p[0], p[1]];
         });
         var rgX = toreg(approxCurveName)();
         //prevents leaks polylineSvg from js-prototype
@@ -77,10 +77,10 @@
         //sets the function:
         // **api-outputs---divided-diff
         if (separateXYforParamT) {
-            var axt = rg[ approxCurveName ].xt = mat.calculate_divided_differences(xt);
-            var ayt = rg[ approxCurveName ].yt = mat.calculate_divided_differences(yt);
+            var axt = rg[approxCurveName].xt = mat.calculate_divided_differences(xt);
+            var ayt = rg[approxCurveName].yt = mat.calculate_divided_differences(yt);
         } else {
-            var axy = rg[ approxCurveName ].xy =  mat.calculate_divided_differences(xy);
+            var axy = rg[approxCurveName].xy =  mat.calculate_divided_differences(xy);
         }
         var result = {
             t2xy : q2xy, //transition from former notations
@@ -103,7 +103,7 @@
                     axt.calculate_polynomial(q),
                     ayt.calculate_polynomial(q),
                 ] :
-                [ q, axy.calculate_polynomial(q) ];
+                [q, axy.calculate_polynomial(q)];
         }
 
         ///generates array of xy where x is par. "t" and is from
@@ -119,7 +119,7 @@
                 var pos = q2xy(q);
                 if (doIntegrate && tix) {
                     area += tstep * pos[1];
-                    antid[ tix ] = area;
+                    antid[tix] = area;
                 }
                 //deswaps if swap mode is on
                 curvePoints[tix] = doSwapXY ? [pos[1], pos[0]] : pos;
@@ -131,8 +131,8 @@
         ///generates array of xy where x
         ///is from range xy[ 0 ][0] till xy[ xy.length-1 ][0]
         function ownrange2points({ stepsCount, doIntegrate }) {
-            var tStart = xy[ 0 ][0];
-            var tEnd = xy[ qmax ][0];
+            var tStart = xy[0][0];
+            var tEnd = xy[qmax][0];
             return trange2points({ tStart, tEnd, stepsCount, doIntegrate });
         }
 

@@ -64,7 +64,7 @@
         //=============================================
         // //\\ points reused in config
         //=============================================
-        var posF = [ 560, 554 ]; //x,y of whole svg model
+        var posF = [560, 554]; //x,y of whole svg model
         //=============================================
         // \\// points reused in config
         //=============================================
@@ -75,7 +75,7 @@
         var mod2inn_scale = 145;
         var originX_onPicture = posF[0]; //for model's axis x
         var originY_onPicture = posF[1]; //for model's axis y
-        sconf.diagramOrigin = [ 0, 0 ];
+        sconf.diagramOrigin = [0, 0];
 
         //-------------------------------------------
         // //\\ calculation algo parameters

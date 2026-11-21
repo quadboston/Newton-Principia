@@ -34,10 +34,10 @@
     function zbezier2integralX(pivots, t) {
         return zbezier2integralY(
             [
-                [ pivots[0][1],
+                [pivots[0][1],
                   pivots[0][0]
                 ],
-                [ pivots[1][1],
+                [pivots[1][1],
                   pivots[1][0]
                 ]
             ],

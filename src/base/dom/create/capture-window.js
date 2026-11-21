@@ -22,7 +22,7 @@
         fapp.captureState = function (captureData) {
             captureData = ns.paste({}, captureData);
 
-            cap.captured[ ''+cap.capturePoint ] = captureData;
+            cap.captured[''+cap.capturePoint] = captureData;
             var captureText = JSON.stringify(cap.captured, null, '    ');
             dom$.html(captureText);
             dom$().scrollTop = dom$().scrollHeight;
@@ -54,7 +54,7 @@
                                 ////prevents code-crash if subapp does
                                 //// not define "appState__2..."
                                 hafa(stdMod, 'astate_2_rg8model8media')(
-                                        cap.captured[ pix ],);
+                                        cap.captured[pix],);
                                 })
                             .html(pix + ' ')
                             ;

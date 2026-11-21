@@ -68,7 +68,7 @@
         // //\\ points reused in config
         //=============================================
         var A = [785, 441];
-        var V = [64, 462 ];
+        var V = [64, 462];
         var C = [425, 452];//[ V[0] + ww1/2, V[1] + ww2/2, ];
         var S = [225.2, 395.7];
         //=============================================
@@ -81,7 +81,7 @@
         var mod2inn_scale = 360; //RR;
         var originX_onPicture = C[0]; //for model's axis x
         var originY_onPicture = C[1]; //for model's axis y
-        sconf.diagramOrigin = [ 0, 0 ];
+        sconf.diagramOrigin = [0, 0];
 
         //-------------------------------------------
         // //\\ calculation algo parameters

@@ -26,11 +26,11 @@
 
             //recall that pos is in sync by reference:
             //sconf.pname2point[ pname ] = rgX.pos
-            var pos1 = rg[ 'curvePivots-' + cpix ].pos;
+            var pos1 = rg['curvePivots-' + cpix].pos;
             var stashedPos = null;
 
             cp.rgX.processOwnDownEvent = () => {
-                stashedPos = [ pos1[0], pos1[1] ];
+                stashedPos = [pos1[0], pos1[1]];
             };
 
             cp.rgX.processOwnUpEvent = () => {
@@ -71,7 +71,7 @@
                     stdMod.pointsArr_2_singleDividedDifferences(
                         false, 'force', false, false, 'swap');
                     let { solvable, fr } = stdMod.forceIsBounded(
-                        rg[ 'approximated-curve' ].curvePoints);
+                        rg['approximated-curve'].curvePoints);
                     if (solvable) {
                         nsp.undisplay = true;
                     } else {
@@ -83,7 +83,7 @@
                 }
                 returnValue = returnValue && drop8pointE();
                 if (returnValue) {
-                    stashedPos = [ pos1[0], pos1[1] ];
+                    stashedPos = [pos1[0], pos1[1]];
                 } else {
                     pos1[0] = stashedPos[0];
                     pos1[1] = stashedPos[1];
@@ -120,7 +120,7 @@
             ////            and useless "function.this" === rg.Q
             const pp                    = rg.V.pos;
             sData.vbpos                 = nspaste([], rg.v.pos);
-            var dShift                  = [ sData.vbpos[0] - pp[0], sData.vbpos[1] - pp[1] ];
+            var dShift                  = [sData.vbpos[0] - pp[0], sData.vbpos[1] - pp[1]];
             var dS                      = Math.sqrt(
                                           dShift[0]*dShift[0] + dShift[1]*dShift[1]);
             sData.stashedOmega          = Math.sin(op.angleOmega); //op.om;
@@ -147,8 +147,8 @@
                 const sl      = mat.p1_to_p2(pp, newPos); //slider
                 if (sl.abs < 0.1) return;
                 let angleOmega = mat.angleBetweenLines([
-                    [ [0, 0], pp ],
-                    [ [0, 0], sl.vector ],
+                    [[0, 0], pp],
+                    [[0, 0], sl.vector],
                 ]).angle;
                 if (angleOmega < Math.PI/2+PROTECTS_KERNEL_SINGULARITY) {
                     ///restricst speed to single quadrant
@@ -163,7 +163,7 @@
             //-------------------------------------------------------------------
             if (!returnValue) return;
 
-            var dShift   = [ newPos0 - rg.V.pos[0], newPos1 - rg.V.pos[1] ];
+            var dShift   = [newPos0 - rg.V.pos[0], newPos1 - rg.V.pos[1]];
             var dS       = Math.sqrt(dShift[0]*dShift[0] + dShift[1]*dShift[1]);
             var increase = dS / sData.dShift;
             var Kepler_v = sData.Kepler_v_stashed * increase;
@@ -189,7 +189,7 @@
     ///does not rebuild quadSolved
     function pointEisIncluded(DposY) {
         DposY = DposY || DposY === 0 ? DposY : rg.D.pos[1];
-        let xy = rg[ 'approximated-curve' ].curvePoints;
+        let xy = rg['approximated-curve'].curvePoints;
         let endIx = sData.quadSolved.roMinusIx===null ? xy.length-1 :
                     sData.quadSolved.roMinusIx;
         let roEnd = xy[endIx][1];

@@ -8,7 +8,7 @@
     });
 
     ///diff and Euclid tangents are equal
-    var ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] = {
+    var ANGLE_EQUALS = ssD["L-equal-d curveRotationAngle"] = {
         "angle": 0,
         "sin": 0,
         "cos": 1
@@ -27,7 +27,7 @@
 
     // model origin in the picture; must match modorInPicX, modorInPicY
     // in sconf.js, which are not set yet when this module runs
-    const MODEL_ORIGIN_IN_PIC = [ 140, 61 ];
+    const MODEL_ORIGIN_IN_PIC = [140, 61];
 
     setCapture();
     return;
@@ -109,17 +109,17 @@
         nspaste(rg.R.pos, rg.R.originalPos);
         nspaste(rg.D.pos, rg.D.originalPos);
 
-        ns.paste(rg.curveStart.pos, [ -0.2, 0 ]); //todm what is this?
-        ns.paste(rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ]);
+        ns.paste(rg.curveStart.pos, [-0.2, 0]); //todm what is this?
+        ns.paste(rg.curveEnd.pos, [ssD.curveEndInitialPos[0], 0]);
 
         [
             'arc-Ab',
             'area-rAb',
             'area-rAd',
             'area-rAcb'
-        ].forEach(gname => { rg[ gname ].undisplay = logic_phase !== 'proof'; });
+        ].forEach(gname => { rg[gname].undisplay = logic_phase !== 'proof'; });
 
-        rg[ 'left-curve-AB' ].undisplay = aspect === 'model';
+        rg['left-curve-AB'].undisplay = aspect === 'model';
         rg['A,DLeft'].undisplay = aspect === 'model';
         return captured;
     }

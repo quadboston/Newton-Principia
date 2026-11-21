@@ -78,8 +78,8 @@
             const point = orb.point;
             if (!ii || breakCondition(pointPar, orb.pointPar)) {
                 bpoints = [];
-                brs[ branchesLen ] = brs[ branchesLen ] || {};
-                brs[ branchesLen ].points = bpoints;
+                brs[branchesLen] = brs[branchesLen] || {};
+                brs[branchesLen].points = bpoints;
                 branchesLen++;
             }
             pointPar = orb.pointPar;
@@ -92,7 +92,7 @@
             ////connect them
             const ps = brs[BRANCH_COMPLETER-1].points;
             const first = brs[0].points[0];
-            ps[ ps.length ] = [first[0], first[1]];
+            ps[ps.length] = [first[0], first[1]];
         }
         ///removes dom stuff in brs if leftover
         for (ii=branchesLen; ii < brs.length; ii++) {

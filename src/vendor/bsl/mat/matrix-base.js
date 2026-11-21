@@ -97,9 +97,9 @@
         } else {
             if (is3d) {
                 var unitVec = abs < 1e-40 ? [0, 0, 0] :
-                    [ vector[0]/abs, vector[1]/abs, vector[2]/abs, ];
+                    [vector[0]/abs, vector[1]/abs, vector[2]/abs,];
             } else {
-                var unitVec = abs < 1e-40 ? [0, 0] : [ vector[0]/abs, vector[1]/abs ];
+                var unitVec = abs < 1e-40 ? [0, 0] : [vector[0]/abs, vector[1]/abs];
             }
         }
         return {
@@ -152,11 +152,11 @@
             var unit = [1, 0];
             vector[2] = 0;
         } else {
-            var unit = [ vector[0]/abs, vector[1]/abs, ];
+            var unit = [vector[0]/abs, vector[1]/abs,];
         }
         if (is2d) {
             //vector in plane
-            var norm = [ -unit[1], unit[0] ];
+            var norm = [-unit[1], unit[0]];
             var ret = { abs, norm, unit };
         } else {
             //vector in 3d space
@@ -164,16 +164,16 @@
             unit.push(vector[2]/abs);
             var normSeed = [];
             for (var mIx=0; mIx<3; mIx++) {
-                var uCur = Math.abs(unit[ mIx ]);
+                var uCur = Math.abs(unit[mIx]);
                 if (uCur < uMin || mIx === 0) {
                     if (mIx > 0) {
-                        normSeed[ minIx ] = 0;
+                        normSeed[minIx] = 0;
                     }
                     var minIx = mIx;
                     var uMin = uCur;
-                    normSeed[ mIx ] = 1;
+                    normSeed[mIx] = 1;
                 } else {
-                    normSeed[ mIx ] = 0;
+                    normSeed[mIx] = 0;
                 }
             }
             var norm1 = [
@@ -187,7 +187,7 @@
                 -unit[0]*norm1[2] - unit[2]*norm1[0],
                 unit[0]*norm1[1] - unit[1]*norm1[0],
             ];
-            var ret = { abs, orts : [ norm1, norm2, ], unit };
+            var ret = { abs, orts : [norm1, norm2,], unit };
         }
         return ret;
     }
@@ -197,7 +197,7 @@
         p1,
         p2,
     ) {
-        const vector = [ p2[0]-p1[0], p2[1]-p1[1] ];
+        const vector = [p2[0]-p1[0], p2[1]-p1[1]];
         const res = unitVector(vector);
         res.vector = vector;
         return res;
@@ -237,8 +237,8 @@
     ///returns intersection of two lines built upon line segments
     ///(A,B) and (AS,BS)
     function lineSegmentsCross(A, B, AS, BS) {
-        var u = [ B[0] - A[0], B[1] - A[1] ];
-        var us = [ BS[0] - AS[0], BS[1] - AS[1] ];
+        var u = [B[0] - A[0], B[1] - A[1]];
+        var us = [BS[0] - AS[0], BS[1] - AS[1]];
         return linesCross(u, A, us, AS);
     }
 
@@ -248,12 +248,12 @@
     ///returns: endPoint of perpendicular which is a point at cross of perpendicular and line AB
     function dropPerpendicular(S, A, B) {
         //direction of line AB = line segment from start point A to end point B
-        var u = [ B[0] - A[0], B[1] - A[1] ];
+        var u = [B[0] - A[0], B[1] - A[1]];
         //start point of line AB
-        var v = [        A[0],        A[1] ];
+        var v = [A[0],        A[1]];
 
         //direction of the perpendicular to line AB
-        var us = [ u[1], -u[0] ];
+        var us = [u[1], -u[0]];
         //start point of the perpendicular
         var vs = S;
 
@@ -262,16 +262,16 @@
 
     function dropPerpendicularDetails(S, A, B) {
         //direction of line AB = line segment from start point A to end point B
-        var lineForPerp = [ B[0] - A[0], B[1] - A[1] ];
+        var lineForPerp = [B[0] - A[0], B[1] - A[1]];
         var lAbs = Math.sqrt(lineForPerp[0]*lineForPerp[0] + lineForPerp[1]*lineForPerp[1]);
         lAbs = Math.max(lAbs, 1.e-150);
-        var unitLine = [ lineForPerp[0]/lAbs, lineForPerp[1]/lAbs, ]
+        var unitLine = [lineForPerp[0]/lAbs, lineForPerp[1]/lAbs,]
 
         //start point of line AB
-        var v = [        A[0],        A[1] ];
+        var v = [A[0],        A[1]];
 
         //direction of the perpendicular to line AB
-        var us = [ lineForPerp[1], -lineForPerp[0] ];
+        var us = [lineForPerp[1], -lineForPerp[0]];
         //start point of the perpendicular
         var vs = S;
         var crossPoint = linesCross(lineForPerp, v, us, vs);
@@ -280,7 +280,7 @@
         var perpAbs = Math.sqrt(hx*hx + hy*hy);
         return {
             crossPoint,
-            perp : [ hx, hy ],
+            perp : [hx, hy],
             perpAbs,
             lineForPerp,
             unitLine,
@@ -312,12 +312,12 @@
                          //from point A
     ) {
         start = start || A;
-        var u = direction || [ B[0] - A[0], B[1] - A[1] ];
+        var u = direction || [B[0] - A[0], B[1] - A[1]];
         if (directionLength) {
             u = unitVector(u).unitVec;
             t = directionLength;
         }
-        return [ start[0] + u[0]*t, start[1] + u[1]*t ];
+        return [start[0] + u[0]*t, start[1] + u[1]*t];
     }
 
     /*

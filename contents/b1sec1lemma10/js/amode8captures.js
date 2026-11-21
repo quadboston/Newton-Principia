@@ -35,7 +35,7 @@
             //:linear areas
             "Afd",
             "Age",
-        ].forEach(gname => { rg[ gname ].undisplay = true; });
+        ].forEach(gname => { rg[gname].undisplay = true; });
 
         rg.pivotPoint1.pcolor = sDomF.getFixedColor('given')
         rg.Ag.pcolor = sDomF.getFixedColor('given')

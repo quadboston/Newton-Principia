@@ -29,7 +29,7 @@
         function setupEventsAreasLegend() {
             Object.keys(study.eventHandlers).forEach(function (methodName) {
                 document.getElementById(methodName)
-                    .addEventListener('change', study.eventHandlers[ methodName ]);
+                    .addEventListener('change', study.eventHandlers[methodName]);
             });
 
             // //\\ copy-pasted from gui-art

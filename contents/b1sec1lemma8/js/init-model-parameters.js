@@ -15,14 +15,14 @@
     ///****************************************************
     function init_model_parameters() {
         let b2B = sconf.b_per_B_original; // defined in sconf.js, factor to determine distance between B and b
-        nspaste(rg.b.pos, [ rg.B.pos[0] * b2B, rg.B.pos[1] * b2B ]);
+        nspaste(rg.b.pos, [rg.B.pos[0] * b2B, rg.B.pos[1] * b2B]);
         let D = rg.D.pos;
         let B = rg.B.pos;
-        rg['r,d'].originalDirection = [ D[0]-B[0], D[1]-B[1], ];
+        rg['r,d'].originalDirection = [D[0]-B[0], D[1]-B[1],];
         let R = mat.linesCross(
             rg['r,d'].originalDirection,
             B,         //start-1
-            [ 0, -1],  //direction-2'
+            [0, -1],  //direction-2'
             rg.A.pos,  //start-2'
         );
         nspaste(rg.R.pos, R);
@@ -48,7 +48,7 @@
         //-------------------------------------------------
         rg.B.processOwnDownEvent = function () {
             sData.unrotatedParameterX = rg.B.unrotatedParameterX;
-            sData.RB_slope = [ rg.D.pos[0] - rg.B.pos[0], rg.D.pos[1] - rg.B.pos[1] ];
+            sData.RB_slope = [rg.D.pos[0] - rg.B.pos[0], rg.D.pos[1] - rg.B.pos[1]];
             ssD.draggerInUse = 'B';
         };
         rg.B.dragPriority = 100;
@@ -83,7 +83,7 @@
         //-------------------------------------------------
         rg.R.processOwnDownEvent = function () {
             sData.unrotatedParameterX = rg.B.unrotatedParameterX;
-            sData.RB_slope = [ rg.D.pos[0] - rg.B.pos[0], rg.D.pos[1] - rg.B.pos[1] ];
+            sData.RB_slope = [rg.D.pos[0] - rg.B.pos[0], rg.D.pos[1] - rg.B.pos[1]];
             ssD.draggerInUse = 'R';
         };
 
@@ -218,7 +218,7 @@
 
         function getArcArea(A, B, C, p1, p2, p3) {
             const triangleArea = calcTriangleArea(A, B, C);
-            const points = [ rg[p1].pos, rg[p2].pos, rg[p3].pos ];
+            const points = [rg[p1].pos, rg[p2].pos, rg[p3].pos];
             const curveArea = calcBezierArea(points, 100);
             const area = triangleArea + curveArea;
             return area;

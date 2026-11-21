@@ -12,7 +12,7 @@
     function model_upcreate() {
         stdMod.builds_force_plusQ_minusQ_and_related();
         const q2xy = stdMod.q2xy;
-        var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
+        var Porb = ssD.qIndexToOrbit[rg.P.qix];
         var parQ = Porb.q;
         rg.P.pos[0] = Porb.posBody[0];
         rg.P.pos[1] = Porb.posBody[1];
@@ -108,8 +108,8 @@
 
         //vuFV
         //v = parallel-projection of Q to tangent
-        var DK = [ rg.K.pos[0]-rg.D.pos[0], rg.K.pos[1]-rg.D.pos[1] ];
-        var PG = [ rg.P.pos[0]-rg.G.pos[0], rg.P.pos[1]-rg.G.pos[1] ];
+        var DK = [rg.K.pos[0]-rg.D.pos[0], rg.K.pos[1]-rg.D.pos[1]];
+        var PG = [rg.P.pos[0]-rg.G.pos[0], rg.P.pos[1]-rg.G.pos[1]];
         var wwR = mat.linesCross(
             DK, rg.Q.pos, //direction, start
             PG, rg.C.pos, //direction, start

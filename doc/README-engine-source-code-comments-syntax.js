@@ -17,15 +17,15 @@
             var done;
 
             //:till the next "//:", so comments next two lines (
-            obj[ prop ] = value;
-            obj[ prop2 ] = value;
+            obj[prop] = value;
+            obj[prop2] = value;
             //:comments next line
-            obj[ prop3 ] = value;
+            obj[prop3] = value;
 
             /// Till the end of this nest. Namely till the line "return obj"
             if (len1 < 0) {
                 //.comments just one line below
-                obj[ name ] = value;
+                obj[name] = value;
                 return obj;
             }
             return value;

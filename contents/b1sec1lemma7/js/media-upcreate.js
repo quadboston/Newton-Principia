@@ -19,7 +19,7 @@
         //=================================================
         var rgMainLegend = haz(rg, 'main-legend'); //haz returns param 2 from param 1
         if (rgMainLegend) {
-            var rgTeoTab = rgMainLegend[ amode.logic_phase ];
+            var rgTeoTab = rgMainLegend[amode.logic_phase];
             //console.log(amode.logic_phase)
             if (amode.logic_phase === 'corollary') {
                 //console.log(amode.subessay); // "cor-1", "cor-2", "cor-3"

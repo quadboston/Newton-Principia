@@ -59,7 +59,7 @@
             let qix = Math.floor(inner_angle/sconf.delta_q_between_steps);
             rgX.qix = qix;
             rgX.parQ = qix * sconf.delta_q_between_steps;
-            var newP = ssD.qIndexToOrbit[ qix ].rr;
+            var newP = ssD.qIndexToOrbit[qix].rr;
             let pos = rgX.pos;
             pos[0] = newP[0];
             pos[1] = newP[1];

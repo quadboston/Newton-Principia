@@ -72,8 +72,8 @@
         //--------------------------------------------------------------------------
 
         //:spawns api pars
-        var startPos          = [ startX, startY ];
-        var endPos            = [ endX, startY ];
+        var startPos          = [startX, startY];
+        var endPos            = [endX, startY];
         toreg(start_rgid)('pos', startPos);
         toreg(end_rgid)('pos', endPos);
 
@@ -103,7 +103,7 @@
         ///some other styles,
         var rails = pivots_2_svgLineInRg(
              rails_rgid,
-             [ railsStart, railsEnd ],
+             [railsStart, railsEnd],
              { stroke           : COLOR,
                'stroke-width'   : 3,
                tpclass          : tpId,
@@ -131,7 +131,7 @@
             }
         //.overrides tp - machinery suppressed opacity,
         //.the handler must be solid,
-        ).svgel.style[ 'fill-opacity' ] = '1';
+        ).svgel.style['fill-opacity'] = '1';
         //-------------------------------------
         // \\// makes svg representation of api
         //--------------------------------------------------------
@@ -188,7 +188,7 @@
             var sliderXpos =
                  railsStart.pos[0] +
                  rawDeltaT / sconf.initialTimieStep * api.railsLength;
-            api.pos = [ sliderXpos, railsStart.pos[1] ];
+            api.pos = [sliderXpos, railsStart.pos[1]];
 
             api.slCaption = slCaption0 + ' = ' + api.val.toFixed(2);
             //at curr. ver., does what it says: pos to GUI
@@ -233,7 +233,7 @@
 
         //sets preliminary time:
         var newdt = api.achieved.achieved +
-                            move_in_model[ 0 ] /
+                            move_in_model[0] /
                             api.railsLength *
                             sconf.initialTimieStep;
         newdt = Math.max(sconf.dtMin, Math.min(sconf.initialTimieStep, newdt));

@@ -132,13 +132,13 @@
             var O = pp.O;
             var M = pp.M;
             var N = pp.N;
-            var BC = [ B[0] - C[0], B[1] - C[1] ];
+            var BC = [B[0] - C[0], B[1] - C[1]];
             mod2inn_scale = mat.unitVector(BC).abs;
             //a = 1 - wwb;
             a = 0.435;
 
             //---sets initial param g
-            var OM = [ M[0] - O[0], M[1] - O[1] ];
+            var OM = [M[0] - O[0], M[1] - O[1]];
             initial_Munit = mat.unitVector(OM);
             //possibly initial_g = initial_Munit.abs/mod2inn_scale;
             initial_g = 0.105;
@@ -147,7 +147,7 @@
             gamma *= 1.01;
 
             //---sets initial decorational param gN
-            var ON = [ N[0] - O[0], N[1] - O[1] ];
+            var ON = [N[0] - O[0], N[1] - O[1]];
             initial_Nunit = mat.unitVector(ON);
 
             //var BAA = mat.p1_to_p2( B, A );
@@ -184,7 +184,7 @@
                   letterRotRadius : 20,
             },
             D : {
-                  pcolor: pt[ "constructors" ],
+                  pcolor: pt["constructors"],
                   //cssClass: 'tp-g-parameter',
                   letterAngle : 180,
                   letterRotRadius : 20,
@@ -309,13 +309,13 @@
             //-----------------------------------------------
             {
                 'MB' : {
-                    pcolor : pt[ "core" ],
+                    pcolor : pt["core"],
                     cssClass : 'tp-constructors',
                 },
             },
             {
                 'MC' : {
-                    pcolor : pt[ "core" ],
+                    pcolor : pt["core"],
                     cssClass : 'tp-constructors',
                 },
             },
@@ -334,12 +334,12 @@
             {
                 'MH' : {
                     cssClass: 'subessay--direct-proof',
-                    pcolor : pt[ "core" ],
+                    pcolor : pt["core"],
                 },
             },
             {
                 'MN' : {
-                    pcolor : pt[ "core" ],
+                    pcolor : pt["core"],
                 },
             },
 
@@ -395,48 +395,48 @@
             },
             {
                 'BD' : {
-                    pcolor : pt[ "constructors" ],
+                    pcolor : pt["constructors"],
                 },
             },
             {
                 CR : {
                     cssClass: 'subessay--direct-proof',
-                    pcolor: pt[ "constructors" ],
+                    pcolor: pt["constructors"],
                 },
             },
             {
                 BT : {
                       cssClass: 'subessay--direct-proof',
-                      pcolor: pt[ "constructors" ],
+                      pcolor: pt["constructors"],
                 },
             },
             {
                 'CD' : {
-                    pcolor : pt[ "constructors" ],
+                    pcolor : pt["constructors"],
                 },
             },
             {
                 'PT' : {
                     cssClass: 'subessay--direct-proof',
-                    pcolor : pt[ "core" ],
+                    pcolor : pt["core"],
                 },
             },
             {
                 'PR' : {
                     cssClass: 'subessay--direct-proof',
-                    pcolor : pt[ "core" ],
+                    pcolor : pt["core"],
                 },
             },
             {
                 'PC' : {
                     cssClass: 'logic_phase--proof',
-                    pcolor : pt[ "static" ],
+                    pcolor : pt["static"],
                 },
             },
             {
                 'PB' : {
                     cssClass: 'logic_phase--proof',
-                    pcolor : pt[ "static" ],
+                    pcolor : pt["static"],
                 },
             },
             //-------------------------------------------------
@@ -450,14 +450,14 @@
             {
                 'AC' : //line AC
                 {
-                    pcolor : pt[ "static" ],
+                    pcolor : pt["static"],
                     cssClass:'tp-angle-alpha',
                 },
             },
             //AAABangleB
             {
                 'AB' : {
-                    pcolor : pt[ "static" ],
+                    pcolor : pt["static"],
                     cssClass:'tp-angle-beta',
                 },
             },
@@ -517,7 +517,7 @@
         // //\\ copy-pastes to sconf
         //----------------------------------------------------
         Object.keys(to_sconf).forEach(function (key) {
-            sconf[ key ] = to_sconf[ key ];
+            sconf[key] = to_sconf[key];
         });
         //----------------------------------------------------
         // \\// copy-pastes to sconf

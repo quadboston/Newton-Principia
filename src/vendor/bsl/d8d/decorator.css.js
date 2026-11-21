@@ -39,7 +39,7 @@
     dm.ARROW_HEIGHT         = dm.WIDTH/6;
     var ds = {};
     Object.keys(dm).forEach(key => {
-        ds[ key ] = dm[ key ].toFixed(2) + 'px';
+        ds[key] = dm[key].toFixed(2) + 'px';
     });
     //---------------------------------------
     // \\// configures dimensions

@@ -17,7 +17,7 @@
         // //\\ tan. cir.
         //=============================================================
         var tCircleName = 'tangentCircle';
-        var rgTCir = rg[ tCircleName ];
+        var rgTCir = rg[tCircleName];
 
         var RCmedpos = ssF.mod2inn(rg.tCircleCenter.pos, stdMod);
         var RRmedpos = sconf.mod2inn_scale * rgTCir.tangentCircleRadius;

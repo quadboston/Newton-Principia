@@ -110,7 +110,7 @@
                 //.this makes program immune to resize
                 var len = surface0attachee.getBoundingClientRect().width;
                 //.calculates absolute move adding initial position + current move
-                absFraction = validateAbsFraction(absFracDone + move[ 0 ]/len);
+                absFraction = validateAbsFraction(absFracDone + move[0]/len);
                 //.supplies absolute move to application
                 var setIsForbidden = dataInMove(absFraction, draggee);
                 if (!setIsForbidden) { doSet(absFraction); }
@@ -129,7 +129,7 @@
         function d8d_emulateAbsFractionX(absFraction, mouseUpOrDown) {
             var len = surface0attachee.getBoundingClientRect().width;
             var relMove = (absFraction - absFracDone) * len;
-            return d8d_cb_middle2lowest([ relMove, 0 ], mouseUpOrDown);
+            return d8d_cb_middle2lowest([relMove, 0], mouseUpOrDown);
         }
 
         // //\\// helpers

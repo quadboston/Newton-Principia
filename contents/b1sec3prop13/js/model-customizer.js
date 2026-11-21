@@ -10,7 +10,7 @@
         nspaste(rg.M.pos, mat.linesCross(
                 uTangential,
                 rg.P.pos,
-                [ 1, 0 ],
+                [1, 0],
                 rg.O.pos,
             )
         );

@@ -74,8 +74,8 @@
         // //\\ spawns study model from main parameters ssD
         //===================================================
         var tanA        = modCurvPivots[1][0] / modCurvPivots[1][1];
-                          rg.A.pos = [ 0, 0 ];
-        var mod_e       = rg.e.pos = [ 0, yRange ];
+                          rg.A.pos = [0, 0];
+        var mod_e       = rg.e.pos = [0, yRange];
 
         var modC        = topos('C', bezier.parT2point(tC, modCurvPivots));
         //var test      = topos( 'point_TEST', bezier.parT2point( 0.79, modCurvPivots ) );
@@ -83,8 +83,8 @@
         var Ey          = modC[1] - Math.tan(tiltAngleRad) * modC[0];
         var Dy          = claimRatio * Ey;
 
-        var modD        = topos('D', [ 0, Dy ]);
-        var modE        = topos('E', [ 0, Ey ]);
+        var modD        = topos('D', [0, Dy]);
+        var modE        = topos('E', [0, Ey]);
 
         var remoteRatio = ssD.remoteRatio = mod_e[1] / modE[1];
 
@@ -93,7 +93,7 @@
         var directionY  = modC[1] - modE[1];
         var tB          = ssF.tB = bezier.line2bezier(
                             modD,
-                            [ directionX, directionY ],
+                            [directionX, directionY],
                             modCurvPivots[1],
                             modCurvPivots[2]
         )[0];
@@ -113,7 +113,7 @@
 
         ns.paste(rg.G.pos, rg.AGE.vertices[1]);
         ns.paste(rg.F.pos, rg.AFD.vertices[1]);
-        var mod_g = rg[ 'Age' ].vertices[1];
+        var mod_g = rg['Age'].vertices[1];
         topos('g', mod_g);
         var mod_f = mat.sm(claimRatio, mod_g);
         topos('f', mod_f);
@@ -131,14 +131,14 @@
                     [remote[1], remote[2]], tC, tiltEC, mod_g, sconf.areaScale);
 
         //proof biggest linear
-        var areas = calcAreas[ 'Age' ] = {
+        var areas = calcAreas['Age'] = {
             total     : areas.areaBetweenTanT_8_curve,
             base      : areas.areaUnderTan1,
             delta     : areas.areaBetween_Tan1_Tan2_Curve
         };
 
         //given biggest linear
-        calcAreas[ 'AGE' ] = {
+        calcAreas['AGE'] = {
             total     : areas.total * rr_2,
             base      : areas.base * rr_2,
             delta     : areas.delta * rr_2
@@ -147,14 +147,14 @@
                     [remote[1], remote[2]], tB, tiltEC, mod_f, sconf.areaScale);
 
         //proof smalles curved
-        var areas = calcAreas[ 'Afd' ] = {
+        var areas = calcAreas['Afd'] = {
             total     : areas.areaBetweenTanT_8_curve,
             base      : areas.areaUnderTan1,
             delta     : areas.areaBetween_Tan1_Tan2_Curve
         };
 
         //given  smallest curved
-        calcAreas[ 'AFD' ] = {
+        calcAreas['AFD'] = {
             total     : areas.total * rr_2,
             base      : areas.base * rr_2,
             delta     : areas.delta * rr_2
@@ -207,7 +207,7 @@
         var G = [];
         G[1] = AG * Math.cos(Aa);
         G[0] = AG * Math.sin(Aa);
-        return [ [0, 0], G, E ];
+        return [[0, 0], G, E];
     }
     //==========================================
     // \\// calculates area similar to AGE

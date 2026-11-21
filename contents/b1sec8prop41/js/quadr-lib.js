@@ -43,7 +43,7 @@
         //time,
         let T = [0];
 
-        let xy = rg[ 'approximated-curve' ].curvePoints;
+        let xy = rg['approximated-curve'].curvePoints;
 
         //:prepares 0-elements
         var r0      = rg.V.pos;
@@ -52,15 +52,15 @@
         let R2      = R*R;
         {
             let lastIx      = xy.length-1;
-            let last        = xy[ lastIx ] [1];
-            let first       = xy[ 0 ] [1];
+            let last        = xy[lastIx] [1];
+            let first       = xy[0] [1];
             var fiStartedIx = Math.ceil((first - r0[1]) / (first - last) * lastIx);
             fiStartedIx     = Math.min(lastIx-1, fiStartedIx);
         }
         var { dropPointIx, vback, roPlusIx } = findsDropPoint(fiStartedIx)
         //if dropPointIx === 0, then drop point does not exist
         var roPlus0Top = roPlusIx || dropPointIx;
-        let v = vback[ roPlus0Top - dropPointIx ][ 0 ];
+        let v = vback[roPlus0Top - dropPointIx][0];
         let v2 = v * v;
         var roMinusIx = null;
         let frBefore = xy[0];
@@ -68,7 +68,7 @@
         for (let iq=0, len = xy.length-roPlus0Top; iq<len; iq++) {
             const SAFE_MINUS_IX = 2;
             var iqFull  = iq + roPlus0Top;
-            let fr      = xy[ iqFull ];
+            let fr      = xy[iqFull];
             let ro      = fr[1];
             if (ro < 1e-50) break;
 
@@ -107,8 +107,8 @@
                 // \\// quadratures
             }
 
-            v2graph[iq]    = [ v2, ro ];
-            vgraph[iq]     = [ Math.sqrt(v2), ro ];
+            v2graph[iq]    = [v2, ro];
+            vgraph[iq]     = [Math.sqrt(v2), ro];
             Tkernel.push([T_Kernel, ro]);
             Fkernel.push([F_Kernel, ro]);
             Zgraph[iq]     = [Z, ro];
@@ -122,8 +122,8 @@
         for (let iq=0, Flen = F.length; iq<Flen; iq++) {
             let Fi = F[iq] = 2/R2 * (F[iq] - fi0);
             T[iq] -= t0;
-            let ro = xy[ iq + roPlus0Top ][ 1 ];
-            orbit[ iq ] = [ -ro * Math.sin(Fi), ro * Math.cos(Fi) ];
+            let ro = xy[iq + roPlus0Top][1];
+            orbit[iq] = [-ro * Math.sin(Fi), ro * Math.cos(Fi)];
         }
 
         sData.quadSolved =
@@ -155,7 +155,7 @@
     ///no search for low turn point,
     ///builds "back speed" === from turn point to started index,
     function findsDropPoint(fiStartedIx) {
-        let frArr       = rg[ 'approximated-curve' ].curvePoints;
+        let frArr       = rg['approximated-curve'].curvePoints;
 
         //:prepares 0-elements
         let v2          = op.Kepler_v*op.Kepler_v;
@@ -192,8 +192,8 @@
         ///indexation of vback goes from small global index to big,
         ///fall point has smallest index,
         for (iq=dropPointIx; iq<=fiStartedIx; iq++) {
-            let src = vBbackPre[ fiStartedIx-iq ];
-            vback.push([ src[0], src[1] ]);
+            let src = vBbackPre[fiStartedIx-iq];
+            vback.push([src[0], src[1]]);
         }
 
         return {

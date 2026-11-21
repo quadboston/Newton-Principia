@@ -123,7 +123,7 @@
         var Lx = 0.0000001;
         var Ly = ssD.repoConf[0].fun(Lx)[1];
         rg.J.pos[1] = mat.circumscribeCircleOverChordAndBothNormals(
-                      null, rg.A.pos, [ Lx, Ly ])[1];
+                      null, rg.A.pos, [Lx, Ly])[1];
 
         //one of the reasons for these two lines is that
         //in initial config manually set ordinates can misfit model

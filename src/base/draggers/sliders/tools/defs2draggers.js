@@ -19,7 +19,7 @@
     };
 
     function createDragger(medD8D, magnitude,) {
-        var pointWrap = rg[ magnitude ];
+        var pointWrap = rg[magnitude];
         //:sets dragger handle color
         pointWrap.spinnerClsId = 'tp-' + magnitude;
         //todm ... not straight
@@ -46,7 +46,7 @@
             var ach = pointWrap.achieved;
             switch (arg.down_move_up) {
                 case 'down':
-                     ach.achieved = [ pointWrap.pos[0], pointWrap.pos[1] ];
+                     ach.achieved = [pointWrap.pos[0], pointWrap.pos[1]];
                      break;
                 case 'move':
 

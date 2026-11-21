@@ -46,7 +46,7 @@
             //linear areas
             "Afd",
             "Age",
-        ].forEach(gname => { rg[ gname ].undisplay = logic_phase === 'claim'; });
+        ].forEach(gname => { rg[gname].undisplay = logic_phase === 'claim'; });
         return captured;
     }
 

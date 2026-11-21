@@ -30,7 +30,7 @@
                 buttonUniversalId       : pid,
                 //scenarioEventOnClick    : 'graph-is-plotted',
                 clickCallback           : () => {
-                    sData[ pid ].dom$.css('display', 'none');
+                    sData[pid].dom$.css('display', 'none');
                 },
                 noTopicScenario         : true,
                 cssText                 : `

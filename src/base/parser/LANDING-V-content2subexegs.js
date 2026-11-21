@@ -23,14 +23,14 @@
         prepare8do_LANDING_VI_and_beyond___cb
     ) {
         var allEssays__str = "";
-        var lemmaConfig = fconf.sappId2lemmaDef[ fconf.sappId ];
+        var lemmaConfig = fconf.sappId2lemmaDef[fconf.sappId];
         contentsList_2_essaions_2_exegs(lemmaConfig);
         return;
 
         ///This ajax-load takes contents-files, concatenates them, and calls
         ///final subroutine, subessays2subexegs_8_doProcessSubexegs.
         function contentsList_2_essaions_2_exegs(lemmaConfig) {
-            var lemma_bookfiles_list = lemmaConfig[ 'contents-list' ];
+            var lemma_bookfiles_list = lemmaConfig['contents-list'];
             //=========================================================
             // //\\ ajax load
             //=========================================================
@@ -71,11 +71,11 @@
 
                             var match = listItem.id.match(matchRe);
                             if (match) {
-                                dataFiles.push(loadedFilesById_II[ listItem.id ]);
-                                dataFiles_id2content[ match[1] ] =
-                                    loadedFilesById_II[ listItem.id ];
+                                dataFiles.push(loadedFilesById_II[listItem.id]);
+                                dataFiles_id2content[match[1]] =
+                                    loadedFilesById_II[listItem.id];
                             } else {
-                                allEssays__str += loadedFilesById_II[ listItem.id ].text;
+                                allEssays__str += loadedFilesById_II[listItem.id].text;
                             }
                         });
                         subessays2subexegs_8_doProcessSubexegs(lemmaConfig);
@@ -146,7 +146,7 @@
                     // //\\ sets initial amode
                     //===============================================================
                     sn(logic_phase_id, exegs);
-                    var aspExeg     = sn(aspect_id, exegs[ logic_phase_id ]);
+                    var aspExeg     = sn(aspect_id, exegs[logic_phase_id]);
 
                     //group of "objectivied"-subessays === group of subexegs,
                     //subexeg is to be further structured,
@@ -204,8 +204,8 @@
                     if (wwfc) {
                         Object.keys(wwfc).forEach(topicKey => {
                             var tk = nsmethods.toCssIdentifier(topicKey);
-                            topicColors_repo[ tk ] = wwfc[ topicKey ];
-                            topicColors_repo_camel2col[ topicKey ]= topicColors_repo[ tk ];
+                            topicColors_repo[tk] = wwfc[topicKey];
+                            topicColors_repo_camel2col[topicKey]= topicColors_repo[tk];
                         });
                     }
                     //---------------------------------------------------------------
@@ -251,11 +251,11 @@
                     };
                     var subessay2subexeg = sn('subessay2subexeg', aspExeg);
 
-                    subessay2subexeg[ essayHeader.subessay ] = subexeg;
+                    subessay2subexeg[essayHeader.subessay] = subexeg;
 
                     //good patch ... should be legalized
                     var subessayName2subexegIx = sn('subessayName2subexegIx', aspExeg);
-                    subessayName2subexegIx[ essayHeader.subessay ] = subexegsIx;
+                    subessayName2subexegIx[essayHeader.subessay] = subexegsIx;
 
                     subexegs.push(subexeg);
                     //---------------------------------------------------------
@@ -284,10 +284,10 @@
                             essayHeader,
                         };
                         var subessay2subexeg = sn('subessay2subexeg', aspExeg);
-                        subessay2subexeg[ essayHeader.subessay ] = subexeg;
+                        subessay2subexeg[essayHeader.subessay] = subexeg;
                         var subessayName2subexegIx = sn('subessayName2subexegIx', aspExeg);
-                        subessayName2subexegIx[ essayHeader.subessay ] = subexegsIx;
-                        aspExeg.subexegs = [ subexeg ];
+                        subessayName2subexegIx[essayHeader.subessay] = subexegsIx;
+                        aspExeg.subexegs = [subexeg];
                     });
                 });
             });
@@ -356,7 +356,7 @@
                             //    sapp.amodel_initial.aspect === aspect_id
                             //){
                             //todm ... name "default" is very unlucky, do change it ...
-                            exAspect[ "default" ] = subex;
+                            exAspect["default"] = subex;
                         }
                     });
                 });
@@ -408,15 +408,15 @@
                 //=======================================
                 // \\// how submenu built
                 //=======================================
-                var men = sconf.asp8theor_menus[ mcat_id ] = sconf.asp8theor_menus[ mcat_id ] ||
+                var men = sconf.asp8theor_menus[mcat_id] = sconf.asp8theor_menus[mcat_id] ||
                      {  list : [],
                         //.will be overriden if aspect-default is preset in script
                         "default" : leafId,
                         duplicates : {}  //todm: this repeats parts of "exegs" ... proliferation
                      };
-                if (!men.duplicates[ leafId ]) {
+                if (!men.duplicates[leafId]) {
                     var menuItem = { id:leafId };
-                    men.duplicates[ leafId ] = menuItem;
+                    men.duplicates[leafId] = menuItem;
                     men.list.push(menuItem);
                     if (mcat_id === 'logic_phase') {
                         sDomN.logic_phaseMenuMembersCount =
@@ -436,7 +436,7 @@
                 if (has(sapp, 'amodel_initial')) {
                     var ww = sapp.amodel_initial;
                     if (ww.logic_phase === leafId || ww.aspect === leafId) {
-                        men[ "default" ] = leafId;
+                        men["default"] = leafId;
                     }
                 }
                 //------------------------------------------------------------
@@ -445,11 +445,11 @@
 
                 ///at least one caption should exist among twin aspects
                 if (haz(essayHeader, 'menuCaption') && mcat_id === 'aspect') {
-                    men.duplicates[ leafId ].caption = essayHeader.menuCaption;
-                    men.duplicates[ leafId ].studylab = essayHeader.studylab;
+                    men.duplicates[leafId].caption = essayHeader.menuCaption;
+                    men.duplicates[leafId].studylab = essayHeader.studylab;
                 }
                 if (essayHeader.logic_phaseCaption && mcat_id === 'logic_phase') {
-                    men.duplicates[ leafId ].caption = essayHeader.logic_phaseCaption;
+                    men.duplicates[leafId].caption = essayHeader.logic_phaseCaption;
                 }
             }
             //=======================================
@@ -543,7 +543,7 @@
         ///returns "rgba(0,0,0,1)" if color is falsy
         if (colorArray && makeOpacity1) {
             var rgba = ns.arr2rgba(
-                [ colorArray[0], colorArray[1], colorArray[2], 1 ]
+                [colorArray[0], colorArray[1], colorArray[2], 1]
             );
         } else {
             var rgba = ns.arr2rgba(colorArray);

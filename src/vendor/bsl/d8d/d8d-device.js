@@ -220,7 +220,7 @@
         // //\\ MOVE SUBROUTINES
         //*****************************************
         function touchMove(ev) {
-            mouseMove(ev.touches[ 0 ], ev);
+            mouseMove(ev.touches[0], ev);
         }
 
         function mouseMove(childEvent, rootEvent) {
@@ -236,7 +236,7 @@
                 //ns.d('\nmouseMove: media point failed');
                 return;
             }
-            var moveIncrement = [ surfPoint[0]-lastPoint[0], surfPoint[1]-lastPoint[1] ];
+            var moveIncrement = [surfPoint[0]-lastPoint[0], surfPoint[1]-lastPoint[1]];
             lastPoint = surfPoint;
             do_complete_move(surfPoint, childEvent, moveIncrement);
             return false;
@@ -245,8 +245,8 @@
         ///adds move - the "sugar"
         function do_complete_move(surfPoint, childEvent, moveIncrement) {
             var surfMove = [
-                surfPoint[ 0 ] - startPoint[ 0 ],
-                surfPoint[ 1 ] - startPoint[ 1 ]
+                surfPoint[0] - startPoint[0],
+                surfPoint[1] - startPoint[1]
             ];
             ///api:
             d8d_cb_middle2lowest(

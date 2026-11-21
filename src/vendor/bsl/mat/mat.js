@@ -30,7 +30,7 @@
             if (bb === 0) {
                 return cc === 0 ? [1, 2, 3] : [];
             } else {
-                return [ -cc/bb ];
+                return [-cc/bb];
             }
         } else {
             var scale = 1 / (2 * aa);
@@ -42,8 +42,8 @@
             }
             var main = Math.sqrt(discr) * scale;
             return complex ?
-                [ [ center, main ], [ center, -main ] ] :
-                [ center+main, center-main ];
+                [[center, main], [center, -main]] :
+                [center+main, center-main];
         }
     };
 
@@ -79,7 +79,7 @@
             const drdqX = drodq * cosQ - inve * sinQ;
             const drdqY = drodq * sinQ + inve * cosQ;
             const a = 1/Math.sqrt(drdqX*drdqX + drdqY*drdqY);
-            var tangent = [ drdqX * a, drdqY * a ]; //=unit tangent
+            var tangent = [drdqX * a, drdqY * a]; //=unit tangent
         }
         return { point, tangent, ro };
     }
@@ -100,9 +100,9 @@
         var xx = a*cos; //real coordinate
         var yy = b*sin;
 
-        var tan = [ -sin*a, cos*b ]; //=dr/dt, r is a real coordinate,
+        var tan = [-sin*a, cos*b]; //=dr/dt, r is a real coordinate,
         var wwt = Math.sqrt(tan[0]*tan[0] + tan[1]*tan[1]);
-        tan = [ tan[0]/wwt, tan[1]/wwt ]; //=unit tangent
+        tan = [tan[0]/wwt, tan[1]/wwt]; //=unit tangent
 
         // //\\ rotates r and tan if rotationRads is  given,
         var tanX = tan[0] * rC - tan[1] * rS;

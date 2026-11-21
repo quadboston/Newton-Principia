@@ -60,7 +60,7 @@
 
     function baseParams_2_extendedParams() {
         rg.b.value = 1- rg.a.value;
-        pos8tg_2_rg('H', [ rg.C.pos[0] + rg.a.value, rg.O.pos[1] ]);
+        pos8tg_2_rg('H', [rg.C.pos[0] + rg.a.value, rg.O.pos[1]]);
     }
 
     ///input:   parameter g, along the model line OM (former OG)
@@ -87,7 +87,7 @@
             var BS = Math.atan(tanBS);
         }
         var addAngleBeta = beta-BS;
-        var rayB = [ -Math.cos(addAngleBeta), Math.sin(addAngleBeta) ];
+        var rayB = [-Math.cos(addAngleBeta), Math.sin(addAngleBeta)];
 
         //triangle BAG sines theorem: a*sin(AS) = g*sin(G-AS)
         //(a+g*cosG)tgBS = g*sinG;
@@ -99,13 +99,13 @@
             var AS = Math.atan(tanAS);
         }
         var addAngleAlpha = alpha-AS;
-        var rayA = [ Math.cos(addAngleAlpha), Math.sin(addAngleAlpha) ];
+        var rayA = [Math.cos(addAngleAlpha), Math.sin(addAngleAlpha)];
         var D = mat.linesCross(rayA, C, rayB, B);
-        var M = [ g*cosG + rg.H.pos[0], -g*sinG + rg.H.pos[1] ]; //was point G
+        var M = [g*cosG + rg.H.pos[0], -g*sinG + rg.H.pos[1]]; //was point G
 
         // //\\ point A
-        var rayB = [ -Math.cos(beta), Math.sin(beta) ];
-        var rayA = [ Math.cos(alpha), Math.sin(alpha) ];
+        var rayB = [-Math.cos(beta), Math.sin(beta)];
+        var rayA = [Math.cos(alpha), Math.sin(alpha)];
         var A = mat.linesCross(rayA, C, rayB, B);
         // \\// point A
 
@@ -139,7 +139,7 @@
             Ptangent[0] = tangent[0];
             Ptangent[1] = tangent[1];
         }
-        return rg[ nameP ];
+        return rg[nameP];
     }
 
     function curveModel2branches() {

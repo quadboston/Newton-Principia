@@ -243,14 +243,14 @@
                 },
             //rails
             eStart : {
-                pos : [ slider_a_start, slider_aY ],
+                pos : [slider_a_start, slider_aY],
                 pcolor : topicColors_elected.ellipse,
                 undisplayAlways : true,
                 doPaintPname : false,
                 unscalable  : true,
             },
             eEnd : {
-                pos : [ slider_a_end, slider_aY ],
+                pos : [slider_a_end, slider_aY],
                 pcolor : topicColors_elected.ellipse,
                 undisplayAlways : true,
                 doPaintPname : false,
@@ -355,22 +355,22 @@
             // //\\ linear-generators
             //------------------------
             { 'BT' : {
-                        pcolor : pt[ "constructors" ],
+                        pcolor : pt["constructors"],
                         cssClass : 'tp-generators',
                     }
             },
             { 'CR' : {
-                        pcolor : pt[ "constructors" ],
+                        pcolor : pt["constructors"],
                         cssClass : 'tp-generators',
                     }
             },
             { 'BD' : {
-                        pcolor : pt[ "constructors" ],
+                        pcolor : pt["constructors"],
                         cssClass : 'tp-generators',
                     }
             },
             { 'CD' : {
-                        pcolor : pt[ "constructors" ],
+                        pcolor : pt["constructors"],
                         cssClass : 'tp-generators',
                     }
             },
@@ -507,7 +507,7 @@
             let pp = originalPoints;
             let OO = pp.O.pos;
             let PP = pp.P.pos;
-            let P = [ PP[0] - OO[0], PP[1] - OO[1] ];
+            let P = [PP[0] - OO[0], PP[1] - OO[1]];
             pictureActiveArea = mat.unitVector(P).abs;
         }
         //mediaSize = mod2inn_scale * modelSize,
@@ -594,7 +594,7 @@
         // //\\ copy-pastes to sconf
         //----------------------------------------------------
         Object.keys(to_sconf).forEach(function (key) {
-            sconf[ key ] = to_sconf[ key ];
+            sconf[key] = to_sconf[key];
         });
         //----------------------------------------------------
         // \\// copy-pastes to sconf

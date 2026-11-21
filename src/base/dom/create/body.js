@@ -57,7 +57,7 @@
         //==================================================
         // //\\ page master menu
         //==================================================
-        var ww = fconf.sappId2lemmaDef[ fconf.sappId ];
+        var ww = fconf.sappId2lemmaDef[fconf.sappId];
         let caption = ww.caption;
 
         //pageNavTopBar

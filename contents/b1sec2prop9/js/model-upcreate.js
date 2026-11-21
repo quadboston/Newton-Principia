@@ -12,7 +12,7 @@
     function model_upcreate() {
         stdMod.builds_force_plusQ_minusQ_and_related();
         const q2xy = stdMod.q2xy;
-        var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
+        var Porb = ssD.qIndexToOrbit[rg.P.qix];
 
         rg.P.pos[0] = Porb.posBody[0];
         rg.P.pos[1] = Porb.posBody[1];

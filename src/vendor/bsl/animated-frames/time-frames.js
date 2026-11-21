@@ -57,10 +57,10 @@
         var fisrtStart = false;
         if (!managerStart) {
             var fisrtStart = true;
-            managerStart = [ Date.now() ];
+            managerStart = [Date.now()];
         }
-        var timeOrigin  = managerStart[ 0 ];
-        managerStart    = [ Date.now() ]; //reschedules manager
+        var timeOrigin  = managerStart[0];
+        managerStart    = [Date.now()]; //reschedules manager
         unixTime        = Date.now();
         managerElapsed  = unixTime - timeOrigin;
         //if( managerElapsed > ANIMATION_THROTTLER || fisrtStart ) {
@@ -82,7 +82,7 @@
     }) {
         var kName = '' + kNameCount++;
         var now = Date.now();
-        runners[ kName ] = {
+        runners[kName] = {
             lifeIntervalMax,
             lifeMax,
             lifeRunFun,
@@ -97,7 +97,7 @@
         //other way?:
         // https://stackoverflow.com/questions/12216540
         //      /how-to-test-for-equality-of-functions-in-javascript
-        delete runners[ kName ];
+        delete runners[kName];
     };
 
     function runsAddee(kName) {
@@ -108,7 +108,7 @@
         */
 
         var now                     = Date.now();
-        var rr                      = runners[ kName ];
+        var rr                      = runners[kName];
         var lifeRunFun              = rr.lifeRunFun;
         var lifeFinishFun           = rr.lifeFinishFun;
 

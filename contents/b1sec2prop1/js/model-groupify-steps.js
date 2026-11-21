@@ -73,15 +73,15 @@ function trajectoryShapes_2_groups__III() {
                 var fkey        = 'force-' + (pix-1);
                 var fappliedKey = fkey + '-applied';
                 var tipKey      = fkey+'-1';
-                fgroup.push(rg[ fappliedKey ]);
-                fgroup.push(rg[ tipKey ]);
-                fgroup.push(rg[ 'VVV'+(pix-1) ]);
+                fgroup.push(rg[fappliedKey]);
+                fgroup.push(rg[tipKey]);
+                fgroup.push(rg['VVV'+(pix-1)]);
                 //this is a blue thickable path line:
                 //we show it here in prelast proof-substep of motion-step
                 //fgroup.push( rg[ 'pathSegment-' + (pix-1) ] ); //bug fix
-                fgroup.push(pathRacks[ pix ]);
+                fgroup.push(pathRacks[pix]);
                 if (pix < pathRacks.lengh-1) {
-                    fgroup.push(rg[ 'pathSegment-' + (pix) ]);
+                    fgroup.push(rg['pathSegment-' + (pix)]);
                 }
             }
             //------------------------------------
@@ -99,11 +99,11 @@ function trajectoryShapes_2_groups__III() {
             var fkey = 'force-' + (pix-1);
             var fappliedKey = fkey + '-applied';
             var tipKey      = fkey+'-1';
-            fgroup.push(rg[ fkey + '-applied' ]);
-            fgroup.push(rg[ fkey+'-1' ]);
-            fgroup.push(rg[ fappliedKey ]);
-            fgroup.push(rg[ tipKey ]);
-            fgroup.push(rg[ 'VVV'+(pix-1) ]);
+            fgroup.push(rg[fkey + '-applied']);
+            fgroup.push(rg[fkey+'-1']);
+            fgroup.push(rg[fappliedKey]);
+            fgroup.push(rg[tipKey]);
+            fgroup.push(rg['VVV'+(pix-1)]);
 
             //The following previously checked "pix<pathRacks.length-1",
             //however pathRacks.length varies even when the desired result doesn't.
@@ -113,10 +113,10 @@ function trajectoryShapes_2_groups__III() {
             //get added for an extra step.  rg.spatialSteps-1 always has the
             //correct value, and therefore a consistent result.
             if (pix < rg.spatialSteps - 1) {
-                fgroup.push(rg[ 'kepltr-' + pix ]);
-                fgroup.push(rg[ 'pathSegment-' + (pix) ]);
+                fgroup.push(rg['kepltr-' + pix]);
+                fgroup.push(rg['pathSegment-' + (pix)]);
             }
-            fgroup.push(pathRacks[ pix ]);
+            fgroup.push(pathRacks[pix]);
             //------------------------------------
             // \\// logical group 3 = path finalized group
             //------------------------------------

@@ -12,8 +12,8 @@ function sets_A_v_forces_sliders() {
     //initially does job which sliders do at run-time
     toreg('slider_sltime')('curtime',
             sconf.unitlessMinTime * sconf.initialTimieStep);
-    toreg('speeds')('vect', [ sconf.modelPoints.v0 ]);
-    toreg('speedsAracc')('vect', [ sconf.modelPoints.v0 ]);
+    toreg('speeds')('vect', [sconf.modelPoints.v0]);
+    toreg('speedsAracc')('vect', [sconf.modelPoints.v0]);
     toreg('rgslid_dt')('val', sconf.initialTimieStep);
     //**********************
 
@@ -48,8 +48,8 @@ function v2params(newPos, dummyPar,) {
     var newv0 = mat.scaleV(sconf.speed, unitAv.unitVec);
     var newv0 = path_Av;
 
-    toreg('speeds')('vect', [ newv0 ]);
-    toreg('speedsAracc')('vect', [ newv0 ]);
+    toreg('speeds')('vect', [newv0]);
+    toreg('speedsAracc')('vect', [newv0]);
 
     //updates dragger position
     var newP = mat.addV(newv0, rg.A.pos);
@@ -79,7 +79,7 @@ function V2forceParams(newVPos, dummyPar, enforceNewPos, fix) {
     //-------------------------------------
     //yes, we admit here that force law can be with an arbitrary power,
     //but for simplicity, write comments here for this power = 2,
-    let lawPower = rg.force.inarray[ fix ].lawPower;
+    let lawPower = rg.force.inarray[fix].lawPower;
     var r2 = Math.exp(
                 -lawPower * Math.log(BS.abs)
                 );
@@ -94,7 +94,7 @@ function V2forceParams(newVPos, dummyPar, enforceNewPos, fix) {
     //negative fDirection makes force repelling
     lawConstant   *= bvNorm[0]*bsNorm[0] + bvNorm[1]*bsNorm[1];
 
-    rg.force.inarray[ fix ].lawConstant = lawConstant;
+    rg.force.inarray[fix].lawConstant = lawConstant;
     return true;
 }
 

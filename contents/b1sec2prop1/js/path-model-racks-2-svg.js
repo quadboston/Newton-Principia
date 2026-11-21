@@ -23,7 +23,7 @@
             //      path[0] apparently used nowhere
             //---------------------------------------------------------
             var pkey = 'path-' + pix;
-            pathRacks[ pix ].undisplay = true;
+            pathRacks[pix].undisplay = true;
             rg8pos_2_svg(
                 pkey,
                   {

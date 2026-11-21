@@ -38,7 +38,7 @@
             main_horizontal_dividor_width_px : 21,
             //***************************************************
 
-            mediaOffset : [ 0, 0 ], //in respect to simscene
+            mediaOffset : [0, 0], //in respect to simscene
             LETTER_FONT_SIZE_PER_1000 : 32,
 
             GENERIC_SLIDERS_FONT_SIZE : 15,

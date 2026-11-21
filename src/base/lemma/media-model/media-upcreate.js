@@ -28,7 +28,7 @@ const { ns, sn, haz, haff, $$, eachprop,
         var subessayId = ns.getSubessayIdFromURL(); // returns 0 if none
 
         //:updates subessay menu
-        var exAspect = exegs[ amode.logic_phase ][ amode.aspect ];
+        var exAspect = exegs[amode.logic_phase][amode.aspect];
         if (subessayId && haz(exAspect.subessay2subexeg, subessayId)) {
             // selected subessay persists when toggling tabs
             amode.subessay = subessayId;
@@ -46,7 +46,7 @@ const { ns, sn, haz, haff, $$, eachprop,
             }
             window.history.replaceState({}, '', url);
         }
-        var subexeg = exAspect.subessay2subexeg[ amode.subessay ];
+        var subexeg = exAspect.subessay2subexeg[amode.subessay];
         sDomF.addsChosenCSSCls_to_subessay8menuSubitem({ exAspect, subexeg })
 
         ssF.toogle_detectablilitySliderPoints4Tools();//"optional"
@@ -54,7 +54,7 @@ const { ns, sn, haz, haff, $$, eachprop,
             ////preliminary setting for painting lines,
             ////no points painting at this moment,
             eachprop(sconf.pname2point, (point, pname) => {
-                var pointRg = rg[ pname ];
+                var pointRg = rg[pname];
                 pointRg.medpos = ssF.mod2inn(pointRg.pos,);
             });
         }
@@ -87,7 +87,7 @@ const { ns, sn, haz, haff, $$, eachprop,
         if (linesArray) {
             linesArray.forEach((lineConf) => {
                     var lname   = Object.keys(lineConf)[0];
-                    lineAttr    = lineConf[ lname ];
+                    lineAttr    = lineConf[lname];
                     if (!lineAttr.zOrderAfter) {
                         ssF.str2line(lname, null, lineAttr);
                     }
@@ -120,7 +120,7 @@ const { ns, sn, haz, haff, $$, eachprop,
         // may have create_digital_legend
         //ini ssF, so thet skip this block
         if (ns.h(stdMod, 'create_digital_legend')) {
-            var tlegend = ns.haz(rg[ 'main-legend' ], amode.logic_phase);
+            var tlegend = ns.haz(rg['main-legend'], amode.logic_phase);
             if (ns.h(stdMod, 'upcreate_mainLegend')) {
                 ///above lines do create legend for all theoreons, this line
                 ///shows only for one:

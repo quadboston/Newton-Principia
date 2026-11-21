@@ -24,7 +24,7 @@
     ///----------------------------------------
     function createSliderPlaceholder_media_scale() {
         var magnit = 'media_scale';
-        var media_scale_value = haz(rg[ magnit ], 'value') || 1;
+        var media_scale_value = haz(rg[magnit], 'value') || 1;
         toreg(magnit)('value', media_scale_value);
 
         ssF.sliderTemplate({

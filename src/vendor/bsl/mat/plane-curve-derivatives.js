@@ -57,8 +57,8 @@
         //r₁ = (posBody + posMinus) / 2
         //dr/dq = ((posPlus + posBody) / 2 - (posBody + posMinus) / 2) / delta_q
         //dr/dq = ((posPlus + posBody) - (posBody + posMinus)) / (2 * delta_q)
-        const dr_dq = [ (posPlus[0] - posMinus[0])/(2*delta_q),
-                        (posPlus[1] - posMinus[1])/(2*delta_q), ];
+        const dr_dq = [(posPlus[0] - posMinus[0])/(2*delta_q),
+                        (posPlus[1] - posMinus[1])/(2*delta_q),];
         const ds_dq_squared = dr_dq[0]**2 + dr_dq[1]**2;
         const ds_dq         = Math.sqrt(ds_dq_squared);
         const uTangential   = [dr_dq[0] / ds_dq, dr_dq[1] / ds_dq];
@@ -94,16 +94,16 @@
         //if vector product is along 𝗸, then curvature is
         //rotated counter-clockwise from uTangential:
         var uNormal = bk < 0 ?
-            [ uTangential[1], -uTangential[0], ] : //clockwise
-            [ -uTangential[1], uTangential[0], ];  //counter-clockwise;
+            [uTangential[1], -uTangential[0],] : //clockwise
+            [-uTangential[1], uTangential[0],];  //counter-clockwise;
         //curvature vector
         var cc = [uNormal[0]*c, uNormal[1]*c];
         var R = c < INFINITY_PROTECTOR ? 1/INFINITY_PROTECTOR : 1/c;
 
         //vector from body to curvature circle center
-        var RR = [ uNormal[0]*R, uNormal[1]*R ];
+        var RR = [uNormal[0]*R, uNormal[1]*R];
         //curvature circle center
-        var RC = [ RR[0]+posBody[0], RR[1]+posBody[1], ];
+        var RC = [RR[0]+posBody[0], RR[1]+posBody[1],];
 
         //Calculate r (position of body relative to center of forces), includes
         //vector and related values.
@@ -136,14 +136,14 @@
         //      projection-of-diameter-of-curvature-to-radius-vector,
         var ww = mat.scaleV(ww*2, r.unitVec);
         //      this is a point V:
-        var curvatureChordSecondPoint = [ ww[0]+posBody[0], ww[1]+posBody[1] ];
+        var curvatureChordSecondPoint = [ww[0]+posBody[0], ww[1]+posBody[1]];
 
         //Projection of radius vector on tangent:
         var ww = mat.scalarProduct(r.vector, uTangential) * -1;
         // radius vector component along tangent:
         var ww = mat.scaleV(ww, uTangential);
         //this is point V in Newton's Prop6, Theor 5:
-        var projectionOfCenterOnTangent = [ ww[0]+posBody[0], ww[1]+posBody[1] ];
+        var projectionOfCenterOnTangent = [ww[0]+posBody[0], ww[1]+posBody[1]];
 
         //Calculate specific angular momentum per speed
         //Know h = r x v

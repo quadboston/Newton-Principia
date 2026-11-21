@@ -25,7 +25,7 @@
         //for graphical-media work-area if not supplied:
         var pictureWidth = 912;
         var pictureHeight = 603;
-        var C = [ 376,
+        var C = [376,
                     587
                 ];
         sconf.Fi_distance = 1.8;
@@ -40,7 +40,7 @@
 
         var A = [C[0], 39];
         var B = [464,  A[1]];
-        var forceStart = [ B[0]*1.03, -100 ];
+        var forceStart = [B[0]*1.03, -100];
         var D = [C[0], 270];
         var E = [C[0], 304];
         var R = [41, 234];
@@ -95,7 +95,7 @@
         //=============================================
         // //\\ points reused in config
         //=============================================
-        sconf.diagramOrigin = [ 0, 0 ];
+        sconf.diagramOrigin = [0, 0];
         var originX_onPicture = C[0]; //for model's axis x
         var originY_onPicture = C[1]; //for model's axis y
         //=============================================

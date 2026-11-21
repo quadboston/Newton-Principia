@@ -14,7 +14,7 @@
         const cosAxis   = Math.cos(op.mainAxisAngle);
         const sinAxis   = Math.sin(op.mainAxisAngle);
         const q2xy = stdMod.q2xy;
-        var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
+        var Porb = ssD.qIndexToOrbit[rg.P.qix];
         rg.P.pos[0] = Porb.posBody[0];
         rg.P.pos[1] = Porb.posBody[1];
         var Qpos = q2xy(Porb.plusQ);
@@ -100,8 +100,8 @@
 
         //vuFV
         //v = parallel-projection of Q to tangent
-        var DK = [ rg.K.pos[0]-rg.D.pos[0], rg.K.pos[1]-rg.D.pos[1] ];
-        var PG = [ rg.P.pos[0]-rg.G.pos[0], rg.P.pos[1]-rg.G.pos[1] ];
+        var DK = [rg.K.pos[0]-rg.D.pos[0], rg.K.pos[1]-rg.D.pos[1]];
+        var PG = [rg.P.pos[0]-rg.G.pos[0], rg.P.pos[1]-rg.G.pos[1]];
         nspaste(rg.v.pos,
             mat.linesCross(
                 uTangential, rg.Q.pos, //direction, start

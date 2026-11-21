@@ -37,7 +37,7 @@
         let delta_q_max = 0;
 
         for (let qix=0; qix<=Q_STEPS; qix++) {
-            const bP = qIndexToOrbit[ qix ]; //body point data
+            const bP = qIndexToOrbit[qix]; //body point data
             const timeP = bP.timeAtQ;
 
             const timeOffset = timeP + ssD.DT_SUBSTITUTE_ACTUAL_FORCE;

@@ -62,7 +62,7 @@
         //=============================================
         // //\\ points reused in config
         //=============================================
-        var posC = [409, 408 ];
+        var posC = [409, 408];
         //=============================================
         // \\// points reused in config
         //=============================================
@@ -74,7 +74,7 @@
 
         var originX_onPicture = posC[0]; //for model's axis x
         var originY_onPicture = posC[1]; //for model's axis y
-        sconf.diagramOrigin = [ 0, 0 ];
+        sconf.diagramOrigin = [0, 0];
 
         //-------------------------------------------
         // //\\ calculation algo parameters

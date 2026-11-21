@@ -117,7 +117,7 @@
             return (function (decPoint, dragSurface, pointWrap, nonenify) {
                 if (pw.x || pw.x === 0) {
                     var dompos = sDomF.inn2outparent.call(
-                        { medpos : [ pw.x, pw.y ] }
+                        { medpos : [pw.x, pw.y] }
                     );
                     decPoint.style.left = dompos[0] + 'px';
                     decPoint.style.top = dompos[1] + 'px';

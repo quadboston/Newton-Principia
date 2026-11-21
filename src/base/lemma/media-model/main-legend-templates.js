@@ -25,7 +25,7 @@
         clusterIx,
         legendScriptParsed,
     }) {
-        var ds              = legendScriptParsed[ rowIx ][ clusterIx ];
+        var ds              = legendScriptParsed[rowIx][clusterIx];
         //c cc( ds );
         var indices         = '' + clusterIx;
         rowIx && (indices += clusterIx+rowIx);
@@ -50,7 +50,7 @@
     }) {
         var clusterCellIx = 1;
 
-        var ds      = legendScriptParsed[ rowIx ][ clusterIx ];
+        var ds      = legendScriptParsed[rowIx][clusterIx];
         //var res     = ds[2] ? eval( ds[2] ) : '';
         var res     = eval(ds[2]);
         res         = typeof res === 'number'? res.toFixed(3) : (res || '');

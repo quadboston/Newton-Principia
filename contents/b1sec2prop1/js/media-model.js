@@ -151,17 +151,17 @@ function media_upcreate___before_basic() {
     var pointsAreOn = POINTS_BCDE_ARE_ACTIVE &&
                         amode.logic_phase === 'proof';
     ['B', 'C', 'D', 'E'].forEach(id => {
-            let rgX = rg[ id ];
+            let rgX = rg[id];
             if (has(rgX, 'svgel')) {
                 rgX.svgel.setAttribute('r', pointsAreOn ? '6' : '4');
-                rgX.svgel.style[ 'fill' ] = pointsAreOn ?
+                rgX.svgel.style['fill'] = pointsAreOn ?
                 '#cccccc' : sDomF.getFixedColor('bodyColor');// TODO: check
             //} else {
                 //todo why is this?
                 //c cc( rgX.pname + ' svg is missed in media-model.js' );
             }
             if (POINTS_BCDE_ARE_ACTIVE) {
-                rg[ id + 'title' ].textContent =
+                rg[id + 'title'].textContent =
                     pointsAreOn ? 'show next move' : '';
             }
     });
@@ -184,12 +184,12 @@ function pathDelays2forceDraggers() {
         let nam0 = 'VV'+ix;
         let nam1 = 'VVV'+ix;
         let doPaintPname = false;
-        Object.assign(rg[ nam0 ], {
+        Object.assign(rg[nam0], {
             decStart    : 111111111,
             decEnd,
             doPaintPname,
         });
-        Object.assign(rg[ nam1 ], {
+        Object.assign(rg[nam1], {
             decStart    : 111111111,
             decEnd,
             doPaintPname,
@@ -234,7 +234,7 @@ function media_upcreate___after_basic() {
         const path = rg.path.pos;
         path.forEach((pt, pix) => {
             if (!pix) return;
-            putInFront(rg[ 'force-' + (pix - 1) + '-applied']);
+            putInFront(rg['force-' + (pix - 1) + '-applied']);
         });
 
         ///put handler kernels over vector tips

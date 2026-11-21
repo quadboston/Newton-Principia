@@ -25,7 +25,7 @@
         // //\\ dragger B
         //-------------------------------------------------
         rg.B.processOwnDownEvent = function () {
-            sData.RB_slope = [ rg.D.pos[0] - rg.B.pos[0], rg.D.pos[1] - rg.B.pos[1] ];
+            sData.RB_slope = [rg.D.pos[0] - rg.B.pos[0], rg.D.pos[1] - rg.B.pos[1]];
             ssD.draggerInUse = 'B';
         };
         rg.B.processOwnUpEvent = function () {
