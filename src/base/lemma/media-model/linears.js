@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         ns, sn, $$, sv, nsmethods, han, haz, has, mat,
         sconf, ssF, sDomF, lowtpid_2_glocss8anchorRack, rg, toreg,
@@ -43,28 +43,28 @@
     ///         sconf.thickness
     ///
     /// Output: adds pivots-media-positions to line
-    function pivots_2_svgLineInRg( pName, pivots, lineAttr ) {
+    function pivots_2_svgLineInRg(pName, pivots, lineAttr) {
         var lineAttr    = lineAttr || {};
-        var line        = toreg( pName )();
-        pivots          = pivots || haz( line, 'pivots' );
-        var vectorTipIx = haz( line, 'vectorTipIx' );
-        if ( has( line, 'stroke-width' )) {
+        var line        = toreg(pName)();
+        pivots          = pivots || haz(line, 'pivots');
+        var vectorTipIx = haz(line, 'vectorTipIx');
+        if (has(line, 'stroke-width')) {
             line.finalStrokeWidth = line['stroke-width'];
         } else {
-        var strokeWidth = han( lineAttr, 'stroke-width', 1 );
+        var strokeWidth = han(lineAttr, 'stroke-width', 1);
         line.finalStrokeWidth = strokeWidth * (sconf.thickness || 1);
         }
         let pv0 = pivots[0];
         let pv1 = pivots[1];
-        if ( haz( pv0, 'unscalable' ) ) {
-            pv0.medpos = ssF.mod2inn_original( pv0.pos );
-        } else if ( !has(pv0, 'medpos' ) ) {
-            pv0.medpos = ssF.mod2inn( pv0.pos );
+        if (haz(pv0, 'unscalable')) {
+            pv0.medpos = ssF.mod2inn_original(pv0.pos);
+        } else if (!has(pv0, 'medpos')) {
+            pv0.medpos = ssF.mod2inn(pv0.pos);
         }
-        if ( haz( pv1, 'unscalable' ) ) {
-            pv1.medpos = ssF.mod2inn_original( pv1.pos );
-        } else if ( !has(pv1, 'medpos' ) ) {
-            pv1.medpos = ssF.mod2inn( pv1.pos );
+        if (haz(pv1, 'unscalable')) {
+            pv1.medpos = ssF.mod2inn_original(pv1.pos);
+        } else if (!has(pv1, 'medpos')) {
+            pv1.medpos = ssF.mod2inn(pv1.pos);
         }
         var pivotsMedPos= [ pv0.medpos, pv1.medpos ];
 
@@ -73,32 +73,32 @@
         //line.vector = mat.p1_to_p2(pv0,pv1);
 
         ///this property helps to optimize svg painting
-        var dressed = haz( line, 'pointIsAlreadyDressed' );
-        if ( !dressed ) {
+        var dressed = haz(line, 'pointIsAlreadyDressed');
+        if (!dressed) {
             ////longer part of optimization: creates svg
             var tpclass = sDomF.toCssIdentifier(
-                          ( ns.haz( lineAttr, 'tpclass' ) ) || pName
+                          (ns.haz(lineAttr, 'tpclass')) || pName
             );
-            var ww          = sDomF.getFixedColor( tpclass );
-            var stroke      = ns.haz( line, 'pcolor' ) || han( lineAttr, 'stroke', ww );
-            var cssClass    = ns.h( lineAttr, 'cssClass' ) ?
+            var ww          = sDomF.getFixedColor(tpclass);
+            var stroke      = ns.haz(line, 'pcolor') || han(lineAttr, 'stroke', ww);
+            var cssClass    = ns.h(lineAttr, 'cssClass') ?
                               lineAttr['cssClass'] + ' ' :  '';
             //adds params to line:
-            var finalTp         = haz( line, 'notp' ) ? 'notp-' : 'tp-';
+            var finalTp         = haz(line, 'notp') ? 'notp-' : 'tp-';
             line.finalCssClass  = cssClass + finalTp + tpclass;
             line.pname          = pName;
 
             ///patch for lemma 4 for lines aka
             //leftbar-1-left-bottom,leftbar-1-right-bottom pivotNames
-            if ( has( pv0, 'pname' ) && has( pv1, 'pname' )) {
+            if (has(pv0, 'pname') && has(pv1, 'pname')) {
             line.pivotNames     = [ pv0.pname, pv1.pname ];
             } else {
                 //patch for lemma 4
-                sn( 'pivotNames', line. null );
+                sn('pivotNames', line. null);
             }
 
             var argsvg = {
-                svgel   : ns.haz( line, 'svgel' ),
+                svgel   : ns.haz(line, 'svgel'),
 
                 parent  : stdMod.mmedia,
                 //todm everywhere in this module:
@@ -110,15 +110,15 @@
             }
             ///shapes without pName presribed in Topics do
             ///paint colors in own atributes
-            var low_tpID = nsmethods.toCssIdentifier( pName );
-            var tpactive = haz( lowtpid_2_glocss8anchorRack, low_tpID );
-            if ( !tpactive ) {
+            var low_tpID = nsmethods.toCssIdentifier(pName);
+            var tpactive = haz(lowtpid_2_glocss8anchorRack, low_tpID);
+            if (!tpactive) {
                 argsvg.stroke = line.stroke;
             };
             line.svgel = sv.polyline(argsvg);
             var svgel$ = line.svgel$ = $$.$(line.svgel);
 
-            svgel$.cls( line.finalCssClass );
+            svgel$.cls(line.finalCssClass);
 
         } else {
             ////shorter part of optimization
@@ -134,10 +134,10 @@
                 strokeWidth : line.finalStrokeWidth.toFixed(4),
             });
         }
-        if ( vectorTipIx || vectorTipIx === 0 ) {
+        if (vectorTipIx || vectorTipIx === 0) {
             paintsVectorTips({ vectorTipIx, pivots, line, });
         }
-        line.svgel$.toggleClass( 'undisplay', ns.haz( line, 'undisplay' ) );
+        line.svgel$.toggleClass('undisplay', ns.haz(line, 'undisplay'));
         //updates pivots in line:
         line.pivots = [ pv0, pv1 ];
 
@@ -146,38 +146,38 @@
         //=================================================
         //todm bad name: caption is too generic
         //hard to package-search
-        var caption = ns.haz( lineAttr, 'caption' ) ||
-                      ns.haz( line, 'caption' ) || '';
-            var fontSize = ns.haz( lineAttr, 'fontSize' ) || 20;
+        var caption = ns.haz(lineAttr, 'caption') ||
+                      ns.haz(line, 'caption') || '';
+            var fontSize = ns.haz(lineAttr, 'fontSize') || 20;
 
             var lposXSugar = 0.5;
-            var lposYSugar = haz( lineAttr, 'lposYSugar' );
+            var lposYSugar = haz(lineAttr, 'lposYSugar');
             var lposYSugar = lposYSugar || lposYSugar === 0 ? lposYSugar : -0.3; //1.5;
             var pvs = pivotsMedPos,
-            lposX = ( pvs[0][0] + pvs[1][0] ) / 2;
-            lposY = ( pvs[0][1] + pvs[1][1] ) / 2;
+            lposX = (pvs[0][0] + pvs[1][0]) / 2;
+            lposY = (pvs[0][1] + pvs[1][1]) / 2;
             var dir = [ pvs[1][0] - pvs[0][0], pvs[1][1] - pvs[0][1] ];
             var segAngle = Math.atan2(
                     dir[1] * sconf.MONITOR_Y_FLIP, //y, screen to model angle
                     dir[0]
             );
             var leftNormAngle = segAngle + Math.PI/2;
-            var SHIFT = has( lineAttr, 'captionShiftNorm' ) ?
+            var SHIFT = has(lineAttr, 'captionShiftNorm') ?
                             lineAttr.captionShiftNorm : 18;
 
-            var finalPosX = lposX + SHIFT * Math.cos( leftNormAngle )
+            var finalPosX = lposX + SHIFT * Math.cos(leftNormAngle)
                             - fontSize * lposXSugar;
             var finalPosY = lposY
                             //eye to screen view
-                            + sconf.MONITOR_Y_FLIP * SHIFT * Math.sin( leftNormAngle )
+                            + sconf.MONITOR_Y_FLIP * SHIFT * Math.sin(leftNormAngle)
                             - fontSize * lposYSugar;
 
-            if ( !line.pointIsAlreadyDressed ) {
+            if (!line.pointIsAlreadyDressed) {
                 line.pnameLabelsvg = ns.svg.printText({
                 text            : caption,
                     stroke          : stroke, //line.pcolor,
                     fill            : stroke, //line.pcolor,
-                    "stroke-width"  : haz( lineAttr, "stroke-width" ) || 1,
+                    "stroke-width"  : haz(lineAttr, "stroke-width") || 1,
                     svgel           : line.pnameLabelsvg,
                     parent          : stdMod.mmedia,
                     style           : {
@@ -186,24 +186,24 @@
                         'font-size' : line.fontSize + 'px',
                     },
                 });
-                line.pnameLabelsvg$ = $$.$( line.pnameLabelsvg )
-                    .cls( line.finalCssClass )
+                line.pnameLabelsvg$ = $$.$(line.pnameLabelsvg)
+                    .cls(line.finalCssClass)
                     //"tobold" makes all "line-labels" "tp - boldable"
-                    .addClass( 'tofill tobold hover-width' )
+                    .addClass('tofill tobold hover-width')
                     ;
             }
 
             line.pnameLabelsvg$
-                .aNS( 'x', finalPosX.toFixed()+'px' )
-                .aNS( 'y', finalPosY.toFixed()+'px' )
-                .toggleClass( 'undisplay', ns.haz( rg[ line.pname ], 'undisplay' ) )
+                .aNS('x', finalPosX.toFixed()+'px')
+                .aNS('y', finalPosY.toFixed()+'px')
+                .toggleClass('undisplay', ns.haz(rg[ line.pname ], 'undisplay'))
                 ;
             line.pnameLabelsvg$.toggleClass(
                 'undisplay',
-                haz( line, 'hideCaption' ) ||
+                haz(line, 'hideCaption') ||
                 (
-                    !haz( line, 'displayAlways' ) &&
-                    ( haz( rg, 'allLettersAreHidden' ) || haz( line, 'undisplay' ) )
+                    !haz(line, 'displayAlways') &&
+                    (haz(rg, 'allLettersAreHidden') || haz(line, 'undisplay'))
                 )
             );
         //=================================================
@@ -214,13 +214,13 @@
     }
 
     function paintsVectorTips({ vectorTipIx, pivots, line, }) {
-        let tipFraction = haz( line, 'tipFraction' );
-        var TIP_FRACTION = Math.abs( tipFraction ) ||  0.2;
+        let tipFraction = haz(line, 'tipFraction');
+        var TIP_FRACTION = Math.abs(tipFraction) ||  0.2;
         var vectEnd = pivots[ vectorTipIx ].medpos;
         var vectStart = pivots[ (vectorTipIx+1)%2 ].medpos;
         var { abs, norm, unit } = mat.vector2normalOrts(
-                [vectEnd[0]-vectStart[0], vectEnd[1]-vectStart[1]] );
-        let tF = (TIP_FRACTION * abs ) || 1; //vector can be 0
+                [vectEnd[0]-vectStart[0], vectEnd[1]-vectStart[1]]);
+        let tF = (TIP_FRACTION * abs) || 1; //vector can be 0
         var tipLength =
                 tipFraction ? tF :
                 Math.min(
@@ -233,7 +233,7 @@
         var ARROW_TANGENT = tipFraction < 0 ?
             0.15 :
             line.finalStrokeWidth * 1.5 / tipLength;
-        var tipHeight = Math.max( sconf.thickness*1.5, tipLength * ARROW_TANGENT );
+        var tipHeight = Math.max(sconf.thickness*1.5, tipLength * ARROW_TANGENT);
         var pivots = [
             [ vecTipStart[0] + norm[0]*tipHeight, vecTipStart[1] + norm[1]*tipHeight ],
             [ vecTipStart[0] - norm[0]*tipHeight, vecTipStart[1] - norm[1]*tipHeight ],
@@ -242,45 +242,45 @@
             [ vecTipStart[0] + norm[0]*tipHeight, vecTipStart[1] + norm[1]*tipHeight ],
         ];
         line.vectorArrowSvg = sv.polyline({
-            svgel   : ns.haz( line, 'vectorArrowSvg' ),
+            svgel   : ns.haz(line, 'vectorArrowSvg'),
             parent  : stdMod.mmedia,
             pivots,
             //'stroke-width' : strokeWidth * sconf.thickness,
         });
-        let tipFill = haz( line, 'tipFill' );
-        if ( tipFill ) {
+        let tipFill = haz(line, 'tipFill');
+        if (tipFill) {
             line.vectorArrowSvg.style.fill = tipFill;
             line.vectorArrowSvg.style.stroke = tipFill;
         }
         line.vectorArrowSvg$ = $$.$(line.vectorArrowSvg)
-            .toggleClass( 'undisplay', ns.haz( line, 'undisplay' ) )
-            .cls( line.finalCssClass + ' tofill' )
+            .toggleClass('undisplay', ns.haz(line, 'undisplay'))
+            .cls(line.finalCssClass + ' tofill')
             ;
     }
 
     ///makes short line name: AB from A and B
     ///returns: rg element
-    function str2line( str, cssClass, lineAttr, caption, ) {
+    function str2line(str, cssClass, lineAttr, caption,) {
         //all this fuss with pivotNames is for Prop1,2 non-standard
         //line names without comma,
         //there is no pivotNames param. in "normal lemma",
-        var pns = haz( rg[str], 'pivotNames' );
-        if ( !pns ) {
-            if ( str.indexOf( ',' ) > -1 ) {
+        var pns = haz(rg[str], 'pivotNames');
+        if (!pns) {
+            if (str.indexOf(',') > -1) {
                 ////legally built line name
                 var splitToken = ',';
-            } else if ( str.length === 2 ) {
+            } else if (str.length === 2) {
                 var splitToken = '';
             } else {
-                throw new Error( 'ambiguous line pivots name = ' + str );
+                throw new Error('ambiguous line pivots name = ' + str);
             }
-            var pns = str.split( splitToken );
-        } else if ( !haz( rg, pns[0] )) {
-            throw Error( 'Missed pivot name = ' + pns[0] );
+            var pns = str.split(splitToken);
+        } else if (!haz(rg, pns[0])) {
+            throw Error('Missed pivot name = ' + pns[0]);
         }
         const pivots = [ rg[ pns[0] ], rg[ pns[1] ] ];
 
-        cssClass = haz( lineAttr, 'cssClass' ) || cssClass;
+        cssClass = haz(lineAttr, 'cssClass') || cssClass;
         let strokeWidth = 2;
         if (sconf.sappId === "b1sec1lemma2" || sconf.sappId === "b1sec1lemma3") {
             strokeWidth = 1;
@@ -288,15 +288,15 @@
         var lineAttrPassed =
         {
             cssClass        : 'tostroke thickable' +
-                               ( cssClass ? ' ' + cssClass : '' ),
-            'stroke-width'  : ns.sn( 'stroke-width', lineAttr, strokeWidth ),
-            caption         : caption || haz( lineAttr, 'caption' ),
+                               (cssClass ? ' ' + cssClass : ''),
+            'stroke-width'  : ns.sn('stroke-width', lineAttr, strokeWidth),
+            caption         : caption || haz(lineAttr, 'caption'),
         };
         ///todm: this code is extremely non-automated:
-        if ( has( lineAttr, 'captionShiftNorm' ) ) {
+        if (has(lineAttr, 'captionShiftNorm')) {
             lineAttrPassed.captionShiftNorm = lineAttr.captionShiftNorm;
         }
-        lineAttrPassed.lposYSugar = haz( lineAttr, 'lposYSugar' );
+        lineAttrPassed.lposYSugar = haz(lineAttr, 'lposYSugar');
         return pivots_2_svgLineInRg(
             str,
             pivots,
@@ -316,10 +316,10 @@
         tostroke,
     ) {
         var CLOSED_POLYLINE = true;
-        var pName = pNames.join( correctJoin ? '--' : '');
-        var pivots = pNames.map( pname => rg[ pname ].medpos );
-        if ( CLOSED_POLYLINE ) {
-            pivots.push( pivots[0] );
+        var pName = pNames.join(correctJoin ? '--' : '');
+        var pivots = pNames.map(pname => rg[ pname ].medpos);
+        if (CLOSED_POLYLINE) {
+            pivots.push(pivots[0]);
         }
 
         //todm ... this is so complex bs. we have to modify legacy code
@@ -330,17 +330,17 @@
         var attr =
         {
             cssClass        : tostroke + 'thickable' +
-                              ( cssClass ? ' ' + cssClass : '' ),
+                              (cssClass ? ' ' + cssClass : ''),
            'stroke-width'  : 2,
         };
         var tpclass = sDomF.toCssIdentifier(
-                      ( ns.haz( attr, 'tpclass' ) ) || pName
+                      (ns.haz(attr, 'tpclass')) || pName
         );
-        var cssClass    = ns.h( attr, 'cssClass' ) ? attr['cssClass'] + ' ' :  '';
-        var stroke      = han( attr, 'stroke', sDomF.getFixedColor( tpclass ) );
-        var strokeWidth = han( attr, 'stroke-width', 1 );
-        var poly        = toreg( pName )();
-        if ( typeof undisplay !== 'undefined' && undisplay !== null ) { //was a bug
+        var cssClass    = ns.h(attr, 'cssClass') ? attr['cssClass'] + ' ' :  '';
+        var stroke      = han(attr, 'stroke', sDomF.getFixedColor(tpclass));
+        var strokeWidth = han(attr, 'stroke-width', 1);
+        var poly        = toreg(pName)();
+        if (typeof undisplay !== 'undefined' && undisplay !== null) { //was a bug
             poly.undisplay = undisplay;
         }
         poly.pname      = pName;
@@ -350,15 +350,15 @@
         poly.poly_2_updatedPolyPos8undisplay = poly_2_updatedPolyPos8undisplay;
         poly.finalCssClass = cssClass + 'tp-' + tpclass;
         poly.svgel = sv.polyline({
-            svgel   : ns.haz( poly, 'svgel' ),
+            svgel   : ns.haz(poly, 'svgel'),
             stroke,
             parent  : stdMod.mmedia,
             pivots,
             'stroke-width' : strokeWidth * sconf.thickness,
         });
         poly.svgel$ = $$.$(poly.svgel)
-            .toggleClass( 'undisplay', ns.haz( poly, 'undisplay' ) )
-            .cls( poly.finalCssClass )
+            .toggleClass('undisplay', ns.haz(poly, 'undisplay'))
+            .cls(poly.finalCssClass)
             ;
         return poly;
     }
@@ -373,24 +373,24 @@
     ///api: if poly is not supplied, then it must be "this",
     ///does update "undisplay",
     ///switch poly.UPDATE_MPOS_BEFORE_POLY does update mpos before pivots
-    function poly_2_updatedPolyPos8undisplay( poly, ) {
+    function poly_2_updatedPolyPos8undisplay(poly,) {
         poly = poly || this;
         var CLOSED_POLYLINE = true;
         var pNames = poly.pNames;
-        if ( poly.UPDATE_MPOS_BEFORE_POLY ) {
+        if (poly.UPDATE_MPOS_BEFORE_POLY) {
             let mod2inn = ssF.mod2inn;
-            pNames.forEach( pname =>
-                { rg[ pname ].medpos = mod2inn( rg[ pname ].pos ) } );
+            pNames.forEach(pname =>
+                { rg[ pname ].medpos = mod2inn(rg[ pname ].pos) });
         }
-        var pivots = pNames.map( pname => rg[ pname ].medpos );
-        if ( CLOSED_POLYLINE ) {
-            pivots.push( pivots[0] );
+        var pivots = pNames.map(pname => rg[ pname ].medpos);
+        if (CLOSED_POLYLINE) {
+            pivots.push(pivots[0]);
         }
         poly.svgel = sv.polyline({
             svgel   : poly.svgel,
             pivots,
         });
-        poly.svgel$.toggleClass( 'undisplay', ns.haz( poly, 'undisplay' ) );
+        poly.svgel$.toggleClass('undisplay', ns.haz(poly, 'undisplay'));
     }
 
     //==========================================
@@ -399,33 +399,33 @@
     ///Input:   triang = rg[ triangleId ]
     ///         triang.vertices
     ///         cssCls can be for 'logic_phase--proof'
-    function paintTriangle( triangleId, cssCls, tpclass, defaultFill, )
+    function paintTriangle(triangleId, cssCls, tpclass, defaultFill,)
     {
         var triang = rg[ triangleId ];
         var mod2inn = ssF.mod2inn;
-        var vertices = triang.vertices.map( pos => {
-            return mod2inn( pos, );
+        var vertices = triang.vertices.map(pos => {
+            return mod2inn(pos,);
         });
-        var dressed = ownProp.call( triang, 'shapeIsAlreadyDressed' );
-        if ( !dressed ) {
+        var dressed = ownProp.call(triang, 'shapeIsAlreadyDressed');
+        if (!dressed) {
             triang.mmedia = stdMod.mmedia;
             var svgarg = {
                 pivots  : vertices,
                 svgel   : triang.svgel,
                 parent  : triang.mmedia,
             };
-            if ( defaultFill ) {
+            if (defaultFill) {
                 svgarg.fill = defaultFill;
             }
 
             //important: use triang.svgel = ...
             //           not like triang.mediael = ...
-            triang.svgel = sv.polyline( svgarg );
-            triang.svgel$ = $$.$( triang.svgel );
+            triang.svgel = sv.polyline(svgarg);
+            triang.svgel$ = $$.$(triang.svgel);
 
-            var tpclass = sDomF.toCssIdentifier( tpclass || triangleId );
+            var tpclass = sDomF.toCssIdentifier(tpclass || triangleId);
             cssCls = cssCls ? ' ' + cssCls + ' ' : ' ';
-            $$.$( triang.svgel ).cls( 'tofill' + cssCls + 'tp-' + tpclass );
+            $$.$(triang.svgel).cls('tofill' + cssCls + 'tp-' + tpclass);
 
         } else {
             sv.updatePolyline({
@@ -436,7 +436,7 @@
             });
         }
         triang.shapeIsAlreadyDressed = true;
-        triang.svgel$.toggleClass( 'undisplay', ns.haz( triang, 'undisplay' ) );
+        triang.svgel$.toggleClass('undisplay', ns.haz(triang, 'undisplay'));
         return triang;
     }
     //==========================================

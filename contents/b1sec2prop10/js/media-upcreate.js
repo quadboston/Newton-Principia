@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { ns, sn, $$, nsmethods, nssvg, ssF, ssD, amode, stdMod, sconf, rg, toreg, }
         = window.b$l.apptree({ stdModExportList : {
             media_upcreate___part_of_medupcr_basic,
@@ -20,7 +20,7 @@
         var tCircleName = 'tangentCircle';
         var rgTCir = rg[ tCircleName ];
 
-        var RCmedpos = ssF.mod2inn( rg.tCircleCenter.pos, stdMod );
+        var RCmedpos = ssF.mod2inn(rg.tCircleCenter.pos, stdMod);
         var RRmedpos = sconf.mod2inn_scale * rgTCir.tangentCircleRadius;
 
         //todo nearly bug: why create svg and set cls every time?
@@ -35,8 +35,8 @@
             cy : RCmedpos[1],
             r : RRmedpos,
         });
-        $$.$( rgTCir.svgel ).addClass(
-            'tostroke tp-' + nsmethods.toCssIdentifier( tCircleName )
+        $$.$(rgTCir.svgel).addClass(
+            'tostroke tp-' + nsmethods.toCssIdentifier(tCircleName)
         );
         rgTCir.svgel.style.display =
             rgTCir.undisplay ? 'none' : 'block';
@@ -48,4 +48,4 @@
     // \\// lemma custom addons
     //=========================================================
 
-}) ();
+})();

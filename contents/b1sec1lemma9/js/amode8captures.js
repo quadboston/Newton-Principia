@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         amode, rg,
     } = window.b$l.apptree({
@@ -10,7 +10,7 @@
     return;
 
 
-    function amode2rgstate( captured )
+    function amode2rgstate(captured)
     {
         var { logic_phase } = amode;
         [
@@ -48,8 +48,8 @@
             //linear areas
             "Afd",
             "Age",
-        ].forEach( gname => { rg[ gname ].undisplay = logic_phase === 'claim'; });
+        ].forEach(gname => { rg[ gname ].undisplay = logic_phase === 'claim'; });
         return captured;
     }
 
-}) ();
+})();

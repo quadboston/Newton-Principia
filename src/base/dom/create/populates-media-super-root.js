@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         ns, $$, cssp, has,
         fapp, fconf, sconf,
@@ -18,46 +18,46 @@
     //=========================================================
     /// create LemmaDom
     //=========================================================
-    function populate_mediaSuperRoot( bgImagesAreLoaded_cb )
+    function populate_mediaSuperRoot(bgImagesAreLoaded_cb)
     {
         //--------------------------
         // //\\ top media controls
         //--------------------------
-        var topMediaControls$ = sDomN.topMediaControls$ = $$.c( 'div' )
-            .addClass( 'top-media-controls highlight-text-disabled' )
-            .to( sDomN.simSScene$ )
+        var topMediaControls$ = sDomN.topMediaControls$ = $$.c('div')
+            .addClass('top-media-controls highlight-text-disabled')
+            .to(sDomN.simSScene$)
             ;
-        var wwHelpOnTop$ = sDomN.helpBoxAboveMedia$ = $$.c( 'div' )
-            .addClass( 'help-box' )
-            .to( topMediaControls$() )
+        var wwHelpOnTop$ = sDomN.helpBoxAboveMedia$ = $$.c('div')
+            .addClass('help-box')
+            .to(topMediaControls$())
             ;
 
         //..........................
         // //\\ change-tools button
         //..........................
         $$
-            .c( 'div' )
-            .addClass( 'change-tools-button' )
-            .html( "tools" )
-            .to( topMediaControls$() )
+            .c('div')
+            .addClass('change-tools-button')
+            .html("tools")
+            .to(topMediaControls$())
             //.css( 'display', 'block' )
-            .e( 'click', () => {
+            .e('click', () => {
                 rgtools.value = rgtools.value === 'on' ? 'off' : 'on';
-                if ( rgtools.value === 'on' ) {
-                    fapp.fappRoot$.addClass( 'rgtools' );
+                if (rgtools.value === 'on') {
+                    fapp.fappRoot$.addClass('rgtools');
                 } else {
-                    fapp.fappRoot$.removeClass( 'rgtools' );
+                    fapp.fappRoot$.removeClass('rgtools');
                 }
-                var wwsm = ns.haf( stdMod, 'model8media_upcreate' );
-                if ( wwsm ) {
+                var wwsm = ns.haf(stdMod, 'model8media_upcreate');
+                if (wwsm) {
                     wwsm();
                 } else {
-                    ns.haf( ssF, 'model8media_upcreate' )();
+                    ns.haf(ssF, 'model8media_upcreate')();
                 }
             })
             ;
             rgtools.value = 'off'
-            fapp.fappRoot$.removeClass( 'rgtools' );
+            fapp.fappRoot$.removeClass('rgtools');
         //..........................
         // \\// change-tools button
         //..........................
@@ -65,15 +65,15 @@
         //..........................
         // //\\ change model data button
         //..........................
-        if ( sconf.enableDataFunctionsRepository ) {
+        if (sconf.enableDataFunctionsRepository) {
             $$
-                .c( 'div' )
-                .addClass( 'change-model-data-button' )
-                .html( "data options" )
-                .to( topMediaControls$() )
+                .c('div')
+                .addClass('change-model-data-button')
+                .html("data options")
+                .to(topMediaControls$())
                 //.css( 'display', 'block' )
-                .e( 'click', () => {
-                    ns.haf( stdMod, 'toggleData' )();
+                .e('click', () => {
+                    ns.haf(stdMod, 'toggleData')();
                 })
                 ;
         }
@@ -84,43 +84,43 @@
         //..........................
         // //\\ sets capture button
         //..........................
-        if ( sconf.enableCapture ) {
+        if (sconf.enableCapture) {
             sDomN.captureButton$ = $$
-                .c( 'div' )
-                .addClass( 'capture-button' )
-                .html( "capture" )
-                .to( topMediaControls$() )
+                .c('div')
+                .addClass('capture-button')
+                .html("capture")
+                .to(topMediaControls$())
                 //.css( 'display', 'block' )
-                .e( 'click', () => {
-                    if ( sDomN.captureButton$._html().indexOf( 'capture' ) > -1 ) {
+                .e('click', () => {
+                    if (sDomN.captureButton$._html().indexOf('capture') > -1) {
                         //------------------------------------------------
                         // //\\ do wrap into capture-method or refactor
                         //------------------------------------------------
                         var ast = {};
                         ///non-rg property: media center:
                         ///todm: legalize;
-                        var mcenter = ns.haz( rg, 'diagram-panner' );
-                        if ( mcenter ) {
-                            ns.paste( ast, { 'diagram-panner' :
+                        var mcenter = ns.haz(rg, 'diagram-panner');
+                        if (mcenter) {
+                            ns.paste(ast, { 'diagram-panner' :
                                                 { achieved :  mcenter.achieved },
                                               subessay : amode.subessay,
                                            }
                             );
                         }
                         (
-                            ns.haz( stdMod, 'captureAState' ) ||
-                            ns.haz( ssF, 'captureAState' ) ||
+                            ns.haz(stdMod, 'captureAState') ||
+                            ns.haz(ssF, 'captureAState') ||
                             ssF.captureAState_generic
-                        )( ast );
+                        )(ast);
                         //------------------------------------------------
                         // \\// do wrap into capture-method or refactor
                         //------------------------------------------------
 
                         fapp.captureWind.openWindow();
-                        sDomN.captureButton$.html( 'close' );
+                        sDomN.captureButton$.html('close');
                     } else {
                         fapp.captureWind.closeWindow();
-                        sDomN.captureButton$.html( 'capture' );
+                        sDomN.captureButton$.html('capture');
                     }
                 })
                 ;
@@ -135,21 +135,21 @@
         //..........................
         // //\\ sets studylab button
         //..........................
-        if ( sconf.enableStudylab ) {
+        if (sconf.enableStudylab) {
             sDomN.enableStudylab$ = $$
-                .c( 'div' )
-                .addClass( 'studylab-button' )
-                .a( 'title', 'tools and theory to study and experiment' )
-                .html( "lab" )
-                .to( topMediaControls$() )
-                .css( 'display', 'block' )
-                .e( 'click', () => {
-                    if ( sDomN.enableStudylab$._html().indexOf( 'close lab' ) === -1 ) {
-                        sDomN.enableStudylab$.html( 'close lab' );
-                        fapp.fappRoot$.addClass( 'studylab' );
+                .c('div')
+                .addClass('studylab-button')
+                .a('title', 'tools and theory to study and experiment')
+                .html("lab")
+                .to(topMediaControls$())
+                .css('display', 'block')
+                .e('click', () => {
+                    if (sDomN.enableStudylab$._html().indexOf('close lab') === -1) {
+                        sDomN.enableStudylab$.html('close lab');
+                        fapp.fappRoot$.addClass('studylab');
                     } else {
-                        fapp.fappRoot$.removeClass( 'studylab' )
-                        sDomN.enableStudylab$.html( 'lab' );
+                        fapp.fappRoot$.removeClass('studylab')
+                        sDomN.enableStudylab$.html('lab');
                     }
                 })
                 ;
@@ -160,32 +160,32 @@
 
         sDomN.idleHelpButton$ = $$
             .c('img')
-            .addClass( "model-help" ) //todm ... non-elegant ... spread of CSS
-            .a( 'src', fconf.engineImg + "/lightbulb.svg" )
-            .a( 'alt', "Hover over the diagram to interact" )
-            .to( wwHelpOnTop$() )
+            .addClass("model-help") //todm ... non-elegant ... spread of CSS
+            .a('src', fconf.engineImg + "/lightbulb.svg")
+            .a('alt', "Hover over the diagram to interact")
+            .to(wwHelpOnTop$())
             ;
-        if ( ns.h( fconf.appDecor, 'idleHelpButtonTooltip' ) ) {
-            sDomN.idleHelpButton$.a( 'title', fconf.appDecor.idleHelpButtonTooltip );
+        if (ns.h(fconf.appDecor, 'idleHelpButtonTooltip')) {
+            sDomN.idleHelpButton$.a('title', fconf.appDecor.idleHelpButtonTooltip);
         }
 
         sDomN.helpBoxText$ = $$
             .c('span')
-            .addClass( "help-box__text" )
-            .html( fconf.appDecor.helpButtonCaption)
-            .to( wwHelpOnTop$() )
+            .addClass("help-box__text")
+            .html(fconf.appDecor.helpButtonCaption)
+            .to(wwHelpOnTop$())
             ;
         //--------------------------
         // \\// top media controls
         //--------------------------
     }
 
-    function cre__medRootDetails( bgImagesAreLoaded_cb )
+    function cre__medRootDetails(bgImagesAreLoaded_cb)
     {
-        createsMediaRoot( bgImagesAreLoaded_cb );
+        createsMediaRoot(bgImagesAreLoaded_cb);
     }
 
-    function createsMediaRoot( bgImagesAreLoaded_cb )
+    function createsMediaRoot(bgImagesAreLoaded_cb)
     {
         //..............................
         // //\\ study image and submodel
@@ -200,22 +200,22 @@
         // \\// hides all media before visualizing in relevant egreg-GUI
 
         //todo img load scenarios: remove timeout from load/resize ...
-        ns.eachprop( exegs, ( theor, tkey ) => {
-            ns.eachprop( theor, ( exAspect, akey ) => {
-                exAspect.subexegs.forEach( (  ) => {
+        ns.eachprop(exegs, (theor, tkey) => {
+            ns.eachprop(theor, (exAspect, akey) => {
+                exAspect.subexegs.forEach(() => {
                     ///============================================================
                     /// does images and CSS-visibility-machine for root of subexeg,
                     ///      meaningly: only for first subexeg,
                     ///============================================================
                     var imgRk = stdMod.imgRk;
-                    if ( has( imgRk, 'src' ) ) return;
+                    if (has(imgRk, 'src')) return;
                     imgRk.src = stdMod.imgRk.srcParsed;
                     var cssId = imgRk.cssId;
 
-                    if ( !imgRk.onloadStarted ) {
+                    if (!imgRk.onloadStarted) {
                         imgRk.onloadStarted = true;
                         imgRk.dom$().onload = function () {
-                            if ( 1 === ++actuallyLoaded ) {
+                            if (1 === ++actuallyLoaded) {
                                 ////assumes that stdMod has bg. image to download
                                 //setTimeout( bgImagesAreLoaded_cb, 1000 );
                                 //without this call, app landing must crash:
@@ -223,10 +223,10 @@
                             }
                         };
                         imgRk.dom$
-                            .cls( imgCss + ' ' + cssId )
-                            .a( 'draggable', 'false' )
-                            .to( stdMod.simScene )
-                            .a( 'src', imgRk.src )
+                            .cls(imgCss + ' ' + cssId)
+                            .a('draggable', 'false')
+                            .to(stdMod.simScene)
+                            .a('src', imgRk.src)
                             ;
                     }
 
@@ -249,7 +249,7 @@
         });
         //todm: don't delay update ... bs makes code less readable
         //ns.globalCss.addText( css );
-        ns.globalCss.update( css );
+        ns.globalCss.update(css);
         //..............................
         // \\// study image and s ubmodel
         //..............................
@@ -257,4 +257,4 @@
         //.disabled ... effect is too strong
         //std Mod.mmedia$.e( 'mouseover', sDomF.detected_user_interaction_effect );
     }
-}) ();
+})();

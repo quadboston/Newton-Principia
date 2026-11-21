@@ -1,12 +1,12 @@
-( function () {
+(function () {
     var { sn, rg, mat, fapp, toreg, stdMod, sconf, } = window.b$l.apptree({});
 
-    var stdL2       = sn('stdL2', fapp );
-    var dataregs    = sn('dataregs', stdL2 );
-    var numModel    = sn('numModel', stdL2 );
-    var study       = sn('study', stdL2 );
+    var stdL2       = sn('stdL2', fapp);
+    var dataregs    = sn('dataregs', stdL2);
+    var numModel    = sn('numModel', stdL2);
+    var study       = sn('study', stdL2);
 
-    Object.assign( study,
+    Object.assign(study,
     {
         calculatesMajorantRect,
         calcsMonotIntervalArea,
@@ -18,7 +18,7 @@
     //==================================
     // //\\ exports methods
     //==================================
-    Object.assign( numModel, {
+    Object.assign(numModel, {
         addsNewBases_8_convertWidths,
     });
     //==================================
@@ -51,7 +51,7 @@
         ///of previously existing bars,
         for (var i=0; i<basesN; i++) {
             ///if base is new and to be added
-            if ( !dr.partitionWidths[i] ) {
+            if (!dr.partitionWidths[i]) {
                 //makes average base constant and, therefore,
                 //provides equal basesN for all added basesN
                 dr.partitionWidths[i] = sum / i;
@@ -93,7 +93,7 @@
         let len = sconf.BASE_MAX_NUM;
         let step = chosenWidth/len;
         let sum = 0;
-        for ( var ii=0; ii<len; ii++ ) {
+        for (var ii=0; ii<len; ii++) {
             sum += ff(dr, ii*step+x_start);
         }
         sum *= step;
@@ -103,14 +103,14 @@
     function calculatesMajorantRect(dr)
     {
         let widestSize = 0;
-        for (let i=0; i<sconf.basesN; i++ ) {
+        for (let i=0; i<sconf.basesN; i++) {
             const width = dr.partitionWidths[i];
             widestSize = Math.max(widestSize, width);
         }
 
         let dv = dr.yVariations;
         let chchosen = dv.chchosen;
-        if ( dv.chchosen.dir > 0 ) {
+        if (dv.chchosen.dir > 0) {
             var left = dv.x_start;
             var right = left + widestSize;
         } else {
@@ -129,10 +129,10 @@
 
     function calculates_inscr8circums(dr)
     {
-        var insYar = sn( 'inscribedY', dr.basePts, [] );
-        var cirYar = sn( 'circumscribedY', dr.basePts, [] );
-        var baseBarsLefts = sn( 'baseBarsLefts', dr.basePts, [] );
-        var baseBarsRights = sn( 'baseBarsRights', dr.basePts, [] );
+        var insYar = sn('inscribedY', dr.basePts, []);
+        var cirYar = sn('circumscribedY', dr.basePts, []);
+        var baseBarsLefts = sn('baseBarsLefts', dr.basePts, []);
+        var baseBarsRights = sn('baseBarsRights', dr.basePts, []);
         insYar.length = 0;
         cirYar.length = 0;
         baseBarsLefts.length = 0;
@@ -144,7 +144,7 @@
         //we make them by adding already known widths
         //to the monotonity interval,
         var bbl = dr.yVariations.x_start;
-        for ( var ib = 0; ib < basesN; ib++ ) {
+        for (var ib = 0; ib < basesN; ib++) {
             baseBarsLefts[ib] = bbl;
             bbl += pwidths[ib];
             baseBarsRights[ib] = bbl;
@@ -155,16 +155,16 @@
             let ff = numModel.curveFun;
             let yRef = dr.yVariations.yRef;
             let dir = dr.yVariations.chchosen.dir;
-            for ( var ib = 0; ib < basesN; ib++ ) {
+            for (var ib = 0; ib < basesN; ib++) {
                 let ymin = ff(dr, baseBarsLefts[ib]);
                 let ymax = ff(dr, baseBarsRights[ib]);
-                if ( dir <=0 ) {
+                if (dir <=0) {
                     let d = ymin;
                     ymin = ymax;
                     ymax = d;
                 }
                 ymax = Math.min(ymax, yRef*0.9999999);
-                if ( ymin>=ymax ) {
+                if (ymin>=ymax) {
                     ////otherwise negative heights
                     ////happens at svg
                     ymin = ymax < 0 ? ymax*1.0000001 : ymax * 0.999999;
@@ -179,7 +179,7 @@
         var pwidths = dr.partitionWidths;
         var areaCir = 0;
         var areaIns = 0;
-        for ( var ib = 0; ib < basesN; ib++ ) {
+        for (var ib = 0; ib < basesN; ib++) {
             let barwidth = pwidths[ib];
             areaCir += barwidth*cirYar[ib];
             areaIns += barwidth*insYar[ib];
@@ -497,4 +497,4 @@
     // \\// auxiliary postprocessing functions
     //***********************************************
 
-}) ();
+})();

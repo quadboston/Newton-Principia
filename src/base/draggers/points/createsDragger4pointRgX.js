@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         ns, $$, sn, haz, sconf, fconf,
         sDomF,
@@ -29,10 +29,10 @@
     }) {
         var pointWrap               = rgX;
         pointWrap.spinnerClsId      = 'point-' +
-            sDomF.toCssIdentifier( rgX.pname ) +
+            sDomF.toCssIdentifier(rgX.pname) +
             '-slider';
         //**rgX must have dragDecorColor' ) || pcolor:
-        pointWrap.dragDecorColor    = haz( rgX, 'dragDecorColor' ) || rgX.pcolor;
+        pointWrap.dragDecorColor    = haz(rgX, 'dragDecorColor') || rgX.pcolor;
         var argc = //= see: **api-pointWrap_2_dragWrap
         {
             pointWrap           : rgX,
@@ -51,7 +51,7 @@
             orientation         : orientation,
             nospinner           : nospinner,
         };
-        medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE( argc );
+        medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE(argc);
 
         // Move handler to the top of the svg so it never
         // disappears when it is overlapped by other elements
@@ -76,22 +76,22 @@
         arg
     ) {
         var pWrap = arg.pointWrap;
-        switch ( arg.down_move_up ) {
+        switch (arg.down_move_up) {
             case 'down':
                 //**rgX optionally can have processDownEvent method:
-                ns.hafb( pWrap, 'processDownEvent' )( arg );
+                ns.hafb(pWrap, 'processDownEvent')(arg);
                 break;
             case 'up' :
                 //**rgX optionally can have processUpEvent method:
-                ns.hafb( pWrap, 'processUpEvent' )(arg);
+                ns.hafb(pWrap, 'processUpEvent')(arg);
                 break;
             case 'move':
 
                 //**rgX can be media mover engine
-                if ( ns.haz( pWrap, 'diagramPanner' ) ) {
+                if (ns.haz(pWrap, 'diagramPanner')) {
                     var css2model = sDomF.out2inn();
-                    var mouseOnSurf = sDomF.outparent2inn( arg.point_on_dragSurf );
-                } else if ( haz(pWrap, 'unscalable' ) ) {
+                    var mouseOnSurf = sDomF.outparent2inn(arg.point_on_dragSurf);
+                } else if (haz(pWrap, 'unscalable')) {
                     ////good for bottom side sliders which must igonre zooming
                     var css2model = sDomF.out2inn() / sconf.originalMod2inn_scale;
                 } else {
@@ -121,4 +121,4 @@
     // \\// attemt to unify dragger for point
     //==========================================
 
-}) ();
+})();

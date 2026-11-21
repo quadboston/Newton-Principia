@@ -2,7 +2,7 @@
 //        one at the time and share common handler.
 //        The active point is elected by "findDraggee" function
 //        which is supplied at initialization time.
-( function () {
+(function () {
     var { ns, sn, d8dp, haz, $$, dpdec, sconf, fconf } = window.b$l.apptree({});
     d8dp.crePointFW_BSLd8d1CHAMBER = crePointFW_BSLd8d1CHAMBER;
 
@@ -96,14 +96,14 @@
             decPoint_parentClasses,
             givenClickEvent,
         };
-        createdFrameworks.push( createdFramework );
+        createdFrameworks.push(createdFramework);
         return {
             pointWrap_2_dragWrap_BSLd8d2PIPE : pointWrap_2_dragWrap,
             updateAllDecPoints,
             givenClickEvent,
         };
 
-        function movesAndFindsHandle( rootEvent )
+        function movesAndFindsHandle(rootEvent)
         {
             //----------------------------------------------------------
             // //\\ possible update for mobile for spinner
@@ -116,7 +116,7 @@
             // \\// possible update for mobile for spinner
             //----------------------------------------------------------
 
-            var point_on_dragSurf = eventPos_2_surfacePos( rootEvent );
+            var point_on_dragSurf = eventPos_2_surfacePos(rootEvent);
 
             //seems wrong: childEvent.preventDefault(); //trying for mobiles
             //forbidden = do_complete_down( childEvent, ev );
@@ -128,17 +128,17 @@
             //very good for debug:
             //console.log( spinnerCandidate.pointWrap.pname  );
 
-            if ( activeDecPoint ) {
+            if (activeDecPoint) {
                 activeDecPoint.style.display = 'none';
             }
-            const decPoint = haz( spinnerCandidate, 'decPoint' );
+            const decPoint = haz(spinnerCandidate, 'decPoint');
 
             //if( spinnerCandidate.pointWrap.pname === 'P' )
             //c cc( spinnerCandidate.pointWrap.pname, decPoint );
 
-            if ( decPoint && spinnerCandidate.pointWrap.pname !== 'diagram-panner' ) {
+            if (decPoint && spinnerCandidate.pointWrap.pname !== 'diagram-panner') {
                 //console.log( decPoint  );
-                if ( spinnerCandidate.pointWrap.hideD8Dpoint ) {
+                if (spinnerCandidate.pointWrap.hideD8Dpoint) {
                     decPoint.style.display = 'none';
                 } else {
                     // show spinner animation and crosshair cursor when hovering
@@ -164,7 +164,7 @@
         //  it does not convert inner-media-position and
         //  does not convert inner-model-position to dom position.
         //The dragHandleDOM must belong the "surface".
-        function handle2dragsurf_pos_default( dragWrap, dragSurface )
+        function handle2dragsurf_pos_default(dragWrap, dragSurface)
         {
             var rr = dragSurface.getBoundingClientRect();
             var hh = dragWrap.dragHandleDOM.getBoundingClientRect();
@@ -181,9 +181,9 @@
 
         function updateAllDecPoints()
         {
-            dragWraps.forEach( function ( dragWrap ) {
+            dragWraps.forEach(function (dragWrap) {
                 var uP = dragWrap.update_decPoint;
-                uP && uP( dragWrap.decPoint, dragSurface, dragWrap.pointWrap,
+                uP && uP(dragWrap.decPoint, dragSurface, dragWrap.pointWrap,
                           //'nonenify'
                 );
             });
@@ -192,7 +192,7 @@
         ///Creates drag handler for each specific point-draggee.
         ///Usually called when each model point is created to be dragged.
         // **api-pointWrap_2_dragWrap
-        function pointWrap_2_dragWrap( api )
+        function pointWrap_2_dragWrap(api)
         {
             //---------------------------------------------
             // //\\ AAA PPP III
@@ -205,7 +205,7 @@
             // //\\ the combination of these switches is too convoluted and
             //      needs thought:
             //==================================================================
-            var addFeaturesToDecPoint= haz( pointWrap, 'addFeaturesToDecPoint');
+            var addFeaturesToDecPoint= haz(pointWrap, 'addFeaturesToDecPoint');
             //thes two ignite
             //addFeaturesToDecPoint.dragDecorColor as a condition to
             //run creates_spinnerOwnCss()
@@ -215,7 +215,7 @@
             // \\// the combination of these switches is too convoluted and
             ////////////////////////////////////////////////////////////////////
 
-            var individual_zindex    = haz( pointWrap, 'individual_zindex' );
+            var individual_zindex    = haz(pointWrap, 'individual_zindex');
             var update_decPoint      = api.update_decPoint;
             var nospinner            = api.nospinner;
             var orientation          = api.orientation;
@@ -230,8 +230,8 @@
             // //\\ api.achieved is an optional parameter
             //      see page footnote comment;
             //==============================================
-            if ( !ns.h( pointWrap, 'achieved' ) ) {
-                pointWrap.achieved = ( achieved || achieved === 0 ) ?
+            if (!ns.h(pointWrap, 'achieved')) {
+                pointWrap.achieved = (achieved || achieved === 0) ?
                                      { achieved : achieved } : { achieved : {} };
             }
             //==============================================
@@ -242,15 +242,15 @@
             // //\\ creates and updates drag overlay: decoration point
             //========================================================
             var decPoint = null;
-            if ( !nospinner ) {
+            if (!nospinner) {
                 update_decPoint = !update_decPoint ?
                     update_decPoint_inn2outparent :
-                    ( update_decPoint === 'update_decPoint_default' ?
+                    (update_decPoint === 'update_decPoint_default' ?
                            update_decPoint_default :
                            update_decPoint
                     );
 
-                if ( spinnerClsId ) {
+                if (spinnerClsId) {
                     //don't do this here: not a d8d concern:
                     //var cssIdLowCase = sDomF.toCssIdentifier(
                     //spinnerClsId );
@@ -296,7 +296,7 @@
                 achieved,
                 createdFramework,
             }
-            dragWraps.push( dragWrap );
+            dragWraps.push(dragWrap);
             //**********************************************
             //not yet implemented, but planned:
             // app engine change since ver 9239,
@@ -306,14 +306,14 @@
 
             //nonefy is needed
             update_decPoint &&
-                update_decPoint( decPoint, dragSurface, pointWrap,
-                                 doCreateDynamicSpinners ? 'nonenify' : 'block' );
+                update_decPoint(decPoint, dragSurface, pointWrap,
+                                 doCreateDynamicSpinners ? 'nonenify' : 'block');
             //=====================================================
             // \\// drag8drop main wrapper over item
             //=====================================================
 
             //explicit setting to avoid property in prototype:
-            sn( 'dragPriority', pointWrap, 0 );
+            sn('dragPriority', pointWrap, 0);
             return; // dragWrap; //todm consider adding this
                     //to pointWrap
 
@@ -346,10 +346,10 @@
                     */
                     arg
                 );
-                if ( arg.down_move_up === 'up' ) {
-                    const decPoint = haz( selectedElement_flag, 'decPoint' );
-                    if ( decPoint ) {
-                        update_decPoint( decPoint,
+                if (arg.down_move_up === 'up') {
+                    const decPoint = haz(selectedElement_flag, 'decPoint');
+                    if (decPoint) {
+                        update_decPoint(decPoint,
                                          dragSurface, selectedElement_flag,
                                          //'nonenfy'
                         );
@@ -367,9 +367,9 @@
             ///recall: spinner is a div with two children divs which are animated
             ///        spinner's master-css is made here:
             ///        bsl/d8d/decorator.css.js::creates _spinnerOwnCss.
-            function update_decPoint_default( decPoint, dragSurface, pointWrap, nonenify )
+            function update_decPoint_default(decPoint, dragSurface, pointWrap, nonenify)
             {
-                var dompos = handle2dragsurf_pos( dragWrap, dragSurface );
+                var dompos = handle2dragsurf_pos(dragWrap, dragSurface);
                 decPoint.style.left = dompos[0] + 'px';
                 decPoint.style.top = dompos[1] + 'px';
             }
@@ -384,15 +384,15 @@
             ///and setting spinner ot this dom-position
             function update_decPoint_inn2outparent(dummy1, dummy2, dummy3, nonenify)
             {
-                var dompos   = inn2outparent.call( pointWrap );
+                var dompos   = inn2outparent.call(pointWrap);
                 //console.log(dompos);
                 decPoint.style.left = dompos[0] + 'px'; // this is just pos of decoration
                 decPoint.style.top  = dompos[1] + 'px'; // not the actual draggable element
 
-                if ( nonenify === 'nonenify' ) {
+                if (nonenify === 'nonenify') {
                     decPoint.style.display = 'none';
-                } else if ( nonenify === 'block' ) {
-                    if ( !pointWrap.ignore_hideD8Dpoint_for_CSS &&
+                } else if (nonenify === 'block') {
+                    if (!pointWrap.ignore_hideD8Dpoint_for_CSS &&
                         pointWrap.hideD8Dpoint
                     ) {
                         decPoint.style.display = 'none';
@@ -417,13 +417,13 @@
             var fw = createdFramework;
             //vital-for-mobile
             //ns.d('fram/w: case="' + down_move_up + '"');
-            switch ( down_move_up )
+            switch (down_move_up)
             {
                 case 'down':
                     //vital-for-mobile
                     //ns.d('down: fw=' + fw.frameworkId );
 
-                    if ( selectedElement_flag ) {
+                    if (selectedElement_flag) {
                         ns.d('bug ' + down_move_up + '"');
                         ////possible bug
                         ////ns.d(ww);
@@ -434,14 +434,14 @@
                             dragWraps,
                             dragSurface
                     );
-                    if ( !selectedElement_flag ) return true;
+                    if (!selectedElement_flag) return true;
 
                     detected_user_interaction_effect && detected_user_interaction_effect();
-                    processMouseDown && processMouseDown( selectedElement_flag.pointWrap );
+                    processMouseDown && processMouseDown(selectedElement_flag.pointWrap);
 
-                    if ( ns.haz( selectedElement_flag, 'decPoint' ) ) {
+                    if (ns.haz(selectedElement_flag, 'decPoint')) {
                         //c cc('grabbing ' + selectedElement_flag.decPoint.className);
-                        $$.$( selectedElement_flag.decPoint ).addClass( 'grabbing' );
+                        $$.$(selectedElement_flag.decPoint).addClass('grabbing');
                     }
 
                     //todM: let it to return !!'forbid drag'
@@ -462,9 +462,9 @@
                     spinnerCandidate = null;
                     //.is throttled: does condence move and up events
 
-                    if ( down_move_up !== 'move' &&
-                        ns.haz( selectedElement_flag, 'decPoint' ) ) {
-                        $$.$( selectedElement_flag.decPoint ).removeClass( 'grabbing' );
+                    if (down_move_up !== 'move' &&
+                        ns.haz(selectedElement_flag, 'decPoint')) {
+                        $$.$(selectedElement_flag.decPoint).removeClass('grabbing');
                     }
 
                     selectedElement_flag.doProcessWrap({
@@ -488,7 +488,7 @@
         ///         which is closest to testPoint.
         ///Algo:    if distance to point_on_dragSurf is "outside" of this par.,
         ///         then dragWrap is not "considered" for drag
-        function findDraggee_default( point_on_dragSurf, dragWraps )
+        function findDraggee_default(point_on_dragSurf, dragWraps)
         {
             ///vital
             /*
@@ -507,13 +507,13 @@
             //.the bigger is priority, the more "choicable"
             //.is the drag Wrap point
             var closestDragPriority = 0;
-            dragWraps.forEach( function ( dragWrap, dix ) {
+            dragWraps.forEach(function (dragWrap, dix) {
                 var pointWrap   = dragWrap.pointWrap;
-                if ( haz( pointWrap, 'hideD8Dpoint' ) ) return;
-                var dompos      = handle2dragsurf_pos(  dragWrap, dragSurface );
-                var tdX         = Math.abs( testMediaX - dompos[0] );
-                var tdY         = Math.abs( testMediaY - dompos[1] );
-                var td          = Math.max( tdX, tdY );
+                if (haz(pointWrap, 'hideD8Dpoint')) return;
+                var dompos      = handle2dragsurf_pos(dragWrap, dragSurface);
+                var tdX         = Math.abs(testMediaX - dompos[0]);
+                var tdY         = Math.abs(testMediaY - dompos[1]);
+                var td          = Math.max(tdX, tdY);
 
                 var distLim = fconf.DRAGGER_TOLERANCE;
                 //console.log('distLim' + distLim); // todo: is this ever called?
@@ -525,10 +525,10 @@
                     distLim < 0 //finds the first existing dragWrap
                 ) {
                     let dpp = pointWrap.dragPriority;
-                    if ( !closestDragWrap ||
+                    if (!closestDragWrap ||
                         (
-                            ( dpp > closestDragPriority ) ||
-                            ( dpp === closestDragPriority && closestTd > td )
+                            (dpp > closestDragPriority) ||
+                            (dpp === closestDragPriority && closestTd > td)
                         )
                     ) {
                         closestDragWrap = dragWrap;
@@ -568,7 +568,7 @@
     ///Returns:  throttled fun with signature signature:
     ///             arg       ordinary arguments' object,
     ///             dragType  "move" or other type,
-    function throttles_eventMove( fun, WAIT )
+    function throttles_eventMove(fun, WAIT)
     {
         var timeout = null;
         var timeStart = null;
@@ -576,15 +576,15 @@
         var dragType_closured;
         return throttledFunction;
 
-        function throttledFunction( arg, dragType )
+        function throttledFunction(arg, dragType)
         {
-            if ( dragType !== 'moving' ) {
+            if (dragType !== 'moving') {
                 ///runs stashed version of "move" function if any
-                if ( timeout !== null ) {
-                    clear8run( !!'doClearTimeout' );
+                if (timeout !== null) {
+                    clear8run(!!'doClearTimeout');
                 }
                 ///immediately runs called non-"move" function
-                fun( arg, dragType );
+                fun(arg, dragType);
                 return;
             }
 
@@ -595,14 +595,14 @@
             timeStart    = timeStart === null ? time : timeStart;
             var elapsed  = time - timeStart;
 
-            if ( elapsed > WAIT ) {
-                clear8run( !!'doClearTimeout' )
+            if (elapsed > WAIT) {
+                clear8run(!!'doClearTimeout')
                 return;
             }
 
             ///initiates or renews "move" type function
-            if ( timeout !== null ) {
-                clearTimeout( timeout );
+            if (timeout !== null) {
+                clearTimeout(timeout);
             }
             timeout = setTimeout(
                 function () {
@@ -615,13 +615,13 @@
             //timeStart = time;
         };
 
-        function clear8run( doClearTimeout )
+        function clear8run(doClearTimeout)
         {
-            doClearTimeout && clearTimeout( timeout );
+            doClearTimeout && clearTimeout(timeout);
             timeout = null;
             timeStart = null;
-            fun( arg_closured, dragType_closured );
+            fun(arg_closured, dragType_closured);
         }
     }
 
-}) ();
+})();

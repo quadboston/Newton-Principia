@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         ns, sn, nsmethods, has, haz, nspaste, eachprop,
         fconf, sconf, ssD, sapp, sDomF, sDomN, capture, rg,
@@ -11,8 +11,8 @@
         },
     });
     sDomF.getFixedColor = getFixedColor;
-    var dataFiles = sn( 'dataFiles', ssD, [] );
-    var dataFiles_id2content = sn( 'dataFiles_id2content', ssD );
+    var dataFiles = sn('dataFiles', ssD, []);
+    var dataFiles_id2content = sn('dataFiles_id2content', ssD);
     return;
 
 
@@ -25,12 +25,12 @@
     ) {
         var allEssays__str = "";
         var lemmaConfig = fconf.sappId2lemmaDef[ fconf.sappId ];
-        contentsList_2_essaions_2_exegs( lemmaConfig );
+        contentsList_2_essaions_2_exegs(lemmaConfig);
         return;
 
         ///This ajax-load takes contents-files, concatenates them, and calls
         ///final subroutine, subessays2subexegs_8_doProcessSubexegs.
-        function contentsList_2_essaions_2_exegs( lemmaConfig )
+        function contentsList_2_essaions_2_exegs(lemmaConfig)
         {
             var lemma_bookfiles_list = lemmaConfig[ 'contents-list' ];
             //=========================================================
@@ -44,9 +44,9 @@
                 ///                 later on extracts "data-id"=match[1]
                 var matchRe = /^data\/([^\.]+)./;
                 var res_matchRe = /\/resources\/([^\/]+)$/;  // ends with /resources/<file-name>
-                lemma_bookfiles_list.forEach( function ( listItem ) {
-                    if ( !listItem.match( /^\s*$/ ) ) {
-                        var match = listItem.match( matchRe );
+                lemma_bookfiles_list.forEach(function (listItem) {
+                    if (!listItem.match(/^\s*$/)) {
+                        var match = listItem.match(matchRe);
                         var responseType = match ? 'arraybuffer' : 'text';
                         lbf_forAjax.push({
                               id: listItem,
@@ -63,24 +63,24 @@
                 //------------------------------------
                 // //\\  making the load
                 //------------------------------------
-                nsmethods.loadAjaxFiles( lbf_forAjax, function ( loadedFilesById_II ) {
-                        lbf_forAjax.forEach( function ( listItem ) {
+                nsmethods.loadAjaxFiles(lbf_forAjax, function (loadedFilesById_II) {
+                        lbf_forAjax.forEach(function (listItem) {
 
                             //do collect resources somewhere elese, like for PIXI plugin ...
-                            if ( listItem.id.match( res_matchRe ) ) return;
+                            if (listItem.id.match(res_matchRe)) return;
                             //patch
                             //todm ... does double job, load resources only once ...
 
-                            var match = listItem.id.match( matchRe );
-                            if ( match ) {
-                                dataFiles.push( loadedFilesById_II[ listItem.id ] );
+                            var match = listItem.id.match(matchRe);
+                            if (match) {
+                                dataFiles.push(loadedFilesById_II[ listItem.id ]);
                                 dataFiles_id2content[ match[1] ] =
                                     loadedFilesById_II[ listItem.id ];
                             } else {
                                 allEssays__str += loadedFilesById_II[ listItem.id ].text;
                             }
                         });
-                        subessays2subexegs_8_doProcessSubexegs( lemmaConfig );
+                        subessays2subexegs_8_doProcessSubexegs(lemmaConfig);
                     }
                 );
                 //------------------------------------
@@ -93,19 +93,19 @@
         //====================================================
         // //\\ on content Files Load Success
         //====================================================
-        function subessays2subexegs_8_doProcessSubexegs( lemmaConfig )
+        function subessays2subexegs_8_doProcessSubexegs(lemmaConfig)
         {
             var SUBESSAYS_DIVIDOR = /\*::\*/g;
-            var subessays = allEssays__str.split( SUBESSAYS_DIVIDOR );
+            var subessays = allEssays__str.split(SUBESSAYS_DIVIDOR);
 
             //=========================================================
             // //\\ splits text to subessays
             //      and prebuilds esssay-placeholders and indexes them
             //=========================================================
-            subessays.forEach( function ( singleSubessay ) {
+            subessays.forEach(function (singleSubessay) {
 
                 //removes subessays which are empty text
-                if ( singleSubessay.replace( /(\s|\n\r)*/g, '').length === 0 ) return;
+                if (singleSubessay.replace(/(\s|\n\r)*/g, '').length === 0) return;
 
                 //--------------------------------------
                 // //\\ splits the singleSubessay ...
@@ -121,10 +121,10 @@
                 //https://stackoverflow.com/questions/2429146/
                 //      javascript-regular-expression-single-space-character
                 var ess_instructions =
-                        singleSubessay.match( /^([^\|]*)\|([^\s]*)\s*\n([\s\S]*)$/);
+                        singleSubessay.match(/^([^\|]*)\|([^\s]*)\s*\n([\s\S]*)$/);
 
                 //ess_instructions[3] is text itself
-                if ( ess_instructions && ess_instructions[3] ) {
+                if (ess_instructions && ess_instructions[3]) {
                     var logic_phase_id = ess_instructions[1];
                     var aspect_id   = ess_instructions[2];
                     var precontent  = ess_instructions[3];
@@ -133,9 +133,9 @@
                         return;
                     }
                     var wIx         = precontent.indexOf("*..*");
-                    if ( wIx > -1 ) {
+                    if (wIx > -1) {
                         var wHeader = precontent.substring(0, wIx-1);
-                        var bodyscript = precontent.substring( wIx+4 );
+                        var bodyscript = precontent.substring(wIx+4);
                     } else {
                         var bodyscript  = ess_instructions[3];
                     }
@@ -143,23 +143,23 @@
                     //converts essayion's-header-script to header-js-object,
                     //will be attached to essay-section only at the very end of this loop,
                     //assumes if wHeader exists, it must be valid JSON,
-                    var essayHeader = wHeader ? JSON.parse( wHeader ) : {};
+                    var essayHeader = wHeader ? JSON.parse(wHeader) : {};
 
                     //===============================================================
                     // //\\ sets initial amode
                     //===============================================================
-                    sn( logic_phase_id, exegs );
-                    var aspExeg     = sn( aspect_id, exegs[ logic_phase_id ] );
+                    sn(logic_phase_id, exegs);
+                    var aspExeg     = sn(aspect_id, exegs[ logic_phase_id ]);
 
                     //group of "objectivied"-subessays === group of subexegs,
                     //subexeg is to be further structured,
-                    var subexegs    = sn( 'subexegs', aspExeg, [] );
+                    var subexegs    = sn('subexegs', aspExeg, []);
 
                     var subexegsIx  = subexegs.length;
 
                     //..................................................
                     //normalizes subessay id:
-                    sn( 'subessay', essayHeader, subexegsIx + '' );
+                    sn('subessay', essayHeader, subexegsIx + '');
                     //todom migrate app to this improvement:
                     //essayHeader.subessayId = essayHeader.subessay;
                     //..................................................
@@ -169,16 +169,16 @@
                     //      to "default" or to the first essay if no "default"
                     //----------------------------------------------------------------
                     if (logic_phase_id === fconf.logic_phaseId) {
-                        var ami = haz( sapp, 'amodel_initial' );
-                        if ( !ami ) {
-                            var ami = sn( 'amodel_initial', sapp, {});
-                            var logic_phaseId  = haz( fconf, 'logic_phaseId' );
-                            var aspectId    = haz( fconf, 'aspectId' );
-                            if ( logic_phaseId && aspectId ) {
-                                var subessayId  = haz( fconf, 'subessayId' );
-                                if ( !subessayId ) {
+                        var ami = haz(sapp, 'amodel_initial');
+                        if (!ami) {
+                            var ami = sn('amodel_initial', sapp, {});
+                            var logic_phaseId  = haz(fconf, 'logic_phaseId');
+                            var aspectId    = haz(fconf, 'aspectId');
+                            if (logic_phaseId && aspectId) {
+                                var subessayId  = haz(fconf, 'subessayId');
+                                if (!subessayId) {
                                     subessayId = ns.getSubessayIdFromURL(); // returns 0 if none
-                                    if ( !subessayId) {
+                                    if (!subessayId) {
                                         subessayId = essayHeader.subessay;
                                     }
                                 }
@@ -190,7 +190,7 @@
                         //**********************************
                         //at least from now, amode is set
                         //**********************************
-                        Object.assign( amode, ami );
+                        Object.assign(amode, ami);
                     }
                     //----------------------------------------------------------------
                     // \\// sets sapp.amodel_initial
@@ -203,10 +203,10 @@
                     //---------------------------------------------------------------
                     //      essayHeader, 'fixed-colors' to topicColors_repo
                     //      for entire lemma
-                    var wwfc = haz( essayHeader, 'fixed-colors' );
-                    if ( wwfc ) {
-                        Object.keys( wwfc ).forEach( topicKey => {
-                            var tk = nsmethods.toCssIdentifier( topicKey );
+                    var wwfc = haz(essayHeader, 'fixed-colors');
+                    if (wwfc) {
+                        Object.keys(wwfc).forEach(topicKey => {
+                            var tk = nsmethods.toCssIdentifier(topicKey);
                             topicColors_repo[ tk ] = wwfc[ topicKey ];
                             topicColors_repo_camel2col[ topicKey ]= topicColors_repo[ tk ];
                         });
@@ -221,23 +221,23 @@
                     //      but, before this, we extract captured states
                     //---------------------------------------------------------
                     var CAPTURE_POSITION_INDICATOR = '*:::*:::*';
-                    var capturePos = bodyscript.indexOf( CAPTURE_POSITION_INDICATOR );
-                    if ( capturePos > -1 ) {
+                    var capturePos = bodyscript.indexOf(CAPTURE_POSITION_INDICATOR);
+                    if (capturePos > -1) {
                         ////captures do exist ... split them from text
                         var captureTxt = bodyscript.substring(
-                            capturePos + CAPTURE_POSITION_INDICATOR.length );
-                        bodyscript = bodyscript.substring( 0, capturePos );
-                        nspaste( capture, JSON.parse( captureTxt ) );
+                            capturePos + CAPTURE_POSITION_INDICATOR.length);
+                        bodyscript = bodyscript.substring(0, capturePos);
+                        nspaste(capture, JSON.parse(captureTxt));
                     }
                     //---------------------------------------------------------
                     // //\\ digesting app-mode to lemma conditions
                     //---------------------------------------------------------
-                    var wwCond = haz( capture, "__amode2rgstate" );
-                    if ( wwCond ) {
+                    var wwCond = haz(capture, "__amode2rgstate");
+                    if (wwCond) {
                         ssD.__amode2rgstate = wwCond;
                         delete capture.__amode2rgstate;
                     } else {
-                        sn( '__amode2rgstate', ssD, [] );
+                        sn('__amode2rgstate', ssD, []);
                     }
                     //---------------------------------------------------------
                     // \\// digesting app-mode to lemma conditions
@@ -253,15 +253,15 @@
                         essayHeader,
                         //subexegsIx,
                     };
-                    var subessay2subexeg = sn( 'subessay2subexeg', aspExeg );
+                    var subessay2subexeg = sn('subessay2subexeg', aspExeg);
 
                     subessay2subexeg[ essayHeader.subessay ] = subexeg;
 
                     //good patch ... should be legalized
-                    var subessayName2subexegIx = sn( 'subessayName2subexegIx', aspExeg );
+                    var subessayName2subexegIx = sn('subessayName2subexegIx', aspExeg);
                     subessayName2subexegIx[ essayHeader.subessay ] = subexegsIx;
 
-                    subexegs.push( subexeg );
+                    subexegs.push(subexeg);
                     //---------------------------------------------------------
                     // \\// does index bodyscript and essayHeader
                     //---------------------------------------------------------
@@ -276,10 +276,10 @@
             //---------------------------------------------
             ///     letting other therorions to script
             ///     this aspect_id in book's text
-            eachprop( exegs, (exeg, exeg_id) => {
-                eachprop( exeg, (aspect, asp_id) => {
-                    eachprop( exegs, (exegToFill, fill_id) => {
-                        if ( has( exegToFill, asp_id ) ) return;
+            eachprop(exegs, (exeg, exeg_id) => {
+                eachprop(exeg, (aspect, asp_id) => {
+                    eachprop(exegs, (exegToFill, fill_id) => {
+                        if (has(exegToFill, asp_id)) return;
                         let aspExeg = exegToFill[asp_id] = {};
                         var subexegsIx  = 0;
                         var essayHeader = { subessay : subexegsIx + '' };
@@ -288,9 +288,9 @@
                             bodyscript : '',
                             essayHeader,
                         };
-                        var subessay2subexeg = sn( 'subessay2subexeg', aspExeg );
+                        var subessay2subexeg = sn('subessay2subexeg', aspExeg);
                         subessay2subexeg[ essayHeader.subessay ] = subexeg;
-                        var subessayName2subexegIx = sn( 'subessayName2subexegIx', aspExeg );
+                        var subessayName2subexegIx = sn('subessayName2subexegIx', aspExeg);
                         subessayName2subexegIx[ essayHeader.subessay ] = subexegsIx;
                         aspExeg.subexegs = [ subexeg ];
                     });
@@ -308,19 +308,19 @@
             //===========================================================
             sconf.asp8theor_menus = {};
 
-            eachprop( exegs, ( exAspects, logic_phase_id ) => {
-                eachprop( exAspects, ( exAspect, aspect_id ) => {
-                    exAspect.subexegs.forEach( ( subex, subexId ) => {
+            eachprop(exegs, (exAspects, logic_phase_id) => {
+                eachprop(exAspects, (exAspect, aspect_id) => {
+                    exAspect.subexegs.forEach((subex, subexId) => {
                         var essayHeader = subex.essayHeader;
-                        doesAddStudyModelIfNew( essayHeader, subex );
+                        doesAddStudyModelIfNew(essayHeader, subex);
 
                         ///we need menu and classes only once per theor-aspect pair
-                        if ( subexId === 0 ) {
+                        if (subexId === 0) {
 
                             //.not elegant: should be in "logic_phase" loop, not in child loop,
-                            setMenu( logic_phase_id, 'logic_phase', essayHeader );
+                            setMenu(logic_phase_id, 'logic_phase', essayHeader);
 
-                            setMenu( aspect_id, 'aspect', essayHeader );
+                            setMenu(aspect_id, 'aspect', essayHeader);
                             //******************************************************************
                             // //\\ collects decPoint_parentClasses for d8dp.createFramework
                             //      media-drag-decoration-enabled-aspect
@@ -336,11 +336,11 @@
                             //
                             //used in: d8dp.createFramework({
                             //         decPoint_parentClasses : fconf.dragPointDecoratorClasses,
-                            var wDecArr = sn( 'dragPointDecoratorClasses', fconf, [] );
+                            var wDecArr = sn('dragPointDecoratorClasses', fconf, []);
 
                             var wDecorAspect = 'aspect--' + aspect_id;
-                            if ( wDecArr.indexOf( wDecorAspect ) < 0 ) {
-                                wDecArr.push( wDecorAspect );
+                            if (wDecArr.indexOf(wDecorAspect) < 0) {
+                                wDecArr.push(wDecorAspect);
                             }
                             //******************************************************************
                             // \\// collects decPoint_parentClasses for d8dp.createFramework
@@ -354,7 +354,7 @@
                         ///for some reason, essay-section memorizes parent-header if
                         ///parent is an effective default
                         ///remembers default for easy access
-                        if ( haz( essayHeader, "default" ) === '1' ) {
+                        if (haz(essayHeader, "default") === '1') {
                             //this is an alternative "if" which must work too
                             //if(
                             //    sapp.amodel_initial.logic_phase === logic_phase_id &&
@@ -383,7 +383,7 @@
             //=======================================
             // //\\ parses and sets menu
             //=======================================
-            function setMenu( leafId, mcat_id, essayHeader )
+            function setMenu(leafId, mcat_id, essayHeader)
             {
                 //=======================================
                 // //\\ how submenu built
@@ -420,16 +420,16 @@
                         "default" : leafId,
                         duplicates : {}  //todm: this repeats parts of "exegs" ... proliferation
                      };
-                if ( !men.duplicates[ leafId ] ) {
+                if (!men.duplicates[ leafId ]) {
                     var menuItem = { id:leafId };
                     men.duplicates[ leafId ] = menuItem;
-                    men.list.push( menuItem );
-                    if ( mcat_id === 'logic_phase' ) {
+                    men.list.push(menuItem);
+                    if (mcat_id === 'logic_phase') {
                         sDomN.logic_phaseMenuMembersCount =
-                            ( sDomN.logic_phaseMenuMembersCount || 0 ) + 1;
-                    } else if ( mcat_id === 'aspect' ) {
+                            (sDomN.logic_phaseMenuMembersCount || 0) + 1;
+                    } else if (mcat_id === 'aspect') {
                         sDomN.aspectionMenuMembersCount =
-                            ( sDomN.aspectionMenuMembersCount || 0 ) + 1;
+                            (sDomN.aspectionMenuMembersCount || 0) + 1;
                     }
                 }
 
@@ -439,9 +439,9 @@
                 //     for example for claim/english header with default === "1"
                 //         sconf.asp8theor_menus[ 'aspect' ].default='english';
                 //         sconf.asp8theor_menus[ 'logic_phase' ].default='claim';
-                if ( has( sapp, 'amodel_initial' ) ) {
+                if (has(sapp, 'amodel_initial')) {
                     var ww = sapp.amodel_initial;
-                    if ( ww.logic_phase === leafId || ww.aspect === leafId ) {
+                    if (ww.logic_phase === leafId || ww.aspect === leafId) {
                         men[ "default" ] = leafId;
                     }
                 }
@@ -450,11 +450,11 @@
                 //------------------------------------------------------------
 
                 ///at least one caption should exist among twin aspects
-                if ( haz( essayHeader, 'menuCaption' ) && mcat_id === 'aspect' ) {
+                if (haz(essayHeader, 'menuCaption') && mcat_id === 'aspect') {
                     men.duplicates[ leafId ].caption = essayHeader.menuCaption;
                     men.duplicates[ leafId ].studylab = essayHeader.studylab;
                 }
-                if ( essayHeader.logic_phaseCaption && mcat_id === 'logic_phase' ) {
+                if (essayHeader.logic_phaseCaption && mcat_id === 'logic_phase') {
                     men.duplicates[ leafId ].caption = essayHeader.logic_phaseCaption;
                 }
             }
@@ -470,13 +470,13 @@
             //imgId is === "empty" or "path-to-image-in-img-folder":
             //      see this below: stdMod.imgRk.srcParsed = src,
             //******************************************************
-            function doesAddStudyModelIfNew( essayHeader, subex ) {
+            function doesAddStudyModelIfNew(essayHeader, subex) {
                 stdMod.imgRk.cssId = 'bg0';
                 //*************************************************************
                 //first new-s ubmodel header must have img if s ubmodel needs it,
                 //      bg image is per s ubmodel
                 //*************************************************************
-                if ( !userOptions.usingBackgroundImage() ) {
+                if (!userOptions.usingBackgroundImage()) {
                     //essayHeader.mediaBgImage = null; //disables it for definitness
                     rg.detected_user_interaction_effect_DONE = true;
                     //ccc( 'Remodel: Landing V: ' + rg.detected_user_interaction_effect_DONE );
@@ -484,17 +484,17 @@
                     stdMod.imgRk.hasImage = false;
                     return;
                 }
-                if ( haz( stdMod.imgRk, 'imgFoundInText' ) ) return;
+                if (haz(stdMod.imgRk, 'imgFoundInText')) return;
 
                 // //\\ establishes image source file name
-                var headerHasImage = has( essayHeader, 'mediaBgImage' );
-                var imgInSconf = haz( sconf, 'mediaBgImage' );
-                if ( headerHasImage ) {
+                var headerHasImage = has(essayHeader, 'mediaBgImage');
+                var imgInSconf = haz(sconf, 'mediaBgImage');
+                if (headerHasImage) {
                     let imgInHeader = essayHeader.mediaBgImage;
                     var imgId = imgInHeader === null || imgInHeader === '' ?
                                 '*empty*' : ''+imgInHeader;
                     stdMod.imgRk.imgFoundInText = true;
-                } else if ( imgInSconf )  {
+                } else if (imgInSconf)  {
                     var imgId = imgInSconf;
                 } else {
                     imgId = '*empty*';
@@ -538,24 +538,24 @@
      */
     function getFixedColor(topicOrArray, makeOpacity1)
     {
-        if ( typeof topicOrArray === 'string' ) {
+        if (typeof topicOrArray === 'string') {
             //returns blank, ' ' if topicOrArray is falsy
-            var cleared = nsmethods.toCssIdentifier( topicOrArray || ' ' );
+            var cleared = nsmethods.toCssIdentifier(topicOrArray || ' ');
 
             //returns false if cleared === ' ' and not a key in fixed-colors ...
-            var colorArray = haz( topicColors_repo, cleared );
+            var colorArray = haz(topicColors_repo, cleared);
         } else {
             var colorArray = topicOrArray;
         }
         ///returns "rgba(0,0,0,1)" if color is falsy
-        if ( colorArray && makeOpacity1 ) {
+        if (colorArray && makeOpacity1) {
             var rgba = ns.arr2rgba(
                 [ colorArray[0], colorArray[1], colorArray[2], 1 ]
             );
         } else {
-            var rgba = ns.arr2rgba( colorArray );
+            var rgba = ns.arr2rgba(colorArray);
         }
         return rgba;
     }
 
-}) ();
+})();

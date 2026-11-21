@@ -1,12 +1,12 @@
-( function () {
+(function () {
     var { sn, rg, stdMod, sconf, ssD, sData, }
         = window.b$l.apptree({ stdModExportList : {
             builds_orbit_data_graph,
             qIndexFromPointPToGraphIndex,
         },
     });
-    const graphArray = sn( 'graphArray', stdMod, [] );
-    const qIndexToOrbit = sn( 'qIndexToOrbit', ssD, [] );
+    const graphArray = sn('graphArray', stdMod, []);
+    const qIndexToOrbit = sn('qIndexToOrbit', ssD, []);
     return;
 
 
@@ -26,7 +26,7 @@
         const DATA_GRAPH_STEPS = sconf.DATA_GRAPH_STEPS;
         const IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX =
             sconf.IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX;
-        const dataPeriod = Math.max( 1, Math.floor( Q_STEPS/DATA_GRAPH_STEPS ) );
+        const dataPeriod = Math.max(1, Math.floor(Q_STEPS/DATA_GRAPH_STEPS));
         stdMod.graph.graphArray = graphArray;
         graphArray.length = 0;
         ///prepares averages and placeholder for data graphs
@@ -43,13 +43,13 @@
             ssD.xMaxFixedGraphAxis = 0;
         }
         //var fullPath = qIndexToOrbit[ gend ].pathAtQ;
-        for ( let qix=gstart; qix<=gend; qix++ ) {
+        for (let qix=gstart; qix<=gend; qix++) {
             const bP = qIndexToOrbit[ qix ];
             const actualForce = bP.actualForce;
             const estimatedForce = bP.estimatedForce;
             const estimatedForceLargest = bP.estimatedForceLargest;
 
-            if ( !(qix%dataPeriod) || qix===Q_STEPS ) {
+            if (!(qix%dataPeriod) || qix===Q_STEPS) {
                 actualForceMax = Math.max(Math.abs(actualForce), actualForceMax);
                 estimatedForceMax = Math.max(Math.abs(estimatedForce), estimatedForceMax);
                 estimatedForceLargestMax = Math.max(
@@ -67,13 +67,13 @@
                     rr : bP.rr,
                     x : sData.PLOT_BY_PATH ? bP.pathAtQ : bP.r.abs,
                 };
-                graphArray.push( graphColumn );
+                graphArray.push(graphColumn);
 
                 const x = graphColumn.x;
                 xMinGraphAxis = Math.min(x, xMinGraphAxis);
                 xMaxGraphAxis = Math.max(x, xMaxGraphAxis);
             }
-            bP.gix = Math.max(0,graphArray.length-1);
+            bP.gix = Math.max(0, graphArray.length-1);
         }
         if (setMaxGraphValues) {
             ssD.xMinFixedGraphAxis = xMinGraphAxis;
@@ -93,7 +93,7 @@
         const estimatedForceScale = (IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX ?
             actualForceMax : estimatedForceMax);
         var arrLen = graphArray.length;
-        for ( var gix = 0; gix<arrLen; gix++ ) {
+        for (var gix = 0; gix<arrLen; gix++) {
             const ga = graphArray[ gix ];
             const qix = ga.qix;
             const bP = qIndexToOrbit[ qix ];
@@ -143,4 +143,4 @@
         // \\// resets graphArray
         //------------------------------------------
     }
-}) ();
+})();

@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         ns, sn, $$, nssvg, has, haz, mat,
         amode, sconf, sDomF, sDomN, ssD, ssF, topicColors_repo,
@@ -39,7 +39,7 @@
     {
         branches2svg();
         createMedia0updateMediaAUX();
-        if ( ssF.mediaModelInitialized ) {
+        if (ssF.mediaModelInitialized) {
             stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
         }
         ssF.upcreate_mainLegend(); //placed into "slider"
@@ -69,7 +69,7 @@
             fill : 'transparent',
             'stroke-width':1,
         });
-        $$.$(rg.alpha.angleSvg).cls( 'tp-angle-alpha tofill' );
+        $$.$(rg.alpha.angleSvg).cls('tp-angle-alpha tofill');
 
         rg.beta.angleSvg = nssvg.ellipseSector({
             stepsCount : 20,
@@ -93,7 +93,7 @@
             //a, b, t0, t1
         });
         //static angle
-        $$.$(rg.beta.angleSvg).cls( 'tp-angle-beta tofill' );
+        $$.$(rg.beta.angleSvg).cls('tp-angle-beta tofill');
 
         /*
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -121,9 +121,9 @@
         // //\\ applied angles
         //      , algorithm core-angles
         // //\\ applied alpha
-        var CM = mat.p1_to_p2(rg.C.pos, rg.M.pos );
+        var CM = mat.p1_to_p2(rg.C.pos, rg.M.pos);
         var cosAlphaS = CM.unitVec[0];
-        var alphaS = Math.acos( cosAlphaS ) * ( CM.unitVec[1] < 0 ? -1 : 1 );
+        var alphaS = Math.acos(cosAlphaS) * (CM.unitVec[1] < 0 ? -1 : 1);
         rg.alpha.appliedAngleSvg = nssvg.ellipseSector({
             stepsCount : 20,
             x0 : rg.C.medpos[0],
@@ -141,12 +141,12 @@
             'stroke-width':1,
         });
         //MCD
-        $$.$(rg.alpha.appliedAngleSvg).cls( 'tp-angle-alpha-core tofill' );
+        $$.$(rg.alpha.appliedAngleSvg).cls('tp-angle-alpha-core tofill');
         // \\// applied alpha
         // //\\ applied beta
-        var BM = mat.p1_to_p2(rg.B.pos, rg.M.pos );
+        var BM = mat.p1_to_p2(rg.B.pos, rg.M.pos);
         var cosBetaS = BM.unitVec[0];
-        var betaS = Math.acos( cosBetaS ) * ( BM.unitVec[1] < 0 ? -1 : 1 );
+        var betaS = Math.acos(cosBetaS) * (BM.unitVec[1] < 0 ? -1 : 1);
         rg.beta.appliedAngleSvg = nssvg.ellipseSector({
             stepsCount : 20,
             x0 : rg.B.medpos[0],
@@ -162,7 +162,7 @@
             'stroke-width':1,
         });
         //MBD
-        $$.$(rg.beta.appliedAngleSvg).cls( 'tp-angle-beta-core tofill' );
+        $$.$(rg.beta.appliedAngleSvg).cls('tp-angle-beta-core tofill');
         // \\// applied alpha
         // \\// applied angles
         //---------------------------------------
@@ -181,17 +181,17 @@
         const bro = ssD.branchesObject;
         const brs = bro.branches
         const bN = brs.length;
-        for ( var ib = 0; ib < bN; ib++ ) {
+        for (var ib = 0; ib < bN; ib++) {
             const br = brs[ ib ];
-            if ( has( br, 'svgel' ) ) {
+            if (has(br, 'svgel')) {
                 nssvg.branch2svg(br);
             } else {
                 ////makes ellipse first to put point over it later
                 br.parent = stdMod.mmedia;
                 br['stroke-width'] = 3;
-                br.stroke = ns.arr2rgba( topicColors_repo[ "ellipse" ] );
+                br.stroke = ns.arr2rgba(topicColors_repo[ "ellipse" ]);
                 br.svgel = nssvg.branch2svg(br);
-                $$.$(br.svgel).cls( 'tp-ellipse tostroke thickable' );
+                $$.$(br.svgel).cls('tp-ellipse tostroke thickable');
             }
         }
     }

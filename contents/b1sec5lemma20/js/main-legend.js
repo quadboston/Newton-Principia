@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         $$, mat,
         sconf, sDomF, sDomN, ssD, ssF, sData,
@@ -17,8 +17,8 @@
     ///from full-app/dom/...
     function create_digital_legend()
     {
-        var mlegend = toreg( 'main-legend' )();
-        doCreateTable_proof( mlegend );
+        var mlegend = toreg('main-legend')();
+        doCreateTable_proof(mlegend);
     }
 
     //=========================================
@@ -35,11 +35,11 @@
         //var wwT=rg.T.pos;
 
         //todm this is a patch: do use Pr/Pt
-        var PT = Math.abs( rg.T.value ) < 1e-20 ? 1 : rg.T.value;
+        var PT = Math.abs(rg.T.value) < 1e-20 ? 1 : rg.T.value;
 
         var wwR=rg.R.pos;
         var wwP=rg.P.pos;
-        var PR = mat.unitVector( [wwR[0]-wwP[0], wwR[1]-wwP[1] ] ).abs;
+        var PR = mat.unitVector([wwR[0]-wwP[0], wwR[1]-wwP[1] ]).abs;
         var PR_PT = (PR/PT);
         ww[ 'PT' ].innerHTML = PT.toFixed(2);
         ww[ 'PR' ].innerHTML = PR.toFixed(2);
@@ -58,8 +58,8 @@
         mlegend.tb = mlegend.tb || {};
         var tb = mlegend.tb.proof = $$
             .c('table')
-            .cls( 'main-legend proof' )
-            .to( stdMod.legendRoot$ )
+            .cls('main-legend proof')
+            .to(stdMod.legendRoot$)
             ();
 
         //===================
@@ -67,9 +67,9 @@
         //===================
         var row = $$.c('tr')
             .to(tb)();
-        makeCl( row, 'PR', 'PR', 'key-triangle' );
-        makeCl( row, 'PT', 'PT', 'key-triangle' );
-        makeCl( row, 'PR-PT', 'PR : PT', 'key-triangle' );
+        makeCl(row, 'PR', 'PR', 'key-triangle');
+        makeCl(row, 'PT', 'PT', 'key-triangle');
+        makeCl(row, 'PR-PT', 'PR : PT', 'key-triangle');
         //===================
         // \\//
         //===================
@@ -85,15 +85,15 @@
     ///Effect: represents magnitude in html-table-row in
     ///        form "mname = mvalue",
     ///Input:  mname = magnitude name
-    function makeCl( row, mname, mcaption, cssName )
+    function makeCl(row, mname, mcaption, cssName)
     {
         //todm: ?no need for extra function argument:
         //      tp-cssName may be taken from "rg.Elem point wrap" ...
-        cssName = sDomF.toCssIdentifier( cssName || mname );
+        cssName = sDomF.toCssIdentifier(cssName || mname);
 
-        if ( mcaption !== ']no caption[' ) {
+        if (mcaption !== ']no caption[') {
             var c$ = $$.c('td')
-                       .html( mcaption||mname )
+                       .html(mcaption||mname)
                        .addClass('tostroke tocolor tobold tp-' + cssName)
                        .to(row);
         }
@@ -106,4 +106,4 @@
         return c$;
     }
 
-}) ();
+})();

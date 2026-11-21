@@ -1,16 +1,16 @@
-( function () {
+(function () {
     const ns	  = window.b$l;
     const has     = ns.h;
     const haz     = ns.haz;
     const $$      = ns.$$;
     const svgNS   = ns.svgNS;
     const sn      = ns.sn;
-    const nssvg   = sn( 'svg' );
-    const mat     = sn( 'mat' );
+    const nssvg   = sn('svg');
+    const mat     = sn('mat');
 
-    const fapp      = sn('fapp' );
+    const fapp      = sn('fapp');
     var ss          = sn('ss', fapp);
-    var ssF         = sn('ssFunctions',ss);
+    var ssF         = sn('ssFunctions', ss);
 
     ///Updates svg-shape. Svg-shape creates before update if arg.svgel
     ///is missed in arg.
@@ -21,29 +21,29 @@
     ///     arg.style
     ///     and other attributes in form "key"-"value"
     ///Returns new or updated svgel - svg element
-    nssvg.u = function ( arg )
+    nssvg.u = function (arg)
     {
-        var svgel = haz( arg, 'svgel' );
+        var svgel = haz(arg, 'svgel');
         ///protects from repeating construction
-        if ( !svgel ) {
-            var svgel = document.createElementNS( svgNS, arg.type );
+        if (!svgel) {
+            var svgel = document.createElementNS(svgNS, arg.type);
             ///enables freedom of attachment
-            if ( has( arg, 'parent' ) ) {
-                arg.parent.appendChild( svgel );
+            if (has(arg, 'parent')) {
+                arg.parent.appendChild(svgel);
             }
             ///if registry placeholder, rgX, is provided to store svgel,
             ///then do it
-            if ( haz( arg, 'rgX' ) ) {
+            if (haz(arg, 'rgX')) {
                 arg.rgX.svgel = svgel;
-                arg.rgX.svgel$ = $$.$( svgel );
+                arg.rgX.svgel$ = $$.$(svgel);
             }
-        } else if ( !svgel.parentNode && has( arg, 'parent' ) ) {
+        } else if (!svgel.parentNode && has(arg, 'parent')) {
             //todm perhaps this condition is non relilable:
             //parent node can exist, but be removed and svgel will be "lost"
             //as similar case happened with graph's tool line:
-            arg.parent.appendChild( svgel );
+            arg.parent.appendChild(svgel);
         }
-        Object.keys( arg ).forEach( function ( key ) {
+        Object.keys(arg).forEach(function (key) {
 
             //--------------------------------------
             // //\\ ignores 'parent' and 'type'
@@ -51,7 +51,7 @@
             //      and leaves the loop
             //--------------------------------------
             //.ignores these properties
-            if ( key === 'parent' || key === 'type' ||
+            if (key === 'parent' || key === 'type' ||
                 key === 'text' || key === 'rgX' ||
                 key === 'svgel' || //bug fixed, May 5, 2021
                 key === 'tpclass' //bug patch, May 5, 2021 ... todm wrong design
@@ -63,11 +63,11 @@
             //-------------------------------------
             // //\\ sets syle properties and leaves
             //-------------------------------------
-            if ( key === 'style' ) {
+            if (key === 'style') {
                 var style = arg.style;
-                if ( style ) {
+                if (style) {
                     var stl = svgel.style;
-                    Object.keys( style ).forEach( function ( key ) {
+                    Object.keys(style).forEach(function (key) {
                         stl[ key ] = style[ key ];
                     });
                 }
@@ -81,7 +81,7 @@
             // //\\ sets remaining attributes
             //-------------------------------------
             var val = arg[ key ];
-            if ( val || val === 0 ) {
+            if (val || val === 0) {
 
                 //valuable for d e b u g
                 //if( typeof val === 'string' && val.indexOf('NaN')> 0 )
@@ -90,8 +90,8 @@
                 // //\\ adds a piece of sugar into CSS:
                 //      removes excessive digits from CSS:
                 //      assuming that scale of svg will be > 100px
-                if ( arg.type === 'circle' ) {
-                    if ( ( key==='cx' || key==='cy' || key==='r' ) &&
+                if (arg.type === 'circle') {
+                    if ((key==='cx' || key==='cy' || key==='r') &&
                         typeof val === 'number'
                     ) {
                         val = val.toFixed(3);
@@ -112,7 +112,7 @@
                 //if( arg.type === 'text' && key==='class' ){
                 //    ccc( 'ns-svg: class='+val, svgel );
                 //}
-                svgel.setAttributeNS( null, key, val );
+                svgel.setAttributeNS(null, key, val);
             }
             //-------------------------------------
             // \\// sets remaining attributes
@@ -122,27 +122,27 @@
     };
 
     ///Input: arg.pivots are pivot points
-    nssvg.polyline = function ( arg )
+    nssvg.polyline = function (arg)
     {
         var regExp = /(\d)0+$/; //removes trailing zeros from numbers for svg
-        var pivotsStr = arg.pivots.reduce( function ( acc, point, ix ) {
-                if ( acc ) { acc += ' '; }
+        var pivotsStr = arg.pivots.reduce(function (acc, point, ix) {
+                if (acc) { acc += ' '; }
 
                 var p1 = point[0];
-                var m1 = Math.abs( p1 );
+                var m1 = Math.abs(p1);
                 //removes exponential JS notation from svg
-                if ( m1 < 0.00000000000001 ) p1 = 0;
-                if ( m1 > 10000000000000 ) p1 = 10000000000000;
+                if (m1 < 0.00000000000001) p1 = 0;
+                if (m1 > 10000000000000) p1 = 10000000000000;
                 //todm: very crude zero-remover, do fine work:
-                var p1S = p1.toFixed( 3 ).replace( regExp, rep ); //'$2' );
+                var p1S = p1.toFixed(3).replace(regExp, rep); //'$2' );
                 //why fails?
                 //p1S = p1S.toFixed( 3 ).replace( regExp, '$2' );
 
                 var p2 = point[1];
-                var m2 = Math.abs( p2 );
-                if ( m2 < 0.00000000000001 ) p2 = 0;
-                if ( m2 > 10000000000000 ) p2 = 10000000000000;
-                var p2S = p2.toFixed( 3 ).replace( regExp, rep ); //'$2' );
+                var m2 = Math.abs(p2);
+                if (m2 < 0.00000000000001) p2 = 0;
+                if (m2 > 10000000000000) p2 = 10000000000000;
+                var p2S = p2.toFixed(3).replace(regExp, rep); //'$2' );
                 var res = p1S + ',' + p2S;
                 //valuable for d e b u g
                 //if( res.indexOf('NaN')> 0 )
@@ -172,7 +172,7 @@
             'stroke-linecap' : arg[ 'stroke-linecap' ] || 'round',
         });
 
-        function rep( match1, match2 ) {
+        function rep(match1, match2) {
             return match2;
         }
     };
@@ -186,17 +186,17 @@
     }) {
         var pivotsStr = '';
         var len = pivots.length;
-        for ( var pix=0; pix < len; pix++ ) {
+        for (var pix=0; pix < len; pix++) {
             var point = pivots[pix];
-            if ( pivotsStr ) {
+            if (pivotsStr) {
                 pivotsStr += ' ';
             }
             pivotsStr += point[0].toFixed(2) + ',' + point[1].toFixed(2);
         }
-        svgel.setAttributeNS( null, 'points', pivotsStr );
-        fill && svgel.setAttributeNS( null, 'fill', fill );
+        svgel.setAttributeNS(null, 'points', pivotsStr);
+        fill && svgel.setAttributeNS(null, 'fill', fill);
                 //if( key === 'points' && val.indexOf( 'NaN' ) > -1 ) {
-        strokeWidth && svgel.setAttributeNS( null, 'stroke-width', strokeWidth || 1 );
+        strokeWidth && svgel.setAttributeNS(null, 'stroke-width', strokeWidth || 1);
     }
 
     /*
@@ -247,24 +247,24 @@
     */
 
     ///input parameters are in model namespace,
-    nssvg.branch2svg = function ( arg, doClose )
+    nssvg.branch2svg = function (arg, doClose)
     {
         const pivots = arg.pivots = [];
         const points = arg.points;
         const len = points.length;
-        for ( var ii = 0; ii < len; ii++ ) {
-            pivots.push( ssF.mod2inn( points[ii] ) );
+        for (var ii = 0; ii < len; ii++) {
+            pivots.push(ssF.mod2inn(points[ii]));
         }
         //makes branch closed:
-        doClose && pivots.push( pivots[0] );
-        return nssvg.polyline( arg );
+        doClose && pivots.push(pivots[0]);
+        return nssvg.polyline(arg);
     };
 
     ///"manually" created polyline which formes ellipse's sector,
     ///input: ellipse = (x-x0)^2/a^2 + (y-y0)^2/b^2 = 1;
     ///                 or: r = [ a*cos(t+t0) + x0, b*sin(t+t0) + y0 ];
     ///returns: svg-element;
-    nssvg.ellipseSector = function ( arg )
+    nssvg.ellipseSector = function (arg)
     {
         var {
             stepsCount,
@@ -278,11 +278,11 @@
             drawExternalSector, //sets to draw a complimentary sector
         } = arg;
         var cpivots = arg.pivots = [];
-        if ( !t0 && t0 !== 0 ) {
+        if (!t0 && t0 !== 0) {
             t0 = 0;
             t1 = Math.PI*2;
         }
-        if ( drawExternalSector ) {
+        if (drawExternalSector) {
             ////sets to draw a complimentary sector
             var dt = t1 - t0;
             t1 = dt >= 0 ? t0 - Math.PI*2 + dt : t0 + Math.PI*2 + dt;
@@ -290,9 +290,9 @@
         stepsCount = stepsCount || 100;
         a = a || 1;
         b = b || 1;
-        var step = ( t1 - t0 ) / stepsCount;
-        cpivots.push( [x0,y0] );
-        for ( var ii = 0; ii <= stepsCount; ii++ ) {
+        var step = (t1 - t0) / stepsCount;
+        cpivots.push([x0, y0]);
+        for (var ii = 0; ii <= stepsCount; ii++) {
             var ell = mat.ellipse({
                 t:step * ii,
                 a,
@@ -304,13 +304,13 @@
             });
             var xx = ell.x;
             var yy = ell.y;
-            cpivots.push( [ xx, yy ] );
+            cpivots.push([ xx, yy ]);
         }
-        cpivots.push( [ xx, yy ] );
+        cpivots.push([ xx, yy ]);
         //makes sector closed:
         //todm not good:  use arg...
-        cpivots.push( cpivots[0] );
-        return nssvg.polyline( arg );
+        cpivots.push(cpivots[0]);
+        return nssvg.polyline(arg);
     };
 
     ///"manually" creates polyline which formes curve,
@@ -321,7 +321,7 @@
     ///
     ///autocloses unless    arg.dontClose = true,
     ///returns:             svg-element
-    nssvg.curve = function ( arg )
+    nssvg.curve = function (arg)
     {
         const {
             dontClose,
@@ -342,24 +342,24 @@
 
         var stepsLim    = stepsCount + (addToStepCount || 0);
         var polyline    = arg.pivots = [];
-        const notArr    = !Array.isArray( curve( start ) );
-        for ( var ii = 0; ii < stepsLim; ii++ ) {
-            var curv = curve( start + step * ii );
-            if ( notArr ) {
+        const notArr    = !Array.isArray(curve(start));
+        for (var ii = 0; ii < stepsLim; ii++) {
+            var curv = curve(start + step * ii);
+            if (notArr) {
                 var curv = [ curv.x, curv.y ];
             }
-            if ( xOFy ) {
+            if (xOFy) {
                 ////swaps x and y if we draw graph x(y)
                 curv = [ curv[1], curv[0] ];
             }
-            polyline.push( curv );
+            polyline.push(curv);
         }
-        polyline.push( curv ); //todm why repeating last el?
+        polyline.push(curv); //todm why repeating last el?
         //makes curve closed:
-        if ( !dontClose ) {
-            polyline.push( polyline[0] );
+        if (!dontClose) {
+            polyline.push(polyline[0]);
         }
-        return nssvg.polyline( arg );
+        return nssvg.polyline(arg);
     };
 
     ///====================================
@@ -373,22 +373,22 @@
     ///     arg.y
     ///     arg.style
     ///Returns: svg-element
-    nssvg.printText = function ( arg )
+    nssvg.printText = function (arg)
     {
         arg.type = 'text';
-        var svgEl = nssvg.u( arg );
-        if ( arg.text ) {
+        var svgEl = nssvg.u(arg);
+        if (arg.text) {
             svgEl.textContent = arg.text;
         }
         return svgEl;
     }
     ///Similar to printText, but with innerHTML
     ///instead of plain text.
-    nssvg.printTextInnerHTML = function ( arg )
+    nssvg.printTextInnerHTML = function (arg)
     {
         arg.type = 'text';
-        var svgEl = nssvg.u( arg );
-        if ( has( arg, 'innerHTML' ) ) {
+        var svgEl = nssvg.u(arg);
+        if (has(arg, 'innerHTML')) {
             //https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
             //https://stackoverflow.com/questions/4282108/how-to-change-
             //svg-text-tag-using-javascript-innerhtml

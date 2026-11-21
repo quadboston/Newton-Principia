@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var ns          = window.b$l        = window.b$l        || {};
     var fapp        = ns.fapp           = ns.fapp           || {};
     fapp.version = '0.9.8'; //application version
@@ -7,7 +7,7 @@
     // //\\ updated automatically. Don't edit this string.
     fapp.buildDateString = "2026-10-08"; //build date
     // \\// updated automatically. Don't edit this string.
- }) ();
+ })();
 
 function decryptEmail(encoded) {
     window.location.href = "mailto:" + atob(encoded);

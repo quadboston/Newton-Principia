@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { $$, sDomF, ssD, stdMod, rg, toreg, }
         = window.b$l.apptree({ ssFExportList : { upcreate_mainLegend, create_digital_legend, }, });
     var clustersToUpdate = [];
@@ -9,9 +9,9 @@
 
     function create_digital_legend()
     {
-        var mlegend = toreg( 'main-legend' )();
-        doCreateTable_claim( mlegend );
-        doCreateTable_proof( mlegend );
+        var mlegend = toreg('main-legend')();
+        doCreateTable_claim(mlegend);
+        doCreateTable_proof(mlegend);
     }
 
     //=========================================
@@ -53,8 +53,8 @@
         mlegend.tb = mlegend.tb || {};
         var tb = mlegend.tb.proof = $$
             .c('table')
-            .cls( 'main-legend proof' )
-            .to( stdMod.legendRoot$ )
+            .cls('main-legend proof')
+            .to(stdMod.legendRoot$)
             ();
 
         //===================
@@ -65,8 +65,8 @@
             .addClass('tostroke')
             .to(tb);
         var row = AbdAce_row$();
-        makeCl( row, 'ABDPerACE', '△ABD : △ACE' );
-        makeCl( row, 'AbdPerAce', '△Abd : △Ace' );
+        makeCl(row, 'ABDPerACE', '△ABD : △ACE');
+        makeCl(row, 'AbdPerAce', '△Abd : △Ace');
         //===================
         // \\// first row
         //===================
@@ -77,17 +77,17 @@
         var row = $$.c('tr')
                     .addClass('tostroke')
                     .to(tb)();
-        makeCl( row, 'AD2PerAE2', 'AD² : AE²');
-        makeCl( row, 'Ad2PerAe2', 'Ad² : Ae²');
+        makeCl(row, 'AD2PerAE2', 'AD² : AE²');
+        makeCl(row, 'Ad2PerAe2', 'Ad² : Ae²');
         //===================
         // \\// second row
         //===================
 
         return;
 
-        function makeCl( row, mname, mcaption, spanIx, spanVal ) {
+        function makeCl(row, mname, mcaption, spanIx, spanVal) {
             return makeClBoth(
-                row, mname, mcaption, spanIx, spanVal, 'proof' );
+                row, mname, mcaption, spanIx, spanVal, 'proof');
         }
     }
     //=========================================
@@ -103,8 +103,8 @@
         mlegend.tb = mlegend.tb || {};
         var tb = mlegend.tb.claim = $$
             .c('table')
-            .cls( 'main-legend claim' )
-            .to( stdMod.legendRoot$ )
+            .cls('main-legend claim')
+            .to(stdMod.legendRoot$)
             ();
 
         //===================
@@ -113,7 +113,7 @@
         var row = $$.c('tr')
             .addClass('tostroke')
             .to(tb)();
-        makeCl( row, 'ABDPerACE', '△ABD : △ACE' );
+        makeCl(row, 'ABDPerACE', '△ABD : △ACE');
         //===================
         // \\// vanishing areas
         //===================
@@ -122,12 +122,12 @@
         var row = $$.c('tr')
             .addClass('tostroke')
             .to(tb)();
-        makeCl( row, 'AD2PerAE2', 'AD² : AE²');
+        makeCl(row, 'AD2PerAE2', 'AD² : AE²');
         return;
 
-        function makeCl( row, mname, mcaption, spanIx, spanVal ) {
+        function makeCl(row, mname, mcaption, spanIx, spanVal) {
             return makeClBoth(
-                row, mname, mcaption, spanIx, spanVal, 'claim' );
+                row, mname, mcaption, spanIx, spanVal, 'claim');
         }
     }
     //=========================================
@@ -141,22 +141,22 @@
     ///Effect: represents magnitude in html-table-row in
     ///        form "mname = mvalue",
     ///Input:  mname = magnitude name
-    function makeClBoth( row, mname, mcaption, spanIx, spanVal, claim0proof )
+    function makeClBoth(row, mname, mcaption, spanIx, spanVal, claim0proof)
     {
-        var cssName = sDomF.toCssIdentifier( mname );
+        var cssName = sDomF.toCssIdentifier(mname);
         var c$ = $$.c('td')
-                   .html( mcaption||mname )
+                   .html(mcaption||mname)
                    .addClass('tostroke tocolor tobold tp-' + cssName)
                    .to(row);
 
-        if ( spanIx === 0 ) { c$.a('colspan',''+spanVal); }
+        if (spanIx === 0) { c$.a('colspan', ''+spanVal); }
 
         var c$ = $$.c('td')
                    .cls('value')
                    .cls('tostroke tocolor tobold tp-'+cssName)
                    .to(row);
-        if ( spanIx === 2 ) { c$.a('colspan',''+spanVal); }
-        if ( claim0proof === 'claim' ) {
+        if (spanIx === 2) { c$.a('colspan', ''+spanVal); }
+        if (claim0proof === 'claim') {
             clustersToUpdate_claim[mname] = c$();
         } else {
             clustersToUpdate[mname] = c$(); //updateeCell;
@@ -164,4 +164,4 @@
         return c$;
     }
 
-}) ();
+})();

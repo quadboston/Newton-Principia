@@ -1,10 +1,10 @@
-( function () {
+(function () {
     var { sn, $$, fapp, sconf, fconf, rg, amode, stdMod, } = window.b$l.apptree({
         stdModExportList : { syncPoints, }, });
-    var stdL2       = sn('stdL2', fapp );
-    var numModel    = sn('numModel', stdL2 );
-    var study       = sn('study', stdL2 );
-    var sdata       = sn('sdata', study );
+    var stdL2       = sn('stdL2', fapp);
+    var numModel    = sn('numModel', stdL2);
+    var study       = sn('study', stdL2);
+    var sdata       = sn('sdata', study);
     return;
 
 
@@ -13,7 +13,7 @@
     /// framework points with L2/3 legacy
     /// code points (with rg[ name ].pos)
     ///======================================
-    function syncPoint( dr, item )
+    function syncPoint(dr, item)
     {
         var dv = dr.yVariations;
         var xoff = sconf.originX_onPicture;
@@ -21,20 +21,20 @@
         var scale = sconf.mod2inn_scale;
         var cirYar = dr.basePts.circumscribedY;
         var insYar = dr.basePts.inscribedY;
-        if ( item.type === 'base' ) {
+        if (item.type === 'base') {
             let blist = dr.basePts.list;
             var bN = dr.basesN;
             var iIx = item.index;
 
-            let insPy = -( insYar[iIx] - yoff ) / scale;
-            var cirPy = -( cirYar[iIx] - yoff ) / scale;
+            let insPy = -(insYar[iIx] - yoff) / scale;
+            var cirPy = -(cirYar[iIx] - yoff) / scale;
             let posAx = blist[0].x;
             let posBx = blist[1].x;
             let posCx = blist[2].x;
             let posDx = blist[3].x;
             let posEx = blist[4].x;
 
-            switch ( iIx ) {
+            switch (iIx) {
             case 0 : var pname = 'A';
                         var itemx = posAx;
                         var pnameFun = 'a'; //right on the curve
@@ -109,7 +109,7 @@
                      break;
             }
         }
-        if ( pname ) {
+        if (pname) {
             var iY = item.type === 'base' ? dv.maxY : item.y;
             ////apparently convert from svg-space to model-space
             ////apparently program and numModel.curveFun made in svg-space and
@@ -118,13 +118,13 @@
             rg[ pname ].pos[1] = -(iY - yoff) / scale;
 
             ////optional names
-            if ( pnameFun ) {
-                if ( pnameFun === 'a' || pnameFun === 'b') {
+            if (pnameFun) {
+                if (pnameFun === 'a' || pnameFun === 'b') {
                     ////sets upper boundary of the bar
                     rg[ pnameFun ].pos[1] = cirPy;
                 } else {
                     rg[ pnameFun ].pos[1] =
-                        -( numModel.curveFun( dr, itemx ) - yoff ) / scale;
+                        -(numModel.curveFun(dr, itemx) - yoff) / scale;
                 }
                 rg[ pnameFun ].pos[0] = rg[ pname ].pos[0];
             }
@@ -137,13 +137,13 @@
         const showInscribed = !!view.isInscribed;
         const showCircumscribed = !!view.isCircumscribed;
         const onlyFigure = !showInscribed && !showCircumscribed;
-        const inscribedFeatures = ['K','L','M','Kb','cL','dM','Bb','Cc','Dd'];
+        const inscribedFeatures = ['K', 'L', 'M', 'Kb', 'cL', 'dM', 'Bb', 'Cc', 'Dd'];
         inscribedFeatures.forEach(function (item) {
             rg[item].undisplay = !showInscribed;
         });
         const circumscribedFeatures =
-            ['f','l','m','n','o','la','mb','nc','od',
-                'Aa','aK','lb','mc','nd','oE'];
+            ['f', 'l', 'm', 'n', 'o', 'la', 'mb', 'nc', 'od',
+                'Aa', 'aK', 'lb', 'mc', 'nd', 'oE'];
         circumscribedFeatures.forEach(function (item) {
             rg[item].undisplay = !showCircumscribed;
         });
@@ -151,8 +151,8 @@
         rg['a'].undisplay = !(showCircumscribed || showFigure);
 
         //order of statements seems vital
-        [0,1,2,3,4].forEach( ix => { syncPoint(dr, dr.basePts.list[ ix ]); });
-        dr.ctrlPts.list.forEach( item => { syncPoint(dr, item); });
+        [0, 1, 2, 3, 4].forEach(ix => { syncPoint(dr, dr.basePts.list[ ix ]); });
+        dr.ctrlPts.list.forEach(item => { syncPoint(dr, item); });
 
         // //\\ majorant rect
         var xoff = sconf.originX_onPicture;
@@ -161,12 +161,12 @@
         var scale = sconf.mod2inn_scale;
         let dv = dr.yVariations;
 
-        rg.F.pos[1] = -( dv.maxY - yoff ) / scale;
-        rg.E.pos[1] = -( dv.maxY - yoff ) / scale;
+        rg.F.pos[1] = -(dv.maxY - yoff) / scale;
+        rg.E.pos[1] = -(dv.maxY - yoff) / scale;
         var { left, right, bottom, top, } = dr.widestRect;
-        rg.f.pos[1] = -( top - yoff ) / scale;
-        rg.F.pos[0] = ( right - xoff ) / scale;
-        rg.f.pos[0] = ( right - xoff ) / scale;
+        rg.f.pos[1] = -(top - yoff) / scale;
+        rg.F.pos[0] = (right - xoff) / scale;
+        rg.f.pos[0] = (right - xoff) / scale;
         //--------------------------------------
         // //\\ majorant
         //--------------------------------------
@@ -178,13 +178,13 @@
             rg.f.undisplay = undisplay||l2;
             rg.AF.undisplay = undisplay||l2;
             //majorant bar:
-            $$.$(dr.faaf).css( 'display', undisplay ? 'none' : 'block' );
+            $$.$(dr.faaf).css('display', undisplay ? 'none' : 'block');
         }
         //--------------------------------------
         // \\// majorant
         //--------------------------------------
         stdMod.setsDifferenceBarsMonotonity(dr);
-        ( dv.chchosen.dir <= 0 ) && stdMod.swapMonotonity(dr);
+        (dv.chchosen.dir <= 0) && stdMod.swapMonotonity(dr);
     }
 
-}) ();
+})();

@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var sn	        = window.b$l.sn;
     var mat         = sn('mat');
     var integral    = sn('integral', mat);
@@ -11,7 +11,7 @@
     ///Context: P = 2t(1-t)P1 + ttP2 = att + bt;
     ///         P is zero-based bezier curve;
     ///         S = Iyx'dt
-    function zbezier2integralY( pivots, t )
+    function zbezier2integralY(pivots, t)
     {
         var P1 = pivots[0];
         var P2 = pivots[1];
@@ -22,7 +22,7 @@
         var bxs = 2*ax;
         var cxs = bx;
 
-        var S = integral.polynomial( ay*bxs, ay*cxs + bxs*by, by*cxs, 0, t );
+        var S = integral.polynomial(ay*bxs, ay*cxs + bxs*by, by*cxs, 0, t);
         return S;
     }
 
@@ -32,7 +32,7 @@
     //c cc( zbezier2integralY( [[1,0.5],[1,1]], 1 ) );   //1/3
 
     ///Returns: S = Ix(y)dy
-    function zbezier2integralX( pivots, t )
+    function zbezier2integralX(pivots, t)
     {
         return zbezier2integralY(
             [
@@ -48,15 +48,15 @@
     }
     //c cc( zbezier2integralX( [[0.5,1],[1,1]], 1 ) );   //1/3
 
-    function zbezier2areas( pivots, t, tanT, tanCross, scale )
+    function zbezier2areas(pivots, t, tanT, tanCross, scale)
     {
         scale = scale || 1;
-        var end = bezier.parT2point( t, [[0,0], pivots[0], pivots[1]] );
+        var end = bezier.parT2point(t, [[0, 0], pivots[0], pivots[1]]);
         var endX = end[0];
         var endY = end[1];
 
         var tan1 = pivots[0][0]/pivots[0][1];
-        var fullAreaBetweenBx8axisY   = zbezier2integralX( pivots, t );
+        var fullAreaBetweenBx8axisY   = zbezier2integralX(pivots, t);
 
         //---------------------------------------
         // //\\ development prints
@@ -84,7 +84,7 @@
             areaBetweenTanT_8_curve: areaBetweenTanT_8_curve * scale,
             areaUnderTan1: areaUnderTan1 * scale,
             //.sugar
-            areaBetween_Tan1_Tan2_Curve: ( areaBetweenTanT_8_curve - areaUnderTan1 ) * scale
+            areaBetween_Tan1_Tan2_Curve: (areaBetweenTanT_8_curve - areaUnderTan1) * scale
         };
         return result;
     }
@@ -93,4 +93,4 @@
     //c cc( zbezier2areas( [[0.5,1],[1,1]], 1, 0.5, [ 1/4 + 1/12, 1/2+2/12 ] ) );   //1/3 - 1/4 = 1/12,
     //c cc( zbezier2areas( [[0.5,1],[1,1]], 1, 0.5, [ 1/3, 2/3 ] ) );   //1/3 - 1/4 = 1/12,
 
-}) ();
+})();

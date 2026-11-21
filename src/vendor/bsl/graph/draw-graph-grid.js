@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         ns, sn, nsmethods, haz, nssvg, $$,
     } = window.b$l.nstree();
@@ -94,7 +94,7 @@
         // \\// axisX, axisY API
         //------------------------------------------------------
 
-        if ( drawDecimalY && rangeY > 1e-100 ) {
+        if (drawDecimalY && rangeY > 1e-100) {
             drawX0Ygrid({
                 gridAlongY : true,
                 axisA : axisY,
@@ -113,7 +113,7 @@
                     colorThreadArray,
             });
         }
-        if ( drawDecimalX && rangeX > 1e-100 ) {
+        if (drawDecimalX && rangeX > 1e-100) {
             drawX0Ygrid({
                 gridAlongY : false,
                 axisA : axisX,
@@ -154,14 +154,14 @@
 
             ////Nesessity for legacy code makes this "if"
             ////so complex.
-            if ( gridAlongY ) {
-                if ( typeof printAxisYDigits === 'undefined' ) {
+            if (gridAlongY) {
+                if (typeof printAxisYDigits === 'undefined') {
                     var prnDigitalSymbols = printAxisDigits;
                 } else {
                     var prnDigitalSymbols = printAxisYDigits;
                 }
             } else {
-                if ( typeof printAxisXDigits === 'undefined' ) {
+                if (typeof printAxisXDigits === 'undefined') {
                     var prnDigitalSymbols = printAxisDigits;
                 } else {
                     var prnDigitalSymbols = printAxisXDigits;
@@ -169,41 +169,41 @@
             }
 
             var decUnitlog     = Math.max(
-                Math.floor( Math.log10( rangeA ) ),
-                Math.floor( Math.log10( Math.abs( minA ) ) - 13 ),
+                Math.floor(Math.log10(rangeA)),
+                Math.floor(Math.log10(Math.abs(minA)) - 13),
             );
-            var decUnit    = Math.pow( 10, decUnitlog );
+            var decUnit    = Math.pow(10, decUnitlog);
             decUnit        = decUnit > rangeA * 0.5 ? decUnit * 0.1 : decUnit;
-            style.stroke = 'rgba( 0,0,0, ' + ( brightenGrid.toFixed(3) ) + ')';
+            style.stroke = 'rgba( 0,0,0, ' + (brightenGrid.toFixed(3)) + ')';
 
             drawGrid8Axes_aux({ prnAxisDigits : prnDigitalSymbols });
-            if ( subDecimal ) {
+            if (subDecimal) {
                 var decUnit  = decUnit * 0.1;
 
-                style.stroke = 'rgba( 0,0,0, ' + ( 0.2*brightenGrid.toFixed(3) ) + ')';
+                style.stroke = 'rgba( 0,0,0, ' + (0.2*brightenGrid.toFixed(3)) + ')';
                 drawGrid8Axes_aux({ drawSubdecimal : true });
             }
             return;
 
             function drawGrid8Axes_aux({ prnAxisDigits, drawSubdecimal })
             {
-                var linesStart = Math.ceil( minA / decUnit ) * decUnit;
+                var linesStart = Math.ceil(minA / decUnit) * decUnit;
 
                 //:for dence x labels protection:
                 //:makes caliber sparser
                 var gcount = 0;
-                var labelCountEstimation = Math.floor( ( maxA - linesStart ) / decUnit );
+                var labelCountEstimation = Math.floor((maxA - linesStart) / decUnit);
 
-                for ( var gline=linesStart; gline<=maxA; gline+=decUnit ) {
+                for (var gline=linesStart; gline<=maxA; gline+=decUnit) {
 
                     //======================================================
                     // //\\ prepares grid and axes params
                     //======================================================
                     //l_media is a value of static-part of the grid line:
                     //for "gridAlongX", the line is horizontal, and l_media is an y-coordinate
-                    var l_media = ( gline - minA ) / rangeA * dimA;
+                    var l_media = (gline - minA) / rangeA * dimA;
 
-                    if ( gridAlongY ) {
+                    if (gridAlongY) {
                         l_media = marginY + dimA - l_media;
                     } else {
                         l_media += marginX;
@@ -243,9 +243,9 @@
                     //======================================================
                     var EXTRA_AXIS_OFFSET_STEP = marginX/2;
                     var EXTRA_AXIS_DIGITS = 3;
-                    if ( prnAxisDigits ) {
+                    if (prnAxisDigits) {
                         var axesCount = drawAllAxesInGrid && gridAlongY ? plotsCount : 1;
-                        for ( var aIx=0; aIx<axesCount; aIx++ ) {
+                        for (var aIx=0; aIx<axesCount; aIx++) {
                             var effectiveAxis = axisA;
 
                             var fontStroke = drawAllAxesInGrid ?
@@ -253,10 +253,10 @@
                             var fontFill = drawAllAxesInGrid ?
                                                 colorThreadArray[ aIx ] : axisA[ 'fill' ];
 
-                            if ( gridAlongY ) {
+                            if (gridAlongY) {
                                 ////we have horiz. line, putting a serie of dig.
                                 ///at its end,
-                                if ( aIx === 0 ) {
+                                if (aIx === 0) {
                                     var x = pivots[0][0] + axisA.fontShiftX;
                                 } else {
                                     var effectiveAxis = extraAxisY;
@@ -272,13 +272,13 @@
                                 var y = pivots[1][1] + effectiveAxis.fontShiftY;
                             }
                             ///forbids too dence marks along axis x
-                            if ( !labelForbidden ) {
+                            if (!labelForbidden) {
 
                                 var decimalDigits = aIx === 0 ?
                                         effectiveAxis.decimalDigits :
                                         EXTRA_AXIS_DIGITS;
                                 nssvg.printText({
-                                    text : gline.toFixed( decimalDigits ),
+                                    text : gline.toFixed(decimalDigits),
                                     x,
                                     y,
                                     parent  : graphFM_self.gmedia$(),
@@ -329,13 +329,13 @@
         numberMarks, //see //number Marks api
     }) {
         toollineStyle = toollineStyle || {};
-        sn( 'stroke', toollineStyle, 'rgba( 0,0,0, 1 )' );
-        var graphElement = graphArray[ Math.floor( abscissaIxValue ) ];
+        sn('stroke', toollineStyle, 'rgba( 0,0,0, 1 )');
+        var graphElement = graphArray[ Math.floor(abscissaIxValue) ];
         if (!graphElement) return;
 
         var svgParent = graphFM_self.gmedia$();
 
-        var l_media = marginX + ( graphElement.x - xMin ) / rangeX * dimA;
+        var l_media = marginX + (graphElement.x - xMin) / rangeX * dimA;
         var pivots = [ [ l_media, marginY ], [ l_media, marginY + dimB ], ];
 
         //======================================================
@@ -353,10 +353,10 @@
         //======================================================
         // //\\ prints numerical labels
         //======================================================
-        if ( numberMarks ) {
-            if ( !Array.isArray( numberMarks ) ) {
+        if (numberMarks) {
+            if (!Array.isArray(numberMarks)) {
                 ///can make space array
-                numberMarks = graphElement.y.map( (yEl,yix) => (
+                numberMarks = graphElement.y.map((yEl, yix) => (
                     //number Marks api
                     {
                         graphIx : yix,
@@ -369,16 +369,16 @@
                 ));
             }
             ///prints labels only on live numberMarks
-            numberMarks.forEach( (nm,nmix) => {
-                if ( !polylines[nmix] ) return;
+            numberMarks.forEach((nm, nmix) => {
+                if (!polylines[nmix]) return;
                 var gix = nm.graphIx;
                 var decimalDigits = nm.decimalDigits;
                 var nmVal = graphElement.y[ gix ];
                 var x = l_media;
-                var y = marginY + dimB - ( nmVal - yMin ) / rangeY * dimB;
+                var y = marginY + dimB - (nmVal - yMin) / rangeY * dimB;
 
                 nssvg.printText({
-                    text : nmVal.toFixed( decimalDigits ),
+                    text : nmVal.toFixed(decimalDigits),
                     x,
                     y,
                     parent  : graphFM_self.gmedia$(),
@@ -397,4 +397,4 @@
         //======================================================
     }
 
-}) ();
+})();

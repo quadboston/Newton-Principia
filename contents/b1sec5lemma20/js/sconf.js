@@ -1,5 +1,5 @@
 // //\\// widget config
-( function () {
+(function () {
     var { mat, fapp, fconf, sconf, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
@@ -33,7 +33,7 @@
         // //\\ decorational parameters
         //***************************************************************
         //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var realSvgSize = 2 * (pictureWidth + pictureHeight) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
         fconf.LETTER_FONT_SIZE_PER_1000 = 20; //works
@@ -45,17 +45,17 @@
         //      in expands-conf.js,
         //--------------------------------------
         sconf.default_tp_lightness = 30;
-        default_tp_stroke_width = Math.floor( 6 * controlsScale ),
-        defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 3 * controlsScale ),
+        default_tp_stroke_width = Math.floor(6 * controlsScale),
+        defaultLineWidth        = Math.floor(1 * controlsScale),
+        handleRadius            = Math.floor(3 * controlsScale),
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius;
 
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
         //this makes hanle's border nicely thin
-        sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
-        sconf.hover_width       = Math.max( 2, Math.floor( 7*controlsScale/1.6 ) );
+        sconf.nonhover_width    = Math.max(1, Math.floor(1*controlsScale/1.6));
+        sconf.hover_width       = Math.max(2, Math.floor(7*controlsScale/1.6));
 
         //make effect apparently only for line-captions,
         //not for point-captions bs
@@ -114,7 +114,7 @@
                   cssClass: 'tp-base-figure',
                   //style: {fill: '#ffffff'}, works
                 },
-            C : { pos: [509,383],
+            C : { pos: [509, 383],
                   pcolor: pt.static,
                   cssClass: 'tp-base-figure',
                   letterAngle : 45,
@@ -211,7 +211,7 @@
                   letterAngle : -10,
                   letterRotRadius : 20,
                 },
-            S : { pos: [532,561],
+            S : { pos: [532, 561],
                   pcolor: pt.static,
                   cssClass: 'tp-base-figure',
                   letterAngle : 45,
@@ -235,7 +235,7 @@
                     draggableX : true,
                     draggableY : false,
 
-                    pos: [slider_aX,slider_aY],
+                    pos: [slider_aX, slider_aY],
                     pcolor : topicColors_elected.ellipse,
 
                     letterAngle : 166,
@@ -523,7 +523,7 @@
         //----------------------------------------------------
         // //\\  prepares sconf data holder
         //----------------------------------------------------
-        fapp.normalizeSliders( pictureHeight / 444 );
+        fapp.normalizeSliders(pictureHeight / 444);
         to_sconf =
         {
             topicColors_elected,
@@ -598,7 +598,7 @@
         //----------------------------------------------------
         // //\\ copy-pastes to sconf
         //----------------------------------------------------
-        Object.keys( to_sconf ).forEach( function ( key ) {
+        Object.keys(to_sconf).forEach(function (key) {
             sconf[ key ] = to_sconf[ key ];
         });
         //----------------------------------------------------
@@ -608,4 +608,4 @@
     //====================================================
     // \\// inits and sets config pars
     //====================================================
-}) ();
+})();

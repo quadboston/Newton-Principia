@@ -1,13 +1,13 @@
-( function () {
+(function () {
     var ns	    = window.b$l;
-    var mat     = ns.sn( 'mat' );
+    var mat     = ns.sn('mat');
 
-    ( function () {
+    (function () {
         //todm: need a generic math module, put this
         //there:
         var p = 1;
         var powersOf2 = [p];
-        for ( var i=1; i<61; i++ ) {
+        for (var i=1; i<61; i++) {
             p *= 2;
             powersOf2[i] = p;
         }
@@ -25,23 +25,23 @@
     ///
     ///Version history: similar to used in .../square/...
     ///                 /march18-98-bezier-threads-predelivey/js/paint-bubbles-and-threads.js
-    mat.squarePolyRoot = function ( aa, bb, cc )
+    mat.squarePolyRoot = function (aa, bb, cc)
     {
-        if ( aa === 0 ) {
-            if ( bb === 0 ) {
-                return cc === 0 ? [1,2,3] : [];
+        if (aa === 0) {
+            if (bb === 0) {
+                return cc === 0 ? [1, 2, 3] : [];
             } else {
                 return [ -cc/bb ];
             }
         } else {
-            var scale = 1 / ( 2 * aa );
+            var scale = 1 / (2 * aa);
             var center = -bb * scale;
             var discr = bb*bb - 4*aa*cc;
-            if ( discr < 0 ) {
+            if (discr < 0) {
                 var complex = 1;
                 discr = -discr;
             }
-            var main = Math.sqrt( discr ) * scale;
+            var main = Math.sqrt(discr) * scale;
             return complex ?
                 [ [ center, main ], [ center, -main ] ] :
                 [ center+main, center-main ];
@@ -66,8 +66,8 @@
         focus,
     }) {
         const fi = q-q0;
-        const cosFi = Math.cos( fi );
-        const sinFi = Math.sin( fi );
+        const cosFi = Math.cos(fi);
+        const sinFi = Math.sin(fi);
         const cosQ = Math.cos(q);
         const sinQ = Math.sin(q);
 
@@ -79,7 +79,7 @@
             const drodq = -e*sinFi*inve*inve;
             const drdqX = drodq * cosQ - inve * sinQ;
             const drdqY = drodq * sinQ + inve * cosQ;
-            const a = 1/Math.sqrt( drdqX*drdqX + drdqY*drdqY );
+            const a = 1/Math.sqrt(drdqX*drdqX + drdqY*drdqY);
             var tangent = [ drdqX * a, drdqY * a ]; //=unit tangent
         }
         return { point, tangent, ro };
@@ -89,12 +89,12 @@
     ///input:       ellipse = r = [ a*cos(t+t0) + x0, b*sin(t+t0) + y0 ];
     //              if given, rotationRads rotates around position x0,y0;
     ///returns:     point x,y at parameter t and other data
-    function ellipse( args )
+    function ellipse(args)
     {
         var { t, a, b, x0, y0, t0, rotationRads } = args;
         rotationRads = rotationRads || 0;
-        var rC = Math.cos( rotationRads );
-        var rS = Math.sin( rotationRads );
+        var rC = Math.cos(rotationRads);
+        var rS = Math.sin(rotationRads);
         var t0 = t0 || 0;
 
         var cos = Math.cos(t+t0);
@@ -103,7 +103,7 @@
         var yy = b*sin;
 
         var tan = [ -sin*a, cos*b ]; //=dr/dt, r is a real coordinate,
-        var wwt = Math.sqrt( tan[0]*tan[0] + tan[1]*tan[1] );
+        var wwt = Math.sqrt(tan[0]*tan[0] + tan[1]*tan[1]);
         tan = [ tan[0]/wwt, tan[1]/wwt ]; //=unit tangent
 
         // //\\ rotates r and tan if rotationRads is  given,
@@ -113,13 +113,13 @@
         var x = xx * rC - yy * rS + x0;
         var y = xx * rS + yy * rC + y0;
         // \\// rotates r and tan if rotationRads is  given,
-        return { x, y, cos, sin, tangent:[tanX,tanY], args};
+        return { x, y, cos, sin, tangent:[tanX, tanY], args};
     }
 
     ///Returns atan between 0 and 2PI
-    function atan2PI( vector )
+    function atan2PI(vector)
     {
-        let angle = Math.atan2( vector[1], vector[0] );
+        let angle = Math.atan2(vector[1], vector[0]);
         return angle < 0 ?  2 * Math.PI + angle : angle;
     }
 
@@ -132,4 +132,4 @@
     function radToDeg(angle) {
         return angle * 180 / Math.PI;
     }
-}) ();
+})();

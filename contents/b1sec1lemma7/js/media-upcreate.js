@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         $$, haz, fconf, ssF, ssD, sconf, amode, stdMod, rg, toreg,
     } = window.b$l.apptree({
@@ -18,11 +18,11 @@
         // //\\ manages legend CSS-visibility by essay-state
         //      called each time page state changes (tab button clicked, corollary chosen from list)
         //=================================================
-        var rgMainLegend = haz( rg, 'main-legend' ); //haz returns param 2 from param 1
-        if ( rgMainLegend ) {
+        var rgMainLegend = haz(rg, 'main-legend'); //haz returns param 2 from param 1
+        if (rgMainLegend) {
             var rgTeoTab = rgMainLegend[ amode.logic_phase ];
             //console.log(amode.logic_phase)
-            if ( amode.logic_phase === 'corollary' ) {
+            if (amode.logic_phase === 'corollary') {
                 //console.log(amode.subessay); // "cor-1", "cor-2", "cor-3"
                 const rows = rgTeoTab.tableDom.querySelectorAll('tr');
                 let visibleRows = [];
@@ -37,7 +37,7 @@
                     row.style.display = visibleRows.includes(index) ? 'table-row' : 'none';
                 });
             } else {
-                $$.$( rgTeoTab.tableDom ).removeClass( 'hidden' );
+                $$.$(rgTeoTab.tableDom).removeClass('hidden');
             }
         }
         //=================================================
@@ -65,7 +65,7 @@
                 //-----------------------------------------
                 //      arc out of synch with B
                 start       : rg.A.pos[0],
-                step        : (rg.B.unrotatedParameterX - rg.A.pos[0] ) / 20,
+                step        : (rg.B.unrotatedParameterX - rg.A.pos[0]) / 20,
                 stepsCount  : 20,
                 //-----------------------------------------
                 // \\// apparently this fixes
@@ -109,7 +109,7 @@
         var magnitude = rg.magnitude.value;
         if (magnitude > 100) magnitude = rg.magnitude.value = 100; // prevents Acb from going above Ad
         //misleading notation: this is not ..._b, this is ..._B
-        rg.derotated_b = toreg( 'derotated_b' )( 'pos', [rg.B.unrotatedParameterX,0] )();
+        rg.derotated_b = toreg('derotated_b')('pos', [rg.B.unrotatedParameterX, 0])();
         ssF.paintsCurve({
                 rgName      : 'arc-Ab',
                 fun         : cfun.fun, //for l8, cust fun = 0 = rotated fun
@@ -130,4 +130,4 @@
     // \\// lemma custom addons
     //=========================================================
 
-}) ();
+})();

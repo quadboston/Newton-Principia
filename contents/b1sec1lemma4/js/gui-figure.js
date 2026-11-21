@@ -5,8 +5,8 @@
         generateFigureName,
         hideWhenNonMonotonic,
     }, });
-    var stdL2               = sn('stdL2', fapp );
-    var study               = sn('study', stdL2 );
+    var stdL2               = sn('stdL2', fapp);
+    var study               = sn('study', stdL2);
     return;
 
 
@@ -37,8 +37,8 @@
         //Show/hide the following on the figure as needed
         if (sconf.HIDE_WHEN_NON_MONOTONIC) {
             //Figure base
-            $$.$(dr.baseAxis).css( 'display',
-                !study.isMonotonic(dr) ? 'none' : 'block' );
+            $$.$(dr.baseAxis).css('display',
+                !study.isMonotonic(dr) ? 'none' : 'block');
 
             if (dr.POINT_LABELS) {
                 const {CTRL_PT_FIRST, CTRL_PT_LAST, BASE_PT_FIRST} =
@@ -56,4 +56,4 @@
             }
         }
     }
-}) ();
+})();

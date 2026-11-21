@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         ns, sn, $$, haz, userOptions,
         fapp, fconf, sapp, sconf, html, stdMod,
@@ -259,7 +259,7 @@
         fconf.ix2lemmaDefAllowed.forEach(function (sappItem) {
             if (sappItem.sappId === 'home-pane') return;
             if (book === null || book !== sappItem.book) {
-                if ( book !== null ) {
+                if (book !== null) {
                     coreText += '</ul></div>';
                 }
                 book = sappItem.book;
@@ -289,4 +289,4 @@
         coreText += '\n</ul></div></div>';
         return coreText;
     }
-}) ();
+})();

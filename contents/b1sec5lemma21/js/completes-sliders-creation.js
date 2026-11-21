@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         mat,
         rg,
@@ -13,16 +13,16 @@
 
     function completesSlidersCreation()
     {
-        rg.M.acceptPos = function ( newPos )
+        rg.M.acceptPos = function (newPos)
         {
             var M = rg.M;
-            var newValue = pos2Gpar( newPos )
+            var newValue = pos2Gpar(newPos)
             //protects drag from going outside the window
-            if ( newValue < -6.5 || newValue > 2.5 ) return;
+            if (newValue < -6.5 || newValue > 2.5) return;
             rg.g.value = newValue;
             return true;
 
-            function pos2Gpar( pos )
+            function pos2Gpar(pos)
             {
                 var H=rg.H.pos;
                 var gamma = rg.gamma.value;
@@ -33,27 +33,27 @@
             }
         }
 
-        rg.A.acceptPos = function ( newPos )
+        rg.A.acceptPos = function (newPos)
         {
-            var { alpha, beta } = pos2alpha8beta( newPos )
+            var { alpha, beta } = pos2alpha8beta(newPos)
             rg.alpha.value = alpha;
             rg.beta.value = beta;
             return true;
 
-            function pos2alpha8beta( pos )
+            function pos2alpha8beta(pos)
             {
-                var BC = mat.p1_to_p2( rg.B.pos, pos );
+                var BC = mat.p1_to_p2(rg.B.pos, pos);
                 var cosBeta = -BC.unitVec[0];
-                var beta = Math.acos( cosBeta ) * ( BC.unitVec[1] < 0 ? -1 : 1 );
+                var beta = Math.acos(cosBeta) * (BC.unitVec[1] < 0 ? -1 : 1);
 
-                var A_A = mat.p1_to_p2( rg.C.pos, pos );
+                var A_A = mat.p1_to_p2(rg.C.pos, pos);
                 var cosAlpha = A_A.unitVec[0];
-                var alpha = Math.acos( cosAlpha ) * ( A_A.unitVec[1] < 0 ? -1 : 1 );
+                var alpha = Math.acos(cosAlpha) * (A_A.unitVec[1] < 0 ? -1 : 1);
                 return { alpha, beta };
             }
         }
 
-        rg.H.acceptPos = function ( newPos )
+        rg.H.acceptPos = function (newPos)
         {
             //var H = rg.H;
             rg.a.value = newPos[0] - rg.C.pos[0];
@@ -62,4 +62,4 @@
 
     }
 
-}) ();
+})();

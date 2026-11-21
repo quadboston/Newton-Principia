@@ -1,5 +1,5 @@
-( function () {
-    window.b$l.sn( 'fapp' ).lemmaConfig = lemmaConfig;
+(function () {
+    window.b$l.sn('fapp').lemmaConfig = lemmaConfig;
     return;
 
 
@@ -22,4 +22,4 @@
             ],
         };
     }
-}) ();
+})();

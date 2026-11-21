@@ -2,7 +2,7 @@
 const { $$, sn, haz, has, eachprop,
         rg, stdMod } =
         window.b$l.apptree({ stdModExportList : { unmasksVisib, }});
-const decor = sn( 'decor', stdMod );
+const decor = sn('decor', stdMod);
 return;
 
 
@@ -45,9 +45,9 @@ function unmasksVisib() {
     //--------------------------------------
     // always shows first Kepler's triangle to show
     // all other Kepler's triangles are equal to it
-    $$.$( rg[ 'kepltr-' + 0 ].svgel).removeClass( 'undisplay' );
+    $$.$(rg[ 'kepltr-' + 0 ].svgel).removeClass('undisplay');
     //Also show the path segment.
-    $$.$( rg[ 'pathSegment-' + 0 ].svgel).removeClass( 'undisplay' );
+    $$.$(rg[ 'pathSegment-' + 0 ].svgel).removeClass('undisplay');
     //rg[ 'VVV0' ].undisplay = false;
     //--------------------------------------
     // \\// picture drawing began
@@ -80,10 +80,10 @@ function unmasksVisib() {
         const indexSubstep = Math.min((index < stepIx ?
                 indexFGroupsMax : substepIx), indexFGroupsMax);
         if (indexSubstep > -1) {
-            fgroups[indexSubstep].forEach( (paintee) => {
+            fgroups[indexSubstep].forEach((paintee) => {
                 //paintee?.pname === 'VVV0' && ccc(index,indexSubstep,paintee)
-                paintee?.svgel && $$.$(paintee.svgel).removeClass( 'undisplay' );
-                paintee?.vectorArrowSvg$?.removeClass( 'undisplay' );
+                paintee?.svgel && $$.$(paintee.svgel).removeClass('undisplay');
+                paintee?.vectorArrowSvg$?.removeClass('undisplay');
                 paintee && (paintee.undisplay = false);
             });
         }
@@ -95,24 +95,24 @@ function unmasksVisib() {
     ///=====================================================
     ///visualizes decs
     ///=====================================================
-    eachprop( decor, dec => {
+    eachprop(decor, dec => {
         const decStart = dec.decStart;
         const decEnd   = dec.decEnd;
-        if ( decStart === -2 ||
-            ( decStart <= stepIx4 &&
-                ( decEnd === -2 || stepIx4 <= decEnd )
+        if (decStart === -2 ||
+            (decStart <= stepIx4 &&
+                (decEnd === -2 || stepIx4 <= decEnd)
             )
         ) {
             dec.undisplay = false;
         }
-        if ( !dec.isPoint ) {
-            const arrow$ = haz( dec, 'vectorArrowSvg$' );
-            if ( arrow$ ) {
-                const act = haz( dec, 'undisplay' );
-                arrow$.toggleClass( 'undisplay', act );
+        if (!dec.isPoint) {
+            const arrow$ = haz(dec, 'vectorArrowSvg$');
+            if (arrow$) {
+                const act = haz(dec, 'undisplay');
+                arrow$.toggleClass('undisplay', act);
             }
-            if ( has( dec, 'svgel$' )) { //todo patch
-                dec.svgel$.toggleClass( 'undisplay', haz( dec, 'undisplay' ) );
+            if (has(dec, 'svgel$')) { //todo patch
+                dec.svgel$.toggleClass('undisplay', haz(dec, 'undisplay'));
             }
         }
     });

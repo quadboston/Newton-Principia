@@ -1,14 +1,14 @@
 ///builds force estimation, as Prop6 cor5 dev/area^2,
 ///which is calculated from time t and curve parameter q
-( function () {
+(function () {
     var { sn, stdMod, sconf, ssD, sData, rg, } = window.b$l.apptree({
         stdModExportList : {
             builds_force_plusQ_minusQ_and_related,
             convertTimeTo_q,
             calculateTimeBetweenQAndP,
         }, });
-    sn( 'qIndexToOrbit', ssD, [] );
-    sn( 'graphArray', stdMod, [] );
+    sn('qIndexToOrbit', ssD, []);
+    sn('graphArray', stdMod, []);
     sData.ULTIM_MAX = 2;
     sData.ULTIM_ACTUAL = 1;
     sData.ULTIM_ESTIMATED = 0;
@@ -28,7 +28,7 @@
         const qrange = sconf.curveQRange;
         ulitmacy = !ulitmacy ? 0 : ulitmacy;
         var MAKE_RANGE = null;
-        switch ( ulitmacy ) {
+        switch (ulitmacy) {
             case sData.ULTIM_MAX:
                 ////here we set graph range when Dq or Dt
                 ////take their maximums,
@@ -50,18 +50,18 @@
                 var Dq = 0;
                 break;
         }
-        for ( let qix=0; qix<=Q_STEPS; qix++ ) {
+        for (let qix=0; qix<=Q_STEPS; qix++) {
             const bP = qIndexToOrbit[ qix ]; //body point data
-            MAKE_RANGE && ( bP.invalid = false );
+            MAKE_RANGE && (bP.invalid = false);
             //**********************************************
             // //\\ q is free variable
             //**********************************************
-            if ( !sconf.TIME_IS_FREE_VARIABLE ) {
+            if (!sconf.TIME_IS_FREE_VARIABLE) {
                 var plusQ = bP.q + Dq;
                 //"<" not "<=" to ensure point Q can reach the end of the orbit
-                if ( sconf.orbit_q_end < plusQ ) {
-                    if ( MAKE_RANGE && !CURVE_REVOLVES ) {
-                        ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
+                if (sconf.orbit_q_end < plusQ) {
+                    if (MAKE_RANGE && !CURVE_REVOLVES) {
+                        ssD.qix_graph_end = Math.min(ssD.qix_graph_end, qix-1);
                         bP.invalid = true
                     }
                 } else {
@@ -104,18 +104,18 @@
                         if (plusT > timeRange) {
                             bP.invalid = true;
                             ssD.qix_graph_end =
-                                Math.min( ssD.qix_graph_end, qix-1 );
+                                Math.min(ssD.qix_graph_end, qix-1);
                         }
                     }
                 } else {
                     //saves data for model-upcreate;
                     bP.plusQ = plusQ;
                     Dq = plusQ-bP.q;
-                    bP.Dq = CURVE_REVOLVES ? (Dq + qrange )%qrange : Dq;
+                    bP.Dq = CURVE_REVOLVES ? (Dq + qrange)%qrange : Dq;
                 }
             }
 
-            if ( plusQ !== null ) {
+            if (plusQ !== null) {
                 const force = stdMod.calculateForce({
                     parq: plusQ,
                     bP,
@@ -136,16 +136,16 @@
                 }
             }
 
-            if ( plusQ !== null ) {
-                bP.rrplus = q2xy( plusQ );
+            if (plusQ !== null) {
+                bP.rrplus = q2xy(plusQ);
                 let minusT = bodyTime - Dt;
                 var minusQ = convertTimeTo_q(minusT);
 
                 if (minusQ === null) {
-                    if ( MAKE_RANGE && !CURVE_REVOLVES && Q_MINUS_EXISTS ) {
+                    if (MAKE_RANGE && !CURVE_REVOLVES && Q_MINUS_EXISTS) {
                         if (minusT < 0) {
                             ssD.qix_graph_start =
-                                Math.max( ssD.qix_graph_start, qix+1 );
+                                Math.max(ssD.qix_graph_start, qix+1);
                             bP.invalid = true;
                         }
                     }
@@ -153,7 +153,7 @@
                 }
                 //saves data for model-upcreate;
                 bP.minusQ = minusQ;
-                bP.rrminus = q2xy( minusQ );
+                bP.rrminus = q2xy(minusQ);
 
                 // console.log('Q = ' + bP.rrplus + ", Q' = " + bP.rrminus);
             }
@@ -274,7 +274,7 @@
     }
 
     function calculateTimeBetweenQAndP() {
-        if ( !sconf.TIME_IS_FREE_VARIABLE ) {
+        if (!sconf.TIME_IS_FREE_VARIABLE) {
             const bP = ssD.qIndexToOrbit[ rg.P.qix ];
             const qQ = bP.plusQ;
             const timeQ = convert_qToTime(qQ, true);
@@ -366,4 +366,4 @@
             }
         }
     }
-}) ();
+})();

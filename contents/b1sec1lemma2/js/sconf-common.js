@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { fconf, sconf, } =
         window.b$l.apptree({ ssFExportList : { init_conf_common, }, });
     return;
@@ -40,7 +40,7 @@
         //=====================================
         // //\\ configures application engine
         //=====================================
-        Object.assign( sconf,
+        Object.assign(sconf,
         {
             //----------------------------------
             // //\\ model-view parameters
@@ -84,4 +84,4 @@
         // \\// configures application engine
         //=====================================
     };
-}) ();
+})();

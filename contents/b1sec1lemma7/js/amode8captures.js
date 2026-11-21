@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         ns, paste, capture, nspaste, sDomF, ssD, amode, rg,
     } = window.b$l.apptree({
@@ -14,8 +14,8 @@
     var ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] =
     {
         "angle": EQUAL_TANGENTS_ANGLE,
-        "sin": Math.sin( EQUAL_TANGENTS_ANGLE ),
-        "cos": Math.cos( EQUAL_TANGENTS_ANGLE ),
+        "sin": Math.sin(EQUAL_TANGENTS_ANGLE),
+        "cos": Math.cos(EQUAL_TANGENTS_ANGLE),
     };
 
     //this is Books origin, authentic N. drawing,
@@ -40,10 +40,10 @@
 
     function setCapture()
     {
-        paste( capture,
+        paste(capture,
         {
             "reset-to-origin" : {
-                    curveRotationAngle : Object.assign( ANGLE_AUTH ),
+                    curveRotationAngle : Object.assign(ANGLE_AUTH),
                     "diagram-panner": {
                         "achieved": {
                             "achieved": MODEL_ORIGIN_IN_PIC
@@ -55,21 +55,21 @@
             },
 
             "L-equal-d" :  {
-                    curveRotationAngle : Object.assign( ANGLE_EQUALS ),
+                    curveRotationAngle : Object.assign(ANGLE_EQUALS),
                     "B": {
                            "unrotatedParameterX": B_PARAM_BOOK
                     }
             },
 
             "closer": {
-                    "curveRotationAngle": Object.assign( ANGLE_AUTH ),
+                    "curveRotationAngle": Object.assign(ANGLE_AUTH),
                     "B": {
                            "unrotatedParameterX": 0.5658328716632559
                     }
             },
 
             "more-closer": {
-                    "curveRotationAngle": Object.assign( ANGLE_AUTH ),
+                    "curveRotationAngle": Object.assign(ANGLE_AUTH),
                     "B": {
                            "unrotatedParameterX": 0.10102343776498918
                     }
@@ -99,40 +99,40 @@
         });
     }
 
-    function amode2rgstate( captured )
+    function amode2rgstate(captured)
     {
         var { logic_phase, aspect, subessay } = amode;
         sDomF.resetModelPos();
         rg[ 'arc-Ab' ].undisplay    = logic_phase !== 'given';
 
         //idle?:
-        ns.paste( rg.curveStart.pos, ssD.curveStartInitialPos );
+        ns.paste(rg.curveStart.pos, ssD.curveStartInitialPos);
 
-        ns.paste( rg.curveEnd.pos, ssD.curveEndInitialPos );
+        ns.paste(rg.curveEnd.pos, ssD.curveEndInitialPos);
         ssD.repoConf.customFunction = 0;
         rg.B.unrotatedParameterX = 1;
         //----------------------------------
         // \\// common values
         //----------------------------------
 
-        if ( logic_phase === 'corollary' ) {
-            if ( subessay === 'cor-1' ) {
+        if (logic_phase === 'corollary') {
+            if (subessay === 'cor-1') {
                 captured = "colollary-1";
-            } else if ( subessay === 'cor-2' || subessay === 'cor-3' ) {
+            } else if (subessay === 'cor-2' || subessay === 'cor-3') {
                 captured = "colollary-2";
             }
-        } else if ( aspect !== 'model' ) {
+        } else if (aspect !== 'model') {
             captured = "L-equal-d";
 
-            ns.paste( rg.curveStart.pos, [ -0.2, 0 ] );
-            ns.paste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ] );
+            ns.paste(rg.curveStart.pos, [ -0.2, 0 ]);
+            ns.paste(rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ]);
 
-            if ( logic_phase === 'proof' ) {
+            if (logic_phase === 'proof') {
                 rg[ 'arc-Ab' ].undisplay = false;
             }
         }
 
-        nspaste( rg.B.pos, rg.B.originalPos );
+        nspaste(rg.B.pos, rg.B.originalPos);
         nspaste(rg.R.pos, rg.R.originalPos);
         nspaste(rg.D.pos, rg.D.originalPos);
         rg.B.unrotatedParameterX = rg.B.originalPos[0];
@@ -140,4 +140,4 @@
         return captured;
     }
 
-}) ();
+})();

@@ -1,4 +1,4 @@
-( function () {
+(function () {
     window.b$l.apptree({}).fapp.lemmaConfig = lemmaConfig;
     return;
 
@@ -29,4 +29,4 @@
         };
     }
 
-}) ();
+})();

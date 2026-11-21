@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         ssD,
     } = window.b$l.apptree({
@@ -87,4 +87,4 @@
             `,
 
     }
-}) ();
+})();

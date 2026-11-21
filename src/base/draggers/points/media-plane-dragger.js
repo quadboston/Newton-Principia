@@ -1,5 +1,5 @@
 //todm: apparently vital to merge this module with proper s ubmodel
-( function () {
+(function () {
     var {
         ns, $$, sn, ssF, sconf, nspaste,
         stdMod, sDomF, sDomN, rg
@@ -58,7 +58,7 @@
 
     // reset model back to its original [x,y] position
     function resetModelPos() {
-        nspaste( rg[ "diagram-panner" ].achieved,
+        nspaste(rg[ "diagram-panner" ].achieved,
             {
                 "achieved": [
                     sconf.originX_onPicture, //492,
@@ -71,4 +71,4 @@
         sconf.modorInPicY = ach[1];
     }
 
-}) ();
+})();

@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         ssF, stdMod
     } = window.b$l.apptree({
@@ -11,11 +11,11 @@
 
     function create_digital_legend()
     {
-        create_digital_legend_for_logic_phase( 'proof' );
-        create_digital_legend_for_logic_phase( 'corollary' );
+        create_digital_legend_for_logic_phase('proof');
+        create_digital_legend_for_logic_phase('corollary');
     }
 
-    function create_digital_legend_for_logic_phase( logic_phase )
+    function create_digital_legend_for_logic_phase(logic_phase)
     {
         //called once per phase, all on page load
         //console.log('create_digital_legend');
@@ -92,4 +92,4 @@
     // \\// creates logic_phase table
     //=========================================
 
-}) ();
+})();

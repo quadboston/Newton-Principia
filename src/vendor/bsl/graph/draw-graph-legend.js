@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         sn, $$, nsmethods, eachprop, haz, nssvg,
     } = window.b$l.nstree();
@@ -38,26 +38,26 @@
         //==================================================
         function drawsLegendl({ legend, gname, offset })
         {
-            if ( !legend ) return;
+            if (!legend) return;
             offset = offset || { x:0, y:0 };
             let med = graphFM_self.gmedia$();
-            let garbage = sn( 'legendArrayGarbageCollector-'+gname, graphFM_self, [] );
-            garbage.forEach( leg => {
+            let garbage = sn('legendArrayGarbageCollector-'+gname, graphFM_self, []);
+            garbage.forEach(leg => {
                 leg.remove();
             });
 
-            legend.forEach( subLeg => {
+            legend.forEach(subLeg => {
                 //style is optional in legend
-                var sstyle = haz( subLeg, 'style' ) || {};
-                if ( subLeg.text.match( /^\s*<text>/ ) ) {
-                        let html = subLeg.text.replace( /<text>/, '' ).replace( /<\/text>/, '' );
-                        var t = $$.cNS( 'text' )
-                            .to( med )
-                            .aNS( 'x', offset.x + subLeg.x )
-                            .aNS( 'y', offset.y + subLeg.y )
+                var sstyle = haz(subLeg, 'style') || {};
+                if (subLeg.text.match(/^\s*<text>/)) {
+                        let html = subLeg.text.replace(/<text>/, '').replace(/<\/text>/, '');
+                        var t = $$.cNS('text')
+                            .to(med)
+                            .aNS('x', offset.x + subLeg.x)
+                            .aNS('y', offset.y + subLeg.y)
                             ();
                         t.innerHTML = html;
-                        eachprop( sstyle, (prop, pname) => {
+                        eachprop(sstyle, (prop, pname) => {
                            t.style[ pname ] = prop;
                         });
                         //nice to know: Array.from(g.children).forEach( ch => {
@@ -70,7 +70,7 @@
                         style   : sstyle,
                     });
                 }
-                garbage.push( t );
+                garbage.push(t);
             });
         }
         //==================================================
@@ -78,4 +78,4 @@
         //==================================================
     }
 
-}) ();
+})();

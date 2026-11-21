@@ -7,7 +7,7 @@
     });
 
     //fconf.basicSiteFeatures = true;
-    url2conf( fconf );
+    url2conf(fconf);
 
     fconf.pathToContentSite     = '.';
 
@@ -132,5 +132,5 @@
     //====================================================
 
     ///spawns config to its final place
-    Object.assign( fconf, to_fconf );
-}) ();
+    Object.assign(fconf, to_fconf);
+})();

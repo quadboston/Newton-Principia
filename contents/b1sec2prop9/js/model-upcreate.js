@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { $$, nsmethods, nssvg, mat,
         ssF, ssD, stdMod, sconf, rg, toreg, }
         = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
@@ -19,7 +19,7 @@
         rg.P.pos[1] = Porb.posBody[1];
         var rr0 = rg.P.pos;
         var posCenterOfForces = rg.S.pos;
-        var Qpos = q2xy( Porb.plusQ );
+        var Qpos = q2xy(Porb.plusQ);
         rg.Q.pos[0] = Qpos[0];
         rg.Q.pos[1] = Qpos[1];
 
@@ -54,7 +54,7 @@
         rg.R.pos[1] = wwR[1];
 
         //T = perp. from Q to radius-vector
-        var wwT = mat.dropPerpendicular( rg.Q.pos, posCenterOfForces, rr0 );
+        var wwT = mat.dropPerpendicular(rg.Q.pos, posCenterOfForces, rr0);
         rg.T.pos[0] = wwT[0];
         rg.T.pos[1] = wwT[1];
         //================================================
@@ -69,12 +69,12 @@
         rg.Y.pos[0] = projectionOfCenterOnTangent[0];
         rg.Y.pos[1] = projectionOfCenterOnTangent[1];
 
-        var RCmedpos = ssF.mod2inn( RC, stdMod );
+        var RCmedpos = ssF.mod2inn(RC, stdMod);
         var RRmedpos = sconf.mod2inn_scale * Rc;
 
         //todo nearly bug: why create svg and set cls every time?
         var curvatureCircleName = 'curvatureCircle';
-        var rgCurvatureCircle = toreg( curvatureCircleName )();
+        var rgCurvatureCircle = toreg(curvatureCircleName)();
         rgCurvatureCircle.svgel = nssvg.u({
             svgel   : rgCurvatureCircle.svgel,
             parent  : stdMod.mmedia,
@@ -85,9 +85,9 @@
             cy : RCmedpos[1],
             r : RRmedpos,
         });
-        $$.$( rgCurvatureCircle.svgel ).addClass(
+        $$.$(rgCurvatureCircle.svgel).addClass(
             //tostroke thickable ... what is thickable
-            'tostroke tp-' + nsmethods.toCssIdentifier( curvatureCircleName )
+            'tostroke tp-' + nsmethods.toCssIdentifier(curvatureCircleName)
         );
         rgCurvatureCircle.svgel.style.display =
             rgCurvatureCircle.undisplay ? 'none' : 'block';
@@ -137,4 +137,4 @@
         // \\// graph
         //------------------------------------------------
     }
-}) ();
+})();

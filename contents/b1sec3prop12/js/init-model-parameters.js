@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { stdMod, } = window.b$l.apptree({
         stdModExportList : { init_model_parameters, }, });
     return;
@@ -9,4 +9,4 @@
         stdMod.initiates_orbit8graph();
         stdMod.creates_Zeta_slider();
     }
-}) ();
+})();

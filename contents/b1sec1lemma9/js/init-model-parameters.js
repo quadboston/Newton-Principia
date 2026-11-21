@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         sconf, rg, toreg, ssD, stdMod,
     } = window.b$l.apptree({
@@ -18,6 +18,6 @@
         ssD.curvePivots   = sconf.curvePivots.concat([]);
         ssD.tC            = sconf.tC;
         ssD.claimRatio    = sconf.claimRatio;
-        toreg( 'tiltAngle' )( 'value', sconf.tiltAngle );
+        toreg('tiltAngle')('value', sconf.tiltAngle);
     }
-}) ();
+})();

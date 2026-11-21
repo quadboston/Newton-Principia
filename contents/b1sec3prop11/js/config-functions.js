@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { mat, rg, ssD, stdMod, sconf, } = window.b$l.apptree({
         stdModExportList : {
             recreates_q2xy,
@@ -19,12 +19,12 @@
         stdMod.forceCorrectionScale = forceCorrectionScale;
         return;
 
-        function q2xy( q )
+        function q2xy(q)
         {
             q += fi0;
             return [
-                ellipseA * Math.cos( q ) + center[0],
-                ellipseB * Math.sin( q ) + center[1],
+                ellipseA * Math.cos(q) + center[0],
+                ellipseB * Math.sin(q) + center[1],
             ];
         }
 
@@ -43,7 +43,7 @@
         return;
 
         ///pos to "virtual" andle
-        function pos2t( newPos )
+        function pos2t(newPos)
         {
             return mat.pos2angle([
                 (newPos[0] - dor[0])*ellA,
@@ -52,15 +52,15 @@
                     //"virtueal" inner_angle fi0
         }
         ///corrects approximate mouse point to exact point on the circle
-        function correctApproxMousePosToExact( pname, newPos, inner_angle ) {
+        function correctApproxMousePosToExact(pname, newPos, inner_angle) {
             let rgX = rg[pname];
-            if ( typeof inner_angle === 'undefined' ) {
-                inner_angle = pos2t( newPos );
+            if (typeof inner_angle === 'undefined') {
+                inner_angle = pos2t(newPos);
             }
-            if ( inner_angle < Math.PI*0.01 || inner_angle > sconf.orbit_q_end ) {
-                inner_angle = ( inner_angle + sconf.orbit_q_end ) % sconf.orbit_q_end;
+            if (inner_angle < Math.PI*0.01 || inner_angle > sconf.orbit_q_end) {
+                inner_angle = (inner_angle + sconf.orbit_q_end) % sconf.orbit_q_end;
             }
-            let qix = Math.floor( inner_angle/sconf.delta_q_between_steps );
+            let qix = Math.floor(inner_angle/sconf.delta_q_between_steps);
             rgX.qix = qix;
             rgX.parQ = qix * sconf.delta_q_between_steps;
             var newP = ssD.qIndexToOrbit[ qix ].rr;
@@ -106,4 +106,4 @@
             rg.H.pos[0] = sconf.ellipseFocus;
         }
     }
-}) ();
+})();

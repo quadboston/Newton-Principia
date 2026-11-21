@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { ns, fconf, sconf, topicColors_repo } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
@@ -15,7 +15,7 @@
         // //\\ decorational parameters
         //***************************************************************
         //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var realSvgSize = 2 * (pictureWidth + pictureHeight) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
         sconf.TP_OPACITY_LOW_POINT = sconf.TP_OPACITY_LOW = 0.85;
@@ -34,18 +34,18 @@
         //--------------------------------------
         sconf.default_tp_lightness = 22;
         sconf.default_tp_stroke_width = 8;
-        default_tp_stroke_width = Math.floor( 6 * controlsScale ),
-        defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 3.5 * controlsScale ),
+        default_tp_stroke_width = Math.floor(6 * controlsScale),
+        defaultLineWidth        = Math.floor(1 * controlsScale),
+        handleRadius            = Math.floor(3.5 * controlsScale),
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius;
 
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
         //this makes hanle's border nicely thin
-        sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
+        sconf.nonhover_width    = Math.max(1, Math.floor(1*controlsScale/1.6));
         //sconf.nonhover_width = 4;
-        sconf.hover_width       = Math.max( 2, Math.floor( 7*controlsScale/1.6 ) );
+        sconf.hover_width       = Math.max(2, Math.floor(7*controlsScale/1.6));
         //sconf.hover_width = 114;  //needs hover-width cls at svg-text-el,
                                     //aka for: Δsin(φ),
 
@@ -146,7 +146,7 @@
                 doPaintPname : false,
             },
             curveEnd : {
-                pos : [B[0]+50,0],
+                pos : [B[0]+50, 0],
                 undisplayAlways : true,
                 doPaintPname : false,
             },
@@ -170,7 +170,7 @@
                 doPaintPname : false,
             },
             curveLeftEnd : {
-                pos : [250,100],
+                pos : [250, 100],
                 undisplayAlways : true,
                 doPaintPname : false,
             },
@@ -198,21 +198,21 @@
         [
             //extending the curve to the left is quite a work bs
             //we need to change hard-coded tangent
-            [148,62],
-            [161,64],
-            [202,75],
-            [259,100],
-            [305,135],
+            [148, 62],
+            [161, 64],
+            [202, 75],
+            [259, 100],
+            [305, 135],
             [B[0], B[1]],
-            [353,203],
+            [353, 203],
             //[360.5, 239.0], //"oversampling"
         ];
         var ww_MONITOR_Y_FLIP = -1;
         var ww_inn2mod_scale = 1/mod2inn_scale;
         var ww_factor = ww_MONITOR_Y_FLIP * ww_inn2mod_scale;
-        var givenCurve_pivots_inModel = givenCurve_pivots.map( opoint =>
-            [ ( opoint[0] - modorInPicX ) * ww_inn2mod_scale,
-              ( opoint[1] - modorInPicY +
+        var givenCurve_pivots_inModel = givenCurve_pivots.map(opoint =>
+            [ (opoint[0] - modorInPicX) * ww_inn2mod_scale,
+              (opoint[1] - modorInPicY +
 
                 //additional tune-up: shifting curve exactly into origin A
                 modorInPicY - 61.085869
@@ -224,7 +224,7 @@
         // \\// curve pars
         //----------------------------------
 
-        ns.paste( sconf, {
+        ns.paste(sconf, {
             //double back step ../../ is to reuse this path in code for lemma7
             mediaBgImage : "../../b1sec1lemma6/img/b1s1l6-diagram-3rded-b.png",
             givenCurve_pivots_inModel,
@@ -238,4 +238,4 @@
             mod2inn_scale,
         });
     }
-}) ();
+})();

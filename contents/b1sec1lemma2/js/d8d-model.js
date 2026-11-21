@@ -1,17 +1,17 @@
 // //\\// application-level d8d module
-( function () {
+(function () {
     var { sn, mat, dpdec, d8dp, fmethods, globalCss, fapp, sconf, sDomN, sDomF,
         ssF, fconf, amode, stdMod, } = window.b$l.apptree({ setModule, });
-    var stdL2       = sn('stdL2', fapp );
-    var dataregs    = sn('dataregs', stdL2 );
+    var stdL2       = sn('stdL2', fapp);
+    var dataregs    = sn('dataregs', stdL2);
     return;
 
 
     function setModule()
     {
-        var gui         = sn('gui', stdL2 );
-        var guiup       = sn('guiUpdate',gui);
-        var appstate    = sn('appstate', stdL2 );
+        var gui         = sn('gui', stdL2);
+        var guiup       = sn('guiUpdate', gui);
+        var appstate    = sn('appstate', stdL2);
         var medD8D;
 
         gui.createDragModel = createDragModel;
@@ -19,7 +19,7 @@
 
         function createDragModel() {
             medD8D = stdMod.medD8D =
-                d8dp.crePointFW_BSLd8d1CHAMBER ({
+                d8dp.crePointFW_BSLd8d1CHAMBER({
                     findDraggee                         : findDraggee,
                     dragSurface                         : sDomN.medRoot,
                     //DRAG_POINTS_THROTTLE_TIME           : false,
@@ -37,7 +37,7 @@
             });
         }
 
-        function processMouseDown( cPW )
+        function processMouseDown(cPW)
         {
             cPW.achieved.achieved.x = cPW.x; //point_on_dragSurf[0];
             cPW.achieved.achieved.y = cPW.y; //point_on_dragSurf[1];
@@ -76,14 +76,14 @@
             let orientation = false;
             pointWrap.datareg = dr;
 
-            if ( pointWrap.type === 'base' ) {
+            if (pointWrap.type === 'base') {
                 pointWrap.spinnerClsId = 'base-'+pwix;
-                pointWrap.dragDecorColor = sDomF.getFixedColor( 'given' );
+                pointWrap.dragDecorColor = sDomF.getFixedColor('given');
                 orientation = false;
 
-            } else if ( pointWrap.type === 'trans' ) {
+            } else if (pointWrap.type === 'trans') {
                 pointWrap.spinnerClsId = 'trans-'+pwix;   //optional for css
-                pointWrap.dragDecorColor = sDomF.getFixedColor( 'given' );
+                pointWrap.dragDecorColor = sDomF.getFixedColor('given');
                 if (pointWrap.draggableX && pointWrap.draggableY)
                     orientation = 'rotate';
                 else if (pointWrap.draggableX)
@@ -93,13 +93,13 @@
 
             } else {
                 pointWrap.spinnerClsId = 'ctrl-'+pwix;   //optional for css
-                pointWrap.dragDecorColor = sDomF.getFixedColor( 'given' );
+                pointWrap.dragDecorColor = sDomF.getFixedColor('given');
                 orientation = 'rotate';
             }
 
             //Always add the arrows that appear when hovering the mouse
             var nospinner = false;
-            var decorator = Update_decPoint( pointWrap )
+            var decorator = Update_decPoint(pointWrap)
             var achieved = { x:pointWrap.x, y:pointWrap.y };
 
             medD8D.pointWrap_2_dragWrap_BSLd8d2PIPE({
@@ -114,11 +114,11 @@
         }
 
         ///decorates DraggeeHoverer movement
-        function Update_decPoint( pointWrap )
+        function Update_decPoint(pointWrap)
         {
             var pw = pointWrap;
-            return ( function ( decPoint, dragSurface, pointWrap, nonenify ) {
-                if ( pw.x || pw.x === 0 ) {
+            return (function (decPoint, dragSurface, pointWrap, nonenify) {
+                if (pw.x || pw.x === 0) {
                     var dompos = sDomF.inn2outparent.call(
                         { medpos : [ pw.x, pw.y ] }
                     );
@@ -127,23 +127,23 @@
                 }
 
                 //Hide arrows for all the draggers (for when they are created)
-                if ( nonenify === 'nonenify' ) {
+                if (nonenify === 'nonenify') {
                     decPoint.style.display = 'none';
                 }
             });
         }
 
-        function doProcess( arg )
+        function doProcess(arg)
         {
-            if ( arg.down_move_up === 'move' ) {
+            if (arg.down_move_up === 'move') {
                 var pw = arg.pointWrap;
-                if ( pw.type === 'base' ) {
-                    move2js( pw, [arg.surfMove[0],0], pw.achieved );
+                if (pw.type === 'base') {
+                    move2js(pw, [arg.surfMove[0], 0], pw.achieved);
                 } else {
                     //reshapes the curve
-                    move2js( pw, arg.surfMove, pw.achieved );
+                    move2js(pw, arg.surfMove, pw.achieved);
                 }
-                guiup.xy2shape( pw.dom, "cx", pw.x, "cy", pw.y );
+                guiup.xy2shape(pw.dom, "cx", pw.x, "cy", pw.y);
                 stdMod.model8media_upcreate();
             }
         }
@@ -152,22 +152,22 @@
         // //\\ finds draggee
         //====================
         ///Gets movable and visible point which is closest to mousePoint.
-        function findDraggee( mousePoint, dragWraps )
+        function findDraggee(mousePoint, dragWraps)
         {
 
             //////////////////////////////////////////////////////////
             // //\\ todo. d8d points tmp patch.
-            mousePoint = sDomF.outparent2inn( mousePoint );
+            mousePoint = sDomF.outparent2inn(mousePoint);
             // \\// todo. d8d points tmp patch.
             //////////////////////////////////////////////////////////
 
             var closest = null;
-            dragWraps.forEach( function ( dwrap ) {
-                closest = findClosestPoint( closest, mousePoint, dwrap );
+            dragWraps.forEach(function (dwrap) {
+                closest = findClosestPoint(closest, mousePoint, dwrap);
             });
             return closest ? closest.dwrap : null;
         }
-        function findClosestPoint( closest, mousePoint, dwrap )
+        function findClosestPoint(closest, mousePoint, dwrap)
         {
             var pointWrap = dwrap.pointWrap;
             var DRAGGER_TOLERANCE = sconf.DRAGGER_TOLERANCE;
@@ -181,11 +181,11 @@
             //.already in sync
             //sconf.modorInPicY + sconf.pictureActiveArea - mousePoint[1];
 
-            var tdX = Math.abs( mousePoint[0] - pointWrap.x );
-            var tdY = Math.abs( mousePoint[1] - pointWrap.y );
-            var td  = Math.max( tdX, tdY );
-            if ( td <= DRAGGER_TOLERANCE ) {
-                if ( !closest || closest.td > td ) {
+            var tdX = Math.abs(mousePoint[0] - pointWrap.x);
+            var tdY = Math.abs(mousePoint[1] - pointWrap.y);
+            var td  = Math.max(tdX, tdY);
+            if (td <= DRAGGER_TOLERANCE) {
+                if (!closest || closest.td > td) {
                     closest = { td, dwrap };
                     //if( pointWrap.spinnerClsId === 'ctrl-'+1 ) {
                 }
@@ -212,7 +212,7 @@
             const DRAGGABLE_END_POINTS = ctrlPts.DRAGGABLE_END_POINTS;
             appstate.movingBasePt = false;//Default
 
-            if ( "ctrl" === item.type ) {
+            if ("ctrl" === item.type) {
                 //Curve control points
                 //Calculate new un-transformed position.
                 const posNew = stdMod.Txy_2_xy(dr, [newX, newY]);
@@ -326,4 +326,4 @@
             return ySlopedLine - offset;
         }
     }
-}) ();
+})();

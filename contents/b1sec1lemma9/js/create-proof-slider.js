@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         eachprop,
         sn,
@@ -43,17 +43,17 @@
             railsLegend         :'Process proof by decreasing AC:',
             ancestorClassToHideSlider   :'logic_phase--claim',
 
-            dataInMove:         function ( dataArg, draggee ) {
+            dataInMove:         function (dataArg, draggee) {
                                     //:master place where tC updates
 
                                     //.todm wrong: belongs to subapp instance
                                     ssD.tC = dataArg;
                                     stdMod.model8media_upcreate();
                                     //appar. this is an internal business: nothing with app
-                                    setCaption( sDomF.proofSlider.slider );
+                                    setCaption(sDomF.proofSlider.slider);
                                 },
             //.callback when handler stops
-            dataInArrival:      function ( dataArg ) {
+            dataInArrival:      function (dataArg) {
                                     //.does synch secondary slider
                                     if (rg.C.achieved) rg.C.achieved.achieved = dataArg;
                                 },
@@ -71,14 +71,14 @@
         //appar. this is an internal slider business:
         //       nothing affecting of the parent app
         ///converts study-model pos to draggee caption
-        function setCaption( slider_arg )
+        function setCaption(slider_arg)
         {
             var pC = rg.C.pos;
-            var pClen = Math.sqrt( pC[0]*pC[0]+pC[1]*pC[1] ) /
+            var pClen = Math.sqrt(pC[0]*pC[0]+pC[1]*pC[1]) /
                         sconf.APP_MODEL_Y_RANGE;
             var capt = sconf.LEGEND_NUMERICAL_SCALE ?
-                        ( captionScale * sconf.LEGEND_NUMERICAL_SCALE * pClen ).toFixed(2) :
-                        ( captionScale * pClen ).toFixed(2);
+                        (captionScale * sconf.LEGEND_NUMERICAL_SCALE * pClen).toFixed(2) :
+                        (captionScale * pClen).toFixed(2);
             slider_arg.draggee.innerHTML = capt;
         }
         //=====================================================
@@ -86,4 +86,4 @@
         //=====================================================
     }
 
-}) ();
+})();

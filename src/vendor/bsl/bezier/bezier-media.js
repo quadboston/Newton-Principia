@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         sn,
         bezier,
@@ -45,8 +45,8 @@
         //--------------------------------------------------------
         // //\\ prepares string-parameter for pivot-lines
         //--------------------------------------------------------
-        var pivotsStr = pivots.reduce( function ( acc, point ) {
-                if ( acc ) {
+        var pivotsStr = pivots.reduce(function (acc, point) {
+                if (acc) {
                     acc += ' '; //provides space after points
                 }
                 return acc += point[0] + ',' + point[1];
@@ -60,7 +60,7 @@
         //--------------------------------------------------------
         // //\\ paints bezier-pivot-lines
         //--------------------------------------------------------
-        if ( blines ) {
+        if (blines) {
             mediael.paintedLines = nssvg.u({
                 svgel : mediael.paintedLines,
                 parent : parentSVG,
@@ -79,14 +79,14 @@
         //--------------------------------------------------------
         // //\\ paints bezier curve
         //--------------------------------------------------------
-        if ( bcurve ) {
-            if ( plen === 3 ) {
+        if (bcurve) {
+            if (plen === 3) {
                 var bcontr = 'Q'; //Quadratic Bezier curve
             } else {
                 var bcontr = 'C'; //Cubic Bezier curve
             }
-            var bezierStr = pivots.reduce( function ( acc, point ) {
-                    if ( acc ) {
+            var bezierStr = pivots.reduce(function (acc, point) {
+                    if (acc) {
                         //// adds 2 points for Quadratic B. curve and
                         //// 3 points for cubic
                         acc += ' ' + point[0] + ' ' + point[1];
@@ -117,18 +117,18 @@
         //--------------------------------------------------------
         // //\\ paints points on bezier curve
         //--------------------------------------------------------
-        if ( bpoints ) {
-            sn( 'points', mediael, [] );
-            sn( 'points_model', mediael, [] );
+        if (bpoints) {
+            sn('points', mediael, []);
+            sn('points_model', mediael, []);
             //--------------------------------------------------------
             // //\\ calculates points
             //--------------------------------------------------------
-            var resultBPoints = bezier.points2bezier( bpoints.points, pivots );
-            var resultBPoints_model = bezier.points2bezier( bpoints.points, modelPivots );
+            var resultBPoints = bezier.points2bezier(bpoints.points, pivots);
+            var resultBPoints_model = bezier.points2bezier(bpoints.points, modelPivots);
             //--------------------------------------------------------
             // \\// calculates points
             //--------------------------------------------------------
-            bpoints.points.forEach( function ( paramT, pix ) {
+            bpoints.points.forEach(function (paramT, pix) {
                 //--------------------------------------------------------
                 // //\\ paints point on bezier curve
                 //--------------------------------------------------------
@@ -159,10 +159,10 @@
                 //--------------------------------------------------------
             });
         }
-        if ( paintPivots ) {
+        if (paintPivots) {
             mediael.pivotPoints = mediael.pivotPoints || [];
-            paintPivots.topaint.forEach( function ( topaint, pix ) {
-                if ( !topaint ) return;
+            paintPivots.topaint.forEach(function (topaint, pix) {
+                if (!topaint) return;
                 var point = pivots[pix];
                 //--------------------------------------------------------
                 // //\\ paints pivot of bezier curve
@@ -195,4 +195,4 @@
         return mediael;
     }
 
-}) ();
+})();

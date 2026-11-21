@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { mat, stdMod, sconf, } = window.b$l.apptree({
         stdModExportList : { recreates_q2xy, }, });
     return;
@@ -16,13 +16,13 @@
         return;
 
         // points of the spiral
-        function q2xy( q )
+        function q2xy(q)
         {
             q += q0;
-            var ro = ro0*Math.exp( A*q );
+            var ro = ro0*Math.exp(A*q);
             return [
-                ro * Math.cos( q ) + center[0],
-                ro * Math.sin( q ) + center[1],
+                ro * Math.cos(q) + center[0],
+                ro * Math.sin(q) + center[1],
             ];
         }
 
@@ -36,4 +36,4 @@
             return q_radius - q0; // this is the original q before offset
         }
     }
-}) ();
+})();

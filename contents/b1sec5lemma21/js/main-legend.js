@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         $$, sDomF, stdMod, rg, toreg
     } = window.b$l.apptree({
@@ -15,8 +15,8 @@
     ///from full-app/dom/...
     function create_digital_legend()
     {
-        var mlegend = toreg( 'main-legend' )();
-        doCreateTable_proof( mlegend );
+        var mlegend = toreg('main-legend')();
+        doCreateTable_proof(mlegend);
     }
 
     //=========================================
@@ -51,8 +51,8 @@
         mlegend.tb = mlegend.tb || {};
         var tb = mlegend.tb.proof = $$
             .c('table')
-            .cls( 'main-legend proof' )
-            .to( stdMod.legendRoot$ )
+            .cls('main-legend proof')
+            .to(stdMod.legendRoot$)
             ();
 
         //===================
@@ -61,12 +61,12 @@
         var row = $$.c('tr')
             //.addClass('tostroke')
             .to(tb)();
-        makeCl( row, 'eta', 'angle BCM', 'eta' );
+        makeCl(row, 'eta', 'angle BCM', 'eta');
 
         var row = $$.c('tr')
             .to(tb)();
-        makeCl( row, 'alpha', 'angle ACB', 'angle-alpha' );
-        makeCl( row, 'beta', 'angle ABC', 'angle-beta' );
+        makeCl(row, 'alpha', 'angle ACB', 'angle-alpha');
+        makeCl(row, 'beta', 'angle ABC', 'angle-beta');
         //===================
         // \\//
         //===================
@@ -82,15 +82,15 @@
     ///Effect: represents magnitude in html-table-row in
     ///        form "mname = mvalue",
     ///Input:  mname = magnitude name
-    function makeCl( row, mname, mcaption, cssName )
+    function makeCl(row, mname, mcaption, cssName)
     {
         //todm: ?no need for extra function argument:
         //      tp-cssName may be taken from "rg.Elem point wrap" ...
-        cssName = sDomF.toCssIdentifier( cssName || mname );
+        cssName = sDomF.toCssIdentifier(cssName || mname);
 
-        if ( mcaption !== ']no caption[' ) {
+        if (mcaption !== ']no caption[') {
             var c$ = $$.c('td')
-                       .html( mcaption||mname )
+                       .html(mcaption||mname)
                        .addClass('tostroke tocolor tobold tp-' + cssName)
                        .to(row);
         }
@@ -104,4 +104,4 @@
         return c$;
     }
 
-}) ();
+})();

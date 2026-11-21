@@ -1,7 +1,7 @@
-( function () {
+(function () {
     var sn	        = window.b$l.sn;
-    var mat         = sn( 'mat' );
-    var integral    = sn( 'integral', mat );
+    var mat         = sn('mat');
+    var integral    = sn('integral', mat);
 
     //----------------------------------------------------
     // //\\ test,
@@ -57,34 +57,34 @@
         funPoints               = [];
         var currentBasePoints   = basePoints[ expo ] = [];
         funPoints[ expo ]       = [];
-        var currentStep         = ( curveEndParam - curveStartParam ) / basePointsCount;
+        var currentStep         = (curveEndParam - curveStartParam) / basePointsCount;
 
-        for ( var it=0; it<=basePointsCount; it++ ) {
+        for (var it=0; it<=basePointsCount; it++) {
             currentBasePoints[ it ] = curveStartParam + currentStep * it;
             var tt              = currentBasePoints[ it ];
-            var funPoint        = fun( currentBasePoints[ it ] );
-            if ( !funIsAVector ) {
+            var funPoint        = fun(currentBasePoints[ it ]);
+            if (!funIsAVector) {
                 funPoint = [ tt, funPoint ];
             }
             funPoints[ expo ][ it ] = funPoint;
         }
-        var prevLen = calculates_curvePoints2chordsSum( funPoints[ expo ] );
+        var prevLen = calculates_curvePoints2chordsSum(funPoints[ expo ]);
 
-        function calculates_curvePoints2chordsSum( curvePoints )
+        function calculates_curvePoints2chordsSum(curvePoints)
         {
             var lenSum = 0;
             var curPLen = curvePoints.length;
-            for ( var it=1; it<curPLen; it++ ) {
+            for (var it=1; it<curPLen; it++) {
                 var prevP = curvePoints[ it-1 ];
                 var curP  = curvePoints[ it ];
                 var dx    = curP[0]-prevP[0];
                 var dy    = curP[1]-prevP[1];
-                lenSum   += Math.sqrt( dx*dx + dy*dy );
+                lenSum   += Math.sqrt(dx*dx + dy*dy);
             }
             return lenSum;
         }
 
-        for ( var expo = STARTING_EXPONENT_FOR_2 + 1;
+        for (var expo = STARTING_EXPONENT_FOR_2 + 1;
              expo < SAFETY_INTERACTIONS_LIM; expo++
         ) {
             var prevPC              = mat.powersOf2[ expo-1 ];
@@ -93,25 +93,25 @@
             var currentBasePoints   = basePoints[ expo ] = [];
             var funP                = funPoints[ expo ] = [];
 
-            for ( var ip = 0; ip <= prevPC; ip++ ) {
+            for (var ip = 0; ip <= prevPC; ip++) {
                 var it          = ip*2;
                 var fP          = funP[ it ] = prevFP[ ip ];
                 var tLeft       = currentBasePoints[ it ] = prevBP[ ip ];
                 var tRight      = prevBP[ ip + 1 ];
 
-                if ( ip === prevPC ) break;
+                if (ip === prevPC) break;
                 var tMiddle     = currentBasePoints[ it + 1 ] =
-                                  ( tLeft + tRight ) * 0.5;
-                var funPoint    = fun( tMiddle );
-                if ( !funIsAVector ) {
+                                  (tLeft + tRight) * 0.5;
+                var funPoint    = fun(tMiddle);
+                if (!funIsAVector) {
                     funPoint = [ tMiddle, funPoint ];
                 }
                 funP[ it + 1 ] = funPoint;
             }
-            var newLen = calculates_curvePoints2chordsSum( funP );
+            var newLen = calculates_curvePoints2chordsSum(funP);
 
-            var reachedAccuracy = Math.abs( prevLen - newLen );
-            if ( calculationAccuracy > reachedAccuracy ) {
+            var reachedAccuracy = Math.abs(prevLen - newLen);
+            if (calculationAccuracy > reachedAccuracy) {
                 /*
                 ccc( 'reached accuracy=' + reachedAccuracy +
                      'value=', newLen, 'expo=', expo, 'memory~' + funP.length
@@ -133,4 +133,4 @@
         return prevLen;
     }
 
-}) ();
+})();

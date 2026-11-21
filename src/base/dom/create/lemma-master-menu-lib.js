@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         sn, $$, haff,
         globalCss,
@@ -16,14 +16,14 @@
     ///todm: non-elegant solution: too much coding:
     function makes_logic_phaseTab_nonClickable()
     {
-        sDomN.teafs$.logic_phase.addClass( 'non-clickable' )
-            .e( 'click', function ( event ) {
+        sDomN.teafs$.logic_phase.addClass('non-clickable')
+            .e('click', function (event) {
                 event.stopPropagation = true;
             })
             ;
 
         sDomN.teafs$.logic_phase.tabIsInactive = true;
-        globalCss.update( `
+        globalCss.update(`
                 .leftside-menuholder .menu-teaf.non-clickable
                 .litem:hover {
                         border          :1px solid transparent;
@@ -57,4 +57,4 @@
         );
     }
 
-}) ();
+})();

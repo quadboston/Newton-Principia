@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         ns, fapp, rg,
     } = window.b$l.apptree({
@@ -13,7 +13,7 @@
     ///==========================================
     ///put rg-subtrees you disire to capture here
     ///==========================================
-    function captureAState( ast )
+    function captureAState(ast)
     {
         fapp.captureState(
             ns.paste(
@@ -25,4 +25,4 @@
         );
     }
 
-}) ();
+})();

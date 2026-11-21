@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { ssF, rg, stdMod, }
         = window.b$l.apptree({ stdModExportList : {
             media_upcreate___part_of_medupcr_basic,
@@ -34,7 +34,7 @@
             rgName  : 'QP',
             stepsCount : 101,
             start   : rg.P.q,
-            step     : (rg.Q.q - rg.P.q ) / 100,
+            step     : (rg.Q.q - rg.P.q) / 100,
         });
 
         // curve from Q- to Q
@@ -47,7 +47,7 @@
             rgName  : 'timearc',
             stepsCount : 101,
             start   : rg.Q.q_minus,
-            step     : (rg.Q.q - rg.Q.q_minus ) / 100,
+            step     : (rg.Q.q - rg.Q.q_minus) / 100,
         });
 
         // curve from A to Q
@@ -67,4 +67,4 @@
     // \\// lemma custom addons
     //=========================================================
 
-}) ();
+})();

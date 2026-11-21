@@ -1,5 +1,5 @@
 // //\\// Application core-events setup
-( function () {
+(function () {
     var {
         sn, $$,
         has, haz, haf, hafa,
@@ -32,27 +32,27 @@
     ///===================================================
     function setupCapturerEvents()
     {
-        var links = document.querySelectorAll( '.captured-reference' );
-        links.forEach( link => {
-            var match = link.getAttribute( 'class' ).match( /\sid-(\S+)/ );
-            link.setAttribute( 'title', 'click to go to episode' );
-            link.addEventListener( 'click', function () {
+        var links = document.querySelectorAll('.captured-reference');
+        links.forEach(link => {
+            var match = link.getAttribute('class').match(/\sid-(\S+)/);
+            link.setAttribute('title', 'click to go to episode');
+            link.addEventListener('click', function () {
                 amode.userControl = 'text';
-                executeCapturedState( match[1] );
+                executeCapturedState(match[1]);
             });
         });
     };
 
-    function executeCapturedState( captureKeyName ) {
+    function executeCapturedState(captureKeyName) {
         sDomF.detected_user_interaction_effect();
         //match[1] is astateKey
         //was: hafa( stdMod, 'astate_2_rg8model8media' )( ... match[1] ], match[1] );
-        hafa( stdMod, 'astate_2_rg8model8media' )( ssD.capture[ captureKeyName ] );
+        hafa(stdMod, 'astate_2_rg8model8media')(ssD.capture[ captureKeyName ]);
     }
 
     function setupEvents()
     {
-        window.addEventListener( 'resize', fullResize );
+        window.addEventListener('resize', fullResize);
     };
 
     function fullResize()
@@ -60,7 +60,7 @@
         wrkwin.start8finish_media8Ess8Legend_resize__upcreate(null, !!'doDividorSynch');
     }
 
-    function does_set_next_lemma_button_event( direction )
+    function does_set_next_lemma_button_event(direction)
     {
         var pager$ = direction === 'right' ? sDomN.rightButton$ :
                      sDomN.leftButton$;
@@ -70,10 +70,10 @@
         //sapp.ix
         //todm get rid of sapp.ix; this is a poor naming;
         var next = direction === 'right' ? next = allowedIx + 1 : allowedIx - 1;
-        if ( next >= fconf.ix2lemmaDefAllowed.length || next < 0 ||
+        if (next >= fconf.ix2lemmaDefAllowed.length || next < 0 ||
             fconf.ix2lemmaDefAllowed[ next ].sappId === 'home-pane'
         ) {
-            pager$.addClass( 'non-displayed' );
+            pager$.addClass('non-displayed');
         } else {
             var nextSapp = fconf.ix2lemmaDefAllowed[ next ];
             var fullCaption = nextSapp.book + '. ' + nextSapp.caption;
@@ -82,22 +82,22 @@
                 'sappId=' + nextSapp.sappId +
                 ',logic_phaseId=claim,aspectId=english';
 
-            if ( fconf.appDecor.putTextDescriptionIntoTopNavigationArrows  ) {
+            if (fconf.appDecor.putTextDescriptionIntoTopNavigationArrows) {
                 var wwFullCaption = direction === 'right' ? fullCaption : fullCaption + ' ';
             } else {
                 var wwFullCaption = '';
             }
-            pager$.html( direction === 'right' ?
+            pager$.html(direction === 'right' ?
                 '<img alt="forward arrow" src="' + fconf.engineImg +
                 '/right-page-triangle.svg"> ' +
                 wwFullCaption :
                 wwFullCaption + '<img alt="back arrow"' +
-                                'src="' + fconf.engineImg + '/back-arrow-link.svg">' );
+                                'src="' + fconf.engineImg + '/back-arrow-link.svg">');
 
-            pager$.a( 'title', "Go to " + nextSapp.caption );
-            pager$.removeClass( 'non-displayed' );
+            pager$.a('title', "Go to " + nextSapp.caption);
+            pager$.removeClass('non-displayed');
             ///this did work but anchor works better
-            pager$.e( 'click', function () {
+            pager$.e('click', function () {
                 const match = newLoc.match(/sappId=([^,]+)/);
                 if (match) {
                     var sappId = match[1];
@@ -110,15 +110,15 @@
         }
     }
 
-    function attachWeelToDomEl( domel$, )
+    function attachWeelToDomEl(domel$,)
     {
         // mouse wheel to zoom
         const WHEEL_SCALE_FOR_SCROLL_MODE = 0.001;
-        domel$.e( 'wheel', wheelHandler );
+        domel$.e('wheel', wheelHandler);
 
-        function wheelHandler( ev ) {
-            stopAftershocks( ev );
-            sDomF.detected_user_interaction_effect( !'not-moved' );
+        function wheelHandler(ev) {
+            stopAftershocks(ev);
+            sDomF.detected_user_interaction_effect(!'not-moved');
 
             var oldScale = rg.media_scale.value;
 
@@ -128,12 +128,12 @@
                     ev.deltaY * WHEEL_SCALE_FOR_SCROLL_MODE
                 );
 
-            var validated = rg.media_scale.value2validate2pos( newScale );
-            if ( !validated ) return;
+            var validated = rg.media_scale.value2validate2pos(newScale);
+            if (!validated) return;
 
             rg.media_scale.value = newScale;
             rg.media_scale.stdMod = stdMod;
-            ssF.scaleValue2app( newScale ); // resets applic. state to new scale
+            ssF.scaleValue2app(newScale); // resets applic. state to new scale
             rg.media_scale.modPos_2_GUI();
 
             var svgEl = document.querySelector('svg');
@@ -260,13 +260,13 @@
             ];
         }
 
-        function stopAftershocks( ev )
+        function stopAftershocks(ev)
         {
             ev.preventDefault();
             //this.event.cancelBubble = true;
             //historical? https://developer.mozilla.org/en-US/docs/Web/API/Event/cancelBubble
             //very good: https://javascript.info/bubbling-and-capturing
-            if ( ev.stopImmediatePropagation ) {
+            if (ev.stopImmediatePropagation) {
                 ////missed on Android 2.?.?
                 ev.stopImmediatePropagation(); //IE9+
             } else {
@@ -276,4 +276,4 @@
     }
     ///wheel
 
-}) ();
+})();

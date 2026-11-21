@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { sconf, paste, fconf, topicColors_repo } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
@@ -39,7 +39,7 @@
         // //\\ decorational parameters
         //***************************************************************
         //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var realSvgSize = 2 * (pictureWidth + pictureHeight) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
 
         //making size to better fit lemma's diagram
@@ -53,17 +53,17 @@
         //--------------------------------------
         sconf.default_tp_lightness = 30;
         sconf.TP_OPACITY_FROM_fixed_colors = true;
-        default_tp_stroke_width = Math.floor( 6 * controlsScale ),
-        defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 4 * controlsScale ),
+        default_tp_stroke_width = Math.floor(6 * controlsScale),
+        defaultLineWidth        = Math.floor(1 * controlsScale),
+        handleRadius            = Math.floor(4 * controlsScale),
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius;
 
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
         //this makes hanle's border nicely thin
-        sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
-        sconf.hover_width       = Math.max( 2, Math.floor( 7*controlsScale/1.6 ) );
+        sconf.nonhover_width    = Math.max(1, Math.floor(1*controlsScale/1.6));
+        sconf.hover_width       = Math.max(2, Math.floor(7*controlsScale/1.6));
 
         //make effect apparently only for line-captions,
         //not for point-captions bs
@@ -305,8 +305,8 @@
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
 
-        paste( sconf,
-            paste( to_sconf,
+        paste(sconf,
+            paste(to_sconf,
             {
                 //double back step ../../ is to reuse this path in code for twin-lemma
                 mediaBgImage : "../../b1sec1lemma9/img/lemma9-original.png",
@@ -325,4 +325,4 @@
         // \\// copy-pastes to sconf
         //----------------------------------------------------
     };
-}) ();
+})();

@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var ns          = window.b$l;
     var sn          = ns.sn;
     var methods     = sn('methods');
@@ -26,11 +26,11 @@
     //                  scriptItem.cb - optional callback for individual script load
     //             lastCb - optional callback called when all scripts loaded
     //===============================================================================
-    function loadScripts( scriptList, lastCb )
+    function loadScripts(scriptList, lastCb)
     {
         var completionCount = 0;
 
-        scriptList.forEach( function ( scriptItem, ix ) {
+        scriptList.forEach(function (scriptItem, ix) {
 
             //https://developer.mozilla.org/en-US/docs/Web/HTTP/
             //      Basics_of_HTTP/MIME_types#JavaScript_types
@@ -41,10 +41,10 @@
             scrip.async = false;
             scrip.onload = function () {
                 completionCount++;
-                scriptItem.cb && scriptItem.cb( loadedItem );
+                scriptItem.cb && scriptItem.cb(loadedItem);
                 checkCompletion();
             }
-            document.head.appendChild( scrip );
+            document.head.appendChild(scrip);
             //https://medium.com/@vschroeder/javascript-how-to-execute-code-from-an-
             //asynchronously-loaded-script-although-when-it-is-not-bebcbd6da5ea
             scrip.src = scriptItem.src;
@@ -52,7 +52,7 @@
 
         function checkCompletion()
         {
-            if ( completionCount === scriptList.length ) {
+            if (completionCount === scriptList.length) {
                 lastCb && lastCb();
             }
         }
@@ -60,4 +60,4 @@
     //===============================================================================
     // \\// microAPI to load list of contents for html-element-scripts
     //===============================================================================
-}) ();
+})();

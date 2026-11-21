@@ -1,16 +1,16 @@
-( function () {
+(function () {
     var { sn, $$, fapp, sDomN, ssF, stdMod, }
         = window.b$l.apptree({ setModule, });
-    var stdL2 = sn('stdL2', fapp );
+    var stdL2 = sn('stdL2', fapp);
     return;
 
 
     function setModule()
     {
-        var gui         = sn('gui', stdL2 );
-        var guiup       = sn('guiUpdate',gui);
-        var study       = sn('study', stdL2 );
-        var sdata       = sn('sdata', study );
+        var gui         = sn('gui', stdL2);
+        var guiup       = sn('guiUpdate', gui);
+        var study       = sn('study', stdL2);
+        var sdata       = sn('sdata', study);
 
         study.eventHandlers =
         {
@@ -19,20 +19,20 @@
         };
         study.setupEventsAreasLegend = setupEventsAreasLegend;
 
-        Object.assign( ssF, {
+        Object.assign(ssF, {
             create_digital_legend,
         });
 
-        Object.assign( guiup, {
+        Object.assign(guiup, {
             updateLegendAmounts,
         });
         return;
 
         function setupEventsAreasLegend()
         {
-            Object.keys( study.eventHandlers ).forEach( function ( methodName ) {
-                document.getElementById( methodName )
-                    .addEventListener( 'change', study.eventHandlers[ methodName ] );
+            Object.keys(study.eventHandlers).forEach(function (methodName) {
+                document.getElementById(methodName)
+                    .addEventListener('change', study.eventHandlers[ methodName ]);
             });
 
             // //\\ copy-pasted from gui-art
@@ -49,7 +49,7 @@
                     let isFig = view.isFigureChecked;
                     let isIn = view.isInscribed;
                     let isCir = view.isCircumscribed;
-                    if ( !isIn && !isCir ) {
+                    if (!isIn && !isCir) {
                         document.getElementById('checkbox_4').checked = true;
                         sdata.view.isFigureChecked = true;
                         return;
@@ -68,7 +68,7 @@
             let isFig = view.isFigureChecked;
             let isIn = view.isInscribed;
             let isCir = view.isCircumscribed;
-            if ( !isFig && !isCir ) {
+            if (!isFig && !isCir) {
                 document.getElementById('toggleInscribed').checked = true;
                 sdata.view.isInscribed=1;
                 return;
@@ -84,7 +84,7 @@
             let isFig = view.isFigureChecked;
             let isIn = view.isInscribed;
             let isCir = view.isCircumscribed;
-            if ( !isFig && !isIn ) {
+            if (!isFig && !isIn) {
                 document.getElementById('toggleCircumscribed').checked = true;
                 view.isCircumscribed = 1;
                 return;
@@ -115,7 +115,7 @@
         sDomN.digitalLegend$ = $$.dict(
             "areadesk",
             "areas dull desc default-content main-legend",
-            stdMod.legendRoot$ )
+            stdMod.legendRoot$)
             .html(`
 
                 <div class="line"></div>
@@ -182,16 +182,16 @@
 
     function updateLegendAmounts(dr) {
         document.getElementById("figAmt").innerHTML =
-            ((Math.sign( dr.figureArea )==-1)?"-":"" )+ "100.0";
+            ((Math.sign(dr.figureArea)==-1)?"-":"")+ "100.0";
         document.getElementById("inAmtd").innerHTML =
-            normalizedStr( dr, dr.areaIns, dr.figureArea);
+            normalizedStr(dr, dr.areaIns, dr.figureArea);
         document.getElementById("circAmtd").innerHTML =
-            normalizedStr( dr, dr.areaCir, dr.figureArea);
+            normalizedStr(dr, dr.areaCir, dr.figureArea);
     }
 
-    function normalizedStr( dr, amt )
+    function normalizedStr(dr, amt)
     {
         return (100*amt/Math.abs(dr.figureArea)).toFixed(1);
     }
 
-}) ();
+})();

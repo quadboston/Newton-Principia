@@ -8,7 +8,7 @@
     // \\// to link to app
     //================================
 
-    function establishesContentTriggers( postExecutionCallBack )
+    function establishesContentTriggers(postExecutionCallBack)
     {
         //================================
         // //\\ to link to app
@@ -21,7 +21,7 @@
         //can be either like const IMAGE_PATH = '../../local-content-trigger';
 
         ///distributes images
-        var divs = document.querySelectorAll( '.trigger-option' ).forEach( div =>
+        var divs = document.querySelectorAll('.trigger-option').forEach(div =>
         {
             div.innerHTML = `
                 <img class="isclosed" src="${IMAGE_PATH}/content-book-closed.png"
@@ -30,13 +30,13 @@
 					alt="Open book icon" title="Hide book credit">
             ` + div.innerHTML;
         });
-        var divs = document.querySelectorAll( 'div.trigger-option' ).forEach( div =>
+        var divs = document.querySelectorAll('div.trigger-option').forEach(div =>
         {
-            div.addEventListener( 'click', clicker );
+            div.addEventListener('click', clicker);
         });
 
         ///purely decorational block:
-        var divs = document.querySelectorAll( '.trigger-content' ).forEach( div =>
+        var divs = document.querySelectorAll('.trigger-content').forEach(div =>
         {
             div.innerHTML = div.innerHTML;
         });

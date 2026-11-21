@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { mat, mcurve, ssD, } = window.b$l.apptree({});
     mcurve.planeCurveDerivatives = planeCurveDerivatives;
 
@@ -29,10 +29,10 @@
         //These vectors are positions on the diagram, relative to the diagram
         //origin.  Note they use a different origin than the r (position)
         //vectors, that are relative to the center of forces.
-        const posBody   = pointAt( q );
+        const posBody   = pointAt(q);
         //Two points on the orbit offset slightly from the body
-        const posPlus   = pointAt( q + delta_q );
-        const posMinus  = pointAt( q - delta_q );
+        const posPlus   = pointAt(q + delta_q);
+        const posMinus  = pointAt(q - delta_q);
 
         //Note for the dr/dq and d²r/dq² calculations:
         //-Relative positions are used, meaning the origin of the vectors must
@@ -87,8 +87,8 @@
         //projection of [dr_dq*d2r_dq2] on ort kk,
         var cv3     = dr_dq[0]*d2r_dq2[1]-dr_dq[1]*d2r_dq2[0];
         //curvature abs. value
-        var c       = Math.abs( cv3 ) / (ds_dq_squared*ds_dq);
-        var bk      = Math.sign( cv3 ); //=orientation = [𝘂𝗻]𝗸
+        var c       = Math.abs(cv3) / (ds_dq_squared*ds_dq);
+        var bk      = Math.sign(cv3); //=orientation = [𝘂𝗻]𝗸
 
         //normal vector, correctly oriented in respect to ort 𝗸,
         //if vector product is along 𝗸, then curvature is
@@ -117,12 +117,12 @@
         ///todo slow code, do work around,
         ///fixing extreme cases:
         ///is this bug in JS?
-        if ( Math.abs( sinOmega - 1 ) < 1e-15 ) {
+        if (Math.abs(sinOmega - 1) < 1e-15) {
             angleRV = Math.PI/2;
-        } else if ( Math.abs( sinOmega + 1 ) < 1e-15 ) {
+        } else if (Math.abs(sinOmega + 1) < 1e-15) {
             angleRV = -Math.PI/2;
         } else {
-            var angleRV = Math.asin( sinOmega );
+            var angleRV = Math.asin(sinOmega);
         }
 
         angleRV = cosOmega > 0 ? angleRV :
@@ -193,4 +193,4 @@
             //for Kepler's motion, f = 1/R vₜ² / sin(w)
         };
     }
-}) ();
+})();

@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         rg,
     } = window.b$l.apptree({ stdModExportList : {
@@ -36,4 +36,4 @@
     // \\// lemma custom addons
     //=========================================================
 
-}) ();
+})();

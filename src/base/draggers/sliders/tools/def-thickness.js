@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         globalCss,
         sconf, ssF, rg, toreg,
@@ -21,7 +21,7 @@
     function createSliderPlaceholder_thickness()
     {
         var magnit = 'thickness';
-        toreg( magnit )( 'value', 2 );
+        toreg(magnit)('value', 2);
 
         ssF.sliderTemplate({
             magnit,
@@ -35,7 +35,7 @@
         });
     }
 
-    function magnitude2app( magnit_api, newValue )
+    function magnitude2app(magnit_api, newValue)
     {
         //==========================================
         // //\\ sets magnit_api to specified elements
@@ -56,4 +56,4 @@
         //==========================================
     }
 
-}) ();
+})();

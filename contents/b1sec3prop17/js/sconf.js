@@ -1,10 +1,10 @@
-( function () {
+(function () {
     var { ns, sn, mat, fconf, sconf, stdMod, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     // sn points to sconf.orbitParameters if param exisits,
     // these are initialized here as empty objs
-    var op = sn( 'orbitParameters', sconf ); //conic ABD (brown)
-    var sop = sn( 'sampleOrbitParameters', sconf ); //conic pq (green)
+    var op = sn('orbitParameters', sconf); //conic ABD (brown)
+    var sop = sn('sampleOrbitParameters', sconf); //conic pq (green)
     return;
 
 
@@ -24,7 +24,7 @@
         var pictureHeight = 765;
 
         //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var realSvgSize = 2 * (pictureWidth + pictureHeight) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize;
 
         //making size to better fit lemma's diagram
@@ -33,16 +33,16 @@
         fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
 
         // override engine defaults, in expands-conf.js,
-        default_tp_stroke_width = Math.floor( 6 * controlsScale ),
-        defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 2.8 * controlsScale ),
+        default_tp_stroke_width = Math.floor(6 * controlsScale),
+        defaultLineWidth        = Math.floor(1 * controlsScale),
+        handleRadius            = Math.floor(2.8 * controlsScale),
         sconf.pointDecoration.r = handleRadius;
         sconf.default_tp_lightness = 30;
 
         // principal tp-css pars; see: topics-media-glocss.js
         // this makes hanle's border nicely thin
-        sconf.nonhover_width = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
-        sconf.hover_width    = Math.max( 2, Math.floor( 7*controlsScale/1.6 ) );
+        sconf.nonhover_width = Math.max(1, Math.floor(1*controlsScale/1.6));
+        sconf.hover_width    = Math.max(2, Math.floor(7*controlsScale/1.6));
 
         //make effect apparently only for line-captions,
         //not for point-captions bs
@@ -81,15 +81,15 @@
 
             //Book's derivative values
             let eta = sop.latus / sop.r;
-            let e = Math.sqrt( eta*eta / sin2speed / sin2speed - 2 * eta + 1 );
-            let fi = Math.acos( (1-eta)/e );
+            let e = Math.sqrt(eta*eta / sin2speed / sin2speed - 2 * eta + 1);
+            let fi = Math.acos((1-eta)/e);
             sop.PparQ_initial = fi;
             sop.initialEccentricity = e;
 
             //derived
             sop.mainAxisAngle = sop.r2axisX_angle - sop.PparQ_initial;
 
-            stdMod.establishesEccentricity( sop.initialEccentricity, null, sop );
+            stdMod.establishesEccentricity(sop.initialEccentricity, null, sop);
             sop.sagittaDelta_q_initial = 0.4; //decoration
         }
         // speed
@@ -120,7 +120,7 @@
             op.delta_t = op.delta_t_initial = sag_init * 2.5;
             op.delta_t_LIMIT = op.delta_t_initial * 1.5;
 
-            stdMod.establishesEccentricity( op.initialEccentricity );
+            stdMod.establishesEccentricity(op.initialEccentricity);
         }
         // speed
         var { Kepler_v, cosOmega, om } = mat.conics.innerPars2innerPars({
@@ -175,7 +175,7 @@
         //-----------------------------------
 
         var originalPoints = {};
-        Object.assign( originalPoints, {
+        Object.assign(originalPoints, {
             S : {
                 pcolor : sunColor,
                 letterAngle : -115,
@@ -417,7 +417,7 @@
 
         ];
 
-        ns.paste( sconf, {
+        ns.paste(sconf, {
             mediaBgImage : "diagram.png",
             topicColors_elected,
             originalPoints,
@@ -432,4 +432,4 @@
             handleRadius,
         });
     }
-}) ();
+})();

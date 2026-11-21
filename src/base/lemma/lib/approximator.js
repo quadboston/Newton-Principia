@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         sn, $$, mat, nssvg, mcurve, haz,
         ssF, ssD, sDomF, toreg,
@@ -10,7 +10,7 @@
             pointsArr_2_singleDividedDifferences,
         },
     });
-    var pname2point = sn( 'pname2point', sconf );
+    var pname2point = sn('pname2point', sconf);
     //test
     /*
         var { q2xy, trange2points } =
@@ -59,29 +59,29 @@
         var antider = [ 0 ];
         var curvePoints = [];
 
-        var lowname = sDomF.toCssIdentifier( curveName );
+        var lowname = sDomF.toCssIdentifier(curveName);
 
         ///creates pivots array xy
-        sconf.originalPoints.curvePivots.forEach( (pivot,pix) => {
+        sconf.originalPoints.curvePivots.forEach((pivot, pix) => {
             var pname = pivotsName + '-' + pix;
             var p = pname2point[pname]; //p has format [xx,xx],
-            if ( separateXYforParamT ) {
+            if (separateXYforParamT) {
                 xt[ pix ] = [ pix, p[0] ];
                 yt[ pix ] = [ pix, p[1] ];
             }
             xy[ pix ] = doSwapXY ? [ p[1], p[0] ] : [ p[0], p[1] ];
         });
-        var rgX = toreg( approxCurveName )();
+        var rgX = toreg(approxCurveName)();
         //prevents leaks polylineSvg from js-prototype
-        rgX.polylineSvg = haz( rgX, 'polylineSvg' );
+        rgX.polylineSvg = haz(rgX, 'polylineSvg');
 
         //sets the function:
         // **api-outputs---divided-diff
-        if ( separateXYforParamT ) {
-            var axt = rg[ approxCurveName ].xt = mat.calculate_divided_differences( xt );
-            var ayt = rg[ approxCurveName ].yt = mat.calculate_divided_differences( yt );
+        if (separateXYforParamT) {
+            var axt = rg[ approxCurveName ].xt = mat.calculate_divided_differences(xt);
+            var ayt = rg[ approxCurveName ].yt = mat.calculate_divided_differences(yt);
         } else {
-            var axy = rg[ approxCurveName ].xy =  mat.calculate_divided_differences( xy );
+            var axy = rg[ approxCurveName ].xy =  mat.calculate_divided_differences(xy);
         }
         var result = {
             t2xy : q2xy, //transition from former notations
@@ -92,20 +92,20 @@
             antider,
             curvePoints, //they are x/y-swapped for case
         };
-        Object.assign( rgX, result );
+        Object.assign(rgX, result);
         buildsCurvePoints({ doIntegrate : true })
         buildsPlot(); //( arg );
         //poly2svg({});
         return result;
 
-        function q2xy( q )
+        function q2xy(q)
         {
             return separateXYforParamT ?
                 [
-                    axt.calculate_polynomial( q ),
-                    ayt.calculate_polynomial( q ),
+                    axt.calculate_polynomial(q),
+                    ayt.calculate_polynomial(q),
                 ] :
-                [ q, axy.calculate_polynomial( q ) ];
+                [ q, axy.calculate_polynomial(q) ];
         }
 
         ///generates array of xy where x is par. "t" and is from
@@ -116,17 +116,17 @@
             var area = 0;
             var antid = antider;
             antid.length = 1;
-            var tstep = ( tEnd - tStart ) / stepsCount;
-            for ( var tix = 0; tix<=stepsCount; tix++ ) {
+            var tstep = (tEnd - tStart) / stepsCount;
+            for (var tix = 0; tix<=stepsCount; tix++) {
                 var q = tStart + tstep * tix;
-                var pos = q2xy( q );
-                if ( doIntegrate && tix ) {
+                var pos = q2xy(q);
+                if (doIntegrate && tix) {
                     area += tstep * pos[1];
                     antid[ tix ] = area;
                 }
                 //deswaps if swap mode is on
-                curvePoints[tix] = doSwapXY ? [pos[1],pos[0]] : pos;
-                newpoints.push( pos );
+                curvePoints[tix] = doSwapXY ? [pos[1], pos[0]] : pos;
+                newpoints.push(pos);
             }
             return newpoints;
         }
@@ -152,7 +152,7 @@
             ownrange2points({ stepsCount:1000, doIntegrate });
         }
 
-        function poly2svg( arg )
+        function poly2svg(arg)
         {
             buildsCurvePoints({});
             buildsPlot(); //( arg );
@@ -160,8 +160,8 @@
 
         function buildsPlot()
         {
-            var medpoints = curvePoints.map( cp => {
-                return ssF.mod2inn( cp, );
+            var medpoints = curvePoints.map(cp => {
+                return ssF.mod2inn(cp,);
             });
             var polylineSvg = rgX.polylineSvg = nssvg.polyline({
                 pivots  : medpoints,
@@ -174,7 +174,7 @@
                 //fill             : haz( arg, 'fill' ),
             });
             //##tp-machine
-            $$.$( polylineSvg ).addClass( 'tostroke thickable tp-'+lowname );
+            $$.$(polylineSvg).addClass('tostroke thickable tp-'+lowname);
 
             /*
             var strokeWidth = haz( arg, 'stroke-width' );
@@ -185,4 +185,4 @@
         }
     }
 
-}) ();
+})();

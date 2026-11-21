@@ -1,7 +1,7 @@
-( function () {
+(function () {
     var { ns, sn, fconf, sconf, stdMod, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
-    var op = sn( 'orbitParameters', sconf );
+    var op = sn('orbitParameters', sconf);
     return;
 
 
@@ -19,7 +19,7 @@
         var pictureHeight = 611;
 
         //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var realSvgSize = 2 * (pictureWidth + pictureHeight) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize;
         //***************************************************************
         // \\// geometrical scales
@@ -39,9 +39,9 @@
         // //\\ do override engine defaults,
         //      in expands-conf.js,
         //--------------------------------------
-        default_tp_stroke_width = Math.floor( 6 * controlsScale ),
-        defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 3.5 * controlsScale ),
+        default_tp_stroke_width = Math.floor(6 * controlsScale),
+        defaultLineWidth        = Math.floor(1 * controlsScale),
+        handleRadius            = Math.floor(3.5 * controlsScale),
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius;
         sconf.default_tp_lightness = 30;
@@ -49,8 +49,8 @@
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
         //this makes hanle's border nicely thin
-        sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
-        sconf.hover_width       = Math.max( 2, Math.floor( 7*controlsScale/1.6 ) );
+        sconf.nonhover_width    = Math.max(1, Math.floor(1*controlsScale/1.6));
+        sconf.hover_width       = Math.max(2, Math.floor(7*controlsScale/1.6));
 
         //make effect apparently only for line-captions,
         //not for point-captions bs
@@ -106,7 +106,7 @@
         //conic pars
         op.initialEccentricity = 1; //parabola
         op.latus = 2.10;
-        stdMod.establishesEccentricity( op.initialEccentricity );
+        stdMod.establishesEccentricity(op.initialEccentricity);
         //-------------------------------------------
         // \\// curve shape parameters
         //-------------------------------------------
@@ -143,7 +143,7 @@
         //-----------------------------------
 
         var originalPoints = {};
-        Object.assign( originalPoints, {
+        Object.assign(originalPoints, {
             L : {
                 doPaintPname : false,
                 undisplayAlways : true,
@@ -315,7 +315,7 @@
                captionShiftNorm : 22, lposYSugar : 3 }, },
         ];
 
-        ns.paste( sconf, {
+        ns.paste(sconf, {
             Q_STEPS,
             DATA_GRAPH_STEPS,
 
@@ -333,4 +333,4 @@
             handleRadius,
         });
     }
-}) ();
+})();

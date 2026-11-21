@@ -1,12 +1,12 @@
-( function () {
+(function () {
     var { sn, nspaste, fapp, fconf, sconf, ssF, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf, }, });
 
-    var stdL2       = sn('stdL2', fapp );
-    var study       = sn('study', stdL2 );
-    var sdata       = sn('sdata', study );
-    var dataregs    = sn('dataregs', stdL2 );
-    var appstate    = sn('appstate', stdL2 );
+    var stdL2       = sn('stdL2', fapp);
+    var study       = sn('study', stdL2);
+    var sdata       = sn('sdata', study);
+    var dataregs    = sn('dataregs', stdL2);
+    var appstate    = sn('appstate', stdL2);
 
     //=====================================
     // //\\ presets data
@@ -248,7 +248,7 @@
                    },
             },
             { oE : {
-                        pcolor : [0,0,0,0],
+                        pcolor : [0, 0, 0, 0],
                    },
             },
 
@@ -298,7 +298,7 @@
             },
         ];
 
-        nspaste( sconf, {
+        nspaste(sconf, {
             topicColors_elected : predT,
             originalPoints,
             linesArray,
@@ -311,4 +311,4 @@
             handleRadius : 55,
         });
     };
-}) ();
+})();

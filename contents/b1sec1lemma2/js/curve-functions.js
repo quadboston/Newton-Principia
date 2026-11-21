@@ -1,9 +1,9 @@
-( function () {
+(function () {
     var { sn, fapp, sconf, } = window.b$l.apptree({});
 
-    var stdL2       = sn('stdL2', fapp );
-    var study       = sn('study', stdL2 );
-    var numModel    = sn('numModel', stdL2 );
+    var stdL2       = sn('stdL2', fapp);
+    var study       = sn('study', stdL2);
+    var numModel    = sn('numModel', stdL2);
 
     Object.assign(study, {
         calculates_microPoints,

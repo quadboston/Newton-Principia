@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         sn, $$, cssp, nsmethods, globalCss, nspaste, haz, has, eachprop,
         fconf, sDomN, ssD, sDomF, ssF, exegs, topics,
@@ -14,7 +14,7 @@
             //updateFrameWorkAnchors_2_basicSiteFeatures,
         },
     });
-    var collectedDelayedLinks = sn( 'collectedDelayedLinks', ssD );
+    var collectedDelayedLinks = sn('collectedDelayedLinks', ssD);
 
     //---------------------------------------------
     // //\\ topic engine variables
@@ -44,7 +44,7 @@
         '|(\n|.)|$)';   //catches remainder for later accurate replacement
 
     //flag: u 	"unicode"; treat a pattern as a sequence of unicode code points.
-    var TOP_ANCH_REG_gu = new RegExp( TOP_ANCH_REG, 'gu' );
+    var TOP_ANCH_REG_gu = new RegExp(TOP_ANCH_REG, 'gu');
     //flag "g": With this flag the search looks for all matches,
     //          without it – only the first match is returned.
     //          https://javascript.info/regexp-introduction
@@ -53,7 +53,7 @@
     //          matches, not multiple sub-matches"
     //          https://stackoverflow.com/questions/19913667
     //          /javascript-regex-global-match-groups
-    var TOP_ANCH_REG_u = new RegExp( TOP_ANCH_REG, 'u' );
+    var TOP_ANCH_REG_u = new RegExp(TOP_ANCH_REG, 'u');
     //---------------------------------------------
     // \\// topic engine variables
     //---------------------------------------------
@@ -78,21 +78,21 @@
         ///with help by ACTION_SPLITTER = /¿/
         rawActFrValue
     ) {
-        var topicPreAnchors = rawActFrValue.match( TOP_ANCH_REG_gu );
+        var topicPreAnchors = rawActFrValue.match(TOP_ANCH_REG_gu);
         var collectedTpLinks = {};
 
-        if ( topicPreAnchors ) {
-            topicPreAnchors.forEach( link => {
+        if (topicPreAnchors) {
+            topicPreAnchors.forEach(link => {
                 ////loops via all anchors having topic-link tl-TOPIC
-                if ( !link ) return;
+                if (!link) return;
 
                 //by RegExp( TOP_ANCH_REG, 'u' );
-                var parsedLink = link.match( TOP_ANCH_REG_u );
+                var parsedLink = link.match(TOP_ANCH_REG_u);
                 //=========================================
                 // //\\ indexes topic links and colors
                 //=========================================
                 //parsedLink[3] === '(?:(¦)(¦)*' +  //catches delayed topc-link for MathJax sibling
-                if (  parsedLink[3] ) {
+                if (parsedLink[3]) {
 
                     ///this array collects information for spawning plain-words (which are
                     ///original match keys), collected info will be used later for first-step for
@@ -103,7 +103,7 @@
 
                         //total future match clause = string aka  ¦anchor config¦anchor caption¦¦
                         //note: trailing ¦¦ are stripped,
-                        match : parsedLink[0].substring( 0,
+                        match : parsedLink[0].substring(0,
                                 //"length-1" erases last char which is "¦"
                                 //if is ¦IN¦¦¦, then makes ¦IN¦¦,
                                 parsedLink[0].length-1
@@ -126,12 +126,12 @@
                 var tplinkConf = parsedLink[1];
                 ///we must do key preporcessing, for time 1 out of 2:
                 ///handle strip '' or generate key
-                if ( tplinkConf === '' ) {
+                if (tplinkConf === '') {
                     ////no config found, taking caption as config
                     tplinkConf = parsedLink[2]
                 } else {
                     ////config found, extracting it
-                    tplinkConf = tplinkConf.substring( 1, tplinkConf.length );
+                    tplinkConf = tplinkConf.substring(1, tplinkConf.length);
                 }
                 //at the moment tplinkConf is a set of commands,
                 //"config" is a poor word,
@@ -148,7 +148,7 @@
                 //=========================================
                 //right name would be anid2arack //anchor id 2 anchors rack
                 //of properties
-                if ( !anid2anrack.hasOwnProperty( tplinkConf ) ) {
+                if (!anid2anrack.hasOwnProperty(tplinkConf)) {
                     ////does strip duplicate propery tplinkConf
                     ////from anid2anrack
                     ////  id is equal to tplinkConf
@@ -191,17 +191,17 @@
                 //      just additionally makes "caption" a real link.
                 //-------------------------------------------------------
                 var ANCH_HREF_CAT_rg = /\*href\*(\S+)/;
-                var hrefMatch = tplinkConf.match( ANCH_HREF_CAT_rg );
-                if ( hrefMatch ) {
+                var hrefMatch = tplinkConf.match(ANCH_HREF_CAT_rg);
+                if (hrefMatch) {
                     anchorRack.href = hrefMatch[1];
                     //strips the *href*URL token out so it is not also
                     //mistaken for a topic-id by the split below
-                    tplinkConf = tplinkConf.replace( ANCH_HREF_CAT_rg, '' ).trim();
+                    tplinkConf = tplinkConf.replace(ANCH_HREF_CAT_rg, '').trim();
                 }
                 //-------------------------------------------------------
                 // \\// extracts an optional *href*URL command
                 //-------------------------------------------------------
-                anchorRack.raw_tpIDs = tplinkConf.split( SPACE_reg ).filter( Boolean );
+                anchorRack.raw_tpIDs = tplinkConf.split(SPACE_reg).filter(Boolean);
                 //if( anchorRack.raw_tpIDs.length > 1 )
                 //    ccc(tplinkConf);
                 var ANCH_COLOR_CAT_rg = /\*anch-color\*(.+)/;
@@ -213,17 +213,17 @@
                     // //\\ checks for reserved topic categories
                     //      like '*anch-color', ...
                     //..........................................................
-                    if ( 'cssbold' === anchorOperator ) {
+                    if ('cssbold' === anchorOperator) {
                         anchorRack.anchorIsBold = true;
                         return;
-                    } else if ( '*anch-color' === anchorOperator ) {
+                    } else if ('*anch-color' === anchorOperator) {
                         anchorRack.cssNoColorToShapes = true;
                         return;
-                    } else if ( anchorOperator.match( ANCH_COLOR_CAT_rg ) ) {
+                    } else if (anchorOperator.match(ANCH_COLOR_CAT_rg)) {
                         var ww = anchorRack.colorCateg =
-                            anchorOperator.match( ANCH_COLOR_CAT_rg );
+                            anchorOperator.match(ANCH_COLOR_CAT_rg);
                         //.fixed set to tp-link
-                        anchorRack[ 'tpcolarr' ] = haz( topicColors_repo, ww[1] );
+                        anchorRack[ 'tpcolarr' ] = haz(topicColors_repo, ww[1]);
                         return;
                     }
                     //..........................................................
@@ -231,24 +231,24 @@
                     //..........................................................
 
                     //lowcase anchor's topic id
-                    var low_tpID = nsmethods.toCssIdentifier( anchorOperator );
+                    var low_tpID = nsmethods.toCssIdentifier(anchorOperator);
                     //anchorRack has collection of anchor commands,
                     ///now we do add anchorRack.tpid2tru to anchorRack,
-                    if ( low_tpID  && low_tpID.replace( / /g, '' ) ) {
+                    if (low_tpID  && low_tpID.replace(/ /g, '')) {
                         anchorRack.tpid2true[ low_tpID ] = true;
                         //if topicId keyName is missed, then an empty object created
                         //ccc( 'FR II, set low_tpID into lowtpid_2_glocss8anchorRack' );
-                        if ( !has( lowtpid_2_glocss8anchorRack, low_tpID ) ) {
+                        if (!has(lowtpid_2_glocss8anchorRack, low_tpID)) {
                             const href = window.location.href;
                             if (!href.includes('glossary') && !href.includes('conics')) {
-                                ccc( 'Helper: text topic "'+low_tpID +'" ' +
+                                ccc('Helper: text topic "'+low_tpID +'" ' +
                                     'is missed in js-code. '
                                 );
                             }
                             //for this keyName, 'fixed-colors'
                             //is a flag and is = 'undefined',
                             //don't forget lowtpid_2_glocss8anchorRack is in topics.lowtpid_2_glocss8anchorRack
-                            sn( low_tpID,
+                            sn(low_tpID,
                                 lowtpid_2_glocss8anchorRack // maps, topicId -> topicId
                             );
                         }
@@ -276,12 +276,12 @@
     function rawFragments2htmlText(
         rawActiveFrag,
     ) {
-        if ( typeof( rawActiveFrag ) === 'object' ) {
+        if (typeof(rawActiveFrag) === 'object') {
             ////we have active fragments:
             ////     { name1 : fragBody_raw1,
             ////       name2 : fragBody_raw2,
             ////       ....
-            var normalizedActiveFrag = nspaste( {}, rawActiveFrag );
+            var normalizedActiveFrag = nspaste({}, rawActiveFrag);
         } else {
             ////normalizes rawActiveFrag string to comply with active fragments format:
             ////     { static : fragBody_raw,
@@ -290,7 +290,7 @@
             var normalizedActiveFrag = { 'static' : rawActiveFrag };
         }
         var norFrRack = {};
-        eachprop( normalizedActiveFrag, (
+        eachprop(normalizedActiveFrag, (
             fragBody_raw,   //this is a plain text,
                             //pre-ready for final-HTML-text,
                             //it will be modified few times here without
@@ -319,8 +319,8 @@
             //          if there are marks in book-text, then replaces all of them,
             //      implemented, since proposition 14,
             //----------------------------------------------------
-            if ( has( sconf, 'insertDelayedBatch' ) ) {
-                fragBody_raw = insertDelayedBatch( fragBody_raw );
+            if (has(sconf, 'insertDelayedBatch')) {
+                fragBody_raw = insertDelayedBatch(fragBody_raw);
             }
             //----------------------------------------------------
             // \\// processes tp-batch-controllers
@@ -333,7 +333,7 @@
             norFrRack[ akey ] = {
                 //(*) format:
                 //text ready to be injected into html dom$
-                fragBody    : fragBody_raw.replace( TOP_ANCH_REG_gu, replWithAnchor ),
+                fragBody    : fragBody_raw.replace(TOP_ANCH_REG_gu, replWithAnchor),
                               //normalizes scriptedAnchors to form <a ... tl-NNNNN dix ...
                 //placeholder to accept text to be injected into html dom$
                 dom$        : 'to be defined later',
@@ -359,15 +359,15 @@
         ) {
             ///we must do anchorConfig preporcessing again, for time 2 out of 2:
             ///do handle strip==='' or generate anchorConfig
-            if ( anchorConfig === '' ) {
+            if (anchorConfig === '') {
                 anchorConfig = scaption;
             } else {
                 //strips "¦" from the lead of anchorConfig:
-                anchorConfig = anchorConfig.substring( 1, anchorConfig.length );
+                anchorConfig = anchorConfig.substring(1, anchorConfig.length);
             }
 
             var rack = topics.anid2anrack[ anchorConfig ];
-            if ( !rack ) return;
+            if (!rack) return;
             var dix = cflag ? ' delayed-anchor' : '';
             dix += farFlag ? ' delayed-far' : '';
 
@@ -393,10 +393,10 @@
             //      turns the caption into a clickable link.
             //-------------------------------------------------------
             var hrefAttr = '';
-            if ( rack.href ) {
+            if (rack.href) {
                 //minimal escaping so a stray '"' in the URL can't
                 //break out of the attribute
-                var safeHref = rack.href.replace( /"/g, '&quot;' );
+                var safeHref = rack.href.replace(/"/g, '&quot;');
                 //inline cursor:pointer guarantees the pointer-hand
                 //shows up even if site css sets cursor:default on
                 //.tl-N anchors (likely, since they weren't real links
@@ -411,7 +411,7 @@
             //-------------------------------------------------------
 
             var repl = '<a class="tl-' + rack.tplink_ix + dix + '"' + hrefAttr + '>'+ scaption +
-                       '</a>' + (remainder || '' );
+                       '</a>' + (remainder || '');
             return repl;
         }
         //--------------------------------------------------------
@@ -436,9 +436,9 @@
         var domId = 'active-' + fid;
         var styleId = domId + '-style';
         bFrag.dom$ = $$.c('div')
-            .cls( domId + ' exeg-frag')
-            .html( bFrag.fragBody )
-            .to( parentDomEl )
+            .cls(domId + ' exeg-frag')
+            .html(bFrag.fragBody)
+            .to(parentDomEl)
             ;
 
         //-------------------------------------------------------
@@ -446,7 +446,7 @@
         //      ===from-media---to---text
         //      ===user-action-in-media ---> to book-text
         //-------------------------------------------------------
-        globalCss.updateIfKeyDifferent( `
+        globalCss.updateIfKeyDifferent(`
                 .${cssp}-text-widget.active-${fid} .active-${fid} {
                     display : inline;
                 }
@@ -466,7 +466,7 @@
         //      also clickable links, vs. highlight-only ones.
         //      fixed (non-fid) key: only needs to be set once.
         //-------------------------------------------------------
-        globalCss.updateIfKeyDifferent( `
+        globalCss.updateIfKeyDifferent(`
                 .${cssp}-text-widget a.has-href {
                     text-decoration : none;
                 }
@@ -485,14 +485,14 @@
         // //\\ inserts book-references in DOM if professor did specify in text,
         //      ... by html-attribute "book-reference-id"
         //-----------------------------------------------------------------------
-        var breferences = bFrag.dom$().querySelectorAll( '[book-reference-id]' );
-        breferences.forEach( sel => {
-            var skey = sel.getAttribute( 'book-reference-id' );
-            var ref = haz( ssD.bookReferences, skey );
-            if ( ref ) {
+        var breferences = bFrag.dom$().querySelectorAll('[book-reference-id]');
+        breferences.forEach(sel => {
+            var skey = sel.getAttribute('book-reference-id');
+            var ref = haz(ssD.bookReferences, skey);
+            if (ref) {
                 sel.innerHTML = ref + sel.innerHTML;
-                var cssText = haz( ssD.bookReferences, skey + '---inline-style' );
-                if ( cssText ) {
+                var cssText = haz(ssD.bookReferences, skey + '---inline-style');
+                if (cssText) {
                     sel.style.cssText = cssText;
                 }
             }
@@ -505,10 +505,10 @@
     ///replaces raw words with value from value found in
     ///collection of collectedDelayedLinks
     ///runs before tp machine parses fragBody_raw
-    function insertDelayedBatch( fragBody_raw ) {
-        if ( Object.keys( collectedDelayedLinks ).length ) {
+    function insertDelayedBatch(fragBody_raw) {
+        if (Object.keys(collectedDelayedLinks).length) {
             var regEx = '';
-            eachprop( collectedDelayedLinks, (lnk) => {
+            eachprop(collectedDelayedLinks, (lnk) => {
                 //these chars "\ [ ] { } ( ) \ ^ $ . | ? * +" must not exist in replaceeKey:
                 //see https://javascript.info/regexp-escaping
                 //replaceeKey is a "raw word caption": made before as:
@@ -524,8 +524,8 @@
             //JS-replce machinery does not remember more than one dividor:
             let dividors = '(\\s|\\n|\\r|\\[|\\]|\\(|\\)|' +
                            '\\{|\\}|\\+|\\.|\\*|-|;|,)';
-            regEx = new RegExp ( dividors + '(' + regEx + ')' + dividors, 'ug' );
-            fragBody_raw = fragBody_raw.replace( regEx, function ( arg ) {
+            regEx = new RegExp(dividors + '(' + regEx + ')' + dividors, 'ug');
+            fragBody_raw = fragBody_raw.replace(regEx, function (arg) {
                 ///returns full-replacer = full match which
                 ///        is match=leadingDividor+|config|caption||+trailingDividor,
                 ///        this full-replacer is inserted after execution of this "return",
@@ -543,4 +543,4 @@
         return fragBody_raw;
     }
 
-}) ();
+})();

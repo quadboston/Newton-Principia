@@ -14,7 +14,7 @@
     ///... appar. this function is derived from vbls/... animated-slider.js
     ///... which had prototype: n s .simpleSlider =
     ///    function( parent, cssp, sliderClassId, captionScale )
-    function animatedSlider( sarg )
+    function animatedSlider(sarg)
     {
         var parent          = sarg.parent;
         var cssp            = sarg.cssp;
@@ -39,26 +39,26 @@
         // //\\ appends style
         //-------------------------------
         var css = customCss ||
-                  anslider.css( cssp, sliderClassId, railsLegend,
+                  anslider.css(cssp, sliderClassId, railsLegend,
                                 ancestorClassToHideSlider, sconf.hideProofSlider
                   );
         $$  .style()
-            .html( css )
-            .to( document.head );
+            .html(css)
+            .to(document.head);
         //-------------------------------
         // \\// appends style
         //-------------------------------
 
         //:appends slider root
         return_slider.slider$ = $$
-            .c( 'div' )
-            .a( 'class', cssp + '-slider-' + (sliderClassId ? sliderClassId : '' ) )
-            .to( parent );
+            .c('div')
+            .a('class', cssp + '-slider-' + (sliderClassId ? sliderClassId : ''))
+            .to(parent);
         //:appends draggee
         return_slider.draggee$ = $$
-            .c( 'div' )
-            .a( 'class', cssp +'-draggee' )
-            .to( return_slider.slider$() );
+            .c('div')
+            .a('class', cssp +'-draggee')
+            .to(return_slider.slider$());
         //===============================
         // \\// creates dom placeholders
         //===============================
@@ -79,7 +79,7 @@
         });
         return_slider.slider = slider;
         //.displays draggee caption at start up
-        setCaption && setCaption( slider );
+        setCaption && setCaption(slider);
         //======================
         // \\// creates slider
         //======================
@@ -104,13 +104,13 @@
             var aframes = ns.aframes;
             var slider  = return_slider.slider;
             var rangeX  = endX - startX;
-            function emulatesMove( timestamp ) {
+            function emulatesMove(timestamp) {
                 var dataArg = startX + rangeX*(Math.min(timestamp, dur)) / dur;
-                slider.d8d_emulateAbsFractionX( dataArg, 'move' );
+                slider.d8d_emulateAbsFractionX(dataArg, 'move');
             }
             function completesMove()
             {
-                slider.d8d_emulateAbsFractionX( endX, 'up' );
+                slider.d8d_emulateAbsFractionX(endX, 'up');
             };
 
             ///adds runners to collection of acting animation runners

@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         nspaste,
         sDomF,
@@ -14,7 +14,7 @@
 
     ///runs inside "subessay launch" which in turn runs after
     ///"init model parameters"
-    function amode2rgstate( captured )
+    function amode2rgstate(captured)
     {
 
         sDomF.resetModelPos();
@@ -22,12 +22,12 @@
         {
             ////restores original pivots positions
             let ini = sconf.originalPoints.curvePivots_initial;
-            sconf.originalPoints.curvePivots.forEach( (cp,ix) => {
-                nspaste( cp.rgX.pos, ini[ix].rgX.pos );
+            sconf.originalPoints.curvePivots.forEach((cp, ix) => {
+                nspaste(cp.rgX.pos, ini[ix].rgX.pos);
             });
             //sets and paints initial orbit
             stdMod.pointsArr_2_singleDividedDifferences(
-                false, 'force', false, false, 'swap' );
+                false, 'force', false, false, 'swap');
         }
         var op        = sconf.orbitParameters;
         op.angleOmega = op.angleOmega_initial;
@@ -45,4 +45,4 @@
         return captured;
     }
 
-}) ();
+})();

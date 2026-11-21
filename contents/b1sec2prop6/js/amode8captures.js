@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         sconf, amode, stdMod, rg, }
         = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
@@ -6,7 +6,7 @@
     return;
 
 
-    function amode2rgstate( captured )
+    function amode2rgstate(captured)
     {
         var { logic_phase, subessay } = amode;
 
@@ -14,7 +14,7 @@
         ////model_upcreate() hides them again if still non-Kepler
         stdMod.restoresStashedVisibility();
 
-        sconf.originalPoints.foldPoints.forEach( (fp) => {
+        sconf.originalPoints.foldPoints.forEach((fp) => {
             fp.rgX.undisplay = true;
         });
 
@@ -33,4 +33,4 @@
         return captured;
     }
 
-}) ();
+})();

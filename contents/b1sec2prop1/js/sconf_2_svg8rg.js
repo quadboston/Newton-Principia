@@ -6,8 +6,8 @@
             sconf_2_shapes,
         },
     });
-    var decor = sn( 'decor', stdMod );
-    const shapesConf = sn( 'shapes', sconf );
+    var decor = sn('decor', stdMod);
+    const shapesConf = sn('shapes', sconf);
     var theor1proof = fconf.sappId === 'b1sec2prop1' ?
         'logic_phase--proof' : 'logic_phase--none';
     var theor2proof = fconf.sappId === 'b1sec2prop2' ?
@@ -21,11 +21,11 @@
 
     function shapeSconf_2_svg() {
         //path and speeds have master-index, pi, offset pi=0
-        toreg( 'path' )( 'pos', [ rg.A.pos ] );
-        toreg( 'pathAracc' )( 'pos', [ rg.A.pos ] );
-        Object.keys( shapesConf ).forEach( key => {
+        toreg('path')('pos', [ rg.A.pos ]);
+        toreg('pathAracc')('pos', [ rg.A.pos ]);
+        Object.keys(shapesConf).forEach(key => {
             ssF.namesArr_2_svgpoly.apply(
-                null, shapesConf[ key ].initArgs );
+                null, shapesConf[ key ].initArgs);
         });
     }
 
@@ -33,7 +33,7 @@
     function sconf_2_shapes() {
         ///MERGING P1 WITH standalone sconf machinery
         ///syncs these points with hidden force-displacement-handles bases
-        ['B','C','D','E','F'].forEach( (name, ix) => {
+        ['B', 'C', 'D', 'E', 'F'].forEach((name, ix) => {
             let nam0='VV'+ix;
             rg[nam0].pos = rg[name].pos;
         });
@@ -47,11 +47,11 @@
         // //\\ placeholders for body states along trajectory,
         //      Aracc postfix stands for "area-accelerating force"
         //=========================================================
-        toreg( 'force' )
-            ( 'lawPower', sconf.force[0][0] ) //-2
-            ( 'lawConstant', sconf.force[0][1]
+        toreg('force')
+            ('lawPower', sconf.force[0][0]) //-2
+            ('lawConstant', sconf.force[0][1]
             );
-        rg.force.inarray = ['B','C','D','E','F'].map( (pname, fix) => {
+        rg.force.inarray = ['B', 'C', 'D', 'E', 'F'].map((pname, fix) => {
             return {
                 'lawPower' : sconf.force[0][0],
                 'lawConstant' : sconf.force[0][1],
@@ -60,28 +60,28 @@
 
         //awkward prop name. "pos"
         //area accelerating force
-        toreg( 'forceAracc' )
-            ( 'tangentialForcePerCentripetal_fraction',
-               sconf.tangentialForcePerCentripetal_fraction )
+        toreg('forceAracc')
+            ('tangentialForcePerCentripetal_fraction',
+               sconf.tangentialForcePerCentripetal_fraction)
             ;
 
         //path and speeds have master-index, pi, offset pi=0
         //toreg( 'path' )( 'pos', [ rg.A.pos ] );
         //toreg( 'pathAracc' )( 'pos', [ rg.A.pos ] );
         //:auxiliary params
-        toreg( 'freePath' )( 'pos', [] );
-        toreg( 'freePathAracc' )( 'pos', [] );
+        toreg('freePath')('pos', []);
+        toreg('freePathAracc')('pos', []);
 
         //keplerTriangles have master-index, pi, offset ... see media-model
-        toreg( 'keplerTriangles' );
+        toreg('keplerTriangles');
 
         //forces have master-index, pi, offset  ... see media-model
-        toreg( 'impulses' )( 'vectors', [] );
-        toreg( 'impulsesAracc' )( 'vectors', [] );
+        toreg('impulses')('vectors', []);
+        toreg('impulsesAracc')('vectors', []);
 
         //spawnes path placeholder
-        toreg( 'pathRacks' )( 'pathRacks', [] );
-        toreg( 'pathRacksAracc' )( 'pathRacks', [] );
+        toreg('pathRacks')('pathRacks', []);
+        toreg('pathRacksAracc')('pathRacks', []);
         //=========================================================
         // \\// placeholders for body states along trajectory,
         //=========================================================
@@ -91,9 +91,9 @@
         [
             ['A', 'B', 'C', 'V'],   //ABCV
             ['D', 'E', 'F', 'Z'],   //DEFZ
-        ].forEach( pNames => {
-            var pName = pNames.join( '');
-            var rgElem = shapesConf[ pName ] = toreg( pName )();
+        ].forEach(pNames => {
+            var pName = pNames.join('');
+            var rgElem = shapesConf[ pName ] = toreg(pName)();
             rgElem.initArgs = [
                 pNames,
                 'tostroke hidee '+theor1corollary,
@@ -118,9 +118,9 @@
             ['S', 'C', 'd',],   //SCd
             ['S', 'D', 'e',],   //SDe
             ['S', 'E', 'f',],   //SEf
-        ].forEach( pNames => {
-            var pName = pNames.join( '');
-            var rgElem = shapesConf[ pName ] = toreg( pName )();
+        ].forEach(pNames => {
+            var pName = pNames.join('');
+            var rgElem = shapesConf[ pName ] = toreg(pName)();
             rgElem.initArgs = [
                 pNames,
                 //no dice
@@ -144,9 +144,9 @@
     function acceleratingArea_2_rg() {
         [
             ['S', 'B', 'Cprime',],  //SBCprime
-        ].forEach( pNames => {
-            var pName = pNames.join( '');
-            var rgElem = shapesConf[ pName ] = toreg( pName )();
+        ].forEach(pNames => {
+            var pName = pNames.join('');
+            var rgElem = shapesConf[ pName ] = toreg(pName)();
             rgElem.initArgs = [
                 pNames,
                 'tofill hidee ' + theor2corollary,

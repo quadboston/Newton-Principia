@@ -52,7 +52,7 @@
                 POINT_J_ENABLED : TRANSFORM_PT_J_ENABLED,
                 //Pos to transform relative to, automatically set
                 origin          : null,
-                pts             : {},//To store the draggers
+                pts             : {}, //To store the draggers
             },
             //Automatically adjust rectangle widths in this datareg to match
             //the ratio of areas in the following datareg.
@@ -86,4 +86,4 @@
             };
         });
     }
-}) ();
+})();

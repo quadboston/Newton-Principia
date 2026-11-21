@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var {
         $$, haz, fconf, ssF, ssD, sconf, amode, stdMod, rg, toreg,
     } = window.b$l.apptree({
@@ -18,13 +18,13 @@
         // //\\ manages legend CSS-visibility
         //      by essay-state
         //=================================================
-        var rgMainLegend = haz( rg, 'main-legend' );
-        if ( rgMainLegend ) {
+        var rgMainLegend = haz(rg, 'main-legend');
+        if (rgMainLegend) {
             var rgTeoTab = rgMainLegend[ amode.logic_phase ];
-            if ( amode.logic_phase === 'corollary' && amode.aspect === 'model' ) {
-                $$.$( rgTeoTab.tableDom ).addClass( 'hidden' );
+            if (amode.logic_phase === 'corollary' && amode.aspect === 'model') {
+                $$.$(rgTeoTab.tableDom).addClass('hidden');
             } else {
-                $$.$( rgTeoTab.tableDom ).removeClass( 'hidden' );
+                $$.$(rgTeoTab.tableDom).removeClass('hidden');
             }
         }
         //=================================================
@@ -51,7 +51,7 @@
                 //-----------------------------------------
                 //      arc out of synch with B
                 start       : rg.A.pos[0],
-                step        : (rg.B.unrotatedParameterX - rg.A.pos[0] ) / 20,
+                step        : (rg.B.unrotatedParameterX - rg.A.pos[0]) / 20,
                 stepsCount  : 20,
                 //-----------------------------------------
                 // \\// apparently this fixes
@@ -94,4 +94,4 @@
     // \\// lemma custom addons
     //=========================================================
 
-}) ();
+})();

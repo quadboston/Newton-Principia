@@ -1,4 +1,4 @@
-( function () {
+(function () {
     var { has, sconf, fconf, ssF, userOptions } = window.b$l.apptree({});
     fconf.ix2lemmaDef =
     [
@@ -139,4 +139,4 @@
             caption : 'Glossary',
         },
     ];
-}) ();
+})();
