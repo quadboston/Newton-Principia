@@ -1,19 +1,18 @@
 // //\\// Main entrance into sub-application.
 
-(function() {
+(function () {
     var { sn, fapp, sapp, ssF, sDomF, stdMod, }
         = window.b$l.apptree({ setModule,
-        stdModExportList : { init_model_parameters, }, });
-    var stdL2       = sn('stdL2', fapp );
-    var study       = sn('study', stdL2 );
-    var gui         = sn('gui', stdL2 );
-    var dataregs    = sn('dataregs', stdL2 );
-    var guicon      = sn('guiConstruct', gui );
+        stdModExportList: { init_model_parameters, }, });
+    var stdL2       = sn('stdL2', fapp);
+    var study       = sn('study', stdL2);
+    var gui         = sn('gui', stdL2);
+    var dataregs    = sn('dataregs', stdL2);
+    var guicon      = sn('guiConstruct', gui);
     return;
 
 
-    function setModule()
-    {
+    function setModule() {
         ///this thing works in context of
         ///LANDING_IV___loadLemmaJSCodes() after
         ///and overrided setModule of Landing II
@@ -21,21 +20,19 @@
     }
 
     ///one of the first thing called in app-wide sapp.init_sapp
-    function init_model_parameters()
-    {
-
+    function init_model_parameters() {
         {
             let pid = 'proof-pop-up';
-			let button = ssF.createButton({
-                caption                 :
+            let button = ssF.createButton({
+                caption:
                     'Newton\'s logic applies to monotonic curves',
-                buttonUniversalId       : pid,
+                buttonUniversalId: pid,
                 //scenarioEventOnClick    : 'graph-is-plotted',
-                clickCallback           : () => {
-                    sData[ pid ].dom$.css( 'display', 'none' );
+                clickCallback: () => {
+                    sData[pid].dom$.css('display', 'none');
                 },
-                noTopicScenario         : true,
-                cssText                 : `
+                noTopicScenario: true,
+                cssText: `
                     position            : absolute;
                     width               : 330px;
                     height              : 18px;
@@ -73,12 +70,12 @@
         //function does not exist in engine core:
         ssF.media_upcreate_generic();
 
-        Object.values(dataregs).forEach((dr) => {            
+        Object.values(dataregs).forEach((dr) => {
             //numberless:
             guicon.constructsCurve8Area(dr); //do on top of ancestors
 
             guicon.constructBasePts_domParless(dr, dr.basePts);
-            
+
             guicon.constructTransformPoints(dr);
             stdMod.recalculateAndStoreTransforms(dr);
             guicon.constructsControlPoints(dr);
@@ -96,7 +93,6 @@
         // \\// fits lemma to modern framework
         //----------------------------------------------
 
-
         stdMod.model_upcreate();
         //now, this call does
         //stdMod.media_upcreate___before_basic_L2
@@ -104,11 +100,8 @@
         gui.buildSlider();
     }
 
-
-    function finish_sapp_UI()
-    {
+    function finish_sapp_UI() {
         gui.createDragModel();
         study.setupEventsAreasLegend?.();
     }
-
-}) ();
+})();

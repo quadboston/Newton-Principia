@@ -1,44 +1,39 @@
-( function() {
+(function () {
     var { sn, $$, fapp, sDomN, ssF, stdMod, }
         = window.b$l.apptree({ setModule, });
-    var stdL2 = sn('stdL2', fapp );
+    var stdL2 = sn('stdL2', fapp);
     return;
 
 
-    function setModule()
-    {
-        var gui         = sn('gui', stdL2 );
-        var guiup       = sn('guiUpdate',gui);
-        var study       = sn('study', stdL2 );
-        var sdata       = sn('sdata', study );
+    function setModule() {
+        var gui         = sn('gui', stdL2);
+        var guiup       = sn('guiUpdate', gui);
+        var study       = sn('study', stdL2);
+        var sdata       = sn('sdata', study);
 
-        study.eventHandlers =
-        {
-	        toggleInscribed,
-	        toggleCircumscribed,
+        study.eventHandlers = {
+            toggleInscribed,
+            toggleCircumscribed,
         };
         study.setupEventsAreasLegend = setupEventsAreasLegend;
 
-        Object.assign( ssF, {
+        Object.assign(ssF, {
             create_digital_legend,
         });
 
-        Object.assign( guiup, {
+        Object.assign(guiup, {
             updateLegendAmounts,
         });
         return;
 
-
-        function setupEventsAreasLegend()
-        {
-            Object.keys( study.eventHandlers ).forEach( function( methodName ) {
-                document.getElementById( methodName )
-                    .addEventListener( 'change', study.eventHandlers[ methodName ] );
+        function setupEventsAreasLegend() {
+            Object.keys(study.eventHandlers).forEach(function (methodName) {
+                document.getElementById(methodName)
+                    .addEventListener('change', study.eventHandlers[methodName]);
             });
 
-
             // //\\ copy-pasted from gui-art
-            gui.showFig = function(){
+            gui.showFig = function () {
                 //https://stackoverflow.com/questions/4754699/
                 //  how-do-i-determine-if-a-checkbox-is-checked
                 //no good: var cbox = document.getElementById(
@@ -46,12 +41,12 @@
                 //no good: if($('.figur').is(':checked'))  {
                 var checked = document.getElementById('checkbox_4').checked;
                 sdata.view.isFigureChecked = checked;
-                if(!checked)  {
+                if (!checked)  {
                     let view = sdata.view;
                     let isFig = view.isFigureChecked;
                     let isIn = view.isInscribed;
                     let isCir = view.isCircumscribed;
-                    if( !isIn && !isCir ) {
+                    if (!isIn && !isCir) {
                         document.getElementById('checkbox_4').checked = true;
                         sdata.view.isFigureChecked = true;
                         return;
@@ -62,7 +57,6 @@
             // \\// copy-pasted from gui-art
         };
 
-
         //======================================
         // //\\ event-handlers
         //======================================
@@ -71,13 +65,13 @@
             let isFig = view.isFigureChecked;
             let isIn = view.isInscribed;
             let isCir = view.isCircumscribed;
-            if( !isFig && !isCir ) {
+            if (!isFig && !isCir) {
                 document.getElementById('toggleInscribed').checked = true;
-                sdata.view.isInscribed=1;
+                sdata.view.isInscribed = 1;
                 return;
             }
-	        sdata.view.isInscribed^=1;
-	        //stdL2.shows_rects();
+            sdata.view.isInscribed ^= 1;
+            //stdL2.shows_rects();
             //has: stdMod.media_upcreate___before_basic_L2
             ssF.media_upcreate_generic();
         }
@@ -87,20 +81,19 @@
             let isFig = view.isFigureChecked;
             let isIn = view.isInscribed;
             let isCir = view.isCircumscribed;
-            if( !isFig && !isIn ) {
+            if (!isFig && !isIn) {
                 document.getElementById('toggleCircumscribed').checked = true;
                 view.isCircumscribed = 1;
                 return;
             }
-	        sdata.view.isCircumscribed^=1;
-	        //stdL2.shows_rects();
+            sdata.view.isCircumscribed ^= 1;
+            //stdL2.shows_rects();
             ssF.media_upcreate_generic();
         }
         //======================================
         // \\// event-handlers
         //======================================
     }
-
 
     ///====================================================================
     /// create_digital_legend
@@ -114,12 +107,11 @@
     /// Object.keys( study.eventHandlers ).
     ///         forEach( function( methodName ) ....
     ///====================================================================
-    function create_digital_legend()
-    {
+    function create_digital_legend() {
         sDomN.digitalLegend$ = $$.dict(
             "areadesk",
             "areas dull desc default-content main-legend",
-            stdMod.legendRoot$ )
+            stdMod.legendRoot$)
             .html(`
 
                 <div class="line"></div>
@@ -181,23 +173,18 @@
                 <!--END inscribed-->
 
         `);
-
     }
-
 
     function updateLegendAmounts(dr) {
         document.getElementById("figAmt").innerHTML =
-            ((Math.sign( dr.figureArea )==-1)?"-":"" )+ "100.0";
+            ((Math.sign(dr.figureArea) == -1) ? "-" : "")+ "100.0";
         document.getElementById("inAmtd").innerHTML =
-            normalizedStr( dr, dr.areaIns, dr.figureArea);
+            normalizedStr(dr, dr.areaIns, dr.figureArea);
         document.getElementById("circAmtd").innerHTML =
-            normalizedStr( dr, dr.areaCir, dr.figureArea);
+            normalizedStr(dr, dr.areaCir, dr.figureArea);
     }
 
-    function normalizedStr( dr, amt )
-    {
+    function normalizedStr(dr, amt) {
         return (100*amt/Math.abs(dr.figureArea)).toFixed(1);
     }
-
-}) ();
-
+})();

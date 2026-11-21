@@ -1,15 +1,14 @@
-( function() {
-    var { ns, sn, fconf, sconf, stdMod, topicColors_repo, } = 
-        window.b$l.apptree({ ssFExportList : { init_conf } });
-    var op = sn( 'orbitParameters', sconf );
+(function () {
+    var { ns, sn, fconf, sconf, stdMod, topicColors_repo, } =
+        window.b$l.apptree({ ssFExportList: { init_conf } });
+    var op = sn('orbitParameters', sconf);
     return;
 
 
     //====================================================
     // //\\ inits and sets config pars
     //====================================================
-    function init_conf()
-    {
+    function init_conf() {
         //***************************************************************
         // //\\ geometrical scales
         //***************************************************************
@@ -19,7 +18,7 @@
         var pictureHeight = 611;
 
         //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var realSvgSize = 2 * (pictureWidth + pictureHeight) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize;
         //***************************************************************
         // \\// geometrical scales
@@ -31,7 +30,7 @@
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
-        
+
         fconf.DRAGGER_TOLERANCE = 15; // distance where crosshair appears
         sconf.enableStudylab = false;
 
@@ -39,9 +38,9 @@
         // //\\ do override engine defaults,
         //      in expands-conf.js,
         //--------------------------------------
-        default_tp_stroke_width = Math.floor( 6 * controlsScale ),
-        defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 3.5 * controlsScale ),
+        default_tp_stroke_width = Math.floor(6 * controlsScale),
+        defaultLineWidth        = Math.floor(1 * controlsScale),
+        handleRadius            = Math.floor(3.5 * controlsScale),
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius;
         sconf.default_tp_lightness = 30;
@@ -49,8 +48,8 @@
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
         //this makes hanle's border nicely thin
-        sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
-        sconf.hover_width       = Math.max( 2, Math.floor( 7*controlsScale/1.6 ) );
+        sconf.nonhover_width    = Math.max(1, Math.floor(1*controlsScale/1.6));
+        sconf.hover_width       = Math.max(2, Math.floor(7*controlsScale/1.6));
 
         //make effect apparently only for line-captions,
         //not for point-captions bs
@@ -65,7 +64,7 @@
         //=============================================
         // //\\ points reused in config
         //=============================================
-        var posF = [ 560, 554 ]; //x,y of whole svg model
+        var posF = [560, 554]; //x,y of whole svg model
         //=============================================
         // \\// points reused in config
         //=============================================
@@ -76,7 +75,7 @@
         var mod2inn_scale = 145;
         var originX_onPicture = posF[0]; //for model's axis x
         var originY_onPicture = posF[1]; //for model's axis y
-        sconf.diagramOrigin = [ 0, 0 ];
+        sconf.diagramOrigin = [0, 0];
 
         //-------------------------------------------
         // //\\ calculation algo parameters
@@ -106,7 +105,7 @@
         //conic pars
         op.initialEccentricity = 1; //parabola
         op.latus = 2.10;
-        stdMod.establishesEccentricity( op.initialEccentricity );
+        stdMod.establishesEccentricity(op.initialEccentricity);
         //-------------------------------------------
         // \\// curve shape parameters
         //-------------------------------------------
@@ -123,220 +122,218 @@
         //-----------------------------------
         const {
             bodyColor,
-			infoHover,
-			proofHover,
+            infoHover,
+            proofHover,
             proofColor,
-			estimatedForceColor,
+            estimatedForceColor,
             forceColor,
-			sunColor,
+            sunColor,
         } = topicColors_repo;
 
-        var topicColors_elected =
-        {
-			estimatedForceColor,
+        var topicColors_elected = {
+            estimatedForceColor,
             orbit: bodyColor,
             force: forceColor,
-			time: estimatedForceColor,
+            time: estimatedForceColor,
         };
         //-----------------------------------
         // \\// topic group colors,
         //-----------------------------------
 
         var originalPoints = {};
-        Object.assign( originalPoints, {
-            L : {
-				doPaintPname : false,
- 				undisplayAlways : true,
+        Object.assign(originalPoints, {
+            L: {
+                doPaintPname: false,
+                undisplayAlways: true,
             },
-            LL : {
-                doPaintPname : false,
-				undisplayAlways : true,
+            LL: {
+                doPaintPname: false,
+                undisplayAlways: true,
             },
 
-            A : {
-                pcolor : bodyColor,
-				letterRotRadius : 28,
-                letterAngle : -124,
- 				cssClass: 'subessay--solution',
+            A: {
+                pcolor: bodyColor,
+                letterRotRadius: 28,
+                letterAngle: -124,
+                cssClass: 'subessay--solution',
             },
-            M : {
-                pcolor : proofColor,
-				letterRotRadius : 25,
-                letterAngle : -90,
- 				cssClass: 'subessay--solution',
+            M: {
+                pcolor: proofColor,
+                letterRotRadius: 25,
+                letterAngle: -90,
+                cssClass: 'subessay--solution',
             },
-            N : {
-                pcolor : proofColor,
-                letterRotRadius : 25,
-                letterAngle : 125,
- 				cssClass: 'subessay--solution',
+            N: {
+                pcolor: proofColor,
+                letterRotRadius: 25,
+                letterAngle: 125,
+                cssClass: 'subessay--solution',
             },
-            T : {
-                pcolor : estimatedForceColor,
-                letterRotRadius : 20,
- 				cssClass: 'subessay--goal subessay--solution subessay--corollary2',
+            T: {
+                pcolor: estimatedForceColor,
+                letterRotRadius: 20,
+                cssClass: 'subessay--goal subessay--solution subessay--corollary2',
             },
-            R : {
-                pcolor : estimatedForceColor,
-                letterAngle : 135,
-                letterRotRadius : 25,
- 				cssClass: 'subessay--goal subessay--solution logic_phase--corollary',
+            R: {
+                pcolor: estimatedForceColor,
+                letterAngle: 135,
+                letterRotRadius: 25,
+                cssClass: 'subessay--goal subessay--solution logic_phase--corollary',
             },
-            v : {
-                caption : '𝑣',
-                pcolor : proofColor,
-                letterAngle : -45,
-                letterRotRadius : 15,
- 				cssClass: 'subessay--solution',
-           },            
-            x : {
-                caption : "𝑥",
-                pcolor : proofColor,
-                letterAngle : -45,
-                letterRotRadius : 20,
-				cssClass: 'subessay--goal subessay--solution',
+            v: {
+                caption: '𝑣',
+                pcolor: proofColor,
+                letterAngle: -45,
+                letterRotRadius: 15,
+                cssClass: 'subessay--solution',
+           },
+            x: {
+                caption: "𝑥",
+                pcolor: proofColor,
+                letterAngle: -45,
+                letterRotRadius: 20,
+                cssClass: 'subessay--goal subessay--solution',
             },
-            S : {
-                pcolor : sunColor,
-                letterAngle : -90,
-                letterRotRadius : 25,
+            S: {
+                pcolor: sunColor,
+                letterAngle: -90,
+                letterRotRadius: 25,
             },
-            P : {
-                pcolor : bodyColor,
-                letterAngle : 120,
-                draggableY  : true,
+            P: {
+                pcolor: bodyColor,
+                letterAngle: 120,
+                draggableY: true,
             },
-            Q : {
-                pcolor : estimatedForceColor,
-                letterAngle : -90,
-                letterRotRadius : 25,
-                draggableX  : true,
-                draggableY  : true,
-				cssClass: 'subessay--goal subessay--solution subessay--corollary2',
+            Q: {
+                pcolor: estimatedForceColor,
+                letterAngle: -90,
+                letterRotRadius: 25,
+                draggableX: true,
+                draggableY: true,
+                cssClass: 'subessay--goal subessay--solution subessay--corollary2',
                 conditionalDrag: 'subessay--goal subessay--solution subessay--corollary2',
             },
-            AA : {
-                undisplayAlways : true,
-                doPaintPname : false,
+            AA: {
+                undisplayAlways: true,
+                doPaintPname: false,
             },
-            G : {
-                pcolor : proofColor,
-                letterRotRadius : 20,
-                letterAngle : -45,
-				cssClass: 'subessay--solution',
+            G: {
+                pcolor: proofColor,
+                letterRotRadius: 20,
+                letterAngle: -45,
+                cssClass: 'subessay--solution',
             },
-            Zminus : { // only here for Prop 12 code?
-                doPaintPname : false,
- 				undisplayAlways  : true,
+            Zminus: { // only here for Prop 12 code?
+                doPaintPname: false,
+                undisplayAlways: true,
             },
 
             // not used but calculated in model-upcreate for P12
             // todo: if splitting P12 from P13 model-upcreate, can delete
-            C : { //center symmetry of orbit
-                pcolor : bodyColor,
-                letterAngle : -45,
+            C: { //center symmetry of orbit
+                pcolor: bodyColor,
+                letterAngle: -45,
             },
-            H : {
-                pcolor : proofColor,
-                letterAngle : -90,
+            H: {
+                pcolor: proofColor,
+                letterAngle: -90,
             },
-            Z : {
-                letterAngle : 45,
-                undisplayAlways : true,
-                doPaintPname : false,
- 				cssClass: 'subessay--solution',
+            Z: {
+                letterAngle: 45,
+                undisplayAlways: true,
+                doPaintPname: false,
+                cssClass: 'subessay--solution',
             },
-            O : {
+            O: {
                 pos: posF,
-                doPaintPname : false,
-				undisplayAlways : true,
+                doPaintPname: false,
+                undisplayAlways: true,
             },
-            D : {
-                pcolor : proofColor,
-                letterRotRadius : 20,
+            D: {
+                pcolor: proofColor,
+                letterRotRadius: 20,
                 //letterAngle : 135,
             },
-            K : {
-                pcolor : proofColor,
-                letterRotRadius : 20,
-                letterAngle : -60,
+            K: {
+                pcolor: proofColor,
+                letterRotRadius: 20,
+                letterAngle: -60,
             },
-            B : {
-                letterRotRadius : 20,
-                pcolor : bodyColor,
-            },             
-            BB : { // opposite B
-                letterAngle : 90,
-                undisplayAlways : true,
-                doPaintPname : false,
-                pcolor : bodyColor,
+            B: {
+                letterRotRadius: 20,
+                pcolor: bodyColor,
             },
-            E : {
-                pcolor : proofColor,
-                letterRotRadius : 20,
-            }, 
-            I : {
-                pcolor : proofColor,
-                letterRotRadius : 20,
+            BB: { // opposite B
+                letterAngle: 90,
+                undisplayAlways: true,
+                doPaintPname: false,
+                pcolor: bodyColor,
+            },
+            E: {
+                pcolor: proofColor,
+                letterRotRadius: 20,
+            },
+            I: {
+                pcolor: proofColor,
+                letterRotRadius: 20,
             },
         });
 
-		const proofSolution = { pcolor : proofColor,
- 				cssClass: 'subessay--solution', };
+        const proofSolution = { pcolor: proofColor,
+                cssClass: 'subessay--solution', };
 
-        var linesArray =
-        [
-			{ QR : { pcolor : estimatedForceColor,
- 				cssClass: 'subessay--goal subessay--solution subessay--corollary2', }, },
-            { QT : { pcolor : estimatedForceColor,
- 				cssClass: 'subessay--goal subessay--solution subessay--corollary2', }, },
+        var linesArray = [
+            { QR: { pcolor: estimatedForceColor,
+                cssClass: 'subessay--goal subessay--solution subessay--corollary2', }, },
+            { QT: { pcolor: estimatedForceColor,
+                cssClass: 'subessay--goal subessay--solution subessay--corollary2', }, },
             // { SP : { pcolor : estimatedForceColor,
- 			// 	cssClass: 'subessay--goal subessay--solution logic_phase--corollary', }, },
-            { PM : { pcolor : proofColor,
- 				cssClass: 'subessay--solution', }, },
-            { SM : proofSolution },
-            { GP : proofSolution },
-            { NS : proofSolution },
-            { NP :  proofSolution },
-            { Pv :  proofSolution },
-            { Qv :  proofSolution }, 
-            { Qx :  { pcolor : proofColor,
- 				cssClass: 'subessay--goal subessay--solution', } },  
-            { Px :  { pcolor : proofColor, 
-                'stroke-width' : 1.2,  
-				cssClass: 'subessay--goal subessay--solution', }, },
-            { Tx :  { pcolor : proofColor, 
-                'stroke-width' : 1.2,  
-				cssClass: 'subessay--goal subessay--solution', }, },
-            { SA : {  pcolor : proofHover,
- 				cssClass: 'subessay--solution', }, },
-            { xv :  proofSolution },
-			            { SP : { pcolor : estimatedForceColor,
- 				cssClass: 'subessay--goal subessay--solution logic_phase--corollary', }, },
+            // 	cssClass: 'subessay--goal subessay--solution logic_phase--corollary', }, },
+            { PM: { pcolor: proofColor,
+                cssClass: 'subessay--solution', }, },
+            { SM: proofSolution },
+            { GP: proofSolution },
+            { NS: proofSolution },
+            { NP: proofSolution },
+            { Pv: proofSolution },
+            { Qv: proofSolution },
+            { Qx: { pcolor: proofColor,
+                cssClass: 'subessay--goal subessay--solution', } },
+            { Px: { pcolor: proofColor,
+                'stroke-width': 1.2,
+                cssClass: 'subessay--goal subessay--solution', }, },
+            { Tx: { pcolor: proofColor,
+                'stroke-width': 1.2,
+                cssClass: 'subessay--goal subessay--solution', }, },
+            { SA: {  pcolor: proofHover,
+                cssClass: 'subessay--solution', }, },
+            { xv: proofSolution },
+                        { SP: { pcolor: estimatedForceColor,
+                cssClass: 'subessay--goal subessay--solution logic_phase--corollary', }, },
 
             // tangent
-            { 'PR' : { 
-                pcolor : proofColor, 
-                'stroke-width' : 2, 
-                captionShiftNorm : -18,
-				cssClass: 'subessay--goal subessay--solution logic_phase--corollary', }, 
-            },                
-            { 'P,Zminus' : { pcolor : proofColor,
- 				cssClass: 'subessay--solution', }, },
+            { 'PR': {
+                pcolor: proofColor,
+                'stroke-width': 2,
+                captionShiftNorm: -18,
+                cssClass: 'subessay--goal subessay--solution logic_phase--corollary', },
+            },
+            { 'P,Zminus': { pcolor: proofColor,
+                cssClass: 'subessay--solution', }, },
 
             // base line
-            { 'S,AA' : { pcolor : proofColor,
- 				cssClass: 'subessay--solution', }, },
+            { 'S,AA': { pcolor: proofColor,
+                cssClass: 'subessay--solution', }, },
 
-            { 'L,LL' : { pcolor : infoHover,
-               captionShiftNorm : 22, lposYSugar : 3 }, },
+            { 'L,LL': { pcolor: infoHover,
+               captionShiftNorm: 22, lposYSugar: 3 }, },
         ];
 
-        ns.paste( sconf, {
+        ns.paste(sconf, {
             Q_STEPS,
             DATA_GRAPH_STEPS,
 
-            mediaBgImage : "diagram.png",
+            mediaBgImage: "diagram.png",
             topicColors_elected,
             originalPoints,
             linesArray,
@@ -351,4 +348,4 @@
             handleRadius,
         });
     }
-}) ();
+})();

@@ -1,13 +1,11 @@
-
-( function() {
+(function () {
     var {
         ns, $$,
         globalCss,
         fconf,
         ssF, amode,
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList: {
             doDebugMessage,
             doInitTopicScenarioCss,
             executesMessageAction,
@@ -19,9 +17,8 @@
     return;
 
 
-    function doInitTopicScenarioCss()
-    {
-        globalCss.update( `
+    function doInitTopicScenarioCss() {
+        globalCss.update(`
             .model-user-feedback {
                 width           : calc(100% - ${fconf.LEFT_SIDE_MENU_WIDTH+10}px);
                 height          : 400px;
@@ -48,44 +45,40 @@
         );
     }
 
-
-    ///aka: var wwMessage = 'a u t o p   '+eventBlock.autopilotEventId; 
-    function doDebugMessage( wwMessage )
-    {
-        if( ns.haz( ns.conf, 'deb' ) ) {
-            ns.d( wwMessage );
+    ///aka: var wwMessage = 'a u t o p   '+eventBlock.autopilotEventId;
+    function doDebugMessage(wwMessage) {
+        if (ns.haz(ns.conf, 'deb')) {
+            ns.d(wwMessage);
         }
     }
-
 
     //api
     //:, :-     - do start over
     //:-        - no scroll
     //::-       - no scroll
     //::#       - do condence message to equal previous message
-    function executesMessageAction( ecommand, ctype )
-    {
-        doDebugMessage( 'p r o m p t   ' + ecommand );
-        if( ctype === '::#' && ecommand === previousMessage ) return;
+    function executesMessageAction(ecommand, ctype) {
+        doDebugMessage('p r o m p t   ' + ecommand);
+        if (ctype === '::#' && ecommand === previousMessage) return;
         previousMessage = ecommand;
 
         var { subessay }    = amode;
         var cssPath         = '.subessay-' + subessay;
 
         //finds window from content-script
-        var fbFrame_dom = document.querySelector( cssPath + ' .model-user-feedback' );
-        if( ctype === ':' || ctype === ':-' ) {
+        var fbFrame_dom = document.querySelector(cssPath + ' .model-user-feedback');
+        if (ctype === ':' || ctype === ':-') {
             fbFrame_dom.innerHTML = '';
         }
 
-        //adds ecommand to feedback frame 
+        //adds ecommand to feedback frame
         ecommand            = '<div class="dialog-prompt">' + ecommand + '</div>';
         var newMessage_dom  = $$.c('div')();
-        $$.$( fbFrame_dom ).ch( newMessage_dom );
-        ssF.digestsSingleMessage_2_topics( newMessage_dom, ecommand );
+        $$.$(fbFrame_dom).ch(newMessage_dom);
+        ssF.digestsSingleMessage_2_topics(newMessage_dom, ecommand);
 
         //updates only for newMessage
         //removed because of emulated by user-options.
         //ssF.updateFrameWorkAnchors_2_basicSiteFeatures( newMessage_dom );
     }
-}) ();
+})();

@@ -1,5 +1,4 @@
-
-( function() {
+(function () {
     var {
         sn, $$, haff,
         globalCss,
@@ -11,26 +10,19 @@
     return;
 
 
-
-
-
-
-
-
     ///some (plugged in) sites transform tab-button to a tab-label by putting
     ///tabIsInactive flag; this site is such a site;
     ///this function does this job for this site;
     ///todm: non-elegant solution: too much coding:
-    function makes_logic_phaseTab_nonClickable()
-    {
-        sDomN.teafs$.logic_phase.addClass( 'non-clickable' )
-            .e( 'click', function( event ) {
+    function makes_logic_phaseTab_nonClickable() {
+        sDomN.teafs$.logic_phase.addClass('non-clickable')
+            .e('click', function (event) {
                 event.stopPropagation = true;
             })
             ;
 
         sDomN.teafs$.logic_phase.tabIsInactive = true;
-        globalCss.update( `
+        globalCss.update(`
                 .leftside-menuholder .menu-teaf.non-clickable
                 .litem:hover {
                         border          :1px solid transparent;
@@ -63,7 +55,4 @@
             'inactive-tabs-document-header-tag',
         );
     }
-
-
-}) ();
-
+})();

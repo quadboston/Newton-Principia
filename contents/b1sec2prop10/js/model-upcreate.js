@@ -1,7 +1,7 @@
-( function() {
+(function () {
     var { nspaste, integral, mat, fconf,
         ssD, stdMod, amode, rg, }
-            = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
+            = window.b$l.apptree({ stdModExportList: { model_upcreate, }, });
     return;
 
 
@@ -9,17 +9,16 @@
     /// model scenario
     /// is required; to skip define as ()=>{};
     ///****************************************************
-    function model_upcreate()
-    {
+    function model_upcreate() {
         stdMod.builds_force_plusQ_minusQ_and_related();
         const q2xy = stdMod.q2xy;
-        var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
+        var Porb = ssD.qIndexToOrbit[rg.P.qix];
         var parQ = Porb.q;
         rg.P.pos[0] = Porb.posBody[0];
         rg.P.pos[1] = Porb.posBody[1];
         var rr0 = rg.P.pos;
         var posCenterOfForces = rg.S.pos;
-        var Qpos = q2xy( Porb.plusQ );
+        var Qpos = q2xy(Porb.plusQ);
         rg.Q.pos[0] = Qpos[0];
         rg.Q.pos[1] = Qpos[1];
 
@@ -42,7 +41,7 @@
         rg.R.pos[1] = wwR[1];
 
         //T = perp. from Q to radius-vector
-        var wwT = mat.dropPerpendicular( rg.Q.pos, posCenterOfForces, rr0 );
+        var wwT = mat.dropPerpendicular(rg.Q.pos, posCenterOfForces, rr0);
         rg.T.pos[0] = wwT[0];
         rg.T.pos[1] = wwT[1];
 
@@ -59,7 +58,6 @@
         // \\// arc, sagittae and related
         //================================================
 
-
         //================================================
         // //\\ decorations
         // //\\ graph
@@ -68,7 +66,6 @@
         {
             let graphArg = {
             }
-
 
             //The bounds of the graph switch between a fixed and variable max.
             //The x and y axes always need to maintain a fixed ratio relative to
@@ -98,24 +95,21 @@
             graphArg.yMin = 0;
             graphArg.yMax = graphArg.xMax * ratio / ssD.MAF;
 
-
             stdMod.graph.drawsGraph(graphArg);
         }
         //------------------------------------------------
         // \\// graph
         //------------------------------------------------
 
-
         //conjugate diameters
-        nspaste( rg.G.pos, q2xy( parQ + Math.PI ) );
-        nspaste( rg.D.pos, q2xy( parQ + Math.PI/2 ) );
-        nspaste( rg.K.pos, q2xy( parQ + 3/2*Math.PI ) );
-
+        nspaste(rg.G.pos, q2xy(parQ + Math.PI));
+        nspaste(rg.D.pos, q2xy(parQ + Math.PI/2));
+        nspaste(rg.K.pos, q2xy(parQ + 3/2*Math.PI));
 
         //vuFV
         //v = parallel-projection of Q to tangent
-        var DK = [ rg.K.pos[0]-rg.D.pos[0], rg.K.pos[1]-rg.D.pos[1] ];
-        var PG = [ rg.P.pos[0]-rg.G.pos[0], rg.P.pos[1]-rg.G.pos[1] ];
+        var DK = [rg.K.pos[0]-rg.D.pos[0], rg.K.pos[1]-rg.D.pos[1]];
+        var PG = [rg.P.pos[0]-rg.G.pos[0], rg.P.pos[1]-rg.G.pos[1]];
         var wwR = mat.linesCross(
             DK, rg.Q.pos, //direction, start
             PG, rg.C.pos, //direction, start
@@ -127,7 +121,7 @@
         rg.u.pos[1] = 2*rg.T.pos[1] - rg.v.pos[1];
 
         //getting V
-        var DCsq_PCsq = mat.unitVector( DK ).v2 / mat.unitVector( PG ).v2;
+        var DCsq_PCsq = mat.unitVector(DK).v2 / mat.unitVector(PG).v2;
         var wwu = mat.pointPlusTVector(
             DCsq_PCsq, //t,
             rg.v.pos, //A,
@@ -138,11 +132,11 @@
         rg.V.pos[1] = wwu[1];
 
         //extra points
-        nspaste( rg.F.pos, mat.dropPerpendicular( rg.P.pos, rg.D.pos, rg.K.pos ) );
-        nspaste( rg.A.pos, q2xy( 0 ) );
-        nspaste( rg.AA.pos, q2xy( Math.PI ) );
-        nspaste( rg.B.pos, q2xy( Math.PI/2 ) );
-        nspaste( rg.BB.pos, q2xy( Math.PI*3/2 ) );
+        nspaste(rg.F.pos, mat.dropPerpendicular(rg.P.pos, rg.D.pos, rg.K.pos));
+        nspaste(rg.A.pos, q2xy(0));
+        nspaste(rg.AA.pos, q2xy(Math.PI));
+        nspaste(rg.B.pos, q2xy(Math.PI/2));
+        nspaste(rg.BB.pos, q2xy(Math.PI*3/2));
 
         //=============================================================
         // //\\ tan. cir.
@@ -181,9 +175,9 @@
             rg.P.pos[1] - rg.tCircleCenter.pos[1],
         ];
         rgTCir.tangentCircleRadius =
-            mat.unitVector( rgTCir.tangentCircleRadiusVector ).abs;
+            mat.unitVector(rgTCir.tangentCircleRadiusVector).abs;
         //=============================================================
         // \\// tan. cir.
         //=============================================================
     }
-}) ();
+})();

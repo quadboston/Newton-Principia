@@ -1,15 +1,13 @@
-
-( function() {
-    var { ns, fconf, sconf, topicColors_repo, } = 
-        window.b$l.apptree({ ssFExportList : { init_conf } });
+(function () {
+    var { ns, fconf, sconf, topicColors_repo, } =
+        window.b$l.apptree({ ssFExportList: { init_conf } });
     return;
 
 
     //====================================================
     // //\\ inits and sets config pars
     //====================================================
-    function init_conf()
-    {
+    function init_conf() {
         //***************************************************************
         // //\\ geometical scales
         //***************************************************************
@@ -19,7 +17,7 @@
         var pictureHeight = 840; //400; //840, 2.1
 
         //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = 2 * ( pictureWidth + pictureHeight ) / 2;
+        var realSvgSize = 2 * (pictureWidth + pictureHeight) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
         //***************************************************************
         // \\// geometical scales
@@ -40,16 +38,16 @@
         // //\\ do override engine defaults,
         //      in expands-conf.js,
         //--------------------------------------
-        default_tp_stroke_width = Math.floor( 8 * controlsScale ),
-        defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 3.2 * controlsScale ),
+        default_tp_stroke_width = Math.floor(8 * controlsScale),
+        defaultLineWidth        = Math.floor(1 * controlsScale),
+        handleRadius            = Math.floor(3.2 * controlsScale),
         //overrides "global", lemma.conf.js::sconf
-        sconf.pointDecoration.r = handleRadius; 
+        sconf.pointDecoration.r = handleRadius;
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
         //this makes hanle's border nicely thin
-        sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
-        sconf.hover_width       = Math.max( 2, Math.floor( 9*controlsScale/1.6 ) );
+        sconf.nonhover_width    = Math.max(1, Math.floor(1*controlsScale/1.6));
+        sconf.hover_width       = Math.max(2, Math.floor(9*controlsScale/1.6));
 
         //make effect apparently only for line-captions,
         //not for point-captions bs
@@ -70,13 +68,12 @@
         // //\\ points reused in config
         //=============================================
         var A = [785, 441];
-        var V = [64, 462 ];
+        var V = [64, 462];
         var C = [425, 452];//[ V[0] + ww1/2, V[1] + ww2/2, ];
         var S = [225.2, 395.7];
         //=============================================
         // \\// points reused in config
         //=============================================
-
 
         //:diagram sandbox spatial parameters
         //model's spacial unit expressed in pixels of the picture:
@@ -84,7 +81,7 @@
         var mod2inn_scale = 360; //RR;
         var originX_onPicture = C[0]; //for model's axis x
         var originY_onPicture = C[1]; //for model's axis y
-        sconf.diagramOrigin = [ 0, 0 ];
+        sconf.diagramOrigin = [0, 0];
 
         //-------------------------------------------
         // //\\ calculation algo parameters
@@ -113,7 +110,7 @@
 
         //intervals of dt or dq to construct an arc for estimated force
         //Sets initial distance of point Q from P
-        if( FT ){
+        if (FT) {
             sconf.Dt0 = 0.6238291044;
         } else {
             sconf.Dq0 = 0.42;
@@ -133,15 +130,13 @@
             invalidColor,
             hidden,
             estimatedForceColor,
-			infoColor,
+            infoColor,
             chord,
-			sunColor,
-			proofHover,
+            sunColor,
+            proofHover,
         } = topicColors_repo;
 
-
-        var topicColors_elected =
-        {
+        var topicColors_elected = {
             estimatedForceColor,
             bodyColor,
             forceColor,
@@ -149,11 +144,11 @@
             invalidColor,
             proofColor,
             hidden,
-			time: estimatedForceColor,
-            curvatureCircle : infoColor,
-			force : forceColor,
-			orbit: bodyColor,
-            APQ     : bodyColor,
+            time: estimatedForceColor,
+            curvatureCircle: infoColor,
+            force: forceColor,
+            orbit: bodyColor,
+            APQ: bodyColor,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -162,175 +157,172 @@
         //---------------------------------------------------
         // //\\ points to approximate and draw original curve
         //---------------------------------------------------
-        var foldPoints  = (new Array(200)).fill({}).map( () => ({
-            pcolor      : invalidColor,
-            doPaintPname : false,
+        var foldPoints  = (new Array(200)).fill({}).map(() => ({
+            pcolor: invalidColor,
+            doPaintPname: false,
         }));
 
         //---------------------------------------------------
-        var originalPoints =
-        {
+        var originalPoints = {
             foldPoints,
         };
         // \\// points to approximate and draw original curve
         //---------------------------------------------------
 
-        Object.assign( originalPoints, {
-            A : {
+        Object.assign(originalPoints, {
+            A: {
                 pos: A,
-                pcolor : proofColor,
+                pcolor: proofColor,
             },
 
-            S : {
+            S: {
                 pos: S,
-                pcolor : sunColor,
-                letterAngle : -90,
-                draggableX  : true,
-                draggableY  : true,
+                pcolor: sunColor,
+                letterAngle: -90,
+                draggableX: true,
+                draggableY: true,
             },
 
-            P : {
-                pcolor : bodyColor,
-                letterAngle : 70,
-                draggableX  : true,
-                draggableY  : true,
+            P: {
+                pcolor: bodyColor,
+                letterAngle: 70,
+                draggableX: true,
+                draggableY: true,
             },
 
-            Q : {
-                pcolor : estimatedForceColor,
-                letterAngle : 225,
-                letterRotRadius : 40,
-                draggableX  : true,
-                draggableY  : true,
+            Q: {
+                pcolor: estimatedForceColor,
+                letterAngle: 225,
+                letterRotRadius: 40,
+                draggableX: true,
+                draggableY: true,
             },
 
-            T : {
-                pcolor : estimatedForceColor,
-                letterAngle : 180,
+            T: {
+                pcolor: estimatedForceColor,
+                letterAngle: 180,
             },
 
-            R : {
-                pcolor : estimatedForceColor,
-                letterAngle : 45,
+            R: {
+                pcolor: estimatedForceColor,
+                letterAngle: 45,
             },
 
-            Z : {
-                pcolor : proofColor,
-                letterAngle : 45,
+            Z: {
+                pcolor: proofColor,
+                letterAngle: 45,
             },
 
-            Zminus : {
-                undisplayAlways : true,
-                doPaintPname : false,
+            Zminus: {
+                undisplayAlways: true,
+                doPaintPname: false,
             },
 
-            Y : {
-                pcolor : proofColor,
-                letterAngle : -90,
+            Y: {
+                pcolor: proofColor,
+                letterAngle: -90,
             },
 
-            V : {
+            V: {
                 pos: V,
-                pcolor : proofColor,
-                letterAngle : -45,
+                pcolor: proofColor,
+                letterAngle: -45,
             },
 
-            L : {
-                pcolor : proofColor,
-                letterAngle : -45,
+            L: {
+                pcolor: proofColor,
+                letterAngle: -45,
             },
 
             //center of instant curvature circle
-            C : {
-                pos : C,
-                caption : 'Rc',
-                pcolor : infoColor,
-                letterAngle : -45,
-                undisplayAlways : true, // not respected?
+            C: {
+                pos: C,
+                caption: 'Rc',
+                pcolor: infoColor,
+                letterAngle: -45,
+                undisplayAlways: true, // not respected?
             },
 
-            nonSolvablePoint : {
-                pos: [0,0], //will be calculated
-                caption : '',
-                fontSize : '25',
-                undisplayAlways : true,
-                pcolor : invalidColor,
-                letterAngle : 0,
+            nonSolvablePoint: {
+                pos: [0, 0], //will be calculated
+                caption: '',
+                fontSize: '25',
+                undisplayAlways: true,
+                pcolor: invalidColor,
+                letterAngle: 0,
             },
-            errorMessage : { // nonSolvablePoint message shown at to of canvas
-                pos : [20, 20],
-                showsWhileLettersHidden : true,
-                fontSize : '25',
-                pcolor : invalidColor,
-                letterAngle : 0,
-                unscalable  : true,
+            errorMessage: { // nonSolvablePoint message shown at to of canvas
+                pos: [20, 20],
+                showsWhileLettersHidden: true,
+                fontSize: '25',
+                pcolor: invalidColor,
+                letterAngle: 0,
+                unscalable: true,
             },
 
             //corollary 2
-            Tcol2 : {
-                caption : 'T',
-                pcolor : proofColor,
-                letterAngle : -45,
+            Tcol2: {
+                caption: 'T',
+                pcolor: proofColor,
+                letterAngle: -45,
             },
-            Rcol2 : {
-                caption : 'R',
-                pcolor : sunColor,
-                letterAngle : -45,
-                draggableX  : true,
-                draggableY  : true,
+            Rcol2: {
+                caption: 'R',
+                pcolor: sunColor,
+                letterAngle: -45,
+                draggableX: true,
+                draggableY: true,
             },
-            Gcol2 : {
-                caption : 'G',
-                pcolor : proofColor,
-                letterAngle : -45,
+            Gcol2: {
+                caption: 'G',
+                pcolor: proofColor,
+                letterAngle: -45,
             },
         });
 
+        var linesArray = [
+            { 'PV': { pcolor: proofHover }, },
+            { 'SV': { pcolor: proofColor }, },
+            { 'AV': { pcolor: proofColor }, },
+            { 'AP': { pcolor: proofColor }, },
 
-        var linesArray =
-        [
-            { 'PV' : { pcolor : proofHover }, },
-			{ 'SV' : { pcolor : proofColor }, },
-            { 'AV' : { pcolor : proofColor }, },
-            { 'AP' : { pcolor : proofColor }, },
+            { 'PY': { pcolor: proofColor }, },
+            { 'P,Zminus': { pcolor: bodyColor }, },
+            { 'PZ': { pcolor: proofColor }, },
+            { 'ZR': { pcolor: proofColor }, },
 
-            { 'PY' : { pcolor : proofColor }, },
-            { 'P,Zminus' : { pcolor : bodyColor }, },
-            { 'PZ' : { pcolor : proofColor }, },
-            { 'ZR' : { pcolor : proofColor }, },
+            { 'PR': { pcolor: proofColor }, },
+            { 'ZQ': { pcolor: bodyColor }, },
 
-            { 'PR' : { pcolor : proofColor }, },
-            { 'ZQ' : { pcolor : bodyColor }, },
+            { 'RL': { pcolor: proofHover }, },
+            { 'QL': { pcolor: proofColor }, },
 
-			{ 'RL' : { pcolor : proofHover }, },
-			{ 'QL' : { pcolor : proofColor }, },
+            { 'SY': { pcolor: proofColor }, },
+            { 'QR': { pcolor: estimatedForceColor }, },
+            { 'QP': { pcolor: proofColor }, },
+            { 'SQ': { pcolor: proofColor }, },
+            { 'QT': { pcolor: estimatedForceColor }, },
+            { 'PT': { pcolor: proofHover }, },
 
-            { 'SY' : { pcolor : proofColor }, },
-            { 'QR' : { pcolor : estimatedForceColor }, },
-            { 'QP' : { pcolor : proofColor }, },
-            { 'SQ' : { pcolor : proofColor }, },
-            { 'QT' : { pcolor : estimatedForceColor }, },
-            { 'PT' : { pcolor : proofHover }, },
-
-            { 'PC' : { pcolor : infoColor }, },
+            { 'PC': { pcolor: infoColor }, },
 
             //corollary 2
-            { 'Rcol2,P' : { pcolor : proofColor }, },
-            { 'Rcol2,Tcol2' : { pcolor : proofColor }, },
-            { 'Tcol2,V' : { pcolor : proofColor }, },
-            { 'Gcol2,S' : { pcolor : proofColor }, },
-            { 'Gcol2,P' : { pcolor : proofColor }, },
-            { 'S,nonSolvablePoint' : { pcolor : invalidColor }, },
-            
-            { 'SP' : { pcolor : estimatedForceColor }, },
+            { 'Rcol2,P': { pcolor: proofColor }, },
+            { 'Rcol2,Tcol2': { pcolor: proofColor }, },
+            { 'Tcol2,V': { pcolor: proofColor }, },
+            { 'Gcol2,S': { pcolor: proofColor }, },
+            { 'Gcol2,P': { pcolor: proofColor }, },
+            { 'S,nonSolvablePoint': { pcolor: invalidColor }, },
+
+            { 'SP': { pcolor: estimatedForceColor }, },
         ];
 
-        ns.paste( sconf, {
+        ns.paste(sconf, {
             prop7R,
             Q_STEPS,
             DATA_GRAPH_STEPS,
 
-            mediaBgImage : "diagram.png",
+            mediaBgImage: "diagram.png",
             topicColors_elected,
             originalPoints,
             linesArray,
@@ -349,4 +341,4 @@
         // \\// geometics parameters
         //***************************************************************
     }
-}) ();
+})();

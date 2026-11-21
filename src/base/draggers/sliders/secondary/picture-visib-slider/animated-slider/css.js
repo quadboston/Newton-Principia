@@ -1,12 +1,8 @@
-(function() {
+(function () {
     var ns = window.b$l;
     var anslider = ns.sn('animated-slider');
 
-
-
-
-
-    anslider.css = function( 
+    anslider.css = function (
         ///all input pars are optional
         cssp,
         csskey,
@@ -30,8 +26,8 @@
             }
             `;
 
-        if( doHideSlider ) {
-            ret +=` 
+        if (doHideSlider) {
+            ret += ` 
                 div.${cssp}-slider-${csskey} {
                     position:absolute;
                     visibility:hidden;
@@ -39,8 +35,8 @@
             `;
             //return ret; /* todmm why this does not work */
         }
-        if( ancestorClassToHideSlider ) {
-            ret +=` 
+        if (ancestorClassToHideSlider) {
+            ret += ` 
                 .${ancestorClassToHideSlider} .${cssp}-slider-${csskey} {
                     position:absolute;
                     visibility:hidden;
@@ -51,7 +47,7 @@
         /*
         variant when slider is not visible originally
         .${cssp}-slider-${csskey} {
-            visibility:hidden;            
+            visibility:hidden;
         .${cssp}-slider-${csskey}.${cssp}-highlited-chart {
             visibility:visible;
         }
@@ -109,7 +105,4 @@
 
         return ret;
     };
-
 })();
-
-

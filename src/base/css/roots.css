@@ -15,9 +15,9 @@
     --exegesisBackgroundColor : 'white';
     --FOCUS_COLOR : #888888;
     --FOCUS_OFF_COLOR : #888888;
-    --SHUTTLE_COLOR : rgba(150, 175, 200); 
+    --SHUTTLE_COLOR : rgba(150, 175, 200);
     --SHUTTLE_COLOR_FAINT : rgba(150, 175, 200, 0.4);
-    --SHUTTLE_BG_COLOR : rgba(245, 245, 255); 
+    --SHUTTLE_BG_COLOR : rgba(245, 245, 255);
     --helpBoxOpacity : 1; /* todo: was fconf.appDecor.helpBox_opacity0 ? 0 : 1; but why? */
 
     --font-serif : 'Times New Roman', serif;
@@ -33,7 +33,7 @@
 
     /* variables; these default values may be changed by dispatch-css.js module */
     --main_horizontal_dividor_width_px : 21px;
-    --doDisplayPageTopNavigatMenu : flex; 
+    --doDisplayPageTopNavigatMenu : flex;
     --LEFT_SIDE_MENU_WIDTH : 40px; /* from contents\conf\conf.js */
     --LEFT_SIDE_MENU_OFFSET_X: 20px;
     --logic_phaseChildWidth : 1;
@@ -41,7 +41,7 @@
     --leftTopLeafLength : 1;
 }
 
-html, body { 
+html, body {
     border      : none;
     font-size   : 15px; /*this defines what 1rem is */
     background-color : var(--color-light);
@@ -49,7 +49,7 @@ html, body {
     height      : 100vh;
     overflow    : hidden;
     padding     : 0;
-    margin      : 0;      
+    margin      : 0;
 }
 
 body {
@@ -223,7 +223,7 @@ b {
     /*================================*/
     /* //|| position flow             */
     /*================================*/
-    html, body { 
+    html, body {
         height      : auto;
         /* for case to make visible absolute overflow over auto-page */
         overflow-y  : auto;
@@ -255,7 +255,7 @@ b {
 @media only screen and (max-width:720px){
     .btn--how-to{
         display: none !important; /* tod? */
-    } 
+    }
 }
 
 

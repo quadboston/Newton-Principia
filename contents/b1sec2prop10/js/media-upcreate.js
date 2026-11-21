@@ -1,17 +1,15 @@
-( function() {
+(function () {
     var { ns, sn, $$, nsmethods, nssvg, ssF, ssD, amode, stdMod, sconf, rg, toreg, }
-        = window.b$l.apptree({ stdModExportList : {
+        = window.b$l.apptree({ stdModExportList: {
             media_upcreate___part_of_medupcr_basic,
         }, });
     return;
 
 
-
     //=========================================================
     // //\\ lemma custom addons
     //=========================================================
-    function media_upcreate___part_of_medupcr_basic()
-    {
+    function media_upcreate___part_of_medupcr_basic() {
         //enables curve move when dragging an entire diagram
         stdMod.createOrUpdateOrbit({});
 
@@ -19,25 +17,25 @@
         // //\\ tan. cir.
         //=============================================================
         var tCircleName = 'tangentCircle';
-        var rgTCir = rg[ tCircleName ];
+        var rgTCir = rg[tCircleName];
 
-        var RCmedpos = ssF.mod2inn( rg.tCircleCenter.pos, stdMod );
+        var RCmedpos = ssF.mod2inn(rg.tCircleCenter.pos, stdMod);
         var RRmedpos = sconf.mod2inn_scale * rgTCir.tangentCircleRadius;
 
         //todo nearly bug: why create svg and set cls every time?
         rgTCir.svgel = nssvg.u({
-            svgel   : rgTCir.svgel,
-            parent  : stdMod.mmedia,
-            type    : 'circle',
-            stroke  : rg.C.pcolor,
-            fill    : 'transparent',
-            'stroke-width' : sconf.PATH_WIDTH,
-            cx : RCmedpos[0],
-            cy : RCmedpos[1],
-            r : RRmedpos,
+            svgel: rgTCir.svgel,
+            parent: stdMod.mmedia,
+            type: 'circle',
+            stroke: rg.C.pcolor,
+            fill: 'transparent',
+            'stroke-width': sconf.PATH_WIDTH,
+            cx: RCmedpos[0],
+            cy: RCmedpos[1],
+            r: RRmedpos,
         });
-        $$.$( rgTCir.svgel ).addClass(
-            'tostroke tp-' + nsmethods.toCssIdentifier( tCircleName )
+        $$.$(rgTCir.svgel).addClass(
+            'tostroke tp-' + nsmethods.toCssIdentifier(tCircleName)
         );
         rgTCir.svgel.style.display =
             rgTCir.undisplay ? 'none' : 'block';
@@ -48,6 +46,4 @@
     //=========================================================
     // \\// lemma custom addons
     //=========================================================
-
-}) ();
-
+})();

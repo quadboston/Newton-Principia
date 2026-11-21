@@ -1,4 +1,4 @@
-( function() {
+(function () {
     var {
         sn, $$, sv, hafff, globalCss,
         sconf, sDomF, ssF, ssD, toreg, rg,
@@ -9,20 +9,12 @@
     return;
 
 
-
-
-
-
-
-
-
     //----------------------------------------
     // //\\ makes up time slider
     //      creates slider only once per
     //      app model creation;
     //----------------------------------------
-    function creates_delta_time_slider()
-    {
+    function creates_delta_time_slider() {
         var pos2pointy    = ssF.pos2pointy;
         var pivots_2_svgLineInRg = ssF.pivots_2_svgLineInRg;
 
@@ -35,7 +27,7 @@
         var slCaption0  = '∆t';
 
         ///will be overridden with tp-color if any:
-        var COLOR = sDomF.getFixedColor( sliderId );
+        var COLOR = sDomF.getFixedColor(sliderId);
         var customSliderShift = -20; //picture units
         //=========================================
         // \\// slider api pars
@@ -46,11 +38,11 @@
 
         //leaving this as toolsSliders breaks sliders, needs
         //split from generic slider framework,
-        var toolsSliders_    = sn( 'toolsSliders_',stdMod, [] );
+        var toolsSliders_    = sn('toolsSliders_', stdMod, []);
         var sliderIx        = toolsSliders_.length;
-        toolsSliders_.push( api_rgid );
+        toolsSliders_.push(api_rgid);
 
-        var api         = toreg( api_rgid )();
+        var api         = toreg(api_rgid)();
         var rgX         = api;
         var start_rgid  = 'railsStart_' + sliderId;
         var end_rgid    = 'railsEnd_'   + sliderId;
@@ -59,7 +51,7 @@
         //-------------------------------------------------------------------------
         // //\\ in model units and reference system
         //-------------------------------------------------------------------------
-        var startX            = ( -sconf.originX_onPicture +
+        var startX            = (-sconf.originX_onPicture +
                                    sconf.innerMediaWidth *
                                    sconf.SLIDERS_OFFSET_X
                                 ) * sconf.inn2mod_scale;
@@ -69,7 +61,7 @@
         var startY            = sconf.originY_onPicture
                                         - sconf.innerMediaHeight
                                         + sconf.SLIDERS_OFFSET_Y
-                                        - ( sliderIx
+                                        - (sliderIx
                                             //+ customSlidersAbove
                                           ) * sconf.GENERIC_SLIDER_HEIGHT_Y
                                         + sconf.SLIDERS_LEGEND_HEIGHT
@@ -79,12 +71,11 @@
         // \\// in model units and reference system
         //--------------------------------------------------------------------------
 
-
         //:spawns api pars
-        var startPos          = [ startX, startY ];
-        var endPos            = [ endX, startY ];
-        toreg( start_rgid )( 'pos', startPos );
-        toreg( end_rgid )( 'pos', endPos );
+        var startPos          = [startX, startY];
+        var endPos            = [endX, startY];
+        toreg(start_rgid)('pos', startPos);
+        toreg(end_rgid)('pos', endPos);
 
         //--------------------------------------------------------
         // //\\ slider api
@@ -101,29 +92,28 @@
         //-------------------------------------
         var railsStart = pos2pointy(
             start_rgid,
-            { fill : COLOR, tpclass:tpId, cssClass : 'tofill tostroke', }
+            { fill: COLOR, tpclass: tpId, cssClass: 'tofill tostroke', }
         );
         var railsEnd = pos2pointy(
             end_rgid,
-            { fill : COLOR, tpclass:tpId, cssClass : 'tofill tostroke', }
+            { fill: COLOR, tpclass: tpId, cssClass: 'tofill tostroke', }
         );
         ///draws rails
         ///if tpclass does exist, it apparently overrides stroke and
         ///some other styles,
         var rails = pivots_2_svgLineInRg(
              rails_rgid,
-             [ railsStart, railsEnd ],
-             { stroke           : COLOR,
-               'stroke-width'   : 3,
-               tpclass          : tpId,
-               cssClass         : 'tofill tostroke',
+             [railsStart, railsEnd],
+             { stroke: COLOR,
+               'stroke-width': 3,
+               tpclass: tpId,
+               cssClass: 'tofill tostroke',
              }
         );
-        $$.$( rails.svgel ).cls( tptpId );
+        $$.$(rails.svgel).cls(tptpId);
         //-------------------------------------
         // \\// adds helpers
         //-------------------------------------
-
 
         //------------------------------------------------
         // //\\ makes svg representation of api
@@ -132,35 +122,34 @@
         pos2pointy(
             api_rgid,
             {
-                cssClass : 'tostroke',
-                stroke : COLOR,
-                'stroke-width' : 3,
-                fill : 'white',
-                r : 5,
-                tpclass : tpId,
+                cssClass: 'tostroke',
+                stroke: COLOR,
+                'stroke-width': 3,
+                fill: 'white',
+                r: 5,
+                tpclass: tpId,
             }
         //.overrides tp - machinery suppressed opacity,
         //.the handler must be solid,
-        ).svgel.style[ 'fill-opacity' ] = '1';
+        ).svgel.style['fill-opacity'] = '1';
         //-------------------------------------
         // \\// makes svg representation of api
         //--------------------------------------------------------
 
         /// adds text to api-GUI
         api.text_svg = sv.printText({
-            parent          : stdMod.mmedia,
-            text            : sliderId,
-           'stroke-width'   : 1,
-            style           :
-            {
-                'font-family'   : 'var(--default-font)',
-                'font-size'     : sconf.GENERIC_SLIDERS_FONT_SIZE +'px',
-                'stroke-width'  : 1,
+            parent: stdMod.mmedia,
+            text: sliderId,
+           'stroke-width': 1,
+            style: {
+                'font-family': 'var(--default-font)',
+                'font-size': sconf.GENERIC_SLIDERS_FONT_SIZE +'px',
+                'stroke-width': 1,
             },
         });
         //todmm ... patch ... adds tp dimming machinery
-        $$.$( api.text_svg ).addClass( tptpId );
-        globalCss.update( `
+        $$.$(api.text_svg).addClass(tptpId);
+        globalCss.update(`
                 .bsl-simscene svg text.${tptpId} {
                     stroke          : ${COLOR};
                     fill            : ${COLOR};
@@ -182,27 +171,15 @@
         ///this sub is defined in full-app/lib/custom-slider.js module
         ssF.rgXSlider__2__dragwrap_gen_list({
             rgX,
-            orientation         : 'axis-x',
+            orientation: 'axis-x',
         });
         return;
-
-
-
-
-
-
-
-
-
-
-
 
         ///this function does "minor" update: it does not
         ///recalculate the evolution, but
         ///  sets slider position and
         ///  shows evolution corresponding to time;
-        function updates_sliderGUI()
-        {
+        function updates_sliderGUI() {
             var rawDeltaT = api.val;
             //-----------------------------------------------------
             // //\\ corrects pos and updates slider's GUI
@@ -211,7 +188,7 @@
             var sliderXpos =
                  railsStart.pos[0] +
                  rawDeltaT / sconf.initialTimieStep * api.railsLength;
-            api.pos = [ sliderXpos, railsStart.pos[1] ];
+            api.pos = [sliderXpos, railsStart.pos[1]];
 
             api.slCaption = slCaption0 + ' = ' + api.val.toFixed(2);
             //at curr. ver., does what it says: pos to GUI
@@ -229,7 +206,7 @@
             //at the end of job, runs application-provided callback
             //stdMod.unmasks Visib();
             //stdMod.upcreate_ mainLegend();
-            if( ssF.mediaModelInitialized ) {
+            if (ssF.mediaModelInitialized) {
                 stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
             }
         };
@@ -239,15 +216,13 @@
     //----------------------------------------
 
     ///must be in contex of pointWrap ( like this = rg.B )
-    function processDownEvent( arg )
-    {
+    function processDownEvent(arg) {
         this.achieved.achieved = this.val;
     }
 
     ///move_2_val8gui8cb
     ///todm: this sub should be automatically throttled
-    function move_2_updates( move_in_model )
-    {
+    function move_2_updates(move_in_model) {
         var api = this;
         sDomF.detected_user_interaction_effect();
 
@@ -258,14 +233,14 @@
 
         //sets preliminary time:
         var newdt = api.achieved.achieved +
-                            move_in_model[ 0 ] /
+                            move_in_model[0] /
                             api.railsLength *
                             sconf.initialTimieStep;
-        newdt = Math.max( sconf.dtMin, Math.min( sconf.initialTimieStep, newdt ) );
+        newdt = Math.max(sconf.dtMin, Math.min(sconf.initialTimieStep, newdt));
         api.val = newdt;
         var posB = rg.path.pos[1];
         var absAB = sconf.speed * newdt;
-        var absB = Math.sqrt( posB[0]*posB[0] + posB[1]*posB[1] );
+        var absB = Math.sqrt(posB[0]*posB[0] + posB[1]*posB[1]);
         var scale = absAB / absB;
         posB[0] = posB[0]*scale;
         posB[1] = posB[1]*scale;
@@ -275,6 +250,4 @@
         stdMod.model_upcreate();
         stdMod.media_upcreate();
     }
-
-}) ();
-
+})();

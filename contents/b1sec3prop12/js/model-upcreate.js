@@ -1,6 +1,6 @@
-( function() {
-    var { nspaste, mat, fconf, ssD, stdMod, sconf, rg, 
-    } = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
+(function () {
+    var { nspaste, mat, fconf, ssD, stdMod, sconf, rg,
+    } = window.b$l.apptree({ stdModExportList: { model_upcreate, }, });
     return;
 
 
@@ -8,17 +8,16 @@
     /// model scenario
     /// is required; to skip define as ()=>{};
     ///****************************************************
-    function model_upcreate()
-    {
+    function model_upcreate() {
         stdMod.builds_force_plusQ_minusQ_and_related();
         const op        = sconf.orbitParameters;
-        const cosAxis   = Math.cos( op.mainAxisAngle );
-        const sinAxis   = Math.sin( op.mainAxisAngle );
+        const cosAxis   = Math.cos(op.mainAxisAngle);
+        const sinAxis   = Math.sin(op.mainAxisAngle);
         const q2xy = stdMod.q2xy;
-        var Porb = ssD.qIndexToOrbit[ rg.P.qix ];
+        var Porb = ssD.qIndexToOrbit[rg.P.qix];
         rg.P.pos[0] = Porb.posBody[0];
         rg.P.pos[1] = Porb.posBody[1];
-        var Qpos = q2xy( Porb.plusQ );
+        var Qpos = q2xy(Porb.plusQ);
         rg.Q.pos[0] = Qpos[0];
         rg.Q.pos[1] = Qpos[1];
 
@@ -37,7 +36,7 @@
         // //\\ arc, sagittae and related
         //================================================
         //R = parallel-projection of Q to tangent
-        nspaste( rg.R.pos,
+        nspaste(rg.R.pos,
             mat.linesCross(
                 uTangential, rg.P.pos, //direction, start
                 [rg.P.pos[0]-rg.S.pos[0], rg.P.pos[1]-rg.S.pos[1]], rg.Q.pos, //direction, start
@@ -45,9 +44,9 @@
         );
 
         //T = perp. from Q to radius-vector
-        nspaste( rg.T.pos, mat.dropPerpendicular( rg.Q.pos, rg.S.pos, rg.P.pos ) );
+        nspaste(rg.T.pos, mat.dropPerpendicular(rg.Q.pos, rg.S.pos, rg.P.pos));
 
-		nspaste( rg.Z.pos,
+        nspaste(rg.Z.pos,
             mat.dropLine(
                 1.3,
                 rg.P.pos,
@@ -61,7 +60,7 @@
         //================================================
 
         // Zminus
-        nspaste( rg.Zminus.pos,
+        nspaste(rg.Zminus.pos,
             mat.dropLine(
                 -1.3,
                 rg.P.pos,
@@ -70,40 +69,40 @@
                 uTangential,
             )
         );
-        nspaste( rg.A.pos, q2xy( Math.PI ) );
-        nspaste( rg.AA.pos, q2xy( 0 ) );
+        nspaste(rg.A.pos, q2xy(Math.PI));
+        nspaste(rg.AA.pos, q2xy(0));
         {
             let posBx = op.conicSignum === -1 ? -op.C : op.C;
             let posB = [posBx, op.B,];
-            let ww = mat.rotatesVect( posB, op.mainAxisAngle, );
-            nspaste( rg.B.pos, ww );
+            let ww = mat.rotatesVect(posB, op.mainAxisAngle,);
+            nspaste(rg.B.pos, ww);
             posB = [posBx, -op.B,];
-            ww = mat.rotatesVect( posB, op.mainAxisAngle, );
-            nspaste( rg.BB.pos, ww );
+            ww = mat.rotatesVect(posB, op.mainAxisAngle,);
+            nspaste(rg.BB.pos, ww);
         }
 
         ////hyperbola or ellipse
-		const sqAC = mat.squaredDistance( rg.A, rg.C );
-		const sqBC = mat.squaredDistance( rg.B, rg.C );
-		const sqDiameterConstant = sqAC - sqBC;
-		const SqDC = mat.squaredDistance( rg.P, rg.C ) - sqDiameterConstant;
-		const DC = Math.sqrt(Math.abs(SqDC ));
-        let D = mat.sm( rg.C.pos, -DC, uTangential );
-        nspaste( rg.D.pos, D );
-        let K = mat.sm( rg.C.pos,  DC, uTangential );
-        nspaste( rg.K.pos, K );
+        const sqAC = mat.squaredDistance(rg.A, rg.C);
+        const sqBC = mat.squaredDistance(rg.B, rg.C);
+        const sqDiameterConstant = sqAC - sqBC;
+        const SqDC = mat.squaredDistance(rg.P, rg.C) - sqDiameterConstant;
+        const DC = Math.sqrt(Math.abs(SqDC));
+        let D = mat.sm(rg.C.pos, -DC, uTangential);
+        nspaste(rg.D.pos, D);
+        let K = mat.sm(rg.C.pos,  DC, uTangential);
+        nspaste(rg.K.pos, K);
         //is this a numerical glitch in the Book?:
         //nspaste( rg.K.pos, mat.dropLine(  2.13, rg.C.pos, rg.P.pos, null,
         //                                  uTangential) );
 
         //conjugate diameters and tangents
-		stdMod.customizePoints(rg, op, uTangential);
+        stdMod.customizePoints(rg, op, uTangential);
 
         //vuFV
         //v = parallel-projection of Q to tangent
-        var DK = [ rg.K.pos[0]-rg.D.pos[0], rg.K.pos[1]-rg.D.pos[1] ];
-        var PG = [ rg.P.pos[0]-rg.G.pos[0], rg.P.pos[1]-rg.G.pos[1] ];
-        nspaste( rg.v.pos,
+        var DK = [rg.K.pos[0]-rg.D.pos[0], rg.K.pos[1]-rg.D.pos[1]];
+        var PG = [rg.P.pos[0]-rg.G.pos[0], rg.P.pos[1]-rg.G.pos[1]];
+        nspaste(rg.v.pos,
             mat.linesCross(
                 uTangential, rg.Q.pos, //direction, start
                 PG, rg.P.pos, //direction, start
@@ -111,19 +110,19 @@
         );
 
         //point x
-        nspaste( rg.x.pos, mat.lineSegmentsCross(
+        nspaste(rg.x.pos, mat.lineSegmentsCross(
             rg.T.pos, rg.P.pos,
             rg.Q.pos, rg.v.pos,
         ));
         //point E
-        nspaste( rg.E.pos, mat.lineSegmentsCross(
+        nspaste(rg.E.pos, mat.lineSegmentsCross(
             rg.D.pos, rg.K.pos,
             rg.S.pos, rg.P.pos,
         ));
         //point I
-        nspaste( rg.I.pos, mat.linesCross(
+        nspaste(rg.I.pos, mat.linesCross(
             DK, rg.H.pos, //direction, start
-            mat.sm( rg.S.pos, -1, rg.P.pos ), rg.S.pos, //direction, start
+            mat.sm(rg.S.pos, -1, rg.P.pos), rg.S.pos, //direction, start
         ));
         // latus rectum
         rg.L.pos[0]  = -sinAxis * op.latus;
@@ -131,39 +130,38 @@
         rg.LL.pos[0] =  sinAxis * op.latus;
         rg.LL.pos[1] = -cosAxis * op.latus;
 
-		// graph
-		if (stdMod.graph) {
+        // graph
+        if (stdMod.graph) {
             createGraph();
-		}
+        }
 
+        function createGraph() {
+            //Fixed bounds allow different arrangements of curves to easily be
+            //compared to one another (eg. different eccentricities).  Note
+            //when the axes are variable, the curves are distorted when
+            //compared, which is misleading for these models.
+            const graphArg = {
+                xMin: 0,
+                xMax: sconf.DISTANCE_ORBIT_ENDS_TO_S,
+                yMin: 0,
+            };
 
-		function createGraph() {
-			//Fixed bounds allow different arrangements of curves to easily be
-			//compared to one another (eg. different eccentricities).  Note
-			//when the axes are variable, the curves are distorted when
-			//compared, which is misleading for these models.
-			const graphArg = {
-				xMin : 0,
-				xMax : sconf.DISTANCE_ORBIT_ENDS_TO_S,
-				yMin : 0,
-			};
+            if (fconf.sappId === 'b1sec3prop12') {
+                //y max stays fixed while the curves fit under it, which covers
+                //the common arrangements; extreme ones, such as a large
+                //eccentricity with Q far from P, raise it to fit their curves
+                const Y_MAX_USUAL = 2;
+                const yPeak = Math.max(
+                    ssD.actualForceMaxCurrent, ssD.estimatedForceMaxCurrent
+                ) / ssD.MAF;
+                graphArg.yMax = Math.max(Y_MAX_USUAL, yPeak);
+            }
+            //In Prop 13, y max is left unset, so it is automatically set to
+            //the current maximum y value for all curves, which allows the
+            //student to see how big it grows.  When Q is at P it equals MAF,
+            //and when Q is furthest from P it equals MEF.
 
-			if (fconf.sappId === 'b1sec3prop12') {
-				//y max stays fixed while the curves fit under it, which covers
-				//the common arrangements; extreme ones, such as a large
-				//eccentricity with Q far from P, raise it to fit their curves
-				const Y_MAX_USUAL = 2;
-				const yPeak = Math.max(
-					ssD.actualForceMaxCurrent, ssD.estimatedForceMaxCurrent
-				) / ssD.MAF;
-				graphArg.yMax = Math.max(Y_MAX_USUAL, yPeak);
-			}
-			//In Prop 13, y max is left unset, so it is automatically set to
-			//the current maximum y value for all curves, which allows the
-			//student to see how big it grows.  When Q is at P it equals MAF,
-			//and when Q is furthest from P it equals MEF.
-
-			stdMod.graph.drawsGraph(graphArg);
-		}
+            stdMod.graph.drawsGraph(graphArg);
+        }
     }
-}) ();
+})();

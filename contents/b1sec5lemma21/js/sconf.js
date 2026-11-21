@@ -1,11 +1,10 @@
-( function() {
-    var { mat, fapp, fconf, sconf, topicColors_repo, } = 
-        window.b$l.apptree({ ssFExportList : { init_conf } });
+(function () {
+    var { mat, fapp, fconf, sconf, topicColors_repo, } =
+        window.b$l.apptree({ ssFExportList: { init_conf } });
     return;
 
 
-    function init_conf()
-    {
+    function init_conf() {
         //====================================================
         // //\\ subapp regim switches
         //====================================================
@@ -32,12 +31,12 @@
 
         //do not change total dimension of svgdom and the picture,
         //to comply standard layout, one must add these 2 lines:
-        var realSvgSize = ( pictureWidth + pictureHeight ) / 2;
+        var realSvgSize = (pictureWidth + pictureHeight) / 2;
         var controlsScale = realSvgSize / sconf.standardSvgSize
         //sconf.standardSvgSize = 250;
 
         fconf.LETTER_FONT_SIZE_PER_1000 = 25; //works
-        
+
         fconf.DRAGGER_TOLERANCE = 25; // distance where crosshair appears
 
         //--------------------------------------
@@ -45,17 +44,17 @@
         //      in expands-conf.js,
         //--------------------------------------
         sconf.default_tp_lightness = 30;
-        default_tp_stroke_width = Math.floor( 6 * controlsScale ),
-        defaultLineWidth        = Math.floor( 1 * controlsScale ),
-        handleRadius            = Math.floor( 6 * controlsScale ),
+        default_tp_stroke_width = Math.floor(6 * controlsScale),
+        defaultLineWidth        = Math.floor(1 * controlsScale),
+        handleRadius            = Math.floor(6 * controlsScale),
         //overrides "global", lemma.conf.js::sconf
         sconf.pointDecoration.r = handleRadius;
 
         // //\\ principal tp-css pars
         //      see: topics-media-glocss.js
         //this makes hanle's border nicely thin
-        sconf.nonhover_width    = Math.max( 1, Math.floor( 1*controlsScale/1.6 ) );
-        sconf.hover_width       = Math.max( 2, Math.floor( 7*controlsScale/1.6 ) );
+        sconf.nonhover_width    = Math.max(1, Math.floor(1*controlsScale/1.6));
+        sconf.hover_width       = Math.max(2, Math.floor(7*controlsScale/1.6));
 
         //make effect apparently only for line-captions,
         //not for point-captions bs
@@ -76,50 +75,46 @@
             ellipse,
         } = topicColors_repo;
 
-
-        const topicColors_elected =
-        {
+        const topicColors_elected = {
             static,
-            "static-half"       : staticHalfOpacity,
+            "static-half": staticHalfOpacity,
             core,
-            "core-half"         : coreHalfOpacity,
+            "core-half": coreHalfOpacity,
             aux,
             constructors,
             ellipse,
 
-            "gamma"             : core,
-            "g-parameter"       : core,
-            "angle-alpha"       : staticHalfOpacity,
-            "angle-beta"        : staticHalfOpacity,
-            "angle-alpha-core"  : coreHalfOpacity,
-            "angle-beta-core"   : coreHalfOpacity,
+            "gamma": core,
+            "g-parameter": core,
+            "angle-alpha": staticHalfOpacity,
+            "angle-beta": staticHalfOpacity,
+            "angle-alpha-core": coreHalfOpacity,
+            "angle-beta-core": coreHalfOpacity,
         };
         const pt = topicColors_elected;
-        
 
-        var pointsOnPicture =
-        {
-            C : [50, originY_onPicture], //550],
-            B : [838, originY_onPicture], //552],
-            M : [391-384+originX_onPicture,634],
+        var pointsOnPicture = {
+            C: [50, originY_onPicture], //550],
+            B: [838, originY_onPicture], //552],
+            M: [391-384+originX_onPicture, 634],
 
             //:apparently inactive static points
-            N : [380-384+originX_onPicture, 476-553+originY_onPicture],
-            T : [411-384+originX_onPicture, 219-553+originY_onPicture],
-            P : [548-384+originX_onPicture, 77-553+originY_onPicture],
-            R : [734-384+originX_onPicture, 346-553+originY_onPicture],
-  
-            O : [originX_onPicture, originY_onPicture],
-            H : [originX_onPicture, originY_onPicture],
-            A : [568, 244],
+            N: [380-384+originX_onPicture, 476-553+originY_onPicture],
+            T: [411-384+originX_onPicture, 219-553+originY_onPicture],
+            P: [548-384+originX_onPicture, 77-553+originY_onPicture],
+            R: [734-384+originX_onPicture, 346-553+originY_onPicture],
+
+            O: [originX_onPicture, originY_onPicture],
+            H: [originX_onPicture, originY_onPicture],
+            A: [568, 244],
         };
-        
+
         ///bigger diagram
         //eachprop( pointsOnPicture, v => {
         //    v[0] -= 300;
         //    v[1] -= 246;
-        //});        
-        
+        //});
+
         var gamma; // = Math.PI*0.49;
         var a;
         var beta;
@@ -130,37 +125,37 @@
         ///derives initial model parameters from picture's points
         var to_sconf = {};
         var mod2inn_scale;
-        (function() {
+        (function () {
             var pp = pointsOnPicture;
             var B = pp.B;
             var C = pp.C;
             var O = pp.O;
             var M = pp.M;
             var N = pp.N;
-            var BC = [ B[0] - C[0], B[1] - C[1] ];
+            var BC = [B[0] - C[0], B[1] - C[1]];
             mod2inn_scale = mat.unitVector(BC).abs;
             //a = 1 - wwb;
             a = 0.435;
 
             //---sets initial param g
-            var OM = [ M[0] - O[0], M[1] - O[1] ];
+            var OM = [M[0] - O[0], M[1] - O[1]];
             initial_Munit = mat.unitVector(OM);
             //possibly initial_g = initial_Munit.abs/mod2inn_scale;
             initial_g = 0.105;
             //is an absolute value of an angle:
-            gamma = Math.acos( initial_Munit.unitVec[0] ); 
+            gamma = Math.acos(initial_Munit.unitVec[0]);
             gamma *= 1.01;
 
             //---sets initial decorational param gN
-            var ON = [ N[0] - O[0], N[1] - O[1] ];
+            var ON = [N[0] - O[0], N[1] - O[1]];
             initial_Nunit = mat.unitVector(ON);
 
             //var BAA = mat.p1_to_p2( B, A );
-            //beta = -Math.asin( BAA.unitVec[1] ); 
+            //beta = -Math.asin( BAA.unitVec[1] );
             beta = 0.863;
 
             //var CAA = mat.p1_to_p2( C, A );
-            //alpha = -Math.asin( CAA.unitVec[1] ); 
+            //alpha = -Math.asin( CAA.unitVec[1] );
             alpha = 0.528;
 
             to_sconf.a = a;
@@ -174,113 +169,112 @@
         let pop = pointsOnPicture;
         var originalPoints =
         {
-            C : {
-                  pos: [0,0], //fake pos
+            C: {
+                  pos: [0, 0], //fake pos
                   pcolor: pt.static,
                   cssClass: 'tp-static tp-_C',
-                  letterAngle : -90,
-                  letterRotRadius : 20,
+                  letterAngle: -90,
+                  letterRotRadius: 20,
             },
-            B : {
+            B: {
                   pos: pop.B,
                   pcolor: pt.static,
                   cssClass: 'tp-static',
-                  letterAngle : -90,
-                  letterRotRadius : 20,
+                  letterAngle: -90,
+                  letterRotRadius: 20,
             },
-            D : {
-                  pcolor: pt[ "constructors" ],
+            D: {
+                  pcolor: pt["constructors"],
                   //cssClass: 'tp-g-parameter',
-                  letterAngle : 180,
-                  letterRotRadius : 20,
+                  letterAngle: 180,
+                  letterRotRadius: 20,
             },
-            O : {
+            O: {
                   pos: pop.O,
                   //pcolor: pt[ "g-parameter" ],
                   //cssClass: 'tp-static',
                   //cssClass : 'logic_phase--proof',
                   cssClass: 'aspect--model',
-                  letterAngle : 0,
-                  letterRotRadius : 20,
-                  doPaintPname:false,
+                  letterAngle: 0,
+                  letterRotRadius: 20,
+                  doPaintPname: false,
             },
-            P : {
+            P: {
                   cssClass: 'logic_phase--proof',
                   pcolor: pt.static,
-                  letterAngle : 0,
-                  letterRotRadius : 20,
+                  letterAngle: 0,
+                  letterRotRadius: 20,
             },
-            N : {
+            N: {
                   pos: pop.N,
                   pcolor: pt.static,
-                  letterAngle : -45,
-                  letterRotRadius : 20,
+                  letterAngle: -45,
+                  letterRotRadius: 20,
             },
-            n : {
+            n: {
                   cssClass: 'subessay--converse-proof',
                   pcolor: pt.core,
-                  letterAngle : -45,
-                  letterRotRadius : 20,
+                  letterAngle: -45,
+                  letterRotRadius: 20,
             },
-            p : {
+            p: {
                   cssClass: 'subessay--converse-proof',
                   pcolor: pt.constructors,
-                  letterAngle : 180,
-                  letterRotRadius : 20,
+                  letterAngle: 180,
+                  letterRotRadius: 20,
             },
-            T : {
+            T: {
                   cssClass: 'subessay--direct-proof',
                   pos: pop.T,
                   pcolor: pt.core,
-                  letterAngle : 0,
-                  letterRotRadius : 20,
+                  letterAngle: 0,
+                  letterRotRadius: 20,
             },
-            R : {
+            R: {
                   cssClass: 'subessay--direct-proof',
                   pos: pop.R,
                   pcolor: pt.core,
-                  letterAngle : 0,
-                  letterRotRadius : 20,
+                  letterAngle: 0,
+                  letterRotRadius: 20,
             },
             //============================================
             // //\\ sliders
             //============================================
-            A : {
-                  draggableX : true,
-                  draggableY : true,
+            A: {
+                  draggableX: true,
+                  draggableY: true,
                   pos: pop.A,
                   pcolor: pt.static,
-                  style: {fill: '#ffffff'},
+                  style: { fill: '#ffffff' },
                   cssClass: 'tp-static',
-                  letterAngle : 0,
-                  letterRotRadius : 20,
+                  letterAngle: 0,
+                  letterRotRadius: 20,
             },
-            H : {
-                  draggableX : true,
+            H: {
+                  draggableX: true,
                   pos: pop.H,
                   //pcolor: pt[ "g-parameter" ],
                   pcolor: pt.static,
-                  style: {fill: '#ffffff'},
+                  style: { fill: '#ffffff' },
                   cssClass: 'tp-static',
-                  letterAngle : 45,
-                  letterRotRadius : 20,
-                  doPaintPname:false,
+                  letterAngle: 45,
+                  letterRotRadius: 20,
+                  doPaintPname: false,
             },
-            M : {
-                  draggableY : true,
+            M: {
+                  draggableY: true,
                   pcolor: pt.core,
-                  style: {fill: '#ffffff'},
+                  style: { fill: '#ffffff' },
                   cssClass: 'tp-static',
-                  letterAngle : 225,
-                  letterRotRadius : 25,
+                  letterAngle: 225,
+                  letterRotRadius: 25,
             },
             //============================================
             // \\// sliders
             //============================================
       };
 
-        var linesArray =
-        [
+        var linesArray = [
             //-------------------------
             // //\\ static
             //-------------------------
@@ -289,24 +283,21 @@
                 // \\// given static angles alpha, beta
                 //-------------------------------------------------
                 //'AABAangleA
-                'AB' :
-                {
-                    pcolor : pt.static,
-                    cssClass : 'tp-angle-beta',
+                'AB': {
+                    pcolor: pt.static,
+                    cssClass: 'tp-angle-beta',
                 },
             },
             {
-                'BA' :
-                {
-                    pcolor : pt.static,
+                'BA': {
+                    pcolor: pt.static,
                 },
             },
             {
                //'AABAangleAA'
-               'CB' :
-               {
-                    pcolor : pt.static,
-                    cssClass : 'tp-angle-beta',
+               'CB': {
+                    pcolor: pt.static,
+                    cssClass: 'tp-angle-beta',
                },
             },
             //-------------------------------------------------
@@ -317,17 +308,15 @@
             // //\\ decorates draggers
             //-----------------------------------------------
             {
-                'MB' :
-                {
-                    pcolor : pt[ "core" ],
-                    cssClass : 'tp-constructors',
+                'MB': {
+                    pcolor: pt["core"],
+                    cssClass: 'tp-constructors',
                 },
             },
             {
-                'MC' :
-                {
-                    pcolor : pt[ "core" ],
-                    cssClass : 'tp-constructors',
+                'MC': {
+                    pcolor: pt["core"],
+                    cssClass: 'tp-constructors',
                 },
             },
             //-----------------------------------------------
@@ -338,176 +327,154 @@
             // //\\ base sides
             //-------------------------------------------------
             {
-                'BH' :
-                {
-                    pcolor : pt.static,
+                'BH': {
+                    pcolor: pt.static,
                 },
             },
             {
-                'MH' :
-                {
+                'MH': {
                     cssClass: 'subessay--direct-proof',
-                    pcolor : pt[ "core" ],
+                    pcolor: pt["core"],
                 },
             },
             {
-                'MN' :
-                {
-                    pcolor : pt[ "core" ],
+                'MN': {
+                    pcolor: pt["core"],
                 },
             },
-  
-            {
-                nN :
-                {
-                    pcolor : pt.core,
-                    cssClass: 'subessay--converse-proof',
-                },
-            },
-            {
-                Cn :
-                {
-                    pcolor : pt.aux,
-                    cssClass: 'subessay--converse-proof',
-                },
-            },
-  
-            {
-                Bn :
-                {
-                    pcolor : pt.aux,
-                    cssClass: 'subessay--converse-proof',
-                },
-            },
-  
 
-  
             {
-                Cp :
-                {
-                    pcolor : pt.aux,
+                nN: {
+                    pcolor: pt.core,
                     cssClass: 'subessay--converse-proof',
                 },
             },
-  
             {
-                Bp :
-                {
-                    pcolor : pt.aux,
+                Cn: {
+                    pcolor: pt.aux,
                     cssClass: 'subessay--converse-proof',
                 },
             },
-  
+
             {
-                'BC' :
-                {
-                    pcolor : pt.static,
-                    cssClass:'tp-angle-alpha tp-angle-beta',
+                Bn: {
+                    pcolor: pt.aux,
+                    cssClass: 'subessay--converse-proof',
+                },
+            },
+
+            {
+                Cp: {
+                    pcolor: pt.aux,
+                    cssClass: 'subessay--converse-proof',
+                },
+            },
+
+            {
+                Bp: {
+                    pcolor: pt.aux,
+                    cssClass: 'subessay--converse-proof',
+                },
+            },
+
+            {
+                'BC': {
+                    pcolor: pt.static,
+                    cssClass: 'tp-angle-alpha tp-angle-beta',
                 },
             },
             {
-                'BN' :
-                {
-                    pcolor : pt.static,
+                'BN': {
+                    pcolor: pt.static,
                 },
             },
             {
-                'CN' :
-                {
-                    pcolor : pt.static,
+                'CN': {
+                    pcolor: pt.static,
                 },
             },
             {
-                'BD' :
-                {
-                    pcolor : pt[ "constructors" ],
+                'BD': {
+                    pcolor: pt["constructors"],
                 },
             },
             {
-                CR : {
+                CR: {
                     cssClass: 'subessay--direct-proof',
-                    pcolor: pt[ "constructors" ],
+                    pcolor: pt["constructors"],
                 },
             },
             {
-                BT : {
+                BT: {
                       cssClass: 'subessay--direct-proof',
-                      pcolor: pt[ "constructors" ],
+                      pcolor: pt["constructors"],
                 },
             },
             {
-                'CD' :
-                {
-                    pcolor : pt[ "constructors" ],
+                'CD': {
+                    pcolor: pt["constructors"],
                 },
             },
             {
-                'PT' :
-                {
+                'PT': {
                     cssClass: 'subessay--direct-proof',
-                    pcolor : pt[ "core" ],
+                    pcolor: pt["core"],
                 },
             },
             {
-                'PR' :
-                {
+                'PR': {
                     cssClass: 'subessay--direct-proof',
-                    pcolor : pt[ "core" ],
+                    pcolor: pt["core"],
                 },
             },
             {
-                'PC' :
-                {
+                'PC': {
                     cssClass: 'logic_phase--proof',
-                    pcolor : pt[ "static" ],
+                    pcolor: pt["static"],
                 },
             },
             {
-                'PB' :
-                {
+                'PB': {
                     cssClass: 'logic_phase--proof',
-                    pcolor : pt[ "static" ],
+                    pcolor: pt["static"],
                 },
             },
             //-------------------------------------------------
             // \\// base sides
             //-------------------------------------------------
 
-            
             //-------------------------------------------------
             // //\\ given static angles alpha, beta
             //-------------------------------------------------
             //'AAABangleA',
             {
-                'AC' : //line AC
+                'AC': //line AC
                 {
-                    pcolor : pt[ "static" ],
-                    cssClass:'tp-angle-alpha',
+                    pcolor: pt["static"],
+                    cssClass: 'tp-angle-alpha',
                 },
             },
             //AAABangleB
             {
-                'AB' :
-                {
-                    pcolor : pt[ "static" ],
-                    cssClass:'tp-angle-beta',
+                'AB': {
+                    pcolor: pt["static"],
+                    cssClass: 'tp-angle-beta',
                 },
             },
             //-------------------------------------------------
             // \\// given static angles alpha, beta
             //-------------------------------------------------
-        ]; 
-
+        ];
 
         //----------------------------------------------------
         // //\\  prepares sconf data holder
         //----------------------------------------------------
-        fapp.normalizeSliders( pictureHeight / 500 ); //todo not automated, prolifer.
-        Object.assign( to_sconf, {
+        fapp.normalizeSliders(pictureHeight / 500); //todo not automated, prolifer.
+        Object.assign(to_sconf, {
             topicColors_elected,
             originalPoints,
             linesArray,
-            mediaBgImage : "diagram.png",
+            mediaBgImage: "diagram.png",
             //mediaBgImage : "diagram3.png", //bigger diagram
 
             //----------------------------------
@@ -516,12 +483,12 @@
             originX_onPicture, //needed for common sliders
             originY_onPicture, //needed for common sliders
 
-            innerMediaHeight    : pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
-            innerMediaWidth     : pictureWidth,
+            innerMediaHeight: pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT,
+            innerMediaWidth: pictureWidth,
             pictureWidth,
             pictureHeight,
-            
-            thickness           : 1,
+
+            thickness: 1,
             //----------------------------------
             // \\// model-view parameters
             //----------------------------------
@@ -546,13 +513,11 @@
         // \\// prepares sconf data holder
         //----------------------------------------------------
 
-
-
         //----------------------------------------------------
         // //\\ copy-pastes to sconf
         //----------------------------------------------------
-        Object.keys( to_sconf ).forEach( function( key ) {
-            sconf[ key ] = to_sconf[ key ];
+        Object.keys(to_sconf).forEach(function (key) {
+            sconf[key] = to_sconf[key];
         });
         //----------------------------------------------------
         // \\// copy-pastes to sconf
@@ -561,6 +526,4 @@
     //====================================================
     // \\// inits and sets config pars
     //====================================================
-
-}) ();
-
+})();

@@ -2,14 +2,12 @@
 // /var/www/html/sand/web-dev/tools/frontend/btb-master/btb/jq/create-media-runner.js
 //css vs js: https://developer.mozilla.org/en-US/Apps/Fundamentals/Performance/CSS_JavaScript_animation_performance
 
-( function() {
+(function () {
     var {
         tframes,
     } = window.b$l.nstree();
 
-
     var ANIMATION_THROTTLER = 16.69;
-
 
     var unixTime;
     var managerElapsed;
@@ -55,35 +53,21 @@
     return;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-	function runsMainCycle()
-	{
+    function runsMainCycle() {
         var fisrtStart = false;
-        if( !managerStart ) {
+        if (!managerStart) {
             var fisrtStart = true;
-            managerStart = [ Date.now() ];
+            managerStart = [Date.now()];
         }
-        var timeOrigin  = managerStart[ 0 ];
-        managerStart    = [ Date.now() ]; //reschedules manager
+        var timeOrigin  = managerStart[0];
+        managerStart    = [Date.now()]; //reschedules manager
         unixTime        = Date.now();
         managerElapsed  = unixTime - timeOrigin;
         //if( managerElapsed > ANIMATION_THROTTLER || fisrtStart ) {
-            Object.keys(runners).forEach( runsAddee );
+            Object.keys(runners).forEach(runsAddee);
         //}
-		setTimeout( tframes.runsMainCycle, ANIMATION_THROTTLER ); //todo: setInterval
-	};
+        setTimeout(tframes.runsMainCycle, ANIMATION_THROTTLER); //todo: setInterval
+    };
 
     /// adds callbacks to "dispatcher",
     /// return kName for case of prescheduled disposal
@@ -98,27 +82,25 @@
     }) {
         var kName = '' + kNameCount++;
         var now = Date.now();
-        runners[ kName ] = {
+        runners[kName] = {
             lifeIntervalMax,
             lifeMax,
             lifeRunFun,
             lifeFinishFun,
-            lifeStart         : now,
-            lifeIntervalStart : now,
+            lifeStart: now,
+            lifeIntervalStart: now,
         };
         return kName;
     };
 
-    function removesAddee( kName )
-    {
+    function removesAddee(kName) {
         //other way?:
         // https://stackoverflow.com/questions/12216540
         //      /how-to-test-for-equality-of-functions-in-javascript
-        delete runners[ kName ];
+        delete runners[kName];
     };
 
-    function runsAddee( kName )
-    {
+    function runsAddee(kName) {
         /*
         //this would more economical approach, run only when
         //at least one demand is made
@@ -126,7 +108,7 @@
         */
 
         var now                     = Date.now();
-        var rr                      = runners[ kName ];
+        var rr                      = runners[kName];
         var lifeRunFun              = rr.lifeRunFun;
         var lifeFinishFun           = rr.lifeFinishFun;
 
@@ -139,10 +121,10 @@
         var lifeElapsed             = now - lifeStart;
         var lifeIntervalElapsed     = now - lifeIntervalStart;
 
-        if( typeof lifeMax === 'undefined' || lifeElapsed < lifeMax ) {
-            if( typeof lifeIntervalMax === 'undefined' ||
+        if (typeof lifeMax === 'undefined' || lifeElapsed < lifeMax) {
+            if (typeof lifeIntervalMax === 'undefined' ||
                 lifeIntervalMax <= lifeIntervalElapsed
-            ){
+            ) {
                 rr.lifeIntervalStart = now;
                 lifeRunFun({
                     lifeElapsed, lifeIntervalElapsed, managerElapsed, now
@@ -153,12 +135,10 @@
             lifeFinishFun && lifeFinishFun({
                 lifeElapsed, lifeIntervalElapsed, managerElapsed, now
             });
-            removesAddee( kName );
+            removesAddee(kName);
         }
     };
     //**************************************
     // \\// animation frames framework
     //**************************************
-
-
-}) ();
+})();

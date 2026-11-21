@@ -1,6 +1,6 @@
-( function() {
+(function () {
     var { $$, nsmethods, nssvg, mat, has, ssF, ssF, ssD, stdMod, amode, sconf,
-        rg, toreg, mcurve, } = window.b$l.apptree({ stdModExportList : {
+        rg, toreg, mcurve, } = window.b$l.apptree({ stdModExportList: {
             model_upcreate, }, });
     return;
 
@@ -9,11 +9,10 @@
     /// model scenario
     /// is required; to skip define as ()=>{};
     ///****************************************************
-    function model_upcreate()
-    {
+    function model_upcreate() {
         const q2xy = stdMod.q2xy;
         const solvable = ssD.solvable;
-        const Porb = ssD.qIndexToOrbit[ rg.P.qix ];
+        const Porb = ssD.qIndexToOrbit[rg.P.qix];
         var {
             RC, R, curvatureChordSecondPoint, projectionOfCenterOnTangent,
             uTangential,
@@ -26,14 +25,14 @@
         const posCenterOfForces = rg.S.pos;
         const Rc = R; //curvature radius
 
-        if(solvable){
+        if (solvable) {
             const rrplus = Porb.rrplus;
             const rrminus = Porb.rrminus;
             rg.Q.q = Porb.plusQ;
             rg.Q.q_minus = Porb.minusQ;
             rg.Q.pos[0] = rrplus[0];
             rg.Q.pos[1] = rrplus[1];
-            const chord = rg.chord = [ rrplus[0] - rrminus[0], rrplus[1] - rrminus[1], ];
+            const chord = rg.chord = [rrplus[0] - rrminus[0], rrplus[1] - rrminus[1],];
             rg.chord2 = chord[0]*chord[0]+chord[1]*chord[1];
 
             //R = parallel-projection of Q to tangent
@@ -45,7 +44,7 @@
             rg.R.pos[0] = RR[0];
             rg.R.pos[1] = RR[1];
             //T = perp. from Q to radius-vector
-            var TT = mat.dropPerpendicular( rg.Q.pos, posCenterOfForces, rr0 );
+            var TT = mat.dropPerpendicular(rg.Q.pos, posCenterOfForces, rr0);
             rg.T.pos[0] = TT[0];
             rg.T.pos[1] = TT[1];
 
@@ -57,7 +56,7 @@
                 const qV = ssD.qIndexToOrbit[qix]?.q;
                 if (qV != null) {
                     const qL = qV - (rg.Q.q - rg.P.q);
-                    const L = q2xy( qL );
+                    const L = q2xy(qL);
                     rg.L.pos[0] = L[0];
                     rg.L.pos[1] = L[1];
                 }
@@ -69,7 +68,7 @@
             var Z = mat.linesCross(
                 uTangential,
                 rg.P.pos,
-                [ rg.Q.pos[0]-rg.T.pos[0], rg.Q.pos[1]-rg.T.pos[1], ],
+                [rg.Q.pos[0]-rg.T.pos[0], rg.Q.pos[1]-rg.T.pos[1],],
                 rg.T.pos,
             );
             rg.Z.pos[0] = Z[0];
@@ -87,25 +86,25 @@
         rg.Y.pos[1] = projectionOfCenterOnTangent[1];
 
         {
-            const RCmedpos = ssF.mod2inn( RC, );
+            const RCmedpos = ssF.mod2inn(RC,);
             const RRmedpos = sconf.mod2inn_scale * Rc;
 
             //todo nearly bug: why create svg and set cls every time?
             const CCName = 'curvatureCircle';
-            var rgCC = toreg( CCName )();
+            var rgCC = toreg(CCName)();
             rgCC.svgel = nssvg.u({
-                svgel   : rgCC.svgel,
-                parent  : stdMod.mmedia,
-                type    : 'circle',
-                stroke  : rg.C.pcolor,
-                fill    : 'transparent',
-                'stroke-width' : '1',
-                cx : RCmedpos[0],
-                cy : RCmedpos[1],
-                r : RRmedpos,
+                svgel: rgCC.svgel,
+                parent: stdMod.mmedia,
+                type: 'circle',
+                stroke: rg.C.pcolor,
+                fill: 'transparent',
+                'stroke-width': '1',
+                cx: RCmedpos[0],
+                cy: RCmedpos[1],
+                r: RRmedpos,
             });
-            $$.$( rgCC.svgel ).addClass(
-                'tp-' + nsmethods.toCssIdentifier( CCName ) +
+            $$.$(rgCC.svgel).addClass(
+                'tp-' + nsmethods.toCssIdentifier(CCName) +
                 ' tostroke'
             );
             rgCC.svgel.style.display =
@@ -115,19 +114,18 @@
         // \\// curvature circle
         //================================================
 
-
         //================================================
         // //\\ decorations
         //================================================
         //Sets dynamic point A, this point is not angle reference,
         //Assigns: "A=scale,C,D,S"
-        if( amode.subessay !== 'corollary2' && amode.subessay !== 'corollary3' ){
-            ssF.dropLine( 'A=2,V,C' );
+        if (amode.subessay !== 'corollary2' && amode.subessay !== 'corollary3') {
+            ssF.dropLine('A=2,V,C');
         }
         //for graph
-        rg.SP.vector = mat.p1_to_p2( rg.S.pos, rg.P.pos, );
-        rg.RL.vector = mat.p1_to_p2( rg.R.pos, rg.L.pos, );
-        rg.PV.vector = mat.p1_to_p2( rg.P.pos, rg.V.pos, );
+        rg.SP.vector = mat.p1_to_p2(rg.S.pos, rg.P.pos,);
+        rg.RL.vector = mat.p1_to_p2(rg.R.pos, rg.L.pos,);
+        rg.PV.vector = mat.p1_to_p2(rg.P.pos, rg.V.pos,);
 
         //================================================
         // //\\ graph
@@ -152,7 +150,6 @@
         // \\// graph
         //------------------------------------------------
 
-
         //------------------------------------------------
         // //\\ PZminus
         //------------------------------------------------
@@ -174,9 +171,9 @@
         // //\\ corollary 2,3
         //------------------------------------------------
         var curveP = mcurve.planeCurveDerivatives({
-            pointAt : q2xy,
-            q : rg.P.q,
-            posCenterOfForces : rg.Rcol2.pos,
+            pointAt: q2xy,
+            q: rg.P.q,
+            posCenterOfForces: rg.Rcol2.pos,
         });
         var {
             curvatureChordSecondPoint,
@@ -188,7 +185,7 @@
         // //\\ builds SG
         //------------------------------------------------------------
         var Gcol2 = mat.linesCross(
-            [ rg.Rcol2.pos[0]-rg.P.pos[0], rg.Rcol2.pos[1]-rg.P.pos[1] ],  //direction-1
+            [rg.Rcol2.pos[0]-rg.P.pos[0], rg.Rcol2.pos[1]-rg.P.pos[1]],  //direction-1
             rg.S.pos,  //start-1
             uTangential, //direction-2'
             rg.P.pos  //start-2'
@@ -200,7 +197,6 @@
         // \\// corollary 2,3
         //------------------------------------------------
 
-
         //================================================
         // //\\ hides/shows split points
         //================================================
@@ -210,30 +206,30 @@
             let flen = foldps.length;
             let pastlen = ssD.pastFoldPoints;
             //c cc( 'folds='+flen + ' pains='+pp.length + ' past='+pastlen );
-            if( has( ssD, 'pastFoldPoints' ) ) {
+            if (has(ssD, 'pastFoldPoints')) {
                 //todm for( let i=foldps.length; i<flen; i++ ) {
-                for( let i=0; i<pastlen; i++ ) {
-                    pp[i].rgX.undisplay = true;  
+                for (let i = 0; i < pastlen; i++) {
+                    pp[i].rgX.undisplay = true;
                 }
             }
             ////otherwise, cannot display all separation points;
             ////therfore, displays nothing,
-            if( foldps.length <= pp.length ) {
-                 for( let i=0; i<flen; i++ ){
+            if (foldps.length <= pp.length) {
+                 for (let i = 0; i < flen; i++) {
                     let fp = foldps[i];
                     let rgX = pp[i].rgX;
                     rgX.pos = fp;
                     rgX.undisplay = false;
                 };
                 ssD.pastFoldPoints = flen;
-            } 
+            }
         }
         {
             ///single fold point decorations
             let nsp = rg.nonSolvablePoint;
-            let nsl = rg[ 'S,nonSolvablePoint' ];
+            let nsl = rg['S,nonSolvablePoint'];
             let len = ssD.foldPoints.length;
-            if( len ) {
+            if (len) {
                 ////displays last fold point
                 nsp.pos[0] = ssD.foldPoints[len-1][0];
                 nsp.pos[1] = ssD.foldPoints[len-1][1];
@@ -255,45 +251,45 @@
         // //\\ hides/shows non-existing elements
         //      for non-Kepler curve
         //================================================
-        if( solvable ) {
-            if( ssD.stashedVisibility ) {
+        if (solvable) {
+            if (ssD.stashedVisibility) {
                 ////restores visibility which has been stashed
                 ////when curve became non-Kepler
                 let sv = ssD.stashedVisibility;
-                Object.keys(ssD.stashedVisibility).forEach( okey => {
-                    let val = sv[ okey ];
-                    switch(okey) {
-                        case 'Q.hideD8Dpoint' : rg.Q.hideD8Dpoint = val;
+                Object.keys(ssD.stashedVisibility).forEach(okey => {
+                    let val = sv[okey];
+                    switch (okey) {
+                        case 'Q.hideD8Dpoint': rg.Q.hideD8Dpoint = val;
                         break;
-                        default : rg[ okey ].undisplay = val;
+                        default: rg[okey].undisplay = val;
                     }
                 });
                 ssD.stashedVisibility = null;
             }
-        } else if( !ssD.stashedVisibility ) {
+        } else if (!ssD.stashedVisibility) {
             ////===========================================
             ////this block hides shapes when orbit splits
             ////===========================================
             ////visibility has been not yet stashed;
             ////therefore, doing stashing now,
             ssD.stashedVisibility = {
-                'Q'                     : rg.Q.undisplay,
-                'APQ'                   : rg.APQ.undisplay,
-                'Q.hideD8Dpoint'        : rg.Q.hideD8Dpoint,
-                'R'                     : rg.R.undisplay,
-                'QR'                    : rg.QR.undisplay,
-                'QP'                    : rg.QP.undisplay,
-                'SQ'                    : rg.SQ.undisplay,
-                'T'                     : rg.T.undisplay,
-                'QT'                    : rg.QT.undisplay,
-                'curvatureCircle'       : rg.curvatureCircle.undisplay,
+                'Q': rg.Q.undisplay,
+                'APQ': rg.APQ.undisplay,
+                'Q.hideD8Dpoint': rg.Q.hideD8Dpoint,
+                'R': rg.R.undisplay,
+                'QR': rg.QR.undisplay,
+                'QP': rg.QP.undisplay,
+                'SQ': rg.SQ.undisplay,
+                'T': rg.T.undisplay,
+                'QT': rg.QT.undisplay,
+                'curvatureCircle': rg.curvatureCircle.undisplay,
             };
             ///heres is an actual code which hides shapes
-            Object.keys(ssD.stashedVisibility).forEach( okey => {
-                switch(okey) {
-                    case 'Q.hideD8Dpoint' : rg.Q.hideD8Dpoint = true;
+            Object.keys(ssD.stashedVisibility).forEach(okey => {
+                switch (okey) {
+                    case 'Q.hideD8Dpoint': rg.Q.hideD8Dpoint = true;
                     break;
-                    default : rg[ okey ].undisplay = true;
+                    default: rg[okey].undisplay = true;
                 }
             });
         }
@@ -302,5 +298,4 @@
         //      for non-Kepler curve
         //================================================
     }
-}) ();
-
+})();

@@ -1,5 +1,5 @@
-(function(){
-const { sconf, nspaste, capture, ssF, ssD,} =
+(function () {
+const { sconf, nspaste, capture, ssF, ssD, } =
       window.b$l.apptree({});
     ssF.init_conf_addon = init_conf_addon;
     ssD.P2_topicColors_elected = topicColors_elected;
@@ -9,7 +9,7 @@ const { sconf, nspaste, capture, ssF, ssD,} =
 ///====================================================
 /// add ownself to umbrella-subapp init_conf
 ///====================================================
-function init_conf_addon (){
+function init_conf_addon() {
     sconf.mediaBgImage = "../../b1sec2prop1/js/img/b1s2p1t1.png";
     //sconf.hide_perp_P_and_alike = true;
     //dose not work: sconf.SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY = 0.8;
@@ -29,7 +29,7 @@ function init_conf_addon (){
     //}
 
     // //\\ makes capture
-    nspaste( capture, {
+    nspaste(capture, {
     "proof-step-D": {
     "slider_sltime": {
         "curtime": 4.01 * sconf.initialTimieStep
@@ -42,7 +42,7 @@ function init_conf_addon (){
     }
     },
 
-    "initial-state" : {
+    "initial-state": {
     "slider_sltime": {
         "curtime": 5.0001 * sconf.initialTimieStep
     },
@@ -55,7 +55,7 @@ function init_conf_addon (){
     },
     "t2corollary": {
 
-    "detected_user_interaction_effect_DONE" : true,
+    "detected_user_interaction_effect_DONE": true,
     "slider_sltime": {
         "curtime": 7.0001/4 * sconf.initialTimieStep
     },
@@ -78,21 +78,19 @@ function init_conf_addon (){
     }
     },
 
-    "__amode2rgstate" :
-    [
+    "__amode2rgstate": [
     [
         "!ssF.mediaModelInitialized || amode.logic_phase === 'scholium' || amode.logic_phase === 'claim'",
         {
-            "captured" : "initial-state",
+            "captured": "initial-state",
         }
     ],
 
     [
         "amode.logic_phase === 'proof'",
         {
-            "rg" :
-            {
-                "rgslid_dt" : { "val" : sconf.initialTimieStep },
+            "rg": {
+                "rgslid_dt": { "val": sconf.initialTimieStep },
                 "slider_sltime": {
                     "curtime": 3.2 //to capture dD, triangle SCD
                 }
@@ -103,9 +101,8 @@ function init_conf_addon (){
     [
         "( logic_phase === 'corollary' )",
         {
-            "captured" : "t2corollary",
-            "rg" :
-            {
+            "captured": "t2corollary",
+            "rg": {
             }
         }
     ]
@@ -113,30 +110,30 @@ function init_conf_addon (){
   });
 }
 
-function topicColors_elected(tpel){
+function topicColors_elected(tpel) {
     const {
         proofColor,
-		deviationColor,
-		deviationAreaColor,
+        deviationColor,
+        deviationAreaColor,
     } = tpel;
     return {
-        "Cprime"            : deviationColor,  //Point C'
-        "CCprime"           : deviationColor,  //Line C to C'
-        "CPprime"           : proofColor,  //Line C to C''
-        "cCprime"           : deviationColor,  //Line c to C'
-        "BCprime"           : deviationColor,     //Line B to C'
-        "SCprime"           : deviationColor,  //Line S C'
+        "Cprime": deviationColor,  //Point C'
+        "CCprime": deviationColor,  //Line C to C'
+        "CPprime": proofColor,  //Line C to C''
+        "cCprime": deviationColor,  //Line c to C'
+        "BCprime": deviationColor,     //Line B to C'
+        "SCprime": deviationColor,  //Line S C'
 
         // triangle SBC area description accelerated
-		"SBCprime"          : deviationAreaColor,
+        "SBCprime": deviationAreaColor,
 
-        "Vprime"            : deviationColor,    //Point V'
-		// force at B deviated toward V;        Line B to V'
+        "Vprime": deviationColor,    //Point V'
+        // force at B deviated toward V;        Line B to V'
         // area description accelerated
-        "BVprime"           : deviationColor,
-		// force vector at V displaced to V';   Line V to V'
-		// area description accelerated
-		"VVprime"           : deviationColor,
+        "BVprime": deviationColor,
+        // force vector at V displaced to V';   Line V to V'
+        // area description accelerated
+        "VVprime": deviationColor,
     };
 }
 })();

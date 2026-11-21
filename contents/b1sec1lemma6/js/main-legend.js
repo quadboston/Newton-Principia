@@ -1,8 +1,8 @@
-( function() {
-    var { 
+(function () {
+    var {
         eachprop, rg, ssF, stdMod,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             create_digital_legend,
         },
     });
@@ -25,33 +25,33 @@
     ////**********************************************************************************
 
     var lemma6Data = {
-        claim : [
-            [[ 'angleBAD', 'angle BAD', '-rg.AB.angleGrad.toFixed()+"ᵒ"' ]]
+        claim: [
+            [['angleBAD', 'angle BAD', '-rg.AB.angleGrad.toFixed()+"ᵒ"']]
         ],
-        proof : [
-            [[ 'angleBAD',  'angle BAD', '-rg.AB.angleGrad.toFixed()+"ᵒ"' ]],
-            [[ 'L', 'rectilinear angle', '(-(rg.curveRotationAngle.angle+rg.originalGapTangent.angle)*180/Math.PI).toFixed()+"ᵒ"' ]]
+        proof: [
+            [['angleBAD',  'angle BAD', '-rg.AB.angleGrad.toFixed()+"ᵒ"']],
+            [['L', 'rectilinear angle', '(-(rg.curveRotationAngle.angle+rg.originalGapTangent.angle)*180/Math.PI).toFixed()+"ᵒ"']]
         ]
     };
 
     // called once per page load
     function create_digital_legend() {
-        eachprop( lemma6Data, (tableData, key) => {
-            createTable( key, tableData ); // key = "claim", "proof", etc
+        eachprop(lemma6Data, (tableData, key) => {
+            createTable(key, tableData); // key = "claim", "proof", etc
         });
     }
 
-    function createTable( key, tableData ) {
+    function createTable(key, tableData) {
         var legendScriptParsed = tableData;
         var rowsCount = legendScriptParsed.length;
         var clustersCount = legendScriptParsed[0].length;
 
         // function defined in /src/base/lemma/media-model/main-legend.js
         ssF.createLogic_phaseLegend({
-            tableCaption    : '', 
-            noTableTitle    : true,
-            stdMod_given    : stdMod,
-            logic_phase        : key,
+            tableCaption: '',
+            noTableTitle: true,
+            stdMod_given: stdMod,
+            logic_phase: key,
             rowsCount,
             clustersCount,
             makesBodyCluster,
@@ -76,6 +76,4 @@
             })
         }
     }
-
-}) ();
-
+})();

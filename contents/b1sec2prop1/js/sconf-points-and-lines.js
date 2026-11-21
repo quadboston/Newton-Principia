@@ -1,9 +1,9 @@
-(function(){
-const { sn, eachprop, has, haf, 
+(function () {
+const { sn, eachprop, has, haf,
         fconf, sconf, toreg, rg, ssD, sDomF, stdMod,
         topicColors_repo, topicColors_repo_camel2col, originalPoints,
-} = window.b$l.apptree({ stdModExportList : { sconf_points8lines, }, });
-const decor = sn( 'decor', stdMod );
+} = window.b$l.apptree({ stdModExportList: { sconf_points8lines, }, });
+const decor = sn('decor', stdMod);
 const LOGIC = false; //true does separate spatial and logic steps
 return;
 
@@ -15,22 +15,22 @@ return;
 //
 //      runs only once at start of init_model_parameters,
 //-------------------------------------------------------
-function sconf_points8lines (){
+function sconf_points8lines() {
     let {
-		givenColor,
+        givenColor,
         proofColor,
-		bodyColor,
+        bodyColor,
         forceColor,
         infoColor,
         corollaryColor,
         proofArea,
-		supplementColor,
-		sunColor,
-		deviationAreaColor,
+        supplementColor,
+        sunColor,
+        deviationAreaColor,
     } = topicColors_repo;
-	let deviationColor;
+    let deviationColor;
 
-    {   const harden = col => ([col[0],col[1],col[2],1,1]);
+    {   const harden = col => ([col[0], col[1], col[2], 1, 1]);
         //0.5 is good for areas, bad for lines,
         //so, lines shold have color pattern [x,x,x,1,1]
         forceColor = harden(forceColor);
@@ -39,19 +39,19 @@ function sconf_points8lines (){
         infoColor = harden(infoColor);
         forceColor = harden(forceColor);
         supplementColor = harden(supplementColor);
-		sunColor = harden(sunColor);
-		deviationColor = harden(deviationAreaColor);
+        sunColor = harden(sunColor);
+        deviationColor = harden(deviationAreaColor);
     }
 
     ///topic names elected
     var tpel = {
         proofColor,
         forceColor,
-        time : infoColor,                       //Time slider
-        dt                  : infoColor, //Delta time slider
+        time: infoColor,                       //Time slider
+        dt: infoColor, //Delta time slider
         bodyColor,
-		deviationColor,
-		deviationAreaColor,
+        deviationColor,
+        deviationAreaColor,
 
         //The following sets the color of the text in
         //the text area for these triangles.  If
@@ -63,102 +63,102 @@ function sconf_points8lines (){
         //(for more see "colors-lib.js" section
         //"generates pseudo-random zebra colors" in function
         //lowtpid__2__glocss8anchorRack).
-        "SBC"               : givenColor,
-        "SCD"               : givenColor,
-        "SDE"               : givenColor,
-        "SEF"               : givenColor,
-        "SAB"               : givenColor,
+        "SBC": givenColor,
+        "SCD": givenColor,
+        "SDE": givenColor,
+        "SEF": givenColor,
+        "SAB": givenColor,
 
-        "kepler-triangle-odd"   : topicColors_repo["kepler-triangle-odd"],
-        "kepler-triangle-even"  : topicColors_repo["kepler-triangle-even"],
+        "kepler-triangle-odd": topicColors_repo["kepler-triangle-odd"],
+        "kepler-triangle-even": topicColors_repo["kepler-triangle-even"],
 
-        "sagitta-chords"    : corollaryColor,
+        "sagitta-chords": corollaryColor,
 
-        "SBc"               : proofArea,
-        "SCd"               : proofArea,
-        "SDe"               : proofArea,
-        "SEf"               : proofArea,
+        "SBc": proofArea,
+        "SCd": proofArea,
+        "SDe": proofArea,
+        "SEf": proofArea,
 
-        "A"                 : bodyColor,
-        "B"                 : bodyColor,
-        "C"                 : bodyColor,
-        "D"                 : bodyColor,
-        "E"                 : bodyColor,
-        "F"                 : bodyColor,
+        "A": bodyColor,
+        "B": bodyColor,
+        "C": bodyColor,
+        "D": bodyColor,
+        "E": bodyColor,
+        "F": bodyColor,
 
-        "AB"                : bodyColor,
-        "BC"                : bodyColor,
-        "CD"                : bodyColor,
-        "DE"                : bodyColor,
-        "EF"                : bodyColor,
+        "AB": bodyColor,
+        "BC": bodyColor,
+        "CD": bodyColor,
+        "DE": bodyColor,
+        "EF": bodyColor,
 
-        "ABCV"              : forceColor,
-        "DEFZ"              : forceColor,
+        "ABCV": forceColor,
+        "DEFZ": forceColor,
 
-        "Sc"                : proofColor,
-        "Sd"                : proofColor,
-        "Se"                : proofColor,
-        "Sf"                : proofColor,
+        "Sc": proofColor,
+        "Sd": proofColor,
+        "Se": proofColor,
+        "Sf": proofColor,
 
         //NOTE:
         //  this goes to color of displacement which is parallel
         //  to force and sagitta,
         //  the pcolor which one can try to set on line segment Cc config
         //  may be overriden by elected topic color:
-        "Cc"                : proofColor,
+        "Cc": proofColor,
 
-        "Dd"                : proofColor,
-        "Ee"                : proofColor,
-        "Ff"                : proofColor,
-        "force-0-applied"   : forceColor,
-        "force-1-applied"   : forceColor,
-        "force-2-applied"   : forceColor,
-        "force-3-applied"   : forceColor,
-        "force-4-applied"   : forceColor,
+        "Dd": proofColor,
+        "Ee": proofColor,
+        "Ff": proofColor,
+        "force-0-applied": forceColor,
+        "force-1-applied": forceColor,
+        "force-2-applied": forceColor,
+        "force-3-applied": forceColor,
+        "force-4-applied": forceColor,
 
-        "force-center"      : forceColor,
-        "S"                 : sunColor,
+        "force-center": forceColor,
+        "S": sunColor,
 
-        "SA"                : givenColor,
-        "SB"                : givenColor,
-        "SC"                : givenColor,
-        "SD"                : givenColor,
-        "SE"                : givenColor,
-        "SF"                : givenColor,
+        "SA": givenColor,
+        "SB": givenColor,
+        "SC": givenColor,
+        "SD": givenColor,
+        "SE": givenColor,
+        "SF": givenColor,
 
-        "BU"                : forceColor,
-        "EW"                : forceColor,
-        "AC"                : corollaryColor,
-        "Av"                : supplementColor,
-        "DF"                : corollaryColor,
+        "BU": forceColor,
+        "EW": forceColor,
+        "AC": corollaryColor,
+        "Av": supplementColor,
+        "DF": corollaryColor,
 
-        force : forceColor,
-        "Z"                 : forceColor,
-        "V"                 : forceColor,
-        "BV"                : forceColor,
+        force: forceColor,
+        "Z": forceColor,
+        "V": forceColor,
+        "BV": forceColor,
 
         //perpendicular
-        "SP"                : supplementColor,
-        "P"                 : supplementColor,
+        "SP": supplementColor,
+        "P": supplementColor,
         //tangent
-        "T"                 : supplementColor,
-        "TP"                : supplementColor,
+        "T": supplementColor,
+        "TP": supplementColor,
 
-        "c"                 : proofColor,
-        "d"                 : proofColor,
-        "e"                 : proofColor,
-        "f"                 : proofColor,
+        "c": proofColor,
+        "d": proofColor,
+        "e": proofColor,
+        "f": proofColor,
 
-        "Bc"                : proofColor,
-        "Cd"                : proofColor,
-        "De"                : proofColor,
-        "Ef"                : proofColor,
+        "Bc": proofColor,
+        "Cd": proofColor,
+        "De": proofColor,
+        "Ef": proofColor,
 
-		"v"		: supplementColor,
+        "v": supplementColor,
     };
-    var p2_elected = haf( ssD, 'P2_topicColors_elected' )(tpel);
-    if( p2_elected ) {
-        Object.assign( tpel, p2_elected );
+    var p2_elected = haf(ssD, 'P2_topicColors_elected')(tpel);
+    if (p2_elected) {
+        Object.assign(tpel, p2_elected);
     }
 
     //lemma modes
@@ -181,8 +181,8 @@ function sconf_points8lines (){
     //      in model space
     //------------------------------------
     var firstSteps_conf = {
-        A   : { decStart : -2, decEnd : 1111111111,
-                draggableX : true, draggableY : true,
+        A: { decStart: -2, decEnd: 1111111111,
+                draggableX: true, draggableY: true,
                 // //\\ templates
                 //t/ pcolor : force,
                 //t/ cssClass : 'tp-force logic_phase--proof',
@@ -198,37 +198,37 @@ function sconf_points8lines (){
                 //t/ doPaintPname : false,
                 // \\// templates
               },
-        B   : { decStart : -2, decEnd : 1111111111,
-				letterAngle : -45,
+        B: { decStart: -2, decEnd: 1111111111,
+                letterAngle: -45,
               },
     };
-    Object.assign( decor, firstSteps_conf );
+    Object.assign(decor, firstSteps_conf);
     //----------------------------------------------------
     // //\\ proof points initial settings
     //----------------------------------------------------
     var CDEF_conf = {
         //"rg" [ 'B', 'C', 'D', 'E', 'F' ].pos <-- path[ ix + 1 ]
-        C   : {
-                decStart : 6,
-				letterAngle : 62,
-				letterRotRadius : 21,
+        C: {
+                decStart: 6,
+                letterAngle: 62,
+                letterRotRadius: 21,
         },
-        D   : { decStart : 10, 
-				letterAngle : 80,
-		},
-        E   : { decStart : 14,
-                letterAngle : 90,
+        D: { decStart: 10,
+                letterAngle: 80,
         },
-        F   : { decStart : 18,
-                letterAngle : 99,
+        E: { decStart: 14,
+                letterAngle: 90,
+        },
+        F: { decStart: 18,
+                letterAngle: 99,
         },
     };
     ///makes proof points disappear after a while
-    eachprop( CDEF_conf, (fs) => {
+    eachprop(CDEF_conf, (fs) => {
         fs.decEnd = sconf.numberOfManyBases*4 *
                     sconf.FIRST_POINT_LABELS_DISPLAY_LIMIT;
     });
-    Object.assign( decor, CDEF_conf );
+    Object.assign(decor, CDEF_conf);
     //----------------------------------------------------
     // \\// proof points initial settings
     //----------------------------------------------------
@@ -236,22 +236,22 @@ function sconf_points8lines (){
     //----------------------------------------------------
     // //\\ theor 2 coroll. path decor
     //----------------------------------------------------
-    if( fconf.sappId === 'b1sec2prop2' ){
+    if (fconf.sappId === 'b1sec2prop2') {
         var prime_conf = {
-            Cprime : {
-                caption : "C′",
-                decStart : decor.C.decStart,
-                decEnd : decor.C.decStart,
-				letterAngle : 66,
-                cssClass : 'logic_phase--corollary',
+            Cprime: {
+                caption: "C′",
+                decStart: decor.C.decStart,
+                decEnd: decor.C.decStart,
+                letterAngle: 66,
+                cssClass: 'logic_phase--corollary',
             },
             //will be repositioned by algo
-            Vprime : {
-                caption : "V′",
-                decStart : decor.C.decStart,
-                decEnd : decor.C.decStart,
-				letterAngle : 50,
-                cssClass : 'logic_phase--corollary',
+            Vprime: {
+                caption: "V′",
+                decStart: decor.C.decStart,
+                decEnd: decor.C.decStart,
+                letterAngle: 50,
+                cssClass: 'logic_phase--corollary',
             },
         };
     } else {
@@ -263,151 +263,151 @@ function sconf_points8lines (){
 
     var middleSteps_conf = {
         // //\\ c,d,e,f
-        c   : {
-            caption : '𝑐',
-            decStart : LOGIC ? 5 : decor.C.decStart,
-            decEnd : decor.F.decStart+2, //22, //10,
-            cssClass : fconf.sappId === 'b1sec2prop2' ?
+        c: {
+            caption: '𝑐',
+            decStart: LOGIC ? 5 : decor.C.decStart,
+            decEnd: decor.F.decStart+2, //22, //10,
+            cssClass: fconf.sappId === 'b1sec2prop2' ?
                 'logic_phase--proof logic_phase--corollary' :
                 'subessay--cor-3 logic_phase--proof',
-			letterAngle : 30,
+            letterAngle: 30,
         },
-        d   : {
-            caption : '𝑑',
-            decStart : LOGIC ? 9 : decor.D.decStart,
-            decEnd : decor.F.decStart+2,
-            cssClass : lemmaModes,
-			letterAngle : 80,
+        d: {
+            caption: '𝑑',
+            decStart: LOGIC ? 9 : decor.D.decStart,
+            decEnd: decor.F.decStart+2,
+            cssClass: lemmaModes,
+            letterAngle: 80,
         },
-        e   : {
-            caption : '𝑒',
-            decStart : LOGIC ? 13 : decor.E.decStart,
-            decEnd : decor.F.decStart+2,
-            cssClass : lemmaModes,
-			letterAngle : 80,
+        e: {
+            caption: '𝑒',
+            decStart: LOGIC ? 13 : decor.E.decStart,
+            decEnd: decor.F.decStart+2,
+            cssClass: lemmaModes,
+            letterAngle: 80,
         },
-        f   : {
-            caption : '𝑓',
-            decStart : LOGIC ? 17 : decor.F.decStart,
-            decEnd : decor.F.decStart+2,
-            cssClass : fconf.sappId === 'b1sec2prop2' ?
+        f: {
+            caption: '𝑓',
+            decStart: LOGIC ? 17 : decor.F.decStart,
+            decEnd: decor.F.decStart+2,
+            cssClass: fconf.sappId === 'b1sec2prop2' ?
                 'logic_phase--proof logic_phase--corollary' :
                 'subessay--cor-3 logic_phase--proof',
-			letterAngle : 90,
+            letterAngle: 90,
         },
     }
     // \\// c,d,e,f
 
     var forceTip_conf = {
         //double sagitta layed down from point B
-        V   : { decStart : -2, decEnd : 1111111,
-                cssClass : 'logic_phase--corollary',
-				letterAngle : -50,
-				letterRotRadius : 35,
+        V: { decStart: -2, decEnd: 1111111,
+                cssClass: 'logic_phase--corollary',
+                letterAngle: -50,
+                letterRotRadius: 35,
               },
         //double sagitta layed down from point E
-        Z   : {
-                decStart : decor.F.decStart,
-                decEnd : decor.F.decEnd,
-                cssClass : theor1corollary,
-				letterAngle : -160,
+        Z: {
+                decStart: decor.F.decStart,
+                decEnd: decor.F.decEnd,
+                cssClass: theor1corollary,
+                letterAngle: -160,
               },
     };
 
     var mixedSteps_conf = ssD.mixedSteps_conf = {
-        S   : {
-                decStart : -2,      //always visible
-                letterAngle : -90,
-                initialR : 5 * sconf.controlsScale,
+        S: {
+                decStart: -2,      //always visible
+                letterAngle: -90,
+                initialR: 5 * sconf.controlsScale,
               },
-        v   : {
+        v: {
                 //pos      : sconf.B.concat(),
-				caption: '𝘷𝘦𝘭𝘰𝘤𝘪𝘵𝘺',
-                decStart : -2, //always visible
-                draggableX : true, draggableY : true,
+                caption: '𝘷𝘦𝘭𝘰𝘤𝘪𝘵𝘺',
+                decStart: -2, //always visible
+                draggableX: true, draggableY: true,
               },
-        P   : {
-                decStart : -2, //always visible
-                doPaintPname : false,
-                cssClass : theor1corollary,
+        P: {
+                decStart: -2, //always visible
+                doPaintPname: false,
+                cssClass: theor1corollary,
                 },
-        T   : { decStart : 28,
-                decEnd : -2,  //no end visibility
-                doPaintPname : false,
-                cssClass : theor1corollary,
+        T: { decStart: 28,
+                decEnd: -2,  //no end visibility
+                doPaintPname: false,
+                cssClass: theor1corollary,
                 //undisplay : true,
                 },
         //sagittae ABC = middle sagitta in sagittae-parallelogram,
-        //layed down from point B, 
-        U   : {
-                decStart : decor.C.decStart,
-                decEnd : decor.C.decEnd,
-                doPaintPname : false,
-                cssClass : 'hidden',
+        //layed down from point B,
+        U: {
+                decStart: decor.C.decStart,
+                decEnd: decor.C.decEnd,
+                doPaintPname: false,
+                cssClass: 'hidden',
         },
         //sagittae DEF=middle sagitta in sagittae-parallelogram
-        //layed down from point E, 
-        W   : {
-                decStart : decor.F.decStart,
-                decEnd : decor.D.decEnd,
-                doPaintPname : false,
-                cssClass : 'hidden',
+        //layed down from point E,
+        W: {
+                decStart: decor.F.decStart,
+                decEnd: decor.D.decEnd,
+                doPaintPname: false,
+                cssClass: 'hidden',
         },
     };
-    ['B','C','D','E','F'].forEach( (pname, ix) => {
+    ['B', 'C', 'D', 'E', 'F'].forEach((pname, ix) => {
         let nam0 = 'VV'+ix;  //starts of forces
 
         //tips of forces
         //rg['VVV'+ix].pos <-- rg['force-'+ix+'-1'].pos
         let nam1 = 'VVV'+ix;
-  
+
         let doPaintPname = false;
         let pcolor = tpel.force;
-        mixedSteps_conf[ nam0 ] = {
+        mixedSteps_conf[nam0] = {
             doPaintPname,
             pcolor,
-            initialR    : 5 * sconf.controlsScale,
+            initialR: 5 * sconf.controlsScale,
         };
         //tips of foreces (double sagittas)
-        mixedSteps_conf[ nam1 ] = {
+        mixedSteps_conf[nam1] = {
             doPaintPname,
             pcolor,
-            initialR    : 5 * sconf.controlsScale,
-            draggableX : true,
-            draggableY : true,
+            initialR: 5 * sconf.controlsScale,
+            draggableX: true,
+            draggableY: true,
         };
     });
-    Object.assign( decor, mixedSteps_conf );
-    Object.assign( decor, middleSteps_conf );
-    Object.assign( decor, forceTip_conf );
-    Object.assign( decor, prime_conf );
+    Object.assign(decor, mixedSteps_conf);
+    Object.assign(decor, middleSteps_conf);
+    Object.assign(decor, forceTip_conf);
+    Object.assign(decor, prime_conf);
 
     ///unifies with originalPoints
-    Object.keys( decor ).forEach( propKey => {
+    Object.keys(decor).forEach(propKey => {
         const point = decor[propKey];
-        const pointRack = originalPoints[propKey]={};
-        Object.keys( point ).forEach( pointKey => {
+        const pointRack = originalPoints[propKey] = {};
+        Object.keys(point).forEach(pointKey => {
             let pointProp = point[pointKey];
             pointRack[pointKey] = pointProp;
         });
     });
-    
+
     //---------------------------------------------------
     // //\\ equalizing points in decor and rg
     //---------------------------------------------------
-    eachprop( decor, (dec,pname) => {
-        rgElem = sn( pname, rg );
+    eachprop(decor, (dec, pname) => {
+        rgElem = sn(pname, rg);
         rgElem.pname = pname;
         rgElem.isPoint = true;
-        var doPaintPname = has( dec, 'doPaintPname' ) ?
+        var doPaintPname = has(dec, 'doPaintPname') ?
                            dec.doPaintPname : true;
-        Object.assign( dec, {
+        Object.assign(dec, {
             doPaintPname,
-            isPoint : true,
+            isPoint: true,
         });
-        Object.assign( rg[ pname ], dec );
-        Object.assign( dec, rg[ pname ] );
-        rg[ pname ] = dec;
+        Object.assign(rg[pname], dec);
+        Object.assign(dec, rg[pname]);
+        rg[pname] = dec;
     });
     //---------------------------------------------------
     // \\// equalizing decor and rg
@@ -419,84 +419,84 @@ function sconf_points8lines (){
     //******************************
     var linesConf = [
 
-        { nam : ['A', 'v'],
-          decStart : -2,
-          cssClass : 'tp-supplementColor',
-          vectorTipIx : 1,
-          tipFraction : 0.15,
-          'stroke-width' : 5,
+        { nam: ['A', 'v'],
+          decStart: -2,
+          cssClass: 'tp-supplementColor',
+          vectorTipIx: 1,
+          tipFraction: 0.15,
+          'stroke-width': 5,
         },
-        { nam : ['A', 'B'], },  // AB
+        { nam: ['A', 'B'], },  // AB
         ////todm possibly redundant, isn't pathSegment-' + pix enough?
-        { nam : ['B', 'C'], },  // BC
-        { nam : ['C', 'D'], },  // CD
-        { nam : ['D', 'E'], },  // DE
-        { nam : ['E', 'F'], },  // EF
+        { nam: ['B', 'C'], },  // BC
+        { nam: ['C', 'D'], },  // CD
+        { nam: ['D', 'E'], },  // DE
+        { nam: ['E', 'F'], },  // EF
 
         // //\\ raddi
-        { nam : ['S', 'A'],		// SA
-            decStart : -1, //always started until ended
-            cssClass : 'logic_phase--proof',
+        { nam: ['S', 'A'],		// SA
+            decStart: -1, //always started until ended
+            cssClass: 'logic_phase--proof',
         },
-        { nam : ['S', 'B'],		// SB
-            decStart : -1, //always started until ended
-            cssClass : 'logic_phase--proof',
+        { nam: ['S', 'B'],		// SB
+            decStart: -1, //always started until ended
+            cssClass: 'logic_phase--proof',
         },
-        { nam : ['S', 'C'],		// SC
-            cssClass : 'logic_phase--proof',
-        }, 
-        { nam : ['S', 'D'],		// SD
-            cssClass : 'logic_phase--proof',
+        { nam: ['S', 'C'],		// SC
+            cssClass: 'logic_phase--proof',
         },
-        { nam : ['S', 'E'],		// SE
-            cssClass : 'logic_phase--proof',
+        { nam: ['S', 'D'],		// SD
+            cssClass: 'logic_phase--proof',
         },
-        { nam : ['S', 'F'],		// SF
-            cssClass : 'logic_phase--proof',
+        { nam: ['S', 'E'],		// SE
+            cssClass: 'logic_phase--proof',
+        },
+        { nam: ['S', 'F'],		// SF
+            cssClass: 'logic_phase--proof',
         },
         // \\// raddi
 
-        { nam : ['S', 'P'],		// SP
-            cssClass : theor1corollary,
-            decStart : -2,
+        { nam: ['S', 'P'],		// SP
+            cssClass: theor1corollary,
+            decStart: -2,
         },
-        { nam : ['T', 'P'],		// TP
-            cssClass : theor1corollary,
-            decStart : -2,
+        { nam: ['T', 'P'],		// TP
+            cssClass: theor1corollary,
+            decStart: -2,
         },
-        { nam : ['S', 'c'],     // Sc
-            cssClass : theor1proof,
+        { nam: ['S', 'c'],     // Sc
+            cssClass: theor1proof,
         },
-        { nam : ['S', 'd'],     // Sd
-            cssClass : theor1proof,
+        { nam: ['S', 'd'],     // Sd
+            cssClass: theor1proof,
         },
-        { nam : ['S', 'e'],     // Se
-            cssClass : theor1proof,
+        { nam: ['S', 'e'],     // Se
+            cssClass: theor1proof,
         },
-        { nam : ['S', 'f'],     // Sf
-            cssClass : theor1proof,
+        { nam: ['S', 'f'],     // Sf
+            cssClass: theor1proof,
         },
         //this is a thin line, which remains after thick line goes away,
-        { nam : ['D', 'd'],
-            decStart : rg.D.decStart,
-            cssClass : fconf.sappId === 'b1sec2prop2' ?
+        { nam: ['D', 'd'],
+            decStart: rg.D.decStart,
+            cssClass: fconf.sappId === 'b1sec2prop2' ?
                 'logic_phase--proof logic_phase--corollary' :
                 'logic_phase--proof',
         },
-        { nam : ['C', 'd'],
-            decEnd : rg.f.decStart,
-            cssClass : fconf.sappId === 'b1sec2prop2' ?
+        { nam: ['C', 'd'],
+            decEnd: rg.f.decStart,
+            cssClass: fconf.sappId === 'b1sec2prop2' ?
                 'logic_phase--proof logic_phase--corollary' :
                 'logic_phase--proof',
         },
-        { nam : ['D', 'e'],
-            cssClass : fconf.sappId === 'b1sec2prop2' ?
+        { nam: ['D', 'e'],
+            cssClass: fconf.sappId === 'b1sec2prop2' ?
                 'logic_phase--proof logic_phase--corollary' :
                 'logic_phase--proof',
         },
-        { nam : ['E', 'e'],
-            decStart : rg.E.decStart,
-            cssClass : fconf.sappId === 'b1sec2prop2' ?
+        { nam: ['E', 'e'],
+            decStart: rg.E.decStart,
+            cssClass: fconf.sappId === 'b1sec2prop2' ?
                 'logic_phase--proof logic_phase--corollary' :
                 'logic_phase--proof',
         },
@@ -504,25 +504,25 @@ function sconf_points8lines (){
         // //\\ cor3 prop1
         //------------------------------------
         //normals:
-        { nam : ['B', 'c'],
-            cssClass : fconf.sappId === 'b1sec2prop2' ?
+        { nam: ['B', 'c'],
+            cssClass: fconf.sappId === 'b1sec2prop2' ?
                 'logic_phase--proof logic_phase--corollary' :
                 'subessay--cor-3 logic_phase--proof',
-            decEnd : rg.f.decStart,
+            decEnd: rg.f.decStart,
         },
-        { nam : ['C', 'c'], decStart : rg.C.decStart,
-            cssClass : fconf.sappId === 'b1sec2prop2' ?
-                'logic_phase--proof logic_phase--corollary' :
-                'subessay--cor-3 logic_phase--proof',
-        },
-        { nam : ['E', 'f'],
-            cssClass : fconf.sappId === 'b1sec2prop2' ?
+        { nam: ['C', 'c'], decStart: rg.C.decStart,
+            cssClass: fconf.sappId === 'b1sec2prop2' ?
                 'logic_phase--proof logic_phase--corollary' :
                 'subessay--cor-3 logic_phase--proof',
         },
-        { nam : ['F', 'f'],
-            decStart : rg.F.decStart,
-            cssClass : fconf.sappId === 'b1sec2prop2' ?
+        { nam: ['E', 'f'],
+            cssClass: fconf.sappId === 'b1sec2prop2' ?
+                'logic_phase--proof logic_phase--corollary' :
+                'subessay--cor-3 logic_phase--proof',
+        },
+        { nam: ['F', 'f'],
+            decStart: rg.F.decStart,
+            cssClass: fconf.sappId === 'b1sec2prop2' ?
                 'logic_phase--proof logic_phase--corollary' :
                 'subessay--cor-3 logic_phase--proof',
         },
@@ -533,80 +533,80 @@ function sconf_points8lines (){
         //------------------------------------
         // //\\ cor4 prop1
         //------------------------------------
-        { nam : ['B', 'U'], //saggitae at B
-            cssClass : 'hover-width ' + theor1corollary,
+        { nam: ['B', 'U'], //saggitae at B
+            cssClass: 'hover-width ' + theor1corollary,
             //for specaial width at hover
-            'vectorTipIx' : 1,
-            'tipFraction' : 0.2,
-            'pcolor' : tpel.forceColor,
-            'tipFill' : tpel.forceColor,
+            'vectorTipIx': 1,
+            'tipFraction': 0.2,
+            'pcolor': tpel.forceColor,
+            'tipFill': tpel.forceColor,
         },
-        { nam : ['E', 'W'],  //saggitae at E
+        { nam: ['E', 'W'],  //saggitae at E
             //decStart : rg.F.decStart,
-            cssClass : 'hover-width ' + theor1corollary,
-            'vectorTipIx' : 1,
-            'tipFraction' : 0.4,
-            'pcolor' :  tpel.forceColor,
-            'tipFill' :  tpel.forceColor,
+            cssClass: 'hover-width ' + theor1corollary,
+            'vectorTipIx': 1,
+            'tipFraction': 0.4,
+            'pcolor': tpel.forceColor,
+            'tipFill': tpel.forceColor,
         },
         //------------------------------------
         // \\// cor4 prop1
         //------------------------------------
-        { nam : ['B', 'V'], cssClass : 'hover-width ' + theor1corollary}, // BV
-        { nam : ['A', 'C'], cssClass : theor1corollary},	// AC
-        { nam : ['D', 'F'], cssClass : theor1corollary },	// DF
+        { nam: ['B', 'V'], cssClass: 'hover-width ' + theor1corollary }, // BV
+        { nam: ['A', 'C'], cssClass: theor1corollary },	// AC
+        { nam: ['D', 'F'], cssClass: theor1corollary },	// DF
     ];
 
-    if( fconf.sappId === 'b1sec2prop2' ){
-        linesConf = linesConf.concat( [
-            { nam : ['c','Cprime'], cssClass : theor2corollary, },
-            { nam : ['C','Cprime'], cssClass : theor2corollary, },
-            { nam : ['S','Cprime'], cssClass : theor2corollary, },
-            { nam : ['B','Cprime'], cssClass : theor2corollary,
+    if (fconf.sappId === 'b1sec2prop2') {
+        linesConf = linesConf.concat([
+            { nam: ['c', 'Cprime'], cssClass: theor2corollary, },
+            { nam: ['C', 'Cprime'], cssClass: theor2corollary, },
+            { nam: ['S', 'Cprime'], cssClass: theor2corollary, },
+            { nam: ['B', 'Cprime'], cssClass: theor2corollary,
                 //equal to path
                 'stroke-width': 4,
             },
-            { nam : ['V','Vprime'], cssClass : theor2corollary, },
-            { nam : ['B','Vprime'], cssClass : theor2corollary, },
+            { nam: ['V', 'Vprime'], cssClass: theor2corollary, },
+            { nam: ['B', 'Vprime'], cssClass: theor2corollary, },
         ]);
     }
 
-    linesConf.forEach( ln => {
+    linesConf.forEach(ln => {
         let linesArrElem = {};
         sconf.linesArray.push(linesArrElem);
         const lineName = ln.nam[0]+ln.nam[1];
-        const lineConf = linesArrElem[ lineName ] = {
-            isLine : true,
+        const lineConf = linesArrElem[lineName] = {
+            isLine: true,
         };
         //equalizing rg, decor elements and lineConf,
-        let rgElem = decor[ lineName ] = sn( lineName, rg );
+        let rgElem = decor[lineName] = sn(lineName, rg);
         rgElem.pname = lineName;
-        rgElem.pivotNames = [ln.nam[0],ln.nam[1]];
+        rgElem.pivotNames = [ln.nam[0], ln.nam[1]];
         rgElem.isPoint = false;
-        [   'cssClass',
+        ['cssClass',
             'pcolor',
             'caption',
             'captionShiftNorm',
             'undisplay',
-            'zOrderAfter',  
+            'zOrderAfter',
             'notp',
             'vectorTipIx',
             'stroke-width',
             'fontSize',
             'tipFraction',
             'tipFill'
-        ].forEach( pname => {
-            has(ln,pname) && (lineConf[pname] = ln[pname]);
-            has(ln,pname) && (rgElem[pname] = ln[pname]);
+        ].forEach(pname => {
+            has(ln, pname) && (lineConf[pname] = ln[pname]);
+            has(ln, pname) && (rgElem[pname] = ln[pname]);
         })
         ///if there is not explicit decStart in the line element, then
         ///decStart in extracted from the directional point of the line segment
-        var decStart = has( ln, 'decStart' ) ?
-            ln.decStart : rg[ ln.nam[1] ].decStart;
+        var decStart = has(ln, 'decStart') ?
+            ln.decStart : rg[ln.nam[1]].decStart;
         ///the same procedure happens with "end" setting
-        var decEnd = has( ln, 'decEnd' ) ?
-            ln.decEnd : rg[ ln.nam[1] ].decEnd;
-        if( ln.nam[0] === 'S' && ln.nam[1] === 'C' ) {
+        var decEnd = has(ln, 'decEnd') ?
+            ln.decEnd : rg[ln.nam[1]].decEnd;
+        if (ln.nam[0] === 'S' && ln.nam[1] === 'C') {
             decStart = 7;
         }
         rgElem.decStart = decStart;
@@ -623,38 +623,38 @@ function sconf_points8lines (){
     //
     // expands predefinedTopic colors into rg,
     // todo rg.SCd will be crashed later without this
-    // expansion, this scenario must have more steps    
+    // expansion, this scenario must have more steps
     //==================================================
     sconf.topicColors_elected = tpel;
     ////array tpel will be discraded upon leaving this function,
-    Object.keys( tpel ).forEach( tpCamel => {
+    Object.keys(tpel).forEach(tpCamel => {
         //generates rg for all topics,
         //this code is a substitute of expand-config.js
-        toreg( tpCamel )( 'pname', tpCamel );
-        var tpLowKey = sDomF.toCssIdentifier( tpCamel );
+        toreg(tpCamel)('pname', tpCamel);
+        var tpLowKey = sDomF.toCssIdentifier(tpCamel);
         //compliments topicColors_repo from stuff created in this sconf,
         //topicColors_repo are based on non-Camel id,
-        var fck = topicColors_repo[ tpLowKey ] = tpel[ tpCamel ].concat();
+        var fck = topicColors_repo[tpLowKey] = tpel[tpCamel].concat();
         //compensates missing of "extend-confib" in engine core
-        topicColors_repo_camel2col[ tpCamel ] = fck; //based on Camel Id
+        topicColors_repo_camel2col[tpCamel] = fck; //based on Camel Id
     });
     //==================================================
     // \\// equalizes topicColors_elected, topicColors_repo, and
     //==================================================
-    
+
     //Update decStart for the following decorations if needed,
     //to ensure they start becoming visible for the specified steps.
     if (sconf.TIMER_AND_LOGIC_STEPS_COINSIDE === false) {
         rg.SC.decStart = 7;
-        [ rg.D, rg.d, rg.Dd, rg.Cd, rg.CD, rg.SD, rg.Sd, rg.SCd ].forEach( pn => {
+        [rg.D, rg.d, rg.Dd, rg.Cd, rg.CD, rg.SD, rg.Sd, rg.SCd].forEach(pn => {
             pn.decStart = rg.SC.decStart + 4;
         });
-        [ rg.E, rg.e, rg.Ee, rg.De, rg.DE, rg.SE, rg.Se, rg.SDe ].forEach( pn => {
+        [rg.E, rg.e, rg.Ee, rg.De, rg.DE, rg.SE, rg.Se, rg.SDe].forEach(pn => {
             pn.decStart = rg.SC.decStart + 8;
         });
-        [ rg.F, rg.Z, rg.W, rg.EW, rg.DF, rg.f, rg.Ff, rg.Ef, rg.EF,
+        [rg.F, rg.Z, rg.W, rg.EW, rg.DF, rg.f, rg.Ff, rg.Ef, rg.EF,
             rg.SF, rg.Sf, rg.SEf,
-        ].forEach( pn => {
+        ].forEach(pn => {
             pn.decStart = rg.SC.decStart + 12;
         });
     }
@@ -667,7 +667,7 @@ function sconf_points8lines (){
         rg.e, rg.Ee, rg.De, rg.SE, rg.Se, rg.SDe,
         rg.f, rg.Ff, rg.Ef, rg.SF, rg.Sf, rg.SEf,
         rg.SA, rg.SB, rg.SC,
-    ].forEach( pn => {
+    ].forEach(pn => {
         pn.decEnd = rg.f.decStart + 3;
     });
     //******************************

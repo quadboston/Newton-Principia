@@ -1,13 +1,13 @@
-(function(){
+(function () {
 const {
     sn, haff, has,
     stdMod, fconf, sconf, ssF,
-} = window.b$l.apptree({ ssFExportList : { init_conf } });
-const linesArray = sn( 'linesArray', sconf, [] );
+} = window.b$l.apptree({ ssFExportList: { init_conf } });
+const linesArray = sn('linesArray', sconf, []);
 return;
 
 
-function init_conf (){
+function init_conf() {
     //----------------------------------
     // //\\ scenario
     //----------------------------------
@@ -15,7 +15,7 @@ function init_conf (){
     //----------------------------------
     // \\// scenario
     //----------------------------------
-     
+
     //----------------------------------
     // //\\ picture points medpos
     //----------------------------------
@@ -25,7 +25,7 @@ function init_conf (){
                           / sconf.standardSvgSize
     sconf.innerMediaHeight = sconf.pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT;
     sconf.innerMediaWidth = sconf.pictureWidth;
-                          
+
     //----------------------------------
     // //\\ app view parameters
     //      ,in svg or media space,
@@ -48,8 +48,8 @@ function init_conf (){
     //done in picture-system y-coord:
     //(pic.bottom-y=+picHeight)
     sconf.originY_onPicture = activeAreaOffsetOnPictureY +
-        ( sconf.MONITOR_Y_FLIP === -1 ? sconf.pictureActiveArea : 0 );
-    //todm duplic?        
+        (sconf.MONITOR_Y_FLIP === -1 ? sconf.pictureActiveArea : 0);
+    //todm duplic?
     sconf.modorInPicY = sconf.originY_onPicture;
     //.set it from graph editor
     //.todm: trully 611 and rotated
@@ -82,63 +82,62 @@ function init_conf (){
     let timeStepOfManyBases = initialTimieStep/4;
     let unitlessMinTime = 1.000001;
     let speed = 1/initialTimieStep;
-    
+
     fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
     //affects drag hanldes in p1
-    sconf.pointDecoration.r = Math.floor( 5 * sconf.controlsScale );
-    Object.assign( sconf, {
+    sconf.pointDecoration.r = Math.floor(5 * sconf.controlsScale);
+    Object.assign(sconf, {
         //======================================
         // //\\ does shape GUI
         //======================================
-        hover_width : Math.max( 10, Math.floor( 7*sconf.controlsScale/1.6 ) ),
+        hover_width: Math.max(10, Math.floor(7*sconf.controlsScale/1.6)),
         //nonhover_width  : Math.max( 5, Math.floor( 1*sconf.controlsScale/1.6 ) ),
         //this collaborates with impulse line-segment, we are afraide to
         //keep this "undefined",
-        nonhover_width : 5,
+        nonhover_width: 5,
 
-        SLIDERS_OFFSET_Y : 0,
-        GENERIC_SLIDER_HEIGHT_Y : 30,
-        SLIDER_TEXT_POZ_Y_FACTOR : 0.7,
+        SLIDERS_OFFSET_Y: 0,
+        GENERIC_SLIDER_HEIGHT_Y: 30,
+        SLIDER_TEXT_POZ_Y_FACTOR: 0.7,
 
-        default_tp_lightness : 30,
-        mediaBgImage : "../js/img/b1s2p1t1.png",
-        thickness           : 1,
-        default_tp_stroke_width : 10,
+        default_tp_lightness: 30,
+        mediaBgImage: "../js/img/b1s2p1t1.png",
+        thickness: 1,
+        default_tp_stroke_width: 10,
 
         //0.5 is good for areas, bad for lines,
         //so, lines shold have color pattern [x,x,x,1,1]
-        TP_OPACITY_LOW : 0.5,
-        TP_OPACITY_HIGH : 1,
+        TP_OPACITY_LOW: 0.5,
+        TP_OPACITY_HIGH: 1,
         //======================================
         // \\//does shape GUI
         //======================================
 
-        NUMBER_OF_FORCE_HANDLES : 1, //5,
+        NUMBER_OF_FORCE_HANDLES: 1, //5,
 
         //"true" means timer slider shows "proof logic",
         //otherwise it shows "physical motion",
-        TIMER_AND_LOGIC_STEPS_COINSIDE : false,
+        TIMER_AND_LOGIC_STEPS_COINSIDE: false,
 
-        FIRST_POINT_LABELS_DISPLAY_LIMIT : 1000, //to hide gracefully: was: 1.2
+        FIRST_POINT_LABELS_DISPLAY_LIMIT: 1000, //to hide gracefully: was: 1.2
 
         //----------------
         // //\\ math model
         //----------------
-        force :
-        [
+        force: [
             //[ -2, 3.9 ], //apparently, the first number is a power n for f=Ar^n
             //f=kr^n
-            [   -2,                      //=n
+            [-2,                      //=n
                 1.95 / initialTimieStep / initialTimieStep //=k
             ],
-            [ -1, 0 ],
-            [ 0, 0 ],
-            [ 1, 0 ],
-            [ 2, 0 ]
+            [-1, 0],
+            [0, 0],
+            [1, 0],
+            [2, 0]
         ],
 
         //for T2.Cor2: accelerating areas:
-        tangentialForcePerCentripetal_fraction : 0.4,
+        tangentialForcePerCentripetal_fraction: 0.4,
 
         speed,
         initialTimieStep,
@@ -164,9 +163,9 @@ function init_conf (){
     //----------------------------------
     {
         const mp = sconf.modelPoints = {};
-        const uu = [ medposB[0] - medposA[0], medposB[1] - medposA[1] ];
+        const uu = [medposB[0] - medposA[0], medposB[1] - medposA[1]];
         const u2 = uu[0]*uu[0] + uu[1]*uu[1];
-        const u = Math.sqrt( u2 );
+        const u = Math.sqrt(u2);
         sconf.mod2inn_scale = u; //initial unit
         sconf.inn2mod_scale = 1/sconf.mod2inn_scale;
         mp.v0 = [
@@ -178,15 +177,15 @@ function init_conf (){
     //----------------------------------
     // \\// mod2inn_scale and speed v0
     //----------------------------------
-    
+
     ssF.setsCommonT1andT2capture();
     //this comes from theorem P2; this does not exist in P1;
-    if( has( ssF, 'init_conf_addon' ) ) {
-        haff( ssF, 'init_conf_addon' );
+    if (has(ssF, 'init_conf_addon')) {
+        haff(ssF, 'init_conf_addon');
     } else {
         ssF.makesProfessorsCaptureFootnotes();
     }
     stdMod.sconf_points8lines();
     ssF.sets_A_v_forces_sliders();
-}    
+}
 })();

@@ -1,5 +1,5 @@
-( function() {
-    var { fconf, stdMod, sconf, } = window.b$l.apptree({ stdModExportList : {
+(function () {
+    var { fconf, stdMod, sconf, } = window.b$l.apptree({ stdModExportList: {
             recreates_q2xy,
             recalculateOrbitStartAndEnd,
             calculateMaxGraphValues,
@@ -8,19 +8,17 @@
 
 
     ///parameters are enclosed in closure for performance
-    function recreates_q2xy()
-    {
+    function recreates_q2xy() {
         const center = sconf.diagramOrigin;
         const op     = sconf.orbitParameters;
         stdMod.q2xy  = q2xy;
         stdMod.computeOrbitXCenter = computeOrbitXCenter;
         return;
-        
-        function q2xy( q )
-        {
+
+        function q2xy(q) {
             //denomenator
             var den = 1 - op.eccentricity * Math.cos(q);
-            if( den === 0 ) {
+            if (den === 0) {
                 den = 1e-20; // avoid singularity (can't divide by zero)
             }
 
@@ -28,8 +26,8 @@
             var r = op.latus / den;
 
             return [
-                r * Math.cos( q + op.mainAxisAngle ) + center[0],
-                r * Math.sin( q + op.mainAxisAngle ) + center[1],
+                r * Math.cos(q + op.mainAxisAngle) + center[0],
+                r * Math.sin(q + op.mainAxisAngle) + center[1],
             ];
         }
 
@@ -39,7 +37,6 @@
             return (xSide1 + xSide2) / 2;
         }
     }
-
 
     function recalculateOrbitStartAndEnd() {
         //Set start and end of orbit so the ends are the needed distance to S
@@ -57,7 +54,6 @@
         sconf.orbit_q_end = 2 * Math.PI - q;
     }
 
-
     function calculateMaxGraphValues() {
         if (fconf.sappId === 'b1sec3prop12') {
             const op = sconf.orbitParameters;
@@ -67,14 +63,12 @@
             //therefore temporarily adjust it and calculate the maximum forces.
             stdMod.establishesEccentricity(op.eccentricityMax);
             stdMod.rebuilds_orbit(true);
-            
+
             //Reset eccentricity
             stdMod.establishesEccentricity(eccentricityStored);
-
         } else if (fconf.sappId === 'b1sec3prop13') {
             //No adjustments needed, just calculate maximum forces.
             stdMod.rebuilds_orbit(true);
         }
     };
-}) ();
-
+})();

@@ -1,32 +1,31 @@
-(function(){
+(function () {
     const { nspaste, capture, sconf, } =
-		window.b$l.apptree({ ssFExportList : {
-			setsCommonT1andT2capture,
+        window.b$l.apptree({ ssFExportList: {
+            setsCommonT1andT2capture,
             makesProfessorsCaptureFootnotes,
-		}});
-		Object.assign( sconf, {
-			initialTimieStep : 0.75,
-		});
-		const positionA = {
-			"pos": [
-				2.4846663769760875,
-				-0.010267216433785486
-			]
-		};
-		const speedVector = {
-			"vect": [
-				[
-					0.2618140190615299 / sconf.initialTimieStep,
-					0.9651183447758357 / sconf.initialTimieStep
-				]
-			]
-		};
-		return;
+        } });
+        Object.assign(sconf, {
+            initialTimieStep: 0.75,
+        });
+        const positionA = {
+            "pos": [
+                2.4846663769760875,
+                -0.010267216433785486
+            ]
+        };
+        const speedVector = {
+            "vect": [
+                [
+                    0.2618140190615299 / sconf.initialTimieStep,
+                    0.9651183447758357 / sconf.initialTimieStep
+                ]
+            ]
+        };
+        return;
 
 
-
-function setsCommonT1andT2capture (){
-    nspaste( capture, {
+function setsCommonT1andT2capture() {
+    nspaste(capture, {
         //"1-B", replaced with 1-4
         "1-C": {
             "slider_sltime": {
@@ -61,8 +60,8 @@ function setsCommonT1andT2capture (){
 ///sets captured states of the simulator,
 ///used in by-click-actions in text,
 ///jsobject has indices of this these actions,
-function makesProfessorsCaptureFootnotes (){
-    nspaste( capture, {
+function makesProfessorsCaptureFootnotes() {
+    nspaste(capture, {
         "1-0": {
             "rgslid_dt": {
                 "val": sconf.initialTimieStep
@@ -130,7 +129,7 @@ function makesProfessorsCaptureFootnotes (){
         },
         ///see also __amode2rgstate,
         ///the very first generic statement
-        "initial-state" : {
+        "initial-state": {
             "A": positionA,
             "slider_sltime": {
                 "curtime": 5.01 * sconf.initialTimieStep
@@ -139,9 +138,9 @@ function makesProfessorsCaptureFootnotes (){
                 "val": sconf.initialTimieStep
             },
             "speeds": speedVector,
-            "force" : {
-                'lawPower' : sconf.force[0][0],
-                'lawConstant' : sconf.force[0][1]
+            "force": {
+                'lawPower': sconf.force[0][0],
+                'lawConstant': sconf.force[0][1]
             }
         },
 
@@ -167,17 +166,17 @@ function makesProfessorsCaptureFootnotes (){
             //---------------------------
             "SP": {
                 //normal step=stepIx4=23
-                "decStart" :1, "decEnd" : 1111111111111
+                "decStart": 1, "decEnd": 1111111111111
             },
             "TP": {
                 //normal step=stepIx4=23
-                "decStart" :1, "decEnd" : 1111111111111
+                "decStart": 1, "decEnd": 1111111111111
             },
             "P": {
-                "decStart" :1, "decEnd" : 1111111111111
+                "decStart": 1, "decEnd": 1111111111111
             },
             "T": {
-                "decStart" :1, "decEnd" : 1111111111111
+                "decStart": 1, "decEnd": 1111111111111
             },
             //---------------------------
             // \\// perpendicular
@@ -193,22 +192,22 @@ function makesProfessorsCaptureFootnotes (){
             },
             "A": positionA,
         },
-        "corollary-4" : {
+        "corollary-4": {
             "rgslid_dt": {
                 "val": sconf.initialTimieStep
             },
             "AC": {
                 //stepIx4=23
-                "decStart" :10, "decEnd" :111111111111,
+                "decStart": 10, "decEnd": 111111111111,
             },
             "DF": {
-                "decStart" :21, "decEnd" :111111111111,
+                "decStart": 21, "decEnd": 111111111111,
             },
             "BU": {
-                "decStart" :10, "decEnd" :111111111111,
+                "decStart": 10, "decEnd": 111111111111,
             },
             "EW": {
-                "decStart" :21, "decEnd" :111111111111,
+                "decStart": 21, "decEnd": 111111111111,
             },
             "slider_sltime": {
                 "curtime": 5.3 * sconf.initialTimieStep,
@@ -217,7 +216,7 @@ function makesProfessorsCaptureFootnotes (){
             "A": positionA,
         },
 
-        "corollary-3" : {
+        "corollary-3": {
             "rgslid_dt": {
                 "val": sconf.initialTimieStep
             },
@@ -228,8 +227,7 @@ function makesProfessorsCaptureFootnotes (){
             "A": positionA,
         },
 
-        "__amode2rgstate" :
-        [
+        "__amode2rgstate": [
             [
                 "true",
                 {
@@ -237,23 +235,23 @@ function makesProfessorsCaptureFootnotes (){
                     //every time, even when capture-by-capture-toggler-in-text
                     //is clicked,
                     //this block does its job:
-                    rg : {
+                    rg: {
                         "V": {
-                            "decEnd" : 1,
+                            "decEnd": 1,
                         },
                         "AC": {
                             //normal step=stepIx4=23
-                            "decStart" :10, "decEnd" :1
+                            "decStart": 10, "decEnd": 1
                         },
                         "DF": {
-                            "decStart" :10, "decEnd" :1
+                            "decStart": 10, "decEnd": 1
                         },
                         //saggitas
                         "BU": {
-                            "decStart" :10, "decEnd" :1
+                            "decStart": 10, "decEnd": 1
                         },
                         "EW": {
-                            "decStart" :10, "decEnd" :1
+                            "decStart": 10, "decEnd": 1
                         },
 
                         //---------------------------
@@ -261,19 +259,19 @@ function makesProfessorsCaptureFootnotes (){
                         //---------------------------
                         "SP": {
                             //normal step=stepIx4=23
-                            "decStart" :10, "decEnd" :1
+                            "decStart": 10, "decEnd": 1
                         },
                         "TP": {
                             //normal step=stepIx4=23
-                            "decStart" :10, "decEnd" :1
+                            "decStart": 10, "decEnd": 1
                         },
                         "P": {
                             //normal step=stepIx4=23
-                            "decStart" :10, "decEnd" :1
+                            "decStart": 10, "decEnd": 1
                         },
                         "T": {
                             //normal step=stepIx4=23
-                            "decStart" :10, "decEnd" :1
+                            "decStart": 10, "decEnd": 1
                         },
                         //---------------------------
                         // \\// perpendicular
@@ -284,21 +282,19 @@ function makesProfessorsCaptureFootnotes (){
             [
                 "!ssF.mediaModelInitialized",
                 {
-                    "captured" : "initial-state",
-                    "rg" :
-                    {
+                    "captured": "initial-state",
+                    "rg": {
                     }
                 }
             ],
             [
                 "( logic_phase === 'proof' )",
                 {
-                    "captured" : "1-0",
-                    "rg" :
-                    {
+                    "captured": "1-0",
+                    "rg": {
                         "V": {
-                            "decEnd" : 11111111,
-                            "doPaintPname" : true,
+                            "decEnd": 11111111,
+                            "doPaintPname": true,
                         },
                     }
                 }
@@ -307,9 +303,8 @@ function makesProfessorsCaptureFootnotes (){
             [
                 "( logic_phase === 'claim' && aspect !== 'model' )",
                 {
-                    "captured" : "initial-state",
-                    "rg" :
-                    {
+                    "captured": "initial-state",
+                    "rg": {
                     }
                 }
             ],
@@ -317,9 +312,8 @@ function makesProfessorsCaptureFootnotes (){
             [
                 "( logic_phase === 'corollary' )",
                 {
-                    "captured" : "initial-state",
-                    "rg" :
-                    {
+                    "captured": "initial-state",
+                    "rg": {
                     }
                 }
             ],
@@ -327,16 +321,16 @@ function makesProfessorsCaptureFootnotes (){
                 //"( fconf.sappId === 'b1sec2prop1' && subessay === 'cor-4' )",
                 "( subessay === 'cor-1' )",
                 {
-                    "captured" : "corollary-1",
-                    "rg" : {
+                    "captured": "corollary-1",
+                    "rg": {
                     }
                 }
             ],
             [
                 "( subessay === 'cor-2' )",
                 {
-                    "captured" : "corollary-2",
-                    "rg" : {
+                    "captured": "corollary-2",
+                    "rg": {
                     }
                 }
             ],
@@ -344,8 +338,8 @@ function makesProfessorsCaptureFootnotes (){
                 //"( fconf.sappId === 'b1sec2prop1' && subessay === 'cor-4' )",
                 "( subessay === 'cor-3' )",
                 {
-                    "captured" : "corollary-3",
-                    "rg" : {
+                    "captured": "corollary-3",
+                    "rg": {
                     }
                 }
             ],
@@ -355,8 +349,8 @@ function makesProfessorsCaptureFootnotes (){
                 {
                     //we set here condisions of cor4, but saggita will
                     //depend on time which is good for cor2
-                    "captured" : "corollary-4",
-                    "rg" : {
+                    "captured": "corollary-4",
+                    "rg": {
                     }
                 }
             ],
@@ -369,19 +363,19 @@ function makesProfessorsCaptureFootnotes (){
                 {
                     //we set here condisions of cor4, but saggita will depend on time
                     //which is good for cor2
-                    "captured" : "",
-                    "rg" : {
+                    "captured": "",
+                    "rg": {
                         "Z": {
-                            "decEnd" : 11111111
+                            "decEnd": 11111111
                         },
                         "V": {
-                            "decEnd" : 11111111,
+                            "decEnd": 11111111,
                         },
                         "ABCV": {
-                            "decEnd" : 11111111
+                            "decEnd": 11111111
                         },
-                        "DEFZ" : {
-                            "decEnd" : 11111111
+                        "DEFZ": {
+                            "decEnd": 11111111
                         },
                     }
                 }
@@ -391,16 +385,16 @@ function makesProfessorsCaptureFootnotes (){
                 {
                     //we set here condisions of cor4, but saggita will depend on time
                     //which is good for cor2
-                    "captured" : "",
-                    "rg" : {
-                        "Z" : {
-                            "decEnd" : 1
+                    "captured": "",
+                    "rg": {
+                        "Z": {
+                            "decEnd": 1
                         },
                         "ABCV": {
-                            "decEnd" : 1
+                            "decEnd": 1
                         },
-                        "DEFZ" : {
-                            "decEnd" : 1
+                        "DEFZ": {
+                            "decEnd": 1
                         },
                     }
                 }
@@ -414,7 +408,7 @@ function makesProfessorsCaptureFootnotes (){
                 {
                     //we set here condisions of cor4, but saggita will depend on time
                     //which is good for cor2
-                    "captured" : "",
+                    "captured": "",
                 }
             ],
             [
@@ -422,7 +416,7 @@ function makesProfessorsCaptureFootnotes (){
                 {
                     //we set here conditions of cor4, but saggita will depend on time
                     //which is good for cor2
-                    "captured" : "",
+                    "captured": "",
                 }
             ],
 
@@ -432,24 +426,24 @@ function makesProfessorsCaptureFootnotes (){
                 {
                     //we set here condisions of cor4, but saggita will depend on time
                     //which is good for cor2
-                    "captured" : "corollary-4",
-                    "rg" : {
+                    "captured": "corollary-4",
+                    "rg": {
                         //---------------------------
                         // //\\ perpendicular
                         //---------------------------
                         "SP": {
                             //normal step=stepIx4=23
-                            "decStart" :1, "decEnd" : 1111111111111
+                            "decStart": 1, "decEnd": 1111111111111
                         },
                         "TP": {
                             //normal step=stepIx4=23
-                            "decStart" :1, "decEnd" : 1111111111111
+                            "decStart": 1, "decEnd": 1111111111111
                         },
                         "P": {
-                            "decStart" :1, "decEnd" : 1111111111111
+                            "decStart": 1, "decEnd": 1111111111111
                         },
                         "T": {
-                            "decStart" :1, "decEnd" : 1111111111111
+                            "decStart": 1, "decEnd": 1111111111111
                         },
                         //---------------------------
                         // \\// perpendicular
@@ -458,7 +452,7 @@ function makesProfessorsCaptureFootnotes (){
                 }
             ],
         ]
-        
+
     });
 }
 })();

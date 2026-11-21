@@ -1,20 +1,19 @@
-( function() {
+(function () {
     const { ns, sn, $$, stdMod, fconf, sconf, sDomF, sDomN, ssD, }
         = window.b$l.apptree({ });
     sDomF.cre_simscene8svg8legendIIslider = cre_simscene8svg8legendIIslider;
     return;
 
 
-    function cre_simscene8svg8legendIIslider()
-    {
+    function cre_simscene8svg8legendIIslider() {
         //..........................
         // //\\ media root
         //..........................
         var simScene$ = $$
-            .c( 'div' )
-            .addClass( 'bsl-simscene highlight-text-disabled' )
-            .addClass( 'model' )
-            .to( sDomN.simSScene$ )
+            .c('div')
+            .addClass('bsl-simscene highlight-text-disabled')
+            .addClass('model')
+            .to(sDomN.simSScene$)
             ;
         var simScene        = simScene$();
         stdMod.medRoot$     = stdMod.simScene$ = simScene$;
@@ -31,23 +30,23 @@
         //      , placing it before media
         //..........................
         stdMod.imgRk = {};
-        stdMod.imgRk.dom$ = $$.img().to( stdMod.simScene );
+        stdMod.imgRk.dom$ = $$.img().to(stdMod.simScene);
         stdMod.imgRk.onloadStarted = false;
         //..........................
         // \\// bgimage
         //..........................
 
         stdMod.mmedia = stdMod.svgScen = stdMod.svgScene =
-        ( stdMod.mmedia$ = stdMod.svgScen$ = stdMod.svgScene$ =
+        (stdMod.mmedia$ = stdMod.svgScen$ = stdMod.svgScene$ =
             $$.svg()
-                
+
                  //reserved, will be overriden in
                  //in_subessay_launch____amode2lemma:
-                 //.a( 'class', 'bsl--svgscene' ) 
-                
-                .a( 'preserveAspectRatio', "xMidYMid meet" )
-                .a( 'draggable', "false" )
-                .to( stdMod.simScene )
+                 //.a( 'class', 'bsl--svgscene' )
+
+                .a('preserveAspectRatio', "xMidYMid meet")
+                .a('draggable', "false")
+                .to(stdMod.simScene)
         )();
 
         //mmedia.setAttributeNS( null, 'class', cssp +'--media' );
@@ -81,17 +80,16 @@
         }
 
         stdMod.legendRoot$ = $$
-            .dct( 'bsl-legend-root', stdMod.simScene );
-        if(sconf.ADD_BASES_SLIDER) {
-            stdMod.legendRoot$.css( 'padding-bottom', '15px' );
+            .dct('bsl-legend-root', stdMod.simScene);
+        if (sconf.ADD_BASES_SLIDER) {
+            stdMod.legendRoot$.css('padding-bottom', '15px');
         }
     }
 
-    function addBasesSliderGroup()
-    {
+    function addBasesSliderGroup() {
         sDomN.sliderGroup$ = $$.c('div')
             .addClass("slider-group")
-            .to( stdMod.simScene )
+            .to(stdMod.simScene)
             .html(`
                 <input class="slider" type="range" id="mySlider"><br>
                 <span class="slider-label" style="width:99px">

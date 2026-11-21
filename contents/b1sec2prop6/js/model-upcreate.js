@@ -1,7 +1,7 @@
-( function() {
+(function () {
     var { $$, nsmethods, nssvg, mat, has,
         ssF, ssD, stdMod, sconf, rg, toreg, }
-        = window.b$l.apptree({ stdModExportList : {
+        = window.b$l.apptree({ stdModExportList: {
             model_upcreate,
             restoresStashedVisibility,
         }, });
@@ -12,11 +12,10 @@
     /// model scenario
     /// is required; to skip define as ()=>{};
     ///****************************************************
-    function model_upcreate()
-    {
+    function model_upcreate() {
         const solvable = ssD.solvable;
         //qIndexToOrbit is meta data for all points on orbit, qix is index of P
-        const Porb = ssD.qIndexToOrbit[ rg.P.qix ];
+        const Porb = ssD.qIndexToOrbit[rg.P.qix];
         if (Porb) {
             var {
                 RC, R, curvatureChordSecondPoint, projectionOfCenterOnTangent,
@@ -27,7 +26,7 @@
             rg.P.pos = posBody;
             const Rc = R; //curvature radius
 
-            if( solvable ){
+            if (solvable) {
                 const rrplus = Porb.rrplus; // Q
                 const rrminus = rg.rrminus.pos = Porb.rrminus; // Q', a time Dt before P
                 rg.Q.q = Porb.plusQ;
@@ -35,7 +34,7 @@
                 rg.Q.pos[0] = rrplus[0];
                 rg.Q.pos[1] = rrplus[1];
 
-                const chord = rg.chord = [ rrplus[0] - rrminus[0], rrplus[1] - rrminus[1], ];
+                const chord = rg.chord = [rrplus[0] - rrminus[0], rrplus[1] - rrminus[1],];
                 rg.chord2 = chord[0]*chord[0]+chord[1]*chord[1];
 
                 let Mx = (rrplus[0] + rrminus[0]) / 2;
@@ -51,7 +50,7 @@
                 rg.R.pos[0] = RR[0];
                 rg.R.pos[1] = RR[1];
                 //T = perp. from Q to radius-vector
-                const TT = mat.dropPerpendicular( rg.Q.pos, rg.S.pos, rg.P.pos )
+                const TT = mat.dropPerpendicular(rg.Q.pos, rg.S.pos, rg.P.pos)
                 rg.T.pos[0] = TT[0];
                 rg.T.pos[1] = TT[1];
             } else {
@@ -68,24 +67,24 @@
             rg.Y.pos[0] = projectionOfCenterOnTangent[0];
             rg.Y.pos[1] = projectionOfCenterOnTangent[1];
             {
-                const RCmedpos = ssF.mod2inn( RC, );
+                const RCmedpos = ssF.mod2inn(RC,);
                 const RRmedpos = sconf.mod2inn_scale * Rc;
                 //todo nearly bug: why create svg and set cls every time?
                 const CCName = 'curvatureCircle';
-                var rgCC = toreg( CCName )();
+                var rgCC = toreg(CCName)();
                 rgCC.svgel = nssvg.u({
-                    svgel   : rgCC.svgel,
-                    parent  : stdMod.mmedia,
-                    type    : 'circle',
-                    stroke  : rg.C.pcolor,
-                    fill    : 'transparent',
-                    'stroke-width' : '1',
-                    cx : RCmedpos[0],
-                    cy : RCmedpos[1],
-                    r : RRmedpos,
+                    svgel: rgCC.svgel,
+                    parent: stdMod.mmedia,
+                    type: 'circle',
+                    stroke: rg.C.pcolor,
+                    fill: 'transparent',
+                    'stroke-width': '1',
+                    cx: RCmedpos[0],
+                    cy: RCmedpos[1],
+                    r: RRmedpos,
                 });
-                $$.$( rgCC.svgel ).addClass(
-                    'tp-' + nsmethods.toCssIdentifier( CCName ) +
+                $$.$(rgCC.svgel).addClass(
+                    'tp-' + nsmethods.toCssIdentifier(CCName) +
                     ' tostroke'
                 );
                 rgCC.svgel.style.display =
@@ -96,7 +95,6 @@
             //================================================
         }
 
-
         //================================================
         // //\\ decorations
         // //\\ graph
@@ -106,7 +104,7 @@
             let graphArg = {
                 //drawDecimalY : true,
                 //drawDecimalX : false,
-                printAxisXDigits : false,
+                printAxisXDigits: false,
                 //printAxisYDigits : true,
             }
 
@@ -115,20 +113,20 @@
             let sumAbs = 0;
             var yMax = 0;
             //let leny = ga[0].y.length;
-            for( ix = 0; ix<len; ix++ ) {
+            for (ix = 0; ix < len; ix++) {
                 let gaix = ga[ix];
                 //if( !solvable ){
                 //    for( let iy=0; iy<leny; iy++ ){
                 //        gaix.y[iy] = ix/len;
                 //    }
                 //}
-                let yy = Math.abs( gaix.y[0] );
+                let yy = Math.abs(gaix.y[0]);
                 sumAbs += yy;
-                yMax = Math.max( yMax, yy );
+                yMax = Math.max(yMax, yy);
             }
             let averageY = sumAbs/len;
 
-            graphArg.yMax = Math.max( yMax, averageY*1.5 );
+            graphArg.yMax = Math.max(yMax, averageY*1.5);
             graphArg.yMin = 0;
 
             stdMod.graph.drawsGraph(graphArg);
@@ -152,7 +150,6 @@
         // \\// decorations
         //================================================
 
-
         //================================================
         // //\\ hides/shows split points
         //================================================
@@ -162,30 +159,30 @@
             let flen = foldps.length;
             let pastlen = ssD.pastFoldPoints;
             //c cc( 'folds='+flen + ' pains='+pp.length + ' past='+pastlen );
-            if( has( ssD, 'pastFoldPoints' ) ) {
+            if (has(ssD, 'pastFoldPoints')) {
                 //todm for( let i=foldps.length; i<flen; i++ ) {
-                for( let i=0; i<pastlen; i++ ) {
-                    pp[i].rgX.undisplay = true;  
+                for (let i = 0; i < pastlen; i++) {
+                    pp[i].rgX.undisplay = true;
                 }
             }
             ////otherwise, cannot display all separation points;
             ////therfore, displays nothing,
-            if( foldps.length <= pp.length ) {
-                 for( let i=0; i<flen; i++ ){
+            if (foldps.length <= pp.length) {
+                 for (let i = 0; i < flen; i++) {
                     let fp = foldps[i];
                     let rgX = pp[i].rgX;
                     rgX.pos = fp;
                     rgX.undisplay = false;
                 };
                 ssD.pastFoldPoints = flen;
-            } 
+            }
         }
         {
             ///single fold point decorations
             let nsp = rg.nonSolvablePoint;
-            let nsl = rg[ 'S,nonSolvablePoint' ];
+            let nsl = rg['S,nonSolvablePoint'];
             let len = ssD.foldPoints.length;
-            if( len ) {
+            if (len) {
                 ////displays last fold point
                 nsp.pos[0] = ssD.foldPoints[len-1][0];
                 nsp.pos[1] = ssD.foldPoints[len-1][1];
@@ -207,37 +204,37 @@
         // //\\ hides/shows non-existing elements
         //      for non-Kepler curve
         //================================================
-        if( solvable ) {
+        if (solvable) {
             restoresStashedVisibility();
-        } else if( !ssD.stashedVisibility ) {
+        } else if (!ssD.stashedVisibility) {
             ////===========================================
             ////this block hides shapes when orbit splits
             ////===========================================
             ////visibility has been not yet stashed;
             ////therefore, doing stashing now,
             ssD.stashedVisibility = {
-                'Q,rrminus'             : rg[ 'Q,rrminus' ].undisplay,
-                'P,sagitta'             : rg[ 'P,sagitta' ].undisplay,
-                'Q'                     : rg.Q.undisplay,
-                'APQ'                   : rg.APQ.undisplay,
-                'Q.hideD8Dpoint'        : rg.Q.hideD8Dpoint,
-                'R'                     : rg.R.undisplay,
-                'QR'                    : rg.QR.undisplay,
-                'QP'                    : rg.QP.undisplay,
-                'SQ'                    : rg.SQ.undisplay,
-                'T'                     : rg.T.undisplay,
-                'QT'                    : rg.QT.undisplay,
-                'rrminus'               : rg.rrminus.undisplay,
-                'timearc'               : rg.timearc.undisplay,
-                'sagitta'               : rg.sagitta.undisplay,
-                'curvatureCircle'       : rg.curvatureCircle.undisplay,
+                'Q,rrminus': rg['Q,rrminus'].undisplay,
+                'P,sagitta': rg['P,sagitta'].undisplay,
+                'Q': rg.Q.undisplay,
+                'APQ': rg.APQ.undisplay,
+                'Q.hideD8Dpoint': rg.Q.hideD8Dpoint,
+                'R': rg.R.undisplay,
+                'QR': rg.QR.undisplay,
+                'QP': rg.QP.undisplay,
+                'SQ': rg.SQ.undisplay,
+                'T': rg.T.undisplay,
+                'QT': rg.QT.undisplay,
+                'rrminus': rg.rrminus.undisplay,
+                'timearc': rg.timearc.undisplay,
+                'sagitta': rg.sagitta.undisplay,
+                'curvatureCircle': rg.curvatureCircle.undisplay,
             };
             ///heres is an actual code which hides shapes
-            Object.keys(ssD.stashedVisibility).forEach( okey => {
-                switch(okey) {
-                    case 'Q.hideD8Dpoint' : rg.Q.hideD8Dpoint = true;
+            Object.keys(ssD.stashedVisibility).forEach(okey => {
+                switch (okey) {
+                    case 'Q.hideD8Dpoint': rg.Q.hideD8Dpoint = true;
                     break;
-                    default : rg[ okey ].undisplay = true;
+                    default: rg[okey].undisplay = true;
                 }
             });
         }
@@ -249,18 +246,17 @@
 
     ///restores visibility which has been stashed
     ///when curve became non-Kepler
-    function restoresStashedVisibility()
-    {
+    function restoresStashedVisibility() {
         const sv = ssD.stashedVisibility;
-        if( !sv ) return;
-        Object.keys( sv ).forEach( okey => {
-            const val = sv[ okey ];
-            switch(okey) {
-                case 'Q.hideD8Dpoint' : rg.Q.hideD8Dpoint = val;
+        if (!sv) return;
+        Object.keys(sv).forEach(okey => {
+            const val = sv[okey];
+            switch (okey) {
+                case 'Q.hideD8Dpoint': rg.Q.hideD8Dpoint = val;
                 break;
-                default : rg[ okey ].undisplay = val;
+                default: rg[okey].undisplay = val;
             }
         });
         ssD.stashedVisibility = null;
     }
-}) ();
+})();

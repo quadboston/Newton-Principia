@@ -1,24 +1,22 @@
-( function() {
+(function () {
     var {
         ssF, stdMod
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             create_digital_legend,
         },
     });
     return;
 
 
-    function create_digital_legend()
-    {
-        create_digital_legend_for_logic_phase( 'proof' );
-		create_digital_legend_for_logic_phase( 'corollary' );
+    function create_digital_legend() {
+        create_digital_legend_for_logic_phase('proof');
+        create_digital_legend_for_logic_phase('corollary');
     }
 
-    function create_digital_legend_for_logic_phase( logic_phase )
-    {
+    function create_digital_legend_for_logic_phase(logic_phase) {
         //called once per phase, all on page load
-        //console.log('create_digital_legend'); 
+        //console.log('create_digital_legend');
 
         ////********************************************************************
         ////legendScript-format:
@@ -48,9 +46,9 @@
         var clustersCount   = legendScriptParsed[0].length;
 
         ssF.createLogic_phaseLegend({
-            tableCaption    : '',
-            noTableTitle    : true,
-            stdMod_given    : stdMod,
+            tableCaption: '',
+            noTableTitle: true,
+            stdMod_given: stdMod,
             logic_phase,
             rowsCount,
             clustersCount,
@@ -58,13 +56,13 @@
             updatesDataInCell,
         });
 
-		function reportEccentricityAs0WhenNearlyCircle() {
-			// threshold should match getEqn()
-			legendScriptParsed[0][0][2] = op.eccentricity < 0.004 ?
-				 0 : 'op.eccentricity';
-		}
+        function reportEccentricityAs0WhenNearlyCircle() {
+            // threshold should match getEqn()
+            legendScriptParsed[0][0][2] = op.eccentricity < 0.004 ?
+                 0 : 'op.eccentricity';
+        }
 
-        function makesBodyCluster({ rowIx, clusterIx, }){
+        function makesBodyCluster({ rowIx, clusterIx, }) {
             //called 4x on page load, once per "cluster"
             //console.log('makesBodyCluster');
             return ssF.dataSourceParsed1__2__makesBodyCluster({
@@ -74,23 +72,19 @@
             })
         }
 
-        function updatesDataInCell({ rowIx, clusterIx, })
-        {
+        function updatesDataInCell({ rowIx, clusterIx, }) {
             //called 4x when switching to tab with table
-            //console.log('updates table'); 
-			
-			reportEccentricityAs0WhenNearlyCircle();
+            //console.log('updates table');
+
+            reportEccentricityAs0WhenNearlyCircle();
             return ssF.dataSourceParsed1__2__updatesDataInCell({
                 rowIx,
                 clusterIx,
                 legendScriptParsed,
             })
         }
-        
     }
     //=========================================
     // \\// creates logic_phase table
     //=========================================
-
-}) ();
-
+})();

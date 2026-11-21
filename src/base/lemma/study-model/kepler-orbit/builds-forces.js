@@ -1,14 +1,14 @@
 ///builds force estimation, as Prop6 cor5 dev/area^2,
 ///which is calculated from time t and curve parameter q
-( function() {
+(function () {
     var { sn, stdMod, sconf, ssD, sData, rg, } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             builds_force_plusQ_minusQ_and_related,
             convertTimeTo_q,
             calculateTimeBetweenQAndP,
         }, });
-    sn( 'qIndexToOrbit', ssD, [] );
-    sn( 'graphArray', stdMod, [] );
+    sn('qIndexToOrbit', ssD, []);
+    sn('graphArray', stdMod, []);
     sData.ULTIM_MAX = 2;
     sData.ULTIM_ACTUAL = 1;
     sData.ULTIM_ESTIMATED = 0;
@@ -28,7 +28,7 @@
         const qrange = sconf.curveQRange;
         ulitmacy = !ulitmacy ? 0 : ulitmacy;
         var MAKE_RANGE = null;
-        switch( ulitmacy ){
+        switch (ulitmacy) {
             case sData.ULTIM_MAX:
                 ////here we set graph range when Dq or Dt
                 ////take their maximums,
@@ -50,18 +50,18 @@
                 var Dq = 0;
                 break;
         }
-        for( let qix=0; qix<=Q_STEPS; qix++ ) {
-            const bP = qIndexToOrbit[ qix ]; //body point data
-            MAKE_RANGE && ( bP.invalid = false );
+        for (let qix = 0; qix <= Q_STEPS; qix++) {
+            const bP = qIndexToOrbit[qix]; //body point data
+            MAKE_RANGE && (bP.invalid = false);
             //**********************************************
             // //\\ q is free variable
             //**********************************************
-            if( !sconf.TIME_IS_FREE_VARIABLE ){
+            if (!sconf.TIME_IS_FREE_VARIABLE) {
                 var plusQ = bP.q + Dq;
                 //"<" not "<=" to ensure point Q can reach the end of the orbit
-                if( sconf.orbit_q_end < plusQ ){
-                    if( MAKE_RANGE && !CURVE_REVOLVES ){
-                        ssD.qix_graph_end = Math.min( ssD.qix_graph_end, qix-1 );
+                if (sconf.orbit_q_end < plusQ) {
+                    if (MAKE_RANGE && !CURVE_REVOLVES) {
+                        ssD.qix_graph_end = Math.min(ssD.qix_graph_end, qix-1);
                         bP.invalid = true
                     }
                 } else {
@@ -91,7 +91,6 @@
             // \\// q is free variable
             //**********************************************
 
-
             //**********************************************
             // //\\ t is a free variable
             //**********************************************
@@ -105,18 +104,18 @@
                         if (plusT > timeRange) {
                             bP.invalid = true;
                             ssD.qix_graph_end =
-                                Math.min( ssD.qix_graph_end, qix-1 );
+                                Math.min(ssD.qix_graph_end, qix-1);
                         }
                     }
                 } else {
                     //saves data for model-upcreate;
                     bP.plusQ = plusQ;
                     Dq = plusQ-bP.q;
-                    bP.Dq = CURVE_REVOLVES ? (Dq + qrange )%qrange : Dq;
+                    bP.Dq = CURVE_REVOLVES ? (Dq + qrange)%qrange : Dq;
                 }
             }
 
-            if( plusQ !== null ){
+            if (plusQ !== null) {
                 const force = stdMod.calculateForce({
                     parq: plusQ,
                     bP,
@@ -137,16 +136,16 @@
                 }
             }
 
-            if( plusQ !== null ){
-                bP.rrplus = q2xy( plusQ );
+            if (plusQ !== null) {
+                bP.rrplus = q2xy(plusQ);
                 let minusT = bodyTime - Dt;
                 var minusQ = convertTimeTo_q(minusT);
 
                 if (minusQ === null) {
-                    if( MAKE_RANGE && !CURVE_REVOLVES && Q_MINUS_EXISTS ){
+                    if (MAKE_RANGE && !CURVE_REVOLVES && Q_MINUS_EXISTS) {
                         if (minusT < 0) {
                             ssD.qix_graph_start =
-                                Math.max( ssD.qix_graph_start, qix+1 );
+                                Math.max(ssD.qix_graph_start, qix+1);
                             bP.invalid = true;
                         }
                     }
@@ -154,7 +153,7 @@
                 }
                 //saves data for model-upcreate;
                 bP.minusQ = minusQ;
-                bP.rrminus = q2xy( minusQ );
+                bP.rrminus = q2xy(minusQ);
 
                 // console.log('Q = ' + bP.rrplus + ", Q' = " + bP.rrminus);
             }
@@ -166,8 +165,6 @@
         //Can be enabled temporarily for testing if needed
         // check_qAndTimeConversions();
     }
-
-
 
     function convertTimeTo_q(time) {
         //Use the bisection method to find the qix interval containing the
@@ -183,15 +180,13 @@
         if (timeFind < 0 || timeFind > timeRange)
             return null;
 
-
         //Lower and upper bound for searching
         let qixL = 0;
         //As interval is always defined by the first qix (not qix + 1), last
         //possible index can never be a valid value.
         let qixU = (qIndexToOrbit.length - 1) - 1;
 
-
-        while(qixL <= qixU) {
+        while (qixL <= qixU) {
             //Calculate new qix for midpoint
             const qix = Math.floor((qixL + qixU) / 2);
 
@@ -211,8 +206,8 @@
                 //Found correct qix so calculate q value
                 //Must use dq_dt from PEnd not PStart to be consistent with
                 //how qIndexToOrbit data is setup in "builds-orbit.js"
-                const PStart = qIndexToOrbit[ qix ];
-                const PEnd = qIndexToOrbit[ qix + 1 ];
+                const PStart = qIndexToOrbit[qix];
+                const PEnd = qIndexToOrbit[qix + 1];
                 const T_reminder = timeFind - timeStart;
                 const Q = PStart.q +  T_reminder * PEnd.dq_dt;
                 return Q;
@@ -221,7 +216,6 @@
 
         return null;
     }
-
 
     function convert_qToTime(q, clampToMinAndMaxTime = false) {
         //Find the qix interval containing the input q, then interpolate and
@@ -252,7 +246,6 @@
             return clampToMinAndMaxTime ? timeRange : null;
         }
 
-
         //Calculate qix for q
         const qix = (q - orbit_q_start) / delta_q_between_steps;
 
@@ -273,17 +266,16 @@
         //Calculate time value
         //Must use dq_dt from PEnd not PStart to be consistent with
         //how qIndexToOrbit data is setup in "builds-orbit.js"
-        const PStart = qIndexToOrbit[ qixL ];
-        const PEnd = qIndexToOrbit[ qixL + 1 ];
+        const PStart = qIndexToOrbit[qixL];
+        const PEnd = qIndexToOrbit[qixL + 1];
         const q_reminder = q - PStart.q;
         const time = PStart.timeAtQ + q_reminder / PEnd.dq_dt;
         return time;
     }
 
-
     function calculateTimeBetweenQAndP() {
-        if( !sconf.TIME_IS_FREE_VARIABLE ){
-            const bP = ssD.qIndexToOrbit[ rg.P.qix ];
+        if (!sconf.TIME_IS_FREE_VARIABLE) {
+            const bP = ssD.qIndexToOrbit[rg.P.qix];
             const qQ = bP.plusQ;
             const timeQ = convert_qToTime(qQ, true);
             const timeP = bP.timeAtQ;
@@ -309,7 +301,6 @@
         return ssD.Dt;
     }
 
-
     function check_qAndTimeConversions() {
         //Simple automated test intended to help check if convertTimeTo_q and
         //convert_qToTime calculate values correctly.  It could be improved
@@ -327,7 +318,7 @@
         const qixMax = (qIndexToOrbit.length - 1);
         const checksPerInterval = 5;
 
-        for(let qix = 0; qix < qixMax; qix++) {
+        for (let qix = 0; qix < qixMax; qix++) {
             //Values for current interval
             const pS = qIndexToOrbit[qix];
             const pE = qIndexToOrbit[qix + 1];
@@ -338,7 +329,7 @@
             const tE = pE.timeAtQ;
 
             //Check values within interval (including start, excluding end)
-            for(let i = 0; i < checksPerInterval; i++) {
+            for (let i = 0; i < checksPerInterval; i++) {
                 const factor = i / checksPerInterval;
                 const time = tS + (tE - tS) * factor;
                 const q    = qS + (qE - qS) * factor;
@@ -353,7 +344,6 @@
 
         showMessage(countsTimeTo_q, "convertTimeTo_q");
         showMessage(counts_qToTime, "convert_qToTime");
-
 
         function updateCounts(counts, valueCalculated, valueActual) {
             //Check value and update counts
@@ -376,5 +366,4 @@
             }
         }
     }
-}) ();
-
+})();

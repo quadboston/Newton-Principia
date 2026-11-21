@@ -1,6 +1,6 @@
 //default app wide settings for lemmas
 //may be overriden later by URL-query or lemma sconf.js,
-(function(){
+(function () {
     const { fapp, sf, topicColors_repo } =
            window.b$l.apptree({});
     fapp.setColors = setColors;
@@ -12,254 +12,252 @@
     return;
 
 
-	function setColors (){
-		// runs once per page load
+    function setColors() {
+        // runs once per page load
 
-		//=======================================
-		// //\\ topic colors repo
-		//=======================================
-		//The colors have been moved from each model to this file so they can be standardized.  Note
-		//that comments referencing specific models (eg. P12) may not be up to date, or include every
-		//model where the color is used.  More improvements can be made to the colors, some
-		//possibilities are below.
+        //=======================================
+        // //\\ topic colors repo
+        //=======================================
+        //The colors have been moved from each model to this file so they can be standardized.  Note
+        //that comments referencing specific models (eg. P12) may not be up to date, or include every
+        //model where the color is used.  More improvements can be made to the colors, some
+        //possibilities are below.
 
-		//Variable Naming and Comments...
-		//-Variable names:
-		//  -Could be more descriptive.
-		//  -Renamed to remove hyphens (some already had them removed previously).
-		//  -Many include information about their opacity values.  Terms used such as "HiddenStart" are
-		//   vague, and variables that use "HiddenStart" have different opacity values.
+        //Variable Naming and Comments...
+        //-Variable names:
+        //  -Could be more descriptive.
+        //  -Renamed to remove hyphens (some already had them removed previously).
+        //  -Many include information about their opacity values.  Terms used such as "HiddenStart" are
+        //   vague, and variables that use "HiddenStart" have different opacity values.
 
-		//-Descriptive comments should be added, and may only be needed for variables where their
-		// purpose isn't obvious.
+        //-Descriptive comments should be added, and may only be needed for variables where their
+        // purpose isn't obvious.
 
-		//Color Variable Constants...
-		//-Many color variables use the same color (eg. green [0, 150, 0]) but their r, g, b values
-		// are set independently.  For consistency, especially for when changes are made in the future,
-		// it would be much better to have a single variable for each color (eg. green, blue etc.)
-		// that is referenced (eg. body = green).  They could be in the array format for now, then
-		// converted to the CSS format later.
+        //Color Variable Constants...
+        //-Many color variables use the same color (eg. green [0, 150, 0]) but their r, g, b values
+        // are set independently.  For consistency, especially for when changes are made in the future,
+        // it would be much better to have a single variable for each color (eg. green, blue etc.)
+        // that is referenced (eg. body = green).  They could be in the array format for now, then
+        // converted to the CSS format later.
 
-		//Opacity Variable Constants...
-		//-Some opacity values use the defaults while others override them.  It would be best to
-		// have constants for these overriding opacity values to keep them consistent.  For example if
-		// the non-highlighted opacity value is supposed to keep a decoration/shape hidden, any situation
-		// where that’s the case should reference a variable (eg. opacityHidden or similar).
+        //Opacity Variable Constants...
+        //-Some opacity values use the defaults while others override them.  It would be best to
+        // have constants for these overriding opacity values to keep them consistent.  For example if
+        // the non-highlighted opacity value is supposed to keep a decoration/shape hidden, any situation
+        // where that’s the case should reference a variable (eg. opacityHidden or similar).
 
-		//-The non-highlighted opacity values (0.01 and 0.001) don't really look very different.  Since
-		// they are supposed to start hidden, an opacity value 0 would probably be better.
+        //-The non-highlighted opacity values (0.01 and 0.001) don't really look very different.  Since
+        // they are supposed to start hidden, an opacity value 0 would probably be better.
 
-		//-Some colors override the default opacity values, however given that they use values that are
-		// similar to the defaults, they may be able to use them instead.
+        //-Some colors override the default opacity values, however given that they use values that are
+        // similar to the defaults, they may be able to use them instead.
 
-		//Other Possible Improvements...
-		//-Note some variables (eg. P41 “XCY”, “D𝑐𝑥E”, “D𝑏𝑧E” etc.) should probably be moved back to their
-		// sconf.js file, once a more broad variable name is created for them.  They are currently here so
-		// that all colors from all models in the global file can be compared, to determine the best way to
-		// group them.
+        //Other Possible Improvements...
+        //-Note some variables (eg. P41 “XCY”, “D𝑐𝑥E”, “D𝑏𝑧E” etc.) should probably be moved back to their
+        // sconf.js file, once a more broad variable name is created for them.  They are currently here so
+        // that all colors from all models in the global file can be compared, to determine the best way to
+        // group them.
 
-		//-Many more similar color variables could likely be combined together.
+        //-Many more similar color variables could likely be combined together.
 
-		// background color used to highlight text and table rows on hover
-		tr.highlight = rgbToArray("rgb(234, 234, 234)");
+        // background color used to highlight text and table rows on hover
+        tr.highlight = rgbToArray("rgb(234, 234, 234)");
 
-		// sun/center of force (S or C in propositions)
-		tr.sunColor    = rgbToArray("rgb(202, 151, 0)"); 
-		tr.givenColor       = rgbToArray("rgb(106, 49, 249)");
-		tr.proofColor       = rgbToArray("rgb(0, 133, 0)");
-		tr.forceColor       = rgbToArray("rgb(149, 70, 24)");
+        // sun/center of force (S or C in propositions)
+        tr.sunColor    = rgbToArray("rgb(202, 151, 0)");
+        tr.givenColor       = rgbToArray("rgb(106, 49, 249)");
+        tr.proofColor       = rgbToArray("rgb(0, 133, 0)");
+        tr.forceColor       = rgbToArray("rgb(149, 70, 24)");
         tr.estimatedForceColor  = rgbToArray("rgb(211, 87, 254)");
-		tr.invalidColor     = rgbToArray("rgb(255, 0, 0)");  //alert, invalid user actions
-		tr.infoColor = rgbToArray("rgb(108, 129, 146)");
-		tr.bodyColor        = rgbToArray("rgb(50, 149, 191)"),
-		tr.body2Color       = rgbToArray("rgb(205, 103, 54)");//rgbToArray("rgb(255, 149, 111)"),
+        tr.invalidColor     = rgbToArray("rgb(255, 0, 0)");  //alert, invalid user actions
+        tr.infoColor = rgbToArray("rgb(108, 129, 146)");
+        tr.bodyColor        = rgbToArray("rgb(50, 149, 191)"),
+        tr.body2Color       = rgbToArray("rgb(205, 103, 54)");//rgbToArray("rgb(255, 149, 111)"),
 
+        function setDerivedColors() {
+            // Hover colors are only visibile when hovering over
+            // corresponding text. Used when they overlap with
+            // other colors which take priority
+            tr.curvature = tr.infoColor;
+            tr.infoHover = [...tr.infoColor, 0, 1];
+            tr.proofArea   = [...tr.proofColor, 1];
+            tr.proofHover  = [...tr.proofColor, 0, 1];
+            tr.proofLight  = [...tr.proofColor, 0.12, 1];
+            tr.givenArea   = [...tr.givenColor, 1];
+            tr.givenHover = [...tr.givenColor, 0, 1];
 
-		function setDerivedColors() {
-			// Hover colors are only visibile when hovering over 
-			// corresponding text. Used when they overlap with 
-			// other colors which take priority
-			tr.curvature = tr.infoColor;
-			tr.infoHover = [...tr.infoColor, 0, 1];
-			tr.proofArea   = [...tr.proofColor, 1];
-			tr.proofHover  = [...tr.proofColor, 0, 1];
-			tr.proofLight  = [...tr.proofColor, 0.12, 1];
-			tr.givenArea   = [...tr.givenColor, 1];
-			tr.givenHover = [...tr.givenColor, 0, 1];
+            setColorsUpForRemoval();
+        }
 
-			setColorsUpForRemoval();
-		}
+        function setColorsUpForRemoval() {
+            tr.hidden  = [0, 0, 0, 0];
+            tr.curvature = tr.infoColor;
+            tr.supplementColor = tr.infoColor;
+            tr.orbit = tr.body = tr.bodyColor;
+            tr.orbit2 = tr.body2 = tr.body2Color;
+            tr.corollaryColor = tr.proof = tr.proofColor;
+            tr.given = tr.givenColor;
+            tr.corollaryHover = [...tr.corollaryColor, 0, 1];
+            tr.displacement    = tr.dtime = tr.estimatedForceColor;
+            tr.invalid = tr.invalidColor;
+            tr.force = tr.forceColor;
+            tr.supplementHover = tr.infoHover;
+        }
 
-		function setColorsUpForRemoval() {
-			tr.hidden  = [0, 0, 0, 0];
-			tr.curvature = tr.infoColor;
-			tr.supplementColor = tr.infoColor;
-			tr.orbit = tr.body = tr.bodyColor;
-			tr.orbit2 = tr.body2 = tr.body2Color;
-			tr.corollaryColor = tr.proof = tr.proofColor;
-			tr.given = tr.givenColor;
-			tr.corollaryHover = [...tr.corollaryColor, 0, 1];
-			tr.displacement    = tr.dtime = tr.estimatedForceColor;
-			tr.invalid = tr.invalidColor;
-			tr.force = tr.forceColor;
-			tr.supplementHover = tr.infoHover;
-		}
+        setDerivedColors();
+        setL2throughL4Colors();
+        setProp1andProp2Colors();
+        setL20andL21Colors();
+        setProp41Colors();
 
-		setDerivedColors();
-		setL2throughL4Colors();
-		setProp1andProp2Colors();
-		setL20andL21Colors();
-		setProp41Colors();
+        Object.assign(sf, {
+            //***************************************************
+            // //\\ tp color
+            //===================================================
+            //takes precedence in: ssF.colorArray_2_rgba
+            //                     ssF.lowtpid__2__glocss8anchorRack
 
-		Object.assign( sf, {
-			//***************************************************
-			// //\\ tp color
-			//===================================================
-			//takes precedence in: ssF.colorArray_2_rgba
-			//                     ssF.lowtpid__2__glocss8anchorRack
+            //this solution is not good:
+            //some lemmas need bright red, but
+            //bright green text is hard to read ...
+            //so we resort to dark color LIGHT = 30
 
-			//this solution is not good:
-			//some lemmas need bright red, but
-			//bright green text is hard to read ...
-			//so we resort to dark color LIGHT = 30
+            //This sets L-paramter in SHL color model.
+            //Range of L is from 0 to 100. 100 is 100% lightness which mean
+            //all colors are equaly bright and diagram becomes invisible.
+            //0 - is complete darkness.
 
-			//This sets L-paramter in SHL color model.
-			//Range of L is from 0 to 100. 100 is 100% lightness which mean
-			//all colors are equaly bright and diagram becomes invisible.
-			//0 - is complete darkness.
+            //topics:
+            DEFAULT_TP_SATUR: 99,
 
-			//topics:
-			DEFAULT_TP_SATUR : 99,
+            //---------------------------------------------------
+            // //\\ tp color opacity
+            //---------------------------------------------------
+            //affects only ssF.lowtpid__2__glocss8anchorRack and
+            //ssF.colorArray_2_rgba
+            //does not affect text anchor colors, but does affect both model and table together
+            TP_OPACITY_LOW: 0.5, // applied to 'topicColors_elected' in page's sconf.js
 
-			//---------------------------------------------------
-			// //\\ tp color opacity
-			//---------------------------------------------------
-			//affects only ssF.lowtpid__2__glocss8anchorRack and
-			//ssF.colorArray_2_rgba
-			//does not affect text anchor colors, but does affect both model and table together
-			TP_OPACITY_LOW : 0.5, // applied to 'topicColors_elected' in page's sconf.js
+            //0.6-makes opacity points do look "non-solid"
+            //applied to 'originalPoints' and 'linesArray' in page's sconf.js
+            TP_OPACITY_LOW_POINT: 1,
+            TP_OPACITY_HIGH: 1,
 
-			//0.6-makes opacity points do look "non-solid"
-			//applied to 'originalPoints' and 'linesArray' in page's sconf.js
-			TP_OPACITY_LOW_POINT : 1, 
-			TP_OPACITY_HIGH : 1,
+            // //\\ remove when lemmas
+            //      will be standartized
+            AREA_HIGHLIGHT_OPACITY: 0.7,
+            AREA_DEFAULT_OPACITY: 0.3,
+            // \\// remove when lemmas
 
-			// //\\ remove when lemmas
-			//      will be standartized
-			AREA_HIGHLIGHT_OPACITY : 0.7,
-			AREA_DEFAULT_OPACITY : 0.3,
-			// \\// remove when lemmas
+            SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY: 0.6,
+            default_tp_stroke_opacity: 0.5, //2, todotodo bug everywhere
 
-			SVG_IMAGE_TOPIC_NON_HOVERED_OPACITY : 0.6,
-			default_tp_stroke_opacity   : 0.5, //2, todotodo bug everywhere
+            ANCHOR_OPACITY_LOW: '0.7',
+            ANCHOR_OPACITY_HIGH: '1',
 
-			ANCHOR_OPACITY_LOW : '0.7',
-			ANCHOR_OPACITY_HIGH : '1',
+            // todo: test if ANCHOR_DEFAULT_COLOR is needed
+            ANCHOR_DEFAULT_COLOR: 'rgba( 0, 255, 255, 1 )', //'rgba( 150, 0, 150, 1 )',
 
-			// todo: test if ANCHOR_DEFAULT_COLOR is needed
-			ANCHOR_DEFAULT_COLOR : 'rgba( 0, 255, 255, 1 )',//'rgba( 150, 0, 150, 1 )',
+            //affects only anchor colors in Book text,
+            TP_OPACITY_FROM_fixed_colors: true,
+            //---------------------------------------------------
+            // \\// tp color opacity
+            // \\// tp color
+            //===================================================
 
-			//affects only anchor colors in Book text,
-			TP_OPACITY_FROM_fixed_colors : true,
-			//---------------------------------------------------
-			// \\// tp color opacity
-			// \\// tp color
-			//===================================================
+            //---------------------------------------------------------------
+            // //\\ anchor control
+            //---------------------------------------------------------------
+            ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS: 0.8,
+            ANCHOR_TOPIC__OPACITY_IN_FOCUS: 1.0,
+            ITEM_BASE_COLOR_TO_ANCHOR: false, //for anchor-text, sets tpcolarr opacity to 1
+            //---------------------------------------------------------------
+            // \\// anchor control
+            //---------------------------------------------------------------
+        });
 
-			//---------------------------------------------------------------
-			// //\\ anchor control
-			//---------------------------------------------------------------
-			ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS : 0.8,
-			ANCHOR_TOPIC__OPACITY_IN_FOCUS : 1.0,
-			ITEM_BASE_COLOR_TO_ANCHOR : false, //for anchor-text, sets tpcolarr opacity to 1
-			//---------------------------------------------------------------
-			// \\// anchor control
-			//---------------------------------------------------------------
-		});
+        function setL2throughL4Colors() {
+            tr.difference  = rgbToArray("rgb(150, 50, 0)", 0, 0.64);
+            tr.figureColor      = rgbToArray("rgb(0, 150, 0)");
 
+            tr["figure-area"] = rgbToArray("rgb(0, 150, 0)", 0.32, 0.64);
+            tr["figure-area-txt"]          = rgbToArray("rgb(0, 150, 0)");
 
-		function setL2throughL4Colors() {
-			tr.difference  = rgbToArray("rgb(150, 50, 0)", 0, 0.64);
-			tr.figureColor      = rgbToArray("rgb(0, 150, 0)");
+            tr["circumscribed-rectangles"] = rgbToArray("rgb(0, 80, 150)", 0.32, 0.64);
+            tr["circ-txt"]                 = rgbToArray("rgb(102, 131, 179)");
+            tr["circ-outline"]             = rgbToArray("rgb(102, 131, 179)", 1.0, 1.0);
 
-			tr["figure-area"] = rgbToArray("rgb(0, 150, 0)", 0.32, 0.64);
-			tr["figure-area-txt"]          = rgbToArray("rgb(0, 150, 0)");
+            tr["inscribed-rectangles"]     = rgbToArray("rgb(150, 0, 150)", 0.32, 0.64);
+            tr["insc-txt"]                 = rgbToArray("rgb(112, 57, 107)");
+            tr["insc-outline"]             = rgbToArray("rgb(112, 57, 107)", 1.0, 1.0);
 
-			tr["circumscribed-rectangles"] = rgbToArray("rgb(0, 80, 150)", 0.32, 0.64);
-			tr["circ-txt"]                 = rgbToArray("rgb(102, 131, 179)");
-			tr["circ-outline"]             = rgbToArray("rgb(102, 131, 179)", 1.0, 1.0);
+            tr.widths                      = rgbToArray("rgb(150, 0, 150)", 0, 0.64);
+            tr.widestRectangular           = rgbToArray("rgb(0, 0, 150)", 0.28, 0.49);
+            tr.widestRectangularHiddenStart = rgbToArray("rgb(0, 0, 150)", 0.0, 0.49);
+            tr["widt-txt"]                 = rgbToArray("rgb(0, 0, 150)")
+        }
 
-			tr["inscribed-rectangles"]     = rgbToArray("rgb(150, 0, 150)", 0.32, 0.64);
-			tr["insc-txt"]                 = rgbToArray("rgb(112, 57, 107)");
-			tr["insc-outline"]             = rgbToArray("rgb(112, 57, 107)", 1.0, 1.0);
+        function setProp1andProp2Colors() {
+            //Prop 1 (Shared with Prop 2)
+            tr["kepler-triangle-odd"]  = [...tr.givenColor.slice(0, 3), 0.35, 0.7];
+            tr["kepler-triangle-even"] = rgbToArray("rgb(120, 74, 237)", 0.35, 0.7);
 
-			tr.widths                      = rgbToArray("rgb(150, 0, 150)", 0, 0.64);
-			tr.widestRectangular           = rgbToArray("rgb(0, 0, 150)", 0.28, 0.49);
-			tr.widestRectangularHiddenStart= rgbToArray("rgb(0, 0, 150)", 0.0, 0.49);
-			tr["widt-txt"]                 = rgbToArray("rgb(0, 0, 150)")
-		}
+            //Prop 2 corollaries
+            tr.deviationAreaColor = rgbToArray("rgb(169, 85, 90)"); //Description of areas triangle P2 proof tab
+        }
 
-		function setProp1andProp2Colors() {
-			//Prop 1 (Shared with Prop 2)
-			tr["kepler-triangle-odd"]  = [...tr.givenColor.slice(0, 3), 0.35, 0.7];
-			tr["kepler-triangle-even"] = rgbToArray("rgb(120, 74, 237)", 0.35, 0.7);
-		
-			//Prop 2 corollaries
-			tr.deviationAreaColor = rgbToArray("rgb(169, 85, 90)"); //Description of areas triangle P2 proof tab
-		}
+        function setL20andL21Colors() {
+            tr.static              = rgbToArray("rgb(0, 200, 255)");
+            tr.staticHalfOpacity   = [0, 200, 255, 0.5];
+            tr.core                = rgbToArray("rgb(255, 150, 0)");
+            tr.coreHalfOpacity     = [255, 150, 0, 0.5];
+            tr.aux                 = rgbToArray("rgb(255, 0, 255)");
+            tr.constructors        = rgbToArray("rgb(0, 0, 255)");
+            tr.ellipse             = tr.bodyColor;
+        }
 
-		function setL20andL21Colors() {
-			tr.static              = rgbToArray("rgb(0, 200, 255)");
-			tr.staticHalfOpacity   = [0, 200, 255, 0.5];
-			tr.core                = rgbToArray("rgb(255, 150, 0)");
-			tr.coreHalfOpacity     = [255, 150, 0, 0.5];
-			tr.aux                 = rgbToArray("rgb(255, 0, 255)");
-			tr.constructors        = rgbToArray("rgb(0, 0, 255)");
-			tr.ellipse             = tr.bodyColor;
-		}
+        function setProp41Colors() {
+            //Note that Fi for P12 is shadow (see its sconf.js ~line 635)
+            tr.prop41timeColor = rgbToArray("rgb(0, 150, 200)");
+            tr.fi = [0, 0, 150, 0.1, 0.3];
+            tr.Fkernel = [0, 0, 150];
 
-		function setProp41Colors() {
-			//Note that Fi for P12 is shadow (see its sconf.js ~line 635)
-			tr.prop41timeColor = rgbToArray("rgb(0, 150, 200)");
-			tr.fi = [0, 0, 150, 0.1, 0.3];
-			tr.Fkernel = [0, 0, 150];
+            tr.bodyHiddenStart = [...tr.bodyColor.slice(0, 3), 0.01, 1];
+            tr.forceTransparentStart = [...tr.forceColor.slice(0, 3), 0.1, 1];
+            tr.VSarea = [...tr.forceColor.slice(0, 3), 0.3, 0.7];
+            tr.timeHiddenStart = [...tr.prop41timeColor.slice(0, 3), 0.01, 0.7];
 
-			tr.bodyHiddenStart = [...tr.bodyColor.slice(0, 3), 0.01, 1];
-			tr.forceTransparentStart = [...tr.forceColor.slice(0, 3), 0.1, 1];
-			tr.VSarea = [...tr.forceColor.slice(0, 3), 0.3, 0.7];
-			tr.timeHiddenStart = [...tr.prop41timeColor.slice(0, 3), 0.01, 0.7];
+            //Is vgpoint still needed?  Seems to be after "Drop point, A"
+            //in Elements under developer tools
+            //however may not be visible.
+            tr.vgpoint = [0, 150, 0, 0.01, 1]; //todm: last two pars have no effect
 
-			//Is vgpoint still needed?  Seems to be after "Drop point, A"
-			//in Elements under developer tools
-			//however may not be visible.
-			tr.vgpoint = [0, 150, 0, 0.01, 1]; //todm: last two pars have no effect
+            tr.XCY = [0, 0, 150, 0.03, 0.5];
 
-			tr.XCY = [0, 0, 150, 0.03, 0.5];
+            tr.D𝑐𝑥E = [0, 0, 150, 0.01, 0.5];
 
-			tr.D𝑐𝑥E = [0, 0, 150, 0.01, 0.5];
+            tr.D𝑏𝑧E = [110, 90, 0, 0.01, 0.5];
+            tr.VIC = [110, 90, 0, 0.01, 0.5];
+            tr.ICK = [110, 90, 0, 0.01, 0.5];
 
-			tr.D𝑏𝑧E = [110, 90, 0, 0.01, 0.5];
-			tr.VIC = [110, 90, 0, 0.01, 0.5];
-			tr.ICK = [110, 90, 0, 0.01, 0.5];
+            tr.shadow  = rgbToArray("rgb(50, 50, 50)"); // Prop 41 only
+            tr.distance  = rgbToArray("rgb(60, 20, 0)");
+        }
+    }
 
-			tr.shadow  = rgbToArray("rgb(50, 50, 50)"); // Prop 41 only
-			tr.distance  = rgbToArray("rgb(60, 20, 0)");
-		}
-	}
-
-	function rgbToArray(rgbString, alpha, alphaWhenHighlighted) {
-		const matches = rgbString.match(/\d+/g);
-		if (!matches || matches.length !== 3) {
-			throw new Error("Input must be a string in the format" +
-							"'rgb(r, g, b)' with three numeric values.");
-		}
-		const rgb = matches.map(Number);
-		if (alpha !== undefined) {
-			rgb.push(alpha);
-		}
-		if (alphaWhenHighlighted !== undefined) {
-			rgb.push(alphaWhenHighlighted);
-		}
-		return rgb;
-	}
+    function rgbToArray(rgbString, alpha, alphaWhenHighlighted) {
+        const matches = rgbString.match(/\d+/g);
+        if (!matches || matches.length !== 3) {
+            throw new Error("Input must be a string in the format" +
+                            "'rgb(r, g, b)' with three numeric values.");
+        }
+        const rgb = matches.map(Number);
+        if (alpha !== undefined) {
+            rgb.push(alpha);
+        }
+        if (alphaWhenHighlighted !== undefined) {
+            rgb.push(alphaWhenHighlighted);
+        }
+        return rgb;
+    }
 })();

@@ -1,7 +1,7 @@
-( function() {
-    var { 
+(function () {
+    var {
         rg,
-    } = window.b$l.apptree({ stdModExportList : {
+    } = window.b$l.apptree({ stdModExportList: {
             media_upcreate___part_of_medupcr_basic,
             media_upcreate___before_basic,
         },
@@ -9,33 +9,28 @@
     return;
 
 
-    function media_upcreate___before_basic()
-    {
+    function media_upcreate___before_basic() {
         //console.log('media_upcreate___before_basic');
 
         //this is a "policy" ... should be in the state manager if any ...
-        //todo: what is the point of this? if we don't set it here, 
+        //todo: what is the point of this? if we don't set it here,
         //switching tabs after moving a dragger throws errors
         //rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
         rg.allLettersAreHidden = false;
     }
 
-
     //=========================================================
     // //\\ lemma custom addons
     //=========================================================
-    function media_upcreate___part_of_medupcr_basic()
-    {
+    function media_upcreate___part_of_medupcr_basic() {
         //console.log('media_upcreate___part_of_medupcr_basic')
 
         //draws conics
         //enables curve move when dragging an entire diagram
-        rg[ 'approximated-curve' ].poly2svg();
-        rg[ 'approximated-curve-sample' ].poly2svg();
+        rg['approximated-curve'].poly2svg();
+        rg['approximated-curve-sample'].poly2svg();
     }
     //=========================================================
     // \\// lemma custom addons
     //=========================================================
-
-}) ();
-
+})();

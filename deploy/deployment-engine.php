@@ -4,7 +4,7 @@
     /*
         Builds index.prod.html and its associates from
         index.src.html and from src
-        
+
         usage: php deployment-engine.php path-to-index.src.html [addgit]
 
         parameters:
@@ -13,7 +13,7 @@
                index.src.html
                If this path validation fails, the build does not start.
             2. addgit is optional. It must be exactly like this string.
-        
+
         See configuration at "//\\ does configuration" below
         and comments about uglify install at
         "// //\\ uglify"
@@ -30,9 +30,9 @@
     //=====================================================
     // //\\ validatates command line
     //=====================================================
-	error_reporting( E_ALL );
-	//error_reporting( E_RECOVERABLE_ERROR );
-	ini_set( 'display_errors', '1' );
+    error_reporting( E_ALL );
+    //error_reporting( E_RECOVERABLE_ERROR );
+    ini_set( 'display_errors', '1' );
 
     function ech( $arg )
     {
@@ -95,12 +95,12 @@
     // //\\ constructs helpers
     //=====================================================
     ///cli
-    function cli ( $command, $action_descr, $do_print_output = FALSE, $get_output = FALSE ) 
+    function cli ( $command, $action_descr, $do_print_output = FALSE, $get_output = FALSE )
     {
-    	$res = array();
+        $res = array();
         $ret = exec( $command, $res, $retcode );
         if( $retcode . '' !== '0' ) {
-            echo "$action_descr: problems in command: $command\noutput="; 
+            echo "$action_descr: problems in command: $command\noutput=";
             print_r( $res );
             echo "\n";
             exit(1);
@@ -108,7 +108,7 @@
             //.uncomment for verbose output
             //echo "$command";
 
-          	if( $do_print_output ) {
+            if( $do_print_output ) {
                 echo "output=";
                 print_r( $res );
             }
@@ -124,7 +124,7 @@
     function rm8create_folder( $folder )
     {
         if( file_exists( $folder ) ) {
-	        if( is_dir( $folder ) ) {
+            if( is_dir( $folder ) ) {
                 cli( "rm -rf $folder", "removing folder" );
             } else {
                 cli( "rm -f $folder", "removing file" );
@@ -168,7 +168,7 @@
     //https://www.npmjs.com/package/uglify-es
     //npm install uglify-es -g
     //:was
-    //$path_to_uglifier = 
+    //$path_to_uglifier =
     //'/home/stan/Downloads/nodejs/node-v6.9.1-linux-x64/lib/node_modules/bower/lib/node_modules/uglify-js/bin/uglifyjs';
 
     $path_to_uglifier = 'uglifyjs';
@@ -217,18 +217,18 @@
     // //\\ spawns to party-folders
     //=============================
     //.reg ex for deployment-fragment
-    $links_tpl_re = 
+    $links_tpl_re =
         '#' .
         '<!-- //\\\\\\\\ replace with prod script -->' .
         '(.+)' .
         '<!-- \\\\\\\\// replace with prod script -->' .
         '#s';
     $landing_text = file_get_contents( $tpl_landing_file );
-    
-    
+
+
     $matches = array();
-    //http://php.net/manual/en/function.preg-match.php    
-    $test = preg_match( 
+    //http://php.net/manual/en/function.preg-match.php
+    $test = preg_match(
             $links_tpl_re,
             $landing_text,
             $matches
@@ -246,13 +246,13 @@
         $scripts = preg_split( $split_regex, $matches[1] );
         //print_r( $scripts );
         foreach( $scripts as $key => $val ) {
-                
+
             //====================================================================
             //. matches <script string to be minified ...
             $script_extract_regex = '#^(\s*)<(script|link)[^<]+(src|href)=(\'|")([^\'"]+)(\'|")#';
             //====================================================================
             $link_match = array();
-            $stest = preg_match( 
+            $stest = preg_match(
                     $script_extract_regex,
                     $val,
                     $link_match
@@ -320,13 +320,13 @@
 
 
 
-    
+
     //========================================
     // //\\ makes index.prod.html and saves it
     //========================================
     function spawn_landing_file( $content, $regex, $links, $folderto, $fileto )
     {
-        $new_content = preg_replace( 
+        $new_content = preg_replace(
                 $regex,
                 $links,
                 $content
@@ -355,11 +355,9 @@
                         $link_indent .
                         '<script src="' . $prod_min_engine . '"></script>',
                         'index.prod.html', '' );
-    
+
     //========================================
     // \\// makes index.prod.html and saves it
     //========================================
 
     //echo "spawning done\n";
-
-

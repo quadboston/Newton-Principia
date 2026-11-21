@@ -1,11 +1,10 @@
-( function() {
+(function () {
     var {
         $$, nsmethods, rg,
         ssF, ssD, sconf,
         amode, stdMod, toreg, nssvg
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList: {
             media_upcreate___part_of_medupcr_basic,
         },
     });
@@ -15,40 +14,39 @@
     //=========================================================
     // //\\ lemma custom addons
     //=========================================================
-    function media_upcreate___part_of_medupcr_basic()
-    {
-		paintCurveFromAto(rg.b);
-		paintCurveFromAto(rg.B);
+    function media_upcreate___part_of_medupcr_basic() {
+        paintCurveFromAto(rg.b);
+        paintCurveFromAto(rg.B);
         paintCircle();
 
-		function paintCurveFromAto(endPoint) {
-			ssF.paintsCurve({
-				fun         : ssD.repoConf[0].fun,
-				mmedia      : stdMod.mmedia,
-				pointA      : rg.A,
-				pointB      : endPoint,
-				addToStepCount : 1,
-			});
-		}
+        function paintCurveFromAto(endPoint) {
+            ssF.paintsCurve({
+                fun: ssD.repoConf[0].fun,
+                mmedia: stdMod.mmedia,
+                pointA: rg.A,
+                pointB: endPoint,
+                addToStepCount: 1,
+            });
+        }
 
         function paintCircle() {
             const circleName = 'circleJA';
-            var rgCircle = toreg( circleName )();
-            const centerPos = ssF.mod2inn( rg.J.pos );
+            var rgCircle = toreg(circleName)();
+            const centerPos = ssF.mod2inn(rg.J.pos);
             const radius = sconf.mod2inn_scale * calcRadius();
             rgCircle.svgel = nssvg.u({
-                svgel   : rgCircle.svgel,
-                parent  : stdMod.mmedia,
-                type    : 'circle',
-                stroke  : rg.circleJA.pcolor,
-                fill    : 'transparent',
-                'stroke-width' : '1',
-                cx : centerPos[0],
-                cy : centerPos[1],
-                r : radius,
+                svgel: rgCircle.svgel,
+                parent: stdMod.mmedia,
+                type: 'circle',
+                stroke: rg.circleJA.pcolor,
+                fill: 'transparent',
+                'stroke-width': '1',
+                cx: centerPos[0],
+                cy: centerPos[1],
+                r: radius,
             });
-            $$.$( rgCircle.svgel ).addClass(
-                'tp-' + nsmethods.toCssIdentifier( circleName ) +
+            $$.$(rgCircle.svgel).addClass(
+                'tp-' + nsmethods.toCssIdentifier(circleName) +
                 ' tostroke'
             );
 
@@ -63,5 +61,4 @@
     //=========================================================
     // \\// lemma custom addons
     //=========================================================
-
-}) ();
+})();

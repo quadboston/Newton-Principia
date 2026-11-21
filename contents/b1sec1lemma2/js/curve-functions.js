@@ -1,9 +1,9 @@
-( function() {
+(function () {
     var { sn, fapp, sconf, } = window.b$l.apptree({});
 
-    var stdL2       = sn('stdL2', fapp );
-    var study       = sn('study', stdL2 );
-    var numModel    = sn('numModel', stdL2 );
+    var stdL2       = sn('stdL2', fapp);
+    var study       = sn('study', stdL2);
+    var numModel    = sn('numModel', stdL2);
 
     Object.assign(study, {
         calculates_microPoints,
@@ -17,7 +17,7 @@
 
     function curveFun(dr, x) {
         //Calculate y value of the curve using linear interpolation.
-        const {points, sectionIndices} = dr.curveMicroPts;
+        const { points, sectionIndices } = dr.curveMicroPts;
 
         //If not enough points return default value
         if (points.length < 2)
@@ -28,8 +28,8 @@
             return points[0][1];
 
         //Determine which section contains the x value
-        for(let i = 0; i < sectionIndices.length; i++) {
-            const {indexStart, indexEnd} = sectionIndices[i];
+        for (let i = 0; i < sectionIndices.length; i++) {
+            const { indexStart, indexEnd } = sectionIndices[i];
             const xStart = points[indexStart][0];
             const xEnd = points[indexEnd][0];
             const xRange = xEnd - xStart;
@@ -59,8 +59,6 @@
         return points[points.length - 1][1];
     }
 
-
-
     function calculates_microPoints(dr) {
         //Calculate and store point data (line segments) that approximate the
         //curve for the input datareg.  This code ensures the output is always
@@ -68,11 +66,9 @@
         //used to calculate the curve often yield a relation (more than one y
         //per x) which this "cleans up".
 
-        
         const ptsUntransformed = dr.ctrlPts.untransformed;
         const DRAGGABLE_END_POINTS = dr.ctrlPts.DRAGGABLE_END_POINTS;
         const CURVE_SEGMENTS_APPROXIMATE = sconf.CURVE_SEGMENTS_APPROXIMATE;
-
 
         const sorted = copySortAdjustHandlePositions(ptsUntransformed,
             DRAGGABLE_END_POINTS);
@@ -82,9 +78,7 @@
         const xEnd = sorted[sorted.length - 1].x;
         const spacingApproximate = (xEnd - xStart) / CURVE_SEGMENTS_APPROXIMATE;
 
-
         const curveSections = curveSectionsForInterpolation(sorted);
-
 
         //Calculate line segments for each section and join them together.
         //This is done section by section to ensure the correct section is
@@ -105,17 +99,15 @@
                 const indexStart = (i === 0 ? 0 : (mp.length - 1));
                 mp.push(...points);
                 const indexEnd = mp.length - 1;
-                sectionIndices.push({indexStart, indexEnd});
+                sectionIndices.push({ indexStart, indexEnd });
             }
         });
-        
+
         //Calculate some figure data
         const fP = dr.figureParams;
         fP.minX = mp[0].x;
         fP.maxX = mp[mp.length - 1].x;
     }
-
-
 
     function copySortAdjustHandlePositions(ptsUntransformed,
         DRAGGABLE_END_POINTS) {
@@ -126,9 +118,8 @@
         // //\\ Copy
         //Copies values rather than references, so modifications won't affect
         //the original.
-        let copy = ptsUntransformed.map(p => ({...p}));
+        let copy = ptsUntransformed.map(p => ({ ...p }));
         // \\// Copy
-
 
         // //\\ Sort
         if (DRAGGABLE_END_POINTS) {
@@ -142,13 +133,12 @@
         }
         // \\// Sort
 
-
         // //\\ Adjust
         const widthOriginal = copy[copy.length - 1].x - copy[0].x;
 
         //Adjust x values if they are the exact same or very close.
         const spacingMin = 0.01;
-        for(let i = 1; i < copy.length; i++) {
+        for (let i = 1; i < copy.length; i++) {
             const xMin = copy[i - 1].x + spacingMin;
             //This can break their sorted order therefore check if less than
             //not just equal.
@@ -162,21 +152,18 @@
         const widthCopy = copy[copy.length - 1].x - copy[0].x;
         if (widthCopy > 0) {
             const scaleWidth = widthOriginal / widthCopy;
-            for(let i = 0; i < copy.length; i++)
+            for (let i = 0; i < copy.length; i++)
                 copy[i].x = copy[0].x + (copy[i].x - copy[0].x) * scaleWidth;
         }
         // \\// Adjust
 
         return copy;
 
-
         //Helper function
         function sortByX(array) {
             return array.sort((a, b) => a.x - b.x);
         }
     }
-
-
 
     function curveSectionsForInterpolation(sorted) {
         //Approximate each section of the curve (between and including each
@@ -187,7 +174,6 @@
         //Number of line segments to approximate curve
         const steps = 50;
 
-
         //First and last handle points
         const ptFirst = sorted[0];
         const ptLast = sorted[sorted.length - 1];
@@ -195,19 +181,17 @@
         const figureWidth = ptLast.x - ptFirst.x;
         const figureHeight = ptLast.y - ptFirst.y;
 
-
         //4 points are required to calculate each section (two points for the
         //handles and a point that extends on either side).  To make the curve
         //appear smooth and minimize undesired curves and bends, the following
         //extended points have been chosen.
         const extendedPoints = [
-            {x: ptFirst.x - figureWidth * 0.05,
-             y: ptFirst.y},
+            { x: ptFirst.x - figureWidth * 0.05,
+             y: ptFirst.y },
             ...sorted,
-            {x: ptLast.x, 
-             y: ptLast.y + figureHeight * 0.05}
+            { x: ptLast.x,
+             y: ptLast.y + figureHeight * 0.05 }
         ];
-
 
         const output = [];
 
@@ -216,10 +200,10 @@
             const section = [];
 
             //Default points.
-            const p0 = {...extendedPoints[i]};
-            const p1 = {...extendedPoints[i + 1]};
-            const p2 = {...extendedPoints[i + 2]}; 
-            const p3 = {...extendedPoints[i + 3]};
+            const p0 = { ...extendedPoints[i] };
+            const p1 = { ...extendedPoints[i + 1] };
+            const p2 = { ...extendedPoints[i + 2] };
+            const p3 = { ...extendedPoints[i + 3] };
 
             //Adjust extended points as needed
             if (i === 0) {
@@ -235,14 +219,13 @@
                 const u = t / steps;
                 const x = catmullRom(u, p0.x, p1.x, p2.x, p3.x);
                 const y = catmullRom(u, p0.y, p1.y, p2.y, p3.y);
-                section.push({x, y})
+                section.push({ x, y })
             }
 
             output.push(section);
         }
 
         return output;
-
 
         function adjustExtendedPointIfNeeded(pAdjust, pOther) {
             //If pAdjust is far from pOther move it closer.  This makes the
@@ -254,25 +237,23 @@
             //-Very low distance means very straight
             const distMax = Math.hypot(figureWidth, figureHeight) * 0.3;
 
-            const delta = {x: pAdjust.x - pOther.x, y: pAdjust.y - pOther.y};
+            const delta = { x: pAdjust.x - pOther.x, y: pAdjust.y - pOther.y };
             const dist = Math.hypot(delta.x, delta.y);
 
             if (dist > 0 && dist > distMax) {
                 //Normalize then adjust
-                const n = {x: delta.x / dist, y: delta.y / dist};
+                const n = { x: delta.x / dist, y: delta.y / dist };
                 pAdjust.x = pOther.x + n.x * distMax;
                 pAdjust.y = pOther.y + n.y * distMax;
             }
         }
     }
 
-
-    
     function catmullRom(t, p0, p1, p2, p3) {
         //Catmull-Rom spline interpolation for smooth curves
         const t2 = t * t;
         const t3 = t2 * t;
-        
+
         return 0.5 * (
             (2 * p1) +
             (-p0 + p2) * t +
@@ -280,8 +261,6 @@
             (-p0 + 3 * p1 - 3 * p2 + p3) * t3
         );
     }
-
-
 
     function finalLineSegmentDataForSection(section, addFirstHandlePos,
         spacingApproximate) {
@@ -293,19 +272,16 @@
         if (section.length < 2)
             return null;
 
-
         const ptFirst = section[0];
         const ptLast = section[section.length - 1];
-        
-        const points = [];
 
+        const points = [];
 
         // //\\ First point
         //Only add first handle position if needed
         if (addFirstHandlePos)
             points.push([ptFirst.x, ptFirst.y]);
         // \\// First point
-
 
         // //\\ Between points
         const xStart = ptFirst.x;
@@ -330,13 +306,12 @@
                     //just skip the remaining points.
                     break;
                 }
-                
+
                 indexLine = data.indexLine;
                 points.push([x, data.y]);
             }
         }
         // \\// Between points
-
 
         // //\\ Last point
         //Always add last handle position
@@ -346,8 +321,6 @@
         return points;
     }
 
-
-
     function interpolateY(x, section, indexLine) {
         //Interpolate y value for curve in the input section.  For performance
         //start searching at the last checked line, this avoids searching lines
@@ -355,7 +328,7 @@
 
         //Loop through the line segments that approximate the curve and find
         //the one containing the x value.
-        while(indexLine < section.length - 1) {
+        while (indexLine < section.length - 1) {
             const ptLeft = section[indexLine];
             const ptRight = section[indexLine + 1];
 
@@ -364,7 +337,7 @@
                 //Found so calculate and output y
                 const slope = (ptRight.y - ptLeft.y) / xRange;
                 const y = ptLeft.y + slope * (x - ptLeft.x);
-                return {y, indexLine};
+                return { y, indexLine };
             } else {
                 //Not found so move to next line segment
                 indexLine++;

@@ -1,12 +1,12 @@
-( function () {
+(function () {
     var { sn, rg, mat, fapp, toreg, stdMod, sconf, } = window.b$l.apptree({});
 
-    var stdL2       = sn('stdL2', fapp );
-    var dataregs    = sn('dataregs', stdL2 );
-    var numModel    = sn('numModel', stdL2 );
-    var study       = sn('study', stdL2 );
+    var stdL2       = sn('stdL2', fapp);
+    var dataregs    = sn('dataregs', stdL2);
+    var numModel    = sn('numModel', stdL2);
+    var study       = sn('study', stdL2);
 
-    Object.assign( study,
+    Object.assign(study,
     {
         calculatesMajorantRect,
         calcsMonotIntervalArea,
@@ -18,7 +18,7 @@
     //==================================
     // //\\ exports methods
     //==================================
-    Object.assign( numModel, {
+    Object.assign(numModel, {
         addsNewBases_8_convertWidths,
     });
     //==================================
@@ -39,8 +39,7 @@
     //      after micropoints
     //      and monotonity interval
     //==================================
-    function addsNewBases_8_convertWidths(dr)
-    {
+    function addsNewBases_8_convertWidths(dr) {
         var basesN = sconf.basesN;
         var sum = 0;
         //===================================================
@@ -49,14 +48,14 @@
         //      if basesN did increase,
         ///new bars have equal lengths which is an average
         ///of previously existing bars,
-        for (var i=0; i<basesN; i++) {
+        for (var i = 0; i < basesN; i++) {
             ///if base is new and to be added
-	        if ( !dr.partitionWidths[i] ) {
+            if (!dr.partitionWidths[i]) {
                 //makes average base constant and, therefore,
                 //provides equal basesN for all added basesN
-		        dr.partitionWidths[i] = sum / i;
+                dr.partitionWidths[i] = sum / i;
             }
-	        sum += dr.partitionWidths[i];
+            sum += dr.partitionWidths[i];
             //in first round of setting partitionWidths, sum = basesN
         }
         //now, average sum=previous average sum = sum/basesN;
@@ -73,7 +72,7 @@
             let pwidths = dr.partitionWidths; //normless
             let chosenWidth = dr.yVariations.chosenWidth;
             let factor = 1/sum*chosenWidth;
-            for (var i=0; i<basesN; i++) {
+            for (var i = 0; i < basesN; i++) {
                 pwidths[i] = pwidths[i] * factor; //normed
             }
         }
@@ -84,8 +83,7 @@
     //==================================
     // \\// calculates mediawidths
     //==================================
-    function calcsMonotIntervalArea(dr)
-    {
+    function calcsMonotIntervalArea(dr) {
         let ff = numModel.curveFun;
         let dv = dr.yVariations;
         let x_start = dv.x_start;
@@ -93,24 +91,23 @@
         let len = sconf.BASE_MAX_NUM;
         let step = chosenWidth/len;
         let sum = 0;
-        for( var ii=0; ii<len; ii++ ) {
+        for (var ii = 0; ii < len; ii++) {
             sum += ff(dr, ii*step+x_start);
         }
         sum *= step;
         dr.figureArea = dv.complimentaryAreaBar-sum;
     }
     ///must run after widths have been finalized
-    function calculatesMajorantRect(dr)
-    {
+    function calculatesMajorantRect(dr) {
         let widestSize = 0;
-        for(let i=0; i<sconf.basesN; i++ ) {
+        for (let i = 0; i < sconf.basesN; i++) {
             const width = dr.partitionWidths[i];
             widestSize = Math.max(widestSize, width);
         }
 
         let dv = dr.yVariations;
         let chchosen = dv.chchosen;
-        if( dv.chchosen.dir > 0 ) {
+        if (dv.chchosen.dir > 0) {
             var left = dv.x_start;
             var right = left + widestSize;
         } else {
@@ -126,14 +123,12 @@
             top,
         };
     }
-    
-    
-    function calculates_inscr8circums(dr)
-    {
-        var insYar = sn( 'inscribedY', dr.basePts, [] );
-        var cirYar = sn( 'circumscribedY', dr.basePts, [] );
-        var baseBarsLefts = sn( 'baseBarsLefts', dr.basePts, [] );
-        var baseBarsRights = sn( 'baseBarsRights', dr.basePts, [] );
+
+    function calculates_inscr8circums(dr) {
+        var insYar = sn('inscribedY', dr.basePts, []);
+        var cirYar = sn('circumscribedY', dr.basePts, []);
+        var baseBarsLefts = sn('baseBarsLefts', dr.basePts, []);
+        var baseBarsRights = sn('baseBarsRights', dr.basePts, []);
         insYar.length = 0;
         cirYar.length = 0;
         baseBarsLefts.length = 0;
@@ -145,27 +140,27 @@
         //we make them by adding already known widths
         //to the monotonity interval,
         var bbl = dr.yVariations.x_start;
-        for( var ib = 0; ib < basesN; ib++ ) {
+        for (var ib = 0; ib < basesN; ib++) {
             baseBarsLefts[ib] = bbl;
             bbl += pwidths[ib];
             baseBarsRights[ib] = bbl;
         }
-        
+
         // //\\ calculates min and max on separate bases
         {
             let ff = numModel.curveFun;
             let yRef = dr.yVariations.yRef;
             let dir = dr.yVariations.chchosen.dir;
-            for( var ib = 0; ib < basesN; ib++ ) {
+            for (var ib = 0; ib < basesN; ib++) {
                 let ymin = ff(dr, baseBarsLefts[ib]);
                 let ymax = ff(dr, baseBarsRights[ib]);
-                if( dir <=0 ) {
+                if (dir <= 0) {
                     let d = ymin;
                     ymin = ymax;
                     ymax = d;
                 }
                 ymax = Math.min(ymax, yRef*0.9999999);
-                if( ymin>=ymax ) {
+                if (ymin >= ymax) {
                     ////otherwise negative heights
                     ////happens at svg
                     ymin = ymax < 0 ? ymax*1.0000001 : ymax * 0.999999;
@@ -176,12 +171,11 @@
         }
         // \\// calculates min and max on separate bases
 
-        
         // //\\ calculates min and max areas
         var pwidths = dr.partitionWidths;
         var areaCir = 0;
         var areaIns = 0;
-        for( var ib = 0; ib < basesN; ib++ ) {
+        for (var ib = 0; ib < basesN; ib++) {
             let barwidth = pwidths[ib];
             areaCir += barwidth*cirYar[ib];
             areaIns += barwidth*insYar[ib];
@@ -191,8 +185,6 @@
         dr.areaIns = dv.complimentaryAreaBar - areaIns;
         // \\// calculates min and max on separate bases
     }
-
-
 
     function calculateAndStoreTransformedFigureAreaRatios() {
         const drL = dataregs.drL;
@@ -209,10 +201,8 @@
         const sumA = drL.areaIns * areaFactorA;
         const sumB = drR.areaIns * areaFactorB;
 
-
         toreg('exact_ratio')('value', calculateRatio(exactA, exactB));
         toreg('sum_ratio')('value', calculateRatio(sumA, sumB));
-
 
         function calculateRatio(a, b) {
             //Calculate the ratio safely
@@ -226,8 +216,6 @@
         }
     }
 
-
-
     function adjustRectWidthsToMatchAreaRatiosIfNeeded(dr) {
         //Automatically adjust rectangle widths in the input datareg to match
         //the ratio of areas in the other specified datareg if needed.
@@ -236,23 +224,19 @@
             return;
 
         //Only adjust the widths if both figures are monotonic.
-        if(!study.areBothFiguresMonotonic())
+        if (!study.areBothFiguresMonotonic())
             return;
-
 
         const ratioData = calculateRatioInscribedAreasAndWidthLast(drOther);
         if (!ratioData)
             return;
-        const {ratios, widthLastRect} = ratioData;
-
+        const { ratios, widthLastRect } = ratioData;
 
         const widths = calculateRectWidthsToMatchAreaRatios(dr, ratios,
             widthLastRect);
         if (widths)
             dr.partitionWidths = widths;
     }
-
-
 
     function calculateRatioInscribedAreasAndWidthLast(dr) {
         const dv = dr.yVariations;
@@ -265,7 +249,7 @@
 
         let sumAreaIns = 0;
         const areasIns = [];
-        for(let i = 0; i < sconf.basesN; i++) {
+        for (let i = 0; i < sconf.basesN; i++) {
             const width = pwidths[i];
             const x = xLast + width;
             const y = ff(dr, x);
@@ -285,8 +269,6 @@
         };
     }
 
-
-
     function calculateRectWidthsToMatchAreaRatios(dr, ratios, widthLastRect) {
         //Calculate rectangle widths for the input datareg, so that the ratio
         //of each of their areas (inscribed rectangle area divide by sum of
@@ -295,20 +277,17 @@
         //Tolerance for calculated sum of widths
         const errorTolerance = 0.001;
 
-
         //Ensure the following has been initialized.
         const dv = dr.yVariations;
         if (!dv)
             return null;
-        
 
-        const {x_start, x_end, chosenWidth} = dv;
+        const { x_start, x_end, chosenWidth } = dv;
         const ff = numModel.curveFun;
         const figureArea = dr.figureArea;
 
         //Bounds to constrain the scale (1 means exact figure area).
         const scaleMin = 0.01, scaleMax = 1;
-
 
         //Calculate the widths.  Sometimes there are multiple roots/solutions
         //and the algorithm can "jump" between them.  This issue mainly occurs
@@ -327,16 +306,14 @@
         if (!solvedData)
             solvedData = solveUsingBisection();
 
-
         //If solution not found (unlikely to happen).
         if (!solvedData || !solvedData.widthData)
             return null;
 
         //If calculated data not usable (unlikely to happen).
-        const {widthsReversed, sumWidth} = solvedData.widthData;
+        const { widthsReversed, sumWidth } = solvedData.widthData;
         if (!widthsReversed || sumWidth <= 0)
             return null;
-
 
         //Reverse widths so in correct order.
         const widths = widthsReversed.reverse();
@@ -346,8 +323,6 @@
         const scaleWidth = chosenWidth / sumWidth;
 
         return widths.map(width => width * scaleWidth);
-
-
 
         function calculateWidthData(scale) {
             //Calculate widths for each inscribed rectangle using a chosen sum
@@ -391,7 +366,7 @@
             let xRight = x_end - widthLastRect;
 
             //All remaining rectangles, start with the second last.
-            for(let i = sconf.basesN - 2; i >= 0; i--) {
+            for (let i = sconf.basesN - 2; i >= 0; i--) {
                 //If x is beyond the left side, constrain it so the height of
                 //that side is used.  This is helpful for estimating how much
                 //the scale is off by, because it still allows a width to be
@@ -403,7 +378,7 @@
                 const height = dv.yRef - y;
                 if (height === 0)
                     return null;
-                
+
                 //                  A1 / A    * B
                 const areaDesired = ratios[i] * sumAreaChosen;
                 const width = areaDesired / height;
@@ -416,10 +391,8 @@
                 xRight -= width;
             }
 
-            return {widthsReversed, sumWidth};
+            return { widthsReversed, sumWidth };
         }
-
-
 
         function solveUsingNewtonRaphson() {
             //Use the Newton Raphson method to find a root of the mathematic
@@ -432,7 +405,6 @@
             //method.  Note that converging quickly is very important when the
             //number of bases is large to prevent performance issues.
 
-            
             const offset = 0.001;//Offset to approximate derivative
             const slopeTolerance = 1e-9;//Tolerance for a flat slope
 
@@ -442,11 +414,11 @@
             //large, since the sum of inscribed rectangle area approaches the
             //exact figure area.
             let scale = 1;
-            
+
             let widthData = null;
 
             //Constrain max iteration to prevent eg. infinite loop
-            for(let iteration = 0; iteration <= 4; iteration++) {
+            for (let iteration = 0; iteration <= 4; iteration++) {
                 //Calculate new scale or skip to check initial guess.
                 if (widthData) {
                     //Estimate derivative
@@ -475,13 +447,12 @@
                     return null;
                 const errorRelative = widthData.sumWidth / chosenWidth - 1;
                 if (Math.abs(errorRelative) < errorTolerance)
-                    return {scale, widthData, iteration};
+                    return { scale, widthData, iteration };
             }
 
             //Didn't converge
             return null;
         }
-
 
         function solveUsingBisection() {
             //Use the bisection method to find a root of the mathematic
@@ -495,7 +466,7 @@
             let scaleU = scaleMax;
 
             //Constrain max iteration to prevent eg. infinite loop
-            for(let iteration = 0; iteration < 20; iteration++) {
+            for (let iteration = 0; iteration < 20; iteration++) {
                 //Calculate new scale for midpoint
                 const scale = (scaleL + scaleU) / 2;
 
@@ -507,11 +478,11 @@
                     scaleL = scale;
                 else
                     scaleU = scale;
-                    
+
                 //Check if converged.
                 const errorRelative = widthData.sumWidth / chosenWidth - 1;
                 if (Math.abs(errorRelative) < errorTolerance)
-                    return {scale, widthData, iteration};
+                    return { scale, widthData, iteration };
             }
 
             //Didn't converge
@@ -521,5 +492,4 @@
     //***********************************************
     // \\// auxiliary postprocessing functions
     //***********************************************
-    
-}) ();
+})();
