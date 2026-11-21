@@ -164,7 +164,7 @@
         var op = op.toFixed(4);
         var rgb = 'rgb('+r+','+g+','+b+')';
         var rgba = 'rgba('+r+','+g+','+b+','+op+')';
-        return {rgb, rgba};
+        return { rgb, rgba };
     }
 
     ///converts arguments to rgb or rgba string

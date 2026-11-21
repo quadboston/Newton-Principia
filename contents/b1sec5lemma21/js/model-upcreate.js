@@ -20,7 +20,7 @@
     //***************************************************
     function model_upcreate() {
         baseParams_2_extendedParams();
-        var {D, M, A, P, angleBCM} = calculateConicPoint_algo(rg.g.value);
+        var { D, M, A, P, angleBCM } = calculateConicPoint_algo(rg.g.value);
         rg.angleBCM = angleBCM;
         pos8tg_2_rg('D', D);
         pos8tg_2_rg('M', M);

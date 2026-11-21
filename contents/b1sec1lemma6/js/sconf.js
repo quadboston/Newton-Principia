@@ -177,7 +177,7 @@
             { 'AB': { pcolor: givenColor } },
             { 'AD': { pcolor: givenColor } },
             { 'AL': { pcolor: infoColor,
-                        cssClass: 'logic_phase--proof',} }, // rectilinear angle
+                        cssClass: 'logic_phase--proof', } }, // rectilinear angle
             { 'A,DLeft': { pcolor: givenColor, 'stroke-width': 2, } }, //extends AD to the left
         ];
 

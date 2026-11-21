@@ -35,7 +35,7 @@
     ///===================================================
     ///possibly outdated, the only lemma 11 relies on this:
     function pname__2__rgX8dragwrap_gen_list(pname,) {
-        return params__2__rgX8dragwrap_gen_list({ pname,});
+        return params__2__rgX8dragwrap_gen_list({ pname, });
     }
     function params__2__rgX8dragwrap_gen_list({
         pname, acceptPos, orientation, pos, nospinner,

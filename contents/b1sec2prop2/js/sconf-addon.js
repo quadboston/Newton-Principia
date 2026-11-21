@@ -1,5 +1,5 @@
 (function () {
-const { sconf, nspaste, capture, ssF, ssD,} =
+const { sconf, nspaste, capture, ssF, ssD, } =
       window.b$l.apptree({});
     ssF.init_conf_addon = init_conf_addon;
     ssD.P2_topicColors_elected = topicColors_elected;

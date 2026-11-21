@@ -221,7 +221,7 @@
             T: { pos: [1283, 572],
                   draggableX: true,
                   pcolor: topicColors_elected['key-triangle'],
-                  style: {fill: '#ffffff'},
+                  style: { fill: '#ffffff' },
                   cssClass: 'tp-key-triangle',
                   letterAngle: 45,
                   letterRotRadius: 20,

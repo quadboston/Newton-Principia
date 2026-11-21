@@ -185,20 +185,20 @@
 
         var linesArray = [
             { 'PV': { pcolor: proofColor,
-                cssClass: 'subessay--another-solution',}, },
+                cssClass: 'subessay--another-solution', }, },
             { 'PY': { pcolor: givenColor }, },
             { 'PR': { pcolor: givenHover,
-                cssClass: 'subessay--solution',}, },
+                cssClass: 'subessay--solution', }, },
             { 'SY': { pcolor: proofColor,
-                cssClass: 'subessay--another-solution',}, },
+                cssClass: 'subessay--another-solution', }, },
             { 'QR': { pcolor: estimatedForceColor,
-                cssClass: 'subessay--solution',}, },
+                cssClass: 'subessay--solution', }, },
             { 'SQ': { pcolor: givenColor,
-                cssClass: 'subessay--claim subessay--solution',},},
+                cssClass: 'subessay--claim subessay--solution', }, },
             { 'QT': { pcolor: estimatedForceColor,
-                 cssClass: 'subessay--solution',}, },
+                 cssClass: 'subessay--solution', }, },
             { 'PT': { pcolor: proofColor,
-                cssClass: 'subessay--another-solution',}, },
+                cssClass: 'subessay--another-solution', }, },
             { 'SP': { pcolor: estimatedForceColor }, },
         ];
 

@@ -318,7 +318,7 @@
             //-------------------------------------------
             // //\\ op (PR brown conic)
             //-------------------------------------------
-            { SP: { pcolor: given},},
+            { SP: { pcolor: given }, },
             { SK: {
                 pcolor: proof,
                 cssClass: 'subessay--solution subessay--corollary1',
@@ -389,7 +389,7 @@
             { 'Sp': {
                 pcolor: given,
                 'stroke-width': 1.1,
-                captionShiftNorm: -18},
+                captionShiftNorm: -18 },
             },
             { 'p,f': {
                 pcolor: forceColor,

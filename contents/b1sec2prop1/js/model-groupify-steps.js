@@ -1,8 +1,8 @@
 (function () {
-const { haz, rg, amode, stdMod, sconf,} =
+const { haz, rg, amode, stdMod, sconf, } =
       window.b$l.apptree({ stdModExportList: {
           trajectoryShapes_2_groups__III,
-}});
+} });
 return;
 
 
