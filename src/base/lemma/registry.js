@@ -7,6 +7,7 @@
     sapp.topos = topos; // legacy specific case of property "pos"
     return;
 
+
     //test
     /*
     var myumbr = toreg('my')
@@ -35,13 +36,6 @@
     console.log( 'myfun=', myfun('k5','v5')() );
     */
 
-
-
-
-
-
-
-
     ///================================================
     /// //\\ creates or updates registry rg entry
     ///================================================
@@ -58,7 +52,6 @@
         ;
         return ( rg[ kname ].pos = val );
     }
-
 
     ///creates or updates registered umbrella-object rg[id] and its properties
     ///hopefully more useful: allows chained assignments
@@ -100,6 +93,4 @@
     /// \\// creates or updates registry rg entry
     ///================================================
 
-
 }) ();
-

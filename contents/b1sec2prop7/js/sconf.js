@@ -1,4 +1,3 @@
-
 ( function() {
     var { ns, fconf, sconf, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
@@ -77,7 +76,6 @@
         // \\// points reused in config
         //=============================================
 
-
         //:diagram sandbox spatial parameters
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
@@ -138,7 +136,6 @@
             sunColor,
             proofHover,
         } = topicColors_repo;
-
 
         var topicColors_elected =
         {
@@ -285,7 +282,6 @@
                 letterAngle : -45,
             },
         });
-
 
         var linesArray =
         [

@@ -26,8 +26,6 @@
     // \\// point S slider
     //=========================================================================
 
-
-
     //=========================================================================
     // //\\ curve pivotsPos sliders
     //=========================================================================
@@ -82,7 +80,6 @@
                 ///updates curve pivots every time:
                 stdMod.bezierPivotsToCurvePivots();
 
-
                 stashedPos = [ newPos[0], newPos[1] ];
                 if( ssD.foldPoints.length ) {
                     ////we do return true, because would like to
@@ -97,8 +94,6 @@
     // \\// curve pivotsPos sliders
     //=========================================================================
 
-
-
     function updatePointPPos() {
         //Update point P qix (position) to be as close as possible to where it
         //was before.  Also adjusts it as needed to ensure at valid qix if out
@@ -110,4 +105,3 @@
         }
     }
 }) ();
-

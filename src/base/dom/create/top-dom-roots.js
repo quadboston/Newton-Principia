@@ -46,7 +46,6 @@
         wrkwin.createDividorResizer();
     }
 
-
     //===================================================================
     // //\\ this makes effect of fading-out
     //      the original picture

@@ -46,15 +46,12 @@
         item.setAttributeNS( null, yName, y );
     }
 
-
     function sets_pt2movable( pt )
     {
         pt.dom.setAttributeNS(null, "class", "figure");
         pt.dom.setAttributeNS(null, "r", sconf.MOVABLE_BASE_RADIUS);
         pt.movable = true;
     }
-
-
 
     ///rather redigitizes model for curves and more
     function paints_curve8axes(dr)
@@ -77,7 +74,6 @@
         }
         dr.curve_middle$.a( "points", mpRounded.join(" ") );
 
-
         //:paints axes
         //horizontal axis x
         const posBaseStart = stdMod.xy_2_Txy(dr, [x_start, maxY]);
@@ -85,9 +81,7 @@
         xy2lineShape(dr.baseAxis, posBaseStart[0], posBaseStart[1],
             posBaseEnd[0], posBaseEnd[1]);
 
-
         stdMod.hideWhenNonMonotonic?.(dr);
-
 
         //=============================================
         // //\\ builds bottom part of curve area string
@@ -149,8 +143,6 @@
         // \\// resets app modes
     }
 
-
-
     //========================================
     // //\\ possibly move to gui-update module
     //========================================
@@ -170,7 +162,6 @@
 
         rectDom.setAttributeNS(null, "points", positionsT.join(" "));
     }
-
 
     function updatePts(dr, i, x)
     {
@@ -227,7 +218,6 @@
     // \\// possibly move to gui-update module
     //========================================
 
-
     //======================================
     // //\\ manages visibility
     //======================================
@@ -263,6 +253,5 @@
     //======================================
     // \\// manages visibility
     //======================================
-
 
 }) ();

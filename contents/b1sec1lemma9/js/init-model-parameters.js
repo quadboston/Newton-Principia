@@ -10,12 +10,6 @@
     return;
 
 
-
-
-
-
-
-
     ///=============================================================
     /// at landing, copies study-model-pars from config to app model
     ///=============================================================
@@ -27,4 +21,3 @@
         toreg( 'tiltAngle' )( 'value', sconf.tiltAngle );
     }
 }) ();
-

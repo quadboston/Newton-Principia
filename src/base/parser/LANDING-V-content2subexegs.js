@@ -90,8 +90,6 @@
             //=========================================================
         }
 
-
-
         //====================================================
         // //\\ on content Files Load Success
         //====================================================
@@ -200,7 +198,6 @@
                     // \\// sets initial amode
                     //===============================================================
 
-
                     //---------------------------------------------------------------
                     // //\\ adds topic-categories from
                     //---------------------------------------------------------------
@@ -304,9 +301,6 @@
             // \\// splits text to subessays
             //=========================================================
 
-
-
-
             //===========================================================
             /// collect BgImg, set Menu, dec Point_parentClasses
             ///     continues to spawn exegs after all exegs placeholders
@@ -373,7 +367,6 @@
                 });
             });
 
-
             //-----------
             //this function prepare8do_LANDING_VI_and_beyond___cb
             //is predefined as an argument in code-fragment
@@ -386,11 +379,6 @@
             //extra specifity and removing this set will change this specifity and
             //damage the application
             return;
-
-
-
-
-
 
             //=======================================
             // //\\ parses and sets menu
@@ -445,7 +433,6 @@
                     }
                 }
 
-
                 //------------------------------------------------------------
                 // //\\ this thing does breed two mcat_ids with "default"
                 //------------------------------------------------------------
@@ -462,7 +449,6 @@
                 // \\// this thing does breed two mcat_ids with "default"
                 //------------------------------------------------------------
 
-
                 ///at least one caption should exist among twin aspects
                 if( haz( essayHeader, 'menuCaption' ) && mcat_id === 'aspect' ) {
                     men.duplicates[ leafId ].caption = essayHeader.menuCaption;
@@ -475,8 +461,6 @@
             //=======================================
             // \\// parses and sets menu
             //=======================================
-
-
 
             // //\\ bg images
             /// collects all possible background images racks
@@ -532,7 +516,6 @@
         // \\// on content Files Load Success
         //====================================================
 
-
         function aspectTurnedOn(aspect_id) {
             if (aspect_id === 'model'){
                 return false;
@@ -543,7 +526,6 @@
             return true;
         }
     }
-
 
     /**
      * Gets a fixed color as an rgba string. Topic names are looked up in the

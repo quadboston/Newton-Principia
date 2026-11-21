@@ -8,7 +8,6 @@
                               scat_id = latin, english, video, ...
 */
 
-
 ( function() {
     var {
         ns, $$, haff,
@@ -60,7 +59,6 @@
     // \\// populate menu
     //====================================
 
-
     function build_menu_top_leafs_placeholders()
     {
         //teaf$ is one of the top-leafs of menu
@@ -86,8 +84,6 @@
             sDomF.makes_logic_phaseTab_nonClickable();
         }
     }
-
-
 
     //====================================
     // //\\ sets menu top leaf
@@ -129,9 +125,6 @@
     //====================================
     // \\// sets menu top leaf
     //====================================
-
-
-
 
     //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
     // //\\ makes radio menu
@@ -306,9 +299,6 @@
               subexeg.subessayMenuItem$.removeClass( 'chosen' );
         });
 
-
-
-
         //**************************************************************
         //**************************************************************
         // //\\ makes model change
@@ -330,9 +320,6 @@
         // \\// makes model change
         //**************************************************************
         //**************************************************************
-
-
-
 
         //==================================================
         // //\\ spawns changes
@@ -379,8 +366,6 @@
         // updates app and ...
         //==================================================
 
-
-
         ///=========================================================
         /// establishes amodel state if lemma is ready for it
         ///=========================================================
@@ -392,8 +377,6 @@
     //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
     // \\// does select menu-leaf
     //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
-
-
 
     ///this happens only on 2 click events(ver Dec10,2020)
     ///one click is for top-text-menu?,

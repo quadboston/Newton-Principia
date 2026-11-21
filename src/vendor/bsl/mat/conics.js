@@ -32,7 +32,6 @@
         // manually makes angle fi = 0,
         om, // sinOmega, flag=which batch to use
 
-
         signCosOmega,
 
         //sigma,    //hyperbola branch for future version
@@ -99,5 +98,3 @@
     }
 
 }) ();
-
-

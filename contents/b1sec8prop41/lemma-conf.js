@@ -2,6 +2,7 @@
     window.b$l.apptree({}).fapp.lemmaConfig = lemmaConfig;
     return;
 
+
     function lemmaConfig()
     {
         var sm = '../js/'; //study model path

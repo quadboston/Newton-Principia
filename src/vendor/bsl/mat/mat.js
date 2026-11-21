@@ -18,8 +18,6 @@
         mat.polar_ellipse = polar_ellipse;
     })();
 
-
-
     ///Returns:  [] if no solutions
     ///          [ number ] if one solution
     ///          [ number, number ] if real solutions
@@ -125,7 +123,6 @@
         return angle < 0 ?  2 * Math.PI + angle : angle;
     }
 
-
     //converts angle from degrees to radians
     function degToRad(angle){
         return angle / 180 * Math.PI;
@@ -136,4 +133,3 @@
         return angle * 180 / Math.PI;
     }
 }) ();
-

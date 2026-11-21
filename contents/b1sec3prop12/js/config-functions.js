@@ -40,7 +40,6 @@
         }
     }
 
-
     function recalculateOrbitStartAndEnd() {
         //Set start and end of orbit so the ends are the needed distance to S
         const op = sconf.orbitParameters;
@@ -56,7 +55,6 @@
         sconf.orbit_q_start = q;
         sconf.orbit_q_end = 2 * Math.PI - q;
     }
-
 
     function calculateMaxGraphValues() {
         if (fconf.sappId === 'b1sec3prop12') {
@@ -77,4 +75,3 @@
         }
     };
 }) ();
-

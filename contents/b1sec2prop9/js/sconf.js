@@ -68,7 +68,6 @@
         // \\// points reused in config
         //=============================================
 
-
         //:diagram sandbox spatial parameters
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
@@ -128,7 +127,6 @@
             sunColor,
         } = topicColors_repo;
 
-
         var topicColors_elected =
         {
             estimatedForceColor,
@@ -186,7 +184,6 @@
                 cssClass:'subessay--another-solution',
             },
         };
-
 
         var linesArray =
         [

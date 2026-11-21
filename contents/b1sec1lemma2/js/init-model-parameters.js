@@ -96,14 +96,12 @@
         // \\// fits lemma to modern framework
         //----------------------------------------------
 
-
         stdMod.model_upcreate();
         //now, this call does
         //stdMod.media_upcreate___before_basic_L2
         ssF.media_upcreate_generic(); //vital, perhaps for synch
         gui.buildSlider();
     }
-
 
     function finish_sapp_UI()
     {

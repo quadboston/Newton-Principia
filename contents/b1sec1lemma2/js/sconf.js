@@ -34,7 +34,6 @@
         // \\// original material parameters
         //----------------------------------
 
-
         //----------------------------------
         // //\\ datareg
         //----------------------------------
@@ -50,13 +49,11 @@
         // \\// datareg
         //----------------------------------
 
-
         //Used to calculate slider width (left side to right side of figure).
         const ptsUntransformed = dataregs.dr.ctrlPts.untransformed;
         const xSliderL = ptsUntransformed[0].x;
         const xSliderR = ptsUntransformed[ptsUntransformed.length - 1].x;
         const BASES_SLIDER_WIDTH_FACTOR = (xSliderR - xSliderL) / pictureWidth;
-
 
         //Common settings
         ssF.init_conf_common(BASES_SLIDER_WIDTH_FACTOR);
@@ -78,7 +75,6 @@
             widestRectangular,
             widestRectangularHiddenStart,
         } = topicColors_repo;
-
 
         const predT =
         {
@@ -110,7 +106,6 @@
             'c--M--d--n'                : difference,
             'd--e--p--o'                : difference,
         }
-
 
         var originalPoints =
         {

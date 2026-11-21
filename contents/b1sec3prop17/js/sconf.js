@@ -1,4 +1,3 @@
-
 ( function() {
     var { ns, sn, mat, fconf, sconf, stdMod, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
@@ -60,7 +59,6 @@
         // \\// decorational parameters
         //***************************************************************
 
-
         //gravitational constant
         var Kepler_g = 0.64478; //3.5105 * (0.6/1.4)*(0.6/1.4);
         op.Kepler_g = op.Kepler_gInitial = Kepler_g;
@@ -69,7 +67,6 @@
         //model's spacial unit expressed in pixels of the picture,
         //vital to set to non-0 value
         var mod2inn_scale = 260;
-
 
         //-------------------------------------------
         // //\\ sop (green conic)

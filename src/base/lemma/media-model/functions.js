@@ -11,12 +11,6 @@
     return;
 
 
-
-
-
-
-
-
     ///converts model-function to media-function
     ///returns not a primitive value but
     ///"function: model-var-x |-> media-inner-point [x,y]"
@@ -40,7 +34,6 @@
         }
     }
 
-
     ///todm ... is it ever used?
     ///converts model-function to media-function
     ///returns "inner-media function" and
@@ -57,6 +50,4 @@
         }
     }
 
-
 }) ();
-

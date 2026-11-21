@@ -16,7 +16,6 @@
             dr.faaf = null;
         });
 
-
         //===============================================
         // //\\ widest-rect
         //===============================================
@@ -28,7 +27,6 @@
                 .addClass( 'widest-rectangular tp-widest-rectangular tofill' )
                 .to( stdMod.svgScene );
         };
-
 
         gui.drawsWidestRect = function(dr)
         {

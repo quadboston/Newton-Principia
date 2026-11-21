@@ -1,4 +1,3 @@
-
 ( function() {
     var { sn, eachprop, nspaste, topicColors_repo, fconf, sconf, }
         = window.b$l.apptree({ ssFExportList : { init_conf } });
@@ -94,8 +93,6 @@
         // \\// decorational parameters
         //***************************************************************
 
-
-
         //=============================================
         // //\\ points reused in config
         //=============================================
@@ -144,7 +141,6 @@
         const vgraph = forceTransparentStart;
         const ro = distance;
         const Tkernel = prop41timeColor;
-
 
         var topicColors_elected =
         {
@@ -215,7 +211,6 @@
         //---------------------------------------------------
         // \\// points to approximate and draw original curve
         //---------------------------------------------------
-
 
         let originalPoints = {
             curvePivots,

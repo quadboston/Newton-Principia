@@ -27,11 +27,6 @@
     return;
 
 
-
-
-
-
-
     ///*********************************************************
     ///Does:   all at once: approximates and paints and
     ///        ready for calculation at any poit,
@@ -103,7 +98,6 @@
         //poly2svg({});
         return result;
 
-
         function q2xy( q )
         {
             return separateXYforParamT ?
@@ -137,7 +131,6 @@
             return newpoints;
         }
 
-
         ///generates array of xy where x
         ///is from range xy[ 0 ][0] till xy[ xy.length-1 ][0]
         function ownrange2points({ stepsCount, doIntegrate })
@@ -158,7 +151,6 @@
             }) :
             ownrange2points({ stepsCount:1000, doIntegrate });
         }
-
 
         function poly2svg( arg )
         {
@@ -194,4 +186,3 @@
     }
 
 }) ();
-

@@ -143,7 +143,6 @@
             sunColor
         } = topicColors_repo;
 
-
         var topicColors_elected =
         {
             estimatedForceColor,

@@ -41,7 +41,6 @@
         return { styleAnchors:styleStr, nextTplinks };
     }
 
-
     ///-----------------------------
     /// assigns color to anchor
     ///-----------------------------
@@ -137,5 +136,3 @@
         });
     }
 })();
-
-

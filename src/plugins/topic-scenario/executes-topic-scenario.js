@@ -1,4 +1,3 @@
-
 ( function() {
     var {
         ns, $$,
@@ -48,7 +47,6 @@
         );
     }
 
-
     ///aka: var wwMessage = 'a u t o p   '+eventBlock.autopilotEventId;
     function doDebugMessage( wwMessage )
     {
@@ -56,7 +54,6 @@
             ns.d( wwMessage );
         }
     }
-
 
     //api
     //:, :-     - do start over

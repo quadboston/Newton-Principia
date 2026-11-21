@@ -32,7 +32,6 @@
         }
     }
 
-
     ///declares whirl (do call it modShape?)
     ///for model and simulation/user scenario;
     ///               not for view for media and GUI;
@@ -80,7 +79,6 @@
         }
         return rgX;
     }
-
 
     ///declares geometric for model and simulation/user scenario;
     ///               not for view for media and GUI;
@@ -133,8 +131,4 @@
         return rgX;
     }
 
-
-
-
 }) ();
-

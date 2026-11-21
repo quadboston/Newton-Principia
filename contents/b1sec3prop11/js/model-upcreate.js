@@ -86,7 +86,6 @@
         nspaste( rg.D.pos, q2xy( parQ + Math.PI/2 ) );
         nspaste( rg.K.pos, q2xy( parQ + 3/2*Math.PI ) );
 
-
         //vuFV
         //v = parallel-projection of Q to tangent
         var DK = [ rg.K.pos[0]-rg.D.pos[0], rg.K.pos[1]-rg.D.pos[1] ];
@@ -129,7 +128,6 @@
             let graphArg = {
             }
 
-
             //TEMP
             // //The bounds of the graph are mostly fixed as follows.  The
             // //exception being the y axis which switches between a fixed and
@@ -153,8 +151,6 @@
             // const yMaxCap = 50;
             // graphArg.yMax = Math.min(Math.max(yMaxFixed, yMaxVariable), yMaxCap);
 
-
-
             // //TEMP
             // const ratio = ssD.estimatedForceMaxStoredTemp / ssD.xMaxFixedGraphAxis;
             // // const ratio = 5;//ssD.MEF / ssD.xMaxFixedGraphAxis;
@@ -172,8 +168,6 @@
             // // graphArg.xMax = Math.min(Math.max(xMaxLowest, xMaxCurrentX,
             // //     xMaxFromY), xMaxFromYCap);
 
-
-
             // //TEMP No gap on right or top
             // graphArg.xMin = 0;
 
@@ -185,8 +179,6 @@
             // graphArg.xMax = Math.min(Math.max(xMaxLowest, xMaxCurrentX,
             //     xMaxFromY), xMaxFromYCap);
 
-
-
             // //TEMP
             // graphArg.xMin = 0;
 
@@ -197,7 +189,6 @@
             // const xMaxFromYCap = ssD.MAF / ratio * 20;//* 10;//* 50;
             // graphArg.xMax = Math.min(Math.max(xMaxLowest, xMaxCurrentX,
             //     xMaxFromY), xMaxFromYCap);
-
 
             // //TEMP
             // graphArg.xMin = 0;
@@ -211,10 +202,8 @@
             // graphArg.xMax = Math.min(Math.max(xMaxLowest, xMaxCurrentX,
             //     xMaxFromY), xMaxFromYCap);
 
-
             //TEMP
             graphArg.xMin = 0;
-
 
             //TEMP
             //***************************************************************\\
@@ -231,7 +220,6 @@
 
             const ratio2Temp = ratio * ssD.MAF;
 
-
             const xMaxCurrentX = ssD.xMaxCurrentGraphAxis;
             const xMaxFromY = ssD.estimatedForceMaxCurrent / ratio2Temp;
             const xMaxFromYCap = ssD.MAF / ratio2Temp * yMaxHighest;
@@ -242,24 +230,18 @@
             // const xMaxFromYAF = ssD.actualForceMaxCurrent / ratio;
             // graphArg.xMax = Math.max(graphArg.xMax, xMaxCurrentX, xMaxFromYAF);
 
-
-
             graphArg.yMin = 0;
             graphArg.yMax = graphArg.xMax * ratio2Temp / ssD.MAF;
-
 
             //TEMP
             // graphArg.xMax = xMaxCurrentX;
             // graphArg.yMax = Math.min(ssD.estimatedForceMaxCurrent / ssD.MAF, yMaxHighest);
-
 
             //TEMP
             // graphArg.xMax = Math.max(xMaxLowest, xMaxCurrentX);
             // graphArg.yMax = Math.min(50, Math.max(
             //     ssD.estimatedForceMaxCurrent / ssD.MAF,
             //     ssD.estimatedForceMaxStoredTemp / ssD.MAF));
-
-
 
             // //TEMP
             // graphArg.xMax = Math.max(xMaxLowest, xMaxCurrentX);
@@ -275,7 +257,6 @@
 
             // const percentWidthMax = (xMaxCurrentX/graphArg.xMax*100).toFixed(2);
             // console.log(`width = ${percentWidthMax}%`);
-
 
             stdMod.graph.drawsGraph(graphArg);
         }

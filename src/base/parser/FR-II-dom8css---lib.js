@@ -16,7 +16,6 @@
     });
     var collectedDelayedLinks = sn( 'collectedDelayedLinks', ssD );
 
-
     //---------------------------------------------
     // //\\ topic engine variables
     //---------------------------------------------
@@ -59,10 +58,6 @@
     // \\// topic engine variables
     //---------------------------------------------
     return;
-
-
-
-
 
 
     ///*************************************************************
@@ -267,7 +262,6 @@
         //return { collectedTpLinks, collectedDelayedLinks };
     }
 
-
     //Frag. step II. Norm. and anchor-texts.
     //======================================================================
     // 1) wraps active and static fragment texts into object and
@@ -377,7 +371,6 @@
             var dix = cflag ? ' delayed-anchor' : '';
             dix += farFlag ? ' delayed-far' : '';
 
-
             //***********************************************************
             // This anchor with non-empty dix will be hidden? and
             // will be a "seed" from
@@ -425,7 +418,6 @@
         // \\// html conversion of body fragments
         //--------------------------------------------------------
     }
-
 
     ///Frag. step III. Html and global-css-visib-of-active-category.
     ///main sub. placing prof-script-fragments-txt into html-dom$
@@ -509,7 +501,6 @@
         // \\// inserts book-references in DOM
         //-----------------------------------------------------------------------
     }
-
 
     ///replaces raw words with value from value found in
     ///collection of collectedDelayedLinks

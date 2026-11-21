@@ -26,8 +26,6 @@
     return;
 
 
-
-
     ///===================================================
     /// sets click event for each capture reference
     ///  "captured reference" can be found in essay text
@@ -61,7 +59,6 @@
     {
         wrkwin.start8finish_media8Ess8Legend_resize__upcreate(null, !!'doDividorSynch');
     }
-
 
     function does_set_next_lemma_button_event( direction )
     {
@@ -112,7 +109,6 @@
             });
         }
     }
-
 
     function attachWeelToDomEl( domel$, )
     {
@@ -280,6 +276,4 @@
     }
     ///wheel
 
-
 }) ();
-

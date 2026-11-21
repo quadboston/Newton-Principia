@@ -17,7 +17,6 @@
         gui.createDragModel = createDragModel;
         return;
 
-
         function createDragModel() {
             medD8D = stdMod.medD8D =
                 d8dp.crePointFW_BSLd8d1CHAMBER ({
@@ -73,7 +72,6 @@
             globalCss.update();
         }
 
-
         function setPoint(dr, pointWrap, pwix) {
             let orientation = false;
             pointWrap.datareg = dr;
@@ -115,7 +113,6 @@
             });
         }
 
-
         ///decorates DraggeeHoverer movement
         function Update_decPoint( pointWrap )
         {
@@ -136,7 +133,6 @@
             });
         }
 
-
         function doProcess( arg )
         {
             if( arg.down_move_up === 'move' ) {
@@ -151,7 +147,6 @@
                 stdMod.model8media_upcreate();
             }
         }
-
 
         //====================
         // //\\ finds draggee
@@ -201,8 +196,6 @@
         // \\// finds draggee
         //====================
 
-
-
         //======================================
         // //\\ event to js
         //======================================
@@ -224,7 +217,6 @@
                 //Calculate new un-transformed position.
                 const posNew = stdMod.Txy_2_xy(dr, [newX, newY]);
 
-
                 //Constrain x value if needed.
                 if (!DRAGGABLE_END_POINTS) {
                     const minX = ptsUntransformed[0].x;
@@ -244,7 +236,6 @@
                         posNew[1] = yLine;
                 }
 
-
                 //Update stored un-transformed control point position.
                 const pos = ptsUntransformed[index];
                 if (pos) {
@@ -257,7 +248,6 @@
                 item.x = posNewT[0];
                 item.y = posNewT[1];
 
-
             } else if ("trans" === item.type) {
                 //Transform points
                 if (item.draggableX)
@@ -266,7 +256,6 @@
                     item.y = newY;
 
                 stdMod.recalculateAndStoreTransforms(dr);
-
 
             } else if(index > 0 && index < sconf.basesN) {
                 //Base points
@@ -303,8 +292,6 @@
         //======================================
         // \\// event to js
         //======================================
-
-
 
         function yOffsetSlopeConstraint(dr, x) {
             //Computes y coordinate of a sloped line offset from figure bottom.

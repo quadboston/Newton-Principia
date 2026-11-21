@@ -75,7 +75,6 @@
         // \\// decorational parameters
         //***************************************************************
 
-
         //----------------------------------------------------
         // //\\  prepares sconf data holder
         //----------------------------------------------------
@@ -90,7 +89,6 @@
             givenArea,
             proofArea
         } = topicColors_repo;
-
 
         var topicColors_elected =
         {
@@ -126,7 +124,6 @@
         //-----------------------------------
         // \\// topic group colors,
         //-----------------------------------
-
 
         var originalPoints =
         {
@@ -222,7 +219,6 @@
             { 'DB' : { pcolor : given } },
         ];
 
-
         to_sconf =
         {
             //----------------------------------
@@ -233,7 +229,6 @@
             //----------------------------------
             // \\// scenario
             //----------------------------------
-
 
             //----------------------------------
             // //\\ original lemma parameters
@@ -252,7 +247,6 @@
                 */
             ],
 
-
             //*************************************************
             // //\\ lemma model parameters
             //*************************************************
@@ -263,14 +257,12 @@
             pivot2y_min : APP_MODEL_Y_RANGE * 0.3,
             pivot2y_max : APP_MODEL_Y_RANGE * 0.99,
 
-
             //bezier parameter t of point C on principal curve
             tC : 0.48,  //This value ensures line EC not too high and upper bezier curve not cutoff.
 
             claimRatio : 0.74081,
             //range:
             claimRatio_max : 0.9, //Dy_per_Ey
-
 
             tiltAngle : 0.0, //controls EC-line tilt:
                              //in degrees;  0.0 is horizontal;  from perspective of point E (+ve when C y above E y);
@@ -285,8 +277,6 @@
             //----------------------------------
             // \\// original lemma parameters
             //----------------------------------
-
-
 
             //----------------------------------
             // //\\ model-view parameters
@@ -308,8 +298,6 @@
         //----------------------------------
         // \\// prepares sconf data holder
         //----------------------------------------------------
-
-
 
         //----------------------------------------------------
         // //\\ copy-pastes to sconf
@@ -338,4 +326,3 @@
         //----------------------------------------------------
     };
 }) ();
-

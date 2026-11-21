@@ -8,13 +8,10 @@
     return;
 
 
-
-
     function setModule()
     {
         createsModelFunctions();
     }
-
 
     //=================================================
     // //\\ configures repo of "experimental" functions
@@ -84,6 +81,4 @@
     // \\// configures repo of "experimental" functions
     //=================================================
 
-
 }) ();
-

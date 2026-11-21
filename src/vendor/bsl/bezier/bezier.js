@@ -3,8 +3,6 @@
     var mat     = sn('mat');
     var bezier  = sn('bezier');
 
-
-
     bezier.weightify        = weightify;
     bezier.weightify        = weightify;
     bezier.points2bezier    = points2bezier;
@@ -17,6 +15,7 @@
 
     bezier.preparesOptimizedBezier = preparesOptimizedBezier;
     return;
+
 
     ///performance-optimized
     ///standalone framework for multidimensional Beizier pivots
@@ -65,7 +64,6 @@
         rack.updatesArrayOfPoints = updatesArrayOfPoints;
         rack.curvePivots2bezierPivots = curvePivots2bezierPivots();
         return rack;
-
 
         function fun( t )
         {
@@ -218,7 +216,6 @@
         ];
     }
 
-
     ///=============================================================
     ///3d poiont
     ///=============================================================
@@ -230,10 +227,6 @@
             weightify( parT, pivots, 2, 0, pivots.length )
         ];
     }
-
-
-
-
 
     /*
         ///=============================================================
@@ -362,10 +355,6 @@
         */
     }
 
-
-
-
-
     //***********************************************************
     // //\\ zeroBezier2upperSubbezier
     //***********************************************************
@@ -405,8 +394,6 @@
     // \\// zeroBezier2upperSubbezier
     //***********************************************************
 
-
-
     ///The same as zeroBezier2upperSubbezier( B, C, T ), but
     ///with 3 input pivots with A in an orbitrary position
     function bezier2upper( pivots, T )
@@ -432,8 +419,6 @@
         var Cs = C;
         return [As,Bs,Cs];
     }
-
-
 
     ///The same as zeroBezier2zeroSubbezier( B, C, T ), but
     ///with 3 input pivots with A in an orbitrary position
@@ -461,5 +446,3 @@
     // //\\// helpers
 
 }) ();
-
-

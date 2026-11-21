@@ -1,4 +1,3 @@
-
 ( function() {
     var { ns, sn, fconf, sconf, stdMod, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf } });

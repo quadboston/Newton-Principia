@@ -16,10 +16,6 @@
     return;
 
 
-
-
-
-
     function createButton({
         caption,
         buttonUniversalId,      //must be safe for JavaScript and CSS
@@ -53,7 +49,4 @@
         return butt;
     }
 
-
-
 }) ();
-

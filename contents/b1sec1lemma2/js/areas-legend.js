@@ -28,14 +28,12 @@
         });
         return;
 
-
         function setupEventsAreasLegend()
         {
             Object.keys( study.eventHandlers ).forEach( function( methodName ) {
                 document.getElementById( methodName )
                     .addEventListener( 'change', study.eventHandlers[ methodName ] );
             });
-
 
             // //\\ copy-pasted from gui-art
             gui.showFig = function(){
@@ -61,7 +59,6 @@
             }
             // \\// copy-pasted from gui-art
         };
-
 
         //======================================
         // //\\ event-handlers
@@ -100,7 +97,6 @@
         // \\// event-handlers
         //======================================
     }
-
 
     ///====================================================================
     /// create_digital_legend
@@ -184,7 +180,6 @@
 
     }
 
-
     function updateLegendAmounts(dr) {
         document.getElementById("figAmt").innerHTML =
             ((Math.sign( dr.figureArea )==-1)?"-":"" )+ "100.0";
@@ -200,4 +195,3 @@
     }
 
 }) ();
-

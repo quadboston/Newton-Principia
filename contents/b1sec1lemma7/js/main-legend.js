@@ -110,7 +110,6 @@
         `;
     }
 
-
     // called once per page load
     function create_digital_legend() {
         //console.log(sconf);
@@ -156,4 +155,3 @@
     }
 
 }) ();
-

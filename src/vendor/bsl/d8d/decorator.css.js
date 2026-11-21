@@ -109,7 +109,6 @@
         ns.globalCss.update( ret, spinnerClsId );
     }
 
-
     // defines css for arrow hover animations around draggable points
     function createSliderArrowsCSS()
     {
@@ -240,5 +239,3 @@
         globalCssCreated_flag = true;
     };
 })();
-
-

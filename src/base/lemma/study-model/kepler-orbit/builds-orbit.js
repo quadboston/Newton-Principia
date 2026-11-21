@@ -116,8 +116,6 @@
         ssD.foldPoints = foldPoints;
     }
 
-
-
     function calculateAngleIncrement(posPoint, qix) {
         //Calculate the angle of this point relative to the origin
         //-To avoid error where this is used, imagine splitting the orbit into
@@ -156,8 +154,6 @@
         return Math.round(angle * incrementsPerRadian);
     }
 
-
-
     function calculate_ds_dt(bP) {
         //Calculate speed (ds/dt) of the body at the input point on the orbit
 
@@ -182,7 +178,6 @@
         const deltaPosNormal = mat.scalarProduct(deltaPos, bP.uNormal);
         const deltaPosTangential = mat.scalarProduct(deltaPos, bP.uTangential);
 
-
         //Acceleration (dv/dt) for input point
         const actualForce = stdMod.calculateForce({
             bP,
@@ -194,7 +189,6 @@
         //Calculate normal and tangential components
         const a0Normal = mat.scalarProduct(a0, bP.uNormal);
         const a0Tangential = mat.scalarProduct(a0, bP.uTangential);
-
 
         //Normal direction
         //Know deltaPosNormal = v0Normal*t + 1/2*a0Normal*t^2
@@ -210,4 +204,3 @@
         return Math.abs(speed);
     }
 }) ();
-

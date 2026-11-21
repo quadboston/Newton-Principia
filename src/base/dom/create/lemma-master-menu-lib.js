@@ -1,4 +1,3 @@
-
 ( function() {
     var {
         sn, $$, haff,
@@ -9,12 +8,6 @@
     });
     sDomF.makes_logic_phaseTab_nonClickable = makes_logic_phaseTab_nonClickable;
     return;
-
-
-
-
-
-
 
 
     ///some (plugged in) sites transform tab-button to a tab-label by putting
@@ -64,6 +57,4 @@
         );
     }
 
-
 }) ();
-

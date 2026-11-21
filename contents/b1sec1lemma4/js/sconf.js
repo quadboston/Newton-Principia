@@ -34,7 +34,6 @@
         // \\// original material parameters
         //----------------------------------
 
-
         //----------------------------------
         // //\\ dataregs
         //----------------------------------
@@ -76,14 +75,12 @@
         // \\// dataregs
         //----------------------------------
 
-
         //Used to calculate slider width (left side of left figure, to right
         //side of right figure).
         const xSliderL = dataregs.drL.ctrlPts.untransformed[0].x;
         const ptsUntransformedR = dataregs.drR.ctrlPts.untransformed;
         const xSliderR = ptsUntransformedR[ptsUntransformedR.length - 1].x;
         const BASES_SLIDER_WIDTH_FACTOR = (xSliderR - xSliderL) / pictureWidth;
-
 
         //Common settings
         ssF.init_conf_common(BASES_SLIDER_WIDTH_FACTOR);
@@ -94,14 +91,12 @@
         sconf.MOVABLE_BASE_RADIUS = 3.2; // movable base points
         sconf.CTRL_RADIUS = 3.2;	// curve control points
 
-
         //predefined-topic colors [R, G, B, Adefault, A-mouse-highlighted]
         const {
             given,
             figureColor,
             widths,
         } = topicColors_repo;
-
 
         const predT =
         {
@@ -129,7 +124,6 @@
             "inscribed-rectangles-AacE" : topicColors_repo["inscribed-rectangles"],
             "inscribed-rectangles-PprT" : topicColors_repo["inscribed-rectangles"],
         }
-
 
         //=====================================
         // //\\ configures application engine
@@ -163,7 +157,6 @@
         // \\// configures application engine
         //=====================================
 
-
         //=====================================
         // //\\ patch for quick slider creation
         //      see //modern approach ... abandoned
@@ -196,7 +189,6 @@
                 letterAngle : 45,
                 fontSize : labelFontSize
             },
-
 
             p : {
                 caption: '𝑝',

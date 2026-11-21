@@ -7,11 +7,6 @@
     return;
 
 
-
-
-
-
-
     //===============================================================================
     // //\\ microAPI to load list of files
     //===============================================================================
@@ -40,7 +35,6 @@
         filesList,
         lastCb,     //fires up at the moment all files loaded
 
-
     ) {
         var loadedFiles     = [];
         var loadedFilesById = {};
@@ -62,7 +56,6 @@
                     //sets primary callback
                     xml.onreadystatechange = process_by_good_readystate;
                 }
-
 
             } catch ( e ) {	//	TODM
                 //Give up.
@@ -105,12 +98,6 @@
         });
         return;
 
-
-
-
-
-
-
         function checkCompletion( fileItem )
         {
             if( completionCount === filesList.length ) {
@@ -123,4 +110,3 @@
     //===============================================================================
 
 }) ();
-

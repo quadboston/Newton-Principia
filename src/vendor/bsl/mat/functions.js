@@ -24,7 +24,6 @@
         return fun;
     }
 
-
     function squaredDistance(p1, p2) {
         const dx = p1.pos[0] - p2.pos[0];
         const dy = p1.pos[1] - p2.pos[1];
@@ -34,6 +33,5 @@
     function lengthOf(pt1, pt2) {
         return Math.sqrt(mat.squaredDistance(pt1, pt2));;
     }
-
 
 }) ();

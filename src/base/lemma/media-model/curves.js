@@ -17,7 +17,6 @@
     function paintsCurve({
         mmedia,     //where to attach: usually = stdMod.mmedia
 
-
         //fun is a function in model space for t,x,y
         // t |-> y
         // or
@@ -31,7 +30,6 @@
         //interdependent
         rgName,     //'curve-AB', optional
         pointsName, //'AB', optional, used if rgName, pointA and pointB are omitted
-
 
         //interdependent
         //todm      add tp-both-curves in call, don't make "tp-both-curves" automatic
@@ -78,8 +76,6 @@
         // \\// model-function to media-function conversion
         //-----------------------------------------------------------------
 
-
-
         //-----------------------------------------------------------------
         // //\\ rgName, pointA,B, start, step, tp-class
         //-----------------------------------------------------------------
@@ -109,9 +105,6 @@
         //-----------------------------------------------------------------
         // \\// rgName, pointA,B, start, step, tp-class
         //-----------------------------------------------------------------
-
-
-
 
         //====================================================
         // //\\ registers and paints to svg
@@ -151,9 +144,6 @@
         //====================================================
         // \\// registers and paints to svg
         //====================================================
-
-
-
 
         //====================================================
         // //\\ annotates curve if requested
@@ -205,6 +195,4 @@
         return rgX;
     }
 
-
 }) ();
-

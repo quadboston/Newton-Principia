@@ -116,8 +116,6 @@
                         // \\// do wrap into capture-method or refactor
                         //------------------------------------------------
 
-
-
                         fapp.captureWind.openWindow();
                         sDomN.captureButton$.html( 'close' );
                     } else {
@@ -182,12 +180,10 @@
         //--------------------------
     }
 
-
     function cre__medRootDetails( bgImagesAreLoaded_cb )
     {
         createsMediaRoot( bgImagesAreLoaded_cb );
     }
-
 
     function createsMediaRoot( bgImagesAreLoaded_cb )
     {
@@ -233,7 +229,6 @@
                             .a( 'src', imgRk.src )
                             ;
                     }
-
 
                     //***************************************************************
                     // //\\ makes s ubmodel visible in relevant egreg-GUI

@@ -14,14 +14,6 @@
     return;
 
 
-
-
-
-
-
-
-
-
     ///****************************************************
     /// model scenario
     /// is required; to skip define as ()=>{};
@@ -77,7 +69,6 @@
             nspaste( rg.F.pos, xy[iqF] );
         }
 
-
         //point on spheres
         {
             var R = rg.V.pos[1]; //because C is an origin [0,0]
@@ -109,7 +100,6 @@
             var Rend = fk[iqk][1];
             nspaste( rg.k.pos, [ -Rend * Math.sin( Fiend ), Rend * Math.cos( Fiend ) ] );
         }
-
 
         //areas
         {
@@ -161,9 +151,6 @@
         // \\// orbit areas
         //----------------------------------------
 
-
-
-
         pivots2graph( 'IK', sData.quadSolved.orbit, iqE, iqD, 'stroke' );
 
         pivots2graph( 'D𝑐𝑥E', kernel.Fkernel, iqE, iqD );
@@ -184,9 +171,6 @@
         // \\// v and momentum
         //---------------------------
     }
-
-
-
 
     function pivots2graph( pname, graph, lastIq, firstIq, fill0stroke )
     {
@@ -209,7 +193,6 @@
         buildsQuadPlot( rgX, fill0stroke );
     }
 
-
     function buildsQuadPlot( rgX, fill0stroke )
     {
         fill0stroke = fill0stroke || 'stroke';
@@ -231,4 +214,3 @@
     }
 
 }) ();
-

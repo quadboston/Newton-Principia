@@ -33,7 +33,6 @@
             }
         }
 
-
         rg.A.acceptPos = function( newPos )
         {
             var { alpha, beta } = pos2alpha8beta( newPos )
@@ -54,7 +53,6 @@
             }
         }
 
-
         rg.H.acceptPos = function( newPos )
         {
             //var H = rg.H;
@@ -64,6 +62,4 @@
 
     }
 
-
 }) ();
-

@@ -77,10 +77,6 @@
     // \\// inits drag model
     //==========================================
 
-
-
-
-
     //====================
     // //\\ finds draggee
     //      overrides default finder

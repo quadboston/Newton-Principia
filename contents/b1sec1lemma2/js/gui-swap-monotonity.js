@@ -52,7 +52,6 @@
         }
     }
 
-
     function removeOutdatedClasses(dr)
     {
         let dv = dr.yVariations;
@@ -94,4 +93,3 @@
     }
 
 }) ();
-

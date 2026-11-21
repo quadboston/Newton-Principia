@@ -5,7 +5,6 @@
     } = window.b$l.nstree();
     var integral = sn( 'integral', mat );
 
-
     /*
     //----------------------------------------------------
     // //\\ test
@@ -33,18 +32,11 @@
     return;
 
 
-
-
-
-
-
-
     ///calculates integral from 0 to x of dx^3+ax^2+bx+c
     function polynomial( d, a, b, c, x )
     {
         return ( ( ( d/4*x + a/3 ) * x + b/2 ) * x + c ) * x;
     }
-
 
     function simpleIntegration({
         fun,
@@ -166,8 +158,6 @@
             }
         });
 
-
-
         var originG = simpleIntegration({
             fun         : funG,
             baseArray   : [ startGX, endGX ],
@@ -239,8 +229,6 @@
         findsMinOnIntervals( 'g' )
         return { originF : origin, originG, };
 
-
-
         function findsMinOnIntervals( f0g )
         {
             //finding fmin
@@ -274,7 +262,4 @@
         }
     }
 
-
 }) ();
-
-

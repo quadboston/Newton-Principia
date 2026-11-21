@@ -68,7 +68,6 @@
         // \\// points reused in config
         //=============================================
 
-
         //diagram sandbox spatial parameters
         //model's spacial unit expressed in pixels of the picture:
         //vital to set to non-0 value
@@ -136,7 +135,6 @@
             estimatedForceColor,
             proofLight,
         } = topicColors_repo;
-
 
         var topicColors_elected =
         {
@@ -263,7 +261,6 @@
                 cssClass : 'hidden',
                 doPaintPname : false,
             },
-
 
             //---------------------------------------
             // //\\ draggable points

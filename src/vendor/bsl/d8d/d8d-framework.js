@@ -62,7 +62,6 @@
         var { givenClickEvent, eventPos_2_surfacePos } = d8dp.creFW_BSLd8d1BASE({
             surface : dragSurface,
 
-
             //most basic handler between basic-d8d-constructor and app.,
             //receives data from low-level "driver", receives moves and
             //       surface points, processes "doProcess"-like calls,
@@ -103,9 +102,6 @@
             updateAllDecPoints,
             givenClickEvent,
         };
-
-
-
 
         function movesAndFindsHandle( rootEvent )
         {
@@ -160,9 +156,6 @@
             }
         }
 
-
-
-
         //==========================================
         // //\\ converts pos-in-parent to dom-pos
         //==========================================
@@ -186,8 +179,6 @@
         // \\// converts pos-in-parent to dom-pos
         //==========================================
 
-
-
         function updateAllDecPoints()
         {
             dragWraps.forEach( function( dragWrap ) {
@@ -197,7 +188,6 @@
                 );
             });
         }
-
 
         ///Creates drag handler for each specific point-draggee.
         ///Usually called when each model point is created to be dragged.
@@ -291,7 +281,6 @@
             // \\// creates and updates drag overlay: decoration point
             //========================================================
 
-
             //=====================================================
             // //\\ drag8drop main wrapper over item
             //=====================================================
@@ -327,8 +316,6 @@
             sn( 'dragPriority', pointWrap, 0 );
             return; // dragWrap; //todm consider adding this
                     //to pointWrap
-
-
 
             //=====================================================
             // //\\ tiny wrap around doProcess
@@ -415,9 +402,6 @@
                 }
             }
         }
-
-
-
 
         ///d8d handler shared between all draggee-points.
         ///Input: point_on_dragSurf
@@ -551,7 +535,6 @@
                         closestTd = td;
                         closestDragPriority = pointWrap.dragPriority || 0;
 
-
                         //vital-for-mobile
                         //ns.d('closest=' + pointWrap.pname +
                         //     ' fw' + dragWrap.createdFramework.frameworkId );
@@ -571,10 +554,6 @@
     ///============================================================
     /// \\// inits common framework for the set of  point-draggees
     ///============================================================
-
-
-
-
 
     ///Note:     1. this is a throttler not bouncer,
     ///          2. the "return" value of throttle is lost, this is
@@ -596,8 +575,6 @@
         var arg_closured;
         var dragType_closured;
         return throttledFunction;
-
-
 
         function throttledFunction( arg, dragType )
         {

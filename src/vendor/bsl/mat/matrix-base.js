@@ -2,7 +2,6 @@
 //        (c) 2017 Konstantin Kirillov. License MIT.
 //        Origin taken from: /var/www/html/bids/done/SMALL/ww/calibrator/now/vendor/btb/matrix.js. Nov. 2014.
 
-
 ( function ( window ) {
     var ns	    = window.b$l;
     var mat     = ns.sn( 'mat' );
@@ -27,7 +26,6 @@
     mat.scalarProduct       = scalarProduct;
     mat.angleBetweenLineSegments = angleBetweenLines; //todm remove aliasing
     return;
-
 
 
     /*
@@ -72,8 +70,6 @@
         return ret;
     }
 
-
-
     ///Output: lin. comb. of two 3d vect.
     function sm3( a1, v1, a2, v2 )
     {
@@ -83,7 +79,6 @@
             a1 * v1[2] + a2 * v2[2],
         ];
     }
-
 
     ///gets vector's abs value and its direction:
     ///for 2d and 3d vectors
@@ -117,8 +112,6 @@
         };
     }
 
-
-
     ///gets scalar product of two vectors,
     ///mostly for shortening names of variables
     function scalarProduct(
@@ -141,8 +134,6 @@
             v[0] * sn + v[1] * cs,
         ];
     }
-
-
 
     ///Given 2d-vector in input, returns unit normal to it.
     ///Normal = anticlockwise-PI/2-turned-given-vector.
@@ -204,8 +195,6 @@
         return ret;
     }
 
-
-
     ///gets vector's abs value and it's direction for vector p2-p1
     function p1_to_p2(
         p1,
@@ -216,8 +205,6 @@
         res.vector = vector;
         return res;
     }
-
-
 
     //intersection of two lines to be found:
     //u,u' are (non necessarily unit) vectors, v,v' initial positions,
@@ -250,7 +237,6 @@
         return r;
     }
 
-
     ///returns intersection of two lines built upon line segments
     ///(A,B) and (AS,BS)
     function lineSegmentsCross( A, B, AS, BS ) {
@@ -258,8 +244,6 @@
         var us = [ BS[0] - AS[0], BS[1] - AS[1] ];
         return linesCross( u,A,us,AS );
     }
-
-
 
     ///drops perpendicular which starts at point S and is
     ///a perpendicular to line segment AB,
@@ -279,8 +263,6 @@
 
         return linesCross( u,v,us,vs );
     }
-
-
 
     function dropPerpendicularDetails( S, A, B )
     {
@@ -309,7 +291,6 @@
             unitLine,
         };
     }
-
 
     ///*****************************************
     /// possible mess:

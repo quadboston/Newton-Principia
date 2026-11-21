@@ -9,9 +9,6 @@
     return;
 
 
-
-
-
     function setModule()
     {
         sapp.finish_sapp_UI = finish_sapp_UI;
@@ -26,6 +23,4 @@
         ssF.mediaModelInitialized = true;
     }
 
-
 }) ();
-

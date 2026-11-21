@@ -10,12 +10,6 @@
     return;
 
 
-
-
-
-
-
-
     ///=====================================================
     /// called by User from lab-button, sDomN.captureButton$
     /// reports values for sconf.js which initialize S, P, Q,

@@ -4,8 +4,6 @@
     var integral    = sn('integral', mat);
     var bezier      = sn('bezier');
 
-
-
     //bezier.zbezier2integralY = zbezier2integralY;
     bezier.zbezier2areas = zbezier2areas;
 
@@ -72,7 +70,6 @@
         // \\// development prints
         //---------------------------------------
 
-
         var areaUnderTangentLine_tanT = 0.5 * tanT * endX * endX;
         var areaBetweenTanT_8_curve     = fullAreaBetweenBx8axisY - areaUnderTangentLine_tanT;
 
@@ -96,6 +93,4 @@
     //c cc( zbezier2areas( [[0.5,1],[1,1]], 1, 0.5, [ 1/4 + 1/12, 1/2+2/12 ] ) );   //1/3 - 1/4 = 1/12,
     //c cc( zbezier2areas( [[0.5,1],[1,1]], 1, 0.5, [ 1/3, 2/3 ] ) );   //1/3 - 1/4 = 1/12,
 
-
 }) ();
-

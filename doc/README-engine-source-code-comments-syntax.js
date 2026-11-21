@@ -3,7 +3,6 @@
 
        //\\// The cope of this comment does extend till the end of the file
 
-
     ///This scope is till the end of the first nest below. In this example, till the line "})();"
     ( function() {
 
@@ -35,7 +34,3 @@
         // \\// helpers
 
     })();
-
-
-
-

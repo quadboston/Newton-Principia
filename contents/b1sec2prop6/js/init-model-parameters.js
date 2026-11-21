@@ -24,7 +24,6 @@
         return [ scaleX, scale ];
     }
 
-
     function init_model_parameters()
     {
         ///curve pars

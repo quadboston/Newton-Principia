@@ -32,7 +32,6 @@
         graphFM_self.changesInnerDimensions = changesInnerDimensions;
         return graphFM_self;
 
-
         ///==========================================
         /// API engine
         ///==========================================
@@ -45,7 +44,6 @@
 
                 colorThreadArray,
                 style,
-
 
                 //optional, if not set will be found,
                 //does not find yMin, yMax for each single function y(x), finds
@@ -115,8 +113,6 @@
             // \\// finds number of polylines
             //----------------------------------------------
 
-
-
             //----------------------------------------
             // //\\ autosets x and y ranges preventing
             //      x and y to go outside dimX, dimY
@@ -181,9 +177,6 @@
             //----------------------------------------
             // \\// autosets x and y ranges preventing
             //----------------------------------------
-
-
-
 
             if( doSideAxes ) {
 
@@ -359,8 +352,6 @@
             return;
         }
 
-
-
         ///clip region for plots: the plot area, widened by half the
         ///plot stroke so curves along an edge are not thinned
         function setsPlotAreaClip( gMedia, marginX, marginY, width, height )
@@ -380,7 +371,6 @@
             rect.setAttribute( 'width', width + 2 * HALF_STROKE );
             rect.setAttribute( 'height', height + 2 * HALF_STROKE );
         }
-
 
         //==================================================
         // //\\ builds svg-graph-container
@@ -407,9 +397,6 @@
         // \\// builds svg-graph-container
         //==================================================
 
-
-
-
         ///==========================================
         /// resizing helper
         ///==========================================
@@ -426,7 +413,6 @@
                          dimXnew.toFixed() + ' ' + dimYnew.toFixed() );
             }
         }
-
 
         ///==========================================
         /// cleanup helper

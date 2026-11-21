@@ -39,8 +39,6 @@
         study.calculateAndStoreTransformedFigureAreaRatios();
     }
 
-
-
     ///second point in changes contains first turning point
     ///if function is monotonic, then there is only
     ///"one turning point" - a last one
@@ -137,12 +135,9 @@
         dr.yVariations.yRef = dr.yVariations.maxY;
     }
 
-
-
     function isMonotonic(dr) {
         return dr?.yVariations?.changes?.length === 1;
     }
-
 
     function areBothFiguresMonotonic() {
         const drL = stdL2.dataregs.drL;
@@ -151,7 +146,3 @@
         return (isMonotonic(drL) && isMonotonic(drR));
     }
 }) ();
-
-
-
-

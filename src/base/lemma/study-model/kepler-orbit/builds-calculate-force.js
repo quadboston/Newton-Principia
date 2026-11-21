@@ -52,7 +52,6 @@
 
         ssD.DqSubstituteActualForce = delta_q_max;
 
-
         //todo
         //Add models here that have been checked
         switch(sconf.sappId) {
@@ -72,7 +71,6 @@
         //-NaN data points for the estimated force curve
         //-Jagged/noisy estimated force curve
     }
-
 
     function calculateForce({
         parq, //orbit argument
@@ -120,7 +118,6 @@
         return force;
     }
 
-
     function calculateActualForce({
         bP    //orbit point P rack
     }) {
@@ -142,7 +139,6 @@
         const sign = calculateSign(bP, [-PV0, -PV1]);
         return sign * force;
     }
-
 
     function calculateEstimatedForce({
         parq, //orbit argument
@@ -173,7 +169,6 @@
         const sign = calculateSign(bP, [QR0, QR1]);
         return sign * force;
     }
-
 
     function calculateSign(bP, direction) {
         //Calculate by comparing directions of the following vectors

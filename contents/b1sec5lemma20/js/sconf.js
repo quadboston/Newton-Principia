@@ -74,7 +74,6 @@
             ellipse,
         } = topicColors_repo;
 
-
         const topicColors_elected =
         {
             static,
@@ -95,7 +94,6 @@
             "aux-dots"              : aux,
         }
         const pt = topicColors_elected;
-
 
         var originalPoints =
         {
@@ -269,7 +267,6 @@
         // \\// original material parameters
         //----------------------------------
 
-
         var linesArray =
         [
             { 'KS' : {
@@ -384,7 +381,6 @@
             //------------------------
             // \\// linear-generators
             //------------------------
-
 
             //------------------------
             // //\\ aux-lines

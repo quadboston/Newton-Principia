@@ -37,7 +37,6 @@
             ]],
         ];
 
-
         function getMonotonic(val) {
             return `
                 fapp?.stdL2?.study?.areBothFiguresMonotonic() ?
@@ -45,7 +44,6 @@
                 "<span class='limit'>N/A<span>";
                 `;
         }
-
 
         var rowsCount       = legendScriptParsed.length;
         var clustersCount   = legendScriptParsed[0].length;
@@ -87,4 +85,3 @@
     //=========================================
 
 }) ();
-

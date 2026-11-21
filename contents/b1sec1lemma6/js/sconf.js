@@ -1,4 +1,3 @@
-
 ( function() {
     var { ns, fconf, sconf, topicColors_repo } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
@@ -66,7 +65,6 @@
 
         //to avoid rounding errors as B gets very close to A
         sconf.NON_ZERO_A_PREVENTOR = 0.0001;
-
 
         //================================================================
         // //\\ original positions

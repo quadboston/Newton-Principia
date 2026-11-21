@@ -121,7 +121,6 @@
         return svgel;
     };
 
-
     ///Input: arg.pivots are pivot points
     nssvg.polyline = function( arg )
     {
@@ -199,7 +198,6 @@
                 //if( key === 'points' && val.indexOf( 'NaN' ) > -1 ) {
         strokeWidth && svgel.setAttributeNS( null, 'stroke-width', strokeWidth || 1 );
     }
-
 
     /*
      * apparently no longer used,

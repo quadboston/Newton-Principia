@@ -13,12 +13,6 @@
     return;
 
 
-
-
-
-
-
-
     function setModule()
     {
         ssF.modPos_2_GUI = modPos_2_GUI;
@@ -112,8 +106,6 @@
         // \\// slider object
         //----------------------------------------------------------------------------
 
-
-
         //----------------------------------------------------------------------------
         // //\\ slider api
         //----------------------------------------------------------------------------
@@ -160,9 +152,7 @@
         // \\// slider api
         //----------------------------------------------------------------------------
 
-
         modPos_2_GUI( magnit_api );
-
 
         //----------------------------------------------------------------------------
         // //\\ slider methods api
@@ -180,12 +170,6 @@
         // \\// slider methods api
         //----------------------------------------------------------------------------
         return;
-
-
-
-
-
-
 
         function stdMod_model8media_upcreate() {
             stdMod.model8media_upcreate();
@@ -205,7 +189,6 @@
             magnit_api.model8media_upcreate();
             return true;
         }
-
 
         function value2validate2pos( val )
         {
@@ -227,9 +210,6 @@
             magnit_api.pos2value__8__m8m_upcreate( new_modelPos );
         }
     }
-
-
-
 
     ///updates media position of svg-shape from
     ///model position of this shape;
@@ -259,7 +239,6 @@
         }
     };
 
-
     ///fixes slider pointer detectibility upon mode
     function toogle_detectablilitySliderPoints4Tools()
     {
@@ -270,6 +249,4 @@
         })
     }
 
-
 }) ();
-

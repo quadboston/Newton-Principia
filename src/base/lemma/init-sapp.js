@@ -57,7 +57,6 @@
         // \\// definitions
         //======================================================
 
-
         //==============================================================
         // //\\ shifted-landing-frames-fix-patch
         //==============================================================
@@ -73,7 +72,6 @@
         //==============================================================
         // \\// shifted-landing-frames-fix-patch
         //==============================================================
-
 
         stdMod.init_model_parameters();
         //todm: rename with "dragWrapGenList":
@@ -137,7 +135,6 @@
             stdMod.model8media_upcreate = ns.throttle( stdMod.model8media_upcreate, 20 );
         }
     }
-
 
     ///adds plain point dragger if either draggableX, ...Y is defined
     ///todo bad: dragWrap_gen_list --> rgDict__2__draggers_list

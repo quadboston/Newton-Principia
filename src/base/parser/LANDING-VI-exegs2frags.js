@@ -6,7 +6,6 @@ const { ns, eachprop, exegs, topics, fconf, references} = window.b$l.apptree({
         },
     });
 
-
     //*************************************************
     //todm: buggy
     //      1.Spanish forbidden, 2.non-reliable parsing
@@ -19,6 +18,7 @@ const { ns, eachprop, exegs, topics, fconf, references} = window.b$l.apptree({
     //possible alternative:
     //var ACTION_SPLITTER = /[\u00BF-\u00BF]/g;
     return;
+
 
     ///===================================================================
     ///Splits bodyscript-of-exegesis into array of "active"-fragments.

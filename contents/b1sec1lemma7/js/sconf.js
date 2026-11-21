@@ -1,4 +1,3 @@
-
 ( function() {
     var { ns, fconf, sconf, topicColors_repo } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
@@ -188,7 +187,6 @@
                 cssClass: 'logic_phase--proof',
             },
 
-
             r : { //hidden but used to calc pos of b
                 pos: r,
                 letterAngle : 135,
@@ -249,7 +247,6 @@
 
             { 'A,DLeft'  : { pcolor : givenColor, 'stroke-width' : 2, } },
         ]
-
 
         //----------------------------------
         // //\\ curve pars

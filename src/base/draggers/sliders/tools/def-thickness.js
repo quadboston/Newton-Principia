@@ -13,18 +13,10 @@
     return;
 
 
-
-
-
-
-
-
     function setModule()
     {
         pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
     }
-
-
 
     function createSliderPlaceholder_thickness()
     {
@@ -42,8 +34,6 @@
             stdMod,
         });
     }
-
-
 
     function magnitude2app( magnit_api, newValue )
     {
@@ -67,4 +57,3 @@
     }
 
 }) ();
-

@@ -4,7 +4,6 @@
     } = window.b$l.apptree({
     });
 
-
     ssD.bookReferences =
     {
         ////no unescaped special chars between backticks `...`

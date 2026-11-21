@@ -16,13 +16,6 @@
     return;
 
 
-
-
-
-
-
-
-
     function create_digital_legend()
     {
         return;
@@ -51,12 +44,10 @@
             ////'_' is replaced with ' ' in caption,
             ////**********************************************************************************
 
-
              //first table row
             'none,,null none,,"left&nbsp;area:"        ' +
             'none,,"right&nbsp;area:"        ' +
             'none,,"left&nbsp;/&nbsp;right&nbsp;ratio:"',
-
 
              //second table row
             'none,,"bar&nbsp;to&nbsp;bar&nbsp;ratio:" ' +
@@ -103,8 +94,6 @@
             updatesDataInCell,
         })
         return;
-
-
 
         /*
         //no dice for caption row
@@ -164,4 +153,3 @@
     //=========================================
 
 }) ();
-

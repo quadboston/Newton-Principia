@@ -14,6 +14,7 @@
     userOptions.shouldShowSubessayMenu = shouldShowSubessayMenu;
     return;
 
+
     function showingLatin() {
         return sessionStorage.getItem(LATIN) === 'true';
     }

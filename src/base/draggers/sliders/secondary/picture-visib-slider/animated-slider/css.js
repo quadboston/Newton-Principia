@@ -2,10 +2,6 @@
     var ns = window.b$l;
     var anslider = ns.sn('animated-slider');
 
-
-
-
-
     anslider.css = function(
         ///all input pars are optional
         cssp,
@@ -111,5 +107,3 @@
     };
 
 })();
-
-

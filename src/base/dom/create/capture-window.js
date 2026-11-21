@@ -12,10 +12,6 @@
     return;
 
 
-
-
-
-
     function createsCaptureWindow()
     {
         ///this thing collects captured states:
@@ -116,6 +112,4 @@
         */
     };
 
-
 }) ();
-

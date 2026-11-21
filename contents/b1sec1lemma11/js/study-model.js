@@ -52,7 +52,6 @@
                 //keeps point D "under existing ratio of angle"
                 rg.d.pos[0] = rg.b.pos[0] + angD * rg.b.pos[1];
 
-
                 rg.B.dragPriority = rg.B.pos[0] <= 0.00001 ? 4 : 2;
                 return true; //true means: do accept new pos
             };
@@ -154,4 +153,3 @@
     }
 
 }) ();
-

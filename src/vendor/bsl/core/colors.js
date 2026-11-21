@@ -4,7 +4,6 @@
     //reg. ex for string aka rgba(4,4,4,0.1) to array
     ns.hslo_2_rgba_low8high = hslo_2_rgba_low8high;
 
-
     //api:arg = [r,g,b,a ]
     ns.rgbaArr2hsla = function( arg ) {
         var hsl = ns.rgb2hsl( arg[0],arg[1],arg[2] );
@@ -104,8 +103,6 @@
       var mm = ll - 0.5 * cc;
       return [ rgb[0] + mm, rgb[1] + mm, rgb[2] + mm];
     };
-
-
 
     //https://stackoverflow.com/questions/39118528/rgb-to-hsl-conversion
     //this needs license and proofreading
