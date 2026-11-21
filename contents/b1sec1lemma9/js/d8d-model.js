@@ -1,6 +1,6 @@
 (function () {
     var { ns, sn, bezier, fapp, fconf, sconf, sDomF, sDomN, amode, ssD, ssF, rg, stdMod, }
-        = window.b$l.apptree({ stdModExportList : { initDragModel, }, });
+        = window.b$l.apptree({ stdModExportList: { initDragModel, }, });
     return;
 
 
@@ -25,10 +25,10 @@
         wpoint.dragPriority     = 9;
         wpoint.spinnerClsId       = 'B';
         createDragger({
-            achieved    : sconf.claimRatio,
-            pointWrap   : wpoint,
-            cssClasses  : ['axis-y'],
-            doProcess   : function (arg) {
+            achieved: sconf.claimRatio,
+            pointWrap: wpoint,
+            cssClasses: ['axis-y'],
+            doProcess: function (arg) {
                 var ach = arg.pointWrap.achieved;
                 switch (arg.down_move_up) {
                     case 'up':   ach.achieved = ssD.claimRatio;
@@ -68,10 +68,10 @@
         wpoint.dragDecorColor   = ns.haz(rg.E, 'pcolor') || sDomF.getFixedColor('given');
         wpoint.spinnerClsId       = 'E';
         createDragger({
-            achieved            : rg.E.pos.concat([]),
-            pointWrap           : wpoint,
-            cssClasses          : ['axis-y'],
-            doProcess : function (arg) {
+            achieved: rg.E.pos.concat([]),
+            pointWrap: wpoint,
+            cssClasses: ['axis-y'],
+            doProcess: function (arg) {
                 var ach = arg.pointWrap.achieved;
                 switch (arg.down_move_up) {
                     case 'down':
@@ -115,10 +115,10 @@
 
         if (!sconf.hideProofSliderCompletely) {
             createDragger({
-                achieved            : sconf.tC,
-                pointWrap           : rg.C,
-                cssClasses          : ['green'],
-                doProcess : function (arg) {
+                achieved: sconf.tC,
+                pointWrap: rg.C,
+                cssClasses: ['green'],
+                doProcess: function (arg) {
                     var ach = arg.pointWrap.achieved;
                     switch (arg.down_move_up) {
                         case 'up':   //.this is done through proofSlider: ach.achieved = ssD.tC;
@@ -165,10 +165,10 @@
             wpoint.dragDecorColor   = ns.haz(rg.pivotPoint1, 'pcolor') || sDomF.getFixedColor('proof');
             wpoint.spinnerClsId     = 'pivotPoint1';
             createDragger({
-                achieved            : ssD.curvePivots[1].concat([]),
-                pointWrap           : wpoint,
-                cssClasses          : ['axis-x'],
-                doProcess : function (arg) {
+                achieved: ssD.curvePivots[1].concat([]),
+                pointWrap: wpoint,
+                cssClasses: ['axis-x'],
+                doProcess: function (arg) {
                     var ach = arg.pointWrap.achieved;
                     var pv = ssD.curvePivots[1];
                     switch (arg.down_move_up) {
@@ -211,10 +211,10 @@
         wpoint.spinnerClsId        = 'pivotPoint2';
 
         createDragger({
-            achieved            : sconf.curvePivots[2].concat([]),
-            pointWrap           : wpoint,
-            cssClasses          : ['given', 'rotate'],
-            doProcess : function (arg) {
+            achieved: sconf.curvePivots[2].concat([]),
+            pointWrap: wpoint,
+            cssClasses: ['given', 'rotate'],
+            doProcess: function (arg) {
                 var ach = arg.pointWrap.achieved;
                 var pv = ssD.curvePivots[2];
                 switch (arg.down_move_up) {

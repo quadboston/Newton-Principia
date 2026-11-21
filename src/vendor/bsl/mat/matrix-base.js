@@ -187,7 +187,7 @@
                 -unit[0]*norm1[2] - unit[2]*norm1[0],
                 unit[0]*norm1[1] - unit[1]*norm1[0],
             ];
-            var ret = { abs, orts : [norm1, norm2,], unit };
+            var ret = { abs, orts: [norm1, norm2,], unit };
         }
         return ret;
     }
@@ -280,7 +280,7 @@
         var perpAbs = Math.sqrt(hx*hx + hy*hy);
         return {
             crossPoint,
-            perp : [hx, hy],
+            perp: [hx, hy],
             perpAbs,
             lineForPerp,
             unitLine,
@@ -348,7 +348,7 @@
         var unitVector2 = p1_to_p2(vector2[0], vector2[1]).unitVec;
         var cos = unitVector1[0]*unitVector2[0] + unitVector1[1]*unitVector2[1];
         var sin = unitVector1[0]*unitVector2[1] - unitVector1[1]*unitVector2[0];
-        return { cos, sin, angle:Math.atan2(sin, cos) };
+        return { cos, sin, angle: Math.atan2(sin, cos) };
     }
 
 })(window);

@@ -1,6 +1,6 @@
 (function () {
     var { ns, fconf, sconf, topicColors_repo, } =
-        window.b$l.apptree({ ssFExportList : { init_conf } });
+        window.b$l.apptree({ ssFExportList: { init_conf } });
     return;
 
 
@@ -145,10 +145,10 @@
             proofColor,
             hidden,
             time: estimatedForceColor,
-            curvatureCircle : infoColor,
-            force : forceColor,
+            curvatureCircle: infoColor,
+            force: forceColor,
             orbit: bodyColor,
-            APQ     : bodyColor,
+            APQ: bodyColor,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -158,8 +158,8 @@
         // //\\ points to approximate and draw original curve
         //---------------------------------------------------
         var foldPoints  = (new Array(200)).fill({}).map(() => ({
-            pcolor      : invalidColor,
-            doPaintPname : false,
+            pcolor: invalidColor,
+            doPaintPname: false,
         }));
 
         //---------------------------------------------------
@@ -170,151 +170,151 @@
         //---------------------------------------------------
 
         Object.assign(originalPoints, {
-            A : {
+            A: {
                 pos: A,
-                pcolor : proofColor,
+                pcolor: proofColor,
             },
 
-            S : {
+            S: {
                 pos: S,
-                pcolor : sunColor,
-                letterAngle : -90,
-                draggableX  : true,
-                draggableY  : true,
+                pcolor: sunColor,
+                letterAngle: -90,
+                draggableX: true,
+                draggableY: true,
             },
 
-            P : {
-                pcolor : bodyColor,
-                letterAngle : 70,
-                draggableX  : true,
-                draggableY  : true,
+            P: {
+                pcolor: bodyColor,
+                letterAngle: 70,
+                draggableX: true,
+                draggableY: true,
             },
 
-            Q : {
-                pcolor : estimatedForceColor,
-                letterAngle : 225,
-                letterRotRadius : 40,
-                draggableX  : true,
-                draggableY  : true,
+            Q: {
+                pcolor: estimatedForceColor,
+                letterAngle: 225,
+                letterRotRadius: 40,
+                draggableX: true,
+                draggableY: true,
             },
 
-            T : {
-                pcolor : estimatedForceColor,
-                letterAngle : 180,
+            T: {
+                pcolor: estimatedForceColor,
+                letterAngle: 180,
             },
 
-            R : {
-                pcolor : estimatedForceColor,
-                letterAngle : 45,
+            R: {
+                pcolor: estimatedForceColor,
+                letterAngle: 45,
             },
 
-            Z : {
-                pcolor : proofColor,
-                letterAngle : 45,
+            Z: {
+                pcolor: proofColor,
+                letterAngle: 45,
             },
 
-            Zminus : {
-                undisplayAlways : true,
-                doPaintPname : false,
+            Zminus: {
+                undisplayAlways: true,
+                doPaintPname: false,
             },
 
-            Y : {
-                pcolor : proofColor,
-                letterAngle : -90,
+            Y: {
+                pcolor: proofColor,
+                letterAngle: -90,
             },
 
-            V : {
+            V: {
                 pos: V,
-                pcolor : proofColor,
-                letterAngle : -45,
+                pcolor: proofColor,
+                letterAngle: -45,
             },
 
-            L : {
-                pcolor : proofColor,
-                letterAngle : -45,
+            L: {
+                pcolor: proofColor,
+                letterAngle: -45,
             },
 
             //center of instant curvature circle
-            C : {
-                pos : C,
-                caption : 'Rc',
-                pcolor : infoColor,
-                letterAngle : -45,
-                undisplayAlways : true, // not respected?
+            C: {
+                pos: C,
+                caption: 'Rc',
+                pcolor: infoColor,
+                letterAngle: -45,
+                undisplayAlways: true, // not respected?
             },
 
-            nonSolvablePoint : {
+            nonSolvablePoint: {
                 pos: [0, 0], //will be calculated
-                caption : '',
-                fontSize : '25',
-                undisplayAlways : true,
-                pcolor : invalidColor,
-                letterAngle : 0,
+                caption: '',
+                fontSize: '25',
+                undisplayAlways: true,
+                pcolor: invalidColor,
+                letterAngle: 0,
             },
-            errorMessage : { // nonSolvablePoint message shown at to of canvas
-                pos : [20, 20],
-                showsWhileLettersHidden : true,
-                fontSize : '25',
-                pcolor : invalidColor,
-                letterAngle : 0,
-                unscalable  : true,
+            errorMessage: { // nonSolvablePoint message shown at to of canvas
+                pos: [20, 20],
+                showsWhileLettersHidden: true,
+                fontSize: '25',
+                pcolor: invalidColor,
+                letterAngle: 0,
+                unscalable: true,
             },
 
             //corollary 2
-            Tcol2 : {
-                caption : 'T',
-                pcolor : proofColor,
-                letterAngle : -45,
+            Tcol2: {
+                caption: 'T',
+                pcolor: proofColor,
+                letterAngle: -45,
             },
-            Rcol2 : {
-                caption : 'R',
-                pcolor : sunColor,
-                letterAngle : -45,
-                draggableX  : true,
-                draggableY  : true,
+            Rcol2: {
+                caption: 'R',
+                pcolor: sunColor,
+                letterAngle: -45,
+                draggableX: true,
+                draggableY: true,
             },
-            Gcol2 : {
-                caption : 'G',
-                pcolor : proofColor,
-                letterAngle : -45,
+            Gcol2: {
+                caption: 'G',
+                pcolor: proofColor,
+                letterAngle: -45,
             },
         });
 
         var linesArray = [
-            { 'PV' : { pcolor : proofHover }, },
-            { 'SV' : { pcolor : proofColor }, },
-            { 'AV' : { pcolor : proofColor }, },
-            { 'AP' : { pcolor : proofColor }, },
+            { 'PV': { pcolor: proofHover }, },
+            { 'SV': { pcolor: proofColor }, },
+            { 'AV': { pcolor: proofColor }, },
+            { 'AP': { pcolor: proofColor }, },
 
-            { 'PY' : { pcolor : proofColor }, },
-            { 'P,Zminus' : { pcolor : bodyColor }, },
-            { 'PZ' : { pcolor : proofColor }, },
-            { 'ZR' : { pcolor : proofColor }, },
+            { 'PY': { pcolor: proofColor }, },
+            { 'P,Zminus': { pcolor: bodyColor }, },
+            { 'PZ': { pcolor: proofColor }, },
+            { 'ZR': { pcolor: proofColor }, },
 
-            { 'PR' : { pcolor : proofColor }, },
-            { 'ZQ' : { pcolor : bodyColor }, },
+            { 'PR': { pcolor: proofColor }, },
+            { 'ZQ': { pcolor: bodyColor }, },
 
-            { 'RL' : { pcolor : proofHover }, },
-            { 'QL' : { pcolor : proofColor }, },
+            { 'RL': { pcolor: proofHover }, },
+            { 'QL': { pcolor: proofColor }, },
 
-            { 'SY' : { pcolor : proofColor }, },
-            { 'QR' : { pcolor : estimatedForceColor }, },
-            { 'QP' : { pcolor : proofColor }, },
-            { 'SQ' : { pcolor : proofColor }, },
-            { 'QT' : { pcolor : estimatedForceColor }, },
-            { 'PT' : { pcolor : proofHover }, },
+            { 'SY': { pcolor: proofColor }, },
+            { 'QR': { pcolor: estimatedForceColor }, },
+            { 'QP': { pcolor: proofColor }, },
+            { 'SQ': { pcolor: proofColor }, },
+            { 'QT': { pcolor: estimatedForceColor }, },
+            { 'PT': { pcolor: proofHover }, },
 
-            { 'PC' : { pcolor : infoColor }, },
+            { 'PC': { pcolor: infoColor }, },
 
             //corollary 2
-            { 'Rcol2,P' : { pcolor : proofColor }, },
-            { 'Rcol2,Tcol2' : { pcolor : proofColor }, },
-            { 'Tcol2,V' : { pcolor : proofColor }, },
-            { 'Gcol2,S' : { pcolor : proofColor }, },
-            { 'Gcol2,P' : { pcolor : proofColor }, },
-            { 'S,nonSolvablePoint' : { pcolor : invalidColor }, },
+            { 'Rcol2,P': { pcolor: proofColor }, },
+            { 'Rcol2,Tcol2': { pcolor: proofColor }, },
+            { 'Tcol2,V': { pcolor: proofColor }, },
+            { 'Gcol2,S': { pcolor: proofColor }, },
+            { 'Gcol2,P': { pcolor: proofColor }, },
+            { 'S,nonSolvablePoint': { pcolor: invalidColor }, },
 
-            { 'SP' : { pcolor : estimatedForceColor }, },
+            { 'SP': { pcolor: estimatedForceColor }, },
         ];
 
         ns.paste(sconf, {
@@ -322,7 +322,7 @@
             Q_STEPS,
             DATA_GRAPH_STEPS,
 
-            mediaBgImage : "diagram.png",
+            mediaBgImage: "diagram.png",
             topicColors_elected,
             originalPoints,
             linesArray,

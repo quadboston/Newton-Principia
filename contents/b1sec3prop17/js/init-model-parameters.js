@@ -2,7 +2,7 @@
     var {
         sn, mat, stdMod, sconf, rg, toreg,
     } = window.b$l.apptree({
-        stdModExportList : { init_model_parameters, },
+        stdModExportList: { init_model_parameters, },
     });
     var sop = sn('sampleOrbitParameters', sconf); //green conic
     return;

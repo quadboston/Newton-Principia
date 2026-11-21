@@ -2,7 +2,7 @@
     var {
         eachprop, rg, ssF, stdMod,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             create_digital_legend,
         },
     });
@@ -25,10 +25,10 @@
     ////**********************************************************************************
 
     var lemma6Data = {
-        claim : [
+        claim: [
             [['angleBAD', 'angle BAD', '-rg.AB.angleGrad.toFixed()+"ᵒ"']]
         ],
-        proof : [
+        proof: [
             [['angleBAD',  'angle BAD', '-rg.AB.angleGrad.toFixed()+"ᵒ"']],
             [['L', 'rectilinear angle', '(-(rg.curveRotationAngle.angle+rg.originalGapTangent.angle)*180/Math.PI).toFixed()+"ᵒ"']]
         ]
@@ -48,10 +48,10 @@
 
         // function defined in /src/base/lemma/media-model/main-legend.js
         ssF.createLogic_phaseLegend({
-            tableCaption    : '',
-            noTableTitle    : true,
-            stdMod_given    : stdMod,
-            logic_phase        : key,
+            tableCaption: '',
+            noTableTitle: true,
+            stdMod_given: stdMod,
+            logic_phase: key,
             rowsCount,
             clustersCount,
             makesBodyCluster,

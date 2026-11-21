@@ -4,7 +4,7 @@
         amode, sconf, sDomF, sDomN, ssD, ssF, sData, topicColors_repo,
         rg, toreg, stdMod,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             //media_upcreate,
             media_upcreate___part_of_medupcr_basic,
         },

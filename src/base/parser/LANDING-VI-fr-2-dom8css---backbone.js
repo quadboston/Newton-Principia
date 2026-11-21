@@ -3,7 +3,7 @@
         sn, eachprop, nspaste, haz, globalCss,
         sDomN, ssD, sDomF, ssF, exegs,
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             frags__2__dom_css_mjax_tpanchors,
             digestsSingleMessage_2_topics,
         },

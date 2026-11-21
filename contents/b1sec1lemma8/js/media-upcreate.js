@@ -2,7 +2,7 @@
     var {
         $$, haz, fconf, ssF, ssD, amode, stdMod, rg, toreg, nssvg
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             media_upcreate___part_of_medupcr_basic,
         },
     });
@@ -45,48 +45,48 @@
 
         ssF.paintsCurve({
                 //rgName    : will become 'arc-AB',
-                fun         : cfun.fun,
-                pointA      : rg.A,
-                pointB      : rg.B,
+                fun: cfun.fun,
+                pointA: rg.A,
+                pointB: rg.B,
 
                 //-----------------------------------------
                 // //\\ apparently this fixes
                 //-----------------------------------------
                 //      arc out of synch with B
-                start       : rg.A.pos[0],
-                step        : (rg.B.unrotatedParameterX - rg.A.pos[0]) / 20,
-                stepsCount  : 20,
+                start: rg.A.pos[0],
+                step: (rg.B.unrotatedParameterX - rg.A.pos[0]) / 20,
+                stepsCount: 20,
                 //-----------------------------------------
                 // \\// apparently this fixes
                 //-----------------------------------------
 
-                mmedia      : stdMod.mmedia,
-                addToStepCount : 1,
+                mmedia: stdMod.mmedia,
+                addToStepCount: 1,
         });
 
         ssF.paintsCurve({
-                rgName      : 'curve-AB',
-                fun         : cfun.fun,
+                rgName: 'curve-AB',
+                fun: cfun.fun,
 
                 //this makes curve's beginning tail going up - not good
                 //pointA      : rg.curveStart,
                 //so, we truncate it, but need to draw it separately later on,
-                pointA      : rg.A,
+                pointA: rg.A,
 
-                pointB      : rg.curveEnd,
-                mmedia      : stdMod.mmedia,
-                addToStepCount : 1,
+                pointB: rg.curveEnd,
+                mmedia: stdMod.mmedia,
+                addToStepCount: 1,
         });
 
         ///left branch of original curve is a reflection against axis y
         ssF.paintsCurve({
-                rgName      : 'left-curve-AB',
-                fun         : ssD.repoConf[2].fun,
+                rgName: 'left-curve-AB',
+                fun: ssD.repoConf[2].fun,
 
-                pointA      : rg.A,
-                pointB      : rg.curveLeftEnd,
-                mmedia      : stdMod.mmedia,
-                addToStepCount : 1,
+                pointA: rg.A,
+                pointB: rg.curveLeftEnd,
+                mmedia: stdMod.mmedia,
+                addToStepCount: 1,
         });
         //-------------------------------------------------
         // \\// original arc and curve
@@ -99,16 +99,16 @@
         //misleading notation: this is not ..._b, this is ..._B
         rg.derotated_b = toreg('derotated_b')('pos', [rg.B.unrotatedParameterX, 0])();
         ssF.paintsCurve({
-                rgName      : 'arc-Ab',
-                fun         : cfun.fun, //for l8, cust fun = 0 = rotated fun
-                pointA      : rg.A,
-                pointB      : rg.derotated_b,
-                mmedia      : stdMod.mmedia,
+                rgName: 'arc-Ab',
+                fun: cfun.fun, //for l8, cust fun = 0 = rotated fun
+                pointA: rg.A,
+                pointB: rg.derotated_b,
+                mmedia: stdMod.mmedia,
                 magnitude,
                 //addedCssClass: 'tp-arc-Ab tp-both-curves',
                 addedCssClass: 'tp-arc-Ab',
-                addToStepCount : 1,
-                stepsCount : fconf.sappId === "b1sec1lemma8" ? 200 : null,
+                addToStepCount: 1,
+                stepsCount: fconf.sappId === "b1sec1lemma8" ? 200 : null,
         });
         //-------------------------------------------------
         // \\// paints magnified curve

@@ -5,7 +5,7 @@
         stdMod,
     } = window.b$l.apptree({
         setModule,
-        ssFExportList : {
+        ssFExportList: {
             createSliderPlaceholder_thickness,
         },
     });
@@ -23,11 +23,11 @@
 
         ssF.sliderTemplate({
             magnit,
-            sliderCaption   : magnit,
-            cssClsKey       : ' ' + magnit,
-            max_magnit      : 30,
-            min_magnit      : 1,
-            SUGGESTED_COLOR : "#999999",
+            sliderCaption: magnit,
+            cssClsKey: ' ' + magnit,
+            max_magnit: 30,
+            min_magnit: 1,
+            SUGGESTED_COLOR: "#999999",
             magnitude2app,
             stdMod,
         });

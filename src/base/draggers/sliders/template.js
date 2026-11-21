@@ -4,7 +4,7 @@
         sconf, ssF, rgtools, topos,
         stdMod, rg,
     } = window.b$l.apptree({
-        modName : 'mediaModel_create',
+        modName: 'mediaModel_create',
         setModule,
     });
 
@@ -82,21 +82,21 @@
 
         var sliderStart_rg = pos2pointy(
                 'sliderStart_' + magnit,
-                { fill : '#9999dd', tpclass:magnit, cssClass : 'tofill tostroke', },
+                { fill: '#9999dd', tpclass: magnit, cssClass: 'tofill tostroke', },
         );
         var sliderEnd_rg = pos2pointy(
                 'sliderEnd_' + magnit,
-                { fill : '#9999dd', tpclass:magnit, cssClass : 'tofill tostroke', },
+                { fill: '#9999dd', tpclass: magnit, cssClass: 'tofill tostroke', },
         );
         ///draws rails
         var slider_rg = pivots_2_svgLineInRg(
              'slider-' + magnit,
              [sliderStart_rg, sliderEnd_rg],
              {
-                stroke : SUGGESTED_COLOR,
-                'stroke-width' : 3,
-                tpclass : magnit,
-                cssClass : 'tofill tostroke',
+                stroke: SUGGESTED_COLOR,
+                'stroke-width': 3,
+                tpclass: magnit,
+                cssClass: 'tofill tostroke',
              },
             stdMod,
         );
@@ -122,12 +122,12 @@
         pos2pointy(
             magnit,
             {
-                cssClass        : 'tostroke' + cssClsKey,
-                stroke          : SUGGESTED_COLOR,
-                'stroke-width'  : 2,
-                fill            : 'white',
-                r               : 5,
-                tpclass         : magnit,
+                cssClass: 'tostroke' + cssClsKey,
+                stroke: SUGGESTED_COLOR,
+                'stroke-width': 2,
+                fill: 'white',
+                r: 5,
+                tpclass: magnit,
             },
         );
         //-------------------------------------------------
@@ -138,12 +138,12 @@
         // //\\ text_svg
         //-------------------------------------------------
         magnit_api.text_svg = sv.printText({
-            parent          : stdMod.mmedia,
-            text            : sliderCaption,
-            style           : { 'font-size' : sconf.GENERIC_SLIDERS_FONT_SIZE +'px' },
-           'stroke-width'   : 1,
-            stroke          : SUGGESTED_COLOR,
-            fill            : SUGGESTED_COLOR,
+            parent: stdMod.mmedia,
+            text: sliderCaption,
+            style: { 'font-size': sconf.GENERIC_SLIDERS_FONT_SIZE +'px' },
+           'stroke-width': 1,
+            stroke: SUGGESTED_COLOR,
+            fill: SUGGESTED_COLOR,
         });
         $$.$(magnit_api.text_svg).cls('tp-' + magnit);
         //-------------------------------------------------
@@ -216,10 +216,10 @@
         var stdMod = api.stdMod;
         api.medpos = ssF.mod2inn_original(api.pos,);
         sv.u({
-            svgel   : api.svgel,
-            parent  : stdMod.mmedia,
-            cx : api.medpos[0],
-            cy : api.medpos[1],
+            svgel: api.svgel,
+            parent: stdMod.mmedia,
+            cx: api.medpos[0],
+            cy: api.medpos[1],
         });
         api.text_svg.setAttributeNS(null, 'x', api.medpos[0]-8);
         let txtPosY = sconf.GENERIC_SLIDER_HEIGHT_Y *

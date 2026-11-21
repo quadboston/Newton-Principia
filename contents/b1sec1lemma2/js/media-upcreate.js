@@ -1,6 +1,6 @@
 (function () {
     var { sn, haz, fapp, ssD, sapp, sconf, rg, amode, stdMod, }
-        = window.b$l.apptree({ setModule, stdModExportList : {
+        = window.b$l.apptree({ setModule, stdModExportList: {
              media_upcreate___before_basic_L2,
         },
     });
@@ -45,8 +45,8 @@
             }
             guicon.reset_hollowPoints({
                 dr,
-                onCurve:true,
-                onBase:true,
+                onCurve: true,
+                onBase: true,
             });
         });
 

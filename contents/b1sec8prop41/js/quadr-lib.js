@@ -4,7 +4,7 @@
 
 (function () {
     var { sn, sData, sconf, rg, } = window.b$l.apptree({
-        stdModExportList : { quadratures, forceIsBounded, }, });
+        stdModExportList: { quadratures, forceIsBounded, }, });
     var op = sn('orbitParameters', sconf);
     return;
 
@@ -127,7 +127,7 @@
         }
 
         sData.quadSolved =
-            { kernel : {
+            { kernel: {
                 //from start point
                 Tkernel,
                 Fkernel, //area, same factor as for F

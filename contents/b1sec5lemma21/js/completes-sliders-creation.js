@@ -3,7 +3,7 @@
         mat,
         rg,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             completesSlidersCreation,
         },
     });

@@ -1,6 +1,6 @@
 (function () {
     var { sn, nspaste, rg, stdMod, sconf, ssD, sData, }
-        = window.b$l.apptree({ stdModExportList : {
+        = window.b$l.apptree({ stdModExportList: {
             initiates_orbit8graph,
             rebuilds_orbit,
             initiates_kepler_config,
@@ -27,8 +27,8 @@
         }
         if (!sconf.omitGraph) {
             stdMod.graph = stdMod.createsGraph({
-                parentDom$ : stdMod.legendRoot$,
-                customXLegend : stdMod.customXLegend,
+                parentDom$: stdMod.legendRoot$,
+                customXLegend: stdMod.customXLegend,
             });
         }
         stdMod.creates_createOrUpdateOrbit();

@@ -1,5 +1,5 @@
 (function () {
-    var { fconf, stdMod, sconf, } = window.b$l.apptree({ stdModExportList : {
+    var { fconf, stdMod, sconf, } = window.b$l.apptree({ stdModExportList: {
             recreates_q2xy,
             recalculateOrbitStartAndEnd,
             calculateMaxGraphValues,

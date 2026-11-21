@@ -1,7 +1,7 @@
 (function () {
 const { sn, $$, eachprop, has, haz, hafff, fmethods,
         fconf, sconf, ssF, sDomF, rg,  amode, stdMod,
-} = window.b$l.apptree({ stdModExportList : {
+} = window.b$l.apptree({ stdModExportList: {
         media_upcreate___before_basic,
         media_upcreate___after_basic,
 }});
@@ -23,9 +23,9 @@ function media_upcreate___before_basic() {
 
     //***********************************************************
     //todo //patch
-    sn('displayPathStep', rg, { value : 1 });
-    sn('stepIx', rg, { value : 1 });
-    sn('p', rg.P, { abs : 1 });
+    sn('displayPathStep', rg, { value: 1 });
+    sn('stepIx', rg, { value: 1 });
+    sn('p', rg.P, { abs: 1 });
     //***********************************************************
 
     if (sconf.TIMER_AND_LOGIC_STEPS_COINSIDE ||
@@ -185,12 +185,12 @@ function pathDelays2forceDraggers() {
         let nam1 = 'VVV'+ix;
         let doPaintPname = false;
         Object.assign(rg[nam0], {
-            decStart    : 111111111,
+            decStart: 111111111,
             decEnd,
             doPaintPname,
         });
         Object.assign(rg[nam1], {
-            decStart    : 111111111,
+            decStart: 111111111,
             decEnd,
             doPaintPname,
         });

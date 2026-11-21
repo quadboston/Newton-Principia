@@ -68,13 +68,13 @@
         ///as of version 1072, calls this function from module bsl/slider/d8d-app-template.js
         ///there are too many drag-and-drop variants now, it's easy to be lost ...
         var slider = ns.sliderControl({
-            drawSurfaceDomEl:   return_slider.slider$(),
-            handleDomEl:        return_slider.draggee$(),
-            lowLimit:0.001,
-            maxLimit:1,
+            drawSurfaceDomEl: return_slider.slider$(),
+            handleDomEl: return_slider.draggee$(),
+            lowLimit: 0.001,
+            maxLimit: 1,
             //.callback when handler moves
-            dataInMove:  dataInMove,
-            dataInArrival   :dataInArrival
+            dataInMove: dataInMove,
+            dataInArrival: dataInArrival
         });
         return_slider.slider = slider;
         //.displays draggee caption at start up

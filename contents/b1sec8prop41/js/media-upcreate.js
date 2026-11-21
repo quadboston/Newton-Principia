@@ -4,7 +4,7 @@
         fconf, ssF, ssD, sData,
         amode, stdMod, sconf, rg, toreg,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             //these are standard template-names in core of src/base
             media_upcreate___part_of_medupcr_basic,
         },
@@ -45,12 +45,12 @@
                 ();
             fi.medpos = ssF.mod2inn(fi.pos);
             ssF.drawAngleFrom_rayAB2rayCD_at_medpos({
-                AB          : rg['CV'].pivots,
-                CD          : rg['CX'].pivots,
-                rgSample    : fi, //pname used for tp...
-                ANGLE_SIZE  : 2*rg.V.pos[1],
-                captionRadiusIncrease : 1.02,
-                caption     : 'φ',
+                AB: rg['CV'].pivots,
+                CD: rg['CX'].pivots,
+                rgSample: fi, //pname used for tp...
+                ANGLE_SIZE: 2*rg.V.pos[1],
+                captionRadiusIncrease: 1.02,
+                caption: 'φ',
             });
         }
 
@@ -62,12 +62,12 @@
                 ();
             XCY.medpos = ssF.mod2inn(XCY.pos);
             ssF.drawAngleFrom_rayAB2rayCD_at_medpos({
-                AB          : rg['CX'].pivots,
-                CD          : rg['CY'].pivots,
-                rgSample    : XCY, //pname used for tp...
-                ANGLE_SIZE  : 2*rg.V.pos[1],
+                AB: rg['CX'].pivots,
+                CD: rg['CY'].pivots,
+                rgSample: XCY, //pname used for tp...
+                ANGLE_SIZE: 2*rg.V.pos[1],
                 //captionRadiusIncrease : 1.02,
-                caption     : '',
+                caption: '',
             });
         }
 
@@ -87,23 +87,23 @@
         {
             let cName = 'MainCircle';
             //makesArc({ radius:rg.V.pos[1], angleMax:sconf.angleOfR, circleName:cName });
-            makesArc({ radius:rg.V.pos[1], angleMax:Math.PI, circleName:cName });
+            makesArc({ radius: rg.V.pos[1], angleMax: Math.PI, circleName: cName });
             stdMod.buildsQuadPlot(rg[cName]);
 
             cName = 'DCircle';
-            makesArc({ radius:rg.D.pos[1], angleMax:rg.X.FiD, circleName:cName });
+            makesArc({ radius: rg.D.pos[1], angleMax: rg.X.FiD, circleName: cName });
             stdMod.buildsQuadPlot(rg[cName]);
 
             cName = 'ECircle';
-            makesArc({ radius:rg.E.pos[1], angleMax:rg.X.FiD, circleName:cName });
+            makesArc({ radius: rg.E.pos[1], angleMax: rg.X.FiD, circleName: cName });
             stdMod.buildsQuadPlot(rg[cName]);
 
             cName = 'NK';
-            makesArc({ radius:rg.E.pos[1], angleMax:rg.X.FiD, angleMin:rg.Y.FiE, circleName:cName });
+            makesArc({ radius: rg.E.pos[1], angleMax: rg.X.FiD, angleMin: rg.Y.FiE, circleName: cName });
             stdMod.buildsQuadPlot(rg[cName]);
 
             cName = 'YX';
-            makesArc({ radius:rg.V.pos[1], angleMax:rg.X.FiD, angleMin:rg.Y.FiE, circleName:cName });
+            makesArc({ radius: rg.V.pos[1], angleMax: rg.X.FiD, angleMin: rg.Y.FiE, circleName: cName });
             stdMod.buildsQuadPlot(rg[cName]);
         }
 

@@ -1,6 +1,6 @@
 (function () {
     var { nspaste, mat, fconf, ssD, stdMod, sconf, rg,
-    } = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });
+    } = window.b$l.apptree({ stdModExportList: { model_upcreate, }, });
     return;
 
 
@@ -141,9 +141,9 @@
             //when the axes are variable, the curves are distorted when
             //compared, which is misleading for these models.
             const graphArg = {
-                xMin : 0,
-                xMax : sconf.DISTANCE_ORBIT_ENDS_TO_S,
-                yMin : 0,
+                xMin: 0,
+                xMax: sconf.DISTANCE_ORBIT_ENDS_TO_S,
+                yMin: 0,
             };
 
             if (fconf.sappId === 'b1sec3prop12') {

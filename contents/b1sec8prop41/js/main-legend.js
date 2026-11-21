@@ -8,7 +8,7 @@
         toreg,
         amode,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             create_digital_legend,
         },
     });
@@ -78,9 +78,9 @@
         //--------------------------
 
         ssF.createLogic_phaseLegend({
-            tableCaption    : 'Areas and Ratios',
-            noTableTitle    : false,
-            stdMod_given    : stdMod,
+            tableCaption: 'Areas and Ratios',
+            noTableTitle: false,
+            stdMod_given: stdMod,
             logic_phase,
             rowsCount,
             clustersCount,

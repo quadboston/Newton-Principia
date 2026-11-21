@@ -12,7 +12,7 @@
         sconf, ssF, ssD, sDomF, sDomN,
         amode, stdMod, toreg, rg,
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             createLogic_phaseLegend,
             updatesLegendTablesDisplay,
         },
@@ -64,8 +64,8 @@
         var tableCaption$;
         var tb;
         var domModel$ = {
-            columnCaptionsRow   : [],
-            body$       : [],
+            columnCaptionsRow: [],
+            body$: [],
         };
 
         //securing optional functions

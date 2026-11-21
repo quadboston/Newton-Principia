@@ -1,7 +1,7 @@
 (function () {
     var {
         amode, rg,
-    } = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
+    } = window.b$l.apptree({ ssFExportList: { amode2rgstate, }, });
     return;
 
 

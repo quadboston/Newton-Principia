@@ -3,7 +3,7 @@
         sn, mat, nspaste,
         amode, stdMod, rg, sconf, ssF, ssD,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             model_upcreate,
             pos8tg_2_rg,
             baseParams_2_extendedParams,
@@ -159,7 +159,7 @@
             let point = algfun(q).D;
             return {
                 point,
-                pointPar : point,
+                pointPar: point,
             };
         };
         bro.breakCondition = function (pointPar1,  pointPar2) {

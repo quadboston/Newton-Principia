@@ -4,7 +4,7 @@
         sconf, ssF, sDomF, rg, toreg,
         stdMod,
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             drawAngle,
             drawAngleFrom_rayAB2rayCD_at_medpos,
             angleVisib,
@@ -76,17 +76,17 @@
         return ssF.drawAngle({
             angleStart,
             angleEnd,
-            ANGLE_SIZE      : ANGLE_SIZE || 1,
+            ANGLE_SIZE: ANGLE_SIZE || 1,
             captionRadiusIncrease,
-            tpClassName     : tpclassName === '' ? '' :
+            tpClassName: tpclassName === '' ? '' :
                               tpclassName || sDomF.toCssIdentifier(rgSample.pname),
-            fill            : fill || rgAngle.pcolor,
+            fill: fill || rgAngle.pcolor,
 
             //commenting this line does fix non-nice tp-highlighting of angle border
             //stroke          : rgAngle.pcolor,
 
-            rgX             : rgAngle,
-            caption         : caption,
+            rgX: rgAngle,
+            caption: caption,
             drawExternalSector,
             stepsCount,
         });
@@ -123,28 +123,28 @@
             ////        rotationRads - apparently rotation fig. as whole
             //// ,t0, t1 } = arg;
             //// see: function ellipse( args )
-            stepsCount : stepsCount || 20, //todm: too granular .. fix but don't make slow
+            stepsCount: stepsCount || 20, //todm: too granular .. fix but don't make slow
 
             // //\\ todm ... mod2inn_scale must be incapsulated in model
             //instead we are converting from model to media manually here
             //it is very annoying to always remember to
             //make a correction with MONITOR_Y_FLIP ...
             //todm ... do a better programming
-            x0 : rgX.medpos[0],
-            y0 : rgX.medpos[1],
-            a  : sconf.mod2inn_scale*ANGLE_SIZE*0.5,
-            b  : sconf.mod2inn_scale*ANGLE_SIZE*0.5,
+            x0: rgX.medpos[0],
+            y0: rgX.medpos[1],
+            a: sconf.mod2inn_scale*ANGLE_SIZE*0.5,
+            b: sconf.mod2inn_scale*ANGLE_SIZE*0.5,
 
-            t0 : angleStart,
-            t1 : angleEnd,
+            t0: angleStart,
+            t1: angleEnd,
             // \\// todm ... mod2inn_scale must be incapsulated in model
 
-            svgel : rgX.svgel,
-            parent : ns.sapp.stdMod.mmedia,
+            svgel: rgX.svgel,
+            parent: ns.sapp.stdMod.mmedia,
             //fill : 'rgba( 255, 0, 0, 0.1 )',
-            fill : fill || 'transparent',
-            stroke : stroke || 'transparent',
-            'stroke-width' : 1,
+            fill: fill || 'transparent',
+            stroke: stroke || 'transparent',
+            'stroke-width': 1,
             drawExternalSector,
         });
 
@@ -173,17 +173,17 @@
             var tpcls = tpClassName ? ' tostroke tobold tofill tp-' + tpClassName : '';
             rgX.pnameLabelsvg = ns.svg.printText({
                 //tpclass         : tpcls,
-                text            : caption,
-                stroke          : rgX.pcolor,
+                text: caption,
+                stroke: rgX.pcolor,
                 //fill            : rgX.pcolor,
-                "stroke-width"  : 1,
-                svgel           : rgX.pnameLabelsvg,
-                parent          : stdMod.mmedia,
-                x               : lposX.toFixed()+'px',
-                y               : lposY.toFixed()+'px',
-                style           : {
-                    'font-size' : fontSize.toFixed() + 'px',
-                    'line-height' : '1',
+                "stroke-width": 1,
+                svgel: rgX.pnameLabelsvg,
+                parent: stdMod.mmedia,
+                x: lposX.toFixed()+'px',
+                y: lposY.toFixed()+'px',
+                style: {
+                    'font-size': fontSize.toFixed() + 'px',
+                    'line-height': '1',
                 },
             });
             var pnameLabelsvg$ = rgX.pnameLabelsvg$ =

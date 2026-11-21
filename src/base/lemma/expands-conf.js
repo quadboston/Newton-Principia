@@ -6,7 +6,7 @@
         rg, fconf, sf, ssF, sDomF, topicColors_repo,
         topicColors_repo_camel2col,
         toreg,
-    } = window.b$l.apptree({ ssFExportList : { doExpandConfig } });
+    } = window.b$l.apptree({ ssFExportList: { doExpandConfig } });
     const LETTER_ROTATION_RADIUS_PER_1000 = 30;
     const LETTER_CENTER_X_PER_FONT_SIZE = 0.2;
     const LETTER_CENTER_Y_PER_FONT_SIZE = 0.3;
@@ -115,13 +115,13 @@ function doExpandConfig() {
         //.......................................
         //do rid:
         //todm: too long to fix everywhere ...
-        originX_onPicture : modorInPicX,
-        originY_onPicture : modorInPicY,
+        originX_onPicture: modorInPicX,
+        originY_onPicture: modorInPicY,
         //.......................................
 
         // **api innerMediaHeight
-        innerMediaHeight    : pictureHeight + sf.SLIDERS_LEGEND_HEIGHT,
-        innerMediaWidth     : pictureWidth,
+        innerMediaHeight: pictureHeight + sf.SLIDERS_LEGEND_HEIGHT,
+        innerMediaWidth: pictureWidth,
         //----------------------------------
         // \\// model-view parameters
         //----------------------------------
@@ -284,7 +284,7 @@ function doExpandConfig() {
                 ];
             //creates rgX or reuses existing one
             var rgX = op.rgX = ssF.declareGeomtric({
-                pname, pos, caption : haz(op, 'caption'),
+                pname, pos, caption: haz(op, 'caption'),
             });
 
             //in some weird lemmas, rgX.draggableX is defined
@@ -406,11 +406,11 @@ function doExpandConfig() {
     sn('hideProofSlider', sf, true);
     Object.assign(sf, {
         //model-view parameter
-        thickness : 1,
+        thickness: 1,
         //:scenario
-        hideProofSlider                 : true,
-        enableCapture                   : true,
-        enableDataFunctionsRepository   : false,
+        hideProofSlider: true,
+        enableCapture: true,
+        enableDataFunctionsRepository: false,
     });
 
     /*

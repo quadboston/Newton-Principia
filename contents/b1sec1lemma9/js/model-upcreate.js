@@ -6,12 +6,12 @@
         rg, toreg, ssF, ssD,
         stdMod,
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             calculateCurvedArea,
             x0y_2_t,
             const2positions,
         },
-        stdModExportList : {
+        stdModExportList: {
             model_upcreate,
         },
     });
@@ -132,32 +132,32 @@
 
         //proof biggest linear
         var areas = calcAreas['Age'] = {
-            total     : areas.areaBetweenTanT_8_curve,
-            base      : areas.areaUnderTan1,
-            delta     : areas.areaBetween_Tan1_Tan2_Curve
+            total: areas.areaBetweenTanT_8_curve,
+            base: areas.areaUnderTan1,
+            delta: areas.areaBetween_Tan1_Tan2_Curve
         };
 
         //given biggest linear
         calcAreas['AGE'] = {
-            total     : areas.total * rr_2,
-            base      : areas.base * rr_2,
-            delta     : areas.delta * rr_2
+            total: areas.total * rr_2,
+            base: areas.base * rr_2,
+            delta: areas.delta * rr_2
         };
         var areas = bezier.zbezier2areas(
                     [remote[1], remote[2]], tB, tiltEC, mod_f, sconf.areaScale);
 
         //proof smalles curved
         var areas = calcAreas['Afd'] = {
-            total     : areas.areaBetweenTanT_8_curve,
-            base      : areas.areaUnderTan1,
-            delta     : areas.areaBetween_Tan1_Tan2_Curve
+            total: areas.areaBetweenTanT_8_curve,
+            base: areas.areaUnderTan1,
+            delta: areas.areaBetween_Tan1_Tan2_Curve
         };
 
         //given  smallest curved
         calcAreas['AFD'] = {
-            total     : areas.total * rr_2,
-            base      : areas.base * rr_2,
-            delta     : areas.delta * rr_2
+            total: areas.total * rr_2,
+            base: areas.base * rr_2,
+            delta: areas.delta * rr_2
         };
         //=======================
         // \\// calculates areas

@@ -9,7 +9,7 @@
         ssF, sDomF,
         stdMod,
     } = window.b$l.apptree({
-        modName:'studyModel_2_ss',
+        modName: 'studyModel_2_ss',
     });
     sDomF.createsFW__8__executes_dragWr_gens_list =
           createsFW__8__executes_dragWr_gens_list;
@@ -32,11 +32,11 @@
         ///****************************************************************
         var medD8D = stdMod.medD8D =
         d8dp.crePointFW_BSLd8d1CHAMBER({
-            findDraggee                         : findDraggee,
-            dragSurface                         : stdMod.simScene,
-            decPoint_parentClasses              : fconf.dragPointDecoratorClasses,
-            inn2outparent                       : sDomF.inn2outparent,
-            doCreateDynamicSpinners             : true,
+            findDraggee: findDraggee,
+            dragSurface: stdMod.simScene,
+            decPoint_parentClasses: fconf.dragPointDecoratorClasses,
+            inn2outparent: sDomF.inn2outparent,
+            doCreateDynamicSpinners: true,
         });
         //no need, done in media-model.js:  update_decPoint( decPoint )
 

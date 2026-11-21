@@ -2,7 +2,7 @@
     const {
         mat, nspaste,
         sconf, sDomF, ssF, toreg, rg, stdMod, amode,
-    } = window.b$l.apptree({ ssFExportList : {
+    } = window.b$l.apptree({ ssFExportList: {
             solvesTrajectoryMath__O,
         },
     });

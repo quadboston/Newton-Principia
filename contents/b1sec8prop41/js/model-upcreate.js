@@ -4,7 +4,7 @@
         fconf, ssF, sData, sDomF,
         stdMod, amode, sconf, rg, toreg,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             model_upcreate,
             buildsQuadPlot,
         },
@@ -200,8 +200,8 @@
         nssvg.polyline({
             rgX,
             pivots,
-            svgel   : haz(rgX, 'svgel'),
-            parent  : stdMod.svgScene,
+            svgel: haz(rgX, 'svgel'),
+            parent: stdMod.svgScene,
         });
 
         //:paints colors

@@ -8,7 +8,7 @@
         sDomF, sDomN, amode,
         exegs,
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             line2abs,
             linePoints2abs,
             circumscribeCircleOverChordAndBothNormals_XY,

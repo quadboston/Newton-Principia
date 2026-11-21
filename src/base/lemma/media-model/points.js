@@ -4,7 +4,7 @@
         sconf, sDomF, ssF, lowtpid_2_glocss8anchorRack, rg, toreg,
         stdMod,
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             pos2pointy,
             doPaintPoints,
             doPaintLetter8kernel,
@@ -66,14 +66,14 @@
             pt.svgel                = null;
 
             var argsvg = {
-                svgel   : pt.svgel,
-                parent  : pt.media,
-                type    : 'circle',
-                'stroke-width' : pt.initialStrokeWidth * sconf.thickness,
-                cx : pt.medpos[0],
-                cy : pt.medpos[1],
-                r  : pt.initialR * sconf.thickness,
-                style : haz(pt, 'style'),
+                svgel: pt.svgel,
+                parent: pt.media,
+                type: 'circle',
+                'stroke-width': pt.initialStrokeWidth * sconf.thickness,
+                cx: pt.medpos[0],
+                cy: pt.medpos[1],
+                r: pt.initialR * sconf.thickness,
+                style: haz(pt, 'style'),
             };
 
             ///shapes without pName presribed in Topics do
@@ -176,12 +176,12 @@
                         //planned feature
                         //'stroke'        : han( rgX, 'kernelStroke' , rgX.pcolor, ),
 
-                        'stroke'        : rgX.pcolor,
+                        'stroke': rgX.pcolor,
 
-                        'fill'          : 'white',
+                        'fill': 'white',
                         //'stroke-width'  : 2,
-                        r               : han(rgX, 'initialR', sconf.handleRadius),
-                        tpclass         : '',
+                        r: han(rgX, 'initialR', sconf.handleRadius),
+                        tpclass: '',
                                           //pname +
                                           //' tp-' + fakeName + //possibly new feature
                                           //' tostroke hover-width'
@@ -204,24 +204,24 @@
             var fillCol     = haz(rgX, 'letterColor') || rgX.pcolor || 'black';
 
             var txtstyle = {
-                    'font-size' : rgX.fontSize.toFixed() + 'px',
-                    'line-height' : '1',
-                    stroke        : strokeCol, //fix
-                    fill          : fillCol,
+                    'font-size': rgX.fontSize.toFixed() + 'px',
+                    'line-height': '1',
+                    stroke: strokeCol, //fix
+                    fill: fillCol,
             };
             var lposX_rounded = lposX.toFixed();
             var lposY_rounded = lposY.toFixed();
             rgX.pnameLabelsvg = nssvg.printText({
                 //tpclass         : '', //apparently non-used
-                text            : rgX.caption || pname,
+                text: rgX.caption || pname,
                 //stroke          : strokeCol,
                 //fill            : fillCol,
-                "stroke-width"  : 1,
-                svgel           : rgX.pnameLabelsvg,
-                parent          : stdMod.mmedia,
-                x               : lposX_rounded + 'px',
-                y               : lposY_rounded + 'px',
-                style           : txtstyle,
+                "stroke-width": 1,
+                svgel: rgX.pnameLabelsvg,
+                parent: stdMod.mmedia,
+                x: lposX_rounded + 'px',
+                y: lposY_rounded + 'px',
+                style: txtstyle,
             });
 
             //--------------------------------------------------------------------------

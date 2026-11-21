@@ -1,6 +1,6 @@
 (function () {
     var { ns, fconf, sconf, topicColors_repo } =
-    window.b$l.apptree({ ssFExportList : { init_conf } });
+    window.b$l.apptree({ ssFExportList: { init_conf } });
     return;
 
 
@@ -56,124 +56,124 @@
 
         var topicColors_elected = {
             //given (claim)
-            "curve-AB"      : givenColor, // ACB and curve segment after B
-            "left-curve-AB" : givenColor, // curve segment before A
-            "arc-AB"        : givenColor, ////curve-AB plus extension past B
+            "curve-AB": givenColor, // ACB and curve segment after B
+            "left-curve-AB": givenColor, // curve segment before A
+            "arc-AB": givenColor, ////curve-AB plus extension past B
 
             //proof
-            "arc-Ab"        : proofColor, // Acb
+            "arc-Ab": proofColor, // Acb
 
             // triangles
-            'RAB' : givenColor,
-            'RACB' : givenColor,
-            'RAD' : givenColor,
-            'RACB-RAB' : givenColor,
-            'RAD-RAB' : givenColor,
+            'RAB': givenColor,
+            'RACB': givenColor,
+            'RAD': givenColor,
+            'RACB-RAB': givenColor,
+            'RAD-RAB': givenColor,
 
-            'rAb' : proofColor,
-            'rAcb' : proofColor,
-            'rAd' : proofColor,
-            'rAcb-rAb' : proofColor,
-            'rAd-rAb' : proofColor,
+            'rAb': proofColor,
+            'rAcb': proofColor,
+            'rAd': proofColor,
+            'rAcb-rAb': proofColor,
+            'rAd-rAb': proofColor,
 
             // areas
-            'area-RAB' : givenArea,
-            'area-RAD' : givenArea,
-            'area-RACB' : givenArea,
+            'area-RAB': givenArea,
+            'area-RAD': givenArea,
+            'area-RACB': givenArea,
 
-            'area-rAb' : proofArea,
-            'area-rAd' : proofArea,
-            'area-rAcb' : proofArea
+            'area-rAb': proofArea,
+            'area-rAd': proofArea,
+            'area-rAcb': proofArea
         };
 
         var originalPoints = {
 
             // styles, positions, and animations of points and their labels
             //:originals from Book
-            A : {
+            A: {
                 //assigment by reference to pos is safe: no parasite links,
                 //pos is recalculated later
-                pos         : A,
-                letterAngle : 90,
-                pcolor      : givenColor,
+                pos: A,
+                letterAngle: 90,
+                pcolor: givenColor,
             },
-            B : {
+            B: {
                 pos: B,
-                letterAngle : 0,
-                pcolor      : givenColor,
+                letterAngle: 0,
+                pcolor: givenColor,
             },
-            C : {
-                letterAngle : 45,
-                letterRotRadius : 13,
-                pcolor      : givenColor,
+            C: {
+                letterAngle: 45,
+                letterRotRadius: 13,
+                pcolor: givenColor,
             },
-            D : {
+            D: {
                 pos: D,
-                letterAngle : 90,
-                pcolor      : givenColor,
-                draggableX  : true, // this adds animation and allows dragging along x
-                draggableY  : false, // but not y
+                letterAngle: 90,
+                pcolor: givenColor,
+                draggableX: true, // this adds animation and allows dragging along x
+                draggableY: false, // but not y
             },
-            R : {
-                letterAngle : 135,
-                pcolor      : givenColor,
-                draggableX  : true, // this adds mouseover animation, but does not affect behaviour...?
-                draggableY  : true,
+            R: {
+                letterAngle: 135,
+                pcolor: givenColor,
+                draggableX: true, // this adds mouseover animation, but does not affect behaviour...?
+                draggableY: true,
             },
-            c : {
+            c: {
                 caption: "𝑐",
-                letterAngle : 45,
-                letterRotRadius : 18,
-                pcolor      : proofColor,
+                letterAngle: 45,
+                letterRotRadius: 18,
+                pcolor: proofColor,
                 cssClass: 'logic_phase--proof',
             },
-            b : {
+            b: {
                 caption: "𝑏",
-                letterAngle : 0,
-                pcolor      : proofColor,
+                letterAngle: 0,
+                pcolor: proofColor,
                 cssClass: 'logic_phase--proof',
             },
 
             ///modified point r, closer to d
-            "r" : {
-                caption : "𝑟",
-                pcolor      : proofColor,
-                letterAngle : -45,
-                letterRotRadius : 30,
+            "r": {
+                caption: "𝑟",
+                pcolor: proofColor,
+                letterAngle: -45,
+                letterRotRadius: 30,
                 cssClass: 'logic_phase--proof',
             },
 
             ///modified point r, closer to d
-            "d" : {
-                caption : "𝑑",
-                pos : D,
-                pcolor      : proofColor,
-                letterAngle : -90,
-                letterRotRadius : 30,
+            "d": {
+                caption: "𝑑",
+                pos: D,
+                pcolor: proofColor,
+                letterAngle: -90,
+                letterRotRadius: 30,
                 cssClass: 'logic_phase--proof',
             },
 
-            curveStart  : {
-                pos : [A[0]-80, 0],
-                undisplayAlways : true,
-                doPaintPname : false,
+            curveStart: {
+                pos: [A[0]-80, 0],
+                undisplayAlways: true,
+                doPaintPname: false,
             },
-            curveEnd : {
-                pos : [B[0]+50, 0],
-                undisplayAlways : true,
-                doPaintPname : false,
+            curveEnd: {
+                pos: [B[0]+50, 0],
+                undisplayAlways: true,
+                doPaintPname: false,
             },
-            curveLeftEnd : {
-                pos : [250, 100],
-                undisplayAlways : true,
-                doPaintPname : false,
+            curveLeftEnd: {
+                pos: [250, 100],
+                undisplayAlways: true,
+                doPaintPname: false,
             },
-            DLeft : {
-                pos         : DLeft,
-                letterAngle : 90,
-                pcolor      : givenColor,
-                undisplayAlways : true,
-                doPaintPname : false,
+            DLeft: {
+                pos: DLeft,
+                letterAngle: 90,
+                pcolor: givenColor,
+                undisplayAlways: true,
+                doPaintPname: false,
             },
 
         };
@@ -182,25 +182,25 @@
             //** this defines render order */
 
             // proof (shown in blue)
-            { 'Ab' : { pcolor : proofColor,
+            { 'Ab': { pcolor: proofColor,
                 cssClass: 'logic_phase--proof', } },
 
-            { 'A,d' : { pcolor : proofColor,
+            { 'A,d': { pcolor: proofColor,
                 cssClass: 'logic_phase--proof', } }, // Ad
-            { 'A,r' : { pcolor : proofColor,
+            { 'A,r': { pcolor: proofColor,
                         cssClass: 'logic_phase--proof', } }, // Ar
-            { 'r,d' : { pcolor : proofColor,
+            { 'r,d': { pcolor: proofColor,
                 cssClass: 'logic_phase--proof', } }, // rd
-            { 'r,b' : { pcolor : proofColor,
+            { 'r,b': { pcolor: proofColor,
                 cssClass: 'logic_phase--proof', } }, //rb
 
             // claim (shown in green)
-            { 'AB' : { pcolor : givenColor } },
-            { 'AR' : { pcolor : givenColor } },
-            { 'AD' : { pcolor : givenColor } },
-            { 'A,DLeft'  : { pcolor : givenColor, 'stroke-width' : 2, } }, // to left of A
-            { 'RD' : { pcolor : givenColor } },
-            { 'BR' : { pcolor : givenColor } },
+            { 'AB': { pcolor: givenColor } },
+            { 'AR': { pcolor: givenColor } },
+            { 'AD': { pcolor: givenColor } },
+            { 'A,DLeft': { pcolor: givenColor, 'stroke-width': 2, } }, // to left of A
+            { 'RD': { pcolor: givenColor } },
+            { 'BR': { pcolor: givenColor } },
         ];
 
         //----------------------------------
@@ -218,13 +218,13 @@
 
         originalPoints.t1 = {
                 pos: ww1,
-                undisplayAlways : true,
-                doPaintPname : false,
+                undisplayAlways: true,
+                doPaintPname: false,
         };
         originalPoints.t2 = {
                 pos: ww2,
-                undisplayAlways : true,
-                doPaintPname : false,
+                undisplayAlways: true,
+                doPaintPname: false,
         };
 
         var givenCurve_pivots = [
@@ -254,7 +254,7 @@
 
         ns.paste(sconf, { // adds these members to globally available sconf
             //double back step ../../ is to reuse this path in code for lemma7
-            mediaBgImage : "../../b1sec1lemma8/img/d.png",
+            mediaBgImage: "../../b1sec1lemma8/img/d.png",
             givenCurve_pivots_inModel,
             topicColors_elected,
             originalPoints,

@@ -25,7 +25,7 @@
         ns, sn, $$, nsmethods, haz, has, eachprop,
         fconf, sconf, rg, sDomF, topics, lowtpid_2_glocss8anchorRack,
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             colorArray_2_rgba,
             lowtpid__2__glocss8anchorRack,
         },

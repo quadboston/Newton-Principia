@@ -60,7 +60,7 @@
         var dragWraps = [];
         ///sets single lower-level handler for framework draggees
         var { givenClickEvent, eventPos_2_surfacePos } = d8dp.creFW_BSLd8d1BASE({
-            surface : dragSurface,
+            surface: dragSurface,
 
             //most basic handler between basic-d8d-constructor and app.,
             //receives data from low-level "driver", receives moves and
@@ -86,7 +86,7 @@
             attachee,
             doGiveClickEvent,
 
-            movesAndFindsHandle : doCreateDynamicSpinners && movesAndFindsHandle,
+            movesAndFindsHandle: doCreateDynamicSpinners && movesAndFindsHandle,
         });
 
         var createdFramework = {
@@ -97,7 +97,7 @@
         };
         createdFrameworks.push(createdFramework);
         return {
-            pointWrap_2_dragWrap_BSLd8d2PIPE : pointWrap_2_dragWrap,
+            pointWrap_2_dragWrap_BSLd8d2PIPE: pointWrap_2_dragWrap,
             updateAllDecPoints,
             givenClickEvent,
         };
@@ -227,7 +227,7 @@
             //==============================================
             if (!ns.h(pointWrap, 'achieved')) {
                 pointWrap.achieved = (achieved || achieved === 0) ?
-                                     { achieved : achieved } : { achieved : {} };
+                                     { achieved: achieved } : { achieved: {} };
             }
             //==============================================
             // \\// api.achieved is an optional parameter
@@ -254,20 +254,20 @@
                     addFeaturesToDecPoint = Object.assign(
                             addFeaturesToDecPoint || {},
                             {
-                                dragDecorColor      : dragDecorColor,
-                                spinnerClsId        : cssIdLowCase,
-                                individual_zindex   : individual_zindex,
+                                dragDecorColor: dragDecorColor,
+                                spinnerClsId: cssIdLowCase,
+                                individual_zindex: individual_zindex,
                             }
                     );
                 }
 
                 decPoint = dpdec.adds_decorSpinner({
-                    spinner_domParent : dragSurface,
-                    opt : {
+                    spinner_domParent: dragSurface,
+                    opt: {
                         tooltip,
                         addFeaturesToDecPoint,
-                            orientation     : orientation,
-                            parent_classes  : decPoint_parentClasses,
+                            orientation: orientation,
+                            parent_classes: decPoint_parentClasses,
                     }
                 });
             }
@@ -279,13 +279,13 @@
             // //\\ drag8drop main wrapper over item
             //=====================================================
             var dragWrap = {
-                pointWrap       : pointWrap,
-                doProcessWrap   : doProcessWrap,
-                update_decPoint : update_decPoint,
+                pointWrap: pointWrap,
+                doProcessWrap: doProcessWrap,
+                update_decPoint: update_decPoint,
                 //recall: decPoint = document.createElement( 'div' )
-                decPoint        : decPoint,
-                orientation     : orientation,
-                dragHandleDOM   : dragHandleDOM,
+                decPoint: decPoint,
+                orientation: orientation,
+                dragHandleDOM: dragHandleDOM,
                 achieved,
                 createdFramework,
             }
@@ -439,10 +439,10 @@
                     //      even click behind screening surface
                     var appFeedback = selectedElement_flag.doProcessWrap({
                         //// **supplied-to-api
-                        down_move_up    : down_move_up,
-                        surfMove        : surfMove,
-                        moveIncrement   : 0,
-                        dragWrap        : selectedElement_flag,
+                        down_move_up: down_move_up,
+                        surfMove: surfMove,
+                        moveIncrement: 0,
+                        dragWrap: selectedElement_flag,
                         point_on_dragSurf,
                     });
                     return appFeedback === 'do disappear d8d';
@@ -459,11 +459,11 @@
 
                     selectedElement_flag.doProcessWrap({
                         //// **api-doProcessWrap
-                        down_move_up    : down_move_up, //flag, string
+                        down_move_up: down_move_up, //flag, string
                         //possibly = move from start to current,
-                        surfMove        : surfMove,
-                        moveIncrement   : moveIncrement,
-                        dragWrap        : selectedElement_flag,
+                        surfMove: surfMove,
+                        moveIncrement: moveIncrement,
+                        dragWrap: selectedElement_flag,
                         point_on_dragSurf,
                     });
                 break;

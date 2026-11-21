@@ -4,7 +4,7 @@
         sconf, sDomF, ssF, exegs,
         amode,
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             exegs__2__tpAn8dom8css8mjax,
         },
     });
@@ -29,7 +29,7 @@
                         subexeg.built_act8stat_fragments_texts[tix] = {
                             //text ready to be inserted in html with anchor-sripts
                             //converted to anchor text,
-                            htmlReadyFragText_racks :
+                            htmlReadyFragText_racks:
                                 ssF.rawFragments2htmlText(
                                     rawActiveFrag
                                 )

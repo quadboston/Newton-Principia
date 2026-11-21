@@ -13,8 +13,8 @@
     Object.assign(sconf,
     {
         //:slider config
-        MINP            : 4,
-        MAXP            : 50
+        MINP: 4,
+        MAXP: 50
     });
     //=====================================
     // \\// does gui configuration

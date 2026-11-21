@@ -1,7 +1,7 @@
 (function () {
 const { $$, sn, haz, has, eachprop,
         rg, stdMod } =
-        window.b$l.apptree({ stdModExportList : { unmasksVisib, }});
+        window.b$l.apptree({ stdModExportList: { unmasksVisib, }});
 const decor = sn('decor', stdMod);
 return;
 

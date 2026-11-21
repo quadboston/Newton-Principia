@@ -59,20 +59,20 @@
         // //\\ paints curve with pivot points
         var mainCurve = toreg('mainCurve')();
         mainCurve.mediael = bezier.mediafy({
-            mediael : mainCurve.mediael, //this is a rack, not svg: goal?: not to recreate DOM.
-            parentSVG : stdMod.mmedia,
-            pivots : medCurvPivots,
-            bcurve : {
-                'stroke-width' : 1 * sconf.thickness
+            mediael: mainCurve.mediael, //this is a rack, not svg: goal?: not to recreate DOM.
+            parentSVG: stdMod.mmedia,
+            pivots: medCurvPivots,
+            bcurve: {
+                'stroke-width': 1 * sconf.thickness
             },
             //Ensure second paint pivot is hidden.  Otherwise a small dot will be in its location for the claim tab, since the point that would
             //cover it for other tabs is hidden.
-            paintPivots : {
-                topaint : [null, null, true],
-                attrs : {
-                    'stroke-width' : 1 * sconf.thickness,
+            paintPivots: {
+                topaint: [null, null, true],
+                attrs: {
+                    'stroke-width': 1 * sconf.thickness,
                     //r : 4 * sconf.thickness
-                    r : 0.7 * sconf.thickness
+                    r: 0.7 * sconf.thickness
                 }
             }
         });
@@ -101,12 +101,12 @@
 
         var remoteCurve = toreg('remoteCurve')();
         remoteCurve.mediael = bezier.mediafy({
-            mediael : remoteCurve.mediael,
-            parentSVG : stdMod.mmedia,
-            pivots : medRemoteCurPivots,
-            bcurve : {
-                stroke : 'transparent', //todm add to bsl core
-                'stroke-width' : 1 * sconf.thickness
+            mediael: remoteCurve.mediael,
+            parentSVG: stdMod.mmedia,
+            pivots: medRemoteCurPivots,
+            bcurve: {
+                stroke: 'transparent', //todm add to bsl core
+                'stroke-width': 1 * sconf.thickness
             }
         });
         $$.$(remoteCurve.mediael.paintedCurve)
@@ -199,10 +199,10 @@
                         area.endPoint[1] + ' ';
 
             area.mediael = nssvg.u({
-                svgel : area.mediael,
-                type : 'path',
-                d:dd,
-                parent : stdMod.mmedia
+                svgel: area.mediael,
+                type: 'path',
+                d: dd,
+                parent: stdMod.mmedia
             });
             //area.mediael.setAttributeNS( null, 'class', fullMode + ' tofill' );
             fullMode = fullMode ? ' ' + fullMode : '';
@@ -226,9 +226,9 @@
                 return ssF.mod2inn(pos, stdMod);
             });
             area.mediael = nssvg.polyline({
-                pivots : vertices,
-                svgel : area.mediael,
-                parent : stdMod.mmedia
+                pivots: vertices,
+                svgel: area.mediael,
+                parent: stdMod.mmedia
             });
             $$.$(area.mediael)
                 .addClass(`tp-${topicGroup_decapitalized} tofill`)

@@ -4,7 +4,7 @@
         sconf, sDomF, sDomN, ssD, ssF, sData,
         stdMod, rg, toreg,
     } = window.b$l.apptree({
-        ssFExportList :  {
+        ssFExportList: {
             upcreate_mainLegend,
             create_digital_legend,
         },

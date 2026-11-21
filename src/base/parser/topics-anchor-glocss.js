@@ -2,7 +2,7 @@
     var {
         haz, fapp, sconf, ssF, topics, topicColors_repo
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             topics_anchor_css,
             setsAnchor_mouseHighlightEvents,
         },
@@ -18,7 +18,7 @@
         domEl = domEl || fapp.fappRoot$();
         var allAnchors = domEl.querySelectorAll('a');
         if (allAnchors) {
-            var anchors__cssHighlighter = { value : '' };
+            var anchors__cssHighlighter = { value: '' };
 
             ///at this point, anchors should be completely prepared
             ///with given design, we cannot index anchors before,
@@ -37,7 +37,7 @@
             //anchor colors
             styleStr += anchors__cssHighlighter.value;
         }
-        return { styleAnchors:styleStr, nextTplinks };
+        return { styleAnchors: styleStr, nextTplinks };
     }
 
     ///-----------------------------

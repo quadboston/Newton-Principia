@@ -2,7 +2,7 @@
     var {
         amode, rg,
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             amode2rgstate,
         },
     });

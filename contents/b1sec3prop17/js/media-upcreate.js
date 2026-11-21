@@ -1,7 +1,7 @@
 (function () {
     var {
         rg,
-    } = window.b$l.apptree({ stdModExportList : {
+    } = window.b$l.apptree({ stdModExportList: {
             media_upcreate___part_of_medupcr_basic,
             media_upcreate___before_basic,
         },

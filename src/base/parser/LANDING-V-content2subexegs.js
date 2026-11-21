@@ -5,7 +5,7 @@
         topicColors_repo, topicColors_repo_camel2col, exegs,
         stdMod, amode, userOptions
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             LANDING_V___loads_professorList8cont_8_buildsSubexegs,
         },
     });
@@ -49,7 +49,7 @@
                         lbf_forAjax.push({
                               id: listItem,
                               responseType,
-                              link : fconf.pathToContentSite + '/contents/' +
+                              link: fconf.pathToContentSite + '/contents/' +
                                      fconf.sappId + '/' + listItem
                         });
                     }
@@ -278,9 +278,9 @@
                         if (has(exegToFill, asp_id)) return;
                         let aspExeg = exegToFill[asp_id] = {};
                         var subexegsIx  = 0;
-                        var essayHeader = { subessay : subexegsIx + '' };
+                        var essayHeader = { subessay: subexegsIx + '' };
                         var subexeg = {
-                            bodyscript : '',
+                            bodyscript: '',
                             essayHeader,
                         };
                         var subessay2subexeg = sn('subessay2subexeg', aspExeg);
@@ -409,13 +409,13 @@
                 // \\// how submenu built
                 //=======================================
                 var men = sconf.asp8theor_menus[mcat_id] = sconf.asp8theor_menus[mcat_id] ||
-                     {  list : [],
+                     {  list: [],
                         //.will be overriden if aspect-default is preset in script
-                        "default" : leafId,
-                        duplicates : {}  //todm: this repeats parts of "exegs" ... proliferation
+                        "default": leafId,
+                        duplicates: {}  //todm: this repeats parts of "exegs" ... proliferation
                      };
                 if (!men.duplicates[leafId]) {
-                    var menuItem = { id:leafId };
+                    var menuItem = { id: leafId };
                     men.duplicates[leafId] = menuItem;
                     men.list.push(menuItem);
                     if (mcat_id === 'logic_phase') {

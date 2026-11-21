@@ -79,9 +79,9 @@
 
             function fileOnLoad() {
                 var loadedItem = {
-                    text : fileItem.responseType === 'arraybuffer' ?
+                    text: fileItem.responseType === 'arraybuffer' ?
                            xml.response : xml.responseText,
-                    fileItem : fileItem,
+                    fileItem: fileItem,
                 };
                 loadedFiles.push(loadedItem);
                 if (has(fileItem, 'id')) {

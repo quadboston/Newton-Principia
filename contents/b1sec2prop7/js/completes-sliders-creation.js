@@ -1,6 +1,6 @@
 (function () {
     var { ssD, stdMod, rg, } = window.b$l.apptree({
-        stdModExportList : { creates_S_slider, }, });
+        stdModExportList: { creates_S_slider, }, });
     return;
 
 

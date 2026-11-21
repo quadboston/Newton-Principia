@@ -51,20 +51,20 @@
 
             return {
                 hsl0: hsl0,
-                hsla : hsla,
-                rgb : rgb,
-                rgba : rgba,
-                hue : hue,
-                satur : satur,
-                light : light,
+                hsla: hsla,
+                rgb: rgb,
+                rgba: rgba,
+                hue: hue,
+                satur: satur,
+                light: light,
                 rr: rr,
                 gg: gg,
                 bb: bb,
                 rrS: rrS,
                 ggS: ggS,
                 bbS: bbS,
-                opas : opas,
-                rgbaCSS : rgbaCSS
+                opas: opas,
+                rgbaCSS: rgbaCSS
             };
         };
 

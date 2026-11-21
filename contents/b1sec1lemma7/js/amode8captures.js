@@ -2,7 +2,7 @@
     var {
         ns, paste, capture, nspaste, sDomF, ssD, amode, rg,
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             amode2rgstate,
         },
     });
@@ -39,8 +39,8 @@
     function setCapture() {
         paste(capture,
         {
-            "reset-to-origin" : {
-                    curveRotationAngle : Object.assign(ANGLE_AUTH),
+            "reset-to-origin": {
+                    curveRotationAngle: Object.assign(ANGLE_AUTH),
                     "diagram-panner": {
                         "achieved": {
                             "achieved": MODEL_ORIGIN_IN_PIC
@@ -51,8 +51,8 @@
                     }
             },
 
-            "L-equal-d" :  {
-                    curveRotationAngle : Object.assign(ANGLE_EQUALS),
+            "L-equal-d": {
+                    curveRotationAngle: Object.assign(ANGLE_EQUALS),
                     "B": {
                            "unrotatedParameterX": B_PARAM_BOOK
                     }

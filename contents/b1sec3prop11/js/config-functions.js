@@ -1,6 +1,6 @@
 (function () {
     var { mat, rg, ssD, stdMod, sconf, } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             recreates_q2xy,
             recreatesPosCorrector,
             calculateMaxGraphValues,

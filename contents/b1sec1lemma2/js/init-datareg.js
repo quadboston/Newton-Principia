@@ -1,5 +1,5 @@
 (function () {
-    var { } = window.b$l.apptree({ ssFExportList : {
+    var { } = window.b$l.apptree({ ssFExportList: {
         initDataReg,
     }, });
     return;
@@ -11,48 +11,48 @@
         DR_ADJUST_WIDTHS_MATCH_AREA_RATIOS}) {
         return {
             //offset 0 (was 1) to hide base point on right side of figure
-            basePts         : {offset:0, visOffset:0, list:[]},
-            curvPts         : {offset:1, visOffset:0, list:[]},
-            transPts        : {offset:1, visOffset:0, list:[]},
-            circRects       : {offset:0, visOffset:0, list:[]},
-            circRects_outline       : {offset:0, visOffset:0, list:[]},
-            InscrRects      : {offset:0, visOffset:0, list:[]},
-            InscrRects_outline      : {offset:0, visOffset:0, list:[]},
-            differenceRects : {offset:0, visOffset:0, list:[]},
+            basePts: {offset: 0, visOffset: 0, list: []},
+            curvPts: {offset: 1, visOffset: 0, list: []},
+            transPts: {offset: 1, visOffset: 0, list: []},
+            circRects: {offset: 0, visOffset: 0, list: []},
+            circRects_outline: {offset: 0, visOffset: 0, list: []},
+            InscrRects: {offset: 0, visOffset: 0, list: []},
+            InscrRects_outline: {offset: 0, visOffset: 0, list: []},
+            differenceRects: {offset: 0, visOffset: 0, list: []},
 
             //baseLabels      : {offset:1, visOffset:0, list:[]},
-            curvLabels      : {offset:0, visOffset:0, list:[]},
-            leftLabels      : {offset:0, visOffset:0, list:[]},
+            curvLabels: {offset: 0, visOffset: 0, list: []},
+            leftLabels: {offset: 0, visOffset: 0, list: []},
             //righLabels      : {offset:0, visOffset:0, list:[]},
             //deltaOnLeft historically means "virtual majoranta-rectangle"
             //is on the right
-            figureParams    : {minX:0, maxX:0, deltaOnLeft:true},
-            figureArea      : 0,
-            curveMicroPts   : {points:[], sectionIndices:[]},
-            ctrlPts         : {
+            figureParams: {minX: 0, maxX: 0, deltaOnLeft: true},
+            figureArea: 0,
+            curveMicroPts: {points: [], sectionIndices: []},
+            ctrlPts: {
                 //Control point draggers with transformed positions.
-                list:[],
+                list: [],
                 //Default positions which are never transformed but modified
                 //as the control points are dragged.  Note the transforms use
                 //the first and last points for their initialization.
-                untransformed : controlPointPositions(xLeft, width, height,
+                untransformed: controlPointPositions(xLeft, width, height,
                     yBottom),
                 //Are the first and last control points on the curve draggable
                 DRAGGABLE_END_POINTS,
             },
-            partitionWidths : [1],
-            movables        : {}, //key-value for movable jswrap
+            partitionWidths: [1],
+            movables: {}, //key-value for movable jswrap
             //Specifies what points have what labels (for L4)
             POINT_LABELS,
             BASE_PT_DRAGGERS_ENABLED,
-            transforms       : {
+            transforms: {
                 //The following shouldn't be active at the same time as
                 //DRAGGABLE_END_POINTS
-                POINT_I_ENABLED : TRANSFORM_PT_I_ENABLED,
-                POINT_J_ENABLED : TRANSFORM_PT_J_ENABLED,
+                POINT_I_ENABLED: TRANSFORM_PT_I_ENABLED,
+                POINT_J_ENABLED: TRANSFORM_PT_J_ENABLED,
                 //Pos to transform relative to, automatically set
-                origin          : null,
-                pts             : {}, //To store the draggers
+                origin: null,
+                pts: {}, //To store the draggers
             },
             //Automatically adjust rectangle widths in this datareg to match
             //the ratio of areas in the following datareg.

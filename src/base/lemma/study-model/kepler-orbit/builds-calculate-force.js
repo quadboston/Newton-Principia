@@ -1,7 +1,7 @@
 ///notations are from Prop6, cor. 5,
 (function () {
     var { mat, stdMod, sconf, ssD, sData, } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             calculateForce,
             calculateDqSubstituteActualForce,
         }, });

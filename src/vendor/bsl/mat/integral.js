@@ -80,7 +80,7 @@
         }
         if (returnAll) {
             return {
-                integral : sum,
+                integral: sum,
                 resultX,
                 resultF,
                 integrals,
@@ -116,8 +116,8 @@
         var INTEGRATION_POINTS_LIM = 10000;
         var origin = simpleIntegration({
             fun,
-            baseArray : [startFX, endFX],
-            returnAll : true,
+            baseArray: [startFX, endFX],
+            returnAll: true,
             INTEGRATION_POINTS_LIM,
         });
         var { rangeX, resultF, resultX, stepX } = origin;
@@ -137,7 +137,7 @@
             var posX    = rgX.pos[0];
             var argX    = INTEGRATION_POINTS_LIM * posX / rangeX;
             var iIx     = Math.floor(argX);
-            rgX.integ   = { f:{}, g:{} };
+            rgX.integ   = { f: {}, g: {} };
             var integF  = rgX.integ.f;
             integF.ix   = iIx;
             integF.x    = posX;
@@ -158,9 +158,9 @@
         });
 
         var originG = simpleIntegration({
-            fun         : funG,
-            baseArray   : [startGX, endGX],
-            returnAll   : true,
+            fun: funG,
+            baseArray: [startGX, endGX],
+            returnAll: true,
             INTEGRATION_POINTS_LIM,
         });
 
@@ -226,7 +226,7 @@
 
         findsMinOnIntervals('f')
         findsMinOnIntervals('g')
-        return { originF : origin, originG, };
+        return { originF: origin, originG, };
 
         function findsMinOnIntervals(f0g) {
             //finding fmin

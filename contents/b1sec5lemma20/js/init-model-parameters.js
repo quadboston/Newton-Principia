@@ -3,7 +3,7 @@
         mat, globalCss,
         sconf, ssF, rg, stdMod, toreg, sData,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             init_model_parameters,
         },
     });
@@ -19,11 +19,11 @@
         const i2m = sconf.inn2mod_scale;
         {
             sData.polar_ell_model = {
-                q0 : sconf.q0,
-                e : sconf.excentricity,
-                focus : ssF.inn2mod(sconf.focus),
-                latus2 : sconf.latus2*i2m,
-                stepsCount : 1000,
+                q0: sconf.q0,
+                e: sconf.excentricity,
+                focus: ssF.inn2mod(sconf.focus),
+                latus2: sconf.latus2*i2m,
+                stepsCount: 1000,
             };
         }
         stdMod.curveModel2branches();

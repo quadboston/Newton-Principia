@@ -1,6 +1,6 @@
 (function () {
     var { sn, $$, fapp, sconf, fconf, rg, amode, stdMod, } = window.b$l.apptree({
-        stdModExportList : { syncPoints, }, });
+        stdModExportList: { syncPoints, }, });
     var stdL2       = sn('stdL2', fapp);
     var numModel    = sn('numModel', stdL2);
     var study       = sn('study', stdL2);

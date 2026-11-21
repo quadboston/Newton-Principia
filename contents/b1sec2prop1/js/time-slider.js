@@ -1,7 +1,7 @@
 (function () {
 const {sn, $$, sv, globalCss, haz, sconf, sDomF, ssF, ssD,
         toreg, rg, amode, stdMod } =
-        window.b$l.apptree({ stdModExportList : {
+        window.b$l.apptree({ stdModExportList: {
         //creates_sliderDomModel__4__time
     },
 });
@@ -97,11 +97,11 @@ function creates_sliderDomModel__4__time() {
     toreg(end_rgid)('pos', endPos);
     var railsStart = pos2pointy(
         start_rgid,
-        { fill : COLOR, tpclass:tpId, cssClass : 'tofill tostroke', }
+        { fill: COLOR, tpclass: tpId, cssClass: 'tofill tostroke', }
     );
     var railsEnd = pos2pointy(
         end_rgid,
-        { fill : COLOR, tpclass:tpId, cssClass : 'tofill tostroke', }
+        { fill: COLOR, tpclass: tpId, cssClass: 'tofill tostroke', }
     );
     ///draws rails
     ///if tpclass does exist, it apparently overrides stroke and
@@ -109,10 +109,10 @@ function creates_sliderDomModel__4__time() {
     var rails = pivots_2_svgLineInRg(
             rails_rgid,
             [railsStart, railsEnd],
-            { stroke           : COLOR,
-            'stroke-width'   : 3,
-            tpclass          : tpId,
-            cssClass         : 'tofill tostroke',
+            { stroke: COLOR,
+            'stroke-width': 3,
+            tpclass: tpId,
+            cssClass: 'tofill tostroke',
             }
     );
     $$.$(rails.svgel).cls(tptpId);
@@ -127,12 +127,12 @@ function creates_sliderDomModel__4__time() {
     var wwrack = pos2pointy(
         api_rgid,
         {
-            cssClass : 'tostroke',
-            stroke : COLOR,
-            'stroke-width' : 3,
-            fill : 'white',
-            r : 5,
-            tpclass : tpId,
+            cssClass: 'tostroke',
+            stroke: COLOR,
+            'stroke-width': 3,
+            fill: 'white',
+            r: 5,
+            tpclass: tpId,
         }
     );
     //.overrides tp - machinery suppressed opacity,
@@ -144,13 +144,13 @@ function creates_sliderDomModel__4__time() {
 
     /// adds text to api-GUI
     api.text_svg = sv.printText({
-        parent          : stdMod.mmedia,
-        text            : sliderId,
-        'stroke-width'   : 1,
-        style           : {
-            'font-family'   : 'var(--default-font)',
-            'font-size'     : sconf.GENERIC_SLIDERS_FONT_SIZE +'px',
-            'stroke-width'  : 1,
+        parent: stdMod.mmedia,
+        text: sliderId,
+        'stroke-width': 1,
+        style: {
+            'font-family': 'var(--default-font)',
+            'font-size': sconf.GENERIC_SLIDERS_FONT_SIZE +'px',
+            'stroke-width': 1,
         },
     });
     $$.$(api.text_svg).addClass('tp-time');
@@ -176,7 +176,7 @@ function creates_sliderDomModel__4__time() {
     ///this sub is defined in full-app/lib/custom-slider.js module
     ssF.rgXSlider__2__dragwrap_gen_list({
         rgX,
-        orientation         : 'axis-x',
+        orientation: 'axis-x',
     });
     return;
 
@@ -301,6 +301,6 @@ function slTime_2_stepIndice8tCaption() {
     //sets granular time display increment during last proof step
     let nexStepDisplay = (rg.substepIx === 3 ? 1 : 0) + rg.stepIx.value;
     rg.displayTime.value = (nexStepDisplay * rg.rgslid_dt.val).toFixed(2);
-    rg.displayPathStep = { value:nexStepDisplay };
+    rg.displayPathStep = { value: nexStepDisplay };
 }
 })();

@@ -35,26 +35,26 @@
             // for 5px of image width + 2*8px margin from
             //     subroots.css.js::#bsl-resizable-handle
             // and not from dpdec.dimensions.WIDTH as may appear,
-            main_horizontal_dividor_width_px : 21,
+            main_horizontal_dividor_width_px: 21,
             //***************************************************
 
-            mediaOffset : [0, 0], //in respect to simscene
-            LETTER_FONT_SIZE_PER_1000 : 32,
+            mediaOffset: [0, 0], //in respect to simscene
+            LETTER_FONT_SIZE_PER_1000: 32,
 
-            GENERIC_SLIDERS_FONT_SIZE : 15,
-            GENERIC_SLIDER_HEIGHT_Y : 25,
-            GENERIC_SLIDERS_COUNT : 2,
-            SLIDERS_LEGEND_HEIGHT : 25*2+20, //2=GENERIC_SLIDERS_COUNT
-            SLIDERS_OFFSET_Y      : 0,
-            SLIDERS_OFFSET_X : 0.05, //in respect to background-image-width
-            SLIDERS_LENGTH_X : 0.70, //in respect to background-image-width
-            dragHidesPictures : true,  //vital for show/hide letters machinery
+            GENERIC_SLIDERS_FONT_SIZE: 15,
+            GENERIC_SLIDER_HEIGHT_Y: 25,
+            GENERIC_SLIDERS_COUNT: 2,
+            SLIDERS_LEGEND_HEIGHT: 25*2+20, //2=GENERIC_SLIDERS_COUNT
+            SLIDERS_OFFSET_Y: 0,
+            SLIDERS_OFFSET_X: 0.05, //in respect to background-image-width
+            SLIDERS_LENGTH_X: 0.70, //in respect to background-image-width
+            dragHidesPictures: true,  //vital for show/hide letters machinery
         });
 
         sf.pointDecoration = {
-            cssClass        : 'tostroke tofill thickable',
-            'stroke-width'  : 3,
-            r               : sf.handleRadius,
+            cssClass: 'tostroke tofill thickable',
+            'stroke-width': 3,
+            r: sf.handleRadius,
         };
         //====================================================
         // \\// optionally overriden by url-query-config

@@ -114,7 +114,7 @@
             ctrlPts.list.push(createCurvePoint(dr, posTransformed, "ctrl", i));
         }
 
-        reset_hollowPoints({ dr, onCurve:true, onBase:false });
+        reset_hollowPoints({ dr, onCurve: true, onBase: false });
     }
 
     function reset_hollowPoints({ dr, onCurve, onBase }) {
@@ -238,7 +238,7 @@
         stdMod.svgScene.appendChild(pdom);
         pdom.setAttributeNS(null, "id", key);
         pdom.setAttributeNS(null, "draggable", "false"); //todo ... redundant? ...
-        var draggable = { dom:pdom, type:type, index:i, id:key };
+        var draggable = { dom: pdom, type: type, index: i, id: key };
         if (i>0 || type === 'ctrl') {
             dr.movables[key] = draggable;
         }

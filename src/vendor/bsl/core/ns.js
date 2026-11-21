@@ -263,9 +263,9 @@
                 var ctxEl = null;
                 var methods = {
                     //.wraps flat-dom-object-into-platform
-                    $:      function (obj)                 { ctxEl = obj                                            },
+                    $: function (obj)                 { ctxEl = obj                                            },
 
-                    children:    function (callback, obj) {
+                    children: function (callback, obj) {
                        ctxEl = obj || ctxEl;
                        if (!(ctxEl && ctxEl.children)) return;
                        [].forEach.call(ctxEl.children, function (child, ix) {
@@ -275,30 +275,30 @@
                        });
                     },
 
-                    c:      function (type)                { ctxEl =                document.createElement(type); },
+                    c: function (type)                { ctxEl =                document.createElement(type); },
                     //.gets single by id
-                    g:      function (id)                  { ctxEl =                document.getElementById(id); },
+                    g: function (id)                  { ctxEl =                document.getElementById(id); },
                     //.gets single
-                    q:      function (selector, parent)    { ctxEl =                (parent||document.body).querySelector(selector); },
+                    q: function (selector, parent)    { ctxEl =                (parent||document.body).querySelector(selector); },
                     //.gets array of all
-                    qa:     function (selector, parent)    { ctxEl =                (parent||document.body).querySelectorAll(selector); },
+                    qa: function (selector, parent)    { ctxEl =                (parent||document.body).querySelectorAll(selector); },
 
                     // //\\ information providers
-                    box:    function (obj)                 { obj = obj || null;
+                    box: function (obj)                 { obj = obj || null;
                                                               ctxEl = obj || ctxEl;
                                                               return ctxEl && ctxEl.getBoundingClientRect();
                                                             },
-                    _html:    function (obj)               { obj = obj || null;
+                    _html: function (obj)               { obj = obj || null;
                                                               ctxEl = obj || ctxEl;
                                                               return ctxEl && ctxEl.innerHTML;
                                                             },
-                    _css:   function (prop, obj)           { obj = obj || null;
+                    _css: function (prop, obj)           { obj = obj || null;
                                                               ctxEl = obj || ctxEl;
                                                               return ctxEl && ctxEl.style[prop];
                                                             },
 
                     //does update css-value only if it is different
-                    css_:   function (name, value, obj)    {
+                    css_: function (name, value, obj)    {
                                                                ctxEl = obj || ctxEl;
                                                                if (!ctxEl) return;
                                                                var cssProp = ctxEl.style[name];
@@ -307,7 +307,7 @@
                                                                }
                                                             },
 
-                    _a:     function (prop, obj)           { obj = obj || null;
+                    _a: function (prop, obj)           { obj = obj || null;
                                                               ctxEl = obj || ctxEl;
                                                               return ctxEl && ctxEl.getAttribute(prop);
                                                             },
@@ -340,11 +340,11 @@
                     */
                     // \\// not tested
 
-                    _cls:   function (obj)           { obj = obj || null;
+                    _cls: function (obj)           { obj = obj || null;
                                                               ctxEl = obj || ctxEl;
                                                               return ctxEl && ctxEl.getAttribute('class');
                                                             },
-                hascls:   function (cls, obj)          { obj = obj || null;
+                hascls: function (cls, obj)          { obj = obj || null;
                                                           ctxEl = obj || ctxEl;
                                                           var doesContainCls = false;
                                                           if (ctxEl) {
@@ -359,21 +359,21 @@
 
                     // \\// information providers
 
-                    svg:    function ()                      { ctxEl =                document.createElementNS(ns.svgNS, 'svg'); },
-                    cNS:    function (type)                { ctxEl =                document.createElementNS(ns.svgNS, type); },
-                    a:      function (attr, text, obj)     { ctxEl = obj || ctxEl;  ctxEl.setAttribute(attr, text); },
+                    svg: function ()                      { ctxEl =                document.createElementNS(ns.svgNS, 'svg'); },
+                    cNS: function (type)                { ctxEl =                document.createElementNS(ns.svgNS, type); },
+                    a: function (attr, text, obj)     { ctxEl = obj || ctxEl;  ctxEl.setAttribute(attr, text); },
 
                     //https://developer.mozilla.org/en-US/docs/Web/SVG/Namespaces_Crash_Course#Scripting_in_namespaced_XML
                     //for consistency ...(null, ... whys is this "consistency" ... ? the must be a cowpath ...
                     //https://stackoverflow.com/questions/35057909/difference-between-setattribute-and-setattributensnull
                     //it seems does not matter at all how to write setAttribute: as setAttribute or setAttributeNS:
-                    aNS:    function (attr, text, obj)     { ctxEl = obj || ctxEl;  ctxEl.setAttributeNS(null, attr, text); },
+                    aNS: function (attr, text, obj)     { ctxEl = obj || ctxEl;  ctxEl.setAttributeNS(null, attr, text); },
 
-                    to:     function (to, obj)             { ctxEl = obj || ctxEl;  alt(to).appendChild(ctxEl); },
+                    to: function (to, obj)             { ctxEl = obj || ctxEl;  alt(to).appendChild(ctxEl); },
 
                     //API: ch is an array of racks or single rack:
                     //     rack is a wrapped element or raw DOM element
-                    ch:     function (ch, obj)             { ctxEl = obj || ctxEl;
+                    ch: function (ch, obj)             { ctxEl = obj || ctxEl;
                                                               //.encourages syntax for alternatively empty list of children
                                                               //.$$.ch( obj ? ... : ... )
                                                               if (!ch) return;
@@ -387,15 +387,15 @@
                                                                 ctxEl.appendChild(alt(ch));
                                                               }
                                                             },
-                    e:      function (type, callback, obj) { ctxEl = obj || ctxEl;  ctxEl.addEventListener(type, callback); },
-                    css:    function (name, value, obj)    { ctxEl = obj || ctxEl;  ctxEl.style[name] = value; },
-                    csst:   function (value, obj)          { ctxEl = obj || ctxEl;  ctxEl.style.cssText = value; },
-                    html:   function (html, obj)           { ctxEl = obj || ctxEl;  ctxEl.innerHTML = html; },
+                    e: function (type, callback, obj) { ctxEl = obj || ctxEl;  ctxEl.addEventListener(type, callback); },
+                    css: function (name, value, obj)    { ctxEl = obj || ctxEl;  ctxEl.style[name] = value; },
+                    csst: function (value, obj)          { ctxEl = obj || ctxEl;  ctxEl.style.cssText = value; },
+                    html: function (html, obj)           { ctxEl = obj || ctxEl;  ctxEl.innerHTML = html; },
 
                     ///adds class,
                     ///supports multiword class,
                     ///does not create duplicate words in class,
-                    addClass:   function (text, obj) {
+                    addClass: function (text, obj) {
                         ctxEl = obj || ctxEl;  //bug fix: if text === '', then
                                                //element is still created to save
                                                //the "chain" of $$ calls
@@ -945,13 +945,13 @@
         var ret = ns.haz(repo, htmlkey);
         if (!ret) {
             ret = repo[htmlkey] = {
-                cssText : '',
-                cssDom$ : ns.$$
+                cssText: '',
+                cssDom$: ns.$$
                     .style()
                     .cls(toCssIdentifier(htmlkey))
                     .to(document.head)
                     ,
-                queueHandle : null, //timeout handle
+                queueHandle: null, //timeout handle
             };
         }
         return ret;

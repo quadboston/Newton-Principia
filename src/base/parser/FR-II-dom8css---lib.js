@@ -6,7 +6,7 @@
         anid2anrack, anix2anrack,
         amode, sconf, rg, userOptions
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             fragment__collectsRawTpLinks,
             rawFragments2htmlText,
             builtFrags_2_dom8mj,
@@ -102,13 +102,13 @@
 
                         //total future match clause = string aka  ¦anchor config¦anchor caption¦¦
                         //note: trailing ¦¦ are stripped,
-                        match : parsedLink[0].substring(0,
+                        match: parsedLink[0].substring(0,
                                 //"length-1" erases last char which is "¦"
                                 //if is ¦IN¦¦¦, then makes ¦IN¦¦,
                                 parsedLink[0].length-1
                         ),
-                        anchorConfig : parsedLink[1],
-                        replaceeKey : parsedLink[2],  //anchor caption = first match key
+                        anchorConfig: parsedLink[1],
+                        replaceeKey: parsedLink[2],  //anchor caption = first match key
                     };
                     //todo: now do remove this tp-clause from rawActFrValue
                 }
@@ -160,8 +160,8 @@
                     ///at the moment, stripped duplicate links have nothing like
                     ///this object
                     anid2anrack[tplinkConf] = {
-                        tplink_ix : tplink_ix,
-                        tpid2true : {},
+                        tplink_ix: tplink_ix,
+                        tpid2true: {},
                         //link:parsedLink[2], not-used
                     };
                 }
@@ -286,7 +286,7 @@
             ////     { static : fragBody_raw,
             ////     }
             ////       ....
-            var normalizedActiveFrag = { 'static' : rawActiveFrag };
+            var normalizedActiveFrag = { 'static': rawActiveFrag };
         }
         var norFrRack = {};
         eachprop(normalizedActiveFrag, (
@@ -332,10 +332,10 @@
             norFrRack[akey] = {
                 //(*) format:
                 //text ready to be injected into html dom$
-                fragBody    : fragBody_raw.replace(TOP_ANCH_REG_gu, replWithAnchor),
+                fragBody: fragBody_raw.replace(TOP_ANCH_REG_gu, replWithAnchor),
                               //normalizes scriptedAnchors to form <a ... tl-NNNNN dix ...
                 //placeholder to accept text to be injected into html dom$
-                dom$        : 'to be defined later',
+                dom$: 'to be defined later',
                 //...       : ...
             };
         });

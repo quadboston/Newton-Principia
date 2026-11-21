@@ -4,7 +4,7 @@
         ssF, ssD, sDomF, toreg,
         stdMod, sconf, rg,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             //pointsArr_2_doubledDividedDifferences,
             pointsArr_2_singleDividedDifferences,
         },
@@ -83,16 +83,16 @@
             var axy = rg[approxCurveName].xy =  mat.calculate_divided_differences(xy);
         }
         var result = {
-            t2xy : q2xy, //transition from former notations
+            t2xy: q2xy, //transition from former notations
             q2xy,        //f : q |-> rr, rr is in |R^2
             poly2svg,
-            smin : 0,
-            qmax : qmax,
+            smin: 0,
+            qmax: qmax,
             antider,
             curvePoints, //they are x/y-swapped for case
         };
         Object.assign(rgX, result);
-        buildsCurvePoints({ doIntegrate : true })
+        buildsCurvePoints({ doIntegrate: true })
         buildsPlot(); //( arg );
         //poly2svg({});
         return result;
@@ -139,12 +139,12 @@
         function buildsCurvePoints({ doIntegrate }) {
             separateXYforParamT ?
             trange2points({
-                tStart:0,
-                tEnd:qmax,
-                stepsCount:1000,
+                tStart: 0,
+                tEnd: qmax,
+                stepsCount: 1000,
                 doIntegrate,
             }) :
-            ownrange2points({ stepsCount:1000, doIntegrate });
+            ownrange2points({ stepsCount: 1000, doIntegrate });
         }
 
         function poly2svg(arg) {
@@ -157,9 +157,9 @@
                 return ssF.mod2inn(cp,);
             });
             var polylineSvg = rgX.polylineSvg = nssvg.polyline({
-                pivots  : medpoints,
-                svgel   : rgX.polylineSvg,
-                parent  : stdMod.svgScene,
+                pivots: medpoints,
+                svgel: rgX.polylineSvg,
+                parent: stdMod.svgScene,
 
                 //should be overridden by ##tp-machine
                 //stroke           : haz( arg, 'stroke' ),

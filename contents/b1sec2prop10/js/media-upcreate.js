@@ -1,6 +1,6 @@
 (function () {
     var { ns, sn, $$, nsmethods, nssvg, ssF, ssD, amode, stdMod, sconf, rg, toreg, }
-        = window.b$l.apptree({ stdModExportList : {
+        = window.b$l.apptree({ stdModExportList: {
             media_upcreate___part_of_medupcr_basic,
         }, });
     return;
@@ -24,15 +24,15 @@
 
         //todo nearly bug: why create svg and set cls every time?
         rgTCir.svgel = nssvg.u({
-            svgel   : rgTCir.svgel,
-            parent  : stdMod.mmedia,
-            type    : 'circle',
-            stroke  : rg.C.pcolor,
-            fill    : 'transparent',
-            'stroke-width' : sconf.PATH_WIDTH,
-            cx : RCmedpos[0],
-            cy : RCmedpos[1],
-            r : RRmedpos,
+            svgel: rgTCir.svgel,
+            parent: stdMod.mmedia,
+            type: 'circle',
+            stroke: rg.C.pcolor,
+            fill: 'transparent',
+            'stroke-width': sconf.PATH_WIDTH,
+            cx: RCmedpos[0],
+            cy: RCmedpos[1],
+            r: RRmedpos,
         });
         $$.$(rgTCir.svgel).addClass(
             'tostroke tp-' + nsmethods.toCssIdentifier(tCircleName)

@@ -5,10 +5,10 @@
 
     function lemmaConfig() {
         return {
-            "contents-list" : [
+            "contents-list": [
                 'txt/conics.txt',
             ],
-            sappCodeReference : 'glossary',
+            sappCodeReference: 'glossary',
         };
     }
 })();

@@ -2,7 +2,7 @@
     var {
         eachprop, rg, ssF, stdMod,
     } = window.b$l.apptree({
-        stdModExportList : {
+        stdModExportList: {
             create_digital_legend,
         },
     });
@@ -26,7 +26,7 @@
     ////**********************************************************************************
 
     var lemma8Data =  {
-        claim : [
+        claim: [
             [['RAB', '△RAB', 'rg.RAB.area']],
             [['RACB', '△RACB', 'rg.RACB.area']],
             [['RAD', '△RAD', 'rg.RAD.area']],
@@ -67,10 +67,10 @@
 
         // function defined in /src/base/lemma/media-model/main-legend.js
         ssF.createLogic_phaseLegend({
-            tableCaption    : '',
-            noTableTitle    : true,
-            stdMod_given    : stdMod,
-            logic_phase     : key,
+            tableCaption: '',
+            noTableTitle: true,
+            stdMod_given: stdMod,
+            logic_phase: key,
             rowsCount,
             clustersCount,
             makesBodyCluster,

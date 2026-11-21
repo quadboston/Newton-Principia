@@ -156,18 +156,18 @@
         ///this thing must paste arg into arg, not to manually
         ///reassign props., misleading and error prone,
         return nssvg.u({
-            rgX     : arg.rgX,
-            svgel   : arg.svgel,
-            parent  : arg.parent,
-            type    : 'polyline',
-            points  : pivotsStr,
-            style   : arg.style,
-            stroke  : arg.stroke || 'rgba( 0,0,0, 1 )',
+            rgX: arg.rgX,
+            svgel: arg.svgel,
+            parent: arg.parent,
+            type: 'polyline',
+            points: pivotsStr,
+            style: arg.style,
+            stroke: arg.stroke || 'rgba( 0,0,0, 1 )',
                 //must be transparent bs stroke or fill are often exclusive
 
-            fill    : arg.fill || 'transparent',
-            'stroke-width' : arg['stroke-width'] || 1,
-            'stroke-linecap' : arg['stroke-linecap'] || 'round',
+            fill: arg.fill || 'transparent',
+            'stroke-width': arg['stroke-width'] || 1,
+            'stroke-linecap': arg['stroke-linecap'] || 'round',
         });
 
         function rep(match1, match2) {
@@ -290,7 +290,7 @@
         cpivots.push([x0, y0]);
         for (var ii = 0; ii <= stepsCount; ii++) {
             var ell = mat.ellipse({
-                t:step * ii,
+                t: step * ii,
                 a,
                 b,
                 x0,

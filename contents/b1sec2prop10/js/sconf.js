@@ -1,6 +1,6 @@
 (function () {
     const { nspaste, fconf, sconf, topicColors_repo, } =
-        window.b$l.apptree({ ssFExportList : { init_conf } });
+        window.b$l.apptree({ ssFExportList: { init_conf } });
     return;
 
 
@@ -144,137 +144,137 @@
         var originalPoints = {
 
             // //\\ no visibility cssClass
-            AA : {
-                undisplayAlways : true,
-                doPaintPname : false,
+            AA: {
+                undisplayAlways: true,
+                doPaintPname: false,
             },
 
-            BB : {
-                undisplayAlways : true,
-                doPaintPname : false,
+            BB: {
+                undisplayAlways: true,
+                doPaintPname: false,
             },
 
-            Z : {
-                pcolor : proofColor,
-                undisplayAlways : true,
-                doPaintPname : false,
+            Z: {
+                pcolor: proofColor,
+                undisplayAlways: true,
+                doPaintPname: false,
             },
             // \\// no visibility cssClass
 
-            C : {
-                pcolor : sunColor,
+            C: {
+                pcolor: sunColor,
                 pos: posC,
-                letterAngle : 120,
-                letterRotRadius : 35,
+                letterAngle: 120,
+                letterRotRadius: 35,
             },
 
-            B : {
-                pcolor : proofColor,
-                letterAngle : 90,
+            B: {
+                pcolor: proofColor,
+                letterAngle: 90,
                 cssClass: 'subessay--solution',
             },
 
             // //\\ proof
-            D : {
-                pcolor : proofColor,
-                letterAngle : 130,
+            D: {
+                pcolor: proofColor,
+                letterAngle: 130,
                 cssClass: 'logic_phase--proof',
             },
 
-            K : {
-                pcolor : proofColor,
-                letterAngle : -45,
+            K: {
+                pcolor: proofColor,
+                letterAngle: -45,
                 cssClass: 'logic_phase--proof',
             },
 
-            G : {
-                pcolor : proofColor,
-                letterAngle : 224,
-                letterRotRadius : 40,
+            G: {
+                pcolor: proofColor,
+                letterAngle: 224,
+                letterRotRadius: 40,
                 cssClass: 'logic_phase--proof',
             },
 
-            T : {
-                pcolor : estimatedForceColor,
-                letterAngle : -55,
-                letterRotRadius : 32,
+            T: {
+                pcolor: estimatedForceColor,
+                letterAngle: -55,
+                letterRotRadius: 32,
                 cssClass: 'subessay--goal logic_phase--proof',
             },
 
-            R : {
-                pcolor : estimatedForceColor,
-                letterAngle : 45,
+            R: {
+                pcolor: estimatedForceColor,
+                letterAngle: 45,
                 cssClass: 'subessay--goal subessay--solution',
             },
 
-            v : {
-                caption : '𝑣',
-                pcolor : proofColor,
-                letterAngle : -45,
-                letterRotRadius : 22,
+            v: {
+                caption: '𝑣',
+                pcolor: proofColor,
+                letterAngle: -45,
+                letterRotRadius: 22,
                 cssClass: 'subessay--goal logic_phase--proof',
             },
 
-            F : {
-                pcolor : proofColor,
-                letterAngle : -135,
+            F: {
+                pcolor: proofColor,
+                letterAngle: -135,
                 cssClass: 'logic_phase--proof',
             },
 
-            V : {
-                pcolor : proofColor,
-                letterAngle : -45,
+            V: {
+                pcolor: proofColor,
+                letterAngle: -45,
                 cssClass: 'subessay--another-solution',
             },
             // \\// proof
 
             //Book's "another solution"
-            u : {
-                caption : '𝑢',
-                pcolor : proofColor,
-                letterAngle : -45,
-                letterRotRadius : 15,
+            u: {
+                caption: '𝑢',
+                pcolor: proofColor,
+                letterAngle: -45,
+                letterRotRadius: 15,
                 cssClass: 'subessay--another-solution',
             },
 
-            tCircleCenter : {
-                pcolor : infoColor,
-                doPaintPname : false,
+            tCircleCenter: {
+                pcolor: infoColor,
+                doPaintPname: false,
                 cssClass: 'subessay--another-solution',
             },
 
             // to make kepler-orbit/builds-orbit happy, which assumes point S
-            S : {
+            S: {
                 pos: posC,
-                undisplayAlways : true,
-                doPaintPname : false,
+                undisplayAlways: true,
+                doPaintPname: false,
             },
 
             //---------------------------------------
             // //\\ draggable points
             //---------------------------------------
-            P : {
-                pcolor : bodyColor,
-                letterAngle : 70,
-                draggableX  : true,
-                draggableY  : true,
+            P: {
+                pcolor: bodyColor,
+                letterAngle: 70,
+                draggableX: true,
+                draggableY: true,
             },
 
-            Q : {
-                pcolor : estimatedForceColor,
-                letterAngle : 260,
-                letterRotRadius : 35,
-                draggableX  : true,
-                draggableY  : true,
+            Q: {
+                pcolor: estimatedForceColor,
+                letterAngle: 260,
+                letterRotRadius: 35,
+                draggableX: true,
+                draggableY: true,
                 cssClass: 'subessay--goal logic_phase--proof',
-                conditionalDrag : 'subessay--goal logic_phase--proof',
+                conditionalDrag: 'subessay--goal logic_phase--proof',
             },
 
-            A : {
-                pcolor : proofColor,
-                draggableX  : true,
+            A: {
+                pcolor: proofColor,
+                draggableX: true,
                 cssClass: 'logic_phase--proof',
-                conditionalDrag : 'logic_phase--proof',
+                conditionalDrag: 'logic_phase--proof',
             },
             //---------------------------------------
             // \\// draggable points
@@ -282,103 +282,103 @@
         };
 
         var linesArray = [
-            { 'A,AA' : { pcolor : proofColor,
+            { 'A,AA': { pcolor: proofColor,
                      cssClass: 'subessay--corollary2',
             }, },
-            { 'B,BB' : { pcolor : proofColor,
+            { 'B,BB': { pcolor: proofColor,
                      cssClass: 'subessay--corollary2',
              }, },
-            { 'PZ' : { pcolor : proofColor,
+            { 'PZ': { pcolor: proofColor,
                      cssClass: 'subessay--solution',
             }, },
-            { 'ZR' : { pcolor : proofColor,
+            { 'ZR': { pcolor: proofColor,
                      cssClass: 'subessay--solution',
             }, },
-            { CA : { pcolor : proofColor,
+            { CA: { pcolor: proofColor,
                      cssClass: 'subessay--solution',
             }, },
-            { CB : { pcolor : proofColor,
+            { CB: { pcolor: proofColor,
                      cssClass: 'subessay--solution',
             }, },
 
             // //\\ proof
-            { 'CV' : { pcolor : proofColor,
+            { 'CV': { pcolor: proofColor,
                          cssClass: 'subessay--another-solution',
             }, },
-            { 'PR' : { pcolor : proofColor,
+            { 'PR': { pcolor: proofColor,
                        cssClass: 'subessay--goal subessay--solution',
             }, },
-            { 'QR' : { pcolor : estimatedForceColor,
+            { 'QR': { pcolor: estimatedForceColor,
                        cssClass: 'subessay--goal subessay--solution',
             }, },
-            { 'QT' : { pcolor : estimatedForceColor,
+            { 'QT': { pcolor: estimatedForceColor,
                        cssClass: 'subessay--goal logic_phase--proof',
             }, },
-            { 'PT' : { pcolor : proofHover,
+            { 'PT': { pcolor: proofHover,
                        cssClass: 'logic_phase--proof',
             }, },
-            { 'TP' : { pcolor : proofColor,
+            { 'TP': { pcolor: proofColor,
                        cssClass: 'subessay--goal logic_phase--proof',
-                       'stroke-width' : 1.5,
+                       'stroke-width': 1.5,
             }, },
-            { DK : { pcolor : proofColor,
+            { DK: { pcolor: proofColor,
                      cssClass: 'logic_phase--proof',
             }, },
-            { GP : { pcolor : proofHover,
+            { GP: { pcolor: proofHover,
                      cssClass: 'logic_phase--proof',
             }, },
-            { Qv : { pcolor : proofColor,
+            { Qv: { pcolor: proofColor,
                      cssClass: 'subessay--goal logic_phase--proof',
             }, },
-            { Pv : { pcolor : proofHover,
+            { Pv: { pcolor: proofHover,
                      cssClass: 'logic_phase--proof',
             }, },
-            { Tv : { pcolor : proofHover,
+            { Tv: { pcolor: proofHover,
                      cssClass: 'logic_phase--proof',
             }, },
-            { vC : { pcolor : proofHover,
+            { vC: { pcolor: proofHover,
                      cssClass: 'logic_phase--proof',
             }, },
-            { CG : { pcolor : proofColor,
+            { CG: { pcolor: proofColor,
                      cssClass: 'logic_phase--proof',
             }, },
-            { DC : { pcolor : proofHover,
+            { DC: { pcolor: proofHover,
                      cssClass: 'logic_phase--proof',
             }, },
-            { CF : { pcolor : proofColor,
+            { CF: { pcolor: proofColor,
                      cssClass: 'logic_phase--proof',
             }, },
             // \\// proof
 
             //Book's "another solution"
-            { Tu : { pcolor : proofHover,
+            { Tu: { pcolor: proofHover,
                      cssClass: 'subessay--another-solution',
             }, },
-            { 'uV' : { pcolor : proofHover,
+            { 'uV': { pcolor: proofHover,
                          cssClass: 'subessay--another-solution',
             }, },
-            { uP : { pcolor : proofHover,
+            { uP: { pcolor: proofHover,
                      cssClass: 'subessay--another-solution',
             }, },
-            { Pu : { pcolor : proofColor,
+            { Pu: { pcolor: proofColor,
                      cssClass: 'subessay--another-solution',
-                     'stroke-width' : 1.5,
+                     'stroke-width': 1.5,
             }, },
-            { PQ : { pcolor : proofColor,
-                     cssClass: 'subessay--another-solution',
-            }, },
-            { 'P,tCircleCenter' : { pcolor : infoColor,
+            { PQ: { pcolor: proofColor,
                      cssClass: 'subessay--another-solution',
             }, },
-            { PC : { pcolor : estimatedForceColor,
+            { 'P,tCircleCenter': { pcolor: infoColor,
+                     cssClass: 'subessay--another-solution',
+            }, },
+            { PC: { pcolor: estimatedForceColor,
                 cssClass:
                 'subessay--goal logic_phase--proof subessay--corollary1 logic_phase--scholium',
             }, },
-            { 'QC' : { pcolor : proofColor,
+            { 'QC': { pcolor: proofColor,
                 cssClass: 'subessay--goal',
             },},
 
-            { PF : { pcolor : proofColor,
+            { PF: { pcolor: proofColor,
                      cssClass: 'logic_phase--proof',
             }, },
         ];
@@ -387,7 +387,7 @@
             Q_STEPS,
             DATA_GRAPH_STEPS,
 
-            mediaBgImage : "diagram.png",
+            mediaBgImage: "diagram.png",
             topicColors_elected,
             originalPoints,
             linesArray,

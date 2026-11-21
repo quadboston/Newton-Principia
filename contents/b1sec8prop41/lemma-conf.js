@@ -6,7 +6,7 @@
     function lemmaConfig() {
         var sm = '../js/'; //study model path
         return {
-            codesList : [
+            codesList: [
                 //todm: automate this list
                 { src: sm + 'sconf.js' },
                 { src: sm + 'init-model-parameters.js' },
@@ -17,12 +17,12 @@
                 { src: sm + 'amode8captures.js' },
                 { src: sm + 'quadr-lib.js' },
             ],
-            "contents-list" : [
+            "contents-list": [
                 'txt/latin.txt',
                 'txt/cohen.txt',
             ],
             //optional additional reference html
-            referencesForAllLemmaEssays : '',
+            referencesForAllLemmaEssays: '',
         };
     }
 

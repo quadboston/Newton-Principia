@@ -3,7 +3,7 @@
         ns, sn, haz,
         ssF, sDomF, rg,
     } = window.b$l.apptree({
-        ssFExportList : {
+        ssFExportList: {
             paintsCurve,
         },
     });
@@ -117,7 +117,7 @@
                   //assigned to rgX,
             ns.svg.curve({
                 rgX,
-                xOFy            : false, //true,
+                xOFy: false, //true,
                 stepsCount,
                 addToStepCount,
                 /*
@@ -130,12 +130,12 @@
                 */
                 start,
                 step,
-                curve           : mediaFunction,
-                stroke          : stroke || sDomF.getFixedColor(rgName),
-                "stroke-width"  : strokeWidth || 2,
-                svgel           : rgX.svgel, //[ rgName ].svg,
-                dontClose       : true,
-                parent          : mmedia,
+                curve: mediaFunction,
+                stroke: stroke || sDomF.getFixedColor(rgName),
+                "stroke-width": strokeWidth || 2,
+                svgel: rgX.svgel, //[ rgName ].svg,
+                dontClose: true,
+                parent: mmedia,
             });
         rgX.svgel$
             .toggleClass('undisplay', ns.haz(rgX, 'undisplay'))
@@ -170,10 +170,10 @@
                 var pos         = fun(pointParam);
                 var annName     = 'ann-' + rgName + '-' + aix;
                 var rgAnn = rgAnnPoints[aix] = ssF.declareGeomtric({
-                            pname   : annName,
+                            pname: annName,
                             pos,
-                            caption : captionFunct({
-                                pointParam, pointIndex : aix, pointPos : pos
+                            caption: captionFunct({
+                                pointParam, pointIndex: aix, pointPos: pos
                             }),
                 });
                 rgAnn.undisplay = haz(rgX, 'undisplay');
