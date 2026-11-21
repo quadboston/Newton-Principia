@@ -1,5 +1,5 @@
 //todm: apparently vital to merge this module with proper s ubmodel
-( function() {
+( function () {
     var {
         ns, $$, sn, ssF, sconf, nspaste,
         stdMod, sDomF, sDomN, rg

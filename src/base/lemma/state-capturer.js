@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         eachprop, nspaste, has, fapp, rg,
     } = window.b$l.apptree({
@@ -14,7 +14,7 @@
     {
         var clone = {};
         eachprop( rg, (rgX, kname) => {
-            if( typeof rgX !== 'function' &&
+            if ( typeof rgX !== 'function' &&
                 kname !== 'main-legend' &&               //todm ?bug
                 kname !== 'videoicon-placeholder' &&     //todm ?bug
                 kname !== 'rgId' &&

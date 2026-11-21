@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var ns          = window.b$l;
     var sn          = ns.sn;
     var has         = ns.h;
@@ -40,15 +40,15 @@
         var loadedFilesById = {};
         var completionCount = 0;
 
-        filesList.forEach( function( fileItem, ix ) {
+        filesList.forEach( function ( fileItem, ix ) {
 
             var xml = new XMLHttpRequest();
-            try{
+            try {
                 xml.responseType = ns.haz( fileItem, 'responseType' ) || 'text';
                 xml.open( 'GET', fileItem.link, true );
 
                 ///todom perhaps we can merge both conditions in one "case"
-                if( fileItem.responseType === 'arraybuffer' ) {
+                if ( fileItem.responseType === 'arraybuffer' ) {
                     xml.send();
                     xml.onload = fileOnLoad;
                 } else {
@@ -67,7 +67,7 @@
             {
                 if ( xml.readyState === 4 )
                 {
-                    if( xml.status === 200 )
+                    if ( xml.status === 200 )
                     {
                         fileOnLoad();
                     } else {
@@ -88,7 +88,7 @@
                     fileItem : fileItem,
                 };
                 loadedFiles.push( loadedItem );
-                if( has( fileItem, 'id' ) ) {
+                if ( has( fileItem, 'id' ) ) {
                     loadedFilesById[ fileItem.id ] = loadedItem;
                 }
                 completionCount++;
@@ -100,7 +100,7 @@
 
         function checkCompletion( fileItem )
         {
-            if( completionCount === filesList.length ) {
+            if ( completionCount === filesList.length ) {
                 lastCb && lastCb( loadedFilesById, loadedFiles );
             }
         }

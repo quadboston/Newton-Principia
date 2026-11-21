@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { ns, sn, $$, nsmethods, nssvg, mcurve, integral, mat, fconf, ssF,
         ssD, sData, stdMod, sconf, rg, toreg, } = window.b$l.apptree({ stdModExportList :
         { init_model_parameters, }, });

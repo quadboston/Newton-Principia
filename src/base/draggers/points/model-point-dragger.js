@@ -1,6 +1,6 @@
 //todm: apparently vital to merge this module with proper submodel
 
-( function() {
+( function () {
     var {
         ns, $$, haz, haff,
         ssF, sconf,
@@ -61,7 +61,7 @@
         );
 
         stdMod.customDraggers_list.push(
-            ( function( medD8D ) {
+            ( function ( medD8D ) {
                 ///does this make medpos? - no.
                 sDomF.rgX_2_dragWrap({
                     medD8D,
@@ -82,11 +82,11 @@
 
         //possibly in media units, not im model units,
         mouseOnSurf
-    ){
-        if( haz( sconf, 'dragHidesPictures' ) ){
+    ) {
+        if ( haz( sconf, 'dragHidesPictures' ) ) {
             sDomF.detected_user_interaction_effect();
         }
-        if( ns.h( this, 'diagramPanner' ) ) {
+        if ( ns.h( this, 'diagramPanner' ) ) {
             //// non-ordinary case:
             //// dragging model as a whole "inside media"
             //sconf.originX_onPicture - original position remains intact
@@ -109,7 +109,7 @@
             this.achieved.achieved[1] - dragMove[1],
         ];
         var accepted = this.acceptPos( newPos, dragMove );
-        if( accepted ) {
+        if ( accepted ) {
             ns.paste( this.pos, newPos );
             stdMod.model8media_upcreate();
         }
@@ -118,7 +118,7 @@
     ///must be in contex of pointWrap ( like this = rg.B )
     function processDownEvent( arg )
     {
-        if( ns.haz( this, 'diagramPanner' ) ) {
+        if ( ns.haz( this, 'diagramPanner' ) ) {
             //// non-ordinary case:
             this.hideD8Dpoint = false;
             $$.$( this.svgel ).toggleClass( 'undisplay', false );
@@ -127,7 +127,7 @@
             this.medpos = sDomF.outparent2inn( arg.point_on_dragSurf );
             this.svgel.setAttributeNS( null, 'cx', this.medpos[0] );
             this.svgel.setAttributeNS( null, 'cy', this.medpos[1] );
-            if( ns.haz( arg.dragWrap, 'decPoint' ) ) {
+            if ( ns.haz( arg.dragWrap, 'decPoint' ) ) {
                 $$.$( arg.dragWrap.decPoint )
                     .css( 'display', 'block' )
                     ;
@@ -148,7 +148,7 @@
 
     function processUpEvent( arg )
     {
-        if( ns.haz( this, 'diagramPanner' ) ) {
+        if ( ns.haz( this, 'diagramPanner' ) ) {
             this.achieved.achieved[ 0 ] = sconf.modorInPicX;
             this.achieved.achieved[ 1 ] = sconf.modorInPicY;
 
@@ -157,7 +157,7 @@
             this.hideD8Dpoint = true;
             $$.$( this.svgel ).toggleClass( 'undisplay', true );
             $$.$( this.svgel ).removeClass( 'grabbing' );
-            if( ns.haz( arg.dragWrap, 'decPoint' )) {
+            if ( ns.haz( arg.dragWrap, 'decPoint' )) {
                 $$.$( arg.dragWrap.decPoint ).css( 'display', 'none' );
             }
             //vital to toggle pointer from grabbing:

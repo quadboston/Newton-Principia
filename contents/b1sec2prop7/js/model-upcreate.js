@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { $$, nsmethods, nssvg, mat, has, ssF, ssF, ssD, stdMod, amode, sconf,
         rg, toreg, mcurve, } = window.b$l.apptree({ stdModExportList : {
             model_upcreate, }, });
@@ -26,7 +26,7 @@
         const posCenterOfForces = rg.S.pos;
         const Rc = R; //curvature radius
 
-        if(solvable){
+        if (solvable) {
             const rrplus = Porb.rrplus;
             const rrminus = Porb.rrminus;
             rg.Q.q = Porb.plusQ;
@@ -120,7 +120,7 @@
         //================================================
         //Sets dynamic point A, this point is not angle reference,
         //Assigns: "A=scale,C,D,S"
-        if( amode.subessay !== 'corollary2' && amode.subessay !== 'corollary3' ){
+        if ( amode.subessay !== 'corollary2' && amode.subessay !== 'corollary3' ) {
             ssF.dropLine( 'A=2,V,C' );
         }
         //for graph
@@ -207,16 +207,16 @@
             let flen = foldps.length;
             let pastlen = ssD.pastFoldPoints;
             //c cc( 'folds='+flen + ' pains='+pp.length + ' past='+pastlen );
-            if( has( ssD, 'pastFoldPoints' ) ) {
+            if ( has( ssD, 'pastFoldPoints' ) ) {
                 //todm for( let i=foldps.length; i<flen; i++ ) {
-                for( let i=0; i<pastlen; i++ ) {
+                for ( let i=0; i<pastlen; i++ ) {
                     pp[i].rgX.undisplay = true;
                 }
             }
             ////otherwise, cannot display all separation points;
             ////therfore, displays nothing,
-            if( foldps.length <= pp.length ) {
-                 for( let i=0; i<flen; i++ ){
+            if ( foldps.length <= pp.length ) {
+                 for ( let i=0; i<flen; i++ ) {
                     let fp = foldps[i];
                     let rgX = pp[i].rgX;
                     rgX.pos = fp;
@@ -230,7 +230,7 @@
             let nsp = rg.nonSolvablePoint;
             let nsl = rg[ 'S,nonSolvablePoint' ];
             let len = ssD.foldPoints.length;
-            if( len ) {
+            if ( len ) {
                 ////displays last fold point
                 nsp.pos[0] = ssD.foldPoints[len-1][0];
                 nsp.pos[1] = ssD.foldPoints[len-1][1];
@@ -252,14 +252,14 @@
         // //\\ hides/shows non-existing elements
         //      for non-Kepler curve
         //================================================
-        if( solvable ) {
-            if( ssD.stashedVisibility ) {
+        if ( solvable ) {
+            if ( ssD.stashedVisibility ) {
                 ////restores visibility which has been stashed
                 ////when curve became non-Kepler
                 let sv = ssD.stashedVisibility;
                 Object.keys(ssD.stashedVisibility).forEach( okey => {
                     let val = sv[ okey ];
-                    switch(okey) {
+                    switch (okey) {
                         case 'Q.hideD8Dpoint' : rg.Q.hideD8Dpoint = val;
                         break;
                         default : rg[ okey ].undisplay = val;
@@ -267,7 +267,7 @@
                 });
                 ssD.stashedVisibility = null;
             }
-        } else if( !ssD.stashedVisibility ) {
+        } else if ( !ssD.stashedVisibility ) {
             ////===========================================
             ////this block hides shapes when orbit splits
             ////===========================================
@@ -287,7 +287,7 @@
             };
             ///heres is an actual code which hides shapes
             Object.keys(ssD.stashedVisibility).forEach( okey => {
-                switch(okey) {
+                switch (okey) {
                     case 'Q.hideD8Dpoint' : rg.Q.hideD8Dpoint = true;
                     break;
                     default : rg[ okey ].undisplay = true;

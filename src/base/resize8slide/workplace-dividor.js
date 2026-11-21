@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         //nsd, //vital-for-mobile
         $$, nspaste, cssp, d8dp,
@@ -128,7 +128,7 @@
         ///=============================================================================
         function doProcess( arg )
         {
-            switch( arg.down_move_up ) {
+            switch ( arg.down_move_up ) {
                 case 'down':
                     //Store the partition handle's start position,
                     //also update the sessionStorage.

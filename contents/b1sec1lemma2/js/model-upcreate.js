@@ -56,12 +56,12 @@
         let dir = p[1][1] > p[0][1] ? 1 : 0;
         changes.push( {ix, dir, pstart:p[ix], mp_start_ix:ix } );
         var stashedChan = changes[0];
-        for( ix = 1; ix<len; ix++ ) {
+        for ( ix = 1; ix<len; ix++ ) {
             let y = p[ix][1];
             minY = minY > y ? y : minY;
             maxY = maxY > y ? maxY : y;
             let newDir = p[ix][1] > p[ix-1][1] ? 1 : 0;
-            if( newDir !== dir ) {
+            if ( newDir !== dir ) {
                 dir = newDir;
                 let ch = {
                     ix:ix-1, //micropoints turning index
@@ -90,11 +90,11 @@
         ///chooses only increasing (in svg context) intervals
         var gapXMax = 0;
         var gapX_ix = 0;
-        for(let ch=0; ch<changes.length; ch++ ) {
+        for (let ch=0; ch<changes.length; ch++ ) {
             let change = changes[ ch ];
             let widthx = changes[ ch ].widthx;
             //if( change.dir > 0 && gapXMax < widthx ) {
-            if( gapXMax < widthx ) {
+            if ( gapXMax < widthx ) {
                 ////well, bigger gap is found
                 gapXMax = widthx;
                 gapX_ix = ch;

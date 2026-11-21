@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, $$, sn, haz, sconf, fconf,
         sDomF,
@@ -74,9 +74,9 @@
 
        */
         arg
-    ){
+    ) {
         var pWrap = arg.pointWrap;
-        switch( arg.down_move_up ) {
+        switch ( arg.down_move_up ) {
             case 'down':
                 //**rgX optionally can have processDownEvent method:
                 ns.hafb( pWrap, 'processDownEvent' )( arg );
@@ -88,10 +88,10 @@
             case 'move':
 
                 //**rgX can be media mover engine
-                if( ns.haz( pWrap, 'diagramPanner' ) ) {
+                if ( ns.haz( pWrap, 'diagramPanner' ) ) {
                     var css2model = sDomF.out2inn();
                     var mouseOnSurf = sDomF.outparent2inn( arg.point_on_dragSurf );
-                } else if( haz(pWrap, 'unscalable' ) ){
+                } else if ( haz(pWrap, 'unscalable' ) ) {
                     ////good for bottom side sliders which must igonre zooming
                     var css2model = sDomF.out2inn() / sconf.originalMod2inn_scale;
                 } else {

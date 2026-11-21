@@ -1,4 +1,4 @@
-(function(){
+(function () {
 const { ns, eachprop, exegs, topics, fconf, references} = window.b$l.apptree({
         ssFExportList :
         {
@@ -70,8 +70,8 @@ const { ns, eachprop, exegs, topics, fconf, references} = window.b$l.apptree({
                     //The action defines what fragment displays:
                     //the action looks for application state and by this state
                     //displays fragment's content.
-                    var activeFrags = bodySplit.map( function( splittee ) {
-                        if( splittee.indexOf( ACTION_INDICATOR ) === 0 ) {
+                    var activeFrags = bodySplit.map( function ( splittee ) {
+                        if ( splittee.indexOf( ACTION_INDICATOR ) === 0 ) {
                             return JSON.parse( splittee.substring(1) );
                         } else {
                             return splittee;

@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, sn,
         mat, bezier,
@@ -258,21 +258,21 @@
         var bb = -2*modCurvPivots[0][x0yIx] + 2 * modCurvPivots[1][x0yIx];
         var cc = modCurvPivots[0][x0yIx] - x0y;
         var roots = mat.squarePolyRoot( aa, bb, cc );
-        if( roots.length === 0 ) {
+        if ( roots.length === 0 ) {
             throw "Unexpected no-solution case: do better coding: todm";
-        } else if( roots.length === 1 ) {
+        } else if ( roots.length === 1 ) {
             var result = roots[0];
-        } else if( Array.isArray(roots[0]) ) {
+        } else if ( Array.isArray(roots[0]) ) {
             ////edge cases, returns extremum of t
             var result = -bb / ( 2 * aa );
         } else {
             //'pivots=', modCurvPivots,
             //'aa=' + aa + ',' + bb + ',' + cc );
             //.here the home-cooking begins
-            if( roots[0] < 0 ) {
+            if ( roots[0] < 0 ) {
                 roots[0] = roots[1];
             }
-            if( roots[1] < 0 ) {
+            if ( roots[1] < 0 ) {
                 roots[1] = roots[0];
             }
             var result = Math.min( roots[0], roots[1], 1 - avoid_ends );
@@ -289,7 +289,7 @@
     ///====================================================================
     function const2positions( con, positions )
     {
-        return positions.map( function( pos ) {
+        return positions.map( function ( pos ) {
             return mat.sm( con, pos );
         });
     }

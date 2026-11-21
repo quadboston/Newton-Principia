@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { sDomF, stdMod, sconf, }
         = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     return;

@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         $$, nsmethods, rg,
         ssF, ssD, sconf,

@@ -1,13 +1,13 @@
-( function() {
+( function () {
     var ns	    = window.b$l;
     var mat     = ns.sn( 'mat' );
 
-    ( function() {
+    ( function () {
         //todm: need a generic math module, put this
         //there:
         var p = 1;
         var powersOf2 = [p];
-        for( var i=1; i<61; i++ ) {
+        for ( var i=1; i<61; i++ ) {
             p *= 2;
             powersOf2[i] = p;
         }
@@ -25,10 +25,10 @@
     ///
     ///Version history: similar to used in .../square/...
     ///                 /march18-98-bezier-threads-predelivey/js/paint-bubbles-and-threads.js
-    mat.squarePolyRoot = function( aa, bb, cc )
+    mat.squarePolyRoot = function ( aa, bb, cc )
     {
-        if( aa === 0 ) {
-            if( bb === 0 ) {
+        if ( aa === 0 ) {
+            if ( bb === 0 ) {
                 return cc === 0 ? [1,2,3] : [];
             } else {
                 return [ -cc/bb ];
@@ -37,7 +37,7 @@
             var scale = 1 / ( 2 * aa );
             var center = -bb * scale;
             var discr = bb*bb - 4*aa*cc;
-            if( discr < 0 ) {
+            if ( discr < 0 ) {
                 var complex = 1;
                 discr = -discr;
             }
@@ -64,7 +64,7 @@
         e,      //excentricity
         latus2, //half of the latus rectum
         focus,
-    }){
+    }) {
         const fi = q-q0;
         const cosFi = Math.cos( fi );
         const sinFi = Math.sin( fi );
@@ -124,12 +124,12 @@
     }
 
     //converts angle from degrees to radians
-    function degToRad(angle){
+    function degToRad(angle) {
         return angle / 180 * Math.PI;
     }
 
     //converts angle from radians to degrees
-    function radToDeg(angle){
+    function radToDeg(angle) {
         return angle * 180 / Math.PI;
     }
 }) ();

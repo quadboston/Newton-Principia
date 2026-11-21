@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         sn, nspaste, mcurve, mat,
         fconf, ssF, amode, sconf, rg,
@@ -59,7 +59,7 @@
         nspaste( rg.A.pos, pointAt( Math.PI ) );
 
         ////hyperbola or ellipse
-        if( amode.subessay === 'corollary1' || amode.subessay === 'corollary2'  ) {
+        if ( amode.subessay === 'corollary1' || amode.subessay === 'corollary2'  ) {
             nspaste( rg.D.pos, rg.P.pos );
         } else {
             nspaste( rg.D.pos, pointAt( 0 ) );
@@ -125,7 +125,7 @@
             });
 
             // only set position of p once, it does not move
-            if( amode.subessay !== subessay ) {
+            if ( amode.subessay !== subessay ) {
                 subessay = amode.subessay;
                 nspaste( rg.p.pos, posBody );
             }
@@ -203,7 +203,7 @@
         var udir = op.cosOmega * cosOmega + op.om * sinOmega;
         //path step
         const ds_by_dt  = udir * op.delta_t / INTEGRATION_STEPS * op.Kepler_v;
-        for( var it = 0; it <= INTEGRATION_STEPS; it++ ) {
+        for ( var it = 0; it <= INTEGRATION_STEPS; it++ ) {
             var {
                 ds_dq, //=ds_by_dfi
                 posBody,

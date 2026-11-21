@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { stdMod, amode, rg, }
         = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     return;
@@ -14,7 +14,7 @@
         const subessay = aspect === 'latin' ?
             { claim : 'claim', proof : 'solution' }[ logic_phase ] :
             amode.subessay;
-        if( subessay !== amode.subessay ) {
+        if ( subessay !== amode.subessay ) {
             // lets CSS show the shapes classed for that subessay
             stdMod.svgScene.classList.add( 'subessay--' + subessay );
         }

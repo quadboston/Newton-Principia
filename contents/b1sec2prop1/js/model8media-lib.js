@@ -1,4 +1,4 @@
-(function(){
+(function () {
     var {
         sn, haff, haz, nspaste, mat, nssvg,
         sconf, sDomF, ssF, ssD, toreg, rg,
@@ -14,7 +14,7 @@
 
 
     ///returns protected time
-    function protects_curTime_ranges( ctime ){
+    function protects_curTime_ranges( ctime ) {
         let sl = rg.slider_sltime;
         ctime = ( ctime || ctime === 0 ) ? ctime : sl.curtime;
         ctime = Math.min( ctime, sconf.timeRange * 0.999999 );
@@ -27,7 +27,7 @@
 
     ///points P and T do depend on time, so cannot be updated
     ///in tr2decs subroutine
-    function doesPosition_PTandTheirLine (){
+    function doesPosition_PTandTheirLine() {
         var st      = rg.stepIx.value;
         var path    = rg.path.pos;
         //Constrain the step value as follows.  Previously

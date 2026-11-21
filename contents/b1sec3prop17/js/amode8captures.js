@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         nspaste, mat, sDomF, stdMod, amode, rg, sconf,
     } = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
@@ -32,7 +32,7 @@
         //2
         stdMod.establishesEccentricity( op.initialEccentricity );
         op.PparQ_initial = op.PparQ_initial_essay
-        if( logic_phase === 'corollary'){
+        if ( logic_phase === 'corollary') {
             op.PparQ_initial = 0;
         }
         //3
@@ -56,7 +56,7 @@
         //-------------------------------------------------
         op.cosOmega = op.cosOmega_initial;
         op.om       = op.om_initial;
-        if( logic_phase === 'corollary'){ //Pv can only be dragged vertically
+        if ( logic_phase === 'corollary') { //Pv can only be dragged vertically
             op.om = 1;
             op.cosOmega = 0;
             rg.P.q      = 0;
@@ -76,7 +76,7 @@
         sop.Kepler_v = sop.Kepler_v_initial;
         sop.cosOmega = sop.cosOmega_initial;
         sop.om       = sop.om_initial;
-        if( logic_phase === 'corollary' && amode.subessay === 'corollary2' ){
+        if ( logic_phase === 'corollary' && amode.subessay === 'corollary2' ) {
             sop.om = 1;
             sop.cosOmega = 0;
             sop.latus = sop.corII_DVect.abs;

@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, paste, capture,
         sDomF, ssD, globalCss, sData,
@@ -118,16 +118,16 @@
         sData[ 'proof-pop-up' ].dom$.css( 'display', 'none' );
 
         captured = "reset-to-origin";
-        if( logic_phase === 'claim' ) {
+        if ( logic_phase === 'claim' ) {
                 captured = 'L-equal-d';
         }
 
-        if(
+        if (
             ( logic_phase === 'proof' || logic_phase === 'claim' ) && aspect === 'model'
         ) {
             ///this still needs user action to replace Book's letters with
             ///pop up app. letters
-            if( logic_phase === 'proof' ) {
+            if ( logic_phase === 'proof' ) {
                 rg.curveRotationAngle.angle = ANGLE_AUTH;
 
                 ///shows differential tangent row in data table

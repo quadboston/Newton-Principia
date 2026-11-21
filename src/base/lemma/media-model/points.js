@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         sn, $$, nsmethods, haz, has, han, nssvg,
         sconf, sDomF, ssF, lowtpid_2_glocss8anchorRack, rg, toreg,
@@ -46,14 +46,14 @@
         pt.medpos = haz( pt, 'unscalable' ) ? ssF.mod2inn_original( pt.pos, ) :
                                               ssF.mod2inn( pt.pos, );
         var dressed = ownProp.call( pt, 'pointIsAlreadyDressed' );
-        if( !dressed ) {
+        if ( !dressed ) {
 
             ////long, initial version of pos2pointy
             var tpclass = nsmethods.toCssIdentifier(
                           ( haz( attrs, 'tpclass' ) ) || pName
             );
             var cssClass = has( attrs, 'cssClass' ) ? attrs['cssClass'] + ' ' :  '';
-            if( has( pt, 'classmark' ) ){
+            if ( has( pt, 'classmark' ) ) {
                 cssClass += pt.classmark + ' ';
             }
             pt.pname                = pName;
@@ -82,7 +82,7 @@
             ///paint colors in own attributes
             var low_tpID = nsmethods.toCssIdentifier( pName );
             var tpactive = haz( lowtpid_2_glocss8anchorRack, low_tpID );
-            if( !tpactive ) {
+            if ( !tpactive ) {
                 argsvg.fill = pt.fill;
                 argsvg.stroke = pt.stroke;
             };
@@ -124,7 +124,7 @@
         //
         var pointWrap = haz( pt, 'pointWrap' );
         //*****************************************************
-        if( has( pt, 'undisplayAlways' ) ){
+        if ( has( pt, 'undisplayAlways' ) ) {
             //good but may be corrupts legacy lemmas
             //pt.undisplay = true; //fixes hiding of letters
             pt.svgel$.toggleClass( 'undisplay', pt.undisplayAlways );
@@ -149,12 +149,12 @@
         ///adds fake points over draggable points to
         ///make white kernels drawn above lines
         ///move_2_updates is a flag of point for being a draggee
-        if(
+        if (
             !haz( rgX, 'noKernel' ) &&
             (
                 has( rgX, 'move_2_updates' ) || has( rgX, 'doWhiteKernel' )
             )
-        ){
+        ) {
             var fakeName = pname+'-kernel';
             var wp = rg[pname].pos;
             var rgXX = rg[ fakeName ];
@@ -163,14 +163,14 @@
             var undisplay = haz( rg[pname], 'hideD8Dpoint' ) ||
                             haz( rg[pname], 'undisplay' );
 
-            if( !has( rg, fakeName ) || !has( rg[fakeName], 'pos' ) ) {
+            if ( !has( rg, fakeName ) || !has( rg[fakeName], 'pos' ) ) {
                 ////...decorates for the first time and updates
                 var rgXX = toreg( fakeName )
                     ( 'pos', [ wp[0], wp[1] ]  )
                     ( 'undisplay', undisplay  )
                     ();
 
-                if( haz( rg[pname], 'unscalable' ) ) {
+                if ( haz( rg[pname], 'unscalable' ) ) {
                     rgXX.unscalable = rg[pname].unscalable;
                 }
                 pos2pointy(
@@ -198,7 +198,7 @@
                 pos2pointy( fakeName, null, ); //updates
             }
         }
-        if( rgX.doPaintPname && rgX.caption !== '' ) {
+        if ( rgX.doPaintPname && rgX.caption !== '' ) {
             var lpos = rgX.medpos.concat([]);
             var lposX = rgX.letterOffsetX + rgX.medpos[0];
             var lposY = rgX.letterOffsetY + rgX.medpos[1];
@@ -232,7 +232,7 @@
             //      https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform
             //--------------------------------------------------------------------------
             var textLineTurn = haz( rgX, 'textLineTurn' );
-            if( textLineTurn ) {
+            if ( textLineTurn ) {
                 rgX.pnameLabelsvg.setAttribute( 'transform', 'rotate(' +
                      textLineTurn + ',' + lposX_rounded + ',' + lposY_rounded + ' )'
                 );
@@ -258,7 +258,7 @@
             );
 
             let txtclass = haz( rgX, 'classmark' );
-            if( txtclass ) {
+            if ( txtclass ) {
                 $$$svg.addClass( txtclass );
             }
             //make tp - boldable all points labels:
@@ -278,12 +278,12 @@
     function doPaintPoints()
     {
         var p2p = haz( sconf, 'pname2point' );
-        if( !p2p ) return;
-        if( ix2origPoint.length ) {
+        if ( !p2p ) return;
+        if ( ix2origPoint.length ) {
             ////makes svg-z-order
             ix2origPoint.forEach( op => {
                 var pname = haz( op, 'kName' );
-                if( !pname ) return;
+                if ( !pname ) return;
                 ssF.rgPos2rgMedia( pname, sconf.pointDecoration, );
                 doPaintLetter8kernel( pname, );
             });

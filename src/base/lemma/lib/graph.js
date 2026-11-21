@@ -3,7 +3,7 @@
 // legends, plot colors, and CSS.
 // Any number of graphs can be created.
 
-( function() {
+( function () {
     var { $$, sDomF, nsmethods, haz, globalCss, stdMod, }
         = window.b$l.apptree({ stdModExportList : { createsGraph, }, });
     var GLOBAL_CSS_APPENDED = false;
@@ -18,7 +18,7 @@
     function createsGraph({
         parentDom$,
         customXLegend,
-    }){
+    }) {
         const graph = {};
         var colorThreadArray = graph.colorThreadArray = defaultPlotColors();
 
@@ -56,7 +56,7 @@
             xMax,
             yMin,
             yMax,
-        }){
+        }) {
             drawDecimalY = typeof drawDecimalY === 'undefined' ? true : drawDecimalY;
             drawDecimalX = typeof drawDecimalX === 'undefined' ? true : drawDecimalX;
 
@@ -157,7 +157,7 @@
         //==================================================
         function setsGraphVisible( isVisible )
         {
-            if( isVisible ) {
+            if ( isVisible ) {
                 container$.removeClass( 'hidden' );
             } else {
                 container$.addClass( 'hidden' );
@@ -179,7 +179,7 @@
     ///===========================================
     function appendsGraphCSS()
     {
-        if( GLOBAL_CSS_APPENDED ) return;
+        if ( GLOBAL_CSS_APPENDED ) return;
         GLOBAL_CSS_APPENDED = true;
         globalCss.update( `
             .graph-container {
@@ -308,7 +308,7 @@
     ///the unmasked indices must be the same as here:
     function setsGraphTpClasses(chart) {
         chart.plotIx2plotSvg.forEach( (pl,pix) => {
-            switch(pix) {
+            switch (pix) {
                 case 0: pl && $$.$(pl).addClass( 'tp-force tostroke' ); break;
             }
         });
@@ -318,7 +318,7 @@
     ///so where they overlap, as in the limit, the actual force shows
     function drawsActualForceOnTop(chart) {
         const [ actualPlot, estimatedPlot ] = chart.plotIx2plotSvg;
-        if( actualPlot && estimatedPlot &&
+        if ( actualPlot && estimatedPlot &&
             estimatedPlot.nextSibling !== actualPlot ) {
             estimatedPlot.after( actualPlot );
         }

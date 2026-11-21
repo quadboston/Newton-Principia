@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { nspaste, amode, toreg, stdMod, rg, ssD, }
         = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     return;
@@ -29,7 +29,7 @@
         // \\// common values
         //----------------------------------
 
-        if( subessay === 'corollary2' || subessay === 'corollary3' ){
+        if ( subessay === 'corollary2' || subessay === 'corollary3' ) {
             var Ss = Math.PI * 1.2;
             var S = q2xy( Ss );
             rg.S.pos[0] = S[0]*0.4;
@@ -40,7 +40,7 @@
             rg.Rcol2.pos[0] = Rcol2[0]*0.4;
             rg.Rcol2.pos[1] = q2xy( 0.5 )[1];
 
-        } else if( subessay === 'corollary1' ) {
+        } else if ( subessay === 'corollary1' ) {
             // S on the circle
             nspaste( rg.S.pos, [-0.9997779468574, -0.0210731450212] );
         } else {

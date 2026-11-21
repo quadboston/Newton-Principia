@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         sn, $$, has, haz, sv,
         sconf, ssF, rgtools, topos,
@@ -179,7 +179,7 @@
         {
             var newValue = ( max_magnit - min_magnit ) * ( new_modelPos[0] - startX ) /
                              railsLength + min_magnit;
-            if( newValue < min_magnit || newValue > max_magnit ) return;
+            if ( newValue < min_magnit || newValue > max_magnit ) return;
 
             magnitude2app( magnit_api, newValue, );
 
@@ -192,7 +192,7 @@
 
         function value2validate2pos( val )
         {
-            if( val < min_magnit || val > max_magnit ) return;
+            if ( val < min_magnit || val > max_magnit ) return;
             var handleXpos  = ( val - min_magnit ) /
                                 range_magnit * railsLength + startX;
             magnit_api.pos  = [ handleXpos, startY ];
@@ -231,7 +231,7 @@
                       ( haz( sconf, 'SLIDER_TEXT_POZ_Y_FACTOR' ) || 0.8 );
         api.text_svg.setAttributeNS( null, 'y', api.medpos[1] + txtPosY );
         //c cc( 'template finalizes=' +  api.slCaption );
-        if( has( api, 'slCaption' ) ) {
+        if ( has( api, 'slCaption' ) ) {
             ///updates GUI caption
             ///api.text_svg.textContent = slCaption + '=' +
             ///(value_current-2).toFixed(0);

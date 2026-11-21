@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { ssF, stdMod, } = window.b$l.apptree({ stdModExportList : {
         create_digital_legend, }, });
     return;

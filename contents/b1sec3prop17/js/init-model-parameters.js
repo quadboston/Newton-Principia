@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         sn, mat, stdMod, sconf, rg, toreg,
     } = window.b$l.apptree({

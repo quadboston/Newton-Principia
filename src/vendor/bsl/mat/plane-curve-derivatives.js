@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { mat, mcurve, ssD, } = window.b$l.apptree({});
     mcurve.planeCurveDerivatives = planeCurveDerivatives;
 
@@ -19,7 +19,7 @@
 
         //optional: chosen position for center of forces
         posCenterOfForces = [0, 0],
-    }){
+    }) {
         const delta_q = ssD.delta_q_finite_difference;
 
         //note: protects values against being ∞,
@@ -117,9 +117,9 @@
         ///todo slow code, do work around,
         ///fixing extreme cases:
         ///is this bug in JS?
-        if( Math.abs( sinOmega - 1 ) < 1e-15 ) {
+        if ( Math.abs( sinOmega - 1 ) < 1e-15 ) {
             angleRV = Math.PI/2;
-        } else if( Math.abs( sinOmega + 1 ) < 1e-15 ) {
+        } else if ( Math.abs( sinOmega + 1 ) < 1e-15 ) {
             angleRV = -Math.PI/2;
         } else {
             var angleRV = Math.asin( sinOmega );

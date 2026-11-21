@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { sn, eachprop, nspaste, topicColors_repo, fconf, sconf, }
         = window.b$l.apptree({ ssFExportList : { init_conf } });
     var op = sn( 'orbitParameters', sconf );

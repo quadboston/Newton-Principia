@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         sn, $$, sv, hafff, globalCss,
         sconf, sDomF, ssF, ssD, toreg, rg,
@@ -209,7 +209,7 @@
             //at the end of job, runs application-provided callback
             //stdMod.unmasks Visib();
             //stdMod.upcreate_ mainLegend();
-            if( ssF.mediaModelInitialized ) {
+            if ( ssF.mediaModelInitialized ) {
                 stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
             }
         };

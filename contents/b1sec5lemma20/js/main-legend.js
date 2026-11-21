@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         $$, mat,
         sconf, sDomF, sDomN, ssD, ssF, sData,
@@ -91,7 +91,7 @@
         //      tp-cssName may be taken from "rg.Elem point wrap" ...
         cssName = sDomF.toCssIdentifier( cssName || mname );
 
-        if( mcaption !== ']no caption[' ) {
+        if ( mcaption !== ']no caption[' ) {
             var c$ = $$.c('td')
                        .html( mcaption||mname )
                        .addClass('tostroke tocolor tobold tp-' + cssName)

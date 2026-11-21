@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         $$, haz, fconf, ssF, ssD, sconf, amode, stdMod, rg, toreg,
     } = window.b$l.apptree({
@@ -19,14 +19,14 @@
         //      called each time page state changes (tab button clicked, corollary chosen from list)
         //=================================================
         var rgMainLegend = haz( rg, 'main-legend' ); //haz returns param 2 from param 1
-        if( rgMainLegend ) {
+        if ( rgMainLegend ) {
             var rgTeoTab = rgMainLegend[ amode.logic_phase ];
             //console.log(amode.logic_phase)
-            if( amode.logic_phase === 'corollary' ) {
+            if ( amode.logic_phase === 'corollary' ) {
                 //console.log(amode.subessay); // "cor-1", "cor-2", "cor-3"
                 const rows = rgTeoTab.tableDom.querySelectorAll('tr');
                 let visibleRows = [];
-                switch(amode.subessay) {
+                switch (amode.subessay) {
                     // defined in main-legend.js as the array lemma7Data.corollary
                     case 'cor-1': visibleRows = [0, 1, 2, 3]; break;
                     case 'cor-2': visibleRows = [4, 5, 6, 7, 8, 9, 10, 11]; break;
@@ -107,7 +107,7 @@
         // //\\ paints magnified curve
         //-------------------------------------------------
         var magnitude = rg.magnitude.value;
-        if(magnitude > 100) magnitude = rg.magnitude.value = 100; // prevents Acb from going above Ad
+        if (magnitude > 100) magnitude = rg.magnitude.value = 100; // prevents Acb from going above Ad
         //misleading notation: this is not ..._b, this is ..._B
         rg.derotated_b = toreg( 'derotated_b' )( 'pos', [rg.B.unrotatedParameterX,0] )();
         ssF.paintsCurve({

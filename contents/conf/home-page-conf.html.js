@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, sn, $$, haz, userOptions,
         fapp, fconf, sapp, sconf, html, stdMod,
@@ -259,7 +259,7 @@
         fconf.ix2lemmaDefAllowed.forEach(function (sappItem) {
             if (sappItem.sappId === 'home-pane') return;
             if (book === null || book !== sappItem.book) {
-                if( book !== null ) {
+                if ( book !== null ) {
                     coreText += '</ul></div>';
                 }
                 book = sappItem.book;
@@ -282,7 +282,7 @@
                     class="lemma-item-title ${chosen}">&nbsp;&nbsp;&nbsp;${sappItem.caption}
                     </a>
                 </li>`;
-            if(isHomepage && sappItem.sappId === "b1sec2prop7") {
+            if (isHomepage && sappItem.sappId === "b1sec2prop7") {
                 coreText += `</ul></div></div><div class="column"><div><ul>`;
             }
         });

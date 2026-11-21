@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { ssF, stdMod, fapp } = window.b$l.apptree({
         stdModExportList : { create_digital_legend, }, });
     return;
@@ -59,7 +59,7 @@
             updatesDataInCell,
         });
 
-        function makesBodyCluster({ rowIx, clusterIx, }){
+        function makesBodyCluster({ rowIx, clusterIx, }) {
             return ssF.dataSourceParsed1__2__makesBodyCluster({
                 rowIx,
                 clusterIx,

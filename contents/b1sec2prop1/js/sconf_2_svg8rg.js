@@ -1,4 +1,4 @@
-(function(){
+(function () {
     const { sn, haff, hafff, haz, globalCss, nspaste,
             fconf, sconf, ssF, ssD, stdMod, amode, toreg, rg,
     } = window.b$l.apptree({ stdModExportList : {
@@ -19,7 +19,7 @@
     return;
 
 
-    function shapeSconf_2_svg (){
+    function shapeSconf_2_svg() {
         //path and speeds have master-index, pi, offset pi=0
         toreg( 'path' )( 'pos', [ rg.A.pos ] );
         toreg( 'pathAracc' )( 'pos', [ rg.A.pos ] );
@@ -30,7 +30,7 @@
     }
 
     //one time call function, called in inti...
-    function sconf_2_shapes (){
+    function sconf_2_shapes() {
         ///MERGING P1 WITH standalone sconf machinery
         ///syncs these points with hidden force-displacement-handles bases
         ['B','C','D','E','F'].forEach( (name, ix) => {
@@ -87,7 +87,7 @@
         //=========================================================
     }
 
-    function saggPolyNames_2_rg (){
+    function saggPolyNames_2_rg() {
         [
             ['A', 'B', 'C', 'V'],   //ABCV
             ['D', 'E', 'F', 'Z'],   //DEFZ
@@ -111,7 +111,7 @@
         rg.DEFZ.decEnd += 1;
     }
 
-    function keplerPolyNames_2_rg (){
+    function keplerPolyNames_2_rg() {
         [   ////these triangles override free triangles attached to path
             ////in path-2-media js-code,
             ['S', 'B', 'c',],   //SBc
@@ -141,7 +141,7 @@
         });
     }
 
-    function acceleratingArea_2_rg (){
+    function acceleratingArea_2_rg() {
         [
             ['S', 'B', 'Cprime',],  //SBCprime
         ].forEach( pNames => {

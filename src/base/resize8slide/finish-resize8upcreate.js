@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { ns,  fmethods, haff, haz, has, nspaste, wrkwin, fconf,
         sconf, ssF, sDomN, dividorFractions, stdMod, }
         = window.b$l.apptree({ sDomNExportList : {
@@ -10,7 +10,7 @@
     ssF.gets_LEGEND_FIXED_FRACTION = gets_LEGEND_FIXED_FRACTION;
 
     /// chain-dispatches callback "resizeHappened"
-    ( function() {
+    ( function () {
         var hazR = haz( fmethods, 'resizeHappened' );
         fmethods.resizeHappened  = hazR ?
                 () => {
@@ -50,7 +50,7 @@
         // legend tables shown only in some subessays must be shown or
         // hidden for the current one before the legend is measured
         haff( ssF, 'updatesLegendTablesDisplay' );
-        if(
+        if (
             //isMobile
             ns.widthThresholds[ fconf.MOBILE_MEDIA_QUERY_WIDTH_THRESHOLD ]()
         ) {
@@ -71,7 +71,7 @@
     function preparesDesktop({
         draggerMove,
         doDividorSynch,
-    }){
+    }) {
         //========================================
         // //\\ phase 1. detects parameters
         //========================================
@@ -230,7 +230,7 @@
         // //\\ wide screen,
         //      legend stays on the right from model
         //-------------------------------------------------------------
-        if(
+        if (
             //never wide if ...FIXED...
             !STATIC_LEGEND
             &&
@@ -279,7 +279,7 @@
             //:does set setting legendMarginr
             //-------------------------------------------------
             //does centering legend below the media
-            if( STATIC_LEGEND ) {
+            if ( STATIC_LEGEND ) {
                 ////for STATIC_LEGEND, legend dom is ignored
                 var legendMargin = 0;
             } else {
@@ -337,7 +337,7 @@
         if (sliderGroup$ && sconf.BASES_SLIDER_WIDTH_FACTOR != null) {
             const sliderWidth = calculateSliderWidth();
             let sliderTop; // offset slider so it appears within canvas
-            if(sconf.sappId === 'b1sec1lemma4') {
+            if (sconf.sappId === 'b1sec1lemma4') {
                 sliderTop = stdMod.bgImgH - 25;
             } else { // L1, L2
                 sliderTop = stdMod.bgImgH - 20;
@@ -400,7 +400,7 @@
             //Ensure the width gets updated as the window changes size
             const sliderWidth = calculateSliderWidth();
             let extendCanvas = stdMod.svgVB_H * 0.1;
-            if(sconf.sappId === 'b1sec1lemma4') {
+            if (sconf.sappId === 'b1sec1lemma4') {
                 extendCanvas = stdMod.svgVB_H * 0.25;
             }
             stdMod.svgVB_H += extendCanvas;
@@ -425,7 +425,7 @@
 
             // todo: these conditionals aren't ideal but do the trick
             // note: the narrower the window, the greater the space at bottom of page...
-            switch(fconf.sappId) {
+            switch (fconf.sappId) {
                 case 'b1sec1lemma9': case 'b1sec1lemma10':
                     stdMod.simSceneH += 320;
                     break;

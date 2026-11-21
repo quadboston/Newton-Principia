@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         sn, mat,
         sconf, ssF, ssD, sDomF,
@@ -20,11 +20,11 @@
     {
         rg.B.dragPriority = 2; // highest value gets priority
         sDomF.pname__2__rgX8dragwrap_gen_list( 'B', stdMod )
-            .acceptPos = function( newPos ) {
+            .acceptPos = function ( newPos ) {
                 ///restricts point B
-                if( newPos[0] < 0.00001 ) {
+                if ( newPos[0] < 0.00001 ) {
                     newPos[0] = 0.000001;
-                } else if( newPos[0] > 1.2 ) {
+                } else if ( newPos[0] > 1.2 ) {
                     newPos[0] = 1.2;
                 }
                 //:advances B
@@ -58,11 +58,11 @@
 
         rg.D.dragPriority = 1;
         sDomF.pname__2__rgX8dragwrap_gen_list( 'D', stdMod )
-            .acceptPos = function( newPos ) {
+            .acceptPos = function ( newPos ) {
                 ///restricts point D
-                if( newPos[0] < 0.00001 ) {
+                if ( newPos[0] < 0.00001 ) {
                     newPos[0] = 0.000001;
-                } else if( newPos[0] > 1.2 ) {
+                } else if ( newPos[0] > 1.2 ) {
                     newPos[0] = 1.2;
                 }
                 var Bx = rg.B.pos[0];
@@ -80,20 +80,20 @@
 
         rg.b.dragPriority = 3;
         sDomF.pname__2__rgX8dragwrap_gen_list( 'b', stdMod )
-            .acceptPos = function( newPos ) {
+            .acceptPos = function ( newPos ) {
                 ///restricts point b
-                if( newPos[0] < 0.000001 ) {
+                if ( newPos[0] < 0.000001 ) {
                     newPos[0] = 0.0000001;
                 }
 
                 // limit so AB2:Ab2 is never > 10
                 let AB2Ab2 = rg.AB.abs2/rg.Ab.abs2; // abs2 is length squared
-                if(newPos[0] < rg.b.pos[0] && AB2Ab2 > 10) {
+                if (newPos[0] < rg.b.pos[0] && AB2Ab2 > 10) {
                     return false;
                 }
 
                 ///makes sure b can't go beyond B
-                if( rg.B.pos[0] < newPos[0] ) {
+                if ( rg.B.pos[0] < newPos[0] ) {
                     newPos[0] = rg.B.pos[0];
                 }
 

@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         sn, has,
         sDomF,
@@ -20,7 +20,7 @@
         nospinner,
     }) {
         stdMod.customDraggers_list.push(
-            ( function( medD8D ) {
+            ( function ( medD8D ) {
                 rgX.dragDecorColor= rgX.pcolor; //'#00aaba';
                 sDomF.rgX_2_dragWrap({
                     medD8D,

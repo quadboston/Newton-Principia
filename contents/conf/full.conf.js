@@ -1,5 +1,5 @@
 // //\\// site-wide conf
-(function() {
+(function () {
     var {
         ns, url2conf,
         fconf,

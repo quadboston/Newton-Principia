@@ -6,7 +6,7 @@
         visual cells which go to visual-row
 */
 
-( function() {
+( function () {
     var {
         ns, sn, $$, mat,
         sconf, ssF, ssD, sDomF, sDomN,
@@ -26,7 +26,7 @@
     function updatesLegendTablesDisplay()
     {
         Object.values( ns.haz( rg, 'main-legend' ) || {} ).forEach( rgTeoTab => {
-            if( rgTeoTab && typeof rgTeoTab.updatesTableDisplay === 'function' ) {
+            if ( rgTeoTab && typeof rgTeoTab.updatesTableDisplay === 'function' ) {
                 rgTeoTab.updatesTableDisplay();
             }
         });
@@ -50,7 +50,7 @@
         updatesDataInCell,
         updatesCaptionCluster,
         updatesTableTitle,
-    }){
+    }) {
         // called once per table on page load (all tables, not just one first shown)
         // console.log('createLogic_phaseLegend');
 
@@ -122,10 +122,10 @@
             //================================================
             // //\\ creates first row below the table caption;
             //================================================
-            if( makesCaptionCluster ) {
+            if ( makesCaptionCluster ) {
                 var row = $$.c('tr').to( tb )();
                 var rowRack = domModel$.columnCaptionsRow;
-                for( var clusterIx=0; clusterIx < clustersCount; clusterIx++ )
+                for ( var clusterIx=0; clusterIx < clustersCount; clusterIx++ )
                 {
                     var clusterPars = makesCaptionCluster({
                         row,
@@ -149,16 +149,16 @@
             //================================================
             // //\\ creates rows below captions-row
             //================================================
-            for( var rowIx=0; rowIx < rowsCount; rowIx++ )
+            for ( var rowIx=0; rowIx < rowsCount; rowIx++ )
             {
                 var row = $$.c('tr').to( tb )();
                 var rowRack = domModel$.body$[ rowIx ] = [];
                 ///================================================
                 /// creates cells for given row
                 ///================================================
-                for( var clusterIx=0; clusterIx < clustersCount; clusterIx++ )
+                for ( var clusterIx=0; clusterIx < clustersCount; clusterIx++ )
                 {
-                    if( !cellsVisibilityCondition( rowIx, clusterIx ) ) continue;
+                    if ( !cellsVisibilityCondition( rowIx, clusterIx ) ) continue;
                     var clusterPars = makesBodyCluster({
                         rowIx,
                         clusterIx,
@@ -196,23 +196,23 @@
                 ixOfSpanBeginning,
                 spanVal,
                 style,
-        }){
+        }) {
             tpCssName = sDomF.toCssIdentifier( tpCssName || clusterKey );
             tpCssName = tpCssName.replace( /<_>/g, ' ' );
             var dataMonospace = tpCssName.indexOf( 'data-monospace' ) > -1;
-            if( dataMonospace ) {
+            if ( dataMonospace ) {
                 tpCssName = tpCssName.replace( /(\s+data-monospace)/,'' );
             }
             var cells$ = [];
             //========================================================
             // //\\ cell = value title
             //========================================================
-            if( clusterCaption !== ']no caption[' ) {
+            if ( clusterCaption !== ']no caption[' ) {
                 var c$ = $$.c('td')
                    .html( clusterCaption || clusterKey )
                    .addClass('tostroke tocolor tobold tp-' + tpCssName)
                    .to(row);
-                if( ixOfSpanBeginning === 0 ) { c$.a( 'colspan', '' + spanVal ); }
+                if ( ixOfSpanBeginning === 0 ) { c$.a( 'colspan', '' + spanVal ); }
                 cells$.push( c$ );
             }
             //========================================================
@@ -229,7 +229,7 @@
                .css( 'padding-right', '4px' )
                .css( 'padding-left', '0px' )
                .to( row );
-            if( ixOfSpanBeginning === 2 ) { valuePlaceholder$.a( 'colspan', '' + spanVal ); }
+            if ( ixOfSpanBeginning === 2 ) { valuePlaceholder$.a( 'colspan', '' + spanVal ); }
             cells$.push( valuePlaceholder$ );
             clustersToUpdate[ clusterKey ] = valuePlaceholder$();
             //========================================================
@@ -237,7 +237,7 @@
             //========================================================
 
             ///"quick and angry" made clumsy style engine
-            if( style ) {
+            if ( style ) {
                 style.forEach( (stl,six) => {
                     stl.forEach( st => {
                         cells$[ six ].css( st[0], st[1] );
@@ -264,11 +264,11 @@
 
             !noTableTitle && updatesTableTitle && updatesTableTitle({ tableCaption$ });
             updateCaptionsRow();
-            for( var rowIx = 0; rowIx < rowsCount; rowIx++ )
+            for ( var rowIx = 0; rowIx < rowsCount; rowIx++ )
             {
-                for( var clusterIx=0; clusterIx < clustersCount; clusterIx++ )
+                for ( var clusterIx=0; clusterIx < clustersCount; clusterIx++ )
                 {
-                    if( !cellsVisibilityCondition( rowIx, clusterIx ) ) continue;
+                    if ( !cellsVisibilityCondition( rowIx, clusterIx ) ) continue;
                     var { clusterCellIx, htmlbody, } = updatesDataInCell({ rowIx, clusterIx, });
                     domModel$.body$[ rowIx ][ clusterIx ][ clusterCellIx ].html( htmlbody );
                 }
@@ -284,9 +284,9 @@
         ///================================================
         function updateCaptionsRow()
         {
-            if( updatesCaptionCluster ) {
+            if ( updatesCaptionCluster ) {
                 var len = clustersCount;
-                for( var clusterIx=0; clusterIx < len; clusterIx++ )
+                for ( var clusterIx=0; clusterIx < len; clusterIx++ )
                 {
                     var { columnCaptionTitle, clusterCellIx  } =
                         updatesCaptionCluster({ clusterIx, });
@@ -305,7 +305,7 @@
         ///================================================
         function updatesTableDisplay()
         {
-            if( tableVisibilityCondition ) {
+            if ( tableVisibilityCondition ) {
                 // '' leaves display to CSS, which hides tables
                 // of other logic phases
                 tb.style.display = tableVisibilityCondition() ? '' : 'none';
@@ -322,17 +322,17 @@
             //--------------------------------------------
             // //\\ hides all cells
             //--------------------------------------------
-            if( makesCaptionCluster ) {
-                for( var clusterIx=0; clusterIx<clustersCount; clusterIx++ )
+            if ( makesCaptionCluster ) {
+                for ( var clusterIx=0; clusterIx<clustersCount; clusterIx++ )
                 {
                     domModel$.columnCaptionsRow[ clusterIx ].forEach( c$ => {
                         c$.addClass( 'hidden' );
                     });
                 }
             }
-            for( var rowIx=0; rowIx < rowsCount; rowIx++ )
+            for ( var rowIx=0; rowIx < rowsCount; rowIx++ )
             {
-                for( var clusterIx=0; clusterIx <= clustersCount-rowIx-1; clusterIx++ )
+                for ( var clusterIx=0; clusterIx <= clustersCount-rowIx-1; clusterIx++ )
                 {
                     domModel$.body$[ rowIx ][ clusterIx ].forEach( c$ => {
                         c$.addClass( 'hidden' );
@@ -346,8 +346,8 @@
             //--------------------------------------------
             // //\\ shows cells by condition
             //--------------------------------------------
-            if( makesCaptionCluster ) {
-                for( var clusterIx=0; clusterIx < clustersCount; clusterIx++ )
+            if ( makesCaptionCluster ) {
+                for ( var clusterIx=0; clusterIx < clustersCount; clusterIx++ )
                 {
                     domModel$.columnCaptionsRow[ clusterIx ].forEach( c$ => {
                         ///by design, captions visibility is the same as row-0
@@ -355,9 +355,9 @@
                     });
                 }
             }
-            for( var rowIx = 0; rowIx < rowsCount; rowIx++ )
+            for ( var rowIx = 0; rowIx < rowsCount; rowIx++ )
             {
-                for( var clusterIx=0; clusterIx < clustersCount; clusterIx++ )
+                for ( var clusterIx=0; clusterIx < clustersCount; clusterIx++ )
                 {
                     cellsVisibilityCondition( rowIx, clusterIx ) &&
                     domModel$.body$[ rowIx ][ clusterIx ].forEach( c$ => {

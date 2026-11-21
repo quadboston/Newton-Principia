@@ -68,7 +68,7 @@
         !doGiveClickEvent && addEvents();
 
         let movesAndFindsHandle = haz( arg, 'movesAndFindsHandle' );
-        if( movesAndFindsHandle &&  !mouseMoveCount ) {
+        if ( movesAndFindsHandle &&  !mouseMoveCount ) {
             att.addEventListener( 'mousemove', movesAndFindsHandle );
             mouseMoveCount++;
         }
@@ -128,15 +128,15 @@
             //vital:
             //ns.d('\ndown: fw' + frameworkId + ' eid' + eventId);
 
-            if( skipD8D( ev ) ) return;
+            if ( skipD8D( ev ) ) return;
 
             ///touch-down
-            if( ev.touches && ev.touches.length === 1 ) {
+            if ( ev.touches && ev.touches.length === 1 ) {
                 var event = ev.touches[0];
 
                 //seems wrong: event.preventDefault(); //trying for mobiles
                 forbidden = do_complete_down( event, ev );
-                if( !forbidden ) {
+                if ( !forbidden ) {
                     !dontStopDownAfteshocks && stopsAftershocks ( ev );
                     att.addEventListener( 'touchmove',   touchMove);
                     att.addEventListener( 'touchend',    touchEnd);
@@ -150,12 +150,12 @@
             ///mouse-down
             } else {
                 forbidden = do_complete_down( ev );
-                if( !forbidden ) {
+                if ( !forbidden ) {
                     !dontStopDownAfteshocks && stopsAftershocks ( ev );
                     att.addEventListener( 'mousemove', mouseMove);
                     att.addEventListener( 'mouseup',   mouseEnd);
 
-                    if( !dontCancelAtMouseleave ) {
+                    if ( !dontCancelAtMouseleave ) {
                         //.todm suspicion: this approach seems not reliable ...
                         // fires right after the mouseDown ...
                         att.addEventListener( 'mouseleave',  mouseEnd);
@@ -174,7 +174,7 @@
             //the mouse around after clicking empty space (where there aren't
             //any draggers).  Then they only reappear on mouse up after
             //clicking a dragger.
-            if( movesAndFindsHandle && mouseMoveCount && (
+            if ( movesAndFindsHandle && mouseMoveCount && (
                 !sconf.diagramPannerDisabled || !forbidden )) {
                 //c cc( mouseMoveCount + ' removes' );
                 att.removeEventListener( 'mousemove', movesAndFindsHandle );
@@ -191,12 +191,12 @@
         function do_complete_down( childEvent, rootEvent )
         {
             //ns.d( 'do_complete_down: started' );
-            if( startPoint !== null ) {
+            if ( startPoint !== null ) {
                 return true;
             }
             var point_on_dragSurf = eventPos_2_surfacePos( childEvent );
 
-            if( !point_on_dragSurf ) {
+            if ( !point_on_dragSurf ) {
                 //vital-for-mobile
                 //ns.d('\nfw' + frameworkId + ' eid' + eventId + ' point is out dsurf');
                 return true;
@@ -206,7 +206,7 @@
             var forbidden = d8d_cb_middle2lowest( [0,0], 'down',
                             point_on_dragSurf, childEvent, [0,0] );
             //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-            if( forbidden ) {
+            if ( forbidden ) {
                 return true;
             }
             startPoint = point_on_dragSurf;
@@ -233,12 +233,12 @@
         {
             eventId++;
             !dontStopMoveAfteshocks && stopsAftershocks ( rootEvent || childEvent );
-            if( !startPoint ) {
+            if ( !startPoint ) {
                 //ns.d('mouseMove: no start point exist');
                 return;
             }
             var surfPoint = eventPos_2_surfacePos( childEvent );
-            if(!surfPoint) {
+            if (!surfPoint) {
                 //vital-for-mobile
                 //ns.d('\nmouseMove: media point failed');
                 return;
@@ -291,7 +291,7 @@
             att.removeEventListener( 'mouseup',  mouseEnd );
             att.removeEventListener( 'mouseleave', mouseEnd );
             do_complete_end( child8rootEvent );
-            if( movesAndFindsHandle && !mouseMoveCount ) {
+            if ( movesAndFindsHandle && !mouseMoveCount ) {
                 //c cc( mouseMoveCount + ' readds' );
                 mouseMoveCount++;
                 att.addEventListener( 'mousemove', movesAndFindsHandle );
@@ -300,7 +300,7 @@
 
         function do_complete_end( childEvent, rootEvent )
         {
-            if( startPoint ) {
+            if ( startPoint ) {
                 //todo: dontStopEndAfteshocks is always undefined?
                 !dontStopEndAfteshocks && stopsAftershocks( rootEvent || childEvent );
                 d8d_cb_middle2lowest( null, 'up', null, childEvent );
@@ -339,7 +339,7 @@
         function default_skip( ev )
         {
             var tag = ev.target.tagName.toLowerCase();
-            if(
+            if (
                     //protects wbd debugger
                     tag === 'textarea' ||
                     //protects forms
@@ -365,10 +365,10 @@
             //very good:
             //  javascript.info/bubbling-and-capturing
             //  stackoverflow.com/questions/5299740/stoppropagation-vs-stopimmediatepropagation
-            if( rootEvent.stopImmediatePropagation ) {
+            if ( rootEvent.stopImmediatePropagation ) {
                 ////missed on Android 2.?.?
                 rootEvent.stopImmediatePropagation(); //IE9+
-            } else if( rootEvent.stopPropagation ) {
+            } else if ( rootEvent.stopPropagation ) {
                 rootEvent.stopPropagation();
             }
             /*

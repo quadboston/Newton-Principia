@@ -1,6 +1,6 @@
 //default app wide settings for lemmas
 //may be overriden later by URL-query or lemma sconf.js,
-(function(){
+(function () {
     const { fapp, sf, topicColors_repo } =
            window.b$l.apptree({});
     fapp.setColors = setColors;
@@ -12,7 +12,7 @@
     return;
 
 
-    function setColors (){
+    function setColors() {
         // runs once per page load
 
         //=======================================

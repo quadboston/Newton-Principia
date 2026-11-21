@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         sn, $$, has, mat, mcurve, nspaste,
         fconf, sData,
@@ -50,7 +50,7 @@
                 var nextPoint = cpix+1;
                 var nextPoint = (nextPoint === pivs.length ) ? null : nextPoint;
                 var previousPoint = (previousPoint < 0 ) ? null : previousPoint;
-                if(
+                if (
                     (
                         previousPoint !== null &&
                         pivs[previousPoint].rgX.pos[1] <= newPos[1] + REPELLING_DISTANCE
@@ -60,13 +60,13 @@
                         pivs[nextPoint].rgX.pos[1] >= newPos[1] - REPELLING_DISTANCE
                     ) ||
                     newPos[1] < 0.3 //forbids distances too cloose to source of the force
-                ){
+                ) {
                     returnValue = false;
                 }
                 //--------------------------------------------------------------
                 // \\// preserves pivot's order along x and being them too close
                 //--------------------------------------------------------------
-                if( returnValue ) {
+                if ( returnValue ) {
                     //calculates new curve
                     pos1[0] = newPos[0];
                     pos1[1] = newPos[1];
@@ -74,7 +74,7 @@
                         false, 'force', false, false, 'swap' );
                     let { solvable, fr } = stdMod.forceIsBounded(
                         rg[ 'approximated-curve' ].curvePoints );
-                    if( solvable ) {
+                    if ( solvable ) {
                         nsp.undisplay = true;
                     } else {
                         nsp.pos[0] = fr[0];
@@ -84,7 +84,7 @@
                     returnValue = !!solvable;
                 }
                 returnValue = returnValue && drop8pointE();
-                if( returnValue ) {
+                if ( returnValue ) {
                     stashedPos = [ pos1[0], pos1[1] ];
                 } else {
                     pos1[0] = stashedPos[0];
@@ -117,7 +117,7 @@
         //=========================================================================
         // //\\  body speed slider
         //=========================================================================
-        rg.v.processOwnDownEvent = function() {
+        rg.v.processOwnDownEvent = function () {
             ////apparently, there is no arg at this version,
             ////            and useless "function.this" === rg.Q
             const pp                    = rg.V.pos;
@@ -147,12 +147,12 @@
             //if( aspect !== 'model' ) {
                 const pp      = rg.V.pos;
                 const sl      = mat.p1_to_p2( pp, newPos ); //slider
-                if( sl.abs < 0.1 ) return;
+                if ( sl.abs < 0.1 ) return;
                 let angleOmega = mat.angleBetweenLines([
                     [ [0,0], pp ],
                     [ [0,0], sl.vector ],
                 ]).angle;
-                if( angleOmega < Math.PI/2+PROTECTS_KERNEL_SINGULARITY ) {
+                if ( angleOmega < Math.PI/2+PROTECTS_KERNEL_SINGULARITY ) {
                     ///restricst speed to single quadrant
                     angleOmega = Math.PI/2+PROTECTS_KERNEL_SINGULARITY;
                     var returnValue = false;
@@ -163,7 +163,7 @@
             //-------------------------------------------------------------------
             // \\// prevents angle from falling > PI/2+eps
             //-------------------------------------------------------------------
-            if( !returnValue ) return;
+            if ( !returnValue ) return;
 
             var dShift   = [ newPos0 - rg.V.pos[0], newPos1 - rg.V.pos[1] ];
             var dS       = Math.sqrt( dShift[0]*dShift[0] + dShift[1]*dShift[1] );
@@ -173,7 +173,7 @@
 
             returnValue = drop8pointE();
 
-            if( !returnValue ) {
+            if ( !returnValue ) {
                 ////reverts speed back,
                 ////integral by f cannot build such big value of v
                 op.Kepler_v = Kepler_v_stashed;

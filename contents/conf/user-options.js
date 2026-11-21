@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { ns, $$, userOptions, fconf, has, haz, nsconf } = window.b$l.apptree({});
     const LATIN = "latin",
           USE_BG_IMAGE = "use-background-image";

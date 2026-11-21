@@ -1,5 +1,5 @@
 //\\// Application Entry
-( function() {
+( function () {
     var {
         sn,
         $$,
@@ -23,7 +23,7 @@
         cssText,
         noTopicScenario,
             scenarioEventOnClick,   //aka 'graph-is-plotted'
-    }){
+    }) {
         var butt = ssD.lastPopupButton =
             sData[ buttonUniversalId ] = { dom$ : $$.c( 'div' )
             .addClass( buttonUniversalId )
@@ -42,7 +42,7 @@
         }
 
         var unlockButton = sn( 'unlockButton', stdMod );
-        unlockButton[ buttonUniversalId ] = function( doUnlock )
+        unlockButton[ buttonUniversalId ] = function ( doUnlock )
         {
             butt.dom$.css( 'display', doUnlock ? 'block' : 'none' );
         }

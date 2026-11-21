@@ -1,4 +1,4 @@
-(function(){
+(function () {
 const { sn, $$, eachprop, has, haz, hafff, fmethods,
         fconf, sconf, ssF, sDomF, rg,  amode, stdMod,
 } = window.b$l.apptree({ stdModExportList : {
@@ -15,7 +15,7 @@ const lemmaP2coroll =
 return;
 
 
-function media_upcreate___before_basic (){
+function media_upcreate___before_basic() {
     //reestablishes detecton to hide/unhide image for case the state
     //rg.detected_user_interaction_effect_DONE came from subessay launch
     sDomF.detected_user_interaction_effect(
@@ -28,11 +28,11 @@ function media_upcreate___before_basic (){
     sn( 'p', rg.P, { abs : 1 } );
     //***********************************************************
 
-    if( sconf.TIMER_AND_LOGIC_STEPS_COINSIDE ||
+    if ( sconf.TIMER_AND_LOGIC_STEPS_COINSIDE ||
         ( haz( amode, 'logic_phase') === 'proof' &&
             fconf.sappId === "b1sec2prop1"
         )
-    ){
+    ) {
         //Adjust when the following decorations start
         //becoming visible for the P1 proof tab.
 
@@ -79,17 +79,17 @@ function media_upcreate___before_basic (){
     //-------------------------------------------------------
     let CStart = rg.C.decStart;
 
-    if( fconf.sappId === 'b1sec2prop2' ){
+    if ( fconf.sappId === 'b1sec2prop2' ) {
         lemmaP2coroll.forEach( pn => {
             rg[pn].decStart = CStart;
             rg[pn].decEnd = CStart+3;
         });
     }
-    if(
+    if (
         amode.subessay === 'cor-1' ||
         amode.subessay === 'cor-6' ||
         amode.logic_phase !== 'corollary'
-    ){
+    ) {
         rg.V.decStart = 11111111;
         rg.V.decEnd   = 1111111;
     } else {
@@ -114,27 +114,27 @@ function media_upcreate___before_basic (){
     //----------------------------------------------------
     // //\\ shows next move of the proof
     //----------------------------------------------------
-    if( !initialization_is_done ) {
+    if ( !initialization_is_done ) {
         ///launch time work
         initialization_is_done = true;
-        if( POINTS_BCDE_ARE_ACTIVE ) {
-            rg.B.svgel.addEventListener( 'click', function() {
-                if( amode.logic_phase === 'proof' ) {
+        if ( POINTS_BCDE_ARE_ACTIVE ) {
+            rg.B.svgel.addEventListener( 'click', function () {
+                if ( amode.logic_phase === 'proof' ) {
                     fmethods.executeCapturedState( '1-4' );
                 }
             });
-            rg.C.svgel.addEventListener( 'click', function() {
-                if( amode.logic_phase === 'proof' ) {
+            rg.C.svgel.addEventListener( 'click', function () {
+                if ( amode.logic_phase === 'proof' ) {
                     fmethods.executeCapturedState( '1-C' );
                 }
             });
-            rg.D.svgel.addEventListener( 'click', function() {
-                if( amode.logic_phase === 'proof' ) {
+            rg.D.svgel.addEventListener( 'click', function () {
+                if ( amode.logic_phase === 'proof' ) {
                     fmethods.executeCapturedState( '1-D' );
                 }
             });
-            rg.E.svgel.addEventListener( 'click', function() {
-                if( amode.logic_phase === 'proof' ) {
+            rg.E.svgel.addEventListener( 'click', function () {
+                if ( amode.logic_phase === 'proof' ) {
                     fmethods.executeCapturedState( '1-E' );
                 }
             });
@@ -152,7 +152,7 @@ function media_upcreate___before_basic (){
                         amode.logic_phase === 'proof';
     ['B', 'C', 'D', 'E'].forEach( id => {
             let rgX = rg[ id ];
-            if( has(rgX, 'svgel' )){
+            if ( has(rgX, 'svgel' )) {
                 rgX.svgel.setAttribute( 'r', pointsAreOn ? '6' : '4' );
                 rgX.svgel.style[ 'fill' ] = pointsAreOn ?
                 '#cccccc' : sDomF.getFixedColor( 'bodyColor' );// TODO: check
@@ -160,7 +160,7 @@ function media_upcreate___before_basic (){
                 //todo why is this?
                 //c cc( rgX.pname + ' svg is missed in media-model.js' );
             }
-            if( POINTS_BCDE_ARE_ACTIVE ) {
+            if ( POINTS_BCDE_ARE_ACTIVE ) {
                 rg[ id + 'title' ].textContent =
                     pointsAreOn ? 'show next move' : '';
             }
@@ -168,7 +168,7 @@ function media_upcreate___before_basic (){
     //----------------------------------------------------
     // \\// shows next move of the proof
     //----------------------------------------------------
-    if(!haz( fconf, 'RESEARCH' )){
+    if (!haz( fconf, 'RESEARCH' )) {
         //exists in popular ver:
         rg['main-legend'].tb.corollary.style.display =
            ( amode.logic_phase === 'corollary' && amode.subessay === 'cor-1' ) ?
@@ -177,7 +177,7 @@ function media_upcreate___before_basic (){
     ssF.mediaModelInitialized = true;
 }
 
-function pathDelays2forceDraggers (){
+function pathDelays2forceDraggers() {
     ['B','C','D','E','F'].forEach( (pname, ix) => {
         let decEnd = rg.C.decEnd+(ix+10)*4;
         let decStart = rg.C.decStart+ix*4;
@@ -215,25 +215,25 @@ function putInBack(...items) {
     }
 }
 
-function media_upcreate___after_basic (){
+function media_upcreate___after_basic() {
     ///todm this fixes refreshment of green free Kepler triangles
     ///when media scales,
     eachprop( stdMod.decor, (dec,pname) => {
-        if( !dec.isPoint && dec.pivotNames.length !== 2 ) {
+        if ( !dec.isPoint && dec.pivotNames.length !== 2 ) {
             dec.poly_2_updatedPolyPos8undisplay();
         }
     });
 
     ///this is a way around canonical config:
     ///placing svg shapes on top of configured z order,
-    if( !zorderFixed ) {
+    if ( !zorderFixed ) {
         putInFront(rg['S']);
         putInBack(rg['Bc']);
 
         ///path
         const path = rg.path.pos;
         path.forEach( (pt, pix) => {
-            if( !pix ) return;
+            if ( !pix ) return;
             putInFront(rg[ 'force-' + (pix - 1) + '-applied']);
         });
 

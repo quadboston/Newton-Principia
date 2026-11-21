@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { ns, sn, mat, fconf, sconf, stdMod, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     // sn points to sconf.orbitParameters if param exisits,

@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, sconf, fapp, rg, ssD,
     } = window.b$l.apptree({
@@ -18,7 +18,7 @@
     function captureAState(
         //as of March 3, 2021, has only few "insignificant sugar" GUI props for media d8d
         ast,
-    ){
+    ) {
         // 4 significant digits change the diagram by much less than a pixel
         const round4 = value => Number( value.toPrecision( 4 ) );
 

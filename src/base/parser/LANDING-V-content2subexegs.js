@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, sn, nsmethods, has, haz, nspaste, eachprop,
         fconf, sconf, ssD, sapp, sDomF, sDomN, capture, rg,
@@ -22,7 +22,7 @@
     ///==========================================
     function LANDING_V___loads_professorList8cont_8_buildsSubexegs(
         prepare8do_LANDING_VI_and_beyond___cb
-    ){
+    ) {
         var allEssays__str = "";
         var lemmaConfig = fconf.sappId2lemmaDef[ fconf.sappId ];
         contentsList_2_essaions_2_exegs( lemmaConfig );
@@ -44,8 +44,8 @@
                 ///                 later on extracts "data-id"=match[1]
                 var matchRe = /^data\/([^\.]+)./;
                 var res_matchRe = /\/resources\/([^\/]+)$/;  // ends with /resources/<file-name>
-                lemma_bookfiles_list.forEach( function( listItem ) {
-                    if( !listItem.match( /^\s*$/ ) ) {
+                lemma_bookfiles_list.forEach( function ( listItem ) {
+                    if ( !listItem.match( /^\s*$/ ) ) {
                         var match = listItem.match( matchRe );
                         var responseType = match ? 'arraybuffer' : 'text';
                         lbf_forAjax.push({
@@ -63,16 +63,16 @@
                 //------------------------------------
                 // //\\  making the load
                 //------------------------------------
-                nsmethods.loadAjaxFiles( lbf_forAjax, function( loadedFilesById_II ) {
-                        lbf_forAjax.forEach( function( listItem ) {
+                nsmethods.loadAjaxFiles( lbf_forAjax, function ( loadedFilesById_II ) {
+                        lbf_forAjax.forEach( function ( listItem ) {
 
                             //do collect resources somewhere elese, like for PIXI plugin ...
-                            if( listItem.id.match( res_matchRe ) ) return;
+                            if ( listItem.id.match( res_matchRe ) ) return;
                             //patch
                             //todm ... does double job, load resources only once ...
 
                             var match = listItem.id.match( matchRe );
-                            if( match ) {
+                            if ( match ) {
                                 dataFiles.push( loadedFilesById_II[ listItem.id ] );
                                 dataFiles_id2content[ match[1] ] =
                                     loadedFilesById_II[ listItem.id ];
@@ -102,10 +102,10 @@
             // //\\ splits text to subessays
             //      and prebuilds esssay-placeholders and indexes them
             //=========================================================
-            subessays.forEach( function( singleSubessay ) {
+            subessays.forEach( function ( singleSubessay ) {
 
                 //removes subessays which are empty text
-                if( singleSubessay.replace( /(\s|\n\r)*/g, '').length === 0 ) return;
+                if ( singleSubessay.replace( /(\s|\n\r)*/g, '').length === 0 ) return;
 
                 //--------------------------------------
                 // //\\ splits the singleSubessay ...
@@ -124,7 +124,7 @@
                         singleSubessay.match( /^([^\|]*)\|([^\s]*)\s*\n([\s\S]*)$/);
 
                 //ess_instructions[3] is text itself
-                if( ess_instructions && ess_instructions[3] ) {
+                if ( ess_instructions && ess_instructions[3] ) {
                     var logic_phase_id = ess_instructions[1];
                     var aspect_id   = ess_instructions[2];
                     var precontent  = ess_instructions[3];
@@ -133,7 +133,7 @@
                         return;
                     }
                     var wIx         = precontent.indexOf("*..*");
-                    if( wIx > -1 ) {
+                    if ( wIx > -1 ) {
                         var wHeader = precontent.substring(0, wIx-1);
                         var bodyscript = precontent.substring( wIx+4 );
                     } else {
@@ -168,17 +168,17 @@
                     // //\\ sets sapp.amodel_initial
                     //      to "default" or to the first essay if no "default"
                     //----------------------------------------------------------------
-                    if(logic_phase_id === fconf.logic_phaseId) {
+                    if (logic_phase_id === fconf.logic_phaseId) {
                         var ami = haz( sapp, 'amodel_initial' );
-                        if( !ami ) {
+                        if ( !ami ) {
                             var ami = sn( 'amodel_initial', sapp, {});
                             var logic_phaseId  = haz( fconf, 'logic_phaseId' );
                             var aspectId    = haz( fconf, 'aspectId' );
-                            if( logic_phaseId && aspectId ) {
+                            if ( logic_phaseId && aspectId ) {
                                 var subessayId  = haz( fconf, 'subessayId' );
-                                if( !subessayId ) {
+                                if ( !subessayId ) {
                                     subessayId = ns.getSubessayIdFromURL(); // returns 0 if none
-                                    if( !subessayId) {
+                                    if ( !subessayId) {
                                         subessayId = essayHeader.subessay;
                                     }
                                 }
@@ -204,7 +204,7 @@
                     //      essayHeader, 'fixed-colors' to topicColors_repo
                     //      for entire lemma
                     var wwfc = haz( essayHeader, 'fixed-colors' );
-                    if( wwfc ) {
+                    if ( wwfc ) {
                         Object.keys( wwfc ).forEach( topicKey => {
                             var tk = nsmethods.toCssIdentifier( topicKey );
                             topicColors_repo[ tk ] = wwfc[ topicKey ];
@@ -222,7 +222,7 @@
                     //---------------------------------------------------------
                     var CAPTURE_POSITION_INDICATOR = '*:::*:::*';
                     var capturePos = bodyscript.indexOf( CAPTURE_POSITION_INDICATOR );
-                    if( capturePos > -1 ) {
+                    if ( capturePos > -1 ) {
                         ////captures do exist ... split them from text
                         var captureTxt = bodyscript.substring(
                             capturePos + CAPTURE_POSITION_INDICATOR.length );
@@ -233,7 +233,7 @@
                     // //\\ digesting app-mode to lemma conditions
                     //---------------------------------------------------------
                     var wwCond = haz( capture, "__amode2rgstate" );
-                    if( wwCond ) {
+                    if ( wwCond ) {
                         ssD.__amode2rgstate = wwCond;
                         delete capture.__amode2rgstate;
                     } else {
@@ -279,7 +279,7 @@
             eachprop( exegs, (exeg, exeg_id) => {
                 eachprop( exeg, (aspect, asp_id) => {
                     eachprop( exegs, (exegToFill, fill_id) => {
-                        if( has( exegToFill, asp_id ) ) return;
+                        if ( has( exegToFill, asp_id ) ) return;
                         let aspExeg = exegToFill[asp_id] = {};
                         var subexegsIx  = 0;
                         var essayHeader = { subessay : subexegsIx + '' };
@@ -315,7 +315,7 @@
                         doesAddStudyModelIfNew( essayHeader, subex );
 
                         ///we need menu and classes only once per theor-aspect pair
-                        if( subexId === 0 ) {
+                        if ( subexId === 0 ) {
 
                             //.not elegant: should be in "logic_phase" loop, not in child loop,
                             setMenu( logic_phase_id, 'logic_phase', essayHeader );
@@ -339,7 +339,7 @@
                             var wDecArr = sn( 'dragPointDecoratorClasses', fconf, [] );
 
                             var wDecorAspect = 'aspect--' + aspect_id;
-                            if( wDecArr.indexOf( wDecorAspect ) < 0 ) {
+                            if ( wDecArr.indexOf( wDecorAspect ) < 0 ) {
                                 wDecArr.push( wDecorAspect );
                             }
                             //******************************************************************
@@ -354,7 +354,7 @@
                         ///for some reason, essay-section memorizes parent-header if
                         ///parent is an effective default
                         ///remembers default for easy access
-                        if( haz( essayHeader, "default" ) === '1' ){
+                        if ( haz( essayHeader, "default" ) === '1' ) {
                             //this is an alternative "if" which must work too
                             //if(
                             //    sapp.amodel_initial.logic_phase === logic_phase_id &&
@@ -420,14 +420,14 @@
                         "default" : leafId,
                         duplicates : {}  //todm: this repeats parts of "exegs" ... proliferation
                      };
-                if( !men.duplicates[ leafId ] ) {
+                if ( !men.duplicates[ leafId ] ) {
                     var menuItem = { id:leafId };
                     men.duplicates[ leafId ] = menuItem;
                     men.list.push( menuItem );
-                    if( mcat_id === 'logic_phase' ) {
+                    if ( mcat_id === 'logic_phase' ) {
                         sDomN.logic_phaseMenuMembersCount =
                             ( sDomN.logic_phaseMenuMembersCount || 0 ) + 1;
-                    } else if( mcat_id === 'aspect' ) {
+                    } else if ( mcat_id === 'aspect' ) {
                         sDomN.aspectionMenuMembersCount =
                             ( sDomN.aspectionMenuMembersCount || 0 ) + 1;
                     }
@@ -439,9 +439,9 @@
                 //     for example for claim/english header with default === "1"
                 //         sconf.asp8theor_menus[ 'aspect' ].default='english';
                 //         sconf.asp8theor_menus[ 'logic_phase' ].default='claim';
-                if( has( sapp, 'amodel_initial' ) ) {
+                if ( has( sapp, 'amodel_initial' ) ) {
                     var ww = sapp.amodel_initial;
-                    if( ww.logic_phase === leafId || ww.aspect === leafId ) {
+                    if ( ww.logic_phase === leafId || ww.aspect === leafId ) {
                         men[ "default" ] = leafId;
                     }
                 }
@@ -450,11 +450,11 @@
                 //------------------------------------------------------------
 
                 ///at least one caption should exist among twin aspects
-                if( haz( essayHeader, 'menuCaption' ) && mcat_id === 'aspect' ) {
+                if ( haz( essayHeader, 'menuCaption' ) && mcat_id === 'aspect' ) {
                     men.duplicates[ leafId ].caption = essayHeader.menuCaption;
                     men.duplicates[ leafId ].studylab = essayHeader.studylab;
                 }
-                if( essayHeader.logic_phaseCaption && mcat_id === 'logic_phase' ) {
+                if ( essayHeader.logic_phaseCaption && mcat_id === 'logic_phase' ) {
                     men.duplicates[ leafId ].caption = essayHeader.logic_phaseCaption;
                 }
             }
@@ -476,7 +476,7 @@
                 //first new-s ubmodel header must have img if s ubmodel needs it,
                 //      bg image is per s ubmodel
                 //*************************************************************
-                if( !userOptions.usingBackgroundImage() ) {
+                if ( !userOptions.usingBackgroundImage() ) {
                     //essayHeader.mediaBgImage = null; //disables it for definitness
                     rg.detected_user_interaction_effect_DONE = true;
                     //ccc( 'Remodel: Landing V: ' + rg.detected_user_interaction_effect_DONE );
@@ -484,17 +484,17 @@
                     stdMod.imgRk.hasImage = false;
                     return;
                 }
-                if( haz( stdMod.imgRk, 'imgFoundInText' ) ) return;
+                if ( haz( stdMod.imgRk, 'imgFoundInText' ) ) return;
 
                 // //\\ establishes image source file name
                 var headerHasImage = has( essayHeader, 'mediaBgImage' );
                 var imgInSconf = haz( sconf, 'mediaBgImage' );
-                if( headerHasImage ) {
+                if ( headerHasImage ) {
                     let imgInHeader = essayHeader.mediaBgImage;
                     var imgId = imgInHeader === null || imgInHeader === '' ?
                                 '*empty*' : ''+imgInHeader;
                     stdMod.imgRk.imgFoundInText = true;
-                } else if( imgInSconf )  {
+                } else if ( imgInSconf )  {
                     var imgId = imgInSconf;
                 } else {
                     imgId = '*empty*';
@@ -517,10 +517,10 @@
         //====================================================
 
         function aspectTurnedOn(aspect_id) {
-            if (aspect_id === 'model'){
+            if (aspect_id === 'model') {
                 return false;
             }
-            if (aspect_id === 'latin'){
+            if (aspect_id === 'latin') {
                 return userOptions.showingLatin();
             }
             return true;
@@ -538,7 +538,7 @@
      */
     function getFixedColor(topicOrArray, makeOpacity1)
     {
-        if( typeof topicOrArray === 'string' ) {
+        if ( typeof topicOrArray === 'string' ) {
             //returns blank, ' ' if topicOrArray is falsy
             var cleared = nsmethods.toCssIdentifier( topicOrArray || ' ' );
 
@@ -548,7 +548,7 @@
             var colorArray = topicOrArray;
         }
         ///returns "rgba(0,0,0,1)" if color is falsy
-        if( colorArray && makeOpacity1 ) {
+        if ( colorArray && makeOpacity1 ) {
             var rgba = ns.arr2rgba(
                 [ colorArray[0], colorArray[1], colorArray[2], 1 ]
             );

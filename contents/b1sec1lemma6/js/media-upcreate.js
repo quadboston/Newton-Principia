@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         $$, haz, fconf, ssF, ssD, sconf, amode, stdMod, rg, toreg,
     } = window.b$l.apptree({
@@ -19,9 +19,9 @@
         //      by essay-state
         //=================================================
         var rgMainLegend = haz( rg, 'main-legend' );
-        if( rgMainLegend ) {
+        if ( rgMainLegend ) {
             var rgTeoTab = rgMainLegend[ amode.logic_phase ];
-            if( amode.logic_phase === 'corollary' && amode.aspect === 'model' ) {
+            if ( amode.logic_phase === 'corollary' && amode.aspect === 'model' ) {
                 $$.$( rgTeoTab.tableDom ).addClass( 'hidden' );
             } else {
                 $$.$( rgTeoTab.tableDom ).removeClass( 'hidden' );

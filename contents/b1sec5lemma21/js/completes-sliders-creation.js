@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         mat,
         rg,
@@ -13,12 +13,12 @@
 
     function completesSlidersCreation()
     {
-        rg.M.acceptPos = function( newPos )
+        rg.M.acceptPos = function ( newPos )
         {
             var M = rg.M;
             var newValue = pos2Gpar( newPos )
             //protects drag from going outside the window
-            if( newValue < -6.5 || newValue > 2.5 ) return;
+            if ( newValue < -6.5 || newValue > 2.5 ) return;
             rg.g.value = newValue;
             return true;
 
@@ -33,7 +33,7 @@
             }
         }
 
-        rg.A.acceptPos = function( newPos )
+        rg.A.acceptPos = function ( newPos )
         {
             var { alpha, beta } = pos2alpha8beta( newPos )
             rg.alpha.value = alpha;
@@ -53,7 +53,7 @@
             }
         }
 
-        rg.H.acceptPos = function( newPos )
+        rg.H.acceptPos = function ( newPos )
         {
             //var H = rg.H;
             rg.a.value = newPos[0] - rg.C.pos[0];

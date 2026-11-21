@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         sn, mat,
         haz,
@@ -43,7 +43,7 @@
         baseArray, //two start and end points
         returnAll,
         INTEGRATION_POINTS_LIM,
-    }){
+    }) {
         //API
         var startX = baseArray[0];
         var endX = baseArray[1];
@@ -54,7 +54,7 @@
         var x1      = startX;
         var sum     = 0;
 
-        if( returnAll ) {
+        if ( returnAll ) {
             resultX = [ x1 ];
             resultF = [ fun1 ];
             integrals = [ 0 ];
@@ -62,24 +62,24 @@
             var fmax = fun1;
         }
 
-        for( var ix=0; ix<INTEGRATION_POINTS_LIM; ix++ ){
+        for ( var ix=0; ix<INTEGRATION_POINTS_LIM; ix++ ) {
             var x2 = (ix+1)*stepX;
             var fun2 = fun( x2 );
             sum += (fun1 + fun2) * 0.5 * stepX;
             fun1 = fun2;
-            if( returnAll ) {
+            if ( returnAll ) {
                 resultX.push( x2 );
                 resultF.push( fun2 );
                 integrals.push( sum );
-                if( fmin > fun2 ) {
+                if ( fmin > fun2 ) {
                     fmin = fun2;
                 }
-                if( fmax < fun2 ) {
+                if ( fmax < fun2 ) {
                     fmax = fun2;
                 }
             }
         }
-        if( returnAll ) {
+        if ( returnAll ) {
             return {
                 integral : sum,
                 resultX,
@@ -142,7 +142,7 @@
             var integF  = rgX.integ.f;
             integF.ix   = iIx;
             integF.x    = posX;
-            if( iIx >= INTEGRATION_POINTS_LIM ) {
+            if ( iIx >= INTEGRATION_POINTS_LIM ) {
                 integF.area = origin.integral;
                 integF.fun = resultF[ resultF.length-1 ];
             } else {
@@ -178,15 +178,15 @@
 
             var searchAreaG = rgX.integ.f.area * ratioGF;
             integG.area = searchAreaG;
-            for( var gix=gStartIx; gix<=INTEGRATION_POINTS_LIM; gix++ ) {
+            for ( var gix=gStartIx; gix<=INTEGRATION_POINTS_LIM; gix++ ) {
                 var currentArea = integralsG[ gix ];
                 var formerArea = integralsG[ gix-1 ];
-                if( gix === INTEGRATION_POINTS_LIM ) {
+                if ( gix === INTEGRATION_POINTS_LIM ) {
                     integG.ix = gix;
                     integG.x = resultGX[ gix ];
                     integG.fun = resultGY[ gix ];
                     gStartIx = gix;
-                } else if( currentArea >= searchAreaG ) {
+                } else if ( currentArea >= searchAreaG ) {
                     integG.ix = gix;
                     ////map z-point found for rgX.pos
                     integG.x = resultGX[ gix-1 ] +
@@ -234,7 +234,7 @@
             //finding fmin
             partition.forEach( (point,pix) => {
                 var integX = point.integ[ f0g ];
-                if( pix === partition.length - 1 ) {
+                if ( pix === partition.length - 1 ) {
                     integX.min = integX.fun;
                     return;
                 }
@@ -244,14 +244,14 @@
                 var startIx = integX.ix;
                 var lim     = integX1.ix;
                 var min    = integX.fun;
-                for( var ix=startIx; ix<lim; ix++ ) {
+                for ( var ix=startIx; ix<lim; ix++ ) {
                     var currF = f0g === 'f' ? resultF[ ix ] : resultGY[ ix ];
-                    if( min > currF ) {
+                    if ( min > currF ) {
                         min = currF;
                     }
                 }
                 var lastF = integX1.min;
-                if( min > lastF ) {
+                if ( min > lastF ) {
                     min = lastF;
                 }
 

@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { ns, sn, bezier, fapp, fconf, sconf, sDomF, sDomN, amode, ssD, ssF, rg, stdMod, }
         = window.b$l.apptree({ stdModExportList : { initDragModel, }, });
     return;
@@ -29,10 +29,10 @@
             achieved    : sconf.claimRatio,
             pointWrap   : wpoint,
             cssClasses  : ['axis-y'],
-            doProcess   : function( arg )
+            doProcess   : function ( arg )
             {
                 var ach = arg.pointWrap.achieved;
-                switch( arg.down_move_up ) {
+                switch ( arg.down_move_up ) {
                     case 'up':   ach.achieved = ssD.claimRatio;
                                  sDomF.detected_user_interaction_effect();
                     break;
@@ -73,10 +73,10 @@
             achieved            : rg.E.pos.concat([]),
             pointWrap           : wpoint,
             cssClasses          : ['axis-y'],
-            doProcess : function( arg )
+            doProcess : function ( arg )
             {
                 var ach = arg.pointWrap.achieved;
-                switch( arg.down_move_up ) {
+                switch ( arg.down_move_up ) {
                     case 'down':
                         //Update ach.achieved to prevent 'jumping' in case point E moved (eg. point C was moved).
                         ach.achieved = rg.E.pos.concat([]);
@@ -116,15 +116,15 @@
         wpoint.spinnerClsId       = 'C';
         wpoint.dragDecorColor   = sDomF.getFixedColor( 'given' );
 
-        if( !sconf.hideProofSliderCompletely ){
+        if ( !sconf.hideProofSliderCompletely ) {
             createDragger({
                 achieved            : sconf.tC,
                 pointWrap           : rg.C,
                 cssClasses          : ['green'],
-                doProcess : function( arg )
+                doProcess : function ( arg )
                 {
                     var ach = arg.pointWrap.achieved;
-                    switch( arg.down_move_up ) {
+                    switch ( arg.down_move_up ) {
                         case 'up':   //.this is done through proofSlider: ach.achieved = ssD.tC;
                                      //.does update through proofSlider synch
                                      sDomF.proofSlider.slider.d8d_emulateAbsFractionX( ssD.tC, 'up' );
@@ -172,11 +172,11 @@
                 achieved            : ssD.curvePivots[1].concat([]),
                 pointWrap           : wpoint,
                 cssClasses          : ['axis-x'],
-                doProcess : function( arg )
+                doProcess : function ( arg )
                 {
                     var ach = arg.pointWrap.achieved;
                     var pv = ssD.curvePivots[1];
-                    switch( arg.down_move_up ) {
+                    switch ( arg.down_move_up ) {
                         case 'down':
                             //Update ach.achieved to prevent 'jumping' in case the bezier middle pivot moved (eg. point E was moved and constrained it).
                             ach.achieved = pv.concat([]);
@@ -219,11 +219,11 @@
             achieved            : sconf.curvePivots[2].concat([]),
             pointWrap           : wpoint,
             cssClasses          : ['given','rotate'],
-            doProcess : function( arg )
+            doProcess : function ( arg )
             {
                 var ach = arg.pointWrap.achieved;
                 var pv = ssD.curvePivots[2];
-                switch( arg.down_move_up ) {
+                switch ( arg.down_move_up ) {
                     case 'up':   ach.achieved = pv.concat([]);
                                  sDomF.detected_user_interaction_effect();
                     break;
@@ -256,9 +256,9 @@
             var pointWrap        = argc.pointWrap;
             pointWrap.dragDecorColor = pointWrap.dragDecorColor || 'red';
 
-            if( argc.cssClasses ) {
+            if ( argc.cssClasses ) {
                 var orientation = '';
-                argc.cssClasses.forEach( function( cls ) {
+                argc.cssClasses.forEach( function ( cls ) {
                     orientation += orientation ? ' ' + cls : cls;
                 });
                 argc.orientation = orientation;

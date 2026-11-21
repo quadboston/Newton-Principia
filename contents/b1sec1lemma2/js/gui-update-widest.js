@@ -19,7 +19,7 @@
         //===============================================
         // //\\ widest-rect
         //===============================================
-        guicon.constructsWidestRect = function(dr)
+        guicon.constructsWidestRect = function (dr)
         {
             //Really a polygon so it can be transformed
             dr.faaf   = document.createElementNS( svgNS, "polygon");
@@ -28,7 +28,7 @@
                 .to( stdMod.svgScene );
         };
 
-        gui.drawsWidestRect = function(dr)
+        gui.drawsWidestRect = function (dr)
         {
             let { left, right, top, } = dr.widestRect;
             guiup.assignRectValues(

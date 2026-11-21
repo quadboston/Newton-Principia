@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         haz, fapp, sconf, ssF, topics, topicColors_repo
     } = window.b$l.apptree({
@@ -18,7 +18,7 @@
 
         domEl = domEl || fapp.fappRoot$();
         var allAnchors = domEl.querySelectorAll( 'a' );
-        if( allAnchors ) {
+        if ( allAnchors ) {
             var anchors__cssHighlighter = { value : '' };
 
             ///at this point, anchors should be completely prepared
@@ -28,7 +28,7 @@
             allAnchors.forEach( anchor => {
                 var cls = anchor.className;
                 var match = cls.match( /tl-(\S*)/ );
-                if( !match ) return;
+                if ( !match ) return;
                 var tplink_ix = parseInt( match[1] );
                 var anrack    = topics.anix2anrack[ tplink_ix ];
                 assigns_color_to_anchor({ anrack, anchors__cssHighlighter, });
@@ -56,14 +56,14 @@
         var fixedCol = haz( anrack, 'tpcolarr' );
         //selects the very first color-operand from anchor
         var gcssRack = topics.lowtpid_2_glocss8anchorRack[ tpIDs[0] ];
-        if( fixedCol ) {
+        if ( fixedCol ) {
             //note: high opacity is taken as sconf.TP_OPACITY_HIGH in this ver
             var { rgb, rgba_high, } = ssF.colorArray_2_rgba(
                     [fixedCol[0],fixedCol[1],fixedCol[2],0.7, 1],
                     true,
                     sconf.TP_OPACITY_FROM_fixed_colors
             );
-        } else if( tpIDs.length === 0 ) {
+        } else if ( tpIDs.length === 0 ) {
             ////safety case: no topics exist in collection,
             ////setting default anchor color
             var rgba_high = sconf.ANCHOR_DEFAULT_COLOR;

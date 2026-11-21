@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         sn, $$, eachprop, haz,
         sconf,
@@ -36,7 +36,7 @@
                     // //\\ creates subessay's doms for text and
                     //      subessay menuItem
                     //====================================================
-                    if( userOptions.shouldShowSubessayMenu(exAspect) ) {
+                    if ( userOptions.shouldShowSubessayMenu(exAspect) ) {
                         subexeg.subessayCaption =
                                 haz( subexeg.essayHeader, 'subessayCaption' ) ||
                                 haz( subexeg.essayHeader, 'menuCaption' ) ||
@@ -57,12 +57,12 @@
                             )
                           )
                           .e( 'click', () => {
-                                if( ssD.subessayClickDisabled ) return;
+                                if ( ssD.subessayClickDisabled ) return;
                                 //virtualSubessayClick( subexeg );<<<
                                 var url = window.location.href;
                                 var subessayId = subexeg.essayHeader.subessay;
                                 const needsReload = isReloadNeeded(url, subessayId);
-                                if( !needsReload ) {
+                                if ( !needsReload ) {
                                     virtualSubessayClick( subexeg );
                                 }
                                 const match = url.includes('subessayId=');
@@ -98,8 +98,8 @@
                     ///   they are non-unJSONED-active Fragment text units
                     ///rawActiveFrag and rawActFrValue are obtained from Book
                     ///with help by ACTION_SPLITTER = /¿/
-                    subexeg.activeFrags.forEach( function( rawActiveFrag ) {
-                        if( typeof( rawActiveFrag ) === 'object' ) {
+                    subexeg.activeFrags.forEach( function ( rawActiveFrag ) {
+                        if ( typeof( rawActiveFrag ) === 'object' ) {
                             eachprop( rawActiveFrag, (rawActFrValue) => {
                                 ssF.fragment__collectsRawTpLinks( rawActFrValue );
                             });
@@ -122,8 +122,8 @@
                 //      this visibility,
                 //************************************************************
                 ///puts togglers on top
-                if( userOptions.shouldShowSubessayMenu(exAspect)
-                ){
+                if ( userOptions.shouldShowSubessayMenu(exAspect)
+                ) {
                     var subessayMenuContainer$ = exAspect.subessayMenuContainer$ = $$
                         .c( 'div' )
                         .cls( 'subessay-menu-container highlight-text-disabled' )

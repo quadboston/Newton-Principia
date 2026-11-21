@@ -1,4 +1,4 @@
-(function (){
+(function () {
 const { $$, sn, haz, has, eachprop,
         rg, stdMod } =
         window.b$l.apptree({ stdModExportList : { unmasksVisib, }});
@@ -15,7 +15,7 @@ return;
 ///      apparently, this function uses outdated engine design because of
 ///      it does not use: doPaintLetter8kernel( pname )
 ///**********************************************************************
-function unmasksVisib (){
+function unmasksVisib() {
     //===================================================
     // //\\ localizes variables
     //===================================================
@@ -98,20 +98,20 @@ function unmasksVisib (){
     eachprop( decor, dec => {
         const decStart = dec.decStart;
         const decEnd   = dec.decEnd;
-        if( decStart === -2 ||
+        if ( decStart === -2 ||
             ( decStart <= stepIx4 &&
                 ( decEnd === -2 || stepIx4 <= decEnd )
             )
-        ){
+        ) {
             dec.undisplay = false;
         }
-        if( !dec.isPoint ) {
+        if ( !dec.isPoint ) {
             const arrow$ = haz( dec, 'vectorArrowSvg$' );
-            if( arrow$ ) {
+            if ( arrow$ ) {
                 const act = haz( dec, 'undisplay' );
                 arrow$.toggleClass( 'undisplay', act );
             }
-            if( has( dec, 'svgel$' )){ //todo patch
+            if ( has( dec, 'svgel$' )) { //todo patch
                 dec.svgel$.toggleClass( 'undisplay', haz( dec, 'undisplay' ) );
             }
         }

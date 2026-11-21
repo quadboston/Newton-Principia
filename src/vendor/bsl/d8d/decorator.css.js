@@ -5,7 +5,7 @@
 
 //apparently this module was a derivative from
 //  /var/www/html/bwork/vbsl/vendor/bsl/slider/slider-handler.css.js
-(function() {
+(function () {
     var ns     = window.b$l;
     var dpdec  = ns.sn('drag-point-decorator');
 
@@ -75,7 +75,7 @@
         parent_classes = parent_classes || [''];
         var ret = '';
         // //\\ css /////////////////////////////////////////
-        parent_classes.forEach( function( dclass ) {
+        parent_classes.forEach( function ( dclass ) {
             ////if dclass exists, apparently it constrains css to ownself,
             ////possibly useless and easy to forget when scripting lemma,
             ////example: dclacc = .aspect--english
@@ -112,7 +112,7 @@
     // defines css for arrow hover animations around draggable points
     function createSliderArrowsCSS()
     {
-        if( globalCssCreated_flag ) return;
+        if ( globalCssCreated_flag ) return;
         var ret =
 
         // //\\ css /////////////////////////////////////////

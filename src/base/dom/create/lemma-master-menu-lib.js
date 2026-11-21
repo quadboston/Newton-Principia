@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         sn, $$, haff,
         globalCss,
@@ -17,7 +17,7 @@
     function makes_logic_phaseTab_nonClickable()
     {
         sDomN.teafs$.logic_phase.addClass( 'non-clickable' )
-            .e( 'click', function( event ) {
+            .e( 'click', function ( event ) {
                 event.stopPropagation = true;
             })
             ;

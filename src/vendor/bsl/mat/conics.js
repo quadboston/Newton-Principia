@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var sn	        = window.b$l.sn;
     var mat         = sn( 'mat' );
     var conics      = sn( 'conics', mat );
@@ -45,13 +45,13 @@
     }) {
         signCosOmega = typeof signCosOmega === 'undefined' ? -1 : signCosOmega;
 
-        if( !om && om !== 0 ){
+        if ( !om && om !== 0 ) {
             //// om is undefined
             //// first batch of variables
             var eta = 1 - e*Math.cos(fi);
             //assumes om >= 0:
             om = eta / Math.sqrt( e*e-1+2*eta);
-            if( !lat && lat !== 0 ) {
+            if ( !lat && lat !== 0 ) {
                 lat = eta*r;
             } else {
                 r = lat / eta;
@@ -60,7 +60,7 @@
             ////om is defined
             ////second batch of variables
             var eta = lat / r;
-            if( Math.abs( om ) > 0.9999999 ) {
+            if ( Math.abs( om ) > 0.9999999 ) {
                 ////never strictly orthogonal
                 om = Math.sign( om ) * 0.999999;
                 //slightly moves cos
@@ -88,9 +88,9 @@
         let cosOmega = signCosOmega * Math.sqrt( Math.max(0, 1 - om*om ) );
 
         //addition for Kepler's law
-        if( typeof Kepler_g !== 'undefined' ){
+        if ( typeof Kepler_g !== 'undefined' ) {
             var Kepler_v = Math.sqrt( Kepler_g * lat ) / ( Math.abs(om) * Math.abs( r ) );
-        } else if( typeof Kepler_v !== 'undefined' ) {
+        } else if ( typeof Kepler_v !== 'undefined' ) {
             var M = om*r*Kepler_v;
             var Kepler_g = M*M / lat;
         }

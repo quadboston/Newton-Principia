@@ -2,7 +2,7 @@
 // /var/www/html/sand/web-dev/tools/frontend/btb-master/btb/jq/create-media-runner.js
 //css vs js: https://developer.mozilla.org/en-US/Apps/Fundamentals/Performance/CSS_JavaScript_animation_performance
 
-( function() {
+( function () {
     var {
         tframes,
     } = window.b$l.nstree();
@@ -56,7 +56,7 @@
     function runsMainCycle()
     {
         var fisrtStart = false;
-        if( !managerStart ) {
+        if ( !managerStart ) {
             var fisrtStart = true;
             managerStart = [ Date.now() ];
         }
@@ -124,10 +124,10 @@
         var lifeElapsed             = now - lifeStart;
         var lifeIntervalElapsed     = now - lifeIntervalStart;
 
-        if( typeof lifeMax === 'undefined' || lifeElapsed < lifeMax ) {
-            if( typeof lifeIntervalMax === 'undefined' ||
+        if ( typeof lifeMax === 'undefined' || lifeElapsed < lifeMax ) {
+            if ( typeof lifeIntervalMax === 'undefined' ||
                 lifeIntervalMax <= lifeIntervalElapsed
-            ){
+            ) {
                 rr.lifeIntervalStart = now;
                 lifeRunFun({
                     lifeElapsed, lifeIntervalElapsed, managerElapsed, now

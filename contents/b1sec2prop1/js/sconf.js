@@ -1,4 +1,4 @@
-(function(){
+(function () {
 const {
     sn, haff, has,
     stdMod, fconf, sconf, ssF,
@@ -7,7 +7,7 @@ const linesArray = sn( 'linesArray', sconf, [] );
 return;
 
 
-function init_conf (){
+function init_conf() {
     //----------------------------------
     // //\\ scenario
     //----------------------------------
@@ -181,7 +181,7 @@ function init_conf (){
 
     ssF.setsCommonT1andT2capture();
     //this comes from theorem P2; this does not exist in P1;
-    if( has( ssF, 'init_conf_addon' ) ) {
+    if ( has( ssF, 'init_conf_addon' ) ) {
         haff( ssF, 'init_conf_addon' );
     } else {
         ssF.makesProfessorsCaptureFootnotes();

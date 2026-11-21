@@ -1,6 +1,6 @@
 //\\// Application Entry
 //     recommended: /doc/landing-code-overview.txt
-(function(){
+(function () {
 const {
         ns, sn, $$, cssp, eachprop, nspaste, haff, has, haz, nsmethods, html,
         userOptions, fapp, sapp, fconf, sconf, engCssMs, fmethods, sDomF, sDomN,
@@ -66,14 +66,14 @@ const {
         // \\// home8lemmas
         //=========================
 
-        if( fconf.sappId === 'home-pane' ) {
+        if ( fconf.sappId === 'home-pane' ) {
             //// home. apparently does not do any modules landing-load
             LANDING_VII___landingFlag_8_nextLemmaButtons();
             sDomN.landingPage8Options_click( !!'goToFrontPage' );
             ns.doScrollToHash();
         } else {
             sDomN.landingPage8Options_click( !'goToFrontPage' );
-            if( !haz( fconf, 'lemmaHasHomeButton' ) ) {
+            if ( !haz( fconf, 'lemmaHasHomeButton' ) ) {
                 sDomN.homeButton$.css( 'display', 'none' );
             }
             /// removed LANDING_II___main_lemma() bc it was just making redundant calls
@@ -119,14 +119,14 @@ const {
             fconf.ancestorCode_fullpath = fconf.pathToContents + "/" +
                                           fconf.ancestor_ref;
             // //\\ loads jscodes and continues
-            if( fconf.ancestor_ref ) {
+            if ( fconf.ancestor_ref ) {
                 ////preloads referenced jscodes before own jscodes
                 nsmethods.loadScripts(
                     [
                         { src : fconf.ancestorCode_fullpath + "/lemma-conf.js"
                         }
                     ],
-                    function() {
+                    function () {
                         ////uses own placeholder of-jscodes-list or adds missed
                         fapp.jsCodesList = sn( 'codesList', fapp.lemmaConfig(), [] );
                         //loads own jscodes and continues landing
@@ -146,9 +146,9 @@ const {
         function LANDING_IV___loadLemmaJSCodes()
         {
             let imagesToLoadList = fapp.lemmaDef.imagesToLoadList;
-            if( imagesToLoadList ) {
+            if ( imagesToLoadList ) {
                 ////loads images first
-                eachprop( imagesToLoadList, function( codeItem ) {
+                eachprop( imagesToLoadList, function ( codeItem ) {
                     codeItem.src = fconf.lemmaCode_fullpath + "/img/" + codeItem.src;
                 });
                 ///loads images first and then follows to load scripts
@@ -161,13 +161,13 @@ const {
             function loadsJSScripts()
             {
                 ///we complete paths for ancestor list if any
-                fapp.jsCodesList.forEach( function( codeItem ) {
+                fapp.jsCodesList.forEach( function ( codeItem ) {
                     codeItem.src = fconf.ancestorCode_fullpath + "/js/" + codeItem.src;
                 });
 
                 ///adds ancestors (if any) to descendants(if any) and accumulates
                 ///result in fapp.jsCodesList
-                fapp.lemmaDef.codesList.forEach( function( codeItem ) {
+                fapp.lemmaDef.codesList.forEach( function ( codeItem ) {
                     fapp.jsCodesList.push({
                         src : fconf.lemmaCode_fullpath + "/js/" + codeItem.src
                         });
@@ -187,7 +187,7 @@ const {
                     ///executes loaded modules from modules registry
                     ///this is a second and a last round of executing setModule for
                     ///lemma modules
-                    eachprop( srg_modules, function( setModule, wwProp ) {
+                    eachprop( srg_modules, function ( setModule, wwProp ) {
                         setModule();
                     });
                     //----------------------------------------------------------
@@ -225,7 +225,7 @@ const {
 
                     ///loads Book
                     ssF.LANDING_V___loads_professorList8cont_8_buildsSubexegs(
-                        function() {
+                        function () {
                             ////exegs are ready now,
 
                             //this place looks like
@@ -284,7 +284,7 @@ const {
     }
 
     //does: exegs__2__frags_dom_css_mjax_tpanch_initapp_menu_evs_capture
-    function LANDING_VI___exegs_2_frags8majorInit (){
+    function LANDING_VI___exegs_2_frags8majorInit() {
         ssF.exegs_2_frags(); //to active-areas
         ssF.frags__2__dom_css_mjax_tpanchors();
 

@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { mat, sn, has, mcurve, stdMod, rg, sconf, ssD, sData, }
         = window.b$l.apptree({ stdModExportList : { buildsOrbit, }, });
     var NON_SOLVABLE_THRESHOLD = 0.05;
@@ -55,7 +55,7 @@
             // Kepler's motion: rvₜcos(w) = M
             // f = M²/(Rr²cos³(w))
             sinAbs = Math.abs( sinOmega );
-            if( NON_SOLVABLE_THRESHOLD > sinAbs ) {
+            if ( NON_SOLVABLE_THRESHOLD > sinAbs ) {
                 solvable = false;
                 foldPoints.push( [ posBody[0], posBody[1] ] );
                 bP.solvablePoint = solvable;
@@ -65,7 +65,7 @@
             // //\\ preparing time array
             //------------------------------------------
             //meaning: dq_dt = dq/dt
-            if( 0 === qix ) {
+            if ( 0 === qix ) {
                 var ds_dt = calculate_ds_dt(bP);
                 //Specific angular momentum for first point
                 h0 = hPerSpeed * ds_dt;
@@ -91,21 +91,21 @@
         }
 
         // //\\ one or many shapes
-        if( !has( sconf, 'RESHAPABLE_ORBIT' ) ){
+        if ( !has( sconf, 'RESHAPABLE_ORBIT' ) ) {
             sconf.RESHAPABLE_ORBIT = 1;
         }
         //todo start here apparen duplicate with other builder or
         //svg object duplicates and leaks, this is seen when,
         //we do not add ...P11 in media_upcreate basic,
-        if( sconf.RESHAPABLE_ORBIT ){
-            if( sconf.RESHAPABLE_ORBIT === 1 ){
+        if ( sconf.RESHAPABLE_ORBIT ) {
+            if ( sconf.RESHAPABLE_ORBIT === 1 ) {
                 ////blocks redraw forever
                 sconf.RESHAPABLE_ORBIT = 0;
             }
             ///for static orbit shapes shoult build once per launch,
             ///decoration: builds pivots for scalable decorational orbit
             const ORBIT_STEP = Q_STEPS/orbitXYToDraw_LIMIT;
-            for( let oix=0; oix<=orbitXYToDraw_LIMIT; oix++ ){
+            for ( let oix=0; oix<=orbitXYToDraw_LIMIT; oix++ ) {
                 let qix = Math.floor( oix * ORBIT_STEP );
                 orbitXYToDraw[ oix ] = qIndexToOrbit[qix].posBody;
             }

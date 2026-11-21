@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { nspaste, mat, sconf,
         ssD, stdMod, rg, }
         = window.b$l.apptree({ stdModExportList : { model_upcreate, }, });

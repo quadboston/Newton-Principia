@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         sn, haz, $$, nsmethods, nspaste, nssvg, mcurve, integral, mat, has,
         fconf, ssF, sData, sDomF,
@@ -124,7 +124,7 @@
 
             //:fills model pivots
             pivots.push( [ rg.C.pos[0], rg.C.pos[1], ] );
-            for( let iq=iqD; iq<=iqE; iq++ ) {
+            for ( let iq=iqD; iq<=iqE; iq++ ) {
                 pivots.push( graph[iq] );
             }
 
@@ -140,7 +140,7 @@
 
             //:fills model pivots
             pivots.push( [ rg.C.pos[0], rg.C.pos[1], ] );
-            for( let iq=0; iq<=iqD; iq++ ) {
+            for ( let iq=0; iq<=iqD; iq++ ) {
                 pivots.push( graph[iq] );
             }
 
@@ -184,7 +184,7 @@
 
         //:fills model pivots
         fill0stroke === 'fill' && pivots.push( [ 0, graph[firstIq][1] ] );
-        for( let iq=firstIq; iq<=lastIq; iq++ ) {
+        for ( let iq=firstIq; iq<=lastIq; iq++ ) {
             pivots.push( graph[iq] );
         }
         fill0stroke === 'fill' && pivots.push( [ 0, graph[lastIq][1] ] );

@@ -1,7 +1,7 @@
 ///adds Q and P sliders for
 ///for dq and body in
 ///models in propopositions 6-17 in Principia
-( function() {
+( function () {
     var { sn, fconf, ssD, stdMod, sconf, rg, } = window.b$l.apptree({
         stdModExportList : {
             creates_Q8P_sliders,
@@ -31,7 +31,7 @@
         rg.Q.acceptPos = newPos => {
             const Pqix = rg.P.qix;
             const Qqix = stdMod.gets_orbit_closest_point( newPos );
-            if( sconf.TIME_IS_FREE_VARIABLE ){
+            if ( sconf.TIME_IS_FREE_VARIABLE ) {
                 const timeQ = qIndexToOrbit[ Qqix ].timeAtQ;
                 const timeP = qIndexToOrbit[ Pqix ].timeAtQ;
                 let Dt = timeQ - timeP;
@@ -71,7 +71,7 @@
                 const qQ = qIndexToOrbit[ Qqix ].q;
                 const qP = qIndexToOrbit[ Pqix ].q;
                 let Dq = qQ - qP;
-                if( sconf.CURVE_REVOLVES ){
+                if ( sconf.CURVE_REVOLVES ) {
                     //todo
                     console.error(
                         `At the time of writing this no models "revolve" ` +
@@ -142,7 +142,7 @@
             sconf.ellipseA = a;
             sconf.ellipseFocus = Math.sqrt(a*a - b*b);
             sconf.eccentricity = sconf.ellipseFocus / a;
-            if(sconf.ellipseFocus <= 0) sconf.ellipseFocus = 0.00001; // to avoid cuckoo graph
+            if (sconf.ellipseFocus <= 0) sconf.ellipseFocus = 0.00001; // to avoid cuckoo graph
             rg.A.pos[0] = x;
             rg.A.pos[1] = y;
             if (rg.H && rg.S) {
@@ -165,7 +165,7 @@
        function gets_orbit_closest_point(
             r, //distance to this point
             fromGraph //optional, using valid graph points
-        ){
+        ) {
             //Search every point in the array to ensure point P dragging isn't
             //choppy (previously only some points were checked).  Note this
             //runs in a fraction of a millisecond even with a large number of
@@ -179,14 +179,14 @@
             //therefore limits what points can be output.
             const qS = fromGraph ? ssD.qix_graph_start : 0;
             const qE = fromGraph ? ssD.qix_graph_end+1 : qIndexToOrbit.length;
-            for( let qix=qS; qix<qE; qix++){
+            for ( let qix=qS; qix<qE; qix++) {
                 const point = qIndexToOrbit[qix];
-                if(!point) continue;
+                if (!point) continue;
                 const pos = point.posBody;
                 const x = r[0]-pos[0];
                 const y = r[1]-pos[1];
                 const d2 = x*x + y*y;
-                if( qix_min === null || min>d2 ){
+                if ( qix_min === null || min>d2 ) {
                     min = d2;
                     qix_min = qix;
                 }

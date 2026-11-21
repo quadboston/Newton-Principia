@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { sconf, paste, fconf, topicColors_repo } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;

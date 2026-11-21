@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         sn,
         sconf, ssF, sDomF, rg,
@@ -44,10 +44,10 @@
                 point_on_dragSurf,
             */
             arg
-        ){
+        ) {
             var pointWrap = arg.pointWrap;
             var ach = pointWrap.achieved;
-            switch( arg.down_move_up ) {
+            switch ( arg.down_move_up ) {
                 case 'down':
                      ach.achieved = [ pointWrap.pos[0], pointWrap.pos[1] ];
                      break;

@@ -1,4 +1,4 @@
-(function(){
+(function () {
 const { sn, eachprop, has, haf,
         fconf, sconf, toreg, rg, ssD, sDomF, stdMod,
         topicColors_repo, topicColors_repo_camel2col, originalPoints,
@@ -15,7 +15,7 @@ return;
 //
 //      runs only once at start of init_model_parameters,
 //-------------------------------------------------------
-function sconf_points8lines (){
+function sconf_points8lines() {
     let {
         givenColor,
         proofColor,
@@ -157,7 +157,7 @@ function sconf_points8lines (){
         "v"		: supplementColor,
     };
     var p2_elected = haf( ssD, 'P2_topicColors_elected' )(tpel);
-    if( p2_elected ) {
+    if ( p2_elected ) {
         Object.assign( tpel, p2_elected );
     }
 
@@ -236,7 +236,7 @@ function sconf_points8lines (){
     //----------------------------------------------------
     // //\\ theor 2 coroll. path decor
     //----------------------------------------------------
-    if( fconf.sappId === 'b1sec2prop2' ){
+    if ( fconf.sappId === 'b1sec2prop2' ) {
         var prime_conf = {
             Cprime : {
                 caption : "C′",
@@ -557,7 +557,7 @@ function sconf_points8lines (){
         { nam : ['D', 'F'], cssClass : theor1corollary },	// DF
     ];
 
-    if( fconf.sappId === 'b1sec2prop2' ){
+    if ( fconf.sappId === 'b1sec2prop2' ) {
         linesConf = linesConf.concat( [
             { nam : ['c','Cprime'], cssClass : theor2corollary, },
             { nam : ['C','Cprime'], cssClass : theor2corollary, },
@@ -606,7 +606,7 @@ function sconf_points8lines (){
         ///the same procedure happens with "end" setting
         var decEnd = has( ln, 'decEnd' ) ?
             ln.decEnd : rg[ ln.nam[1] ].decEnd;
-        if( ln.nam[0] === 'S' && ln.nam[1] === 'C' ) {
+        if ( ln.nam[0] === 'S' && ln.nam[1] === 'C' ) {
             decStart = 7;
         }
         rgElem.decStart = decStart;

@@ -20,7 +20,7 @@
                 highOpacity
                 lowOpacity
 */
-(function(){
+(function () {
     const {
         ns, sn, $$, nsmethods, haz, has, eachprop,
         fconf, sconf, rg, sDomF, topics, lowtpid_2_glocss8anchorRack,
@@ -39,12 +39,12 @@
     ///     assigns either zebra-colors or "tpcolarr"s,
     ///     sets gcssRack props including low8high signature which is =
     ///     { rgb, rgba_low, rgba_high, lowOpacity, highOpacity }
-    function lowtpid__2__glocss8anchorRack (){
+    function lowtpid__2__glocss8anchorRack() {
         eachprop( lowtpid_2_glocss8anchorRack,
                   ( gcssRack, low_tpID, tcount, allTopicsCount ) => {
             var fc = haz( gcssRack, 'tpcolarr' );
             gcssRack.tcount = tcount;
-            if( fc ) {
+            if ( fc ) {
                 colArray_2_flags( gcssRack );
                 return;
             } else {
@@ -75,13 +75,13 @@
         });
     }
 
-    function colArray_2_flags( gcssRack ){
+    function colArray_2_flags( gcssRack ) {
         var colorArray = haz( gcssRack, 'tpcolarr' );
         var { rgb, rgba } = ns.arr2rgb_rgba( colorArray );
         var ownHighOp = colorArray[4];
         var ownFlag = !!(ownHighOp || ownHighOp === 0);
         gcssRack.forAnchor = rgba; //patch
-        if( ownFlag ) {
+        if ( ownFlag ) {
             ////low and high opacity do exist,
             ////moves them in global css,
             ////(and removes them from own color)
@@ -94,9 +94,9 @@
             ////opacities from global setting
             let fc = gcssRack['tpcolarr'];
 
-            if( fconf.sappId === 'b1sec2prop1' ||
+            if ( fconf.sappId === 'b1sec2prop1' ||
                 fconf.sappId === 'b1sec2prop2'
-            ){
+            ) {
                 gcssRack.highOpacity = sconf.TP_OPACITY_HIGH;
                 gcssRack.lowOpacity = sconf.TP_OPACITY_LOW;
                 gcssRack.rgba_own = rgba;
@@ -116,22 +116,22 @@
         gcssRack.fillOpacity = 1;
 
         var classmark = haz( rgX, 'classmark' );
-        if( classmark ) {
+        if ( classmark ) {
             //legacy rubbish, rid
             let tofill = !!classmark.match( /(\s+|^)tofill(\s+|$)/ );
             let tostroke = !!classmark.match( /(\s+|^)tostroke(\s+|$)/ );
 
-            if( tofill && !tostroke ) {
+            if ( tofill && !tostroke ) {
                 gcssRack.strokeOpacity = 0;
             }
-            if( !tofill && tostroke ) {
+            if ( !tofill && tostroke ) {
                 gcssRack.fillOpacity = 0;
             }
         }
     }
 
     // kludge
-    function hasHigherOpacity (gcssRack){
+    function hasHigherOpacity(gcssRack) {
         return typeof gcssRack['tpcolarr'][3] === 'number';
     }
 
@@ -141,15 +141,15 @@
         colorArray, //== [r,g,b,opacityLow,opacityHigh]
         saturFromColorArray,
         opacityFromColorArray,
-    ){
+    ) {
         const sconfOPACITY_LOW = sconf.TP_OPACITY_LOW;
-        if( opacityFromColorArray && colorArray ) {
-            if( colorArray[3] || colorArray[3]===0 ) {
+        if ( opacityFromColorArray && colorArray ) {
+            if ( colorArray[3] || colorArray[3]===0 ) {
                 var lowOpacity = colorArray[3];
             } else {
                 var lowOpacity = sconfOPACITY_LOW;
             }
-            if( colorArray[4] || colorArray[4]===0 ) {
+            if ( colorArray[4] || colorArray[4]===0 ) {
                 var highOpacity = colorArray[4];
             } else {
                 var highOpacity = sconf.TP_OPACITY_HIGH;
@@ -159,7 +159,7 @@
             var highOpacity = sconf.TP_OPACITY_HIGH;
             //c cc( lowOpacity, highOpacity );
         }
-        if( saturFromColorArray && colorArray ) {
+        if ( saturFromColorArray && colorArray ) {
             let rgb = ns.arr2rgb_a(
                 colorArray[0], colorArray[1], colorArray[2]
             );

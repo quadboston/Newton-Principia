@@ -1,11 +1,11 @@
-(function(){
+(function () {
 const { nspaste, fconf, rg, } =
         window.b$l.apptree({ stdModExportList : { traj2decs__II } });
 return;
 
 
 ///at current ver, runs at every model_upcreate
-function traj2decs__II (){
+function traj2decs__II() {
     var path            = rg.path.pos;
     var freePath        = rg.freePath.pos;
 
@@ -35,7 +35,7 @@ function traj2decs__II (){
     //-------------------------------------------------
     // //\\ recalculates sagittaes pos
     //-------------------------------------------------
-    ( function() {
+    ( function () {
         nspaste( rg.U.pos, [
             ( rg.B.pos[0] + rg.V.pos[0] )*0.5,
             ( rg.B.pos[1] + rg.V.pos[1] )*0.5,
@@ -49,7 +49,7 @@ function traj2decs__II (){
     // \\// recalculates sagittaes pos
     //-------------------------------------------------
 
-    if( fconf.sappId === 'b1sec2prop2' ){
+    if ( fconf.sappId === 'b1sec2prop2' ) {
         //top of the accelerated kepler-triangle
         nspaste( rg.Cprime.pos, rg.pathAracc.pos[ 2 ] );
         //=== normal-to-radii-displacement - added to position "V"

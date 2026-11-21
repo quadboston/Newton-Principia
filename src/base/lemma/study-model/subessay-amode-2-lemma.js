@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         nspaste, eachprop, has, haz, haff,
         fconf, ssF, ssD, rg, sDomF,
@@ -50,7 +50,7 @@
         ssD.__amode2rgstate.forEach( (cblock) => {
             ///aka: "true", or "( logic_phase === 'claim' || ...
             var cond = cblock[0];
-            if( eval( cond ) ) {
+            if ( eval( cond ) ) {
                 var instr = cblock[ 1 ];
                 ///latter "captured" in array overrides previous "captured"
                 captured = haz( instr, "captured" ) || captured;
@@ -58,7 +58,7 @@
                 ///core of condition: sets registry immediately
                 nspaste( rg, haz( instr, "rg" )||{} );
 
-                if( has( instr, 'action' ) ) {
+                if ( has( instr, 'action' ) ) {
                     ////aka: sDomF.detected_user_interaction_effect()
                     eval( instr.action );
                 }
@@ -70,7 +70,7 @@
 
         ///enables or disables conditional drag point if preset in sconf.js,
         eachprop( rg, (shape) => {
-            if( has( shape, 'conditionalDrag' ) ){
+            if ( has( shape, 'conditionalDrag' ) ) {
                 let dohide = true;
                 //options which do activate drag
                 'logic_phase aspect subessay sappId'
@@ -82,7 +82,7 @@
                     const RE = new RegExp( '\\b' + aname + '\\-\\-(\\S*)\\b', 'g' );
                     let matches = shape.conditionalDrag.matchAll( RE );
                     for (const match of matches) {
-                        if( amode[aname] === match[1] ||
+                        if ( amode[aname] === match[1] ||
                             ( aname === 'sappId' && fconf.sappId === match[1] )
                         ) {
                             dohide = false;
@@ -93,7 +93,7 @@
             }
         });
 
-        if( haz( ssF, 'amode2rgstate' ) ){
+        if ( haz( ssF, 'amode2rgstate' ) ) {
             //appar. can do this
             //ssF.amode2rgstate();
             //and remove " captured " fully
@@ -101,7 +101,7 @@
         }
 
         // every tab starts with the book's diagram behind the model
-        if( haz( stdMod.imgRk, 'hasImage' ) ) {
+        if ( haz( stdMod.imgRk, 'hasImage' ) ) {
             sDomF.detected_user_interaction_effect( 'doUndetected' );
         } else {
             // without the book's diagram there is nothing for interaction
@@ -114,10 +114,10 @@
         stdMod.astate_2_rg8model( captured && ssD.capture[ captured ] );
 
         var wwLaunch = haz( stdMod, 'subessayLaunch_definedInLemma_universal' );
-        if( wwLaunch ) {
+        if ( wwLaunch ) {
             wwLaunch();
         } else {
-            if( !amodel2app_8_extraWork ) return;
+            if ( !amodel2app_8_extraWork ) return;
             //patch-function,
             //todom: must be ported to normal app-launch-subessay scenario
             haff( stdMod, 'subessayLaunch_definedInLemma_after_model_upcreate' );

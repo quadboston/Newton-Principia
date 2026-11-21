@@ -1,4 +1,4 @@
-(function(){
+(function () {
     const {
         mat, nspaste,
         sconf, sDomF, ssF, toreg, rg, stdMod, amode,
@@ -56,7 +56,7 @@
             var path = rg.path.pos;
             var timeStep = rg.rgslid_dt.val;
             //pi = path index, we start here from poinit B:
-            for( pi = 1; pi<sSteps; pi++ ) {
+            for ( pi = 1; pi<sSteps; pi++ ) {
                 //====================================================
                 // //\\ recalls current and former speed placeholders
                 //====================================================
@@ -101,7 +101,7 @@
                 //do not have contribution of a current force
                 //(but have contributions of forces before current
                 //force is applied)
-                if( pi > 1 ) {
+                if ( pi > 1 ) {
                     ////"path > B" === C, or, D, or ...
                     let formerSpeed = speeds[pi-2];
                     let formerPath = path[pi-1];
@@ -134,7 +134,7 @@
                 let {lawPower, lawConstant} = rg.force.inarray[ pi<6?pi-1:4 ];
                 var forceByDistance = Math.exp( lawPower * Math.log( r ) );
                 var forceAbs = lawConstant * forceByDistance;
-                if( pi<6 ) {
+                if ( pi<6 ) {
                     rg.force.inarray[ pi-1 ].forceAbs = forceAbs;
                 }
                  //speed impuls of force over double-time-step

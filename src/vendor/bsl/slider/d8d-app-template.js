@@ -1,5 +1,5 @@
 // //\\// Creates an object which encapsulates slider functionality.
-(function() {
+(function () {
     var {
         ns, d8dp,
     } = window.b$l.apptree({
@@ -7,7 +7,7 @@
 
     ///Purpose: constructor of an object which encapsulates slider functionality.
     ///Input:   arg: see MicroAPI section below.
-    ns.sliderControl = function( arg )
+    ns.sliderControl = function ( arg )
     {
         thisSlider = {}; //created object which is returned from constructor
 
@@ -33,9 +33,9 @@
         //**************************************
         //      data exchanges go via unitless parameter, "absFraction"
         //.callback which will supply data from the slider to parent application during mouse/touch move
-        var dataInMove       = arg.dataInMove || (function() {});
+        var dataInMove       = arg.dataInMove || (function () {});
         //.callback which will supply data from the slider to parent application at mouse/touch completion
-        var dataInArrival    = arg.dataInArrival  || (function() {});
+        var dataInArrival    = arg.dataInArrival  || (function () {});
         //**************************************
         // \\// from slider to app,
         //**************************************
@@ -82,7 +82,7 @@
         thisSlider.d8d_cb_middle2lowest                 = d8d_cb_middle2lowest;
         thisSlider.d8d_emulateAbsFractionX = d8d_emulateAbsFractionX;
         thisSlider.removeEvents            = this_d8d.removeEvents;
-        thisSlider.slideeX                 = function() { return absFracDone; };
+        thisSlider.slideeX                 = function () { return absFracDone; };
 
         return thisSlider;
         //--------------------------------------
@@ -96,7 +96,7 @@
             absFraction = validateAbsFraction( absFraction_ );
             //.the only place where dragge's style is set
             draggee.style.left = (sliderStyleOffset + absFraction).toFixed(4)*100 + '%';
-            if( doSetDoneValue ) {
+            if ( doSetDoneValue ) {
                 absFracDone = absFraction;
             }
         }
@@ -104,11 +104,11 @@
         ///d8d application
         function d8d_cb_middle2lowest( move, mouseUpOrDown )
         {
-            if( mouseUpOrDown === 'down' ) {
+            if ( mouseUpOrDown === 'down' ) {
                 return;
             }
 
-            if( mouseUpOrDown === 'move' || mouseUpOrDown === 'up' ) {
+            if ( mouseUpOrDown === 'move' || mouseUpOrDown === 'up' ) {
 
                 //.this makes program immune to resize
                 var len = surface0attachee.getBoundingClientRect().width;
@@ -116,10 +116,10 @@
                 absFraction = validateAbsFraction( absFracDone + move[ 0 ]/len );
                 //.supplies absolute move to application
                 var setIsForbidden = dataInMove( absFraction, draggee );
-                if( !setIsForbidden ) { doSet( absFraction ); }
+                if ( !setIsForbidden ) { doSet( absFraction ); }
             }
 
-            if( mouseUpOrDown === 'up' ) {
+            if ( mouseUpOrDown === 'up' ) {
                 //.accomulates and memorizes accomulated move
                 absFracDone = absFraction;
                 dataInArrival( absFraction, draggee );
@@ -151,7 +151,7 @@
         {
                 var tag = ev.target.tagName.toLowerCase();
                 ///fails: var cls = ev.target.className;
-                if(
+                if (
                         //protects wbd debugger
                         tag === 'textarea' ||
                         //protects forms

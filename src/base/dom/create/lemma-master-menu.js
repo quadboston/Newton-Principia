@@ -8,7 +8,7 @@
                               scat_id = latin, english, video, ...
 */
 
-( function() {
+( function () {
     var {
         ns, $$, haff,
         haz,
@@ -38,8 +38,8 @@
     //      at this moment, exegs are built,
     //====================================
     function populateMenu(
-    ){
-        ns.eachprop( sconf.asp8theor_menus, function( subcatsMenu, mcat_id ) {
+    ) {
+        ns.eachprop( sconf.asp8theor_menus, function ( subcatsMenu, mcat_id ) {
             build_teaf__localfun( mcat_id, subcatsMenu,
             );
         });
@@ -64,14 +64,14 @@
         //teaf$ is one of the top-leafs of menu
         sDomN.teafs$ = {};
 
-        if( fconf.attach_menu_to_essaion_root ) {
+        if ( fconf.attach_menu_to_essaion_root ) {
             var leftSide_menuRotator$ = $$.dct(
                 'left-side-menu-rotator',
                 sDomN.essaionsRoot$
             );
         }
 
-        ['aspect','logic_phase'].forEach( function( mcat_id ) {
+        ['aspect','logic_phase'].forEach( function ( mcat_id ) {
             sDomN.teafs$[ mcat_id ] = $$.dct(
                 'menu-teaf ' + mcat_id,
                 fconf.attach_menu_to_essaion_root ?
@@ -80,7 +80,7 @@
             );
         });
 
-        if( haz( fconf, 'logic_phaseTab_nonClickable' ) ){
+        if ( haz( fconf, 'logic_phaseTab_nonClickable' ) ) {
             sDomF.makes_logic_phaseTab_nonClickable();
         }
     }
@@ -90,7 +90,7 @@
     //====================================
     //Input: subcatsMenu - contains list = array of items in submenu
     function build_teaf__localfun( mcat_id, subcatsMenu,
-    ){
+    ) {
         var teaf$ = sDomN.teafs$[ mcat_id ];
         var decorOfShuttle$;
 
@@ -107,7 +107,7 @@
         //------------------------------------
         // builds mencat own tree
         //------------------------------------
-        subcatsMenu.list.forEach( function( mitem, mitemIx ) {
+        subcatsMenu.list.forEach( function ( mitem, mitemIx ) {
             var scat_id = mitem.id;
             var leafRk = mitem.leafRk =
             {
@@ -175,10 +175,10 @@
             .dct( 'litem litem-'+leafRk.ix, teaf$ )
             .e('mouseover', ()=>{ decor$.addClass( 'hovered' ) })
             .e('mouseleave', ()=>{ decor$.removeClass( 'hovered' ) })
-            .e('click', function( ) {
+            .e('click', function ( ) {
                 //console.log(leafRk.mcat_id + ' ' + leafRk.scat_id);
                 let update = updateURL(leafRk.mcat_id, leafRk.scat_id)
-                if( update && (mcat_id !== 'logic_phase' || !fconf.logic_phaseTab_nonClickable) ) {
+                if ( update && (mcat_id !== 'logic_phase' || !fconf.logic_phaseTab_nonClickable) ) {
 
                     //:todm: it is not clear why this is required, and why flag
                     //:'chosen' is not cleared up downstream automatically
@@ -202,7 +202,7 @@
         // \\// builds clickable dom element to toggle essay-texts-menu-items
         //-------------------------------------------------------------------
 
-        if( studylab && mcat_id === 'aspect' ) {
+        if ( studylab && mcat_id === 'aspect' ) {
             li$.addClass( 'studylab' );
         }
     }
@@ -223,13 +223,13 @@
             });
         }
 
-        if(mcat === 'logic_phase' ) { // horizontal tabs
-            if(params["logic_phaseId"] !== scat) {
+        if (mcat === 'logic_phase' ) { // horizontal tabs
+            if (params["logic_phaseId"] !== scat) {
                 params["logic_phaseId"] = scat;
             } else {
                 return false; // do not update model if we haven't actually switched tabs
             }
-        } else if(mcat === 'aspect') { // vertcial tabs
+        } else if (mcat === 'aspect') { // vertcial tabs
             params["aspectId"] = scat;
 
             // update aspect of all links so it persists when changing pages
@@ -237,7 +237,7 @@
             links.forEach((link) => {
                 // extract sappId from the link
                 let sappId = null;
-                if(link.href) {
+                if (link.href) {
                     const match = link.href.match(/sappId=([^,]+)/);
                     if (match) {
                         sappId = match[1];
@@ -289,7 +289,7 @@
         fapp.fappRoot$.removeClass( 'logic_phase--' + amode.logic_phase +
             ' aspect--' + amode.aspect );
         //sets content-text visibility
-        if( userOptions.shouldShowSubessayMenu(exAspect) ) {
+        if ( userOptions.shouldShowSubessayMenu(exAspect) ) {
             exAspect.subessayMenuContainer$.removeClass( 'chosen' );
         }
         exAspect.subexegs.forEach( subexeg => {
@@ -330,7 +330,7 @@
         );
 
         //flag to content-text-components
-        if( userOptions.shouldShowSubessayMenu(exAspect) ) {
+        if ( userOptions.shouldShowSubessayMenu(exAspect) ) {
 
             //vital: makes an entire subessays-menu visible ...
             //       misleading wording "chosen"
@@ -349,7 +349,7 @@
         leafRk.li$.addClass( 'chosen' ); //todm redundant state-flag, but fails if omitted
         //flag to shuttle
         decorOfShuttle$.a('class','litem shuttle shuttle-'+leafRk.ix);
-        if( mcat_id === 'logic_phase' ) {
+        if ( mcat_id === 'logic_phase' ) {
             ns.eachprop( exegs[ amode.logic_phase ], ( exegAsp, aspId ) => {
                 //updates left menu caption for logic_phases with omitted aspect texts
                 var menItem = sconf.asp8theor_menus.aspect.duplicates[ aspId ];
@@ -390,7 +390,7 @@
         //archived, "sleeping", d8d past values,
         //todm ... instead the solution of updating them at "down" event
         //         will be more elagant and cause less fuss,
-        if( amodel2app_8_extraWork ) {
+        if ( amodel2app_8_extraWork ) {
             // runs from init-sapp.js on page load
             // we need to run again here when switching tabs to update model
             ssF.in_subessay_launch____amode2lemma( amodel2app_8_extraWork );
@@ -409,9 +409,9 @@
         //todo patch: this is a vital patch, without it to appear legend needs
         //second resize event, the reason for the bug is unknown,
         //only needed for L7, P1 corollaries
-        if(fconf.sappId === 'b1sec1lemma7' || fconf.sappId === 'b1sec2prop1') {
+        if (fconf.sappId === 'b1sec1lemma7' || fconf.sappId === 'b1sec2prop1') {
             setTimeout(
-                function() {
+                function () {
                     res( null, !!'doDividorSynch' );
                 },
                 100
@@ -425,12 +425,12 @@
     {
         exAspect.subexegs.forEach( subexeg => {
             subexeg.domEl$.removeClass( 'chosen' );
-            if(userOptions.shouldShowSubessayMenu(exAspect, subexeg) ) {
+            if (userOptions.shouldShowSubessayMenu(exAspect, subexeg) ) {
                 subexeg.subessayMenuItem$.removeClass( 'subexeg-toggler-chosen' );
             }
         });
         subexeg.domEl$.addClass( 'chosen' );
-        if( userOptions.shouldShowSubessayMenu(exAspect, subexeg) ) {
+        if ( userOptions.shouldShowSubessayMenu(exAspect, subexeg) ) {
             subexeg.subessayMenuItem$.addClass( 'subexeg-toggler-chosen' );
         }
     }

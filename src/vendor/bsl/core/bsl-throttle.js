@@ -29,20 +29,20 @@
         var timeout = null;
         var timeStart = null;
         var arg;
-        return function( arg_, doCallNow, doCancel, do_bounce ) {
+        return function ( arg_, doCallNow, doCancel, do_bounce ) {
             arg         = arg_; //updates arg at every call
             var time    = Date.now();
             timeStart   = timeStart === null ? time : timeStart;
             var elapsed = time - timeStart;
 
-            if( do_bounce ) {
-                if(timeout !== null) {
+            if ( do_bounce ) {
+                if (timeout !== null) {
                     clearTimeout( timeout );
                 }
 
             } else {
 
-                if( !wait || elapsed > wait || doCallNow ) {
+                if ( !wait || elapsed > wait || doCallNow ) {
 
                     //this must be here,
                     //if( timeout !== null ) clearTimeout( timeout );
@@ -53,26 +53,26 @@
                     fun( arg );
 
                     //this must be above fun( arg )
-                    if( timeout !== null ) clearTimeout( timeout );
+                    if ( timeout !== null ) clearTimeout( timeout );
 
                     timeout = null;
                     timeStart = null;
                     return;
                 }
-                if( doCancel && timeout !== null ) {
+                if ( doCancel && timeout !== null ) {
                     clearTimeout( timeout );
                     return;
                 }
                 //.this statement prevents program from extension of the term
                 //.in contrary to bouncer which extends the term
-                if( timeout !== null ) {
+                if ( timeout !== null ) {
                     return;
                 }
             }
 
             //// do bounce or throttle
             timeout = setTimeout(
-                function() {
+                function () {
                     fun( arg );
                     timeout = null;
                     timeStart = null;

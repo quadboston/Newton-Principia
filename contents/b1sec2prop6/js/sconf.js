@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { ns, fconf, sData, sconf, topicColors_repo,} =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
@@ -109,7 +109,7 @@
 
         //intervals of dt or dq to construct an arc for estimated force
         //Sets initial distance of point Q from P
-        if( FT ){
+        if ( FT ) {
             var Dt0 = 0.2276;
         } else {
             sconf.Dq0 = 0.2;
@@ -178,16 +178,16 @@
         ];
         sconf.rgPq = 0.270;
         //sconf.tForSagitta0 = 0.168;
-        if( sconf.BESIER_PIVOTS === 5 ) {
+        if ( sconf.BESIER_PIVOTS === 5 ) {
             ////adjustements of initial positions
             //sconf.tForSagitta0 = 0.172;
             Dt0 = 0.172;
             sconf.rgPq = 0.28;
             let wwcp = [];
-            for( var i=0; i<curvePivots.length; i++ ) {
-                if( (i-1)%2 ) {
+            for ( var i=0; i<curvePivots.length; i++ ) {
+                if ( (i-1)%2 ) {
                     let cp = curvePivots[i];
-                    if( i!==0 && i!==curvePivots.length-1 ) {
+                    if ( i!==0 && i!==curvePivots.length-1 ) {
                         let x = cp[0] - originX_onPicture;
                         let y = cp[1] - originY_onPicture;
                         x *=1.1

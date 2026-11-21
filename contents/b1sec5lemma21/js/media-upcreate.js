@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, sn, $$, nssvg, has, haz, mat,
         amode, sconf, sDomF, sDomN, ssD, ssF, topicColors_repo,
@@ -39,7 +39,7 @@
     {
         branches2svg();
         createMedia0updateMediaAUX();
-        if( ssF.mediaModelInitialized ) {
+        if ( ssF.mediaModelInitialized ) {
             stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
         }
         ssF.upcreate_mainLegend(); //placed into "slider"
@@ -49,7 +49,7 @@
     //=========================================================
     // //\\ updates and creates media
     //=========================================================
-    function createMedia0updateMediaAUX(){
+    function createMedia0updateMediaAUX() {
         //---------------------------------------
         // //\\ angles alpha and beta
         //      , static angles
@@ -173,7 +173,7 @@
     // \\// updates and creates media
     //=========================================================
 
-    function branches2svg(){
+    function branches2svg() {
         ////----------------------------------------------
         ////branches to svg,
         ////makes conic first to put point over it later
@@ -181,9 +181,9 @@
         const bro = ssD.branchesObject;
         const brs = bro.branches
         const bN = brs.length;
-        for( var ib = 0; ib < bN; ib++ ){
+        for ( var ib = 0; ib < bN; ib++ ) {
             const br = brs[ ib ];
-            if( has( br, 'svgel' ) ){
+            if ( has( br, 'svgel' ) ) {
                 nssvg.branch2svg(br);
             } else {
                 ////makes ellipse first to put point over it later

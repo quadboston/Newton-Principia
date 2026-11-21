@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { sn, nspaste, rg, stdMod, sconf, ssD, sData, }
         = window.b$l.apptree({ stdModExportList : {
             initiates_orbit8graph,
@@ -19,7 +19,7 @@
         initiates_kepler_config();
         // default media step for orbit models; a lemma that defines
         // its own media_upcreate___part_of_medupcr_basic keeps it
-        if( !stdMod.media_upcreate___part_of_medupcr_basic ) {
+        if ( !stdMod.media_upcreate___part_of_medupcr_basic ) {
             stdMod.media_upcreate___part_of_medupcr_basic = () => {
                 // enables curve move when dragging an entire diagram
                 stdMod.createOrUpdateOrbit({});
@@ -52,10 +52,10 @@
         // \\// scenario: coincided P and Q: Q splits first
 
         stdMod.creates_Q8P_sliders();
-        if( rg.S.draggableX || rg.S.draggableY ) {
+        if ( rg.S.draggableX || rg.S.draggableY ) {
             stdMod.creates_S_slider();
         }
-        if( rg.A && (rg.A.draggableX || rg.A.draggableY) ) {
+        if ( rg.A && (rg.A.draggableX || rg.A.draggableY) ) {
             stdMod.creates_A_slider();
         }
     }

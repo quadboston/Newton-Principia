@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         sn, haz,
         sconf, ssF, sDomF, rg, toreg,
@@ -90,17 +90,17 @@
         wtype,          //optional, default is a point
         pos,            //optional
         caption,        //optional
-    }){
+    }) {
         var rgX   = null;
         switch ( wtype )
         {
             default:
             case 'point':
                 var rgX = haz( rg, pname );
-                if( rgX ) {
+                if ( rgX ) {
                     ////rgX does already exist
                     var rgpos = haz( rgX, 'pos' );
-                    if( rgpos && pos) {
+                    if ( rgpos && pos) {
                         rgX.pos[0] = pos[0];
                         rgX.pos[1] = pos[1];
                     }

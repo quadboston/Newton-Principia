@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         sn, eachprop, nspaste, haz, globalCss,
         sDomN, ssD, sDomF, ssF, exegs,
@@ -19,7 +19,7 @@
     ///
     ///called from main.js::bgImagesAreLoaded()...
     ///
-    function frags__2__dom_css_mjax_tpanchors (){
+    function frags__2__dom_css_mjax_tpanchors() {
         //***********************************************************
         //contains //Frag. step I.
         ssF.exegs__2__dom_indexedLinks_indexedTopics();

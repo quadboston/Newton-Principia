@@ -1,4 +1,4 @@
-( function() {
+( function () {
     const { ns, sn, $$, stdMod, fconf, sconf, sDomF, sDomN, ssD, }
         = window.b$l.apptree({ });
     sDomF.cre_simscene8svg8legendIIslider = cre_simscene8svg8legendIIslider;
@@ -82,7 +82,7 @@
 
         stdMod.legendRoot$ = $$
             .dct( 'bsl-legend-root', stdMod.simScene );
-        if(sconf.ADD_BASES_SLIDER) {
+        if (sconf.ADD_BASES_SLIDER) {
             stdMod.legendRoot$.css( 'padding-bottom', '15px' );
         }
     }

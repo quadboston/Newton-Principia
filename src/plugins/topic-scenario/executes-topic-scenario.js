@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, $$,
         globalCss,
@@ -50,7 +50,7 @@
     ///aka: var wwMessage = 'a u t o p   '+eventBlock.autopilotEventId;
     function doDebugMessage( wwMessage )
     {
-        if( ns.haz( ns.conf, 'deb' ) ) {
+        if ( ns.haz( ns.conf, 'deb' ) ) {
             ns.d( wwMessage );
         }
     }
@@ -63,7 +63,7 @@
     function executesMessageAction( ecommand, ctype )
     {
         doDebugMessage( 'p r o m p t   ' + ecommand );
-        if( ctype === '::#' && ecommand === previousMessage ) return;
+        if ( ctype === '::#' && ecommand === previousMessage ) return;
         previousMessage = ecommand;
 
         var { subessay }    = amode;
@@ -71,7 +71,7 @@
 
         //finds window from content-script
         var fbFrame_dom = document.querySelector( cssPath + ' .model-user-feedback' );
-        if( ctype === ':' || ctype === ':-' ) {
+        if ( ctype === ':' || ctype === ':-' ) {
             fbFrame_dom.innerHTML = '';
         }
 

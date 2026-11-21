@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ssF, stdMod, topicColors_repo
     } = window.b$l.apptree({
@@ -54,7 +54,7 @@
             updatesDataInCell,
         });
 
-        function makesBodyCluster({ rowIx, clusterIx, }){
+        function makesBodyCluster({ rowIx, clusterIx, }) {
             return ssF.dataSourceParsed1__2__makesBodyCluster({
                 rowIx,
                 clusterIx,

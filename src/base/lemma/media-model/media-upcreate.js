@@ -1,4 +1,4 @@
-(function(){
+(function () {
 const { ns, sn, haz, haff, $$, eachprop,
         sconf, ssF, ssD, sDomN, sDomF, amode, stdMod, rg, exegs, } =
       window.b$l.apptree({ ssFExportList : {
@@ -20,7 +20,7 @@ const { ns, sn, haz, haff, $$, eachprop,
     {
         // called 3x on page load (more in L2, L3, L4...?)
 
-        if( haz( stdMod, 'media_update_is_forbidden' ) ) return;
+        if ( haz( stdMod, 'media_update_is_forbidden' ) ) return;
         // letters stay hidden while the book's diagram is shown;
         // a lemma's media_upcreate___before_basic may override this
         rg.allLettersAreHidden = !rg.detected_user_interaction_effect_DONE;
@@ -61,7 +61,7 @@ const { ns, sn, haz, haff, $$, eachprop,
         }
 
         ///paints default curve if no custom exists
-        if(
+        if (
             haz( ssD, 'repoConf' ) &&
             !ns.h( ssD.repoConf, 'customFunction' )
         ) {
@@ -85,17 +85,17 @@ const { ns, sn, haz, haff, $$, eachprop,
         ///don't do both lines and linesArray in config
         ///if this is done, lines will be ignored
         ///*********************************************
-        if( linesArray ) {
+        if ( linesArray ) {
             linesArray.forEach( (lineConf) => {
                     var lname   = Object.keys( lineConf )[0];
                     lineAttr    = lineConf[ lname ];
-                    if( !lineAttr.zOrderAfter ) {
+                    if ( !lineAttr.zOrderAfter ) {
                         ssF.str2line( lname, null, lineAttr );
                     }
             });
         } else {
             ns.eachprop( sconf.lines, (lineAttr,lname) => {
-                if( !lineAttr.zOrderAfter ) {
+                if ( !lineAttr.zOrderAfter ) {
                     ssF.str2line( lname, null, lineAttr );
                 }
             });
@@ -110,7 +110,7 @@ const { ns, sn, haz, haff, $$, eachprop,
         //if( !p2p ) return;
         ssF.doPaintPoints();
 
-        if( ssF.mediaModelInitialized ) {
+        if ( ssF.mediaModelInitialized ) {
             //dragWraps.forEach
             stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
         }
@@ -120,13 +120,13 @@ const { ns, sn, haz, haff, $$, eachprop,
         //**************************************************
         // may have create_digital_legend
         //ini ssF, so thet skip this block
-        if( ns.h( stdMod, 'create_digital_legend' ) ) {
+        if ( ns.h( stdMod, 'create_digital_legend' ) ) {
             var tlegend = ns.haz( rg[ 'main-legend' ], amode.logic_phase );
-            if( ns.h( stdMod, 'upcreate_mainLegend' ) ){
+            if ( ns.h( stdMod, 'upcreate_mainLegend' ) ) {
                 ///above lines do create legend for all theoreons, this line
                 ///shows only for one:
                 stdMod.upcreate_mainLegend();
-            } else if( tlegend ) {
+            } else if ( tlegend ) {
                 tlegend.upcreate_mainLegend();
             } else {
                 ns.haf( ssF, 'upcreate_mainLegend' );

@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { mat, fapp, fconf, sconf, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
@@ -128,7 +128,7 @@
         ///derives initial model parameters from picture's points
         var to_sconf = {};
         var mod2inn_scale;
-        (function() {
+        (function () {
             var pp = pointsOnPicture;
             var B = pp.B;
             var C = pp.C;
@@ -543,7 +543,7 @@
         //----------------------------------------------------
         // //\\ copy-pastes to sconf
         //----------------------------------------------------
-        Object.keys( to_sconf ).forEach( function( key ) {
+        Object.keys( to_sconf ).forEach( function ( key ) {
             sconf[ key ] = to_sconf[ key ];
         });
         //----------------------------------------------------

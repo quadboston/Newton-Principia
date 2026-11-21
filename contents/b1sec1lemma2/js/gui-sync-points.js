@@ -21,7 +21,7 @@
         var scale = sconf.mod2inn_scale;
         var cirYar = dr.basePts.circumscribedY;
         var insYar = dr.basePts.inscribedY;
-        if( item.type === 'base' ) {
+        if ( item.type === 'base' ) {
             let blist = dr.basePts.list;
             var bN = dr.basesN;
             var iIx = item.index;
@@ -34,7 +34,7 @@
             let posDx = blist[3].x;
             let posEx = blist[4].x;
 
-            switch( iIx ) {
+            switch ( iIx ) {
             case 0 : var pname = 'A';
                         var itemx = posAx;
                         var pnameFun = 'a'; //right on the curve
@@ -109,7 +109,7 @@
                      break;
             }
         }
-        if( pname ) {
+        if ( pname ) {
             var iY = item.type === 'base' ? dv.maxY : item.y;
             ////apparently convert from svg-space to model-space
             ////apparently program and numModel.curveFun made in svg-space and
@@ -118,8 +118,8 @@
             rg[ pname ].pos[1] = -(iY - yoff) / scale;
 
             ////optional names
-            if( pnameFun ) {
-                if( pnameFun === 'a' || pnameFun === 'b') {
+            if ( pnameFun ) {
+                if ( pnameFun === 'a' || pnameFun === 'b') {
                     ////sets upper boundary of the bar
                     rg[ pnameFun ].pos[1] = cirPy;
                 } else {
@@ -138,13 +138,13 @@
         const showCircumscribed = !!view.isCircumscribed;
         const onlyFigure = !showInscribed && !showCircumscribed;
         const inscribedFeatures = ['K','L','M','Kb','cL','dM','Bb','Cc','Dd'];
-        inscribedFeatures.forEach(function(item){
+        inscribedFeatures.forEach(function (item) {
             rg[item].undisplay = !showInscribed;
         });
         const circumscribedFeatures =
             ['f','l','m','n','o','la','mb','nc','od',
                 'Aa','aK','lb','mc','nd','oE'];
-        circumscribedFeatures.forEach(function(item){
+        circumscribedFeatures.forEach(function (item) {
             rg[item].undisplay = !showCircumscribed;
         });
         rg['aK'].undisplay = !showFigure;

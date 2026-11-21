@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, $$, hafa,
         ssF, sDomN, fapp,
@@ -21,7 +21,7 @@
         var cap = fapp.captureWind = { capturePoint : 0, captured:{} };
 
         ///establishes capture
-        fapp.captureState = function( captureData )
+        fapp.captureState = function ( captureData )
         {
             captureData = ns.paste( {}, captureData );
 
@@ -34,15 +34,15 @@
             ///apparently texts is an essay which is currently chosen,
             ///           texts will append captured bookmarks
             var texts = document.querySelectorAll( '.original-text.chosen' );
-            for( var ix=0, len=texts.length; ix<len; ix++ ) {
+            for ( var ix=0, len=texts.length; ix<len; ix++ ) {
                 var etext = texts[ix];
                 ns.eachprop( cap.captured, (prop, pix) => {
                     var stateMark = 'captured-state-'+pix;
                     var capturedEl = etext.querySelector( '.'+stateMark );
 
                     ///adds new capture link
-                    if( !capturedEl ) {
-                        if( pix === '0' ) {
+                    if ( !capturedEl ) {
+                        if ( pix === '0' ) {
                             etext.appendChild( $$.c('pre').html('\ncaptures:\n')() );
                         }
                         capturedEl$ = $$.c( 'a' )
@@ -66,11 +66,11 @@
                 })
             }
         };
-        fapp.captureWind.closeWindow = function()
+        fapp.captureWind.closeWindow = function ()
         {
             dom$.css( 'display', 'none' );
         };
-        fapp.captureWind.openWindow = function()
+        fapp.captureWind.openWindow = function ()
         {
             var top = sDomN.captureButton$.box().top - sDomN.topMediaControls$.box().top + 50;
             dom$

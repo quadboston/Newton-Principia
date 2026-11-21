@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, paste, capture, nspaste, sDomF, ssD, amode, rg,
     } = window.b$l.apptree({
@@ -115,19 +115,19 @@
         // \\// common values
         //----------------------------------
 
-        if( logic_phase === 'corollary' ) {
-            if( subessay === 'cor-1' ) {
+        if ( logic_phase === 'corollary' ) {
+            if ( subessay === 'cor-1' ) {
                 captured = "colollary-1";
-            } else if( subessay === 'cor-2' || subessay === 'cor-3' ) {
+            } else if ( subessay === 'cor-2' || subessay === 'cor-3' ) {
                 captured = "colollary-2";
             }
-        } else if( aspect !== 'model' ) {
+        } else if ( aspect !== 'model' ) {
             captured = "L-equal-d";
 
             ns.paste( rg.curveStart.pos, [ -0.2, 0 ] );
             ns.paste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ] );
 
-            if( logic_phase === 'proof' ) {
+            if ( logic_phase === 'proof' ) {
                 rg[ 'arc-Ab' ].undisplay = false;
             }
         }

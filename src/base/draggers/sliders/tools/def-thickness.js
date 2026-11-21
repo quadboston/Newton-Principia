@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         globalCss,
         sconf, ssF, rg, toreg,

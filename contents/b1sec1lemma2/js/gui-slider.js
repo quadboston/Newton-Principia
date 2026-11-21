@@ -49,7 +49,7 @@
         var baseLabel = document.getElementById("baseLabelSpan");
         showBasesNumberInGui( sliderOutput, baseLabel );
 
-        slider.oninput = function() {
+        slider.oninput = function () {
             const newBases = interpretSlider( this.value );
             appstate.movingBasePt = false; // better way?
             Object.values(dataregs).forEach((dr) => {

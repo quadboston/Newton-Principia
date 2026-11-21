@@ -1,6 +1,6 @@
 // For b$l framework, creates and exports namespace tree
 // variables ("placeholders") and useful functions.
-( function() {
+( function () {
     const ns        = window.b$l;
     const sn        = ns.sn;
     //simplifies adding test-modules designed for
@@ -14,8 +14,8 @@
     return;
 
 
-    function nstree(){
-        if( ret !== null ) return ret;
+    function nstree() {
+        if ( ret !== null ) return ret;
 
         //do this first:
         // var ret = Object( {}, ns );
@@ -25,7 +25,7 @@
 
         let ow = Object.prototype.hasOwnProperty;
         ret = {
-            ow          : function( ob, prop ) { return ow.call( ob, prop ); },
+            ow          : function ( ob, prop ) { return ow.call( ob, prop ); },
             ns,
             nsd         : ns.d,
 

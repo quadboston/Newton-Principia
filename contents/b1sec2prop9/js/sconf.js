@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { ns, fconf, sconf, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
@@ -103,7 +103,7 @@
 
         //intervals of dt or dq to construct an arc for estimated force
         //Sets initial distance of point Q from P
-        if( FT ){
+        if ( FT ) {
             sconf.Dt0 = 0.25;
         } else {
             sconf.Dq0 = 0.25;

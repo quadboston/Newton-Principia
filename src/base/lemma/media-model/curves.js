@@ -1,4 +1,4 @@
-( function() {
+( function () {
     const {
         ns, sn, haz,
         ssF, sDomF, rg,
@@ -65,7 +65,7 @@
         //-----------------------------------------------------------------
         // //\\ model-function to media-function conversion
         //-----------------------------------------------------------------
-        if( magnitudeX && magnitudeY ) {
+        if ( magnitudeX && magnitudeY ) {
             var mediaFunction   = ssF.modFun2scaledXY({ fun, magnitudeX, magnitudeY });
         } else {
             //todm: replace "magnitude || 1 " with "magnitude"
@@ -80,20 +80,20 @@
         // //\\ rgName, pointA,B, start, step, tp-class
         //-----------------------------------------------------------------
         stepsCount = stepsCount || 85;
-        if( pointA && pointB ) {
+        if ( pointA && pointB ) {
             rgName              = rgName || 'arc-' + pointA.pname + pointB.pname;
         } else {
             rgName              = rgName || 'curve-' + pointsName;
-            if( pointsName ) {
+            if ( pointsName ) {
                 var splitted        = pointsName.split( pointsName.indexOf(',')>-1 ? ',' : '' );
-                if( ns.h( rg, splitted[0] ) && ns.h( rg, splitted[1] ) ) {
+                if ( ns.h( rg, splitted[0] ) && ns.h( rg, splitted[1] ) ) {
                     pointA          = rg[splitted[0]];
                     pointB          = rg[splitted[1]];
                 }
             }
         }
-        if( !start && start !== 0 ) {
-            if( pointA && pointB ) {
+        if ( !start && start !== 0 ) {
+            if ( pointA && pointB ) {
                 var start           = pointA.pos[0];
                 var step            = ( pointB.pos[0] - start ) / stepsCount;
             } else {
@@ -148,7 +148,7 @@
         //====================================================
         // //\\ annotates curve if requested
         //====================================================
-        if( annotationConfig ) {
+        if ( annotationConfig ) {
             const {
                 //required
                 fontSize,
@@ -158,14 +158,14 @@
                     annPointsPositions,
                     annPointsCount,
             } = annotationConfig;
-            if( annPointsPositions ) {
+            if ( annPointsPositions ) {
                 var ann_COUNT = annPointsPositions.length;
             } else {
                 var ann_COUNT = annPointsCount;
                 var incr = step*stepsCount / ( ann_COUNT - ( addToStepCount ? 1 : 0 ) );
             }
             var rgAnnPoints = [];
-            for( aix=0; aix<ann_COUNT; aix++ ) {
+            for ( aix=0; aix<ann_COUNT; aix++ ) {
                 var pointParam  = annPointsPositions ?
                                   annPointsPositions[aix].par : start + incr * aix;
                 var pos         = fun( pointParam );
@@ -179,9 +179,9 @@
                 });
                 rgAnn.undisplay = haz( rgX, 'undisplay' );
                 letterPars && Object.assign( rgAnn, letterPars );
-                if( annPointsPositions ) {
+                if ( annPointsPositions ) {
                     var ownLetterPars =  haz( annPointsPositions[aix], 'letterPars' );
-                    if( ownLetterPars ){
+                    if ( ownLetterPars ) {
                         Object.assign( rgAnn, ownLetterPars );
                     }
                 }

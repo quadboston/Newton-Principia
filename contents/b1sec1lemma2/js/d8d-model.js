@@ -55,7 +55,7 @@
                 const bplist =  dr.basePts.list;
                 const DRAGGABLE_BASE_POINTS = sconf.DRAGGABLE_BASE_POINTS;
                 const iMax = Math.min(bplist.length, DRAGGABLE_BASE_POINTS);
-                for(let ix = 1; ix < iMax; ix++) {
+                for (let ix = 1; ix < iMax; ix++) {
                     setPoint(dr, bplist[ix], ix);
                 }
             }
@@ -76,7 +76,7 @@
             let orientation = false;
             pointWrap.datareg = dr;
 
-            if( pointWrap.type === 'base' ) {
+            if ( pointWrap.type === 'base' ) {
                 pointWrap.spinnerClsId = 'base-'+pwix;
                 pointWrap.dragDecorColor = sDomF.getFixedColor( 'given' );
                 orientation = false;
@@ -117,8 +117,8 @@
         function Update_decPoint( pointWrap )
         {
             var pw = pointWrap;
-            return ( function( decPoint, dragSurface, pointWrap, nonenify ) {
-                if( pw.x || pw.x === 0 ) {
+            return ( function ( decPoint, dragSurface, pointWrap, nonenify ) {
+                if ( pw.x || pw.x === 0 ) {
                     var dompos = sDomF.inn2outparent.call(
                         { medpos : [ pw.x, pw.y ] }
                     );
@@ -127,7 +127,7 @@
                 }
 
                 //Hide arrows for all the draggers (for when they are created)
-                if( nonenify === 'nonenify' ) {
+                if ( nonenify === 'nonenify' ) {
                     decPoint.style.display = 'none';
                 }
             });
@@ -135,9 +135,9 @@
 
         function doProcess( arg )
         {
-            if( arg.down_move_up === 'move' ) {
+            if ( arg.down_move_up === 'move' ) {
                 var pw = arg.pointWrap;
-                if( pw.type === 'base' ) {
+                if ( pw.type === 'base' ) {
                     move2js( pw, [arg.surfMove[0],0], pw.achieved );
                 } else {
                     //reshapes the curve
@@ -162,7 +162,7 @@
             //////////////////////////////////////////////////////////
 
             var closest = null;
-            dragWraps.forEach( function( dwrap ) {
+            dragWraps.forEach( function ( dwrap ) {
                 closest = findClosestPoint( closest, mousePoint, dwrap );
             });
             return closest ? closest.dwrap : null;
@@ -172,7 +172,7 @@
             var pointWrap = dwrap.pointWrap;
             var DRAGGER_TOLERANCE = sconf.DRAGGER_TOLERANCE;
 
-            if(
+            if (
                 //.excludes excess of non-used points
                 pointWrap.type === 'base' && pointWrap.index >= sconf.basesN
             ) {
@@ -184,8 +184,8 @@
             var tdX = Math.abs( mousePoint[0] - pointWrap.x );
             var tdY = Math.abs( mousePoint[1] - pointWrap.y );
             var td  = Math.max( tdX, tdY );
-            if( td <= DRAGGER_TOLERANCE ) {
-                if( !closest || closest.td > td ) {
+            if ( td <= DRAGGER_TOLERANCE ) {
+                if ( !closest || closest.td > td ) {
                     closest = { td, dwrap };
                     //if( pointWrap.spinnerClsId === 'ctrl-'+1 ) {
                 }
@@ -257,7 +257,7 @@
 
                 stdMod.recalculateAndStoreTransforms(dr);
 
-            } else if(index > 0 && index < sconf.basesN) {
+            } else if (index > 0 && index < sconf.basesN) {
                 //Base points
                 // //\\ limitifies newX by dom-neighbors
                 var PAD         = sconf.BASE_POINTS_REPELLING_DISTANCE;

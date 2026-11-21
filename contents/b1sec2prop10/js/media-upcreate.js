@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var { ns, sn, $$, nsmethods, nssvg, ssF, ssD, amode, stdMod, sconf, rg, toreg, }
         = window.b$l.apptree({ stdModExportList : {
             media_upcreate___part_of_medupcr_basic,

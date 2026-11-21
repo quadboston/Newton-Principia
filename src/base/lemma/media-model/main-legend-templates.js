@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         ns, sn, $$, mat,
         fapp, sconf,
@@ -25,7 +25,7 @@
         rowIx,
         clusterIx,
         legendScriptParsed,
-    }){
+    }) {
         var ds              = legendScriptParsed[ rowIx ][ clusterIx ];
         //c cc( ds );
         var indices         = '' + clusterIx;
@@ -48,7 +48,7 @@
         rowIx,
         clusterIx,
         legendScriptParsed,
-    }){
+    }) {
         var clusterCellIx = 1;
 
         var ds      = legendScriptParsed[ rowIx ][ clusterIx ];

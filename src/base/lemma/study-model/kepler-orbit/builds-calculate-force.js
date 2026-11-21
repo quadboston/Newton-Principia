@@ -1,5 +1,5 @@
 ///notations are from Prop6, cor. 5,
-( function() {
+( function () {
     var { mat, stdMod, sconf, ssD, sData, } = window.b$l.apptree({
         stdModExportList : {
             calculateForce,
@@ -36,7 +36,7 @@
         //must be 0 or greater)
         let delta_q_max = 0;
 
-        for(let qix=0; qix<=Q_STEPS; qix++) {
+        for (let qix=0; qix<=Q_STEPS; qix++) {
             const bP = qIndexToOrbit[ qix ]; //body point data
             const timeP = bP.timeAtQ;
 
@@ -54,7 +54,7 @@
 
         //todo
         //Add models here that have been checked
-        switch(sconf.sappId) {
+        switch (sconf.sappId) {
             case "b1sec2prop9":
                 return;
         }
@@ -143,7 +143,7 @@
     function calculateEstimatedForce({
         parq, //orbit argument
         bP    //orbit point P rack
-    }){
+    }) {
         ///builds estimated force as displacement/area^2,
         ///displacement = QR, area = QT*SP,
         const q2xy = stdMod.q2xy;

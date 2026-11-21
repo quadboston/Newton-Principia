@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         $$, sDomF, stdMod, rg, toreg,
     } = window.b$l.apptree({
@@ -15,7 +15,7 @@
 
     ///this function is called from common-application-library,
     ///from full-app/dom/...
-    function create_digital_legend (){
+    function create_digital_legend() {
         var mlegend = toreg( 'main-legend' )();
         createTables( mlegend );
     }
@@ -25,13 +25,13 @@
     //      at this lemma, it is called from
     //      slider;
     //=========================================
-    function upcreate_mainLegend (){
+    function upcreate_mainLegend() {
         var wwc = clustersToUpdate_corollary;
         var stepIx = rg.stepIx.value;
 
         // for corollary 1:
         var speed = rg.speeds.vect[stepIx-1];
-        if( speed ) {
+        if ( speed ) {
             var vx = speed[0].toFixed(3);
             var vy = speed[1].toFixed(3);
             var velocity = Math.sqrt( vx*vx + vy*vy ).toFixed(3);
@@ -44,7 +44,7 @@
     //=========================================
     // \\// updates values during simulation
     //=========================================
-    function createTables(mlegend ){
+    function createTables(mlegend ) {
         mlegend.tb = mlegend.tb || {};
         var tb = mlegend.tb.proof = $$
             .c('table')
@@ -97,7 +97,7 @@
     {
         var cssName = sDomF.toCssIdentifier( mname );
 
-        if( mcaption !== ']no caption[' ) {
+        if ( mcaption !== ']no caption[' ) {
             var c$ = $$.c('td')
                        .html( mcaption||mname )
                        .addClass('tostroke tocolor tobold tp-' + cssName)

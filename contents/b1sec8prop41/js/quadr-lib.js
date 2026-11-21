@@ -2,7 +2,7 @@
 /// quadratures lib
 ///=======================================================
 
-( function() {
+( function () {
     var { sn, sData, sconf, rg, } = window.b$l.apptree({
         stdModExportList : { quadratures, forceIsBounded, }, });
     var op = sn( 'orbitParameters', sconf );
@@ -17,7 +17,7 @@
         for (var iq=0; iq<len; iq++ )
         {
             var fr = xy[iq];
-            if(
+            if (
                 fr[0] > 1000 ||
                 fr[0] < 0   //no repelling force
             ) {
@@ -68,15 +68,15 @@
         var roMinusIx = null;
         let frBefore = xy[0];
         let orbit    = [];
-        for( let iq=0, len = xy.length-roPlus0Top; iq<len; iq++ ){
+        for ( let iq=0, len = xy.length-roPlus0Top; iq<len; iq++ ) {
             const SAFE_MINUS_IX = 2;
             var iqFull  = iq + roPlus0Top;
             let fr      = xy[ iqFull ];
             let ro      = fr[1];
-            if( ro < 1e-50 ) break;
+            if ( ro < 1e-50 ) break;
 
             // //\\ speed
-            if( iq > 0 ) {
+            if ( iq > 0 ) {
                 var dr = frBefore[1]-ro; //artificially positive
                 ////integrates v2
                 //v2[iq] = v2[iq-1] + dr * fr[0];
@@ -88,7 +88,7 @@
             // //\\ kernel
             let Z = M / ro;
             let potentialWell = v2 - Z*Z;
-            if( potentialWell < 0.001 &&
+            if ( potentialWell < 0.001 &&
 
                 //todm make this solution more automatic,
                 //experimentally we have noted that y-dimension of the potential
@@ -103,7 +103,7 @@
             F_Kernel = 1 / (ro*ro) * T_Kernel; //for area of Fi because of R2/2
             // \\// kernel
 
-            if( iq > 0 ) {
+            if ( iq > 0 ) {
                 // //\\ quadratures
                 T[iq] = T[iq-1] + T_Kernel * dr;
                 F[iq] = F[iq-1] + F_Kernel * dr;
@@ -117,12 +117,12 @@
             Zgraph[iq]     = [Z,ro];
             Z2graph[iq]    = [Z*Z,ro];
 
-            if( fiStartedIx === iqFull ) {
+            if ( fiStartedIx === iqFull ) {
                 var fi0 = F[iq];
                 var t0 = T[iq];
             }
         }
-        for( let iq=0, Flen = F.length; iq<Flen; iq++ ) {
+        for ( let iq=0, Flen = F.length; iq<Flen; iq++ ) {
             let Fi = F[iq] = 2/R2 * ( F[iq] - fi0 );
             T[iq] -= t0;
             let ro = xy[ iq + roPlus0Top ][ 1 ];
@@ -173,21 +173,21 @@
 
         var vBbackPre = [];
         var SAFE_PLUS_IX = 1;
-        for( var iq=fiStartedIx; iq>=0; iq-- ){
+        for ( var iq=fiStartedIx; iq>=0; iq-- ) {
             let fr      = frArr[iq];
             let ro      = fr[1];
-            if( ro < 1e-50 ) break;
+            if ( ro < 1e-50 ) break;
             vBbackPre.push( [Math.sqrt(v2),ro] );
-            if( iq < fiStartedIx ) {
+            if ( iq < fiStartedIx ) {
                 let dr = frBefore[1] - ro; //negative
                 v2 = v2 + dr * fr[0];  //fr[0] = force
             }
-            if( v2 <= 0 ) {
+            if ( v2 <= 0 ) {
                 dropPointIx = iq;
                 break;
             }
             var vort = M/ro;
-            if( roPlusIx === null && v2 - vort*vort < 0.001 ) {
+            if ( roPlusIx === null && v2 - vort*vort < 0.001 ) {
                 roPlusIx = Math.min( fiStartedIx, iq+SAFE_PLUS_IX );
             }
             frBefore = fr;
@@ -195,7 +195,7 @@
         var vback = [];
         ///indexation of vback goes from small global index to big,
         ///fall point has smallest index,
-        for( iq=dropPointIx; iq<=fiStartedIx; iq++ ) {
+        for ( iq=dropPointIx; iq<=fiStartedIx; iq++ ) {
             let src = vBbackPre[ fiStartedIx-iq ];
             vback.push( [ src[0], src[1] ] );
         }

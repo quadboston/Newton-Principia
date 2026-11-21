@@ -12,7 +12,7 @@
     ///	input:		aa is m x n; y=0,...,m; bb is n x k;
     //				m is outer index ( number of rows in a ),
     //              k is outer index ( number of columns in b )
-    mat.MxM = function( aa, bb )
+    mat.MxM = function ( aa, bb )
     {
         var mm	= aa.length;
         var nn	= aa[ 0 ].length;
@@ -38,7 +38,7 @@
 
     ///	calculates: c = a x v;
     ///	input:		aa is a matrix m x n, vv has lenght n;
-    mat.MxV = function( aa, vv )
+    mat.MxV = function ( aa, vv )
     {
         var mm	= aa.length;
         var nn	= vv.length;
@@ -60,7 +60,7 @@
     ///	calculates c = Aa + Bb;
     //	a is m x n matrix;
     //	A, B are optional
-    mat.addM = function( aa, bb, A, B )
+    mat.addM = function ( aa, bb, A, B )
     {
         var mm	= aa.length;
         var nn	= aa[ 0 ].length;
@@ -85,7 +85,7 @@
     ///	calculates c = Aa + Bb;
     //	a b are vectors
     //	A, B are optional
-    mat.addV = function( aa, bb, A, B )
+    mat.addV = function ( aa, bb, A, B )
     {
         var nn	= aa.length;
         var cc	= [];
@@ -100,7 +100,7 @@
     };
 
     ///returns aa - bb
-    mat.subV = function( aa, bb )
+    mat.subV = function ( aa, bb )
     {
         var nn	= aa.length;
         var cc	= [];
@@ -114,7 +114,7 @@
     ///returns A * aa
     //A is a scalar
     //aa is a vector
-    mat.scaleV = function( A, aa )
+    mat.scaleV = function ( A, aa )
     {
         var nn	= aa.length;
         var cc	= [];
@@ -127,13 +127,13 @@
 
     ///	calculates inverse for 2x2 matrix
     ///	input:		aa is a matrix
-    mat.inverse2x2 = function(aa) {
+    mat.inverse2x2 = function (aa) {
         const a = aa[0][0];
         const b = aa[0][1];
         const c = aa[1][0];
         const d = aa[1][1];
         let det = a*d - c*b;
-        if( det === 0 ) {
+        if ( det === 0 ) {
             //clumsy way to handle this,
             det = 1e+150;
             //alternative way is to provide message,
@@ -188,11 +188,11 @@
     mat.turn = [ mat.turnX, mat.turnY, mat.turnZ ];
 
     ///before use this, test this for speed against legacy-loop
-    var cloneM = mat.cloneM = function( mm ) {
+    var cloneM = mat.cloneM = function ( mm ) {
         //return mm.map( function( row ) { return row.map( function( val ) { return val; } ); });
-        return mm.map( function( row ) { return row.slice(); } );
+        return mm.map( function ( row ) { return row.slice(); } );
     };
 
-    mat.getClonedUnitMatrix4x4 = function() { return cloneM( mat.unit4x4 ); };
+    mat.getClonedUnitMatrix4x4 = function () { return cloneM( mat.unit4x4 ); };
 
 }) ( window );

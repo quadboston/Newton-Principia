@@ -5,7 +5,7 @@
  * following value assigners.
  * Or, following value assignems can use rg.XXX = instead of toreg.
 */
-(function(){
+(function () {
     const {
         ns, sn, haz, nspaste,
         sconf, sDomF, ssF, ssD, toreg, rg, amode,
@@ -35,7 +35,7 @@
     //      and their rgObj: 'freepath-' + pix;
     //      'freePathSegment-' + pix
     ///at current ver, runs at every model_upcreate
-    function path2rgModelPlaceholders__I (){
+    function path2rgModelPlaceholders__I() {
         var S               = rg.S.pos;
         var force           = rg.force.pos;
         var path            = rg.path.pos;
@@ -74,7 +74,7 @@
             //---------------------------------------------------------
             // //\\ placifies keplerTriangles
             //---------------------------------------------------------
-            if( pix > 0 ) {
+            if ( pix > 0 ) {
                 var kix = pix-1;
                 var pkey = 'kepltr-' + kix;
                 var ktr = toreg( pkey )({ undisplay : true })();
@@ -89,7 +89,7 @@
             // //\\ free triangles
             //      ... are bound tgo C,c which are mapped tp pointIx = 2
             //-----------------------------------------------------------
-            if( pix > 1 ) {
+            if ( pix > 1 ) {
                 var kix = pix-2;
 
                 //makes "model-points" for freeTriangles
@@ -113,7 +113,7 @@
 
             //forces master-index offset is pi = 1 and
             //identified with key 'kepltr-' + (pi-1)
-            if( pix < 1 ) return;
+            if ( pix < 1 ) return;
 
             //*****************************************
             // //\\ paints forces attached to B, C, ...
@@ -143,10 +143,10 @@
             //----------------------------------------
             // //\\ recalculates decorational Z, V pos
             //----------------------------------------
-            if( pix === 1 ) {
+            if ( pix === 1 ) {
                 ns.paste( rg.V.pos, pos1 );
             }
-            if( pix === 4 ) {
+            if ( pix === 4 ) {
                 ns.paste( rg.Z.pos, pos1 );
             }
             //----------------------------------------
@@ -158,7 +158,7 @@
             // //\\ paints forces attached to c, d, ...
             //      "translated" forces
             //*****************************************
-            if( pix > 0 && pix-1 < freePath.length ) {
+            if ( pix > 0 && pix-1 < freePath.length ) {
                 var kix = pix-1;
                 var fkey = 'translated-force-' + kix;
                 var fview = toreg( fkey )();
@@ -206,7 +206,7 @@
         // //\\ free line segment
         //-------------------------------------------------
         freePathRacks.forEach( (frack, pix) => {
-            if( pix >= freePathRacks.length ) return;
+            if ( pix >= freePathRacks.length ) return;
             var wwPivots = [ pathRacks[ pix+1 ], frack ];
             var wwline = toreg( 'freePathSegment-' + pix )({ undisplay : true })();
             wwline.pivots = wwPivots;
@@ -219,7 +219,7 @@
         // //\\ real path line segment,
         //-------------------------------------------------
         pathRacks.forEach( (prack, pix) => {
-            if( pix === pathRacks.length - 1 ) return;
+            if ( pix === pathRacks.length - 1 ) return;
             var wwPivots = [prack, pathRacks[pix+1]];
             var wwline = toreg( 'pathSegment-' + pix )({ undisplay : true })();
             wwline.pivots = wwPivots;

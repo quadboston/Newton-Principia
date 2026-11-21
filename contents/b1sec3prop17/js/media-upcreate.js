@@ -1,4 +1,4 @@
-( function() {
+( function () {
     var {
         rg,
     } = window.b$l.apptree({ stdModExportList : {
