@@ -118,7 +118,6 @@
             var svgel$ = line.svgel$ = $$.$(line.svgel);
 
             svgel$.cls(line.finalCssClass);
-
         } else {
             ////shorter part of optimization
             sv.updatePolyline({
@@ -422,7 +421,6 @@
             var tpclass = sDomF.toCssIdentifier(tpclass || triangleId);
             cssCls = cssCls ? ' ' + cssCls + ' ' : ' ';
             $$.$(triang.svgel).cls('tofill' + cssCls + 'tp-' + tpclass);
-
         } else {
             sv.updatePolyline({
                     pivots: vertices,

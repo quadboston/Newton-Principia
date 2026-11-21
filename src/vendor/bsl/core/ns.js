@@ -218,7 +218,6 @@
             return sns;
             */
         }
-
     }
 
     //***************************************************************************
@@ -253,7 +252,6 @@
         //      can coexist with jQuery,
         var $$ = ns.$$ =
         (function () {
-
             ///syntax sugar to supply object in two forms: wrapped into $$ or naked
             function alt(obj) {
                 return (typeof obj === 'function' ? obj() : obj);
@@ -545,11 +543,9 @@
             var sample = gen();
             var masterGen = {};
             Object.keys(sample).forEach(function (key) { //todm ... works for functions ? not only for objects?
-
                 masterGen[key] = function () { return gen()[key].apply({}, arguments); };
             });
             return masterGen;
-
         })();
         // \\// DOM wrap
         ///deletes wrapping function elParent[ elName$ ]
@@ -580,7 +576,6 @@
     //***************************************************************************
 // \\// dom manipulation library. ns.$$.
     //***************************************************************************
-
 })();
 
 //===========================================
@@ -635,7 +630,6 @@
         // \\// uncomment this debug-block to enable textarea for debug
         ///------------------------------------------------------------
     };
-
 })();
 //===========================================
 // \\// creates debugger once per application
@@ -690,7 +684,6 @@
                     //let user to say "yes" or "no"
                     cc[1] = cc[1] === "yes" ?
                             true : (cc[1] === "no" ? false : cc[1]);
-
                 } else {
                     ////*****************************
                     //// syntax: ...,x~floatValue,...
@@ -825,7 +818,6 @@
     //	Results in:		changed wall properties.
     //	Returns:		combined clone of paper to wall.
     var paste_non_arrays = ns.paste = ns.paste_non_arrays = function (wall, paper, level, skip_undefined, refdepth, recdepth) {
-
         level = level || 0;
         var t = typeof paper;
 
@@ -902,7 +894,6 @@
     ns.clonetree = function (paper) {
         return ns.paste(Array.isArray(paper) ? [] : {}, paper);
     };
-
 })();
 
 ///global css manager;
@@ -1040,7 +1031,6 @@
             (match, key1) => (key1 === ',' ? '_-' : '_' + key1.toLowerCase())
         );
     }
-
 })();
 
 (function () {
@@ -1103,5 +1093,4 @@
         //https://stackoverflow.com/questions/22754315/for-loop-for-htmlcollection-elements
         [].forEach.call(children, el => methods.elTree(el, callback));
     }
-
 })();

@@ -33,5 +33,4 @@
 
         rg.allLettersAreHidden = true;
     }
-
 })();

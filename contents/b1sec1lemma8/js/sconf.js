@@ -8,7 +8,6 @@
     // //\\// inits and sets config pars
     //====================================================
     function init_conf() {
-
         //overrides "global", lemma.conf.js::sconf
         sconf.default_tp_lightness = 22; // darkness of lines, curves
         sconf.default_tp_stroke_width = 8; //size of slider circles

@@ -75,7 +75,6 @@
     /// https://en.wikipedia.org/wiki/HSL_and_HSV#From_HSL
     /// credit: https://codepen.io/frantic1048/pen/LGGxZP   , but it has a mistake: "* 60"
     ns.hsl2rgb = function (hh, ss, ll) {
-
       var cc = (1 - Math.abs(2 * ll - 1)) * ss;
       var hue = hh / 60;
       var xx = cc * (1 - Math.abs(hue % 2 - 1));

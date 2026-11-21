@@ -73,5 +73,4 @@
         //possibly good user control for changing diagram scenatio:
         //stdMod.createsChordModeRadioControl();
     }
-
 })();

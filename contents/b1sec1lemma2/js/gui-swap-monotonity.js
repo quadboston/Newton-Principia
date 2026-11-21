@@ -59,7 +59,6 @@
         for (var ii = 0; ii < 4; ii++) {
             swap.forEach(sw => {
                 sw.forEach(sw2 => {
-
                      //why this carefully made block misses cleanup?
                      //dir && $$.$( dl[ii] ).removeClass( sw2 );
                      //(!dir) && $$.$( dl[bN - 4 + ii] ).removeClass( sw2 );
@@ -88,5 +87,4 @@
             $$.$(dl[high]).addClass(direct2);
         }
     }
-
 })();

@@ -37,5 +37,4 @@
         nspaste(rg.v.pos,         mat.sm(rg.V.pos, vv));
         nspaste(rg.Vangle.pos,     mat.sm(1, rg.V.pos, 2, vv));
     }
-
 })();

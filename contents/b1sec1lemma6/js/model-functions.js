@@ -76,7 +76,6 @@
             {
                 fname: "Original left branch",
                 fun: function (x) {
-
                         //curvature break is too seen
                         //var sin = 0; //rg.curveRotationAngle.sin;
                         //var cos = 1; //rg.curveRotationAngle.cos;
@@ -155,5 +154,4 @@
     //=================================================
     // \\// configures curve
     //=================================================
-
 })();

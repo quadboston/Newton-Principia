@@ -96,5 +96,4 @@
         }
         return { e, fi, om, cosOmega, lat, r, eta, Kepler_v, Kepler_g };
     }
-
 })();

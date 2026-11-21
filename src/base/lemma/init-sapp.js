@@ -80,7 +80,6 @@
             ////for "sites" which have user-guiding-scenarios
             var parsesTopicScenarios = haz(ssF, 'parsesTopicScenarios');
             if (parsesTopicScenarios) {
-
                 //apparently, this completes assembling of scripts among
                 //them own: pieces are merged to be later parsed with
                 //parsesTopicScenarios()

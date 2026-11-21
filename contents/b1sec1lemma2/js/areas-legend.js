@@ -173,7 +173,6 @@
                 <!--END inscribed-->
 
         `);
-
     }
 
     function updateLegendAmounts(dr) {
@@ -188,5 +187,4 @@
     function normalizedStr(dr, amt) {
         return (100*amt/Math.abs(dr.figureArea)).toFixed(1);
     }
-
 })();

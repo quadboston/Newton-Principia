@@ -66,5 +66,4 @@
         sconf.modorInPicX = ach[0];
         sconf.modorInPicY = ach[1];
     }
-
 })();

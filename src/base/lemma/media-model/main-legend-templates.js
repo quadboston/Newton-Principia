@@ -58,5 +58,4 @@
         htmlbody = res;
         return { clusterCellIx, htmlbody, };
     }
-
 })();

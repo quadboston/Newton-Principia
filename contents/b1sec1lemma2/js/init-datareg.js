@@ -62,7 +62,6 @@
 
     function controlPointPositions(xLeft, width, height,
         yBottom = 332) {//Bottom of figure
-
         //Unscaled positions (used as a template)
         const positionsUnscaled = [
             //Top left

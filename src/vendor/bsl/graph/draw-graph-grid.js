@@ -194,7 +194,6 @@
                 var labelCountEstimation = Math.floor((maxA - linesStart) / decUnit);
 
                 for (var gline = linesStart; gline <= maxA; gline += decUnit) {
-
                     //======================================================
                     // //\\ prepares grid and axes params
                     //======================================================
@@ -272,7 +271,6 @@
                             }
                             ///forbids too dence marks along axis x
                             if (!labelForbidden) {
-
                                 var decimalDigits = aIx === 0 ?
                                         effectiveAxis.decimalDigits :
                                         EXTRA_AXIS_DIGITS;
@@ -395,5 +393,4 @@
         // \\// prints numerical labels
         //======================================================
     }
-
 })();

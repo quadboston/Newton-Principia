@@ -130,7 +130,6 @@ const {
                         LANDING_IV___loadLemmaJSCodes();
                     }
                 );
-
             } else {
                 fapp.jsCodesList = [];
                 ////loads own jscodes and continues landing

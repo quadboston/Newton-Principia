@@ -34,5 +34,4 @@
         stdMod.railsCustomSlidersCount = has(stdMod, 'railsCustomSlidersCount') ?
             stdMod.railsCustomSlidersCount + 1 : 1;
     }
-
 })();

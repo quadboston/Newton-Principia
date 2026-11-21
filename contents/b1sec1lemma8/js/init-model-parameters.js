@@ -149,7 +149,6 @@
         rg.curveRotationAngle.sin = Math.sin(rg.curveRotationAngle.angle);
         rg.curveRotationAngle.cos = Math.cos(rg.curveRotationAngle.angle);
         stdMod.createModelFunctions();
-
     }
 
     ///****************************************************
@@ -299,5 +298,4 @@
         );
         return newRpos;
     }
-
 })();

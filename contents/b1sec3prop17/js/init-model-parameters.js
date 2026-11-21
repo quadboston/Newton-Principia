@@ -38,5 +38,4 @@
 
         stdMod.completesSlidersCreation();      //in-diagram sliders
     }
-
 })();

@@ -174,5 +174,4 @@
     };
 
     mat.getClonedUnitMatrix4x4 = function () { return cloneM(mat.unit4x4); };
-
 })(window);

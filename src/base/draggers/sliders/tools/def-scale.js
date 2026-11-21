@@ -55,5 +55,4 @@
         sc.mod2inn_scale = sc.originalMod2inn_scale * svalue;
         sc.inn2mod_scale = 1 / sc.mod2inn_scale;
     }
-
 })();

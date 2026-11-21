@@ -15,7 +15,6 @@
     ///Frag. step II. Norm. and anchor-texts and
     ///Frag. step III. Html and global-css-visib-of-active-category.
     function exegs__2__tpAn8dom8css8mjax() {
-
         eachprop(exegs, (logic_phaseAspects, mcat_id) => {
             eachprop(logic_phaseAspects, (exAspect, scat_id) => {
                 exAspect.subexegs.forEach((subexeg) => {

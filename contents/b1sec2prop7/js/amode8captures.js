@@ -38,7 +38,6 @@
             var Rcol2 = q2xy(Rcol2_s);
             rg.Rcol2.pos[0] = Rcol2[0]*0.4;
             rg.Rcol2.pos[1] = q2xy(0.5)[1];
-
         } else if (subessay === 'corollary1') {
             // S on the circle
             nspaste(rg.S.pos, [-0.9997779468574, -0.0210731450212]);

@@ -18,5 +18,4 @@
             fconf.sappId2lemmaDef[ld.sappId] = ld;
         });
     }
-
 })();

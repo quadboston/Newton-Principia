@@ -49,5 +49,4 @@
         ].forEach(gname => { rg[gname].undisplay = logic_phase === 'claim'; });
         return captured;
     }
-
 })();

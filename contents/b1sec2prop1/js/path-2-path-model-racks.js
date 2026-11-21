@@ -110,7 +110,6 @@
         var fvectors    = rg.impulses.vectors;
         var fviews      = sn('views', rg.impulses);
         path.forEach((pt, pix) => {
-
             //forces master-index offset is pi = 1 and
             //identified with key 'kepltr-' + (pi-1)
             if (pix < 1) return;

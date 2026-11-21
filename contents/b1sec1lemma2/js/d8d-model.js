@@ -78,7 +78,6 @@
                 pointWrap.spinnerClsId = 'base-'+pwix;
                 pointWrap.dragDecorColor = sDomF.getFixedColor('given');
                 orientation = false;
-
             } else if (pointWrap.type === 'trans') {
                 pointWrap.spinnerClsId = 'trans-'+pwix;   //optional for css
                 pointWrap.dragDecorColor = sDomF.getFixedColor('given');
@@ -88,7 +87,6 @@
                     orientation = false;
                 else if (pointWrap.draggableY)
                     orientation = 'axis-y';
-
             } else {
                 pointWrap.spinnerClsId = 'ctrl-'+pwix;   //optional for css
                 pointWrap.dragDecorColor = sDomF.getFixedColor('given');
@@ -149,7 +147,6 @@
         //====================
         ///Gets movable and visible point which is closest to mousePoint.
         function findDraggee(mousePoint, dragWraps) {
-
             //////////////////////////////////////////////////////////
             // //\\ todo. d8d points tmp patch.
             mousePoint = sDomF.outparent2inn(mousePoint);
@@ -240,7 +237,6 @@
                 const posNewT = stdMod.xy_2_Txy(dr, posNew);
                 item.x = posNewT[0];
                 item.y = posNewT[1];
-
             } else if ("trans" === item.type) {
                 //Transform points
                 if (item.draggableX)
@@ -249,7 +245,6 @@
                     item.y = newY;
 
                 stdMod.recalculateAndStoreTransforms(dr);
-
             } else if (index > 0 && index < sconf.basesN) {
                 //Base points
                 // //\\ limitifies newX by dom-neighbors

@@ -5,7 +5,6 @@
 
     ///This scope is till the end of the first nest below. In this example, till the line "})();"
     (function () {
-
         // //\\ helpers
         //      the scope of comment "//\\ helpers" extends till the matching token, "\\//".
         btb.dots2object = function (name, value, obj) {
@@ -31,5 +30,4 @@
             return value;
         }
         // \\// helpers
-
     })();

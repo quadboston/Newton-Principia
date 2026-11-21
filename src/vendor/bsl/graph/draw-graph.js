@@ -179,7 +179,6 @@
             //----------------------------------------
 
             if (doSideAxes) {
-
                 //shrinks graph area to leave space for axes
                 var SHRINK_RATIO = 0.2;
                 var marginY = dimY * SHRINK_RATIO / 2;
@@ -196,7 +195,6 @@
                     }
                     dimX_withMarg -= extraAxisWidth;
                 }
-
             } else {
                 var marginY = 0;
                 var marginX = 0;
@@ -222,7 +220,6 @@
                 }
                 //masks makes polylines[ yix ] undefined where yix has empty mask
                 points.y.forEach((pointY, yix) => {
-
                     //creates holes in polylines array
                     if (graphArrayMask && !graphArrayMask[yix]) return;
 
@@ -419,5 +416,4 @@
             graphFM_self.gmedia$ && graphFM_self.gmedia$.css('display', 'none');
         }
     }
-
 })();

@@ -23,5 +23,4 @@
         });
         fapp.captureState(clone);
     }
-
 })();

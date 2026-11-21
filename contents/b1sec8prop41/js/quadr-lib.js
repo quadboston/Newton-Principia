@@ -27,7 +27,6 @@
     }
 
     function quadratures() {
-
         //decoration
         let vgraph = [];
         let v2graph = [];
@@ -202,5 +201,4 @@
                     dropPointIx, roPlusIx
                };
     }
-
 })();

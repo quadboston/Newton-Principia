@@ -25,5 +25,4 @@
         stdMod.rebuilds_orbit();
         return captured;
     }
-
 })();

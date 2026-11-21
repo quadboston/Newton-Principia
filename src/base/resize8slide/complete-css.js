@@ -94,7 +94,6 @@
         legendMargin,
         bases_slidersH,
     }) {
-
         //-------------------------------------------------------------
         // //\\ essay
         //      width is a scapegoat for failing width adjustment
@@ -203,5 +202,4 @@
         // \\// video css
         //--------------------
     }
-
 })();

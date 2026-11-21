@@ -45,7 +45,6 @@
                                               ssF.mod2inn(pt.pos,);
         var dressed = ownProp.call(pt, 'pointIsAlreadyDressed');
         if (!dressed) {
-
             ////long, initial version of pos2pointy
             var tpclass = nsmethods.toCssIdentifier(
                           (haz(attrs, 'tpclass')) || pName
@@ -102,7 +101,6 @@
                 //svgel$.e( 'mouseover',
             }
             */
-
         } else {
             ////optimized, updating version of pos2pointy
             var svgel = pt.svgel;
@@ -260,7 +258,6 @@
             }
             //make tp - boldable all points labels:
             $$$svg.addClass('tobold');
-
         } else {
             ////bug fix: June 3, 2021
             var wwSvg = haz(rgX, 'pnameLabelsvg');
@@ -295,5 +292,4 @@
     //-------------------------------------------------
     // \\// adds to points their media position
     //-------------------------------------------------
-
 })();

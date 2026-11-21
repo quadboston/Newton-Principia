@@ -20,5 +20,4 @@
         !sconf.hideProofSliderCompletely && ssF.create_proofSlider();
         ssF.mediaModelInitialized = true;
     }
-
 })();

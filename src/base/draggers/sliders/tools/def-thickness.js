@@ -52,5 +52,4 @@
         // \\// sets magnit_api to specified elements
         //==========================================
     }
-
 })();

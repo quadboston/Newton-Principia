@@ -169,5 +169,4 @@
         haff(this, 'processOwnUpEvent');
         stdMod.model8media_upcreate(); //capital update, todo: check
     }
-
 })();

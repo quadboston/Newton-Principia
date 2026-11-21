@@ -38,11 +38,8 @@
                 if (timeout !== null) {
                     clearTimeout(timeout);
                 }
-
             } else {
-
                 if (!wait || elapsed > wait || doCallNow) {
-
                     //this must be here,
                     //if( timeout !== null ) clearTimeout( timeout );
                     //timeout = null;
@@ -81,5 +78,4 @@
             timeStart = time;
         };
     };
-
 })();

@@ -23,7 +23,6 @@
         var pivs = sconf.originalPoints.curvePivots;
 
         pivs.forEach((cp, cpix) => {
-
             //recall that pos is in sync by reference:
             //sconf.pname2point[ pname ] = rgX.pos
             var pos1 = rg['curvePivots-' + cpix].pos;
@@ -213,5 +212,4 @@
         stdMod.quadratures();
         return pointEisIncluded();
     }
-
 })();
