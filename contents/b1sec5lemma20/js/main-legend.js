@@ -12,7 +12,7 @@
     var clustersToUpdate = [];
     return;
 
-    
+
     ///this function is called from common-application-library,
     ///from full-app/dom/...
     function create_digital_legend()
@@ -85,7 +85,7 @@
     //
     //=========================================
     ///Makes:  magnitude's cluster in table,
-    ///Effect: represents magnitude in html-table-row in 
+    ///Effect: represents magnitude in html-table-row in
     ///        form "mname = mvalue",
     ///Input:  mname = magnitude name
     function makeCl( row, mname, mcaption, cssName )

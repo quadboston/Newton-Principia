@@ -1,7 +1,7 @@
 ( function() {
     var ns = window.b$l;
-    var fapp = ns.sn('fapp' ); 
-    fapp.lemmaConfig = lemmaConfig;    
+    var fapp = ns.sn('fapp' );
+    fapp.lemmaConfig = lemmaConfig;
 
     function lemmaConfig() {
         var ref = '../../b1sec1lemma6/js/';

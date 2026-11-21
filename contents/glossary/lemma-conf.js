@@ -1,5 +1,5 @@
 ( function() {
-    window.b$l.apptree({}).fapp.lemmaConfig = lemmaConfig;    
+    window.b$l.apptree({}).fapp.lemmaConfig = lemmaConfig;
     return;
 
     function lemmaConfig()
@@ -34,8 +34,8 @@
         codeList.push({ src: sm + 'config-functions.js' });
         codeList.push({ src: sm + 'init-model-parameters.js' });
         codeList.push({ src: sm + 'model-upcreate.js' });
-        return {		 
-            codesList : codeList, 
+        return {
+            codesList : codeList,
             "contents-list" :
             [
                 'txt/glossary.txt',

@@ -5,14 +5,14 @@
     });
     return;
 
-    
+
     ///parameters are enclosed in closure for performance
     function recreates_q2xy()
     {
         //nothing todo stdMod.q2xy = bezio.fun;
         return;
     }
-    
+
     ///bezier pivots to curve pivots
     function bezierPivotsToCurvePivots() {
         const bezio = ssD.bezio;

@@ -1,5 +1,5 @@
 ( function() {
-    var { sn, rg, stdMod, sconf, ssD, sData, } 
+    var { sn, rg, stdMod, sconf, ssD, sData, }
         = window.b$l.apptree({ stdModExportList : {
             builds_orbit_data_graph,
             qIndexFromPointPToGraphIndex,
@@ -135,8 +135,8 @@
 
         ///this is a common graph lines, but this mask can be
         ///overriden in model_upcreate()
-        stdMod.graph.graphArrayMask = 
-            [ 
+        stdMod.graph.graphArrayMask =
+            [
                 'force',
                 'estimatedForce',
             ];

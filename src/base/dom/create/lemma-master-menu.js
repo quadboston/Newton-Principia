@@ -3,9 +3,9 @@
             mcat_id = "logic_phase", "aspect"
             menu tree is like:
                 mcat_id = "logic_phase"
-                              scat_id = claim, proof, ...           
+                              scat_id = claim, proof, ...
                 mcat_id = "aspect"
-                              scat_id = latin, english, video, ...           
+                              scat_id = latin, english, video, ...
 */
 
 
@@ -14,7 +14,7 @@
         ns, $$, haff,
         haz,
         sconf, fconf,
-        fapp, 
+        fapp,
         ssF,
         sDomF, sDomN,
         stdMod, amode,
@@ -103,7 +103,7 @@
         //------------------------------------
         //makes shuttle non-chosen and its position undefined
         decorOfShuttle$ = $$.dct( 'litem shuttle', teaf$ );
-        /*       
+        /*
                             .ch( $$.dc( 'shuttle-oval-body' ) )
                             .ch( $$.dc( 'shuttle-shadow' ) )
                             ;
@@ -160,7 +160,7 @@
             $$
             .div()
             .cls( iconClass )
-            //:can put this css into fapp.css.js 
+            //:can put this css into fapp.css.js
             //:while no specific place exist
             .css( 'display', 'inline-block' )
             .css( 'position', 'relative' )
@@ -199,7 +199,7 @@
             .ch([
                 $$
                     .dc( 'caption' )
-                    .ch( 
+                    .ch(
                         [   videoPlaceholder$,
                             leafRk.mItemCaptionHtml$ = $$.span().html( caption )
                         ]
@@ -232,7 +232,7 @@
 
         if(mcat === 'logic_phase' ) { // horizontal tabs
             if(params["logic_phaseId"] !== scat) {
-                params["logic_phaseId"] = scat;  
+                params["logic_phaseId"] = scat;
             } else {
                 return false; // do not update model if we haven't actually switched tabs
             }
@@ -241,7 +241,7 @@
 
             // update aspect of all links so it persists when changing pages
             const links = document.querySelectorAll('.lemma-item-title');
-            links.forEach((link) => {            
+            links.forEach((link) => {
                 // extract sappId from the link
                 let sappId = null;
                 if(link.href) {
@@ -413,7 +413,7 @@
             ssF.in_subessay_launch____amode2lemma( amodel2app_8_extraWork );
 
             haff(stdMod, 'sliders_value2pos');
-            
+
             //Tab (text or video) changed so load the following.
             wrkwin.loadPosPartitionHandle();
 
@@ -421,11 +421,11 @@
             res( null, !!'doDividorSynch');
 
         }
-        
+
         //**********************************************************************************
         //todo patch: this is a vital patch, without it to appear legend needs
         //second resize event, the reason for the bug is unknown,
-        //only needed for L7, P1 corollaries 
+        //only needed for L7, P1 corollaries
         if(fconf.sappId === 'b1sec1lemma7' || fconf.sappId === 'b1sec2prop1') {
             setTimeout(
                 function() {

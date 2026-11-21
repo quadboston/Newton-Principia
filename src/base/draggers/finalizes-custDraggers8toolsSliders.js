@@ -72,7 +72,7 @@
                 stdMod.svgScen$
             );
         }
-    }; 
+    };
     //==========================================
     // \\// inits drag model
     //==========================================
@@ -131,7 +131,7 @@
                 if( !closestDragWrap ||
                     (
                         ( dpp > closestDragPriority ) ||
-                        ( dpp === closestDragPriority && closestTd > td ) 
+                        ( dpp === closestDragPriority && closestTd > td )
                     )
                 ){
                     closestDragWrap = dragWrap;

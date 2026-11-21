@@ -147,7 +147,7 @@
         }
         return rg[ nameP ];
     }
-    
+
     function curveModel2branches(){
         ////makes branches
         const algfun = stdMod.calculateConicPoint_algo;

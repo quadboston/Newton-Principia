@@ -43,9 +43,9 @@
                 rg.curveRotationAngle.angle = fullAngle - rg.originalGapTangent.angle;
                 return true;
             }
-        });        
+        });
         //-------------------------------------------------
-        // \\// dragger L for the rectilinear angle        
+        // \\// dragger L for the rectilinear angle
         //-------------------------------------------------
 
         //-------------------------------------------------
@@ -66,8 +66,8 @@
             pname : 'B',
             acceptPos : ( newPos ) =>
             {
-                var new_unrotatedParameterX = ssD.getUnrotatedParameterX( 
-                    newPos[0], rg.B.unrotatedParameterX 
+                var new_unrotatedParameterX = ssD.getUnrotatedParameterX(
+                    newPos[0], rg.B.unrotatedParameterX
                 );
                 var cfun = ssD.repoConf[ssD.repoConf.customFunction].fun;
                 var cpos = cfun( new_unrotatedParameterX );
@@ -86,10 +86,10 @@
                   [rg.A.pos, cpos ],
                   [rg.A.pos, rg.L.pos],
                 ]).angle
-                
+
                 if( fconf.sappId === "b1sec1lemma6" &&
                     //core essays:
-                    ( !(amode.aspect === 'model') && amode.logic_phase === 'proof' ) && 
+                    ( !(amode.aspect === 'model') && amode.logic_phase === 'proof' ) &&
                     (angleBAM < 0 || cpos[1] > -0.01)
                 ){
                     adjust_new_unrotatedParameterX_asNeccesary();
@@ -104,7 +104,7 @@
                 }
 
                 rg.B.unrotatedParameterX = new_unrotatedParameterX;
-                
+
                 return true;
 
                 function adjust_new_unrotatedParameterX_asNeccesary() {
@@ -132,10 +132,10 @@
         //-------------------------------------------------
         // \\// dragger B
         //-------------------------------------------------
-        
+
         //-------------------------------------------------
         // //\\ dragger D
-        //-------------------------------------------------        
+        //-------------------------------------------------
         ssF.line2abs( 'AD' );
         const original_Dx = rg.D.pos[0];
         const half_AD = rg.AD.abs / 2; // D can move half the width of AD in either dir
@@ -144,7 +144,7 @@
             pname : 'D',
             acceptPos : ( newPos ) => {
                 newPos[1] = 0; // y pos doesn't change
-                let x = newPos[0]; 
+                let x = newPos[0];
                 if(x < original_Dx - half_AD || x > original_Dx + half_AD) {
                     return false;
                 } else {
@@ -154,7 +154,7 @@
         });
         //-------------------------------------------------
         // \\// dragger D
-        //------------------------------------------------- 
+        //-------------------------------------------------
 
         //getting original gap tangent
         const orTan = rg.originalGapTangent = {};
@@ -162,7 +162,7 @@
             sconf.givenCurve_pivots_inModel
         ).derivativeAtZero();
         orTan.angle = Math.atan( rg.originalGapTangent.tangent );
-        
+
         //sets angle as it is in original picture in lemma
         toreg( 'curveRotationAngle' )( 'angle', 0 );
         rg.curveRotationAngle.sin = Math.sin( rg.curveRotationAngle.angle );
@@ -171,7 +171,7 @@
 
         //-------------------------------------------------
         // //\\ Pops up when AL and AB have same slope
-        //-------------------------------------------------  
+        //-------------------------------------------------
         var wwId = 'proof-pop-up';
         ssF.createButton({
             caption                 :
@@ -201,7 +201,7 @@
         });
         //-------------------------------------------------
         // \\// Popup
-        //-------------------------------------------------  
+        //-------------------------------------------------
     }
 
     ///****************************************************
@@ -209,7 +209,7 @@
     ///****************************************************
     function model_upcreate()
     {
-        //: creats AL for rectilinear angle        
+        //: creats AL for rectilinear angle
         rg.curveRotationAngle.sin = Math.sin( rg.curveRotationAngle.angle );
         rg.curveRotationAngle.cos = Math.cos( rg.curveRotationAngle.angle );
         builds__NewtonTangentAtA_8_L();

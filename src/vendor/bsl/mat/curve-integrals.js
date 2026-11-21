@@ -42,7 +42,7 @@
         curveEndParam,
 
         //optionals:
-        funIsAVector,           //true for t |-> [x,y], false for y=f(x) 
+        funIsAVector,           //true for t |-> [x,y], false for y=f(x)
         INTEGRATION_POINTS_LIM,
         calculationAccuracy,
         STARTING_EXPONENT_FOR_2,

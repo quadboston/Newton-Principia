@@ -24,7 +24,7 @@
         var { left, right, bottom, top, } = dr.widestRect;
         rg.F.pos[0] = ( left - xoff ) / scale;
         rg.f.pos[0] = ( left - xoff ) / scale;
-        
+
         let bl = dr.basePts.list;
         var bN = sconf.basesN;
         {
@@ -62,22 +62,22 @@
         for( var ii=0; ii<4; ii++ ) {
             swap.forEach( sw => {
                 sw.forEach( sw2 => {
-                    
+
                      //why this carefully made block misses cleanup?
                      //dir && $$.$( dl[ii] ).removeClass( sw2 );
                      //(!dir) && $$.$( dl[bN - 4 + ii] ).removeClass( sw2 );
-                    
+
                      $$.$( dl[ii] ).removeClass( sw2 );
                      $$.$( dl[bN - 4 + ii] ).removeClass( sw2 );
                 });
             });
         }
     }
-    
+
     function setsDifferenceBarsMonotonity(dr)
     {
         removeOutdatedClasses(dr);
-        
+
         let dv = dr.yVariations;
         let dl = dr.differenceRects.list;
         var bN = sconf.basesN;
@@ -92,6 +92,6 @@
             $$.$( dl[high] ).addClass( direct2 );
         }
     }
-    
+
 }) ();
 

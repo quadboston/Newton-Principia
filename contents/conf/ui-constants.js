@@ -14,7 +14,7 @@
 
     function setUIConstants (){
         // runs once per page load
-        
+
         sf.default_tp_stroke_width = 10;
         ///for default points (and draggers???)
         ///in module points.js

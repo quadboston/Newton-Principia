@@ -48,7 +48,7 @@
         var unlockButton = sn( 'unlockButton', stdMod );
         unlockButton[ buttonUniversalId ] = function( doUnlock )
         {
-            butt.dom$.css( 'display', doUnlock ? 'block' : 'none' );                        
+            butt.dom$.css( 'display', doUnlock ? 'block' : 'none' );
         }
         return butt;
     }

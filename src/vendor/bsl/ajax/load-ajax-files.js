@@ -49,11 +49,11 @@
         filesList.forEach( function( fileItem, ix ) {
 
             var xml = new XMLHttpRequest();
-            try{ 
+            try{
                 xml.responseType = ns.haz( fileItem, 'responseType' ) || 'text';
                 xml.open( 'GET', fileItem.link, true );
 
-                ///todom perhaps we can merge both conditions in one "case"  
+                ///todom perhaps we can merge both conditions in one "case"
                 if( fileItem.responseType === 'arraybuffer' ) {
                     xml.send();
                     xml.onload = fileOnLoad;
@@ -72,7 +72,7 @@
 
             function process_by_good_readystate()
             {
-                if ( xml.readyState === 4 ) 
+                if ( xml.readyState === 4 )
                 {
                     if( xml.status === 200 )
                     {

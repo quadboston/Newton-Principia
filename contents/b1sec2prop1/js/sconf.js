@@ -15,7 +15,7 @@ function init_conf (){
     //----------------------------------
     // \\// scenario
     //----------------------------------
-     
+
     //----------------------------------
     // //\\ picture points medpos
     //----------------------------------
@@ -25,7 +25,7 @@ function init_conf (){
                           / sconf.standardSvgSize
     sconf.innerMediaHeight = sconf.pictureHeight + sconf.SLIDERS_LEGEND_HEIGHT;
     sconf.innerMediaWidth = sconf.pictureWidth;
-                          
+
     //----------------------------------
     // //\\ app view parameters
     //      ,in svg or media space,
@@ -49,7 +49,7 @@ function init_conf (){
     //(pic.bottom-y=+picHeight)
     sconf.originY_onPicture = activeAreaOffsetOnPictureY +
         ( sconf.MONITOR_Y_FLIP === -1 ? sconf.pictureActiveArea : 0 );
-    //todm duplic?        
+    //todm duplic?
     sconf.modorInPicY = sconf.originY_onPicture;
     //.set it from graph editor
     //.todm: trully 611 and rotated
@@ -82,7 +82,7 @@ function init_conf (){
     let timeStepOfManyBases = initialTimieStep/4;
     let unitlessMinTime = 1.000001;
     let speed = 1/initialTimieStep;
-    
+
     fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
     //affects drag hanldes in p1
     sconf.pointDecoration.r = Math.floor( 5 * sconf.controlsScale );
@@ -178,7 +178,7 @@ function init_conf (){
     //----------------------------------
     // \\// mod2inn_scale and speed v0
     //----------------------------------
-    
+
     ssF.setsCommonT1andT2capture();
     //this comes from theorem P2; this does not exist in P1;
     if( has( ssF, 'init_conf_addon' ) ) {
@@ -188,5 +188,5 @@ function init_conf (){
     }
     stdMod.sconf_points8lines();
     ssF.sets_A_v_forces_sliders();
-}    
+}
 })();

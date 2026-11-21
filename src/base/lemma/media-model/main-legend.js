@@ -144,7 +144,7 @@
                             clusterIx,
                         },
                         clusterPars
-                    )); 
+                    ));
                 }
                 updateCaptionsRow();
             }
@@ -179,7 +179,7 @@
                             clusterIx,
                         },
                         clusterPars
-                    )); 
+                    ));
                 }
             }
             //================================================
@@ -192,7 +192,7 @@
         //
         //=========================================
         ///Makes:  magnitude's cluster in table,
-        ///Effect: represents magnitude in html-table-row in 
+        ///Effect: represents magnitude in html-table-row in
         ///        form "clusterKey = mvalue",
         ///Input:  clusterKey = magnitude name
         function makesClusterCells({
@@ -201,7 +201,7 @@
                 clusterKey,     //tp-aware
                 tpCssName,      //unfilteredYetCapsTopic-with-additional-tokens
                 clusterCaption,
-                ixOfSpanBeginning,     
+                ixOfSpanBeginning,
                 spanVal,
                 style,
         }){

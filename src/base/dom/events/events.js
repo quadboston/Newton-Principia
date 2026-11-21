@@ -51,7 +51,7 @@
         //was: hafa( stdMod, 'astate_2_rg8model8media' )( ... match[1] ], match[1] );
         hafa( stdMod, 'astate_2_rg8model8media' )( ssD.capture[ captureKeyName ] );
     }
-    
+
     function setupEvents()
     {
         window.addEventListener( 'resize', fullResize );
@@ -65,7 +65,7 @@
 
     function does_set_next_lemma_button_event( direction )
     {
-        var pager$ = direction === 'right' ? sDomN.rightButton$ :       
+        var pager$ = direction === 'right' ? sDomN.rightButton$ :
                      sDomN.leftButton$;
 
         var mList = fconf.sappId2lemmaDef[ fconf.sappId ];
@@ -82,14 +82,14 @@
             var fullCaption = nextSapp.book + '. ' + nextSapp.caption;
 
             var newLoc = window.location.pathname + '?conf=' +
-                'sappId=' + nextSapp.sappId + 
+                'sappId=' + nextSapp.sappId +
                 ',logic_phaseId=claim,aspectId=english';
 
             if( fconf.appDecor.putTextDescriptionIntoTopNavigationArrows  ){
                 var wwFullCaption = direction === 'right' ? fullCaption : fullCaption + ' ';
             } else {
                 var wwFullCaption = '';
-            } 
+            }
             pager$.html( direction === 'right' ?
                 '<img alt="forward arrow" src="' + fconf.engineImg +
                 '/right-page-triangle.svg"> ' +
@@ -100,10 +100,10 @@
             pager$.a( 'title', "Go to " + nextSapp.caption );
             pager$.removeClass( 'non-displayed' );
             ///this did work but anchor works better
-            pager$.e( 'click', function() {                     
+            pager$.e( 'click', function() {
                 const match = newLoc.match(/sappId=([^,]+)/);
                 if (match) {
-                    var sappId = match[1];              
+                    var sappId = match[1];
                     var aspect = ns.getAspectId(sappId);
                     newLoc = newLoc.replace(/aspectId=[^,]*/, `aspectId=${aspect}`);
                 }
@@ -112,7 +112,7 @@
             });
         }
     }
-    
+
 
     function attachWeelToDomEl( domel$, )
     {
@@ -156,7 +156,7 @@
                 var mousePicY = svgP.y;
             }
 
-            pansToKeepZoomCenter(oldScale, newScale, mousePicX, mousePicY); 
+            pansToKeepZoomCenter(oldScale, newScale, mousePicX, mousePicY);
             stdMod.model8media_upcreate();
         };
 

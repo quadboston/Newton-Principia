@@ -10,8 +10,8 @@
         },
     });
     return;
-    
-    
+
+
     function completesSlidersCreation()
     {
         rg.a.acceptPos = slider_a_pos2value;
@@ -39,7 +39,7 @@
             stdMod.model8media_upcreate();
         }
     }
-    
+
     ///does newPos -> value -> pos (pos -> value in model)
     function slider_a_pos2value( newPos )
     {
@@ -66,7 +66,7 @@
             }
         }
         // \\// making pause at e=1
-    
+
         sData.polar_ell_model.e = modelPar;
         stdMod.curveModel2branches();
         // //\\ parameters' decorational changes
@@ -113,7 +113,7 @@
         stdMod.curveModel2branches();
         newPos[1] = rg.eStart.pos[1];
         return true;
-    }    
+    }
     function slider_a_value2pos()
     {
         rg.a.pos[0] = rg.eStart.pos[0] +

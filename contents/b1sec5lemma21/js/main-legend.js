@@ -27,7 +27,7 @@
     function upcreate_mainLegend()
     {
         var ww = clustersToUpdate;
-        
+
         //todm this is a patch: do use Pr/Pt
         let grad = '<sup>ᵒ</sup>';
         let rad2grad = 180/Math.PI;
@@ -80,7 +80,7 @@
     //
     //=========================================
     ///Makes:  magnitude's cluster in table,
-    ///Effect: represents magnitude in html-table-row in 
+    ///Effect: represents magnitude in html-table-row in
     ///        form "mname = mvalue",
     ///Input:  mname = magnitude name
     function makeCl( row, mname, mcaption, cssName )
@@ -99,9 +99,9 @@
                    .cls('value')
                    .cls('tostroke tocolor tobold tp-'+cssName)
                    .to(row);
-        
+
         clustersToUpdate[mname] = c$(); //updateeCell;
-        
+
         return c$;
     }
 

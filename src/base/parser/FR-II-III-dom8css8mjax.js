@@ -2,7 +2,7 @@
     var {
         sn, $$, eachprop, haz,
         sconf, sDomF, ssF, exegs,
-        amode,        
+        amode,
     } = window.b$l.apptree({
         ssFExportList :
         {

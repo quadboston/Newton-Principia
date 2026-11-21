@@ -3,7 +3,7 @@
     var { ns, fconf, sconf, topicColors_repo } =
     window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
-    
+
 
     function init_conf()
     {
@@ -23,7 +23,7 @@
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
-        
+
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
 
@@ -59,7 +59,7 @@
         // \\// principal tp-css pars
         //--------------------------------------
         // \\// do override engine defaults,
-        //--------------------------------------        
+        //--------------------------------------
         //***************************************************************
         // \\// decorational parameters
         //***************************************************************
@@ -85,10 +85,10 @@
 
         //================================================================
         // \\// original positions
-        //================================================================      
-        
+        //================================================================
+
         //: topic group colors
-        var givenColor   = topicColors_repo.givenColor;        
+        var givenColor   = topicColors_repo.givenColor;
         var infoColor   = topicColors_repo.infoColor;
 
         var topicColors_elected =
@@ -106,7 +106,7 @@
 
         var originalPoints =
         {
-            A : { 
+            A : {
                 //assigment by reference to pos is safe: no parasite links, pos is recalculated later
                 pos         : A,
                 letterAngle : 90,
@@ -116,7 +116,7 @@
                 pos: B,
                 letterAngle : 0,
                 pcolor      : givenColor,
-            },            
+            },
             C : {
                 letterAngle : 45,
                 letterRotRadius : 13,
@@ -177,9 +177,9 @@
                 doPaintPname : false,
             },
         };
-        
+
         var linesArray =
-        [            
+        [
             { 'AB' : { pcolor : givenColor } },
             { 'AD' : { pcolor : givenColor } },
             { 'AL' : { pcolor : infoColor,
@@ -192,7 +192,7 @@
         //      points for divided
         //      differences interpolation
         //----------------------------------
-        
+
         //model's spacial unit in pixels of the picture:
         var mod2inn_scale = originalPoints.R.pos[1] - originalPoints.A.pos[1];
 

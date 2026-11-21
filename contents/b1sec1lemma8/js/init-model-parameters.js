@@ -15,7 +15,7 @@
     ///****************************************************
     function init_model_parameters()
     {
-        let b2B = sconf.b_per_B_original; // defined in sconf.js, factor to determine distance between B and b    
+        let b2B = sconf.b_per_B_original; // defined in sconf.js, factor to determine distance between B and b
         nspaste( rg.b.pos, [ rg.B.pos[0] * b2B, rg.B.pos[1] * b2B ] );
         let D = rg.D.pos;
         let B = rg.B.pos;
@@ -33,7 +33,7 @@
         rg.d.pos[1] = rg.D.pos[1] * b2B;
         nspaste( rg.r.pos, rg.r.pos );
         nspaste( rg.d.pos, rg.d.pos );
-        
+
         rg.B.originalPos = [];
         nspaste( rg.B.originalPos, rg.B.pos );
         rg.D.originalPos = [];
@@ -51,7 +51,7 @@
             sData.unrotatedParameterX = rg.B.unrotatedParameterX;
             sData.RB_slope = [ rg.D.pos[0] - rg.B.pos[0], rg.D.pos[1] - rg.B.pos[1] ];
             ssD.draggerInUse = 'B';
-        }; 
+        };
         rg.B.dragPriority = 100;
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
@@ -71,7 +71,7 @@
                 }
 
                 rg.B.unrotatedParameterX = new_unrotatedParameterX;
-                
+
                 nspaste( rg.R.pos, dir8innerB_2_R( sData.RB_slope ) );
                 return true;
             }
@@ -87,7 +87,7 @@
             sData.unrotatedParameterX = rg.B.unrotatedParameterX;
             sData.RB_slope = [ rg.D.pos[0] - rg.B.pos[0], rg.D.pos[1] - rg.B.pos[1] ];
             ssD.draggerInUse = 'R';
-        }; 
+        };
 
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
@@ -114,17 +114,17 @@
         //-------------------------------------------------
         rg.D.processOwnDownEvent = function() {
             ssD.draggerInUse = 'D';
-        }; 
-        
+        };
+
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
             pname : 'D',
             acceptPos : ( newPos ) => {
                 let original_Dx = rg.D.originalPos[0];
-                let Bx = rg.B.pos[0]; 
-                
+                let Bx = rg.B.pos[0];
+
                 newPos[1] = 0; // y pos doesn't change
-                let newDx = newPos[0]; 
+                let newDx = newPos[0];
 
                 // Stop D before slope of DR === slope of AR
                 // Prevent D from being moved too far to the right
@@ -175,14 +175,14 @@
 
         //RBD line
         let posD = mat.lineSegmentsCross( rg.R.pos, rg.B.pos, rg.A.pos, rg.d.pos );
-        let posR = mat.lineSegmentsCross( rg.D.pos, rg.B.pos, rg.A.pos, rg.r.pos );  
+        let posR = mat.lineSegmentsCross( rg.D.pos, rg.B.pos, rg.A.pos, rg.r.pos );
 
         if(ssD.draggerInUse === "D") {
             rg.R.pos = posR;
         } else {
             rg.D.pos[0] = posD[0];
-        }  
-        
+        }
+
         rg.r.pos[0] = rg.R.pos[0] * magn;
         rg.r.pos[1] = rg.R.pos[1] * magn;
         rg.d.pos[0] = rg.D.pos[0] * magn;
@@ -199,17 +199,17 @@
         ssF.line2abs( 'AR' );
         ssF.line2abs( 'RD' );
         ssF.line2abs( 'RB' );
-        
+
         ssF.line2abs( 'Ab' );
         ssF.line2abs( 'A,d' ); //Ad
         ssF.line2abs( 'A,r' ); // Ar
         ssF.line2abs( 'r,d' ); // rd
-        ssF.line2abs( 'r,b' ); // rb    
+        ssF.line2abs( 'r,b' ); // rb
 
         rg.RAB = { area : getTriangleArea('AB', 'AR', 'RB') };
         rg.RAD = { area : getTriangleArea('AD', 'AR', 'RD') };
         rg.RACB = { area : getArcArea('AB', 'AR', 'RB', 'A', 'B', 'C') };
-        
+
         rg.RACB_RAB = { ratio : rg.RACB.area / rg.RAB.area };
         rg.RAD_RAB = { ratio : rg.RAD.area / rg.RAB.area };
 
@@ -221,10 +221,10 @@
             return calcTriangleArea(A, B, C);
         }
 
-        function getArcArea(A, B, C, p1, p2, p3) {  
-            const triangleArea = calcTriangleArea(A, B, C);  
-            const points = [ rg[p1].pos, rg[p2].pos, rg[p3].pos ]; 
-            const curveArea = calcBezierArea(points, 100); 
+        function getArcArea(A, B, C, p1, p2, p3) {
+            const triangleArea = calcTriangleArea(A, B, C);
+            const points = [ rg[p1].pos, rg[p2].pos, rg[p3].pos ];
+            const curveArea = calcBezierArea(points, 100);
             const area = triangleArea + curveArea;
             return area;
         }
@@ -233,39 +233,39 @@
             const a = rg[A].abs;
             const b = rg[B].abs;
             const c = rg[C].abs;
-            const s = (a + b + c) / 2;   
+            const s = (a + b + c) / 2;
             const area = Math.sqrt(s * (s - a) * (s - b) * (s - c)); // Heron's formula
             return area;
         }
 
         function calcBezierArea(points, steps = 100) {
-            const [p0, p1, p2] = points; 
-        
+            const [p0, p1, p2] = points;
+
             // Quadratic Bézier formula
             function bezierPoint(t) {
                 const x = (1 - t) ** 2 * p0[0] + 2 * (1 - t) * t * p1[0] + t ** 2 * p2[0];
                 const y = (1 - t) ** 2 * p0[1] + 2 * (1 - t) * t * p1[1] + t ** 2 * p2[1];
                 return [x, y];
             }
-        
+
             // Trapezoidal integration
             let area = 0;
             let prevPoint = bezierPoint(0); // Starting point at t = 0
-        
+
             for (let i = 1; i <= steps; i++) {
                 const t = i / steps; // Incrementally move along the curve
                 const currPoint = bezierPoint(t);
-        
+
                 // Approximate the area of the trapezoid
                 const width = currPoint[0] - prevPoint[0];
                 const height = (currPoint[1] + prevPoint[1]) / 2;
                 area += width * height;
-        
-                prevPoint = currPoint; 
+
+                prevPoint = currPoint;
             }
-        
+
             return Math.abs(area); // Ensure the area is positive
-        }        
+        }
 
         rg.AB.arcLen = mat.integral.curveLength({
             fun             : ssD.repoConf[0].fun,

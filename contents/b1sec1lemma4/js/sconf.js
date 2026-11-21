@@ -1,7 +1,7 @@
 ( function () {
-    var { sn, nspaste, fapp, sconf, ssF, topicColors_repo, } = 
+    var { sn, nspaste, fapp, sconf, ssF, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf, }, });
-    
+
     var stdL2       = sn('stdL2', fapp );
     var study       = sn('study', stdL2 );
     var sdata       = sn('sdata', study );
@@ -15,7 +15,7 @@
     sdata.view = { isInscribed:1, isCircumscribed:0, isFigureChecked:1 };
     //=====================================
     // \\// presets data
-    //=====================================    
+    //=====================================
     return;
 
 

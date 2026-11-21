@@ -44,7 +44,7 @@
         // \\// header
         //==================================================
 
-        
+
         //==================================================
         // //\\ table of contents
         //==================================================
@@ -224,7 +224,7 @@
         // //\\ feedback wrapper
         //==================================================
         function buildFeedbackAndTip() {
-            var coreText = 
+            var coreText =
                 `
                 <div class="feedback">
                     <span class="feedback-label"><a href="javascript:decryptEmail('Y29udGFjdEBzY2llbmNlaGlrZS5jb20=');">Feedback</a></span> welcome, as well as donations:
@@ -239,7 +239,7 @@
         //==================================================
         // \\// feedback wrapper
         //==================================================
-        
+
 
         //==================================================
         // //\\ pad bottom

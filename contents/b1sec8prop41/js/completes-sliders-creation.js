@@ -166,7 +166,7 @@
                 if( sl.abs < 0.1 ) return;
                 let angleOmega = mat.angleBetweenLines([
                     [ [0,0], pp ],
-                    [ [0,0], sl.vector ], 
+                    [ [0,0], sl.vector ],
                 ]).angle;
                 if( angleOmega < Math.PI/2+PROTECTS_KERNEL_SINGULARITY ) {
                     ///restricst speed to single quadrant
@@ -210,7 +210,7 @@
     {
         DposY = DposY || DposY === 0 ? DposY : rg.D.pos[1];
         let xy = rg[ 'approximated-curve' ].curvePoints;
-        let endIx = sData.quadSolved.roMinusIx===null ? xy.length-1 : 
+        let endIx = sData.quadSolved.roMinusIx===null ? xy.length-1 :
                     sData.quadSolved.roMinusIx;
         let roEnd = xy[endIx][1];
         let EposY = DposY - sconf.dRo;

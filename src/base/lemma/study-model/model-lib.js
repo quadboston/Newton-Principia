@@ -94,7 +94,7 @@
         return AB;
     }
 
-    ///given a string XY and registry of points, 
+    ///given a string XY and registry of points,
     ///returns function which calculates circum... on points in the string XY,
     function circumscribeCircleOverChordAndBothNormals_XY(
         rg, //registry which holds shape of keyName XY,
@@ -163,12 +163,12 @@
     //===============================================================
     // \\// scriptable arguments in string
     //===============================================================
-       
+
     function gets_orbit_closest_point(
         r, //distance to which point
         orbitPoints
     ){
-        const SEARCH_POINTS = 1000; 
+        const SEARCH_POINTS = 1000;
         const len = orbitPoints.length;
         const STEP = Math.max( 1, Math.floor( len / SEARCH_POINTS ) );
         const point = orbitPoints[0];

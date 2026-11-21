@@ -97,7 +97,7 @@
         var figAreaStr = mpRounded.concat([
             [x_end.toFixed(2) ,maxY.toFixed(2)],
             [x_start.toFixed(2) ,maxY.toFixed(2)]
-        ]);        
+        ]);
         figAreaStr = figAreaStr.join(" ");
         dr.figureInternalArea.setAttribute( "points",figAreaStr );
         //=============================================
@@ -170,7 +170,7 @@
 
         rectDom.setAttributeNS(null, "points", positionsT.join(" "));
     }
-    
+
 
     function updatePts(dr, i, x)
     {
@@ -200,7 +200,7 @@
             if (view.isCircumscribed) {
                 assignRectValues( dr, dr.circRects.list[i], x, cirY, width, );
                 assignRectValues( dr, dr.circRects_outline.list[i], x, cirY, width, );
-                assignRectValues( dr, dr.differenceRects.list[i], x, cirY, 
+                assignRectValues( dr, dr.differenceRects.list[i], x, cirY,
                         width, insY-cirY );
             }
 
@@ -263,6 +263,6 @@
     //======================================
     // \\// manages visibility
     //======================================
-    
-    
+
+
 }) ();

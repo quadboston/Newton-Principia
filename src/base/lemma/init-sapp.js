@@ -98,7 +98,7 @@
 
         ssF.in_subessay_launch____amode2lemma();
         haff( stdMod, 'sliders_value2pos' );
-        
+
         if( fconf.sappId === 'b3lemma5' ){
             stdMod.media_upcreate();
         }

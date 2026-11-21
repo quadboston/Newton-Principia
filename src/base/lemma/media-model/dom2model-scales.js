@@ -71,7 +71,7 @@
     //===============================
     // //\\ inn2outparent and inverse
     //===============================
-    ///wrong?: converts pos-in-media-scope to 
+    ///wrong?: converts pos-in-media-scope to
     ///pos-in-dom-scope-related-to-media-dom-offset
     ///right?    .... to-media-parent-dom-offset
     function inn2outparent()

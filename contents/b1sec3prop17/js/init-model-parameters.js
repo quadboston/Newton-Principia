@@ -14,7 +14,7 @@
     function init_model_parameters()
     {
         //called once on page load
-        //console.log('init_model_parameters'); 
+        //console.log('init_model_parameters');
 
         var op = sconf.orbitParameters;
 
@@ -25,8 +25,8 @@
         ////creates both curve and its area (defined in makes-orbit.js)
         stdMod.creates_orbitRack();
         sop.curveName = 'orbit-sample';
-        stdMod.creates_orbitRack( sop );  
-        
+        stdMod.creates_orbitRack( sop );
+
         //cor2.
         let Dpos = rg[ 'approximated-curve' ].t2xy( 0 );
         let DVect = mat.unitVector( Dpos );

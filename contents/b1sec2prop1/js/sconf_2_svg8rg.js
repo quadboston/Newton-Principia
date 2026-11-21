@@ -18,7 +18,7 @@
         'logic_phase--none' : 'logic_phase--corollary';
     return;
 
-    
+
     function shapeSconf_2_svg (){
         //path and speeds have master-index, pi, offset pi=0
         toreg( 'path' )( 'pos', [ rg.A.pos ] );

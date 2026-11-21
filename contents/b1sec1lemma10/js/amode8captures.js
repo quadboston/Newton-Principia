@@ -1,5 +1,5 @@
 ( function() {
-    var { amode, rg, sDomF, } 
+    var { amode, rg, sDomF, }
         = window.b$l.apptree({ ssFExportList : { amode2rgstate, }, });
     return;
 
@@ -14,7 +14,7 @@
             'c',
             'd',
             'e',
-            'F', 
+            'F',
             'G',
             'f',
             'g',

@@ -43,7 +43,7 @@
 
         postExecutionCallBack && postExecutionCallBack();
         return;
-        
+
         function clicker()
         {
             let p = this.parentNode;

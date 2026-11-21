@@ -1,10 +1,10 @@
 ( function() {
-    window.b$l.apptree({}).fapp.lemmaConfig = lemmaConfig;    
+    window.b$l.apptree({}).fapp.lemmaConfig = lemmaConfig;
     return;
 
     function lemmaConfig()
     {
-        return {          
+        return {
             codesList : [
                 { src: 'sconf.js' },
                 { src: 'model-customizer.js' },
@@ -13,7 +13,7 @@
                 'txt/latin.txt',
                 'txt/cohen.txt',
             ],
-            sappCodeReference : 'b1sec3prop12',  
+            sappCodeReference : 'b1sec3prop12',
         };
     }
 

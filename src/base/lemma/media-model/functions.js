@@ -25,7 +25,7 @@
         magnitude,  //scales graph [x,f(x)]
     ) {
         magnitude = magnitude || 1;
-        //var fun = aka ssD.repoConf[0].fun; or simple 
+        //var fun = aka ssD.repoConf[0].fun; or simple
         //          one argument returning function,
         return function( x ) {
             var point = fun( x );
@@ -43,7 +43,7 @@
 
     ///todm ... is it ever used?
     ///converts model-function to media-function
-    ///returns "inner-media function" and 
+    ///returns "inner-media function" and
     function modFun2scaledXY({
         fun,        //must return array [x,y]
         magnitudeX, //scales x

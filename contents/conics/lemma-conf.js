@@ -1,15 +1,15 @@
 ( function() {
-    window.b$l.apptree({}).fapp.lemmaConfig = lemmaConfig;    
+    window.b$l.apptree({}).fapp.lemmaConfig = lemmaConfig;
     return;
 
-    
+
     function lemmaConfig()
     {
-        return {          
+        return {
             "contents-list" : [
                 'txt/conics.txt',
             ],
-            sappCodeReference : 'glossary',  
+            sappCodeReference : 'glossary',
         };
     }
 }) ();

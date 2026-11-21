@@ -1,5 +1,5 @@
 (function() {
-    var { } = window.b$l.apptree({ ssFExportList : { 
+    var { } = window.b$l.apptree({ ssFExportList : {
         initDataReg,
     }, });
     return;
@@ -60,7 +60,7 @@
         }
     };
 
-    
+
     function controlPointPositions(xLeft, width, height,
         yBottom = 332) {//Bottom of figure
 

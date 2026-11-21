@@ -8,7 +8,7 @@
     });
 
     ///diff and Euclid tangents are equal
-    var ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] = 
+    var ANGLE_EQUALS = ssD[ "L-equal-d curveRotationAngle" ] =
     {
         "angle": 0,
         "sin": 0,
@@ -124,7 +124,7 @@
             'area-rAd',
             'area-rAcb'
         ].forEach( gname => { rg[ gname ].undisplay = logic_phase !== 'proof'; });
-       
+
         rg[ 'left-curve-AB' ].undisplay = aspect === 'model';
         rg['A,DLeft'].undisplay = aspect === 'model';
         return captured;

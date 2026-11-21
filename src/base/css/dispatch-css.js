@@ -1,7 +1,7 @@
 ( function() {
     var {
         ns, sn, cssp, engCssMs,
-        sconf, fconf, sDomN 
+        sconf, fconf, sDomN
     } = window.b$l.apptree({
     });
     const root = document.documentElement;
@@ -9,7 +9,7 @@
     engCssMs['menu-on-left'] = createsMenuCss;
     return;
 
-    function dispatch_css() 
+    function dispatch_css()
     {
         //ensures css vars are correct
         root.style.setProperty('--main_horizontal_dividor_width_px', sconf.main_horizontal_dividor_width_px + "px");
@@ -63,7 +63,7 @@
         root.style.setProperty('--leftTopLeafLength', leftTopLeafLength);
 
         //===========================
-        // //\\ shuttle 
+        // //\\ shuttle
         //===========================
         // //\\ setting up shuttle CSS for all possible menu leaf choices
         var ret;

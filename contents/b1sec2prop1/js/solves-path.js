@@ -8,7 +8,7 @@
     });
     return;
 
-    
+
     ///=================================================================
     ///
     /// Calculation of path has two distinct models. There are two paths
@@ -144,7 +144,7 @@
                     * timeStep*2;
                 var fy = forceAbs * ruy
                     * timeStep*2;
-                    
+
                 //impulses begin with point B and, naturally,
                 //shifted in one unit from index of paht array
                 impulses[pi-1] = [fx,fy];

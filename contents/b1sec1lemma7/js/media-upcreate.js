@@ -119,8 +119,8 @@
                 pointB      : rg.derotated_b,
                 mmedia      : stdMod.mmedia,
                 magnitude,
-                //addedCssClass: 'tp-arc-Ab tp-both-curves', 
-                addedCssClass: 'tp-arc-Ab', 
+                //addedCssClass: 'tp-arc-Ab tp-both-curves',
+                addedCssClass: 'tp-arc-Ab',
                 addToStepCount : 1,
                 stepsCount : fconf.sappId === "b1sec1lemma8" ? 200 : null,
         });

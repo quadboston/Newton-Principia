@@ -14,12 +14,12 @@
     //=====================================================
     // //\\ makes helpers
     //=====================================================
-    function cli ( $command, $action_descr, $do_print_output = FALSE, $get_output = FALSE ) 
+    function cli ( $command, $action_descr, $do_print_output = FALSE, $get_output = FALSE )
     {
         $res = array();
         $ret = exec( $command, $res, $retcode );
         if( $retcode . '' !== '0' ) {
-            printf( "\n$action_descr:\nproblems in command:\n$command\noutput=" ); 
+            printf( "\n$action_descr:\nproblems in command:\n$command\noutput=" );
             print_r( $res );
             printf( "\n" );
             exit;
@@ -132,7 +132,7 @@
     if( $js_text === FALSE ) exit( "js_text is missed\n" );
 
     //see $versionPattern below
-    $version_re = '#' . 
+    $version_re = '#' .
                         '\s*' .
                     'fapp.version' .
                         '\s*' .
@@ -147,8 +147,8 @@
                     'application version' .
                   '#';
     $matches = array();
-    //http://php.net/manual/en/function.preg-match.php    
-    $test = preg_match( 
+    //http://php.net/manual/en/function.preg-match.php
+    $test = preg_match(
             $version_re,
             $js_text,
             $matches
@@ -168,12 +168,12 @@
     //=====================================================
     // //\\ updates build date
     //=====================================================
-    $oldBuildDatePattern = '#' . 
+    $oldBuildDatePattern = '#' .
                     'fapp.buildDateString\s*=\s*"\d*-\d*-\d*";\s' .
                     '//build date#';
     $today = date('Y-m-d', time());
     $newBuildDatePattern = 'fapp.buildDateString = "' . $today . '"; //build date';
-    $new_content = preg_replace( 
+    $new_content = preg_replace(
             $oldBuildDatePattern,
             $newBuildDatePattern,
             $new_content
@@ -193,7 +193,7 @@
     $postfix_len        = strlen( $archive_postfix );
     $archive_postfix    = $archive_postfix ? '-' .
                           $archive_postfix : '';
-    $archive_postfix    = preg_replace( 
+    $archive_postfix    = preg_replace(
                             '#\s+#',
                             '-',
                             $archive_postfix );

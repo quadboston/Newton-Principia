@@ -9,7 +9,7 @@
             createsCaptureWindow,
         },
     });
-    return;    
+    return;
 
 
 
@@ -20,7 +20,7 @@
     {
         ///this thing collects captured states:
         /// api: capturePoint - count of currently captured states
-        ///      captured - 
+        ///      captured -
         ///      pix in code below - id of captured data in string form
         var cap = fapp.captureWind = { capturePoint : 0, captured:{} };
 

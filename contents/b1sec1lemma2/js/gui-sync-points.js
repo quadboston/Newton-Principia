@@ -74,7 +74,7 @@
                     break;
             case 3 : var pname = 'D';
                     var itemx = posDx;
-                     ////optional names   
+                     ////optional names
                      var pnameFun = 'd';
                     var pnameTop_ = 'o'; //min of the interval
                     rg[ pnameTop_ ].pos[0] = (posEx - xoff) / scale;
@@ -82,7 +82,7 @@
                      //var pnameLow_ = 'G'; //min of the interval
                      //rg[ pnameLow_ ].pos[0] = (posDx - xoff) / scale;
                      //rg[ pnameLow_ ].pos[1] = insPy;
-                     
+
                      //--------------------------------------------
                      // //\\ making low boundary of difference-rect
                      //--------------------------------------------
@@ -123,7 +123,7 @@
                     ////sets upper boundary of the bar
                     rg[ pnameFun ].pos[1] = cirPy;
                 } else {
-                    rg[ pnameFun ].pos[1] = 
+                    rg[ pnameFun ].pos[1] =
                         -( numModel.curveFun( dr, itemx ) - yoff ) / scale;
                 }
                 rg[ pnameFun ].pos[0] = rg[ pname ].pos[0];
@@ -142,7 +142,7 @@
         inscribedFeatures.forEach(function(item){
             rg[item].undisplay = !showInscribed;
         });
-        const circumscribedFeatures = 
+        const circumscribedFeatures =
             ['f','l','m','n','o','la','mb','nc','od',
                 'Aa','aK','lb','mc','nd','oE'];
         circumscribedFeatures.forEach(function(item){
@@ -161,7 +161,7 @@
         var yoff = sconf.originY_onPicture;
         var scale = sconf.mod2inn_scale;
         let dv = dr.yVariations;
-        
+
         rg.F.pos[1] = -( dv.maxY - yoff ) / scale;
         rg.E.pos[1] = -( dv.maxY - yoff ) / scale;
         var { left, right, bottom, top, } = dr.widestRect;
@@ -187,5 +187,5 @@
         stdMod.setsDifferenceBarsMonotonity(dr);
         ( dv.chchosen.dir <= 0 ) && stdMod.swapMonotonity(dr);
     }
-    
+
 }) ();

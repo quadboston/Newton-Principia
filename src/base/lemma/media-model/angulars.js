@@ -134,7 +134,7 @@
 
 
             // //\\ todm ... mod2inn_scale must be incapsulated in model
-            //instead we are converting from model to media manually here 
+            //instead we are converting from model to media manually here
             //it is very annoying to always remember to
             //make a correction with MONITOR_Y_FLIP ...
             //todm ... do a better programming

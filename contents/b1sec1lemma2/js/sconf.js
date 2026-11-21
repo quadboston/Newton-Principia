@@ -1,7 +1,7 @@
 ( function () {
     var { sn, nspaste, fapp, fconf, sconf, ssF, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf, }, });
-    
+
     var stdL2       = sn('stdL2', fapp );
     var study       = sn('study', stdL2 );
     var sdata       = sn('sdata', study );
@@ -15,7 +15,7 @@
     sdata.view = { isInscribed:1, isCircumscribed:1, isFigureChecked:1 };
     //=====================================
     // \\// presets data
-    //=====================================    
+    //=====================================
     return;
 
 
@@ -63,7 +63,7 @@
 
         // radius of points
         // only works on solid green points, not draggers
-        // CTRL_RADIUS, MOVABLE_BASE_RADIUS set in sconf-common.js 
+        // CTRL_RADIUS, MOVABLE_BASE_RADIUS set in sconf-common.js
         // drawn by fill alone: Firefox leaves a hole in the middle of
         // a circle whose stroke is much wider than its radius
         sconf.pointDecoration.r = 2;
@@ -253,7 +253,7 @@
                    },
             },
             { oE : {
-                        pcolor : [0,0,0,0], 
+                        pcolor : [0,0,0,0],
                    },
             },
 
@@ -302,7 +302,7 @@
                    },
             },
         ];
-        
+
         nspaste( sconf, {
             topicColors_elected : predT,
             originalPoints,

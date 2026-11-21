@@ -3,7 +3,7 @@
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
-    
+
     function init_conf()
     {
         //----------------------------------
@@ -24,10 +24,10 @@
         var pointe          = [ 28, 46 ];
 
         var modorInPicX = pointA[0];
-        var modorInPicY = pointA[1]; 
+        var modorInPicY = pointA[1];
         //.set it from graph editor
         var pictureActiveArea = pointA[1] - 46;
- 
+
         var mod2inn_scale = pictureActiveArea / APP_MODEL_Y_RANGE;
         var originX_onPicture = pointA[0];
         var originY_onPicture = pointA[1];
@@ -130,64 +130,64 @@
 
         var originalPoints =
         {
-            'A' : { 
+            'A' : {
                 pos         : pointA,
                 pcolor      : given,
                 letterAngle : -90,
             },
-            'e' : { 
+            'e' : {
                 pos         : pointe,
                 pcolor      : proof,
                 letterAngle : 90,
             },
 
-            'B' : { 
+            'B' : {
                 pcolor      : given,
                 letterAngle : 0,
             },
-            'C' : { 
+            'C' : {
                 pcolor      : given,
                 letterAngle : -45,
             },
-            'D' : { 
+            'D' : {
                 pcolor      : given,
                 letterAngle : 215,
             },
-            'E' : { 
+            'E' : {
                 pcolor      : given,
                 letterAngle : 180,
             },
-            'b' : { 
+            'b' : {
                 pcolor      : proof,
                 letterAngle : 0,
             },
-            'c' : { 
+            'c' : {
                 pcolor      : proof,
                 letterAngle : -90,
             },
-            'd' : { 
+            'd' : {
                 pcolor      : proof,
                 letterAngle : 180,
             },
 
-            'F' : { 
+            'F' : {
                 pcolor      : given,
                 letterAngle : 135,
             },
-            'G' : { 
+            'G' : {
                 pcolor      : given,
                 letterAngle : 45,
             },
-            'f' : { 
+            'f' : {
                 pcolor      : proof,
                 letterAngle : 90,
             },
-            'g' : { 
+            'g' : {
                 pcolor      : proof,
                 letterAngle : 90,
             },
 
-            'pivotPoint1' : { 
+            'pivotPoint1' : {
                 pcolor      : proof,
                 doPaintPname : false,
                 letterAngle : 90,
@@ -215,7 +215,7 @@
             { 'AB' : { pcolor : given } },
             { 'AC' : { pcolor : given } },
             { 'AD' : { pcolor : given } },
-            { 'AE' : { pcolor : given, 
+            { 'AE' : { pcolor : given,
                 'stroke-width' : 1, } },
             { 'AG' : { pcolor : given } },
             { 'EC' : { pcolor : given } },

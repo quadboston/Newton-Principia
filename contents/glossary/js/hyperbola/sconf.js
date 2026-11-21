@@ -1,6 +1,6 @@
 
 ( function() {
-    var { ns, sn, fconf, sconf, stdMod, topicColors_repo, } = 
+    var { ns, sn, fconf, sconf, stdMod, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     var op = sn( 'orbitParameters', sconf );
     return;
@@ -33,7 +33,7 @@
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
-        
+
         fconf.DRAGGER_TOLERANCE = 15; // distance where crosshair appears
 
         //--------------------------------------
@@ -186,7 +186,7 @@
                 pcolor : proofColor,
                 letterAngle : -120,
                 draggableX  : true,
-            },            
+            },
             AA : { // opposite A
                 undisplayAlways : true,
                 doPaintPname : false,
@@ -195,7 +195,7 @@
                 letterRotRadius : 20,
                 pcolor : proofColor,
                 cssClass: 'subessay--solution',
-            },            
+            },
             BB : { // opposite B
                 doPaintPname : false,
                 pcolor : proofColor,
@@ -261,7 +261,7 @@
                 pcolor : proofColor,
                 letterRotRadius : 20,
                 cssClass: 'logic_phase--proof',
-            },            
+            },
             x : {
                 caption : "𝑥",
                 pcolor : proofColor,
@@ -275,7 +275,7 @@
                 letterRotRadius : 22,
                 cssClass: 'subessay--solution',
             },
-            
+
             H : {
                 pcolor : proofColor,
                 letterAngle : -90,
@@ -305,8 +305,8 @@
                     }, },
             { 'PZ' : { pcolor : proofColor,
                         }, },
-            { 'PR' : { pcolor : proofColor, 
-                        'stroke-width' : 2, 
+            { 'PR' : { pcolor : proofColor,
+                        'stroke-width' : 2,
                         captionShiftNorm : -18,
                         cssClass: 'subessay--solution',}, },
             { 'SP' : { pcolor : proofColor,
@@ -314,7 +314,7 @@
             { 'B,BB' : { pcolor : proofColor,
                         cssClass: 'subessay--solution',}, },
 
-            // triangle            
+            // triangle
             { CA : { pcolor : proofColor,
                         cssClass: 'subessay--solution',}, },
             { CB : { pcolor : proofColor,
@@ -333,7 +333,7 @@
                         cssClass: 'subessay--solution',}, },
             { Px : { pcolor : proofColor,
                         cssClass: 'subessay--solution',}, },
-            
+
             { EP : { pcolor : proofColor,
                         cssClass: 'subessay--solution',}, },
             { HI : { pcolor : proofColor,
@@ -350,7 +350,7 @@
                         cssClass: 'subessay--solution',}, },
             { PH : { pcolor : proofColor,
                         cssClass: 'subessay--iii48-hyperbola',}, },
-            
+
             { QT : { pcolor : estimatedForceColor,
                         cssClass: 'subessay--solution',}, },
             { PT : { pcolor : proofHover,

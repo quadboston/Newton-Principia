@@ -59,5 +59,5 @@
             }
             !dontRun_model_upcreate && haff( stdMod, 'model_upcreate' );
         }
-    }    
+    }
 })();

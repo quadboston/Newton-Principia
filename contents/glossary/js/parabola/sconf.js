@@ -1,5 +1,5 @@
 ( function() {
-    var { ns, sn, fconf, sconf, stdMod, topicColors_repo, } = 
+    var { ns, sn, fconf, sconf, stdMod, topicColors_repo, } =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     var op = sn( 'orbitParameters', sconf );
     return;
@@ -32,7 +32,7 @@
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
-        
+
         fconf.DRAGGER_TOLERANCE = 15; // distance where crosshair appears
 
         //--------------------------------------
@@ -189,7 +189,7 @@
                 letterAngle : -45,
                 letterRotRadius : 15,
                 cssClass: 'subessay--latus-rectum-parabola',
-           },            
+           },
             x : {
                 caption : "𝑥",
                 pcolor : proofColor,
@@ -270,7 +270,7 @@
             B : {
                 letterRotRadius : 20,
                 pcolor : bodyColor,
-            },             
+            },
             BB : { // opposite B
                 letterAngle : 90,
                 undisplayAlways : true,
@@ -280,7 +280,7 @@
             E : {
                 pcolor : proofColor,
                 letterRotRadius : 20,
-            }, 
+            },
             I : {
                 pcolor : proofColor,
                 letterRotRadius : 20,
@@ -299,9 +299,9 @@
             { gP : {pcolor : proofHover} },
             { Pv :  showForLatus },
             { Qv :  showForLatus },
-            { MP :  showForiii48 }, 
-            { SM :  showForiii48 }, 
-            { SP :  showForiii48 }, 
+            { MP :  showForiii48 },
+            { SM :  showForiii48 },
+            { SP :  showForiii48 },
 
             // tangent
             { PZ : { pcolor : proofColor,

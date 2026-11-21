@@ -18,7 +18,7 @@
         mat.polar_ellipse = polar_ellipse;
     })();
 
-    
+
 
     ///Returns:  [] if no solutions
     ///          [ number ] if one solution
@@ -59,7 +59,7 @@
     mat.ellipse = ellipse;
     return;
 
-    
+
     function polar_ellipse({
         q,      //angle
         q0,     //starting angle
@@ -72,7 +72,7 @@
         const sinFi = Math.sin( fi );
         const cosQ = Math.cos(q);
         const sinQ = Math.sin(q);
-        
+
         const e1 = 1-e*cosFi;
         const inve = Math.abs(e1) < 1e-30 ? 1e+30 : 1/e1;
         let ro = latus2 * inve;
@@ -107,7 +107,7 @@
         var tan = [ -sin*a, cos*b ]; //=dr/dt, r is a real coordinate,
         var wwt = Math.sqrt( tan[0]*tan[0] + tan[1]*tan[1] );
         tan = [ tan[0]/wwt, tan[1]/wwt ]; //=unit tangent
-        
+
         // //\\ rotates r and tan if rotationRads is  given,
         var tanX = tan[0] * rC - tan[1] * rS;
         var tanY = tan[0] * rS + tan[1] * rC;

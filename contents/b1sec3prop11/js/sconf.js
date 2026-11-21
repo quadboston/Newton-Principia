@@ -1,5 +1,5 @@
 ( function() {
-    var { ns, fconf, sconf, topicColors_repo, } = 
+    var { ns, fconf, sconf, topicColors_repo, } =
         window.b$l.apptree({  ssFExportList : { init_conf } });
     return;
 
@@ -31,7 +31,7 @@
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
-        
+
         fconf.DRAGGER_TOLERANCE = 15; // distance where crosshair appears
         sconf.enableStudylab = false;
 
@@ -260,7 +260,7 @@
                 undisplayAlways : true,
                 doPaintPname : false,
                 cssClass: 'subessay--ordinate',
-            },         
+            },
 
             // latus rectum
             L : {
@@ -281,7 +281,7 @@
                 pcolor : sunColor,
                 letterAngle : -115,
                 letterRotRadius : 35,
-            },            
+            },
 
             A : {
                 pcolor : proofColor,
@@ -321,16 +321,16 @@
             { xP : { pcolor : proofHover,
                 cssClass: 'subessay--solution',
              },},
-            { EP : { pcolor : proofHover, 
+            { EP : { pcolor : proofHover,
                 cssClass: 'logic_phase--proof',
             },},
-            { ES : { pcolor : proofHover, 
+            { ES : { pcolor : proofHover,
                 cssClass: 'logic_phase--proof',
             },},
             { EI : { pcolor : proofHover,
                 cssClass: 'subessay--solution',
              },},
-            { CE : { pcolor : proofColor, 
+            { CE : { pcolor : proofColor,
                 cssClass: 'logic_phase--proof',
             },},
             { PH : { pcolor : proofColor,
@@ -371,14 +371,14 @@
              },},
             // ^^ lines that would otherwise be missing in some configurations
 
-            { 'SP' : { pcolor : estimatedForceColor, 
+            { 'SP' : { pcolor : estimatedForceColor,
                 cssClass: 'subessay--goal logic_phase--proof',
             },},
-            { 'SQ' : { pcolor : proofColor, 
+            { 'SQ' : { pcolor : proofColor,
                 cssClass: 'subessay--goal',
             },},
 
-            { 'L,LL' : { 
+            { 'L,LL' : {
                 pcolor : infoHover,
                 captionShiftNorm : 22, lposYSugar : 3
             }, },

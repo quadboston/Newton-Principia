@@ -3,7 +3,7 @@
     var mat     = sn('mat');
     var bezier  = sn('bezier');
 
-    
+
 
     bezier.weightify        = weightify;
     bezier.weightify        = weightify;
@@ -14,7 +14,7 @@
     bezier.bezier2upper     = bezier2upper;
     bezier.bezier2lower     = bezier2lower;
     bezier.t_2_3Dpoint      = t_2_3Dpoint;
-    
+
     bezier.preparesOptimizedBezier = preparesOptimizedBezier;
     return;
 
@@ -65,8 +65,8 @@
         rack.updatesArrayOfPoints = updatesArrayOfPoints;
         rack.curvePivots2bezierPivots = curvePivots2bezierPivots();
         return rack;
-        
-        
+
+
         function fun( t )
         {
             let pivots = rack.pivots;
@@ -85,7 +85,7 @@
             ///accuracy in summation from small polinom members,
             ///will change the order of summation,
             var large_t = t > 0.5;
-            
+
             let rankBase = rack.rankBase;
             var polScale = large_t ? t : (1-t);
             var multiplier = (1-polScale)/polScale;
@@ -96,7 +96,7 @@
             let coefficients = rack.coefficients;
             for( let ii=0; ii<=rank; ii++ ) {
                 //changes order of summation to from small members first
-                let i = large_t ? ii : rank-ii; 
+                let i = large_t ? ii : rank-ii;
                 ////algo: Poly = ((( a*x + b)*x+...
                 if( dim === 1 ) {
                     result = result * multiplier + coefficients[i];
@@ -131,7 +131,7 @@
                 }
             }
         }
-        
+
         ///calculates partial derivatives d(BezierPivot)/d(CurvePivot),
         ///their dependency is actually linear
         function curvePivots2bezierPivots()
@@ -160,7 +160,7 @@
             }
             return res;
         }
-        
+
         ///"sugar-function"
         ///makes points uniformely distributed
         function updatesArrayOfPoints( arr, n )
@@ -173,7 +173,7 @@
             }
         }
     }
-    
+
     ///Here is another work platform, based on recurrent formula
     ///for calculation.
     ///
@@ -202,7 +202,7 @@
     {
         var plen = pivots.length;
         return points.map( function( paramT ) {
-                    return [ weightify( paramT, pivots, 0, 0, plen ), 
+                    return [ weightify( paramT, pivots, 0, 0, plen ),
                              weightify( paramT, pivots, 1, 0, plen )
                     ];
         });
@@ -213,7 +213,7 @@
     ///=============================================================
     function parT2point( parT, pivots )
     {
-        return [ weightify( parT, pivots, 0, 0, pivots.length ), 
+        return [ weightify( parT, pivots, 0, 0, pivots.length ),
                  weightify( parT, pivots, 1, 0, pivots.length )
         ];
     }
@@ -225,7 +225,7 @@
     function t_2_3Dpoint( parT, pivots )
     {
         return [
-            weightify( parT, pivots, 0, 0, pivots.length ), 
+            weightify( parT, pivots, 0, 0, pivots.length ),
             weightify( parT, pivots, 1, 0, pivots.length ),
             weightify( parT, pivots, 2, 0, pivots.length )
         ];
@@ -240,7 +240,7 @@
         /// Calculates: crossing of line and bezier curve.
         ///=============================================================
         Input: Q,D line pivots
-               B,C second and third bezier pivots; 
+               B,C second and third bezier pivots;
                    first must be A = [0,0]
         Returns: [t0, t1] - bezier parameters of crossing, sorted by
                             ascending,
@@ -261,7 +261,7 @@
 
             then multiplying above by Dx:
             Dx*Fy*t*t + Dx*Gy*t - Dx*Qy = Dy * Dx*q
-            
+
             F'x*t*t + G'x*t - Q'x = Dx*Dy*q =
             F'y*t*t + G'y*t - Q'y
             where
@@ -308,7 +308,7 @@
             var t = solution[0];
             if( t < 0 || t > 1 ) { solution = []; }
         } else if( solution.length === 2 ) {
-            if( solution[0].length ) { 
+            if( solution[0].length ) {
                 ////complex solution
                 solution = [];
             } else {
@@ -329,9 +329,9 @@
                tS - splitter
         Returns: B', C' pivots of zero-based subbezier
 
-        Context: 
+        Context:
                 P = 2t(1-t)B + ttC = tt(C-2B) + 2Bt = att+bt
-            Sought: 
+            Sought:
                 P = 2s(1-s)B' + ssC' (*)
             Proof:
                 Let: t' = tS, then s = t/t'
@@ -346,18 +346,18 @@
     {
         var sm = mat.sm;
         var u = tS;
-        return [ 
+        return [
             sm(tS,B),
             sm(u*u, sm(C,-2,B), 2*u, B)
         ];
 
         /*
         ///explicit working variant
-        return [ 
+        return [
             [ B[0]*tS, B[1]*tS ],
             [ tS*(tS*(C[0]-2*B[0])+2*B[0]),
               tS*(tS*(C[1]-2*B[1])+2*B[1])
-            ]  
+            ]
         ];
         */
     }
@@ -370,7 +370,7 @@
     // //\\ zeroBezier2upperSubbezier
     //***********************************************************
     /*
-        Action:     creates fragment of bezier curve above the 
+        Action:     creates fragment of bezier curve above the
                     division parameter T
         Inputs:     T - division point
                     B,C - poivots of zero-based-bezier Bz,
@@ -408,7 +408,7 @@
 
 
     ///The same as zeroBezier2upperSubbezier( B, C, T ), but
-    ///with 3 input pivots with A in an orbitrary position     
+    ///with 3 input pivots with A in an orbitrary position
     function bezier2upper( pivots, T )
     {
         var sm = mat.sm;
@@ -436,7 +436,7 @@
 
 
     ///The same as zeroBezier2zeroSubbezier( B, C, T ), but
-    ///with 3 input pivots with A in an orbitrary position     
+    ///with 3 input pivots with A in an orbitrary position
     function bezier2lower( pivots, T )
     {
         var sm = mat.sm;

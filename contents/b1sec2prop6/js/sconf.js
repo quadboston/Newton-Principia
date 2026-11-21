@@ -1,5 +1,5 @@
 ( function() {
-    var { ns, fconf, sData, sconf, topicColors_repo,} = 
+    var { ns, fconf, sData, sconf, topicColors_repo,} =
         window.b$l.apptree({ ssFExportList : { init_conf } });
     return;
 
@@ -31,7 +31,7 @@
         sconf.TP_OPACITY_FROM_fixed_colors = true;
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 30;
-        
+
         fconf.DRAGGER_TOLERANCE = 10; // distance where crosshair appears
         sconf.enableStudylab = false;
 
@@ -61,7 +61,7 @@
         //overrides hover_width for texts
         //for activation, needs class "hover-width" in element
         sconf.text_nonhover_width   = 0.2;
-        sconf.text_hover_width      = 0.5; 
+        sconf.text_hover_width      = 0.5;
         // \\// principal tp-css pars
 
         sconf.default_tp_lightness = 30;
@@ -175,7 +175,7 @@
             [217,132],
             [102, 180.1],
             [51,238 ],
-            [24.2, 315] 
+            [24.2, 315]
         ];
         sconf.rgPq = 0.270;
         //sconf.tForSagitta0 = 0.168;

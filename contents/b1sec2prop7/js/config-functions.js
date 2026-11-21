@@ -1,5 +1,5 @@
 ( function() {
-    var { mat, stdMod, sconf, } 
+    var { mat, stdMod, sconf, }
         = window.b$l.apptree({ stdModExportList : { recreates_q2xy, }, });
     return;
 
@@ -12,7 +12,7 @@
         const q0 = sconf.orbit_q_start;
         stdMod.q2xy  = q2xy;
         return;
-        
+
         function q2xy( q )
         {
             q += q0;

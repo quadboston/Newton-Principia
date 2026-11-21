@@ -14,7 +14,7 @@
     function create_digital_legend_for_logic_phase( logic_phase )
     {
         //called once per phase, all on page load
-        //console.log('create_digital_legend'); 
+        //console.log('create_digital_legend');
 
         ////********************************************************************
         ////legendScript-format:
@@ -72,7 +72,7 @@
         function updatesDataInCell({ rowIx, clusterIx, })
         {
             //called 12x when switching to tab with table, then 4x each time model moves
-            //console.log('updates table'); 
+            //console.log('updates table');
 
             return ssF.dataSourceParsed1__2__updatesDataInCell({
                 rowIx,
@@ -80,7 +80,7 @@
                 legendScriptParsed,
             })
         }
-        
+
     }
     //=========================================
     // \\// creates logic_phase table

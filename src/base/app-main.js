@@ -329,7 +329,7 @@ const {
 
         fmethods.setupEvents(); // sets up resize event
         fmethods.fullResize(); // initial element sizing for page layout
-        
+
         fmethods.setupCapturerEvents();
     }
 

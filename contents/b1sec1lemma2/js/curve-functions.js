@@ -68,7 +68,7 @@
         //used to calculate the curve often yield a relation (more than one y
         //per x) which this "cleans up".
 
-        
+
         const ptsUntransformed = dr.ctrlPts.untransformed;
         const DRAGGABLE_END_POINTS = dr.ctrlPts.DRAGGABLE_END_POINTS;
         const CURVE_SEGMENTS_APPROXIMATE = sconf.CURVE_SEGMENTS_APPROXIMATE;
@@ -108,7 +108,7 @@
                 sectionIndices.push({indexStart, indexEnd});
             }
         });
-        
+
         //Calculate some figure data
         const fP = dr.figureParams;
         fP.minX = mp[0].x;
@@ -204,7 +204,7 @@
             {x: ptFirst.x - figureWidth * 0.05,
              y: ptFirst.y},
             ...sorted,
-            {x: ptLast.x, 
+            {x: ptLast.x,
              y: ptLast.y + figureHeight * 0.05}
         ];
 
@@ -218,7 +218,7 @@
             //Default points.
             const p0 = {...extendedPoints[i]};
             const p1 = {...extendedPoints[i + 1]};
-            const p2 = {...extendedPoints[i + 2]}; 
+            const p2 = {...extendedPoints[i + 2]};
             const p3 = {...extendedPoints[i + 3]};
 
             //Adjust extended points as needed
@@ -267,12 +267,12 @@
     }
 
 
-    
+
     function catmullRom(t, p0, p1, p2, p3) {
         //Catmull-Rom spline interpolation for smooth curves
         const t2 = t * t;
         const t3 = t2 * t;
-        
+
         return 0.5 * (
             (2 * p1) +
             (-p0 + p2) * t +
@@ -296,7 +296,7 @@
 
         const ptFirst = section[0];
         const ptLast = section[section.length - 1];
-        
+
         const points = [];
 
 
@@ -330,7 +330,7 @@
                     //just skip the remaining points.
                     break;
                 }
-                
+
                 indexLine = data.indexLine;
                 points.push([x, data.y]);
             }

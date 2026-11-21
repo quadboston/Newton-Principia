@@ -32,7 +32,7 @@
         printAxisDigits,
             printAxisXDigits,
             printAxisYDigits,
-        
+
         drawDecimalX,
         drawDecimalY,
         rangeY,
@@ -180,7 +180,7 @@
                     var prnDigitalSymbols = printAxisXDigits;
                 }
             }
-            
+
             var decUnitlog     = Math.max(
                 Math.floor( Math.log10( rangeA ) ),
                 Math.floor( Math.log10( Math.abs( minA ) ) - 13 ),
@@ -280,7 +280,7 @@
                                     var effectiveAxis = extraAxisY;
                                     var fontStroke = colorThreadArray[ aIx ];
                                     var fontFill = colorThreadArray[ aIx ];
-                                    var x = pivots[0][0] + marginX + 
+                                    var x = pivots[0][0] + marginX +
                                             dimB + (aIx-1) * EXTRA_AXIS_OFFSET_STEP +
                                             effectiveAxis.fontShiftX;
                                 }

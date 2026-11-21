@@ -64,7 +64,7 @@
         tr.highlight = rgbToArray("rgb(234, 234, 234)");
 
         // sun/center of force (S or C in propositions)
-        tr.sunColor    = rgbToArray("rgb(202, 151, 0)"); 
+        tr.sunColor    = rgbToArray("rgb(202, 151, 0)");
         tr.givenColor       = rgbToArray("rgb(106, 49, 249)");
         tr.proofColor       = rgbToArray("rgb(0, 133, 0)");
         tr.forceColor       = rgbToArray("rgb(149, 70, 24)");
@@ -76,8 +76,8 @@
 
 
         function setDerivedColors() {
-            // Hover colors are only visibile when hovering over 
-            // corresponding text. Used when they overlap with 
+            // Hover colors are only visibile when hovering over
+            // corresponding text. Used when they overlap with
             // other colors which take priority
             tr.curvature = tr.infoColor;
             tr.infoHover = [...tr.infoColor, 0, 1];
@@ -141,7 +141,7 @@
 
             //0.6-makes opacity points do look "non-solid"
             //applied to 'originalPoints' and 'linesArray' in page's sconf.js
-            TP_OPACITY_LOW_POINT : 1, 
+            TP_OPACITY_LOW_POINT : 1,
             TP_OPACITY_HIGH : 1,
 
             // //\\ remove when lemmas
@@ -203,7 +203,7 @@
             //Prop 1 (Shared with Prop 2)
             tr["kepler-triangle-odd"]  = [...tr.givenColor.slice(0, 3), 0.35, 0.7];
             tr["kepler-triangle-even"] = rgbToArray("rgb(120, 74, 237)", 0.35, 0.7);
-        
+
             //Prop 2 corollaries
             tr.deviationAreaColor = rgbToArray("rgb(169, 85, 90)"); //Description of areas triangle P2 proof tab
         }

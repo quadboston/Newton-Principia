@@ -23,12 +23,12 @@
         sconf.default_tp_lightness = 30;
         sconf.diagramPannerDisabled = !false;
         sconf.skipGenDragList = !false; //false is for media mover,
-        
-        
+
+
         //todm: this disables functionality ... not only CSS:
         fconf.appDecor.helpBox_opacity0             = true;
         fconf.appDecor.idleHelpButtonTooltip        = '';
-        
+
         //to make legend nicely seen, the legend needs
         //own css independent of rectangulars:
         //then so, we can decreas opacities below for nicer diagram:
@@ -36,7 +36,7 @@
         //these are additional over high and low opacities in color itself:
         sconf.ANCHOR_TOPIC_OPACITY_NOT_IN_FOCUS = 0.8;
         sconf.ANCHOR_TOPIC__OPACITY_IN_FOCUS = 1;
-        
+
         //no dice: sconf.default_tp_lightness = 0;
 
         //=====================================
@@ -78,7 +78,7 @@
             CURVE_SEGMENTS_APPROXIMATE : 500,
 
             default_tp_stroke_width : 4, // when hovering text
-            //rubbish: 
+            //rubbish:
             //dragPointVisibilityToggling  : false, //show or hide drag points by mouse-enter
         });
 

@@ -1,5 +1,5 @@
 ( function() {
-    window.b$l.apptree({}).fapp.lemmaConfig = lemmaConfig;    
+    window.b$l.apptree({}).fapp.lemmaConfig = lemmaConfig;
     return;
 
 

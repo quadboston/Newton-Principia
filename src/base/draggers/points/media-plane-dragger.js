@@ -27,7 +27,7 @@
         var pos = [ -11111, -11111 ]; //fake
         var rgX = sDomF.params__2__rgX8dragwrap_gen_list({
             pname,
-            pos, 
+            pos,
             acceptPos : () => true,
             orientation : 'rotate',
             nospinner : true,
@@ -57,7 +57,7 @@
         );
     }
 
-    
+
     // reset model back to its original [x,y] position
     function resetModelPos() {
         nspaste( rg[ "diagram-panner" ].achieved,

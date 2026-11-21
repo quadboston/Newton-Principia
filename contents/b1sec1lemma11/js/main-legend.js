@@ -29,11 +29,11 @@
         ////legendScript-format: 'topic,caption,JS-expression-of-value-in-local-JS-context'
 
         var legendScriptParsed = [
-            [['BD-bd', `<span style="color:rgb(${given})">BD</span> : <span style="color:rgb(${proof})">bd</span>`, 'rg.BD.abs/rg.bd.abs']], 
+            [['BD-bd', `<span style="color:rgb(${given})">BD</span> : <span style="color:rgb(${proof})">bd</span>`, 'rg.BD.abs/rg.bd.abs']],
             [['AB2-Ab2', `<span style="color:rgb(${given})">AB²</span> : <span style="color:rgb(${proof})">Ab²</span>`, 'rg.AB.abs2/rg.Ab.abs2']],
-            [[ 
-                'ratio', 
-                `(<span style="color:rgb(${given})">BD</span> : <span style="color:rgb(${proof})">bd</span>) : (<span style="color:rgb(${given})">AB²</span> : <span style="color:rgb(${proof})">Ab²</span>)`, 
+            [[
+                'ratio',
+                `(<span style="color:rgb(${given})">BD</span> : <span style="color:rgb(${proof})">bd</span>) : (<span style="color:rgb(${given})">AB²</span> : <span style="color:rgb(${proof})">Ab²</span>)`,
                 '(rg.BD.abs/rg.bd.abs) / (rg.AB.abs2/rg.Ab.abs2)'
             ]]
         ];

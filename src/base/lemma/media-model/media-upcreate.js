@@ -114,7 +114,7 @@ const { ns, sn, haz, haff, $$, eachprop,
             //dragWraps.forEach
             stdMod.medD8D && stdMod.medD8D.updateAllDecPoints();
         }
-        
+
         //**************************************************
         // //\\ note, former lemmas
         //**************************************************

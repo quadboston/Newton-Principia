@@ -1,6 +1,6 @@
 
 ( function() {
-    var { sn, eachprop, nspaste, topicColors_repo, fconf, sconf, } 
+    var { sn, eachprop, nspaste, topicColors_repo, fconf, sconf, }
         = window.b$l.apptree({ ssFExportList : { init_conf } });
     var op = sn( 'orbitParameters', sconf );
     return;
@@ -63,7 +63,7 @@
 
         //making size to better fit lemma's diagram
         fconf.LETTER_FONT_SIZE_PER_1000 = 20;
-        
+
         fconf.DRAGGER_TOLERANCE = 12; // distance where crosshair appears
 
         //--------------------------------------

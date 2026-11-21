@@ -15,7 +15,7 @@
         stdMod.q2xy  = q2xy;
         stdMod.computeOrbitXCenter = computeOrbitXCenter;
         return;
-        
+
         function q2xy( q )
         {
             //denomenator
@@ -67,7 +67,7 @@
             //therefore temporarily adjust it and calculate the maximum forces.
             stdMod.establishesEccentricity(op.eccentricityMax);
             stdMod.rebuilds_orbit(true);
-            
+
             //Reset eccentricity
             stdMod.establishesEccentricity(eccentricityStored);
 

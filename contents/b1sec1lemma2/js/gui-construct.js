@@ -103,8 +103,8 @@
     //======================================================
 
 
-    
-    
+
+
     //======================================================
     // //\\ figure, base, and transform contol points
     //======================================================
@@ -133,7 +133,7 @@
         let isFig = !!view.isFigureChecked;
         let isIn = !!view.isInscribed;
         let isCir = !!view.isCircumscribed;
-        
+
         // control points
         if( onCurve ) {
             var cpList = dr.ctrlPts.list;
@@ -160,7 +160,7 @@
         function resetPoint(pt) {
             const pdom = pt.dom;
             pdom.style.fill = 'rgba(255,255,255,1)'; //makes the point hollow
-             const ptColor = 
+             const ptColor =
                 pt.type === "base" || pt.index == 0 || pt.index == 3 ?
                 topicColors_repo.figureColor :
                 topicColors_repo.infoColor ;
@@ -205,7 +205,7 @@
         const ptLast = ptsUntransformed[ptsUntransformed.length - 1];
         if (!ptFirst || !ptLast)
             return;
-        
+
         //Set pos to transform relative to.
         transforms.origin = [ptFirst.x, ptLast.y];
 
@@ -231,9 +231,9 @@
     // \\// figure, base, and transform contol points
     //======================================================
 
-    
-    
-    
+
+
+
     //==================================================
     // //\\ common shape
     //      dom without numeric parameters
@@ -248,7 +248,7 @@
         stdMod.svgScene.appendChild( sdom );
         return sdom;
     }
-    
+
     ///does only dom and bookkeeper, dr.movables[ key ] = draggable,
     ///creates svg-circle-tag with unit-transform and and appends it to svg-root
     function makeDragP_tpl( dr, type, i )
@@ -282,11 +282,11 @@
         pdom.style[ 'stroke-width' ] = '1px';
         pt.x = pos[0];
         pt.y = pos[1];
-        
+
         return pt;
     }
     //==================================================
     // \\// common shape
     //==================================================
-    
+
 }) ();
