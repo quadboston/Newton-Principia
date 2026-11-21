@@ -28,8 +28,8 @@
         var op = vop || sconf.orbitParameters;
 
         // specify these in vop to draw segment, otherwise full ellpse will be drawn
-        op.qStart = op.qStart ? op.qStart: -Math.PI; // these vals are used here & graph-array
-        op.qEnd = op.qEnd ? op.End: Math.PI;
+        op.qStart = op.qStart ? op.qStart : -Math.PI; // these vals are used here & graph-array
+        op.qEnd = op.qEnd ? op.End : Math.PI;
 
         //:only css names
         var curveName = op.curveName ? op.curveName : 'orbit';

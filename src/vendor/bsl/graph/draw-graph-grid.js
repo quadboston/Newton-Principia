@@ -193,7 +193,7 @@
                 var gcount = 0;
                 var labelCountEstimation = Math.floor((maxA - linesStart) / decUnit);
 
-                for (var gline=linesStart; gline<=maxA; gline+=decUnit) {
+                for (var gline = linesStart; gline <= maxA; gline += decUnit) {
 
                     //======================================================
                     // //\\ prepares grid and axes params
@@ -244,7 +244,7 @@
                     var EXTRA_AXIS_DIGITS = 3;
                     if (prnAxisDigits) {
                         var axesCount = drawAllAxesInGrid && gridAlongY ? plotsCount : 1;
-                        for (var aIx=0; aIx<axesCount; aIx++) {
+                        for (var aIx = 0; aIx < axesCount; aIx++) {
                             var effectiveAxis = axisA;
 
                             var fontStroke = drawAllAxesInGrid ?

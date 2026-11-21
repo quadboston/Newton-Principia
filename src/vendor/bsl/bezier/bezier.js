@@ -32,19 +32,19 @@
         let rankBase = 0;
         {
             let fraction = rank;
-            while (fraction >1) {
+            while (fraction > 1) {
                 rankBase++;
                 fraction /= 2;
             }
         }
         rack.rankBase = rankBase;
-        for (i=1; i<=rank; i++) {
+        for (i = 1; i <= rank; i++) {
             factorial[i] = factorial[i-1]*i;
         }
         let binom = rack.binom = [];
         let coefficients = rack.coefficients = [];
         let ix2parameter = [];
-        for (i=0; i<=rank; i++) {
+        for (i = 0; i <= rank; i++) {
             ix2parameter.push(i/rank);
             binom[i] = factorial[rank]
                 / (factorial[rank-i] * factorial[i]);
@@ -52,7 +52,7 @@
                 coefficients[i] = pivots[i] * binom[i];
             } else {
                 coefficients[i] = [];
-                for (j=0; j<dim; j++) {
+                for (j = 0; j < dim; j++) {
                     coefficients[i][j] = pivots[i][j] * binom[i];
                 }
             }
@@ -72,7 +72,7 @@
                 var result = 0;
             } else {
                 var result = [];
-                for (j=0; j<dim; j++) {
+                for (j = 0; j < dim; j++) {
                     result[j] = 0;
                 }
             }
@@ -85,19 +85,19 @@
             let rankBase = rack.rankBase;
             var polScale = large_t ? t : (1-t);
             var multiplier = (1-polScale)/polScale;
-            for (var i=0; i<rankBase; i++) {
-                polScale *=polScale;
+            for (var i = 0; i < rankBase; i++) {
+                polScale *= polScale;
             }
 
             let coefficients = rack.coefficients;
-            for (let ii=0; ii<=rank; ii++) {
+            for (let ii = 0; ii <= rank; ii++) {
                 //changes order of summation to from small members first
                 let i = large_t ? ii : rank-ii;
                 ////algo: Poly = ((( a*x + b)*x+...
                 if (dim === 1) {
                     result = result * multiplier + coefficients[i];
                 } else {
-                    for (j=0; j<dim; j++) {
+                    for (j = 0; j < dim; j++) {
                         result[j] = result[j] * multiplier + coefficients[i][j];
                     }
                 }
@@ -105,7 +105,7 @@
             if (dim === 1) {
                 result *= polScale;
             } else {
-                for (j=0; j<dim; j++) {
+                for (j = 0; j < dim; j++) {
                     result[j]  *= polScale;
                 }
             }
@@ -120,7 +120,7 @@
                 pivots[i] = pivot;
                 coefficients[i] = pivot * binom[i];
             } else {
-                for (j=0; j<dim; j++) {
+                for (j = 0; j < dim; j++) {
                     pivots[i][j] = pivot[j];
                     coefficients[i][j] = pivot[j] * binom[i];
                 }
@@ -135,9 +135,9 @@
             let ix2parameter = rack.ix2parameter;
             let step = 1/rank;
             var res = Array(rank+1);
-            for (var tix=0; tix<=rank; tix++) {
+            for (var tix = 0; tix <= rank; tix++) {
                 var t = ix2parameter[tix];
-                if (tix===rank) {
+                if (tix === rank) {
                     res[tix] = 1;
                 } else {
                     let ct = 1-t;
@@ -146,10 +146,10 @@
                     let rs = binom[tix]*((new Array(rank)).fill(1)).reduce(acc => (acc * ct), 1);
                     new Array(4).fill(1)
                     let multiplier = t/ct;
-                    for (var j=0; j<tix; j++) {
-                         rs *=multiplier;
+                    for (var j = 0; j < tix; j++) {
+                         rs *= multiplier;
                     }
-                    res[tix]=1/rs;
+                    res[tix] = 1/rs;
                 }
             }
             return res;
@@ -161,7 +161,7 @@
             arr.length = 0;
             let step = 1/(n-1);
             let fun = rack.fun;
-            for (i=0; i<n; i++) {
+            for (i = 0; i < n; i++) {
                 arr.push(fun(i*step));
             }
         }
@@ -299,8 +299,8 @@
                 var t0 = solution[0];
                 var t1 = solution[1];
                 var result = [];
-                if (t0 >=0 && t0 <= 1) {result.push(t0);}
-                if (t1 >=0 && t1 <= 1) {result.push(t1);}
+                if (t0 >= 0 && t0 <= 1) {result.push(t0);}
+                if (t1 >= 0 && t1 <= 1) {result.push(t1);}
                 solution = result.length < 2 ? result :
                            t0 > t1 ? [t1, t0] : result;
             }

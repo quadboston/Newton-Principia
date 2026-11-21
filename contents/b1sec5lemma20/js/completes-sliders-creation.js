@@ -48,8 +48,8 @@
             const START = 0.90
             const END = 0.99999;
             if (modelPar < 0.01) {
-                modelPar =0.00001;
-            } else if (START <= modelPar && modelPar<=END) {
+                modelPar = 0.00001;
+            } else if (START <= modelPar && modelPar <= END) {
                 const POWER = 3;
                 const RANGE = END-START;
                 let right = END-modelPar;

@@ -143,12 +143,12 @@
     ) {
         const sconfOPACITY_LOW = sconf.TP_OPACITY_LOW;
         if (opacityFromColorArray && colorArray) {
-            if (colorArray[3] || colorArray[3]===0) {
+            if (colorArray[3] || colorArray[3] === 0) {
                 var lowOpacity = colorArray[3];
             } else {
                 var lowOpacity = sconfOPACITY_LOW;
             }
-            if (colorArray[4] || colorArray[4]===0) {
+            if (colorArray[4] || colorArray[4] === 0) {
                 var highOpacity = colorArray[4];
             } else {
                 var highOpacity = sconf.TP_OPACITY_HIGH;

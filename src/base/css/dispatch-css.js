@@ -66,7 +66,7 @@
         //===========================
         // //\\ setting up shuttle CSS for all possible menu leaf choices
         var ret;
-        for (var ix=0; ix<sDomN.logic_phaseMenuMembersCount; ix++) {
+        for (var ix = 0; ix < sDomN.logic_phaseMenuMembersCount; ix++) {
             ret += `
                 .menu-teaf.logic_phase .decorated.litem-${ix},
                 .menu-teaf.logic_phase .litem-${ix},
@@ -79,7 +79,7 @@
             `;
         }
 
-        for (var ix=0; ix<sDomN.aspectionMenuMembersCount; ix++) {
+        for (var ix = 0; ix < sDomN.aspectionMenuMembersCount; ix++) {
             ret += `
                 .menu-teaf.aspect .decorated.litem-${ix},
                 .menu-teaf.aspect .litem-${ix},

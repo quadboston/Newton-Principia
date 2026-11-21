@@ -145,7 +145,7 @@
     function makeClBoth(row, mname, mcaption, spanIx, spanVal, claim0proof) {
         var cssName = sDomF.toCssIdentifier(mname);
         var c$ = $$.c('td')
-                   .html(mcaption||mname)
+                   .html(mcaption || mname)
                    .addClass('tostroke tocolor tobold tp-' + cssName)
                    .to(row);
 

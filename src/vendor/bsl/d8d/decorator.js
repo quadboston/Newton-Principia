@@ -34,7 +34,7 @@
             parent_classes,
             orientation,
             tooltip,
-        } = (opt||{});
+        } = (opt || {});
 
         var { spinnerClsId, dragDecorColor, individual_zindex,
         } = (addFeaturesToDecPoint || {});

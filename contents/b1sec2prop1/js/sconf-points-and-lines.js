@@ -385,7 +385,7 @@ function sconf_points8lines() {
     ///unifies with originalPoints
     Object.keys(decor).forEach(propKey => {
         const point = decor[propKey];
-        const pointRack = originalPoints[propKey]={};
+        const pointRack = originalPoints[propKey] = {};
         Object.keys(point).forEach(pointKey => {
             let pointProp = point[pointKey];
             pointRack[pointKey] = pointProp;

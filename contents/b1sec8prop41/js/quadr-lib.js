@@ -13,7 +13,7 @@
     function forceIsBounded(xy) {
         var len = xy.length;
         var solvable = true;
-        for (var iq=0; iq<len; iq++) {
+        for (var iq = 0; iq < len; iq++) {
             var fr = xy[iq];
             if (
                 fr[0] > 1000 ||
@@ -65,7 +65,7 @@
         var roMinusIx = null;
         let frBefore = xy[0];
         let orbit    = [];
-        for (let iq=0, len = xy.length-roPlus0Top; iq<len; iq++) {
+        for (let iq = 0, len = xy.length-roPlus0Top; iq < len; iq++) {
             const SAFE_MINUS_IX = 2;
             var iqFull  = iq + roPlus0Top;
             let fr      = xy[iqFull];
@@ -119,7 +119,7 @@
                 var t0 = T[iq];
             }
         }
-        for (let iq=0, Flen = F.length; iq<Flen; iq++) {
+        for (let iq = 0, Flen = F.length; iq < Flen; iq++) {
             let Fi = F[iq] = 2/R2 * (F[iq] - fi0);
             T[iq] -= t0;
             let ro = xy[iq + roPlus0Top][1];
@@ -169,7 +169,7 @@
 
         var vBbackPre = [];
         var SAFE_PLUS_IX = 1;
-        for (var iq=fiStartedIx; iq>=0; iq--) {
+        for (var iq = fiStartedIx; iq >= 0; iq--) {
             let fr      = frArr[iq];
             let ro      = fr[1];
             if (ro < 1e-50) break;
@@ -191,7 +191,7 @@
         var vback = [];
         ///indexation of vback goes from small global index to big,
         ///fall point has smallest index,
-        for (iq=dropPointIx; iq<=fiStartedIx; iq++) {
+        for (iq = dropPointIx; iq <= fiStartedIx; iq++) {
             let src = vBbackPre[fiStartedIx-iq];
             vback.push([src[0], src[1]]);
         }

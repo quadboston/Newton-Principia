@@ -34,7 +34,7 @@
         ///MERGING P1 WITH standalone sconf machinery
         ///syncs these points with hidden force-displacement-handles bases
         ['B', 'C', 'D', 'E', 'F'].forEach((name, ix) => {
-            let nam0='VV'+ix;
+            let nam0 = 'VV'+ix;
             rg[nam0].pos = rg[name].pos;
         });
         //note: in svg-z-order, these fall behind

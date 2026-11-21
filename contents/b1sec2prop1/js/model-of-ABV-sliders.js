@@ -26,7 +26,7 @@ function sets_A_v_forces_sliders() {
     ///interfaces for force hanles
     ///---------------------------------------------------
     ['B', 'C', 'D', 'E', 'F'].forEach((name, ix) => {
-        let nam1='VVV'+ix;
+        let nam1 = 'VVV'+ix;
         rgX = sn(nam1, rg);
         rgX.acceptPos =
             function (newVPos, dummyPar, enforceNewPos) {
@@ -63,8 +63,8 @@ function v2params(newPos, dummyPar,) {
 ///returns true which means newPos is allowed,
 ///=============================================================
 function V2forceParams(newVPos, dummyPar, enforceNewPos, fix) {
-    let nam0='VV'+fix;
-    let nam1='VVV'+fix;
+    let nam0 = 'VV'+fix;
+    let nam1 = 'VVV'+fix;
     var tstep               = rg.rgslid_dt.val;
     var posB                = rg[nam0].pos;
     var posS                = rg.S.pos;

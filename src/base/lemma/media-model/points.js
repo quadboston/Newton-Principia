@@ -105,7 +105,7 @@
 
         } else {
             ////optimized, updating version of pos2pointy
-            var svgel= pt.svgel;
+            var svgel = pt.svgel;
             svgel.setAttributeNS(null, 'stroke-width',
                                   pt.initialStrokeWidth * sconf.thickness);
             svgel.setAttributeNS(null, 'cx', pt.medpos[0]);

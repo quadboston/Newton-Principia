@@ -148,9 +148,9 @@
     ns.arr2rgba = function (arr) {
         if (!arr || !Array.isArray(arr)) return "rgba(0,0,0,1)";
         var op = (typeof arr[3] !== 'undefined') ? arr[3] : 1;
-        var r=Math.floor(arr[0]);
-        var g=Math.floor(arr[1]);
-        var b=Math.floor(arr[2]);
+        var r = Math.floor(arr[0]);
+        var g = Math.floor(arr[1]);
+        var b = Math.floor(arr[2]);
         var op = op.toFixed(4);
         return 'rgba('+r+','+g+','+b+','+op+')';
     }
@@ -158,9 +158,9 @@
     ns.arr2rgb_rgba = function (arr) {
         if (!arr || !Array.isArray(arr)) return "rgba(0,0,0,1)";
         var op = (typeof arr[3] !== 'undefined') ? arr[3] : 1;
-        var r=Math.floor(arr[0]);
-        var g=Math.floor(arr[1]);
-        var b=Math.floor(arr[2]);
+        var r = Math.floor(arr[0]);
+        var g = Math.floor(arr[1]);
+        var b = Math.floor(arr[2]);
         var op = op.toFixed(4);
         var rgb = 'rgb('+r+','+g+','+b+')';
         var rgba = 'rgba('+r+','+g+','+b+','+op+')';

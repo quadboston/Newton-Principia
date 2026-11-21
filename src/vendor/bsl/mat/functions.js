@@ -14,7 +14,7 @@
         var fun = coefficients[0];
         var power = 1;
         var length = coefficients.length;
-        for (ix=1; ix<length; ix++) {
+        for (ix = 1; ix < length; ix++) {
             power *= x;
             var coef = coefficients[ix];
             if (coef === 0) continue;

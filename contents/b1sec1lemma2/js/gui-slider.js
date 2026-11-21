@@ -66,20 +66,20 @@
             if (dr.BASE_PT_DRAGGERS_ENABLED) {
                 const pointsLimit = Math.min(newBases, sconf.DRAGGABLE_BASE_POINTS);
                 ///dynamically adds more base points
-                for (var i=sconf.basesN; i<pointsLimit; i++) {
+                for (var i = sconf.basesN; i < pointsLimit; i++) {
                     ///prevents making too many draggable base points
                     guiup.sets_pt2movable(dr.basePts.list[i]);
                 }
             }
             var partitionWidths = dr.partitionWidths;
-            for (var i=newBases; i < sconf.basesN; i++) {
+            for (var i = newBases; i < sconf.basesN; i++) {
                 partitionWidths[i] = undef;
             }
         }
 
         function showBasesNumberInGui(sliderOutput, baseLabel) {
             sliderOutput.innerHTML = sconf.basesN;
-            baseLabel.innerHTML = sconf.basesN === 1 ? " base":" bases";
+            baseLabel.innerHTML = sconf.basesN === 1 ? " base" : " bases";
         }
 
         function interpretSlider(val) {

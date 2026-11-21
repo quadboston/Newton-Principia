@@ -95,7 +95,7 @@
             ps[ps.length] = [first[0], first[1]];
         }
         ///removes dom stuff in brs if leftover
-        for (ii=branchesLen; ii < brs.length; ii++) {
+        for (ii = branchesLen; ii < brs.length; ii++) {
             const svgel = haz(brs[ii], 'svgel');
             if (svgel) {
                 svgel.remove();

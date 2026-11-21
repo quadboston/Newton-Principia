@@ -114,7 +114,7 @@
             var antid = antider;
             antid.length = 1;
             var tstep = (tEnd - tStart) / stepsCount;
-            for (var tix = 0; tix<=stepsCount; tix++) {
+            for (var tix = 0; tix <= stepsCount; tix++) {
                 var q = tStart + tstep * tix;
                 var pos = q2xy(q);
                 if (doIntegrate && tix) {

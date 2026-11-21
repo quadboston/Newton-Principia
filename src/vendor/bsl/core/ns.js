@@ -279,9 +279,9 @@
                     //.gets single by id
                     g: function (id)                  { ctxEl =                document.getElementById(id); },
                     //.gets single
-                    q: function (selector, parent)    { ctxEl =                (parent||document.body).querySelector(selector); },
+                    q: function (selector, parent)    { ctxEl =                (parent || document.body).querySelector(selector); },
                     //.gets array of all
-                    qa: function (selector, parent)    { ctxEl =                (parent||document.body).querySelectorAll(selector); },
+                    qa: function (selector, parent)    { ctxEl =                (parent || document.body).querySelectorAll(selector); },
 
                     // //\\ information providers
                     box: function (obj)                 { obj = obj || null;
@@ -401,7 +401,7 @@
                                                //the "chain" of $$ calls
                         if (!text) return; //sugar, saves extra "if"
                         var clss = text.split(/\s+/);
-                        if (clss.length>1) {
+                        if (clss.length > 1) {
                             ////many classes are supplied ...
                             ////processes each of them
                             clss.forEach(function (cls) {
@@ -440,7 +440,7 @@
                         //c onsole.log( 'removing=' + text );
                         ctxEl = obj || ctxEl;
                         var clss = text.split(/\s+/);
-                        if (clss.length>1) {
+                        if (clss.length > 1) {
                             ////many classes are supplied ...
                             ////processes each of them
                             clss.forEach(function (cls) {
@@ -606,10 +606,10 @@
         ///------------------------------------------------------------
         ns.d = function (text) {
             if (!debWind) return; //no window, no debug accumulation
-            debWind.value +='\n' + text;
+            debWind.value += '\n' + text;
             debWind.scrollTop = debWind.scrollHeight;
         };
-        var debWind=null;
+        var debWind = null;
         ///------------------------------------------------------------
         // //\\ uncomment this debug-block to enable textarea for debug
         ///------------------------------------------------------------
@@ -843,7 +843,7 @@
         }
 
         ///Recursion limit is exceeded. Truncates recursion by recdepth value.
-        if ((recdepth || recdepth ===0) && level > recdepth) {
+        if ((recdepth || recdepth === 0) && level > recdepth) {
             return '';
         }
 

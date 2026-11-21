@@ -173,9 +173,9 @@
             let l2 = fconf.sappId.indexOf('b1sec1lemma2') === 0;
             let checked = amode.logic_phase !== 'claim';
             let undisplay = !checked || onlyFigure;
-            rg.F.undisplay = undisplay||l2;
-            rg.f.undisplay = undisplay||l2;
-            rg.AF.undisplay = undisplay||l2;
+            rg.F.undisplay = undisplay || l2;
+            rg.f.undisplay = undisplay || l2;
+            rg.AF.undisplay = undisplay || l2;
             //majorant bar:
             $$.$(dr.faaf).css('display', undisplay ? 'none' : 'block');
         }

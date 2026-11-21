@@ -48,7 +48,7 @@
         //      if basesN did increase,
         ///new bars have equal lengths which is an average
         ///of previously existing bars,
-        for (var i=0; i<basesN; i++) {
+        for (var i = 0; i < basesN; i++) {
             ///if base is new and to be added
             if (!dr.partitionWidths[i]) {
                 //makes average base constant and, therefore,
@@ -72,7 +72,7 @@
             let pwidths = dr.partitionWidths; //normless
             let chosenWidth = dr.yVariations.chosenWidth;
             let factor = 1/sum*chosenWidth;
-            for (var i=0; i<basesN; i++) {
+            for (var i = 0; i < basesN; i++) {
                 pwidths[i] = pwidths[i] * factor; //normed
             }
         }
@@ -91,7 +91,7 @@
         let len = sconf.BASE_MAX_NUM;
         let step = chosenWidth/len;
         let sum = 0;
-        for (var ii=0; ii<len; ii++) {
+        for (var ii = 0; ii < len; ii++) {
             sum += ff(dr, ii*step+x_start);
         }
         sum *= step;
@@ -100,7 +100,7 @@
     ///must run after widths have been finalized
     function calculatesMajorantRect(dr) {
         let widestSize = 0;
-        for (let i=0; i<sconf.basesN; i++) {
+        for (let i = 0; i < sconf.basesN; i++) {
             const width = dr.partitionWidths[i];
             widestSize = Math.max(widestSize, width);
         }
@@ -154,13 +154,13 @@
             for (var ib = 0; ib < basesN; ib++) {
                 let ymin = ff(dr, baseBarsLefts[ib]);
                 let ymax = ff(dr, baseBarsRights[ib]);
-                if (dir <=0) {
+                if (dir <= 0) {
                     let d = ymin;
                     ymin = ymax;
                     ymax = d;
                 }
                 ymax = Math.min(ymax, yRef*0.9999999);
-                if (ymin>=ymax) {
+                if (ymin >= ymax) {
                     ////otherwise negative heights
                     ////happens at svg
                     ymin = ymax < 0 ? ymax*1.0000001 : ymax * 0.999999;

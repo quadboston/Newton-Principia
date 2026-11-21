@@ -181,15 +181,15 @@
             Dt0 = 0.172;
             sconf.rgPq = 0.28;
             let wwcp = [];
-            for (var i=0; i<curvePivots.length; i++) {
+            for (var i = 0; i < curvePivots.length; i++) {
                 if ((i-1)%2) {
                     let cp = curvePivots[i];
-                    if (i!==0 && i!==curvePivots.length-1) {
+                    if (i !== 0 && i !== curvePivots.length-1) {
                         let x = cp[0] - originX_onPicture;
                         let y = cp[1] - originY_onPicture;
-                        x *=1.1
-                        y *= i==6 ? 1.45 : (i==4 ? 1.05 : 1.1);
-                        cp=[x+originX_onPicture, y+originY_onPicture];
+                        x *= 1.1
+                        y *= i == 6 ? 1.45 : (i == 4 ? 1.05 : 1.1);
+                        cp = [x+originX_onPicture, y+originY_onPicture];
                     }
                     wwcp.push(cp);
                 }

@@ -22,10 +22,10 @@
         var originX_onPicture = 821;
         var originY_onPicture = 906;
 
-        let slider_a_start=pictureWidth*0.05;
-        let slider_a_end=pictureWidth*0.7;
-        let slider_aX=532;
-        let slider_aY=pictureHeight;
+        let slider_a_start = pictureWidth*0.05;
+        let slider_a_end = pictureWidth*0.7;
+        let slider_aX = 532;
+        let slider_aY = pictureHeight;
         let pointRadius = 12;
 
         //***************************************************************

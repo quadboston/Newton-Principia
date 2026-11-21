@@ -61,7 +61,7 @@
             var fmax = fun1;
         }
 
-        for (var ix=0; ix<INTEGRATION_POINTS_LIM; ix++) {
+        for (var ix = 0; ix < INTEGRATION_POINTS_LIM; ix++) {
             var x2 = (ix+1)*stepX;
             var fun2 = fun(x2);
             sum += (fun1 + fun2) * 0.5 * stepX;
@@ -177,7 +177,7 @@
 
             var searchAreaG = rgX.integ.f.area * ratioGF;
             integG.area = searchAreaG;
-            for (var gix=gStartIx; gix<=INTEGRATION_POINTS_LIM; gix++) {
+            for (var gix = gStartIx; gix <= INTEGRATION_POINTS_LIM; gix++) {
                 var currentArea = integralsG[gix];
                 var formerArea = integralsG[gix-1];
                 if (gix === INTEGRATION_POINTS_LIM) {
@@ -242,7 +242,7 @@
                 var startIx = integX.ix;
                 var lim     = integX1.ix;
                 var min    = integX.fun;
-                for (var ix=startIx; ix<lim; ix++) {
+                for (var ix = startIx; ix < lim; ix++) {
                     var currF = f0g === 'f' ? resultF[ix] : resultGY[ix];
                     if (min > currF) {
                         min = currF;

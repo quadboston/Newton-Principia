@@ -20,9 +20,9 @@
         //------------------------------------
         // //\\ thread from T to D
         //------------------------------------
-        var P=rg.P.pos;
-        var r=rg.r.pos;
-        var t=rg.t.pos;
+        var P = rg.P.pos;
+        var r = rg.r.pos;
+        var t = rg.t.pos;
         var Pt = mat.p1_to_p2(P, t);
         var Pr = mat.p1_to_p2(P, r);
         var Pr_by_Pt = Pr.abs/Pt.abs;
@@ -187,8 +187,8 @@
     ///from the line Pt
     function pos2Tpar(pos)
     {
-        var P=rg.P.pos;
-        var t=rg.t.pos;
+        var P = rg.P.pos;
+        var t = rg.t.pos;
         var PT = mat.p1_to_p2(P, pos);
         var Pt = mat.p1_to_p2(P, t);
         //finds algebraic sign

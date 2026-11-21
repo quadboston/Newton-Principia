@@ -67,10 +67,10 @@
             let isCir = view.isCircumscribed;
             if (!isFig && !isCir) {
                 document.getElementById('toggleInscribed').checked = true;
-                sdata.view.isInscribed=1;
+                sdata.view.isInscribed = 1;
                 return;
             }
-            sdata.view.isInscribed^=1;
+            sdata.view.isInscribed ^= 1;
             //stdL2.shows_rects();
             //has: stdMod.media_upcreate___before_basic_L2
             ssF.media_upcreate_generic();
@@ -86,7 +86,7 @@
                 view.isCircumscribed = 1;
                 return;
             }
-            sdata.view.isCircumscribed^=1;
+            sdata.view.isCircumscribed ^= 1;
             //stdL2.shows_rects();
             ssF.media_upcreate_generic();
         }
@@ -178,7 +178,7 @@
 
     function updateLegendAmounts(dr) {
         document.getElementById("figAmt").innerHTML =
-            ((Math.sign(dr.figureArea)==-1)?"-":"")+ "100.0";
+            ((Math.sign(dr.figureArea) == -1) ? "-" : "")+ "100.0";
         document.getElementById("inAmtd").innerHTML =
             normalizedStr(dr, dr.areaIns, dr.figureArea);
         document.getElementById("circAmtd").innerHTML =

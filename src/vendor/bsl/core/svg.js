@@ -90,7 +90,7 @@
                 //      removes excessive digits from CSS:
                 //      assuming that scale of svg will be > 100px
                 if (arg.type === 'circle') {
-                    if ((key==='cx' || key==='cy' || key==='r') &&
+                    if ((key === 'cx' || key === 'cy' || key === 'r') &&
                         typeof val === 'number'
                     ) {
                         val = val.toFixed(3);
@@ -184,7 +184,7 @@
     }) {
         var pivotsStr = '';
         var len = pivots.length;
-        for (var pix=0; pix < len; pix++) {
+        for (var pix = 0; pix < len; pix++) {
             var point = pivots[pix];
             if (pivotsStr) {
                 pivotsStr += ' ';

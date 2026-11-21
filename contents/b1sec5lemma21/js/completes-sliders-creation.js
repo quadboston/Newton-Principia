@@ -20,7 +20,7 @@
             return true;
 
             function pos2Gpar(pos) {
-                var H=rg.H.pos;
+                var H = rg.H.pos;
                 var gamma = rg.gamma.value;
                 var dd = [pos[0]-H[0], pos[1]-H[1]];
                 //projects shift to direction of unit vector "gamma":

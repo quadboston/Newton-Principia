@@ -193,7 +193,7 @@
 
             tr.widths                      = rgbToArray("rgb(150, 0, 150)", 0, 0.64);
             tr.widestRectangular           = rgbToArray("rgb(0, 0, 150)", 0.28, 0.49);
-            tr.widestRectangularHiddenStart= rgbToArray("rgb(0, 0, 150)", 0.0, 0.49);
+            tr.widestRectangularHiddenStart = rgbToArray("rgb(0, 0, 150)", 0.0, 0.49);
             tr["widt-txt"]                 = rgbToArray("rgb(0, 0, 150)")
         }
 

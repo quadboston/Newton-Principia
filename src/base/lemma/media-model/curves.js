@@ -84,7 +84,7 @@
         } else {
             rgName              = rgName || 'curve-' + pointsName;
             if (pointsName) {
-                var splitted        = pointsName.split(pointsName.indexOf(',')>-1 ? ',' : '');
+                var splitted        = pointsName.split(pointsName.indexOf(',') > -1 ? ',' : '');
                 if (ns.h(rg, splitted[0]) && ns.h(rg, splitted[1])) {
                     pointA          = rg[splitted[0]];
                     pointB          = rg[splitted[1]];
@@ -164,7 +164,7 @@
                 var incr = step*stepsCount / (ann_COUNT - (addToStepCount ? 1 : 0));
             }
             var rgAnnPoints = [];
-            for (aix=0; aix<ann_COUNT; aix++) {
+            for (aix = 0; aix < ann_COUNT; aix++) {
                 var pointParam  = annPointsPositions ?
                                   annPointsPositions[aix].par : start + incr * aix;
                 var pos         = fun(pointParam);
