@@ -106,7 +106,7 @@
     {
         var { logic_phase, aspect, subessay } = amode;
         sDomF.resetModelPos();
-		rg[ 'arc-Ab' ].undisplay    = logic_phase !== 'given';
+        rg[ 'arc-Ab' ].undisplay    = logic_phase !== 'given';
 
         //idle?:
         ns.paste( rg.curveStart.pos, ssD.curveStartInitialPos );
@@ -131,8 +131,8 @@
             ns.paste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ] );
 
             if( logic_phase === 'proof' ) {
-				rg[ 'arc-Ab' ].undisplay = false;
-			}
+                rg[ 'arc-Ab' ].undisplay = false;
+            }
         }
         
         nspaste( rg.B.pos, rg.B.originalPos );

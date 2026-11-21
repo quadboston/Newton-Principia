@@ -118,12 +118,12 @@
         ns.paste( rg.curveStart.pos, [ -0.2, 0 ] ); //todm what is this?
         ns.paste( rg.curveEnd.pos, [ ssD.curveEndInitialPos[0], 0 ] );
 
-		[
-			'arc-Ab',
-			'area-rAb',
-			'area-rAd',
-			'area-rAcb'
-		].forEach( gname => { rg[ gname ].undisplay = logic_phase !== 'proof'; });
+        [
+            'arc-Ab',
+            'area-rAb',
+            'area-rAd',
+            'area-rAcb'
+        ].forEach( gname => { rg[ gname ].undisplay = logic_phase !== 'proof'; });
        
         rg[ 'left-curve-AB' ].undisplay = aspect === 'model';
         rg['A,DLeft'].undisplay = aspect === 'model';

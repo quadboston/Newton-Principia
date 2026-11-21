@@ -20,7 +20,7 @@
         }
         rg.Q.hideD8Dpoint = subessay !== 'claim' && subessay !== 'solution';
 
-		rg['curvatureCircle'].undisplay = subessay !== 'another-solution';
+        rg['curvatureCircle'].undisplay = subessay !== 'another-solution';
         return captured;
     }
 

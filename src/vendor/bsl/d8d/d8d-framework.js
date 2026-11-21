@@ -425,7 +425,7 @@
         ///       it offsets in "local-surface" if no special converter is supplied:
         ///       details are in d8d code:
         ///            var point_on_dragSurf = eventPoint_2_localPoint( childEvent );
-		///            var eventPoint_2_localPoint = arg.eventPoint_2_localPoint ||
+        ///            var eventPoint_2_localPoint = arg.eventPoint_2_localPoint ||
         ///                                          eventPos_2_surfacePos;
         function d8d_cb_middle2lowest(
             surfMove, down_move_up, point_on_dragSurf, event, moveIncrement

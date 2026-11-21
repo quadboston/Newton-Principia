@@ -66,7 +66,7 @@
             }
         }
         // \\// making pause at e=1
-	
+    
         sData.polar_ell_model.e = modelPar;
         stdMod.curveModel2branches();
         // //\\ parameters' decorational changes

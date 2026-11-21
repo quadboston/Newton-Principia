@@ -26,7 +26,7 @@
 
         {
             let pid = 'proof-pop-up';
-			let button = ssF.createButton({
+            let button = ssF.createButton({
                 caption                 :
                     'Newton\'s logic applies to monotonic curves',
                 buttonUniversalId       : pid,

@@ -119,7 +119,7 @@
         //-----------------------------------
         const {
             givenColor,
-			givenHover,
+            givenHover,
             bodyColor,
             proofColor,
             forceColor,
@@ -131,13 +131,13 @@
 
         var topicColors_elected =
         {
-			estimatedForceColor,
+            estimatedForceColor,
             curvatureCircle : infoColor,
             body: bodyColor,
             orbit : bodyColor,
-			force : forceColor,
+            force : forceColor,
             "arc-QP" : bodyColor,
-			time: estimatedForceColor,
+            time: estimatedForceColor,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -160,12 +160,12 @@
             T : {
                 pcolor : estimatedForceColor,
                 letterAngle : 264,
-				cssClass:  'subessay--solution',
+                cssClass:  'subessay--solution',
             },
             R : {
                 pcolor : estimatedForceColor,
                 letterAngle : 45,
- 				cssClass:  'subessay--solution',
+                cssClass:  'subessay--solution',
            },
             Q : {
                 pcolor : estimatedForceColor,
@@ -173,17 +173,17 @@
                 letterRotRadius : 40,
                 draggableX  : true,
                 draggableY  : true,
-				cssClass:  'subessay--claim subessay--solution',
+                cssClass:  'subessay--claim subessay--solution',
             },
             Y : {
                 pcolor : proofColor,
                 letterAngle : -90,
-				cssClass:'subessay--another-solution',
+                cssClass:'subessay--another-solution',
             },
             V : {
                 pcolor : proofColor,
                 letterAngle : -45,
-				cssClass:'subessay--another-solution',
+                cssClass:'subessay--another-solution',
             },
         };
 
@@ -191,21 +191,21 @@
         var linesArray =
         [
             { 'PV' : { pcolor : proofColor,
-				cssClass:'subessay--another-solution',}, },
+                cssClass:'subessay--another-solution',}, },
             { 'PY' : { pcolor : givenColor }, },
             { 'PR' : { pcolor : givenHover,
-				cssClass:'subessay--solution',}, },
+                cssClass:'subessay--solution',}, },
             { 'SY' : { pcolor : proofColor,
-				cssClass:'subessay--another-solution',}, },
+                cssClass:'subessay--another-solution',}, },
             { 'QR' : { pcolor : estimatedForceColor,
-				cssClass:'subessay--solution',}, },
+                cssClass:'subessay--solution',}, },
             { 'SQ' : { pcolor : givenColor,
-				cssClass:  'subessay--claim subessay--solution',},},
+                cssClass:  'subessay--claim subessay--solution',},},
             { 'QT' : { pcolor : estimatedForceColor,
-				 cssClass:'subessay--solution',}, },
+                 cssClass:'subessay--solution',}, },
             { 'PT' : { pcolor : proofColor,
-				cssClass:'subessay--another-solution',}, },
-			{ 'SP' : { pcolor : estimatedForceColor }, },
+                cssClass:'subessay--another-solution',}, },
+            { 'SP' : { pcolor : estimatedForceColor }, },
         ];
 
         ns.paste( sconf, {

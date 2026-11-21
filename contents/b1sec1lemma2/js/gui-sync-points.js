@@ -134,21 +134,21 @@
 
     function syncPoints(dr) {
         let view = sdata.view;
-		const showFigure = !!view.isFigureChecked;
-		const showInscribed = !!view.isInscribed;
-		const showCircumscribed = !!view.isCircumscribed;
-		const onlyFigure = !showInscribed && !showCircumscribed;
-		const inscribedFeatures = ['K','L','M','Kb','cL','dM','Bb','Cc','Dd'];
-		inscribedFeatures.forEach(function(item){
-			rg[item].undisplay = !showInscribed;
-		});
-		const circumscribedFeatures = 
-			['f','l','m','n','o','la','mb','nc','od',
-				'Aa','aK','lb','mc','nd','oE'];
-		circumscribedFeatures.forEach(function(item){
-			rg[item].undisplay = !showCircumscribed;
-		});
-		rg['aK'].undisplay = !showFigure;
+        const showFigure = !!view.isFigureChecked;
+        const showInscribed = !!view.isInscribed;
+        const showCircumscribed = !!view.isCircumscribed;
+        const onlyFigure = !showInscribed && !showCircumscribed;
+        const inscribedFeatures = ['K','L','M','Kb','cL','dM','Bb','Cc','Dd'];
+        inscribedFeatures.forEach(function(item){
+            rg[item].undisplay = !showInscribed;
+        });
+        const circumscribedFeatures = 
+            ['f','l','m','n','o','la','mb','nc','od',
+                'Aa','aK','lb','mc','nd','oE'];
+        circumscribedFeatures.forEach(function(item){
+            rg[item].undisplay = !showCircumscribed;
+        });
+        rg['aK'].undisplay = !showFigure;
         rg['a'].undisplay = !(showCircumscribed || showFigure);
 
         //order of statements seems vital

@@ -147,20 +147,20 @@
             given,
             body,
             orbit,
-			body2,
-			orbit2,
+            body2,
+            orbit2,
             proof,
-			supplementHover,
-			givenHover,
+            supplementHover,
+            givenHover,
             forceColor,
             hidden,
-			corollaryColor,
-			corollaryHover,
-			sunColor
+            corollaryColor,
+            corollaryHover,
+            sunColor
         } = topicColors_repo;
 
-		const ALL_EXCEPT_PROBLEM_TAB = 
-			'subessay--solution subessay--corollary1 subessay--corollary2';
+        const ALL_EXCEPT_PROBLEM_TAB = 
+            'subessay--solution subessay--corollary1 subessay--corollary2';
 
         var topicColors_elected =
         {
@@ -194,29 +194,29 @@
             }, 
             K : {
                 pcolor : proof,
-				cssClass: 'subessay--solution subessay--corollary1',
+                cssClass: 'subessay--solution subessay--corollary1',
                 letterRotRadius : 20,
                 letterAngle : -60,
             },           
             B : {
                 letterRotRadius : 20,
-				cssClass: 'subessay--solution',
+                cssClass: 'subessay--solution',
                 pcolor : body,
             },
             C : { //center symmetry of orbit
                 pcolor : proof,
-				cssClass: 'subessay--solution',
+                cssClass: 'subessay--solution',
                 letterAngle : -45,
             },
 
             H : {
                 pcolor : proof,
-				cssClass: ALL_EXCEPT_PROBLEM_TAB,
+                cssClass: ALL_EXCEPT_PROBLEM_TAB,
                 letterAngle : -90,
             },
             D : {
                 pcolor : corollaryColor,
-				cssClass: 'subessay--corollary1 subessay--corollary2',
+                cssClass: 'subessay--corollary1 subessay--corollary2',
                 letterRotRadius : 20,
             },
             R : { //velocity of the body (dragger)
@@ -228,7 +228,7 @@
             },
             Q : {
                 pcolor : body,
-				cssClass : 'subessay--solution',
+                cssClass : 'subessay--solution',
                 letterAngle : 225,
                 letterRotRadius : 20,
             },
@@ -240,7 +240,7 @@
             // //\\ sop (green conic)
             //-------------------------------------------
             p : {
-				caption : '𝑝',
+                caption : '𝑝',
                 pcolor : body2,
                 letterAngle : 120,
             },
@@ -262,9 +262,9 @@
                 fontSize : 20,
             },
             q : {
-				caption : '𝑞',
+                caption : '𝑞',
                 pcolor : body2,
-				cssClass : 'subessay--solution',
+                cssClass : 'subessay--solution',
                 letterAngle : -65,
                 letterRotRadius : 20,
             },
@@ -273,48 +273,48 @@
             //-------------------------------------------
             
             //not shown as points, but used in calculations to draw lines
-			A : {
-				cssClass : 'hidden',
+            A : {
+                cssClass : 'hidden',
                 letterRotRadius : 20,
                 letterAngle : -90,
             },
             L : {
-				// latus rectum endpoint of orbit PQ
+                // latus rectum endpoint of orbit PQ
                 pcolor : orbit,
                 cssClass : 'hidden',
                 letterAngle : -45,
                 letterRotRadius : 20,
             },
             LL : {
-				// latus rectum endpoint of orbit PQ
+                // latus rectum endpoint of orbit PQ
                 pcolor : orbit,
                 cssClass : 'hidden',
                 doPaintPname : false,
             },
             l : {
-				// latus rectum endpoint of orbit pq
+                // latus rectum endpoint of orbit pq
                 pcolor : given,
                 cssClass : 'hidden',
                 letterAngle : -45,
                 letterRotRadius : 20,
             },
             ll : {
-				// latus rectum endpoint of orbit pq
+                // latus rectum endpoint of orbit pq
                 pcolor : given,
-				cssClass : 'hidden',
+                cssClass : 'hidden',
                 doPaintPname : false,
             },
             
             Y : {
-				// intersection of PR and its ⟂ with S
+                // intersection of PR and its ⟂ with S
                 pcolor : proof,
-				cssClass : 'hidden',
+                cssClass : 'hidden',
                 letterAngle : 45,
             },
             Ys : {
-				// intersection of pr and its ⟂ with S
+                // intersection of pr and its ⟂ with S
                 pcolor : proof,
-				cssClass : 'hidden',
+                cssClass : 'hidden',
                 letterAngle : 45,
             },
         });
@@ -326,62 +326,62 @@
             //-------------------------------------------                        
             { SP : { pcolor : given},},   
             { SK : {
-				pcolor : proof,
-				cssClass: 'subessay--solution subessay--corollary1',
-			}, },
+                pcolor : proof,
+                cssClass: 'subessay--solution subessay--corollary1',
+            }, },
             { PH : { 				
-				pcolor : proof,
-				cssClass: 'subessay--solution subessay--corollary1',
-			}, },
+                pcolor : proof,
+                cssClass: 'subessay--solution subessay--corollary1',
+            }, },
             { PK : {
-				pcolor : proof,
-				cssClass: 'subessay--solution subessay--corollary1',
-			}, },
+                pcolor : proof,
+                cssClass: 'subessay--solution subessay--corollary1',
+            }, },
             { 'L,LL' : { 
-				pcolor : supplementHover,
+                pcolor : supplementHover,
                captionShiftNorm : 22, lposYSugar : 3
-			}, },
+            }, },
             { CB : {
-				pcolor : proof,
-				cssClass: 'subessay--solution',
-			}, },   
+                pcolor : proof,
+                cssClass: 'subessay--solution',
+            }, },   
             { BH : {
-				pcolor : proof,
-				cssClass: 'subessay--solution',
-			}, },
+                pcolor : proof,
+                cssClass: 'subessay--solution',
+            }, },
             { PR : { 
                 pcolor : given,
                 captionShiftNorm : -18,
                 vectorTipIx : 1
-			}, },
+            }, },
                         
             //not visible, because behind overlapping lines  
             //but may be highlighted in text links                      
             { CS : {
-				pcolor : proof,
-				cssClass: 'subessay--solution',
-			}, },
+                pcolor : proof,
+                cssClass: 'subessay--solution',
+            }, },
             { DS : { 
-				pcolor : corollaryHover,
-				cssClass: 'subessay--corollary1 subessay--corollary2',
-			}, },
+                pcolor : corollaryHover,
+                cssClass: 'subessay--corollary1 subessay--corollary2',
+            }, },
             { DH : {
-				pcolor :corollaryHover,
-				cssClass: 'subessay--corollary1 subessay--corollary2',
-			}, },
+                pcolor :corollaryHover,
+                cssClass: 'subessay--corollary1 subessay--corollary2',
+            }, },
             { CH : {
-				pcolor : proof,
-				cssClass: 'subessay--solution',
-			}, },
+                pcolor : proof,
+                cssClass: 'subessay--solution',
+            }, },
 
             // perpendiculars referenced in the Solution
             { 'SY' : { 
-				// perpendicular from S to PR
+                // perpendicular from S to PR
                 pcolor : supplementHover,
                 captionShiftNorm : -28 
             }, }, 
             { 'S,Ys' : { 
-				// perpendicular from S to pr
+                // perpendicular from S to pr
                 pcolor : supplementHover,
                 captionShiftNorm : -28 
             }, },
@@ -392,7 +392,7 @@
             //-------------------------------------------
             // //\\ sop (green conic)
             //-------------------------------------------  
-			{ 'Sp' : { 
+            { 'Sp' : { 
                 pcolor : given,
                 'stroke-width' : 1.1, 
                 captionShiftNorm : -18}, 

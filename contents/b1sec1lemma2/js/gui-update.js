@@ -144,8 +144,8 @@
             remove( 'active-left' );
             add( 'active-right' );
         }
-		remove( 'active-no-higlight-do' );
-		add( 'active-higlight-do' );
+        remove( 'active-no-higlight-do' );
+        add( 'active-higlight-do' );
         // \\// resets app modes
     }
 
@@ -176,7 +176,7 @@
     {
         var yRef = dr.yVariations.yRef;
         if (!appstate.movingBasePt) {
-	        guiup.xy_2_xy8shape( dr.basePts.list[i], "cx", x, "cy", yRef );
+            guiup.xy_2_xy8shape( dr.basePts.list[i], "cx", x, "cy", yRef );
         }
     }
     function updatePtsRectsLabelsAreas(dr)
@@ -191,7 +191,7 @@
             let x = baseBarsLefts[i];
             let insY = insYar[i];
             let cirY = cirYar[i];
-   	        var width = dr.partitionWidths[i];
+            var width = dr.partitionWidths[i];
 
             //Only update rects that are visible
             if (view.isInscribed)
@@ -201,7 +201,7 @@
                 assignRectValues( dr, dr.circRects.list[i], x, cirY, width, );
                 assignRectValues( dr, dr.circRects_outline.list[i], x, cirY, width, );
                 assignRectValues( dr, dr.differenceRects.list[i], x, cirY, 
-						width, insY-cirY );
+                        width, insY-cirY );
             }
 
             updatePts(dr, i, x);

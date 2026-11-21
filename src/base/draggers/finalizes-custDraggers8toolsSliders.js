@@ -65,13 +65,13 @@
         /// nearly a bug, thickness and wheel scaling are coupled
         /// unnecessarily
         ///******************************************************
-		function enableZoom() {
-			ssF.createSliderPlaceholder_media_scale();
-			ssF.createSliderPlaceholder_thickness();
-			fmethods.attachWeelToDomEl(
-				stdMod.svgScen$
-			);
-		}
+        function enableZoom() {
+            ssF.createSliderPlaceholder_media_scale();
+            ssF.createSliderPlaceholder_thickness();
+            fmethods.attachWeelToDomEl(
+                stdMod.svgScen$
+            );
+        }
     }; 
     //==========================================
     // \\// inits drag model

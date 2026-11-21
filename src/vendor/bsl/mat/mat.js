@@ -1,5 +1,5 @@
 ( function() {
-	var ns	    = window.b$l;
+    var ns	    = window.b$l;
     var mat     = ns.sn( 'mat' );
 
     ( function() {
@@ -27,7 +27,7 @@
     ///
     ///Version history: similar to used in .../square/...
     ///                 /march18-98-bezier-threads-predelivey/js/paint-bubbles-and-threads.js
-	mat.squarePolyRoot = function( aa, bb, cc )
+    mat.squarePolyRoot = function( aa, bb, cc )
     {
         if( aa === 0 ) {
             if( bb === 0 ) {

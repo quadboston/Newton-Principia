@@ -19,22 +19,22 @@
     // //\\ IE10+
     //      good for debug
     //var documentStart = performance.now(); //not for IE9?
-	var timeoutAnimationFrame = function( callback )
-	{
+    var timeoutAnimationFrame = function( callback )
+    {
         var ANIMATION_INTERVAL = 200;
-		//window.setTimeout( function() { callback( performance.now() - documentStart ); }, ANIMATION_INTERVAL );
-		window.setTimeout( callback, ANIMATION_INTERVAL );
-	};
-	//window.requestAnimationFrame = timeoutAnimationFrame;
+        //window.setTimeout( function() { callback( performance.now() - documentStart ); }, ANIMATION_INTERVAL );
+        window.setTimeout( callback, ANIMATION_INTERVAL );
+    };
+    //window.requestAnimationFrame = timeoutAnimationFrame;
     // \\// IE10+
 
-	window.requestAnimationFrame =
-				window.requestAnimationFrame		||
-		        window.webkitRequestAnimationFrame	||
-		        window.mozRequestAnimationFrame		||
-		        window.oRequestAnimationFrame		||
-		        window.msRequestAnimationFrame		||
-				timeoutAnimationFrame;
+    window.requestAnimationFrame =
+                window.requestAnimationFrame		||
+                window.webkitRequestAnimationFrame	||
+                window.mozRequestAnimationFrame		||
+                window.oRequestAnimationFrame		||
+                window.msRequestAnimationFrame		||
+                timeoutAnimationFrame;
     //**************************************
     // \\// prepares native animation frames
     //**************************************
@@ -56,8 +56,8 @@
     var hash = 1;
     var aframes_start = null;
 
-	aframes.start = function ()
-	{
+    aframes.start = function ()
+    {
         if( !aframes_start ) { aframes_start = [ Date.now() ]; }
         var timeOrigin  = aframes_start[0];
         unixTime        = Date.now();
@@ -65,8 +65,8 @@
         if( elapsed > ANIMATION_THROTTLER ) {
             Object.keys(runners).forEach( doRun );
         }
-		window.requestAnimationFrame( aframes.start );
-	};
+        window.requestAnimationFrame( aframes.start );
+    };
 
 
     function doRun( hashStr )

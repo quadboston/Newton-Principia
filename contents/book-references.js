@@ -73,7 +73,7 @@
             </div>
             `,
 
-			'Bernard-Cohen-guide' : `
+            'Bernard-Cohen-guide' : `
             <div class="isclosed">
                 <div class="trigger-option">
                     A Guide to Newton's <i>Principia</i>

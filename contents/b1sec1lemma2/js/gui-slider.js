@@ -62,7 +62,7 @@
             showBasesNumberInGui( sliderOutput, baseLabel );
 
             stdMod.model8media_upcreate();
-      	}
+        }
 
         function aduptPartitionChange(dr, newBases, undef) {
             if (dr.BASE_PT_DRAGGERS_ENABLED) {
@@ -70,12 +70,12 @@
                 ///dynamically adds more base points
                 for (var i=sconf.basesN; i<pointsLimit; i++) {
                     ///prevents making too many draggable base points
-   		            guiup.sets_pt2movable(dr.basePts.list[i]);
+                    guiup.sets_pt2movable(dr.basePts.list[i]);
                 }
             }
             var partitionWidths = dr.partitionWidths;
             for (var i=newBases; i < sconf.basesN; i++) {
-	            partitionWidths[i] = undef;
+                partitionWidths[i] = undef;
             }
         }
 
@@ -89,7 +89,7 @@
         {
             const maxLinV = 20; //linear through 20
             if (val <= maxLinV) {
-	            return parseInt(val);
+                return parseInt(val);
             }
             const minV = Math.log(maxLinV);
             const maxV = Math.log(sconf.BASE_MAX_NUM);

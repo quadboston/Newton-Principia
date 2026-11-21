@@ -27,7 +27,7 @@
     function upcreate_mainLegend()
     {
         var ww = clustersToUpdate;
-		
+        
         //todm this is a patch: do use Pr/Pt
         let grad = '<sup>ᵒ</sup>';
         let rad2grad = 180/Math.PI;

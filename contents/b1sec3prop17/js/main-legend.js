@@ -12,7 +12,7 @@
     function create_digital_legend()
     {
         create_digital_legend_for_logic_phase( 'proof' );
-		create_digital_legend_for_logic_phase( 'corollary' );
+        create_digital_legend_for_logic_phase( 'corollary' );
     }
 
     function create_digital_legend_for_logic_phase( logic_phase )
@@ -58,11 +58,11 @@
             updatesDataInCell,
         });
 
-		function reportEccentricityAs0WhenNearlyCircle() {
-			// threshold should match getEqn()
-			legendScriptParsed[0][0][2] = op.eccentricity < 0.004 ?
-				 0 : 'op.eccentricity';
-		}
+        function reportEccentricityAs0WhenNearlyCircle() {
+            // threshold should match getEqn()
+            legendScriptParsed[0][0][2] = op.eccentricity < 0.004 ?
+                 0 : 'op.eccentricity';
+        }
 
         function makesBodyCluster({ rowIx, clusterIx, }){
             //called 4x on page load, once per "cluster"
@@ -78,8 +78,8 @@
         {
             //called 4x when switching to tab with table
             //console.log('updates table'); 
-			
-			reportEccentricityAs0WhenNearlyCircle();
+            
+            reportEccentricityAs0WhenNearlyCircle();
             return ssF.dataSourceParsed1__2__updatesDataInCell({
                 rowIx,
                 clusterIx,

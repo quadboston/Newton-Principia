@@ -1,7 +1,7 @@
 ( function() {
     var { sn, nspaste, rg, stdMod, sconf, ssD, sData, }
         = window.b$l.apptree({ stdModExportList : {
-			initiates_orbit8graph,
+            initiates_orbit8graph,
             rebuilds_orbit,
             initiates_kepler_config,
         },
@@ -25,12 +25,12 @@
                 stdMod.createOrUpdateOrbit({});
             };
         }
-		if (!sconf.omitGraph) {
-			stdMod.graph = stdMod.createsGraph({
-				parentDom$ : stdMod.legendRoot$,
-				customXLegend : stdMod.customXLegend,
-			});
-		}
+        if (!sconf.omitGraph) {
+            stdMod.graph = stdMod.createsGraph({
+                parentDom$ : stdMod.legendRoot$,
+                customXLegend : stdMod.customXLegend,
+            });
+        }
         stdMod.creates_createOrUpdateOrbit();
         if (stdMod.calculateMaxGraphValues)
             stdMod.calculateMaxGraphValues();
@@ -46,18 +46,18 @@
         // //\\ scenario: coincided P and Q: Q splits first
         rg.P.dragPriority = 10;
         rg.Q.dragPriority = 100;
-		if ( rg.Qemphasis ) {
-			rg.Qemphasis.dragPriority = 100;
-		}
+        if ( rg.Qemphasis ) {
+            rg.Qemphasis.dragPriority = 100;
+        }
         // \\// scenario: coincided P and Q: Q splits first
 
         stdMod.creates_Q8P_sliders();
         if( rg.S.draggableX || rg.S.draggableY ) {
             stdMod.creates_S_slider();
         }
-		if( rg.A && (rg.A.draggableX || rg.A.draggableY) ) {
-			stdMod.creates_A_slider();
-		}
+        if( rg.A && (rg.A.draggableX || rg.A.draggableY) ) {
+            stdMod.creates_A_slider();
+        }
     }
 
     function rebuilds_orbit(setMaxGraphValues = false) {

@@ -29,7 +29,7 @@
         var wwc = clustersToUpdate_corollary;
         var stepIx = rg.stepIx.value;
 
-		// for corollary 1:
+        // for corollary 1:
         var speed = rg.speeds.vect[stepIx-1];
         if( speed ) {
             var vx = speed[0].toFixed(3);

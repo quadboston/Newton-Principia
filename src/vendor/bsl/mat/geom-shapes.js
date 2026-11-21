@@ -1,5 +1,5 @@
 ( function() {
-	const ns	= window.b$l;
+    const ns	= window.b$l;
     const mat = ns.sn( 'mat' );
 
     mat.circumscribeCircleOverChordAndBothNormals =

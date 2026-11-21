@@ -11,9 +11,9 @@
                 { src: 'init-model-parameters.js' },
                 { src: 'model-upcreate.js' },
                 { src: 'state-capturer.js' },
-				{ src: 'model-customizer.js' },
+                { src: 'model-customizer.js' },
                 { src: 'completes-sliders-creation.js' },
-				{ src: '../../kepler-orbit-models/main-legend.js' },
+                { src: '../../kepler-orbit-models/main-legend.js' },
             ],
             "contents-list" : [
                 'txt/latin.txt',

@@ -622,7 +622,7 @@
 //        non-dispensable for mobiles
 //===========================================
 ( function () {
-	var ns = window.b$l;
+    var ns = window.b$l;
 
 
 
@@ -681,7 +681,7 @@
 //===========================================
 
 ( function() {
-	var ns = window.b$l;
+    var ns = window.b$l;
 
 
 
@@ -801,22 +801,22 @@
     ///pair "name, value"
     ns.dots2object = function( name, value, obj )
     {
-		var tokens	= name.split( '.' );
-		var len		= tokens.length;
-		var len1	= len - 1;
-		if( len1 < 0 ) {
+        var tokens	= name.split( '.' );
+        var len		= tokens.length;
+        var len1	= len - 1;
+        if( len1 < 0 ) {
             obj[ name ] = value;
             return obj;
         }
-		var prop	= tokens[ 0 ];
-		for( var ii = 0; ii < len1; ii++ )
-		{
-			//:: appends objects if missed
-			if( !obj[ prop ] || typeof obj[ prop ] !== 'object' ) obj[ prop ] = {};
-			obj = obj[ prop ];
-			prop = tokens[ ii + 1 ];
-		}
-		obj[ prop ] = value;
+        var prop	= tokens[ 0 ];
+        for( var ii = 0; ii < len1; ii++ )
+        {
+            //:: appends objects if missed
+            if( !obj[ prop ] || typeof obj[ prop ] !== 'object' ) obj[ prop ] = {};
+            obj = obj[ prop ];
+            prop = tokens[ ii + 1 ];
+        }
+        obj[ prop ] = value;
         return obj;
     }
 
@@ -847,80 +847,80 @@
 
 
 
-	///	Purpose:		Cloning object trees by value till refdepth.
+    ///	Purpose:		Cloning object trees by value till refdepth.
 
     // edge-calse does not work: see below as
     // edge-calse does not work: the only problem is when wall_preserved.length is defined.
     // see other edge cases with token "throw" below
 
-	//					"All existing properties at and below refdepth become common
-	//					for operands and result".
-	//	Detais:			Makes wall a correct paste of paper when
-	//						both wall and paper do not have arrays in their trees till (refdepth+1);
-	//					otherwise, ( "arrayflict" case)
-	//						non-array obj.W can be overriden with array [] and with A which may
-	//						break outside reference w = obj.W which still points to the former W.
-	//					Infinite recursion is not protected except by using recdepth.
-	//	Comparision:	of arrayflicts with jQuery.extend
-	//						wall = {...} paper [...]
-	//							in jQuery - this is an obligation of programmer to make wall [...]
-	//							in tp	-	wall is brutally replaced with []. Not extended,  //TODM possibly fix
-	//										but return result is correct possibly except numerics in wall_preserved.
-	//						in deeper levels of arrayflict
-	//							in jQuery	- new [] is generated
-	//							in tp		- new [] is generated
-	//							in jQuery	- numeric and non-numeric properties of wall.....non-arr are "killed"
-	//							in tp		- numeric and non-numeric properties of wall.....non-arr are preserved
-	//					in jQuery	- all prototype levels are copied
-	//					in tp		- only ownProperties are copied
-	//					in jQuery	- only two options "deep copy" or "not deep"
-	//					in tp		- reference deepness can be controlled
-	//							
-	//	Input:			All args are optional.
-	//					skip_undefined	- omitting it allows copying "wall <- paper.undefined".
-	//					recdepth		- stops recursion at level > recdepth: nothing copied if level > recdepth
+    //					"All existing properties at and below refdepth become common
+    //					for operands and result".
+    //	Detais:			Makes wall a correct paste of paper when
+    //						both wall and paper do not have arrays in their trees till (refdepth+1);
+    //					otherwise, ( "arrayflict" case)
+    //						non-array obj.W can be overriden with array [] and with A which may
+    //						break outside reference w = obj.W which still points to the former W.
+    //					Infinite recursion is not protected except by using recdepth.
+    //	Comparision:	of arrayflicts with jQuery.extend
+    //						wall = {...} paper [...]
+    //							in jQuery - this is an obligation of programmer to make wall [...]
+    //							in tp	-	wall is brutally replaced with []. Not extended,  //TODM possibly fix
+    //										but return result is correct possibly except numerics in wall_preserved.
+    //						in deeper levels of arrayflict
+    //							in jQuery	- new [] is generated
+    //							in tp		- new [] is generated
+    //							in jQuery	- numeric and non-numeric properties of wall.....non-arr are "killed"
+    //							in tp		- numeric and non-numeric properties of wall.....non-arr are preserved
+    //					in jQuery	- all prototype levels are copied
+    //					in tp		- only ownProperties are copied
+    //					in jQuery	- only two options "deep copy" or "not deep"
+    //					in tp		- reference deepness can be controlled
+    //							
+    //	Input:			All args are optional.
+    //					skip_undefined	- omitting it allows copying "wall <- paper.undefined".
+    //					recdepth		- stops recursion at level > recdepth: nothing copied if level > recdepth
 
-	//	Results in:		changed wall properties.
-	//	Returns:		combined clone of paper to wall.
-	var paste_non_arrays = ns.paste = ns.paste_non_arrays = function ( wall, paper, level, skip_undefined, refdepth, recdepth )
-	{
+    //	Results in:		changed wall properties.
+    //	Returns:		combined clone of paper to wall.
+    var paste_non_arrays = ns.paste = ns.paste_non_arrays = function ( wall, paper, level, skip_undefined, refdepth, recdepth )
+    {
 
-		level = level || 0;
-		var t = typeof paper;
+        level = level || 0;
+        var t = typeof paper;
 
-		//.Arguments sugar: pasting nothing does not change wall
-		if( !level && (t === 'undefined' || paper === null ) ) return wall;
+        //.Arguments sugar: pasting nothing does not change wall
+        if( !level && (t === 'undefined' || paper === null ) ) return wall;
 
         //.Returns back non-object-type value
-		if( t === 'undefined' || t === 'string' || t === 'boolean' || t === 'number' || t === 'function' || paper === null)
-		{
-			return paper;
-		}
+        if( t === 'undefined' || t === 'string' || t === 'boolean' || t === 'number' || t === 'function' || paper === null)
+        {
+            return paper;
+        }
 
-		///Reduces the "deep-copy" to reference copy for leveles beneath reference-depth
-		if( refdepth || refdepth === 0 )
-		{
-			if( level > refdepth ) return paper;
-		}
+        ///Reduces the "deep-copy" to reference copy for leveles beneath reference-depth
+        if( refdepth || refdepth === 0 )
+        {
+            if( level > refdepth ) return paper;
+        }
 
-		///Recursion limit is exceeded. Truncates recursion by recdepth value.
-		if( ( recdepth || recdepth ===0 ) && level > recdepth ) 
-		{
-			return '';
-		}
+        ///Recursion limit is exceeded. Truncates recursion by recdepth value.
+        if( ( recdepth || recdepth ===0 ) && level > recdepth ) 
+        {
+            return '';
+        }
 
 
-		///Paper is non-void array or object. If wall do not "match" the paper, making wall an object.
-		if( typeof wall !== 'object' || wall === null )
-		{
-			wall = {};
-		}
+        ///Paper is non-void array or object. If wall do not "match" the paper, making wall an object.
+        if( typeof wall !== 'object' || wall === null )
+        {
+            wall = {};
+        }
 
         var isArrayPaper = Array.isArray( paper );
         if( isArrayPaper && !Array.isArray( wall ) ) {
             ////Paper is array and wall is not. Morthing wall to array but preserve its properties.
-			var wall_preserved = wall;
-			wall = [];
+            var wall_preserved = wall;
+            wall = [];
             //.Returns preserved wall's properties to wall-as-array.
             if( typeof wall_preserved.length !== 'undefined' ) {
                 ////edge-calse does not work: the only problem is when wall_preserved.length is defined.
@@ -928,34 +928,34 @@
                 throw new Error("copying array to object with" +
                                 " existing object.length property");
             }
-			paste_non_arrays( wall, wall_preserved, level, skip_undefined, refdepth, null );
+            paste_non_arrays( wall, wall_preserved, level, skip_undefined, refdepth, null );
         };
 
-		///Now both wall and paper are objects of the same type. Pasting their properties.
-		var hasOwn	= Object.prototype.hasOwnProperty;
-		for(var p in paper )
-		{
-			if( hasOwn.call( paper, p ) ) //when works on arrays, then not fails on 'length'? bs "length" is notOwnProperty
-			{
-				if( p !== 'length' )
-				{
-					//paper[ p ];
-						var theValue = paste_non_arrays( wall[ p ], paper[ p ], level+1, skip_undefined, refdepth, recdepth );
+        ///Now both wall and paper are objects of the same type. Pasting their properties.
+        var hasOwn	= Object.prototype.hasOwnProperty;
+        for(var p in paper )
+        {
+            if( hasOwn.call( paper, p ) ) //when works on arrays, then not fails on 'length'? bs "length" is notOwnProperty
+            {
+                if( p !== 'length' )
+                {
+                    //paper[ p ];
+                        var theValue = paste_non_arrays( wall[ p ], paper[ p ], level+1, skip_undefined, refdepth, recdepth );
 
-						if( ! ( ( isArrayPaper || skip_undefined ) && typeof theValue === 'undefined' )  )
-						{
-							wall[ p ]		= theValue;
-						}
-				} else {
-					throw new Error(
+                        if( ! ( ( isArrayPaper || skip_undefined ) && typeof theValue === 'undefined' )  )
+                        {
+                            wall[ p ]		= theValue;
+                        }
+                } else {
+                    throw new Error(
                         'The subroutine, paste_non_arrays,' +
                         'does not allow to copy property "length".' );
-				}
-			}
-		}
-		return wall;
-	};// ...paste_non_arrays=function...
-	
+                }
+            }
+        }
+        return wall;
+    };// ...paste_non_arrays=function...
+    
     ///before pasting to wall,
     ///removes wall's own properties and array elements if any
     ns.cleanpaste = function ( wall, paper )
@@ -983,7 +983,7 @@
 ///keeping css in one html-style-element;
 ( function() {
     var DEFAULT_KEY         = 'default-style-tag-class';
- 	var ns                  = window.b$l;
+    var ns                  = window.b$l;
     var globalCss           = ns.sn('globalCss');
     var nsmethods           = ns.sn('methods');
 
@@ -1110,19 +1110,19 @@
     };
 
 
-	/**
-	 * Converts a camelCase identifier to a valid CSS identifier format.
-	 * Transforms uppercase letters to lowercase with underscore prefix,
-	 * and converts commas to underscore-dash.
-	 * 
-	 * @param {string} camelId - A camelCase identifier (e.g., 'ptId', 'A,B')
-	 * @returns {string} CSS-safe identifier (e.g., 'pt_id', '_a_-_b')
-	 * 
-	 * @example
-	 * toCssIdentifier('givenProof') // returns 'given_proof'
-	 * toCssIdentifier('A') // returns '_a'
-	 * toCssIdentifier('A,B') // returns '_a_-_b'
-	 */
+    /**
+     * Converts a camelCase identifier to a valid CSS identifier format.
+     * Transforms uppercase letters to lowercase with underscore prefix,
+     * and converts commas to underscore-dash.
+     * 
+     * @param {string} camelId - A camelCase identifier (e.g., 'ptId', 'A,B')
+     * @returns {string} CSS-safe identifier (e.g., 'pt_id', '_a_-_b')
+     * 
+     * @example
+     * toCssIdentifier('givenProof') // returns 'given_proof'
+     * toCssIdentifier('A') // returns '_a'
+     * toCssIdentifier('A,B') // returns '_a_-_b'
+     */
     function toCssIdentifier( camelId )
     {
         return camelId.replace( /([A-Z,])/g,

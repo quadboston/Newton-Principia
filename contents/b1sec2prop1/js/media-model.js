@@ -198,21 +198,21 @@ function pathDelays2forceDraggers (){
 }
 
 function putInFront(...items) {
-	for (const item of items) {
-		const svg = item.svgel;
-		const parent = svg.parentNode;
-		svg.remove();
-		parent.appendChild(svg);
-	}
+    for (const item of items) {
+        const svg = item.svgel;
+        const parent = svg.parentNode;
+        svg.remove();
+        parent.appendChild(svg);
+    }
 }
 
 function putInBack(...items) {
-	for (const item of items) {
-		const svg = item.svgel;
-		const parent = svg.parentNode;
-		svg.remove();
-		parent.insertBefore(svg, parent.firstChild);
-	}
+    for (const item of items) {
+        const svg = item.svgel;
+        const parent = svg.parentNode;
+        svg.remove();
+        parent.insertBefore(svg, parent.firstChild);
+    }
 }
 
 function media_upcreate___after_basic (){
@@ -227,8 +227,8 @@ function media_upcreate___after_basic (){
     ///this is a way around canonical config:
     ///placing svg shapes on top of configured z order,
     if( !zorderFixed ) {
-		putInFront(rg['S']);
-		putInBack(rg['Bc']);
+        putInFront(rg['S']);
+        putInBack(rg['Bc']);
 
         ///path
         const path = rg.path.pos;
@@ -239,8 +239,8 @@ function media_upcreate___after_basic (){
 
         ///put handler kernels over vector tips
         ['B','C','D','E','F'].forEach( (pname, ix) => {
-			putInFront(rg[pname]); // force vector bases
-			putInFront(rg['VVV'+ix+'-kernel']); // force draggers
+            putInFront(rg[pname]); // force vector bases
+            putInFront(rg['VVV'+ix+'-kernel']); // force draggers
         });
 
         zorderFixed = true;

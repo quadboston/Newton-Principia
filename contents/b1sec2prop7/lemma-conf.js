@@ -2,7 +2,7 @@
     window.b$l.apptree({}).fapp.lemmaConfig = lemmaConfig;    
     return;
 
-	
+    
     function lemmaConfig()
     {
         return {
@@ -16,7 +16,7 @@
                 { src: 'amode8captures.js' },
                 { src: 'state-capturer.js' },
                 { src: 'config-functions.js' },
-				{ src: '../../kepler-orbit-models/main-legend.js' },
+                { src: '../../kepler-orbit-models/main-legend.js' },
             ],
             "contents-list" :
             [

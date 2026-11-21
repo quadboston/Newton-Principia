@@ -123,19 +123,19 @@
             forceColor,
             estimatedForceColor,
             infoColor,
-			sunColor,
-			proofHover,
+            sunColor,
+            proofHover,
         } = topicColors_repo;
 
         var topicColors_elected =
         {
-			estimatedForceColor,
-			body: bodyColor,
+            estimatedForceColor,
+            body: bodyColor,
             orbit: bodyColor,
             force: forceColor,
             tangentCircle: infoColor,
-			force: forceColor,
-			time: estimatedForceColor,
+            force: forceColor,
+            time: estimatedForceColor,
         };
         //-----------------------------------
         // \\// topic group colors,
@@ -170,11 +170,11 @@
                 letterAngle : 120,
                 letterRotRadius : 35,
             },
-			
+            
             B : {
                 pcolor : proofColor,
                 letterAngle : 90,
-				cssClass: 'subessay--solution',
+                cssClass: 'subessay--solution',
             },
 
             // //\\ proof
@@ -243,15 +243,15 @@
 
             tCircleCenter : {
                 pcolor : infoColor,
-				doPaintPname : false,
+                doPaintPname : false,
                 cssClass: 'subessay--another-solution',
             },
 
-			// to make kepler-orbit/builds-orbit happy, which assumes point S
+            // to make kepler-orbit/builds-orbit happy, which assumes point S
             S : {
                 pos: posC,
-				undisplayAlways : true,
-				doPaintPname : false,
+                undisplayAlways : true,
+                doPaintPname : false,
             },
 
             //---------------------------------------
@@ -277,7 +277,7 @@
             A : {
                 pcolor : proofColor,
                 draggableX  : true,
-				cssClass: 'logic_phase--proof',
+                cssClass: 'logic_phase--proof',
                 conditionalDrag : 'logic_phase--proof',
             },
             //---------------------------------------
@@ -289,17 +289,17 @@
         var linesArray =
         [
             { 'A,AA' : { pcolor : proofColor,
-					 cssClass: 'subessay--corollary2',
-			}, },
+                     cssClass: 'subessay--corollary2',
+            }, },
             { 'B,BB' : { pcolor : proofColor,
-					 cssClass: 'subessay--corollary2',
-			 }, },
+                     cssClass: 'subessay--corollary2',
+             }, },
             { 'PZ' : { pcolor : proofColor,
-					 cssClass: 'subessay--solution',
-			}, },
+                     cssClass: 'subessay--solution',
+            }, },
             { 'ZR' : { pcolor : proofColor,
-					 cssClass: 'subessay--solution',
-			}, },
+                     cssClass: 'subessay--solution',
+            }, },
             { CA : { pcolor : proofColor,
                      cssClass: 'subessay--solution',
             }, },
@@ -308,7 +308,7 @@
             }, },
 
             // //\\ proof
-			{ 'CV' : { pcolor : proofColor,
+            { 'CV' : { pcolor : proofColor,
                          cssClass: 'subessay--another-solution',
             }, },
             { 'PR' : { pcolor : proofColor,
@@ -323,9 +323,9 @@
             { 'PT' : { pcolor : proofHover,
                        cssClass: 'logic_phase--proof',
             }, },
-			{ 'TP' : { pcolor : proofColor,
+            { 'TP' : { pcolor : proofColor,
                        cssClass: 'subessay--goal logic_phase--proof',
-					   'stroke-width' : 1.5,
+                       'stroke-width' : 1.5,
             }, },
             { DK : { pcolor : proofColor,
                      cssClass: 'logic_phase--proof',
@@ -345,7 +345,7 @@
             { vC : { pcolor : proofHover,                 
                      cssClass: 'logic_phase--proof',
             }, },
-			{ CG : { pcolor : proofColor,                 
+            { CG : { pcolor : proofColor,                 
                      cssClass: 'logic_phase--proof',
             }, },
             { DC : { pcolor : proofHover,
@@ -366,9 +366,9 @@
             { uP : { pcolor : proofHover,
                      cssClass: 'subessay--another-solution',
             }, },
-			{ Pu : { pcolor : proofColor,
+            { Pu : { pcolor : proofColor,
                      cssClass: 'subessay--another-solution',
-					 'stroke-width' : 1.5,
+                     'stroke-width' : 1.5,
             }, },
             { PQ : { pcolor : proofColor,
                      cssClass: 'subessay--another-solution',
@@ -376,15 +376,15 @@
             { 'P,tCircleCenter' : { pcolor : infoColor,
                      cssClass: 'subessay--another-solution',
             }, },
-			{ PC : { pcolor : estimatedForceColor,
+            { PC : { pcolor : estimatedForceColor,
                 cssClass: 
-				'subessay--goal logic_phase--proof subessay--corollary1 logic_phase--scholium',
+                'subessay--goal logic_phase--proof subessay--corollary1 logic_phase--scholium',
             }, },
-			{ 'QC' : { pcolor : proofColor, 
-				cssClass: 'subessay--goal',
-			},},
+            { 'QC' : { pcolor : proofColor, 
+                cssClass: 'subessay--goal',
+            },},
 
-			{ PF : { pcolor : proofColor,
+            { PF : { pcolor : proofColor,
                      cssClass: 'logic_phase--proof',
             }, },
         ];

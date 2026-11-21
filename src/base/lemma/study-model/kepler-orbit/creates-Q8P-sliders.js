@@ -92,9 +92,9 @@
             stdMod.model8media_upcreate();
             return; //avoids repetition
         }
-		if (rg.Qemphasis) {
-			rg.Qemphasis.acceptPos = rg.Q.acceptPos;
-		}
+        if (rg.Qemphasis) {
+            rg.Qemphasis.acceptPos = rg.Q.acceptPos;
+        }
     }
 
     //=====================================================================
@@ -119,17 +119,17 @@
 
             // enforce ellipse equation: solve for a given x,y
             let x = newPos[0];
-			if (x < 0) { // don't drag A on the far left
-				return;
-			}
+            if (x < 0) { // don't drag A on the far left
+                return;
+            }
             let y = newPos[1];
             let b = sconf.ellipseB;
 
             // compute semi-major axis a from ellipse equation
             let a = Math.sqrt( x*x / (1 - (y*y)/(b*b)) );
 
-			// allow ellipse to be circle, rather than abort at last ellipse
-			a = Math.max(a, b);
+            // allow ellipse to be circle, rather than abort at last ellipse
+            a = Math.max(a, b);
 
             //TEMP
             //Constrain a if needed, to ensure eccentricity isn't above the max
@@ -143,12 +143,12 @@
             sconf.ellipseFocus = Math.sqrt(a*a - b*b);
             sconf.eccentricity = sconf.ellipseFocus / a;
             if(sconf.ellipseFocus <= 0) sconf.ellipseFocus = 0.00001; // to avoid cuckoo graph
-			rg.A.pos[0] = x;
-			rg.A.pos[1] = y;
-			if (rg.H && rg.S) {
+            rg.A.pos[0] = x;
+            rg.A.pos[1] = y;
+            if (rg.H && rg.S) {
                 rg.S.pos[0] = -sconf.ellipseFocus;
-				rg.H.pos[0] = sconf.ellipseFocus;
-			}
+                rg.H.pos[0] = sconf.ellipseFocus;
+            }
 
             stdMod.rebuilds_orbit(); // draws ellipse
             stdMod.model8media_upcreate(); // repositions points

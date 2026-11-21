@@ -217,7 +217,7 @@
             const ctrlPts = dr.ctrlPts;
             const ptsUntransformed = ctrlPts.untransformed;
             const DRAGGABLE_END_POINTS = ctrlPts.DRAGGABLE_END_POINTS;
-	        appstate.movingBasePt = false;//Default
+            appstate.movingBasePt = false;//Default
 
             if ( "ctrl" === item.type ) {
                 //Curve control points
@@ -296,7 +296,7 @@
                 // \\// applies newX to js-model
 
                 //. todo: plays only in function updatePts(dr, i, x) ... what for?
-	            appstate.movingBasePt = true;
+                appstate.movingBasePt = true;
             }
             return item;
         }

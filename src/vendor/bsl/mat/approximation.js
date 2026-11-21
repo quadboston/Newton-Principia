@@ -1,5 +1,5 @@
 ( function() {
-	var ns	    = window.b$l;
+    var ns	    = window.b$l;
     var mat     = ns.sn( 'mat' );
 
     mat.calculate_divided_differences = calculate_divided_differences;

@@ -47,7 +47,7 @@
         //T = perp. from Q to radius-vector
         nspaste( rg.T.pos, mat.dropPerpendicular( rg.Q.pos, rg.S.pos, rg.P.pos ) );
 
-		nspaste( rg.Z.pos,
+        nspaste( rg.Z.pos,
             mat.dropLine(
                 1.3,
                 rg.P.pos,
@@ -83,11 +83,11 @@
         }
 
         ////hyperbola or ellipse
-		const sqAC = mat.squaredDistance( rg.A, rg.C );
-		const sqBC = mat.squaredDistance( rg.B, rg.C );
-		const sqDiameterConstant = sqAC - sqBC;
-		const SqDC = mat.squaredDistance( rg.P, rg.C ) - sqDiameterConstant;
-		const DC = Math.sqrt(Math.abs(SqDC ));
+        const sqAC = mat.squaredDistance( rg.A, rg.C );
+        const sqBC = mat.squaredDistance( rg.B, rg.C );
+        const sqDiameterConstant = sqAC - sqBC;
+        const SqDC = mat.squaredDistance( rg.P, rg.C ) - sqDiameterConstant;
+        const DC = Math.sqrt(Math.abs(SqDC ));
         let D = mat.sm( rg.C.pos, -DC, uTangential );
         nspaste( rg.D.pos, D );
         let K = mat.sm( rg.C.pos,  DC, uTangential );
@@ -97,7 +97,7 @@
         //                                  uTangential) );
 
         //conjugate diameters and tangents
-		stdMod.customizePoints(rg, op, uTangential);
+        stdMod.customizePoints(rg, op, uTangential);
 
         //vuFV
         //v = parallel-projection of Q to tangent
@@ -131,39 +131,39 @@
         rg.LL.pos[0] =  sinAxis * op.latus;
         rg.LL.pos[1] = -cosAxis * op.latus;
 
-		// graph
-		if (stdMod.graph) {
+        // graph
+        if (stdMod.graph) {
             createGraph();
-		}
+        }
 
 
-		function createGraph() {
-			//Fixed bounds allow different arrangements of curves to easily be
-			//compared to one another (eg. different eccentricities).  Note
-			//when the axes are variable, the curves are distorted when
-			//compared, which is misleading for these models.
-			const graphArg = {
-				xMin : 0,
-				xMax : sconf.DISTANCE_ORBIT_ENDS_TO_S,
-				yMin : 0,
-			};
+        function createGraph() {
+            //Fixed bounds allow different arrangements of curves to easily be
+            //compared to one another (eg. different eccentricities).  Note
+            //when the axes are variable, the curves are distorted when
+            //compared, which is misleading for these models.
+            const graphArg = {
+                xMin : 0,
+                xMax : sconf.DISTANCE_ORBIT_ENDS_TO_S,
+                yMin : 0,
+            };
 
-			if (fconf.sappId === 'b1sec3prop12') {
-				//y max stays fixed while the curves fit under it, which covers
-				//the common arrangements; extreme ones, such as a large
-				//eccentricity with Q far from P, raise it to fit their curves
-				const Y_MAX_USUAL = 2;
-				const yPeak = Math.max(
-					ssD.actualForceMaxCurrent, ssD.estimatedForceMaxCurrent
-				) / ssD.MAF;
-				graphArg.yMax = Math.max(Y_MAX_USUAL, yPeak);
-			}
-			//In Prop 13, y max is left unset, so it is automatically set to
-			//the current maximum y value for all curves, which allows the
-			//student to see how big it grows.  When Q is at P it equals MAF,
-			//and when Q is furthest from P it equals MEF.
+            if (fconf.sappId === 'b1sec3prop12') {
+                //y max stays fixed while the curves fit under it, which covers
+                //the common arrangements; extreme ones, such as a large
+                //eccentricity with Q far from P, raise it to fit their curves
+                const Y_MAX_USUAL = 2;
+                const yPeak = Math.max(
+                    ssD.actualForceMaxCurrent, ssD.estimatedForceMaxCurrent
+                ) / ssD.MAF;
+                graphArg.yMax = Math.max(Y_MAX_USUAL, yPeak);
+            }
+            //In Prop 13, y max is left unset, so it is automatically set to
+            //the current maximum y value for all curves, which allows the
+            //student to see how big it grows.  When Q is at P it equals MAF,
+            //and when Q is furthest from P it equals MEF.
 
-			stdMod.graph.drawsGraph(graphArg);
-		}
+            stdMod.graph.drawsGraph(graphArg);
+        }
     }
 }) ();

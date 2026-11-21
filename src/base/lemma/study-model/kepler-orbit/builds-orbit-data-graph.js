@@ -19,10 +19,10 @@
 
     function builds_orbit_data_graph(setMaxGraphValues = false)
     {
-		if (!stdMod.graph) {
-			// graph not needed for this model, so skip
-			return;
-		}
+        if (!stdMod.graph) {
+            // graph not needed for this model, so skip
+            return;
+        }
         const Q_STEPS = sconf.Q_STEPS;
         const DATA_GRAPH_STEPS = sconf.DATA_GRAPH_STEPS;
         const IS_ESTIMATED_SCALED_BY_ACTUAL_FORCE_MAX =

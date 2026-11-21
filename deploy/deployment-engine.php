@@ -30,9 +30,9 @@
     //=====================================================
     // //\\ validatates command line
     //=====================================================
-	error_reporting( E_ALL );
-	//error_reporting( E_RECOVERABLE_ERROR );
-	ini_set( 'display_errors', '1' );
+    error_reporting( E_ALL );
+    //error_reporting( E_RECOVERABLE_ERROR );
+    ini_set( 'display_errors', '1' );
 
     function ech( $arg )
     {
@@ -97,7 +97,7 @@
     ///cli
     function cli ( $command, $action_descr, $do_print_output = FALSE, $get_output = FALSE ) 
     {
-    	$res = array();
+        $res = array();
         $ret = exec( $command, $res, $retcode );
         if( $retcode . '' !== '0' ) {
             echo "$action_descr: problems in command: $command\noutput="; 
@@ -108,7 +108,7 @@
             //.uncomment for verbose output
             //echo "$command";
 
-          	if( $do_print_output ) {
+            if( $do_print_output ) {
                 echo "output=";
                 print_r( $res );
             }
@@ -124,7 +124,7 @@
     function rm8create_folder( $folder )
     {
         if( file_exists( $folder ) ) {
-	        if( is_dir( $folder ) ) {
+            if( is_dir( $folder ) ) {
                 cli( "rm -rf $folder", "removing folder" );
             } else {
                 cli( "rm -f $folder", "removing file" );

@@ -14,7 +14,7 @@
                 { src: 'config-functions.js' },
                 { src: 'model-upcreate.js' },
                 { src: 'state-capturer.js' },
-				{ src: '../../kepler-orbit-models/main-legend.js' },
+                { src: '../../kepler-orbit-models/main-legend.js' },
             ],
             "contents-list" :
             [

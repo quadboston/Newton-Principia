@@ -16,7 +16,7 @@
     //=====================================================
     function cli ( $command, $action_descr, $do_print_output = FALSE, $get_output = FALSE ) 
     {
-    	$res = array();
+        $res = array();
         $ret = exec( $command, $res, $retcode );
         if( $retcode . '' !== '0' ) {
             printf( "\n$action_descr:\nproblems in command:\n$command\noutput=" ); 
@@ -27,7 +27,7 @@
             //.uncomment for verbose output
             //echo "$command";
 
-          	if( $do_print_output ) {
+            if( $do_print_output ) {
                 echo "output=";
                 print_r( $res );
             }
@@ -155,8 +155,8 @@
     );
     if( !$matches ) exit( 'invalid version string in file ' .
                           $list[0] . '.' );
-	$version = $matches[1];
-	$new_content = $js_text;
+    $version = $matches[1];
+    $new_content = $js_text;
     //echo $new_content;
     //=====================================================
     // \\// gets version

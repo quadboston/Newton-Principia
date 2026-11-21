@@ -49,42 +49,42 @@
         filesList.forEach( function( fileItem, ix ) {
 
             var xml = new XMLHttpRequest();
-			try{ 
+            try{ 
                 xml.responseType = ns.haz( fileItem, 'responseType' ) || 'text';
-				xml.open( 'GET', fileItem.link, true );
+                xml.open( 'GET', fileItem.link, true );
 
                 ///todom perhaps we can merge both conditions in one "case"  
                 if( fileItem.responseType === 'arraybuffer' ) {
-    				xml.send();
-			        xml.onload = fileOnLoad;
+                    xml.send();
+                    xml.onload = fileOnLoad;
                 } else {
-    				xml.send( null );
+                    xml.send( null );
                     //sets primary callback
-			        xml.onreadystatechange = process_by_good_readystate;
+                    xml.onreadystatechange = process_by_good_readystate;
                 }
 
 
-			} catch ( e ) {	//	TODM
-				//Give up.
+            } catch ( e ) {	//	TODM
+                //Give up.
                 completionCount++;
                 checkCompletion( fileItem );
-			}
+            }
 
             function process_by_good_readystate()
             {
-				if ( xml.readyState === 4 ) 
-				{
-					if( xml.status === 200 )
-					{
-						fileOnLoad();
-					} else {
+                if ( xml.readyState === 4 ) 
+                {
+                    if( xml.status === 200 )
+                    {
+                        fileOnLoad();
+                    } else {
                         //Give up.
                         completionCount++;
                         checkCompletion( fileItem );
                         //onerror && onerror( 'Ajax problems with URL ' +
                         //         ajaxURL );
-					}
-				}
+                    }
+                }
             }
 
             function fileOnLoad()

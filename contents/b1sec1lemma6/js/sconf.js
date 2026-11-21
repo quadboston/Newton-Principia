@@ -131,51 +131,51 @@
             },
             L : { // rectilinear angle slider
                 pcolor      : infoColor,
-				cssClass: 'logic_phase--proof',
-				conditionalDrag : 'logic_phase--proof',
-				doPaintPname : false,
+                cssClass: 'logic_phase--proof',
+                conditionalDrag : 'logic_phase--proof',
+                doPaintPname : false,
             },
-			R : {
-				pos: R,
-				letterAngle : 135,
-				pcolor      : givenColor,
-				undisplayAlways : true,
-				doPaintPname : false,
-			},
-			curveStart  : {
-				pos : [ A[0]-80, 0 ],
-				undisplayAlways : true,
-				doPaintPname : false,
-			},
-			curveEnd : {
-				pos : [B[0]+50,0],
-				undisplayAlways : true,
-				doPaintPname : false,
-			},
-			r : {
-				pos: r,
-				letterAngle : 135,
-				pcolor      : givenColor,
-				undisplayAlways : true,
-				doPaintPname : false,
-			},
-			d : {
-				pos         : d,
-				undisplayAlways : true,
-				doPaintPname : false,
-			},
-			DLeft : {
+            R : {
+                pos: R,
+                letterAngle : 135,
+                pcolor      : givenColor,
+                undisplayAlways : true,
+                doPaintPname : false,
+            },
+            curveStart  : {
+                pos : [ A[0]-80, 0 ],
+                undisplayAlways : true,
+                doPaintPname : false,
+            },
+            curveEnd : {
+                pos : [B[0]+50,0],
+                undisplayAlways : true,
+                doPaintPname : false,
+            },
+            r : {
+                pos: r,
+                letterAngle : 135,
+                pcolor      : givenColor,
+                undisplayAlways : true,
+                doPaintPname : false,
+            },
+            d : {
+                pos         : d,
+                undisplayAlways : true,
+                doPaintPname : false,
+            },
+            DLeft : {
                 pos         : DLeft,
-				letterAngle : 90,
-				pcolor      : givenColor,
-				undisplayAlways : true,
-				doPaintPname : false,
-			},
-			curveLeftEnd : {
-				pos : [250,100],
-				undisplayAlways : true,
-				doPaintPname : false,
-			},
+                letterAngle : 90,
+                pcolor      : givenColor,
+                undisplayAlways : true,
+                doPaintPname : false,
+            },
+            curveLeftEnd : {
+                pos : [250,100],
+                undisplayAlways : true,
+                doPaintPname : false,
+            },
         };
         
         var linesArray =
@@ -183,7 +183,7 @@
             { 'AB' : { pcolor : givenColor } },
             { 'AD' : { pcolor : givenColor } },
             { 'AL' : { pcolor : infoColor,
-						cssClass: 'logic_phase--proof',} }, // rectilinear angle
+                        cssClass: 'logic_phase--proof',} }, // rectilinear angle
             { 'A,DLeft'  : { pcolor : givenColor, 'stroke-width' : 2, } }, //extends AD to the left
         ];
 

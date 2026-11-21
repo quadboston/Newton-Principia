@@ -53,7 +53,7 @@
                 //// todm: don in colors.js ... do replace this ...
                 ////***********************************************
                 ////with TP_OPACITY_LOW
-				// TODO: only used for Prop 7? why?
+                // TODO: only used for Prop 7? why?
                 var rem = tcount%2;
                 var zebra = rem ? (tcount-rem)/2 :
                             tcount/2 + Math.floor( allTopicsCount / 2 );

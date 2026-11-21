@@ -61,7 +61,7 @@
         //dr/dq = ((posPlus + posBody) / 2 - (posBody + posMinus) / 2) / delta_q
         //dr/dq = ((posPlus + posBody) - (posBody + posMinus)) / (2 * delta_q)
         const dr_dq = [ (posPlus[0] - posMinus[0])/(2*delta_q),
-				        (posPlus[1] - posMinus[1])/(2*delta_q), ];
+                        (posPlus[1] - posMinus[1])/(2*delta_q), ];
         const ds_dq_squared = dr_dq[0]**2 + dr_dq[1]**2;
         const ds_dq         = Math.sqrt(ds_dq_squared);
         const uTangential   = [dr_dq[0] / ds_dq, dr_dq[1] / ds_dq];

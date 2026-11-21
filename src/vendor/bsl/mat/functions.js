@@ -1,9 +1,9 @@
 ( function() {
-	var sn	        = window.b$l.sn;
+    var sn	        = window.b$l.sn;
     var mat         = sn( 'mat' );
     mat.poly = poly;
-	mat.squaredDistance = squaredDistance;
-	mat.lengthOf = lengthOf;
+    mat.squaredDistance = squaredDistance;
+    mat.lengthOf = lengthOf;
 
     return;
 
@@ -25,15 +25,15 @@
     }
 
 
-	function squaredDistance(p1, p2) {
-		const dx = p1.pos[0] - p2.pos[0];
-		const dy = p1.pos[1] - p2.pos[1];
-		return dx * dx + dy * dy;
-	}
+    function squaredDistance(p1, p2) {
+        const dx = p1.pos[0] - p2.pos[0];
+        const dy = p1.pos[1] - p2.pos[1];
+        return dx * dx + dy * dy;
+    }
 
-	function lengthOf(pt1, pt2) {
-		return Math.sqrt(mat.squaredDistance(pt1, pt2));;
-	}
+    function lengthOf(pt1, pt2) {
+        return Math.sqrt(mat.squaredDistance(pt1, pt2));;
+    }
 
 
 }) ();
