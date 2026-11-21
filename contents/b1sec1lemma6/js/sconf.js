@@ -4,8 +4,7 @@
     return;
 
 
-    function init_conf()
-    {
+    function init_conf() {
         //for real picture if diagram's picture is supplied or
         //for graphical-media work-area if not supplied:
         var pictureWidth = 839;
@@ -89,8 +88,7 @@
         var givenColor   = topicColors_repo.givenColor;
         var infoColor   = topicColors_repo.infoColor;
 
-        var topicColors_elected =
-        {
+        var topicColors_elected = {
             //:basic topics
             infoColor,
             givenColor,
@@ -102,8 +100,7 @@
             "arc-AB"        : givenColor, //curve-AB plus extension past B
         };
 
-        var originalPoints =
-        {
+        var originalPoints = {
             A : {
                 //assigment by reference to pos is safe: no parasite links, pos is recalculated later
                 pos         : A,
@@ -176,8 +173,7 @@
             },
         };
 
-        var linesArray =
-        [
+        var linesArray = [
             { 'AB' : { pcolor : givenColor } },
             { 'AD' : { pcolor : givenColor } },
             { 'AL' : { pcolor : infoColor,
@@ -194,8 +190,7 @@
         //model's spacial unit in pixels of the picture:
         var mod2inn_scale = originalPoints.R.pos[1] - originalPoints.A.pos[1];
 
-        var givenCurve_pivots =
-        [
+        var givenCurve_pivots = [
             //extending the curve to the left is quite a work bs
             //we need to change hard-coded tangent
             [148, 62],

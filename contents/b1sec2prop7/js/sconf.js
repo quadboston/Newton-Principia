@@ -7,8 +7,7 @@
     //====================================================
     // //\\ inits and sets config pars
     //====================================================
-    function init_conf()
-    {
+    function init_conf() {
         //***************************************************************
         // //\\ geometical scales
         //***************************************************************
@@ -137,8 +136,7 @@
             proofHover,
         } = topicColors_repo;
 
-        var topicColors_elected =
-        {
+        var topicColors_elected = {
             estimatedForceColor,
             bodyColor,
             forceColor,
@@ -165,8 +163,7 @@
         }));
 
         //---------------------------------------------------
-        var originalPoints =
-        {
+        var originalPoints = {
             foldPoints,
         };
         // \\// points to approximate and draw original curve
@@ -283,8 +280,7 @@
             },
         });
 
-        var linesArray =
-        [
+        var linesArray = [
             { 'PV' : { pcolor : proofHover }, },
             { 'SV' : { pcolor : proofColor }, },
             { 'AV' : { pcolor : proofColor }, },

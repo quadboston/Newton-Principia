@@ -59,8 +59,7 @@
     // \\// populate menu
     //====================================
 
-    function build_menu_top_leafs_placeholders()
-    {
+    function build_menu_top_leafs_placeholders() {
         //teaf$ is one of the top-leafs of menu
         sDomN.teafs$ = {};
 
@@ -109,8 +108,7 @@
         //------------------------------------
         subcatsMenu.list.forEach(function (mitem, mitemIx) {
             var scat_id = mitem.id;
-            var leafRk = mitem.leafRk =
-            {
+            var leafRk = mitem.leafRk = {
                 ix          : mitemIx,
                 mcat_id,
                 scat_id,
@@ -132,8 +130,7 @@
     /// for single leafRk indexed with pair (mcat_id, scat_id),
     /// builds its togglable-menu-tab;
     /// makes tab's components button;
-    function make_menu_leaf__onceLocFun(leafRk)
-    {
+    function make_menu_leaf__onceLocFun(leafRk) {
         var scat_id     = leafRk.scat_id;   //sub category: logic_phase or aspect
         var mcat_id     = leafRk.mcat_id;   //main category: logic_phase or aspect
         var caption     = leafRk.caption;
@@ -269,8 +266,7 @@
     //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
     // //\\ does select menu-leaf
     //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
-    function do_select_leaf__localfun(leafRk, amodel2app_8_extraWork)
-    {
+    function do_select_leaf__localfun(leafRk, amodel2app_8_extraWork) {
         var scat_id         = leafRk.scat_id;
         var mcat_id         = leafRk.mcat_id;
         var decorOfShuttle$ = leafRk.decorOfShuttle$;
@@ -382,8 +378,7 @@
     ///one click is for top-text-menu?,
     ///second click is for submenu,
     ///param = false on initial page load, true on tab switch
-    function menu2lemma(amodel2app_8_extraWork)
-    {
+    function menu2lemma(amodel2app_8_extraWork) {
         var res = wrkwin.start8finish_media8Ess8Legend_resize__upcreate;
 
         //we need to run "media" updater because we need to update
@@ -421,8 +416,7 @@
     }
 
     //reveals subessay in menu and in text
-    function addsChosenCSSCls_to_subessay8menuSubitem({ exAspect, subexeg, })
-    {
+    function addsChosenCSSCls_to_subessay8menuSubitem({ exAspect, subexeg, }) {
         exAspect.subexegs.forEach(subexeg => {
             subexeg.domEl$.removeClass('chosen');
             if (userOptions.shouldShowSubessayMenu(exAspect, subexeg)) {

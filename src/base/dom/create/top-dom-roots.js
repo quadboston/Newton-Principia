@@ -11,8 +11,7 @@
     return;
 
 
-    function creates_mainWorkspace_domRoots()
-    {
+    function creates_mainWorkspace_domRoots() {
         //==============================================================
         // //\\ essay and media panes
         //==============================================================
@@ -50,8 +49,7 @@
     // //\\ this makes effect of fading-out
     //      the original picture
     //===================================================================
-    function detected_user_interaction_effect(doShowDiagram)
-    {
+    function detected_user_interaction_effect(doShowDiagram) {
         doesShowDiagram(doShowDiagram);
         if (typeof fconf.timeToShowOriginalDiagram_effective === 'number' &&
             fconf.timeToShowOriginalDiagram_effective > 0 && doShowDiagram) {

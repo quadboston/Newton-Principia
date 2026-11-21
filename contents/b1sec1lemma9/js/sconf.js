@@ -4,8 +4,7 @@
     return;
 
 
-    function init_conf()
-    {
+    function init_conf() {
         //----------------------------------
         // //\\ study model parameters
         //----------------------------------
@@ -90,8 +89,7 @@
             proofArea
         } = topicColors_repo;
 
-        var topicColors_elected =
-        {
+        var topicColors_elected = {
             given,
             proof,
             hidden,
@@ -125,8 +123,7 @@
         // \\// topic group colors,
         //-----------------------------------
 
-        var originalPoints =
-        {
+        var originalPoints = {
             'A' : {
                 pos         : pointA,
                 pcolor      : given,
@@ -197,8 +194,7 @@
             },
         };
 
-        var linesArray =
-        [
+        var linesArray = [
             { 'Ab' : { pcolor : proof } },
             { 'Ac' : { pcolor : proof } },
             { 'Ad' : { pcolor : proof } },
@@ -219,8 +215,7 @@
             { 'DB' : { pcolor : given } },
         ];
 
-        to_sconf =
-        {
+        to_sconf = {
             //----------------------------------
             // //\\ scenario
             //----------------------------------
@@ -233,8 +228,7 @@
             //----------------------------------
             // //\\ original lemma parameters
             //----------------------------------
-            curvePivots :
-            [
+            curvePivots : [
                 [0, 0],
                 //The bezier middle pivot is constrained in "model-upcreate.js" beginning of "model_upcreate" function.
                 [440, APP_MODEL_Y_RANGE],

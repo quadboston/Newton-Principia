@@ -10,8 +10,7 @@
         create_digital_legend_for_logic_phase('corollary');
     }
 
-    function create_digital_legend_for_logic_phase(logic_phase)
-    {
+    function create_digital_legend_for_logic_phase(logic_phase) {
         ////**********************************************************************************
         ////legendScript-format:
         ////[topic, caption, JS-expression-of-value-in-local-JS-context]

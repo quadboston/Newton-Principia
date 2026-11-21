@@ -5,8 +5,7 @@
         sDomN, sDomF, ssF, ssD, exegs,
         amode, userOptions
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList : {
             exegs__2__dom_indexedLinks_indexedTopics,
             virtualSubessayClick,
         },
@@ -26,8 +25,7 @@
                     anrack.tpid2true[ tpid_lowcase ] = true;
                     sn( tpid_lowcase, l caseId2allLemTopics );
     */
-    function exegs__2__dom_indexedLinks_indexedTopics()
-    {
+    function exegs__2__dom_indexedLinks_indexedTopics() {
         eachprop(exegs, (logic_phaseAspects) => {
             eachprop(logic_phaseAspects, (exAspect) => {
                 exAspect.subexegs.forEach((subexeg, exegId) => {
@@ -165,8 +163,7 @@
     }
 
     ///emulates user-click and first-user-click
-    function virtualSubessayClick(subexeg)
-    {
+    function virtualSubessayClick(subexeg) {
         amode.subessay = subexeg.essayHeader.subessay;
 
         //sets state === user had seen menu-item and clicked on it

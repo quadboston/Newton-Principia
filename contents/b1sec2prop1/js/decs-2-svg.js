@@ -2,8 +2,7 @@
     var {
         ssF, sDomF, rg,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             SAvV_model__2__svg,
         },
         setModule,
@@ -13,14 +12,12 @@
     return;
 
 
-    function setModule()
-    {
+    function setModule() {
         pivots_2_svgLineInRg = ssF.pivots_2_svgLineInRg;
         rgPos2rgMedia = ssF.rgPos2rgMedia;
     }
 
-    function SAvV_model__2__svg()
-    {
+    function SAvV_model__2__svg() {
         //==========================================
         // //\\ S to media
         //      "Wrong code". Does not match this sub

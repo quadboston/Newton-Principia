@@ -7,8 +7,7 @@
     return;
 
 
-    function completesSlidersCreation()
-    {
+    function completesSlidersCreation() {
         //console.log('completesSlidersCreation'); //called once on page load
 
         var op = sconf.orbitParameters;

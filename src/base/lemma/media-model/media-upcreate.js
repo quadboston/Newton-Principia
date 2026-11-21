@@ -16,8 +16,7 @@ const { ns, sn, haz, haff, $$, eachprop,
     ///how? media_upcreate prevales when finalizing lemma in
     ///init_sapp: if lemma does not provide the latter, then
     ///this function takes over:
-    function media_upcreate_generic()
-    {
+    function media_upcreate_generic() {
         // called 3x on page load (more in L2, L3, L4...?)
 
         if (haz(stdMod, 'media_update_is_forbidden')) return;

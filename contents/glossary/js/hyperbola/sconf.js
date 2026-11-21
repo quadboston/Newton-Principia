@@ -8,8 +8,7 @@
     //====================================================
     // //\\ inits and sets config pars
     //====================================================
-    function init_conf()
-    {
+    function init_conf() {
         //***************************************************************
         // //\\ geometrical scales
         //***************************************************************
@@ -147,8 +146,7 @@
             curvature,
         } = topicColors_repo;
 
-        var topicColors_elected =
-        {
+        var topicColors_elected = {
             estimatedForceColor,
             givenColor,
             proofColor,
@@ -297,8 +295,7 @@
             },
         });
 
-        var linesArray =
-        [
+        var linesArray = [
             // hyperbola
             { 'P,Zminus' : { pcolor : proofColor,
                     }, },

@@ -17,8 +17,7 @@
     return;
 
 
-    function model_upcreate()
-    {
+    function model_upcreate() {
         //Calculate the following for both figures first, before calling the
         //function to match the ratio of areas.
         Object.values(dataregs).forEach(dr => {
@@ -42,8 +41,7 @@
     ///second point in changes contains first turning point
     ///if function is monotonic, then there is only
     ///"one turning point" - a last one
-    function calculates_monotIntervals8ref(dr)
-    {
+    function calculates_monotIntervals8ref(dr) {
         //part I: intervals
         let fP = dr.figureParams;
 

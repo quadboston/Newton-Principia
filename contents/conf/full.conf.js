@@ -18,8 +18,7 @@
     //====================================================
     // //\\ put configuration parameters here
     //====================================================
-    to_fconf =
-    {
+    to_fconf = {
         DRAG_HANDLE_HALFHOTSPOT : 15, // size of spinner
         hideSingleItemContentMenus : true, //todm fails to work at once
         SHOW_EVEN_SINGLE_SUBESSAY_MENU_ITEM : false,
@@ -100,8 +99,7 @@
         //--------------------
 
         //app decorations
-        appDecor :
-        {
+        appDecor : {
             backButtonCaption       : 'Back to the Lemmas',
             landingImage            : 'landing-img.jpg',
             homePageCaption         : 'Newton’s <span>Principia</span><br>' +

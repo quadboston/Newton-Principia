@@ -4,8 +4,7 @@
     return;
 
 
-    function init_conf_common(BASES_SLIDER_WIDTH_FACTOR)
-    {
+    function init_conf_common(BASES_SLIDER_WIDTH_FACTOR) {
         //Settings common to L2/3/4 placed here to ensure they're always
         //updated together.
 

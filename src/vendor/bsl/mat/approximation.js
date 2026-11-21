@@ -33,8 +33,7 @@
         // **api-outputs---divided-diff
         return { coefficients:F, calculate_polynomial, derivativeAtZero };
 
-        function Flow_2_Ftop(Flow)
-        {
+        function Flow_2_Ftop(Flow) {
             var Ftop = [];
             var m1 = Flow.length-1;
             for (var i=0; i<m1; i++) {
@@ -55,8 +54,7 @@
 
         //calculates Newton's polynomial at point x:
         // f : x |-> p(x), p(x) in |R
-        function calculate_polynomial(x)
-        {
+        function calculate_polynomial(x) {
             var nn      = n;
             var zz      = z;
             var PP      = P;
@@ -88,8 +86,7 @@
         //var rr = dd( Sx );
 
         ///calculates_derivative_at_point_zero
-        function derivativeAtZero()
-        {
+        function derivativeAtZero() {
             var der = 0;
             var n = F.length; //polynomial's degree
             var xProduct = [ 1 ];       //index is level

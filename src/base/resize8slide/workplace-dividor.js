@@ -71,8 +71,7 @@
         return [fracLeft, 1 - fracLeft];
     }
 
-    function createDividorResizer()
-    {
+    function createDividorResizer() {
         nspaste(dividorFractions, computeDividorFractionsDefault());
         wrkwin.dividor = {};
 
@@ -126,8 +125,7 @@
         ///=============================================================================
         /// defines drag processor
         ///=============================================================================
-        function doProcess(arg)
-        {
+        function doProcess(arg) {
             switch (arg.down_move_up) {
                 case 'down':
                     //Store the partition handle's start position,

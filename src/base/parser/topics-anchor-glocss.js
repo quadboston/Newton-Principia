@@ -11,8 +11,7 @@
 
 
     ///Input:   domEl - anchors are collected in scope of this element
-    function topics_anchor_css(domEl)
-    {
+    function topics_anchor_css(domEl) {
         var styleStr = '';
         var nextTplinks = [];
 
@@ -126,8 +125,7 @@
         return `rgba(${r}, ${g}, ${b}, ${a})`;
     }
 
-    function setsAnchor_mouseHighlightEvents(anchor, coreName)
-    {
+    function setsAnchor_mouseHighlightEvents(anchor, coreName) {
         anchor.addEventListener('mouseover', ev => {
             fapp.fappRoot$.addClass('tp-' + coreName);
         });

@@ -5,8 +5,7 @@
 
 
     ///this fun. completes the split model and media code,
-    function allPathRacks_2_unseenSVGs()
-    {
+    function allPathRacks_2_unseenSVGs() {
         var pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
         var rg8pos_2_svg    = ssF.rgPos2rgMedia;
         var paintTriangle   = ssF.paintTriangle;

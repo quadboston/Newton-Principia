@@ -5,15 +5,13 @@
     return;
 
 
-    function setModule()
-    {
+    function setModule() {
         var gui         = sn('gui', stdL2);
         var guiup       = sn('guiUpdate', gui);
         var study       = sn('study', stdL2);
         var sdata       = sn('sdata', study);
 
-        study.eventHandlers =
-        {
+        study.eventHandlers = {
             toggleInscribed,
             toggleCircumscribed,
         };
@@ -28,8 +26,7 @@
         });
         return;
 
-        function setupEventsAreasLegend()
-        {
+        function setupEventsAreasLegend() {
             Object.keys(study.eventHandlers).forEach(function (methodName) {
                 document.getElementById(methodName)
                     .addEventListener('change', study.eventHandlers[ methodName ]);
@@ -110,8 +107,7 @@
     /// Object.keys( study.eventHandlers ).
     ///         forEach( function( methodName ) ....
     ///====================================================================
-    function create_digital_legend()
-    {
+    function create_digital_legend() {
         sDomN.digitalLegend$ = $$.dict(
             "areadesk",
             "areas dull desc default-content main-legend",
@@ -189,8 +185,7 @@
             normalizedStr(dr, dr.areaCir, dr.figureArea);
     }
 
-    function normalizedStr(dr, amt)
-    {
+    function normalizedStr(dr, amt) {
         return (100*amt/Math.abs(dr.figureArea)).toFixed(1);
     }
 

@@ -185,8 +185,7 @@
             }
             return;
 
-            function drawGrid8Axes_aux({ prnAxisDigits, drawSubdecimal })
-            {
+            function drawGrid8Axes_aux({ prnAxisDigits, drawSubdecimal }) {
                 var linesStart = Math.ceil(minA / decUnit) * decUnit;
 
                 //:for dence x labels protection:

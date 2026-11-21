@@ -9,22 +9,19 @@
     return;
 
 
-    function setModule()
-    {
+    function setModule() {
         sapp.init_astate2sapp = init_astate2sapp;
     }
 
     ///inits effective or empty astate_2_.... functions
-    function init_astate2sapp()
-    {
+    function init_astate2sapp() {
         ///and we add astate_2_rg8model8media to study model ...
         stdMod.astate_2_rg8model8media  = astate_2_rg8model8media;
         stdMod.astate_2_rg8model        = astate_2_rg8model;
         return;
 
         ///seems wrong approach, should be model upcreate
-        function astate_2_rg8model8media(astate4rg,)
-        {
+        function astate_2_rg8model8media(astate4rg,) {
             astate_2_rg8model(astate4rg);
             haff(stdMod, 'sliders_value2pos');
             //haff is for lemmas from the past: l1, l2, ...
@@ -33,8 +30,7 @@
 
         ///poor name, should be capture_2_rg8modelUpcreate
         ///possibly has nothing to do with amode toggler:
-        function astate_2_rg8model(astate, dontRun_model_upcreate)
-        {
+        function astate_2_rg8model(astate, dontRun_model_upcreate) {
             if (astate) {
                 nspaste(rg, astate);
                 delete rg.subessay; //should not be there

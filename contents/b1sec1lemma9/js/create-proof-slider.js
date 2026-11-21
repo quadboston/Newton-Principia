@@ -11,16 +11,14 @@
         rg,
         stdMod,
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList : {
             create_proofSlider,
         },
     });
     return;
 
 
-    function create_proofSlider()
-    {
+    function create_proofSlider() {
         //=====================================================
         // //\\ animated slider
         //      slides point C by changing Bezier parameter tC
@@ -71,8 +69,7 @@
         //appar. this is an internal slider business:
         //       nothing affecting of the parent app
         ///converts study-model pos to draggee caption
-        function setCaption(slider_arg)
-        {
+        function setCaption(slider_arg) {
             var pC = rg.C.pos;
             var pClen = Math.sqrt(pC[0]*pC[0]+pC[1]*pC[1]) /
                         sconf.APP_MODEL_Y_RANGE;

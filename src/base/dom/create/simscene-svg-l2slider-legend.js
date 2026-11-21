@@ -5,8 +5,7 @@
     return;
 
 
-    function cre_simscene8svg8legendIIslider()
-    {
+    function cre_simscene8svg8legendIIslider() {
         //..........................
         // //\\ media root
         //..........................
@@ -87,8 +86,7 @@
         }
     }
 
-    function addBasesSliderGroup()
-    {
+    function addBasesSliderGroup() {
         sDomN.sliderGroup$ = $$.c('div')
             .addClass("slider-group")
             .to(stdMod.simScene)

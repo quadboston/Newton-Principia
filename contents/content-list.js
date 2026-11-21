@@ -1,7 +1,6 @@
 (function () {
     var { has, sconf, fconf, ssF, userOptions } = window.b$l.apptree({});
-    fconf.ix2lemmaDef =
-    [
+    fconf.ix2lemmaDef = [
         {
             sappId : 'home-pane',
             book : '',

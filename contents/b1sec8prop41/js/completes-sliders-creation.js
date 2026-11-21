@@ -4,8 +4,7 @@
         fconf, sData,
         amode, stdMod, sconf, rg,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             completesSlidersCreation,
             drop8pointE,
         },
@@ -14,8 +13,7 @@
     return;
 
 
-    function completesSlidersCreation()
-    {
+    function completesSlidersCreation() {
         var op = sconf.orbitParameters;
 
         //=========================================================================
@@ -189,8 +187,7 @@
 
     ///checks E,
     ///does not rebuild quadSolved
-    function pointEisIncluded(DposY)
-    {
+    function pointEisIncluded(DposY) {
         DposY = DposY || DposY === 0 ? DposY : rg.D.pos[1];
         let xy = rg[ 'approximated-curve' ].curvePoints;
         let endIx = sData.quadSolved.roMinusIx===null ? xy.length-1 :
@@ -212,8 +209,7 @@
     }
     */
 
-    function drop8pointE()
-    {
+    function drop8pointE() {
         stdMod.quadratures();
         return pointEisIncluded();
     }

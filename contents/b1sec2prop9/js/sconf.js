@@ -7,8 +7,7 @@
     //====================================================
     // //\\ inits and sets config pars
     //====================================================
-    function init_conf()
-    {
+    function init_conf() {
         //***************************************************************
         // //\\ geometical scales
         //***************************************************************
@@ -127,8 +126,7 @@
             sunColor,
         } = topicColors_repo;
 
-        var topicColors_elected =
-        {
+        var topicColors_elected = {
             estimatedForceColor,
             curvatureCircle : infoColor,
             body: bodyColor,
@@ -185,8 +183,7 @@
             },
         };
 
-        var linesArray =
-        [
+        var linesArray = [
             { 'PV' : { pcolor : proofColor,
                 cssClass:'subessay--another-solution',}, },
             { 'PY' : { pcolor : givenColor }, },

@@ -11,8 +11,7 @@
     ///Context: P = 2t(1-t)P1 + ttP2 = att + bt;
     ///         P is zero-based bezier curve;
     ///         S = Iyx'dt
-    function zbezier2integralY(pivots, t)
-    {
+    function zbezier2integralY(pivots, t) {
         var P1 = pivots[0];
         var P2 = pivots[1];
         var ay = P2[1] - 2*P1[1];
@@ -32,8 +31,7 @@
     //c cc( zbezier2integralY( [[1,0.5],[1,1]], 1 ) );   //1/3
 
     ///Returns: S = Ix(y)dy
-    function zbezier2integralX(pivots, t)
-    {
+    function zbezier2integralX(pivots, t) {
         return zbezier2integralY(
             [
                 [ pivots[0][1],
@@ -48,8 +46,7 @@
     }
     //c cc( zbezier2integralX( [[0.5,1],[1,1]], 1 ) );   //1/3
 
-    function zbezier2areas(pivots, t, tanT, tanCross, scale)
-    {
+    function zbezier2areas(pivots, t, tanT, tanCross, scale) {
         scale = scale || 1;
         var end = bezier.parT2point(t, [[0, 0], pivots[0], pivots[1]]);
         var endX = end[0];
@@ -79,8 +76,7 @@
         var areaUnderTan1 = total - delta;          //1/12
         // \\// under tan1
 
-        var result =
-        {
+        var result = {
             areaBetweenTanT_8_curve: areaBetweenTanT_8_curve * scale,
             areaUnderTan1: areaUnderTan1 * scale,
             //.sugar

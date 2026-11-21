@@ -3,11 +3,9 @@
     return;
 
 
-    function lemmaConfig()
-    {
+    function lemmaConfig() {
         return {
-            codesList :
-            [
+            codesList : [
                 //todm: automate this list
                 { src: 'sconf.js' },
                 { src: 'config-functions.js' },
@@ -16,8 +14,7 @@
                 { src: 'amode8captures.js' },
                 { src: '../../kepler-orbit-models/main-legend.js' },
             ],
-            "contents-list" :
-            [
+            "contents-list" : [
                 'txt/latin.txt',
                 'txt/cohen.txt',
             ],

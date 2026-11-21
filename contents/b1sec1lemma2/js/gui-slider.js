@@ -35,8 +35,7 @@
     //======================================
     // //\\ slider
     //======================================
-    function buildSlider()
-    {
+    function buildSlider() {
         //.appar. slider-for-base-points-number
         var slider = document.getElementById("mySlider");
         slider.setAttributeNS(null, "min", sconf.MINP);
@@ -78,14 +77,12 @@
             }
         }
 
-        function showBasesNumberInGui(sliderOutput, baseLabel)
-        {
+        function showBasesNumberInGui(sliderOutput, baseLabel) {
             sliderOutput.innerHTML = sconf.basesN;
             baseLabel.innerHTML = sconf.basesN === 1 ? " base":" bases";
         }
 
-        function interpretSlider(val)
-        {
+        function interpretSlider(val) {
             const maxLinV = 20; //linear through 20
             if (val <= maxLinV) {
                 return parseInt(val);

@@ -7,8 +7,7 @@
     //====================================================
     // //\\ inits and sets config pars
     //====================================================
-    function init_conf()
-    {
+    function init_conf() {
         //***************************************************************
         // //\\ geometrical scales
         //***************************************************************
@@ -126,8 +125,7 @@
             proofHover,
         } = topicColors_repo;
 
-        var topicColors_elected =
-        {
+        var topicColors_elected = {
             estimatedForceColor,
             body: bodyColor,
             orbit: bodyColor,
@@ -283,8 +281,7 @@
             //---------------------------------------
         };
 
-        var linesArray =
-        [
+        var linesArray = [
             { 'A,AA' : { pcolor : proofColor,
                      cssClass: 'subessay--corollary2',
             }, },

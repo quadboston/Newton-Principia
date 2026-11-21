@@ -19,8 +19,7 @@
     return;
 
 
-    function init_conf()
-    {
+    function init_conf() {
         //----------------------------------
         // //\\ original material parameters
         //----------------------------------
@@ -76,8 +75,7 @@
             widestRectangularHiddenStart,
         } = topicColors_repo;
 
-        const predT =
-        {
+        const predT = {
             given,
             difference,
             figureColor,
@@ -107,8 +105,7 @@
             'd--e--p--o'                : difference,
         }
 
-        var originalPoints =
-        {
+        var originalPoints = {
             A : {
                 pcolor      : predT.figureColor,
                 letterAngle : -90,
@@ -195,8 +192,7 @@
             },
         };
 
-        var linesArray =
-        [
+        var linesArray = [
             { AB : {
                         pcolor : predT.figureColor,
                    },

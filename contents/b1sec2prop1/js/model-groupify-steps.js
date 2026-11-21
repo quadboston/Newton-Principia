@@ -68,8 +68,7 @@ function trajectoryShapes_2_groups__III() {
                 haz(amode, 'userControl') === 'text' ||
                 pix === 1 // this is a sort of anomaly,
                           // needs a thought,
-            )
-            {
+            ) {
                 //:force appears
                 var fkey        = 'force-' + (pix-1);
                 var fappliedKey = fkey + '-applied';

@@ -7,8 +7,7 @@
     //====================================================
     // //\\// inits and sets config pars
     //====================================================
-    function init_conf()
-    {
+    function init_conf() {
 
         //overrides "global", lemma.conf.js::sconf
         sconf.default_tp_lightness = 22; // darkness of lines, curves
@@ -179,8 +178,7 @@
 
         };
 
-        var linesArray =
-        [
+        var linesArray = [
             //** this defines render order */
 
             // proof (shown in blue)

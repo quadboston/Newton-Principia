@@ -15,8 +15,7 @@
 
     ///this function is called from common-application-library,
     ///from full-app/dom/...
-    function create_digital_legend()
-    {
+    function create_digital_legend() {
         var mlegend = toreg('main-legend')();
         doCreateTable_proof(mlegend);
     }
@@ -26,8 +25,7 @@
     //      can be called from slider and from
     //      other places
     //=========================================
-    function upcreate_mainLegend()
-    {
+    function upcreate_mainLegend() {
         var ww = clustersToUpdate;
         //ww[ 'a' ].innerHTML = sData.polar_ell_model.e.toFixed(2);
         //ww[ 'b' ].innerHTML = rg.b.value.toFixed(2);
@@ -53,8 +51,7 @@
     // //\\ creates proof table
     //      does one time work of html creation
     //=========================================
-    function doCreateTable_proof(mlegend)
-    {
+    function doCreateTable_proof(mlegend) {
         mlegend.tb = mlegend.tb || {};
         var tb = mlegend.tb.proof = $$
             .c('table')
@@ -85,8 +82,7 @@
     ///Effect: represents magnitude in html-table-row in
     ///        form "mname = mvalue",
     ///Input:  mname = magnitude name
-    function makeCl(row, mname, mcaption, cssName)
-    {
+    function makeCl(row, mname, mcaption, cssName) {
         //todm: ?no need for extra function argument:
         //      tp-cssName may be taken from "rg.Elem point wrap" ...
         cssName = sDomF.toCssIdentifier(cssName || mname);

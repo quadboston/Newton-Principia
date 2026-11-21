@@ -10,8 +10,7 @@
     return;
 
 
-    function setModule()
-    {
+    function setModule() {
         sDomF.creates_diagramPanner_in_rgX8dragWrapGenList =
             creates_diagramPanner_in_rgX8dragWrapGenList;
         sDomF.resetModelPos = resetModelPos;
@@ -20,8 +19,7 @@
     //===================================================
     //interface for diagram-panner
     //===================================================
-    function creates_diagramPanner_in_rgX8dragWrapGenList()
-    {
+    function creates_diagramPanner_in_rgX8dragWrapGenList() {
         var pname = 'diagram-panner';
         var pos = [ -11111, -11111 ]; //fake
         var rgX = sDomF.params__2__rgX8dragwrap_gen_list({
@@ -31,10 +29,8 @@
             orientation : 'rotate',
             nospinner : true,
         });
-        rgX.achieved =
-        {
-            achieved :
-            [
+        rgX.achieved = {
+            achieved : [
                 sconf.modorInPicX,
                 sconf.modorInPicY,
             ]

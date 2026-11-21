@@ -1,8 +1,7 @@
 (function () {
     window.b$l.sn('fapp').lemmaConfig = function () { return {
 
-        codesList :
-        [
+        codesList : [
             { src:'sconf.js' },
             { src:'main.js' },
             { src:'create-proof-slider.js' },
@@ -13,8 +12,7 @@
             { src:'d8d-model.js' },
             { src:'amode8captures.js' },
         ],
-        "contents-list" :
-        [
+        "contents-list" : [
             'txt/latin.txt',
             'txt/cohen.txt',
             'txt/video.txt',

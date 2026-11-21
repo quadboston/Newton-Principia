@@ -5,8 +5,7 @@
     return;
 
 
-    function creates_Zeta_slider()
-    {
+    function creates_Zeta_slider() {
         //=========================================================================
         // //\\ eccentricity slider
         //=========================================================================
@@ -34,8 +33,7 @@
             };
         }
 
-        function distanceAlongAxis(pos)
-        {
+        function distanceAlongAxis(pos) {
             const center = sconf.diagramOrigin;
             const axis = op.mainAxisAngle;
             return -(
@@ -44,8 +42,7 @@
             );
         }
 
-        function setsEccentricity(eccentricity)
-        {
+        function setsEccentricity(eccentricity) {
             stdMod.establishesEccentricity(
                 Math.max(op.eccentricityMin,
                           Math.min(op.eccentricityMax, eccentricity)),

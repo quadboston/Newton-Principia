@@ -7,8 +7,7 @@
 
     ///Purpose: constructor of an object which encapsulates slider functionality.
     ///Input:   arg: see MicroAPI section below.
-    ns.sliderControl = function (arg)
-    {
+    ns.sliderControl = function (arg) {
         thisSlider = {}; //created object which is returned from constructor
 
         //****************************************************************
@@ -91,8 +90,7 @@
 
         ///Sets absFraction, draggee position, and, optionally, sets accomulated
         ///position, absFractDone.
-        function doSet(absFraction_, doSetDoneValue)
-        {
+        function doSet(absFraction_, doSetDoneValue) {
             absFraction = validateAbsFraction(absFraction_);
             //.the only place where dragge's style is set
             draggee.style.left = (sliderStyleOffset + absFraction).toFixed(4)*100 + '%';
@@ -102,8 +100,7 @@
         }
 
         ///d8d application
-        function d8d_cb_middle2lowest(move, mouseUpOrDown)
-        {
+        function d8d_cb_middle2lowest(move, mouseUpOrDown) {
             if (mouseUpOrDown === 'down') {
                 return;
             }
@@ -129,16 +126,14 @@
         ///d8d application emulator
         ///mocks real event, mouseUpOrDown, and sets absFraction
         ///used for "programmable animation" of this slider
-        function d8d_emulateAbsFractionX(absFraction, mouseUpOrDown)
-        {
+        function d8d_emulateAbsFractionX(absFraction, mouseUpOrDown) {
             var len = surface0attachee.getBoundingClientRect().width;
             var relMove = (absFraction - absFracDone) * len;
             return d8d_cb_middle2lowest([ relMove, 0 ], mouseUpOrDown);
         }
 
         // //\\// helpers
-        function validateAbsFraction(absFrac)
-        {
+        function validateAbsFraction(absFrac) {
             return Math.min(maxLimit, Math.max(absFrac, lowLimit));
         }
 
@@ -147,8 +142,7 @@
         //      to preserve ordinary clicks on form elements or other controls
         //      disables dragging on form and other elements
         //====================================================================
-        function skipD8D(ev)
-        {
+        function skipD8D(ev) {
                 var tag = ev.target.tagName.toLowerCase();
                 ///fails: var cls = ev.target.className;
                 if (

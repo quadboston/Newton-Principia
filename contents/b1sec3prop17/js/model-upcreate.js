@@ -17,8 +17,7 @@
     /// model scenario
     /// is required; to skip define as ()=>{};
     ///****************************************************
-    function model_upcreate()
-    {
+    function model_upcreate() {
         //console.log('model_upcreate');
 
         //================================================
@@ -183,8 +182,7 @@
 
     ///calculates arc's delta q depending on delta_t by
     ///integrating delta_q and reaching delta_t,
-    function deltaT_2_arc()
-    {
+    function deltaT_2_arc() {
         const INTEGRATION_STEPS = 1000;
 
         op = sconf.orbitParameters;

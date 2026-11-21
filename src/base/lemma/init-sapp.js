@@ -17,8 +17,7 @@
     /// lemma-specific modules
     /// which override common subroutines
     ///************************************************
-    function setModule()
-    {
+    function setModule() {
         sapp.init_sapp = init_sapp;
         sapp.finish_sapp_UI = finish_sapp_UI;
     }
@@ -30,8 +29,7 @@
     /// inits model, media, dragges, and sliders
     /// makes loop via study-s ubmodels,
     ///=========================================================
-    function init_sapp()
-    {
+    function init_sapp() {
         //======================================================
         // //\\ definitions
         //======================================================
@@ -151,8 +149,7 @@
                 //orientation : drY&drX ? 'rotate' : ( drX ? 'axis-x' : 'axis-y' ),
 
                 pos : rg.pos, //todo not tested app wide, and why one needs pos?
-                acceptPos : haz(shape, 'acceptPos') || (newPos =>
-                {
+                acceptPos : haz(shape, 'acceptPos') || (newPos => {
                     if (drX) {
                         shape.pos[0] = newPos[0];
                     } else {
@@ -169,8 +166,7 @@
         });
     }
 
-    function finish_sapp_UI()
-    {
+    function finish_sapp_UI() {
         ssF.mediaModelInitialized = true;
     }
 })();

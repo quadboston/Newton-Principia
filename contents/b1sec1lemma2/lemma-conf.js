@@ -5,11 +5,9 @@
     return;
 
 
-    function lemmaConfig()
-    {
+    function lemmaConfig() {
         return {
-            codesList :
-            [
+            codesList : [
                 //todm: automate this list
                 { src:'sconf-common.js' },
                 { src:'sconf.js' },
@@ -33,8 +31,7 @@
                 {  src:"gui-swap-monotonity.js" },
                 {  src:"amode2captures.js" },
             ],
-            "contents-list" :
-            [
+            "contents-list" : [
                 "txt/latin.txt",
                 "txt/cohen.txt",
                 "txt/video.txt",

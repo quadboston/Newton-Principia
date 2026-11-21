@@ -8,8 +8,7 @@
 
         // //\\ helpers
         //      the scope of comment "//\\ helpers" extends till the matching token, "\\//".
-        btb.dots2object = function (name, value, obj)
-        {
+        btb.dots2object = function (name, value, obj) {
             ////The scope is this comment is till the end of the current nest: till the "return value".
 
             //:Till the next empty line or till the next "//:" comment, so three lines below for given case:

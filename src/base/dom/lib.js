@@ -8,8 +8,7 @@
         sData,
         stdMod,
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList : {
             createButton,
         },
     });
@@ -42,8 +41,7 @@
         }
 
         var unlockButton = sn('unlockButton', stdMod);
-        unlockButton[ buttonUniversalId ] = function (doUnlock)
-        {
+        unlockButton[ buttonUniversalId ] = function (doUnlock) {
             butt.dom$.css('display', doUnlock ? 'block' : 'none');
         }
         return butt;

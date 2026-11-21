@@ -22,8 +22,7 @@
 
     //called from page's init-model-parameters.js
     //analogy of pointsArr_2_singleDividedDifferences() (P41)
-    function creates_orbitRack(vop)
-    {
+    function creates_orbitRack(vop) {
         //console.log('creates_orbitRack');
 
         var op = vop || sconf.orbitParameters;
@@ -72,8 +71,7 @@
 
         ///draws full orbit for angle q in [0,2PI)
         //returns unclosed curve with end point =/= first point exactly
-        function ownrange2points({ stepsCount, start, end })
-        {
+        function ownrange2points({ stepsCount, start, end }) {
             var points = [];
             var qStep = (end - start) / stepsCount;
             for (var qix = 0; qix <= stepsCount; qix++) {
@@ -252,8 +250,7 @@
 
         // todo: is there a better place for this?
         // draws value on e slider (for pages that have one)
-        function eccentricity2sliderPos()
-        {
+        function eccentricity2sliderPos() {
             if (!has(rg, 'ZetaEnd')) return;
 
             const zetaMin = haz(op, 'ZETA_MIN') || 0.0;

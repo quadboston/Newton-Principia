@@ -4,16 +4,14 @@
         sconf, ssD, ssF, sapp,
         amode, stdMod, rg, toreg,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             init_model_parameters,
         },
     });
     return;
 
 
-    function init_model_parameters()
-    {
+    function init_model_parameters() {
         //:primary params
         var a = toreg('a')('value', sconf.a)('value');
         toreg('alpha')('value', sconf.alpha);

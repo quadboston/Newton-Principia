@@ -5,8 +5,7 @@
 
 
     ///parameters are enclosed in closure for performance
-    function recreates_q2xy()
-    {
+    function recreates_q2xy() {
         var center  = sconf.diagramOrigin;
         const ro0   = sconf.ro0;
         const A     = sconf.curveParA;
@@ -16,8 +15,7 @@
         return;
 
         // points of the spiral
-        function q2xy(q)
-        {
+        function q2xy(q) {
             q += q0;
             var ro = ro0*Math.exp(A*q);
             return [

@@ -6,8 +6,7 @@
 
     ///runs inside "subessay launch" which in turn runs after
     ///"init model parameters"
-    function amode2rgstate(captured)
-    {
+    function amode2rgstate(captured) {
         const { logic_phase, aspect } = amode;
         // Latin tabs have no subessays; they show what the Text tab
         // shows for the first subessay of the same logic_phase

@@ -12,8 +12,7 @@
     //=========================================================
     // //\\ lemma custom addons
     //=========================================================
-    function media_upcreate___part_of_medupcr_basic()
-    {
+    function media_upcreate___part_of_medupcr_basic() {
         //=================================================
         // //\\ manages legend CSS-visibility
         //      by essay-state

@@ -4,8 +4,7 @@
         ssF, ssD, sconf,
         amode, stdMod, toreg, nssvg
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             media_upcreate___part_of_medupcr_basic,
         },
     });
@@ -15,8 +14,7 @@
     //=========================================================
     // //\\ lemma custom addons
     //=========================================================
-    function media_upcreate___part_of_medupcr_basic()
-    {
+    function media_upcreate___part_of_medupcr_basic() {
         paintCurveFromAto(rg.b);
         paintCurveFromAto(rg.B);
         paintCircle();

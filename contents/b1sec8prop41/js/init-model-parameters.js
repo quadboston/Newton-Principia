@@ -4,8 +4,7 @@
         fconf, ssF, ssD, sData,
         stdMod, sconf, rg, toreg,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             init_model_parameters,
         },
     });
@@ -16,8 +15,7 @@
     ///****************************************************
     /// model initiation
     ///****************************************************
-    function init_model_parameters()
-    {
+    function init_model_parameters() {
         //var op = sconf.orbitParameters;
         toreg('approximated-curve');
         //toreg( 'orbitarea' );

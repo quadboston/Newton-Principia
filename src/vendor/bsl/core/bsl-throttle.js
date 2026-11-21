@@ -23,8 +23,7 @@
     ///             arg_        can be used for ordinary app. paramters
     ///
     ///
-    function throttle(fun, wait)
-    {
+    function throttle(fun, wait) {
         throttleDebCount++;
         var timeout = null;
         var timeStart = null;

@@ -379,8 +379,7 @@
     ///========================================
     ///
     ///========================================
-    function preparesMobile()
-    {
+    function preparesMobile() {
         var wid             = window.innerWidth * (1 - fconf.RIGHT_WORKAREA_MARGIN) - 50;
         stdMod.bgImgW       = wid;
         stdMod.bgImgH       = wid * stdMod.simSceSvg_narrowestAsp;
@@ -465,8 +464,7 @@
         wrkwin.buildsMobile({});
     }
 
-    function doesTopContainersSizing()
-    {
+    function doesTopContainersSizing() {
         sDomN.simSScene$
             .css('width', stdMod.simSceneW.toFixed(1) + 'px')
             .css('height', stdMod.simSceneH.toFixed(1) + 'px')
@@ -481,8 +479,7 @@
     /// expands media playable area to margins
     /// be aware: this can damage shrink to mobile: do cleanup in mobile,
     ///=============================================================================
-    function makes_svgViewBox()
-    {
+    function makes_svgViewBox() {
         var offset_x    = stdMod.svgVB_offsX.toFixed(4);
         var offset_y    = '0';
         var width       = stdMod.svgVB_W.toFixed(4);
@@ -501,8 +498,7 @@
         );
     }
 
-    function gets_LEGEND_FIXED_FRACTION()
-    {
+    function gets_LEGEND_FIXED_FRACTION() {
         return false;
     }
 

@@ -13,8 +13,7 @@
     return;
 
 
-    function setModule()
-    {
+    function setModule() {
         ssF.modPos_2_GUI = modPos_2_GUI;
         ssF.toogle_detectablilitySliderPoints4Tools =
             toogle_detectablilitySliderPoints4Tools;
@@ -175,8 +174,7 @@
             stdMod.model8media_upcreate();
         }
 
-        function pos2value__8__m8m_upcreate(new_modelPos)
-        {
+        function pos2value__8__m8m_upcreate(new_modelPos) {
             var newValue = (max_magnit - min_magnit) * (new_modelPos[0] - startX) /
                              railsLength + min_magnit;
             if (newValue < min_magnit || newValue > max_magnit) return;
@@ -190,8 +188,7 @@
             return true;
         }
 
-        function value2validate2pos(val)
-        {
+        function value2validate2pos(val) {
             if (val < min_magnit || val > max_magnit) return;
             var handleXpos  = (val - min_magnit) /
                                 range_magnit * railsLength + startX;
@@ -200,8 +197,7 @@
         }
 
         ///move_2_val8gui8cb
-        function move_2_updates(achieved, move_in_model)
-        {
+        function move_2_updates(achieved, move_in_model) {
             var new_modelPos = [
                     achieved[0] + move_in_model[0],
                     achieved[1] + move_in_model[1],
@@ -215,8 +211,7 @@
     ///model position of this shape;
     ///also updates text-caption if any of this shape;
     ///needs arg or "this"
-    function modPos_2_GUI(api)
-    {
+    function modPos_2_GUI(api) {
         api = api || this;
         var stdMod = api.stdMod;
         api.medpos = ssF.mod2inn_original(api.pos,);
@@ -240,8 +235,7 @@
     };
 
     ///fixes slider pointer detectibility upon mode
-    function toogle_detectablilitySliderPoints4Tools()
-    {
+    function toogle_detectablilitySliderPoints4Tools() {
         var toolsSliders = sn('toolsSliders', stdMod, []);
         toolsSliders.forEach(slname => {
             var sl = rg[ slname ];

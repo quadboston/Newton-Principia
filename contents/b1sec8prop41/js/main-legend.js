@@ -8,16 +8,14 @@
         toreg,
         amode,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             create_digital_legend,
         },
     });
     return;
 
 
-    function create_digital_legend()
-    {
+    function create_digital_legend() {
         return;
         //see lemma 11 for the sample
         /*
@@ -26,13 +24,11 @@
         */
     }
 
-    function create_digital_legend_for_logic_phase(logic_phase)
-    {
+    function create_digital_legend_for_logic_phase(logic_phase) {
         //--------------------------
         // //\\ data source scenario
         //--------------------------
-        var legendScript =
-        [
+        var legendScript = [
             ////**********************************************************************************
             ////legendScript-format:
             ////clusters separated with <space>:
@@ -139,8 +135,7 @@
             })
         }
 
-        function updatesDataInCell({ rowIx, clusterIx, })
-        {
+        function updatesDataInCell({ rowIx, clusterIx, }) {
             return ssF.dataSourceParsed1__2__updatesDataInCell({
                 rowIx,
                 clusterIx,

@@ -5,8 +5,7 @@
         fconf,
         ssF, amode,
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList : {
             doDebugMessage,
             doInitTopicScenarioCss,
             executesMessageAction,
@@ -18,8 +17,7 @@
     return;
 
 
-    function doInitTopicScenarioCss()
-    {
+    function doInitTopicScenarioCss() {
         globalCss.update(`
             .model-user-feedback {
                 width           : calc(100% - ${fconf.LEFT_SIDE_MENU_WIDTH+10}px);
@@ -48,8 +46,7 @@
     }
 
     ///aka: var wwMessage = 'a u t o p   '+eventBlock.autopilotEventId;
-    function doDebugMessage(wwMessage)
-    {
+    function doDebugMessage(wwMessage) {
         if (ns.haz(ns.conf, 'deb')) {
             ns.d(wwMessage);
         }
@@ -60,8 +57,7 @@
     //:-        - no scroll
     //::-       - no scroll
     //::#       - do condence message to equal previous message
-    function executesMessageAction(ecommand, ctype)
-    {
+    function executesMessageAction(ecommand, ctype) {
         doDebugMessage('p r o m p t   ' + ecommand);
         if (ctype === '::#' && ecommand === previousMessage) return;
         previousMessage = ecommand;

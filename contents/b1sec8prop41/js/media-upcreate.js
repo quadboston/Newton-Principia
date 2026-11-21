@@ -4,8 +4,7 @@
         fconf, ssF, ssD, sData,
         amode, stdMod, sconf, rg, toreg,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             //these are standard template-names in core of src/base
             media_upcreate___part_of_medupcr_basic,
         },
@@ -37,8 +36,7 @@
     //=========================================================
     // //\\ lemma custom addons
     //=========================================================
-    function media_upcreate___part_of_medupcr_basic()
-    {
+    function media_upcreate___part_of_medupcr_basic() {
         {
             ///draws fi
             ///adds an extra point, fi, at rg.O to comply angle-api

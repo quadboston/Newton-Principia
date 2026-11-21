@@ -24,8 +24,7 @@
     return;
 
 
-    function setAppNamespace()
-    {
+    function setAppNamespace() {
         var uniqueEarthWide = 'iamniquelks8e00w-e9jalknfnaegha;s[snfs=sieuhba;fkleub92784bna';
         var shortcutInClosure_for_speed = Object.prototype.hasOwnProperty;
         var undef = (function (und) { return und; })();
@@ -33,8 +32,7 @@
         ///if prop does not exist, returns primitive-value of undefined type,
         ///if exists, returns this prop,
         ///this funct. will be attached to object-like JS-entity,
-        function returnOwnPropertyIfExist()
-        {
+        function returnOwnPropertyIfExist() {
             var wwHas = shortcutInClosure_for_speed;
             var und = undef;
             return (function (pname) {
@@ -226,14 +224,12 @@
     //***************************************************************************
     // //\\ dom manipulation library. ns.$$.
     //***************************************************************************
-    function setDomWrap(ns)
-    {
+    function setDomWrap(ns) {
         // //\\ helpers
         ns.svgNS = "http://www.w3.org/2000/svg";
 
         ///https://css-tricks.com/snippets/javascript/loop-queryselectorall-matches/
-        ns.callOn = function (selector, parent, callback)
-        {
+        ns.callOn = function (selector, parent, callback) {
             parent = parent || document;
             var els = parent.querySelectorAll(selector);
             for (var ii = 0; ii < els.length; ii++) {
@@ -242,8 +238,7 @@
         };
 
         ///converts event pos to domelem-css-pos
-        ns.event_pos_2_css_pos = function (event, domelem)
-        {
+        ns.event_pos_2_css_pos = function (event, domelem) {
             //	https://developer.mozilla.org/en-US/docs/Web/API/Element.getBoundingClientRect
             //	Feature 	Chrome 	Firefox (Gecko) 	Internet Explorer 	Opera 	Safari
             //	Basic support 	1.0 	3.0 (1.9) 	4.0 	(Yes) 	4.0
@@ -260,28 +255,25 @@
         (function () {
 
             ///syntax sugar to supply object in two forms: wrapped into $$ or naked
-            function alt(obj)
-            {
+            function alt(obj) {
                 return (typeof obj === 'function' ? obj() : obj);
             }
 
             var gen = function () {
                 var ctxEl = null;
-                var methods =
-                {
+                var methods = {
                     //.wraps flat-dom-object-into-platform
                     $:      function (obj)                 { ctxEl = obj                                            },
 
-                    children:    function (callback, obj)
-                                 {
-                                    ctxEl = obj || ctxEl;
-                                    if (!(ctxEl && ctxEl.children)) return;
-                                    [].forEach.call(ctxEl.children, function (child, ix) {
-                                        if (child && child.style.display !== 'none') {
-                                            callback(child, ix);
-                                        }
-                                    });
-                                 },
+                    children:    function (callback, obj) {
+                       ctxEl = obj || ctxEl;
+                       if (!(ctxEl && ctxEl.children)) return;
+                       [].forEach.call(ctxEl.children, function (child, ix) {
+                           if (child && child.style.display !== 'none') {
+                               callback(child, ix);
+                           }
+                       });
+                    },
 
                     c:      function (type)                { ctxEl =                document.createElement(type); },
                     //.gets single by id
@@ -403,82 +395,80 @@
                     ///adds class,
                     ///supports multiword class,
                     ///does not create duplicate words in class,
-                    addClass:   function (text, obj)
-                                {
-                                    ctxEl = obj || ctxEl;  //bug fix: if text === '', then
-                                                           //element is still created to save
-                                                           //the "chain" of $$ calls
-                                    if (!text) return; //sugar, saves extra "if"
-                                    var clss = text.split(/\s+/);
-                                    if (clss.length>1) {
-                                        ////many classes are supplied ...
-                                        ////processes each of them
-                                        clss.forEach(function (cls) {
-                                            $$.addClass(cls, ctxEl);
-                                        });
-                                        return;
-                                    }
+                    addClass:   function (text, obj) {
+                        ctxEl = obj || ctxEl;  //bug fix: if text === '', then
+                                               //element is still created to save
+                                               //the "chain" of $$ calls
+                        if (!text) return; //sugar, saves extra "if"
+                        var clss = text.split(/\s+/);
+                        if (clss.length>1) {
+                            ////many classes are supplied ...
+                            ////processes each of them
+                            clss.forEach(function (cls) {
+                                $$.addClass(cls, ctxEl);
+                            });
+                            return;
+                        }
 
-                                    var at = ctxEl.getAttribute('class'); //className is not for SVG
-                                    if (!at) {
-                                        //https://stackoverflow.com/questions/41195397/how-to-assign-a-class-to-an-svg-element
-                                        ctxEl.setAttribute('class', text); //For SVG
-                                        return;
-                                    }
-                                    var ats = ' ' + at + ' ';
-                                    var testee = ' ' + text + ' ';
-                                    if (ats.indexOf(testee) === -1) {
-                                        //c onsole.log( 'adding=' + text + ' to ' + at);
-                                        if (at.length > 0 && text) {
-                                            ////adds spacer betwenn end of class-sentence and addee,
-                                            ////ASSUMES: multispacer dividors are harmless or none,
-                                            ////for clear work, must "cleanse" them,
-                                            at += ' ';
-                                        }
-                                        at += text;
-                                        //c onsole.log( 'result of adding=' + at);
-                                        //ctxEl.className = at;
-                                        ctxEl.setAttribute('class', at); //For SVG
-                                    }
-                                },
+                        var at = ctxEl.getAttribute('class'); //className is not for SVG
+                        if (!at) {
+                            //https://stackoverflow.com/questions/41195397/how-to-assign-a-class-to-an-svg-element
+                            ctxEl.setAttribute('class', text); //For SVG
+                            return;
+                        }
+                        var ats = ' ' + at + ' ';
+                        var testee = ' ' + text + ' ';
+                        if (ats.indexOf(testee) === -1) {
+                            //c onsole.log( 'adding=' + text + ' to ' + at);
+                            if (at.length > 0 && text) {
+                                ////adds spacer betwenn end of class-sentence and addee,
+                                ////ASSUMES: multispacer dividors are harmless or none,
+                                ////for clear work, must "cleanse" them,
+                                at += ' ';
+                            }
+                            at += text;
+                            //c onsole.log( 'result of adding=' + at);
+                            //ctxEl.className = at;
+                            ctxEl.setAttribute('class', at); //For SVG
+                        }
+                    },
 
                     //removes class.
-                    removeClass: function (text, obj)
-                                {
-                                    if (!text) return; //sugar, saves extra "if"
+                    removeClass: function (text, obj) {
+                        if (!text) return; //sugar, saves extra "if"
 
-                                    //c onsole.log( 'removing=' + text );
-                                    ctxEl = obj || ctxEl;
-                                    var clss = text.split(/\s+/);
-                                    if (clss.length>1) {
-                                        ////many classes are supplied ...
-                                        ////processes each of them
-                                        clss.forEach(function (cls) {
-                                            $$.removeClass(cls, ctxEl);
-                                        });
-                                        return;
-                                    }
+                        //c onsole.log( 'removing=' + text );
+                        ctxEl = obj || ctxEl;
+                        var clss = text.split(/\s+/);
+                        if (clss.length>1) {
+                            ////many classes are supplied ...
+                            ////processes each of them
+                            clss.forEach(function (cls) {
+                                $$.removeClass(cls, ctxEl);
+                            });
+                            return;
+                        }
 
-                                    var at = ctxEl.getAttribute('class');
-                                    if (!at) {
-                                        ////nothing to remove ... leaving the task
-                                        return;
-                                    }
-                                    var ats = ' ' + at + ' ';
-                                    var testee = ' ' + text + ' ';
-                                    if (ats.indexOf(testee) > -1) {
-                                        var re = new RegExp('(?:^|\\s)' + text + '(?:\\s|$)', 'g');
-                                        //var match = at.match( re );
-                                        //c onsole.log( 'match=', match );
-                                        at = at.replace(re, ' ');
-                                        at = at.replace(/\s+/g, ' ');
-                                        at = at.replace(/(^\s*)|(\s*$)/g, '');
-                                        //at = at.replace( /(\s*)/g, '' );
-                                        //c onsole.log( 'removed=' + at );
-                                        //ctxEl.className = at;
-                                        ctxEl.setAttribute('class', at); //For SVG
-                                    }
-                                }
+                        var at = ctxEl.getAttribute('class');
+                        if (!at) {
+                            ////nothing to remove ... leaving the task
+                            return;
+                        }
+                        var ats = ' ' + at + ' ';
+                        var testee = ' ' + text + ' ';
+                        if (ats.indexOf(testee) > -1) {
+                            var re = new RegExp('(?:^|\\s)' + text + '(?:\\s|$)', 'g');
+                            //var match = at.match( re );
+                            //c onsole.log( 'match=', match );
+                            at = at.replace(re, ' ');
+                            at = at.replace(/\s+/g, ' ');
+                            at = at.replace(/(^\s*)|(\s*$)/g, '');
+                            //at = at.replace( /(\s*)/g, '' );
+                            //c onsole.log( 'removed=' + at );
+                            //ctxEl.className = at;
+                            ctxEl.setAttribute('class', at); //For SVG
+                        }
+                    }
                 };
 
                 //:here JavaScript writer can look which additional shortcuts do exist
@@ -604,8 +594,7 @@
     ///             way 1: as of September 1, 2020,
     ///                    URL-query: ...?conf=...x=y,deb=yes
     ///note:        make sure document.bod exists if used in manual refactoring,
-    ns.createDebugger = function ()
-    {
+    ns.createDebugger = function () {
         if (ns.h(ns, 'd')) return; //creates debugger only once
 
         ///------------------------------------------------------------
@@ -615,8 +604,7 @@
         /// and in the code it is still safe to use the lines:
         /// Usage: window.b$l.d(text)
         ///------------------------------------------------------------
-        ns.d = function (text)
-        {
+        ns.d = function (text) {
             if (!debWind) return; //no window, no debug accumulation
             debWind.value +='\n' + text;
             debWind.scrollTop = debWind.scrollHeight;
@@ -663,13 +651,11 @@
     var lt_re = /</g;
     var gt_re = />/g;
     var line_feed_re = /\r\n|\r|\n/g;
-    ns.htmlesc = function (str)
-    {
+    ns.htmlesc = function (str) {
         return str.replace(amp_re, '&amp;').replace(lt_re, '&lt;').replace(gt_re, '&gt;');
     }
 
-    ns.pre2fluid = function (str)
-    {
+    ns.pre2fluid = function (str) {
         return str.replace(line_feed_re, '<br>');
     }
     //=========================================================
@@ -679,8 +665,7 @@
     //=========================================================
     // //\\ configures from URL
     //=========================================================
-    ns.url2conf = function (conf)
-    {
+    ns.url2conf = function (conf) {
         //      if supplied, it overrides internal application conf
         //      format: ...index.html?conf=a.b.c.d=4,a.b.e=5
         var urlPars     = window.location.search || '';
@@ -752,8 +737,7 @@
     }
 
     // //\\ helpers
-    ns.prop2prop = function (target, source)
-    {
+    ns.prop2prop = function (target, source) {
         if (source) {
             Object.keys(source).forEach(function (key) {
                 target[ key ] = source[ key ];
@@ -764,8 +748,7 @@
 
     ///updates properties of object obj from single key-value
     ///pair "name, value"
-    ns.dots2object = function (name, value, obj)
-    {
+    ns.dots2object = function (name, value, obj) {
         var tokens	= name.split('.');
         var len		= tokens.length;
         var len1	= len - 1;
@@ -774,8 +757,7 @@
             return obj;
         }
         var prop	= tokens[ 0 ];
-        for (var ii = 0; ii < len1; ii++)
-        {
+        for (var ii = 0; ii < len1; ii++) {
             //:: appends objects if missed
             if (!obj[ prop ] || typeof obj[ prop ] !== 'object') obj[ prop ] = {};
             obj = obj[ prop ];
@@ -786,8 +768,7 @@
     }
 
     ///sugar for Object.keys( obj ).forEach ...
-    ns.eachprop = function (obj, callBack)
-    {
+    ns.eachprop = function (obj, callBack) {
         var keys = Object.keys(obj);
         keys.forEach(function (key, kix) {
             callBack(obj[ key ], key, kix, keys.length);
@@ -798,8 +779,7 @@
     ///maps props of object:
     ///creates new object and copies first level proper props to it,
     ///generalizes Array.map() to Object.map()
-    ns.mapp = function (obj, callBack)
-    {
+    ns.mapp = function (obj, callBack) {
         var map = {};
         if (obj) {
             Object.keys(obj).forEach((key, kix) => {
@@ -844,8 +824,7 @@
 
     //	Results in:		changed wall properties.
     //	Returns:		combined clone of paper to wall.
-    var paste_non_arrays = ns.paste = ns.paste_non_arrays = function (wall, paper, level, skip_undefined, refdepth, recdepth)
-    {
+    var paste_non_arrays = ns.paste = ns.paste_non_arrays = function (wall, paper, level, skip_undefined, refdepth, recdepth) {
 
         level = level || 0;
         var t = typeof paper;
@@ -854,26 +833,22 @@
         if (!level && (t === 'undefined' || paper === null)) return wall;
 
         //.Returns back non-object-type value
-        if (t === 'undefined' || t === 'string' || t === 'boolean' || t === 'number' || t === 'function' || paper === null)
-        {
+        if (t === 'undefined' || t === 'string' || t === 'boolean' || t === 'number' || t === 'function' || paper === null) {
             return paper;
         }
 
         ///Reduces the "deep-copy" to reference copy for leveles beneath reference-depth
-        if (refdepth || refdepth === 0)
-        {
+        if (refdepth || refdepth === 0) {
             if (level > refdepth) return paper;
         }
 
         ///Recursion limit is exceeded. Truncates recursion by recdepth value.
-        if ((recdepth || recdepth ===0) && level > recdepth)
-        {
+        if ((recdepth || recdepth ===0) && level > recdepth) {
             return '';
         }
 
         ///Paper is non-void array or object. If wall do not "match" the paper, making wall an object.
-        if (typeof wall !== 'object' || wall === null)
-        {
+        if (typeof wall !== 'object' || wall === null) {
             wall = {};
         }
 
@@ -894,17 +869,14 @@
 
         ///Now both wall and paper are objects of the same type. Pasting their properties.
         var hasOwn	= Object.prototype.hasOwnProperty;
-        for (var p in paper)
-        {
+        for (var p in paper) {
             if (hasOwn.call(paper, p)) //when works on arrays, then not fails on 'length'? bs "length" is notOwnProperty
             {
-                if (p !== 'length')
-                {
+                if (p !== 'length') {
                     //paper[ p ];
                         var theValue = paste_non_arrays(wall[ p ], paper[ p ], level+1, skip_undefined, refdepth, recdepth);
 
-                        if (! ((isArrayPaper || skip_undefined) && typeof theValue === 'undefined'))
-                        {
+                        if (! ((isArrayPaper || skip_undefined) && typeof theValue === 'undefined')) {
                             wall[ p ]		= theValue;
                         }
                 } else {
@@ -919,8 +891,7 @@
 
     ///before pasting to wall,
     ///removes wall's own properties and array elements if any
-    ns.cleanpaste = function (wall, paper)
-    {
+    ns.cleanpaste = function (wall, paper) {
         Object.keys(wall).forEach(akey => {
             delete wall[ akey ];
         });
@@ -928,8 +899,7 @@
     };
 
     ///clones array-tree or tree
-    ns.clonetree = function (paper)
-    {
+    ns.clonetree = function (paper) {
         return ns.paste(Array.isArray(paper) ? [] : {}, paper);
     };
 
@@ -970,13 +940,11 @@
     ///rack is an apartment in repo,
     ///input:
     ///         htmlkey - name or rack, css-class-friendly
-    function key2rack(htmlkey)
-    {
+    function key2rack(htmlkey) {
         htmlkey = htmlkey || DEFAULT_KEY;
         var ret = ns.haz(repo, htmlkey);
         if (!ret) {
-            ret = repo[ htmlkey ] =
-            {
+            ret = repo[ htmlkey ] = {
                 cssText : '',
                 cssDom$ : ns.$$
                     .style()
@@ -993,8 +961,7 @@
     ///used to avoid performance downgrade for frequent series of css updates;
     ///input:
     ///         htmlkey - name or rack, css-class-friendly, optional
-    function upqueue(moreText, htmlkey)
-    {
+    function upqueue(moreText, htmlkey) {
         var rack = key2rack(htmlkey);
         if (moreText) { rack.cssText += moreText; }
         if (rack.queueHandle !== null) {
@@ -1011,30 +978,26 @@
 
     ///adds text with changing html-tag
     ///for example:     globalCss.update( cssTxt, 'my-css' )
-    function update(moreText, htmlkey)
-    {
+    function update(moreText, htmlkey) {
         var rack = key2rack(htmlkey);
         if (moreText) { rack.cssText += moreText; }
         rack.cssDom$.html(rack.cssText);
     };
     ///replaces CSS-text in rack and updates it immediately
-    function replace(rtext, htmlkey)
-    {
+    function replace(rtext, htmlkey) {
         var rack = key2rack(htmlkey);
         rack.cssText = rtext;
         rack.cssDom$.html(rack.cssText);
     };
     ///replaces and updates if CSS-text is different
-    function updateIfDifferent(rtext, htmlkey)
-    {
+    function updateIfDifferent(rtext, htmlkey) {
         var rack = key2rack(htmlkey);
         if (rack.cssText === rtext) return;
         rack.cssText = rtext;
         rack.cssDom$.html(rack.cssText);
     };
     ///updates if htmlkey is not found
-    function updateIfKeyDifferent(rtext, htmlkey)
-    {
+    function updateIfKeyDifferent(rtext, htmlkey) {
         htmlkey = htmlkey || DEFAULT_KEY;
         var rack = ns.h(repo, htmlkey);
         if (rack) return;
@@ -1043,21 +1006,18 @@
         rack.cssDom$.html(rack.cssText);
     };
     ///adds text without changing html-tag
-    function addText(text, htmlkey)
-    {
+    function addText(text, htmlkey) {
         var rack = key2rack(htmlkey);
         rack.cssText += text;
     };
     ///helps to cooperate with other Css builder
     ///by avoiding creation of extra own style-html
-    function getText(htmlkey)
-    {
+    function getText(htmlkey) {
         var rack = key2rack(htmlkey);
         return rack.cssText;
     };
 
-    function clearStyleTag(htmlkey)
-    {
+    function clearStyleTag(htmlkey) {
         var rack = key2rack(htmlkey);
         rack.cssDom$.html('\n.dummy-style { .dummy-class : dummy-value; }\n ');
     };
@@ -1075,8 +1035,7 @@
      * toCssIdentifier('A') // returns '_a'
      * toCssIdentifier('A,B') // returns '_a_-_b'
      */
-    function toCssIdentifier(camelId)
-    {
+    function toCssIdentifier(camelId) {
         return camelId.replace(/([A-Z,])/g,
             (match, key1) => (key1 === ',' ? '_-' : '_' + key1.toLowerCase())
         );
@@ -1086,8 +1045,7 @@
 
 (function () {
     var ns = window.b$l;
-    ns.loadScript = function (src, onload, type)
-    {
+    ns.loadScript = function (src, onload, type) {
         //https://developer.mozilla.org/en-US/docs/Web/HTTP/
         //      Basics_of_HTTP/MIME_types#JavaScript_types
         type = type || 'text/javascript';
@@ -1103,8 +1061,7 @@
 
 
     ///enables this scroll for html-created in late-loaded-scripts
-    function doScrollToHash()
-    {
+    function doScrollToHash() {
         var hash = window.location.hash;
         if (!hash || hash.length < 2) return;
         var hash = hash.substring(1);
@@ -1139,8 +1096,7 @@
     */
 
     ///deep iteration of DOM-element-tree
-    methods.elTree = function (el, callback)
-    {
+    methods.elTree = function (el, callback) {
         callback(el);
         var children = el.children;
         if (!children || !children.length) return;

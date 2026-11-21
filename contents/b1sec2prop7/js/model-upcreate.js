@@ -9,8 +9,7 @@
     /// model scenario
     /// is required; to skip define as ()=>{};
     ///****************************************************
-    function model_upcreate()
-    {
+    function model_upcreate() {
         const q2xy = stdMod.q2xy;
         const solvable = ssD.solvable;
         const Porb = ssD.qIndexToOrbit[ rg.P.qix ];

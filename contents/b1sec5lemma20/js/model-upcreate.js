@@ -3,8 +3,7 @@
         sn, haz, mat,
         stdMod, rg, sconf, ssF, sData,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             model_upcreate,
             deriveParameters,
             curveModel2branches,
@@ -14,8 +13,7 @@
     return;
 
 
-    function model_upcreate()
-    {
+    function model_upcreate() {
         //stdMod.slider_a_pos2value( rg.a.pos );
         deriveParameters();
 
@@ -78,8 +76,7 @@
         pos8tg_2_rg('F', F);
     }
 
-    function q2rg(parQ, pname)
-    {
+    function q2rg(parQ, pname) {
         const pem = sData.polar_ell_model;
         pem.q = parQ;
         var { point, tangent } = mat.polar_ellipse(pem);
@@ -106,16 +103,14 @@
     }
     */
 
-    function pos8tg_2_rg(nameP, pos, tangent)
-    {
+    function pos8tg_2_rg(nameP, pos, tangent) {
         //we cannot do P = t r( nameP, 'pos', [x, y] );
         //in a fear to erase [x,y] reference which may be already stored
         var P = sn(nameP, rg);
         var Ppos = sn('pos', P, []);
         Ppos[0] = pos[0];
         Ppos[1] = pos[1];
-        if (tangent)
-        {
+        if (tangent) {
             var Ptangent = sn('tangent', P, []);
             Ptangent[0] = tangent[0];
             Ptangent[1] = tangent[1];
@@ -123,8 +118,7 @@
         return rg[ nameP ];
     }
 
-    function deriveParameters(doSetT)
-    {
+    function deriveParameters(doSetT) {
         //=========================================
         // //\\ "given" parameters
         //=========================================

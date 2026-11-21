@@ -4,8 +4,7 @@
         sconf, ssF, sDomF, lowtpid_2_glocss8anchorRack, rg, toreg,
         stdMod,
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList : {
             pivots_2_svgLineInRg,
             str2line,
             namesArr_2_svgpoly,
@@ -285,8 +284,7 @@
         if (sconf.sappId === "b1sec1lemma2" || sconf.sappId === "b1sec1lemma3") {
             strokeWidth = 1;
         }
-        var lineAttrPassed =
-        {
+        var lineAttrPassed = {
             cssClass        : 'tostroke thickable' +
                                (cssClass ? ' ' + cssClass : ''),
             'stroke-width'  : ns.sn('stroke-width', lineAttr, strokeWidth),
@@ -327,8 +325,7 @@
                         'tostroke ' : (
                             tostroke ? 'tostroke ' : ''
                         );
-        var attr =
-        {
+        var attr = {
             cssClass        : tostroke + 'thickable' +
                               (cssClass ? ' ' + cssClass : ''),
            'stroke-width'  : 2,
@@ -399,8 +396,7 @@
     ///Input:   triang = rg[ triangleId ]
     ///         triang.vertices
     ///         cssCls can be for 'logic_phase--proof'
-    function paintTriangle(triangleId, cssCls, tpclass, defaultFill,)
-    {
+    function paintTriangle(triangleId, cssCls, tpclass, defaultFill,) {
         var triang = rg[ triangleId ];
         var mod2inn = ssF.mod2inn;
         var vertices = triang.vertices.map(pos => {

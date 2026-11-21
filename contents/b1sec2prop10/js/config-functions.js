@@ -7,8 +7,7 @@
 
 
     ///parameters are enclosed in closure for performance
-    function recreates_q2xy()
-    {
+    function recreates_q2xy() {
         var center  = sconf.diagramOrigin;
         const A     = sconf.ellipseA;
         const B     = sconf.ellipseB;
@@ -17,8 +16,7 @@
         stdMod.forceCorrectionScale = forceCorrectionScale;
         return;
 
-        function q2xy(q)
-        {
+        function q2xy(q) {
             q += fi0;
             return [
                 A * Math.cos(q) + center[0],

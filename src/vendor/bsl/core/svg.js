@@ -21,8 +21,7 @@
     ///     arg.style
     ///     and other attributes in form "key"-"value"
     ///Returns new or updated svgel - svg element
-    nssvg.u = function (arg)
-    {
+    nssvg.u = function (arg) {
         var svgel = haz(arg, 'svgel');
         ///protects from repeating construction
         if (!svgel) {
@@ -122,8 +121,7 @@
     };
 
     ///Input: arg.pivots are pivot points
-    nssvg.polyline = function (arg)
-    {
+    nssvg.polyline = function (arg) {
         var regExp = /(\d)0+$/; //removes trailing zeros from numbers for svg
         var pivotsStr = arg.pivots.reduce(function (acc, point, ix) {
                 if (acc) { acc += ' '; }
@@ -247,8 +245,7 @@
     */
 
     ///input parameters are in model namespace,
-    nssvg.branch2svg = function (arg, doClose)
-    {
+    nssvg.branch2svg = function (arg, doClose) {
         const pivots = arg.pivots = [];
         const points = arg.points;
         const len = points.length;
@@ -264,8 +261,7 @@
     ///input: ellipse = (x-x0)^2/a^2 + (y-y0)^2/b^2 = 1;
     ///                 or: r = [ a*cos(t+t0) + x0, b*sin(t+t0) + y0 ];
     ///returns: svg-element;
-    nssvg.ellipseSector = function (arg)
-    {
+    nssvg.ellipseSector = function (arg) {
         var {
             stepsCount,
             a,
@@ -321,8 +317,7 @@
     ///
     ///autocloses unless    arg.dontClose = true,
     ///returns:             svg-element
-    nssvg.curve = function (arg)
-    {
+    nssvg.curve = function (arg) {
         const {
             dontClose,
 
@@ -373,8 +368,7 @@
     ///     arg.y
     ///     arg.style
     ///Returns: svg-element
-    nssvg.printText = function (arg)
-    {
+    nssvg.printText = function (arg) {
         arg.type = 'text';
         var svgEl = nssvg.u(arg);
         if (arg.text) {

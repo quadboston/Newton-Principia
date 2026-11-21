@@ -354,8 +354,7 @@
 
         ///clip region for plots: the plot area, widened by half the
         ///plot stroke so curves along an edge are not thinned
-        function setsPlotAreaClip(gMedia, marginX, marginY, width, height)
-        {
+        function setsPlotAreaClip(gMedia, marginX, marginY, width, height) {
             const SVG_NS = 'http://www.w3.org/2000/svg';
             const HALF_STROKE = 1;
             let clip = gMedia.querySelector('#' + clipPathId);
@@ -375,8 +374,7 @@
         //==================================================
         // //\\ builds svg-graph-container
         //==================================================
-        function creates_svgDomEl()
-        {
+        function creates_svgDomEl() {
             var g$ = graphFM_self.gmedia$ = $$.svg()
                 .to(parent)
                 ;
@@ -417,8 +415,7 @@
         ///==========================================
         /// cleanup helper
         ///==========================================
-        function nonefyDom()
-        {
+        function nonefyDom() {
             graphFM_self.gmedia$ && graphFM_self.gmedia$.css('display', 'none');
         }
     }

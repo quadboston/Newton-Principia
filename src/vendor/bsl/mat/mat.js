@@ -25,8 +25,7 @@
     ///
     ///Version history: similar to used in .../square/...
     ///                 /march18-98-bezier-threads-predelivey/js/paint-bubbles-and-threads.js
-    mat.squarePolyRoot = function (aa, bb, cc)
-    {
+    mat.squarePolyRoot = function (aa, bb, cc) {
         if (aa === 0) {
             if (bb === 0) {
                 return cc === 0 ? [1, 2, 3] : [];
@@ -89,8 +88,7 @@
     ///input:       ellipse = r = [ a*cos(t+t0) + x0, b*sin(t+t0) + y0 ];
     //              if given, rotationRads rotates around position x0,y0;
     ///returns:     point x,y at parameter t and other data
-    function ellipse(args)
-    {
+    function ellipse(args) {
         var { t, a, b, x0, y0, t0, rotationRads } = args;
         rotationRads = rotationRads || 0;
         var rC = Math.cos(rotationRads);
@@ -117,8 +115,7 @@
     }
 
     ///Returns atan between 0 and 2PI
-    function atan2PI(vector)
-    {
+    function atan2PI(vector) {
         let angle = Math.atan2(vector[1], vector[0]);
         return angle < 0 ?  2 * Math.PI + angle : angle;
     }

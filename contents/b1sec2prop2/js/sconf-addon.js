@@ -78,8 +78,7 @@ function init_conf_addon() {
     }
     },
 
-    "__amode2rgstate" :
-    [
+    "__amode2rgstate" : [
     [
         "!ssF.mediaModelInitialized || amode.logic_phase === 'scholium' || amode.logic_phase === 'claim'",
         {
@@ -90,8 +89,7 @@ function init_conf_addon() {
     [
         "amode.logic_phase === 'proof'",
         {
-            "rg" :
-            {
+            "rg" : {
                 "rgslid_dt" : { "val" : sconf.initialTimieStep },
                 "slider_sltime": {
                     "curtime": 3.2 //to capture dD, triangle SCD
@@ -104,8 +102,7 @@ function init_conf_addon() {
         "( logic_phase === 'corollary' )",
         {
             "captured" : "t2corollary",
-            "rg" :
-            {
+            "rg" : {
             }
         }
     ]

@@ -3,11 +3,9 @@
     return;
 
 
-    function lemmaConfig()
-    {
+    function lemmaConfig() {
         return {
-            codesList :
-            [
+            codesList : [
                 { src:'sconf.js' },
                 { src:'init-model-parameters.js' },
                 { src:'model-upcreate.js' },
@@ -15,8 +13,7 @@
                 { src:'completes-sliders-creation.js' },
                 { src:'main-legend.js' },
             ],
-            "contents-list" :
-            [
+            "contents-list" : [
                 'txt/latin.txt',
                 'txt/cohen.txt',
             ],

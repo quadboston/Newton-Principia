@@ -6,8 +6,7 @@
     return;
 
 
-    function buildsMobile({})
-    {
+    function buildsMobile({}) {
         //------------------------------------------------------------------
         // //\\ essays css
         // //\\ very tedious way to get the necessary height of visible text

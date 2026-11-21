@@ -89,8 +89,7 @@
             movesAndFindsHandle : doCreateDynamicSpinners && movesAndFindsHandle,
         });
 
-        var createdFramework =
-        {
+        var createdFramework = {
             frameworkId,
             dragSurface,
             decPoint_parentClasses,
@@ -103,8 +102,7 @@
             givenClickEvent,
         };
 
-        function movesAndFindsHandle(rootEvent)
-        {
+        function movesAndFindsHandle(rootEvent) {
             //----------------------------------------------------------
             // //\\ possible update for mobile for spinner
             //----------------------------------------------------------
@@ -164,8 +162,7 @@
         //  it does not convert inner-media-position and
         //  does not convert inner-model-position to dom position.
         //The dragHandleDOM must belong the "surface".
-        function handle2dragsurf_pos_default(dragWrap, dragSurface)
-        {
+        function handle2dragsurf_pos_default(dragWrap, dragSurface) {
             var rr = dragSurface.getBoundingClientRect();
             var hh = dragWrap.dragHandleDOM.getBoundingClientRect();
             //var orien = dragWrap.orientation;
@@ -179,8 +176,7 @@
         // \\// converts pos-in-parent to dom-pos
         //==========================================
 
-        function updateAllDecPoints()
-        {
+        function updateAllDecPoints() {
             dragWraps.forEach(function (dragWrap) {
                 var uP = dragWrap.update_decPoint;
                 uP && uP(dragWrap.decPoint, dragSurface, dragWrap.pointWrap,
@@ -192,8 +188,7 @@
         ///Creates drag handler for each specific point-draggee.
         ///Usually called when each model point is created to be dragged.
         // **api-pointWrap_2_dragWrap
-        function pointWrap_2_dragWrap(api)
-        {
+        function pointWrap_2_dragWrap(api) {
             //---------------------------------------------
             // //\\ AAA PPP III
             //---------------------------------------------
@@ -268,8 +263,7 @@
 
                 decPoint = dpdec.adds_decorSpinner({
                     spinner_domParent : dragSurface,
-                    opt :
-                    {
+                    opt : {
                         tooltip,
                         addFeaturesToDecPoint,
                             orientation     : orientation,
@@ -284,8 +278,7 @@
             //=====================================================
             // //\\ drag8drop main wrapper over item
             //=====================================================
-            var dragWrap =
-            {
+            var dragWrap = {
                 pointWrap       : pointWrap,
                 doProcessWrap   : doProcessWrap,
                 update_decPoint : update_decPoint,
@@ -367,8 +360,7 @@
             ///recall: spinner is a div with two children divs which are animated
             ///        spinner's master-css is made here:
             ///        bsl/d8d/decorator.css.js::creates _spinnerOwnCss.
-            function update_decPoint_default(decPoint, dragSurface, pointWrap, nonenify)
-            {
+            function update_decPoint_default(decPoint, dragSurface, pointWrap, nonenify) {
                 var dompos = handle2dragsurf_pos(dragWrap, dragSurface);
                 decPoint.style.left = dompos[0] + 'px';
                 decPoint.style.top = dompos[1] + 'px';
@@ -382,8 +374,7 @@
             ///does position spinner by converting
             ///inner-media-position to dom-position
             ///and setting spinner ot this dom-position
-            function update_decPoint_inn2outparent(dummy1, dummy2, dummy3, nonenify)
-            {
+            function update_decPoint_inn2outparent(dummy1, dummy2, dummy3, nonenify) {
                 var dompos   = inn2outparent.call(pointWrap);
                 //console.log(dompos);
                 decPoint.style.left = dompos[0] + 'px'; // this is just pos of decoration
@@ -417,8 +408,7 @@
             var fw = createdFramework;
             //vital-for-mobile
             //ns.d('fram/w: case="' + down_move_up + '"');
-            switch (down_move_up)
-            {
+            switch (down_move_up) {
                 case 'down':
                     //vital-for-mobile
                     //ns.d('down: fw=' + fw.frameworkId );
@@ -488,8 +478,7 @@
         ///         which is closest to testPoint.
         ///Algo:    if distance to point_on_dragSurf is "outside" of this par.,
         ///         then dragWrap is not "considered" for drag
-        function findDraggee_default(point_on_dragSurf, dragWraps)
-        {
+        function findDraggee_default(point_on_dragSurf, dragWraps) {
             ///vital
             /*
             ns.d('findDraggee in bsl: fw' +
@@ -568,16 +557,14 @@
     ///Returns:  throttled fun with signature signature:
     ///             arg       ordinary arguments' object,
     ///             dragType  "move" or other type,
-    function throttles_eventMove(fun, WAIT)
-    {
+    function throttles_eventMove(fun, WAIT) {
         var timeout = null;
         var timeStart = null;
         var arg_closured;
         var dragType_closured;
         return throttledFunction;
 
-        function throttledFunction(arg, dragType)
-        {
+        function throttledFunction(arg, dragType) {
             if (dragType !== 'moving') {
                 ///runs stashed version of "move" function if any
                 if (timeout !== null) {
@@ -615,8 +602,7 @@
             //timeStart = time;
         };
 
-        function clear8run(doClearTimeout)
-        {
+        function clear8run(doClearTimeout) {
             doClearTimeout && clearTimeout(timeout);
             timeout = null;
             timeStart = null;

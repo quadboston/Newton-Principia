@@ -110,8 +110,7 @@
     }
 
     // defines css for arrow hover animations around draggable points
-    function createSliderArrowsCSS()
-    {
+    function createSliderArrowsCSS() {
         if (globalCssCreated_flag) return;
         var ret =
 

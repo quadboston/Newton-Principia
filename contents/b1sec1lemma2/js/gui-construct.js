@@ -13,8 +13,7 @@
     return;
 
 
-    function setModule()
-    {
+    function setModule() {
         Object.assign(guicon,
         {
             constructsRects_tillExtraOffset_parlessDom,
@@ -29,8 +28,7 @@
     // //\\ rects
     //======================================================
     //apparently makes "emptu junk" "without numbers there"
-    function constructsRects_tillExtraOffset_parlessDom(dr)
-    {
+    function constructsRects_tillExtraOffset_parlessDom(dr) {
         //this is just an empty list
         const cArr = topicColors_repo["circ-outline"];
         const circColor = `rgb(${cArr[0]}, ${cArr[1]}, ${cArr[2]}, ${cArr[3]})`;
@@ -64,8 +62,7 @@
     //listWrap can hold an empt arry
     //reserves "empty junk" and includes
     //cells 0,...,listWrap.offset-1 there.
-    function makes_rects(listWrap, classStyle, classPrefixSingle = null)
-    {
+    function makes_rects(listWrap, classStyle, classPrefixSingle = null) {
         classStyle += ' rect tofill';
         let BASE_MAX_NUM = sconf.BASE_MAX_NUM;
         let list = listWrap.list;
@@ -84,8 +81,7 @@
     // creates duplicate of rectangles with no fill, just stroke
     // so the stroke looks the same as those specified in sconf
     // and so the strokes' opacity can be set independently of fill opacity
-    function makes_rects_outlines(listWrap, color)
-    {
+    function makes_rects_outlines(listWrap, color) {
         let BASE_MAX_NUM = sconf.BASE_MAX_NUM;
         let list = listWrap.list;
         let len = BASE_MAX_NUM+listWrap.offset;
@@ -107,8 +103,7 @@
     //======================================================
     ///builds list of control points, dr.ctrlPts.list and updates construction
     ///of bookkeeper dr.movables
-    function constructsControlPoints(dr)
-    {
+    function constructsControlPoints(dr) {
         const ctrlPts = dr.ctrlPts;
         const cp = ctrlPts.untransformed;
 
@@ -122,8 +117,7 @@
         reset_hollowPoints({ dr, onCurve:true, onBase:false });
     }
 
-    function reset_hollowPoints({ dr, onCurve, onBase })
-    {
+    function reset_hollowPoints({ dr, onCurve, onBase }) {
         let view = sdata.view;
         let isFig = !!view.isFigureChecked;
         let isIn = !!view.isInscribed;
@@ -165,8 +159,7 @@
 
     ///apparently, base points from second to "D" are
     ///draggable (movable) and also include draggable point "E" = end point,
-    function constructBasePts_domParless(dr, basePts)
-    {
+    function constructBasePts_domParless(dr, basePts) {
         let bplist = basePts.list;
         //constant, sconf.BASE_MAX_NUM = usually 500,
         //sconf.DRAGGABLE_BASE_POINTS = usually 15,
@@ -228,8 +221,7 @@
     //      dom without numeric parameters
     //      "makes an empty junk"
     //==================================================
-    function makeSType(shapeType, classStyle)
-    {
+    function makeSType(shapeType, classStyle) {
         ///does only dom
         var sdom = document.createElementNS(svgNS, shapeType);
         sdom.setAttributeNS(null, "class", classStyle);
@@ -240,8 +232,7 @@
 
     ///does only dom and bookkeeper, dr.movables[ key ] = draggable,
     ///creates svg-circle-tag with unit-transform and and appends it to svg-root
-    function makeDragP_tpl(dr, type, i)
-    {
+    function makeDragP_tpl(dr, type, i) {
         var key  = type + i;
         var pdom = document.createElementNS(svgNS, "circle");
         stdMod.svgScene.appendChild(pdom);

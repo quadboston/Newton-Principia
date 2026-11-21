@@ -13,8 +13,7 @@
     ///****************************************************
     /// model initiation (draggers and popup)
     ///****************************************************
-    function init_model_parameters()
-    {
+    function init_model_parameters() {
         ssD.curveStartInitialPos = ns.paste({}, rg.curveStart.pos);
         ssD.curveEndInitialPos = ns.paste({}, rg.curveEnd.pos);
 
@@ -25,8 +24,7 @@
             stdMod,
             orientation : 'axis-y',
             pname : 'L',
-            acceptPos : (newPos) =>
-            {
+            acceptPos : (newPos) => {
                 var fullAngle = Math.atan(newPos[1]/newPos[0]);
                 ///restricts converging tangent positions,
                 ///saves user from unexpected experiments,
@@ -64,8 +62,7 @@
             //ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
             stdMod,
             pname : 'B',
-            acceptPos : (newPos) =>
-            {
+            acceptPos : (newPos) => {
                 var new_unrotatedParameterX = ssD.getUnrotatedParameterX(
                     newPos[0], rg.B.unrotatedParameterX
                 );
@@ -207,8 +204,7 @@
     ///****************************************************
     /// model scenario
     ///****************************************************
-    function model_upcreate()
-    {
+    function model_upcreate() {
         //: creats AL for rectilinear angle
         rg.curveRotationAngle.sin = Math.sin(rg.curveRotationAngle.angle);
         rg.curveRotationAngle.cos = Math.cos(rg.curveRotationAngle.angle);

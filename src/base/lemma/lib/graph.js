@@ -114,8 +114,7 @@
         // \\// top tier painter which wraps low tier painter
         //===================================================
 
-        function toollineConfig()
-        {
+        function toollineConfig() {
             return {
                 toollineStyle : {
                     'stroke-width' : 2,
@@ -126,8 +125,7 @@
         }
 
         ///horizontal axis x pars, font, etc,
-        function axisXStyle(textColor)
-        {
+        function axisXStyle(textColor) {
             return {
                 'font-size'     : '18px',
                 fontShiftX      : -12, //in media scale
@@ -139,8 +137,7 @@
             };
         }
 
-        function axisYStyle(textColor)
-        {
+        function axisYStyle(textColor) {
             return {
                 'font-size'     : '20px',
                 fontShiftX      : -45, //in media scale
@@ -155,8 +152,7 @@
         //==================================================
         // //\\ shows/hides graph container
         //==================================================
-        function setsGraphVisible(isVisible)
-        {
+        function setsGraphVisible(isVisible) {
             if (isVisible) {
                 container$.removeClass('hidden');
             } else {
@@ -177,8 +173,7 @@
     ///===========================================
     /// appends graph CSS, once for all graphs
     ///===========================================
-    function appendsGraphCSS()
-    {
+    function appendsGraphCSS() {
         if (GLOBAL_CSS_APPENDED) return;
         GLOBAL_CSS_APPENDED = true;
         globalCss.update(`
@@ -250,8 +245,7 @@
         // //\\ calls api
         //==================================================
         var textColor      = 'rgba(0,0,0,1)';
-        var axisYLegend =
-        [
+        var axisYLegend = [
             {
                 //together, tobold hover-width and tostroke can be redundant
                 text    :   '<text><tspan class="tofill tobold hover-width"' +
@@ -284,8 +278,7 @@
                 },
             },
         ];
-        var axisXLegend =
-        [
+        var axisXLegend = [
             {
                 text    : legendText,
                 x       : legendX,

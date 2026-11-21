@@ -16,8 +16,7 @@
         return gix;
     }
 
-    function builds_orbit_data_graph(setMaxGraphValues = false)
-    {
+    function builds_orbit_data_graph(setMaxGraphValues = false) {
         if (!stdMod.graph) {
             // graph not needed for this model, so skip
             return;
@@ -134,11 +133,10 @@
 
         ///this is a common graph lines, but this mask can be
         ///overriden in model_upcreate()
-        stdMod.graph.graphArrayMask =
-            [
-                'force',
-                'estimatedForce',
-            ];
+        stdMod.graph.graphArrayMask = [
+            'force',
+            'estimatedForce',
+        ];
         //------------------------------------------
         // \\// resets graphArray
         //------------------------------------------

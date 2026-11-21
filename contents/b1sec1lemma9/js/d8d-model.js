@@ -7,8 +7,7 @@
     //==========================================
     // //\\ inits drag points
     //==========================================
-    function initDragModel(medD8D)
-    {
+    function initDragModel(medD8D) {
         var modCurvPivots   = ssD.curvePivots;
         var yflip           = sconf.MONITOR_Y_FLIP;
         var yRange          = sconf.APP_MODEL_Y_RANGE;
@@ -29,8 +28,7 @@
             achieved    : sconf.claimRatio,
             pointWrap   : wpoint,
             cssClasses  : ['axis-y'],
-            doProcess   : function (arg)
-            {
+            doProcess   : function (arg) {
                 var ach = arg.pointWrap.achieved;
                 switch (arg.down_move_up) {
                     case 'up':   ach.achieved = ssD.claimRatio;
@@ -73,8 +71,7 @@
             achieved            : rg.E.pos.concat([]),
             pointWrap           : wpoint,
             cssClasses          : ['axis-y'],
-            doProcess : function (arg)
-            {
+            doProcess : function (arg) {
                 var ach = arg.pointWrap.achieved;
                 switch (arg.down_move_up) {
                     case 'down':
@@ -121,8 +118,7 @@
                 achieved            : sconf.tC,
                 pointWrap           : rg.C,
                 cssClasses          : ['green'],
-                doProcess : function (arg)
-                {
+                doProcess : function (arg) {
                     var ach = arg.pointWrap.achieved;
                     switch (arg.down_move_up) {
                         case 'up':   //.this is done through proofSlider: ach.achieved = ssD.tC;
@@ -172,8 +168,7 @@
                 achieved            : ssD.curvePivots[1].concat([]),
                 pointWrap           : wpoint,
                 cssClasses          : ['axis-x'],
-                doProcess : function (arg)
-                {
+                doProcess : function (arg) {
                     var ach = arg.pointWrap.achieved;
                     var pv = ssD.curvePivots[1];
                     switch (arg.down_move_up) {
@@ -219,8 +214,7 @@
             achieved            : sconf.curvePivots[2].concat([]),
             pointWrap           : wpoint,
             cssClasses          : ['given', 'rotate'],
-            doProcess : function (arg)
-            {
+            doProcess : function (arg) {
                 var ach = arg.pointWrap.achieved;
                 var pv = ssD.curvePivots[2];
                 switch (arg.down_move_up) {
@@ -251,8 +245,7 @@
         ns.globalCss.update(); //for decorator
         return;
 
-        function createDragger(argc)
-        {
+        function createDragger(argc) {
             var pointWrap        = argc.pointWrap;
             pointWrap.dragDecorColor = pointWrap.dragDecorColor || 'red';
 

@@ -4,16 +4,14 @@
         ssF, sDomN, fapp,
         stdMod, amode,
     } = window.b$l.apptree({
-        sDomFExportList :
-        {
+        sDomFExportList : {
             createsCaptureWindow,
         },
     });
     return;
 
 
-    function createsCaptureWindow()
-    {
+    function createsCaptureWindow() {
         ///this thing collects captured states:
         /// api: capturePoint - count of currently captured states
         ///      captured -
@@ -21,8 +19,7 @@
         var cap = fapp.captureWind = { capturePoint : 0, captured:{} };
 
         ///establishes capture
-        fapp.captureState = function (captureData)
-        {
+        fapp.captureState = function (captureData) {
             captureData = ns.paste({}, captureData);
 
             cap.captured[ ''+cap.capturePoint ] = captureData;
@@ -66,12 +63,10 @@
                 })
             }
         };
-        fapp.captureWind.closeWindow = function ()
-        {
+        fapp.captureWind.closeWindow = function () {
             dom$.css('display', 'none');
         };
-        fapp.captureWind.openWindow = function ()
-        {
+        fapp.captureWind.openWindow = function () {
             var top = sDomN.captureButton$.box().top - sDomN.topMediaControls$.box().top + 50;
             dom$
                 .css('display', 'block')

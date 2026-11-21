@@ -40,8 +40,7 @@
                 A,b,B   - comb A+bB
                 a,A,b,B - comb aA+bB
     */
-    function sm(arg)
-    {
+    function sm(arg) {
         var a = 1;
         var b = 1;
         var B = [0, 0];
@@ -71,8 +70,7 @@
     }
 
     ///Output: lin. comb. of two 3d vect.
-    function sm3(a1, v1, a2, v2)
-    {
+    function sm3(a1, v1, a2, v2) {
         return [
             a1 * v1[0] + a2 * v2[0],
             a1 * v1[1] + a2 * v2[1],
@@ -143,8 +141,7 @@
     ///3d functionality is not enough tested:
     ///Given 3d-vector in input, returns two unit normals to it.
     ///     which both normals are orhtogonal.
-    function vector2normalOrts(vector)
-    {
+    function vector2normalOrts(vector) {
         var is2d = vector.length == 2;
         var v2 = vector[0]*vector[0] + vector[1]*vector[1];
         if (!is2d) {
@@ -249,8 +246,7 @@
     ///a perpendicular to line segment AB,
     ///input:   point S and two points A,B
     ///returns: endPoint of perpendicular which is a point at cross of perpendicular and line AB
-    function dropPerpendicular(S, A, B)
-    {
+    function dropPerpendicular(S, A, B) {
         //direction of line AB = line segment from start point A to end point B
         var u = [ B[0] - A[0], B[1] - A[1] ];
         //start point of line AB
@@ -264,8 +260,7 @@
         return linesCross(u, v, us, vs);
     }
 
-    function dropPerpendicularDetails(S, A, B)
-    {
+    function dropPerpendicularDetails(S, A, B) {
         //direction of line AB = line segment from start point A to end point B
         var lineForPerp = [ B[0] - A[0], B[1] - A[1] ];
         var lAbs = Math.sqrt(lineForPerp[0]*lineForPerp[0] + lineForPerp[1]*lineForPerp[1]);

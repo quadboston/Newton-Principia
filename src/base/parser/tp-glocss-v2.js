@@ -17,8 +17,7 @@
     //
     //"hover-width" decreases gigantic bold
     ///*************************************************
-    function v2_topics_2_unhighCss()
-    {
+    function v2_topics_2_unhighCss() {
         //ccc( 'v2_topics_2_unhighCss' );
         eachprop(topics.lowtpid_2_glocss8anchorRack, (gcssRack, low_tpID) => {
             var { fillOpacity, strokeOpacity, rgba_own } = gcssRack;

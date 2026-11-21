@@ -2,8 +2,7 @@
     var {
         mat, sconf, rg, stdMod, sData, ssF,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             completesSlidersCreation,
             slider_a_pos2value,
             slider_a_value2pos,
@@ -12,11 +11,9 @@
     return;
 
 
-    function completesSlidersCreation()
-    {
+    function completesSlidersCreation() {
         rg.a.acceptPos = slider_a_pos2value;
-        rg.T.acceptPos = function (newPos)
-        {
+        rg.T.acceptPos = function (newPos) {
             var T = rg.T;
             var newValue = T.pos2Tpar(newPos)
             //protects drag from going outside the window
@@ -26,8 +23,7 @@
             T.pos[1] = newPos[1];
             return true;
         }
-        rg.D.acceptPos = function (newPos)
-        {
+        rg.D.acceptPos = function (newPos) {
             const pem = sData.polar_ell_model;
             const pix = ssF.gets_orbit_closest_point(newPos, pem.points);
             const Dpos = pem.points[ pix ];
@@ -41,8 +37,7 @@
     }
 
     ///does newPos -> value -> pos (pos -> value in model)
-    function slider_a_pos2value(newPos)
-    {
+    function slider_a_pos2value(newPos) {
         var scale = (rg.eEnd.pos[0] - rg.eStart.pos[0]);
         sData.eScale = scale / sconf.eMax;
         var modelPar = (newPos[0] - rg.eStart.pos[0]) / sData.eScale;
@@ -114,8 +109,7 @@
         newPos[1] = rg.eStart.pos[1];
         return true;
     }
-    function slider_a_value2pos()
-    {
+    function slider_a_value2pos() {
         rg.a.pos[0] = rg.eStart.pos[0] +
             sData.polar_ell_model.e * sData.eScale;
     }

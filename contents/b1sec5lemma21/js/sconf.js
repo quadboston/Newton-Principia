@@ -4,8 +4,7 @@
     return;
 
 
-    function init_conf()
-    {
+    function init_conf() {
         //====================================================
         // //\\ subapp regim switches
         //====================================================
@@ -76,8 +75,7 @@
             ellipse,
         } = topicColors_repo;
 
-        const topicColors_elected =
-        {
+        const topicColors_elected = {
             static,
             "static-half"       : staticHalfOpacity,
             core,
@@ -95,8 +93,7 @@
         };
         const pt = topicColors_elected;
 
-        var pointsOnPicture =
-        {
+        var pointsOnPicture = {
             C : [50, originY_onPicture], //550],
             B : [838, originY_onPicture], //552],
             M : [391-384+originX_onPicture, 634],
@@ -277,8 +274,7 @@
             //============================================
       };
 
-        var linesArray =
-        [
+        var linesArray = [
             //-------------------------
             // //\\ static
             //-------------------------
@@ -287,22 +283,19 @@
                 // \\// given static angles alpha, beta
                 //-------------------------------------------------
                 //'AABAangleA
-                'AB' :
-                {
+                'AB' : {
                     pcolor : pt.static,
                     cssClass : 'tp-angle-beta',
                 },
             },
             {
-                'BA' :
-                {
+                'BA' : {
                     pcolor : pt.static,
                 },
             },
             {
                //'AABAangleAA'
-               'CB' :
-               {
+               'CB' : {
                     pcolor : pt.static,
                     cssClass : 'tp-angle-beta',
                },
@@ -315,15 +308,13 @@
             // //\\ decorates draggers
             //-----------------------------------------------
             {
-                'MB' :
-                {
+                'MB' : {
                     pcolor : pt[ "core" ],
                     cssClass : 'tp-constructors',
                 },
             },
             {
-                'MC' :
-                {
+                'MC' : {
                     pcolor : pt[ "core" ],
                     cssClass : 'tp-constructors',
                 },
@@ -336,86 +327,74 @@
             // //\\ base sides
             //-------------------------------------------------
             {
-                'BH' :
-                {
+                'BH' : {
                     pcolor : pt.static,
                 },
             },
             {
-                'MH' :
-                {
+                'MH' : {
                     cssClass: 'subessay--direct-proof',
                     pcolor : pt[ "core" ],
                 },
             },
             {
-                'MN' :
-                {
+                'MN' : {
                     pcolor : pt[ "core" ],
                 },
             },
 
             {
-                nN :
-                {
+                nN : {
                     pcolor : pt.core,
                     cssClass: 'subessay--converse-proof',
                 },
             },
             {
-                Cn :
-                {
+                Cn : {
                     pcolor : pt.aux,
                     cssClass: 'subessay--converse-proof',
                 },
             },
 
             {
-                Bn :
-                {
+                Bn : {
                     pcolor : pt.aux,
                     cssClass: 'subessay--converse-proof',
                 },
             },
 
             {
-                Cp :
-                {
+                Cp : {
                     pcolor : pt.aux,
                     cssClass: 'subessay--converse-proof',
                 },
             },
 
             {
-                Bp :
-                {
+                Bp : {
                     pcolor : pt.aux,
                     cssClass: 'subessay--converse-proof',
                 },
             },
 
             {
-                'BC' :
-                {
+                'BC' : {
                     pcolor : pt.static,
                     cssClass:'tp-angle-alpha tp-angle-beta',
                 },
             },
             {
-                'BN' :
-                {
+                'BN' : {
                     pcolor : pt.static,
                 },
             },
             {
-                'CN' :
-                {
+                'CN' : {
                     pcolor : pt.static,
                 },
             },
             {
-                'BD' :
-                {
+                'BD' : {
                     pcolor : pt[ "constructors" ],
                 },
             },
@@ -432,35 +411,30 @@
                 },
             },
             {
-                'CD' :
-                {
+                'CD' : {
                     pcolor : pt[ "constructors" ],
                 },
             },
             {
-                'PT' :
-                {
+                'PT' : {
                     cssClass: 'subessay--direct-proof',
                     pcolor : pt[ "core" ],
                 },
             },
             {
-                'PR' :
-                {
+                'PR' : {
                     cssClass: 'subessay--direct-proof',
                     pcolor : pt[ "core" ],
                 },
             },
             {
-                'PC' :
-                {
+                'PC' : {
                     cssClass: 'logic_phase--proof',
                     pcolor : pt[ "static" ],
                 },
             },
             {
-                'PB' :
-                {
+                'PB' : {
                     cssClass: 'logic_phase--proof',
                     pcolor : pt[ "static" ],
                 },
@@ -482,8 +456,7 @@
             },
             //AAABangleB
             {
-                'AB' :
-                {
+                'AB' : {
                     pcolor : pt[ "static" ],
                     cssClass:'tp-angle-beta',
                 },

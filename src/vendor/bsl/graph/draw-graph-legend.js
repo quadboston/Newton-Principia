@@ -36,8 +36,7 @@
         //==================================================
         // //\\ draws x and y axes legends
         //==================================================
-        function drawsLegendl({ legend, gname, offset })
-        {
+        function drawsLegendl({ legend, gname, offset }) {
             if (!legend) return;
             offset = offset || { x:0, y:0 };
             let med = graphFM_self.gmedia$();

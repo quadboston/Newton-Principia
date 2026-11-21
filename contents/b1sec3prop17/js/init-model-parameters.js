@@ -11,8 +11,7 @@
     ///****************************************************
     /// model initiation
     ///****************************************************
-    function init_model_parameters()
-    {
+    function init_model_parameters() {
         //called once on page load
         //console.log('init_model_parameters');
 

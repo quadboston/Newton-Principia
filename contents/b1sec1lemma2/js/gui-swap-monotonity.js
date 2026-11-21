@@ -15,8 +15,7 @@
     return;
 
 
-    function swapMonotonity(dr)
-    {
+    function swapMonotonity(dr) {
         var xoff = sconf.originX_onPicture;
         var yoff = sconf.originY_onPicture;
         var scale = sconf.mod2inn_scale;
@@ -52,8 +51,7 @@
         }
     }
 
-    function removeOutdatedClasses(dr)
-    {
+    function removeOutdatedClasses(dr) {
         let dv = dr.yVariations;
         let dl = dr.differenceRects.list;
         let bN = sconf.basesN;
@@ -73,8 +71,7 @@
         }
     }
 
-    function setsDifferenceBarsMonotonity(dr)
-    {
+    function setsDifferenceBarsMonotonity(dr) {
         removeOutdatedClasses(dr);
 
         let dv = dr.yVariations;

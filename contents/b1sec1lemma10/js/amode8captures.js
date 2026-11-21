@@ -4,8 +4,7 @@
     return;
 
 
-    function amode2rgstate(captured)
-    {
+    function amode2rgstate(captured) {
         var { logic_phase } = amode;
 
         //hides all proof material, proof is already done in lemma 9

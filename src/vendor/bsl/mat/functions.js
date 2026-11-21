@@ -10,8 +10,7 @@
 
     ///Calculates polynomial.
     ///Loops from low-coefficients to high which gives inaccurate accuracy for long polynomials.
-    function poly(x, coefficients)
-    {
+    function poly(x, coefficients) {
         var fun = coefficients[0];
         var power = 1;
         var length = coefficients.length;

@@ -4,8 +4,7 @@
         sconf, sDomF, ssF, ssD, toreg, rg,
         amode,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             doesPosition_PTandTheirLine,
             protects_curTime_ranges,
         },

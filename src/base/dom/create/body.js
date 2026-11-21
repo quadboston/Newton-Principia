@@ -9,8 +9,7 @@
     return;
 
 
-    function builds_body_4_home8lemma()
-    {
+    function builds_body_4_home8lemma() {
         //===================================
         // //\\ creates application root
         //===================================
@@ -143,8 +142,7 @@
 
     }
     ///inserts itself into sDomN.homeButton$.html
-    function fillsLemmasList()
-    {
+    function fillsLemmasList() {
         var coreText =
         `
             <div class="lemma-list-opener isclosed" style="position:absolute; text-align:left;">
@@ -190,8 +188,7 @@
         }
     }
 
-    function landingPage8Options_click(goToFrontPage)
-    {
+    function landingPage8Options_click(goToFrontPage) {
         userOptions.userOptions_2_updatedGUI();
 
         if (typeof goToFrontPage === 'undefined') {

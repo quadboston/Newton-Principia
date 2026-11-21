@@ -9,8 +9,7 @@
 
 
     ///parameters are enclosed in closure for performance
-    function recreates_q2xy()
-    {
+    function recreates_q2xy() {
         const ellipseA = sconf.ellipseA;
         const ellipseB = sconf.ellipseB;
         const fi0 = sconf.orbit_q_start;
@@ -19,8 +18,7 @@
         stdMod.forceCorrectionScale = forceCorrectionScale;
         return;
 
-        function q2xy(q)
-        {
+        function q2xy(q) {
             q += fi0;
             return [
                 ellipseA * Math.cos(q) + center[0],
@@ -33,8 +31,7 @@
         }
     }
 
-    function recreatesPosCorrector()
-    {
+    function recreatesPosCorrector() {
         const dor = sconf.diagramOrigin;
         const ellA = 1/sconf.ellipseA;
         const ellB = 1/sconf.ellipseB;
@@ -43,8 +40,7 @@
         return;
 
         ///pos to "virtual" andle
-        function pos2t(newPos)
-        {
+        function pos2t(newPos) {
             return mat.pos2angle([
                 (newPos[0] - dor[0])*ellA,
                 (newPos[1] - dor[1])*ellB,

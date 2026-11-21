@@ -3,8 +3,7 @@
         sn, eachprop, nspaste, haz, globalCss,
         sDomN, ssD, sDomF, ssF, exegs,
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList : {
             frags__2__dom_css_mjax_tpanchors,
             digestsSingleMessage_2_topics,
         },
@@ -54,8 +53,7 @@
     }
 
     ///apparently this thing ruins performance and pollutes css
-    function digestsSingleMessage_2_topics(messageDomEl, singleMessageText)
-    {
+    function digestsSingleMessage_2_topics(messageDomEl, singleMessageText) {
         //Frag. step I.
         //collects and adds more entries into l caseId2allLemTopics,
         //var collectedTpLinks =

@@ -4,8 +4,7 @@
         ssF, ssD, sDomF, toreg,
         stdMod, sconf, rg,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             //pointsArr_2_doubledDividedDifferences,
             pointsArr_2_singleDividedDifferences,
         },
@@ -98,8 +97,7 @@
         //poly2svg({});
         return result;
 
-        function q2xy(q)
-        {
+        function q2xy(q) {
             return separateXYforParamT ?
                 [
                     axt.calculate_polynomial(q),
@@ -110,8 +108,7 @@
 
         ///generates array of xy where x is par. "t" and is from
         ///the set x = tStart + tstep * tix
-        function trange2points({ tStart, tEnd, stepsCount, doIntegrate })
-        {
+        function trange2points({ tStart, tEnd, stepsCount, doIntegrate }) {
             var newpoints = [];
             var area = 0;
             var antid = antider;
@@ -133,15 +130,13 @@
 
         ///generates array of xy where x
         ///is from range xy[ 0 ][0] till xy[ xy.length-1 ][0]
-        function ownrange2points({ stepsCount, doIntegrate })
-        {
+        function ownrange2points({ stepsCount, doIntegrate }) {
             var tStart = xy[ 0 ][0];
             var tEnd = xy[ qmax ][0];
             return trange2points({ tStart, tEnd, stepsCount, doIntegrate });
         }
 
-        function buildsCurvePoints({ doIntegrate })
-        {
+        function buildsCurvePoints({ doIntegrate }) {
             separateXYforParamT ?
             trange2points({
                 tStart:0,
@@ -152,14 +147,12 @@
             ownrange2points({ stepsCount:1000, doIntegrate });
         }
 
-        function poly2svg(arg)
-        {
+        function poly2svg(arg) {
             buildsCurvePoints({});
             buildsPlot(); //( arg );
         }
 
-        function buildsPlot()
-        {
+        function buildsPlot() {
             var medpoints = curvePoints.map(cp => {
                 return ssF.mod2inn(cp,);
             });

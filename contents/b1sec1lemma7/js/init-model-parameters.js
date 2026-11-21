@@ -10,8 +10,7 @@
     return;
 
 
-    function init_model_parameters()
-    {
+    function init_model_parameters() {
         ssD.curveStartInitialPos = ns.paste({}, rg.curveStart.pos);
         ssD.curveEndInitialPos = ns.paste({}, rg.curveEnd.pos);
 
@@ -36,8 +35,7 @@
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
             pname : 'B',
-            acceptPos : (newPos) =>
-            {
+            acceptPos : (newPos) => {
                 var newPosX = ssD.getUnrotatedParameterX(
                     newPos[0], rg.B.unrotatedParameterX
                 );
@@ -110,8 +108,7 @@
     ///****************************************************
     /// model scenario
     ///****************************************************
-    function model_upcreate()
-    {
+    function model_upcreate() {
         //: sets dragging point point B
         var newPos = ssD.repoConf[ssD.repoConf.customFunction].fun(rg.B.unrotatedParameterX);
         rg.B.pos[0] = newPos[0];
@@ -182,8 +179,7 @@
         nspaste(rg.c.pos, [C[0]*magn, C[1]*magn]);
     }
 
-    function dir8innerB_2_R(RB_slope)
-    {
+    function dir8innerB_2_R(RB_slope) {
         //prepares point B which implies new position of point R
         //finds new point B
         let posB = ssD.repoConf[ssD.repoConf.customFunction]

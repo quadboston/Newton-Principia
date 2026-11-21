@@ -14,8 +14,7 @@
     ///tabIsInactive flag; this site is such a site;
     ///this function does this job for this site;
     ///todm: non-elegant solution: too much coding:
-    function makes_logic_phaseTab_nonClickable()
-    {
+    function makes_logic_phaseTab_nonClickable() {
         sDomN.teafs$.logic_phase.addClass('non-clickable')
             .e('click', function (event) {
                 event.stopPropagation = true;

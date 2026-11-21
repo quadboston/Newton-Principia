@@ -2,8 +2,7 @@
     var {
         ns, fapp, rg,
     } = window.b$l.apptree({
-        stdModExportList :
-        {
+        stdModExportList : {
             captureAState,
         },
     });
@@ -13,8 +12,7 @@
     ///==========================================
     ///put rg-subtrees you disire to capture here
     ///==========================================
-    function captureAState(ast)
-    {
+    function captureAState(ast) {
         fapp.captureState(
             ns.paste(
                 {

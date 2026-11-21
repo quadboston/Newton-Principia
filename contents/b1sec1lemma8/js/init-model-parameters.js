@@ -13,8 +13,7 @@
     ///****************************************************
     /// model initiation
     ///****************************************************
-    function init_model_parameters()
-    {
+    function init_model_parameters() {
         let b2B = sconf.b_per_B_original; // defined in sconf.js, factor to determine distance between B and b
         nspaste(rg.b.pos, [ rg.B.pos[0] * b2B, rg.B.pos[1] * b2B ]);
         let D = rg.D.pos;
@@ -56,8 +55,7 @@
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
             pname : 'B',
-            acceptPos : (newPos) =>
-            {
+            acceptPos : (newPos) => {
                 var new_unrotatedParameterX = newPos[0];
 
                 //prevents B from getting too close to A to avoid rounding errors
@@ -92,8 +90,7 @@
         sDomF.params__2__rgX8dragwrap_gen_list({
             stdMod,
             pname : 'R',
-            acceptPos : (newPos) =>
-            {
+            acceptPos : (newPos) => {
                 // R cannot be moved right of B on x-axis
                 if (newPos[0] >= rg.B.pos[0] - 0.2) {
                     return false;
@@ -158,8 +155,7 @@
     ///****************************************************
     /// model scenario
     ///****************************************************
-    function model_upcreate()
-    {
+    function model_upcreate() {
         //: sets dragging point point B (keeps it on the curve)
         var newPos = ssD.repoConf[ssD.repoConf.customFunction].fun(rg.B.unrotatedParameterX);
         rg.B.pos[0] = newPos[0];
@@ -287,8 +283,7 @@
         nspaste(rg.c.pos, [C[0]*magn, C[1]*magn]);
     }
 
-    function dir8innerB_2_R(RB_slope)
-    {
+    function dir8innerB_2_R(RB_slope) {
         //prepares point B which implies new position of point R
         //finds new point B
         let posB = ssD.repoConf[ssD.repoConf.customFunction]

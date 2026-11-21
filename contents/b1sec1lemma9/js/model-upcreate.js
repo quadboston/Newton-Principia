@@ -6,14 +6,12 @@
         rg, toreg, ssF, ssD,
         stdMod,
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList : {
             calculateCurvedArea,
             x0y_2_t,
             const2positions,
         },
-        stdModExportList :
-        {
+        stdModExportList : {
             model_upcreate,
         },
     });
@@ -24,8 +22,7 @@
     /// model scenario
     /// is required; to skip define as ()=>{};
     ///****************************************************
-    function model_upcreate()
-    {
+    function model_upcreate() {
         var mat             = sn('mat');
 
         //:study-pars
@@ -134,16 +131,14 @@
                     [remote[1], remote[2]], tC, tiltEC, mod_g, sconf.areaScale);
 
         //proof biggest linear
-        var areas = calcAreas[ 'Age' ] =
-        {
+        var areas = calcAreas[ 'Age' ] = {
             total     : areas.areaBetweenTanT_8_curve,
             base      : areas.areaUnderTan1,
             delta     : areas.areaBetween_Tan1_Tan2_Curve
         };
 
         //given biggest linear
-        calcAreas[ 'AGE' ] =
-        {
+        calcAreas[ 'AGE' ] = {
             total     : areas.total * rr_2,
             base      : areas.base * rr_2,
             delta     : areas.delta * rr_2
@@ -152,16 +147,14 @@
                     [remote[1], remote[2]], tB, tiltEC, mod_f, sconf.areaScale);
 
         //proof smalles curved
-        var areas = calcAreas[ 'Afd' ] =
-        {
+        var areas = calcAreas[ 'Afd' ] = {
             total     : areas.areaBetweenTanT_8_curve,
             base      : areas.areaUnderTan1,
             delta     : areas.areaBetween_Tan1_Tan2_Curve
         };
 
         //given  smallest curved
-        calcAreas[ 'AFD' ] =
-        {
+        calcAreas[ 'AFD' ] = {
             total     : areas.total * rr_2,
             base      : areas.base * rr_2,
             delta     : areas.delta * rr_2
@@ -204,8 +197,7 @@
     */
     ///Inputs: C,E
     ///Returns: A,G,E
-    function make_points_AGE(C, E, tanAa)
-    {
+    function make_points_AGE(C, E, tanAa) {
         var tanCa = (C[1]-E[1])/C[0];
         var Ca = Math.atan(tanCa);
         var Ea = Math.PI/2 + Ca;
@@ -224,8 +216,7 @@
     //==========================================
     // //\\ calculateCurvedArea
     //==========================================
-    function calculateCurvedArea(rgId, pivots, tend, startPoint, endPoint)
-    {
+    function calculateCurvedArea(rgId, pivots, tend, startPoint, endPoint) {
         var area        = toreg(rgId)();
         area.curve      = bezier.bezier2lower(pivots, tend);
         area.startPoint = startPoint;
@@ -243,8 +234,7 @@
     ///         in this case, t-of-closest-to-pivot0 is returned
     ///input:   x0y   = x or y
     ///         x0yIx = 1 for y, =0 for x
-    function x0y_2_t(x0y, x0yIx)
-    {
+    function x0y_2_t(x0y, x0yIx) {
         // //\\ patches: todm
         //.avoid_param_t_interval_ends
         var avoid_ends = 0.00001;
@@ -287,8 +277,7 @@
     ///====================================================================
     ///rescales pivots
     ///====================================================================
-    function const2positions(con, positions)
-    {
+    function const2positions(con, positions) {
         return positions.map(function (pos) {
             return mat.sm(con, pos);
         });

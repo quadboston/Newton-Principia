@@ -4,8 +4,7 @@
         sconf, sDomF, ssF, lowtpid_2_glocss8anchorRack, rg, toreg,
         stdMod,
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList : {
             pos2pointy,
             doPaintPoints,
             doPaintLetter8kernel,
@@ -36,8 +35,7 @@
     ///Twins: doPaintLetter8kernel( pname )
     ///       which does more work for this function
     ///Returns: rg[ pName ]
-    function pos2pointy(pName, attrs,)
-    {
+    function pos2pointy(pName, attrs,) {
         attrs = attrs || {};
         var pt = rg[ pName ];
 
@@ -143,8 +141,7 @@
     ///-----------------------------------------------
     /// paints latin letters for points
     ///-----------------------------------------------
-    function doPaintLetter8kernel(pname,)
-    {
+    function doPaintLetter8kernel(pname,) {
         var rgX = rg[ pname ];
         ///adds fake points over draggable points to
         ///make white kernels drawn above lines
@@ -275,8 +272,7 @@
     // //\\ adds to points their media position
     //      and sets point's color
     //-------------------------------------------------
-    function doPaintPoints()
-    {
+    function doPaintPoints() {
         var p2p = haz(sconf, 'pname2point');
         if (!p2p) return;
         if (ix2origPoint.length) {

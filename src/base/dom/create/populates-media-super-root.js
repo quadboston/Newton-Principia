@@ -18,8 +18,7 @@
     //=========================================================
     /// create LemmaDom
     //=========================================================
-    function populate_mediaSuperRoot(bgImagesAreLoaded_cb)
-    {
+    function populate_mediaSuperRoot(bgImagesAreLoaded_cb) {
         //--------------------------
         // //\\ top media controls
         //--------------------------
@@ -180,13 +179,11 @@
         //--------------------------
     }
 
-    function cre__medRootDetails(bgImagesAreLoaded_cb)
-    {
+    function cre__medRootDetails(bgImagesAreLoaded_cb) {
         createsMediaRoot(bgImagesAreLoaded_cb);
     }
 
-    function createsMediaRoot(bgImagesAreLoaded_cb)
-    {
+    function createsMediaRoot(bgImagesAreLoaded_cb) {
         //..............................
         // //\\ study image and submodel
         //..............................

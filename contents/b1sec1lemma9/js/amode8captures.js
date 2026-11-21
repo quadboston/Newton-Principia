@@ -2,16 +2,14 @@
     var {
         amode, rg,
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList : {
             amode2rgstate,
         },
     });
     return;
 
 
-    function amode2rgstate(captured)
-    {
+    function amode2rgstate(captured) {
         var { logic_phase } = amode;
         [
             //points

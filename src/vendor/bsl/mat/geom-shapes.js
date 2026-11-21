@@ -32,8 +32,7 @@
     ///returns andgle from interval [0,2PI),
     ///converts atan2 from interval [-PI,PI] to interval [0,2PI),
     ///when atan2 < 0 returns angle from [0,2PI).
-    function pos2angle(pos)
-    {
+    function pos2angle(pos) {
         var t = Math.atan2(pos[1], pos[0]);
         if (t < 0) {
             t = 2*Math.PI + t;

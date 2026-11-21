@@ -63,12 +63,9 @@
                 checkCompletion(fileItem);
             }
 
-            function process_by_good_readystate()
-            {
-                if (xml.readyState === 4)
-                {
-                    if (xml.status === 200)
-                    {
+            function process_by_good_readystate() {
+                if (xml.readyState === 4) {
+                    if (xml.status === 200) {
                         fileOnLoad();
                     } else {
                         //Give up.
@@ -80,8 +77,7 @@
                 }
             }
 
-            function fileOnLoad()
-            {
+            function fileOnLoad() {
                 var loadedItem = {
                     text : fileItem.responseType === 'arraybuffer' ?
                            xml.response : xml.responseText,
@@ -98,8 +94,7 @@
         });
         return;
 
-        function checkCompletion(fileItem)
-        {
+        function checkCompletion(fileItem) {
             if (completionCount === filesList.length) {
                 lastCb && lastCb(loadedFilesById, loadedFiles);
             }

@@ -8,8 +8,7 @@
         sDomF, sDomN, amode,
         exegs,
     } = window.b$l.apptree({
-        ssFExportList :
-        {
+        ssFExportList : {
             line2abs,
             linePoints2abs,
             circumscribeCircleOverChordAndBothNormals_XY,
@@ -114,8 +113,7 @@
     ///Assigns: "A=B,C,D"
     ///         Draws perpend from B to line CD and assigns pos to A.
     ///         A,B,C,D are registry names.
-    function dropPerpend(assigneeTopPoint1Point2_str)
-    {
+    function dropPerpend(assigneeTopPoint1Point2_str) {
         var assigmentPoints = assigneeTopPoint1Point2_str.split('=');
         var points = assigmentPoints[1].split(',');
         nspaste(
@@ -135,8 +133,7 @@
     ///         and assigns pos to A.
     ///         Line segment length = scale * length_CD
     ///         A,C,D,S are registry names.
-    function dropLine(assigneeScalePoint1Point2_str)
-    {
+    function dropLine(assigneeScalePoint1Point2_str) {
         var assigmentPoints = assigneeScalePoint1Point2_str.split('=');
         var operands = assigmentPoints[1].split(',');
         nspaste(
@@ -152,8 +149,7 @@
 
     ///Assigns: "A=B"
     ///          A,B are registry names.
-    function dropPoint(operands_str)
-    {
+    function dropPoint(operands_str) {
         var operands = operands_str.split('=');
         nspaste(
             rg[ operands[0] ].pos,

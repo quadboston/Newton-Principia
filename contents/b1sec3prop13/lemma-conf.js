@@ -3,8 +3,7 @@
     return;
 
 
-    function lemmaConfig()
-    {
+    function lemmaConfig() {
         return {
             codesList : [
                 { src: 'sconf.js' },

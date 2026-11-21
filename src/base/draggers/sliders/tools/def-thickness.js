@@ -13,13 +13,11 @@
     return;
 
 
-    function setModule()
-    {
+    function setModule() {
         pivots_2_svgLineInRg   = ssF.pivots_2_svgLineInRg;
     }
 
-    function createSliderPlaceholder_thickness()
-    {
+    function createSliderPlaceholder_thickness() {
         var magnit = 'thickness';
         toreg(magnit)('value', 2);
 
@@ -35,8 +33,7 @@
         });
     }
 
-    function magnitude2app(magnit_api, newValue)
-    {
+    function magnitude2app(magnit_api, newValue) {
         //==========================================
         // //\\ sets magnit_api to specified elements
         //==========================================

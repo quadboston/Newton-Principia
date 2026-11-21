@@ -10,12 +10,10 @@
 
 
     ///possibly, "graph of force is bounded on diagram"
-    function forceIsBounded(xy)
-    {
+    function forceIsBounded(xy) {
         var len = xy.length;
         var solvable = true;
-        for (var iq=0; iq<len; iq++)
-        {
+        for (var iq=0; iq<len; iq++) {
             var fr = xy[iq];
             if (
                 fr[0] > 1000 ||
@@ -28,8 +26,7 @@
         return { solvable, fr };
     }
 
-    function quadratures()
-    {
+    function quadratures() {
 
         //decoration
         let vgraph = [];
@@ -157,8 +154,7 @@
     ///finds drop point and top turn point,
     ///no search for low turn point,
     ///builds "back speed" === from turn point to started index,
-    function findsDropPoint(fiStartedIx)
-    {
+    function findsDropPoint(fiStartedIx) {
         let frArr       = rg[ 'approximated-curve' ].curvePoints;
 
         //:prepares 0-elements
