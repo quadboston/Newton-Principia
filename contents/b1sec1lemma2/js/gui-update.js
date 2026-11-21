@@ -63,7 +63,7 @@
         var mp_len1 = mp.length-1;
         //Include mp_end_ix to ensure there can't be a gap on the right side of
         //the figure.
-        for (var ix = mp_start_ix ; ix <= mp_end_ix; ix++) {
+        for (var ix = mp_start_ix; ix <= mp_end_ix; ix++) {
             const posT = stdMod.xy_2_Txy(dr, mp[ix]);
             mpRounded.push([posT[0].toFixed(2), posT[1].toFixed(2)]);
         }

@@ -127,7 +127,7 @@
         //==================================================
         // //\\ application version label
         //==================================================
-        $$  .div()
+        $$.div()
             .to(fapp.fappRoot$) //document.body )
             .cls('test-version')
             .css('position', 'absolute')

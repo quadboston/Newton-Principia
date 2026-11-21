@@ -80,7 +80,7 @@
                 //**rgX optionally can have processDownEvent method:
                 ns.hafb(pWrap, 'processDownEvent')(arg);
                 break;
-            case 'up' :
+            case 'up':
                 //**rgX optionally can have processUpEvent method:
                 ns.hafb(pWrap, 'processUpEvent')(arg);
                 break;

@@ -868,7 +868,7 @@
                     //paper[ p ];
                         var theValue = paste_non_arrays(wall[p], paper[p], level+1, skip_undefined, refdepth, recdepth);
 
-                        if (! ((isArrayPaper || skip_undefined) && typeof theValue === 'undefined')) {
+                        if (!((isArrayPaper || skip_undefined) && typeof theValue === 'undefined')) {
                             wall[p]		= theValue;
                         }
                 } else {

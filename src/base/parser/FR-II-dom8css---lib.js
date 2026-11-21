@@ -274,7 +274,7 @@
     function rawFragments2htmlText(
         rawActiveFrag,
     ) {
-        if (typeof(rawActiveFrag) === 'object') {
+        if (typeof (rawActiveFrag) === 'object') {
             ////we have active fragments:
             ////     { name1 : fragBody_raw1,
             ////       name2 : fragBody_raw2,

@@ -96,7 +96,7 @@
                border-radius : 4px;
                color         : ${baseColor};
                opacity       : ${notfocusOp_str};
-               font-weight   : ${ anrack.anchorIsBold ? 'bold' : 'normal' };
+               font-weight   : ${anrack.anchorIsBold ? 'bold' : 'normal'};
             }
             ${tplink_str}:hover {
                opacity          : ${focusOp_str};

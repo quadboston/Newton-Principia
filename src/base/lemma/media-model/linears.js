@@ -93,7 +93,7 @@
             line.pivotNames     = [pv0.pname, pv1.pname];
             } else {
                 //patch for lemma 4
-                sn('pivotNames', line. null);
+                sn('pivotNames', line.null);
             }
 
             var argsvg = {

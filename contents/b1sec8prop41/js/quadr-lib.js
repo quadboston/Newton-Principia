@@ -51,8 +51,8 @@
         let R2      = R*R;
         {
             let lastIx      = xy.length-1;
-            let last        = xy[lastIx] [1];
-            let first       = xy[0] [1];
+            let last        = xy[lastIx][1];
+            let first       = xy[0][1];
             var fiStartedIx = Math.ceil((first - r0[1]) / (first - last) * lastIx);
             fiStartedIx     = Math.min(lastIx-1, fiStartedIx);
         }

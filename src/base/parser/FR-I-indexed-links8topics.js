@@ -97,7 +97,7 @@
                     ///rawActiveFrag and rawActFrValue are obtained from Book
                     ///with help by ACTION_SPLITTER = /¿/
                     subexeg.activeFrags.forEach(function (rawActiveFrag) {
-                        if (typeof(rawActiveFrag) === 'object') {
+                        if (typeof (rawActiveFrag) === 'object') {
                             eachprop(rawActiveFrag, (rawActFrValue) => {
                                 ssF.fragment__collectsRawTpLinks(rawActFrValue);
                             });

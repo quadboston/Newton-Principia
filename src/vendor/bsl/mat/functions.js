@@ -30,6 +30,6 @@
     }
 
     function lengthOf(pt1, pt2) {
-        return Math.sqrt(mat.squaredDistance(pt1, pt2));;
+        return Math.sqrt(mat.squaredDistance(pt1, pt2)); ;
     }
 })();
